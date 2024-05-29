@@ -470,15 +470,17 @@ x$3 = 1;
 considerMutated(x$3);
 let x$5 = 0;
 try {
-  x$5 = 1;
-} catch (e$3) {
+  try {
+    x$5 = 1;
+  } catch (e$3) {}
 } finally {
 }
 considerMutated(x$5);
 let x$7 = 0;
 try {
-  x$7 = 1;
-} catch (e$5) {
+  try {
+    x$7 = 1;
+  } catch (e$5) {}
 } finally {
 }
 considerMutated(x$7);
@@ -490,12 +492,14 @@ considerMutated(x$11);
 let x$13 = 0;
 foo: {
   try {
-    if ($) {
-      break foo;
-    } else {
+    try {
+      if ($) {
+        break foo;
+      } else {
+      }
+    } catch (e$11) {
+      x$13 = 1;
     }
-  } catch (e$11) {
-    x$13 = 1;
   } finally {
   }
 }
@@ -503,8 +507,9 @@ considerMutated(x$13);
 let x$15 = 0;
 foo$1: {
   try {
-    break foo$1;
-  } catch (e$13) {
+    try {
+      break foo$1;
+    } catch (e$13) {}
   } finally {
     x$15 = 1;
   }
@@ -513,8 +518,9 @@ considerMutated(x$15);
 let x$17 = 0;
 foo$3: {
   try {
-    break foo$3;
-  } catch (e$15) {
+    try {
+      break foo$3;
+    } catch (e$15) {}
   } finally {
     x$17 = 1;
   }
@@ -523,8 +529,9 @@ considerMutated(x$17);
 let x$19 = 0;
 foo$5: {
   try {
-    break foo$5;
-  } catch (e$17) {
+    try {
+      break foo$5;
+    } catch (e$17) {}
   } finally {
     x$19 = 1;
   }
@@ -589,9 +596,11 @@ let f$5 = function () {
     return undefined;
   };
   try {
-    throw `one`;
-  } catch (e$19) {
-    throw `two`;
+    try {
+      throw `one`;
+    } catch (e$19) {
+      throw `two`;
+    }
   } finally {
     const tmpReturnArg$7 = tmpAfterLabel$3();
     return tmpReturnArg$7;
@@ -605,10 +614,12 @@ considerMutated(x$27);
 let f$7 = function () {
   debugger;
   try {
-    x$29 = 1;
-    throw `one`;
-  } catch (e$21) {
-    throw `two`;
+    try {
+      x$29 = 1;
+      throw `one`;
+    } catch (e$21) {
+      throw `two`;
+    }
   } finally {
     return undefined;
   }
@@ -620,10 +631,12 @@ considerMutated(x$29);
 let f$9 = function () {
   debugger;
   try {
-    throw `one`;
-  } catch (e$23) {
-    x$31 = 2;
-    throw `two`;
+    try {
+      throw `one`;
+    } catch (e$23) {
+      x$31 = 2;
+      throw `two`;
+    }
   } finally {
     return undefined;
   }
@@ -691,9 +704,11 @@ considerMutated(x$25);
 const f$5 = function () {
   debugger;
   try {
-    throw `one`;
-  } catch (e$19) {
-    throw `two`;
+    try {
+      throw `one`;
+    } catch (e$19) {
+      throw `two`;
+    }
   } finally {
     x$27 = 1;
     return undefined;
@@ -708,9 +723,11 @@ const f$7 = function () {
   debugger;
   x$29 = 1;
   try {
-    throw `one`;
-  } catch (e$21) {
-    throw `two`;
+    try {
+      throw `one`;
+    } catch (e$21) {
+      throw `two`;
+    }
   } finally {
     return undefined;
   }
@@ -722,10 +739,12 @@ considerMutated(x$29);
 const f$9 = function () {
   debugger;
   try {
-    throw `one`;
-  } catch (e$23) {
-    x$31 = 2;
-    throw `two`;
+    try {
+      throw `one`;
+    } catch (e$23) {
+      x$31 = 2;
+      throw `two`;
+    }
   } finally {
     return undefined;
   }
@@ -798,10 +817,12 @@ considerMutated( e );
 const f = function() {
   debugger;
   try {
-    throw "one";
-  }
+    try {
+      throw "one";
+    }
 catch (e$19) {
-    throw "two";
+      throw "two";
+    }
   }
 finally {
     g = 1;
@@ -817,10 +838,12 @@ const h = function() {
   debugger;
   i = 1;
   try {
-    throw "one";
-  }
+    try {
+      throw "one";
+    }
 catch (e$21) {
-    throw "two";
+      throw "two";
+    }
   }
 finally {
     return undefined;
@@ -833,11 +856,13 @@ considerMutated( i );
 const j = function() {
   debugger;
   try {
-    throw "one";
-  }
+    try {
+      throw "one";
+    }
 catch (e$23) {
-    k = 2;
-    throw "two";
+      k = 2;
+      throw "two";
+    }
   }
 finally {
     return undefined;

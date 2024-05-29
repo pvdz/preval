@@ -72,14 +72,11 @@ $(1);
 $(1);
 $(1);
 $(1);
-let tmpSSA_a = 100;
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  tmpSSA_a = undefined;
-  tmpSSA_a = 100;
   $(1);
 }
-$(tmpSSA_a);
+$(100);
 `````
 
 ## PST Output
@@ -97,14 +94,11 @@ $( 1 );
 $( 1 );
 $( 1 );
 $( 1 );
-let a = 100;
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  a = undefined;
-  a = 100;
   $( 1 );
 }
-$( a );
+$( 100 );
 `````
 
 ## Globals

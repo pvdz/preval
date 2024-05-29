@@ -25,7 +25,7 @@
       break A;
     }
   }
-  $(x);
+  $(x); // x=1 2
 }
 `````
 
@@ -50,7 +50,7 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | not read    | none           | 12
+  - w @4       | ########## | 26          | none           | 12
   - w @12      | ########## | 19,26       | 4              | none
   - r @19      | 12
-  - r @26      | 12
+  - r @26      | 4,12

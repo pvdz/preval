@@ -40,8 +40,9 @@ considerMutated(x);
 `````js filename=intro
 let x = 0;
 try {
-  fail_early;
-} catch (e) {
+  try {
+    fail_early;
+  } catch (e) {}
 } finally {
   x = 1;
 }
@@ -52,8 +53,9 @@ considerMutated(x);
 
 `````js filename=intro
 try {
-  fail_early;
-} catch (e) {
+  try {
+    fail_early;
+  } catch (e) {}
 } finally {
 }
 considerMutated(1);
@@ -65,10 +67,12 @@ With rename=true
 
 `````js filename=intro
 try {
-  fail_early;
-}
+  try {
+    fail_early;
+  }
 catch (e) {
 
+  }
 }
 finally {
 

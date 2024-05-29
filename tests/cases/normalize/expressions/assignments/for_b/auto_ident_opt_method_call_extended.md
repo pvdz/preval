@@ -74,7 +74,6 @@ if (tmpChainElementCall) {
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    tmpSSA_a = undefined;
     const tmpChainElementObject$4 = tmpObjLitVal$1.e;
     const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$4, tmpObjLitVal$1, 1);
     tmpSSA_a = tmpChainElementCall$1;
@@ -106,7 +105,6 @@ else {
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
-    d = undefined;
     const e = b.e;
     const f = $dotCall( e, b, 1 );
     d = f;

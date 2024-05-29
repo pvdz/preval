@@ -87,20 +87,14 @@ const f = function () {
     if (tmpIfTest) {
       $(`loop`);
       let x = undefined;
-      let tmpForEntered = false;
       const tmpForOfDeclRhs = [1, 2];
       for (x of tmpForOfDeclRhs) {
-        tmpForEntered = true;
-        break;
-      }
-      if (tmpForEntered) {
         $(`loop`, x);
         const tmpReturnArg = $(100, `return`);
         return tmpReturnArg;
-      } else {
-        $(`do not visit, do not eliminate`);
-        tmpIfTest = $(true);
       }
+      $(`do not visit, do not eliminate`);
+      tmpIfTest = $(true);
     } else {
       break;
     }
@@ -124,21 +118,14 @@ const a = function() {
     if (b) {
       $( "loop" );
       let c = undefined;
-      let d = false;
-      const e = [ 1, 2 ];
-      for (c of e) {
-        d = true;
-        break;
-      }
-      if (d) {
+      const d = [ 1, 2 ];
+      for (c of d) {
         $( "loop", c );
-        const f = $( 100, "return" );
-        return f;
+        const e = $( 100, "return" );
+        return e;
       }
-      else {
-        $( "do not visit, do not eliminate" );
-        b = $( true );
-      }
+      $( "do not visit, do not eliminate" );
+      b = $( true );
     }
     else {
       break;
@@ -147,8 +134,8 @@ const a = function() {
   $( "after (not invoked)" );
   return undefined;
 };
-const g = a();
-$( g );
+const f = a();
+$( f );
 `````
 
 ## Globals

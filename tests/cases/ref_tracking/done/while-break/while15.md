@@ -14,16 +14,19 @@
 
 `````js filename=intro
 let x = 1;
-while ($) {
-  if ($(false)) {
-    $(x);
-    x = 5;
-    break;
-  } else {
-    x = 4;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  if ($) {
+    if ($1) {
+      $(x); // x=1 3
+      x = 5;
+      break;
+    } else {
+      x = 4;
+    }
+    x = 3;
   }
-  x = 3;
 }
+$(x); // x=5
 `````
 
 ## Output
@@ -32,33 +35,29 @@ while ($) {
 
 `````filename=intro
 let x___4__ = 1;
-while (true) {
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___7__) {
   /*8*/ if ($) {
-    /*11*/ const tmpIfTest___14__ = $(false);
-    if (tmpIfTest___19__) {
-      /*20*/ $(x___24__);
-      x___28__ = 5;
+    /*11*/ if ($1) {
+      /*14*/ $(x___18__);
+      x___22__ = 5;
       break;
-    } /*30*/ else {
-      x___34__ = 4;
-      x___38__ = 3;
+    } /*24*/ else {
+      x___28__ = 4;
+      x___32__ = 3;
     }
-  } /*39*/ else {
-    break;
+  } /*33*/ else {
   }
 }
+$(x___37__);
 `````
 
 Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 24          | none           | 28,34
-  - r @24      | 4,38
-  - w @28      | ########## | not read    | 4,38           | none
-  - w @34      | ########## | not read    | 4,38           | 38
-  - w @38      | ########## | 24          | 34             | 28,34
-
-tmpIfTest:
-  - w @14      | ########## | 19          | none           | none
-  - r @19      | 14
+  - w @4       | ########## | 18          | none           | 22,28
+  - r @18      | 4,32
+  - w @22      | ########## | 37          | 4,32           | none
+  - w @28      | ########## | not read    | 4,32           | 32
+  - w @32      | ########## | 18          | 28             | 22,28
+  - r @37      | 22

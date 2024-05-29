@@ -51,15 +51,17 @@ while (true) {
 `````js filename=intro
 while (true) {
   try {
-    const test = $(`first`);
-    $(`second`);
-    if (test) {
-      break;
-    } else {
-      $(`third`);
+    try {
+      const test = $(`first`);
+      $(`second`);
+      if (test) {
+        break;
+      } else {
+        $(`third`);
+      }
+    } catch (e) {
+      $(`error`);
     }
-  } catch (e) {
-    $(`error`);
   } finally {
     $(`finally`);
   }
@@ -71,30 +73,34 @@ while (true) {
 `````js filename=intro
 let $tmpLoopUnrollCheck = true;
 try {
-  const test = $(`first`);
-  $(`second`);
-  if (test) {
-    $tmpLoopUnrollCheck = false;
-  } else {
-    $(`third`);
+  try {
+    const test = $(`first`);
+    $(`second`);
+    if (test) {
+      $tmpLoopUnrollCheck = false;
+    } else {
+      $(`third`);
+    }
+  } catch (e) {
+    $(`error`);
   }
-} catch (e) {
-  $(`error`);
 } finally {
   $(`finally`);
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     try {
-      const test$1 = $(`first`);
-      $(`second`);
-      if (test$1) {
-        break;
-      } else {
-        $(`third`);
+      try {
+        const test$1 = $(`first`);
+        $(`second`);
+        if (test$1) {
+          break;
+        } else {
+          $(`third`);
+        }
+      } catch (e$1) {
+        $(`error`);
       }
-    } catch (e$1) {
-      $(`error`);
     } finally {
       $(`finally`);
     }
@@ -110,17 +116,19 @@ With rename=true
 `````js filename=intro
 let a = true;
 try {
-  const b = $( "first" );
-  $( "second" );
-  if (b) {
-    a = false;
+  try {
+    const b = $( "first" );
+    $( "second" );
+    if (b) {
+      a = false;
+    }
+    else {
+      $( "third" );
+    }
   }
-  else {
-    $( "third" );
-  }
-}
 catch (e) {
-  $( "error" );
+    $( "error" );
+  }
 }
 finally {
   $( "finally" );
@@ -128,17 +136,19 @@ finally {
 if (a) {
   while ($LOOP_UNROLL_10) {
     try {
-      const c = $( "first" );
-      $( "second" );
-      if (c) {
-        break;
+      try {
+        const c = $( "first" );
+        $( "second" );
+        if (c) {
+          break;
+        }
+        else {
+          $( "third" );
+        }
       }
-      else {
-        $( "third" );
-      }
-    }
 catch (e$1) {
-      $( "error" );
+        $( "error" );
+      }
     }
 finally {
       $( "finally" );

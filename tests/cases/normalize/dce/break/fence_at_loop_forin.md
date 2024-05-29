@@ -70,15 +70,10 @@ while (true) {
   if (tmpIfTest) {
     $(`loop`);
     let x = undefined;
-    let tmpForEntered = false;
     const tmpForInDeclRhs = { a: 1, b: 2 };
     for (x in tmpForInDeclRhs) {
-      tmpForEntered = true;
-      break;
-    }
-    if (tmpForEntered) {
       $(`loop`, x);
-    } else {
+      break;
     }
     $(`infiloop, do not eliminate`);
     tmpIfTest = $(true);
@@ -99,17 +94,13 @@ while (true) {
   if (a) {
     $( "loop" );
     let b = undefined;
-    let c = false;
-    const d = {
+    const c = {
 a: 1,
 b: 2
     ;
-    for (b in d) {
-      c = true;
-      break;
-    }
-    if (c) {
+    for (b in c) {
       $( "loop", b );
+      break;
     }
     $( "infiloop, do not eliminate" );
     a = $( true );

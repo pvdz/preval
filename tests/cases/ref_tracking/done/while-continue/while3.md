@@ -15,14 +15,14 @@
 `````js filename=intro
 let x = 1;
 while ($) {
-  $(x);
+  $(x); // x=1 2
   if ($) {
     continue;
   } else {
     x = 2;
   }
 }
-$(x);
+$(x); // unreachable (otherwise x=1 2)
 `````
 
 ## Output
@@ -52,5 +52,5 @@ Ref tracking result:
 x:
   - w @4       | ########## | 15,30       | none           | 24
   - r @15      | 4,24
-  - w @24      | ########## | 15,30       | 4,24           | 24
-  - r @30      | 4,24
+  - w @24      | ########## | 15          | 4,24           | 24
+  - r @30      | 4

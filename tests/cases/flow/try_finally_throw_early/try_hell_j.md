@@ -49,9 +49,11 @@ considerMutated(x);
 let x = 0;
 foo: {
   try {
-    break foo;
-  } catch (e) {
-    x = 1;
+    try {
+      break foo;
+    } catch (e) {
+      x = 1;
+    }
   } finally {
     throw_early;
     x = 2;

@@ -68,15 +68,15 @@ if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$2 = $(1);
     if (tmpIfTest$2) {
-      a = 60;
+      $(100);
     } else {
       const tmpCalleeParam$1 = $(100);
       a = $(tmpCalleeParam$1);
-    }
-    if (a) {
-      $(100);
-    } else {
-      break;
+      if (a) {
+        $(100);
+      } else {
+        break;
+      }
     }
   }
 } else {
@@ -109,17 +109,17 @@ if (b) {
   while ($LOOP_UNROLL_10) {
     const e = $( 1 );
     if (e) {
-      a = 60;
+      $( 100 );
     }
     else {
       const f = $( 100 );
       a = $( f );
-    }
-    if (a) {
-      $( 100 );
-    }
-    else {
-      break;
+      if (a) {
+        $( 100 );
+      }
+      else {
+        break;
+      }
     }
   }
 }

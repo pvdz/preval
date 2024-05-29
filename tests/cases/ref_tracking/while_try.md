@@ -1,12 +1,14 @@
 # Preval test case
 
-# while9.md
+# while_try.md
 
-> Ref tracking > Done > While-if > While9
+> Ref tracking > While try
 >
 > A let binding defined in an outer block than the nested while
 
 ## Options
+
+- refTest
 
 ## Input
 
@@ -47,138 +49,72 @@ if ($) {
 $('end', x);
 `````
 
-## Pre Normal
-
-`````js filename=intro
-let x = 1;
-while (true) {
-  while (true) {
-    if ($) {
-      $(x);
-    } else {
-      $(x);
-      x = 2;
-      break;
-    }
-  }
-}
-$(x);
-`````
-
-## Normalized
-
-`````js filename=intro
-let x = 1;
-while (true) {
-  while (true) {
-    if ($) {
-      $(x);
-    } else {
-      $(x);
-      x = 2;
-      break;
-    }
-  }
-}
-$(x);
-`````
-
 ## Output
 
-`````js filename=intro
-let x = 1;
-while (true) {
-  let $tmpLoopUnrollCheck = true;
-  $(x);
-  if ($) {
-  } else {
-    x = 2;
-    $tmpLoopUnrollCheck = false;
-  }
-  if ($tmpLoopUnrollCheck) {
-    while ($LOOP_UNROLL_10) {
-      $(x);
-      if ($) {
-      } else {
-        x = 2;
-        break;
+(Annotated with pids)
+
+`````filename=intro
+let x___4__ = 1;
+if ($) {
+  /*8*/ $(`if`, x___14__);
+  try /*16*/ {
+    try /*18*/ {
+      $(`try`, x___24__);
+      while (true) {
+        /*27*/ $(`try-while`, x___33__);
+        while (true) {
+          /*36*/ $(`try-while-while`, x___42__);
+          if ($) {
+            /*45*/ $(x___49__);
+          } /*50*/ else {
+            $(x___54__);
+            x___58__ = 2;
+            break;
+          }
+        }
+        const tmpIfTest___62__ = $();
+        if (tmpIfTest___66__) {
+          /*67*/ $(`end?`, x___73__);
+          break;
+        } /*75*/ else {
+          $(`no end`, x___81__);
+        }
       }
+      $(`after while`, x___87__);
+    } catch (e___89__) /*90*/ {
+      $(`catch`, x___96__);
     }
-  } else {
+  } finally /*97*/ {
+    $(`finally`, x___103__);
   }
+  $(`posttry`, x___109__);
+} /*110*/ else {
+  $(`oh`, x___116__);
 }
-$(x);
+$(`end`, x___122__);
 `````
 
-## PST Output
+Ref tracking result:
 
-With rename=true
+               | reads      | read by     | overWrites     | overwritten by
+x:
+  - w @4       | ########## | 14,24,33,42,49,54,96,103,109,116,122 | none           | 58
+  - r @14      | 4
+  - r @24      | 4
+  - r @33      | 4,58
+  - r @42      | 4,58
+  - r @49      | 4,58
+  - r @54      | 4,58
+  - w @58      | ########## | 33,42,49,54,73,81,87,96,103,109,122 | 4,58           | 58
+  - r @73      | 58
+  - r @81      | 58
+  - r @87      | 58
+  - r @96      | 4,58
+  - r @103     | 4,58
+  - r @109     | 4,58
+  - r @116     | 4
+  - r @122     | 4,58
 
-`````js filename=intro
-let a = 1;
-while (true) {
-  let b = true;
-  $( a );
-  if ($) {
-
-  }
-  else {
-    a = 2;
-    b = false;
-  }
-  if (b) {
-    while ($LOOP_UNROLL_10) {
-      $( a );
-      if ($) {
-
-      }
-      else {
-        a = 2;
-        break;
-      }
-    }
-  }
-}
-$( a );
-`````
-
-## Globals
-
-None
-
-## Result
-
-Should call `$` with:
- - 1: 1
- - 2: 1
- - 3: 1
- - 4: 1
- - 5: 1
- - 6: 1
- - 7: 1
- - 8: 1
- - 9: 1
- - 10: 1
- - 11: 1
- - 12: 1
- - 13: 1
- - 14: 1
- - 15: 1
- - 16: 1
- - 17: 1
- - 18: 1
- - 19: 1
- - 20: 1
- - 21: 1
- - 22: 1
- - 23: 1
- - 24: 1
- - 25: 1
- - 26: 1
- - eval returned: ('<crash[ Loop aborted by Preval test runner (this simply curbs infinite loops in tests) ]>')
-
-Pre normalization calls: Same
-
-Normalized calls: Same
-
-Final output calls: Same
+tmpIfTest:
+  - w @62      | ########## | 66          | none           | none
+  - r @66      | 62

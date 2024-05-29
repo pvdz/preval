@@ -59,19 +59,19 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
+let tmpDoWhileFlag = true;
 $(100);
 let a = 1;
-let tmpDoWhileFlag = true;
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
 const b = { c: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpDoWhileFlag) {
@@ -91,6 +91,9 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
+let a = true;
+$( 100 );
+let b = 1;
 $( 100 );
 $( 100 );
 $( 100 );
@@ -101,22 +104,19 @@ $( 100 );
 $( 100 );
 $( 100 );
 $( 100 );
-$( 100 );
-let a = 1;
-let b = true;
 const c = { c: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (b) {
+  if (a) {
     $( 100 );
     const d = c.c;
-    a = d;
     b = d;
+    a = d;
   }
   else {
     break;
   }
 }
-$( a, c );
+$( b, c );
 `````
 
 ## Globals

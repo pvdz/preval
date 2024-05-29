@@ -21,9 +21,10 @@ try {
     a = 3;
   }
 }
-$(a); // can observe 1, 2, and 3
+$(a); // x=2 3
       // (the write 3 is conditional and the finally could be
-      // entered before or after write 2 so it can observe 1,2,3)
+      // entered before or after write 2 so it can observe 2 
+      // and 3. The 1 is only visible under a throw.)
 `````
 
 ## Output
@@ -50,12 +51,12 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 a:
-  - w @4       | ########## | 11,20,37    | none           | 15,32
+  - w @4       | ########## | 11,20       | none           | 15,32
   - r @11      | 4
   - w @15      | ########## | 20,37       | 4              | 32
   - r @20      | 4,15
   - w @32      | ########## | 37          | 4,15           | none
-  - r @37      | 15,4,32
+  - r @37      | 15,32
 
 tmpIfTest:
   - w @23      | ########## | 27          | none           | none

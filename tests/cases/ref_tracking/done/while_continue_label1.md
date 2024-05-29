@@ -17,18 +17,18 @@ let x = 1;
 again: while (true) {
   while (true) {
     if ($) {
-      $(x);
+      $(x); // 1 2
     } else {
-      $(x);
+      $(x); // 1 2
       x = 2;
       continue again;
     }
   }
   // the loop never breaks and the continue always skips over this. 
-  // if anything it's dead code and should be eliminated 
+  // if anything it's unreachable and should be eliminated
   $(x); // should not be able to read 2
 }
-$(x);
+$(x); // 1 2 (but unreachable)
 `````
 
 ## Output

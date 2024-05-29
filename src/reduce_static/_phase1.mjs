@@ -40,8 +40,13 @@ import {
   openRefsOnAfterProgram,
   openRefsOnBeforeBreak,
   openRefsOnAfterBreak,
-  openRefsOnBeforeContinue, openRefsOnAfterContinue, openRefsOnAfterReturn, openRefsOnAfterThrow
-} from "../utils/ref_tracking.mjs"
+  openRefsOnBeforeContinue,
+  openRefsOnAfterContinue,
+  openRefsOnAfterReturn,
+  openRefsOnAfterThrow,
+  openRefsOnBeforeLabel,
+  openRefsOnafterLabel,
+} from '../utils/ref_tracking.mjs';
 
 // This phase is fairly mechanical and should only do discovery, no AST changes.
 // It sets up scope tracking, imports/exports tracking, return value analysis, ref tracking (which binding can see which binding). That sort of thing.
@@ -275,8 +280,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         node.$p.promoParent = blockStack[blockStack.length - 1];
 
         blockStack.push(node);
-
-        openRefsOnBeforeBlock(node, parentNode, parentProp, blockStack[blockStack.length - 2]);
+        openRefsOnBeforeBlock(node, parentNode, parentProp, pathNodes[pathNodes.length - 3], blockStack[blockStack.length - 2], globallyUniqueNamingRegistry);
 
         if (tryNodeStack.length) {
           if (parentProp === 'finalizer') finallyStack.push(node.$p.pid);
@@ -312,7 +316,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         blockIds.pop();
 
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnAfterBlock(node, parentNode, parentProp, loopStack, parentBlock, globallyUniqueLabelRegistry, tryNodeStack, catchStack, finallyStack);
+        openRefsOnAfterBlock(node, path, parentNode, parentProp, pathNodes[pathNodes.length - 3], loopStack, parentBlock, globallyUniqueLabelRegistry, tryNodeStack, catchStack, finallyStack, globallyUniqueNamingRegistry);
 
         if (tryNodeStack.length) {
           if (parentProp === 'finalizer') finallyStack.pop();
@@ -454,10 +458,11 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         break;
       }
       case 'ForInStatement:after': {
-        loopStack.pop();
-
         const parentBlock = blockStack[blockStack.length - 1];
         openRefsOnAfterLoop('in', node, parentBlock, path, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack, finallyStack);
+
+        // Pop after the callback because it needs to find the current loop
+        loopStack.pop();
         break;
       }
 
@@ -470,10 +475,11 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         break;
       }
       case 'ForOfStatement:after': {
-        loopStack.pop();
-
         const parentBlock = blockStack[blockStack.length - 1];
         openRefsOnAfterLoop('of', node, parentBlock, path, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack, finallyStack);
+
+        // Pop after the callback because it needs to find the current loop
+        loopStack.pop();
         break;
       }
 
@@ -924,6 +930,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       case 'LabeledStatement:before': {
         vlog(`Label: \`${node.label.name}\``);
         registerGlobalLabel(fdata, node.label.name, node.label.name, node);
+
+        const parentBlock = blockStack[blockStack.length - 1];
+        openRefsOnBeforeLabel(node, parentBlock);
         break;
       }
       case 'LabeledStatement:after': {
@@ -939,6 +948,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           node.$p.alwaysReturn = node.body.$p.alwaysReturn;
           node.$p.alwaysThrow = node.body.$p.alwaysThrow;
         }
+
+        const parentBlock = blockStack[blockStack.length - 1];
+        openRefsOnafterLabel(node, parentBlock, path, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, catchStack, finallyStack);
         break;
       }
 

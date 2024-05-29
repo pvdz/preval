@@ -65,14 +65,11 @@ $(100);
 $(100);
 $(100);
 $(100);
-let a = 1;
 $(100);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  a = undefined;
-  a = 1;
   $(100);
 }
-$(a);
+$(1);
 `````
 
 ## PST Output
@@ -90,14 +87,11 @@ $( 100 );
 $( 100 );
 $( 100 );
 $( 100 );
-let a = 1;
 $( 100 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  a = undefined;
-  a = 1;
   $( 100 );
 }
-$( a );
+$( 1 );
 `````
 
 ## Globals

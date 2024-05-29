@@ -15,14 +15,14 @@
 `````js filename=intro
 let x = 1;
 while ($) {
-  $(x);
+  $(x); // x=1 2
   if ($) {
     x = 2;
     continue;
   } else {
   }
 }
-$(x); // 1 or 2
+$(x); // unreachable, without DCE it'll be 1,2
 `````
 
 ## Output
@@ -52,5 +52,5 @@ Ref tracking result:
 x:
   - w @4       | ########## | 15,30       | none           | 22
   - r @15      | 4,22
-  - w @22      | ########## | 15          | 4,22           | 22
-  - r @30      | 4
+  - w @22      | ########## | 15,30       | 4,22           | 22
+  - r @30      | 4,22

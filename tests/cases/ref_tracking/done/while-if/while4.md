@@ -16,14 +16,14 @@
 let x = 1;
 while (true) {
   if ($) {
-    $(x);
+    $(x); // x=1 2
     x = 2;
   } else {
-    $(x);
+    $(x); // x=1 2
     break;
   }
 }
-$(x);
+$(x); // x=1 2
 `````
 
 ## Output

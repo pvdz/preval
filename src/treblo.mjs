@@ -14,9 +14,10 @@ import { REF_TRACK_TRACING } from './utils.mjs';
  *    entryReads: Map<string, Set<Read>>,
  *    entryWrites: Map<string, Set<Write>>,
  *    exitWrites: Map<string, Set<Write>>,
- *    wasAbrupt: undefined | Node,
+ *    wasAbruptType: '' | 'break' | 'continue' | 'return' | 'throw',
+ *    wasAbruptLabel: undefined | string,
  *    reads: Map<string, Array<Read>>,
- *    writes: Map<string, Array<Read>>,
+ *    writes: Map<string, Array<Write>>,
  *    rwOrder: Map<string, Array<Read | Write>>,
  *    exitWritesBefore: Map<string, Set<Write>>,
  *  }
@@ -49,10 +50,26 @@ export function createTreblo(
      * inside the currently traversed descendant of this Block. When the walker
      * exits the direct child, it will process these pending nodes and connect
      * their exitWrites and overwritten status to this treblo.
-     * The overwrittens are the bindings that, at the time of abrupt completing,
+     * The mutatedBetweenSrcAndDst are the binding names that, at the time of abrupt completing,
      * were completely overwritten somewhere between the dst block and the src node.
+     * Note: we dont queue the src node because we need to inject custom throws for Finally
+     * Note: pid is the src node pid
      *
-     * @type {Array<{src: Node, dst: Node, overwrittens: Set<string>}>}
+     * @type{Array<{
+     *    pid: number,
+     *    dst: Node,
+     *    wasAbruptType: '' | 'break' | 'continue' | 'return' | 'throw',
+     *    wasAbruptLabel: undefined | string,
+     *    overwritten: Set<string>, // Local to the block
+     *    // Anywhere between src and dst Block, previously "overwrittens"
+     *    // Initially starts with the overwritten of srcBlock and is updated with all
+     *    // overwritten status from ancestors up to the next point where it's scheduled.
+     *    // This process is repeated until the scheduled node is the dstBlock.
+     *    mutatedBetweenSrcAndDst: Set<string>,
+     *    entryReads: Set<Read>,
+     *    entryWrites: Set<Write>,
+     *    exitWrites: Set<Write>,
+     * }>}
      */
     pendingNext: [],
     /**
@@ -60,7 +77,13 @@ export function createTreblo(
      * This list is processed after each loop that the walker exits.
      * We need it to connect exitWrites to the entryReads/entryWrites of the loop.
      *
-     * @type {Array<{src: Node, dst: Node, overwrittens: Set<string>}>}
+     * @type {Array<{
+     *    pid: number,
+     *    dst: Node,
+     *    entryReads: Set<Read>,
+     *    entryWrites: Set<Write>,
+     *    exitWrites: Set<Write>,
+     * }>}
      **/
     pendingLoop: [],
 
@@ -114,8 +137,14 @@ export function createTreblo(
     /**
      * Did the node abruptly change flow (break,continue,return,throw)? Implies things for exitWrites
      * If it did then the abrupt completion node is direct a child of this node, not nested.
+     *
+     * @type {'' | 'break' | 'continue' | 'return' | 'throw'}
      */
-    wasAbrupt: undefined,
+    wasAbruptType: undefined,
+    /**
+     * If it was abrupt with continue or break and it has a label then this will be the name
+     */
+    wasAbruptLabel: undefined,
     /**
      * All read refs inside this node in source order
      */

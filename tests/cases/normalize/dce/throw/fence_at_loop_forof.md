@@ -85,20 +85,14 @@ while (true) {
   if (tmpIfTest) {
     $(`loop`);
     let x = undefined;
-    let tmpForEntered = false;
     const tmpForOfDeclRhs = [1, 2];
     for (x of tmpForOfDeclRhs) {
-      tmpForEntered = true;
-      break;
-    }
-    if (tmpForEntered) {
       $(`loop`, x);
       const tmpThrowArg = $(7, `throw`);
       throw tmpThrowArg;
-    } else {
-      $(`do not visit, do not eliminate`);
-      tmpIfTest = $(true);
     }
+    $(`do not visit, do not eliminate`);
+    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -117,21 +111,14 @@ while (true) {
   if (a) {
     $( "loop" );
     let b = undefined;
-    let c = false;
-    const d = [ 1, 2 ];
-    for (b of d) {
-      c = true;
-      break;
-    }
-    if (c) {
+    const c = [ 1, 2 ];
+    for (b of c) {
       $( "loop", b );
-      const e = $( 7, "throw" );
-      throw e;
+      const d = $( 7, "throw" );
+      throw d;
     }
-    else {
-      $( "do not visit, do not eliminate" );
-      a = $( true );
-    }
+    $( "do not visit, do not eliminate" );
+    a = $( true );
   }
   else {
     break;

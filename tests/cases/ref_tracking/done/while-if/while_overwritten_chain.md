@@ -13,13 +13,13 @@
 ## Input
 
 `````js filename=intro
-let x = 5;
-x = 10;           // <-- but here too
+let x = 1;
+x = 2;            // overwrites x=1
 while (true) { 
-  x = 6;          // <--
-  $(x); // 6
+  x = 6;          // overwrites x=2 6
+  $(x);           // x=6
   if ($) {
-    x = 7;        // <-- this is the only exitWrite for the break. but how?
+    x = 7;        // overwrites x=6
     if ($) {
       if ($) {
         break;
@@ -28,7 +28,7 @@ while (true) {
   }
 }
 // Now the only exitWrite is x=7, but how can we tell?
-$(x); // 7
+$(x);             // x=7
 `````
 
 ## Output
@@ -36,8 +36,8 @@ $(x); // 7
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 5;
-x___9__ = 10;
+let x___4__ = 1;
+x___9__ = 2;
 while (true) {
   /*12*/ x___16__ = 6;
   $(x___20__);
@@ -59,7 +59,7 @@ Ref tracking result:
 x:
   - w @4       | ########## | not read    | none           | 9
   - w @9       | ########## | not read    | 4              | 16
-  - w @16      | ########## | 20,37       | 9,16,27        | 27,16
+  - w @16      | ########## | 20,37       | 9,16,27        | 16,27
   - r @20      | 16
-  - w @27      | ########## | 37          | 16,27          | 16,27
-  - r @37      | 27,16
+  - w @27      | ########## | 37          | 16             | 16
+  - r @37      | 16,27

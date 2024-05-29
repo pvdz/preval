@@ -15,18 +15,22 @@
 `````js filename=intro
 let x = 1;
 while (true) {
-  if ($()) x = 2; // Can NEVER overwrite x=2/x=3 because x=5 always follows it
+  if ($()) {
+    // Can NEVER overwrite x=2/x=3 because x=5 always follows it
+    x = 2; // Overwrites 1
+  } 
   while (true) {
     // May overwrite x=1 (first iteration of outer loop)
     // May overwrite x=2 (first iteration of outer loop)
     // May overwrite x=3 (after loop of inner loop)
     // May overwrite x=5 (after outer loop iteration)
-    if ($()) x = 3; 
+    if ($()) {
+      x = 3; // overwrites x=2 3
+    } 
   }
-  x = 5;
+  x = 5; // Unreachable
 }
-// Unreachable
-$(x);
+$(x); // Unreachable
 `````
 
 ## Output
@@ -57,11 +61,11 @@ Ref tracking result:
 
                 | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | not read    | none           | 20,36,41
+  - w @4       | ########## | 45          | none           | 20,36,41
   - w @20      | ########## | not read    | 4,41           | 36,41
-  - w @36      | ########## | not read    | 4,20,36,41     | 36,41
-  - w @41      | ########## | 45          | 4,20,36,41     | 20,36,41
-  - r @45      | 41
+  - w @36      | ########## | not read    | 4,20,36,41     | 36
+  - w @41      | ########## | not read    | 4,20,41        | 20,36,41
+  - r @45      | 4
 
 tmpIfTest:
   - w @11      | ########## | 15          | none           | none

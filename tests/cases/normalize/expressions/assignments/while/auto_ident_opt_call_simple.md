@@ -66,7 +66,6 @@ if (tmpIfTest$1) {
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    a = undefined;
     const tmpIfTest$2 = $ == null;
     if (tmpIfTest$2) {
       $(100);
@@ -108,7 +107,6 @@ else {
 }
 if (b) {
   while ($LOOP_UNROLL_10) {
-    a = undefined;
     const e = $ == null;
     if (e) {
       $( 100 );

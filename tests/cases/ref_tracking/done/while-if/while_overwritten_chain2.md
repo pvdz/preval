@@ -15,14 +15,14 @@
 ## Input
 
 `````js filename=intro
-let x = 5;
-x = 10;           // <-- but here too
-while (true) { 
-  $(x); // 6
+let x = 1;
+x = 2;            // overwrites x=1
+while (true) {
+  $(x);           // x=2 3 4
   if ($) {
-    x = 65;       // <-- this fully overwrites, should replace     
+    x = 3;        // overwrites x=2 3 4     
     if ($1) {
-      x = 7;      // <-- this doesn't fully overwrite, should amend with 65 
+      x = 4;      // overwrites x=3 
     } else {
     }
     if ($) {
@@ -32,8 +32,7 @@ while (true) {
     }
   }
 }
-// The x=7 should be amended. But how do we know it wasn't fully overwritten?
-$(x); // 65 or 7 but not 10 (because 65 will overwrite that before breaking)
+$(x);             // x=3 4
 `````
 
 ## Output
@@ -41,14 +40,14 @@ $(x); // 65 or 7 but not 10 (because 65 will overwrite that before breaking)
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 5;
-x___9__ = 10;
+let x___4__ = 1;
+x___9__ = 2;
 while (true) {
   /*12*/ $(x___16__);
   if ($) {
-    /*19*/ x___23__ = 65;
+    /*19*/ x___23__ = 3;
     if ($1) {
-      /*26*/ x___30__ = 7;
+      /*26*/ x___30__ = 4;
     } /*31*/ else {
     }
     if ($) {
@@ -66,8 +65,8 @@ Ref tracking result:
                | reads      | read by     | overWrites     | overwritten by
 x:
   - w @4       | ########## | not read    | none           | 9
-  - w @9       | ########## | 16,41       | 4              | 23,30
+  - w @9       | ########## | 16,41       | 4              | 23
   - r @16      | 9,23,30
-  - w @23      | ########## | 16,41       | 9,23,30        | 30,23
-  - w @30      | ########## | 16,41       | 23,9,30        | 23,30
-  - r @41      | 23,30,9
+  - w @23      | ########## | 16,41       | 9,23,30        | 23,30
+  - w @30      | ########## | 16,41       | 23             | 23
+  - r @41      | 9,23,30

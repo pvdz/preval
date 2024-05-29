@@ -62,19 +62,13 @@ tmpCallCallee(tmpCalleeParam);
 const f = function () {
   debugger;
   let x = undefined;
-  let tmpForEntered = false;
   const tmpForInDeclRhs = { a: 1, b: 2 };
   for (x in tmpForInDeclRhs) {
-    tmpForEntered = true;
-    break;
-  }
-  if (tmpForEntered) {
     const tmpReturnArg = $(1, `return`);
     return tmpReturnArg;
-  } else {
-    $(`keep, do not eval`);
-    return undefined;
   }
+  $(`keep, do not eval`);
+  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
@@ -88,26 +82,19 @@ With rename=true
 const a = function() {
   debugger;
   let b = undefined;
-  let c = false;
-  const d = {
+  const c = {
 a: 1,
 b: 2
   ;
-  for (b in d) {
-    c = true;
-    break;
+  for (b in c) {
+    const d = $( 1, "return" );
+    return d;
   }
-  if (c) {
-    const e = $( 1, "return" );
-    return e;
-  }
-  else {
-    $( "keep, do not eval" );
-    return undefined;
-  }
+  $( "keep, do not eval" );
+  return undefined;
 };
-const f = a();
-$( f );
+const e = a();
+$( e );
 `````
 
 ## Globals

@@ -85,20 +85,14 @@ while (true) {
   if (tmpIfTest) {
     $(`loop`);
     let x = undefined;
-    let tmpForEntered = false;
     const tmpForInDeclRhs = { a: 1, b: 2 };
     for (x in tmpForInDeclRhs) {
-      tmpForEntered = true;
-      break;
-    }
-    if (tmpForEntered) {
       $(`loop`, x);
       const tmpThrowArg = $(7, `throw`);
       throw tmpThrowArg;
-    } else {
-      $(`fail`);
-      tmpIfTest = $(true);
     }
+    $(`fail`);
+    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -117,24 +111,17 @@ while (true) {
   if (a) {
     $( "loop" );
     let b = undefined;
-    let c = false;
-    const d = {
+    const c = {
 a: 1,
 b: 2
     ;
-    for (b in d) {
-      c = true;
-      break;
-    }
-    if (c) {
+    for (b in c) {
       $( "loop", b );
-      const e = $( 7, "throw" );
-      throw e;
+      const d = $( 7, "throw" );
+      throw d;
     }
-    else {
-      $( "fail" );
-      a = $( true );
-    }
+    $( "fail" );
+    a = $( true );
   }
   else {
     break;

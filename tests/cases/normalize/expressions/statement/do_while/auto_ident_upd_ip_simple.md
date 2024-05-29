@@ -59,6 +59,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
+let tmpDoWhileFlag = true;
 $(100);
 $(100);
 $(100);
@@ -71,7 +72,6 @@ $(100);
 $(100);
 $(100);
 let b = 12;
-let tmpDoWhileFlag = true;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpDoWhileFlag) {
     $(100);
@@ -91,6 +91,7 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
+let a = true;
 $( 100 );
 $( 100 );
 $( 100 );
@@ -102,14 +103,13 @@ $( 100 );
 $( 100 );
 $( 100 );
 $( 100 );
-let a = 12;
-let b = true;
+let b = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (b) {
+  if (a) {
     $( 100 );
-    const c = a;
-    a = a + 1;
-    b = c;
+    const c = b;
+    b = b + 1;
+    a = c;
   }
   else {
     break;
@@ -119,7 +119,7 @@ const d = {
 a: 999,
 b: 1000
 ;
-$( d, a );
+$( d, b );
 `````
 
 ## Globals

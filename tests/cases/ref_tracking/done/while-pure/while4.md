@@ -17,7 +17,7 @@ let x = 1;
 while (true) {
   x = 2;
 }
-$(x);
+$(x); // unreachable
 `````
 
 ## Output
@@ -36,6 +36,6 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | not read    | none           | 12
-  - w @12      | ########## | 16          | 4,12           | 12
-  - r @16      | 12
+  - w @4       | ########## | 16          | none           | 12
+  - w @12      | ########## | not read    | 4,12           | 12
+  - r @16      | 4

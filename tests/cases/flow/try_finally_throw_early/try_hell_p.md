@@ -58,9 +58,11 @@ let f = function () {
     return undefined;
   };
   try {
-    throw `one`;
-  } catch (e) {
-    throw `two`;
+    try {
+      throw `one`;
+    } catch (e) {
+      throw `two`;
+    }
   } finally {
     throw_early;
     const tmpReturnArg = tmpAfterLabel();
@@ -80,9 +82,11 @@ considerMutated(x);
 const f = function () {
   debugger;
   try {
-    throw `one`;
-  } catch (e) {
-    throw `two`;
+    try {
+      throw `one`;
+    } catch (e) {
+      throw `two`;
+    }
   } finally {
     throw_early;
     x = 1;
@@ -104,10 +108,12 @@ With rename=true
 const a = function() {
   debugger;
   try {
-    throw "one";
-  }
+    try {
+      throw "one";
+    }
 catch (e) {
-    throw "two";
+      throw "two";
+    }
   }
 finally {
     throw_early;

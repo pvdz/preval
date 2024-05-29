@@ -60,31 +60,12 @@ $(`after`);
 
 `````js filename=intro
 const tmpIfTest = $(true);
-let $tmpLoopUnrollCheck = true;
 if (tmpIfTest) {
   const tmpIfTest$1 = $(false);
   if (tmpIfTest$1) {
     $(`fail too`);
     throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
   } else {
-    $tmpLoopUnrollCheck = false;
-  }
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      const tmpIfTest$2 = $(false);
-      if (tmpIfTest$2) {
-        $(`fail too`);
-        throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
-      } else {
-        break;
-      }
-    } else {
-      break;
-    }
   }
 } else {
 }
@@ -97,35 +78,11 @@ With rename=true
 
 `````js filename=intro
 const a = $( true );
-let b = true;
 if (a) {
-  const c = $( false );
-  if (c) {
+  const b = $( false );
+  if (b) {
     $( "fail too" );
     throw "Preval: TDZ triggered for this assignment: x = $('fail too')";
-  }
-  else {
-    b = false;
-  }
-}
-else {
-  b = false;
-}
-if (b) {
-  while ($LOOP_UNROLL_10) {
-    if (a) {
-      const d = $( false );
-      if (d) {
-        $( "fail too" );
-        throw "Preval: TDZ triggered for this assignment: x = $('fail too')";
-      }
-      else {
-        break;
-      }
-    }
-    else {
-      break;
-    }
   }
 }
 $( "after" );

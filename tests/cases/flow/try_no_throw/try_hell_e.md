@@ -39,8 +39,9 @@ considerMutated(x);
 `````js filename=intro
 let x = 0;
 try {
-  x = 1;
-} catch (e) {
+  try {
+    x = 1;
+  } catch (e) {}
 } finally {
 }
 considerMutated(x);

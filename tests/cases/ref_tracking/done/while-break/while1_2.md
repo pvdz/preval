@@ -15,7 +15,7 @@
 `````js filename=intro
 let x = 1;
 while ($) {
-  $(x);
+  $(x); // x=1 2
   if ($) {
     if ($1) {
       // Now this exitWrite should be amended in the parent
@@ -25,7 +25,7 @@ while ($) {
   } else {
   }
 }
-$(x); // 1 or 2.
+$(x); // unreachable. if it was, then x=1 or 2.
 `````
 
 ## Output
@@ -58,5 +58,5 @@ Ref tracking result:
 x:
   - w @4       | ########## | 15,34       | none           | 25
   - r @15      | 4,25
-  - w @25      | ########## | 15          | 4,25           | 25
-  - r @34      | 4
+  - w @25      | ########## | 15,34       | 4,25           | 25
+  - r @34      | 4,25

@@ -57,18 +57,12 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 let x = undefined;
-let tmpForEntered = false;
 const tmpForOfDeclRhs = [10, 20];
 for (x of tmpForOfDeclRhs) {
-  tmpForEntered = true;
-  break;
-}
-if (tmpForEntered) {
   const tmpThrowArg = $(1, `throw`);
   throw tmpThrowArg;
-} else {
-  $(undefined);
 }
+$(undefined);
 `````
 
 ## PST Output
@@ -77,19 +71,12 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-let b = false;
-const c = [ 10, 20 ];
-for (a of c) {
-  b = true;
-  break;
+const b = [ 10, 20 ];
+for (a of b) {
+  const c = $( 1, "throw" );
+  throw c;
 }
-if (b) {
-  const d = $( 1, "throw" );
-  throw d;
-}
-else {
-  $( undefined );
-}
+$( undefined );
 `````
 
 ## Globals

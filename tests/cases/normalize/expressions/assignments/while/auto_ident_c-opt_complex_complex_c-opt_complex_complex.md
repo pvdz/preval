@@ -90,7 +90,6 @@ if (tmpIfTest$1) {
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    a = undefined;
     const tmpChainElementCall$1 = $(b);
     const tmpIfTest$2 = tmpChainElementCall$1 == null;
     if (tmpIfTest$2) {
@@ -153,7 +152,6 @@ else {
 }
 if (d) {
   while ($LOOP_UNROLL_10) {
-    c = undefined;
     const l = $( b );
     const m = l == null;
     if (m) {

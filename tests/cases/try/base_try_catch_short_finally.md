@@ -41,9 +41,11 @@ $(4);
 `````js filename=intro
 $(1);
 try {
-  $(2);
-} catch (e) {
-  $(`fail`);
+  try {
+    $(2);
+  } catch (e) {
+    $(`fail`);
+  }
 } finally {
   $(3);
 }
@@ -55,9 +57,11 @@ $(4);
 `````js filename=intro
 $(1);
 try {
-  $(2);
-} catch (e) {
-  $(`fail`);
+  try {
+    $(2);
+  } catch (e) {
+    $(`fail`);
+  }
 } finally {
   $(3);
 }
@@ -71,10 +75,12 @@ With rename=true
 `````js filename=intro
 $( 1 );
 try {
-  $( 2 );
-}
+  try {
+    $( 2 );
+  }
 catch (e) {
-  $( "fail" );
+    $( "fail" );
+  }
 }
 finally {
   $( 3 );

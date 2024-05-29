@@ -53,10 +53,12 @@ considerMutated(x);
 let f = function () {
   debugger;
   try {
-    x = 1;
-    throw `one`;
-  } catch (e) {
-    throw `two`;
+    try {
+      x = 1;
+      throw `one`;
+    } catch (e) {
+      throw `two`;
+    }
   } finally {
     throw_early;
     return undefined;
@@ -75,9 +77,11 @@ const f = function () {
   debugger;
   x = 1;
   try {
-    throw `one`;
-  } catch (e) {
-    throw `two`;
+    try {
+      throw `one`;
+    } catch (e) {
+      throw `two`;
+    }
   } finally {
     throw_early;
     return undefined;
@@ -98,10 +102,12 @@ const a = function() {
   debugger;
   b = 1;
   try {
-    throw "one";
-  }
+    try {
+      throw "one";
+    }
 catch (e) {
-    throw "two";
+      throw "two";
+    }
   }
 finally {
     throw_early;

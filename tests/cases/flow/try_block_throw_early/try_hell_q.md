@@ -53,11 +53,13 @@ considerMutated(x);
 let f = function () {
   debugger;
   try {
-    fail_early;
-    x = 1;
-    throw `one`;
-  } catch (e) {
-    throw `two`;
+    try {
+      fail_early;
+      x = 1;
+      throw `one`;
+    } catch (e) {
+      throw `two`;
+    }
   } finally {
     return undefined;
   }
@@ -74,11 +76,13 @@ considerMutated(x);
 const f = function () {
   debugger;
   try {
-    fail_early;
-    x = 1;
-    throw `one`;
-  } catch (e) {
-    throw `two`;
+    try {
+      fail_early;
+      x = 1;
+      throw `one`;
+    } catch (e) {
+      throw `two`;
+    }
   } finally {
     return undefined;
   }
@@ -97,12 +101,14 @@ With rename=true
 const a = function() {
   debugger;
   try {
-    fail_early;
-    b = 1;
-    throw "one";
-  }
+    try {
+      fail_early;
+      b = 1;
+      throw "one";
+    }
 catch (e) {
-    throw "two";
+      throw "two";
+    }
   }
 finally {
     return undefined;

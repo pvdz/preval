@@ -20,7 +20,7 @@ while ($) {
     continue;
   } else {
   }
-  $(x);
+  $(x); // x=1 3
 }
 `````
 

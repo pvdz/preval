@@ -24,10 +24,23 @@ $(3);
 
 `````js filename=intro
 $(1);
-try {
-  $(2);
-} finally {
-  $(3);
+{
+  let $implicitThrow = false;
+  let $finalCatchArg = undefined;
+  $finally: {
+    try {
+      $(2);
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
+    }
+  }
+  {
+    $(3);
+  }
+  if ($implicitThrow) {
+    throw $finalCatchArg;
+  }
 }
 $(3);
 `````
@@ -36,24 +49,40 @@ $(3);
 
 `````js filename=intro
 $(1);
+let $implicitThrow = false;
+let $finalCatchArg = undefined;
 try {
   $(2);
-} finally {
-  $(3);
+} catch ($finalImplicit) {
+  $implicitThrow = true;
+  $finalCatchArg = $finalImplicit;
 }
 $(3);
+if ($implicitThrow) {
+  throw $finalCatchArg;
+} else {
+  $(3);
+}
 `````
 
 ## Output
 
 `````js filename=intro
 $(1);
+let $implicitThrow = false;
+let $finalCatchArg = undefined;
 try {
   $(2);
-} finally {
-  $(3);
+} catch ($finalImplicit) {
+  $implicitThrow = true;
+  $finalCatchArg = $finalImplicit;
 }
 $(3);
+if ($implicitThrow) {
+  throw $finalCatchArg;
+} else {
+  $(3);
+}
 `````
 
 ## PST Output
@@ -62,18 +91,29 @@ With rename=true
 
 `````js filename=intro
 $( 1 );
+let a = false;
+let b = undefined;
 try {
   $( 2 );
 }
-finally {
-  $( 3 );
+catch ($finalImplicit) {
+  a = true;
+  b = $finalImplicit;
 }
 $( 3 );
+if (a) {
+  throw b;
+}
+else {
+  $( 3 );
+}
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+$finalImplicit
 
 ## Result
 

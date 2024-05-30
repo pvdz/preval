@@ -35,11 +35,24 @@ $(3);
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      try {
-        $(x, 1);
-      } finally {
-        $(2);
-        break tmpSwitchBreak;
+      {
+        let $implicitThrow = false;
+        let $finalCatchArg = undefined;
+        $finally: {
+          try {
+            $(x, 1);
+          } catch ($finalImplicit) {
+            $implicitThrow = true;
+            $finalCatchArg = $finalImplicit;
+          }
+        }
+        {
+          $(2);
+          break tmpSwitchBreak;
+        }
+        if ($implicitThrow) {
+          throw $finalCatchArg;
+        }
       }
     }
     if (tmpSwitchCaseToStart <= 1) {
@@ -63,18 +76,22 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
+    let $implicitThrow = false;
+    let $finalCatchArg = undefined;
     try {
       $(x, 1);
-    } finally {
-      $(2);
-      break tmpSwitchBreak;
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
     }
+    $(2);
+    break tmpSwitchBreak;
   } else {
-  }
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$3) {
-    $(`oops`);
-  } else {
+    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$3) {
+      $(`oops`);
+    } else {
+    }
   }
 }
 $(3);
@@ -84,22 +101,19 @@ $(3);
 
 `````js filename=intro
 let tmpSwitchCaseToStart = 1;
+let tmpIfTest$1 = true;
 const tmpIfTest = $ === $;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
+  tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 }
-tmpSwitchBreak: {
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    try {
-      $(x, 1);
-    } finally {
-      $(2);
-      break tmpSwitchBreak;
-    }
-  } else {
-  }
+if (tmpIfTest$1) {
+  try {
+    $(x, 1);
+  } catch ($finalImplicit) {}
+  $(2);
+} else {
   $(`oops`);
 }
 $(3);
@@ -111,21 +125,24 @@ With rename=true
 
 `````js filename=intro
 let a = 1;
-const b = $ === $;
-if (b) {
+let b = true;
+const c = $ === $;
+if (c) {
   a = 0;
 }
-tmpSwitchBreak: {
-  const c = a <= 0;
-  if (c) {
-    try {
-      $( x, 1 );
-    }
-finally {
-      $( 2 );
-      break tmpSwitchBreak;
-    }
+else {
+  b = a <= 0;
+}
+if (b) {
+  try {
+    $( x, 1 );
   }
+catch ($finalImplicit) {
+
+  }
+  $( 2 );
+}
+else {
   $( "oops" );
 }
 $( 3 );
@@ -133,9 +150,9 @@ $( 3 );
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
+BAD@! Found 2 implicit global bindings:
 
-x
+x, $finalImplicit
 
 ## Result
 

@@ -26,11 +26,24 @@ $(3);
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  try {
-    $(1);
-  } finally {
-    $(2);
-    break;
+  {
+    let $implicitThrow = false;
+    let $finalCatchArg = undefined;
+    $finally: {
+      try {
+        $(1);
+      } catch ($finalImplicit) {
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
+      }
+    }
+    {
+      $(2);
+      break;
+    }
+    if ($implicitThrow) {
+      throw $finalCatchArg;
+    }
   }
 }
 $(3);
@@ -40,12 +53,16 @@ $(3);
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let $implicitThrow = false;
+  let $finalCatchArg = undefined;
   try {
     $(1);
-  } finally {
-    $(2);
-    break;
+  } catch ($finalImplicit) {
+    $implicitThrow = true;
+    $finalCatchArg = $finalImplicit;
   }
+  $(2);
+  break;
 }
 $(3);
 `````
@@ -56,10 +73,9 @@ $(3);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     $(1);
-  } finally {
-    $(2);
-    break;
-  }
+  } catch ($finalImplicit) {}
+  $(2);
+  break;
 }
 $(3);
 `````
@@ -73,17 +89,20 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     $( 1 );
   }
-finally {
-    $( 2 );
-    break;
+catch ($finalImplicit) {
+
   }
+  $( 2 );
+  break;
 }
 $( 3 );
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+$finalImplicit
 
 ## Result
 

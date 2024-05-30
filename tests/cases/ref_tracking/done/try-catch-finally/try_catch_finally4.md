@@ -31,30 +31,41 @@ $(a); // x=4. anything else is an uncaught throw.
 
 `````filename=intro
 let a___4__ = 1;
-try /*7*/ {
-  try /*9*/ {
-    $(a___13__);
-    a___17__ = 2;
-  } catch (e___19__) /*20*/ {
-    $(a___24__);
-    a___28__ = 3;
-  }
-} finally /*29*/ {
-  $(a___33__);
-  a___37__ = 4;
+let $implicitThrow___8__ = false;
+let $finalCatchArg___12__ = undefined___13__;
+try /*15*/ {
+  $(a___19__);
+  a___23__ = 2;
+} catch ($finalImplicit___25__) /*26*/ {
+  $implicitThrow___30__ = true;
+  $finalCatchArg___34__ = $finalImplicit___33__;
 }
-$(a___41__);
+$(a___38__);
+a___42__ = 4;
+if ($implicitThrow___44__) {
+  /*45*/ throw $finalCatchArg___47__;
+} /*48*/ else {
+  $(a___52__);
+}
 `````
 
 Ref tracking result:
 
-               | reads      | read by     | overWrites     | overwritten by
+                   | reads      | read by     | overWrites     | overwritten by
 a:
-  - w @4       | ########## | 13,24,33    | none           | 17,28,37
-  - r @13      | 4
-  - w @17      | ########## | 24,33       | 4              | 28,37
-  - r @24      | 4,17
-  - w @28      | ########## | 33          | 4,17           | 37
-  - r @33      | 4,17,28
-  - w @37      | ########## | 41          | 4,17,28        | none
-  - r @41      | 37
+  - w @4       | ########## | 19,38       | none           | 23,42
+  - r @19      | 4
+  - w @23      | ########## | 38          | 4              | 42
+  - r @38      | 4,23
+  - w @42      | ########## | 52          | 4,23           | none
+  - r @52      | 42
+
+$implicitThrow:
+  - w @8           | ########## | 44          | none           | 30
+  - w @30          | ########## | 44          | 8              | none
+  - r @44          | 8,30
+
+$finalCatchArg:
+  - w @12          | ########## | 47          | none           | 34
+  - w @34          | ########## | 47          | 12             | none
+  - r @47          | 12,34

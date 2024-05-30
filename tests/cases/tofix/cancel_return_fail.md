@@ -4,7 +4,8 @@
 
 > Tofix > Cancel return fail
 >
-> Just random things 
+> Just random things
+> The hack: { break hack } thing should also be removed
 
 #TODO
 
@@ -27,10 +28,32 @@ $(f()); // 1
 `````js filename=intro
 let f = function () {
   debugger;
-  try {
-    return 1;
-  } finally {
-    hack: break hack;
+  {
+    let $implicitThrow = false;
+    let $finalStep = false;
+    let $finalCatchArg = undefined;
+    let $finalArg = undefined;
+    $finally: {
+      try {
+        {
+          $finalStep = true;
+          $finalArg = 1;
+          break $finally;
+        }
+      } catch ($finalImplicit) {
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
+      }
+    }
+    {
+      hack: break hack;
+    }
+    if ($implicitThrow) {
+      throw $finalCatchArg;
+    }
+    if ($finalStep) {
+      return $finalArg;
+    }
   }
   return 2;
 };
@@ -42,12 +65,32 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  try {
-    return 1;
-  } finally {
-    return undefined;
+  let $implicitThrow = false;
+  let $finalStep = false;
+  let $finalCatchArg = undefined;
+  let $finalArg = undefined;
+  $finally: {
+    try {
+      $finalStep = true;
+      $finalArg = 1;
+      break $finally;
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
+    }
   }
-  return 2;
+  hack: {
+    break hack;
+  }
+  if ($implicitThrow) {
+    throw $finalCatchArg;
+  } else {
+    if ($finalStep) {
+      return $finalArg;
+    } else {
+      return 2;
+    }
+  }
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -57,17 +100,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  try {
-    return 1;
-  } finally {
-    return undefined;
-  }
-  return 2;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+$(1);
 `````
 
 ## PST Output
@@ -75,18 +108,7 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  try {
-    return 1;
-  }
-finally {
-    return undefined;
-  }
-  return 2;
-};
-const b = a();
-$( b );
+$( 1 );
 `````
 
 ## Globals
@@ -101,10 +123,6 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: BAD?!
- - 1: undefined
- - eval returned: undefined
+Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: undefined
- - eval returned: undefined
+Final output calls: Same

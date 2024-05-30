@@ -88,7 +88,7 @@ function _noopTry(fdata) {
     // - assignments of (primitives or idents) to idents
     // - assignments of unary expression when the arg is a primitive
     // - assignments of binary expression when both args are primitives
-    // - normalized return statements, but only if there is no (or an empty) finally block or if the return statement is the only one left
+    // - normalized return statements
     // - break/continue statement, same rules as return
     // - throw, same as return, catch must also be empty or missing tho
     // - silly expression statements, but we should not bother with them here
@@ -104,8 +104,8 @@ function _noopTry(fdata) {
         return isSafeExpression(node.declarations[0].init);
       }
       case 'ReturnStatement': {
-        // This is only safe if there is no finalizer, or if the finalizer is empty
-        return isSafeExpression(node.argument) && (!tryNode.finalizer || !tryNode.finalizer.body.length);
+        // This is safe because there is no finally in normalized code
+        return isSafeExpression(node.argument);
       }
       // More TODO
     }

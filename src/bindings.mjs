@@ -400,7 +400,7 @@ export function registerGlobalIdent(
     bfuncNode: undefined, // Function scope where this binding was bound. Undefined for builtins/implicits. Should be set for anything else (which is only var decls after normalization).
     rwOrder: undefined, // Array<read|write>. Sorted in DFS order ASC, once at the start of phase2
     singleScoped: undefined, // bool. Is there any reference inside a different scope from another ref? Set at the start of phase2.
-    singleInner: undefined, // bool. Are all references of this binding in the same scope/catch/finally?
+    singleInner: undefined, // bool. Are all references of this binding in the same scope/catch?
     //singleScopeWrites: undefined, // bool. Are all writes to this binding happening in the same scope? Set at the start of phase2. (Always true for constants)
     //singleScopeReads: undefined, // bool. Are all reads of this binding happening in the same scope? Set at the start of phase2.
     tainted: false, // For single rules, mark an identifier dirty, consider its caches potentially busted, requiring another phase1 first.
@@ -552,7 +552,6 @@ export function createReadRef(obj) {
     innerTry,
     innerTrap,
     innerCatch,
-    innerFinally,
 
     ...rest
   } = obj;
@@ -602,7 +601,6 @@ export function createReadRef(obj) {
     innerTry,
     innerTrap,
     innerCatch,
-    innerFinally,
 
     reachesWrites: new Set(), // Set<Write>. All writes this read can "reach" (might "observe", syntactically speaking)
   };
@@ -636,7 +634,6 @@ export function createWriteRef(obj) {
     innerTry,
     innerTrap,
     innerCatch,
-    innerFinally,
 
     ...rest
   } = obj;
@@ -684,7 +681,6 @@ export function createWriteRef(obj) {
     innerTry,
     innerTrap,
     innerCatch,
-    innerFinally,
 
 
     reachedByReads: new Set(), // Set<Read>. All reads that can "reach" this write (might "observe", syntactically speaking)
@@ -2431,9 +2427,9 @@ function nodeMightMutateNameUntrapped(nodes, metaName, includeProperties, single
       vlog('Try statement. Just checking whether it writes to the binding at all anywhere');
 
       // Doing puristic mutation analysis with the try statement is a nightmare of surprisingly high complexity. So we won't.
-      // For an example, any completion in the finally block overrides any completion of the other two blocks.
-      // So instead we'll do it differently; if the try, catch, or finally block contain any writes anywhere, consider the
+      // So instead we'll do it differently; if the try or catch block contain any writes anywhere, consider the
       // `try` statement to have mutated the binding. It's the safest approach without falling into a very deep rabbit hole.
+      // TODO: seems to me like this is old and outdated code and we can use reftracking to replace it but ... somebody's gotta do it :)
 
       if (
         blockContainsMutate(node.block, metaName, singleScope, includeProperties) ||

@@ -21,31 +21,68 @@ try {
 ## Pre Normal
 
 `````js filename=intro
-try {
-  throw `exit`;
-} finally {
-  $(2);
+{
+  let $implicitThrow = false;
+  let $finalStep = false;
+  let $finalCatchArg = undefined;
+  let $finalArg = undefined;
+  $finally: {
+    try {
+      {
+        $finalStep = true;
+        $finalArg = `exit`;
+        break $finally;
+      }
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
+    }
+  }
+  {
+    $(2);
+  }
+  if ($implicitThrow) {
+    throw $finalCatchArg;
+  }
+  if ($finalStep) {
+    throw $finalArg;
+  }
 }
 `````
 
 ## Normalized
 
 `````js filename=intro
-try {
-  throw `exit`;
-} finally {
-  $(2);
+let $implicitThrow = false;
+let $finalStep = false;
+let $finalCatchArg = undefined;
+let $finalArg = undefined;
+$finally: {
+  try {
+    $finalStep = true;
+    $finalArg = `exit`;
+    break $finally;
+  } catch ($finalImplicit) {
+    $implicitThrow = true;
+    $finalCatchArg = $finalImplicit;
+  }
+}
+$(2);
+if ($implicitThrow) {
+  throw $finalCatchArg;
+} else {
+  if ($finalStep) {
+    throw $finalArg;
+  } else {
+  }
 }
 `````
 
 ## Output
 
 `````js filename=intro
-try {
-  throw `exit`;
-} finally {
-  $(2);
-}
+$(2);
+throw `exit`;
 `````
 
 ## PST Output
@@ -53,12 +90,8 @@ try {
 With rename=true
 
 `````js filename=intro
-try {
-  throw "exit";
-}
-finally {
-  $( 2 );
-}
+$( 2 );
+throw "exit";
 `````
 
 ## Globals

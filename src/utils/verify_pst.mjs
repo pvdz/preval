@@ -176,15 +176,13 @@ function verifyStatement(node) {
       return;
     }
     case 'TryStatement': {
-      ASSERT(node.trap || node.final, 'must have at least a catch or finally block', node);
+      ASSERT(node.trap, 'must have a catch block', node);
+      ASSERT(node.id, 'must have an id (catch var)', node);
 
       verifyBlock(node.body);
       if (node.trap) {
         verifyRef(node.id);
         verifyBlock(node.trap);
-      }
-      if (node.final) {
-        verifyBlock(node.final);
       }
       return;
     }

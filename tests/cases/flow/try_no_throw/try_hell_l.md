@@ -35,10 +35,30 @@ considerMutated(x) // always false
 let f = function () {
   debugger;
   foo: {
-    try {
-      break foo;
-    } finally {
-      return;
+    {
+      let $implicitThrow = false;
+      let $finalStep = false;
+      let $finalCatchArg = undefined;
+      $finally: {
+        try {
+          {
+            $finalStep = true;
+            break $finally;
+          }
+        } catch ($finalImplicit) {
+          $implicitThrow = true;
+          $finalCatchArg = $finalImplicit;
+        }
+      }
+      {
+        return;
+      }
+      if ($implicitThrow) {
+        throw $finalCatchArg;
+      }
+      if ($finalStep) {
+        break foo;
+      }
     }
     console.log(x);
   }
@@ -54,15 +74,18 @@ considerMutated(x);
 `````js filename=intro
 let f = function () {
   debugger;
-  foo: {
+  let $implicitThrow = false;
+  let $finalStep = false;
+  let $finalCatchArg = undefined;
+  $finally: {
     try {
-      break foo;
-    } finally {
-      return undefined;
+      $finalStep = true;
+      break $finally;
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
     }
-    console.log(x);
   }
-  x = `fail`;
   return undefined;
 };
 let x = 0;
@@ -73,22 +96,7 @@ considerMutated(x);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  foo: {
-    try {
-      break foo;
-    } finally {
-      return undefined;
-    }
-    console.log(x);
-  }
-  x = `fail`;
-  return undefined;
-};
-let x = 0;
-f();
-considerMutated(x);
+considerMutated(0);
 `````
 
 ## PST Output
@@ -96,23 +104,7 @@ considerMutated(x);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  foo:   {
-    try {
-      break foo;
-    }
-finally {
-      return undefined;
-    }
-    console.log( b );
-  }
-  b = "fail";
-  return undefined;
-};
-let b = 0;
-a();
-considerMutated( b );
+considerMutated( 0 );
 `````
 
 ## Globals

@@ -32,13 +32,33 @@ considerMutated(x) // always true (!)
 `````js filename=intro
 let f = function () {
   debugger;
-  stop: try {
-    fail_early;
-    throw `one`;
-  } catch (e) {
-    throw `two`;
-  } finally {
-    break stop;
+  stop: {
+    let $implicitThrow = false;
+    let $finalStep = false;
+    let $finalCatchArg = undefined;
+    let $finalArg = undefined;
+    $finally: {
+      try {
+        fail_early;
+        {
+          $finalStep = true;
+          $finalArg = `one`;
+          break $finally;
+        }
+      } catch ($finalImplicit) {
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
+      }
+    }
+    {
+      break stop;
+    }
+    if ($implicitThrow) {
+      throw $finalCatchArg;
+    }
+    if ($finalStep) {
+      throw $finalArg;
+    }
   }
   x = 1;
 };
@@ -52,45 +72,23 @@ considerMutated(x);
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpAfterLabel = function () {
-    debugger;
-    x = 1;
-    return undefined;
-  };
-  try {
-    try {
-      fail_early;
-      throw `one`;
-    } catch (e) {
-      throw `two`;
+  stop: {
+    let $implicitThrow = false;
+    let $finalStep = false;
+    let $finalCatchArg = undefined;
+    let $finalArg = undefined;
+    $finally: {
+      try {
+        fail_early;
+        $finalStep = true;
+        $finalArg = `one`;
+        break $finally;
+      } catch ($finalImplicit) {
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
+      }
     }
-  } finally {
-    const tmpReturnArg = tmpAfterLabel();
-    return tmpReturnArg;
-  }
-  const tmpReturnArg$1 = tmpAfterLabel();
-  return tmpReturnArg$1;
-};
-let x = 0;
-f();
-considerMutated(x);
-`````
-
-## Output
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  try {
-    try {
-      fail_early;
-      throw `one`;
-    } catch (e) {
-      throw `two`;
-    }
-  } finally {
-    x = 1;
-    return undefined;
+    break stop;
   }
   x = 1;
   return undefined;
@@ -100,39 +98,34 @@ f();
 considerMutated(x);
 `````
 
+## Output
+
+`````js filename=intro
+try {
+  fail_early;
+} catch ($finalImplicit) {}
+considerMutated(1);
+`````
+
 ## PST Output
 
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  try {
-    try {
-      fail_early;
-      throw "one";
-    }
-catch (e) {
-      throw "two";
-    }
-  }
-finally {
-    b = 1;
-    return undefined;
-  }
-  b = 1;
-  return undefined;
-};
-let b = 0;
-a();
-considerMutated( b );
+try {
+  fail_early;
+}
+catch ($finalImplicit) {
+
+}
+considerMutated( 1 );
 `````
 
 ## Globals
 
 BAD@! Found 3 implicit global bindings:
 
-fail_early, e, considerMutated
+fail_early, $finalImplicit, considerMutated
 
 ## Result
 

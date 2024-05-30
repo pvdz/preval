@@ -26,11 +26,22 @@ considerMutated(x) // always true
 
 `````js filename=intro
 let x = 0;
-try {
-  fail_early;
-} catch (e) {
-  x = 1;
-} finally {
+{
+  let $implicitThrow = false;
+  let $finalCatchArg = undefined;
+  $finally: {
+    try {
+      fail_early;
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
+    }
+  }
+  {
+  }
+  if ($implicitThrow) {
+    throw $finalCatchArg;
+  }
 }
 considerMutated(x);
 `````
@@ -39,30 +50,37 @@ considerMutated(x);
 
 `````js filename=intro
 let x = 0;
+let $implicitThrow = false;
+let $finalCatchArg = undefined;
 try {
-  try {
-    fail_early;
-  } catch (e) {
-    x = 1;
-  }
-} finally {
+  fail_early;
+} catch ($finalImplicit) {
+  $implicitThrow = true;
+  $finalCatchArg = $finalImplicit;
 }
-considerMutated(x);
+if ($implicitThrow) {
+  throw $finalCatchArg;
+} else {
+  considerMutated(x);
+}
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 0;
+let $implicitThrow = false;
+let $finalCatchArg = undefined;
 try {
-  try {
-    fail_early;
-  } catch (e) {
-    x = 1;
-  }
-} finally {
+  fail_early;
+} catch ($finalImplicit) {
+  $implicitThrow = true;
+  $finalCatchArg = $finalImplicit;
 }
-considerMutated(x);
+if ($implicitThrow) {
+  throw $finalCatchArg;
+} else {
+  considerMutated(0);
+}
 `````
 
 ## PST Output
@@ -70,26 +88,28 @@ considerMutated(x);
 With rename=true
 
 `````js filename=intro
-let a = 0;
+let a = false;
+let b = undefined;
 try {
-  try {
-    fail_early;
-  }
-catch (e) {
-    a = 1;
-  }
+  fail_early;
 }
-finally {
-
+catch ($finalImplicit) {
+  a = true;
+  b = $finalImplicit;
 }
-considerMutated( a );
+if (a) {
+  throw b;
+}
+else {
+  considerMutated( 0 );
+}
 `````
 
 ## Globals
 
 BAD@! Found 3 implicit global bindings:
 
-fail_early, e, considerMutated
+fail_early, $finalImplicit, considerMutated
 
 ## Result
 

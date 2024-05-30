@@ -152,7 +152,7 @@ function processAttempt(fdata, queue) {
     }
 
     // Keep searching until you find a rw that is in the same func. Must appear after the binding.
-    // Then verify if that's a read in same loop/catch/finally that can reach this without side effects
+    // Then verify if that's a read in same loop/catch that can reach this without side effects
     let nextRead = arrayMeta.rwOrder[orderIndex + 1];
     while (nextRead && nextRead.pfuncNode !== write.pfuncNode) {
       //console.log('- read/write not in same function scope, trying next rw', nextRead.pfuncNode.$p.pid, write.pfuncNode.$p.pid)
@@ -162,7 +162,7 @@ function processAttempt(fdata, queue) {
     if (!nextRead) return vlog('bail: there is no next read in same scope');
     if (nextRead?.action !== 'read') return vlog('bail: next ref in same scope is a write'); // Okay, next reference to this binding is not a read so we don't care
 
-    // Confirm that both nodes are in the same loop, catch, and finally "scope" because
+    // Confirm that both nodes are in the same loop, and catch "scope" because
     // otherwise we can't guarantee that the read even happens sequentially
 
     // Multiple writes. Requirements are more strict (TODO: relax certain cases)
@@ -181,11 +181,6 @@ function processAttempt(fdata, queue) {
     if (nextRead.innerCatch !== write.innerCatch) {
       // Can't guarantee the write if one ref is inside a catch while the other is not
       return vlog('- read/write not in same catch', nextRead.innerCatch, write.innerCatch);
-    }
-    if (nextRead.innerFinally !== write.innerFinally) {
-      // Can't guarantee the write if one ref is inside a finally while the other is not
-      // TODO: or can we?
-      return vlog('- read/write not in same finally', nextRead.innerFinally, write.innerFinally);
     }
 
     return haveRead(arrayName, arrayLiteralNode, arrayMeta, write, nextRead);

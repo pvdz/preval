@@ -26,11 +26,24 @@ $(3);
 
 `````js filename=intro
 for (const x in { a: 1 }) {
-  try {
-    $(x, 1);
-  } finally {
-    $(2);
-    continue;
+  {
+    let $implicitThrow = false;
+    let $finalCatchArg = undefined;
+    $finally: {
+      try {
+        $(x, 1);
+      } catch ($finalImplicit) {
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
+      }
+    }
+    {
+      $(2);
+      continue;
+    }
+    if ($implicitThrow) {
+      throw $finalCatchArg;
+    }
   }
 }
 $(3);
@@ -42,12 +55,16 @@ $(3);
 const tmpForInDeclRhs = { a: 1 };
 let x = undefined;
 for (x in tmpForInDeclRhs) {
+  let $implicitThrow = false;
+  let $finalCatchArg = undefined;
   try {
     $(x, 1);
-  } finally {
-    $(2);
-    continue;
+  } catch ($finalImplicit) {
+    $implicitThrow = true;
+    $finalCatchArg = $finalImplicit;
   }
+  $(2);
+  continue;
 }
 $(3);
 `````
@@ -60,9 +77,8 @@ const tmpForInDeclRhs = { a: 1 };
 for (x in tmpForInDeclRhs) {
   try {
     $(x, 1);
-  } finally {
-    $(2);
-  }
+  } catch ($finalImplicit) {}
+  $(2);
 }
 $(3);
 `````
@@ -78,16 +94,19 @@ for (a in b) {
   try {
     $( a, 1 );
   }
-finally {
-    $( 2 );
+catch ($finalImplicit) {
+
   }
+  $( 2 );
 }
 $( 3 );
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+$finalImplicit
 
 ## Result
 

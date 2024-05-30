@@ -32,11 +32,33 @@ considerMutated(x) // always false
 let f = function () {
   debugger;
   foo: {
-    try {
-      fail_early;
-      throw `not me`;
-    } finally {
-      return;
+    {
+      let $implicitThrow = false;
+      let $finalStep = false;
+      let $finalCatchArg = undefined;
+      let $finalArg = undefined;
+      $finally: {
+        try {
+          fail_early;
+          {
+            $finalStep = true;
+            $finalArg = `not me`;
+            break $finally;
+          }
+        } catch ($finalImplicit) {
+          $implicitThrow = true;
+          $finalCatchArg = $finalImplicit;
+        }
+      }
+      {
+        return;
+      }
+      if ($implicitThrow) {
+        throw $finalCatchArg;
+      }
+      if ($finalStep) {
+        throw $finalArg;
+      }
     }
   }
 };
@@ -50,11 +72,20 @@ considerMutated(x);
 `````js filename=intro
 let f = function () {
   debugger;
-  try {
-    fail_early;
-    throw `not me`;
-  } finally {
-    return undefined;
+  let $implicitThrow = false;
+  let $finalStep = false;
+  let $finalCatchArg = undefined;
+  let $finalArg = undefined;
+  $finally: {
+    try {
+      fail_early;
+      $finalStep = true;
+      $finalArg = `not me`;
+      break $finally;
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
+    }
   }
   return undefined;
 };
@@ -66,17 +97,9 @@ considerMutated(x);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  try {
-    fail_early;
-    throw `not me`;
-  } finally {
-    return undefined;
-  }
-  return undefined;
-};
-f();
+try {
+  fail_early;
+} catch ($finalImplicit) {}
 considerMutated(0);
 `````
 
@@ -85,26 +108,20 @@ considerMutated(0);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  try {
-    fail_early;
-    throw "not me";
-  }
-finally {
-    return undefined;
-  }
-  return undefined;
-};
-a();
+try {
+  fail_early;
+}
+catch ($finalImplicit) {
+
+}
 considerMutated( 0 );
 `````
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
+BAD@! Found 3 implicit global bindings:
 
-fail_early, considerMutated
+fail_early, $finalImplicit, considerMutated
 
 ## Result
 

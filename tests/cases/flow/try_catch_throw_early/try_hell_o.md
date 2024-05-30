@@ -29,10 +29,32 @@ considerMutated(x) // always true (!)
 `````js filename=intro
 let f = function () {
   debugger;
-  stop: try {
-    throw x;
-  } finally {
-    break stop;
+  stop: {
+    let $implicitThrow = false;
+    let $finalStep = false;
+    let $finalCatchArg = undefined;
+    let $finalArg = undefined;
+    $finally: {
+      try {
+        {
+          $finalStep = true;
+          $finalArg = x;
+          break $finally;
+        }
+      } catch ($finalImplicit) {
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
+      }
+    }
+    {
+      break stop;
+    }
+    if ($implicitThrow) {
+      throw $finalCatchArg;
+    }
+    if ($finalStep) {
+      throw $finalArg;
+    }
   }
   x = 1;
 };
@@ -46,35 +68,22 @@ considerMutated(x);
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpAfterLabel = function () {
-    debugger;
-    x = 1;
-    return undefined;
-  };
-  try {
-    throw x;
-  } finally {
-    const tmpReturnArg = tmpAfterLabel();
-    return tmpReturnArg;
-  }
-  const tmpReturnArg$1 = tmpAfterLabel();
-  return tmpReturnArg$1;
-};
-let x = 0;
-f();
-considerMutated(x);
-`````
-
-## Output
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  try {
-    throw x;
-  } finally {
-    x = 1;
-    return undefined;
+  stop: {
+    let $implicitThrow = false;
+    let $finalStep = false;
+    let $finalCatchArg = undefined;
+    let $finalArg = undefined;
+    $finally: {
+      try {
+        $finalStep = true;
+        $finalArg = x;
+        break $finally;
+      } catch ($finalImplicit) {
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
+      }
+    }
+    break stop;
   }
   x = 1;
   return undefined;
@@ -84,26 +93,18 @@ f();
 considerMutated(x);
 `````
 
+## Output
+
+`````js filename=intro
+considerMutated(1);
+`````
+
 ## PST Output
 
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  try {
-    throw b;
-  }
-finally {
-    b = 1;
-    return undefined;
-  }
-  b = 1;
-  return undefined;
-};
-let b = 0;
-a();
-considerMutated( b );
+considerMutated( 1 );
 `````
 
 ## Globals

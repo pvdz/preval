@@ -27,10 +27,32 @@ $(f()); // 2
 `````js filename=intro
 let f = function () {
   debugger;
-  hack: try {
-    return 1;
-  } finally {
-    break hack;
+  hack: {
+    let $implicitThrow = false;
+    let $finalStep = false;
+    let $finalCatchArg = undefined;
+    let $finalArg = undefined;
+    $finally: {
+      try {
+        {
+          $finalStep = true;
+          $finalArg = 1;
+          break $finally;
+        }
+      } catch ($finalImplicit) {
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
+      }
+    }
+    {
+      break hack;
+    }
+    if ($implicitThrow) {
+      throw $finalCatchArg;
+    }
+    if ($finalStep) {
+      return $finalArg;
+    }
   }
   return 2;
 };
@@ -43,11 +65,21 @@ $(f());
 let f = function () {
   debugger;
   hack: {
-    try {
-      return 1;
-    } finally {
-      break hack;
+    let $implicitThrow = false;
+    let $finalStep = false;
+    let $finalCatchArg = undefined;
+    let $finalArg = undefined;
+    $finally: {
+      try {
+        $finalStep = true;
+        $finalArg = 1;
+        break $finally;
+      } catch ($finalImplicit) {
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
+      }
     }
+    break hack;
   }
   return 2;
 };
@@ -59,7 +91,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$(1);
+$(2);
 `````
 
 ## PST Output
@@ -67,7 +99,7 @@ $(1);
 With rename=true
 
 `````js filename=intro
-$( 1 );
+$( 2 );
 `````
 
 ## Globals
@@ -84,6 +116,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: 1
- - eval returned: undefined
+Final output calls: Same

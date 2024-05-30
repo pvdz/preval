@@ -31,11 +31,31 @@
 `````js filename=intro
 {
   here: {
-    try {
-      $(1);
-      break here;
-    } finally {
-      $(2);
+    {
+      let $implicitThrow = false;
+      let $finalStep = false;
+      let $finalCatchArg = undefined;
+      $finally: {
+        try {
+          $(1);
+          {
+            $finalStep = true;
+            break $finally;
+          }
+        } catch ($finalImplicit) {
+          $implicitThrow = true;
+          $finalCatchArg = $finalImplicit;
+        }
+      }
+      {
+        $(2);
+      }
+      if ($implicitThrow) {
+        throw $finalCatchArg;
+      }
+      if ($finalStep) {
+        break here;
+      }
     }
     $(`remove me`);
   }
@@ -47,13 +67,29 @@
 
 `````js filename=intro
 here: {
-  try {
-    $(1);
-    break here;
-  } finally {
-    $(2);
+  let $implicitThrow = false;
+  let $finalStep = false;
+  let $finalCatchArg = undefined;
+  $finally: {
+    try {
+      $(1);
+      $finalStep = true;
+      break $finally;
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
+    }
   }
-  $(`remove me`);
+  $(2);
+  if ($implicitThrow) {
+    throw $finalCatchArg;
+  } else {
+    if ($finalStep) {
+      break here;
+    } else {
+      $(`remove me`);
+    }
+  }
 }
 $(3);
 `````
@@ -61,16 +97,26 @@ $(3);
 ## Output
 
 `````js filename=intro
-here: {
-  try {
-    $(1);
-    break here;
-  } finally {
-    $(2);
-  }
-  $(`remove me`);
+let $implicitThrow = false;
+let $finalStep = false;
+let $finalCatchArg = undefined;
+try {
+  $(1);
+  $finalStep = true;
+} catch ($finalImplicit) {
+  $implicitThrow = true;
+  $finalCatchArg = $finalImplicit;
 }
-$(3);
+$(2);
+if ($implicitThrow) {
+  throw $finalCatchArg;
+} else {
+  if ($finalStep) {
+  } else {
+    $(`remove me`);
+  }
+  $(3);
+}
 `````
 
 ## PST Output
@@ -78,22 +124,37 @@ $(3);
 With rename=true
 
 `````js filename=intro
-here: {
-  try {
-    $( 1 );
-    break here;
-  }
-finally {
-    $( 2 );
-  }
-  $( "remove me" );
+let a = false;
+let b = false;
+let c = undefined;
+try {
+  $( 1 );
+  b = true;
 }
-$( 3 );
+catch ($finalImplicit) {
+  a = true;
+  c = $finalImplicit;
+}
+$( 2 );
+if (a) {
+  throw c;
+}
+else {
+  if (b) {
+
+  }
+  else {
+    $( "remove me" );
+  }
+  $( 3 );
+}
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+$finalImplicit
 
 ## Result
 

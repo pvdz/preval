@@ -28,23 +28,38 @@ try {
 ## Pre Normal
 
 `````js filename=intro
-try {
-  $(1);
-  A: {
-    $(2);
-    if ($(3)) {
-      break A;
+{
+  let $implicitThrow = false;
+  let $finalCatchArg = undefined;
+  $finally: {
+    try {
+      $(1);
+      A: {
+        $(2);
+        if ($(3)) {
+          break A;
+        }
+        $(4);
+      }
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
     }
-    $(4);
   }
-} finally {
-  $(5);
+  {
+    $(5);
+  }
+  if ($implicitThrow) {
+    throw $finalCatchArg;
+  }
 }
 `````
 
 ## Normalized
 
 `````js filename=intro
+let $implicitThrow = false;
+let $finalCatchArg = undefined;
 try {
   $(1);
   A: {
@@ -56,14 +71,22 @@ try {
       $(4);
     }
   }
-} finally {
-  $(5);
+} catch ($finalImplicit) {
+  $implicitThrow = true;
+  $finalCatchArg = $finalImplicit;
+}
+$(5);
+if ($implicitThrow) {
+  throw $finalCatchArg;
+} else {
 }
 `````
 
 ## Output
 
 `````js filename=intro
+let $implicitThrow = false;
+let $finalCatchArg = undefined;
 try {
   $(1);
   $(2);
@@ -72,8 +95,14 @@ try {
   } else {
     $(4);
   }
-} finally {
-  $(5);
+} catch ($finalImplicit) {
+  $implicitThrow = true;
+  $finalCatchArg = $finalImplicit;
+}
+$(5);
+if ($implicitThrow) {
+  throw $finalCatchArg;
+} else {
 }
 `````
 
@@ -82,25 +111,34 @@ try {
 With rename=true
 
 `````js filename=intro
+let a = false;
+let b = undefined;
 try {
   $( 1 );
   $( 2 );
-  const a = $( 3 );
-  if (a) {
+  const c = $( 3 );
+  if (c) {
 
   }
   else {
     $( 4 );
   }
 }
-finally {
-  $( 5 );
+catch ($finalImplicit) {
+  a = true;
+  b = $finalImplicit;
+}
+$( 5 );
+if (a) {
+  throw b;
 }
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+$finalImplicit
 
 ## Result
 

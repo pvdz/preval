@@ -28,12 +28,22 @@ $(x);
 
 `````js filename=intro
 let x = 1;
-try {
-} catch (e) {
-  $(x);
-  x = 2;
-} finally {
-  $(x);
+{
+  let $implicitThrow = false;
+  let $finalCatchArg = undefined;
+  $finally: {
+    try {
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
+    }
+  }
+  {
+    $(x);
+  }
+  if ($implicitThrow) {
+    throw $finalCatchArg;
+  }
 }
 $(x);
 `````
@@ -42,8 +52,14 @@ $(x);
 
 `````js filename=intro
 let x = 1;
+let $implicitThrow = false;
+let $finalCatchArg = undefined;
 $(x);
-$(x);
+if ($implicitThrow) {
+  throw $finalCatchArg;
+} else {
+  $(x);
+}
 `````
 
 ## Output

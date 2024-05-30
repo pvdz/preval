@@ -152,7 +152,6 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     let lastInnerElse = undefined;
     let lastInnerLoop = undefined;
     let lastInnerCatch = undefined;
-    let lastInnerFinally = undefined;
     meta.singleScoped = true;
     meta.singleInner = true;
     meta.singleScopeReads = true;
@@ -164,12 +163,11 @@ function _phase2(program, fdata, resolve, req, options = {}) {
         lastInnerIf = ref.innerIf;
         lastInnerElse = ref.innerElse;
         lastInnerCatch = ref.innerCatch;
-        lastInnerFinally = ref.innerCatch;
       }
       if (lastScope !== ref.scope) {
         meta.singleScoped = false;
       }
-      if (lastScope !== ref.scope || lastInnerLoop !== ref.innerLoop || lastInnerIf !== ref.innerIf || lastInnerElse !== ref.innerElse || lastInnerCatch !== ref.innerCatch || lastInnerFinally !== ref.innerFinally) {
+      if (lastScope !== ref.scope || lastInnerLoop !== ref.innerLoop || lastInnerIf !== ref.innerIf || lastInnerElse !== ref.innerElse || lastInnerCatch !== ref.innerCatch) {
         meta.singleInner = false;
       }
 

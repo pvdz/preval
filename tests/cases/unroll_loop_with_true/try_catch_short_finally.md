@@ -30,18 +30,36 @@ while (true) {
 
 `````js filename=intro
 while (true) {
-  try {
-    const test = $(`first`);
-    $(`second`);
-    if (test) {
-      break;
-    } else {
-      $(`third`);
+  {
+    let $implicitThrow = false;
+    let $finalStep = false;
+    let $finalCatchArg = undefined;
+    $finally: {
+      try {
+        const test = $(`first`);
+        $(`second`);
+        if (test) {
+          {
+            $finalStep = true;
+            break $finally;
+          }
+        } else {
+          $(`third`);
+        }
+      } catch ($finalImplicit) {
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
+      }
     }
-  } catch (e) {
-    $(`error`);
-  } finally {
-    $(`finally`);
+    {
+      $(`finally`);
+    }
+    if ($implicitThrow) {
+      throw $finalCatchArg;
+    }
+    if ($finalStep) {
+      break;
+    }
   }
 }
 `````
@@ -50,20 +68,32 @@ while (true) {
 
 `````js filename=intro
 while (true) {
-  try {
+  let $implicitThrow = false;
+  let $finalStep = false;
+  let $finalCatchArg = undefined;
+  $finally: {
     try {
       const test = $(`first`);
       $(`second`);
       if (test) {
-        break;
+        $finalStep = true;
+        break $finally;
       } else {
         $(`third`);
       }
-    } catch (e) {
-      $(`error`);
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
     }
-  } finally {
-    $(`finally`);
+  }
+  $(`finally`);
+  if ($implicitThrow) {
+    throw $finalCatchArg;
+  } else {
+    if ($finalStep) {
+      break;
+    } else {
+    }
   }
 }
 `````
@@ -72,40 +102,58 @@ while (true) {
 
 `````js filename=intro
 let $tmpLoopUnrollCheck = true;
+let $implicitThrow = false;
+let $finalStep = false;
+let $finalCatchArg = undefined;
 try {
-  try {
-    const test = $(`first`);
-    $(`second`);
-    if (test) {
-      $tmpLoopUnrollCheck = false;
-    } else {
-      $(`third`);
-    }
-  } catch (e) {
-    $(`error`);
+  const test = $(`first`);
+  $(`second`);
+  if (test) {
+    $finalStep = true;
+  } else {
+    $(`third`);
   }
-} finally {
-  $(`finally`);
+} catch ($finalImplicit) {
+  $implicitThrow = true;
+  $finalCatchArg = $finalImplicit;
 }
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    try {
+$(`finally`);
+if ($implicitThrow) {
+  throw $finalCatchArg;
+} else {
+  if ($finalStep) {
+    $tmpLoopUnrollCheck = false;
+  } else {
+  }
+  if ($tmpLoopUnrollCheck) {
+    while ($LOOP_UNROLL_10) {
+      let $implicitThrow$1 = false;
+      let $finalStep$1 = false;
+      let $finalCatchArg$1 = undefined;
       try {
         const test$1 = $(`first`);
         $(`second`);
         if (test$1) {
-          break;
+          $finalStep$1 = true;
         } else {
           $(`third`);
         }
-      } catch (e$1) {
-        $(`error`);
+      } catch ($finalImplicit$1) {
+        $implicitThrow$1 = true;
+        $finalCatchArg$1 = $finalImplicit$1;
       }
-    } finally {
       $(`finally`);
+      if ($implicitThrow$1) {
+        throw $finalCatchArg$1;
+      } else {
+        if ($finalStep$1) {
+          break;
+        } else {
+        }
+      }
     }
+  } else {
   }
-} else {
 }
 `````
 
@@ -115,43 +163,59 @@ With rename=true
 
 `````js filename=intro
 let a = true;
+let b = false;
+let c = false;
+let d = undefined;
 try {
-  try {
-    const b = $( "first" );
-    $( "second" );
-    if (b) {
-      a = false;
-    }
-    else {
-      $( "third" );
-    }
+  const e = $( "first" );
+  $( "second" );
+  if (e) {
+    c = true;
   }
-catch (e) {
-    $( "error" );
+  else {
+    $( "third" );
   }
 }
-finally {
-  $( "finally" );
+catch ($finalImplicit) {
+  b = true;
+  d = $finalImplicit;
 }
-if (a) {
-  while ($LOOP_UNROLL_10) {
-    try {
+$( "finally" );
+if (b) {
+  throw d;
+}
+else {
+  if (c) {
+    a = false;
+  }
+  if (a) {
+    while ($LOOP_UNROLL_10) {
+      let f = false;
+      let g = false;
+      let h = undefined;
       try {
-        const c = $( "first" );
+        const i = $( "first" );
         $( "second" );
-        if (c) {
-          break;
+        if (i) {
+          g = true;
         }
         else {
           $( "third" );
         }
       }
-catch (e$1) {
-        $( "error" );
+catch ($finalImplicit$1) {
+        f = true;
+        h = $finalImplicit$1;
       }
-    }
-finally {
       $( "finally" );
+      if (f) {
+        throw h;
+      }
+      else {
+        if (g) {
+          break;
+        }
+      }
     }
   }
 }
@@ -161,7 +225,7 @@ finally {
 
 BAD@! Found 2 implicit global bindings:
 
-e, e$1
+$finalImplicit, $finalImplicit$1
 
 ## Result
 

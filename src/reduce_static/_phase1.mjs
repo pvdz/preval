@@ -76,7 +76,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
   const funcStack = []; // (also includes global/Program)
   const thisStack = []; // Only contains func exprs. Func decls are eliminated. Arrows do not have this/arguments. Not used for global.
-  const blockStack = []; // Stack of nested blocks (functions, try/catch/finally, or statements)
+  const blockStack = []; // Stack of nested blocks (functions, try/catch, or statements)
   const blockIds = []; // Stack of block pids. Negative if the parent was a loop of sorts. Functions insert a zero.
   const blockBodies = []; // Stack of blocks. Arrays of statements that is block.body or program.body
   const blockIndexes = []; // Stack of block indexes to match blockIds
@@ -85,9 +85,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
   const ifStack = [0];
   const elseStack = [0];
   const tryNodeStack = []; // Stack of try nodes (not pid) (try/catch)
-  const trapStack = [0]; // Stack of try-block node $pids (try/catch), to detect being inside a try {} block (opposed to catch/finally)
+  const trapStack = [0]; // Stack of try-block node $pids (try/catch), to detect being inside a try {} block (opposed to the catch)
   const catchStack = [0]; // Stack of catch _block_ node $pids (try/catch)
-  const finallyStack = [0]; // Stack of finally _block_ node $pids (try/finally)
   let readWriteCounter = 0;
 
   /**
@@ -283,10 +282,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         openRefsOnBeforeBlock(node, parentNode, parentProp, pathNodes[pathNodes.length - 3], blockStack[blockStack.length - 2], globallyUniqueNamingRegistry);
 
         if (tryNodeStack.length) {
-          if (parentProp === 'finalizer') finallyStack.push(node.$p.pid);
-          else if (tryNodeStack[tryNodeStack.length - 1].block === node) trapStack.push(node.$p.pid);
+          if (tryNodeStack[tryNodeStack.length - 1].block === node) trapStack.push(node.$p.pid);
           else catchStack.push(node.$p.pid);
-          //vlog('Checked for try:', tryNodeStack.map(n => n.$p.pid), trapStack, catchStack, finallyStack);
+          //vlog('Checked for try:', tryNodeStack.map(n => n.$p.pid), trapStack, catchStack);
         }
         blockBodies.push(node.body);
         if (['WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(parentNode.type)) {
@@ -316,13 +314,12 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         blockIds.pop();
 
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnAfterBlock(node, path, parentNode, parentProp, pathNodes[pathNodes.length - 3], loopStack, parentBlock, globallyUniqueLabelRegistry, tryNodeStack, catchStack, finallyStack, globallyUniqueNamingRegistry);
+        openRefsOnAfterBlock(node, path, parentNode, parentProp, pathNodes[pathNodes.length - 3], loopStack, parentBlock, globallyUniqueLabelRegistry, tryNodeStack, catchStack, globallyUniqueNamingRegistry);
 
         if (tryNodeStack.length) {
-          if (parentProp === 'finalizer') finallyStack.pop();
-          else if (tryNodeStack[tryNodeStack.length - 1].block === node) trapStack.pop();
+          if (tryNodeStack[tryNodeStack.length - 1].block === node) trapStack.pop();
           else catchStack.pop();
-          //vlog('Checked for try:', tryNodeStack.map(n => n.$p.pid), trapStack, catchStack, finallyStack);
+          //vlog('Checked for try:', tryNodeStack.map(n => n.$p.pid), trapStack, catchStack);
         }
 
         // A block has no early / explicit completion if it contains no statements
@@ -459,7 +456,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
       case 'ForInStatement:after': {
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnAfterLoop('in', node, parentBlock, path, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack, finallyStack);
+        openRefsOnAfterLoop('in', node, parentBlock, path, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack);
 
         // Pop after the callback because it needs to find the current loop
         loopStack.pop();
@@ -476,7 +473,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
       case 'ForOfStatement:after': {
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnAfterLoop('of', node, parentBlock, path, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack, finallyStack);
+        openRefsOnAfterLoop('of', node, parentBlock, path, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack);
 
         // Pop after the callback because it needs to find the current loop
         loopStack.pop();
@@ -686,8 +683,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           const innerTry = tryNodeStack[tryNodeStack.length - 1]?.$p.pid || 0;
           const innerTrap = trapStack[trapStack.length - 1];
           const innerCatch = catchStack[catchStack.length - 1];
-          const innerFinally = finallyStack[finallyStack.length - 1];
-          vlog('innerLoop:', innerLoop, ', innerIf:', innerIf, ', innerElse:', innerElse, ', innerTry:', innerTry, ', innerTrap:', innerTrap, ', innerCatch:', innerCatch, ', innerFinally:', innerFinally);
+          vlog('innerLoop:', innerLoop, ', innerIf:', innerIf, ', innerElse:', innerElse, ', innerTry:', innerTry, ', innerTrap:', innerTrap, ', innerCatch:', innerCatch);
 
           const grandNode = pathNodes[pathNodes.length - 3];
           const grandProp = pathProps[pathProps.length - 2];
@@ -728,7 +724,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
               innerTry,
               innerTrap,
               innerCatch,
-              innerFinally,
             });
             meta.reads.push(read);
 
@@ -768,7 +763,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
               innerTry,
               innerTrap,
               innerCatch,
-              innerFinally,
             });
 
             meta.writes.push(write);
@@ -857,7 +851,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
       case 'IfStatement:after': {
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnafterIf(node, parentBlock, path, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, blockStack, catchStack, finallyStack);
+        openRefsOnafterIf(node, parentBlock, path, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, blockStack, catchStack);
 
         if (node.consequent.$p.earlyComplete || node.alternate.$p.earlyComplete) {
           vlog('At least one branch had an early completion');
@@ -950,7 +944,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         }
 
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnafterLabel(node, parentBlock, path, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, catchStack, finallyStack);
+        openRefsOnafterLabel(node, parentBlock, path, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, catchStack);
         break;
       }
 
@@ -1121,17 +1115,17 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         const parentBlock = blockStack[blockStack.length - 1];
         openRefsOnAfterTryNode(node, parentBlock, globallyUniqueLabelRegistry, loopStack);
 
-        if (node.block.$p.earlyComplete || node.handler?.body.$p.earlyComplete || node.finalizer?.$p.earlyComplete) {
+        if (node.block.$p.earlyComplete || node.handler?.body.$p.earlyComplete) {
           vlog('At least one block of the try has an early completion');
           node.$p.earlyComplete = true;
-          node.$p.earlyReturn = node.block.$p.earlyReturn || node.handler?.body.$p.earlyReturn || node.finalizer?.$p.earlyReturn;
-          node.$p.earlyThrow = node.block.$p.earlyThrow || node.handler?.body.$p.earlyThrow || node.finalizer?.$p.earlyThrow;
+          node.$p.earlyReturn = node.block.$p.earlyReturn || node.handler?.body.$p.earlyReturn;
+          node.$p.earlyThrow = node.block.$p.earlyThrow || node.handler?.body.$p.earlyThrow;
         }
-        if (node.block.$p.alwaysComplete && node.handler?.body.$p.alwaysComplete && node.finalizer?.$p.alwaysComplete) {
+        if (node.block.$p.alwaysComplete && node.handler?.body.$p.alwaysComplete) {
           vlog('All blocks of the try complete explicitly');
           node.$p.alwaysComplete = true;
-          node.$p.alwaysReturn = node.block.$p.alwaysReturn && node.handler?.body.$p.alwaysReturn && node.finalizer?.$p.alwaysReturn;
-          node.$p.alwaysThrow = node.block.$p.alwaysThrow && node.handler?.body.$p.alwaysThrow && node.finalizer?.$p.alwaysThrow;
+          node.$p.alwaysReturn = node.block.$p.alwaysReturn && node.handler?.body.$p.alwaysReturn;
+          node.$p.alwaysThrow = node.block.$p.alwaysThrow && node.handler?.body.$p.alwaysThrow;
         }
         tryNodeStack.pop();
         break;
@@ -1196,7 +1190,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
       case 'WhileStatement:after': {
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnAfterLoop('while', node, parentBlock, path, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack, finallyStack);
+        openRefsOnAfterLoop('while', node, parentBlock, path, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack);
 
         // Pop after the callback because it needs to find the current loop
         loopStack.pop();
@@ -1299,18 +1293,15 @@ function isTailNode(completionNode, tailNode) {
     // Try catch. Trickier because we have to consider the best and worst case.
     tailNode.type === 'TryStatement'
   ) {
-    // If the try has a finally it gets a little tricky.
-    // I think in either way we should try to be conservative and only consider early completions if the completion node
-    // is at the end of the try, catch, or finally block. At that point, I don't think it's relevant which block.
+    // Note: finally was eliminated so the Try must have a Catch
+    // We should try to be conservative and only consider early completions if the completion node
+    // is at the end of the try or catch block. At that point, I don't think it's relevant which block.
     // Hopefully this isn't a footgun and false positives don't blow up in my face. Eh foot. Eh ... you know.
     return (
       (tailNode.block.body.length === 0 ? false : isTailNode(completionNode, tailNode.block.body[tailNode.block.body.length - 1])) ||
       (!tailNode.handler || tailNode.handler.body.body.length === 0
         ? false
-        : isTailNode(completionNode, tailNode.handler.body.body[tailNode.handler.body.body.length - 1])) ||
-      (!tailNode.finalizer || tailNode.finalizer.body.length === 0
-        ? false
-        : isTailNode(completionNode, tailNode.finalizer.body[tailNode.finalizer.body.length - 1]))
+        : isTailNode(completionNode, tailNode.handler.body.body[tailNode.handler.body.body.length - 1]))
     );
   }
   if (tailNode.type === 'LabeledStatement') {

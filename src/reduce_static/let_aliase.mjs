@@ -3,7 +3,7 @@
 // -> `let x = $; const a = x; $(a, a)`
 //
 // We need to find back-to-back reads of a let, confirm they are assigning
-// to a constant decl, confirm they are in the same loop/catch/finally scope,
+// to a constant decl, confirm they are in the same loop/catch scope,
 // and then confirm there are no observable side effects between the writes.
 //
 // Don't expect this to be a very common case. But we can at least scan for
@@ -95,12 +95,6 @@ function _letAliasing(fdata) {
 
       if (rw.innerCatch !== prevRead.innerCatch) {
         vlog(`      - Reads were not in same catch, bailing`);
-        prevRead = rw;
-        return;
-      }
-
-      if (rw.innerFinally !== prevRead.innerFinally) {
-        vlog(`      - Reads were not in same finally, bailing`);
         prevRead = rw;
         return;
       }

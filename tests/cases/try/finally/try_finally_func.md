@@ -32,43 +32,102 @@ try {
 ## Pre Normal
 
 `````js filename=intro
-try {
-} finally {
-  let f = function () {
-    debugger;
-    let x = 1;
+{
+  let $implicitThrow$1 = false;
+  let $finalCatchArg$1 = undefined;
+  $finally$1: {
     try {
-      if ($()) {
-        x = 2;
-        return 100;
-      }
-    } finally {
-      $(x);
+    } catch ($finalImplicit$1) {
+      $implicitThrow$1 = true;
+      $finalCatchArg$1 = $finalImplicit$1;
     }
-  };
-  $(f);
+  }
+  {
+    let f = function () {
+      debugger;
+      let x = 1;
+      {
+        let $implicitThrow = false;
+        let $finalStep = false;
+        let $finalCatchArg = undefined;
+        let $finalArg = undefined;
+        $finally: {
+          try {
+            if ($()) {
+              x = 2;
+              {
+                $finalStep = true;
+                $finalArg = 100;
+                break $finally;
+              }
+            }
+          } catch ($finalImplicit) {
+            $implicitThrow = true;
+            $finalCatchArg = $finalImplicit;
+          }
+        }
+        {
+          $(x);
+        }
+        if ($implicitThrow) {
+          throw $finalCatchArg;
+        }
+        if ($finalStep) {
+          return $finalArg;
+        }
+      }
+    };
+    $(f);
+  }
+  if ($implicitThrow$1) {
+    throw $finalCatchArg$1;
+  }
 }
 `````
 
 ## Normalized
 
 `````js filename=intro
+let $implicitThrow$1 = false;
+let $finalCatchArg$1 = undefined;
 let f = function () {
   debugger;
   let x = 1;
-  try {
-    const tmpIfTest = $();
-    if (tmpIfTest) {
-      x = 2;
-      return 100;
-    } else {
+  let $implicitThrow = false;
+  let $finalStep = false;
+  let $finalCatchArg = undefined;
+  let $finalArg = undefined;
+  $finally: {
+    try {
+      const tmpIfTest = $();
+      if (tmpIfTest) {
+        x = 2;
+        $finalStep = true;
+        $finalArg = 100;
+        break $finally;
+      } else {
+      }
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
     }
-  } finally {
-    $(x);
   }
-  return undefined;
+  $(x);
+  if ($implicitThrow) {
+    throw $finalCatchArg;
+  } else {
+    if ($finalStep) {
+      return $finalArg;
+    } else {
+      return undefined;
+    }
+  }
 };
 $(f);
+if ($implicitThrow$1) {
+  throw $finalCatchArg$1;
+} else {
+}
 `````
 
 ## Output
@@ -77,17 +136,32 @@ $(f);
 const f = function () {
   debugger;
   let x = 1;
+  let $implicitThrow = false;
+  let $finalStep = false;
+  let $finalCatchArg = undefined;
+  let $finalArg = undefined;
   try {
     const tmpIfTest = $();
     if (tmpIfTest) {
       x = 2;
-      return 100;
+      $finalStep = true;
+      $finalArg = 100;
     } else {
     }
-  } finally {
-    $(x);
+  } catch ($finalImplicit) {
+    $implicitThrow = true;
+    $finalCatchArg = $finalImplicit;
   }
-  return undefined;
+  $(x);
+  if ($implicitThrow) {
+    throw $finalCatchArg;
+  } else {
+    if ($finalStep) {
+      return $finalArg;
+    } else {
+      return undefined;
+    }
+  }
 };
 $(f);
 `````
@@ -100,24 +174,43 @@ With rename=true
 const a = function() {
   debugger;
   let b = 1;
+  let c = false;
+  let d = false;
+  let e = undefined;
+  let f = undefined;
   try {
-    const c = $();
-    if (c) {
+    const g = $();
+    if (g) {
       b = 2;
-      return 100;
+      d = true;
+      f = 100;
     }
   }
-finally {
-    $( b );
+catch ($finalImplicit) {
+    c = true;
+    e = $finalImplicit;
   }
-  return undefined;
+  $( b );
+  if (c) {
+    throw e;
+  }
+  else {
+    if (d) {
+      return f;
+    }
+    else {
+      return undefined;
+    }
+  }
 };
 $( a );
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+$finalImplicit
 
 ## Result
 

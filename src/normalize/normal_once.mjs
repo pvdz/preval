@@ -26,6 +26,7 @@ import {
   before,
   after,
   findBodyOffsetExpensiveMaybe,
+  assertNoDupeNodes,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import {
@@ -873,6 +874,281 @@ export function phaseNormalOnce(fdata) {
 
           after(node);
         }
+
+
+        // Eliminate finally in favor of a catch and some boiler plate. Finally is just a far more complex beast to reason about.
+        if (node.finalizer) {
+          // Finally is actually a complex beast, especially for reference tracking
+          // and code flow analysis and it's so much easier not to have to worry about it.
+          rule('A finally must be converted to a Catch');
+          example('try { a } finally { b }', 'let $action = 0; let $use = undefined; try { a } catch (e) { $action = 1; $use = e; } b; if ($action === 1) throw $use;');
+          example('try { return a(); } finally { b }', 'let $action = 0; let $use = undefined; A: { try { $action = 1; $use = a; break A; } catch (e) { $action = 2; $use = e; } } b; if ($action === 1) return $use; if ($action === 2) throw $use;');
+          example('try { return a } finally { return b }', 'let $action = 0; let $use = undefined; A: { try { $action = 1; $use = a; break A; } catch (e) { $action = 2; $use = e; } } return b; if ($action === 1) return $use; if ($action === 2) throw $use;');
+
+          before(node);
+
+          // This one is non-trivial but not _that_ difficult
+          // We need to collect all abrupt completions that could be trapped by the finally
+          // - must be same function
+          // - we walk in-to-out so I think there cannot be any nested finally left, so we don't have to worry about that
+          // - so we scan for all the keywords; return, throw, break, continue.
+          //   - for throw, make sure it's not caught by a nested catch
+          //   - for break and continue, make sure their target is a parent of the try otherwise they're irrelevant
+          // Next:
+          // - Inject an $action let
+          // - For each return/throw keyword, inject a dedicated $use<i> let (ignore for break/continue), plus one for the fresh catch
+          // - Create a fresh label
+          // - Wrap the try in a labeled block with this label
+          // - Replace each keyword with a keyword-specific transform, where i is the nth keyword to transform:
+          //   - throw: { $action = ++i; $use<i> = <node.argument>; break <label> }
+          //   - return: { $action = ++i; $use<i> = <node.argument>; break <label> }
+          //   - break: { $action = ++i; break <label> }
+          //   - continue: { $action = ++i; break <label> }
+          // - Move the contents of the finally block to after the (new label)
+          //   - Wrap the label in a new block to inject this stuff into
+          // - Replace the now empty `finally {}` with `catch(e) { $action = ++i; $use = e; }`
+          // - At the end of the (fresh) outer block, append abrupt completions, one for each keyword + the (new) catch:
+          //   - return/throw: `if ($action === <i>) return $use<i> / throw $use<i>`
+          //   - break/continue: `if ($action === <i>) continue / break;` and compile the label name if the keyword had one.
+
+
+          const breakStack = [];
+          const continueStack = [];
+          const tryNodeStack = [];
+          const labelNodeStack = [];
+
+          let keywordsFound = 0;
+          // {keyword: string, actionName: string, argName: string, labelName: string}
+          const keywords = [
+            // Implicit throw must go first otherwise logic may be incorrect
+            {keyword: 'throw', actionName: createFreshVar('$implicitThrow', fdata), argName: createFreshVar('$finalCatchArg', fdata)}
+          ];
+          const labelNode = createFreshLabel('$finally', fdata);
+
+          const rootNode = node;
+          function _walker(node, before, nodeType, path) {
+            ASSERT(node, 'node should be truthy', node);
+            ASSERT(nodeType === node.type);
+
+            const pathNodes = path.nodes;
+            const pathProps = path.props;
+            const pathIndexes = path.indexes;
+
+            const parentNode = pathNodes[pathNodes.length - 2];
+            const parentProp = pathProps[pathProps.length - 1];
+            const parentIndex = pathIndexes[pathIndexes.length - 1];
+
+            const key = nodeType + ':' + (before ? 'before' : 'after');
+            switch (key) {
+              case 'SwitchStatement:before':
+                breakStack.push(node);
+              // fall-through
+              case 'ForStatement:before':
+              case 'ForInStatement:before':
+              case 'ForOfStatement:before':
+              case 'WhileStatement:before':
+              case 'DoWhileStatement:before': {
+                breakStack.push(node);
+                continueStack.push(node);
+                break;
+              }
+
+              case 'SwitchStatement:after':
+                breakStack.pop();
+              // fall-through
+              case 'ForStatement:after':
+              case 'ForInStatement:after':
+              case 'ForOfStatement:after':
+              case 'WhileStatement:after':
+              case 'DoWhileStatement:after': {
+                breakStack.pop(node);
+                continueStack.pop(node);
+                break;
+              }
+
+              case 'FunctionExpression:before':
+              case 'FunctionDeclaration:before':
+              case 'ArrowFunctionExpression:before': {
+                return true; // Do not traverse
+              }
+
+              case 'BlockStatement:before': {
+                if (node !== rootNode.block) {
+                  if (parentNode.type === 'TryStatement' && parentNode.block === node) {
+                    // This is the Try Block. That's important because the Catch Block is not trapped.
+                    ASSERT(!node.finalizer, 'we should be on the way down the AST and any sub-tree finally should be eliminated already');
+                    tryNodeStack.push(node);
+                  }
+                }
+                break;
+              }
+              case 'BlockStatement:after': {
+                if (node !== rootNode.block) {
+                  if (parentNode.type === 'TryStatement' && parentNode.block === node) {
+                    tryNodeStack.pop();
+                  }
+                }
+                break;
+              }
+
+              case 'LabeledStatement:before': {
+                labelNodeStack.push(node);
+                break;
+              }
+              case 'LabeledStatement:after': {
+                labelNodeStack.pop();
+                break;
+              }
+
+              case 'ReturnStatement:after': {
+                keywordsFound += 1;
+                const arg = createFreshVar('$finalArg', fdata);
+                const actionName = createFreshVar('$finalStep', fdata);
+                keywords.push({keyword: 'return', actionName, argName: arg});
+                const freshNode = AST.blockStatement(
+                  AST.expressionStatement(AST.assignmentExpression(actionName, AST.primitive(true))),
+                  AST.expressionStatement(AST.assignmentExpression(arg, node.argument ?? AST.identifier('undefined'))),
+                  AST.breakStatement(AST.identifier(labelNode.name)),
+                );
+                if (parentIndex < 0) parentNode[parentProp] = freshNode;
+                else parentNode[parentProp][parentIndex] = freshNode;
+                assertNoDupeNodes(outnode);
+                break;
+              }
+              case 'ThrowStatement:after': {
+                if (tryNodeStack.length) {
+                  // Ignore. This throw is unconditionally caught by the catch. So unless the
+                  // catch throws too, we don't care. And if the catch throws we'll handle it.
+                } else {
+                  keywordsFound += 1;
+                  const arg = createFreshVar('$finalArg', fdata);
+                  const actionName = createFreshVar('$finalStep', fdata);
+                  keywords.push({keyword: 'throw', actionName, argName: arg});
+                  const freshNode = AST.blockStatement(
+                    AST.expressionStatement(AST.assignmentExpression(actionName, AST.primitive(true))),
+                    AST.expressionStatement(AST.assignmentExpression(arg, node.argument)), // throw arg can't be null
+                    AST.breakStatement(AST.identifier(labelNode.name)),
+                  );
+                  if (parentIndex < 0) parentNode[parentProp] = freshNode;
+                  else parentNode[parentProp][parentIndex] = freshNode;
+                }
+                assertNoDupeNodes(outnode);
+                break;
+              }
+              case 'BreakStatement:after': {
+                if (node.label) {
+                  if (labelNodeStack.some(node => node.label.name === node.label.name)) {
+                    // Ignore. The break stays inside the try
+                  } else {
+                    const actionName = createFreshVar('$finalStep', fdata);
+                    keywords.push({keyword: 'break', actionName, labelName: node.label.name});
+
+                    const freshNode = AST.blockStatement(
+                      AST.expressionStatement(AST.assignmentExpression(actionName, AST.primitive(true))),
+                      AST.breakStatement(AST.identifier(labelNode.name)),
+                    );
+                    if (parentIndex < 0) parentNode[parentProp] = freshNode;
+                    else parentNode[parentProp][parentIndex] = freshNode;
+                  }
+                } else {
+                  if (breakStack.length) {
+                    // Ignore
+                  } else {
+                    const actionName = createFreshVar('$finalStep', fdata);
+                    keywords.push({keyword: 'break', actionName, labelName: undefined});
+
+                    const freshNode = AST.blockStatement(
+                      AST.expressionStatement(AST.assignmentExpression(actionName, AST.primitive(true))),
+                      AST.breakStatement(AST.identifier(labelNode.name)),
+                    );
+                    if (parentIndex < 0) parentNode[parentProp] = freshNode;
+                    else parentNode[parentProp][parentIndex] = freshNode;
+                  }
+                }
+                assertNoDupeNodes(outnode);
+                break;
+              }
+
+              case 'ContinueStatement:after': {
+                if (node.label) {
+                  // Note: parser will validate whether the label is valid for the continue. No need for us to check it
+                  if (labelNodeStack.some(node => node.label.name === node.label.name)) {
+                    // Ignore. The break stays inside the try
+                  } else {
+                    const actionName = createFreshVar('$finalStep', fdata);
+                    keywords.push({keyword: 'continue', actionName, labelName: node.label.name});
+
+                    const freshNode = AST.blockStatement(
+                      AST.expressionStatement(AST.assignmentExpression(actionName, AST.primitive(true))),
+                      AST.breakStatement(labelNode),
+                    );
+                    if (parentIndex < 0) parentNode[parentProp] = freshNode;
+                    else parentNode[parentProp][parentIndex] = freshNode;
+                  }
+                } else {
+                  if (continueStack.length) {
+                    // Ignore
+                  } else {
+                    const actionName = createFreshVar('$finalStep', fdata);
+                    keywords.push({keyword: 'continue', actionName, labelName: undefined});
+
+                    const freshNode = AST.blockStatement(
+                      AST.expressionStatement(AST.assignmentExpression(actionName, AST.primitive(true))),
+                      AST.breakStatement(labelNode),
+                    );
+                    if (parentIndex < 0) parentNode[parentProp] = freshNode;
+                    else parentNode[parentProp][parentIndex] = freshNode;
+                  }
+                }
+                assertNoDupeNodes(outnode);
+                break;
+              }
+            } // switch(key)
+          } // /walker
+
+          let outnode = node;
+          walk(_walker, node.block, 'block');
+
+          assertNoDupeNodes(node.block);
+
+          const implicitName = createFreshVar('$finalImplicit', fdata);
+
+          const catchNode = AST.tryCatchStatement(node.block, implicitName, AST.blockStatement(
+            // $action = ++i
+            // $use = $implicit
+            AST.expressionStatement(AST.assignmentExpression(AST.identifier(keywords[0].actionName), AST.primitive(true))),
+            AST.expressionStatement(AST.assignmentExpression(AST.identifier(keywords[0].argName), AST.identifier(implicitName))),
+          ));
+          const labelBody = AST.blockStatement(
+            catchNode,
+          );
+
+          const wrapper = AST.blockStatement(
+            ...keywords.map(({actionName}) => AST.variableDeclaration(actionName, AST.primitive(false), 'let')),
+            ...keywords.map(({argName}) => argName && AST.variableDeclaration(argName, AST.primitive(undefined), 'let')).filter(Boolean),
+            AST.labeledStatement(AST.identifier(labelNode.name), labelBody),
+            node.finalizer, // We won't be using this anymore anyways since we'll replace it
+            ...keywords.map(({keyword, actionName, argName, labelName}, i) => {
+              return AST.ifStatement(AST.identifier(actionName), AST.blockStatement(
+                keyword === 'return' ? AST.returnStatement(AST.identifier(argName)):
+                  keyword === 'throw' ? AST.throwStatement(AST.identifier(argName)):
+                    keyword === 'break' ? AST.breakStatement(labelName):
+                      keyword === 'continue' ? AST.continueStatement(argName) :
+                        ASSERT(false, `what keyword? ${keyword}`)
+              ));
+            })
+          );
+
+          assertNoDupeNodes(wrapper);
+
+          if (parentIndex < 0) parentNode[parentProp] = wrapper;
+          else parentNode[parentProp][parentIndex] = wrapper;
+
+          after(wrapper);
+
+          return true;
+        }
+
         break;
       }
       case 'Property:after': {

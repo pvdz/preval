@@ -198,11 +198,6 @@ function processAttempt(fdata, queue) {
         // Can't guarantee the write if one ref is inside a catch while the other is not
         return vlog('- read/write not in same catch', readRef.innerCatch, prevWrite.innerCatch);
       }
-      if (readRef.innerFinally !== prevWrite.innerFinally) {
-        // Can't guarantee the write if one ref is inside a finally while the other is not
-        // TODO: or can we?
-        return vlog('- read/write not in same finally', readRef.innerFinally, prevWrite.innerFinally);
-      }
 
       if (readRef.parentNode.type === 'UnaryExpression' && readRef.parentNode.op === 'delete') {
         // delete x.y;
@@ -235,10 +230,9 @@ function processAttempt(fdata, queue) {
           prevWrite.innerIf === readRef.innerIf &&
           prevWrite.innerElse === readRef.innerElse &&
           prevWrite.innerLoop === readRef.innerLoop &&
-          prevWrite.innerCatch === readRef.innerCatch &&
-          prevWrite.innerFinally === readRef.innerFinally
+          prevWrite.innerCatch === readRef.innerCatch
         ) {
-          // Both references are in the same function scope, same loop scope, catch scope, and finally scope
+          // Both references are in the same function scope, same loop scope, and catch scope
           // The binding only appears in one scope so closures can't access it.
           // The write and read are back to back and the read is in the same-or-a-child-of block scope as the write
 

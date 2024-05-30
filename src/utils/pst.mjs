@@ -2,7 +2,6 @@ import {ASSERT} from "../utils.mjs"
 
 // continue is printed as break?
 // idents may flow over into numbers and print invalid code...
-// finally keyword position?
 
 export function arrayLiteral(elements) {
   return {
@@ -395,14 +394,14 @@ export function throwStatement(arg) {
 }
 
 export function tryStatement(body, id, trap, final) {
-  ASSERT(trap || final, 'must receive at least a trap or final block', trap, final);
-  ASSERT(!trap || id, 'catch clause is not optional in normalized code. if trap is given then id must also be given', id, trap);
+  ASSERT(!final, 'finally must be eliminated in favor of catch');
+  ASSERT(trap, 'must receive at a trap block because finally is no more', trap);
+  ASSERT(id, 'catch clause is not optional in normalized code. id must also be given', id, trap);
   return {
     type: 'TryStatement',
     body, // Block (try block)
     id, // undefined, Ident
     trap, // undefined, Block (catch block)
-    final, // undefined, Block (finally block)
   };
 }
 

@@ -21,8 +21,21 @@ try {
 
 `````js filename=intro
 let x = undefined;
-try {
-} finally {
+{
+  let $implicitThrow = false;
+  let $finalCatchArg = undefined;
+  $finally: {
+    try {
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
+    }
+  }
+  {
+  }
+  if ($implicitThrow) {
+    throw $finalCatchArg;
+  }
 }
 `````
 
@@ -30,6 +43,12 @@ try {
 
 `````js filename=intro
 let x = undefined;
+let $implicitThrow = false;
+let $finalCatchArg = undefined;
+if ($implicitThrow) {
+  throw $finalCatchArg;
+} else {
+}
 `````
 
 ## Output

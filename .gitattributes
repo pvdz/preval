@@ -1,0 +1,7 @@
+# Help test file diffs by setting the proper chunk header.
+# You'll need to add the next two lines to the .git/config of this project as well:
+# [diff "specialmd"]
+#  xfuncname = "^(## .*)$"
+
+*.md diff=specialmd
+

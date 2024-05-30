@@ -31,12 +31,31 @@ considerMutated(x) // always true
 `````js filename=intro
 let x = 0;
 foo: {
-  try {
-    fail_early;
-    break foo;
-  } catch (e) {
-  } finally {
-    x = 1;
+  {
+    let $implicitThrow = false;
+    let $finalStep = false;
+    let $finalCatchArg = undefined;
+    $finally: {
+      try {
+        fail_early;
+        {
+          $finalStep = true;
+          break $finally;
+        }
+      } catch ($finalImplicit) {
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
+      }
+    }
+    {
+      x = 1;
+    }
+    if ($implicitThrow) {
+      throw $finalCatchArg;
+    }
+    if ($finalStep) {
+      break foo;
+    }
   }
 }
 considerMutated(x);
@@ -47,13 +66,27 @@ considerMutated(x);
 `````js filename=intro
 let x = 0;
 foo: {
-  try {
+  let $implicitThrow = false;
+  let $finalStep = false;
+  let $finalCatchArg = undefined;
+  $finally: {
     try {
       fail_early;
+      $finalStep = true;
+      break $finally;
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
+    }
+  }
+  x = 1;
+  if ($implicitThrow) {
+    throw $finalCatchArg;
+  } else {
+    if ($finalStep) {
       break foo;
-    } catch (e) {}
-  } finally {
-    x = 1;
+    } else {
+    }
   }
 }
 considerMutated(x);
@@ -62,13 +95,19 @@ considerMutated(x);
 ## Output
 
 `````js filename=intro
+let $implicitThrow = false;
+let $finalCatchArg = undefined;
 try {
-  try {
-    fail_early;
-  } catch (e) {}
-} finally {
+  fail_early;
+} catch ($finalImplicit) {
+  $implicitThrow = true;
+  $finalCatchArg = $finalImplicit;
 }
-considerMutated(1);
+if ($implicitThrow) {
+  throw $finalCatchArg;
+} else {
+  considerMutated(1);
+}
 `````
 
 ## PST Output
@@ -76,25 +115,28 @@ considerMutated(1);
 With rename=true
 
 `````js filename=intro
+let a = false;
+let b = undefined;
 try {
-  try {
-    fail_early;
-  }
-catch (e) {
-
-  }
+  fail_early;
 }
-finally {
-
+catch ($finalImplicit) {
+  a = true;
+  b = $finalImplicit;
 }
-considerMutated( 1 );
+if (a) {
+  throw b;
+}
+else {
+  considerMutated( 1 );
+}
 `````
 
 ## Globals
 
 BAD@! Found 3 implicit global bindings:
 
-fail_early, e, considerMutated
+fail_early, $finalImplicit, considerMutated
 
 ## Result
 

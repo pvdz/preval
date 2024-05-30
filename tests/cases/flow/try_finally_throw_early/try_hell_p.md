@@ -32,13 +32,33 @@ considerMutated(x) // always true (!)
 `````js filename=intro
 let f = function () {
   debugger;
-  stop: try {
-    throw `one`;
-  } catch (e) {
-    throw `two`;
-  } finally {
-    throw_early;
-    break stop;
+  stop: {
+    let $implicitThrow = false;
+    let $finalStep = false;
+    let $finalCatchArg = undefined;
+    let $finalArg = undefined;
+    $finally: {
+      try {
+        {
+          $finalStep = true;
+          $finalArg = `one`;
+          break $finally;
+        }
+      } catch ($finalImplicit) {
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
+      }
+    }
+    {
+      throw_early;
+      break stop;
+    }
+    if ($implicitThrow) {
+      throw $finalCatchArg;
+    }
+    if ($finalStep) {
+      throw $finalArg;
+    }
   }
   x = 1;
 };
@@ -53,16 +73,22 @@ considerMutated(x);
 let f = function () {
   debugger;
   stop: {
-    try {
+    let $implicitThrow = false;
+    let $finalStep = false;
+    let $finalCatchArg = undefined;
+    let $finalArg = undefined;
+    $finally: {
       try {
-        throw `one`;
-      } catch (e) {
-        throw `two`;
+        $finalStep = true;
+        $finalArg = `one`;
+        break $finally;
+      } catch ($finalImplicit) {
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
       }
-    } finally {
-      throw_early;
-      break stop;
     }
+    throw_early;
+    break stop;
   }
   x = 1;
   return undefined;
@@ -75,15 +101,7 @@ considerMutated(x);
 ## Output
 
 `````js filename=intro
-try {
-  try {
-    throw `one`;
-  } catch (e) {
-    throw `two`;
-  }
-} finally {
-  throw_early;
-}
+throw_early;
 considerMutated(1);
 `````
 
@@ -92,25 +110,15 @@ considerMutated(1);
 With rename=true
 
 `````js filename=intro
-try {
-  try {
-    throw "one";
-  }
-catch (e) {
-    throw "two";
-  }
-}
-finally {
-  throw_early;
-}
+throw_early;
 considerMutated( 1 );
 `````
 
 ## Globals
 
-BAD@! Found 3 implicit global bindings:
+BAD@! Found 2 implicit global bindings:
 
-e, throw_early, considerMutated
+throw_early, considerMutated
 
 ## Result
 

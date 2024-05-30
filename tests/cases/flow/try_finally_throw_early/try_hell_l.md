@@ -38,13 +38,33 @@ considerMutated(x) // always false
 let f = function () {
   debugger;
   foo: {
-    try {
-      x = 1;
-      break foo;
-    } finally {
-      throw_early;
-      x = 2;
-      return;
+    {
+      let $implicitThrow = false;
+      let $finalStep = false;
+      let $finalCatchArg = undefined;
+      $finally: {
+        try {
+          x = 1;
+          {
+            $finalStep = true;
+            break $finally;
+          }
+        } catch ($finalImplicit) {
+          $implicitThrow = true;
+          $finalCatchArg = $finalImplicit;
+        }
+      }
+      {
+        throw_early;
+        x = 2;
+        return;
+      }
+      if ($implicitThrow) {
+        throw $finalCatchArg;
+      }
+      if ($finalStep) {
+        break foo;
+      }
     }
     console.log(x);
   }
@@ -60,18 +80,21 @@ considerMutated(x);
 `````js filename=intro
 let f = function () {
   debugger;
-  foo: {
+  let $implicitThrow = false;
+  let $finalStep = false;
+  let $finalCatchArg = undefined;
+  $finally: {
     try {
       x = 1;
-      break foo;
-    } finally {
-      throw_early;
-      x = 2;
-      return undefined;
+      $finalStep = true;
+      break $finally;
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
     }
-    console.log(x);
   }
-  x = `fail`;
+  throw_early;
+  x = 2;
   return undefined;
 };
 let x = 0;
@@ -82,25 +105,8 @@ considerMutated(x);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  foo: {
-    x = 1;
-    try {
-      break foo;
-    } finally {
-      throw_early;
-      x = 2;
-      return undefined;
-    }
-    console.log(x);
-  }
-  x = `fail`;
-  return undefined;
-};
-let x = 0;
-f();
-considerMutated(x);
+throw_early;
+considerMutated(2);
 `````
 
 ## PST Output
@@ -108,26 +114,8 @@ considerMutated(x);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  foo:   {
-    b = 1;
-    try {
-      break foo;
-    }
-finally {
-      throw_early;
-      b = 2;
-      return undefined;
-    }
-    console.log( b );
-  }
-  b = "fail";
-  return undefined;
-};
-let b = 0;
-a();
-considerMutated( b );
+throw_early;
+considerMutated( 2 );
 `````
 
 ## Globals

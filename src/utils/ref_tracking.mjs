@@ -105,15 +105,15 @@ export function openRefsOnBeforeBlock(node, parentNode, parentProp, grandNode, p
   if (REF_TRACK_TRACING) console.log('RTT: /BLOCK:before');
 }
 
-export function openRefsOnAfterBlock(node, walkerPath, parentNode, parentProp, grandNode, loopStack, parentBlock, globallyUniqueLabelRegistry, tryNodeStack, catchStack, finallyStack, globallyUniqueNamingRegistry) {
+export function openRefsOnAfterBlock(node, walkerPath, parentNode, parentProp, grandNode, loopStack, parentBlock, globallyUniqueLabelRegistry, tryNodeStack, catchStack, globallyUniqueNamingRegistry) {
   if (REF_TRACK_TRACING) console.group('RTT: BLOCK:after', parentNode.type, '.', parentProp);
 
   switch (parentNode.type) {
     case 'TryStatement': {
       if (parentProp === 'block') {
-        openRefsOnAfterTryBody(node, parentNode, parentBlock, walkerPath, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack, finallyStack, globallyUniqueNamingRegistry);
+        openRefsOnAfterTryBody(node, parentNode, parentBlock, walkerPath, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack, globallyUniqueNamingRegistry);
       } else if (parentProp === 'finalizer') {
-        openRefsOnAfterFinallyBody(node, walkerPath, parentNode, parentProp, grandNode, globallyUniqueLabelRegistry, loopStack, catchStack, finallyStack);
+        openRefsOnAfterFinallyBody(node, walkerPath, parentNode, parentProp, grandNode, globallyUniqueLabelRegistry, loopStack, catchStack);
       } else {
         console.log('prop:', parentProp)
         ASSERT(false, 'what is this', parentNode.type, parentProp) // ??
@@ -122,7 +122,7 @@ export function openRefsOnAfterBlock(node, walkerPath, parentNode, parentProp, g
     }
 
     case 'CatchClause': {
-      openRefsOnAfterCatchBody(node, walkerPath, parentNode, parentProp, grandNode, parentBlock, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack, finallyStack);
+      openRefsOnAfterCatchBody(node, walkerPath, parentNode, parentProp, grandNode, parentBlock, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack);
       break;
     }
   }
@@ -139,17 +139,17 @@ export function openRefsOnBeforeIf(node, parentBlock) {
   if (REF_TRACK_TRACING) console.groupEnd(); // IF:before
 }
 
-export function openRefsOnafterIf(node, parentBlock, walkerPath, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, catchStack, finallyStack) {
+export function openRefsOnafterIf(node, parentBlock, walkerPath, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, catchStack) {
   if (REF_TRACK_TRACING) console.group('RTT: IF:after');
 
   const trebloTrue = node.consequent.$p.treblo;
   const trebloFalse = node.alternate.$p.treblo;
 
   if (REF_TRACK_TRACING) console.group('RTT: findAndQueueContinuationBlock(consequent, @', +node.consequent.$p.pid, ')');
-  findAndQueueContinuationBlock(trebloTrue, +node.consequent.$p.pid, trebloTrue.wasAbruptType, trebloTrue.wasAbruptLabel, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack, finallyStack);
+  findAndQueueContinuationBlock(trebloTrue, +node.consequent.$p.pid, trebloTrue.wasAbruptType, trebloTrue.wasAbruptLabel, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack);
   if (REF_TRACK_TRACING) console.groupEnd();
   if (REF_TRACK_TRACING) console.group('RTT: findAndQueueContinuationBlock(alternate, @', +node.alternate.$p.pid, ')');
-  findAndQueueContinuationBlock(trebloFalse, +node.alternate.$p.pid, trebloFalse.wasAbruptType, trebloFalse.wasAbruptLabel, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack, finallyStack);
+  findAndQueueContinuationBlock(trebloFalse, +node.alternate.$p.pid, trebloFalse.wasAbruptType, trebloFalse.wasAbruptLabel, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack);
   if (REF_TRACK_TRACING) console.groupEnd();
 
   const parentTreblo = parentBlock.$p.treblo;
@@ -239,7 +239,7 @@ export function openRefsOnBeforeLabel(node, parentBlock) {
   if (REF_TRACK_TRACING) console.groupEnd(); // LABEL:before
 }
 
-export function openRefsOnafterLabel(node, parentBlock, walkerPath, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, catchStack, finallyStack) {
+export function openRefsOnafterLabel(node, parentBlock, walkerPath, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, catchStack) {
   if (REF_TRACK_TRACING) console.group('RTT: LABEL:after');
 
   if (node.body.type !== 'BlockStatement') {
@@ -248,7 +248,7 @@ export function openRefsOnafterLabel(node, parentBlock, walkerPath, globallyUniq
     const treblo = node.body.$p.treblo;
 
     if (REF_TRACK_TRACING) console.group('RTT: findAndQueueContinuationBlock(label, @', +node.body.$p, ')');
-    findAndQueueContinuationBlock(node.body.$p.treblo, +node.body.$p.pid, treblo.wasAbruptType, treblo.wasAbruptLabel, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack, finallyStack);
+    findAndQueueContinuationBlock(node.body.$p.treblo, +node.body.$p.pid, treblo.wasAbruptType, treblo.wasAbruptLabel, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack);
     if (REF_TRACK_TRACING) console.groupEnd();
 
     const parentTreblo = parentBlock.$p.treblo;
@@ -326,13 +326,13 @@ export function openRefsOnBeforeLoop(kind /*: loop | in | of */, node, parentBlo
   if (REF_TRACK_TRACING) console.groupEnd(); // LOOP:before
 }
 
-export function openRefsOnAfterLoop(kind /* loop | in | of */, node, parentBlock, walkerPath, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack, finallyStack) {
+export function openRefsOnAfterLoop(kind /* loop | in | of */, node, parentBlock, walkerPath, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack) {
   if (REF_TRACK_TRACING) console.group('RTT: LOOP:after,', kind, 'after @', +node.$p.pid);
 
   /** @var {Treblo} */
   const treblo = node.body.$p.treblo;
 
-  findAndQueueContinuationBlock(node.body.$p.treblo, +node.body.$p.pid, treblo.wasAbruptType, treblo.wasAbruptLabel, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack, finallyStack);
+  findAndQueueContinuationBlock(node.body.$p.treblo, +node.body.$p.pid, treblo.wasAbruptType, treblo.wasAbruptLabel, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack);
 
   // Keep in mind: we assume normalized code, so all while loops are while(true) and all for-in/of-loops don't introduce a new binding
 
@@ -1054,7 +1054,7 @@ export function openRefsOnBeforeTryBody(node, parentBlock) {
   if (REF_TRACK_TRACING) console.groupEnd(); // TRY:BODY:before
 }
 
-export function openRefsOnAfterTryBody(node, parentTryNode, parentBlock, walkerPath, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack, finallyStack, globallyUniqueNamingRegistry) {
+export function openRefsOnAfterTryBody(node, parentTryNode, parentBlock, walkerPath, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack, globallyUniqueNamingRegistry) {
   if (REF_TRACK_TRACING) console.group('RTT: TRY:BODY:after');
 
   const treblo = node.$p.treblo;
@@ -1068,7 +1068,7 @@ export function openRefsOnAfterTryBody(node, parentTryNode, parentBlock, walkerP
 
 
   if (REF_TRACK_TRACING) console.group('RTT: findAndQueueContinuationBlock(try.block, @', +node.$p.pid, ')');
-  findAndQueueContinuationBlock(treblo, +node.$p.pid, node.$p.treblo.wasAbruptType, node.$p.treblo.wasAbruptLabel, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack, finallyStack);
+  findAndQueueContinuationBlock(treblo, +node.$p.pid, node.$p.treblo.wasAbruptType, node.$p.treblo.wasAbruptLabel, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack);
   if (REF_TRACK_TRACING) console.groupEnd();
 
 
@@ -1124,7 +1124,6 @@ export function openRefsOnAfterTryBody(node, parentTryNode, parentBlock, walkerP
     globallyUniqueLabelRegistry,
     loopStack,
     catchStack,
-    finallyStack,
   );
   if (REF_TRACK_TRACING) console.groupEnd(); // find
   if (REF_TRACK_TRACING) console.groupEnd(); // schedule throw
@@ -1192,7 +1191,7 @@ export function openRefsOnBeforeCatchBody(node, parentNode, parentProp, parentTr
   if (REF_TRACK_TRACING) console.groupEnd(); // TRY:CATCH:before
 }
 
-export function openRefsOnAfterCatchBody(node, walkerPath, parentNode, parentProp, grandNode, parentBlock, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack, finallyStack) {
+export function openRefsOnAfterCatchBody(node, walkerPath, parentNode, parentProp, grandNode, parentBlock, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack) {
   if (REF_TRACK_TRACING) console.group('RTT: TRY:CATCH:after');
 
   // Note: in normalized code, a Try with Catch can not have a Finally sibling (such would become a wrapper Try)
@@ -1219,7 +1218,7 @@ export function openRefsOnAfterCatchBody(node, walkerPath, parentNode, parentPro
   const catchTreblo = node.$p.treblo;
 
   if (REF_TRACK_TRACING) console.group('RTT: findAndQueueContinuationBlock(catch.body, @', +node.$p.pid, ')');
-  findAndQueueContinuationBlock(catchTreblo, +node.$p.pid, catchTreblo.wasAbruptType, catchTreblo.wasAbruptLabel, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack, finallyStack);
+  findAndQueueContinuationBlock(catchTreblo, +node.$p.pid, catchTreblo.wasAbruptType, catchTreblo.wasAbruptLabel, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack);
   if (REF_TRACK_TRACING) console.groupEnd();
 
 
@@ -1270,7 +1269,7 @@ export function openRefsOnBeforeFinallyBody(node, parentNode, parentProp, parent
 // Als een name overwritten is in de try body dan kunnen de entry read/writes niet propageren naar de parent...
 // Dus of ze propageren naar de parent is afhankelijk van de continuations? Dat zou betekenen dat alle continuations het zouden moeten overschrijven
 
-export function openRefsOnAfterFinallyBody(node, walkerPath, parentTryNode, parentProp, parentBlockNode, globallyUniqueLabelRegistry, loopStack, catchStack, finallyStack) {
+export function openRefsOnAfterFinallyBody(node, walkerPath, parentTryNode, parentProp, parentBlockNode, globallyUniqueLabelRegistry, loopStack, catchStack) {
   if (REF_TRACK_TRACING) console.group('RTT: TRY:FINALLY:after');
 
   ASSERT(parentTryNode.type === 'TryStatement', 'parent is Try');
@@ -1500,7 +1499,7 @@ export function openRefsOnAfterFinallyBody(node, walkerPath, parentTryNode, pare
   // Starting with normal flow (not abrupt incoming)
   // I don't think we do this for the Finally Block ...
   //if (REF_TRACK_TRACING) console.group('RTT: findAndQueueContinuationBlock(try.finalizer)');
-  //findAndQueueContinuationBlock(finallyTreblo, +node.$p.pid, finallyTreblo.wasAbrupt?.type, finallyTreblo.wasAbrupt?.label?.name, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack, finallyStack);
+  //findAndQueueContinuationBlock(finallyTreblo, +node.$p.pid, finallyTreblo.wasAbrupt?.type, finallyTreblo.wasAbrupt?.label?.name, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack);
   //if (REF_TRACK_TRACING) console.groupEnd();
 
 
@@ -1684,7 +1683,6 @@ export function openRefsOnBeforeWrite(write, blockNode) {
 }
 
 export function dumpOpenRefsState(globallyUniqueNamingRegistry) {
-
   if (REF_TRACK_TRACING) console.log('RTT: State of globallyUniqueNamingRegistry after:');
   if (REF_TRACK_TRACING) Array.from(globallyUniqueNamingRegistry.entries()).map(([name, meta]) => {
     if (meta.isImplicitGlobal || meta.isGlobal || meta.isBuiltin) return;
@@ -1707,7 +1705,7 @@ export function dumpOpenRefsState(globallyUniqueNamingRegistry) {
   });
 }
 
-function findAndQueueContinuationBlock(fromBlockTreblo, fromBlockPid, wasAbruptType, wasAbruptLabel, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack, finallyStack) {
+function findAndQueueContinuationBlock(fromBlockTreblo, fromBlockPid, wasAbruptType, wasAbruptLabel, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack) {
   if (wasAbruptType === 'throw') {
     // Completely ignore the explicit throw for the sake of ref analysis
     // We can do this because a throw that is untrpped (not wrapped in a Try Block

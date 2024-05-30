@@ -32,13 +32,32 @@ considerMutated(x) // always true (!)
 `````js filename=intro
 let f = function () {
   debugger;
-  stop: try {
-    throw `one`;
-  } catch (e) {
-    throw_early;
-    throw `two`;
-  } finally {
-    break stop;
+  stop: {
+    let $implicitThrow = false;
+    let $finalStep = false;
+    let $finalCatchArg = undefined;
+    let $finalArg = undefined;
+    $finally: {
+      try {
+        {
+          $finalStep = true;
+          $finalArg = `one`;
+          break $finally;
+        }
+      } catch ($finalImplicit) {
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
+      }
+    }
+    {
+      break stop;
+    }
+    if ($implicitThrow) {
+      throw $finalCatchArg;
+    }
+    if ($finalStep) {
+      throw $finalArg;
+    }
   }
   x = 1;
 };
@@ -53,16 +72,21 @@ considerMutated(x);
 let f = function () {
   debugger;
   stop: {
-    try {
+    let $implicitThrow = false;
+    let $finalStep = false;
+    let $finalCatchArg = undefined;
+    let $finalArg = undefined;
+    $finally: {
       try {
-        throw `one`;
-      } catch (e) {
-        throw_early;
-        throw `two`;
+        $finalStep = true;
+        $finalArg = `one`;
+        break $finally;
+      } catch ($finalImplicit) {
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
       }
-    } finally {
-      break stop;
     }
+    break stop;
   }
   x = 1;
   return undefined;
@@ -75,15 +99,6 @@ considerMutated(x);
 ## Output
 
 `````js filename=intro
-try {
-  try {
-    throw `one`;
-  } catch (e) {
-    throw_early;
-    throw `two`;
-  }
-} finally {
-}
 considerMutated(1);
 `````
 
@@ -92,26 +107,14 @@ considerMutated(1);
 With rename=true
 
 `````js filename=intro
-try {
-  try {
-    throw "one";
-  }
-catch (e) {
-    throw_early;
-    throw "two";
-  }
-}
-finally {
-
-}
 considerMutated( 1 );
 `````
 
 ## Globals
 
-BAD@! Found 3 implicit global bindings:
+BAD@! Found 1 implicit global bindings:
 
-e, throw_early, considerMutated
+considerMutated
 
 ## Result
 

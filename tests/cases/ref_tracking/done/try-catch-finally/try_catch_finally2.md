@@ -35,46 +35,49 @@ $(x);           // x=1 2 3 4
 
 `````filename=intro
 let x___4__ = 1;
-try /*7*/ {
-  try /*9*/ {
-    $(x___13__);
-    x___17__ = 2;
-  } catch (e___19__) /*20*/ {
-    $(x___24__);
-    const tmpIfTest___27__ = $();
-    if (tmpIfTest___31__) {
-      /*32*/ x___36__ = 3;
-    } /*37*/ else {
-    }
-  }
-} finally /*38*/ {
-  $(x___42__);
-  const tmpIfTest$1___45__ = $();
-  if (tmpIfTest$1___49__) {
-    /*50*/ x___54__ = 4;
-  } /*55*/ else {
-  }
+let $implicitThrow___8__ = false;
+let $finalCatchArg___12__ = undefined___13__;
+try /*15*/ {
+  $(x___19__);
+  x___23__ = 2;
+} catch ($finalImplicit___25__) /*26*/ {
+  $implicitThrow___30__ = true;
+  $finalCatchArg___34__ = $finalImplicit___33__;
 }
-$(x___59__);
+$(x___38__);
+const tmpIfTest___41__ = $();
+if (tmpIfTest___45__) {
+  /*46*/ x___50__ = 4;
+} /*51*/ else {
+}
+if ($implicitThrow___53__) {
+  /*54*/ throw $finalCatchArg___56__;
+} /*57*/ else {
+  $(x___61__);
+}
 `````
 
 Ref tracking result:
 
-                | reads      | read by     | overWrites     | overwritten by
+                   | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 13,24,42,59 | none           | 17,36,54
-  - r @13      | 4
-  - w @17      | ########## | 24,42,59    | 4              | 36,54
-  - r @24      | 4,17
-  - w @36      | ########## | 42,59       | 4,17           | 54
-  - r @42      | 4,17,36
-  - w @54      | ########## | 59          | 4,17,36        | none
-  - r @59      | 4,17,36,54
+  - w @4       | ########## | 19,38,61    | none           | 23,50
+  - r @19      | 4
+  - w @23      | ########## | 38,61       | 4              | 50
+  - r @38      | 4,23
+  - w @50      | ########## | 61          | 4,23           | none
+  - r @61      | 4,23,50
+
+$implicitThrow:
+  - w @8           | ########## | 53          | none           | 30
+  - w @30          | ########## | 53          | 8              | none
+  - r @53          | 8,30
+
+$finalCatchArg:
+  - w @12          | ########## | 56          | none           | 34
+  - w @34          | ########## | 56          | 12             | none
+  - r @56          | 12,34
 
 tmpIfTest:
-  - w @27      | ########## | 31          | none           | none
-  - r @31      | 27
-
-tmpIfTest$1:
-  - w @45       | ########## | 49          | none           | none
-  - r @49       | 45
+  - w @41          | ########## | 45          | none           | none
+  - r @45          | 41

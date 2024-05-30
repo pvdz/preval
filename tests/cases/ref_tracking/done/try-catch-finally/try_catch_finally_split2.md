@@ -32,28 +32,46 @@ $(x);          // x=2 3. if the catch throws then that won't reach here.
 
 `````filename=intro
 let x___4__ = 1;
-try /*7*/ {
-  try /*9*/ {
-    $(x___13__);
-    x___17__ = 2;
-  } catch (e___19__) /*20*/ {
-    $(x___24__);
-    x___28__ = 3;
+let $implicitThrow___8__ = false;
+let $finalCatchArg___12__ = undefined___13__;
+try /*15*/ {
+  try /*17*/ {
+    $(x___21__);
+    x___25__ = 2;
+  } catch (e___27__) /*28*/ {
+    $(x___32__);
+    x___36__ = 3;
   }
-} finally /*29*/ {
-  $(x___33__);
+} catch ($finalImplicit___38__) /*39*/ {
+  $implicitThrow___43__ = true;
+  $finalCatchArg___47__ = $finalImplicit___46__;
 }
-$(x___37__);
+$(x___51__);
+if ($implicitThrow___53__) {
+  /*54*/ throw $finalCatchArg___56__;
+} /*57*/ else {
+  $(x___61__);
+}
 `````
 
 Ref tracking result:
 
-               | reads      | read by     | overWrites     | overwritten by
+                   | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 13,24,33    | none           | 17,28
-  - r @13      | 4
-  - w @17      | ########## | 24,33,37    | 4              | 28
-  - r @24      | 4,17
-  - w @28      | ########## | 33,37       | 4,17           | none
-  - r @33      | 4,17,28
-  - r @37      | 17,28
+  - w @4       | ########## | 21,32,51,61 | none           | 25,36
+  - r @21      | 4
+  - w @25      | ########## | 32,51,61    | 4              | 36
+  - r @32      | 4,25
+  - w @36      | ########## | 51,61       | 4,25           | none
+  - r @51      | 4,25,36
+  - r @61      | 4,25,36
+
+$implicitThrow:
+  - w @8           | ########## | 53          | none           | 43
+  - w @43          | ########## | 53          | 8              | none
+  - r @53          | 8,43
+
+$finalCatchArg:
+  - w @12          | ########## | 56          | none           | 47
+  - w @47          | ########## | 56          | 12             | none
+  - r @56          | 12,47

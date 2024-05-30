@@ -138,7 +138,7 @@ function _singleScopeSSA(fdata) {
         }
       });
       vgroupEnd();
-      vlog('Color set', nextColor, 'finally contains', colorSet.size, 'refs');
+      vlog('Color set', nextColor, 'ultimately contains', colorSet.size, 'refs');
     });
     vgroupEnd();
 

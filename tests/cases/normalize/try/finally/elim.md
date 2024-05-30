@@ -31,12 +31,25 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  try {
-    $(1);
-    fail;
-    $(`fail`);
-  } finally {
-    $(3);
+  {
+    let $implicitThrow = false;
+    let $finalCatchArg = undefined;
+    $finally: {
+      try {
+        $(1);
+        fail;
+        $(`fail`);
+      } catch ($finalImplicit) {
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
+      }
+    }
+    {
+      $(3);
+    }
+    if ($implicitThrow) {
+      throw $finalCatchArg;
+    }
   }
   $(`fail2`);
 };
@@ -48,15 +61,23 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
+  let $implicitThrow = false;
+  let $finalCatchArg = undefined;
   try {
     $(1);
     fail;
     $(`fail`);
-  } finally {
-    $(3);
+  } catch ($finalImplicit) {
+    $implicitThrow = true;
+    $finalCatchArg = $finalImplicit;
   }
-  $(`fail2`);
-  return undefined;
+  $(3);
+  if ($implicitThrow) {
+    throw $finalCatchArg;
+  } else {
+    $(`fail2`);
+    return undefined;
+  }
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -66,15 +87,23 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
+let $implicitThrow = false;
+let $finalCatchArg = undefined;
 try {
   $(1);
   fail;
   $(`fail`);
-} finally {
-  $(3);
+} catch ($finalImplicit) {
+  $implicitThrow = true;
+  $finalCatchArg = $finalImplicit;
 }
-$(`fail2`);
-$(undefined);
+$(3);
+if ($implicitThrow) {
+  throw $finalCatchArg;
+} else {
+  $(`fail2`);
+  $(undefined);
+}
 `````
 
 ## PST Output
@@ -82,23 +111,32 @@ $(undefined);
 With rename=true
 
 `````js filename=intro
+let a = false;
+let b = undefined;
 try {
   $( 1 );
   fail;
   $( "fail" );
 }
-finally {
-  $( 3 );
+catch ($finalImplicit) {
+  a = true;
+  b = $finalImplicit;
 }
-$( "fail2" );
-$( undefined );
+$( 3 );
+if (a) {
+  throw b;
+}
+else {
+  $( "fail2" );
+  $( undefined );
+}
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
+BAD@! Found 2 implicit global bindings:
 
-fail
+fail, $finalImplicit
 
 ## Result
 

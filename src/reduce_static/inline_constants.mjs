@@ -302,7 +302,6 @@ function attemptConstantInlining(meta, fdata) {
             innerTry: oldRead.innerTry,
             innerTrap: oldRead.innerTrap,
             innerCatch: oldRead.innerCatch,
-            innerFinally: oldRead.innerFinally,
             openPropsCanRead: oldRead.openPropsCanRead,
           }),
         );

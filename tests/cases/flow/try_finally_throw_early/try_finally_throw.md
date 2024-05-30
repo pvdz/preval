@@ -32,13 +32,35 @@ f();
 let f = function () {
   debugger;
   let x = `fail`;
-  try {
-    x = `pass`;
-    throw `yes`;
-  } finally {
-    throw_early;
-    $(`still throws`);
-    $(x);
+  {
+    let $implicitThrow = false;
+    let $finalStep = false;
+    let $finalCatchArg = undefined;
+    let $finalArg = undefined;
+    $finally: {
+      try {
+        x = `pass`;
+        {
+          $finalStep = true;
+          $finalArg = `yes`;
+          break $finally;
+        }
+      } catch ($finalImplicit) {
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
+      }
+    }
+    {
+      throw_early;
+      $(`still throws`);
+      $(x);
+    }
+    if ($implicitThrow) {
+      throw $finalCatchArg;
+    }
+    if ($finalStep) {
+      throw $finalArg;
+    }
   }
   $(x);
 };
@@ -51,16 +73,34 @@ f();
 let f = function () {
   debugger;
   let x = `fail`;
-  try {
-    x = `pass`;
-    throw `yes`;
-  } finally {
-    throw_early;
-    $(`still throws`);
-    $(x);
+  let $implicitThrow = false;
+  let $finalStep = false;
+  let $finalCatchArg = undefined;
+  let $finalArg = undefined;
+  $finally: {
+    try {
+      x = `pass`;
+      $finalStep = true;
+      $finalArg = `yes`;
+      break $finally;
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
+    }
   }
+  throw_early;
+  $(`still throws`);
   $(x);
-  return undefined;
+  if ($implicitThrow) {
+    throw $finalCatchArg;
+  } else {
+    if ($finalStep) {
+      throw $finalArg;
+    } else {
+      $(x);
+      return undefined;
+    }
+  }
 };
 f();
 `````
@@ -68,14 +108,10 @@ f();
 ## Output
 
 `````js filename=intro
-try {
-  throw `yes`;
-} finally {
-  throw_early;
-  $(`still throws`);
-  $(`pass`);
-}
+throw_early;
+$(`still throws`);
 $(`pass`);
+throw `yes`;
 `````
 
 ## PST Output
@@ -83,15 +119,10 @@ $(`pass`);
 With rename=true
 
 `````js filename=intro
-try {
-  throw "yes";
-}
-finally {
-  throw_early;
-  $( "still throws" );
-  $( "pass" );
-}
+throw_early;
+$( "still throws" );
 $( "pass" );
+throw "yes";
 `````
 
 ## Globals

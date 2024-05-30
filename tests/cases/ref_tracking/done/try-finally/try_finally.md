@@ -31,23 +31,41 @@ $(a);   // can only observe 3
 
 `````filename=intro
 let a___4__ = 1;
-try /*7*/ {
-  $(a___11__);
-  a___15__ = 2;
-} finally /*16*/ {
-  $(a___20__);
-  a___24__ = 3;
+let $implicitThrow___8__ = false;
+let $finalCatchArg___12__ = undefined___13__;
+try /*15*/ {
+  $(a___19__);
+  a___23__ = 2;
+} catch ($finalImplicit___25__) /*26*/ {
+  $implicitThrow___30__ = true;
+  $finalCatchArg___34__ = $finalImplicit___33__;
 }
-$(a___28__);
+$(a___38__);
+a___42__ = 3;
+if ($implicitThrow___44__) {
+  /*45*/ throw $finalCatchArg___47__;
+} /*48*/ else {
+  $(a___52__);
+}
 `````
 
 Ref tracking result:
 
-               | reads      | read by     | overWrites     | overwritten by
+                   | reads      | read by     | overWrites     | overwritten by
 a:
-  - w @4       | ########## | 11,20       | none           | 15,24
-  - r @11      | 4
-  - w @15      | ########## | 20          | 4              | 24
-  - r @20      | 4,15
-  - w @24      | ########## | 28          | 4,15           | none
-  - r @28      | 24
+  - w @4       | ########## | 19,38       | none           | 23,42
+  - r @19      | 4
+  - w @23      | ########## | 38          | 4              | 42
+  - r @38      | 4,23
+  - w @42      | ########## | 52          | 4,23           | none
+  - r @52      | 42
+
+$implicitThrow:
+  - w @8           | ########## | 44          | none           | 30
+  - w @30          | ########## | 44          | 8              | none
+  - r @44          | 8,30
+
+$finalCatchArg:
+  - w @12          | ########## | 47          | none           | 34
+  - w @34          | ########## | 47          | 12             | none
+  - r @47          | 12,34

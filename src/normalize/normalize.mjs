@@ -36,10 +36,13 @@ import {
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { BUILTIN_FUNC_CALL_NAME } from '../constants.mjs';
-import { createFreshVar, findBoundNamesInVarDeclaration, findBoundNamesInUnnormalizedVarDeclaration } from '../bindings.mjs';
+import {
+  createFreshVar,
+  findBoundNamesInVarDeclaration,
+  findBoundNamesInUnnormalizedVarDeclaration,
+} from '../bindings.mjs';
 import globals from '../globals.mjs';
 import { cloneFunctionNode, createNormalizedFunctionFromString } from '../utils/serialize_func.mjs';
-import { tryCatchStatement, tryFinallyStatement } from '../ast.mjs';
 
 // pattern: tests/cases/ssa/back2back_bad.md (the call should be moved into the branches, replacing the var assigns)
 
@@ -214,7 +217,7 @@ need to make pids numbers
   - catch scope to always have a binding even if its unused.
   - Decide how to handle built-in cases like `String.fromCharCode(32)`
   - if a function is guaranteed to throw, compile a `throw "unreachable"` after each call to it. We can always eliminate those later but maybe they allow us to improve DCE
-    - this is somewhat complicated by try/catch/finally. but still doable.
+    - this is somewhat complicated by try/catch. but still doable.
   - what if I made pseudo-symbols for certain builtins, like `Math.round` to `$MathRound` to help static computations? Many funcs do not need a context but are accessed as such anyways.
   - if we know a function does not access `this`, can we detect member expressions that contain it, anyways, and prevent them?
   - if a func has an object arg "like" destructuring that is only read, can we pass on the properties as args instead?
@@ -780,7 +783,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
   }
 
   function anyBlock(block, funcNode = null, loopLabelNode = null) {
-    // program, body of a function, actual block statement, switch case body, try/catch/finally body
+    // program, body of a function, actual block statement, switch case body, try/catch body (finallys are eliminated)
     group('anyBlock');
     const body = block.body;
 
@@ -7665,12 +7668,15 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
     // single if-else normalization
     if (false) {
+      // Disabled because this creates functions and those are just worse for us.
+
       // Must do this "on the way back up" because we need to first re-map `arguments` and `this`
       // Requiring the function as the "floor" allows us to build bottom up, at the expense of some useless re-traversals...
       // This normalization is currently not applied to generators or async functions. Not sure what the ramification is.
       vgroup('Start of single-branch-per-function algo');
       const funcNode = ifelseStack[ifelseStack.length - 1];
 
+      console.log('TODO: arrayfunctionexpression?')
       if (funcNode.type === 'FunctionExpression' || funcNode.type === 'ArrayFunctionExpression') {
         if (funcNode.generator) {
           // Currently not seeing a solid way to support function abstraction inside a generator
@@ -8171,7 +8177,8 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     }
 
     const funcNode = ifelseStack[ifelseStack.length - 1];
-    if (funcNode.type === 'FunctionExpression' || funcNode.type === 'ArrayFunctionExpression') {
+    // Note: arrows are transformed on the way back up so would not be yet at this point (since we'd be inside one now)
+    if (funcNode.type === 'FunctionExpression' || funcNode.type === 'ArrowFunctionExpression') {
       // This is a labeled statement that is the direct child of a function
       // If not, the body is a loop and we'll deal with that later.
 
@@ -8508,43 +8515,12 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     transformBlock(node.block, undefined, -1, node, false);
     anyBlock(node.block);
 
-    if (node.handler && node.finalizer) {
-      // It's easier to reason about Try if we can assume it either has a Catch or a Finally and ignore the "both" case. The double dipping Finally can be a nuisance.
-      rule('A Try must have a Catch or a Finally but not both');
-      example('try { a } catch { b } finally { c }', 'try { try { a } catch { b } } finally { c }');
-      before(node);
-
-      const wrapped = AST.tryFinallyStatement(
-        AST.blockStatement(AST.tryCatchStatement(node.block, node.handler.param ?? null, node.handler.body, true)),
-        node.finalizer
-      );
-      body.splice(i, 1, wrapped);
-
-      after(wrapped);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
-    }
+    ASSERT(!node.finalizer, 'finally was removed in the normal_once step');
 
     if (node.block.body.length === 0) {
-      if (node.finalizer?.body.length) {
-        // Replace the `try` with its finalizer because the catch block (if it exists at all) cannot be executed
-
-        rule('A `try` with `finally` without statements in its block can be replaced with the `finally` block');
-        example('try {} finally { f(); }', 'f();');
-        example('try {} catch (e) { g(); } finally { f(); }', 'f();');
-        before(node);
-
-        body.splice(i, 1, node.finalizer);
-
-        after(node.finalizer);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-        return true;
-      } else {
         // Drop the `try` entirely because the `catch` block can't ever be executed and there is no finally
 
-        rule('A `try` without `finally` and without statements in its block can be dropped');
-        example('try {} finally { }', ';');
-        example('try {} catch (e) { g(); } finally { f(); }', ';');
+        rule('A `try` `catch` without statements in its block can be dropped');
         example('try {} catch (e) { f(); } ', ';');
         before(node);
 
@@ -8553,15 +8529,11 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         after(AST.emptyStatement());
         assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
-      }
     }
 
     if (node.handler) {
       // TODO: catch arg as pattern
       transformBlock(node.handler.body, undefined, -1, node, false);
-    }
-    if (node.finalizer) {
-      transformBlock(node.finalizer, undefined, -1, node, false);
     }
 
     return false;

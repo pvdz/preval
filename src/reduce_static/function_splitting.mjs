@@ -65,8 +65,7 @@ function _funcionSplitting(fdata) {
         if (
           tryNode.block.body.length === 1 &&
           tryNode.block.body[0].type === 'IfStatement' &&
-          (!tryNode.handler || tryNode.handler.body.body.length === 0) &&
-          (!tryNode.finalizer || tryNode.finalizer.body.length === 0)
+          tryNode.handler.body.body.length === 0
         ) {
           vlog('- The try handler is hollow and only contains the `if`, we can proceed.');
           ifNode = tryNode.block.body[0];

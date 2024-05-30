@@ -27,11 +27,21 @@ considerMutated(x) // always true
 
 `````js filename=intro
 let x = 0;
-try {
-} catch (e) {
-  throw_early;
-  x = 1;
-} finally {
+{
+  let $implicitThrow = false;
+  let $finalCatchArg = undefined;
+  $finally: {
+    try {
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
+    }
+  }
+  {
+  }
+  if ($implicitThrow) {
+    throw $finalCatchArg;
+  }
 }
 considerMutated(x);
 `````
@@ -40,7 +50,13 @@ considerMutated(x);
 
 `````js filename=intro
 let x = 0;
-considerMutated(x);
+let $implicitThrow = false;
+let $finalCatchArg = undefined;
+if ($implicitThrow) {
+  throw $finalCatchArg;
+} else {
+  considerMutated(x);
+}
 `````
 
 ## Output

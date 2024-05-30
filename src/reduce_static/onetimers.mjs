@@ -491,8 +491,7 @@ function _inlineOneTimeFunctions(fdata) {
 
           if (last.type === 'TryStatement') {
             inlineTail(last.block);
-            if (last.handler) inlineTail(last.handler);
-            if (last.finalizer) inlineTail(last.finalizer);
+            inlineTail(last.handler);
             return;
           }
 

@@ -26,10 +26,32 @@ $(f);
 `````js filename=intro
 let f = function () {
   debugger;
-  try {
-    throw `exit`;
-  } finally {
-    $(2);
+  {
+    let $implicitThrow = false;
+    let $finalStep = false;
+    let $finalCatchArg = undefined;
+    let $finalArg = undefined;
+    $finally: {
+      try {
+        {
+          $finalStep = true;
+          $finalArg = `exit`;
+          break $finally;
+        }
+      } catch ($finalImplicit) {
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
+      }
+    }
+    {
+      $(2);
+    }
+    if ($implicitThrow) {
+      throw $finalCatchArg;
+    }
+    if ($finalStep) {
+      throw $finalArg;
+    }
   }
 };
 $(f);
@@ -40,12 +62,30 @@ $(f);
 `````js filename=intro
 let f = function () {
   debugger;
-  try {
-    throw `exit`;
-  } finally {
-    $(2);
+  let $implicitThrow = false;
+  let $finalStep = false;
+  let $finalCatchArg = undefined;
+  let $finalArg = undefined;
+  $finally: {
+    try {
+      $finalStep = true;
+      $finalArg = `exit`;
+      break $finally;
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
+    }
   }
-  return undefined;
+  $(2);
+  if ($implicitThrow) {
+    throw $finalCatchArg;
+  } else {
+    if ($finalStep) {
+      throw $finalArg;
+    } else {
+      return undefined;
+    }
+  }
 };
 $(f);
 `````
@@ -55,12 +95,8 @@ $(f);
 `````js filename=intro
 const f = function () {
   debugger;
-  try {
-    throw `exit`;
-  } finally {
-    $(2);
-  }
-  return undefined;
+  $(2);
+  throw `exit`;
 };
 $(f);
 `````
@@ -72,13 +108,8 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  try {
-    throw "exit";
-  }
-finally {
-    $( 2 );
-  }
-  return undefined;
+  $( 2 );
+  throw "exit";
 };
 $( a );
 `````

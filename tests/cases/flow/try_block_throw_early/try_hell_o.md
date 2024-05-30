@@ -30,11 +30,33 @@ considerMutated(x) // always true (!)
 `````js filename=intro
 let f = function () {
   debugger;
-  stop: try {
-    fail_early;
-    throw x;
-  } finally {
-    break stop;
+  stop: {
+    let $implicitThrow = false;
+    let $finalStep = false;
+    let $finalCatchArg = undefined;
+    let $finalArg = undefined;
+    $finally: {
+      try {
+        fail_early;
+        {
+          $finalStep = true;
+          $finalArg = x;
+          break $finally;
+        }
+      } catch ($finalImplicit) {
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
+      }
+    }
+    {
+      break stop;
+    }
+    if ($implicitThrow) {
+      throw $finalCatchArg;
+    }
+    if ($finalStep) {
+      throw $finalArg;
+    }
   }
   x = 1;
 };
@@ -49,12 +71,22 @@ considerMutated(x);
 let f = function () {
   debugger;
   stop: {
-    try {
-      fail_early;
-      throw x;
-    } finally {
-      break stop;
+    let $implicitThrow = false;
+    let $finalStep = false;
+    let $finalCatchArg = undefined;
+    let $finalArg = undefined;
+    $finally: {
+      try {
+        fail_early;
+        $finalStep = true;
+        $finalArg = x;
+        break $finally;
+      } catch ($finalImplicit) {
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
+      }
     }
+    break stop;
   }
   x = 1;
   return undefined;
@@ -69,9 +101,7 @@ considerMutated(x);
 `````js filename=intro
 try {
   fail_early;
-  throw 0;
-} finally {
-}
+} catch ($finalImplicit) {}
 considerMutated(1);
 `````
 
@@ -82,9 +112,8 @@ With rename=true
 `````js filename=intro
 try {
   fail_early;
-  throw 0;
 }
-finally {
+catch ($finalImplicit) {
 
 }
 considerMutated( 1 );
@@ -92,9 +121,9 @@ considerMutated( 1 );
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
+BAD@! Found 3 implicit global bindings:
 
-fail_early, considerMutated
+fail_early, $finalImplicit, considerMutated
 
 ## Result
 

@@ -31,10 +31,32 @@ considerMutated(x) // always false
 let f = function () {
   debugger;
   foo: {
-    try {
-      throw `not me`;
-    } finally {
-      return;
+    {
+      let $implicitThrow = false;
+      let $finalStep = false;
+      let $finalCatchArg = undefined;
+      let $finalArg = undefined;
+      $finally: {
+        try {
+          {
+            $finalStep = true;
+            $finalArg = `not me`;
+            break $finally;
+          }
+        } catch ($finalImplicit) {
+          $implicitThrow = true;
+          $finalCatchArg = $finalImplicit;
+        }
+      }
+      {
+        return;
+      }
+      if ($implicitThrow) {
+        throw $finalCatchArg;
+      }
+      if ($finalStep) {
+        throw $finalArg;
+      }
     }
   }
 };
@@ -48,10 +70,19 @@ considerMutated(x);
 `````js filename=intro
 let f = function () {
   debugger;
-  try {
-    throw `not me`;
-  } finally {
-    return undefined;
+  let $implicitThrow = false;
+  let $finalStep = false;
+  let $finalCatchArg = undefined;
+  let $finalArg = undefined;
+  $finally: {
+    try {
+      $finalStep = true;
+      $finalArg = `not me`;
+      break $finally;
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
+    }
   }
   return undefined;
 };
@@ -63,16 +94,6 @@ considerMutated(x);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  try {
-    throw `not me`;
-  } finally {
-    return undefined;
-  }
-  return undefined;
-};
-f();
 considerMutated(0);
 `````
 
@@ -81,17 +102,6 @@ considerMutated(0);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  try {
-    throw "not me";
-  }
-finally {
-    return undefined;
-  }
-  return undefined;
-};
-a();
 considerMutated( 0 );
 `````
 

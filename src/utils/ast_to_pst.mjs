@@ -316,11 +316,13 @@ function convert(node) {
       return PST.throwStatement(convert(node.argument));
     }
     case 'TryStatement': {
+      ASSERT(!node.finalizer);
+      ASSERT(node.handler);
+      ASSERT(node.handler.param);
       return PST.tryStatement(
         convert(node.block),
-        node.handler && node.handler.param && convert(node.handler.param),
-        node.handler && convert(node.handler?.body),
-        node.finalizer && convert(node.finalizer),
+        node.handler.param && convert(node.handler.param),
+        convert(node.handler?.body),
       );
     }
     case 'UnaryExpression': {

@@ -25,9 +25,22 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  try {
-  } finally {
-    $(`pass`);
+  {
+    let $implicitThrow = false;
+    let $finalCatchArg = undefined;
+    $finally: {
+      try {
+      } catch ($finalImplicit) {
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
+      }
+    }
+    {
+      $(`pass`);
+    }
+    if ($implicitThrow) {
+      throw $finalCatchArg;
+    }
   }
 };
 f();
@@ -38,8 +51,14 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
+  let $implicitThrow = false;
+  let $finalCatchArg = undefined;
   $(`pass`);
-  return undefined;
+  if ($implicitThrow) {
+    throw $finalCatchArg;
+  } else {
+    return undefined;
+  }
 };
 f();
 `````

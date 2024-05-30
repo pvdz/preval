@@ -115,10 +115,6 @@ function _tailBreaking(fdata) {
         }
 
         hadLoop = true;
-      } else if (next.type === 'TryStatement' && path.props[n] === 'finalizer') {
-        // `foo: try { return 1; } finally { break foo; }` prevents the return. we can support this but it's way more work. not worth.
-        vlog('- Should skip breaks/continues in a finally because they prevent a different exit');
-        return;
       }
 
       currentIndex = path.indexes[n];

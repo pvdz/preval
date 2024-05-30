@@ -32,14 +32,33 @@ considerMutated(x) // always true (!)
 `````js filename=intro
 let f = function () {
   debugger;
-  stop: try {
-    fail_early;
-    throw `one`;
-  } catch (e) {
-    x = 2;
-    throw `two`;
-  } finally {
-    break stop;
+  stop: {
+    let $implicitThrow = false;
+    let $finalStep = false;
+    let $finalCatchArg = undefined;
+    let $finalArg = undefined;
+    $finally: {
+      try {
+        fail_early;
+        {
+          $finalStep = true;
+          $finalArg = `one`;
+          break $finally;
+        }
+      } catch ($finalImplicit) {
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
+      }
+    }
+    {
+      break stop;
+    }
+    if ($implicitThrow) {
+      throw $finalCatchArg;
+    }
+    if ($finalStep) {
+      throw $finalArg;
+    }
   }
 };
 let x = 0;
@@ -52,16 +71,20 @@ considerMutated(x);
 `````js filename=intro
 let f = function () {
   debugger;
-  try {
+  let $implicitThrow = false;
+  let $finalStep = false;
+  let $finalCatchArg = undefined;
+  let $finalArg = undefined;
+  $finally: {
     try {
       fail_early;
-      throw `one`;
-    } catch (e) {
-      x = 2;
-      throw `two`;
+      $finalStep = true;
+      $finalArg = `one`;
+      break $finally;
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
     }
-  } finally {
-    return undefined;
   }
   return undefined;
 };
@@ -73,24 +96,10 @@ considerMutated(x);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  try {
-    try {
-      fail_early;
-      throw `one`;
-    } catch (e) {
-      x = 2;
-      throw `two`;
-    }
-  } finally {
-    return undefined;
-  }
-  return undefined;
-};
-let x = 0;
-f();
-considerMutated(x);
+try {
+  fail_early;
+} catch ($finalImplicit) {}
+considerMutated(0);
 `````
 
 ## PST Output
@@ -98,33 +107,20 @@ considerMutated(x);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  try {
-    try {
-      fail_early;
-      throw "one";
-    }
-catch (e) {
-      b = 2;
-      throw "two";
-    }
-  }
-finally {
-    return undefined;
-  }
-  return undefined;
-};
-let b = 0;
-a();
-considerMutated( b );
+try {
+  fail_early;
+}
+catch ($finalImplicit) {
+
+}
+considerMutated( 0 );
 `````
 
 ## Globals
 
 BAD@! Found 3 implicit global bindings:
 
-fail_early, e, considerMutated
+fail_early, $finalImplicit, considerMutated
 
 ## Result
 

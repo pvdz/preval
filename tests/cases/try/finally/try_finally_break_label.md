@@ -26,11 +26,24 @@ $(3);
 
 `````js filename=intro
 A: {
-  try {
-    $(1);
-  } finally {
-    $(2);
-    break A;
+  {
+    let $implicitThrow = false;
+    let $finalCatchArg = undefined;
+    $finally: {
+      try {
+        $(1);
+      } catch ($finalImplicit) {
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
+      }
+    }
+    {
+      $(2);
+      break A;
+    }
+    if ($implicitThrow) {
+      throw $finalCatchArg;
+    }
   }
 }
 $(3);
@@ -40,12 +53,16 @@ $(3);
 
 `````js filename=intro
 A: {
+  let $implicitThrow = false;
+  let $finalCatchArg = undefined;
   try {
     $(1);
-  } finally {
-    $(2);
-    break A;
+  } catch ($finalImplicit) {
+    $implicitThrow = true;
+    $finalCatchArg = $finalImplicit;
   }
+  $(2);
+  break A;
 }
 $(3);
 `````
@@ -55,9 +72,8 @@ $(3);
 `````js filename=intro
 try {
   $(1);
-} finally {
-  $(2);
-}
+} catch ($finalImplicit) {}
+$(2);
 $(3);
 `````
 
@@ -69,15 +85,18 @@ With rename=true
 try {
   $( 1 );
 }
-finally {
-  $( 2 );
+catch ($finalImplicit) {
+
 }
+$( 2 );
 $( 3 );
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+$finalImplicit
 
 ## Result
 

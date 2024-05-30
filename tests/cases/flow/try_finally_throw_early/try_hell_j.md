@@ -31,13 +31,31 @@ considerMutated(x) // always true
 `````js filename=intro
 let x = 0;
 foo: {
-  try {
-    break foo;
-  } catch (e) {
-    x = 1;
-  } finally {
-    throw_early;
-    x = 2;
+  {
+    let $implicitThrow = false;
+    let $finalStep = false;
+    let $finalCatchArg = undefined;
+    $finally: {
+      try {
+        {
+          $finalStep = true;
+          break $finally;
+        }
+      } catch ($finalImplicit) {
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
+      }
+    }
+    {
+      throw_early;
+      x = 2;
+    }
+    if ($implicitThrow) {
+      throw $finalCatchArg;
+    }
+    if ($finalStep) {
+      break foo;
+    }
   }
 }
 considerMutated(x);
@@ -48,15 +66,27 @@ considerMutated(x);
 `````js filename=intro
 let x = 0;
 foo: {
-  try {
+  let $implicitThrow = false;
+  let $finalStep = false;
+  let $finalCatchArg = undefined;
+  $finally: {
     try {
-      break foo;
-    } catch (e) {
-      x = 1;
+      $finalStep = true;
+      break $finally;
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
     }
-  } finally {
-    throw_early;
-    x = 2;
+  }
+  throw_early;
+  x = 2;
+  if ($implicitThrow) {
+    throw $finalCatchArg;
+  } else {
+    if ($finalStep) {
+      break foo;
+    } else {
+    }
   }
 }
 considerMutated(x);

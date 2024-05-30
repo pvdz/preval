@@ -539,20 +539,16 @@ foo$5: {
 considerMutated(x$19);
 let f = function () {
   debugger;
-  const tmpAfterLabel = function () {
-    debugger;
-    x$21 = `fail`;
-    return undefined;
-  };
-  try {
-    const tmpReturnArg = tmpAfterLabel();
-    return tmpReturnArg;
-  } finally {
-    return undefined;
+  foo$7: {
+    try {
+      break foo$7;
+    } finally {
+      return undefined;
+    }
+    console.log(x$21);
   }
-  console.log(x$21);
-  const tmpReturnArg$1 = tmpAfterLabel();
-  return tmpReturnArg$1;
+  x$21 = `fail`;
+  return undefined;
 };
 let x$21 = 0;
 f();
@@ -571,42 +567,34 @@ f$1();
 considerMutated(x$23);
 let f$3 = function () {
   debugger;
-  const tmpAfterLabel$1 = function () {
-    debugger;
-    x$25 = 1;
-    return undefined;
-  };
-  try {
-    throw x$25;
-  } finally {
-    const tmpReturnArg$3 = tmpAfterLabel$1();
-    return tmpReturnArg$3;
+  stop: {
+    try {
+      throw x$25;
+    } finally {
+      break stop;
+    }
   }
-  const tmpReturnArg$5 = tmpAfterLabel$1();
-  return tmpReturnArg$5;
+  x$25 = 1;
+  return undefined;
 };
 let x$25 = 0;
 f$3();
 considerMutated(x$25);
 let f$5 = function () {
   debugger;
-  const tmpAfterLabel$3 = function () {
-    debugger;
-    x$27 = 1;
-    return undefined;
-  };
-  try {
+  stop$1: {
     try {
-      throw `one`;
-    } catch (e$19) {
-      throw `two`;
+      try {
+        throw `one`;
+      } catch (e$19) {
+        throw `two`;
+      }
+    } finally {
+      break stop$1;
     }
-  } finally {
-    const tmpReturnArg$7 = tmpAfterLabel$3();
-    return tmpReturnArg$7;
   }
-  const tmpReturnArg$9 = tmpAfterLabel$3();
-  return tmpReturnArg$9;
+  x$27 = 1;
+  return undefined;
 };
 let x$27 = 0;
 f$5();
@@ -663,13 +651,14 @@ considerMutated(1);
 considerMutated(1);
 const f = function () {
   debugger;
-  x$21 = `fail`;
-  try {
-    return undefined;
-  } finally {
-    return undefined;
+  foo$7: {
+    try {
+      break foo$7;
+    } finally {
+      return undefined;
+    }
+    console.log(x$21);
   }
-  console.log(`fail`);
   x$21 = `fail`;
   return undefined;
 };
@@ -687,38 +676,20 @@ const f$1 = function () {
 };
 f$1();
 considerMutated(0);
-const f$3 = function () {
-  debugger;
+try {
+  throw 0;
+} finally {
+}
+considerMutated(1);
+try {
   try {
-    throw x$25;
-  } finally {
-    x$25 = 1;
-    return undefined;
+    throw `one`;
+  } catch (e$19) {
+    throw `two`;
   }
-  x$25 = 1;
-  return undefined;
-};
-let x$25 = 0;
-f$3();
-considerMutated(x$25);
-const f$5 = function () {
-  debugger;
-  try {
-    try {
-      throw `one`;
-    } catch (e$19) {
-      throw `two`;
-    }
-  } finally {
-    x$27 = 1;
-    return undefined;
-  }
-  x$27 = 1;
-  return undefined;
-};
-let x$27 = 0;
-f$5();
-considerMutated(x$27);
+} finally {
+}
+considerMutated(1);
 const f$7 = function () {
   debugger;
   x$29 = 1;
@@ -773,14 +744,15 @@ considerMutated( 1 );
 considerMutated( 1 );
 const a = function() {
   debugger;
-  b = "fail";
-  try {
-    return undefined;
-  }
+  foo$7:   {
+    try {
+      break foo$7;
+    }
 finally {
-    return undefined;
+      return undefined;
+    }
+    console.log( b );
   }
-  console.log( "fail" );
   b = "fail";
   return undefined;
 };
@@ -799,44 +771,28 @@ finally {
 };
 c();
 considerMutated( 0 );
+try {
+  throw 0;
+}
+finally {
+
+}
+considerMutated( 1 );
+try {
+  try {
+    throw "one";
+  }
+catch (e$19) {
+    throw "two";
+  }
+}
+finally {
+
+}
+considerMutated( 1 );
 const d = function() {
   debugger;
-  try {
-    throw e;
-  }
-finally {
-    e = 1;
-    return undefined;
-  }
   e = 1;
-  return undefined;
-};
-let e = 0;
-d();
-considerMutated( e );
-const f = function() {
-  debugger;
-  try {
-    try {
-      throw "one";
-    }
-catch (e$19) {
-      throw "two";
-    }
-  }
-finally {
-    g = 1;
-    return undefined;
-  }
-  g = 1;
-  return undefined;
-};
-let g = 0;
-f();
-considerMutated( g );
-const h = function() {
-  debugger;
-  i = 1;
   try {
     try {
       throw "one";
@@ -850,17 +806,17 @@ finally {
   }
   return undefined;
 };
-let i = 0;
-h();
-considerMutated( i );
-const j = function() {
+let e = 0;
+d();
+considerMutated( e );
+const f = function() {
   debugger;
   try {
     try {
       throw "one";
     }
 catch (e$23) {
-      k = 2;
+      g = 2;
       throw "two";
     }
   }
@@ -869,9 +825,9 @@ finally {
   }
   return undefined;
 };
-let k = 0;
-j();
-considerMutated( k );
+let g = 0;
+f();
+considerMutated( g );
 `````
 
 ## Globals

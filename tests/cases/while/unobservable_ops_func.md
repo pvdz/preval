@@ -73,44 +73,29 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const tmpAfterLabel = function ($$0, $$1, $$2) {
-  let s$4 = $$0;
-  let x$2 = $$1;
-  const $tmpLoopUnrollCheck$1 = $$2;
+const f = function () {
   debugger;
-  if ($tmpLoopUnrollCheck$1) {
+  const s = $(10);
+  parseExpression(lexerFlags$285, astProp$181);
+  let tmpSSA_s = s | 10;
+  let tmpSSA_x = $(true);
+  if (tmpSSA_x) {
+    parseExpression(lexerFlags$285, astProp$181);
+    tmpSSA_s = tmpSSA_s | 10;
+    tmpSSA_x = $(true);
     while ($LOOP_UNROLL_9) {
-      if (x$2) {
+      if (tmpSSA_x) {
         parseExpression(lexerFlags$285, astProp$181);
-        s$4 = s$4 | 10;
-        x$2 = $(true);
+        tmpSSA_s = tmpSSA_s | 10;
+        tmpSSA_x = $(true);
       } else {
         break;
       }
     }
   } else {
   }
-  $(s$4);
+  $(tmpSSA_s);
   return undefined;
-};
-const f = function () {
-  debugger;
-  const s = $(10);
-  parseExpression(lexerFlags$285, astProp$181);
-  const tmpSSA_s = s | 10;
-  const tmpSSA_x = $(true);
-  let s$1 = tmpSSA_s;
-  let x$1 = tmpSSA_x;
-  if (tmpSSA_x) {
-    parseExpression(lexerFlags$285, astProp$181);
-    s$1 = tmpSSA_s | 10;
-    x$1 = $(true);
-    tmpAfterLabel(s$1, x$1, true);
-    return undefined;
-  } else {
-    tmpAfterLabel(s$1, x$1, false);
-    return undefined;
-  }
 };
 f();
 $(undefined);
@@ -123,16 +108,20 @@ $(undefined);
 With rename=true
 
 `````js filename=intro
-const a = function($$0,$$1,$$2 ) {
-  let b = c;
-  let d = e;
-  const f = g;
+const a = function() {
   debugger;
-  if (f) {
+  const b = $( 10 );
+  parseExpression( lexerFlags$285, astProp$181 );
+  let c = b | 10;
+  let d = $( true );
+  if (d) {
+    parseExpression( lexerFlags$285, astProp$181 );
+    c = c | 10;
+    d = $( true );
     while ($LOOP_UNROLL_9) {
       if (d) {
         parseExpression( lexerFlags$285, astProp$181 );
-        b = b | 10;
+        c = c | 10;
         d = $( true );
       }
       else {
@@ -140,32 +129,12 @@ const a = function($$0,$$1,$$2 ) {
       }
     }
   }
-  $( b );
+  $( c );
   return undefined;
 };
-const h = function() {
-  debugger;
-  const i = $( 10 );
-  parseExpression( lexerFlags$285, astProp$181 );
-  const j = i | 10;
-  const k = $( true );
-  let l = j;
-  let m = k;
-  if (k) {
-    parseExpression( lexerFlags$285, astProp$181 );
-    l = j | 10;
-    m = $( true );
-    a( l, m, true );
-    return undefined;
-  }
-  else {
-    a( l, m, false );
-    return undefined;
-  }
-};
-h();
+a();
 $( undefined );
-h();
+a();
 $( undefined );
 `````
 

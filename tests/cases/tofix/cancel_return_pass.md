@@ -42,18 +42,14 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpAfterLabel = function () {
-    debugger;
-    return 2;
-  };
-  try {
-    return 1;
-  } finally {
-    const tmpReturnArg = tmpAfterLabel();
-    return tmpReturnArg;
+  hack: {
+    try {
+      return 1;
+    } finally {
+      break hack;
+    }
   }
-  const tmpReturnArg$1 = tmpAfterLabel();
-  return tmpReturnArg$1;
+  return 2;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -63,17 +59,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  try {
-    return 1;
-  } finally {
-    return 2;
-  }
-  return 2;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+$(1);
 `````
 
 ## PST Output
@@ -81,18 +67,7 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  try {
-    return 1;
-  }
-finally {
-    return 2;
-  }
-  return 2;
-};
-const b = a();
-$( b );
+$( 1 );
 `````
 
 ## Globals
@@ -109,4 +84,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 1
+ - eval returned: undefined

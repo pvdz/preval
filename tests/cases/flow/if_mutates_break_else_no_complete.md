@@ -53,24 +53,19 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpAfterLabel = function ($$0) {
-    let x$1 = $$0;
-    debugger;
-    $(x$1, `after label`);
-    return undefined;
-  };
   let x = `pass`;
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(x, `not mutating, not completing`);
-    $(x, `should not be considered mutated`);
-    const tmpReturnArg$1 = tmpAfterLabel(x);
-    return tmpReturnArg$1;
-  } else {
-    x = `fail`;
-    const tmpReturnArg = tmpAfterLabel(x);
-    return tmpReturnArg;
+  foo: {
+    const tmpIfTest = $(true);
+    if (tmpIfTest) {
+      $(x, `not mutating, not completing`);
+      $(x, `should not be considered mutated`);
+    } else {
+      x = `fail`;
+      break foo;
+    }
   }
+  $(x, `after label`);
+  return undefined;
 };
 f();
 `````
@@ -78,14 +73,15 @@ f();
 ## Output
 
 `````js filename=intro
+let x = `pass`;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   $(`pass`, `not mutating, not completing`);
   $(`pass`, `should not be considered mutated`);
-  $(`pass`, `after label`);
 } else {
-  $(`fail`, `after label`);
+  x = `fail`;
 }
+$(x, `after label`);
 `````
 
 ## PST Output
@@ -93,15 +89,16 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = $( true );
-if (a) {
+let a = "pass";
+const b = $( true );
+if (b) {
   $( "pass", "not mutating, not completing" );
   $( "pass", "should not be considered mutated" );
-  $( "pass", "after label" );
 }
 else {
-  $( "fail", "after label" );
+  a = "fail";
 }
+$( a, "after label" );
 `````
 
 ## Globals

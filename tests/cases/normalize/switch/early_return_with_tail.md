@@ -69,14 +69,6 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpAfterLabel = function ($$0, $$1, $$2) {
-    let tmpSwitchValue$1 = $$0;
-    let tmpSwitchCaseToStart$1 = $$1;
-    let tmpIfTest$15 = $$2;
-    debugger;
-    $(`after`);
-    return undefined;
-  };
   const tmpSwitchValue = $(7);
   let tmpSwitchCaseToStart = 4;
   const tmpIfTest = 0 === tmpSwitchValue;
@@ -102,33 +94,33 @@ let f = function () {
       }
     }
   }
-  const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$7) {
-    $(2);
-    const tmpReturnArg$1 = tmpAfterLabel(tmpSwitchValue, tmpSwitchCaseToStart, tmpIfTest);
-    return tmpReturnArg$1;
-  } else {
-    const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$9) {
-      $(3);
+  tmpSwitchBreak: {
+    const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$7) {
+      $(2);
+      break tmpSwitchBreak;
     } else {
-    }
-    const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$11) {
-      $(5);
-      const tmpReturnArg = $(6);
-      return tmpReturnArg;
-    } else {
-      const tmpIfTest$13 = tmpSwitchCaseToStart <= 3;
-      if (tmpIfTest$13) {
-        const tmpReturnArg$3 = tmpAfterLabel(tmpSwitchValue, tmpSwitchCaseToStart, tmpIfTest);
-        return tmpReturnArg$3;
+      const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
+      if (tmpIfTest$9) {
+        $(3);
       } else {
-        const tmpReturnArg$5 = tmpAfterLabel(tmpSwitchValue, tmpSwitchCaseToStart, tmpIfTest);
-        return tmpReturnArg$5;
+      }
+      const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
+      if (tmpIfTest$11) {
+        $(5);
+        const tmpReturnArg = $(6);
+        return tmpReturnArg;
+      } else {
+        const tmpIfTest$13 = tmpSwitchCaseToStart <= 3;
+        if (tmpIfTest$13) {
+          break tmpSwitchBreak;
+        } else {
+        }
       }
     }
   }
+  $(`after`);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -168,8 +160,6 @@ const f = function () {
   const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$7) {
     $(2);
-    $(`after`);
-    return undefined;
   } else {
     const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$9) {
@@ -182,10 +172,10 @@ const f = function () {
       const tmpReturnArg = $(6);
       return tmpReturnArg;
     } else {
-      $(`after`);
-      return undefined;
     }
   }
+  $(`after`);
+  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
@@ -228,8 +218,6 @@ const a = function() {
   const k = c <= 0;
   if (k) {
     $( 2 );
-    $( "after" );
-    return undefined;
   }
   else {
     const l = c <= 1;
@@ -242,11 +230,9 @@ const a = function() {
       const n = $( 6 );
       return n;
     }
-    else {
-      $( "after" );
-      return undefined;
-    }
   }
+  $( "after" );
+  return undefined;
 };
 const o = a();
 $( o );

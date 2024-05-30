@@ -54,15 +54,6 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpAfterLabel = function ($$0, $$1, $$2, $$3) {
-    let tmpSwitchValue$1 = $$0;
-    let tmpSwitchCaseToStart$1 = $$1;
-    let tmpBinLhs$1 = $$2;
-    let tmpIfTest$5 = $$3;
-    debugger;
-    $(`fail`);
-    return undefined;
-  };
   const tmpSwitchValue = $(1, `disc`);
   let tmpSwitchCaseToStart = 1;
   const tmpBinLhs = $(0);
@@ -81,8 +72,8 @@ let f = function () {
       const tmpThrowArg = $(2, `ret`);
       throw tmpThrowArg;
     } else {
-      const tmpReturnArg = tmpAfterLabel(tmpSwitchValue, tmpSwitchCaseToStart, tmpBinLhs, tmpIfTest);
-      return tmpReturnArg;
+      $(`fail`);
+      return undefined;
     }
   }
 };

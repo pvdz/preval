@@ -53,20 +53,18 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpAfterLabel = function () {
-    debugger;
-    $(`after`);
-    return undefined;
-  };
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(100);
-    return 20;
-  } else {
-    $(101);
-    const tmpReturnArg = tmpAfterLabel();
-    return tmpReturnArg;
+  foo: {
+    const tmpIfTest = $(true);
+    if (tmpIfTest) {
+      $(100);
+      return 20;
+    } else {
+      $(101);
+      break foo;
+    }
   }
+  $(`after`);
+  return undefined;
 };
 f();
 `````

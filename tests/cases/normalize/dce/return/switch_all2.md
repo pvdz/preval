@@ -43,11 +43,6 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpAfterLabel = function ($$0) {
-    let tmpSwitchValue$1 = $$0;
-    debugger;
-    return undefined;
-  };
   const tmpSwitchValue = 1;
   return undefined;
 };

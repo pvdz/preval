@@ -64,111 +64,33 @@ f();
 ## Output
 
 `````js filename=intro
-if (x) {
-  $(1);
-  if ($) {
-  } else {
-    $(2);
-    if (x) {
-      $(1);
-      if ($) {
-      } else {
-        $(2);
+const f = function () {
+  debugger;
+  if (x) {
+    $(1);
+    if ($) {
+      return undefined;
+    } else {
+      $(2);
+      while ($LOOP_UNROLL_10) {
         if (x) {
           $(1);
           if ($) {
+            return undefined;
           } else {
             $(2);
-            if (x) {
-              $(1);
-              if ($) {
-              } else {
-                $(2);
-                if (x) {
-                  $(1);
-                  if ($) {
-                  } else {
-                    $(2);
-                    if (x) {
-                      $(1);
-                      if ($) {
-                      } else {
-                        $(2);
-                        if (x) {
-                          $(1);
-                          if ($) {
-                          } else {
-                            $(2);
-                            if (x) {
-                              $(1);
-                              if ($) {
-                              } else {
-                                $(2);
-                                if (x) {
-                                  $(1);
-                                  if ($) {
-                                  } else {
-                                    $(2);
-                                    if (x) {
-                                      $(1);
-                                      if ($) {
-                                      } else {
-                                        $(2);
-                                        const tmpSplitTruthy = function () {
-                                          debugger;
-                                          while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-                                            if (x) {
-                                              $(1);
-                                              if ($) {
-                                                return undefined;
-                                              } else {
-                                                $(2);
-                                              }
-                                            } else {
-                                              break;
-                                            }
-                                          }
-                                          return undefined;
-                                        };
-                                        if (x) {
-                                          $(1);
-                                          if ($) {
-                                          } else {
-                                            $(2);
-                                            tmpSplitTruthy();
-                                          }
-                                        } else {
-                                        }
-                                      }
-                                    } else {
-                                    }
-                                  }
-                                } else {
-                                }
-                              }
-                            } else {
-                            }
-                          }
-                        } else {
-                        }
-                      }
-                    } else {
-                    }
-                  }
-                } else {
-                }
-              }
-            } else {
-            }
           }
         } else {
+          break;
         }
       }
-    } else {
+      return undefined;
     }
+  } else {
+    return undefined;
   }
-} else {
-}
+};
+f();
 `````
 
 ## PST Output
@@ -176,124 +98,37 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-if (x) {
-  $( 1 );
-  if ($) {
-
-  }
-  else {
-    $( 2 );
-    if (x) {
-      $( 1 );
-      if ($) {
-
-      }
-      else {
-        $( 2 );
+const a = function() {
+  debugger;
+  if (x) {
+    $( 1 );
+    if ($) {
+      return undefined;
+    }
+    else {
+      $( 2 );
+      while ($LOOP_UNROLL_10) {
         if (x) {
           $( 1 );
           if ($) {
-
+            return undefined;
           }
           else {
             $( 2 );
-            if (x) {
-              $( 1 );
-              if ($) {
-
-              }
-              else {
-                $( 2 );
-                if (x) {
-                  $( 1 );
-                  if ($) {
-
-                  }
-                  else {
-                    $( 2 );
-                    if (x) {
-                      $( 1 );
-                      if ($) {
-
-                      }
-                      else {
-                        $( 2 );
-                        if (x) {
-                          $( 1 );
-                          if ($) {
-
-                          }
-                          else {
-                            $( 2 );
-                            if (x) {
-                              $( 1 );
-                              if ($) {
-
-                              }
-                              else {
-                                $( 2 );
-                                if (x) {
-                                  $( 1 );
-                                  if ($) {
-
-                                  }
-                                  else {
-                                    $( 2 );
-                                    if (x) {
-                                      $( 1 );
-                                      if ($) {
-
-                                      }
-                                      else {
-                                        $( 2 );
-                                        const a = function() {
-                                          debugger;
-                                          while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-                                            if (x) {
-                                              $( 1 );
-                                              if ($) {
-                                                return undefined;
-                                              }
-                                              else {
-                                                $( 2 );
-                                              }
-                                            }
-                                            else {
-                                              break;
-                                            }
-                                          }
-                                          return undefined;
-                                        };
-                                        if (x) {
-                                          $( 1 );
-                                          if ($) {
-
-                                          }
-                                          else {
-                                            $( 2 );
-                                            a();
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
           }
         }
+        else {
+          break;
+        }
       }
+      return undefined;
     }
   }
-}
+  else {
+    return undefined;
+  }
+};
+a();
 `````
 
 ## Globals

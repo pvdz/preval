@@ -58,29 +58,20 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpAfterLabel$1 = function ($$0, $$1) {
-    let tmpAfterLabel$3 = $$0;
-    let x$3 = $$1;
-    debugger;
-    $(x$3);
-    const tmpReturnArg$3 = tmpAfterLabel$3(x$3);
-    return tmpReturnArg$3;
-  };
-  const tmpAfterLabel = function ($$0) {
-    let x$1 = $$0;
-    debugger;
-    $(x$1);
-    return undefined;
-  };
   let x = `fail`;
-  if ($) {
-    x = `pass`;
-    const tmpReturnArg = tmpAfterLabel(x);
-    return tmpReturnArg;
-  } else {
-    const tmpReturnArg$1 = tmpAfterLabel$1(tmpAfterLabel, x);
-    return tmpReturnArg$1;
+  foo: {
+    bar: {
+      if ($) {
+        x = `pass`;
+        break foo;
+      } else {
+        break bar;
+      }
+    }
+    $(x);
   }
+  $(x);
+  return undefined;
 };
 f();
 `````
@@ -91,12 +82,10 @@ f();
 let x = `fail`;
 if ($) {
   x = `pass`;
-  $(`pass`);
 } else {
-  const x$3 = x;
-  $(x$3);
-  $(x$3);
+  $(x);
 }
+$(x);
 `````
 
 ## PST Output
@@ -107,13 +96,11 @@ With rename=true
 let a = "fail";
 if ($) {
   a = "pass";
-  $( "pass" );
 }
 else {
-  const b = a;
-  $( b );
-  $( b );
+  $( a );
 }
+$( a );
 `````
 
 ## Globals

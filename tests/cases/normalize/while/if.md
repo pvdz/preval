@@ -71,23 +71,23 @@ if ($) {
 
 `````js filename=intro
 if ($) {
+  let i = 1;
   $(1, `sub`);
-  let i$1 = 1;
   while ($LOOP_UNROLL_10) {
-    i$1 = i$1 + 1;
-    const tmpIfTest$6 = i$1 < 10;
-    if (tmpIfTest$6) {
-      const tmpIfTest$8 = i$1 < 5;
-      if (tmpIfTest$8) {
-        $(i$1, `sub`);
+    i = i + 1;
+    const tmpIfTest$2 = i < 10;
+    if (tmpIfTest$2) {
+      const tmpIfTest$4 = i < 5;
+      if (tmpIfTest$4) {
+        $(i, `sub`);
       } else {
-        $(i$1, `sup`);
+        $(i, `sup`);
       }
     } else {
       break;
     }
   }
-  $(i$1);
+  $(i);
 } else {
 }
 `````
@@ -98,8 +98,8 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  $( 1, "sub" );
   let a = 1;
+  $( 1, "sub" );
   while ($LOOP_UNROLL_10) {
     a = a + 1;
     const b = a < 10;

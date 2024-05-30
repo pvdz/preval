@@ -142,107 +142,37 @@ f();
 ## Output
 
 `````js filename=intro
-if (x) {
-  $(1);
-  if ($) {
-    $(2);
-    if (x) {
-      $(1);
-      if ($) {
-        $(2);
+const tmpSplitTruthy = function () {
+  debugger;
+  if (x) {
+    $(1);
+    if ($) {
+      $(2);
+      while ($LOOP_UNROLL_9) {
         if (x) {
           $(1);
           if ($) {
             $(2);
-            if (x) {
-              $(1);
-              if ($) {
-                $(2);
-                if (x) {
-                  $(1);
-                  if ($) {
-                    $(2);
-                    if (x) {
-                      $(1);
-                      if ($) {
-                        $(2);
-                        if (x) {
-                          $(1);
-                          if ($) {
-                            $(2);
-                            if (x) {
-                              $(1);
-                              if ($) {
-                                $(2);
-                                if (x) {
-                                  $(1);
-                                  if ($) {
-                                    $(2);
-                                    if (x) {
-                                      $(1);
-                                      if ($) {
-                                        $(2);
-                                        const tmpSplitTruthy = function () {
-                                          debugger;
-                                          while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-                                            if (x) {
-                                              $(1);
-                                              if ($) {
-                                                $(2);
-                                              } else {
-                                                return undefined;
-                                              }
-                                            } else {
-                                              break;
-                                            }
-                                          }
-                                          return undefined;
-                                        };
-                                        if (x) {
-                                          $(1);
-                                          if ($) {
-                                            $(2);
-                                            tmpSplitTruthy();
-                                          } else {
-                                          }
-                                        } else {
-                                        }
-                                      } else {
-                                      }
-                                    } else {
-                                    }
-                                  } else {
-                                  }
-                                } else {
-                                }
-                              } else {
-                              }
-                            } else {
-                            }
-                          } else {
-                          }
-                        } else {
-                        }
-                      } else {
-                      }
-                    } else {
-                    }
-                  } else {
-                  }
-                } else {
-                }
-              } else {
-              }
-            } else {
-            }
           } else {
+            return undefined;
           }
         } else {
+          break;
         }
-      } else {
       }
+      return undefined;
     } else {
+      return undefined;
     }
+  } else {
+    return undefined;
+  }
+};
+if (x) {
+  $(1);
+  if ($) {
+    $(2);
+    tmpSplitTruthy();
   } else {
   }
 } else {
@@ -254,89 +184,41 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-if (x) {
-  $( 1 );
-  if ($) {
-    $( 2 );
-    if (x) {
-      $( 1 );
-      if ($) {
-        $( 2 );
+const a = function() {
+  debugger;
+  if (x) {
+    $( 1 );
+    if ($) {
+      $( 2 );
+      while ($LOOP_UNROLL_9) {
         if (x) {
           $( 1 );
           if ($) {
             $( 2 );
-            if (x) {
-              $( 1 );
-              if ($) {
-                $( 2 );
-                if (x) {
-                  $( 1 );
-                  if ($) {
-                    $( 2 );
-                    if (x) {
-                      $( 1 );
-                      if ($) {
-                        $( 2 );
-                        if (x) {
-                          $( 1 );
-                          if ($) {
-                            $( 2 );
-                            if (x) {
-                              $( 1 );
-                              if ($) {
-                                $( 2 );
-                                if (x) {
-                                  $( 1 );
-                                  if ($) {
-                                    $( 2 );
-                                    if (x) {
-                                      $( 1 );
-                                      if ($) {
-                                        $( 2 );
-                                        const a = function() {
-                                          debugger;
-                                          while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-                                            if (x) {
-                                              $( 1 );
-                                              if ($) {
-                                                $( 2 );
-                                              }
-                                              else {
-                                                return undefined;
-                                              }
-                                            }
-                                            else {
-                                              break;
-                                            }
-                                          }
-                                          return undefined;
-                                        };
-                                        if (x) {
-                                          $( 1 );
-                                          if ($) {
-                                            $( 2 );
-                                            a();
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
+          }
+          else {
+            return undefined;
           }
         }
+        else {
+          break;
+        }
       }
+      return undefined;
     }
+    else {
+      return undefined;
+    }
+  }
+  else {
+    return undefined;
+  }
+};
+if (x) {
+  $( 1 );
+  if ($) {
+    $( 2 );
+    a();
   }
 }
 `````

@@ -6800,7 +6800,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           AST.variableDeclaration(tmpNameRhs, node.right, 'const'),
           // Note: putting the bindings inside the wrapper block will allow the rhs to refer to the correct binding, not an outer one (and probably crash)
           // Note: this could be simplified if we were to traverse the whole rhs and assert that none of the bindings in the lhs were referenced ...
-          AST.variableDeclaration(varid.name),
+          AST.variableDeclaration(AST.identifier(varid.name), undefined, 'let'),
           forin ? AST.forInStatement(lhsName, tmpNameRhs, node.body) : AST.forOfStatement(lhsName, tmpNameRhs, node.body),
         );
 
@@ -8203,7 +8203,12 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
         after(body);
         assertNoDupeNodes(AST.blockStatement(body), 'body');
-      } else {
+
+        after(parentNode);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
+
+        return true;
+      } else if (false) {
         // TODO: perhaps this rule is more destructive because it turns more variables into closures, which are harder to eliminate?
 
         // This is an artifact of the switch statement (and also just valid code, but that's not very common in the wild)
@@ -8287,7 +8292,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
               declaredBindings.map((s) => AST.identifier(s)),
             ),
           );
-          ASSERT(body[index] === node, 'should not be stale', parentNode);
+          ASSERT(body[index] === node, 'should not be stale', body[i], node);
           body[index] = finalNode;
 
           labelUsageMap.delete(pid);
@@ -8309,12 +8314,13 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             '\nCurrent state after applying "Eliminated labeled statement" rule\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n',
           );
         }
+
+        after(parentNode);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
+
+        return true;
       }
 
-      after(parentNode);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-
-      return true;
     }
 
     return anyChange;

@@ -142,10 +142,28 @@ $(f);
 ## Output
 
 `````js filename=intro
-const tmpAfterLabel = function ($$0) {
-  const $tmpLoopUnrollCheck$1 = $$0;
+const f = function () {
   debugger;
-  if ($tmpLoopUnrollCheck$1) {
+  let $tmpLoopUnrollCheck = true;
+  try {
+    $(a);
+    if ($1) {
+      $tmpLoopUnrollCheck = false;
+    } else {
+      if ($2) {
+        return value;
+      } else {
+        if ($3) {
+          throw x;
+        } else {
+          $4;
+        }
+      }
+    }
+  } finally {
+    $(b);
+  }
+  if ($tmpLoopUnrollCheck) {
     while ($LOOP_UNROLL_10) {
       try {
         $(a);
@@ -171,32 +189,6 @@ const tmpAfterLabel = function ($$0) {
     return undefined;
   }
 };
-const f = function () {
-  debugger;
-  let $tmpLoopUnrollCheck = true;
-  try {
-    $(a);
-    if ($1) {
-      $tmpLoopUnrollCheck = false;
-      const tmpReturnArg = tmpAfterLabel(false);
-      return tmpReturnArg;
-    } else {
-      if ($2) {
-        return value;
-      } else {
-        if ($3) {
-          throw x;
-        } else {
-          $4;
-        }
-      }
-    }
-  } finally {
-    $(b);
-  }
-  const tmpReturnArg$1 = tmpAfterLabel($tmpLoopUnrollCheck);
-  return tmpReturnArg$1;
-};
 $(f);
 `````
 
@@ -205,9 +197,31 @@ $(f);
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = c;
+const a = function() {
   debugger;
+  let b = true;
+  try {
+    $( a );
+    if ($1) {
+      b = false;
+    }
+    else {
+      if ($2) {
+        return value;
+      }
+      else {
+        if ($3) {
+          throw x;
+        }
+        else {
+          $4;
+        }
+      }
+    }
+  }
+finally {
+    $( b );
+  }
   if (b) {
     while ($LOOP_UNROLL_10) {
       try {
@@ -239,37 +253,7 @@ finally {
     return undefined;
   }
 };
-const d = function() {
-  debugger;
-  let e = true;
-  try {
-    $( a );
-    if ($1) {
-      e = false;
-      const f = a( false );
-      return f;
-    }
-    else {
-      if ($2) {
-        return value;
-      }
-      else {
-        if ($3) {
-          throw x;
-        }
-        else {
-          $4;
-        }
-      }
-    }
-  }
-finally {
-    $( b );
-  }
-  const g = a( e );
-  return g;
-};
-$( d );
+$( a );
 `````
 
 ## Globals

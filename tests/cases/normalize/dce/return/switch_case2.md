@@ -45,11 +45,6 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpAfterLabel = function () {
-    debugger;
-    $(`keep, do not eval`);
-    return undefined;
-  };
   const tmpSwitchDisc = $(1, `disc`);
   const tmpBinBothLhs = tmpSwitchDisc;
   const tmpBinBothRhs = $(1, `case`);
@@ -58,8 +53,8 @@ let f = function () {
     const tmpReturnArg = $(2, `ret`);
     return tmpReturnArg;
   } else {
-    const tmpReturnArg$1 = tmpAfterLabel();
-    return tmpReturnArg$1;
+    $(`keep, do not eval`);
+    return undefined;
   }
 };
 const tmpCallCallee = $;

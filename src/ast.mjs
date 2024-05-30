@@ -109,8 +109,10 @@ export function blockStatement(...body) {
   if (Array.isArray(body[0])) body = body[0];
   body.forEach((n) =>
     ASSERT(
-      n?.type && (!n.type.includes('Expression') || n.type === 'ExpressionStatement' || n.type === 'FunctionExpression'),
+      n?.type && ((!n.type.includes('Expression') || n.type === 'ExpressionStatement' || n.type === 'FunctionExpression')),
       'body should receive statements and declarations, not expressions',
+      n?.type,
+      Array.isArray(n),
       n,
     ),
   );
@@ -754,6 +756,9 @@ export function tryCatchStatement(block, param, handler, paramNullAck = false) {
     'the param (catch var) should be null, a string, or an ident. more exotic cases should be supported first but not likely needed',
     param, typeof param, param?.type
   );
+  if (typeof param === 'string') {
+    param = identifier(param);
+  }
 
   return {
     type: 'TryStatement',
@@ -825,6 +830,7 @@ export function variableDeclaration(names, inits = null, kind = 'let') {
 export function variableDeclarator(id, init = null) {
   if (typeof id === 'string') id = identifier(id);
   if (typeof init === 'string') init = identifier(init);
+  ASSERT(typeof init === 'object' || init === null, 'dont supply primitives, use primitive() on it first',  init);
   return {
     type: 'VariableDeclarator',
     id,

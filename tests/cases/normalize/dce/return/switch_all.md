@@ -74,15 +74,6 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpAfterLabel = function ($$0, $$1, $$2, $$3) {
-    let tmpSwitchValue$1 = $$0;
-    let tmpSwitchCaseToStart$1 = $$1;
-    let tmpBinLhs$3 = $$2;
-    let tmpIfTest$9 = $$3;
-    debugger;
-    $(`eliminate after switch`);
-    return undefined;
-  };
   const tmpSwitchValue = $(1, `disc`);
   let tmpSwitchCaseToStart = 2;
   const tmpBinLhs = $(0);
@@ -113,8 +104,8 @@ let f = function () {
         const tmpReturnArg = $(2, `ret`);
         return tmpReturnArg;
       } else {
-        const tmpReturnArg$1 = tmpAfterLabel(tmpSwitchValue, tmpSwitchCaseToStart, tmpBinLhs, tmpIfTest);
-        return tmpReturnArg$1;
+        $(`eliminate after switch`);
+        return undefined;
       }
     }
   }

@@ -60,23 +60,19 @@ considerMutated(x);
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpAfterLabel = function () {
-    debugger;
-    x = `fail`;
-    return undefined;
-  };
-  try {
-    x = 1;
-    const tmpReturnArg = tmpAfterLabel();
-    return tmpReturnArg;
-  } finally {
-    throw_early;
-    x = 2;
-    return undefined;
+  foo: {
+    try {
+      x = 1;
+      break foo;
+    } finally {
+      throw_early;
+      x = 2;
+      return undefined;
+    }
+    console.log(x);
   }
-  console.log(x);
-  const tmpReturnArg$1 = tmpAfterLabel();
-  return tmpReturnArg$1;
+  x = `fail`;
+  return undefined;
 };
 let x = 0;
 f();
@@ -88,16 +84,17 @@ considerMutated(x);
 `````js filename=intro
 const f = function () {
   debugger;
-  x = 1;
-  x = `fail`;
-  try {
-    return undefined;
-  } finally {
-    throw_early;
-    x = 2;
-    return undefined;
+  foo: {
+    x = 1;
+    try {
+      break foo;
+    } finally {
+      throw_early;
+      x = 2;
+      return undefined;
+    }
+    console.log(x);
   }
-  console.log(x);
   x = `fail`;
   return undefined;
 };
@@ -113,17 +110,18 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  b = 1;
-  b = "fail";
-  try {
-    return undefined;
-  }
+  foo:   {
+    b = 1;
+    try {
+      break foo;
+    }
 finally {
-    throw_early;
-    b = 2;
-    return undefined;
+      throw_early;
+      b = 2;
+      return undefined;
+    }
+    console.log( b );
   }
-  console.log( b );
   b = "fail";
   return undefined;
 };

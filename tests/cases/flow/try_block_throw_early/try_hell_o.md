@@ -48,37 +48,13 @@ considerMutated(x);
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpAfterLabel = function () {
-    debugger;
-    x = 1;
-    return undefined;
-  };
-  try {
-    fail_early;
-    throw x;
-  } finally {
-    const tmpReturnArg = tmpAfterLabel();
-    return tmpReturnArg;
-  }
-  const tmpReturnArg$1 = tmpAfterLabel();
-  return tmpReturnArg$1;
-};
-let x = 0;
-f();
-considerMutated(x);
-`````
-
-## Output
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  try {
-    fail_early;
-    throw x;
-  } finally {
-    x = 1;
-    return undefined;
+  stop: {
+    try {
+      fail_early;
+      throw x;
+    } finally {
+      break stop;
+    }
   }
   x = 1;
   return undefined;
@@ -88,27 +64,30 @@ f();
 considerMutated(x);
 `````
 
+## Output
+
+`````js filename=intro
+try {
+  fail_early;
+  throw 0;
+} finally {
+}
+considerMutated(1);
+`````
+
 ## PST Output
 
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  try {
-    fail_early;
-    throw b;
-  }
+try {
+  fail_early;
+  throw 0;
+}
 finally {
-    b = 1;
-    return undefined;
-  }
-  b = 1;
-  return undefined;
-};
-let b = 0;
-a();
-considerMutated( b );
+
+}
+considerMutated( 1 );
 `````
 
 ## Globals

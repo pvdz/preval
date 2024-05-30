@@ -48,29 +48,20 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpAfterLabel$1 = function ($$0, $$1) {
-    let tmpAfterLabel$3 = $$0;
-    let x$3 = $$1;
-    debugger;
-    x$3 = `pass`;
-    const tmpReturnArg$3 = tmpAfterLabel$3(x$3);
-    return tmpReturnArg$3;
-  };
-  const tmpAfterLabel = function ($$0) {
-    let x$1 = $$0;
-    debugger;
-    $(x$1);
-    return undefined;
-  };
   let x = `fail`;
-  const tmpIfTest = $(false);
-  if (tmpIfTest) {
-    const tmpReturnArg = tmpAfterLabel(x);
-    return tmpReturnArg;
-  } else {
-    const tmpReturnArg$1 = tmpAfterLabel$1(tmpAfterLabel, x);
-    return tmpReturnArg$1;
+  foo: {
+    bar: {
+      const tmpIfTest = $(false);
+      if (tmpIfTest) {
+        break foo;
+      } else {
+        break bar;
+      }
+    }
+    x = `pass`;
   }
+  $(x);
+  return undefined;
 };
 f();
 `````

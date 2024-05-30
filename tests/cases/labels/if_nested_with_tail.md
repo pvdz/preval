@@ -67,37 +67,33 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpAfterLabel = function () {
-    debugger;
-    $(`tail1`);
-    $(`end`);
-    return undefined;
-  };
   $(0);
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    label2: {
-      const tmpIfTest$1 = $(2);
-      if (tmpIfTest$1) {
-        label3: {
-          const tmpIfTest$3 = $(3);
-          if (tmpIfTest$3) {
-            break label2;
-          } else {
-            break label3;
+  label1: {
+    const tmpIfTest = $(1);
+    if (tmpIfTest) {
+      label2: {
+        const tmpIfTest$1 = $(2);
+        if (tmpIfTest$1) {
+          label3: {
+            const tmpIfTest$3 = $(3);
+            if (tmpIfTest$3) {
+              break label2;
+            } else {
+              break label3;
+            }
           }
+          $(`tail3`);
+        } else {
+          break label1;
         }
-        $(`tail3`);
-      } else {
-        const tmpReturnArg = tmpAfterLabel();
-        return tmpReturnArg;
       }
+      $(`tail2`);
+    } else {
     }
-    $(`tail2`);
-  } else {
   }
-  const tmpReturnArg$1 = tmpAfterLabel();
-  return tmpReturnArg$1;
+  $(`tail1`);
+  $(`end`);
+  return undefined;
 };
 f();
 `````
@@ -105,35 +101,23 @@ f();
 ## Output
 
 `````js filename=intro
-const tmpAfterLabel = function () {
-  debugger;
-  $(`tail1`);
-  $(`end`);
-  return undefined;
-};
-const f = function () {
-  debugger;
-  $(0);
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpIfTest$1 = $(2);
-    if (tmpIfTest$1) {
-      const tmpIfTest$3 = $(3);
-      if (tmpIfTest$3) {
-      } else {
-        $(`tail3`);
-      }
-      $(`tail2`);
+$(0);
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  const tmpIfTest$1 = $(2);
+  if (tmpIfTest$1) {
+    const tmpIfTest$3 = $(3);
+    if (tmpIfTest$3) {
     } else {
-      tmpAfterLabel();
-      return undefined;
+      $(`tail3`);
     }
+    $(`tail2`);
   } else {
   }
-  tmpAfterLabel();
-  return undefined;
-};
-f();
+} else {
+}
+$(`tail1`);
+$(`end`);
 `````
 
 ## PST Output
@@ -141,37 +125,23 @@ f();
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  $( "tail1" );
-  $( "end" );
-  return undefined;
-};
-const b = function() {
-  debugger;
-  $( 0 );
-  const c = $( 1 );
-  if (c) {
-    const d = $( 2 );
-    if (d) {
-      const e = $( 3 );
-      if (e) {
+$( 0 );
+const a = $( 1 );
+if (a) {
+  const b = $( 2 );
+  if (b) {
+    const c = $( 3 );
+    if (c) {
 
-      }
-      else {
-        $( "tail3" );
-      }
-      $( "tail2" );
     }
     else {
-      a();
-      return undefined;
+      $( "tail3" );
     }
+    $( "tail2" );
   }
-  a();
-  return undefined;
-};
-b();
+}
+$( "tail1" );
+$( "end" );
 `````
 
 ## Globals

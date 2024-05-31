@@ -65,7 +65,7 @@ $( 1 );
 try {
   $( 2 );
 }
-catch (e) {
+catch (a) {
   $( "fail" );
 }
 $( 3 );
@@ -73,9 +73,7 @@ $( 3 );
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-e
+None
 
 ## Result
 

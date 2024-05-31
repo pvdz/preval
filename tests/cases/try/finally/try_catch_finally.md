@@ -89,9 +89,9 @@ let b = undefined;
 try {
   $( 1 );
 }
-catch ($finalImplicit) {
+catch (c) {
   a = true;
-  b = $finalImplicit;
+  b = c;
 }
 $( 3 );
 if (a) {
@@ -101,9 +101,7 @@ if (a) {
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-$finalImplicit
+None
 
 ## Result
 

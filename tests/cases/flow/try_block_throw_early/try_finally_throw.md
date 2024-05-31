@@ -151,9 +151,9 @@ try {
   c = true;
   e = "yes";
 }
-catch ($finalImplicit) {
+catch (f) {
   b = true;
-  d = $finalImplicit;
+  d = f;
 }
 $( "still throws" );
 $( a );
@@ -172,9 +172,9 @@ else {
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
+BAD@! Found 1 implicit global bindings:
 
-fail_early, $finalImplicit
+fail_early
 
 ## Result
 

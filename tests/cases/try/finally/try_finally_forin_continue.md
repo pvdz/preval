@@ -94,7 +94,7 @@ for (a in b) {
   try {
     $( a, 1 );
   }
-catch ($finalImplicit) {
+catch (c) {
 
   }
   $( 2 );
@@ -104,9 +104,7 @@ $( 3 );
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-$finalImplicit
+None
 
 ## Result
 

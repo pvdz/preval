@@ -282,11 +282,12 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
         } else {
           // Report the implicit globals. Tests should explicitly declare the implicit globals so we can automatically verify
           // that none are accidentally left behind / partially eliminated.
-          const set = new Set();
+          // Catch vars are marked as implicit globals but obviously are not implicit globals so we exclude them.
+          const implicitGlobals = new Set();
           fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
-            if (meta.isImplicitGlobal && !globals.has(name)) set.add(name);
+            if (meta.isImplicitGlobal && !meta.isCatchVar && !globals.has(name)) implicitGlobals.add(name);
           });
-          contents.implicitGlobals = set;
+          contents.implicitGlobals = implicitGlobals;
           contents.explicitGlobals = new Set(Array.from(globals.keys()));
           contents.globallyUniqueNamingRegistry = fdata.globallyUniqueNamingRegistry;
 

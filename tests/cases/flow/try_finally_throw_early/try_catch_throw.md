@@ -78,7 +78,7 @@ With rename=true
 try {
   throw "yes";
 }
-catch (e) {
+catch (a) {
   $( "caught" );
 }
 $( "pass" );
@@ -86,9 +86,7 @@ $( "pass" );
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-e
+None
 
 ## Result
 

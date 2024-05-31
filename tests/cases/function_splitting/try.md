@@ -103,32 +103,30 @@ const a = function() {
   try {
     $( "then" );
   }
-catch (tmpCatchParam) {
+catch (b) {
 
   }
   return undefined;
 };
-const b = function() {
+const c = function() {
   debugger;
   try {
     $( "else" );
   }
-catch (tmpCatchParam$1) {
+catch (d) {
 
   }
   return undefined;
 };
-b();
+c();
 a();
 a();
-b();
+c();
 `````
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
-
-tmpCatchParam, tmpCatchParam$1
+None
 
 ## Result
 

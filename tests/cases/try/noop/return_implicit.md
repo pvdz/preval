@@ -70,20 +70,20 @@ const a = function() {
   try {
     return xyz;
   }
-catch (e) {
+catch (b) {
 
   }
   return undefined;
 };
-const b = a();
-$( b );
+const c = a();
+$( c );
 `````
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
+BAD@! Found 1 implicit global bindings:
 
-xyz, e
+xyz
 
 ## Result
 

@@ -100,9 +100,9 @@ try {
   fail_early;
   a = 1;
 }
-catch ($finalImplicit) {
+catch (d) {
   b = true;
-  c = $finalImplicit;
+  c = d;
 }
 if (b) {
   throw c;
@@ -114,9 +114,9 @@ else {
 
 ## Globals
 
-BAD@! Found 3 implicit global bindings:
+BAD@! Found 2 implicit global bindings:
 
-fail_early, $finalImplicit, considerMutated
+fail_early, considerMutated
 
 ## Result
 

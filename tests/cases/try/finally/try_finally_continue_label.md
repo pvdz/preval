@@ -87,7 +87,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     $( 1 );
   }
-catch ($finalImplicit) {
+catch (a) {
 
   }
   $( 2 );
@@ -97,9 +97,7 @@ $( 3 );
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-$finalImplicit
+None
 
 ## Result
 

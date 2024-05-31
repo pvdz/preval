@@ -114,7 +114,7 @@ let b = $( 1 );
 try {
   $();
 }
-catch (e) {
+catch (d) {
   $( b, b );
   $( a );
 }
@@ -122,9 +122,7 @@ catch (e) {
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-e
+None
 
 ## Result
 

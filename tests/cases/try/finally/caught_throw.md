@@ -114,13 +114,13 @@ try {
     $();
     throw "testing";
   }
-catch (e) {
+catch (c) {
     $( "ok" );
   }
 }
-catch ($finalImplicit) {
+catch (d) {
   a = true;
-  b = $finalImplicit;
+  b = d;
 }
 $( 2 );
 if (a) {
@@ -130,9 +130,7 @@ if (a) {
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
-
-e, $finalImplicit
+None
 
 ## Result
 

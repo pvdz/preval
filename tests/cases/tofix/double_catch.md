@@ -87,20 +87,18 @@ try {
       $( "fail" );
     }
   }
-catch (e) {
+catch (a) {
 
   }
 }
-catch (e$1) {
+catch (b) {
   $( "fail" );
 }
 `````
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
-
-e, e$1
+None
 
 ## Result
 

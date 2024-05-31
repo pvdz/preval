@@ -60,7 +60,7 @@ With rename=true
 try {
   $( 1 );
 }
-catch (e) {
+catch (a) {
   $( 2 );
 }
 $( 3 );
@@ -68,9 +68,7 @@ $( 3 );
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-e
+None
 
 ## Result
 

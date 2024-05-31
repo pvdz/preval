@@ -51,6 +51,7 @@ export function getIdentUsageKind(parentNode, parentProp) {
   // - param names
   // - binding names in patterns (not inits)
   // - imported names
+  // - catch clause
   // Probably best to make explicit yes/no lists and to warn against unexpected forms
 
   switch (parentNode.type) {
@@ -396,6 +397,7 @@ export function registerGlobalIdent(
     uniqueName: name,
     isExport, // exports should not have their name changed. we ensure this as the last step of this phase.
     isImplicitGlobal, // There exists explicit declaration of this ident. These can be valid, like `process` or `window`. Currently also `catch` clause bindings.
+    isCatchVar: false, // Set by phase1 TryStatement:after on catch vars
     isBuiltin, // Make a distinction between known builtins and unknown builtins.
     bfuncNode: undefined, // Function scope where this binding was bound. Undefined for builtins/implicits. Should be set for anything else (which is only var decls after normalization).
     rwOrder: undefined, // Array<read|write>. Sorted in DFS order ASC, once at the start of phase2

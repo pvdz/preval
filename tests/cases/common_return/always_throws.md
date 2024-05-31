@@ -103,40 +103,38 @@ With rename=true
 try {
   throw "Some error";
 }
+catch (a) {
+
+}
+try {
+  throw "Some error";
+}
+catch (b) {
+
+}
+try {
+  throw "Some error";
+}
+catch (c) {
+
+}
+try {
+  throw "Some error";
+}
+catch (d) {
+
+}
+try {
+  throw "Some error";
+}
 catch (e) {
-
-}
-try {
-  throw "Some error";
-}
-catch (e$1) {
-
-}
-try {
-  throw "Some error";
-}
-catch (e$3) {
-
-}
-try {
-  throw "Some error";
-}
-catch (e$5) {
-
-}
-try {
-  throw "Some error";
-}
-catch (e$7) {
 
 }
 `````
 
 ## Globals
 
-BAD@! Found 5 implicit global bindings:
-
-e, e$1, e$3, e$5, e$7
+None
 
 ## Result
 

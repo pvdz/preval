@@ -109,22 +109,22 @@ try {
     $( "third" );
   }
 }
-catch (e) {
+catch (c) {
   $( "error" );
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
     try {
-      const c = $( "first" );
+      const d = $( "first" );
       $( "second" );
-      if (c) {
+      if (d) {
         break;
       }
       else {
         $( "third" );
       }
     }
-catch (e$1) {
+catch (e) {
       $( "error" );
     }
   }
@@ -133,9 +133,7 @@ catch (e$1) {
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
-
-e, e$1
+None
 
 ## Result
 

@@ -124,9 +124,9 @@ try {
     $( 4 );
   }
 }
-catch ($finalImplicit) {
+catch (d) {
   a = true;
-  b = $finalImplicit;
+  b = d;
 }
 $( 5 );
 if (a) {
@@ -136,9 +136,7 @@ if (a) {
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-$finalImplicit
+None
 
 ## Result
 

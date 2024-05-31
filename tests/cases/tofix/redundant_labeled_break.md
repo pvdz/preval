@@ -175,18 +175,18 @@ try {
     a = 3;
   }
 }
-catch ($finalImplicit) {
+catch (d) {
   b = 2;
-  c = $finalImplicit;
+  c = d;
 }
 $( a );
-const d = b === 1;
-if (d) {
+const e = b === 1;
+if (e) {
 
 }
 else {
-  const e = b === 2;
-  if (e) {
+  const f = b === 2;
+  if (f) {
     throw c;
   }
   else {
@@ -199,9 +199,7 @@ $( a );
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-$finalImplicit
+None
 
 ## Result
 

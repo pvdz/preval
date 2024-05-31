@@ -113,7 +113,7 @@ With rename=true
 try {
   fail_early;
 }
-catch ($finalImplicit) {
+catch (a) {
 
 }
 considerMutated( 1 );
@@ -121,9 +121,9 @@ considerMutated( 1 );
 
 ## Globals
 
-BAD@! Found 3 implicit global bindings:
+BAD@! Found 2 implicit global bindings:
 
-fail_early, $finalImplicit, considerMutated
+fail_early, considerMutated
 
 ## Result
 

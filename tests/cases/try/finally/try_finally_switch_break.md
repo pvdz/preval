@@ -137,7 +137,7 @@ if (b) {
   try {
     $( x, 1 );
   }
-catch ($finalImplicit) {
+catch (d) {
 
   }
   $( 2 );
@@ -150,9 +150,9 @@ $( 3 );
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
+BAD@! Found 1 implicit global bindings:
 
-x, $finalImplicit
+x
 
 ## Result
 

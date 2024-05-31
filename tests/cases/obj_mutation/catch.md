@@ -67,7 +67,7 @@ const a = { thing: "woop" };
 try {
   $( "try" );
 }
-catch (e) {
+catch (b) {
   a.thing = "boing";
   $( "catch" );
 }
@@ -76,9 +76,7 @@ $( "after", a );
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-e
+None
 
 ## Result
 

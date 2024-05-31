@@ -244,47 +244,45 @@ try {
   $( a );
   a = $( 2 );
 }
-catch (e) {
+catch (b) {
   $( a );
   a = $( 3 );
 }
 $( a );
-let b = false;
-const c = function() {
+let c = false;
+const d = function() {
   debugger;
-  $( d );
-  d = $( 2 );
-  b = true;
-  $( d );
+  $( e );
+  e = $( 2 );
+  c = true;
+  $( e );
   return undefined;
 };
-let d = $( 1 );
+let e = $( 1 );
 try {
-  c();
-  d = undefined;
+  d();
+  e = undefined;
 }
-catch (e$3) {
-  if (b) {
-    throw e$3;
+catch (f) {
+  if (c) {
+    throw f;
   }
   else {
-    let e = d;
-    $( e );
-    e = $( 3 );
-    d = undefined;
+    let g = e;
+    $( g );
+    g = $( 3 );
+    e = undefined;
   }
 }
-$( d );
-c();
+$( e );
+d();
 [ ... undefined ];
 throw "[Preval]: Array spread must crash before this line";
 `````
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
-
-e, e$3
+None
 
 ## Result
 

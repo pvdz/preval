@@ -117,7 +117,7 @@ const a = function() {
       throw "too";
     }
   }
-catch (e) {
+catch (c) {
     $( "caught" );
   }
   $( b );
@@ -128,9 +128,9 @@ a();
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
+BAD@! Found 1 implicit global bindings:
 
-fail_early, e
+fail_early
 
 ## Result
 

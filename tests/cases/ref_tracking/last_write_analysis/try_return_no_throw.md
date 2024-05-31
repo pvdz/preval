@@ -152,9 +152,9 @@ try {
   d = true;
   f = b;
 }
-catch ($finalImplicit) {
+catch (g) {
   c = true;
-  e = $finalImplicit;
+  e = g;
 }
 b = $( 3, "prevent optim" );
 if (c) {
@@ -175,9 +175,7 @@ else {
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-$finalImplicit
+None
 
 ## Result
 

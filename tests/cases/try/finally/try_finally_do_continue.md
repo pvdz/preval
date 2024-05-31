@@ -115,7 +115,7 @@ With rename=true
 try {
   $( 1 );
 }
-catch ($finalImplicit) {
+catch (a) {
 
 }
 $( 2 );
@@ -123,7 +123,7 @@ if ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     $( 1 );
   }
-catch ($finalImplicit$1) {
+catch (b) {
 
   }
   $( 2 );
@@ -131,7 +131,7 @@ catch ($finalImplicit$1) {
     try {
       $( 1 );
     }
-catch ($finalImplicit$2) {
+catch (c) {
 
     }
     $( 2 );
@@ -142,9 +142,7 @@ $( 3 );
 
 ## Globals
 
-BAD@! Found 3 implicit global bindings:
-
-$finalImplicit, $finalImplicit$1, $finalImplicit$2
+None
 
 ## Result
 

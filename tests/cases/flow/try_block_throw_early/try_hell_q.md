@@ -116,7 +116,7 @@ try {
   fail_early;
   a = 1;
 }
-catch ($finalImplicit) {
+catch (b) {
 
 }
 considerMutated( a );
@@ -124,9 +124,9 @@ considerMutated( a );
 
 ## Globals
 
-BAD@! Found 3 implicit global bindings:
+BAD@! Found 2 implicit global bindings:
 
-fail_early, $finalImplicit, considerMutated
+fail_early, considerMutated
 
 ## Result
 

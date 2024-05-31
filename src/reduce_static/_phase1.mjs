@@ -1115,6 +1115,15 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         const parentBlock = blockStack[blockStack.length - 1];
         openRefsOnAfterTryNode(node, parentBlock, globallyUniqueLabelRegistry, loopStack);
 
+        if (node.handler.param) {
+          const meta = globallyUniqueNamingRegistry.get(node.handler.param.name);
+          ASSERT(meta, 'there should be a meta for this name', node.handler.param.name);
+          // May need to normalize this a bit...
+          // For now, keep the binding as an implicit global. But annotate that this is a catch var.
+          // This allows tests to ignore these bindings for the sake of reporting implicit global issues.
+          meta.isCatchVar = true;
+        }
+
         if (node.block.$p.earlyComplete || node.handler?.body.$p.earlyComplete) {
           vlog('At least one block of the try has an early completion');
           node.$p.earlyComplete = true;

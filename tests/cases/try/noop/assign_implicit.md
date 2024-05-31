@@ -72,7 +72,7 @@ let a = 100;
 try {
   a = xyz;
 }
-catch (e) {
+catch (b) {
 
 }
 $( a );
@@ -80,9 +80,9 @@ $( a );
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
+BAD@! Found 1 implicit global bindings:
 
-xyz, e
+xyz
 
 ## Result
 

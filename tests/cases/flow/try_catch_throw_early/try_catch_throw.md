@@ -82,7 +82,7 @@ With rename=true
 try {
   throw "yes";
 }
-catch (e) {
+catch (a) {
   throw_early;
   $( "caught" );
 }
@@ -91,9 +91,9 @@ $( "pass" );
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
+BAD@! Found 1 implicit global bindings:
 
-e, throw_early
+throw_early
 
 ## Result
 

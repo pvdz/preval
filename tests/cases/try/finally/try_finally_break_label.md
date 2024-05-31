@@ -85,7 +85,7 @@ With rename=true
 try {
   $( 1 );
 }
-catch ($finalImplicit) {
+catch (a) {
 
 }
 $( 2 );
@@ -94,9 +94,7 @@ $( 3 );
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-$finalImplicit
+None
 
 ## Result
 

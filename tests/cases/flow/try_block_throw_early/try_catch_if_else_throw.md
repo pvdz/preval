@@ -108,7 +108,7 @@ try {
     throw "too";
   }
 }
-catch (e) {
+catch (b) {
   $( a, "mutation is observable in the catch" );
 }
 $( a );
@@ -116,9 +116,9 @@ $( a );
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
+BAD@! Found 1 implicit global bindings:
 
-fail_early, e
+fail_early
 
 ## Result
 

@@ -118,9 +118,9 @@ try {
   fail;
   $( "fail" );
 }
-catch ($finalImplicit) {
+catch (c) {
   a = true;
-  b = $finalImplicit;
+  b = c;
 }
 $( 3 );
 if (a) {
@@ -134,9 +134,9 @@ else {
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
+BAD@! Found 1 implicit global bindings:
 
-fail, $finalImplicit
+fail
 
 ## Result
 

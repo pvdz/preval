@@ -87,7 +87,7 @@ try {
   a = "pass";
   throw "yes";
 }
-catch (e) {
+catch (b) {
   $( "caught" );
 }
 $( a );
@@ -95,9 +95,9 @@ $( a );
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
+BAD@! Found 1 implicit global bindings:
 
-fail_early, e
+fail_early
 
 ## Result
 

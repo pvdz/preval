@@ -70,18 +70,16 @@ const a = [ 2, 3 ];
 try {
   $( "try", 1 );
 }
-catch (e) {
-  const b = a.shift();
-  $( "catch", b );
+catch (b) {
+  const c = a.shift();
+  $( "catch", c );
 }
 $( "after", a );
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-e
+None
 
 ## Result
 

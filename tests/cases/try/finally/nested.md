@@ -208,9 +208,9 @@ try {
   try {
     $( 1 );
   }
-catch ($finalImplicit) {
+catch (g) {
     e = true;
-    f = $finalImplicit;
+    f = g;
   }
   $( 2 );
   if (e) {
@@ -218,22 +218,22 @@ catch ($finalImplicit) {
     d = f;
   }
 }
-catch ($finalImplicit$3) {
+catch (h) {
   a = true;
-  c = $finalImplicit$3;
+  c = h;
 }
-let g = false;
-let h = undefined;
+let i = false;
+let j = undefined;
 try {
   $( 3 );
 }
-catch ($finalImplicit$1) {
-  g = true;
-  h = $finalImplicit$1;
+catch (k) {
+  i = true;
+  j = k;
 }
 $( 4 );
-if (g) {
-  throw h;
+if (i) {
+  throw j;
 }
 else {
   if (a) {
@@ -249,9 +249,7 @@ else {
 
 ## Globals
 
-BAD@! Found 3 implicit global bindings:
-
-$finalImplicit, $finalImplicit$3, $finalImplicit$1
+None
 
 ## Result
 

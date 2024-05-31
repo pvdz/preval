@@ -186,9 +186,9 @@ const a = function() {
       f = 100;
     }
   }
-catch ($finalImplicit) {
+catch (h) {
     c = true;
-    e = $finalImplicit;
+    e = h;
   }
   $( b );
   if (c) {
@@ -208,9 +208,7 @@ $( a );
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-$finalImplicit
+None
 
 ## Result
 

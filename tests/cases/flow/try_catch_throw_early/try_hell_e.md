@@ -95,9 +95,9 @@ let b = undefined;
 try {
   throw_early;
 }
-catch ($finalImplicit) {
+catch (c) {
   a = true;
-  b = $finalImplicit;
+  b = c;
 }
 if (a) {
   throw b;
@@ -109,9 +109,9 @@ else {
 
 ## Globals
 
-BAD@! Found 3 implicit global bindings:
+BAD@! Found 2 implicit global bindings:
 
-throw_early, $finalImplicit, considerMutated
+throw_early, considerMutated
 
 ## Result
 

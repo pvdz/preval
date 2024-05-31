@@ -365,9 +365,9 @@ const a = function() {
       }
     }
   }
-catch ($finalImplicit) {
+catch (j) {
     c = true;
-    g = $finalImplicit;
+    g = j;
   }
   $( b );
   if (c) {
@@ -389,27 +389,27 @@ catch ($finalImplicit) {
     }
     if (b) {
       while ($LOOP_UNROLL_10) {
-        let j = false;
         let k = false;
         let l = false;
         let m = false;
-        let n = undefined;
+        let n = false;
         let o = undefined;
         let p = undefined;
+        let q = undefined;
         try {
           $( a );
           if ($1) {
-            k = true;
+            l = true;
           }
           else {
             if ($2) {
-              l = true;
-              o = value;
+              m = true;
+              p = value;
             }
             else {
               if ($3) {
-                m = true;
-                p = x;
+                n = true;
+                q = x;
               }
               else {
                 $4;
@@ -417,25 +417,25 @@ catch ($finalImplicit) {
             }
           }
         }
-catch ($finalImplicit$1) {
-          j = true;
-          n = $finalImplicit$1;
+catch (r) {
+          k = true;
+          o = r;
         }
         $( b );
-        if (j) {
-          throw n;
+        if (k) {
+          throw o;
         }
         else {
-          if (k) {
+          if (l) {
             break;
           }
           else {
-            if (l) {
-              return o;
+            if (m) {
+              return p;
             }
             else {
-              if (m) {
-                throw p;
+              if (n) {
+                throw q;
               }
             }
           }
@@ -453,9 +453,9 @@ $( a );
 
 ## Globals
 
-BAD@! Found 10 implicit global bindings:
+BAD@! Found 8 implicit global bindings:
 
-a, $1, $2, value, $3, x, $4, $finalImplicit, b, $finalImplicit$1
+a, $1, $2, value, $3, x, $4, b
 
 ## Result
 

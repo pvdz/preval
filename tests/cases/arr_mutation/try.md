@@ -58,18 +58,16 @@ With rename=true
 try {
   $( "try", 1 );
 }
-catch (e) {
+catch (a) {
 
 }
-const a = [ 2, 3 ];
-$( "after", a );
+const b = [ 2, 3 ];
+$( "after", b );
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-e
+None
 
 ## Result
 

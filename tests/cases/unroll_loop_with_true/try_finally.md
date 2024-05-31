@@ -174,9 +174,9 @@ try {
     $( "third" );
   }
 }
-catch ($finalImplicit) {
+catch (f) {
   b = true;
-  d = $finalImplicit;
+  d = f;
 }
 $( "finally" );
 if (b) {
@@ -188,29 +188,29 @@ else {
   }
   if (a) {
     while ($LOOP_UNROLL_10) {
-      let f = false;
       let g = false;
-      let h = undefined;
+      let h = false;
+      let i = undefined;
       try {
-        const i = $( "first" );
+        const j = $( "first" );
         $( "second" );
-        if (i) {
-          g = true;
+        if (j) {
+          h = true;
         }
         else {
           $( "third" );
         }
       }
-catch ($finalImplicit$1) {
-        f = true;
-        h = $finalImplicit$1;
+catch (k) {
+        g = true;
+        i = k;
       }
       $( "finally" );
-      if (f) {
-        throw h;
+      if (g) {
+        throw i;
       }
       else {
-        if (g) {
+        if (h) {
           break;
         }
       }
@@ -221,9 +221,7 @@ catch ($finalImplicit$1) {
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
-
-$finalImplicit, $finalImplicit$1
+None
 
 ## Result
 

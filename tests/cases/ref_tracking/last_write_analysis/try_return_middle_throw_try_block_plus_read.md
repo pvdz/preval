@@ -163,9 +163,9 @@ try {
   d = true;
   f = b;
 }
-catch ($finalImplicit) {
+catch (g) {
   c = true;
-  e = $finalImplicit;
+  e = g;
 }
 $( b );
 b = $( 3, "prevent optim" );
@@ -187,9 +187,9 @@ else {
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
+BAD@! Found 1 implicit global bindings:
 
-do_observe_assignment, $finalImplicit
+do_observe_assignment
 
 ## Result
 

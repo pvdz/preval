@@ -19,7 +19,7 @@ import globals from '../globals.mjs';
 import {
   openRefsOnBeforeProgram,
   openRefsOnAfterBlock,
-  openRefsCatchOnBefore,
+  openRefsOnBeforeCatchNode,
   openRefsOnBeforeLoop,
   openRefsOnAfterLoop,
   openRefsOnBeforeRead,
@@ -428,7 +428,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         // Note: the catch scope is set on node.handler of the try (parent node of the catch clause)
 
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsCatchOnBefore(node, parentNode, parentBlock);
+        openRefsOnBeforeCatchNode(node, parentNode, parentBlock);
 
         break;
       }

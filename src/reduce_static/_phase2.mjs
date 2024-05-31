@@ -192,7 +192,7 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     // Do early because it can be expensive with many writes
     arr_mutation(fdata) ||
     findThrowers(fdata) ||
-    singleScopeTdz(fdata) ||
+    singleScopeTdz(fdata) || // Mostly superseded by the TDZ analysis in prepare or phase1 (but still for-in/of cases to fix first)
     constAssigns(fdata) ||
     aliasedGlobals(fdata) ||
     dotCall(fdata) ||

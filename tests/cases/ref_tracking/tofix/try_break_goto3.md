@@ -37,7 +37,7 @@
     $(x);       // x=3 (NOT 1 2)
     x = 4;
   }
-  $(x);         // x=1 2 4 (NOT 3). Note that a throw could convert to break.
+  $(x);         // x=2 4 (NOT 3). Note that a throw could convert to break.
 }
 `````
 

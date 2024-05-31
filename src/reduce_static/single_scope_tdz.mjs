@@ -2,6 +2,13 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, b
 import * as AST from '../ast.mjs';
 
 // TODO: we should be able to remove this in favor of the prepare phase. But the prepare phase must be more generic and catch more cases.
+// There's for-in/of cases like this:
+// - tests/cases/normalize/expressions/assignments/for_of_right/
+// - tests/cases/normalize/expressions/assignments/for_in_right/**
+// - tests/cases/normalize/expressions/statement/for_of_right/**
+// - tests/cases/normalize/binding/for-header-ident-rhs-scoping.md
+// - tests/cases/normalize/binding/for-header-pattern-rhs-scoping-tdz.md
+// - tests/cases/normalize/branching/ifelse_with_tail_closure_binding2.md
 
 
 export function singleScopeTdz(fdata) {

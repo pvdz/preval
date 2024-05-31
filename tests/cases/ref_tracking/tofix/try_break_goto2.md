@@ -37,7 +37,7 @@
     $(x);       // x=2 (NOT 3)
     x = 4;
   }
-  $(x);         // x=1 3 4
+  $(x);         // x=3 4 (if 1 then either it throws or it gets overwritten to 3 or 4)
 }
 `````
 

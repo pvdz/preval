@@ -467,9 +467,7 @@ export function openRefsOnBeforeCatchBody(node, parentNode, parentProp, parentTr
     });
     if (REF_TRACK_TRACING) console.log(`RTT: \`${name}\` now has ${catchExitWrites.size} exitWrites in the Catch`);
     // Overwritten is same as it was before the Try since in theory none of the writes might have succeeded when hitting the catch
-    console.log('TODO: do we need to copy overwritten state from Try Block as well?');
   });
-
 
   if (REF_TRACK_TRACING) console.groupEnd(); // TRY:CATCH:before
 }
@@ -591,7 +589,7 @@ export function openRefsOnBeforeWrite(write, blockNode) {
   if (write.parentNode.type === 'VariableDeclarator') {
     if (REF_TRACK_TRACING) console.log('Adding binding to owner block @', +write.parentBlockNode.$p.pid, '(', write.parentBlockNode.type, ')');
     treblo.defined.add(name);
-  }1
+  }
 
   if (treblo.overwritten.has(name)) {
     if (REF_TRACK_TRACING) console.log('Since binding was already overwritten in this block, @', +write.node.$p.pid, 'is not an entryWrite');

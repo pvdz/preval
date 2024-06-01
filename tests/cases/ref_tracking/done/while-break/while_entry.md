@@ -14,15 +14,15 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let x = 1; // unobservable
 while (true) {
-  x = 2;
+  x = 2; // unobservable
   while (true) {
     x = 3; // Does not overwrite itself
     if ($) break;
     x = 4;
   }
-  $(x);
+  $(x); // x=3 4
 }
 `````
 

@@ -17,16 +17,16 @@ let x = 1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if ($) {
     if ($1) {
-      $(x); // x=1 3
-      x = 5;
+      $(x);   // x=1 3
+      x = 5;  // overwrites x=1 3
       break;
     } else {
-      x = 4;
+      x = 4;  // reachable, unobservable, overwrites x=1 3
     }
-    x = 3;
+    x = 3;    // overwrites x=4 (not 1, not 3)
   }
 }
-$(x); // x=5
+$(x);         // x=5
 `````
 
 ## Output

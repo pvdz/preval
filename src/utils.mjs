@@ -427,9 +427,9 @@ function isOneSetBit(v) {
  */
 export function debugStringMapOfSetOfReadOrWrites(map) {
   const entries = Array.from(map.entries());
-  return entries.map(([name, set]) => {
+  return entries.filter(([name]) => name !== '$LOOP_DONE_UNROLLING_ALWAYS_TRUE').map(([name, set]) => {
     return `${name}:${debugStringListOfReadOrWrites(set)}`;
-  }).join(', ')
+  }).join(', ') || '<none>';
 }
 
 /**

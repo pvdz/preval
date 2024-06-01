@@ -158,64 +158,10 @@ export function openRefsOnafterIf(node, parentBlock, walkerPath, globallyUniqueN
   ASSERT(!pendingNext[1] || pendingNext[1].pid === +node.alternate.$p.pid);
   ASSERT(pendingNext.every(({wasAbrubtType}) => !wasAbrubtType), 'if either branch completed abruptly then they should have been scheduled elsewhere');
 
-  // Always do the next steps with the block(s) just traversed. Not the pending queue.
-  // In this case the pendingNext are just the two blocks so it works out
-  // Must therefor do this before updating the overwritten state, below
-  if (REF_TRACK_TRACING) console.group('RTT: propagate If/Else entryReads and entryWrites to parent');
-  parentDefined.forEach(name => {
-    // Note: this is only visible in loops since entryReads/entryWrites are not used again in normal flow.
-    if (parentOverwritten.has(name)) {
-      if (REF_TRACK_TRACING) console.log(`RTT: \`${name}\`: NOT propagating entryReads and entryWrites because parent has already overwritten it`);
-    } else {
-      if (REF_TRACK_TRACING) console.log(`RTT: \`${name}\`: [true] propagating ${trebloTrue.entryReads.get(name)?.size??0} entryReads, ${trebloTrue.entryWrites.get(name)?.size??0} entryWrites from Block @`, +node.consequent.$p.pid, 'to the parent');
-      trebloTrue.entryReads.get(name)?.forEach((read) => upsertGetSet(parentEntryReads, name, read));
-      trebloTrue.entryWrites.get(name)?.forEach((write) => upsertGetSet(parentEntryWrites, name, write));
-      if (REF_TRACK_TRACING) console.log(`RTT: \`${name}\`: [false] propagating ${trebloFalse.entryReads.get(name)?.size??0} entryReads, ${trebloFalse.entryWrites.get(name)?.size??0} entryWrites from Block @`, +node.alternate.$p.pid, 'to the parent');
-      trebloFalse.entryReads.get(name)?.forEach((read) => upsertGetSet(parentEntryReads, name, read));
-      trebloFalse.entryWrites.get(name)?.forEach((write) => upsertGetSet(parentEntryWrites, name, write));
-    }
-  });
-  if (REF_TRACK_TRACING) console.groupEnd();
+  propagateEntryReadWrites(+node.consequent.$p.pid, trebloTrue, parentEntryReads, parentEntryWrites, parentDefined, parentOverwritten, +parentBlock.$p.pid);
+  propagateEntryReadWrites(+node.alternate.$p.pid, trebloFalse, parentEntryReads, parentEntryWrites, parentDefined, parentOverwritten, +parentBlock.$p.pid);
 
-  if (pendingNext.length === 0) {
-    // Nothing to do here. Both branches are scheduled to complete elsewhere.
-  } else {
-    if (REF_TRACK_TRACING) console.log(`RTT: merging or replacing the If-exitWrites from ${pendingNext.length} / ${pendingNext.length} pending sets into the parent`);
-    // Merge or replace depends
-    parentDefined.forEach(name => {
-      // Note: the .overwritten should be  equal to the .mutatedBetweenSrcAndDst for the If/Else case...
-      const replace = pendingNext.every(({overwritten}) => overwritten.has(name))
-      if (REF_TRACK_TRACING) console.log('RTT: -', name, ': overwritten?', pendingNext.map(({overwritten}) => overwritten.has(name)), ' so verdict:', replace ? 'replace' : 'merge', 'with', pendingNext.map(({exitWrites}) => exitWrites.get(name)?.size??0), 'exitWrites');
-      if (replace) {
-        // Since the binding was overwritten at least once in _all_ code paths leading here,
-        // the initial exitWrites from the parent can not be observed and we can drop them.
-        const set = new Set();
-        pendingNext.forEach(({exitWrites}) => {
-          ASSERT(exitWrites?.size > 0, 'all paths had this overwritten so it should exist and have writes');
-          exitWrites.get(name).forEach(write => set.add(write));
-        });
-        parentExitWrites.set(name, set);
-        // Mark the name as overwritten in this code path too
-        parentOverwritten.add(name);
-      } else {
-        // Merge them with the parent exitWrites
-        // Note: some of these will be the same as the parent but since it's a Set that should be fine (code is complex enough as is)
-        const set = parentExitWrites.get(name) ?? new Set;
-        pendingNext.forEach(({exitWrites}) => {
-          exitWrites.get(name)?.forEach(write => set.add(write));
-        });
-        if (set.size) { // There may not be any writes
-          parentExitWrites.set(name, set);
-        }
-        // Note: parent exitWrites may still be visible. We can't mark it overwritten in the parent.
-      }
-
-      if (REF_TRACK_TRACING) console.log('RTT:   - parentExitWrites:', debugStringMapOfSetOfReadOrWrites(parentExitWrites));
-    });
-  }
-
-  // Clear the queue. We're done.
-  pendingNext.length = 0;
+  propagateExitWrites(pendingNext, parentDefined, parentExitWrites, parentOverwritten, +parentBlock.$p.pid);
 
   // The parent block should now have an updated exitWrites set for each of its bindings
 
@@ -238,11 +184,6 @@ export function openRefsOnafterLabel(node, parentBlock, walkerPath, globallyUniq
     if (REF_TRACK_TRACING) console.log('RTT: label body is a loop so not propagating ref stuff');
   } else {
     const treblo = node.body.$p.treblo;
-
-    if (REF_TRACK_TRACING) console.group('RTT: findAndQueueContinuationBlock(label, @', +node.body.$p, ')');
-    findAndQueueContinuationBlock(node.body.$p.treblo, +node.body.$p.pid, treblo.wasAbruptType, treblo.wasAbruptLabel, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack);
-    if (REF_TRACK_TRACING) console.groupEnd();
-
     const parentTreblo = parentBlock.$p.treblo;
     const parentExitWrites = parentTreblo.exitWrites;
     const parentDefined = parentTreblo.defined;
@@ -251,57 +192,13 @@ export function openRefsOnafterLabel(node, parentBlock, walkerPath, globallyUniq
     const parentEntryWrites = parentTreblo.entryWrites;
     const pendingNext = parentTreblo.pendingNext;
 
-    // Always do the next steps with the block(s) just traversed. Not the pending queue.
-    // Visible for loops since they use entryReads and entryWrites again.
-    if (REF_TRACK_TRACING) console.group('RTT: propagate Label body entryReads and entryWrites to parent');
-    parentDefined.forEach(name => {
-      if (parentOverwritten.has(name)) {
-        if (REF_TRACK_TRACING) console.log(`RTT: \`${name}\`: NOT propagating entryReads and entryWrites because parent already overwrote the binding`);
-      } else {
-        if (REF_TRACK_TRACING) console.log(`RTT: \`${name}\`: propagating ${treblo.entryReads.get(name)?.size??0} entryReads, ${treblo.entryWrites.get(name)?.size??0} entryWrites from Label Block @${node.body.$p.pid} to the parent`);
-        treblo.entryReads.get(name)?.forEach((read) => upsertGetSet(parentEntryReads, name, read));
-        treblo.entryWrites.get(name)?.forEach((write) => upsertGetSet(parentEntryWrites, name, write));
-      }
-    });
+    if (REF_TRACK_TRACING) console.group('RTT: findAndQueueContinuationBlock(label, @', +node.body.$p.pid, ')');
+    findAndQueueContinuationBlock(node.body.$p.treblo, +node.body.$p.pid, treblo.wasAbruptType, treblo.wasAbruptLabel, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack);
     if (REF_TRACK_TRACING) console.groupEnd();
 
-    if (pendingNext.length === 0) {
-      // Nothing to do here. All branches are scheduled to complete elsewhere.
-      // TODO: rest is dead code, apply DCE?
-    } else {
-      if (REF_TRACK_TRACING) console.log(`RTT: merging or replacing the Label-exitWrites from ${pendingNext.length} / ${pendingNext.length} pending sets into the parent`);
-      // Merge or replace depends
-      parentDefined.forEach(name => {
-        const replace = pendingNext.every(({ mutatedBetweenSrcAndDst }) => mutatedBetweenSrcAndDst.has(name));
-        if (REF_TRACK_TRACING) console.log('RTT: -', name, ': overwrittenn?', pendingNext.map(({ mutatedBetweenSrcAndDst }) => mutatedBetweenSrcAndDst.has(name)), ' so verdict:', replace ? 'replace' : 'merge', pendingNext.map(({exitWrites}) => exitWrites.get(name)?.size??0), 'exitWrites, abrupts:', pendingNext.map(({ wasAbruptType }) => wasAbruptType));
-        if (replace) {
-          // Replace
-          const set = new Set();
-          pendingNext.forEach(({ exitWrites }) => {
-            ASSERT(exitWrites?.size > 0, 'all paths had this overwritten so it should exist and have writes');
-            exitWrites.get(name).forEach(write => set.add(write));
-          });
-          parentExitWrites.set(name, set);
-          // Mark the name as overwritten in this code path too
-          parentOverwritten.add(name);
-        } else {
-          // Merge them with the parent exitWrites
-          // Note: some of these will be the same as the parent but since it's a Set that should be fine (code is complex enough as is)
-          const set = parentExitWrites.get(name) ?? new Set;
-          pendingNext.forEach(({exitWrites}) => {
-            exitWrites.get(name)?.forEach(write => set.add(write));
-          });
-          if (set.size) { // There may not be any writes
-            parentExitWrites.set(name, set);
-          }
-          // Note: parent exitWrites may still be visible. We can't mark it overwritten in the parent.
-        }
+    propagateEntryReadWrites(+node.body.$p.pid, treblo, parentEntryReads, parentEntryWrites, parentDefined, parentOverwritten, +parentBlock.$p.pid);
 
-        if (REF_TRACK_TRACING) console.log('RTT:   - parentExitWrites:', debugStringMapOfSetOfReadOrWrites(parentExitWrites));
-      });
-    }
-
-    pendingNext.length = 0;
+    propagateExitWrites(pendingNext, parentDefined, parentExitWrites, parentOverwritten, +parentBlock.$p.pid);
   }
 
   if (REF_TRACK_TRACING) console.groupEnd(); // LABEL:after
@@ -324,7 +221,7 @@ export function openRefsOnAfterLoop(kind /* loop | in | of */, node, parentBlock
   /** @var {Treblo} */
   const treblo = node.body.$p.treblo;
 
-  if (REF_TRACK_TRACING) console.group('RTT: findAndQueueContinuationBlock(loop, @', +node.body.$p, ')');
+  if (REF_TRACK_TRACING) console.group('RTT: findAndQueueContinuationBlock(loop, @', +node.body.$p.pid, ')');
   findAndQueueContinuationBlock(node.body.$p.treblo, +node.body.$p.pid, treblo.wasAbruptType, treblo.wasAbruptLabel, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack);
   if (REF_TRACK_TRACING) console.groupEnd();
 
@@ -337,19 +234,7 @@ export function openRefsOnAfterLoop(kind /* loop | in | of */, node, parentBlock
   const parentEntryReads = parentTreblo.entryReads;
   const parentEntryWrites = parentTreblo.entryWrites;
 
-  // Propagate entryReads/entryWrites to parent, before overwritten gets amended below
-
-  if (REF_TRACK_TRACING) console.group('RTT: propagate Loop body entryReads and entryWrites to parent iif the binding was known there');
-  parentDefined.forEach(name => {
-    if (parentOverwritten.has(name)) {
-      if (REF_TRACK_TRACING) console.log(`RTT: \`${name}\`: NOT propagating entryReads and entryWrites because parent already overwrote the binding`);
-    } else {
-      if (REF_TRACK_TRACING) console.log(`RTT: \`${name}\`: propagating ${treblo.entryReads.get(name)?.size??0} entryReads, ${treblo.entryWrites.get(name)?.size??0} entryWrites from a Block to the parent`);
-      treblo.entryReads.get(name)?.forEach((read) => upsertGetSet(parentEntryReads, name, read));
-      treblo.entryWrites.get(name)?.forEach((write) => upsertGetSet(parentEntryWrites, name, write));
-    }
-  });
-  if (REF_TRACK_TRACING) console.groupEnd();
+  propagateEntryReadWrites(+node.body.$p.pid, treblo, parentEntryReads, parentEntryWrites, parentDefined, parentOverwritten, +parentBlock.$p.pid);
 
   // Connect the end of the loop to the start
   // Do this first because it also updates the overwritten of nodes that break to or through this node, which is necessary info to process any that break to here.
@@ -401,51 +286,9 @@ export function openRefsOnAfterLoop(kind /* loop | in | of */, node, parentBlock
 
   // Do the normal thing with pending continuations
 
-  // This is for break. And any node that breaks here with a label. Not sure if there are other ways for a node to be scheduled here.
   const pendingNext = parentTreblo.pendingNext;
-  if (REF_TRACK_TRACING) console.group('TTR: Parent pendingNext Queue has', pendingNext.length, `nodes that continue after the loop (from ${pendingNext.map(({pid, dst}) => `@${pid}->@${dst.$p.pid}`)}). Processing`, parentDefined.size, 'bindings that were known in the parent.');
-  if (pendingNext.length === 0) {
-    // Nothing to do here?
-    // What if the loop breaks to the parent? or throws? or returns? Then it wouldn't be scheduled in this pendingNext list, right? So, whatever..?
-    // TODO: we should add a check to see if a loop has an abrupt completion at all. And if it's not Catch trapped then consider the tail unreachable. Etc.
-    // TODO: if a loop body does not contain a natural break then the code after it is dead code unless the loop is not the child of a block...
-  } else {
-    if (REF_TRACK_TRACING) console.log(`RTT: merging or replacing the Loop-exitWrites from ${pendingNext.length} / ${pendingNext.length} pending sets into the parent`);
-    parentDefined.forEach(name => {
-      // Note: above names are added when _any_ next node overwrites it. Here we want to know if they _all_ do it.
-      // If the loop is (probably) infinite then always replace parent exitWrites with what happens in the loop
-      // TODO: probably should consider the rest dead code...
-      const replace = pendingNext.every(({ mutatedBetweenSrcAndDst }) => mutatedBetweenSrcAndDst.has(name));
-      if (REF_TRACK_TRACING) console.log('RTT: -', name, ': overwrittennn?', pendingNext.map(({ mutatedBetweenSrcAndDst }) => mutatedBetweenSrcAndDst.has(name)), ' so final verdict:', replace ? 'replace' : 'merge', pendingNext.map(({exitWrites}) => exitWrites.get(name)?.size??0), 'exitWrites with', parentExitWrites.get(name)?.size??0, 'parent exitWrites');
-      if (replace) {
-        // Replace
-        const set = new Set();
-        pendingNext.forEach(({ exitWrites }) => {
-          ASSERT(exitWrites?.size > 0, 'all paths had this overwritten so it should exist and have writes');
-          exitWrites.get(name).forEach(write => set.add(write));
-        });
-        parentExitWrites.set(name, set);
-        // Mark the name as overwritten in this code path too
-        parentOverwritten.add(name);
-      } else {
-        // Merge them with the parent exitWrites
-        // Note: some of these will be the same as the parent but since it's a Set that should be fine (code is complex enough as is)
-        const set = parentExitWrites.get(name) ?? new Set;
-        pendingNext.forEach(({exitWrites}) => {
-          exitWrites.get(name)?.forEach(write => set.add(write));
-        });
-        if (set.size) { // There may not be any writes
-          parentExitWrites.set(name, set);
-        }
-        // Note: parent exitWrites may still be visible. We can't mark it overwritten in the parent.
-      }
-      if (REF_TRACK_TRACING) console.log('RTT:   - parentExitWrites:', debugStringMapOfSetOfReadOrWrites(parentExitWrites));
-    });
-    if (REF_TRACK_TRACING) console.groupEnd();
 
-    // Remove processed nodes from queue
-    pendingNext.length = 0;
-  }
+  propagateExitWrites(pendingNext, parentDefined, parentExitWrites, parentOverwritten, +parentBlock.$p.pid);
 
   // The parent block should now have an updated exitWrites set for each o1f its bindings
 
@@ -546,45 +389,7 @@ export function openRefsOnAfterTryNode(node, parentBlock, globallyUniqueLabelReg
 
   const pendingNext = parentTreblo.pendingNext;
 
-  if (REF_TRACK_TRACING) console.log(`RTT: process the ${pendingNext.length} pendingNext of the parent of the Try`);
-  if (pendingNext.length === 0) {
-    // Nothing to do here. Both branches are scheduled to complete elsewhere.
-  } else {
-    if (REF_TRACK_TRACING) console.log(`RTT: merging or replacing the Try-Catch exitWrites from ${pendingNext.length} pendingNext sets into the parent; abrupts:`, pendingNext.map(({wasAbruptType}) => wasAbruptType), ', from pids:', pendingNext.map(({pid}) => pid), ', pendingNext.exitWrites:', pendingNext.map(obj => debugStringMapOfSetOfReadOrWrites(obj.exitWrites)));
-    // Merge or replace depends
-    parentDefined.forEach(name => {
-      const replace = pendingNext.every(({ mutatedBetweenSrcAndDst }) => mutatedBetweenSrcAndDst.has(name));
-
-      if (REF_TRACK_TRACING) console.log('RTT: -', name, ': overwrittennnn?', pendingNext.map(({ mutatedBetweenSrcAndDst }) => mutatedBetweenSrcAndDst.has(name)), ' so verdict:', replace ? 'replace' : 'merge', pendingNext.map(({exitWrites}) => exitWrites.get(name)?.size??0), 'exitWrites');
-      if (replace) {
-        // Since the binding was overwritten at least once in _all_ code paths leading here,
-        // the initial exitWrites from the parent can not be observed and we can drop them.
-        const set = new Set();
-        pendingNext.forEach(({exitWrites}) => {
-          ASSERT(exitWrites?.size > 0, 'all paths had this overwritten so it should exist and have writes');
-          exitWrites.get(name).forEach(write => set.add(write));
-        });
-        parentExitWrites.set(name, set);
-        // Mark the name as overwritten in this code path too
-        parentOverwritten.add(name);
-      } else {
-        // Merge them with the parent exitWrites
-        // Note: some of these will be the same as the parent but since it's a Set that should be fine (code is complex enough as is)
-        const set = parentExitWrites.get(name) ?? new Set;
-        pendingNext.forEach(({exitWrites}) => {
-          exitWrites.get(name)?.forEach(write => set.add(write));
-        });
-        if (set.size) { // There may not be any writes
-          parentExitWrites.set(name, set);
-        }
-        // Note: parent exitWrites may still be visible. We can't mark it overwritten in the parent.
-      }
-
-      if (REF_TRACK_TRACING) console.log('RTT:   - parentExitWrites:', debugStringMapOfSetOfReadOrWrites(parentExitWrites));
-    });
-
-    pendingNext.length = 0;
-  }
+  propagateExitWrites(pendingNext, parentDefined, parentExitWrites, parentOverwritten, +parentBlock.$p.pid)
 
   if (REF_TRACK_TRACING) console.groupEnd(); // TRY:after
   if (REF_TRACK_TRACING) console.groupEnd(); // TRY
@@ -604,21 +409,12 @@ export function openRefsOnBeforeTryBody(node, parentBlock) {
 export function openRefsOnAfterTryBody(node, parentTryNode, parentBlock, walkerPath, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack, globallyUniqueNamingRegistry) {
   if (REF_TRACK_TRACING) console.group('RTT: TRY:BODY:after');
 
-  const treblo = node.$p.treblo;
-  const parentTreblo = parentBlock.$p.treblo;
-
-  if (REF_TRACK_TRACING) console.log('RTT: exitWrites:', debugStringMapOfSetOfReadOrWrites(treblo.exitWrites));
-
   // Only the try body continues (potentially) in the catch body. You can't break to it etc.
 
   ASSERT(parentTryNode.type === 'TryStatement', 'right?');
 
-
-  if (REF_TRACK_TRACING) console.group('RTT: findAndQueueContinuationBlock(try.block, @', +node.$p.pid, ')');
-  findAndQueueContinuationBlock(treblo, +node.$p.pid, node.$p.treblo.wasAbruptType, node.$p.treblo.wasAbruptLabel, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack);
-  if (REF_TRACK_TRACING) console.groupEnd();
-
-
+  const treblo = node.$p.treblo;
+  const parentTreblo = parentBlock.$p.treblo;
   const tryPid = +parentTryNode.$p.pid;
   const parentExitWrites = parentTreblo.exitWrites;
   const parentDefined = parentTreblo.defined;
@@ -626,21 +422,15 @@ export function openRefsOnAfterTryBody(node, parentTryNode, parentBlock, walkerP
   const parentEntryReads = parentTreblo.entryReads;
   const parentEntryWrites = parentTreblo.entryWrites;
 
+  if (REF_TRACK_TRACING) console.log('RTT: exitWrites:', debugStringMapOfSetOfReadOrWrites(treblo.exitWrites));
+
+  if (REF_TRACK_TRACING) console.group('RTT: findAndQueueContinuationBlock(try.block, @', +node.$p.pid, ')');
+  findAndQueueContinuationBlock(treblo, +node.$p.pid, node.$p.treblo.wasAbruptType, node.$p.treblo.wasAbruptLabel, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack);
+  if (REF_TRACK_TRACING) console.groupEnd();
+
   // Note: We never propagate the exitWrites to the parent because the Catch will consume these
 
-  // Always do the next steps with the block(s) just traversed. Not the pending queue.
-  // Do this regardless of Catch logic. We're looking for the potential to read an exitWrite, not whether it must happen.
-  if (REF_TRACK_TRACING) console.group('RTT: propagate Try Block entryReads, entryWrites to parent');
-  parentDefined.forEach((name) => {
-    if (parentOverwritten.has(name)) {
-      if (REF_TRACK_TRACING) console.log(`RTT: \`${name}\`: not propagating entryReads/writes because binding was already overwritten in parent`);
-    } else {
-      if (REF_TRACK_TRACING) console.log(`RTT: \`${name}\`: propagating ${treblo.entryReads.get(name)?.size??0} entryReads, ${treblo.entryWrites.get(name)?.size??0} entryWrites from the TryBlock to the parent`);
-      treblo.entryReads.get(name)?.forEach((read) => upsertGetSet(parentEntryReads, name, read));
-      treblo.entryWrites.get(name)?.forEach((write) => upsertGetSet(parentEntryWrites, name, write));
-    }
-  });
-  if (REF_TRACK_TRACING) console.groupEnd();
+  propagateEntryReadWrites(+node.$p.pid, treblo, parentEntryReads, parentEntryWrites, parentDefined, parentOverwritten, parentBlock.$p.pid);
 
   if (REF_TRACK_TRACING) console.groupEnd(); // TRY:BODY:after
   if (REF_TRACK_TRACING) console.groupEnd(); // TRY:BODY
@@ -691,8 +481,6 @@ export function openRefsOnAfterCatchBody(node, walkerPath, parentNode, parentPro
 
   ASSERT(grandNode.type === 'TryStatement', 'right?');
 
-  const parentTreblo = parentBlock.$p.treblo;
-
   // Code flow naturally continues in parentBlock
   // There are no "pendingNext" to consider other than this block because flow continues
   // in the parentBlock unless there's an explicit abrupt completion that says otherwise.
@@ -708,28 +496,18 @@ export function openRefsOnAfterCatchBody(node, walkerPath, parentNode, parentPro
 
   // Note: the Catch Block may have still completed abruptly.
 
+  const parentTreblo = parentBlock.$p.treblo;
   const catchTreblo = node.$p.treblo;
+  const parentDefined = parentTreblo.defined;
+  const parentEntryReads = parentTreblo.entryReads;
+  const parentEntryWrites = parentTreblo.entryWrites;
+  const parentOverwritten = parentTreblo.overwritten;
 
   if (REF_TRACK_TRACING) console.group('RTT: findAndQueueContinuationBlock(catch.body, @', +node.$p.pid, ')');
   findAndQueueContinuationBlock(catchTreblo, +node.$p.pid, catchTreblo.wasAbruptType, catchTreblo.wasAbruptLabel, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack);
   if (REF_TRACK_TRACING) console.groupEnd();
 
-  const parentDefined = parentTreblo.defined;
-  const parentEntryReads = parentTreblo.entryReads;
-  const parentEntryWrites = parentTreblo.entryWrites;
-
-  // Always do the next steps with the block(s) just traversed. Not the pending queue.
-  if (REF_TRACK_TRACING) console.group('RTT: propagate Catch Block entryReads, entryWrites to parent');
-  parentDefined.forEach((name) => {
-    if (parentTreblo.overwritten.has(name)) {
-      if (REF_TRACK_TRACING) console.log(`RTT: \`${name}\`: not propagating entryReads/writes because binding was already overwritten in parent`);
-    } else {
-      if (REF_TRACK_TRACING) console.log(`RTT: \`${name}\`: propagating ${catchTreblo.entryReads.get(name)?.size??0} entryReads, ${catchTreblo.entryWrites.get(name)?.size??0} entryWrites from the CatchBlock to the parent`);
-      catchTreblo.entryReads.get(name)?.forEach((read) => upsertGetSet(parentEntryReads, name, read));
-      catchTreblo.entryWrites.get(name)?.forEach((write) => upsertGetSet(parentEntryWrites, name, write));
-    }
-  });
-  if (REF_TRACK_TRACING) console.groupEnd();
+  propagateEntryReadWrites(+node.$p.pid, catchTreblo, parentEntryReads, parentEntryWrites, parentDefined, parentOverwritten, parentBlock.$p.pid);
 
   if (REF_TRACK_TRACING) console.groupEnd(); // TRY:CATCH:after
   if (REF_TRACK_TRACING) console.groupEnd(); // TRY:CATCH
@@ -924,9 +702,6 @@ function findAndQueueContinuationBlock(fromBlockTreblo, fromBlockPid, wasAbruptT
   let loops = wasAbruptType === 'continue' || +continuationBlock?.$p.pid === fromBlockPid;
   if (REF_TRACK_TRACING) console.log(`TTR: Loops? Only if abrupt was "continue" (= "${wasAbruptType}"), or if continuation block has same pid as from block (`, +continuationBlock?.$p.pid === fromBlockPid, '), verdict:', loops);
 
-  // We would pass a Catch if we see a TryStatement (which must have a Catch in normalized form)
-  let nearestCatchBlockParentTry = null;
-
   // If code doesn't abrupt then it can't go through a trap and we can skip this search
   if (wasAbruptType) {
     if (REF_TRACK_TRACING) console.group(`TTR: Queuing overwrites mutations in loops. Abrupt type=${wasAbruptType}.`);
@@ -940,7 +715,7 @@ function findAndQueueContinuationBlock(fromBlockTreblo, fromBlockPid, wasAbruptT
 
   if (continuationBlock) {
     if (loops) {
-      if (REF_TRACK_TRACING) console.log('TTR: scheduling looping from node @', fromBlockPid, 'in continuationBlock (nearest Loop Block) @', +continuationBlock.$p.pid, ', with overwritten:', Array.from(fromBlockTreblo.overwritten));
+      if (REF_TRACK_TRACING) console.log('TTR: scheduling looping from node @', fromBlockPid, 'in continuationBlock ("looping") @', +continuationBlock.$p.pid, ', with overwritten:', Array.from(fromBlockTreblo.overwritten));
       continuationBlock.$p.treblo.pendingLoop.push({
         pid: fromBlockPid,
         entryReads: fromBlockTreblo.entryReads,
@@ -950,7 +725,7 @@ function findAndQueueContinuationBlock(fromBlockTreblo, fromBlockPid, wasAbruptT
         mutatedBetweenSrcAndDst: srcBlockMutatedBetweenSrcAndDst
       });
     } else {
-      if (REF_TRACK_TRACING) console.log('TTR: scheduling from node @', fromBlockPid, 'in continuationBlock (nearest parent Block) @', +continuationBlock.$p.pid, ', with overwritten:', Array.from(fromBlockTreblo.overwritten));
+      if (REF_TRACK_TRACING) console.log('TTR: scheduling from node @', fromBlockPid, 'in continuationBlock (not "looping") @', +continuationBlock.$p.pid, ', with overwritten:', Array.from(fromBlockTreblo.overwritten));
       continuationBlock.$p.treblo.pendingNext.push({
         pid: fromBlockPid,
         dst: continuationBlock,
@@ -994,8 +769,9 @@ function findSimpleContinuationBlock(wasAbruptType, wasAbruptLabel, walkerPath, 
         case 'ForInStatement':
         case 'ForOfStatement': {
           // Code logic continues with the body of the loop. So of the current Block.
-          if (REF_TRACK_TRACING) console.log(`TTR: leaving a block with loop as parent so actually continuationBlock is same block (@${walkerPath.nodes[index].body.$p.pid})`);
-          return walkerPath.nodes[index].body;
+          const target = walkerPath.nodes[index].body;
+          if (REF_TRACK_TRACING) console.log(`TTR: leaving a block with loop as parent and since it was not abrupt, continuationBlock is same block (@${target.$p.pid})`);
+          return target;
         }
       }
     }
@@ -1126,4 +902,75 @@ function upsertGetPush(map, key, value) {
   const set = map.get(key);
   if (set) set.push(value);
   else map.set(key, [value]);
+}
+
+function propagateEntryReadWrites(pid, treblo, parentEntryReads, parentEntryWrites, parentDefined, parentOverwritten, parentBlockPid) {
+  // Always do the next steps with the block(s) just traversed. Not the pending queue.
+  // In this case the pendingNext are just the two blocks so it works out
+  // Must therefor do this before updating the overwritten state, below
+  if (REF_TRACK_TRACING) console.group(`RTT: propagate entryReads (${debugStringMapOfSetOfReadOrWrites(treblo.entryReads)}) and entryWrites (${debugStringMapOfSetOfReadOrWrites(treblo.entryWrites)}) from @${pid} to the parent @`, parentBlockPid, 'which has these overwritten already:', Array.from(parentOverwritten).join(',')||'<none>');
+  parentDefined.forEach(name => {
+    // Note: this is only visible in loops since entryReads/entryWrites are not used again in normal flow.
+    if (parentOverwritten.has(name)) {
+      if (REF_TRACK_TRACING) console.log(`RTT: \`${name}\`: NOT propagating entryReads and entryWrites because parent has already overwritten it`);
+    } else {
+      if (REF_TRACK_TRACING) console.log(`RTT: \`${name}\`: propagating ${treblo.entryReads.get(name)?.size??0} entryReads, ${treblo.entryWrites.get(name)?.size??0} entryWrites from Block @`, pid, 'to the parent');
+      treblo.entryReads.get(name)?.forEach((read) => upsertGetSet(parentEntryReads, name, read));
+      treblo.entryWrites.get(name)?.forEach((write) => upsertGetSet(parentEntryWrites, name, write));
+    }
+  });
+  if (REF_TRACK_TRACING) console.groupEnd();
+}
+
+function propagateExitWrites(pendingNext, parentDefined, parentExitWrites, parentOverwritten, parentBlockPid) {
+  if (REF_TRACK_TRACING) console.group(`RTT: process the ${pendingNext.length} pendingNext of the parent Block`);
+  if (pendingNext.length === 0) {
+    // Nothing to do here. All branches are scheduled to complete elsewhere.
+    // What if a loop breaks to the parent? or throws? or returns? Then it wouldn't be scheduled in this pendingNext list, right? So, whatever..?
+    // TODO: we should add a check to see if a loop has an abrupt completion at all. And if it's not Catch trapped then consider the tail unreachable. Etc.
+    // TODO: if a loop body does not contain a natural break then the code after it is dead code unless the loop is not the child of a block...
+    // TODO: rest is dead code, apply DCE?
+  } else {
+    if (REF_TRACK_TRACING) console.log(`RTT: merging or replacing the exitWrites from ${pendingNext.length} pendingNext sets into the parent @`, parentBlockPid);
+    parentDefined.forEach(name => {
+      // Note: the .overwritten should be  equal to the .mutatedBetweenSrcAndDst for the If/Else case...
+      // Note: above names are added when _any_ next node overwrites it. Here we want to know if they _all_ do it.
+      // If the loop is (probably) infinite then always replace parent exitWrites with what happens in the loop
+      // TODO: probably should consider the rest dead code...
+      const replace = pendingNext.every(({ mutatedBetweenSrcAndDst }) => mutatedBetweenSrcAndDst.has(name));
+      if (REF_TRACK_TRACING) console.log('RTT: -', name, ': overwritten?', pendingNext.map(({ mutatedBetweenSrcAndDst }) => mutatedBetweenSrcAndDst.has(name)), ' so final verdict:', replace ? 'replace' : 'merge', 'with', pendingNext.map(({exitWrites}) => exitWrites.get(name)?.size??0), 'exitWrites with', parentExitWrites.get(name)?.size??0, 'parent exitWrites');
+      if (replace) {
+        // Since the binding was overwritten at least once in _all_ code paths leading here,
+        // the initial exitWrites from the parent can not be observed and we can drop them.
+        // Note: above names are added when _any_ next node overwrites it. Here we want to know if they _all_ do it.
+        // If the loop is (probably) infinite then always replace parent exitWrites with what happens in the loop
+        // TODO: probably should consider the rest dead code...
+        const set = new Set();
+        pendingNext.forEach(({ exitWrites }) => {
+          ASSERT(exitWrites?.size > 0, 'all paths had this overwritten so it should exist and have writes');
+          exitWrites.get(name).forEach(write => set.add(write));
+        });
+        parentExitWrites.set(name, set);
+        // Mark the name as overwritten in this code path too
+        parentOverwritten.add(name);
+      } else {
+        // Merge them with the parent exitWrites
+        // Note: some of these will be the same as the parent but since it's a Set that should be fine (code is complex enough as is)
+        const set = parentExitWrites.get(name) ?? new Set;
+        pendingNext.forEach(({exitWrites}) => {
+          exitWrites.get(name)?.forEach(write => set.add(write));
+        });
+        if (set.size) { // There may not be any writes
+          parentExitWrites.set(name, set);
+        }
+        // Note: parent exitWrites may still be visible. We can't mark it overwritten in the parent.
+      }
+
+      if (REF_TRACK_TRACING) console.log('RTT:   - parentExitWrites:', debugStringMapOfSetOfReadOrWrites(parentExitWrites));
+    });
+
+    // Remove processed nodes from queue
+    pendingNext.length = 0;
+  }
+  if (REF_TRACK_TRACING) console.groupEnd();
 }

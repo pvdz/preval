@@ -25,7 +25,7 @@ import {
   openRefsOnBeforeRead,
   openRefsOnBeforeWrite,
   openRefsOnBeforeIf,
-  openRefsOnafterIf,
+  openRefsOnAfterIf,
   openRefsOnBeforeReturn,
   openRefsOnBeforeThrow,
   openRefsOnBeforeTryNode,
@@ -45,7 +45,7 @@ import {
   openRefsOnAfterReturn,
   openRefsOnAfterThrow,
   openRefsOnBeforeLabel,
-  openRefsOnafterLabel,
+  openRefsOnAfterLabel,
 } from '../utils/ref_tracking.mjs';
 
 // This phase is fairly mechanical and should only do discovery, no AST changes.
@@ -851,7 +851,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
       case 'IfStatement:after': {
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnafterIf(node, parentBlock, path, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, blockStack, catchStack);
+        openRefsOnAfterIf(node, parentBlock, path, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, blockStack, catchStack);
 
         if (node.consequent.$p.earlyComplete || node.alternate.$p.earlyComplete) {
           vlog('At least one branch had an early completion');
@@ -944,7 +944,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         }
 
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnafterLabel(node, parentBlock, path, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, catchStack);
+        openRefsOnAfterLabel(node, parentBlock, path, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, catchStack);
         break;
       }
 

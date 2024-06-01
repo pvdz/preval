@@ -131,7 +131,7 @@ export function openRefsOnBeforeIf(node, parentBlock) {
   if (REF_TRACK_TRACING) console.groupEnd(); // IF:before
 }
 
-export function openRefsOnafterIf(node, parentBlock, walkerPath, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, catchStack) {
+export function openRefsOnAfterIf(node, parentBlock, walkerPath, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, catchStack) {
   if (REF_TRACK_TRACING) console.group('RTT: IF:after');
 
   const trebloTrue = node.consequent.$p.treblo;
@@ -177,7 +177,7 @@ export function openRefsOnBeforeLabel(node, parentBlock) {
   if (REF_TRACK_TRACING) console.groupEnd(); // LABEL:before
 }
 
-export function openRefsOnafterLabel(node, parentBlock, walkerPath, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, catchStack) {
+export function openRefsOnAfterLabel(node, parentBlock, walkerPath, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, catchStack) {
   if (REF_TRACK_TRACING) console.group('RTT: LABEL:after');
 
   if (node.body.type !== 'BlockStatement') {

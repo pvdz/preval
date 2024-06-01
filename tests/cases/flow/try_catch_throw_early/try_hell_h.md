@@ -51,11 +51,9 @@ foo: {
     }
     {
     }
-    if ($implicitThrow) {
-      throw $finalCatchArg;
-    }
-    if ($finalStep) {
-      break foo;
+    if ($implicitThrow) throw $finalCatchArg;
+    else if ($finalStep) break foo;
+    else {
     }
   }
 }

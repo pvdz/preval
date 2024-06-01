@@ -48,12 +48,8 @@ foo: {
     {
       x$1 = 2;
     }
-    if ($implicitThrow) {
-      throw $finalCatchArg;
-    }
-    if ($finalStep) {
-      break foo;
-    }
+    if ($implicitThrow) throw $finalCatchArg;
+    else break foo;
   }
   $(x$1);
   x$1 = 3;
@@ -82,12 +78,7 @@ foo: {
   if ($implicitThrow) {
     throw $finalCatchArg;
   } else {
-    if ($finalStep) {
-      break foo;
-    } else {
-      $(x$1);
-      x$1 = 3;
-    }
+    break foo;
   }
 }
 $(x);

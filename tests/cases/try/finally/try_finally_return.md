@@ -46,12 +46,8 @@ let f = function () {
     {
       $(2);
     }
-    if ($implicitThrow) {
-      throw $finalCatchArg;
-    }
-    if ($finalStep) {
-      throw $finalArg;
-    }
+    if ($implicitThrow) throw $finalCatchArg;
+    else throw $finalArg;
   }
 };
 $(f);
@@ -80,11 +76,7 @@ let f = function () {
   if ($implicitThrow) {
     throw $finalCatchArg;
   } else {
-    if ($finalStep) {
-      throw $finalArg;
-    } else {
-      return undefined;
-    }
+    throw $finalArg;
   }
 };
 $(f);

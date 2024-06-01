@@ -51,11 +51,10 @@ try {
           $(2);
         }
         if ($implicitThrow) {
-          {
-            $finalStep = true;
-            $finalArg = $finalCatchArg;
-            break $finally$3;
-          }
+          $finalStep = true;
+          $finalArg = $finalCatchArg;
+          break $finally$3;
+        } else {
         }
       }
     } catch ($finalImplicit$3) {
@@ -78,16 +77,14 @@ try {
       {
         $(4);
       }
-      if ($implicitThrow$1) {
-        throw $finalCatchArg$1;
+      if ($implicitThrow$1) throw $finalCatchArg$1;
+      else {
       }
     }
   }
-  if ($implicitThrow$3) {
-    throw $finalCatchArg$3;
-  }
-  if ($finalStep) {
-    throw $finalArg;
+  if ($implicitThrow$3) throw $finalCatchArg$3;
+  else if ($finalStep) throw $finalArg;
+  else {
   }
 }
 `````

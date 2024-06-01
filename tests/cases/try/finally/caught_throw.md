@@ -47,8 +47,8 @@ try {
   {
     $(2);
   }
-  if ($implicitThrow) {
-    throw $finalCatchArg;
+  if ($implicitThrow) throw $finalCatchArg;
+  else {
   }
 }
 `````

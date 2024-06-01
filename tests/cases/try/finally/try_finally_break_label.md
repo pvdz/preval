@@ -41,8 +41,8 @@ A: {
       $(2);
       break A;
     }
-    if ($implicitThrow) {
-      throw $finalCatchArg;
+    if ($implicitThrow) throw $finalCatchArg;
+    else {
     }
   }
 }

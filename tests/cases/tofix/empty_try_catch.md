@@ -41,8 +41,8 @@ let x = 1;
   {
     $(x);
   }
-  if ($implicitThrow) {
-    throw $finalCatchArg;
+  if ($implicitThrow) throw $finalCatchArg;
+  else {
   }
 }
 $(x);

@@ -130,20 +130,12 @@ let f = function () {
       {
         $(b);
       }
-      if ($implicitThrow) {
-        throw $finalCatchArg;
-      }
-      if ($finalStep) {
-        break ABC;
-      }
-      if ($finalStep$1) {
-        return $finalArg;
-      }
-      if ($finalStep$3) {
-        throw $finalArg$1;
-      }
-      if ($finalStep$5) {
-        continue;
+      if ($implicitThrow) throw $finalCatchArg;
+      else if ($finalStep) break ABC;
+      else if ($finalStep$1) return $finalArg;
+      else if ($finalStep$3) throw $finalArg$1;
+      else if ($finalStep$5) continue;
+      else {
       }
     }
   }

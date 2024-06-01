@@ -55,12 +55,8 @@ let f = function () {
       $(`still throws`);
       $(x);
     }
-    if ($implicitThrow) {
-      throw $finalCatchArg;
-    }
-    if ($finalStep) {
-      throw $finalArg;
-    }
+    if ($implicitThrow) throw $finalCatchArg;
+    else throw $finalArg;
   }
   $(x);
 };
@@ -94,12 +90,7 @@ let f = function () {
   if ($implicitThrow) {
     throw $finalCatchArg;
   } else {
-    if ($finalStep) {
-      throw $finalArg;
-    } else {
-      $(x);
-      return undefined;
-    }
+    throw $finalArg;
   }
 };
 f();

@@ -282,8 +282,8 @@
     {
       x$3 = 1;
     }
-    if ($implicitThrow) {
-      throw $finalCatchArg;
+    if ($implicitThrow) throw $finalCatchArg;
+    else {
     }
   }
   considerMutated(x$3);
@@ -303,8 +303,8 @@
     }
     {
     }
-    if ($implicitThrow$1) {
-      throw $finalCatchArg$1;
+    if ($implicitThrow$1) throw $finalCatchArg$1;
+    else {
     }
   }
   considerMutated(x$5);
@@ -324,8 +324,8 @@
     }
     {
     }
-    if ($implicitThrow$3) {
-      throw $finalCatchArg$3;
+    if ($implicitThrow$3) throw $finalCatchArg$3;
+    else {
     }
   }
   considerMutated(x$7);
@@ -344,8 +344,8 @@
     }
     {
     }
-    if ($implicitThrow$5) {
-      throw $finalCatchArg$5;
+    if ($implicitThrow$5) throw $finalCatchArg$5;
+    else {
     }
   }
   considerMutated(x$9);
@@ -365,8 +365,8 @@
     {
       x$11 = 1;
     }
-    if ($implicitThrow$7) {
-      throw $finalCatchArg$7;
+    if ($implicitThrow$7) throw $finalCatchArg$7;
+    else {
     }
   }
   considerMutated(x$11);
@@ -391,11 +391,9 @@
       }
       {
       }
-      if ($implicitThrow$9) {
-        throw $finalCatchArg$9;
-      }
-      if ($finalStep) {
-        break foo;
+      if ($implicitThrow$9) throw $finalCatchArg$9;
+      else if ($finalStep) break foo;
+      else {
       }
     }
   }
@@ -422,12 +420,8 @@
       {
         x$15 = 1;
       }
-      if ($implicitThrow$11) {
-        throw $finalCatchArg$11;
-      }
-      if ($finalStep$1) {
-        break foo$1;
-      }
+      if ($implicitThrow$11) throw $finalCatchArg$11;
+      else break foo$1;
     }
   }
   considerMutated(x$15);
@@ -453,12 +447,8 @@
       {
         x$17 = 1;
       }
-      if ($implicitThrow$13) {
-        throw $finalCatchArg$13;
-      }
-      if ($finalStep$3) {
-        break foo$3;
-      }
+      if ($implicitThrow$13) throw $finalCatchArg$13;
+      else break foo$3;
     }
   }
   considerMutated(x$17);
@@ -484,12 +474,8 @@
       {
         x$19 = 1;
       }
-      if ($implicitThrow$15) {
-        throw $finalCatchArg$15;
-      }
-      if ($finalStep$5) {
-        break foo$5;
-      }
+      if ($implicitThrow$15) throw $finalCatchArg$15;
+      else break foo$5;
     }
   }
   considerMutated(x$19);
@@ -516,12 +502,8 @@
         {
           return;
         }
-        if ($implicitThrow$17) {
-          throw $finalCatchArg$17;
-        }
-        if ($finalStep$7) {
-          break foo$7;
-        }
+        if ($implicitThrow$17) throw $finalCatchArg$17;
+        else break foo$7;
       }
       console.log(x$21);
     }
@@ -555,12 +537,8 @@
         {
           return;
         }
-        if ($implicitThrow$19) {
-          throw $finalCatchArg$19;
-        }
-        if ($finalStep$9) {
-          throw $finalArg;
-        }
+        if ($implicitThrow$19) throw $finalCatchArg$19;
+        else throw $finalArg;
       }
     }
   };
@@ -591,12 +569,8 @@
       {
         break stop;
       }
-      if ($implicitThrow$21) {
-        throw $finalCatchArg$21;
-      }
-      if ($finalStep$11) {
-        throw $finalArg$1;
-      }
+      if ($implicitThrow$21) throw $finalCatchArg$21;
+      else throw $finalArg$1;
     }
     x$25 = 1;
   };
@@ -627,12 +601,8 @@
       {
         break stop$1;
       }
-      if ($implicitThrow$23) {
-        throw $finalCatchArg$23;
-      }
-      if ($finalStep$13) {
-        throw $finalArg$3;
-      }
+      if ($implicitThrow$23) throw $finalCatchArg$23;
+      else throw $finalArg$3;
     }
     x$27 = 1;
   };
@@ -664,12 +634,8 @@
       {
         break stop$3;
       }
-      if ($implicitThrow$25) {
-        throw $finalCatchArg$25;
-      }
-      if ($finalStep$15) {
-        throw $finalArg$5;
-      }
+      if ($implicitThrow$25) throw $finalCatchArg$25;
+      else throw $finalArg$5;
     }
   };
   let x$29 = 0;
@@ -699,12 +665,8 @@
       {
         break stop$5;
       }
-      if ($implicitThrow$27) {
-        throw $finalCatchArg$27;
-      }
-      if ($finalStep$17) {
-        throw $finalArg$7;
-      }
+      if ($implicitThrow$27) throw $finalCatchArg$27;
+      else throw $finalArg$7;
     }
   };
   let x$31 = 0;
@@ -817,10 +779,7 @@ if ($implicitThrow) {
             if ($implicitThrow$11) {
               throw $finalCatchArg$11;
             } else {
-              if ($finalStep$1) {
-                break foo$1;
-              } else {
-              }
+              break foo$1;
             }
           }
           considerMutated(x$15);
@@ -842,10 +801,7 @@ if ($implicitThrow) {
             if ($implicitThrow$13) {
               throw $finalCatchArg$13;
             } else {
-              if ($finalStep$3) {
-                break foo$3;
-              } else {
-              }
+              break foo$3;
             }
           }
           considerMutated(x$17);
@@ -867,10 +823,7 @@ if ($implicitThrow) {
             if ($implicitThrow$15) {
               throw $finalCatchArg$15;
             } else {
-              if ($finalStep$5) {
-                break foo$5;
-              } else {
-              }
+              break foo$5;
             }
           }
           considerMutated(x$19);

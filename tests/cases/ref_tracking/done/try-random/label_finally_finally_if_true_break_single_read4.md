@@ -21,9 +21,9 @@ back: {
     break back;
   } finally {
   }
-  x = 6;
+  x = 6; // unreachable
 }
-$(x);
+$(x); // x=1
 `````
 
 ## Output
@@ -48,23 +48,18 @@ back___7__: /*8*/ {
   if ($implicitThrow___44__) {
     /*45*/ throw $finalCatchArg___47__;
   } /*48*/ else {
-    if ($finalStep___50__) {
-      /*51*/ break back___53__;
-    } /*54*/ else {
-      x___58__ = 6;
-    }
+    break back___50__;
   }
 }
-$(x___62__);
+$(x___54__);
 `````
 
 Ref tracking result:
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 62          | none           | 58
-  - w @58      | ########## | 62          | 4              | none
-  - r @62      | 4,58
+  - w @4       | ########## | 54          | none           | none
+  - r @54      | 4
 
 $implicitThrow:
   - w @11          | ########## | 44          | none           | 38
@@ -72,9 +67,8 @@ $implicitThrow:
   - r @44          | 11,38
 
 $finalStep:
-  - w @15          | ########## | 50          | none           | 29
-  - w @29          | ########## | 50          | 15             | none
-  - r @50          | 15,29
+  - w @15          | ########## | not read    | none           | 29
+  - w @29          | ########## | not read    | 15             | none
 
 $finalCatchArg:
   - w @19          | ########## | 47          | none           | 42

@@ -6,7 +6,9 @@
 >
 > Last write analysis should pick up on the return and assume that the prior write can not be observed later.
 
-#TODO
+## Options
+
+- refTest
 
 ## Input
 
@@ -26,167 +28,77 @@ function f() {
 $(f());
 `````
 
-## Pre Normal
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = 1;
-  {
-    let $implicitThrow = false;
-    let $finalStep = false;
-    let $finalCatchArg = undefined;
-    let $finalArg = undefined;
-    $finally: {
-      try {
-        x = $(2, `prevent optim`);
-        {
-          $finalStep = true;
-          $finalArg = x;
-          break $finally;
-        }
-      } catch ($finalImplicit) {
-        $implicitThrow = true;
-        $finalCatchArg = $finalImplicit;
-      }
-    }
-    {
-      x = $(3, `prevent optim`);
-    }
-    if ($implicitThrow) {
-      throw $finalCatchArg;
-    }
-    if ($finalStep) {
-      return $finalArg;
-    }
-  }
-  $(`prevent return hoisting`);
-  return x;
-};
-$(f());
-`````
-
-## Normalized
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = 1;
-  let $implicitThrow = false;
-  let $finalStep = false;
-  let $finalCatchArg = undefined;
-  let $finalArg = undefined;
-  $finally: {
-    try {
-      x = $(2, `prevent optim`);
-      $finalStep = true;
-      $finalArg = x;
-      break $finally;
-    } catch ($finalImplicit) {
-      $implicitThrow = true;
-      $finalCatchArg = $finalImplicit;
-    }
-  }
-  x = $(3, `prevent optim`);
-  if ($implicitThrow) {
-    throw $finalCatchArg;
-  } else {
-    if ($finalStep) {
-      return $finalArg;
-    } else {
-      $(`prevent return hoisting`);
-      return x;
-    }
-  }
-};
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
-`````
-
 ## Output
 
-`````js filename=intro
-let tmpCalleeParam = undefined;
-let x = 1;
-let $implicitThrow = false;
-let $finalStep = false;
-let $finalCatchArg = undefined;
-let $finalArg = undefined;
-try {
-  x = $(2, `prevent optim`);
-  $finalStep = true;
-  $finalArg = x;
-} catch ($finalImplicit) {
-  $implicitThrow = true;
-  $finalCatchArg = $finalImplicit;
-}
-x = $(3, `prevent optim`);
-if ($implicitThrow) {
-  throw $finalCatchArg;
-} else {
-  if ($finalStep) {
-    tmpCalleeParam = $finalArg;
-    $(tmpCalleeParam);
-  } else {
-    $(`prevent return hoisting`);
-    tmpCalleeParam = x;
-    $(tmpCalleeParam);
+(Annotated with pids)
+
+`````filename=intro
+let f___4__ = function () {
+  debugger;
+  let x___10__ = 1;
+  let $implicitThrow___14__ = false;
+  let $finalStep___18__ = false;
+  let $finalCatchArg___22__ = undefined___23__;
+  let $finalArg___26__ = undefined___27__;
+  $finally___29__: /*30*/ {
+    try /*32*/ {
+      x___40__ = $(2, `prevent optim`);
+      $finalStep___44__ = true;
+      $finalArg___48__ = x___47__;
+      break $finally___50__;
+    } catch ($finalImplicit___52__) /*53*/ {
+      $implicitThrow___57__ = true;
+      $finalCatchArg___61__ = $finalImplicit___60__;
+    }
   }
-}
+  x___69__ = $(3, `prevent optim`);
+  if ($implicitThrow___71__) {
+    /*72*/ throw $finalCatchArg___74__;
+  } /*75*/ else {
+    return $finalArg___78__;
+  }
+};
+const tmpCallCallee___81__ = $;
+const tmpCalleeParam___85__ = f___87__();
+tmpCallCallee___90__(tmpCalleeParam___91__);
 `````
 
-## PST Output
+Ref tracking result:
 
-With rename=true
+                   | reads      | read by     | overWrites     | overwritten by
+f:
+  - w @4       | ########## | 87          | none           | none
+  - r @87      | 4
 
-`````js filename=intro
-let a = undefined;
-let b = 1;
-let c = false;
-let d = false;
-let e = undefined;
-let f = undefined;
-try {
-  b = $( 2, "prevent optim" );
-  d = true;
-  f = b;
-}
-catch (g) {
-  c = true;
-  e = g;
-}
-b = $( 3, "prevent optim" );
-if (c) {
-  throw e;
-}
-else {
-  if (d) {
-    a = f;
-    $( a );
-  }
-  else {
-    $( "prevent return hoisting" );
-    a = b;
-    $( a );
-  }
-}
-`````
+x:
+  - w @10      | ########## | not read    | none           | 40,69
+  - w @40      | ########## | 47          | 10             | 69
+  - r @47      | 40
+  - w @69      | ########## | not read    | 10,40          | none
 
-## Globals
+$implicitThrow:
+  - w @14          | ########## | 71          | none           | 57
+  - w @57          | ########## | 71          | 14             | none
+  - r @71          | 14,57
 
-None
+$finalStep:
+  - w @18          | ########## | not read    | none           | 44
+  - w @44          | ########## | not read    | 18             | none
 
-## Result
+$finalCatchArg:
+  - w @22          | ########## | 74          | none           | 61
+  - w @61          | ########## | 74          | 22             | none
+  - r @74          | 22,61
 
-Should call `$` with:
- - 1: 2, 'prevent optim'
- - 2: 3, 'prevent optim'
- - 3: 2
- - eval returned: undefined
+$finalArg:
+  - w @26          | ########## | 78          | none           | 48
+  - w @48          | ########## | 78          | 26             | none
+  - r @78          | 26,48
 
-Pre normalization calls: Same
+tmpCallCallee:
+  - w @81          | ########## | 90          | none           | none
+  - r @90          | 81
 
-Normalized calls: Same
-
-Final output calls: Same
+tmpCalleeParam:
+  - w @85          | ########## | 91          | none           | none
+  - r @91          | 85

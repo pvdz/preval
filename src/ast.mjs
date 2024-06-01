@@ -377,6 +377,26 @@ export function ifStatement(test, consequent, alternate = null) {
   };
 }
 
+export function ifElseChain(testConsequentArr, lastElseNode = null, treatLastAsElse = false) {
+  ASSERT(Array.isArray(testConsequentArr) && testConsequentArr.length > 0, 'must be non-empty array');
+  ASSERT(testConsequentArr.every(v => Array.isArray(v) && v.length === 2), 'every entry must be test-consequent pair');
+  ASSERT(!(lastElseNode && treatLastAsElse), 'either supply the last node or require the last element of the list to be the final else, but not both');
+
+  // Convert [[x, y], [x2, y2], [x3, y3]] into `if (x) y; else if (x2) y2; else if (x3) y3;` etc
+  const lastElse = lastElseNode || (treatLastAsElse ? testConsequentArr.pop() : null); // If treatLastAsElse then condition of last element is ignored
+  if (testConsequentArr.length === 0) {
+    // If there's only one element then there's no if-else chain. There's just an if. But do record the condition.
+    return ifStatement(lastElse[0], lastElse[1]);
+  }
+  const next = testConsequentArr.pop();
+  let last = ifStatement(next[0], next[1], lastElse[1]);
+  while (testConsequentArr.length > 0) {
+    const next = testConsequentArr.pop();
+    last = ifStatement(next[0], next[1], last);
+  }
+  return last;
+}
+
 export function importDeclarationNamed(imported, local = typeof imported === 'string' ? imported : imported.name, source) {
   if (typeof imported === 'string') imported = identifier(imported);
   if (typeof local === 'string') local = identifier(local);

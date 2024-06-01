@@ -35,8 +35,8 @@ let x = undefined;
   {
     x = 10;
   }
-  if ($implicitThrow) {
-    throw $finalCatchArg;
+  if ($implicitThrow) throw $finalCatchArg;
+  else {
   }
 }
 $(x);

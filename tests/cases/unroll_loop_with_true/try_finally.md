@@ -52,11 +52,9 @@ while (true) {
     {
       $(`finally`);
     }
-    if ($implicitThrow) {
-      throw $finalCatchArg;
-    }
-    if ($finalStep) {
-      break;
+    if ($implicitThrow) throw $finalCatchArg;
+    else if ($finalStep) break;
+    else {
     }
   }
 }

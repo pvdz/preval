@@ -20,7 +20,7 @@ try {
 } finally {
   x = 3;
 }
-$(x);
+$(x); // unreachable (code always throws before this point)
 `````
 
 ## Output
@@ -48,11 +48,7 @@ x___56__ = 3;
 if ($implicitThrow___58__) {
   /*59*/ throw $finalCatchArg___61__;
 } /*62*/ else {
-  if ($finalStep___64__) {
-    /*65*/ throw $finalArg___67__;
-  } /*68*/ else {
-    $(x___72__);
-  }
+  throw $finalArg___64__;
 }
 `````
 
@@ -62,8 +58,7 @@ Ref tracking result:
 x:
   - w @4       | ########## | not read    | none           | 30,56
   - w @30      | ########## | not read    | 4              | 56
-  - w @56      | ########## | 72          | 4,30           | none
-  - r @72      | 56
+  - w @56      | ########## | not read    | 4,30           | none
 
 $implicitThrow:
   - w @8           | ########## | 58          | none           | 48
@@ -71,9 +66,8 @@ $implicitThrow:
   - r @58          | 8,48
 
 $finalStep:
-  - w @12          | ########## | 64          | none           | 34
-  - w @34          | ########## | 64          | 12             | none
-  - r @64          | 12,34
+  - w @12          | ########## | not read    | none           | 34
+  - w @34          | ########## | not read    | 12             | none
 
 $finalCatchArg:
   - w @16          | ########## | 61          | none           | 52
@@ -81,6 +75,6 @@ $finalCatchArg:
   - r @61          | 16,52
 
 $finalArg:
-  - w @20          | ########## | 67          | none           | 39
-  - w @39          | ########## | 67          | 20             | none
-  - r @67          | 20,39
+  - w @20          | ########## | 64          | none           | 39
+  - w @39          | ########## | 64          | 20             | none
+  - r @64          | 20,39

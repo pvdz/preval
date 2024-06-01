@@ -50,12 +50,8 @@
       {
         $(2);
       }
-      if ($implicitThrow) {
-        throw $finalCatchArg;
-      }
-      if ($finalStep) {
-        break here;
-      }
+      if ($implicitThrow) throw $finalCatchArg;
+      else break here;
     }
     $(`remove me`);
   }
@@ -84,11 +80,7 @@ here: {
   if ($implicitThrow) {
     throw $finalCatchArg;
   } else {
-    if ($finalStep) {
-      break here;
-    } else {
-      $(`remove me`);
-    }
+    break here;
   }
 }
 $(3);
@@ -98,11 +90,9 @@ $(3);
 
 `````js filename=intro
 let $implicitThrow = false;
-let $finalStep = false;
 let $finalCatchArg = undefined;
 try {
   $(1);
-  $finalStep = true;
 } catch ($finalImplicit) {
   $implicitThrow = true;
   $finalCatchArg = $finalImplicit;
@@ -111,10 +101,6 @@ $(2);
 if ($implicitThrow) {
   throw $finalCatchArg;
 } else {
-  if ($finalStep) {
-  } else {
-    $(`remove me`);
-  }
   $(3);
 }
 `````
@@ -125,27 +111,19 @@ With rename=true
 
 `````js filename=intro
 let a = false;
-let b = false;
-let c = undefined;
+let b = undefined;
 try {
   $( 1 );
-  b = true;
 }
-catch (d) {
+catch (c) {
   a = true;
-  c = d;
+  b = c;
 }
 $( 2 );
 if (a) {
-  throw c;
+  throw b;
 }
 else {
-  if (b) {
-
-  }
-  else {
-    $( "remove me" );
-  }
   $( 3 );
 }
 `````

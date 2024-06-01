@@ -875,7 +875,6 @@ export function phaseNormalOnce(fdata) {
           after(node);
         }
 
-
         // Eliminate finally in favor of a catch and some boiler plate. Finally is just a far more complex beast to reason about.
         if (node.finalizer) {
           // Finally is actually a complex beast, especially for reference tracking
@@ -941,34 +940,46 @@ export function phaseNormalOnce(fdata) {
             const key = nodeType + ':' + (before ? 'before' : 'after');
             switch (key) {
               case 'SwitchStatement:before':
+                ASSERT(false, 'switch shouldnt exist anymore on the way back because it was eliminated by this phase??');
                 breakStack.push(node);
-              // fall-through
+                // fall-through
+              case 'DoWhileStatement:before':
+                ASSERT(false, 'dowhile shouldnt exist anymore on the way back because it was eliminated by this phase?');
+                // fall-through
               case 'ForStatement:before':
               case 'ForInStatement:before':
               case 'ForOfStatement:before':
               case 'WhileStatement:before':
-              case 'DoWhileStatement:before': {
+              {
                 breakStack.push(node);
                 continueStack.push(node);
                 break;
               }
 
               case 'SwitchStatement:after':
+                ASSERT(false, 'switch shouldnt exist anymore on the way back because it was eliminated by this phase?');
                 breakStack.pop();
               // fall-through
+              case 'DoWhileStatement:after':
+                ASSERT(false, 'dowhile shouldnt exist anymore on the way back because it was eliminated by this phase?');
+                // fall-through
               case 'ForStatement:after':
               case 'ForInStatement:after':
               case 'ForOfStatement:after':
               case 'WhileStatement:after':
-              case 'DoWhileStatement:after': {
+              {
+                if (node.$p.newAbrupt) parentNode.$p.newAbrupt = true;
                 breakStack.pop(node);
                 continueStack.pop(node);
                 break;
               }
 
-              case 'FunctionExpression:before':
               case 'FunctionDeclaration:before':
-              case 'ArrowFunctionExpression:before': {
+                ASSERT(false, 'funcdecl shouldnt exist anymore on the way back because it was eliminated by this phase?');
+                // fall-through
+              case 'FunctionExpression:before':
+              case 'ArrowFunctionExpression:before'
+              : {
                 return true; // Do not traverse
               }
 
@@ -983,6 +994,7 @@ export function phaseNormalOnce(fdata) {
                 break;
               }
               case 'BlockStatement:after': {
+                if (node.$p.newAbrupt && (parentNode && parentProp === 'block')) parentNode.$p.newAbrupt = true;
                 if (node !== rootNode.block) {
                   if (parentNode.type === 'TryStatement' && parentNode.block === node) {
                     tryNodeStack.pop();
@@ -996,11 +1008,13 @@ export function phaseNormalOnce(fdata) {
                 break;
               }
               case 'LabeledStatement:after': {
+                if (node.$p.newAbrupt) parentNode.$p.newAbrupt = true;
                 labelNodeStack.pop();
                 break;
               }
 
               case 'ReturnStatement:after': {
+                parentNode.$p.newAbrupt = true;
                 keywordsFound += 1;
                 const arg = createFreshVar('$finalArg', fdata);
                 const actionName = createFreshVar('$finalStep', fdata);
@@ -1012,10 +1026,10 @@ export function phaseNormalOnce(fdata) {
                 );
                 if (parentIndex < 0) parentNode[parentProp] = freshNode;
                 else parentNode[parentProp][parentIndex] = freshNode;
-                assertNoDupeNodes(outnode);
                 break;
               }
               case 'ThrowStatement:after': {
+                parentNode.$p.newAbrupt = true;
                 if (tryNodeStack.length) {
                   // Ignore. This throw is unconditionally caught by the catch. So unless the
                   // catch throws too, we don't care. And if the catch throws we'll handle it.
@@ -1032,10 +1046,10 @@ export function phaseNormalOnce(fdata) {
                   if (parentIndex < 0) parentNode[parentProp] = freshNode;
                   else parentNode[parentProp][parentIndex] = freshNode;
                 }
-                assertNoDupeNodes(outnode);
                 break;
               }
               case 'BreakStatement:after': {
+                parentNode.$p.newAbrupt = true;
                 if (node.label) {
                   if (labelNodeStack.some(node => node.label.name === node.label.name)) {
                     // Ignore. The break stays inside the try
@@ -1065,11 +1079,10 @@ export function phaseNormalOnce(fdata) {
                     else parentNode[parentProp][parentIndex] = freshNode;
                   }
                 }
-                assertNoDupeNodes(outnode);
                 break;
               }
-
               case 'ContinueStatement:after': {
+                parentNode.$p.newAbrupt = true;
                 if (node.label) {
                   // Note: parser will validate whether the label is valid for the continue. No need for us to check it
                   if (labelNodeStack.some(node => node.label.name === node.label.name)) {
@@ -1100,16 +1113,21 @@ export function phaseNormalOnce(fdata) {
                     else parentNode[parentProp][parentIndex] = freshNode;
                   }
                 }
-                assertNoDupeNodes(outnode);
+                break;
+              }
+
+              case 'TryStatement:after': {
+                // Both the try block and the catch must complete abruptly for the code after the Try to be guaranteed to be unreachable
+                if (node.block.$p.newAbrupt && node.handler.body.$p.newAbrupt) {
+                  parentNode.$p.newAbrupt = true;
+                }
+
                 break;
               }
             } // switch(key)
           } // /walker
 
-          let outnode = node;
           walk(_walker, node.block, 'block');
-
-          assertNoDupeNodes(node.block);
 
           const implicitName = createFreshVar('$finalImplicit', fdata);
 
@@ -1123,20 +1141,40 @@ export function phaseNormalOnce(fdata) {
             catchNode,
           );
 
+          // All these keywords are conditionally to being executed. However, if all the completions
+          // in the Try Block are (explicitly) abrupt then the last condition can be skipped because
+          // we know it's guaranteed to be true. This allows us to create an if-else chain which is
+          // easier to reason about down the line.
+          // However, when the Try Block also implicitly complete we have to add an empty Block to
+          // the conditions to make sure it does check whether the last completion code path was or
+          // wasn't executed.
+          // Note that if the original finally body would complete explicitly then that would still
+          // override any of these in the transformation because those are appended to the body now.
+
+          const conditions = keywords.map(({keyword, actionName, argName, labelName}) => {
+            return [
+              AST.identifier(actionName),
+              keyword === 'return'
+                ? AST.returnStatement(AST.identifier(argName)) :
+                keyword === 'throw'
+                ? AST.throwStatement(AST.identifier(argName)) :
+                keyword === 'break'
+                ? AST.breakStatement(labelName) :
+                keyword === 'continue'
+                ? AST.continueStatement(argName) :
+                ASSERT(false, `what keyword? ${keyword}`)
+            ];
+          });
+          if (!node.block.$p.newAbrupt) {
+            conditions.push([null, AST.blockStatement()]); // Empty else
+          }
+
           const wrapper = AST.blockStatement(
             ...keywords.map(({actionName}) => AST.variableDeclaration(actionName, AST.primitive(false), 'let')),
             ...keywords.map(({argName}) => argName && AST.variableDeclaration(argName, AST.primitive(undefined), 'let')).filter(Boolean),
             AST.labeledStatement(AST.identifier(labelNode.name), labelBody),
             node.finalizer, // We won't be using this anymore anyways since we'll replace it
-            ...keywords.map(({keyword, actionName, argName, labelName}, i) => {
-              return AST.ifStatement(AST.identifier(actionName), AST.blockStatement(
-                keyword === 'return' ? AST.returnStatement(AST.identifier(argName)):
-                  keyword === 'throw' ? AST.throwStatement(AST.identifier(argName)):
-                    keyword === 'break' ? AST.breakStatement(labelName):
-                      keyword === 'continue' ? AST.continueStatement(argName) :
-                        ASSERT(false, `what keyword? ${keyword}`)
-              ));
-            })
+            AST.ifElseChain(conditions, undefined, true)
           );
 
           assertNoDupeNodes(wrapper);

@@ -48,12 +48,8 @@ let f = function () {
     {
       hack: break hack;
     }
-    if ($implicitThrow) {
-      throw $finalCatchArg;
-    }
-    if ($finalStep) {
-      return $finalArg;
-    }
+    if ($implicitThrow) throw $finalCatchArg;
+    else return $finalArg;
   }
   return 2;
 };
@@ -85,11 +81,7 @@ let f = function () {
   if ($implicitThrow) {
     throw $finalCatchArg;
   } else {
-    if ($finalStep) {
-      return $finalArg;
-    } else {
-      return 2;
-    }
+    return $finalArg;
   }
 };
 const tmpCallCallee = $;

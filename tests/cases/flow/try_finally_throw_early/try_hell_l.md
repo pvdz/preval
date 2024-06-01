@@ -59,12 +59,8 @@ let f = function () {
         x = 2;
         return;
       }
-      if ($implicitThrow) {
-        throw $finalCatchArg;
-      }
-      if ($finalStep) {
-        break foo;
-      }
+      if ($implicitThrow) throw $finalCatchArg;
+      else break foo;
     }
     console.log(x);
   }

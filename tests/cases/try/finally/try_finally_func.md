@@ -69,18 +69,16 @@ try {
         {
           $(x);
         }
-        if ($implicitThrow) {
-          throw $finalCatchArg;
-        }
-        if ($finalStep) {
-          return $finalArg;
+        if ($implicitThrow) throw $finalCatchArg;
+        else if ($finalStep) return $finalArg;
+        else {
         }
       }
     };
     $(f);
   }
-  if ($implicitThrow$1) {
-    throw $finalCatchArg$1;
+  if ($implicitThrow$1) throw $finalCatchArg$1;
+  else {
   }
 }
 `````

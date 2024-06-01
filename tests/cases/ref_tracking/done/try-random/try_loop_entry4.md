@@ -18,7 +18,7 @@
   $(x);       // x=1
   while (true) {
     try {
-      $(x);   // x=1
+      $(x);   // x=1 (not 2)
       x = 2;  // Does not overwrite itself because it does not loop
       break;
     } finally {
@@ -55,25 +55,22 @@ while (true) {
   if ($implicitThrow___60__) {
     /*61*/ throw $finalCatchArg___63__;
   } /*64*/ else {
-    if ($finalStep___66__) {
-      /*67*/ break;
-    } /*69*/ else {
-    }
+    break;
   }
 }
-$(x___73__);
+$(x___69__);
 `````
 
 Ref tracking result:
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 9,33,58,73  | none           | 37
+  - w @4       | ########## | 9,33,58,69  | none           | 37
   - r @9       | 4
   - r @33      | 4,37
-  - w @37      | ########## | 33,58,73    | 4,37           | 37
+  - w @37      | ########## | 33,58,69    | 4,37           | 37
   - r @58      | 4,37
-  - r @73      | 4,37
+  - r @69      | 4,37
 
 $implicitThrow:
   - w @15          | ########## | 60          | none           | 50
@@ -81,9 +78,8 @@ $implicitThrow:
   - r @60          | 15,50
 
 $finalStep:
-  - w @19          | ########## | 66          | none           | 41
-  - w @41          | ########## | 66          | 19             | none
-  - r @66          | 19,41
+  - w @19          | ########## | not read    | none           | 41
+  - w @41          | ########## | not read    | 19             | none
 
 $finalCatchArg:
   - w @23          | ########## | 63          | none           | 54

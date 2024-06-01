@@ -55,12 +55,8 @@ let f = function () {
       $(`still throws`);
       $(x);
     }
-    if ($implicitThrow) {
-      throw $finalCatchArg;
-    }
-    if ($finalStep) {
-      throw $finalArg;
-    }
+    if ($implicitThrow) throw $finalCatchArg;
+    else throw $finalArg;
   }
   $(x);
 };
@@ -94,12 +90,7 @@ let f = function () {
   if ($implicitThrow) {
     throw $finalCatchArg;
   } else {
-    if ($finalStep) {
-      throw $finalArg;
-    } else {
-      $(x);
-      return undefined;
-    }
+    throw $finalArg;
   }
 };
 f();
@@ -110,13 +101,11 @@ f();
 `````js filename=intro
 let x = `pass`;
 let $implicitThrow = false;
-let $finalStep = false;
 let $finalCatchArg = undefined;
 let $finalArg = undefined;
 try {
   fail_early;
   x = `fail`;
-  $finalStep = true;
   $finalArg = `yes`;
 } catch ($finalImplicit) {
   $implicitThrow = true;
@@ -127,11 +116,7 @@ $(x);
 if ($implicitThrow) {
   throw $finalCatchArg;
 } else {
-  if ($finalStep) {
-    throw $finalArg;
-  } else {
-    $(x);
-  }
+  throw $finalArg;
 }
 `````
 
@@ -142,31 +127,24 @@ With rename=true
 `````js filename=intro
 let a = "pass";
 let b = false;
-let c = false;
+let c = undefined;
 let d = undefined;
-let e = undefined;
 try {
   fail_early;
   a = "fail";
-  c = true;
-  e = "yes";
+  d = "yes";
 }
-catch (f) {
+catch (e) {
   b = true;
-  d = f;
+  c = e;
 }
 $( "still throws" );
 $( a );
 if (b) {
-  throw d;
+  throw c;
 }
 else {
-  if (c) {
-    throw e;
-  }
-  else {
-    $( a );
-  }
+  throw d;
 }
 `````
 

@@ -41,12 +41,8 @@ try {
   {
     $(2);
   }
-  if ($implicitThrow) {
-    throw $finalCatchArg;
-  }
-  if ($finalStep) {
-    throw $finalArg;
-  }
+  if ($implicitThrow) throw $finalCatchArg;
+  else throw $finalArg;
 }
 `````
 
@@ -71,10 +67,7 @@ $(2);
 if ($implicitThrow) {
   throw $finalCatchArg;
 } else {
-  if ($finalStep) {
-    throw $finalArg;
-  } else {
-  }
+  throw $finalArg;
 }
 `````
 

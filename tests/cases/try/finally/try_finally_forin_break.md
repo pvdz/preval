@@ -41,8 +41,8 @@ for (const x in { a: 1 }) {
       $(2);
       break;
     }
-    if ($implicitThrow) {
-      throw $finalCatchArg;
+    if ($implicitThrow) throw $finalCatchArg;
+    else {
     }
   }
 }

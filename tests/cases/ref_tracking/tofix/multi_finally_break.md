@@ -60,17 +60,12 @@ foo: {
             x = 3;
           }
           if ($implicitThrow) {
-            {
-              $finalStep$1 = true;
-              $finalArg = $finalCatchArg;
-              break $finally$1;
-            }
-          }
-          if ($finalStep) {
-            {
-              $finalStep$3 = true;
-              break $finally$1;
-            }
+            $finalStep$1 = true;
+            $finalArg = $finalCatchArg;
+            break $finally$1;
+          } else {
+            $finalStep$3 = true;
+            break $finally$1;
           }
         }
       } catch ($finalImplicit$1) {
@@ -81,14 +76,10 @@ foo: {
     {
       x = 4;
     }
-    if ($implicitThrow$1) {
-      throw $finalCatchArg$1;
-    }
-    if ($finalStep$1) {
-      throw $finalArg;
-    }
-    if ($finalStep$3) {
-      break foo;
+    if ($implicitThrow$1) throw $finalCatchArg$1;
+    else if ($finalStep$1) throw $finalArg;
+    else if ($finalStep$3) break foo;
+    else {
     }
   }
 }
@@ -126,11 +117,8 @@ foo: {
         $finalArg = $finalCatchArg;
         break $finally$1;
       } else {
-        if ($finalStep) {
-          $finalStep$3 = true;
-          break $finally$1;
-        } else {
-        }
+        $finalStep$3 = true;
+        break $finally$1;
       }
     } catch ($finalImplicit$1) {
       $implicitThrow$1 = true;

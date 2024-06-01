@@ -2,7 +2,7 @@
 
 # label_finally_finally_if_true_break_single_read3.md
 
-> Ref tracking > Done > Try-random > Label finally finally if true break single read3
+> Ref tracking > Tofix > Label finally finally if true break single read3
 > 
 > A break that travels through two finally nodes before reaching its label.
 >
@@ -15,18 +15,18 @@
 ## Input
 
 `````js filename=intro
-let x = 1;
+let x = 1; // unobservable
 back: {
-  x = 3;
+  x = 3; // unobservable (always becomes 4)
   try {
-    x = 4;
+    x = 4; // unobservable (always becomes 5 unless thrown)
     break back;
   } finally {
     x = 5;
   }
-  x = 6;
+  x = 6; // unreachable
 }
-$(x); // x=5 6
+$(x); // x=5
 `````
 
 ## Output
@@ -54,26 +54,21 @@ back___7__: /*8*/ {
   if ($implicitThrow___56__) {
     /*57*/ throw $finalCatchArg___59__;
   } /*60*/ else {
-    if ($finalStep___62__) {
-      /*63*/ break back___65__;
-    } /*66*/ else {
-      x___70__ = 6;
-    }
+    break back___62__;
   }
 }
-$(x___74__);
+$(x___66__);
 `````
 
 Ref tracking result:
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 74          | none           | 12
+  - w @4       | ########## | 66          | none           | 12
   - w @12      | ########## | not read    | 4              | 33,54
   - w @33      | ########## | not read    | 12             | 54
-  - w @54      | ########## | 74          | 12,33          | 70
-  - w @70      | ########## | 74          | 54             | none
-  - r @74      | 4,54,70
+  - w @54      | ########## | 66          | 12,33          | none
+  - r @66      | 4,54
 
 $implicitThrow:
   - w @15          | ########## | 56          | none           | 46
@@ -81,9 +76,8 @@ $implicitThrow:
   - r @56          | 15,46
 
 $finalStep:
-  - w @19          | ########## | 62          | none           | 37
-  - w @37          | ########## | 62          | 19             | none
-  - r @62          | 19,37
+  - w @19          | ########## | not read    | none           | 37
+  - w @37          | ########## | not read    | 19             | none
 
 $finalCatchArg:
   - w @23          | ########## | 59          | none           | 50

@@ -51,12 +51,8 @@ let f = function () {
       {
         return;
       }
-      if ($implicitThrow) {
-        throw $finalCatchArg;
-      }
-      if ($finalStep) {
-        throw $finalArg;
-      }
+      if ($implicitThrow) throw $finalCatchArg;
+      else throw $finalArg;
     }
   }
 };

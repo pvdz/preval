@@ -47,8 +47,8 @@ let f = function () {
     {
       $(3);
     }
-    if ($implicitThrow) {
-      throw $finalCatchArg;
+    if ($implicitThrow) throw $finalCatchArg;
+    else {
     }
   }
   $(`fail2`);

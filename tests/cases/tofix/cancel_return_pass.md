@@ -47,12 +47,8 @@ let f = function () {
     {
       break hack;
     }
-    if ($implicitThrow) {
-      throw $finalCatchArg;
-    }
-    if ($finalStep) {
-      return $finalArg;
-    }
+    if ($implicitThrow) throw $finalCatchArg;
+    else return $finalArg;
   }
   return 2;
 };

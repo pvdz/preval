@@ -65,24 +65,21 @@ here___7__: /*8*/ {
   if ($implicitThrow___68__) {
     /*69*/ throw $finalCatchArg___71__;
   } /*72*/ else {
-    if ($finalStep___74__) {
-      /*75*/ break here___77__;
-    } /*78*/ else {
-    }
+    break here___74__;
   }
 }
-$(x___82__);
+$(x___78__);
 `````
 
 Ref tracking result:
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 53,82       | none           | 32,65
-  - w @32      | ########## | 53,82       | 4              | 65
+  - w @4       | ########## | 53,78       | none           | 32,65
+  - w @32      | ########## | 53,78       | 4              | 65
   - r @53      | 4,32
-  - w @65      | ########## | 82          | 4,32           | none
-  - r @82      | 4,32,65
+  - w @65      | ########## | 78          | 4,32           | none
+  - r @78      | 4,32,65
 
 $implicitThrow:
   - w @11          | ########## | 68          | none           | 45
@@ -90,9 +87,8 @@ $implicitThrow:
   - r @68          | 11,45
 
 $finalStep:
-  - w @15          | ########## | 74          | none           | 36
-  - w @36          | ########## | 74          | 15             | none
-  - r @74          | 15,36
+  - w @15          | ########## | not read    | none           | 36
+  - w @36          | ########## | not read    | 15             | none
 
 $finalCatchArg:
   - w @19          | ########## | 71          | none           | 49

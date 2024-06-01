@@ -35,6 +35,7 @@ export function $p() {
     // - completesAbrupt // bool. For any node that can contain other nodes. This is true if that node has a child node that is continue/break/return/throw. The IfStatement has two specific properties for each branch. Other multi-child-block capable nodes like `try` should not look at this or be fixed to support it.
     // - completesAbruptConsequent // bool. For IfStatement nodes. Need this to distinguish between consequent and alternate.
     // - completesAbruptAlternate // bool. For IfStatement nodes. Need this to distinguish between consequent and alternate.
+    // - newAbrupt // bool, because I like tech debt. checked and used in normal_once phase for finally transform.
 
     // reduce/phase2 (these props should exist after phas1... even on new nodes)
     // - hasFuncDecl // bool. Prevent elimination of blocks containing function declarations

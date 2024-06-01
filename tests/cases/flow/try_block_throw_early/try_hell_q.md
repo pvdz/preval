@@ -54,12 +54,8 @@ let f = function () {
     {
       break stop;
     }
-    if ($implicitThrow) {
-      throw $finalCatchArg;
-    }
-    if ($finalStep) {
-      throw $finalArg;
-    }
+    if ($implicitThrow) throw $finalCatchArg;
+    else throw $finalArg;
   }
 };
 let x = 0;

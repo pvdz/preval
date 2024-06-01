@@ -39,8 +39,8 @@ let x = 0;
   {
     throw_early;
   }
-  if ($implicitThrow) {
-    throw $finalCatchArg;
+  if ($implicitThrow) throw $finalCatchArg;
+  else {
   }
 }
 considerMutated(x);

@@ -23,9 +23,8 @@
       x = 3;
     }
 
-    // Dead code (we could detect this)
-    //$(x);
-    //x = 4;
+    $(x);   // unreachable
+    x = 4;  // unreachable
   }
   
   $(x); // 3 (only, but because DCE is not applied yet, it'll also read 1)
@@ -58,24 +57,21 @@ here___7__: /*8*/ {
   if ($implicitThrow___59__) {
     /*60*/ throw $finalCatchArg___62__;
   } /*63*/ else {
-    if ($finalStep___65__) {
-      /*66*/ break here___68__;
-    } /*69*/ else {
-    }
+    break here___65__;
   }
 }
-$(x___73__);
+$(x___69__);
 `````
 
 Ref tracking result:
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 53,73       | none           | 32,57
+  - w @4       | ########## | 53,69       | none           | 32,57
   - w @32      | ########## | 53          | 4              | 57
   - r @53      | 4,32
-  - w @57      | ########## | 73          | 4,32           | none
-  - r @73      | 4,57
+  - w @57      | ########## | 69          | 4,32           | none
+  - r @69      | 4,57
 
 $implicitThrow:
   - w @11          | ########## | 59          | none           | 45
@@ -83,9 +79,8 @@ $implicitThrow:
   - r @59          | 11,45
 
 $finalStep:
-  - w @15          | ########## | 65          | none           | 36
-  - w @36          | ########## | 65          | 15             | none
-  - r @65          | 15,36
+  - w @15          | ########## | not read    | none           | 36
+  - w @36          | ########## | not read    | 15             | none
 
 $finalCatchArg:
   - w @19          | ########## | 62          | none           | 49

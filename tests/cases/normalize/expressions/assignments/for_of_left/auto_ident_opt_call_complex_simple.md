@@ -51,12 +51,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let a = undefined;
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
 let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
-  a = undefined;
   const tmpChainElementCall = $($);
   const tmpIfTest = tmpChainElementCall == null;
   if (tmpIfTest) {
@@ -74,15 +73,11 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
-a: 999,
-b: 1000
-;
+let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 let d = undefined;
 for (d of c) {
-  a = undefined;
   const e = $( $ );
   const f = e == null;
   if (f) {

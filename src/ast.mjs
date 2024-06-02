@@ -744,6 +744,7 @@ export function tryStatement(block, param, handler, finalizer, paramNullAck = fa
     'the finalizer, if present, should be an actual BlockStatement node',
     finalizer,
   );
+  ASSERT(!finalizer, 'normalized code does not include finally. are you sure this isnt a bug?');
   ASSERT(
     param === null || typeof param === 'string' || param?.type === 'Identifier',
     'the param (catch var) should be null, a string, or an ident. more exotic cases should be supported first but not likely needed',

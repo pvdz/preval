@@ -60,13 +60,13 @@ Ref tracking result:
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 9,59        | none           | 16
+  - w @4       | ########## | 9           | none           | 16
   - r @9       | 4
   - w @16      | ########## | 30,49       | 4,16,34        | 16,34
   - r @30      | 16
   - w @34      | ########## | 49          | 16             | 16
   - r @49      | 16,34
-  - r @59      | 4
+  - r @59      | none (unreachable?)
 
 $implicitThrow:
   - w @19          | ########## | 51          | none           | 41

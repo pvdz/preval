@@ -51,16 +51,14 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
 let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
   b.c = 2;
-  a = 2;
   (2).x = tmpForOfLhsNode;
 }
-$(a, b);
+$(2, b);
 `````
 
 ## PST Output
@@ -69,19 +67,14 @@ With rename=true
 
 `````js filename=intro
 const a = { c: 1 };
-let b = {
-a: 999,
-b: 1000
-;
-const c = { x: 1 };
-const d = $( c );
-let e = undefined;
-for (e of d) {
+const b = { x: 1 };
+const c = $( b );
+let d = undefined;
+for (d of c) {
   a.c = 2;
-  b = 2;
-  2.x = e;
+  2.x = d;
 }
-$( b, a );
+$( 2, a );
 `````
 
 ## Globals

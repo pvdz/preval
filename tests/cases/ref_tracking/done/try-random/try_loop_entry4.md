@@ -16,7 +16,7 @@
 {
   let x = 1;
   $(x);       // x=1
-  while (true) {
+  while (true) { // never loops
     try {
       $(x);   // x=1 (not 2)
       x = 2;  // Does not overwrite itself because it does not loop
@@ -67,8 +67,8 @@ Ref tracking result:
 x:
   - w @4       | ########## | 9,33,58,69  | none           | 37
   - r @9       | 4
-  - r @33      | 4,37
-  - w @37      | ########## | 33,58,69    | 4,37           | 37
+  - r @33      | 4
+  - w @37      | ########## | 58,69       | 4              | none
   - r @58      | 4,37
   - r @69      | 4,37
 

@@ -65,12 +65,11 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
+let a = undefined;
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
 let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
-  a = undefined;
   const tmpChainElementCall = $(b);
   const tmpIfTest = tmpChainElementCall == null;
   if (tmpIfTest) {
@@ -97,15 +96,11 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 const b = { x: a };
-let c = {
-a: 999,
-b: 1000
-;
+let c = undefined;
 const d = { x: 1 };
 const e = $( d );
 let f = undefined;
 for (f in e) {
-  c = undefined;
   const g = $( b );
   const h = g == null;
   if (h) {

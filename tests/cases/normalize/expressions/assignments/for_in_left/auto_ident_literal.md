@@ -43,15 +43,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
 let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
-  a = `foo`;
   `foo`.x = tmpForInLhsNode;
 }
-$(a);
+$(`foo`);
 `````
 
 ## PST Output
@@ -59,18 +57,13 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
-a: 999,
-b: 1000
-;
-const b = { x: 1 };
-const c = $( b );
-let d = undefined;
-for (d in c) {
-  a = "foo";
-  "foo".x = d;
+const a = { x: 1 };
+const b = $( a );
+let c = undefined;
+for (c in b) {
+  "foo".x = c;
 }
-$( a );
+$( "foo" );
 `````
 
 ## Globals

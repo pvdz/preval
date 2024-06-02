@@ -64,7 +64,6 @@ $(a, b, c, d);
 `````js filename=intro
 const b = { x: 1 };
 const c = { y: 2 };
-let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
 let tmpForInLhsNode = undefined;
@@ -75,10 +74,9 @@ for (tmpForInLhsNode in tmpForInRhs) {
   const varInitAssignLhsComputedProp = $(`y`);
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-  a = 3;
   (3).x = tmpForInLhsNode;
 }
-$(a, b, c, 3);
+$(3, b, c, 3);
 `````
 
 ## PST Output
@@ -88,24 +86,19 @@ With rename=true
 `````js filename=intro
 const a = { x: 1 };
 const b = { y: 2 };
-let c = {
-a: 999,
-b: 1000
-;
-const d = { x: 1 };
-const e = $( d );
-let f = undefined;
-for (f in e) {
-  const g = $( a );
-  const h = $( "x" );
-  const i = $( b );
-  const j = $( "y" );
-  i[j] = 3;
-  g[h] = 3;
-  c = 3;
-  3.x = f;
+const c = { x: 1 };
+const d = $( c );
+let e = undefined;
+for (e in d) {
+  const f = $( a );
+  const g = $( "x" );
+  const h = $( b );
+  const i = $( "y" );
+  h[i] = 3;
+  f[g] = 3;
+  3.x = e;
 }
-$( c, a, b, 3 );
+$( 3, a, b, 3 );
 `````
 
 ## Globals

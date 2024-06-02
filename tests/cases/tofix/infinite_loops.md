@@ -167,11 +167,11 @@ Ref tracking result:
 
                  | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 18,23,32    | none           | 27
+  - w @4       | ########## | 18,23       | none           | 27
   - r @18      | 4,27
   - r @23      | 4,27
   - w @27      | ########## | 18,23       | 4,27           | 27
-  - r @32      | 4
+  - r @32      | none (unreachable?)
 
 $continue1:
   - w @35      | ########## | 63,137      | none           | none
@@ -207,7 +207,7 @@ $break1:
   - w @120     | ########## | not read    | none           | none
 
 x$1:
-  - r @127     | none (TDZ?)
+  - r @127     | none (unreachable?)
   - w @133     | ########## | 138         | none           | none
   - r @138     | 133
 

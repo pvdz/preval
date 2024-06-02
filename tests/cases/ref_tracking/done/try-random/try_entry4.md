@@ -50,9 +50,9 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 9,18,25,33  | none           | 29
+  - w @4       | ########## | 9,18,25     | none           | 29
   - r @9       | 4
   - r @18      | 4,29
   - r @25      | 4,29
   - w @29      | ########## | 18,25       | 4,29           | 29
-  - r @33      | 4
+  - r @33      | none (unreachable?)

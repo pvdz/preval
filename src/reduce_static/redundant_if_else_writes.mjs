@@ -38,21 +38,14 @@ function _redundantWrites(fdata) {
     if (meta.isBuiltin) return;
     if (meta.isConstant) return; // Can't have redundant writes if you can't have more than one
     if (!meta.singleScoped) return; // TODO: we can go the hard way on this one?
+    if (meta.writes.length === 1) return; // This rule doesn't apply at all
 
     vgroup('-- name: `' + name + '`, writes:', meta.writes.length, ', reads:', meta.reads.length);
 
     const varWrite = meta.writes.find((write) => write.kind === 'var');
     ASSERT(varWrite, 'all constants have a var', meta);
 
-    ASSERT(
-      varWrite.reachedByWrites.size > 0 || meta.writes.length === 1,
-      'when not TDZ and not multi-scope and not a constant, the var should be reachable by at least one other write if there is one. the var:',
-      name,
-      'reached by writes == 0:',
-      varWrite.reachedByWrites.size > 0,
-      'meta.writes:',
-      meta.writes.length,
-    );
+    if (varWrite.reachedByWrites.size === 0) return; // There might be writes but they're already unreachable. Ignore them.
 
     // If the var decl init cannot be observed, replace it with any primitive assigned in a write that reaches ("shadows") the var
     let hasNoPrimitives = false;

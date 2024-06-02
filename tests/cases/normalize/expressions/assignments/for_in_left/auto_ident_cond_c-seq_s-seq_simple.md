@@ -50,14 +50,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let a = 60;
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
 let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
   const tmpIfTest = $(30);
   if (tmpIfTest) {
-    a = 60;
   } else {
     const tmpCalleeParam$1 = $(100);
     a = $(tmpCalleeParam$1);
@@ -72,17 +71,14 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
-a: 999,
-b: 1000
-;
+let a = 60;
 const b = { x: 1 };
 const c = $( b );
 let d = undefined;
 for (d in c) {
   const e = $( 30 );
   if (e) {
-    a = 60;
+
   }
   else {
     const f = $( 100 );

@@ -2,7 +2,7 @@
 
 # while_continue_label1.md
 
-> Ref tracking > Done > While continue label1
+> Ref tracking > Tofix > While continue label1
 >
 > if
 
@@ -25,10 +25,9 @@ again: while (true) {
     }
   }
   // the loop never breaks and the continue always skips over this. 
-  // if anything it's unreachable and should be eliminated
-  $(x); // should not be able to read 2
+  $(x); // unreachable
 }
-$(x); // 1 2 (but unreachable)
+$(x); // unreachable
 `````
 
 ## Output
@@ -56,9 +55,9 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 20,25,35,39 | none           | 29
+  - w @4       | ########## | 20,25       | none           | 29
   - r @20      | 4,29
   - r @25      | 4,29
   - w @29      | ########## | 20,25,35    | 4,29           | 29
-  - r @35      | 4,29
-  - r @39      | 4
+  - r @35      | 29
+  - r @39      | none (unreachable?)

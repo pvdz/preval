@@ -49,12 +49,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let a = 1;
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
 let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
-  a = 1;
   const tmpCalleeParam$1 = $(1);
   a = $(tmpCalleeParam$1);
   a.x = tmpForOfLhsNode;
@@ -67,15 +66,11 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
-a: 999,
-b: 1000
-;
+let a = 1;
 const b = { x: 1 };
 const c = $( b );
 let d = undefined;
 for (d of c) {
-  a = 1;
   const e = $( 1 );
   a = $( e );
   a.x = d;

@@ -178,7 +178,7 @@ export function openRefsOnBeforeLabel(node, parentBlock) {
 }
 
 export function openRefsOnAfterLabel(node, parentBlock, walkerPath, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, catchStack) {
-  if (REF_TRACK_TRACING) console.group('RTT: LABEL:after');
+  if (REF_TRACK_TRACING) console.group('RTT: LABEL:after', node.$p.newAbrupt);
 
   if (node.body.type !== 'BlockStatement') {
     if (REF_TRACK_TRACING) console.log('RTT: label body is a loop so not propagating ref stuff');
@@ -271,8 +271,8 @@ export function openRefsOnAfterLoop(kind /* loop | in | of */, node, parentBlock
             upsertGetSet(exitWrites, name, write)
           }
           treblo.overwritten.forEach(name => {
-            // Note: this mutatedRefs is a live _reference_ to the srcBlock.$p.treblo.mutatedBetweenSrcAndDst
-            if (REF_TRACK_TRACING) console.log(`TTR: - Marking "${name}" as overwritten in queued block @${srcPid}`);
+            // Note: this mutatedRefs is a live _reference_ to the srcBlock.$p.treblo.pendingNext[].mutatedBetweenSrcAndDst
+            if (REF_TRACK_TRACING) console.log(`TTR: - Marking "${name}" as overwritten in queued continuation from block @${srcPid}`);
             mutatedRefs.add(name);
           });
         });
@@ -648,7 +648,7 @@ function findAndQueueContinuationBlock(fromBlockTreblo, fromBlockPid, wasAbruptT
     // Furthermore, the implicit throw case is handled separately at the Catch
     // node handler and it supersedes any explicit throws.
     // As such, we don't need to schedule either of them here.
-    if (REF_TRACK_TRACING) console.log('RTT: Not scheduling return or throw completions as they cant be observed in normalized code before leaving the function');
+    if (REF_TRACK_TRACING) console.log(`RTT: Not scheduling return or throw completions ("${wasAbruptType}") as they cant be observed in normalized code before leaving the function`);
     return;
   }
 
@@ -928,6 +928,9 @@ function propagateExitWrites(pendingNext, parentDefined, parentExitWrites, paren
     // TODO: we should add a check to see if a loop has an abrupt completion at all. And if it's not Catch trapped then consider the tail unreachable. Etc.
     // TODO: if a loop body does not contain a natural break then the code after it is dead code unless the loop is not the child of a block...
     // TODO: rest is dead code, apply DCE?
+
+    parentExitWrites.clear();
+
   } else {
     if (REF_TRACK_TRACING) console.log(`RTT: merging or replacing the exitWrites from ${pendingNext.length} pendingNext sets into the parent @`, parentBlockPid);
     parentDefined.forEach(name => {
@@ -945,8 +948,9 @@ function propagateExitWrites(pendingNext, parentDefined, parentExitWrites, paren
         // TODO: probably should consider the rest dead code...
         const set = new Set();
         pendingNext.forEach(({ exitWrites }) => {
-          ASSERT(exitWrites?.size > 0, 'all paths had this overwritten so it should exist and have writes');
-          exitWrites.get(name).forEach(write => set.add(write));
+          // TODO: this assertion doesnt hold anymore because if a branch doesnt have pendingNext then it clears the parent exitWrites, leaving this assertion moot
+          //ASSERT(exitWrites?.size > 0, 'all paths had this overwritten so it should exist and have writes');
+          exitWrites.get(name)?.forEach(write => set.add(write));
         });
         parentExitWrites.set(name, set);
         // Mark the name as overwritten in this code path too

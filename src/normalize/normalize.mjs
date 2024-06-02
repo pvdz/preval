@@ -1230,6 +1230,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
           // The `arguments` reference is special as it implies func params can not be changed. Something to improve later.
           const meta = node.name !== 'arguments' && fdata.globallyUniqueNamingRegistry.get(node.name);
+          ASSERT(node.name === 'arguments' || meta, 'all names should have a meta now', node.name, node)
           if (node.name === 'arguments' || !meta.isImplicitGlobal) {
             // `arguments` in global is an implicit binding. We can safely drop other occurrences.
             if (node.name !== 'arguments' || funcStack.length > 1) {

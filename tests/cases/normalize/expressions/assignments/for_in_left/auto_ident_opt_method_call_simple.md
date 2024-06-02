@@ -56,12 +56,11 @@ $(a);
 
 `````js filename=intro
 const b = { c: $ };
-let a = { a: 999, b: 1000 };
+let a = undefined;
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
 let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
-  a = undefined;
   const tmpChainElementObject = b.c;
   const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
   a = tmpChainElementCall;
@@ -76,15 +75,11 @@ With rename=true
 
 `````js filename=intro
 const a = { c: $ };
-let b = {
-a: 999,
-b: 1000
-;
+let b = undefined;
 const c = { x: 1 };
 const d = $( c );
 let e = undefined;
 for (e in d) {
-  b = undefined;
   const f = a.c;
   const g = $dotCall( f, a, 1 );
   b = g;

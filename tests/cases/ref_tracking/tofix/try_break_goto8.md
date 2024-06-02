@@ -70,12 +70,12 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 9,24,37,51  | none           | 28,44,55
+  - w @4       | ########## | 9,24,37     | none           | 28,44
   - r @9       | 4
   - r @24      | 4,28
   - w @28      | ########## | 24,37       | 4,28           | 28,44
   - r @37      | 4,28
   - w @44      | ########## | 59          | 4,28           | none
-  - r @51      | 4
-  - w @55      | ########## | 59          | 4              | none
+  - r @51      | none (unreachable?)
+  - w @55      | ########## | 59          | none           | none
   - r @59      | 44,55

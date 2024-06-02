@@ -64,12 +64,11 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
-let a = { a: 999, b: 1000 };
+let a = undefined;
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
 let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
-  a = undefined;
   const tmpChainElementObject$3 = tmpObjLitVal$1.e;
   const tmpIfTest$1 = tmpChainElementObject$3 == null;
   if (tmpIfTest$1) {
@@ -88,15 +87,11 @@ With rename=true
 
 `````js filename=intro
 const a = { e: $ };
-let b = {
-a: 999,
-b: 1000
-;
+let b = undefined;
 const c = { x: 1 };
 const d = $( c );
 let e = undefined;
 for (e in d) {
-  b = undefined;
   const f = a.e;
   const g = f == null;
   if (g) {

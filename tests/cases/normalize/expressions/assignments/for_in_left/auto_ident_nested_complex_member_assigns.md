@@ -78,7 +78,6 @@ $(a, b, c);
 
 `````js filename=intro
 const b = { x: 1 };
-let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
 let tmpForInLhsNode = undefined;
@@ -101,10 +100,9 @@ for (tmpForInLhsNode in tmpForInRhs) {
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-  a = 3;
   (3).x = tmpForInLhsNode;
 }
-$(a, b, 3);
+$(3, b, 3);
 `````
 
 ## PST Output
@@ -113,36 +111,31 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-let b = {
-a: 999,
-b: 1000
-;
-const c = { x: 1 };
-const d = $( c );
-let e = undefined;
-for (e in d) {
-  const f = $( a );
-  const g = $( "x" );
-  const h = $( a );
-  const i = $( "x" );
-  const j = $( a );
-  const k = $( "x" );
-  const l = $( a );
-  const m = $( "x" );
-  const n = $( a );
-  const o = $( "x" );
-  const p = $( a );
-  const q = $( "x" );
-  p[q] = 3;
-  n[o] = 3;
-  l[m] = 3;
-  j[k] = 3;
-  h[i] = 3;
-  f[g] = 3;
-  b = 3;
-  3.x = e;
+const b = { x: 1 };
+const c = $( b );
+let d = undefined;
+for (d in c) {
+  const e = $( a );
+  const f = $( "x" );
+  const g = $( a );
+  const h = $( "x" );
+  const i = $( a );
+  const j = $( "x" );
+  const k = $( a );
+  const l = $( "x" );
+  const m = $( a );
+  const n = $( "x" );
+  const o = $( a );
+  const p = $( "x" );
+  o[p] = 3;
+  m[n] = 3;
+  k[l] = 3;
+  i[j] = 3;
+  g[h] = 3;
+  e[f] = 3;
+  3.x = d;
 }
-$( b, a, 3 );
+$( 3, a, 3 );
 `````
 
 ## Globals

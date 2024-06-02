@@ -25,7 +25,7 @@ while (true) {
     x = 3;
   }
 }
-$(x);
+$(x); // unreachable
 `````
 
 ## Output
@@ -50,9 +50,9 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 32          | none           | 12
+  - w @4       | ########## | not read    | none           | 12
   - w @12      | ########## | 19,24       | 4,12,28        | 12,28
   - r @19      | 12
   - r @24      | 12
   - w @28      | ########## | not read    | 12             | 12
-  - r @32      | 4
+  - r @32      | none (unreachable?)

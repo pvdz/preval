@@ -25,7 +25,7 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 {
   while ($(1)) {
-    null;
+    b;
   }
 }
 $(a, b);

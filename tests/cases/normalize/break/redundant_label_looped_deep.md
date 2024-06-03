@@ -51,23 +51,25 @@ exit: while (x) {
 
 `````js filename=intro
 let x = $(2);
-exit: while (true) {
-  if (x) {
-    while (true) {
-      $(1);
-      const tmpIfTest = $(1);
-      if (tmpIfTest) {
-        x = $(3);
-      } else {
+exit: {
+  while (true) {
+    if (x) {
+      while (true) {
+        $(1);
+        const tmpIfTest = $(1);
+        if (tmpIfTest) {
+          x = $(3);
+        } else {
+        }
+        if (x) {
+          break exit;
+        } else {
+          x = $(4);
+        }
       }
-      if (x) {
-        break exit;
-      } else {
-        x = $(4);
-      }
+    } else {
+      break;
     }
-  } else {
-    break;
   }
 }
 `````
@@ -76,23 +78,25 @@ exit: while (true) {
 
 `````js filename=intro
 let x = $(2);
-exit: while (true) {
-  if (x) {
-    while (true) {
-      $(1);
-      const tmpIfTest = $(1);
-      if (tmpIfTest) {
-        x = $(3);
-      } else {
+exit: {
+  while (true) {
+    if (x) {
+      while (true) {
+        $(1);
+        const tmpIfTest = $(1);
+        if (tmpIfTest) {
+          x = $(3);
+        } else {
+        }
+        if (x) {
+          break exit;
+        } else {
+          x = $(4);
+        }
       }
-      if (x) {
-        break exit;
-      } else {
-        x = $(4);
-      }
+    } else {
+      break;
     }
-  } else {
-    break;
   }
 }
 `````
@@ -103,24 +107,26 @@ With rename=true
 
 `````js filename=intro
 let a = $( 2 );
-exit: while (true) {
-  if (a) {
-    while (true) {
-      $( 1 );
-      const b = $( 1 );
-      if (b) {
-        a = $( 3 );
-      }
-      if (a) {
-        break exit;
-      }
-      else {
-        a = $( 4 );
+exit: {
+  while (true) {
+    if (a) {
+      while (true) {
+        $( 1 );
+        const b = $( 1 );
+        if (b) {
+          a = $( 3 );
+        }
+        if (a) {
+          break exit;
+        }
+        else {
+          a = $( 4 );
+        }
       }
     }
-  }
-  else {
-    break;
+    else {
+      break;
+    }
   }
 }
 `````

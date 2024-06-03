@@ -277,88 +277,25 @@ export function phaseNormalOnce(fdata) {
         break;
       }
       case 'DoWhileStatement:after': {
-        // We have to convert do-while to regular while because if the body contains a continue it will jump to the end
-        // which means it would skip any outlined code, unless we add worse overhead.
-        // So instead we had to bite the bullet
-
-        // Would love to merge the while's into one, but how...
-        // `do {} while (f());` --> `let tmp = true; while (tmp || f()) { tmp = false; }`
-        // `while (f()) {}` --> `if (f()) { do {} while(f()); }`
-        // `for (a(); b(); c()) d();` --> `a(); if (b()) { do { d(); c(); } while (b());`
-
         loopStack.pop();
 
-        if (parentNode.type === 'LabeledStatement') {
-          // This is a labeled loop. We have to be careful here because a labeled continue is syntactically
-          // required to point to a label that is a direct parentNode of a loop. And obviously we want to
-          // preserve which loop the continue points too, as well.
-          // To this end, we will rename the old label (parentNode) to something unused. Another rule will
-          // drop the then unused label. The child of the label will become a block that contians a new
-          // labeled (regular) while loop with the same label name as the old label. There are tests.
+        rule('A do-while must be simple regular while');
+        example('do { f(); } while (g());', 'let tmp = true; while (tmp) { f(); tmp = g(); }');
+        before(node, parentNode);
 
-          rule('Labeled do-while must be labeled regular while');
-          example(
-            'foo: do { f(); continue foo; } while(g());',
-            'unused: { let tmp = true; foo: while (tmp || g()) { tmp = false; g(); continue foo; } }',
-          );
-          before(node, parentNode);
+        const tmpName = createFreshVar('tmpDoWhileFlag', fdata);
+        const newNodes = AST.blockStatement([
+          AST.variableDeclaration(tmpName, AST.tru(), 'let'),
+          AST.whileStatement(
+            AST.identifier(tmpName),
+            AST.blockStatement(node.body, AST.expressionStatement(AST.assignmentExpression(tmpName, node.test))),
+          ),
+        ]);
 
-          const labelName = parentNode.label.name;
-          const newLabelNode = createFreshLabel('dropme', fdata); // This label will not be used so will be eliminated
-          const tmpName = createFreshVar('tmpDoWhileFlag', fdata);
-          const newNodes = AST.blockStatement([
-            AST.variableDeclaration(tmpName, AST.tru(), 'let'),
-            AST.labeledStatement(
-              labelName,
-              AST.whileStatement(
-                AST.logicalExpression('||', tmpName, node.test),
-                AST.blockStatement(AST.expressionStatement(AST.assignmentExpression(tmpName, AST.fals())), ...node.body.body),
-              ),
-            ),
-          ]);
-          parentNode.label = newLabelNode;
-          parentNode.body = newNodes;
+        if (parentIndex < 0) parentNode[parentProp] = newNodes;
+        else parentNode[parentProp][parentIndex] = newNodes;
 
-          after(newNodes, parentNode);
-        } else if (!node.$p.doesContinue) {
-          // We can use a simpler pattern for this case. The continue case is harder since every occurrence would first need to
-          // do the assignment as well which would lead to more code duplication. Maybe that's still acceptable, something TBD.
-          rule('Do-while without continue must be simple regular while');
-          example('do { f(); } while (g());', 'let tmp = true; while (tmp) { f(); tmp = g(); }');
-          before(node, parentNode);
-
-          const tmpName = createFreshVar('tmpDoWhileFlag', fdata);
-          const newNodes = AST.blockStatement([
-            AST.variableDeclaration(tmpName, AST.tru(), 'let'),
-            AST.whileStatement(
-              AST.identifier(tmpName),
-              AST.blockStatement(node.body, AST.expressionStatement(AST.assignmentExpression(tmpName, node.test))),
-            ),
-          ]);
-
-          if (parentIndex < 0) parentNode[parentProp] = newNodes;
-          else parentNode[parentProp][parentIndex] = newNodes;
-
-          after(newNodes, parentNode);
-        } else {
-          rule('Do-while must be regular while');
-          example('do { f(); } while(g());', 'let tmp = true; while (tmp || g()) { tmp = false; g(); }');
-          before(node, parentNode);
-
-          const tmpName = createFreshVar('tmpDoWhileFlag', fdata);
-          const newNodes = AST.blockStatement([
-            AST.variableDeclaration(tmpName, AST.tru(), 'let'),
-            AST.whileStatement(
-              AST.logicalExpression('||', tmpName, node.test),
-              AST.blockStatement(AST.expressionStatement(AST.assignmentExpression(tmpName, AST.fals())), node.body),
-            ),
-          ]);
-
-          if (parentIndex < 0) parentNode[parentProp] = newNodes;
-          else parentNode[parentProp][parentIndex] = newNodes;
-
-          after(newNodes, parentNode);
-        }
+        after(newNodes, parentNode);
 
         // Byebye do-while
         break; // Walker will revisit changed current node
@@ -383,58 +320,28 @@ export function phaseNormalOnce(fdata) {
           node.$p.parentLabel = parentNode.label.name;
         }
 
-        if (parentNode.type === 'LabeledStatement') {
-          // This is a labeled loop. We have to be careful here because a labeled continue is syntactically
-          // required to point to a label that is a direct parentNode of a loop. And obviously we want to
-          // preserve which loop the continue points too, as well.
-          // To this end, we will rename the old label (parentNode) to something unused. Another rule will
-          // drop the then unused label. The child of the label will become a block that contians a new
-          // labeled (regular) while loop with the same label name as the old label. There are tests.
-
-          rule('Labeled regular for-loop must be labeled regular while');
-          example('foo: for(a(); b(); c()) { f(); continue foo; }', 'unused: { a(); foo: while (b()) { c(); f(); continue foo; } }');
-          before(node, parentNode);
-
-          const labelName = parentNode.label.name;
-          const newLabelNode = createFreshLabel('dropme', fdata); // This label will not be used so will be eliminated
-          const newNodes = AST.blockStatement(
-            node.init ? (node.init.type === 'VariableDeclaration' ? node.init : AST.expressionStatement(node.init)) : AST.emptyStatement(),
-            AST.labeledStatement(
-              labelName,
-              AST.whileStatement(
-                node.test || AST.tru(),
-                AST.blockStatement(node.body, node.update ? AST.expressionStatement(node.update) : AST.emptyStatement()),
-              ),
-            ),
-          );
-          parentNode.label = newLabelNode;
-          parentNode.body = newNodes;
-
-          after(newNodes, parentNode);
-        } else {
-          rule('Regular `for` loops must be `while`');
-          example('for (a(); b(); c()) d();', '{ a(); while (b()) { d(); c(); } }');
-          before(node);
-
-          const newNode = AST.blockStatement(
-            node.init ? (node.init.type === 'VariableDeclaration' ? node.init : AST.expressionStatement(node.init)) : AST.emptyStatement(),
-            AST.whileStatement(
-              node.test || AST.tru(),
-              AST.blockStatement(node.body, node.update ? AST.expressionStatement(node.update) : AST.emptyStatement()),
-            ),
-          );
-
-          if (parentIndex < 0) parentNode[parentProp] = newNode;
-          else parentNode[parentProp][parentIndex] = newNode;
-
-          after(newNode);
-        }
-
-        // byebye ForStatement
-        break; // Walker will revisit changed current node
+        break;
       }
       case 'ForStatement:after': {
         loopStack.pop();
+
+        rule('Regular `for` loops must be `while`');
+        example('for (a(); b(); c()) d();', '{ a(); while (b()) { d(); c(); } }');
+        before(node);
+
+        const newNode = AST.blockStatement(
+          node.init ? (node.init.type === 'VariableDeclaration' ? node.init : AST.expressionStatement(node.init)) : AST.emptyStatement(),
+          AST.whileStatement(
+            node.test || AST.tru(),
+            AST.blockStatement(node.body, node.update ? AST.expressionStatement(node.update) : AST.emptyStatement()),
+          ),
+        );
+
+        if (parentIndex < 0) parentNode[parentProp] = newNode;
+        else parentNode[parentProp][parentIndex] = newNode;
+
+        after(newNode);
+
         break;
       }
       case 'FunctionExpression:before': {
@@ -787,7 +694,7 @@ export function phaseNormalOnce(fdata) {
 
         // All breaks without an explicit label should point to the fresh label that will be injected as the root of the switch-transform
         node.$p.unqualifiedLabelUsages.forEach((n) => {
-          ASSERT(!n.label, 'prepare should collect all and only unqualified break/continues');
+          ASSERT(!n.label, 'prepare should collect all and only unqualified breaks');
           n.label = AST.identifier(newLabelIdentNode.name);
         });
         node.$p.unqualifiedLabelUsages.length = 0;
@@ -914,29 +821,27 @@ export function phaseNormalOnce(fdata) {
           // We need to collect all abrupt completions that could be trapped by the finally
           // - must be same function
           // - we walk in-to-out so I think there cannot be any nested finally left, so we don't have to worry about that
-          // - so we scan for all the keywords; return, throw, break, continue.
+          // - so we scan for all the keywords; return, throw, break (continue should be out already).
           //   - for throw, make sure it's not caught by a nested catch
-          //   - for break and continue, make sure their target is a parent of the try otherwise they're irrelevant
+          //   - for break, make sure the target label is an ancestor of the try otherwise they're irrelevant
           // Next:
           // - Inject an $action let
-          // - For each return/throw keyword, inject a dedicated $use<i> let (ignore for break/continue), plus one for the fresh catch
+          // - For each return/throw keyword, inject a dedicated $use<i> let (ignore for break), plus one for the fresh catch
           // - Create a fresh label
           // - Wrap the try in a labeled block with this label
           // - Replace each keyword with a keyword-specific transform, where i is the nth keyword to transform:
           //   - throw: { $action = ++i; $use<i> = <node.argument>; break <label> }
           //   - return: { $action = ++i; $use<i> = <node.argument>; break <label> }
           //   - break: { $action = ++i; break <label> }
-          //   - continue: { $action = ++i; break <label> }
           // - Move the contents of the finally block to after the (new label)
           //   - Wrap the label in a new block to inject this stuff into
           // - Replace the now empty `finally {}` with `catch(e) { $action = ++i; $use = e; }`
           // - At the end of the (fresh) outer block, append abrupt completions, one for each keyword + the (new) catch:
           //   - return/throw: `if ($action === <i>) return $use<i> / throw $use<i>`
-          //   - break/continue: `if ($action === <i>) continue / break;` and compile the label name if the keyword had one.
+          //   - break: `if ($action === <i>) break;` and compile the label name if the keyword had one.
 
 
           const breakStack = [];
-          const continueStack = [];
           const tryNodeStack = [];
           const labelNodeStack = [];
 
@@ -976,7 +881,6 @@ export function phaseNormalOnce(fdata) {
               case 'WhileStatement:before':
               {
                 breakStack.push(node);
-                continueStack.push(node);
                 break;
               }
 
@@ -994,7 +898,6 @@ export function phaseNormalOnce(fdata) {
               {
                 if (node.$p.newAbrupt) parentNode.$p.newAbrupt = true;
                 breakStack.pop(node);
-                continueStack.pop(node);
                 break;
               }
 
@@ -1105,41 +1008,6 @@ export function phaseNormalOnce(fdata) {
                 }
                 break;
               }
-              case 'ContinueStatement:after': {
-                ASSERT(false, 'no expecting this');
-                parentNode.$p.newAbrupt = true;
-                if (node.label) {
-                  // Note: parser will validate whether the label is valid for the continue. No need for us to check it
-                  if (labelNodeStack.some(node => node.label.name === node.label.name)) {
-                    // Ignore. The break stays inside the try
-                  } else {
-                    const actionName = createFreshVar('$finalStep', fdata);
-                    keywords.push({keyword: 'continue', actionName, labelName: node.label.name});
-
-                    const freshNode = AST.blockStatement(
-                      AST.expressionStatement(AST.assignmentExpression(actionName, AST.primitive(true))),
-                      AST.breakStatement(labelNode),
-                    );
-                    if (parentIndex < 0) parentNode[parentProp] = freshNode;
-                    else parentNode[parentProp][parentIndex] = freshNode;
-                  }
-                } else {
-                  if (continueStack.length) {
-                    // Ignore
-                  } else {
-                    const actionName = createFreshVar('$finalStep', fdata);
-                    keywords.push({keyword: 'continue', actionName, labelName: undefined});
-
-                    const freshNode = AST.blockStatement(
-                      AST.expressionStatement(AST.assignmentExpression(actionName, AST.primitive(true))),
-                      AST.breakStatement(labelNode),
-                    );
-                    if (parentIndex < 0) parentNode[parentProp] = freshNode;
-                    else parentNode[parentProp][parentIndex] = freshNode;
-                  }
-                }
-                break;
-              }
 
               case 'TryStatement:after': {
                 // Both the try block and the catch must complete abruptly for the code after the Try to be guaranteed to be unreachable
@@ -1185,8 +1053,6 @@ export function phaseNormalOnce(fdata) {
                 ? AST.throwStatement(AST.identifier(argName)) :
                 keyword === 'break'
                 ? AST.breakStatement(labelName) :
-                //keyword === 'continue'
-                //? AST.continueStatement(argName) :
                 ASSERT(false, `what keyword? ${keyword}`)
             ];
           });

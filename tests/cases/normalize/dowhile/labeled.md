@@ -24,16 +24,18 @@ foo: do {
 ## Pre Normal
 
 `````js filename=intro
-dropme: {
+foo: {
   let tmpDoWhileFlag = true;
-  foo: while (tmpDoWhileFlag || $(2)) {
-    tmpDoWhileFlag = false;
-    $continue: {
-      {
-        $(1);
-        break $continue;
+  while (tmpDoWhileFlag) {
+    {
+      $continue: {
+        {
+          $(1);
+          break $continue;
+        }
       }
     }
+    tmpDoWhileFlag = $(2);
   }
 }
 `````
@@ -43,17 +45,12 @@ dropme: {
 `````js filename=intro
 let tmpDoWhileFlag = true;
 while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    tmpIfTest = $(2);
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
+  if (tmpDoWhileFlag) {
     $continue: {
       $(1);
       break $continue;
     }
+    tmpDoWhileFlag = $(2);
   } else {
     break;
   }
@@ -64,18 +61,14 @@ while (true) {
 
 `````js filename=intro
 $(1);
-let $tmpLoopUnrollCheck = true;
-const tmpIfTest$1 = $(2);
-if (tmpIfTest$1) {
+let tmpDoWhileFlag = $(2);
+if (tmpDoWhileFlag) {
   $(1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  tmpDoWhileFlag = $(2);
   while ($LOOP_UNROLL_9) {
-    const tmpIfTest$2 = $(2);
-    if (tmpIfTest$2) {
+    if (tmpDoWhileFlag) {
       $(1);
+      tmpDoWhileFlag = $(2);
     } else {
       break;
     }
@@ -90,19 +83,14 @@ With rename=true
 
 `````js filename=intro
 $( 1 );
-let a = true;
-const b = $( 2 );
-if (b) {
-  $( 1 );
-}
-else {
-  a = false;
-}
+let a = $( 2 );
 if (a) {
+  $( 1 );
+  a = $( 2 );
   while ($LOOP_UNROLL_9) {
-    const c = $( 2 );
-    if (c) {
+    if (a) {
       $( 1 );
+      a = $( 2 );
     }
     else {
       break;

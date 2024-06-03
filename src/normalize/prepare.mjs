@@ -510,7 +510,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
       }
 
       case 'BreakStatement:before':
-      case 'ContinueStatement:before': {
+      case 'ContinueStatement:before': { // note: must still cover `continue` for the normal_once case
         // Find labeled break or continue statements and make sure that they keep pointing to the "same" label
         // Find the first label ancestor where the original name matches the label of this node
         // Note: continue/break state is verified by the parser so we should be able to assume this continue/break has a valid target
@@ -592,7 +592,8 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
             parentProp,
             parentIndex,
           });
-        } else {
+        }
+        else {
           vlog('No label');
           let index = fenceStack.length - 1;
           let fenceNode = fenceStack[index];

@@ -147,13 +147,7 @@ function verifyStatement(node) {
     }
     case 'LabelStatement': {
       expect(typeof node.label, 'string', node);
-      if (node.body.type === 'WhileStatement') {
-        // There exists language exceptions around the label being a
-        // direct parent of a loop so we must support that case.
-        verifyStatement(node.body);
-      } else {
-        verifyBlock(node.body);
-      }
+      verifyBlock(node.body);
       break;
     }
     case 'LetStatement': {

@@ -1,6 +1,5 @@
 import {ASSERT} from "../utils.mjs"
 
-// continue is printed as break?
 // idents may flow over into numbers and print invalid code...
 
 export function arrayLiteral(elements) {

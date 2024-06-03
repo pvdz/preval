@@ -28,8 +28,7 @@ $('after, wont eval due to infinite loop');
 while ($(true)) {
   {
     let tmpDoWhileFlag = true;
-    while (tmpDoWhileFlag || $(true)) {
-      tmpDoWhileFlag = false;
+    while (tmpDoWhileFlag) {
       {
         $continue: {
           {
@@ -39,6 +38,7 @@ while ($(true)) {
           }
         }
       }
+      tmpDoWhileFlag = $(true);
     }
   }
   $(`keep, wont eval due to infinite loop`);
@@ -54,17 +54,12 @@ while (true) {
   if (tmpIfTest) {
     let tmpDoWhileFlag = true;
     while (true) {
-      let tmpIfTest$1 = tmpDoWhileFlag;
-      if (tmpIfTest$1) {
-      } else {
-        tmpIfTest$1 = $(true);
-      }
-      if (tmpIfTest$1) {
-        tmpDoWhileFlag = false;
+      if (tmpDoWhileFlag) {
         $continue: {
           $(`loop`);
           break $continue;
         }
+        tmpDoWhileFlag = $(true);
       } else {
         break;
       }
@@ -85,10 +80,11 @@ let tmpIfTest = $(true);
 while (true) {
   if (tmpIfTest) {
     $(`loop`);
+    let tmpDoWhileFlag = $(true);
     while ($LOOP_UNROLL_10) {
-      const tmpIfTest$2 = $(true);
-      if (tmpIfTest$2) {
+      if (tmpDoWhileFlag) {
         $(`loop`);
+        tmpDoWhileFlag = $(true);
       } else {
         break;
       }
@@ -111,10 +107,11 @@ let a = $( true );
 while (true) {
   if (a) {
     $( "loop" );
+    let b = $( true );
     while ($LOOP_UNROLL_10) {
-      const b = $( true );
       if (b) {
         $( "loop" );
+        b = $( true );
       }
       else {
         break;

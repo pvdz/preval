@@ -22,7 +22,9 @@ $(a);
 let a = { a: 999, b: 1000 };
 {
   while ($(1)) {
-    undefined;
+    (function () {
+      debugger;
+    });
   }
 }
 $(a);

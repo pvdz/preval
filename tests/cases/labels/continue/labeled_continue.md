@@ -77,27 +77,18 @@ $(x);
 `````js filename=intro
 let x = $(1);
 while (true) {
-  let $tmpLoopUnrollCheck = true;
-  $(x);
-  x = $(2);
-  if ($) {
-  } else {
-    x = $(3);
-    $(x);
-    $tmpLoopUnrollCheck = false;
-  }
-  if ($tmpLoopUnrollCheck) {
-    while ($LOOP_UNROLL_10) {
+  $continue: {
+    while (true) {
       $(x);
       x = $(2);
       if ($) {
+        break $continue;
       } else {
         x = $(3);
         $(x);
         break;
       }
     }
-  } else {
   }
 }
 $(x);
@@ -110,23 +101,12 @@ With rename=true
 `````js filename=intro
 let a = $( 1 );
 while (true) {
-  let b = true;
-  $( a );
-  a = $( 2 );
-  if ($) {
-
-  }
-  else {
-    a = $( 3 );
-    $( a );
-    b = false;
-  }
-  if (b) {
-    while ($LOOP_UNROLL_10) {
+  $continue:   {
+    while (true) {
       $( a );
       a = $( 2 );
       if ($) {
-
+        break $continue;
       }
       else {
         a = $( 3 );

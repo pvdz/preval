@@ -161,6 +161,7 @@ export function classExpression(id = null, superClass = null, body) {
 }
 
 export function continueStatement(label = null) {
+  ASSERT(false, 'continue does not exist in normalized code. why are we creating one');
   if (typeof label === 'string') label = identifier(label);
 
   return {

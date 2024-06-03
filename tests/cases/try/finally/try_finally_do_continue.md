@@ -27,8 +27,7 @@ $(3);
 `````js filename=intro
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || $LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $continue: {
         {
@@ -54,6 +53,7 @@ $(3);
         }
       }
     }
+    tmpDoWhileFlag = $LOOP_DONE_UNROLLING_ALWAYS_TRUE;
   }
 }
 $(3);
@@ -64,13 +64,7 @@ $(3);
 `````js filename=intro
 let tmpDoWhileFlag = true;
 while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    tmpIfTest = $LOOP_DONE_UNROLLING_ALWAYS_TRUE;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
+  if (tmpDoWhileFlag) {
     $continue: {
       let $implicitThrow = false;
       let $finalCatchArg = undefined;
@@ -83,6 +77,7 @@ while (true) {
       $(2);
       break $continue;
     }
+    tmpDoWhileFlag = $LOOP_DONE_UNROLLING_ALWAYS_TRUE;
   } else {
     break;
   }

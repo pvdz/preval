@@ -110,7 +110,8 @@ function convert(node) {
       break;
     }
     case 'ContinueStatement': {
-      return PST.breakStatement(node.label?.name);
+      REJECT
+      break;
     }
     case 'DebuggerStatement': {
       return PST.debuggerStatement();

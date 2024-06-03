@@ -201,8 +201,8 @@ need to make pids numbers
     - we know all the relevant bits so why not
   - Return value of a `forEach` arg kinds of things. Return statements are ignored so it's about branching.
   - Object spreads that are trivial to do should be done if we can figure them out statically
-  - eliminate redundant labels (continue without crossing a loop boundary, break that does not need a label, or at the end of flow)
-  - dce; if a loop body has abrupt endings that are not continue on all branches then the loop can be removed
+  - eliminate redundant labels (break that does not need a label, or at the end of flow)
+  - dce; if a loop body has abrupt endings on all branches (consider a labeled break that does not stop the loop, though) then the loop can be removed
   - we should be able to transform star imports to named imports. we know all the things here and the namespace is a constant.
     - check how the context is set when calling a namespace
   - default exports, do we eliminate them anyways, maybe opt-in or out to the defineProperty hack to fix the name?
@@ -212,7 +212,6 @@ need to make pids numbers
   - can we do something with infinite loops? DCE code that follows it. maybe worth it when including some early return analysis?
   - normalize labels in loops?
     - make implicit breaks explicit even if it's for the current loop. not sure if that would help anything
-    - always compile a continue rather than implicitly?
   - catch scope vars are not properly processed (or not at all?)
   - catch scope to always have a binding even if its unused.
   - Decide how to handle built-in cases like `String.fromCharCode(32)`
@@ -782,7 +781,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     groupEnd();
   }
 
-  function anyBlock(block, funcNode = null, loopLabelNode = null) {
+  function anyBlock(block, funcNode = null) {
     // program, body of a function, actual block statement, switch case body, try/catch body (finallys are eliminated)
     group('anyBlock');
     const body = block.body;
@@ -790,7 +789,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     let somethingChanged = false;
     for (let i = 0; i < body.length; ++i) {
       const cnode = body[i];
-      if (jumpTable(cnode, body, i, block, funcNode, loopLabelNode)) {
+      if (jumpTable(cnode, body, i, block, funcNode)) {
         changed = true;
         somethingChanged = true;
         --i;
@@ -802,22 +801,20 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     return somethingChanged;
   }
 
-  function jumpTable(node, body, i, parent, funcNode, loopLabelNode = null) {
+  function jumpTable(node, body, i, parent, funcNode) {
     vgroup('jumpTable', node.type);
     ASSERT(node.type, 'nodes have types oye?', node);
-    const r = _jumpTable(node, body, i, parent, funcNode, loopLabelNode);
+    const r = _jumpTable(node, body, i, parent, funcNode);
     vgroupEnd();
     return r;
   }
 
-  function _jumpTable(node, body, i, parent, funcNode, loopLabelNode) {
+  function _jumpTable(node, body, i, parent, funcNode) {
     switch (node.type) {
       case 'BlockStatement':
         return transformBlock(node, body, i, parent, true);
       case 'BreakStatement':
         return transformBreakStatement(node, body, i, parent);
-      case 'ContinueStatement':
-        return transformContinueStatement(node, body, i, parent);
       case 'DebuggerStatement':
         return false;
       case 'EmptyStatement': {
@@ -831,9 +828,9 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       case 'ExpressionStatement':
         return transformExpression('statement', node.expression, body, i, node);
       case 'ForInStatement':
-        return transformForxStatement(node, body, i, true, loopLabelNode);
+        return transformForxStatement(node, body, i, true);
       case 'ForOfStatement':
-        return transformForxStatement(node, body, i, false, loopLabelNode);
+        return transformForxStatement(node, body, i, false);
       case 'IfStatement':
         return transformIfStatement(node, body, i, parent);
       case 'ImportDeclaration':
@@ -851,7 +848,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       case 'VariableDeclaration':
         return transformVariableDeclaration(node, body, i, parent, funcNode);
       case 'WhileStatement':
-        return transformWhileStatement(node, body, i, parent, loopLabelNode);
+        return transformWhileStatement(node, body, i, parent);
 
       case 'Program':
         return ASSERT(false); // This should not be visited since it is the first thing to be called and the node should not occur again.
@@ -863,6 +860,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       // These should not appear. Either because they're not allowed (with), or because they're internal nodes
       case 'CatchClause':
       case 'ClassBody':
+      case 'ContinueStatement': // Eliminated
       case 'Directive':
       case 'ExportSpecifier':
       case 'ImportDefaultSpecifier':
@@ -889,7 +887,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
   function dce(body, i, desc) {
     vlog('dce("' + desc + '");');
-    // This should be called after an abnormal flow control (return, break, continue, or throw) or an if or block that
+    // This should be called after an abnormal flow control (return, break, (continue), or throw) or an if or block that
     // is guaranteed to complete abnormally, recursively. Either way, any code that follows it can not be executable.
     // We do have to be careful about the remainder because it might introduce new binding names that we wouldn't want
     // to eliminate just yet, for the sake of analysis. Example: `if (y) x = 1; return; let x`.
@@ -901,7 +899,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         'ReturnStatement',
         'ThrowStatement',
         'BreakStatement',
-        'ContinueStatement',
+        //'ContinueStatement', (eliminated)
         // For `if` it means both branches stop early
         'IfStatement',
         // If this is a block then it's nested and guaranteed to stop early
@@ -973,7 +971,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     return true;
   }
 
-  function transformBlock(node, body, i, parent, isNested, loopLabelNode) {
+  function transformBlock(node, body, i, parent, isNested) {
     // Note: isNested=false means this is a sub-statement (if () {}), otherwise it's a block inside a block/func/program node
     ASSERT(isNested ? body && i >= 0 : !body && i < 0, 'body and index are only given for nested blocks');
 
@@ -1018,17 +1016,17 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       return true;
     }
 
-    if (anyBlock(node, undefined, loopLabelNode)) {
+    if (anyBlock(node, undefined)) {
       return true;
     }
 
     vlog(
-      BLUE + 'block;returnBreakContinueThrow?' + RESET,
-      node.$p.returnBreakContinueThrow ? 'yes; ' + node.$p.returnBreakContinueThrow : 'no',
+      BLUE + 'block;returnBreakThrow?' + RESET,
+      node.$p.returnBreakThrow ? 'yes; ' + node.$p.returnBreakThrow : 'no',
     );
-    parent.$p.returnBreakContinueThrow = node.$p.returnBreakContinueThrow;
+    parent.$p.returnBreakThrow = node.$p.returnBreakThrow;
     if (isNested) {
-      if (node.$p.returnBreakContinueThrow && body.length > i + 1) {
+      if (node.$p.returnBreakThrow && body.length > i + 1) {
         if (dce(body, i, 'after block')) {
           return true;
         }
@@ -1040,7 +1038,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
   function transformBreakStatement(node, body, i, parent) {
     vlog(BLUE + 'Marking parent (' + parent.type + ') as breaking early' + RESET);
-    parent.$p.returnBreakContinueThrow = 'break';
+    parent.$p.returnBreakThrow = 'break';
     if (node.label) {
       if (node.$p.redundantLabel) {
         rule('If a labeled break would behave the same without the label then the label should be dropped');
@@ -1066,37 +1064,6 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         return true;
       }
     }
-    return false;
-  }
-
-  function transformContinueStatement(node, body, i, parent) {
-    vlog(BLUE + 'Marking parent (' + parent.type + ') as continuing early' + RESET);
-    parent.$p.returnBreakContinueThrow = 'continue';
-    if (node.label) {
-      if (node.$p.redundantLabel) {
-        rule('If a labeled break would behave the same without the label then the label should be dropped');
-        example('foo: { while (x) if (f()) break foo; }', 'foo: { while (x) if (f()) break; }');
-        before(node);
-
-        node.label = null;
-
-        after(node);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-        return true;
-      }
-
-      fdata.globallyUniqueLabelRegistry.get(node.label.name).labelUsageMap.set(node.$p.pid, {
-        node,
-        body,
-        index: i,
-      });
-    }
-    if (body.length > i + 1) {
-      if (dce(body, i, 'after continue')) {
-        return true;
-      }
-    }
-
     return false;
   }
 
@@ -6758,7 +6725,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     return false;
   }
 
-  function transformForxStatement(node, body, i, forin, loopLabelNode) {
+  function transformForxStatement(node, body, i, forin) {
     // https://pvdz.ee/weblog/439
     // The rhs is evaluated first. Then the lhs. The rhs is scoped to the for-header first, if that starts with a a decl.
     // Pattern bindings complicate the transform because I want to retain the TDZ errors if the original code contains them.
@@ -6995,10 +6962,10 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     ifelseStack.pop();
 
     vlog(
-      BLUE + 'forx;returnBreakContinueThrow?' + RESET,
-      node.body.$p.returnBreakContinueThrow ? 'yes; ' + node.body.$p.returnBreakContinueThrow : 'no',
+      BLUE + 'forx;returnBreakThrow?' + RESET,
+      node.body.$p.returnBreakThrow ? 'yes; ' + node.body.$p.returnBreakThrow : 'no',
     );
-    if (node.body.$p.returnBreakContinueThrow) {
+    if (node.body.$p.returnBreakThrow) {
       vlog(
         'The body of this loop may always return but it may never be executed so we cannot safely DCE the sibling statements that follow it, nor mark the parent as such',
       );
@@ -7060,7 +7027,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       return true;
     }
 
-    // Note: technically break and continue should be eliminated. But I think (currently?) they may still linger around.
+    // Note: technically break should be eliminated. But I think (currently?) they may still linger around.
     // the problem right now is that the DCE is leaving a tail const which is breaking the new normalize return rule
 
     const last = node.body.body[node.body.body.length - 1];
@@ -7075,7 +7042,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         const lastIf = node.consequent.body[node.consequent.body.length - 1];
         if (lastIf?.type === 'IfStatement') {
           returnBranch(lastIf);
-        } else if (!['ReturnStatement', 'ThrowStatement', 'ContinueStatement', 'BreakStatement'].includes(lastIf?.type)) {
+        } else if (!['ReturnStatement', 'ThrowStatement', 'BreakStatement'].includes(lastIf?.type)) {
           rule('The `if` branch of the last `if`-statement of a function must return explicitly');
           example('function f(){ if (x) a(); }', 'function f(){ if (x) { a(); return undefined; } }');
           before(node, node);
@@ -7089,7 +7056,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         const lastElse = node.alternate.body[node.alternate.body.length - 1];
         if (lastElse?.type === 'IfStatement') {
           returnBranch(lastElse);
-        } else if (!['ReturnStatement', 'ThrowStatement', 'ContinueStatement', 'BreakStatement'].includes(lastElse?.type)) {
+        } else if (!['ReturnStatement', 'ThrowStatement', 'BreakStatement'].includes(lastElse?.type)) {
           rule('The `else` branch of the last `if`-statement of a function must return explicitly');
           example('function f(){ if (x) return 1; else a(); }', 'function f(){ if (x) return 1; else { a(); return undefined; } }');
           before(node, node);
@@ -7110,7 +7077,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       if (changed) {
         return true;
       }
-    } else if (!['ReturnStatement', 'ThrowStatement' /*, 'ContinueStatement', 'BreakStatement'*/].includes(last.type)) {
+    } else if (!['ReturnStatement', 'ThrowStatement'].includes(last.type)) {
       rule('All functions must explicitly return, even if returns undefined');
       example('function f(){ g(); }', 'function f(){ g(); return undefined; }');
       before(node);
@@ -7530,7 +7497,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         } else if (
           !pCbody.length &&
           nCbody.length === 1 &&
-          ['ReturnStatement', 'ContinueStatement', 'BreakStatement', 'ThrowStatement'].includes(nCbody[0].type)
+          ['ReturnStatement', 'BreakStatement', 'ThrowStatement'].includes(nCbody[0].type)
         ) {
           // This leads to more statements by duplicating a return statement...
           // It might allow let bindings to become constants which could be very valuable
@@ -7546,9 +7513,6 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           switch (target.type) {
             case 'ReturnStatement':
               pCbody.push(AST.returnStatement(AST.cloneSimple(target.argument)));
-              break;
-            case 'ContinueStatement':
-              pCbody.push(AST.continueStatement(target.label && AST.cloneSimple(target.label)));
               break;
             case 'BreakStatement':
               pCbody.push(AST.breakStatement(target.label && AST.cloneSimple(target.label)));
@@ -7568,7 +7532,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         } else if (
           !pAbody.length &&
           nAbody.length === 1 &&
-          ['ReturnStatement', 'ContinueStatement', 'BreakStatement', 'ThrowStatement'].includes(nAbody[0].type)
+          ['ReturnStatement', 'BreakStatement', 'ThrowStatement'].includes(nAbody[0].type)
         ) {
           // This leads to more statements by duplicating a return statement...
           // It might allow let bindings to become constants which could be very valuable
@@ -7584,9 +7548,6 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           switch (target.type) {
             case 'ReturnStatement':
               pAbody.push(AST.returnStatement(AST.cloneSimple(target.argument)));
-              break;
-            case 'ContinueStatement':
-              pAbody.push(AST.continueStatement(target.label && AST.cloneSimple(target.label)));
               break;
             case 'BreakStatement':
               pAbody.push(AST.breakStatement(target.label && AST.cloneSimple(target.label)));
@@ -7880,7 +7841,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       vgroupEnd();
     }
 
-    if (node.consequent.$p.returnBreakContinueThrow && i < body.length - 1) {
+    if (node.consequent.$p.returnBreakThrow && i < body.length - 1) {
       // Doesn't matter what kind of abrupt completion it was
       // Inline the remainder of the parent block into the else branch
       rule('If the if-branch returns the remainder of the parent block goes into the else-branch');
@@ -7895,7 +7856,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       return true;
     }
 
-    if (node.alternate.$p.returnBreakContinueThrow && i < body.length - 1) {
+    if (node.alternate.$p.returnBreakThrow && i < body.length - 1) {
       // Doesn't matter what kind of abrupt completion it was
       // Inline the remainder of the parent block into the if branch
       rule('If the else-branch returns the remainder of the parent block goes into the if-branch');
@@ -7911,14 +7872,14 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     }
 
     vlog(
-      BLUE + 'if;returnBreakContinueThrow?' + RESET,
-      node.alternate && node.consequent.$p.returnBreakContinueThrow && node.alternate.$p.returnBreakContinueThrow
-        ? 'yes; ' + node.consequent.$p.returnBreakContinueThrow + ' and ' + node.alternate.$p.returnBreakContinueThrow
+      BLUE + 'if;returnBreakThrow?' + RESET,
+      node.alternate && node.consequent.$p.returnBreakThrow && node.alternate.$p.returnBreakThrow
+        ? 'yes; ' + node.consequent.$p.returnBreakThrow + ' and ' + node.alternate.$p.returnBreakThrow
         : 'no',
     );
-    if (node.alternate && node.consequent.$p.returnBreakContinueThrow && node.alternate.$p.returnBreakContinueThrow) {
+    if (node.alternate && node.consequent.$p.returnBreakThrow && node.alternate.$p.returnBreakThrow) {
       // Both branches broke flow early so any statements that follow this statement are effectively dead
-      node.$p.returnBreakContinueThrow = node.consequent.$p.returnBreakContinueThrow + '+' + node.alternate.$p.returnBreakContinueThrow;
+      node.$p.returnBreakThrow = node.consequent.$p.returnBreakThrow + '+' + node.alternate.$p.returnBreakThrow;
 
       if (body.length > i + 1) {
         if (dce(body, i, 'after if-else')) {
@@ -8025,114 +7986,16 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
   }
 
   function transformLabeledStatement(node, body, i, parentNode) {
+    // Note: in regular JS, labeled loop statements are tricky due to continue statements. However, we've
+    //       eliminated `continue` and so this restriction is not relevant to us.
     vlog('Label: `' + node.label.name + '`');
 
-    ASSERT(fdata.globallyUniqueLabelRegistry.has(node.label.name), 'labels registry should be populated in prepare');
     const labelMeta = fdata.globallyUniqueLabelRegistry.get(node.label.name);
+    ASSERT(labelMeta, 'labels registry should be populated in prepare');
 
     // foo: bar
     // foo: {bar}
-    // foo: while(true) continue foo;
     if (node.body.type !== 'BlockStatement') {
-      ASSERT(node.body.type !== 'DoWhileStatement' && node.body.type !== 'ForStatement');
-      if (['WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(node.body.type)) {
-        // Do NOT force block wrapping because that may break labeled continues
-        // Instead, fake the wrapper and then outline any statements
-
-        const fakeWrapper = AST.blockStatement(node.body);
-        // Now visit the block. Upon return, check if the wrapper contains exactly the same node as input.
-        // If it's the same then no further changes are required. Otherwise outline any element of the wrapper
-        // except the last and put them before the label. Then make the last element the body of the label.
-        // And if the new body is not a block nor an iteration statement then wrap it in a block anyways.
-
-        rule('Special label case with loop body');
-        before(node);
-
-        assertNoDupeNodes(fakeWrapper, 'body');
-
-        const changed = transformBlock(fakeWrapper, undefined, -1, node, false, node);
-
-        assertNoDupeNodes(fakeWrapper, 'body');
-
-        if (!changed) {
-          after('Label body did not change at all');
-
-          if (labelMeta.labelUsageMap.size === 0) {
-            vlog('Label was not used in any of its children. Should be safe to eliminate.');
-            rule('Unused labels must be dropped; unchanged loop body');
-            example('foo: {}', '{}');
-            before(node);
-
-            body[i] = node.body;
-
-            after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
-            return true;
-          }
-          return false;
-        }
-
-        after(AST.labeledStatement(node.label, fakeWrapper));
-        vlog('Now determining whether the label body changed...');
-
-        if (fakeWrapper.body.length === 1 && fakeWrapper.body[0] === node.body) {
-          vlog('Something changed but the node stays put');
-
-          if (labelMeta.labelUsageMap.size === 0) {
-            vlog('Label was not used in any of its children. Should be safe to eliminate.');
-            rule('Unused labels must be dropped; changed loop body');
-            example('foo: {}', '{}');
-            before(node);
-
-            body[i] = node.body;
-
-            after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
-            return true;
-          }
-          return false; // No need to change anything in this body
-        }
-
-        assertNoDupeNodes(fakeWrapper, 'body');
-
-        if (fakeWrapper.body.length === 0) {
-          vlog('The label.body node was eliminated. We can drop the label too.');
-          rule('Label with empty body should be dropped');
-          example('foo: {}', ';');
-          before(node);
-
-          body[i] = AST.emptyStatement();
-
-          after(body[i]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
-          return true;
-        }
-
-        if (fakeWrapper.body[fakeWrapper.body.length - 1] === node.body) {
-          // Only outline the elements preceding the last one. We throw away the wrapper.
-          vlog('Last statement is still original node. Outlining new nodes and keeping original labeled statement');
-          body.splice(i, 0, ...fakeWrapper.body.slice(0, -1));
-
-          after(fakeWrapper.body.slice(0, -1));
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
-          return true;
-        }
-
-        vlog('Labeled statement changed. Replacing the whole deal.');
-        before(node, parentNode);
-        // Outline every element but the last and put them in front of the label. Replace the label
-        // with a new label that has the last element as a body. It's a different node now.
-        const newNodes = [
-          ...fakeWrapper.body.slice(0, -1),
-          AST.labeledStatement(node.label, fakeWrapper.body[fakeWrapper.body.length - 1]),
-        ];
-        body.splice(i, 1, ...newNodes);
-
-        after(newNodes);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-        return true;
-      }
-
       rule('The body of a label must be a block or an iteration statement');
       example('foo: if (x) y;', 'foo: { if (x) y; }');
       before(node);
@@ -8199,7 +8062,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         body.splice(i, 1, node.body);
 
         // Replace all `break foo` cases pointing to this label with a return statement with `undefined`
-        // Note that there can't be any `continue` cases here since that's only legit for labeled loops
+        // Note that there can't be any `continue` cases here because we transformed them.
         ASSERT(fdata.globallyUniqueLabelRegistry.has(node.label.name), 'the label should be registered', node);
         const labelUsageMap = fdata.globallyUniqueLabelRegistry.get(node.label.name).labelUsageMap;
         labelUsageMap.forEach(({ node, body, index }, pid) => {
@@ -8216,119 +8079,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         assertNoDupeNodes(AST.blockStatement(body), 'body');
 
         return true;
-      } else if (false) {
-        // TODO: perhaps this rule is more destructive because it turns more variables into closures, which are harder to eliminate?
-
-        // This is an artifact of the switch statement (and also just valid code, but that's not very common in the wild)
-        rule('Labeled break as direct child of function with code following. Abstract tail and replace the breaks.');
-        example(
-          'function f() { before(); foo: { inside(); break foo; } after(); } f();',
-          'function f(){ function c() { after(); } before(); foo: { inside(); return c(); } return c(); } f();',
-        );
-        before(node);
-
-        if (VERBOSE_TRACING) {
-          vlog(
-            '\nCurrent state _before_ applying "Eliminated labeled statement" rule\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n',
-          );
-        }
-
-
-        // Find all references to this label. They must be breaks (because continues can only target loop labels and this wasnt one).
-        // Round up all statements after the label into function `c`. Replace all breaks to the label with a `return c()`. Replace
-        // the statements after the label (which were put in `c`) with a `return c()` as well.
-        // Algo is same as for if-else. The only danger would be `this` and `arguments` references which we have already covered earlier.
-
-        // - Collect all bindings created before the binding (other bindings were already closures so we can ignore those in this step)
-        // - Abstract all other nodes after the label `node` into a fresh function (c)
-        // - Every `break` to the current label should be replaced with a return of calling the new function
-        // - The label should be followed by a return of the new function, replacing the other statements
-        // - If there were other `return` statements (or other abrupt completions) then DCE will take care of it
-
-        // We are on the way down the transform so the body should be normalized, meaning all decls should
-        // be let or const variable declarations now. Collect them up to the label and pass them in all calls to c.
-
-        const declaredBindings = [];
-        for (let j = 0; j < i; ++j) {
-          const snode = body[j];
-          if (snode.type === 'VariableDeclaration') {
-            ASSERT(snode.kind === 'let' || snode.kind === 'const');
-            ASSERT(snode.declarations.length === 1);
-            ASSERT(snode.declarations[0].id.type === 'Identifier');
-            declaredBindings.push(snode.declarations[0].id.name);
-          }
-        }
-        vlog('Local bindings found:', declaredBindings);
-
-        // The remainder of the function after the labeled block
-        const bodyRest = body.slice(i + 1);
-        body.length = i + 1; // Drop everything after this label node
-
-        // If we took the same approach as nested if-else then the fresh function ends up being a local binding
-        // which would be passed on to if-else abstractions and currently we would not be able tp eliminate it.
-        // (Hopefully that changes in the future but for the time being, that's not going to change, I guess)
-        // To get around this we could define the function outside of the current scope. The function may still
-        // contain closure access to any of the scopes above so we would need access to the parent node in order
-        // to put the fresh function there. If that's possible then that's probably the most ideal way.
-        // Alternatively we can wrap the tail (code after the labeled statement) and the rest of the function
-        // and then compile a call to the fresh function at the end of the "rest" function. This way the
-        // labeled block transform would be able to use the more efficient version (which does not add a function)
-        // and it can still all be eliminated. Downside is what happens if the function can't be inlined
-        // after all... I think we should be okay once we implement the rule that a function that is called
-        // once should be inlined. The function covering everything uptoandincluding the label would always
-        // be called exactly once so it would be a way around causing the temporary function being passed on as
-        // a local binding at the cost of some extra cycles (it requires a full pass to get back around).
-
-        // Create a function for the code that follows the label. It is automatically called at the end of the block
-        // and all occurrences of `break` with node.label as target are replaced with a return of calling that func
-        const tmpNamePostLabelFunc = createFreshVar('tmpAfterLabel', fdata);
-        const postFunc = AST.functionExpressionNormalized(declaredBindings.slice(0), bodyRest, {
-          //id: createFreshVar('tmpPrimeLabelC', fdata),
-          // TODO: deal with async, generator (await/yield)
-        });
-        // Note: cloneFunctionNode will deduplicate binding names (the slow way), which is very important here!
-        const postFuncDeduped = cloneFunctionNode(postFunc, undefined, [], fdata).expression;
-
-        // Replace all `break foo` cases pointing to this label with a return statement calling the new function
-        // Other rules will normalize this back and away if it's a noop but this way we can safely eliminate the label.
-        ASSERT(fdata.globallyUniqueLabelRegistry.has(node.label.name), 'the label should be registered', node);
-        const labelUsageMap = fdata.globallyUniqueLabelRegistry.get(node.label.name).labelUsageMap;
-        labelUsageMap.forEach(({ node, body, index }, pid) => {
-          const finalNode = AST.returnStatement(
-            AST.callExpression(
-              tmpNamePostLabelFunc,
-              declaredBindings.map((s) => AST.identifier(s)),
-            ),
-          );
-          ASSERT(body[index] === node, 'should not be stale', body[i], node);
-          body[index] = finalNode;
-
-          labelUsageMap.delete(pid);
-        });
-
-        const funcBodyIndex = findBodyOffsetExpensive(body);
-        vlog('funcBodyIndex:', funcBodyIndex);
-
-        body.splice(funcBodyIndex, 0, AST.variableDeclaration(tmpNamePostLabelFunc, postFuncDeduped, 'const'));
-        body.push(AST.returnStatement(
-          AST.callExpression(
-            tmpNamePostLabelFunc,
-            declaredBindings.map((s) => AST.identifier(s)),
-          ),
-        ));
-
-        if (VERBOSE_TRACING) {
-          vlog(
-            '\nCurrent state after applying "Eliminated labeled statement" rule\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n',
-          );
-        }
-
-        after(parentNode);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-
-        return true;
       }
-
     }
 
     return anyChange;
@@ -8463,7 +8214,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     }
 
     vlog(BLUE + 'Marking parent (' + parentNode.type + ') as returning early' + RESET);
-    parentNode.$p.returnBreakContinueThrow = 'return';
+    parentNode.$p.returnBreakThrow = 'return';
     if (body.length > i + 1) {
       if (dce(body, i, 'after return')) {
         return true;
@@ -8501,7 +8252,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     }
 
     vlog(BLUE + 'Marking parent (' + parent.type + ') as throwing early' + RESET);
-    parent.$p.returnBreakContinueThrow = 'throw';
+    parent.$p.returnBreakThrow = 'throw';
 
     if (body.length > i + 1) {
       if (dce(body, i, 'after throw')) {
@@ -8869,7 +8620,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     return false;
   }
 
-  function transformWhileStatement(node, body, i, parentNode, loopLabelNode) {
+  function transformWhileStatement(node, body, i, parentNode) {
     if (AST.isPrimitive(node.test)) {
       const pv = AST.getPrimitiveValue(node.test);
       if (pv !== true) {
@@ -8934,7 +8685,6 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       before(node);
 
       const newNode = AST.whileStatement(AST.tru(), AST.blockStatement(AST.ifStatement(node.test, node.body, AST.breakStatement())));
-      if (node.$p.doesContinue) newNode.$p.doesContinue = true;
       if (node.$p.doesBreak) newNode.$p.doesBreak = true;
       body[i] = newNode;
 
@@ -8974,23 +8724,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     if (whileBody.length) {
       const last = whileBody[whileBody.length - 1];
 
-      if (last.type === 'ContinueStatement' && !last.label) {
-        rule('If the last statement of a while body is an unlabeled continue then remove it');
-        example('while (x) { f(); break; }', 'while (x) { f(); }');
-        before(node);
-
-        whileBody.pop();
-
-        after(node);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-        return true;
-      }
-
-      // Bail if this loop is labeled. Too many hard cases to solve and how much will it matter?
-      // For now, only works on `while (true)` loops
-      if (!node.$p.doesContinue && !loopLabelNode && whileBody.length === 2 && last.type === 'IfStatement') {
-        // We can't do this trick when there are continues because then we need to clone the code (so it gets executed properly)
-        // TODO: can we work around that with a labeled break? `while (x) { if (x) continue; else y(); }` -> `while (x) { foo: { if (x) break foo; else y(); } }`. but that's not safe within a switch, but we eliminate switches, so perhaps it's fine to do in a second phase or whatever.
+      if (whileBody.length === 2 && last.type === 'IfStatement') {
         // The if should already be normalized here
 
         const first = whileBody[0];
@@ -9000,11 +8734,15 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           node.test.value === true &&
           // Is the first a var or assignment and is the if testing on this var/lhs?
           last.test.type === 'Identifier' &&
-          ((first.type === 'VariableDeclaration' && first.declarations[0].id.name === last.test.name) ||
-            (first.type === 'ExpressionStatement' &&
+          (
+            (first.type === 'VariableDeclaration' && first.declarations[0].id.name === last.test.name) ||
+            (
+              first.type === 'ExpressionStatement' &&
               first.expression.type === 'AssignmentExpression' &&
               first.expression.left.type === 'Identifier' &&
-              first.expression.left.name === last.test.name))
+              first.expression.left.name === last.test.name
+            )
+          )
         ) {
           // This is a while with a var-decl or assign and an `if`. The `if` tests the ident declared by that decl, or assigned ot in the assign.
           // Confirm that either branch is only a `break`, then simplify them
@@ -9216,10 +8954,10 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     }
 
     vlog(
-      BLUE + 'while;returnBreakContinueThrow?' + RESET,
-      node.body.$p.returnBreakContinueThrow ? 'yes; ' + node.body.$p.returnBreakContinueThrow : 'no',
+      BLUE + 'while;returnBreakThrow?' + RESET,
+      node.body.$p.returnBreakThrow ? 'yes; ' + node.body.$p.returnBreakThrow : 'no',
     );
-    if (node.body.$p.returnBreakContinueThrow) {
+    if (node.body.$p.returnBreakThrow) {
       vlog(
         'The body of this loop may always return but it may never be executed so we cannot safely DCE the sibling statements that follow it, nor mark the parent as such',
       );

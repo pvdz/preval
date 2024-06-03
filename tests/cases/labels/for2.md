@@ -23,10 +23,10 @@ $(2);
 
 `````js filename=intro
 $(0);
-dropme: {
-  foo: while ($(true)) {
-    $continue: {
-      {
+foo: {
+  while ($(true)) {
+    {
+      $continue: {
         {
           if (0) break foo;
           else break $continue;
@@ -42,15 +42,17 @@ $(2);
 
 `````js filename=intro
 $(0);
-let tmpIfTest = $(true);
-while (true) {
-  if (tmpIfTest) {
-    $continue: {
-      break $continue;
+foo: {
+  let tmpIfTest = $(true);
+  while (true) {
+    if (tmpIfTest) {
+      $continue: {
+        break $continue;
+      }
+      tmpIfTest = $(true);
+    } else {
+      break;
     }
-    tmpIfTest = $(true);
-  } else {
-    break;
   }
 }
 $(2);

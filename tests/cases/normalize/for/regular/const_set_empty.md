@@ -25,7 +25,7 @@ let b = 2,
   const a = 1;
   while (b) {
     $(d);
-    null;
+    c;
   }
 }
 `````

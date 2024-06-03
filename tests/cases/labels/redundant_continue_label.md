@@ -20,16 +20,18 @@ foo: do {
 ## Pre Normal
 
 `````js filename=intro
-dropme: {
+foo: {
   let tmpDoWhileFlag = true;
-  foo: while (tmpDoWhileFlag || false) {
-    tmpDoWhileFlag = false;
-    $continue: {
-      {
-        $(1);
-        break $continue;
+  while (tmpDoWhileFlag) {
+    {
+      $continue: {
+        {
+          $(1);
+          break $continue;
+        }
       }
     }
+    tmpDoWhileFlag = false;
   }
 }
 `````
@@ -39,17 +41,12 @@ dropme: {
 `````js filename=intro
 let tmpDoWhileFlag = true;
 while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    tmpIfTest = false;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
+  if (tmpDoWhileFlag) {
     $continue: {
       $(1);
       break $continue;
     }
+    tmpDoWhileFlag = false;
   } else {
     break;
   }

@@ -24,11 +24,15 @@ $('woohoo');
 
 `````js filename=intro
 while (true) {
-  if ($(false)) {
-    $(`uhoh`);
-    continue;
+  $continue: {
+    {
+      if ($(false)) {
+        $(`uhoh`);
+        break $continue;
+      }
+      $(`exit`);
+    }
   }
-  $(`exit`);
 }
 $(`woohoo`);
 `````
@@ -37,12 +41,14 @@ $(`woohoo`);
 
 `````js filename=intro
 while (true) {
-  const tmpIfTest = $(false);
-  if (tmpIfTest) {
-    $(`uhoh`);
-    continue;
-  } else {
-    $(`exit`);
+  $continue: {
+    const tmpIfTest = $(false);
+    if (tmpIfTest) {
+      $(`uhoh`);
+      break $continue;
+    } else {
+      $(`exit`);
+    }
   }
 }
 $(`woohoo`);

@@ -27,14 +27,18 @@ dropme: {
   let tmpDoWhileFlag$1 = true;
   foo: while (tmpDoWhileFlag$1 || $(false)) {
     tmpDoWhileFlag$1 = false;
-    $(1, `outer`);
-    {
-      let tmpDoWhileFlag = true;
-      while (tmpDoWhileFlag || $(false)) {
-        tmpDoWhileFlag = false;
+    $continue: {
+      {
+        $(1, `outer`);
         {
-          $(1, `inner`);
-          continue foo;
+          let tmpDoWhileFlag = true;
+          while (tmpDoWhileFlag || $(false)) {
+            tmpDoWhileFlag = false;
+            {
+              $(1, `inner`);
+              break $continue;
+            }
+          }
         }
       }
     }
@@ -46,7 +50,7 @@ dropme: {
 
 `````js filename=intro
 let tmpDoWhileFlag$1 = true;
-foo: while (true) {
+while (true) {
   let tmpIfTest = tmpDoWhileFlag$1;
   if (tmpIfTest) {
   } else {
@@ -54,20 +58,22 @@ foo: while (true) {
   }
   if (tmpIfTest) {
     tmpDoWhileFlag$1 = false;
-    $(1, `outer`);
-    let tmpDoWhileFlag = true;
-    while (true) {
-      let tmpIfTest$1 = tmpDoWhileFlag;
-      if (tmpIfTest$1) {
-      } else {
-        tmpIfTest$1 = $(false);
-      }
-      if (tmpIfTest$1) {
-        tmpDoWhileFlag = false;
-        $(1, `inner`);
-        continue foo;
-      } else {
-        break;
+    $continue: {
+      $(1, `outer`);
+      let tmpDoWhileFlag = true;
+      while (true) {
+        let tmpIfTest$1 = tmpDoWhileFlag;
+        if (tmpIfTest$1) {
+        } else {
+          tmpIfTest$1 = $(false);
+        }
+        if (tmpIfTest$1) {
+          tmpDoWhileFlag = false;
+          $(1, `inner`);
+          break $continue;
+        } else {
+          break;
+        }
       }
     }
   } else {
@@ -80,7 +86,7 @@ foo: while (true) {
 
 `````js filename=intro
 let tmpDoWhileFlag$1 = true;
-foo: while (true) {
+while (true) {
   let tmpIfTest = tmpDoWhileFlag$1;
   if (tmpDoWhileFlag$1) {
   } else {
@@ -89,17 +95,11 @@ foo: while (true) {
   if (tmpIfTest) {
     tmpDoWhileFlag$1 = false;
     $(1, `outer`);
-    let tmpDoWhileFlag = true;
-    while (true) {
-      let tmpIfTest$1 = tmpDoWhileFlag;
-      if (tmpDoWhileFlag) {
-      } else {
-        tmpIfTest$1 = $(false);
-      }
-      if (tmpIfTest$1) {
-        tmpDoWhileFlag = false;
+    $(1, `inner`);
+    while ($LOOP_UNROLL_10) {
+      const tmpIfTest$2 = $(false);
+      if (tmpIfTest$2) {
         $(1, `inner`);
-        continue foo;
       } else {
         break;
       }
@@ -116,7 +116,7 @@ With rename=true
 
 `````js filename=intro
 let a = true;
-foo: while (true) {
+while (true) {
   let b = a;
   if (a) {
 
@@ -127,19 +127,11 @@ foo: while (true) {
   if (b) {
     a = false;
     $( 1, "outer" );
-    let c = true;
-    while (true) {
-      let d = c;
+    $( 1, "inner" );
+    while ($LOOP_UNROLL_10) {
+      const c = $( false );
       if (c) {
-
-      }
-      else {
-        d = $( false );
-      }
-      if (d) {
-        c = false;
         $( 1, "inner" );
-        break foo;
       }
       else {
         break;
@@ -168,4 +160,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 1, 'outer'
+ - 2: 1, 'inner'
+ - 3: false
+ - 4: false
+ - eval returned: undefined

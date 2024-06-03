@@ -48,31 +48,35 @@ This was (at some point) an intermediate state after one cycle.
 `````js filename=intro
 let run = true;
 while (run) {
-  $(1);
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === 1;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-    const tmpIfTest$1 = 2 === 1;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 2;
-    }
-  }
-  tmpSwitchBreak: {
-    const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$2) {
-      run = false;
-      break tmpSwitchBreak;
-    }
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$3) {
-      continue;
-    }
-    const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$4) {
-      let SSA_run = false;
-      break tmpSwitchBreak;
+  $continue: {
+    {
+      $(1);
+      let tmpSwitchCaseToStart = 1;
+      const tmpIfTest = 1 === 1;
+      if (tmpIfTest) {
+        tmpSwitchCaseToStart = 0;
+      } else {
+        const tmpIfTest$1 = 2 === 1;
+        if (tmpIfTest$1) {
+          tmpSwitchCaseToStart = 2;
+        }
+      }
+      tmpSwitchBreak: {
+        const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+        if (tmpIfTest$2) {
+          run = false;
+          break tmpSwitchBreak;
+        }
+        const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+        if (tmpIfTest$3) {
+          break $continue;
+        }
+        const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
+        if (tmpIfTest$4) {
+          let SSA_run = false;
+          break tmpSwitchBreak;
+        }
+      }
     }
   }
 }
@@ -84,33 +88,35 @@ while (run) {
 let run = true;
 while (true) {
   if (run) {
-    $(1);
-    let tmpSwitchCaseToStart = 1;
-    const tmpIfTest = true;
-    if (tmpIfTest) {
-      tmpSwitchCaseToStart = 0;
-    } else {
-      const tmpIfTest$1 = false;
-      if (tmpIfTest$1) {
-        tmpSwitchCaseToStart = 2;
+    $continue: {
+      $(1);
+      let tmpSwitchCaseToStart = 1;
+      const tmpIfTest = true;
+      if (tmpIfTest) {
+        tmpSwitchCaseToStart = 0;
       } else {
-      }
-    }
-    tmpSwitchBreak: {
-      const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-      if (tmpIfTest$2) {
-        run = false;
-        break tmpSwitchBreak;
-      } else {
-        const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-        if (tmpIfTest$3) {
-          continue;
+        const tmpIfTest$1 = false;
+        if (tmpIfTest$1) {
+          tmpSwitchCaseToStart = 2;
         } else {
-          const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-          if (tmpIfTest$4) {
-            let SSA_run = false;
-            break tmpSwitchBreak;
+        }
+      }
+      tmpSwitchBreak: {
+        const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+        if (tmpIfTest$2) {
+          run = false;
+          break tmpSwitchBreak;
+        } else {
+          const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+          if (tmpIfTest$3) {
+            break $continue;
           } else {
+            const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
+            if (tmpIfTest$4) {
+              let SSA_run = false;
+              break tmpSwitchBreak;
+            } else {
+            }
           }
         }
       }

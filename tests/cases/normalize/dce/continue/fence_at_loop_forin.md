@@ -31,9 +31,13 @@ $('after (not invoked)');
 while ($(true)) {
   $(`loop`);
   for (let x in { a: 1, b: 2 }) {
-    $(`loop`, x);
-    continue;
-    $(`fail`);
+    $continue: {
+      {
+        $(`loop`, x);
+        break $continue;
+        $(`fail`);
+      }
+    }
   }
   $(`infiloop, do not eliminate`);
 }
@@ -50,8 +54,10 @@ while (true) {
     const tmpForInDeclRhs = { a: 1, b: 2 };
     let x = undefined;
     for (x in tmpForInDeclRhs) {
-      $(`loop`, x);
-      continue;
+      $continue: {
+        $(`loop`, x);
+        break $continue;
+      }
     }
     $(`infiloop, do not eliminate`);
     tmpIfTest = $(true);

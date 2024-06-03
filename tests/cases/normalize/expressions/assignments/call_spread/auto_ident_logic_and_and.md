@@ -100,7 +100,7 @@ Should call `$` with:
  - 4: 1
  - 5: 2
  - 6: 2
- - eval returned: ('<crash[ Found non-callable @@iterator ]>')
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Pre normalization calls: Same
 

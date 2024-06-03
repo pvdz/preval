@@ -28,9 +28,13 @@ $('after, wont eval due to infinite loop');
 
 `````js filename=intro
 while ($(true)) {
-  if ($(false)) $(`fail too`), $throwTDZError(`Preval: TDZ triggered for this assignment: x = \$('fail too')`);
-  continue;
-  let x = $(`fail`);
+  $continue: {
+    {
+      if ($(false)) $(`fail too`), $throwTDZError(`Preval: TDZ triggered for this assignment: x = \$('fail too')`);
+      break $continue;
+      let x = $(`fail`);
+    }
+  }
 }
 $(`after, wont eval due to infinite loop`);
 `````
@@ -38,17 +42,20 @@ $(`after, wont eval due to infinite loop`);
 ## Normalized
 
 `````js filename=intro
+let tmpIfTest = $(true);
 while (true) {
-  const tmpIfTest = $(true);
   if (tmpIfTest) {
-    const tmpIfTest$1 = $(false);
-    if (tmpIfTest$1) {
-      $(`fail too`);
-      throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
-    } else {
-      continue;
-      let x = $(`fail`);
+    $continue: {
+      const tmpIfTest$1 = $(false);
+      if (tmpIfTest$1) {
+        $(`fail too`);
+        throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
+      } else {
+        break $continue;
+        let x = $(`fail`);
+      }
     }
+    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -59,30 +66,26 @@ $(`after, wont eval due to infinite loop`);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
-const tmpIfTest = $(true);
+let tmpIfTest = $(true);
 if (tmpIfTest) {
   const tmpIfTest$1 = $(false);
   if (tmpIfTest$1) {
     $(`fail too`);
     throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
   } else {
-  }
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$2 = $(true);
-    if (tmpIfTest$2) {
-      const tmpIfTest$4 = $(false);
-      if (tmpIfTest$4) {
-        $(`fail too`);
-        throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
+    tmpIfTest = $(true);
+    while ($LOOP_UNROLL_10) {
+      if (tmpIfTest) {
+        const tmpIfTest$2 = $(false);
+        if (tmpIfTest$2) {
+          $(`fail too`);
+          throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
+        } else {
+          tmpIfTest = $(true);
+        }
       } else {
+        break;
       }
-    } else {
-      break;
     }
   }
 } else {
@@ -95,30 +98,29 @@ $(`after, wont eval due to infinite loop`);
 With rename=true
 
 `````js filename=intro
-let a = true;
-const b = $( true );
-if (b) {
-  const c = $( false );
-  if (c) {
+let a = $( true );
+if (a) {
+  const b = $( false );
+  if (b) {
     $( "fail too" );
     throw "Preval: TDZ triggered for this assignment: x = $('fail too')";
   }
-}
-else {
-  a = false;
-}
-if (a) {
-  while ($LOOP_UNROLL_10) {
-    const d = $( true );
-    if (d) {
-      const e = $( false );
-      if (e) {
-        $( "fail too" );
-        throw "Preval: TDZ triggered for this assignment: x = $('fail too')";
+  else {
+    a = $( true );
+    while ($LOOP_UNROLL_10) {
+      if (a) {
+        const c = $( false );
+        if (c) {
+          $( "fail too" );
+          throw "Preval: TDZ triggered for this assignment: x = $('fail too')";
+        }
+        else {
+          a = $( true );
+        }
       }
-    }
-    else {
-      break;
+      else {
+        break;
+      }
     }
   }
 }

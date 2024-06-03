@@ -31,14 +31,18 @@ exit: for (const key of $(new Set(['a', 'b']))) {
 `````js filename=intro
 let x = $(2);
 exit: for (const key of $(new Set([`a`, `b`]))) {
-  $(`key:`, key);
-  if ($(1)) {
-    x = $(3);
-  }
-  if (x) {
-    continue exit;
-  } else {
-    x = $(4);
+  $continue: {
+    {
+      $(`key:`, key);
+      if ($(1)) {
+        x = $(3);
+      }
+      if (x) {
+        break $continue;
+      } else {
+        x = $(4);
+      }
+    }
   }
 }
 `````
@@ -54,16 +58,18 @@ const tmpCalleeParam = new tmpNewCallee(tmpCalleeParam$1);
 const tmpForOfDeclRhs = tmpCallCallee(tmpCalleeParam);
 let key = undefined;
 for (key of tmpForOfDeclRhs) {
-  $(`key:`, key);
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    x = $(3);
-  } else {
-  }
-  if (x) {
-    continue;
-  } else {
-    x = $(4);
+  $continue: {
+    $(`key:`, key);
+    const tmpIfTest = $(1);
+    if (tmpIfTest) {
+      x = $(3);
+    } else {
+    }
+    if (x) {
+      break $continue;
+    } else {
+      x = $(4);
+    }
   }
 }
 `````

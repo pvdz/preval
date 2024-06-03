@@ -30,8 +30,10 @@ const arr___4__ = [1, 2];
 const tmpForOfDeclRhs___10__ = arr___11__;
 let x___14__ = undefined___15__;
 for (x___17__ of tmpForOfDeclRhs___18__) /*19*/ {
-  $(x___23__);
-  continue;
+  $continue___21__: /*22*/ {
+    $(x___26__);
+    break $continue___28__;
+  }
 }
 $();
 `````
@@ -49,5 +51,5 @@ tmpForOfDeclRhs:
 
 x:
   - w @14           | ########## | not read    | none           | 17
-  - w @17           | ########## | 23          | 14             | none
-  - r @23           | 17
+  - w @17           | ########## | 26          | 14             | none
+  - r @26           | 17

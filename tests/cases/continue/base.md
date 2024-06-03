@@ -74,12 +74,16 @@ let $continue = function () {
   $break();
 };
 while (true) {
-  if ($(false)) {
-    $(`uhoh`);
-    continue;
+  $continue: {
+    {
+      if ($(false)) {
+        $(`uhoh`);
+        break $continue;
+      }
+      $(`exit`);
+      break;
+    }
   }
-  $(`exit`);
-  break;
 }
 $(`woohoo`);
 $continue();
@@ -107,13 +111,15 @@ let $continue = function () {
   }
 };
 while (true) {
-  const tmpIfTest$1 = $(false);
-  if (tmpIfTest$1) {
-    $(`uhoh`);
-    continue;
-  } else {
-    $(`exit`);
-    break;
+  $continue: {
+    const tmpIfTest$1 = $(false);
+    if (tmpIfTest$1) {
+      $(`uhoh`);
+      break $continue;
+    } else {
+      $(`exit`);
+      break;
+    }
   }
 }
 $(`woohoo`);

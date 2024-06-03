@@ -36,6 +36,7 @@ export function $p() {
     // - completesAbruptConsequent // bool. For IfStatement nodes. Need this to distinguish between consequent and alternate.
     // - completesAbruptAlternate // bool. For IfStatement nodes. Need this to distinguish between consequent and alternate.
     // - newAbrupt // bool, because I like tech debt. checked and used in normal_once phase for finally transform.
+    // - parentLabel // string|undefined. Only in normal_once, only for loop nodes. If this is a labeled loop (for continues) then this is the name. Used to get rid of continue.
 
     // reduce/phase2 (these props should exist after phas1... even on new nodes)
     // - hasFuncDecl // bool. Prevent elimination of blocks containing function declarations

@@ -26,23 +26,27 @@ $(3);
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  {
-    let $implicitThrow = false;
-    let $finalCatchArg = undefined;
-    $finally: {
-      try {
-        $(1);
-      } catch ($finalImplicit) {
-        $implicitThrow = true;
-        $finalCatchArg = $finalImplicit;
-      }
-    }
+  $continue: {
     {
-      $(2);
-      continue;
-    }
-    if ($implicitThrow) throw $finalCatchArg;
-    else {
+      {
+        let $implicitThrow = false;
+        let $finalCatchArg = undefined;
+        $finally: {
+          try {
+            $(1);
+          } catch ($finalImplicit) {
+            $implicitThrow = true;
+            $finalCatchArg = $finalImplicit;
+          }
+        }
+        {
+          $(2);
+          break $continue;
+        }
+        if ($implicitThrow) throw $finalCatchArg;
+        else {
+        }
+      }
     }
   }
 }
@@ -53,15 +57,18 @@ $(3);
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let $implicitThrow = false;
-  let $finalCatchArg = undefined;
-  try {
-    $(1);
-  } catch ($finalImplicit) {
-    $implicitThrow = true;
-    $finalCatchArg = $finalImplicit;
+  $continue: {
+    let $implicitThrow = false;
+    let $finalCatchArg = undefined;
+    try {
+      $(1);
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
+    }
+    $(2);
+    break $continue;
   }
-  $(2);
 }
 $(3);
 `````

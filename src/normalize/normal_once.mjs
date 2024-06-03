@@ -40,6 +40,7 @@ import {
 export function phaseNormalOnce(fdata) {
   const ast = fdata.tenkoOutput.ast;
   const thisStack = [];
+  const loopStack = [];
 
   group('\n\n\n##################################\n## phaseNormalOnce  ::  ' + fdata.fname + '\n##################################\n\n\n');
 
@@ -268,6 +269,13 @@ export function phaseNormalOnce(fdata) {
         after(newNode);
         break;
       }
+      case 'DoWhileStatement:before': {
+        loopStack.push(node);
+        if (parentNode.type === 'LabeledStatement') {
+          node.$p.parentLabel = parentNode.label.name;
+        }
+        break;
+      }
       case 'DoWhileStatement:after': {
         // We have to convert do-while to regular while because if the body contains a continue it will jump to the end
         // which means it would skip any outlined code, unless we add worse overhead.
@@ -277,6 +285,8 @@ export function phaseNormalOnce(fdata) {
         // `do {} while (f());` --> `let tmp = true; while (tmp || f()) { tmp = false; }`
         // `while (f()) {}` --> `if (f()) { do {} while(f()); }`
         // `for (a(); b(); c()) d();` --> `a(); if (b()) { do { d(); c(); } while (b());`
+
+        loopStack.pop();
 
         if (parentNode.type === 'LabeledStatement') {
           // This is a labeled loop. We have to be careful here because a labeled continue is syntactically
@@ -351,7 +361,7 @@ export function phaseNormalOnce(fdata) {
         }
 
         // Byebye do-while
-        break;
+        break; // Walker will revisit changed current node
       }
       case 'DebuggerStatement:before': {
         if (!node.$p.funcHeader) {
@@ -368,6 +378,11 @@ export function phaseNormalOnce(fdata) {
         break;
       }
       case 'ForStatement:before': {
+        loopStack.push(node);
+        if (parentNode.type === 'LabeledStatement') {
+          node.$p.parentLabel = parentNode.label.name;
+        }
+
         if (parentNode.type === 'LabeledStatement') {
           // This is a labeled loop. We have to be careful here because a labeled continue is syntactically
           // required to point to a label that is a direct parentNode of a loop. And obviously we want to
@@ -414,6 +429,12 @@ export function phaseNormalOnce(fdata) {
 
           after(newNode);
         }
+
+        // byebye ForStatement
+        break; // Walker will revisit changed current node
+      }
+      case 'ForStatement:after': {
+        loopStack.pop();
         break;
       }
       case 'FunctionExpression:before': {
@@ -474,11 +495,12 @@ export function phaseNormalOnce(fdata) {
 
         break;
       }
-      case 'LabeledStatement': {
-        const labelNode = createFreshLabel(node.label.name, fdata);
-        if (node.label.name !== labelNode.name) {
-          node.label = labelNode;
-        }
+      case 'LabeledStatement:before': {
+        // This was never really part of the code so do we need it?
+        //const labelNode = createFreshLabel(node.label.name, fdata);
+        //if (node.label.name !== labelNode.name) {
+        //  node.label = labelNode;
+        //}
         break;
       }
       case 'Literal:before': {
@@ -799,7 +821,9 @@ export function phaseNormalOnce(fdata) {
         else parentNode[parentProp][parentIndex] = wrapper;
 
         after(newNodes);
-        break;
+
+        // byebye SwitchStatement
+        break; // Walker will revisit changed current node
       }
       case 'TemplateLiteral:after': {
         if (parentNode.type !== 'TaggedTemplateExpression' && node.expressions.length > 0) {
@@ -1082,6 +1106,7 @@ export function phaseNormalOnce(fdata) {
                 break;
               }
               case 'ContinueStatement:after': {
+                ASSERT(false, 'no expecting this');
                 parentNode.$p.newAbrupt = true;
                 if (node.label) {
                   // Note: parser will validate whether the label is valid for the continue. No need for us to check it
@@ -1160,8 +1185,8 @@ export function phaseNormalOnce(fdata) {
                 ? AST.throwStatement(AST.identifier(argName)) :
                 keyword === 'break'
                 ? AST.breakStatement(labelName) :
-                keyword === 'continue'
-                ? AST.continueStatement(argName) :
+                //keyword === 'continue'
+                //? AST.continueStatement(argName) :
                 ASSERT(false, `what keyword? ${keyword}`)
             ];
           });
@@ -1184,7 +1209,8 @@ export function phaseNormalOnce(fdata) {
 
           after(wrapper);
 
-          return true;
+          // byebye TryStatement
+          break;
         }
 
         break;
@@ -1217,6 +1243,92 @@ export function phaseNormalOnce(fdata) {
         before(node);
         node.computed = true;
         after(node);
+        break;
+      }
+      case 'ForInStatement:before': {
+        loopStack.push(node);
+        if (parentNode.type === 'LabeledStatement') {
+          node.$p.parentLabel = parentNode.label.name;
+        }
+        break;
+      }
+      case 'ForInStatement:after': {
+        loopStack.pop();
+        break;
+      }
+      case 'ForOfStatement:before': {
+        loopStack.push(node);
+        if (parentNode.type === 'LabeledStatement') {
+          node.$p.parentLabel = parentNode.label.name;
+        }
+        break;
+      }
+      case 'ForOfStatement:after': {
+        loopStack.pop();
+        break;
+      }
+      case 'WhileStatement:before': {
+        loopStack.push(node);
+        if (parentNode.type === 'LabeledStatement') {
+          node.$p.parentLabel = parentNode.label.name;
+        }
+        break;
+      }
+      case 'WhileStatement:after': {
+        loopStack.pop();
+        break;
+      }
+      case 'ContinueStatement:before': {
+        // Eliminate in favor of a `break $continue`. Regardless.
+
+        let target;
+        if (node.label) {
+          rule('Eliminate continue statements');
+          example('A: while (x) { f(); continue A; }', 'A: while (x) { B: { f(); break B; } }');
+
+          // Walk the loop stack and check each loops parent
+          // Note: the parser should enforce that one of the ancestor loops is labeled with this label so we must find it
+          let i = loopStack.length - 1;
+
+          while (loopStack[i].$p.parentLabel !== node.label.name) {
+            vlog('Loop', i, 'parent label', loopStack[i].$p.parentLabel, ', looking for:', node.label.name)
+            --i;
+            ASSERT(i>=0, 'must find the labeled loop node');
+          }
+          target = loopStack[i];
+        } else {
+          rule('Eliminate continue statements');
+          example('while (x) { f(); continue; }', 'while (x) { A: { f(); break A; } }');
+
+          target = loopStack[loopStack.length - 1];
+        }
+        vlog('Eliminating `continue` (label=', node.label?.name ?? '<no label>', '), targeting loop @', target.$p.pid);
+        before(target);
+
+        // Check loop already has labeled body (`while(x) { label: { <body> } }`)
+        if (!(
+          target.body.type === 'BlockStatement' &&
+          target.body.body.length === 1 &&
+          target.body.body[0].type === 'LabeledStatement' &&
+          target.body.body[0].body.type === 'BlockStatement'
+        )) {
+          // We need to wrap the current body in a labeled block
+          // Be mindful that this is not normalized code: We must first replace the continue before replacing the loop body.
+          const labelNode = createFreshLabel('$continue', fdata);
+
+          // Replace the continue now. Otherwise this case can break: `while (x) continue` when replacing the loop body first.
+          if (parentIndex < 0) parentNode[parentProp] = AST.breakStatement(labelNode.name);
+          else parentNode[parentProp][parentIndex] = AST.breakStatement(labelNode.name);
+
+          vlog('Wrapping loop body in fresh label;', labelNode.name);
+          target.body = AST.blockStatement(AST.labeledStatement(labelNode, AST.blockStatement(target.body)));
+        } else {
+          ASSERT(target.body.body[0].label?.type === 'Identifier', 'should have been asserted and ensured above', target);
+          if (parentIndex < 0) parentNode[parentProp] = AST.breakStatement(target.body.body[0].label.name);
+          else parentNode[parentProp][parentIndex] = AST.breakStatement(target.body.body[0].label.name);
+        }
+
+        after(target);
         break;
       }
     }

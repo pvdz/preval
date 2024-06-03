@@ -85,8 +85,12 @@ while ($(true)) {
     while (tmpDoWhileFlag || $(true)) {
       tmpDoWhileFlag = false;
       {
-        $(`loop`);
-        continue;
+        $continue: {
+          {
+            $(`loop`);
+            break $continue;
+          }
+        }
       }
     }
   }
@@ -110,8 +114,10 @@ while (true) {
       }
       if (tmpIfTest$1) {
         tmpDoWhileFlag = false;
-        $(`loop`);
-        continue;
+        $continue: {
+          $(`loop`);
+          break $continue;
+        }
       } else {
         break;
       }

@@ -119,7 +119,7 @@ Should call `$` with:
  - 1: { x: '{"y":"1"}' }
  - 2: 'x'
  - 3: 'y'
- - eval returned: ('<crash[ Found non-callable @@iterator ]>')
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Pre normalization calls: Same
 

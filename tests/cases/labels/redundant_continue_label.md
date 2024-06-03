@@ -24,8 +24,12 @@ dropme: {
   let tmpDoWhileFlag = true;
   foo: while (tmpDoWhileFlag || false) {
     tmpDoWhileFlag = false;
-    $(1);
-    continue foo;
+    $continue: {
+      {
+        $(1);
+        break $continue;
+      }
+    }
   }
 }
 `````
@@ -42,8 +46,10 @@ while (true) {
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;
-    $(1);
-    continue;
+    $continue: {
+      $(1);
+      break $continue;
+    }
   } else {
     break;
   }

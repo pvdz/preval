@@ -37,17 +37,21 @@
 {
   let x = 10;
   foo: while (true) {
-    while (true) {
-      const tmpIfTest = $(x);
-      if (tmpIfTest) {
-        continue foo;
-      } else {
-        x = 20;
+    $continue: {
+      {
+        while (true) {
+          const tmpIfTest = $(x);
+          if (tmpIfTest) {
+            break $continue;
+          } else {
+            x = 20;
+            $(x);
+          }
+        }
         $(x);
+        x = 40;
       }
     }
-    $(x);
-    x = 40;
   }
   $(x);
 }
@@ -57,18 +61,20 @@
 
 `````js filename=intro
 let x = 10;
-foo: while (true) {
-  while (true) {
-    const tmpIfTest = $(x);
-    if (tmpIfTest) {
-      continue foo;
-    } else {
-      x = 20;
-      $(x);
+while (true) {
+  $continue: {
+    while (true) {
+      const tmpIfTest = $(x);
+      if (tmpIfTest) {
+        break $continue;
+      } else {
+        x = 20;
+        $(x);
+      }
     }
+    $(x);
+    x = 40;
   }
-  $(x);
-  x = 40;
 }
 $(x);
 `````
@@ -77,18 +83,20 @@ $(x);
 
 `````js filename=intro
 let x = 10;
-foo: while (true) {
-  while (true) {
-    const tmpIfTest = $(x);
-    if (tmpIfTest) {
-      continue foo;
-    } else {
-      x = 20;
-      $(20);
+while (true) {
+  $continue: {
+    while (true) {
+      const tmpIfTest = $(x);
+      if (tmpIfTest) {
+        break $continue;
+      } else {
+        x = 20;
+        $(20);
+      }
     }
+    $(x);
+    x = 40;
   }
-  $(x);
-  x = 40;
 }
 $(x);
 `````
@@ -99,19 +107,21 @@ With rename=true
 
 `````js filename=intro
 let a = 10;
-foo: while (true) {
-  while (true) {
-    const b = $( a );
-    if (b) {
-      break foo;
+while (true) {
+  $continue:   {
+    while (true) {
+      const b = $( a );
+      if (b) {
+        break $continue;
+      }
+      else {
+        a = 20;
+        $( 20 );
+      }
     }
-    else {
-      a = 20;
-      $( 20 );
-    }
+    $( a );
+    a = 40;
   }
-  $( a );
-  a = 40;
 }
 $( a );
 `````

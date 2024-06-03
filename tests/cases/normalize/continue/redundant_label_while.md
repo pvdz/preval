@@ -31,14 +31,18 @@ exit: while (x) {
 `````js filename=intro
 let x = $(2);
 exit: while (x) {
-  $(1);
-  if ($(1)) {
-    x = $(3);
-  }
-  if (x) {
-    continue exit;
-  } else {
-    x = $(4);
+  $continue: {
+    {
+      $(1);
+      if ($(1)) {
+        x = $(3);
+      }
+      if (x) {
+        break $continue;
+      } else {
+        x = $(4);
+      }
+    }
   }
 }
 `````
@@ -49,16 +53,18 @@ exit: while (x) {
 let x = $(2);
 while (true) {
   if (x) {
-    $(1);
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      x = $(3);
-    } else {
-    }
-    if (x) {
-      continue;
-    } else {
-      x = $(4);
+    $continue: {
+      $(1);
+      const tmpIfTest = $(1);
+      if (tmpIfTest) {
+        x = $(3);
+      } else {
+      }
+      if (x) {
+        break $continue;
+      } else {
+        x = $(4);
+      }
     }
   } else {
     break;

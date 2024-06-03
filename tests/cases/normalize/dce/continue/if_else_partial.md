@@ -25,11 +25,15 @@ $('after, wont eval due to infinite loop');
 
 `````js filename=intro
 while ($(true)) {
-  if ($(1)) {
-    continue;
-    $(`fail`);
+  $continue: {
+    {
+      if ($(1)) {
+        break $continue;
+        $(`fail`);
+      }
+      $(`keep, do not eval`);
+    }
   }
-  $(`keep, do not eval`);
 }
 $(`after, wont eval due to infinite loop`);
 `````
@@ -37,15 +41,18 @@ $(`after, wont eval due to infinite loop`);
 ## Normalized
 
 `````js filename=intro
+let tmpIfTest = $(true);
 while (true) {
-  const tmpIfTest = $(true);
   if (tmpIfTest) {
-    const tmpIfTest$1 = $(1);
-    if (tmpIfTest$1) {
-      continue;
-    } else {
-      $(`keep, do not eval`);
+    $continue: {
+      const tmpIfTest$1 = $(1);
+      if (tmpIfTest$1) {
+        break $continue;
+      } else {
+        $(`keep, do not eval`);
+      }
     }
+    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -56,26 +63,22 @@ $(`after, wont eval due to infinite loop`);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
-const tmpIfTest = $(true);
+let tmpIfTest = $(true);
 if (tmpIfTest) {
   const tmpIfTest$1 = $(1);
   if (tmpIfTest$1) {
   } else {
     $(`keep, do not eval`);
   }
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  tmpIfTest = $(true);
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$2 = $(true);
-    if (tmpIfTest$2) {
-      const tmpIfTest$4 = $(1);
-      if (tmpIfTest$4) {
+    if (tmpIfTest) {
+      const tmpIfTest$2 = $(1);
+      if (tmpIfTest$2) {
       } else {
         $(`keep, do not eval`);
       }
+      tmpIfTest = $(true);
     } else {
       break;
     }
@@ -90,31 +93,26 @@ $(`after, wont eval due to infinite loop`);
 With rename=true
 
 `````js filename=intro
-let a = true;
-const b = $( true );
-if (b) {
-  const c = $( 1 );
-  if (c) {
+let a = $( true );
+if (a) {
+  const b = $( 1 );
+  if (b) {
 
   }
   else {
     $( "keep, do not eval" );
   }
-}
-else {
-  a = false;
-}
-if (a) {
+  a = $( true );
   while ($LOOP_UNROLL_10) {
-    const d = $( true );
-    if (d) {
-      const e = $( 1 );
-      if (e) {
+    if (a) {
+      const c = $( 1 );
+      if (c) {
 
       }
       else {
         $( "keep, do not eval" );
       }
+      a = $( true );
     }
     else {
       break;

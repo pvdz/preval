@@ -27,8 +27,12 @@ a: {}
 a: {
 }
 a$1: while (true) {
-  $(1);
-  continue a$1;
+  $continue: {
+    {
+      $(1);
+      break $continue;
+    }
+  }
 }
 a$3: {
 }
@@ -38,7 +42,10 @@ a$3: {
 
 `````js filename=intro
 while (true) {
-  $(1);
+  $continue: {
+    $(1);
+    break $continue;
+  }
 }
 `````
 

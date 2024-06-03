@@ -84,58 +84,62 @@ if (action === 5) throw use;
 let f = function () {
   debugger;
   ABC: while (true) {
-    {
-      let $implicitThrow = false;
-      let $finalStep = false;
-      let $finalStep$1 = false;
-      let $finalStep$3 = false;
-      let $finalStep$5 = false;
-      let $finalCatchArg = undefined;
-      let $finalArg = undefined;
-      let $finalArg$1 = undefined;
-      $finally: {
-        try {
-          $(a);
-          if ($1) {
-            {
-              $finalStep = true;
-              break $finally;
-            }
-          }
-          if ($2) {
-            {
-              $finalStep$1 = true;
-              $finalArg = value;
-              break $finally;
-            }
-          }
-          if ($3) {
-            {
-              $finalStep$3 = true;
-              $finalArg$1 = x;
-              break $finally;
-            }
-          }
-          if ($4) {
-            {
-              $finalStep$5 = true;
-              break $finally;
-            }
-          }
-        } catch ($finalImplicit) {
-          $implicitThrow = true;
-          $finalCatchArg = $finalImplicit;
-        }
-      }
+    $continue: {
       {
-        $(b);
-      }
-      if ($implicitThrow) throw $finalCatchArg;
-      else if ($finalStep) break ABC;
-      else if ($finalStep$1) return $finalArg;
-      else if ($finalStep$3) throw $finalArg$1;
-      else if ($finalStep$5) continue;
-      else {
+        {
+          let $implicitThrow = false;
+          let $finalStep = false;
+          let $finalStep$1 = false;
+          let $finalStep$3 = false;
+          let $finalStep$5 = false;
+          let $finalCatchArg = undefined;
+          let $finalArg = undefined;
+          let $finalArg$1 = undefined;
+          $finally: {
+            try {
+              $(a);
+              if ($1) {
+                {
+                  $finalStep = true;
+                  break $finally;
+                }
+              }
+              if ($2) {
+                {
+                  $finalStep$1 = true;
+                  $finalArg = value;
+                  break $finally;
+                }
+              }
+              if ($3) {
+                {
+                  $finalStep$3 = true;
+                  $finalArg$1 = x;
+                  break $finally;
+                }
+              }
+              if ($4) {
+                {
+                  $finalStep$5 = true;
+                  break $finally;
+                }
+              }
+            } catch ($finalImplicit) {
+              $implicitThrow = true;
+              $finalCatchArg = $finalImplicit;
+            }
+          }
+          {
+            $(b);
+          }
+          if ($implicitThrow) throw $finalCatchArg;
+          else if ($finalStep) break ABC;
+          else if ($finalStep$1) return $finalArg;
+          else if ($finalStep$3) throw $finalArg$1;
+          else if ($finalStep$5) break $continue;
+          else {
+          }
+        }
       }
     }
   }
@@ -149,60 +153,62 @@ $(f);
 let f = function () {
   debugger;
   while (true) {
-    let $implicitThrow = false;
-    let $finalStep = false;
-    let $finalStep$1 = false;
-    let $finalStep$3 = false;
-    let $finalStep$5 = false;
-    let $finalCatchArg = undefined;
-    let $finalArg = undefined;
-    let $finalArg$1 = undefined;
-    $finally: {
-      try {
-        $(a);
-        if ($1) {
-          $finalStep = true;
-          break $finally;
-        } else {
-          if ($2) {
-            $finalStep$1 = true;
-            $finalArg = value;
+    $continue: {
+      let $implicitThrow = false;
+      let $finalStep = false;
+      let $finalStep$1 = false;
+      let $finalStep$3 = false;
+      let $finalStep$5 = false;
+      let $finalCatchArg = undefined;
+      let $finalArg = undefined;
+      let $finalArg$1 = undefined;
+      $finally: {
+        try {
+          $(a);
+          if ($1) {
+            $finalStep = true;
             break $finally;
           } else {
-            if ($3) {
-              $finalStep$3 = true;
-              $finalArg$1 = x;
+            if ($2) {
+              $finalStep$1 = true;
+              $finalArg = value;
               break $finally;
             } else {
-              if ($4) {
-                $finalStep$5 = true;
+              if ($3) {
+                $finalStep$3 = true;
+                $finalArg$1 = x;
                 break $finally;
               } else {
+                if ($4) {
+                  $finalStep$5 = true;
+                  break $finally;
+                } else {
+                }
               }
             }
           }
+        } catch ($finalImplicit) {
+          $implicitThrow = true;
+          $finalCatchArg = $finalImplicit;
         }
-      } catch ($finalImplicit) {
-        $implicitThrow = true;
-        $finalCatchArg = $finalImplicit;
       }
-    }
-    $(b);
-    if ($implicitThrow) {
-      throw $finalCatchArg;
-    } else {
-      if ($finalStep) {
-        break;
+      $(b);
+      if ($implicitThrow) {
+        throw $finalCatchArg;
       } else {
-        if ($finalStep$1) {
-          return $finalArg;
+        if ($finalStep) {
+          break;
         } else {
-          if ($finalStep$3) {
-            throw $finalArg$1;
+          if ($finalStep$1) {
+            return $finalArg;
           } else {
-            if ($finalStep$5) {
-              continue;
+            if ($finalStep$3) {
+              throw $finalArg$1;
             } else {
+              if ($finalStep$5) {
+                break $continue;
+              } else {
+              }
             }
           }
         }

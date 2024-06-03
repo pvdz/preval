@@ -27,8 +27,12 @@ $('after, wont eval due to infinite loop');
 `````js filename=intro
 while ($(true)) {
   for (let x of [10, 20]) {
-    continue;
-    $(`fail`);
+    $continue: {
+      {
+        break $continue;
+        $(`fail`);
+      }
+    }
   }
 }
 $(`after, wont eval due to infinite loop`);
@@ -43,7 +47,9 @@ while (true) {
     const tmpForOfDeclRhs = [10, 20];
     let x = undefined;
     for (x of tmpForOfDeclRhs) {
-      continue;
+      $continue: {
+        break $continue;
+      }
     }
     tmpIfTest = $(true);
   } else {

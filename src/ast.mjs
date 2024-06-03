@@ -873,6 +873,7 @@ export function variableDeclarationFromDeclaration(declarations, kind = 'let') {
 
 export function whileStatement(test, body) {
   if (typeof test === 'string') test = identifier(test);
+  else if (typeof test === 'boolean') test = primitive(test);
 
   return {
     type: 'WhileStatement',

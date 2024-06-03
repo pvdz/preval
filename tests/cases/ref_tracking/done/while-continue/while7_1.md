@@ -34,32 +34,34 @@ $(x); // x=1 2
 `````filename=intro
 let x___4__ = 1;
 while (true) {
-  /*8*/ if ($) {
-    /*11*/ $(x___15__);
-    continue;
-  } /*17*/ else {
-    $(x___21__);
-    x___25__ = 2;
-    const tmpIfTest___28__ = $();
-    if (tmpIfTest___32__) {
-      /*33*/ break;
-    } /*35*/ else {
+  /*8*/ $continue___10__: /*11*/ {
+    if ($) {
+      /*14*/ $(x___18__);
+      break $continue___20__;
+    } /*21*/ else {
+      $(x___25__);
+      x___29__ = 2;
+      const tmpIfTest___32__ = $();
+      if (tmpIfTest___36__) {
+        /*37*/ break;
+      } /*39*/ else {
+      }
     }
   }
 }
-$(x___39__);
+$(x___43__);
 `````
 
 Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 15,21,39    | none           | 25
-  - r @15      | 4,25
-  - r @21      | 4,25
-  - w @25      | ########## | 15,21,39    | 4,25           | 25
-  - r @39      | 4,25
+  - w @4       | ########## | 18,25,43    | none           | 29
+  - r @18      | 4,29
+  - r @25      | 4,29
+  - w @29      | ########## | 18,25,43    | 4,29           | 29
+  - r @43      | 4,29
 
 tmpIfTest:
-  - w @28      | ########## | 32          | none           | none
-  - r @32      | 28
+  - w @32      | ########## | 36          | none           | none
+  - r @36      | 32

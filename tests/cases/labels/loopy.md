@@ -22,9 +22,13 @@ woop: while (true) {
 
 `````js filename=intro
 woop: while (true) {
-  $(1);
-  continue woop;
-  $(2);
+  $continue: {
+    {
+      $(1);
+      break $continue;
+      $(2);
+    }
+  }
 }
 `````
 
@@ -32,7 +36,10 @@ woop: while (true) {
 
 `````js filename=intro
 while (true) {
-  $(1);
+  $continue: {
+    $(1);
+    break $continue;
+  }
 }
 `````
 

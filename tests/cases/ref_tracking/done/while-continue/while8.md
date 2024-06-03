@@ -33,23 +33,25 @@ $(x); // unreachable
 `````filename=intro
 let x___4__ = 1;
 while (true) {
-  /*8*/ if ($) {
-    /*11*/ $(x___15__);
-  } /*16*/ else {
-    $(x___20__);
-    x___24__ = 2;
-    continue;
+  /*8*/ $continue___10__: /*11*/ {
+    if ($) {
+      /*14*/ $(x___18__);
+    } /*19*/ else {
+      $(x___23__);
+      x___27__ = 2;
+      break $continue___29__;
+    }
   }
 }
-$(x___29__);
+$(x___33__);
 `````
 
 Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 15,20       | none           | 24
-  - r @15      | 4,24
-  - r @20      | 4,24
-  - w @24      | ########## | 15,20       | 4,24           | 24
-  - r @29      | none (unreachable?)
+  - w @4       | ########## | 18,23       | none           | 27
+  - r @18      | 4,27
+  - r @23      | 4,27
+  - w @27      | ########## | 18,23       | 4,27           | 27
+  - r @33      | none (unreachable?)

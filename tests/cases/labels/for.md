@@ -25,9 +25,13 @@ $(2);
 $(0);
 dropme: {
   foo: while ($(true)) {
-    {
-      if (1) break foo;
-      else continue foo;
+    $continue: {
+      {
+        {
+          if (1) break foo;
+          else break $continue;
+        }
+      }
     }
   }
 }
@@ -38,10 +42,13 @@ $(2);
 
 `````js filename=intro
 $(0);
+let tmpIfTest = $(true);
 while (true) {
-  const tmpIfTest = $(true);
   if (tmpIfTest) {
-    break;
+    $continue: {
+      break;
+    }
+    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -53,7 +60,17 @@ $(2);
 
 `````js filename=intro
 $(0);
-$(true);
+let tmpIfTest = $(true);
+while (true) {
+  if (tmpIfTest) {
+    $continue: {
+      break;
+    }
+    tmpIfTest = $(true);
+  } else {
+    break;
+  }
+}
 $(2);
 `````
 
@@ -63,7 +80,18 @@ With rename=true
 
 `````js filename=intro
 $( 0 );
-$( true );
+let a = $( true );
+while (true) {
+  if (a) {
+    $continue:     {
+      break;
+    }
+    a = $( true );
+  }
+  else {
+    break;
+  }
+}
 $( 2 );
 `````
 

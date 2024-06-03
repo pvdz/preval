@@ -27,7 +27,11 @@ $('after, wont eval due to infinite loop');
 `````js filename=intro
 while ($(true)) {
   for (let x in { a: 1, b: 2 }) {
-    continue;
+    $continue: {
+      {
+        break $continue;
+      }
+    }
   }
   $(`keep`);
 }
@@ -43,7 +47,9 @@ while (true) {
     const tmpForInDeclRhs = { a: 1, b: 2 };
     let x = undefined;
     for (x in tmpForInDeclRhs) {
-      continue;
+      $continue: {
+        break $continue;
+      }
     }
     $(`keep`);
     tmpIfTest = $(true);

@@ -91,6 +91,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: undefined
- - eval returned: ('<crash[ Found non-callable @@iterator ]>')
+Final output calls: Same

@@ -27,8 +27,12 @@ $('after, do not evaluate (infinite loop)');
 `````js filename=intro
 while ($(true)) {
   while ($(true)) {
-    continue;
-    $(`fail`);
+    $continue: {
+      {
+        break $continue;
+        $(`fail`);
+      }
+    }
   }
 }
 $(`after, do not evaluate (infinite loop)`);
@@ -40,10 +44,13 @@ $(`after, do not evaluate (infinite loop)`);
 let tmpIfTest = $(true);
 while (true) {
   if (tmpIfTest) {
+    let tmpIfTest$1 = $(true);
     while (true) {
-      const tmpIfTest$1 = $(true);
       if (tmpIfTest$1) {
-        continue;
+        $continue: {
+          break $continue;
+        }
+        tmpIfTest$1 = $(true);
       } else {
         break;
       }
@@ -62,16 +69,12 @@ $(`after, do not evaluate (infinite loop)`);
 let tmpIfTest = $(true);
 while (true) {
   if (tmpIfTest) {
-    let $tmpLoopUnrollCheck = true;
-    const tmpIfTest$1 = $(true);
+    let tmpIfTest$1 = $(true);
     if (tmpIfTest$1) {
-    } else {
-      $tmpLoopUnrollCheck = false;
-    }
-    if ($tmpLoopUnrollCheck) {
+      tmpIfTest$1 = $(true);
       while ($LOOP_UNROLL_10) {
-        const tmpIfTest$2 = $(true);
-        if (tmpIfTest$2) {
+        if (tmpIfTest$1) {
+          tmpIfTest$1 = $(true);
         } else {
           break;
         }
@@ -94,19 +97,12 @@ With rename=true
 let a = $( true );
 while (true) {
   if (a) {
-    let b = true;
-    const c = $( true );
-    if (c) {
-
-    }
-    else {
-      b = false;
-    }
+    let b = $( true );
     if (b) {
+      b = $( true );
       while ($LOOP_UNROLL_10) {
-        const d = $( true );
-        if (d) {
-
+        if (b) {
+          b = $( true );
         }
         else {
           break;

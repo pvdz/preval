@@ -36,8 +36,12 @@ while (true) {
     let x = undefined;
     const obj = { a: 1, b: 2 };
     for (x in obj) {
-      $(x, y);
-      continue;
+      $continue: {
+        {
+          $(x, y);
+          break $continue;
+        }
+      }
     }
     $(x, y, `after`);
     y = $(true);
@@ -58,8 +62,10 @@ while (true) {
     let x = undefined;
     const obj = { a: 1, b: 2 };
     for (x in obj) {
-      $(x, y);
-      continue;
+      $continue: {
+        $(x, y);
+        break $continue;
+      }
     }
     $(x, y, `after`);
     y = $(true);

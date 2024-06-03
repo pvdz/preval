@@ -29,11 +29,15 @@ f();
 let f = function () {
   debugger;
   while (x) {
-    $(1);
-    if ($) {
-      continue;
+    $continue: {
+      {
+        $(1);
+        if ($) {
+          break $continue;
+        }
+        $(2);
+      }
     }
-    $(2);
   }
 };
 f();
@@ -46,11 +50,13 @@ let f = function () {
   debugger;
   while (true) {
     if (x) {
-      $(1);
-      if ($) {
-        continue;
-      } else {
-        $(2);
+      $continue: {
+        $(1);
+        if ($) {
+          break $continue;
+        } else {
+          $(2);
+        }
       }
     } else {
       break;

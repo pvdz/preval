@@ -36,16 +36,20 @@ $(x);
 `````js filename=intro
 let x = 1;
 again: while (true) {
-  while (true) {
-    if ($) {
-      $(x);
-    } else {
-      $(x);
-      x = 2;
-      continue again;
+  $continue: {
+    {
+      while (true) {
+        if ($) {
+          $(x);
+        } else {
+          $(x);
+          x = 2;
+          break $continue;
+        }
+      }
+      $(`fail`, x);
     }
   }
-  $(`fail`, x);
 }
 $(x);
 `````
@@ -54,17 +58,19 @@ $(x);
 
 `````js filename=intro
 let x = 1;
-again: while (true) {
-  while (true) {
-    if ($) {
-      $(x);
-    } else {
-      $(x);
-      x = 2;
-      continue again;
+while (true) {
+  $continue: {
+    while (true) {
+      if ($) {
+        $(x);
+      } else {
+        $(x);
+        x = 2;
+        break $continue;
+      }
     }
+    $(`fail`, x);
   }
-  $(`fail`, x);
 }
 $(x);
 `````
@@ -73,16 +79,18 @@ $(x);
 
 `````js filename=intro
 let x = 1;
-again: while (true) {
-  while (true) {
-    $(x);
-    if ($) {
-    } else {
-      x = 2;
-      continue again;
+while (true) {
+  $continue: {
+    while (true) {
+      $(x);
+      if ($) {
+      } else {
+        x = 2;
+        break $continue;
+      }
     }
+    $(`fail`, x);
   }
-  $(`fail`, x);
 }
 $(x);
 `````
@@ -93,18 +101,20 @@ With rename=true
 
 `````js filename=intro
 let a = 1;
-again: while (true) {
-  while (true) {
-    $( a );
-    if ($) {
+while (true) {
+  $continue:   {
+    while (true) {
+      $( a );
+      if ($) {
 
+      }
+      else {
+        a = 2;
+        break $continue;
+      }
     }
-    else {
-      a = 2;
-      break again;
-    }
+    $( "fail", a );
   }
-  $( "fail", a );
 }
 $( a );
 `````

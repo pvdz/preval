@@ -35,11 +35,15 @@ try {
     try {
       $(1);
       while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-        $(2);
-        if ($(3)) {
-          continue;
+        $continue: {
+          {
+            $(2);
+            if ($(3)) {
+              break $continue;
+            }
+            $(4);
+          }
         }
-        $(4);
       }
     } catch ($finalImplicit) {
       $implicitThrow = true;
@@ -63,12 +67,14 @@ let $finalCatchArg = undefined;
 try {
   $(1);
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    $(2);
-    const tmpIfTest = $(3);
-    if (tmpIfTest) {
-      continue;
-    } else {
-      $(4);
+    $continue: {
+      $(2);
+      const tmpIfTest = $(3);
+      if (tmpIfTest) {
+        break $continue;
+      } else {
+        $(4);
+      }
     }
   }
 } catch ($finalImplicit) {

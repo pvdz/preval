@@ -37,20 +37,22 @@ while ($) {
 let x___4__ = 1;
 while (true) {
   /*8*/ if ($) {
-    /*11*/ const tmpIfTest___14__ = $(false);
-    if (tmpIfTest___19__) {
-      /*20*/ $(x___24__);
-      continue;
-    } /*26*/ else {
-      if ($) {
-        /*29*/ $(x___33__);
-        x___37__ = 6;
-        break;
-      } /*39*/ else {
-        x___43__ = 3;
+    /*11*/ $continue___13__: /*14*/ {
+      const tmpIfTest___17__ = $(false);
+      if (tmpIfTest___22__) {
+        /*23*/ $(x___27__);
+        break $continue___29__;
+      } /*30*/ else {
+        if ($) {
+          /*33*/ $(x___37__);
+          x___41__ = 6;
+          break;
+        } /*43*/ else {
+          x___47__ = 3;
+        }
       }
     }
-  } /*44*/ else {
+  } /*48*/ else {
     break;
   }
 }
@@ -60,12 +62,12 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 24,33       | none           | 37,43
-  - r @24      | 4,43
-  - r @33      | 4,43
-  - w @37      | ########## | not read    | 4,43           | none
-  - w @43      | ########## | 24,33       | 4,43           | 37,43
+  - w @4       | ########## | 27,37       | none           | 41,47
+  - r @27      | 4,47
+  - r @37      | 4,47
+  - w @41      | ########## | not read    | 4,47           | none
+  - w @47      | ########## | 27,37       | 4,47           | 41,47
 
 tmpIfTest:
-  - w @14      | ########## | 19          | none           | none
-  - r @19      | 14
+  - w @17      | ########## | 22          | none           | none
+  - r @22      | 17

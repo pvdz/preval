@@ -26,23 +26,27 @@ $(3);
 
 `````js filename=intro
 for (const x in { a: 1 }) {
-  {
-    let $implicitThrow = false;
-    let $finalCatchArg = undefined;
-    $finally: {
-      try {
-        $(x, 1);
-      } catch ($finalImplicit) {
-        $implicitThrow = true;
-        $finalCatchArg = $finalImplicit;
-      }
-    }
+  $continue: {
     {
-      $(2);
-      continue;
-    }
-    if ($implicitThrow) throw $finalCatchArg;
-    else {
+      {
+        let $implicitThrow = false;
+        let $finalCatchArg = undefined;
+        $finally: {
+          try {
+            $(x, 1);
+          } catch ($finalImplicit) {
+            $implicitThrow = true;
+            $finalCatchArg = $finalImplicit;
+          }
+        }
+        {
+          $(2);
+          break $continue;
+        }
+        if ($implicitThrow) throw $finalCatchArg;
+        else {
+        }
+      }
     }
   }
 }
@@ -55,16 +59,18 @@ $(3);
 const tmpForInDeclRhs = { a: 1 };
 let x = undefined;
 for (x in tmpForInDeclRhs) {
-  let $implicitThrow = false;
-  let $finalCatchArg = undefined;
-  try {
-    $(x, 1);
-  } catch ($finalImplicit) {
-    $implicitThrow = true;
-    $finalCatchArg = $finalImplicit;
+  $continue: {
+    let $implicitThrow = false;
+    let $finalCatchArg = undefined;
+    try {
+      $(x, 1);
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
+    }
+    $(2);
+    break $continue;
   }
-  $(2);
-  continue;
 }
 $(3);
 `````

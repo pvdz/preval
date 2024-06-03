@@ -28,7 +28,7 @@ while ($(true)) {
   tmpSwitchBreak: {
     const tmpSwitchDisc = $(1, `disc`);
     if (tmpSwitchDisc === $(1, `case`)) {
-      continue;
+      break tmpSwitchBreak;
       $(`fail`);
     } else {
     }
@@ -40,17 +40,20 @@ $(`after, do not evaluate (infinite loop)`);
 ## Normalized
 
 `````js filename=intro
+let tmpIfTest = $(true);
 while (true) {
-  const tmpIfTest = $(true);
   if (tmpIfTest) {
-    const tmpSwitchDisc = $(1, `disc`);
-    const tmpBinBothLhs = tmpSwitchDisc;
-    const tmpBinBothRhs = $(1, `case`);
-    const tmpIfTest$1 = tmpBinBothLhs === tmpBinBothRhs;
-    if (tmpIfTest$1) {
-      continue;
-    } else {
+    tmpSwitchBreak: {
+      const tmpSwitchDisc = $(1, `disc`);
+      const tmpBinBothLhs = tmpSwitchDisc;
+      const tmpBinBothRhs = $(1, `case`);
+      const tmpIfTest$1 = tmpBinBothLhs === tmpBinBothRhs;
+      if (tmpIfTest$1) {
+        break tmpSwitchBreak;
+      } else {
+      }
     }
+    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -61,20 +64,16 @@ $(`after, do not evaluate (infinite loop)`);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
-const tmpIfTest = $(true);
+let tmpIfTest = $(true);
 if (tmpIfTest) {
   $(1, `disc`);
   $(1, `case`);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  tmpIfTest = $(true);
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$2 = $(true);
-    if (tmpIfTest$2) {
+    if (tmpIfTest) {
       $(1, `disc`);
       $(1, `case`);
+      tmpIfTest = $(true);
     } else {
       break;
     }
@@ -89,21 +88,16 @@ $(`after, do not evaluate (infinite loop)`);
 With rename=true
 
 `````js filename=intro
-let a = true;
-const b = $( true );
-if (b) {
+let a = $( true );
+if (a) {
   $( 1, "disc" );
   $( 1, "case" );
-}
-else {
-  a = false;
-}
-if (a) {
+  a = $( true );
   while ($LOOP_UNROLL_10) {
-    const c = $( true );
-    if (c) {
+    if (a) {
       $( 1, "disc" );
       $( 1, "case" );
+      a = $( true );
     }
     else {
       break;

@@ -28,9 +28,13 @@ $(f());
 let f = function () {
   debugger;
   label: while ($) {
-    $(1);
-    if ($) {
-      continue label;
+    $continue: {
+      {
+        $(1);
+        if ($) {
+          break $continue;
+        }
+      }
     }
   }
 };
@@ -44,10 +48,12 @@ let f = function () {
   debugger;
   while (true) {
     if ($) {
-      $(1);
-      if ($) {
-        continue;
-      } else {
+      $continue: {
+        $(1);
+        if ($) {
+          break $continue;
+        } else {
+        }
       }
     } else {
       break;

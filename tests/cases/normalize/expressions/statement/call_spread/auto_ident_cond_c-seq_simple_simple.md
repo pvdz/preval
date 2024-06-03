@@ -91,7 +91,7 @@ None
 Should call `$` with:
  - 1: 30
  - 2: 2
- - eval returned: ('<crash[ Found non-callable @@iterator ]>')
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Pre normalization calls: Same
 

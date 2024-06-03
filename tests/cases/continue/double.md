@@ -51,16 +51,20 @@ $('woohoo');
 
 `````js filename=intro
 while (true) {
-  if ($(false)) {
-    $(`uhoh`);
-    continue;
+  $continue: {
+    {
+      if ($(false)) {
+        $(`uhoh`);
+        break $continue;
+      }
+      if ($(false)) {
+        $(`neither`);
+        break $continue;
+      }
+      $(`exit`);
+      break;
+    }
   }
-  if ($(false)) {
-    $(`neither`);
-    continue;
-  }
-  $(`exit`);
-  break;
 }
 $(`woohoo`);
 while (true) {
@@ -89,18 +93,20 @@ $(`woohoo`);
 
 `````js filename=intro
 while (true) {
-  const tmpIfTest = $(false);
-  if (tmpIfTest) {
-    $(`uhoh`);
-    continue;
-  } else {
-    const tmpIfTest$1 = $(false);
-    if (tmpIfTest$1) {
-      $(`neither`);
-      continue;
+  $continue: {
+    const tmpIfTest = $(false);
+    if (tmpIfTest) {
+      $(`uhoh`);
+      break $continue;
     } else {
-      $(`exit`);
-      break;
+      const tmpIfTest$1 = $(false);
+      if (tmpIfTest$1) {
+        $(`neither`);
+        break $continue;
+      } else {
+        $(`exit`);
+        break;
+      }
     }
   }
 }
@@ -134,7 +140,7 @@ $(`woohoo`);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
+let $tmpLoopUnrollCheck$1 = true;
 const tmpIfTest = $(false);
 if (tmpIfTest) {
   $(`uhoh`);
@@ -144,10 +150,10 @@ if (tmpIfTest) {
     $(`neither`);
   } else {
     $(`exit`);
-    $tmpLoopUnrollCheck = false;
+    $tmpLoopUnrollCheck$1 = false;
   }
 }
-if ($tmpLoopUnrollCheck) {
+if ($tmpLoopUnrollCheck$1) {
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$2 = $(false);
     if (tmpIfTest$2) {
@@ -165,7 +171,7 @@ if ($tmpLoopUnrollCheck) {
 } else {
 }
 $(`woohoo`);
-let $tmpLoopUnrollCheck$1 = true;
+let $tmpLoopUnrollCheck = true;
 let continued = false;
 const tmpIfTest$3 = $(false);
 if (tmpIfTest$3) {
@@ -184,10 +190,10 @@ if (continued) {
   if (continued) {
   } else {
     $(`exit`);
-    $tmpLoopUnrollCheck$1 = false;
+    $tmpLoopUnrollCheck = false;
   }
 }
-if ($tmpLoopUnrollCheck$1) {
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     let continued$1 = false;
     const tmpIfTest$6 = $(false);

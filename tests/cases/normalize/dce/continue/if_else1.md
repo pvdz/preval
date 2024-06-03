@@ -29,14 +29,18 @@ $('after, wont eval due to infinite loop');
 
 `````js filename=intro
 while ($(true)) {
-  if ($(1)) {
-    continue;
-    $(`fail`);
-  } else {
-    continue;
-    $(`fail`);
+  $continue: {
+    {
+      if ($(1)) {
+        break $continue;
+        $(`fail`);
+      } else {
+        break $continue;
+        $(`fail`);
+      }
+      $(`fail`);
+    }
   }
-  $(`fail`);
 }
 $(`after, wont eval due to infinite loop`);
 `````
@@ -44,15 +48,18 @@ $(`after, wont eval due to infinite loop`);
 ## Normalized
 
 `````js filename=intro
+let tmpIfTest = $(true);
 while (true) {
-  const tmpIfTest = $(true);
   if (tmpIfTest) {
-    const tmpIfTest$1 = $(1);
-    if (tmpIfTest$1) {
-      continue;
-    } else {
-      continue;
+    $continue: {
+      const tmpIfTest$1 = $(1);
+      if (tmpIfTest$1) {
+        break $continue;
+      } else {
+        break $continue;
+      }
     }
+    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -63,18 +70,14 @@ $(`after, wont eval due to infinite loop`);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
-const tmpIfTest = $(true);
+let tmpIfTest = $(true);
 if (tmpIfTest) {
   $(1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  tmpIfTest = $(true);
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$2 = $(true);
-    if (tmpIfTest$2) {
+    if (tmpIfTest) {
       $(1);
+      tmpIfTest = $(true);
     } else {
       break;
     }
@@ -89,19 +92,14 @@ $(`after, wont eval due to infinite loop`);
 With rename=true
 
 `````js filename=intro
-let a = true;
-const b = $( true );
-if (b) {
-  $( 1 );
-}
-else {
-  a = false;
-}
+let a = $( true );
 if (a) {
+  $( 1 );
+  a = $( true );
   while ($LOOP_UNROLL_10) {
-    const c = $( true );
-    if (c) {
+    if (a) {
       $( 1 );
+      a = $( true );
     }
     else {
       break;

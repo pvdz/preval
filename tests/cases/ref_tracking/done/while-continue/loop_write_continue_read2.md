@@ -29,13 +29,15 @@ while (true) {
 `````filename=intro
 let x___4__ = 0;
 while (true) {
-  /*8*/ x___14__ = x___12__ + 1;
-  const tmpIfTest___17__ = x___19__ < 400;
-  if (tmpIfTest___22__) {
-    /*23*/ continue;
-  } /*25*/ else {
-    $(x___29__);
-    break;
+  /*8*/ $continue___10__: /*11*/ {
+    x___17__ = x___15__ + 1;
+    const tmpIfTest___20__ = x___22__ < 400;
+    if (tmpIfTest___25__) {
+      /*26*/ break $continue___28__;
+    } /*29*/ else {
+      $(x___33__);
+      break;
+    }
   }
 }
 `````
@@ -44,12 +46,12 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 12          | none           | 14
-  - r @12      | 4,14
-  - w @14      | ########## | 12,19,29    | 4,14           | 14
-  - r @19      | 14
-  - r @29      | 14
+  - w @4       | ########## | 15          | none           | 17
+  - r @15      | 4,17
+  - w @17      | ########## | 15,22,33    | 4,17           | 17
+  - r @22      | 17
+  - r @33      | 17
 
 tmpIfTest:
-  - w @17      | ########## | 22          | none           | none
-  - r @22      | 17
+  - w @20      | ########## | 25          | none           | none
+  - r @25      | 20

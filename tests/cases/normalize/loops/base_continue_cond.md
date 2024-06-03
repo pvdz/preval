@@ -30,8 +30,12 @@ let f = function () {
   debugger;
   let n = 0;
   while (true) {
-    $(++n);
-    if (n < 8) continue;
+    $continue: {
+      {
+        $(++n);
+        if (n < 8) break $continue;
+      }
+    }
   }
   $(`afterwards`);
   return 100;
@@ -46,14 +50,16 @@ let f = function () {
   debugger;
   let n = 0;
   while (true) {
-    const tmpCallCallee = $;
-    n = n + 1;
-    let tmpCalleeParam = n;
-    tmpCallCallee(tmpCalleeParam);
-    const tmpIfTest = n < 8;
-    if (tmpIfTest) {
-      continue;
-    } else {
+    $continue: {
+      const tmpCallCallee = $;
+      n = n + 1;
+      let tmpCalleeParam = n;
+      tmpCallCallee(tmpCalleeParam);
+      const tmpIfTest = n < 8;
+      if (tmpIfTest) {
+        break $continue;
+      } else {
+      }
     }
   }
   $(`afterwards`);

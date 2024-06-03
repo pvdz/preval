@@ -33,24 +33,26 @@ $(x); // unreachable, without DCE it'll be 1,2
 let x___4__ = 1;
 while (true) {
   /*8*/ if ($) {
-    /*11*/ $(x___15__);
-    if ($) {
-      /*18*/ x___22__ = 2;
-      continue;
-    } /*24*/ else {
+    /*11*/ $continue___13__: /*14*/ {
+      $(x___18__);
+      if ($) {
+        /*21*/ x___25__ = 2;
+        break $continue___27__;
+      } /*28*/ else {
+      }
     }
-  } /*25*/ else {
+  } /*29*/ else {
     break;
   }
 }
-$(x___30__);
+$(x___34__);
 `````
 
 Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 15,30       | none           | 22
-  - r @15      | 4,22
-  - w @22      | ########## | 15,30       | 4,22           | 22
-  - r @30      | 4,22
+  - w @4       | ########## | 18,34       | none           | 25
+  - r @18      | 4,25
+  - w @25      | ########## | 18,34       | 4,25           | 25
+  - r @34      | 4,25

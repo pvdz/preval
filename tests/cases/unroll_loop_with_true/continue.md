@@ -30,13 +30,17 @@ while (true) {
 `````js filename=intro
 let i = 10;
 while (true) {
-  if (i-- > 0) continue;
-  const test = $(`first`);
-  $(`second`);
-  if (test) {
-    break;
-  } else {
-    $(`third`);
+  $continue: {
+    {
+      if (i-- > 0) break $continue;
+      const test = $(`first`);
+      $(`second`);
+      if (test) {
+        break;
+      } else {
+        $(`third`);
+      }
+    }
   }
 }
 `````
@@ -46,19 +50,21 @@ while (true) {
 `````js filename=intro
 let i = 10;
 while (true) {
-  const tmpPostUpdArgIdent = i;
-  i = i - 1;
-  const tmpBinLhs = tmpPostUpdArgIdent;
-  const tmpIfTest = tmpBinLhs > 0;
-  if (tmpIfTest) {
-    continue;
-  } else {
-    const test = $(`first`);
-    $(`second`);
-    if (test) {
-      break;
+  $continue: {
+    const tmpPostUpdArgIdent = i;
+    i = i - 1;
+    const tmpBinLhs = tmpPostUpdArgIdent;
+    const tmpIfTest = tmpBinLhs > 0;
+    if (tmpIfTest) {
+      break $continue;
     } else {
-      $(`third`);
+      const test = $(`first`);
+      $(`second`);
+      if (test) {
+        break;
+      } else {
+        $(`third`);
+      }
     }
   }
 }

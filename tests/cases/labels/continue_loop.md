@@ -25,9 +25,13 @@ $(2);
 `````js filename=intro
 let fail = false;
 foo: while (true) {
-  $(1);
-  fail = true;
-  continue foo;
+  $continue: {
+    {
+      $(1);
+      fail = true;
+      break $continue;
+    }
+  }
 }
 $(2);
 `````
@@ -37,8 +41,11 @@ $(2);
 `````js filename=intro
 let fail = false;
 while (true) {
-  $(1);
-  fail = true;
+  $continue: {
+    $(1);
+    fail = true;
+    break $continue;
+  }
 }
 $(2);
 `````

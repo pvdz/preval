@@ -28,17 +28,21 @@ $('after, do not evaluate (infinite loop)');
 
 `````js filename=intro
 while ($(true)) {
-  tmpSwitchBreak: {
-    const tmpSwitchDisc = $(1, `disc`);
-    if (tmpSwitchDisc === $(0)) {
-      $(`keep, do not eval`);
-      continue;
-    } else if (true) {
-      continue;
-    } else {
+  $continue: {
+    {
+      tmpSwitchBreak: {
+        const tmpSwitchDisc = $(1, `disc`);
+        if (tmpSwitchDisc === $(0)) {
+          $(`keep, do not eval`);
+          break $continue;
+        } else if (true) {
+          break $continue;
+        } else {
+        }
+      }
+      $(`eliminate`);
     }
   }
-  $(`eliminate`);
 }
 $(`after, do not evaluate (infinite loop)`);
 `````
@@ -46,19 +50,22 @@ $(`after, do not evaluate (infinite loop)`);
 ## Normalized
 
 `````js filename=intro
+let tmpIfTest = $(true);
 while (true) {
-  const tmpIfTest = $(true);
   if (tmpIfTest) {
-    const tmpSwitchDisc = $(1, `disc`);
-    const tmpBinBothLhs = tmpSwitchDisc;
-    const tmpBinBothRhs = $(0);
-    const tmpIfTest$1 = tmpBinBothLhs === tmpBinBothRhs;
-    if (tmpIfTest$1) {
-      $(`keep, do not eval`);
-      continue;
-    } else {
-      continue;
+    $continue: {
+      const tmpSwitchDisc = $(1, `disc`);
+      const tmpBinBothLhs = tmpSwitchDisc;
+      const tmpBinBothRhs = $(0);
+      const tmpIfTest$1 = tmpBinBothLhs === tmpBinBothRhs;
+      if (tmpIfTest$1) {
+        $(`keep, do not eval`);
+        break $continue;
+      } else {
+        break $continue;
+      }
     }
+    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -69,8 +76,7 @@ $(`after, do not evaluate (infinite loop)`);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
-const tmpIfTest = $(true);
+let tmpIfTest = $(true);
 if (tmpIfTest) {
   const tmpSwitchDisc = $(1, `disc`);
   const tmpBinBothRhs = $(0);
@@ -79,20 +85,17 @@ if (tmpIfTest) {
     $(`keep, do not eval`);
   } else {
   }
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  tmpIfTest = $(true);
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$2 = $(true);
-    if (tmpIfTest$2) {
+    if (tmpIfTest) {
       const tmpSwitchDisc$1 = $(1, `disc`);
       const tmpBinBothRhs$1 = $(0);
-      const tmpIfTest$4 = tmpSwitchDisc$1 === tmpBinBothRhs$1;
-      if (tmpIfTest$4) {
+      const tmpIfTest$2 = tmpSwitchDisc$1 === tmpBinBothRhs$1;
+      if (tmpIfTest$2) {
         $(`keep, do not eval`);
       } else {
       }
+      tmpIfTest = $(true);
     } else {
       break;
     }
@@ -107,29 +110,24 @@ $(`after, do not evaluate (infinite loop)`);
 With rename=true
 
 `````js filename=intro
-let a = true;
-const b = $( true );
-if (b) {
-  const c = $( 1, "disc" );
-  const d = $( 0 );
-  const e = c === d;
-  if (e) {
+let a = $( true );
+if (a) {
+  const b = $( 1, "disc" );
+  const c = $( 0 );
+  const d = b === c;
+  if (d) {
     $( "keep, do not eval" );
   }
-}
-else {
-  a = false;
-}
-if (a) {
+  a = $( true );
   while ($LOOP_UNROLL_10) {
-    const f = $( true );
-    if (f) {
-      const g = $( 1, "disc" );
-      const h = $( 0 );
-      const i = g === h;
-      if (i) {
+    if (a) {
+      const e = $( 1, "disc" );
+      const f = $( 0 );
+      const g = e === f;
+      if (g) {
         $( "keep, do not eval" );
       }
+      a = $( true );
     }
     else {
       break;

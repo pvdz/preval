@@ -34,33 +34,35 @@ $(x); // x=1 2
 let x___4__ = 1;
 while (true) {
   /*8*/ if ($) {
-    /*11*/ $(x___15__);
-    if ($) {
-      /*18*/ x___22__ = 2;
-      continue;
-    } /*24*/ else {
-      const tmpIfTest___27__ = $();
-      if (tmpIfTest___31__) {
-        /*32*/ break;
-      } /*34*/ else {
+    /*11*/ $continue___13__: /*14*/ {
+      $(x___18__);
+      if ($) {
+        /*21*/ x___25__ = 2;
+        break $continue___27__;
+      } /*28*/ else {
+        const tmpIfTest___31__ = $();
+        if (tmpIfTest___35__) {
+          /*36*/ break;
+        } /*38*/ else {
+        }
       }
     }
-  } /*35*/ else {
+  } /*39*/ else {
     break;
   }
 }
-$(x___40__);
+$(x___44__);
 `````
 
 Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 15,40       | none           | 22
-  - r @15      | 4,22
-  - w @22      | ########## | 15,40       | 4,22           | 22
-  - r @40      | 4,22
+  - w @4       | ########## | 18,44       | none           | 25
+  - r @18      | 4,25
+  - w @25      | ########## | 18,44       | 4,25           | 25
+  - r @44      | 4,25
 
 tmpIfTest:
-  - w @27      | ########## | 31          | none           | none
-  - r @31      | 27
+  - w @31      | ########## | 35          | none           | none
+  - r @35      | 31

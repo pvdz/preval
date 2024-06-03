@@ -30,9 +30,13 @@ while ($(true)) {
     while (tmpDoWhileFlag || $(true)) {
       tmpDoWhileFlag = false;
       {
-        $(`loop`);
-        continue;
-        $(`fail`);
+        $continue: {
+          {
+            $(`loop`);
+            break $continue;
+            $(`fail`);
+          }
+        }
       }
     }
   }
@@ -55,8 +59,10 @@ while (true) {
       }
       if (tmpIfTest$1) {
         tmpDoWhileFlag = false;
-        $(`loop`);
-        continue;
+        $continue: {
+          $(`loop`);
+          break $continue;
+        }
       } else {
         break;
       }

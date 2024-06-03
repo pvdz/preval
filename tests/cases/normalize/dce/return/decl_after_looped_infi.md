@@ -34,11 +34,15 @@ $(f());
 let f = function () {
   debugger;
   while (true) {
-    if ($(false)) {
-      $(`fail too`), $throwTDZError(`Preval: TDZ triggered for this assignment: x = \$('fail too')`);
+    $continue: {
+      {
+        if ($(false)) {
+          $(`fail too`), $throwTDZError(`Preval: TDZ triggered for this assignment: x = \$('fail too')`);
+        }
+        break $continue;
+        let x = $(`fail`);
+      }
     }
-    continue;
-    let x = $(`fail`);
   }
 };
 $(f());
@@ -50,13 +54,15 @@ $(f());
 let f = function () {
   debugger;
   while (true) {
-    const tmpIfTest = $(false);
-    if (tmpIfTest) {
-      $(`fail too`);
-      throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
-    } else {
-      continue;
-      let x = $(`fail`);
+    $continue: {
+      const tmpIfTest = $(false);
+      if (tmpIfTest) {
+        $(`fail too`);
+        throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
+      } else {
+        break $continue;
+        let x = $(`fail`);
+      }
     }
   }
   return undefined;

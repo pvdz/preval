@@ -39,17 +39,21 @@ $('after (not invoked)');
 while ($(true)) {
   $(`loop`);
   for (let x in { a: 1, b: 2 }) {
-    $(`loop`, x);
-    if ($(1)) {
-      $(`pass`);
-      continue;
-      $(`fail`);
-    } else {
-      $(`do not visit`);
-      continue;
-      $(`fail`);
+    $continue: {
+      {
+        $(`loop`, x);
+        if ($(1)) {
+          $(`pass`);
+          break $continue;
+          $(`fail`);
+        } else {
+          $(`do not visit`);
+          break $continue;
+          $(`fail`);
+        }
+        $(`fail -> DCE`);
+      }
     }
-    $(`fail -> DCE`);
   }
   $(`infiloop, do not eliminate`);
 }
@@ -66,14 +70,16 @@ while (true) {
     const tmpForInDeclRhs = { a: 1, b: 2 };
     let x = undefined;
     for (x in tmpForInDeclRhs) {
-      $(`loop`, x);
-      const tmpIfTest$1 = $(1);
-      if (tmpIfTest$1) {
-        $(`pass`);
-        continue;
-      } else {
-        $(`do not visit`);
-        continue;
+      $continue: {
+        $(`loop`, x);
+        const tmpIfTest$1 = $(1);
+        if (tmpIfTest$1) {
+          $(`pass`);
+          break $continue;
+        } else {
+          $(`do not visit`);
+          break $continue;
+        }
       }
     }
     $(`infiloop, do not eliminate`);

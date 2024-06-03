@@ -89,13 +89,17 @@ let $continue = function () {
   return;
 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if ($()) {
-    if ($()) {
-      continue;
+  $continue: {
+    {
+      if ($()) {
+        if ($()) {
+          break $continue;
+        }
+      }
+      if ($()) {
+        break;
+      }
     }
-  }
-  if ($()) {
-    break;
   }
 }
 exit: while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -153,19 +157,21 @@ let $continue = function () {
   }
 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest$5 = $();
-  if (tmpIfTest$5) {
-    const tmpIfTest$7 = $();
-    if (tmpIfTest$7) {
-      continue;
+  $continue: {
+    const tmpIfTest$5 = $();
+    if (tmpIfTest$5) {
+      const tmpIfTest$7 = $();
+      if (tmpIfTest$7) {
+        break $continue;
+      } else {
+      }
     } else {
     }
-  } else {
-  }
-  const tmpIfTest$9 = $();
-  if (tmpIfTest$9) {
-    break;
-  } else {
+    const tmpIfTest$9 = $();
+    if (tmpIfTest$9) {
+      break;
+    } else {
+    }
   }
 }
 exit: while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -234,19 +240,21 @@ const $continue = function () {
   }
 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest$5 = $();
-  if (tmpIfTest$5) {
-    const tmpIfTest$7 = $();
-    if (tmpIfTest$7) {
-      continue;
+  $continue: {
+    const tmpIfTest$5 = $();
+    if (tmpIfTest$5) {
+      const tmpIfTest$7 = $();
+      if (tmpIfTest$7) {
+        break $continue;
+      } else {
+      }
     } else {
     }
-  } else {
-  }
-  const tmpIfTest$9 = $();
-  if (tmpIfTest$9) {
-    break;
-  } else {
+    const tmpIfTest$9 = $();
+    if (tmpIfTest$9) {
+      break;
+    } else {
+    }
   }
 }
 exit: while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -316,16 +324,18 @@ const a = function() {
   }
 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const e = $();
-  if (e) {
-    const f = $();
-    if (f) {
+  $continue:   {
+    const e = $();
+    if (e) {
+      const f = $();
+      if (f) {
+        break $continue;
+      }
+    }
+    const g = $();
+    if (g) {
       break;
     }
-  }
-  const g = $();
-  if (g) {
-    break;
   }
 }
 exit: while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

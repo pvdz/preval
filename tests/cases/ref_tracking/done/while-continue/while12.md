@@ -32,14 +32,16 @@ while ($) {
 let x___4__ = 1;
 while (true) {
   /*8*/ if ($) {
-    /*11*/ const tmpIfTest___14__ = $(false);
-    if (tmpIfTest___19__) {
-      /*20*/ x___24__ = 3;
-      continue;
-    } /*26*/ else {
-      $(x___30__);
+    /*11*/ $continue___13__: /*14*/ {
+      const tmpIfTest___17__ = $(false);
+      if (tmpIfTest___22__) {
+        /*23*/ x___27__ = 3;
+        break $continue___29__;
+      } /*30*/ else {
+        $(x___34__);
+      }
     }
-  } /*31*/ else {
+  } /*35*/ else {
     break;
   }
 }
@@ -49,10 +51,10 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 30          | none           | 24
-  - w @24      | ########## | 30          | 4,24           | 24
-  - r @30      | 4,24
+  - w @4       | ########## | 34          | none           | 27
+  - w @27      | ########## | 34          | 4,27           | 27
+  - r @34      | 4,27
 
 tmpIfTest:
-  - w @14      | ########## | 19          | none           | none
-  - r @19      | 14
+  - w @17      | ########## | 22          | none           | none
+  - r @22      | 17

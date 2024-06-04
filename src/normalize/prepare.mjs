@@ -838,17 +838,25 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
       [...imports.values()]
         .sort()
         .map((s) => '- "' + s + '"')
-        .join('\n'),
+        .join('\n') || '(none)',
     );
+    vlog('\ngloballyUniqueNamingRegistry (name[r/w] , omits all builtins):');
     vlog(
-      '\ngloballyUniqueNamingRegistry (name[r/w] , omits builtins)(2):\n' +
-      (
-        (globallyUniqueNamingRegistry.size - globals.size) > 50
-        ? '<too many>'
-        : globallyUniqueNamingRegistry.size === globals.size
-        ? '<none>'
-            : Array.from(fdata.globallyUniqueNamingRegistry.keys()).filter((name) => !globals.has(name)).map(name => `${name}[${fdata.globallyUniqueNamingRegistry.get(name).renamingReads.length}/${globallyUniqueNamingRegistry.get(name).renamingWrites.length}]`).join(', ')
-      ),
+      (globallyUniqueNamingRegistry.size - globals.size) > 50
+      ? '<too many>'
+      : globallyUniqueNamingRegistry.size === globals.size
+      ? '<none>'
+          : Array.from(fdata.globallyUniqueNamingRegistry.keys())
+            .filter((name) => !globals.has(name))
+            .map(name => {
+              const meta = fdata.globallyUniqueNamingRegistry.get(name);
+              ASSERT(meta);
+              // Note: renamingReads and renamingWrites are set to null after being renamed
+              const reads = meta.renamingReads?.length ?? '?';
+              const writes = meta.renamingWrites?.length ?? '?';
+              return `${name}[${reads}/${writes}]`;
+            })
+            .join(', ')
     );
     vlog(
       '\ngloballyUniqueLabelRegistry:\n',

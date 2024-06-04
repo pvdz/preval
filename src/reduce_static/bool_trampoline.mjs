@@ -74,10 +74,14 @@ function _boolTrampolines(fdata) {
     // I think the situation where the lhs is the same binding is prevented by other rules? (`x = a; x = !x; return x`) so not covering that.
     // We don't cover the member expression (as lhs) case here. Basically unavoidably too dangerous due to getters.
 
-    // The first statement must be a var or assignment
+    let firstClosure = false;
+    let secondClosure = false;
+
+    // The first statement must be a var
     let lhs1;
     let rhs1;
     if (tramNode.type === 'VariableDeclaration') {
+      // Some form of `const x = $(); const y = Boolean(x); return y;` or `const x = $(); y = Boolean(x); return y;`
       lhs1 = tramNode.declarations[0].id;
       rhs1 = tramNode.declarations[0].init;
     } else if (
@@ -85,6 +89,9 @@ function _boolTrampolines(fdata) {
       tramNode.expression.type === 'AssignmentExpression' &&
       tramNode.expression.left.type === 'Identifier'
     ) {
+      // Some form of `x = $(); const y = Boolean(x); return y;` or `x = $(); y = Boolean(x); return y;`
+      // Must confirm whether this initial assignment is to a closure that is accessible by the caller
+      firstClosure = true;
       lhs1 = tramNode.expression.left;
       rhs1 = tramNode.expression.right;
     } else {
@@ -96,15 +103,19 @@ function _boolTrampolines(fdata) {
     let lhs2;
     let rhs2;
     if (boolNode.type === 'VariableDeclaration') {
+      // Some form of `const x = $(); const y = Boolean(x); return y;` or `x = $(); const y = Boolean(x); return y;`
       lhs2 = boolNode.declarations[0].id;
       rhs2 = boolNode.declarations[0].init;
     } else if (
+      // Some form of `x = $(); y = Boolean(x); return y;` or `x = $(); y = Boolean(x); return y;`
+      // Must confirm whether this second assignment is to a closure that is accessible by the caller
       boolNode.type === 'ExpressionStatement' &&
       boolNode.expression.type === 'AssignmentExpression' &&
       boolNode.expression.left.type === 'Identifier'
     ) {
       lhs2 = boolNode.expression.left;
       rhs2 = boolNode.expression.right;
+      secondClosure = true;
     } else {
       vlog('  - the second node was not a proper bool node so we must bail');
       return;
@@ -143,18 +154,38 @@ function _boolTrampolines(fdata) {
     // Next step is to find call sites and track the bindings that hold the result of the call.
     // If any results are detected to be used in an `if` test (only), then we can replace the call with rhs1 (after inlining the arguments)
 
-    vlog('- Pattern confirmed. This function is a bool trampoline. Must now check each call site');
+    vgroup('- Pattern confirmed. This function is a bool trampoline. Must now check each call site');
+    meta.reads.forEach((read, i) => {
+      vlog('- Read', i);
+      // First check whether this is actually a call to the binding
+      if (read.parentNode.type !== 'CallExpression') {
+        vlog('  - Not a call expression, bailing');
+        return;
+      }
+      if (read.parentProp !== 'callee') {
+        vlog('  - Not the thing being called in this the expression, bailing');
+        return;
+      }
 
-    meta.reads.forEach((read) => {
-      if (read.parentNode.type !== 'CallExpression') return;
-      if (read.parentProp !== 'callee') return;
+      // Confirm the scope containing the function is accessible to the call site
+      if (!(read.blockChain+',').startsWith(funcNode.$p.blockChain)) {
+        // If we don't do this check then we may inline something that's not accessible at the point of calling the function.
+        // TODO: we can widen the scope
+        //       - if we confirm all the bits in the function are local to the function, then we can safely copy it regardless of this rule
+        //       - we can check every bit of the function and confirm all of them are accessible at the call site, regardless of this rule
+        vlog('  - The call site can not access the scope containing the function(', [read.blockChain], [funcNode.$p.blockChain], '). Bailing for now because this transform is unsafe.');
+        return;
+      }
 
       let lhs;
       if (read.grandNode.type === 'AssignmentExpression' && read.grandProp === 'right' && read.grandNode.left.type === 'Identifier') {
+        // Some form of `x = f()`
         lhs = read.grandNode.left;
       } else if (read.grandNode.type === 'VariableDeclarator') {
+        // Some form of `const x = f()`
         lhs = read.grandNode.id;
       } else {
+        vlog('  - The call is not an assign or var decl, bailing');
         return;
       }
 
@@ -183,13 +214,14 @@ function _boolTrampolines(fdata) {
           }
         })
       ) {
+        vlog('  - Usage of result not meeting expectations, bailing');
         return;
       }
 
       // I think we're ready to call it. We can inline this case with the firstNode trampoline (and bool coercion).
 
       queue.push({
-        pid: read.parentIndex, // grand?
+        index: read.parentIndex, // grand?
         func: () => {
           rule('A boolean trampoline whose result is only used in boolean contexts can be inlined');
           example(
@@ -197,6 +229,7 @@ function _boolTrampolines(fdata) {
             'function f(){ const x = g(); const y = !x; return y; } const tmp = g(); const z = !tmp; if (z) {}',
           );
           before(rhs1, funcNode);
+          before(funcNode);
           before(read.blockBody[read.blockIndex]);
 
           const paramArgMapper = new Map(
@@ -209,20 +242,39 @@ function _boolTrampolines(fdata) {
             paramArgMapper.set(funcNode.$p.readsArgumentsLenAs, AST.literal(read.parentNode['arguments'].length));
           }
 
-          const fail = {};
-          const rhsClone = AST.deepCloneForFuncInlining(rhs1, paramArgMapper, fail);
-          ASSERT(!fail.ed);
-          const tmpName = createFreshVar('tmpBoolTrampoline', fdata);
-          read.blockBody.splice(read.blockIndex, 0, AST.variableDeclaration(tmpName, rhsClone, 'const'));
-          // Replace the func call with a Boolean(tmpName) or a !tmpName, tracked in wasInvert
-          const finalNode = wasInvert ? AST.unaryExpression('!', tmpName) : AST.callExpression('Boolean', [AST.identifier(tmpName)]);
-          if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
-          else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
+          // Forms are:
+          // - `[const] <A> = <expr>; [const] <B> = !<A>; return <B>`
+          // - `[const] <A> = <expr>; [const] <B> = Boolean(<A>); return <B>`
 
-          after(read.blockBody[read.blockIndex]);
+          const fail = {};
+          const exprClone = AST.deepCloneForFuncInlining(rhs1, paramArgMapper, fail);
+          ASSERT(!fail.ed);
+
+          const firstName = firstClosure ? lhs1.name : createFreshVar('tmpBoolTrampoline', fdata);
+          const newLine1 = firstClosure
+            ? AST.expressionStatement(AST.assignmentExpression(AST.identifier(firstName), exprClone))
+            : AST.variableDeclaration(firstName, exprClone, 'const');
+          const secondNAme = secondClosure ? lhs2.name : createFreshVar('tmpBoolTrampolineB', fdata);
+          const newRhs = wasInvert
+            ? AST.unaryExpression('!', firstName)
+            : AST.callExpression('Boolean', [AST.identifier(firstName)]);
+          const newLine2 = secondClosure
+            ? AST.expressionStatement(AST.assignmentExpression(AST.identifier(secondNAme), newRhs))
+            : AST.variableDeclaration(secondNAme, newRhs, 'const');
+
+          read.blockBody.splice(read.blockIndex, 0, newLine1, newLine2);
+          // Replace the whole func call with the second alias
+          if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.identifier(secondNAme);
+          else read.grandNode[read.grandProp][read.grandIndex] = AST.identifier(secondNAme);
+
+          after(newLine1);
+          after(newLine2);
+          after(read.grandNode);
         },
       });
     });
+    vgroupEnd();
+
   });
 
   if (queue.length) {

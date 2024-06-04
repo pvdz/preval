@@ -65,8 +65,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 $(0);
 const tmpBoolTrampoline = $(0);
-const tmpCalleeParam = Boolean(tmpBoolTrampoline);
-$(tmpCalleeParam);
+const tmpBoolTrampolineB = Boolean(tmpBoolTrampoline);
+$(tmpBoolTrampolineB);
 `````
 
 ## PST Output

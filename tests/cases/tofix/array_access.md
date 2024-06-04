@@ -4,7 +4,8 @@
 
 > Tofix > Array access
 >
-> Once the output is fixed, preval should be able to resolve the a[0] to 0 in this case. I think it doesn't because it "escapes".
+> Once the output is fixed, preval should be able to resolve the a[0] to 0
+> in this case. I think it doesn't because it "escapes".
 
 ## Input
 

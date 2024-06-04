@@ -450,8 +450,8 @@ export function registerGlobalIdent(
     reads: [], // {parent, prop, index} indirect reference to the node that refers to this binding
 
     // Prepare phase
-    renamingReads: [], // node. Only in prepare phase. Used after main prepare loop to uniquely name bindings
-    renamingWrites: [], // node. Only in prepare phase. Used after main prepare loop to uniquely name bindings
+    renamingReads: [], // node. Only in prepare phase. Used after main prepare loop to uniquely name bindings. Note: set to null after renamed the binding.
+    renamingWrites: [], // node. Only in prepare phase. Used after main prepare loop to uniquely name bindings. Note: set to null after renamed the binding.
     preNormalizeTdzCheckList: [], // {node, parentNode, parentProp, parentIndex, grandNode, grandProp, grandIndex} Only after main prepare loop, used to prune TDZ bindings
     preNormalizeTdzCheckDecl: null, // node. If this is a let/const binding then this should be the (ident) node that declares it.
 
@@ -542,7 +542,7 @@ export function createReadRef(obj) {
     node,
     rwCounter,
     scope,
-    blockChain,
+    blockChain, // You can do scope checks with something like `write.blockChain.startsWith(decl.blockChain + ',')` -> "can write reach decl?"
     blockIds, // Array of blockChain
     blockBodies, // arrays of statements that is block.body or program.body. 1:1 with blockIndexes
     blockIndexes, // Indexes per each element of blockChain and blockBodies

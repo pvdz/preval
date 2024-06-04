@@ -1,19 +1,19 @@
 # Preval test case
 
-# indirect_inv_true.md
+# closure_inv_false.md
 
-> Bool trampoline > Indirect inv true
+> Bool trampoline > Closure inv false
 >
 > A bool trampoline has an arbitrary expression, coerces it to bool, and returns the bool.
-> The func uses the arg, being an indirect alias for Boolean
-
-#TODO
+>
+> This case does not use the func arg.
 
 ## Input
 
 `````js filename=intro
-function f(arg) {
-  const x = $(arg);
+let x = 1;
+function f() {
+  x = $(0);
   const y = !x;
   return y;
 }
@@ -22,64 +22,68 @@ function f(arg) {
 $(f);
 $(f);
 
-if (f(100)) $('fail');
-else $('pass');
+if (f()) $('pass');
+else $('fail');
+$(x);
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-let f = function ($$0) {
-  let arg = $$0;
+let f = function () {
   debugger;
-  const x = $(arg);
+  x = $(0);
   const y = !x;
   return y;
 };
+let x = 1;
 $(f);
 $(f);
-if (f(100)) $(`fail`);
-else $(`pass`);
+if (f()) $(`pass`);
+else $(`fail`);
+$(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let f = function ($$0) {
-  let arg = $$0;
+let f = function () {
   debugger;
-  const x = $(arg);
+  x = $(0);
   const y = !x;
   return y;
 };
+let x = 1;
 $(f);
 $(f);
-const tmpIfTest = f(100);
+const tmpIfTest = f();
 if (tmpIfTest) {
-  $(`fail`);
-} else {
   $(`pass`);
+} else {
+  $(`fail`);
 }
+$(x);
 `````
 
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const arg = $$0;
+const f = function () {
   debugger;
-  const x = $(arg);
+  x = $(0);
   const y = !x;
   return y;
 };
+let x = 1;
 $(f);
 $(f);
-const tmpBoolTrampoline = $(100);
-if (tmpBoolTrampoline) {
-  $(`pass`);
-} else {
+x = $(0);
+if (x) {
   $(`fail`);
+} else {
+  $(`pass`);
 }
+$(x);
 `````
 
 ## PST Output
@@ -87,22 +91,23 @@ if (tmpBoolTrampoline) {
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = c;
+const a = function() {
   debugger;
-  const d = $( b );
-  const e = !d;
-  return e;
+  b = $( 0 );
+  const c = !b;
+  return c;
 };
+let b = 1;
 $( a );
 $( a );
-const f = $( 100 );
-if (f) {
-  $( "pass" );
-}
-else {
+b = $( 0 );
+if (b) {
   $( "fail" );
 }
+else {
+  $( "pass" );
+}
+$( b );
 `````
 
 ## Globals
@@ -114,8 +119,9 @@ None
 Should call `$` with:
  - 1: '<function>'
  - 2: '<function>'
- - 3: 100
+ - 3: 0
  - 4: 'pass'
+ - 5: 0
  - eval returned: undefined
 
 Pre normalization calls: Same

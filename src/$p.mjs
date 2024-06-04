@@ -63,7 +63,7 @@ export function $p() {
     // - bodyOffset // number. First body statement after the function header (after the debugger statement). Discovered while walking a function, not maintained
     // - promoParent // node|null. The parent node of this block. Used for function scope promotion.
     // - ownBindings // Set<string>. Set of all local bindings in a function scope (may be defined in a block). Excludes the custom $$1 params names.
-    // - blockChain // string. For functions, the block chain of this function, including the trailing zero for this function. Same as for refs.
+    // - blockChain // string. Always ends with trailing comma. For all nodes (from phase1), the block chain of this function, including the trailing zero for this function. Same as for refs.
     // - funcChain // string. For functions, the ids of parent functions (and global) up to and including this function. Same as for refs.
     // - paramNames // Array<string>. Original param names for the function. Those will be $$0 mapped in the same order.
     // - isPrimitive // bool. For binary expression operand nodes

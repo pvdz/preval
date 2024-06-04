@@ -1,75 +1,92 @@
 # Preval test case
 
-# base_inv_true.md
+# closure_inaccessible.md
 
-> Bool trampoline > Base inv true
+> Bool trampoline > Closure inaccessible
 >
 > A bool trampoline has an arbitrary expression, coerces it to bool, and returns the bool.
->
-> This case does not use the func arg.
+> In this case the closure x is inaccessible to the caller scope
 
 ## Input
 
 `````js filename=intro
-function f() {
-  const x = $(100);
-  const y = !x;
-  return y;
+function g() {
+  let x;
+  const f = function() {
+    x = $(100);
+    const y = Boolean(x);
+    return y;
+  }
+  $(x);
+  return f;
 }
+const f = g();
 
 // Prevent simple inlining
 $(f);
-$(f);
 
-if (f()) $('fail');
-else $('pass');
+if (f()) $('pass');
+else $('fail');
+
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-let f = function () {
+let g = function () {
   debugger;
-  const x = $(100);
-  const y = !x;
-  return y;
+  let x;
+  const f$1 = function () {
+    debugger;
+    x = $(100);
+    const y = Boolean(x);
+    return y;
+  };
+  $(x);
+  return f$1;
 };
+const f = g();
 $(f);
-$(f);
-if (f()) $(`fail`);
-else $(`pass`);
+if (f()) $(`pass`);
+else $(`fail`);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let f = function () {
+let g = function () {
   debugger;
-  const x = $(100);
-  const y = !x;
-  return y;
+  let x = undefined;
+  const f$1 = function () {
+    debugger;
+    x = $(100);
+    const y = Boolean(x);
+    return y;
+  };
+  $(x);
+  return f$1;
 };
-$(f);
+const f = g();
 $(f);
 const tmpIfTest = f();
 if (tmpIfTest) {
-  $(`fail`);
-} else {
   $(`pass`);
+} else {
+  $(`fail`);
 }
 `````
 
 ## Output
 
 `````js filename=intro
-const f = function () {
+const f$1 = function () {
   debugger;
-  const x = $(100);
-  const y = !x;
+  const tmpssa2_x = $(100);
+  const y = Boolean(tmpssa2_x);
   return y;
 };
-$(f);
-$(f);
+$(undefined);
+$(f$1);
 const tmpBoolTrampoline = $(100);
 if (tmpBoolTrampoline) {
   $(`pass`);
@@ -86,10 +103,10 @@ With rename=true
 const a = function() {
   debugger;
   const b = $( 100 );
-  const c = !b;
+  const c = Boolean( b );
   return c;
 };
-$( a );
+$( undefined );
 $( a );
 const d = $( 100 );
 if (d) {
@@ -107,7 +124,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: '<function>'
+ - 1: undefined
  - 2: '<function>'
  - 3: 100
  - 4: 'pass'

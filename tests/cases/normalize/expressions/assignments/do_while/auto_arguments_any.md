@@ -53,21 +53,25 @@ $(a);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 $(100);
 let a = arguments;
 if (arguments) {
-  $(arguments);
 } else {
-  while (true) {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
     $(100);
     a = arguments;
-    if (arguments) {
+    if (a) {
     } else {
       break;
     }
   }
-  $(a);
+} else {
 }
+$(a);
 `````
 
 ## PST Output

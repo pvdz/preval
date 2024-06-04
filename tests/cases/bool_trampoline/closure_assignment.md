@@ -1,12 +1,11 @@
 # Preval test case
 
-# another_problem.md
+# closure_assignment.md
 
-> Tofix > Another problem
+> Bool trampoline > Closure assignment
 >
 > A bool trampoline has an arbitrary expression, coerces it to bool, and returns the bool.
-
-#TODO
+> The func updates a closure, which complicates the transform.
 
 ## Input
 
@@ -77,8 +76,8 @@ const f = function () {
 let x = undefined;
 $(f);
 $(f);
-const tmpBoolTrampoline = $(100);
-if (tmpBoolTrampoline) {
+x = $(100);
+if (x) {
   $(`pass`);
 } else {
   $(`fail`);
@@ -100,8 +99,8 @@ const a = function() {
 let b = undefined;
 $( a );
 $( a );
-const d = $( 100 );
-if (d) {
+b = $( 100 );
+if (b) {
   $( "pass" );
 }
 else {
@@ -128,10 +127,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: '<function>'
- - 2: '<function>'
- - 3: 100
- - 4: 'pass'
- - 5: undefined
- - eval returned: undefined
+Final output calls: Same

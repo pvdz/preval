@@ -1,19 +1,19 @@
 # Preval test case
 
-# another_problem.md
+# closure_bool_false.md
 
-> Bool trampoline > Another problem
+> Bool trampoline > Closure bool false
 >
 > A bool trampoline has an arbitrary expression, coerces it to bool, and returns the bool.
-
-#TODO
+>
+> This case does not use the func arg.
 
 ## Input
 
 `````js filename=intro
-let x;
+let x = 1;
 function f() {
-  x = $(100);
+  x = $(0);
   const y = Boolean(x);
   return y;
 }
@@ -22,8 +22,8 @@ function f() {
 $(f);
 $(f);
 
-if (f()) $('pass');
-else $('fail');
+if (f()) $('fail');
+else $('pass');
 $(x);
 `````
 
@@ -32,15 +32,15 @@ $(x);
 `````js filename=intro
 let f = function () {
   debugger;
-  x = $(100);
+  x = $(0);
   const y = Boolean(x);
   return y;
 };
-let x;
+let x = 1;
 $(f);
 $(f);
-if (f()) $(`pass`);
-else $(`fail`);
+if (f()) $(`fail`);
+else $(`pass`);
 $(x);
 `````
 
@@ -49,18 +49,18 @@ $(x);
 `````js filename=intro
 let f = function () {
   debugger;
-  x = $(100);
+  x = $(0);
   const y = Boolean(x);
   return y;
 };
-let x = undefined;
+let x = 1;
 $(f);
 $(f);
 const tmpIfTest = f();
 if (tmpIfTest) {
-  $(`pass`);
-} else {
   $(`fail`);
+} else {
+  $(`pass`);
 }
 $(x);
 `````
@@ -70,18 +70,18 @@ $(x);
 `````js filename=intro
 const f = function () {
   debugger;
-  x = $(100);
+  x = $(0);
   const y = Boolean(x);
   return y;
 };
-let x = undefined;
+let x = 1;
 $(f);
 $(f);
-const tmpBoolTrampoline = $(100);
-if (tmpBoolTrampoline) {
-  $(`pass`);
-} else {
+x = $(0);
+if (x) {
   $(`fail`);
+} else {
+  $(`pass`);
 }
 $(x);
 `````
@@ -93,19 +93,19 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  b = $( 100 );
+  b = $( 0 );
   const c = Boolean( b );
   return c;
 };
-let b = undefined;
+let b = 1;
 $( a );
 $( a );
-const d = $( 100 );
-if (d) {
-  $( "pass" );
+b = $( 0 );
+if (b) {
+  $( "fail" );
 }
 else {
-  $( "fail" );
+  $( "pass" );
 }
 $( b );
 `````
@@ -119,19 +119,13 @@ None
 Should call `$` with:
  - 1: '<function>'
  - 2: '<function>'
- - 3: 100
+ - 3: 0
  - 4: 'pass'
- - 5: 100
+ - 5: 0
  - eval returned: undefined
 
 Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: '<function>'
- - 2: '<function>'
- - 3: 100
- - 4: 'pass'
- - 5: undefined
- - eval returned: undefined
+Final output calls: Same

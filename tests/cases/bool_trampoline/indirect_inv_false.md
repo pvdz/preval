@@ -5,6 +5,7 @@
 > Bool trampoline > Indirect inv false
 >
 > A bool trampoline has an arbitrary expression, coerces it to bool, and returns the bool.
+> The func uses the arg, being an indirect alias for Boolean
 
 #TODO
 

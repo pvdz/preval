@@ -1,20 +1,21 @@
 # Preval test case
 
-# broken_trampoline.md
+# double_closure.md
 
-> Tofix > Broken trampoline
+> Bool trampoline > Double closure
 >
-> A bool trampoline has an arbitrary expression, coerces it to bool, and returns the bool.
+> The func updates two closures, which complicates the transform.
 
-The $(100) call in the func is inlined but not the assignment (??)
+#TODO
 
 ## Input
 
 `````js filename=intro
 let x;
+let y;
 function f() {
   x = $(100);
-  const y = Boolean(x);
+  y = Boolean(x);
   return y;
 }
 
@@ -25,6 +26,7 @@ $(f);
 if (f()) $('pass');
 else $('fail');
 $(x);
+$(y);
 `````
 
 ## Pre Normal
@@ -33,15 +35,17 @@ $(x);
 let f = function () {
   debugger;
   x = $(100);
-  const y = Boolean(x);
+  y = Boolean(x);
   return y;
 };
 let x;
+let y;
 $(f);
 $(f);
 if (f()) $(`pass`);
 else $(`fail`);
 $(x);
+$(y);
 `````
 
 ## Normalized
@@ -50,10 +54,11 @@ $(x);
 let f = function () {
   debugger;
   x = $(100);
-  const y = Boolean(x);
+  y = Boolean(x);
   return y;
 };
 let x = undefined;
+let y = undefined;
 $(f);
 $(f);
 const tmpIfTest = f();
@@ -63,6 +68,7 @@ if (tmpIfTest) {
   $(`fail`);
 }
 $(x);
+$(y);
 `````
 
 ## Output
@@ -71,19 +77,21 @@ $(x);
 const f = function () {
   debugger;
   x = $(100);
-  const y = Boolean(x);
+  y = Boolean(x);
   return y;
 };
 let x = undefined;
+let y = undefined;
 $(f);
 $(f);
-const tmpBoolTrampoline = $(100);
-if (tmpBoolTrampoline) {
+f();
+if (y) {
   $(`pass`);
 } else {
   $(`fail`);
 }
 $(x);
+$(y);
 `````
 
 ## PST Output
@@ -94,20 +102,22 @@ With rename=true
 const a = function() {
   debugger;
   b = $( 100 );
-  const c = Boolean( b );
+  c = Boolean( b );
   return c;
 };
 let b = undefined;
+let c = undefined;
 $( a );
 $( a );
-const d = $( 100 );
-if (d) {
+a();
+if (c) {
   $( "pass" );
 }
 else {
   $( "fail" );
 }
 $( b );
+$( c );
 `````
 
 ## Globals
@@ -122,16 +132,11 @@ Should call `$` with:
  - 3: 100
  - 4: 'pass'
  - 5: 100
+ - 6: true
  - eval returned: undefined
 
 Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: '<function>'
- - 2: '<function>'
- - 3: 100
- - 4: 'pass'
- - 5: undefined
- - eval returned: undefined
+Final output calls: Same

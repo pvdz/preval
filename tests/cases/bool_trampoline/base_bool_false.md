@@ -5,8 +5,8 @@
 > Bool trampoline > Base bool false
 >
 > A bool trampoline has an arbitrary expression, coerces it to bool, and returns the bool.
-
-#TODO
+>
+> This case does not use the func arg.
 
 ## Input
 

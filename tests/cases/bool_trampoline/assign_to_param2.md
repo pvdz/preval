@@ -1,20 +1,17 @@
 # Preval test case
 
-# indirect_inv_true.md
+# assign_to_param2.md
 
-> Bool trampoline > Indirect inv true
+> Bool trampoline > Assign to param2
 >
-> A bool trampoline has an arbitrary expression, coerces it to bool, and returns the bool.
-> The func uses the arg, being an indirect alias for Boolean
-
-#TODO
+> Don't do this.
 
 ## Input
 
 `````js filename=intro
-function f(arg) {
-  const x = $(arg);
-  const y = !x;
+function f(y) {
+  const x = $(0);
+  y = Boolean(x);
   return y;
 }
 
@@ -22,7 +19,7 @@ function f(arg) {
 $(f);
 $(f);
 
-if (f(100)) $('fail');
+if (f()) $('fail');
 else $('pass');
 `````
 
@@ -30,15 +27,15 @@ else $('pass');
 
 `````js filename=intro
 let f = function ($$0) {
-  let arg = $$0;
+  let y = $$0;
   debugger;
-  const x = $(arg);
-  const y = !x;
+  const x = $(0);
+  y = Boolean(x);
   return y;
 };
 $(f);
 $(f);
-if (f(100)) $(`fail`);
+if (f()) $(`fail`);
 else $(`pass`);
 `````
 
@@ -46,15 +43,15 @@ else $(`pass`);
 
 `````js filename=intro
 let f = function ($$0) {
-  let arg = $$0;
+  let y = $$0;
   debugger;
-  const x = $(arg);
-  const y = !x;
+  const x = $(0);
+  y = Boolean(x);
   return y;
 };
 $(f);
 $(f);
-const tmpIfTest = f(100);
+const tmpIfTest = f();
 if (tmpIfTest) {
   $(`fail`);
 } else {
@@ -66,19 +63,18 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const f = function ($$0) {
-  const arg = $$0;
   debugger;
-  const x = $(arg);
-  const y = !x;
-  return y;
+  const x = $(0);
+  const tmpSSA_y = Boolean(x);
+  return tmpSSA_y;
 };
 $(f);
 $(f);
-const tmpBoolTrampoline = $(100);
+const tmpBoolTrampoline = $(0);
 if (tmpBoolTrampoline) {
-  $(`pass`);
-} else {
   $(`fail`);
+} else {
+  $(`pass`);
 }
 `````
 
@@ -88,20 +84,19 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
   debugger;
-  const d = $( b );
-  const e = !d;
-  return e;
+  const b = $( 0 );
+  const c = Boolean( b );
+  return c;
 };
 $( a );
 $( a );
-const f = $( 100 );
-if (f) {
-  $( "pass" );
+const d = $( 0 );
+if (d) {
+  $( "fail" );
 }
 else {
-  $( "fail" );
+  $( "pass" );
 }
 `````
 
@@ -114,7 +109,7 @@ None
 Should call `$` with:
  - 1: '<function>'
  - 2: '<function>'
- - 3: 100
+ - 3: 0
  - 4: 'pass'
  - eval returned: undefined
 

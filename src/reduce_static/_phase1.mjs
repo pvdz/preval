@@ -177,6 +177,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       node.$p = $p();
       node.$p.phase1count = fdata.phase1count;
       node.$p.funcDepth = funcStack.length;
+      node.$p.blockChain = blockIds.join(',') + ','; // Trailing comma prevents ambiguity when doing a.blockChain.startsWith(b.blockChain)
       fdata.flatNodeMap.set(node.$p.pid, node);
     }
 
@@ -224,7 +225,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         openRefsOnBeforeProgram(node);
 
         node.$p.promoParent = null;
-        node.$p.blockChain = '0';
+        node.$p.blockChain = '0,';
         node.$p.funcChain = funcStack.map((n) => n.$p.pid).join(',');
         node.$p.ownBindings = new Set();
         node.$p.paramNames = [];
@@ -293,7 +294,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           blockIds.push(+node.$p.pid);
         }
 
-        node.$p.blockChain = blockIds.join(',');
+        //node.$p.blockChain = blockIds.join(',');
 
         if (parentNode.type === 'IfStatement') {
           if (parentNode.consequent === node) {
@@ -481,7 +482,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
 
       case 'FunctionExpression:before': {
-        node.$p.blockChain = blockIds.join(',');
+        //node.$p.blockChain = blockIds.join(',');
         node.$p.ownBindings = new Set();
         node.$p.paramNames = [];
         node.$p.readsArgumentsAny = false;

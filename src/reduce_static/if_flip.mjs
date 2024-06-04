@@ -95,14 +95,15 @@ function _ifFlipping(fdata) {
         }
 
         // This is the trivial target we are aiming for. Unwrap it.
-        // If the argument is an identifier, use that instead. The `Booelan()` cannot be observed, nor can the if-test.
+        // If the argument is an identifier, use that instead. The `Boolean()` cannot be observed, nor can the if-test.
         // All reads will do the same and we don't need to update the init to eliminate the `Boolean()`.
         // If this causes the alias to no longer be used it will get collected by another rule.
-        rule('If the test of an if is a trivial inverted identifier, use that ident instead and unwrap the if');
-        example('const x = Boolean(y); if (x) f(); else g();', 'const x = Boolean(y); if (y) g(); else f();');
+        rule('If the test of an if is a trivial inverted identifier, use that ident instead, leave if alone');
+        example('const x = Boolean(y); if (x) f(); else g();', 'const x = Boolean(y); if (y) f(); else g();');
         before(node);
 
         node.test = AST.cloneSimple(write.parentNode.init.arguments[0] ?? AST.identifier('undefined'));
+        // Note: for Boolean the consequent and alternate do not swap.
 
         after(node);
         ++changed;

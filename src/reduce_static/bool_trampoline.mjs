@@ -168,7 +168,7 @@ function _boolTrampolines(fdata) {
       }
 
       // Confirm the scope containing the function is accessible to the call site
-      if (!(read.blockChain+',').startsWith(funcNode.$p.blockChain)) {
+      if (!(read.blockChain).startsWith(funcNode.$p.blockChain)) {
         // If we don't do this check then we may inline something that's not accessible at the point of calling the function.
         // TODO: we can widen the scope
         //       - if we confirm all the bits in the function are local to the function, then we can safely copy it regardless of this rule

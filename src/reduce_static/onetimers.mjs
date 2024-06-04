@@ -95,7 +95,7 @@ function _inlineOneTimeFunctions(fdata) {
       return;
     }
 
-    if (read.blockChain.startsWith(meta.writes[0].blockChain + ',' + funcNode.body.$p.pid)) {
+    if (read.blockChain.startsWith(meta.writes[0].blockChain + funcNode.body.$p.pid)) {
       // This may also catch recursive calls within nested functions but for now that's the way it is.
       // Assumes a particular structure of the blockChain, not sure if there's a better way right now.
       vlog('The blockChain of the write is a prefix of the read, this implies recursion, bailing');

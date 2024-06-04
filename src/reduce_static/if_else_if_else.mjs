@@ -92,7 +92,7 @@ function _ifelseifelse(fdata) {
       vlog('The write must be nested so in a different block body from the var decl');
       return;
     }
-    if (!write.blockChain.startsWith(varDeclWrite.blockChain + ',')) {
+    if (!write.blockChain.startsWith(varDeclWrite.blockChain)) {
       vlog('The write must reach the var decl', [varDeclWrite.blockChain, write.blockChain]);
       return;
     }

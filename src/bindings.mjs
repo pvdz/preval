@@ -542,7 +542,7 @@ export function createReadRef(obj) {
     node,
     rwCounter,
     scope,
-    blockChain, // You can do scope checks with something like `write.blockChain.startsWith(decl.blockChain + ',')` -> "can write reach decl?"
+    blockChain, // Always has trailing comma. You can do scope checks with something like `write.blockChain.startsWith(decl.blockChain + ',')` -> "can write reach decl?"
     blockIds, // Array of blockChain
     blockBodies, // arrays of statements that is block.body or program.body. 1:1 with blockIndexes
     blockIndexes, // Indexes per each element of blockChain and blockBodies
@@ -624,7 +624,7 @@ export function createWriteRef(obj) {
     node,
     rwCounter,
     scope,
-    blockChain,
+    blockChain, // Always has trailing comma. You can do scope checks with something like `write.blockChain.startsWith(decl.blockChain + ',')` -> "can write reach decl?"
     blockIds, // Array of blockChain
     blockBodies, // arrays of statements that is block.body or program.body. 1:1 with blockIndexes
     blockIndexes, // Indexes per each element of blockChain and blockBodies

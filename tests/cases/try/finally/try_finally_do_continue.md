@@ -25,35 +25,35 @@ $(3);
 ## Pre Normal
 
 `````js filename=intro
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $continue: {
+while (true) {
+  {
+    $continue: {
+      {
         {
+          let $implicitThrow = false;
+          let $finalCatchArg = undefined;
+          $finally: {
+            try {
+              $(1);
+            } catch ($finalImplicit) {
+              $implicitThrow = true;
+              $finalCatchArg = $finalImplicit;
+            }
+          }
           {
-            let $implicitThrow = false;
-            let $finalCatchArg = undefined;
-            $finally: {
-              try {
-                $(1);
-              } catch ($finalImplicit) {
-                $implicitThrow = true;
-                $finalCatchArg = $finalImplicit;
-              }
-            }
-            {
-              $(2);
-              break $continue;
-            }
-            if ($implicitThrow) throw $finalCatchArg;
-            else {
-            }
+            $(2);
+            break $continue;
+          }
+          if ($implicitThrow) throw $finalCatchArg;
+          else {
           }
         }
       }
     }
-    tmpDoWhileFlag = $LOOP_DONE_UNROLLING_ALWAYS_TRUE;
+  }
+  if ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  } else {
+    break;
   }
 }
 $(3);
@@ -62,22 +62,20 @@ $(3);
 ## Normalized
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $continue: {
-      let $implicitThrow = false;
-      let $finalCatchArg = undefined;
-      try {
-        $(1);
-      } catch ($finalImplicit) {
-        $implicitThrow = true;
-        $finalCatchArg = $finalImplicit;
-      }
-      $(2);
-      break $continue;
+  $continue: {
+    let $implicitThrow = false;
+    let $finalCatchArg = undefined;
+    try {
+      $(1);
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
     }
-    tmpDoWhileFlag = $LOOP_DONE_UNROLLING_ALWAYS_TRUE;
+    $(2);
+    break $continue;
+  }
+  if ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     break;
   }
@@ -88,20 +86,25 @@ $(3);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 try {
   $(1);
 } catch ($finalImplicit) {}
 $(2);
 if ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  try {
-    $(1);
-  } catch ($finalImplicit$1) {}
-  $(2);
-  while ($LOOP_UNROLL_9) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
     try {
       $(1);
-    } catch ($finalImplicit$2) {}
+    } catch ($finalImplicit$1) {}
     $(2);
+    if ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    } else {
+      break;
+    }
   }
 } else {
 }
@@ -113,22 +116,22 @@ $(3);
 With rename=true
 
 `````js filename=intro
+let a = true;
 try {
   $( 1 );
 }
-catch (a) {
+catch (b) {
 
 }
 $( 2 );
 if ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  try {
-    $( 1 );
-  }
-catch (b) {
 
-  }
-  $( 2 );
-  while ($LOOP_UNROLL_9) {
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
     try {
       $( 1 );
     }
@@ -136,6 +139,12 @@ catch (c) {
 
     }
     $( 2 );
+    if ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+
+    }
+    else {
+      break;
+    }
   }
 }
 $( 3 );

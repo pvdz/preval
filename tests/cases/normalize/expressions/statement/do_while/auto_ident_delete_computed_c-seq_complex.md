@@ -25,13 +25,13 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = delete ($(1), $(2), $(arg))[$(`y`)];
+while (true) {
+  {
+    $(100);
+  }
+  if (delete ($(1), $(2), $(arg))[$(`y`)]) {
+  } else {
+    break;
   }
 }
 $(a, arg);
@@ -42,15 +42,14 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    $(1);
-    $(2);
-    const tmpDeleteCompObj = $(arg);
-    const tmpDeleteCompProp = $(`y`);
-    tmpDoWhileFlag = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  $(100);
+  $(1);
+  $(2);
+  const tmpDeleteCompObj = $(arg);
+  const tmpDeleteCompProp = $(`y`);
+  const tmpIfTest = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -68,22 +67,16 @@ $(1);
 $(2);
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-let tmpSSA_tmpDoWhileFlag = delete tmpDeleteCompObj[tmpDeleteCompProp];
-if (tmpSSA_tmpDoWhileFlag) {
-  $(100);
-  $(1);
-  $(2);
-  const tmpDeleteCompObj$1 = $(arg);
-  const tmpDeleteCompProp$1 = $(`y`);
-  tmpSSA_tmpDoWhileFlag = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
-  while ($LOOP_UNROLL_9) {
-    if (tmpSSA_tmpDoWhileFlag) {
-      $(100);
-      $(1);
-      $(2);
-      const tmpDeleteCompObj$2 = $(arg);
-      const tmpDeleteCompProp$2 = $(`y`);
-      tmpSSA_tmpDoWhileFlag = delete tmpDeleteCompObj$2[tmpDeleteCompProp$2];
+const tmpIfTest = delete tmpDeleteCompObj[tmpDeleteCompProp];
+if (tmpIfTest) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    $(1);
+    $(2);
+    const tmpDeleteCompObj$1 = $(arg);
+    const tmpDeleteCompProp$1 = $(`y`);
+    const tmpIfTest$1 = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -108,22 +101,17 @@ $( 1 );
 $( 2 );
 const c = $( a );
 const d = $( "y" );
-let e = deletec[ d ];
+const e = deletec[ d ];
 if (e) {
-  $( 100 );
-  $( 1 );
-  $( 2 );
-  const f = $( a );
-  const g = $( "y" );
-  e = deletef[ g ];
-  while ($LOOP_UNROLL_9) {
-    if (e) {
-      $( 100 );
-      $( 1 );
-      $( 2 );
-      const h = $( a );
-      const i = $( "y" );
-      e = deleteh[ i ];
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    $( 1 );
+    $( 2 );
+    const f = $( a );
+    const g = $( "y" );
+    const h = deletef[ g ];
+    if (h) {
+
     }
     else {
       break;

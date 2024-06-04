@@ -19,11 +19,11 @@ while (0);
 
 `````js filename=intro
 let a = undefined;
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    a = $($(2));
-    tmpDoWhileFlag = 0;
+while (true) {
+  a = $($(2));
+  if (0) {
+  } else {
+    break;
   }
 }
 `````
@@ -32,16 +32,11 @@ let a = undefined;
 
 `````js filename=intro
 let a = undefined;
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(2);
-    a = tmpCallCallee(tmpCalleeParam);
-    tmpDoWhileFlag = 0;
-  } else {
-    break;
-  }
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(2);
+  a = tmpCallCallee(tmpCalleeParam);
+  break;
 }
 `````
 

@@ -25,13 +25,13 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  {
-    let tmpDoWhileFlag = true;
-    while (tmpDoWhileFlag) {
-      {
-        throw $(1, `return`);
-      }
-      tmpDoWhileFlag = $(true);
+  while (true) {
+    {
+      throw $(1, `return`);
+    }
+    if ($(true)) {
+    } else {
+      break;
     }
   }
   $(`keep, do not eval`);
@@ -44,14 +44,9 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  let tmpDoWhileFlag = true;
   while (true) {
-    if (tmpDoWhileFlag) {
-      const tmpThrowArg = $(1, `return`);
-      throw tmpThrowArg;
-    } else {
-      break;
-    }
+    const tmpThrowArg = $(1, `return`);
+    throw tmpThrowArg;
   }
   $(`keep, do not eval`);
   return undefined;

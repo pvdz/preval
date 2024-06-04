@@ -30,15 +30,15 @@ $('after (not invoked)');
 `````js filename=intro
 while ($(true)) {
   $(`loop`);
-  {
-    let tmpDoWhileFlag = true;
-    while (tmpDoWhileFlag) {
-      {
-        $(`loop`);
-        break;
-        $(`fail`);
-      }
-      tmpDoWhileFlag = $(true);
+  while (true) {
+    {
+      $(`loop`);
+      break;
+      $(`fail`);
+    }
+    if ($(true)) {
+    } else {
+      break;
     }
   }
   $(`infiloop, do not eliminate`);
@@ -53,14 +53,9 @@ let tmpIfTest = $(true);
 while (true) {
   if (tmpIfTest) {
     $(`loop`);
-    let tmpDoWhileFlag = true;
     while (true) {
-      if (tmpDoWhileFlag) {
-        $(`loop`);
-        break;
-      } else {
-        break;
-      }
+      $(`loop`);
+      break;
     }
     $(`infiloop, do not eliminate`);
     tmpIfTest = $(true);

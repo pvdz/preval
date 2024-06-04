@@ -25,13 +25,13 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = $(b)[`c`];
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = $(b)[`c`])) {
+  } else {
+    break;
   }
 }
 $(a, b);
@@ -42,14 +42,12 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpCompObj = $(b);
-    const tmpNestedComplexRhs = tmpCompObj.c;
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  const tmpAssignRhsProp = $(b);
+  a = tmpAssignRhsProp.c;
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -60,25 +58,21 @@ $(a, b);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 $(100);
 const b = { c: 1 };
-const tmpCompObj = $(b);
-const tmpNestedComplexRhs = tmpCompObj.c;
-let tmpSSA_a = tmpNestedComplexRhs;
-let tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
-if (tmpNestedComplexRhs) {
-  $(100);
-  const tmpCompObj$1 = $(b);
-  const tmpNestedComplexRhs$1 = tmpCompObj$1.c;
-  tmpSSA_a = tmpNestedComplexRhs$1;
-  tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
-  while ($LOOP_UNROLL_9) {
-    if (tmpSSA_tmpDoWhileFlag) {
-      $(100);
-      const tmpCompObj$2 = $(b);
-      const tmpNestedComplexRhs$2 = tmpCompObj$2.c;
-      tmpSSA_a = tmpNestedComplexRhs$2;
-      tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
+const tmpAssignRhsProp = $(b);
+let tmpSSA_a = tmpAssignRhsProp.c;
+if (tmpSSA_a) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpAssignRhsProp$1 = $(b);
+    tmpSSA_a = tmpAssignRhsProp$1.c;
+    if (tmpSSA_a) {
     } else {
       break;
     }
@@ -93,32 +87,31 @@ $(tmpSSA_a, b);
 With rename=true
 
 `````js filename=intro
+let a = true;
 $( 100 );
-const a = { c: 1 };
-const b = $( a );
-const c = b.c;
-let d = c;
-let e = c;
-if (c) {
-  $( 100 );
-  const f = $( a );
-  const g = f.c;
-  d = g;
-  e = g;
-  while ($LOOP_UNROLL_9) {
-    if (e) {
-      $( 100 );
-      const h = $( a );
-      const i = h.c;
-      d = i;
-      e = i;
+const b = { c: 1 };
+const c = $( b );
+let d = c.c;
+if (d) {
+
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const e = $( b );
+    d = e.c;
+    if (d) {
+
     }
     else {
       break;
     }
   }
 }
-$( d, a );
+$( d, b );
 `````
 
 ## Globals

@@ -18,11 +18,11 @@ do var x = 0; while ($(x));
 
 `````js filename=intro
 let x = undefined;
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    x = 0;
-    tmpDoWhileFlag = $(x);
+while (true) {
+  x = 0;
+  if ($(x)) {
+  } else {
+    break;
   }
 }
 `````
@@ -31,11 +31,10 @@ let x = undefined;
 
 `````js filename=intro
 let x = undefined;
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    x = 0;
-    tmpDoWhileFlag = $(x);
+  x = 0;
+  const tmpIfTest = $(x);
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -45,12 +44,16 @@ while (true) {
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = $(0);
-if (tmpDoWhileFlag) {
-  tmpDoWhileFlag = $(0);
-  while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
-      tmpDoWhileFlag = $(0);
+let $tmpLoopUnrollCheck = true;
+const tmpIfTest = $(0);
+if (tmpIfTest) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$1 = $(0);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -64,12 +67,19 @@ if (tmpDoWhileFlag) {
 With rename=true
 
 `````js filename=intro
-let a = $( 0 );
+let a = true;
+const b = $( 0 );
+if (b) {
+
+}
+else {
+  a = false;
+}
 if (a) {
-  a = $( 0 );
-  while ($LOOP_UNROLL_9) {
-    if (a) {
-      a = $( 0 );
+  while ($LOOP_UNROLL_10) {
+    const c = $( 0 );
+    if (c) {
+
     }
     else {
       break;

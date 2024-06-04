@@ -22,13 +22,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = $($)(1);
+while (true) {
+  {
+    $(100);
+  }
+  if ($($)(1)) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -38,12 +38,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpCallComplexCallee = $($);
-    tmpDoWhileFlag = tmpCallComplexCallee(1);
+  $(100);
+  const tmpCallComplexCallee = $($);
+  const tmpIfTest = tmpCallComplexCallee(1);
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -54,18 +53,20 @@ $(a);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpCallComplexCallee = $($);
-let tmpDoWhileFlag = tmpCallComplexCallee(1);
-if (tmpDoWhileFlag) {
-  $(100);
-  const tmpCallComplexCallee$1 = $($);
-  tmpDoWhileFlag = tmpCallComplexCallee$1(1);
-  while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
-      $(100);
-      const tmpCallComplexCallee$2 = $($);
-      tmpDoWhileFlag = tmpCallComplexCallee$2(1);
+const tmpIfTest = tmpCallComplexCallee(1);
+if (tmpIfTest) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCallComplexCallee$1 = $($);
+    const tmpIfTest$1 = tmpCallComplexCallee$1(1);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -81,29 +82,34 @@ $(a);
 With rename=true
 
 `````js filename=intro
+let a = true;
 $( 100 );
-const a = $( $ );
-let b = a( 1 );
-if (b) {
-  $( 100 );
-  const c = $( $ );
-  b = c( 1 );
-  while ($LOOP_UNROLL_9) {
-    if (b) {
-      $( 100 );
-      const d = $( $ );
-      b = d( 1 );
+const b = $( $ );
+const c = b( 1 );
+if (c) {
+
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const d = $( $ );
+    const e = d( 1 );
+    if (e) {
+
     }
     else {
       break;
     }
   }
 }
-const e = {
+const f = {
 a: 999,
 b: 1000
 ;
-$( e );
+$( f );
 `````
 
 ## Globals

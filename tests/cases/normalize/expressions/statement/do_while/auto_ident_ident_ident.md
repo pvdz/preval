@@ -27,13 +27,13 @@ $(a, b, c);
 let b = 1,
   c = 2;
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = b = 2;
+while (true) {
+  {
+    $(100);
+  }
+  if ((b = 2)) {
+  } else {
+    break;
   }
 }
 $(a, b, c);
@@ -45,12 +45,11 @@ $(a, b, c);
 let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    b = 2;
-    tmpDoWhileFlag = 2;
+  $(100);
+  b = 2;
+  let tmpIfTest = b;
+  if (tmpIfTest) {
   } else {
     break;
   }

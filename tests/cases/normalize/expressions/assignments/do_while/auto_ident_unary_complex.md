@@ -25,13 +25,13 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = typeof $(x);
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = typeof $(x))) {
+  } else {
+    break;
   }
 }
 $(a, x);
@@ -42,14 +42,12 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpUnaryArg = $(x);
-    const tmpNestedComplexRhs = typeof tmpUnaryArg;
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  const tmpUnaryArg = $(x);
+  a = typeof tmpUnaryArg;
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -81,14 +79,12 @@ $(1);
 $(100);
 $(1);
 $(100);
-const tmpUnaryArg$2 = $(1);
-const tmpNestedComplexRhs$1 = typeof tmpUnaryArg$2;
-let a = tmpNestedComplexRhs$1;
+const tmpUnaryArg$1 = $(1);
+let a = typeof tmpUnaryArg$1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpUnaryArg$3 = $(1);
-  const tmpNestedComplexRhs$2 = typeof tmpUnaryArg$3;
-  a = tmpNestedComplexRhs$2;
+  const tmpUnaryArg$2 = $(1);
+  a = typeof tmpUnaryArg$2;
 }
 $(a, 1);
 `````
@@ -120,15 +116,13 @@ $( 100 );
 $( 1 );
 $( 100 );
 const a = $( 1 );
-const b = typeofa;
-let c = b;
+let b = typeofa;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const d = $( 1 );
-  const e = typeofd;
-  c = e;
+  const c = $( 1 );
+  b = typeofc;
 }
-$( c, 1 );
+$( b, 1 );
 `````
 
 ## Globals

@@ -25,13 +25,13 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = new b.$(1);
+while (true) {
+  {
+    $(100);
+  }
+  if (new b.$(1)) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -42,12 +42,11 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpNewCallee = b.$;
-    tmpDoWhileFlag = new tmpNewCallee(1);
+  $(100);
+  const tmpNewCallee = b.$;
+  const tmpIfTest = new tmpNewCallee(1);
+  if (tmpIfTest) {
   } else {
     break;
   }

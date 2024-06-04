@@ -25,13 +25,13 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = delete ($(1), $(2), arg).y;
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = delete ($(1), $(2), arg).y)) {
+  } else {
+    break;
   }
 }
 $(a, arg);
@@ -42,16 +42,14 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    $(1);
-    $(2);
-    const tmpDeleteObj = arg;
-    const tmpNestedComplexRhs = delete tmpDeleteObj.y;
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  $(1);
+  $(2);
+  const tmpDeleteObj = arg;
+  a = delete tmpDeleteObj.y;
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -62,28 +60,23 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 $(100);
 $(1);
 $(2);
 const arg = { y: 1 };
-const tmpNestedComplexRhs = delete arg.y;
-let a = tmpNestedComplexRhs;
-let tmpDoWhileFlag = tmpNestedComplexRhs;
-if (tmpNestedComplexRhs) {
-  $(100);
-  $(1);
-  $(2);
-  const tmpNestedComplexRhs$1 = delete arg.y;
-  a = tmpNestedComplexRhs$1;
-  tmpDoWhileFlag = tmpNestedComplexRhs$1;
-  while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
-      $(100);
-      $(1);
-      $(2);
-      const tmpNestedComplexRhs$2 = delete arg.y;
-      a = tmpNestedComplexRhs$2;
-      tmpDoWhileFlag = tmpNestedComplexRhs$2;
+let a = delete arg.y;
+if (a) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    $(1);
+    $(2);
+    a = delete arg.y;
+    if (a) {
     } else {
       break;
     }
@@ -98,35 +91,33 @@ $(a, arg);
 With rename=true
 
 `````js filename=intro
+let a = true;
 $( 100 );
 $( 1 );
 $( 2 );
-const a = { y: 1 };
-const b = deletea.y;
-let c = b;
-let d = b;
-if (b) {
-  $( 100 );
-  $( 1 );
-  $( 2 );
-  const e = deletea.y;
-  c = e;
-  d = e;
-  while ($LOOP_UNROLL_9) {
-    if (d) {
-      $( 100 );
-      $( 1 );
-      $( 2 );
-      const f = deletea.y;
-      c = f;
-      d = f;
+const b = { y: 1 };
+let c = deleteb.y;
+if (c) {
+
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    $( 1 );
+    $( 2 );
+    c = deleteb.y;
+    if (c) {
+
     }
     else {
       break;
     }
   }
 }
-$( c, a );
+$( c, b );
 `````
 
 ## Globals

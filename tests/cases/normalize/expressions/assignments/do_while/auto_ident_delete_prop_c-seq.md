@@ -25,13 +25,13 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = delete ($(1), $(2), $(arg)).y;
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = delete ($(1), $(2), $(arg)).y)) {
+  } else {
+    break;
   }
 }
 $(a, arg);
@@ -42,16 +42,14 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    $(1);
-    $(2);
-    const tmpDeleteObj = $(arg);
-    const tmpNestedComplexRhs = delete tmpDeleteObj.y;
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  $(1);
+  $(2);
+  const tmpDeleteObj = $(arg);
+  a = delete tmpDeleteObj.y;
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -62,31 +60,25 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 $(100);
 $(1);
 $(2);
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
-const tmpNestedComplexRhs = delete tmpDeleteObj.y;
-let tmpSSA_a = tmpNestedComplexRhs;
-let tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
-if (tmpNestedComplexRhs) {
-  $(100);
-  $(1);
-  $(2);
-  const tmpDeleteObj$1 = $(arg);
-  const tmpNestedComplexRhs$1 = delete tmpDeleteObj$1.y;
-  tmpSSA_a = tmpNestedComplexRhs$1;
-  tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
-  while ($LOOP_UNROLL_9) {
-    if (tmpSSA_tmpDoWhileFlag) {
-      $(100);
-      $(1);
-      $(2);
-      const tmpDeleteObj$2 = $(arg);
-      const tmpNestedComplexRhs$2 = delete tmpDeleteObj$2.y;
-      tmpSSA_a = tmpNestedComplexRhs$2;
-      tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
+let tmpSSA_a = delete tmpDeleteObj.y;
+if (tmpSSA_a) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    $(1);
+    $(2);
+    const tmpDeleteObj$1 = $(arg);
+    tmpSSA_a = delete tmpDeleteObj$1.y;
+    if (tmpSSA_a) {
     } else {
       break;
     }
@@ -101,38 +93,35 @@ $(tmpSSA_a, arg);
 With rename=true
 
 `````js filename=intro
+let a = true;
 $( 100 );
 $( 1 );
 $( 2 );
-const a = { y: 1 };
-const b = $( a );
-const c = deleteb.y;
-let d = c;
-let e = c;
-if (c) {
-  $( 100 );
-  $( 1 );
-  $( 2 );
-  const f = $( a );
-  const g = deletef.y;
-  d = g;
-  e = g;
-  while ($LOOP_UNROLL_9) {
-    if (e) {
-      $( 100 );
-      $( 1 );
-      $( 2 );
-      const h = $( a );
-      const i = deleteh.y;
-      d = i;
-      e = i;
+const b = { y: 1 };
+const c = $( b );
+let d = deletec.y;
+if (d) {
+
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    $( 1 );
+    $( 2 );
+    const e = $( b );
+    d = deletee.y;
+    if (d) {
+
     }
     else {
       break;
     }
   }
 }
-$( d, a );
+$( d, b );
 `````
 
 ## Globals

@@ -25,13 +25,13 @@ $(a, arg);
 `````js filename=intro
 let arg = 1;
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = -arg;
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = -arg)) {
+  } else {
+    break;
   }
 }
 $(a, arg);
@@ -42,13 +42,11 @@ $(a, arg);
 `````js filename=intro
 let arg = 1;
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpNestedComplexRhs = -arg;
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  a = -arg;
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }

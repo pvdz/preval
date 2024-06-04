@@ -25,14 +25,14 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  {
-    let tmpDoWhileFlag = true;
-    while (tmpDoWhileFlag) {
-      {
-        return $(1, `return`);
-        $(`fail`);
-      }
-      tmpDoWhileFlag = $(true);
+  while (true) {
+    {
+      return $(1, `return`);
+      $(`fail`);
+    }
+    if ($(true)) {
+    } else {
+      break;
     }
   }
 };
@@ -44,14 +44,9 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  let tmpDoWhileFlag = true;
   while (true) {
-    if (tmpDoWhileFlag) {
-      const tmpReturnArg = $(1, `return`);
-      return tmpReturnArg;
-    } else {
-      break;
-    }
+    const tmpReturnArg = $(1, `return`);
+    return tmpReturnArg;
   }
   return undefined;
 };
@@ -63,8 +58,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = $(1, `return`);
-$(tmpCalleeParam);
+const tmpReturnArg = $(1, `return`);
+$(tmpReturnArg);
 `````
 
 ## PST Output

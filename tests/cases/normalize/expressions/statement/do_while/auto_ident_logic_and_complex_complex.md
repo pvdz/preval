@@ -22,13 +22,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = $($(1)) && $($(2));
+while (true) {
+  {
+    $(100);
+  }
+  if ($($(1)) && $($(2))) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -38,18 +38,18 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(1);
-    tmpDoWhileFlag = tmpCallCallee(tmpCalleeParam);
-    if (tmpDoWhileFlag) {
-      const tmpCallCallee$1 = $;
-      const tmpCalleeParam$1 = $(2);
-      tmpDoWhileFlag = tmpCallCallee$1(tmpCalleeParam$1);
+  $(100);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(1);
+  let tmpIfTest = tmpCallCallee(tmpCalleeParam);
+  if (tmpIfTest) {
+    const tmpCallCallee$1 = $;
+    const tmpCalleeParam$1 = $(2);
+    tmpIfTest = tmpCallCallee$1(tmpCalleeParam$1);
+    if (tmpIfTest) {
     } else {
+      break;
     }
   } else {
     break;
@@ -61,38 +61,31 @@ $(a);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpCalleeParam = $(1);
-let tmpDoWhileFlag = $(tmpCalleeParam);
-let $tmpLoopUnrollCheck = false;
-if (tmpDoWhileFlag) {
+let tmpIfTest = $(tmpCalleeParam);
+if (tmpIfTest) {
   const tmpCalleeParam$1 = $(2);
-  tmpDoWhileFlag = $(tmpCalleeParam$1);
-  $tmpLoopUnrollCheck = tmpDoWhileFlag;
-} else {
-  $tmpLoopUnrollCheck = tmpDoWhileFlag;
-}
-if (tmpDoWhileFlag) {
-  $(100);
-  const tmpCalleeParam$2 = $(1);
-  tmpDoWhileFlag = $(tmpCalleeParam$2);
-  if (tmpDoWhileFlag) {
-    const tmpCalleeParam$4 = $(2);
-    tmpDoWhileFlag = $(tmpCalleeParam$4);
+  tmpIfTest = $(tmpCalleeParam$1);
+  if (tmpIfTest) {
   } else {
+    $tmpLoopUnrollCheck = false;
   }
 } else {
+  $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
-      $(100);
-      const tmpCalleeParam$3 = $(1);
-      tmpDoWhileFlag = $(tmpCalleeParam$3);
-      if (tmpDoWhileFlag) {
-        const tmpCalleeParam$5 = $(2);
-        tmpDoWhileFlag = $(tmpCalleeParam$5);
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCalleeParam$2 = $(1);
+    let tmpIfTest$1 = $(tmpCalleeParam$2);
+    if (tmpIfTest$1) {
+      const tmpCalleeParam$4 = $(2);
+      tmpIfTest$1 = $(tmpCalleeParam$4);
+      if (tmpIfTest$1) {
       } else {
+        break;
       }
     } else {
       break;
@@ -109,36 +102,36 @@ $(a);
 With rename=true
 
 `````js filename=intro
+let a = true;
 $( 100 );
-const a = $( 1 );
-let b = $( a );
-let c = false;
-if (b) {
+const b = $( 1 );
+let c = $( b );
+if (c) {
   const d = $( 2 );
-  b = $( d );
-  c = b;
-}
-else {
-  c = b;
-}
-if (b) {
-  $( 100 );
-  const e = $( 1 );
-  b = $( e );
-  if (b) {
-    const f = $( 2 );
-    b = $( f );
+  c = $( d );
+  if (c) {
+
+  }
+  else {
+    a = false;
   }
 }
-if (c) {
-  while ($LOOP_UNROLL_9) {
-    if (b) {
-      $( 100 );
-      const g = $( 1 );
-      b = $( g );
-      if (b) {
-        const h = $( 2 );
-        b = $( h );
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const e = $( 1 );
+    let f = $( e );
+    if (f) {
+      const g = $( 2 );
+      f = $( g );
+      if (f) {
+
+      }
+      else {
+        break;
       }
     }
     else {
@@ -146,11 +139,11 @@ if (c) {
     }
   }
 }
-const i = {
+const h = {
 a: 999,
 b: 1000
 ;
-$( i );
+$( h );
 `````
 
 ## Globals

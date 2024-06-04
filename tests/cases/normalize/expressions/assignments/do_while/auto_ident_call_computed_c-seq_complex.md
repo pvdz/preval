@@ -25,13 +25,13 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = (1, 2, $(b))[$(`\$`)](1);
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = (1, 2, $(b))[$(`\$`)](1))) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -42,15 +42,13 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpCallCompObj = $(b);
-    const tmpCallCompProp = $(`\$`);
-    const tmpNestedComplexRhs = tmpCallCompObj[tmpCallCompProp](1);
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  const tmpCallCompObj = $(b);
+  const tmpCallCompProp = $(`\$`);
+  a = tmpCallCompObj[tmpCallCompProp](1);
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -61,28 +59,23 @@ $(a);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 $(100);
 const b = { $: $ };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $(`\$`);
-const tmpNestedComplexRhs = tmpCallCompObj[tmpCallCompProp](1);
-let tmpSSA_a = tmpNestedComplexRhs;
-let tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
-if (tmpNestedComplexRhs) {
-  $(100);
-  const tmpCallCompObj$1 = $(b);
-  const tmpCallCompProp$1 = $(`\$`);
-  const tmpNestedComplexRhs$1 = tmpCallCompObj$1[tmpCallCompProp$1](1);
-  tmpSSA_a = tmpNestedComplexRhs$1;
-  tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
-  while ($LOOP_UNROLL_9) {
-    if (tmpSSA_tmpDoWhileFlag) {
-      $(100);
-      const tmpCallCompObj$2 = $(b);
-      const tmpCallCompProp$2 = $(`\$`);
-      const tmpNestedComplexRhs$2 = tmpCallCompObj$2[tmpCallCompProp$2](1);
-      tmpSSA_a = tmpNestedComplexRhs$2;
-      tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
+let tmpSSA_a = tmpCallCompObj[tmpCallCompProp](1);
+if (tmpSSA_a) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCallCompObj$1 = $(b);
+    const tmpCallCompProp$1 = $(`\$`);
+    tmpSSA_a = tmpCallCompObj$1[tmpCallCompProp$1](1);
+    if (tmpSSA_a) {
     } else {
       break;
     }
@@ -97,28 +90,26 @@ $(tmpSSA_a);
 With rename=true
 
 `````js filename=intro
+let a = true;
 $( 100 );
-const a = { $: $ };
-const b = $( a );
-const c = $( "$" );
-const d = b[ c ]( 1 )};
-let e = d;
-let f = d;
-if (d) {
-  $( 100 );
-  const g = $( a );
-  const h = $( "$" );
-  const i = g[ h ]( 1 )};
-  e = i;
-  f = i;
-  while ($LOOP_UNROLL_9) {
-    if (f) {
-      $( 100 );
-      const j = $( a );
-      const k = $( "$" );
-      const l = j[ k ]( 1 )};
-      e = l;
-      f = l;
+const b = { $: $ };
+const c = $( b );
+const d = $( "$" );
+let e = c[ d ]( 1 )};
+if (e) {
+
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const f = $( b );
+    const g = $( "$" );
+    e = f[ g ]( 1 )};
+    if (e) {
+
     }
     else {
       break;

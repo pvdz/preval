@@ -25,13 +25,13 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = b = $(2);
+while (true) {
+  {
+    $(100);
+  }
+  if ((b = $(2))) {
+  } else {
+    break;
   }
 }
 $(a, b);
@@ -42,13 +42,11 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpNestedComplexRhs = $(2);
-    b = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  b = $(2);
+  let tmpIfTest = b;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -59,21 +57,18 @@ $(a, b);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 $(100);
-const tmpNestedComplexRhs = $(2);
-let b = tmpNestedComplexRhs;
-let tmpDoWhileFlag = tmpNestedComplexRhs;
-if (tmpNestedComplexRhs) {
-  $(100);
-  const tmpNestedComplexRhs$1 = $(2);
-  b = tmpNestedComplexRhs$1;
-  tmpDoWhileFlag = tmpNestedComplexRhs$1;
-  while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
-      $(100);
-      const tmpNestedComplexRhs$2 = $(2);
-      b = tmpNestedComplexRhs$2;
-      tmpDoWhileFlag = tmpNestedComplexRhs$2;
+let b = $(2);
+if (b) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    b = $(2);
+    if (b) {
     } else {
       break;
     }
@@ -89,32 +84,32 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
+let a = true;
 $( 100 );
-const a = $( 2 );
-let b = a;
-let c = a;
+let b = $( 2 );
+if (b) {
+
+}
+else {
+  a = false;
+}
 if (a) {
-  $( 100 );
-  const d = $( 2 );
-  b = d;
-  c = d;
-  while ($LOOP_UNROLL_9) {
-    if (c) {
-      $( 100 );
-      const e = $( 2 );
-      b = e;
-      c = e;
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    b = $( 2 );
+    if (b) {
+
     }
     else {
       break;
     }
   }
 }
-const f = {
+const c = {
 a: 999,
 b: 1000
 ;
-$( f, b );
+$( c, b );
 `````
 
 ## Globals

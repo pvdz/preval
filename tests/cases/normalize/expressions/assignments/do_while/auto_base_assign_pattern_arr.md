@@ -25,13 +25,13 @@ $(a, b);
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = [b] = $([$(2)]);
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = [b] = $([$(2)]))) {
+  } else {
+    break;
   }
 }
 $(a, b);
@@ -42,20 +42,17 @@ $(a, b);
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    let tmpNestedComplexRhs = undefined;
-    const tmpCallCallee = $;
-    const tmpArrElement = $(2);
-    const tmpCalleeParam = [tmpArrElement];
-    const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
-    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-    b = arrPatternSplat[0];
-    tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  const tmpCallCallee = $;
+  const tmpArrElement = $(2);
+  const tmpCalleeParam = [tmpArrElement];
+  const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
+  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+  b = arrPatternSplat[0];
+  a = tmpNestedAssignArrPatternRhs;
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -66,6 +63,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
@@ -73,26 +71,20 @@ const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 let tmpSSA_b = arrPatternSplat[0];
 let tmpSSA_a = tmpNestedAssignArrPatternRhs;
-let tmpSSA_tmpDoWhileFlag = tmpNestedAssignArrPatternRhs;
 if (tmpNestedAssignArrPatternRhs) {
-  $(100);
-  const tmpArrElement$1 = $(2);
-  const tmpCalleeParam$1 = [tmpArrElement$1];
-  const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$1);
-  const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
-  tmpSSA_b = arrPatternSplat$1[0];
-  tmpSSA_a = tmpNestedAssignArrPatternRhs$1;
-  tmpSSA_tmpDoWhileFlag = tmpNestedAssignArrPatternRhs$1;
-  while ($LOOP_UNROLL_9) {
-    if (tmpSSA_tmpDoWhileFlag) {
-      $(100);
-      const tmpArrElement$2 = $(2);
-      const tmpCalleeParam$2 = [tmpArrElement$2];
-      const tmpNestedAssignArrPatternRhs$2 = $(tmpCalleeParam$2);
-      const arrPatternSplat$2 = [...tmpNestedAssignArrPatternRhs$2];
-      tmpSSA_b = arrPatternSplat$2[0];
-      tmpSSA_a = tmpNestedAssignArrPatternRhs$2;
-      tmpSSA_tmpDoWhileFlag = tmpNestedAssignArrPatternRhs$2;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpArrElement$1 = $(2);
+    const tmpCalleeParam$1 = [tmpArrElement$1];
+    const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$1);
+    const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
+    tmpSSA_b = arrPatternSplat$1[0];
+    tmpSSA_a = tmpNestedAssignArrPatternRhs$1;
+    if (tmpNestedAssignArrPatternRhs$1) {
     } else {
       break;
     }
@@ -107,40 +99,38 @@ $(tmpSSA_a, tmpSSA_b);
 With rename=true
 
 `````js filename=intro
+let a = true;
 $( 100 );
-const a = $( 2 );
-const b = [ a ];
-const c = $( b );
-const d = [ ... c ];
-let e = d[ 0 ];
-let f = c;
-let g = c;
-if (c) {
-  $( 100 );
-  const h = $( 2 );
-  const i = [ h ];
-  const j = $( i );
-  const k = [ ... j ];
-  e = k[ 0 ];
-  f = j;
-  g = j;
-  while ($LOOP_UNROLL_9) {
-    if (g) {
-      $( 100 );
-      const l = $( 2 );
-      const m = [ l ];
-      const n = $( m );
-      const o = [ ... n ];
-      e = o[ 0 ];
-      f = n;
-      g = n;
+const b = $( 2 );
+const c = [ b ];
+const d = $( c );
+const e = [ ... d ];
+let f = e[ 0 ];
+let g = d;
+if (d) {
+
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const h = $( 2 );
+    const i = [ h ];
+    const j = $( i );
+    const k = [ ... j ];
+    f = k[ 0 ];
+    g = j;
+    if (j) {
+
     }
     else {
       break;
     }
   }
 }
-$( f, e );
+$( g, f );
 `````
 
 ## Globals

@@ -25,13 +25,13 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = delete ($(1), $(2), arg).y;
+while (true) {
+  {
+    $(100);
+  }
+  if (delete ($(1), $(2), arg).y) {
+  } else {
+    break;
   }
 }
 $(a, arg);
@@ -42,14 +42,13 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    $(1);
-    $(2);
-    const tmpDeleteObj = arg;
-    tmpDoWhileFlag = delete tmpDeleteObj.y;
+  $(100);
+  $(1);
+  $(2);
+  const tmpDeleteObj = arg;
+  const tmpIfTest = delete tmpDeleteObj.y;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -65,18 +64,14 @@ const a = { a: 999, b: 1000 };
 $(100);
 $(1);
 $(2);
-let tmpDoWhileFlag = delete arg.y;
-if (tmpDoWhileFlag) {
-  $(100);
-  $(1);
-  $(2);
-  tmpDoWhileFlag = delete arg.y;
-  while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
-      $(100);
-      $(1);
-      $(2);
-      tmpDoWhileFlag = delete arg.y;
+const tmpIfTest = delete arg.y;
+if (tmpIfTest) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    $(1);
+    $(2);
+    const tmpIfTest$1 = delete arg.y;
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -99,18 +94,15 @@ b: 1000
 $( 100 );
 $( 1 );
 $( 2 );
-let c = deletea.y;
+const c = deletea.y;
 if (c) {
-  $( 100 );
-  $( 1 );
-  $( 2 );
-  c = deletea.y;
-  while ($LOOP_UNROLL_9) {
-    if (c) {
-      $( 100 );
-      $( 1 );
-      $( 2 );
-      c = deletea.y;
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    $( 1 );
+    $( 2 );
+    const d = deletea.y;
+    if (d) {
+
     }
     else {
       break;

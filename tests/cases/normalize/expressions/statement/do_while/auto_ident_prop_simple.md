@@ -25,13 +25,13 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = b.c;
+while (true) {
+  {
+    $(100);
+  }
+  if (b.c) {
+  } else {
+    break;
   }
 }
 $(a, b);
@@ -42,11 +42,10 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    tmpDoWhileFlag = b.c;
+  $(100);
+  const tmpIfTest = b.c;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -59,7 +58,6 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 $(100);
 $(100);
 $(100);
@@ -72,9 +70,9 @@ $(100);
 $(100);
 $(100);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    tmpDoWhileFlag = b.c;
+  $(100);
+  const tmpIfTest$1 = b.c;
+  if (tmpIfTest$1) {
   } else {
     break;
   }
@@ -92,7 +90,6 @@ const b = {
 a: 999,
 b: 1000
 ;
-let c = true;
 $( 100 );
 $( 100 );
 $( 100 );
@@ -105,9 +102,10 @@ $( 100 );
 $( 100 );
 $( 100 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 100 );
+  const c = a.c;
   if (c) {
-    $( 100 );
-    c = a.c;
+
   }
   else {
     break;

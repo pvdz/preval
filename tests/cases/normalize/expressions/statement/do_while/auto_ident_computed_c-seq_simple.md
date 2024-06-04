@@ -25,13 +25,13 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = (1, 2, $(b))[$(`c`)];
+while (true) {
+  {
+    $(100);
+  }
+  if ((1, 2, $(b))[$(`c`)]) {
+  } else {
+    break;
   }
 }
 $(a, b);
@@ -42,13 +42,12 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpAssignRhsCompObj = $(b);
-    const tmpAssignRhsCompProp = $(`c`);
-    tmpDoWhileFlag = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+  $(100);
+  const tmpCompObj = $(b);
+  const tmpCompProp = $(`c`);
+  const tmpIfTest = tmpCompObj[tmpCompProp];
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -61,21 +60,22 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
+let $tmpLoopUnrollCheck = true;
 $(100);
-const tmpAssignRhsCompObj = $(b);
-const tmpAssignRhsCompProp = $(`c`);
-let tmpSSA_tmpDoWhileFlag = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-if (tmpSSA_tmpDoWhileFlag) {
-  $(100);
-  const tmpAssignRhsCompObj$1 = $(b);
-  const tmpAssignRhsCompProp$1 = $(`c`);
-  tmpSSA_tmpDoWhileFlag = tmpAssignRhsCompObj$1[tmpAssignRhsCompProp$1];
-  while ($LOOP_UNROLL_9) {
-    if (tmpSSA_tmpDoWhileFlag) {
-      $(100);
-      const tmpAssignRhsCompObj$2 = $(b);
-      const tmpAssignRhsCompProp$2 = $(`c`);
-      tmpSSA_tmpDoWhileFlag = tmpAssignRhsCompObj$2[tmpAssignRhsCompProp$2];
+const tmpCompObj = $(b);
+const tmpCompProp = $(`c`);
+const tmpIfTest = tmpCompObj[tmpCompProp];
+if (tmpIfTest) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCompObj$1 = $(b);
+    const tmpCompProp$1 = $(`c`);
+    const tmpIfTest$1 = tmpCompObj$1[tmpCompProp$1];
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -95,21 +95,25 @@ const b = {
 a: 999,
 b: 1000
 ;
+let c = true;
 $( 100 );
-const c = $( a );
-const d = $( "c" );
-let e = c[ d ];
-if (e) {
-  $( 100 );
-  const f = $( a );
-  const g = $( "c" );
-  e = f[ g ];
-  while ($LOOP_UNROLL_9) {
-    if (e) {
-      $( 100 );
-      const h = $( a );
-      const i = $( "c" );
-      e = h[ i ];
+const d = $( a );
+const e = $( "c" );
+const f = d[ e ];
+if (f) {
+
+}
+else {
+  c = false;
+}
+if (c) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const g = $( a );
+    const h = $( "c" );
+    const i = g[ h ];
+    if (i) {
+
     }
     else {
       break;

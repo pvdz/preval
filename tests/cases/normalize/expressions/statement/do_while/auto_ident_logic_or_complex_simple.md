@@ -22,13 +22,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = $($(0)) || 2;
+while (true) {
+  {
+    $(100);
+  }
+  if ($($(0)) || 2) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -38,19 +38,18 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(0);
-    tmpDoWhileFlag = tmpCallCallee(tmpCalleeParam);
-    if (tmpDoWhileFlag) {
-    } else {
-      tmpDoWhileFlag = 2;
-    }
+  $(100);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(0);
+  let tmpIfTest = tmpCallCallee(tmpCalleeParam);
+  if (tmpIfTest) {
   } else {
-    break;
+    tmpIfTest = 2;
+    if (tmpIfTest) {
+    } else {
+      break;
+    }
   }
 }
 $(a);
@@ -61,38 +60,89 @@ $(a);
 `````js filename=intro
 $(100);
 const tmpCalleeParam = $(0);
-let tmpDoWhileFlag = $(tmpCalleeParam);
-let $tmpLoopUnrollCheck = true;
-if (tmpDoWhileFlag) {
-  $tmpLoopUnrollCheck = tmpDoWhileFlag;
+let tmpIfTest = $(tmpCalleeParam);
+if (tmpIfTest) {
 } else {
-  tmpDoWhileFlag = true;
+  tmpIfTest = true;
 }
-if (tmpDoWhileFlag) {
+$(100);
+const tmpCalleeParam$1 = $(0);
+let tmpIfTest$1 = $(tmpCalleeParam$1);
+if (tmpIfTest$1) {
+} else {
+  tmpIfTest$1 = true;
+}
+$(100);
+const tmpCalleeParam$2 = $(0);
+let tmpIfTest$2 = $(tmpCalleeParam$2);
+if (tmpIfTest$2) {
+} else {
+  tmpIfTest$2 = true;
+}
+$(100);
+const tmpCalleeParam$3 = $(0);
+let tmpIfTest$3 = $(tmpCalleeParam$3);
+if (tmpIfTest$3) {
+} else {
+  tmpIfTest$3 = true;
+}
+$(100);
+const tmpCalleeParam$4 = $(0);
+let tmpIfTest$4 = $(tmpCalleeParam$4);
+if (tmpIfTest$4) {
+} else {
+  tmpIfTest$4 = true;
+}
+$(100);
+const tmpCalleeParam$5 = $(0);
+let tmpIfTest$5 = $(tmpCalleeParam$5);
+if (tmpIfTest$5) {
+} else {
+  tmpIfTest$5 = true;
+}
+$(100);
+const tmpCalleeParam$6 = $(0);
+let tmpIfTest$6 = $(tmpCalleeParam$6);
+if (tmpIfTest$6) {
+} else {
+  tmpIfTest$6 = true;
+}
+$(100);
+const tmpCalleeParam$7 = $(0);
+let tmpIfTest$7 = $(tmpCalleeParam$7);
+if (tmpIfTest$7) {
+} else {
+  tmpIfTest$7 = true;
+}
+$(100);
+const tmpCalleeParam$8 = $(0);
+let tmpIfTest$8 = $(tmpCalleeParam$8);
+if (tmpIfTest$8) {
+} else {
+  tmpIfTest$8 = true;
+}
+$(100);
+const tmpCalleeParam$9 = $(0);
+let tmpIfTest$9 = $(tmpCalleeParam$9);
+if (tmpIfTest$9) {
+} else {
+  tmpIfTest$9 = true;
+}
+$(100);
+const tmpCalleeParam$10 = $(0);
+let tmpIfTest$10 = $(tmpCalleeParam$10);
+if (tmpIfTest$10) {
+} else {
+  tmpIfTest$10 = true;
+}
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpCalleeParam$1 = $(0);
-  tmpDoWhileFlag = $(tmpCalleeParam$1);
-  if (tmpDoWhileFlag) {
+  const tmpCalleeParam$11 = $(0);
+  let tmpIfTest$11 = $(tmpCalleeParam$11);
+  if (tmpIfTest$11) {
   } else {
-    tmpDoWhileFlag = true;
+    tmpIfTest$11 = true;
   }
-} else {
-}
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
-      $(100);
-      const tmpCalleeParam$2 = $(0);
-      tmpDoWhileFlag = $(tmpCalleeParam$2);
-      if (tmpDoWhileFlag) {
-      } else {
-        tmpDoWhileFlag = true;
-      }
-    } else {
-      break;
-    }
-  }
-} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -106,47 +156,118 @@ With rename=true
 $( 100 );
 const a = $( 0 );
 let b = $( a );
-let c = true;
 if (b) {
-  c = b;
+
 }
 else {
   b = true;
 }
-if (b) {
+$( 100 );
+const c = $( 0 );
+let d = $( c );
+if (d) {
+
+}
+else {
+  d = true;
+}
+$( 100 );
+const e = $( 0 );
+let f = $( e );
+if (f) {
+
+}
+else {
+  f = true;
+}
+$( 100 );
+const g = $( 0 );
+let h = $( g );
+if (h) {
+
+}
+else {
+  h = true;
+}
+$( 100 );
+const i = $( 0 );
+let j = $( i );
+if (j) {
+
+}
+else {
+  j = true;
+}
+$( 100 );
+const k = $( 0 );
+let l = $( k );
+if (l) {
+
+}
+else {
+  l = true;
+}
+$( 100 );
+const m = $( 0 );
+let n = $( m );
+if (n) {
+
+}
+else {
+  n = true;
+}
+$( 100 );
+const o = $( 0 );
+let p = $( o );
+if (p) {
+
+}
+else {
+  p = true;
+}
+$( 100 );
+const q = $( 0 );
+let r = $( q );
+if (r) {
+
+}
+else {
+  r = true;
+}
+$( 100 );
+const s = $( 0 );
+let t = $( s );
+if (t) {
+
+}
+else {
+  t = true;
+}
+$( 100 );
+const u = $( 0 );
+let v = $( u );
+if (v) {
+
+}
+else {
+  v = true;
+}
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const d = $( 0 );
-  b = $( d );
-  if (b) {
+  const w = $( 0 );
+  let x = $( w );
+  if (x) {
 
   }
   else {
-    b = true;
+    x = true;
   }
 }
-if (c) {
-  while ($LOOP_UNROLL_9) {
-    if (b) {
-      $( 100 );
-      const e = $( 0 );
-      b = $( e );
-      if (b) {
-
-      }
-      else {
-        b = true;
-      }
-    }
-    else {
-      break;
-    }
-  }
-}
-const f = {
+const y = {
 a: 999,
 b: 1000
 ;
-$( f );
+$( y );
 `````
 
 ## Globals

@@ -25,13 +25,13 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = new ($($))($(1), $(2));
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = new ($($))($(1), $(2)))) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -42,16 +42,14 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpNewCallee = $($);
-    const tmpCalleeParam = $(1);
-    const tmpCalleeParam$1 = $(2);
-    const tmpNestedComplexRhs = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  const tmpNewCallee = $($);
+  const tmpCalleeParam = $(1);
+  const tmpCalleeParam$1 = $(2);
+  a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -116,17 +114,15 @@ $(100);
 const tmpNewCallee$10 = $($);
 const tmpCalleeParam$19 = $(1);
 const tmpCalleeParam$21 = $(2);
-const tmpNestedComplexRhs$1 = new tmpNewCallee$10(tmpCalleeParam$19, tmpCalleeParam$21);
-let tmpSSA_a$2 = tmpNestedComplexRhs$1;
+let a = new tmpNewCallee$10(tmpCalleeParam$19, tmpCalleeParam$21);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   const tmpNewCallee$11 = $($);
   const tmpCalleeParam$22 = $(1);
   const tmpCalleeParam$24 = $(2);
-  const tmpNestedComplexRhs$2 = new tmpNewCallee$11(tmpCalleeParam$22, tmpCalleeParam$24);
-  tmpSSA_a$2 = tmpNestedComplexRhs$2;
+  a = new tmpNewCallee$11(tmpCalleeParam$22, tmpCalleeParam$24);
 }
-$(tmpSSA_a$2);
+$(a);
 `````
 
 ## PST Output
@@ -188,17 +184,15 @@ $( 100 );
 const 41 = $( $ );
 const 51 = $( 1 );
 const 61 = $( 2 );
-const 71 = new 41( 51, 61 );
-let 81 = 71;
+let 71 = new 41( 51, 61 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const 91 = $( $ );
-  const a1 = $( 1 );
-  const b1 = $( 2 );
-  const c1 = new 91( a1, b1 );
-  81 = c1;
+  const 81 = $( $ );
+  const 91 = $( 1 );
+  const a1 = $( 2 );
+  71 = new 81( 91, a1 );
 }
-$( 81 );
+$( 71 );
 `````
 
 ## Globals

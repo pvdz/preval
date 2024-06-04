@@ -25,13 +25,13 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = (1, 2, b)?.x;
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = (1, 2, b)?.x)) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -42,20 +42,18 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    let tmpNestedComplexRhs = undefined;
-    const tmpChainRootProp = b;
-    const tmpIfTest = tmpChainRootProp != null;
-    if (tmpIfTest) {
-      const tmpChainElementObject = tmpChainRootProp.x;
-      tmpNestedComplexRhs = tmpChainElementObject;
-    } else {
-    }
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  a = undefined;
+  const tmpChainRootProp = b;
+  const tmpIfTest$1 = tmpChainRootProp != null;
+  if (tmpIfTest$1) {
+    const tmpChainElementObject = tmpChainRootProp.x;
+    a = tmpChainElementObject;
+  } else {
+  }
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }

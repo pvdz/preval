@@ -22,13 +22,13 @@ $(a);
 
 `````js filename=intro
 let [a] = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = ($(10), $(20), [1, 2]);
+while (true) {
+  {
+    $(100);
+  }
+  if (($(10), $(20), [1, 2])) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -40,13 +40,12 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    $(10);
-    $(20);
-    tmpDoWhileFlag = [1, 2];
+  $(100);
+  $(10);
+  $(20);
+  const tmpIfTest = [1, 2];
+  if (tmpIfTest) {
   } else {
     break;
   }

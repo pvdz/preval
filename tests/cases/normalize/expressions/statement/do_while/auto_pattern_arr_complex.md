@@ -22,13 +22,13 @@ $(a);
 
 `````js filename=intro
 let [a] = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = $([1, 2]);
+while (true) {
+  {
+    $(100);
+  }
+  if ($([1, 2])) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -40,13 +40,12 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpCallCallee = $;
-    const tmpCalleeParam = [1, 2];
-    tmpDoWhileFlag = tmpCallCallee(tmpCalleeParam);
+  $(100);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = [1, 2];
+  const tmpIfTest = tmpCallCallee(tmpCalleeParam);
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -60,18 +59,20 @@ $(a);
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
+let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpCalleeParam = [1, 2];
-let tmpDoWhileFlag = $(tmpCalleeParam);
-if (tmpDoWhileFlag) {
-  $(100);
-  const tmpCalleeParam$1 = [1, 2];
-  tmpDoWhileFlag = $(tmpCalleeParam$1);
-  while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
-      $(100);
-      const tmpCalleeParam$2 = [1, 2];
-      tmpDoWhileFlag = $(tmpCalleeParam$2);
+const tmpIfTest = $(tmpCalleeParam);
+if (tmpIfTest) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCalleeParam$1 = [1, 2];
+    const tmpIfTest$1 = $(tmpCalleeParam$1);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -92,18 +93,23 @@ b: 1000
 ;
 const b = [ ... a ];
 const c = b[ 0 ];
+let d = true;
 $( 100 );
-const d = [ 1, 2 ];
-let e = $( d );
-if (e) {
-  $( 100 );
-  const f = [ 1, 2 ];
-  e = $( f );
-  while ($LOOP_UNROLL_9) {
-    if (e) {
-      $( 100 );
-      const g = [ 1, 2 ];
-      e = $( g );
+const e = [ 1, 2 ];
+const f = $( e );
+if (f) {
+
+}
+else {
+  d = false;
+}
+if (d) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const g = [ 1, 2 ];
+    const h = $( g );
+    if (h) {
+
     }
     else {
       break;

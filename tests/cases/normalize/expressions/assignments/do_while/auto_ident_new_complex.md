@@ -22,13 +22,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = new ($($))(1);
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = new ($($))(1))) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -38,14 +38,12 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpNewCallee = $($);
-    const tmpNestedComplexRhs = new tmpNewCallee(1);
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  const tmpNewCallee = $($);
+  a = new tmpNewCallee(1);
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -88,15 +86,13 @@ const tmpNewCallee$9 = $($);
 new tmpNewCallee$9(1);
 $(100);
 const tmpNewCallee$10 = $($);
-const tmpNestedComplexRhs$1 = new tmpNewCallee$10(1);
-let tmpSSA_a$2 = tmpNestedComplexRhs$1;
+let a = new tmpNewCallee$10(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   const tmpNewCallee$11 = $($);
-  const tmpNestedComplexRhs$2 = new tmpNewCallee$11(1);
-  tmpSSA_a$2 = tmpNestedComplexRhs$2;
+  a = new tmpNewCallee$11(1);
 }
-$(tmpSSA_a$2);
+$(a);
 `````
 
 ## PST Output
@@ -136,15 +132,13 @@ const j = $( $ );
 new j( 1 );
 $( 100 );
 const k = $( $ );
-const l = new k( 1 );
-let m = l;
+let l = new k( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const n = $( $ );
-  const o = new n( 1 );
-  m = o;
+  const m = $( $ );
+  l = new m( 1 );
 }
-$( m );
+$( l );
 `````
 
 ## Globals

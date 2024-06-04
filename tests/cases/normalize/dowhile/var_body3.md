@@ -18,10 +18,10 @@ do var x; while ($(x));
 
 `````js filename=intro
 let x = undefined;
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    tmpDoWhileFlag = $(x);
+while (true) {
+  if ($(x)) {
+  } else {
+    break;
   }
 }
 `````
@@ -30,10 +30,10 @@ let x = undefined;
 
 `````js filename=intro
 let x = undefined;
-let tmpDoWhileFlag = true;
+let tmpIfTest = $(x);
 while (true) {
-  if (tmpDoWhileFlag) {
-    tmpDoWhileFlag = $(x);
+  if (tmpIfTest) {
+    tmpIfTest = $(x);
   } else {
     break;
   }
@@ -43,12 +43,12 @@ while (true) {
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = $(undefined);
-if (tmpDoWhileFlag) {
-  tmpDoWhileFlag = $(undefined);
-  while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
-      tmpDoWhileFlag = $(undefined);
+let tmpIfTest = $(undefined);
+if (tmpIfTest) {
+  tmpIfTest = $(undefined);
+  while ($LOOP_UNROLL_10) {
+    if (tmpIfTest) {
+      tmpIfTest = $(undefined);
     } else {
       break;
     }
@@ -65,7 +65,7 @@ With rename=true
 let a = $( undefined );
 if (a) {
   a = $( undefined );
-  while ($LOOP_UNROLL_9) {
+  while ($LOOP_UNROLL_10) {
     if (a) {
       a = $( undefined );
     }

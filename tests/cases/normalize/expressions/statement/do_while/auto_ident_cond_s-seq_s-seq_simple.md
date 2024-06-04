@@ -22,13 +22,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = (10, 20, 30) ? (40, 50, 60) : $($(100));
+while (true) {
+  {
+    $(100);
+  }
+  if ((10, 20, 30) ? (40, 50, 60) : $($(100))) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -38,18 +38,18 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpIfTest = 30;
-    if (tmpIfTest) {
-      tmpDoWhileFlag = 60;
-    } else {
-      const tmpCallCallee = $;
-      const tmpCalleeParam = $(100);
-      tmpDoWhileFlag = tmpCallCallee(tmpCalleeParam);
-    }
+  $(100);
+  let tmpIfTest = undefined;
+  const tmpIfTest$1 = 30;
+  if (tmpIfTest$1) {
+    tmpIfTest = 60;
+  } else {
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(100);
+    tmpIfTest = tmpCallCallee(tmpCalleeParam);
+  }
+  if (tmpIfTest) {
   } else {
     break;
   }

@@ -24,14 +24,14 @@ $('after, do not evaluate (infinite loop)');
 
 `````js filename=intro
 while ($(true)) {
-  {
-    let tmpDoWhileFlag = true;
-    while (tmpDoWhileFlag) {
-      {
-        break;
-        $(`fail`);
-      }
-      tmpDoWhileFlag = $(true);
+  while (true) {
+    {
+      break;
+      $(`fail`);
+    }
+    if ($(true)) {
+    } else {
+      break;
     }
   }
 }
@@ -44,14 +44,6 @@ $(`after, do not evaluate (infinite loop)`);
 let tmpIfTest = $(true);
 while (true) {
   if (tmpIfTest) {
-    let tmpDoWhileFlag = true;
-    while (true) {
-      if (tmpDoWhileFlag) {
-        break;
-      } else {
-        break;
-      }
-    }
     tmpIfTest = $(true);
   } else {
     break;

@@ -22,13 +22,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = /foo/;
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = /foo/)) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -38,13 +38,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpNestedComplexRhs = /foo/;
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  a = /foo/;
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -66,12 +64,10 @@ $(100);
 $(100);
 $(100);
 $(100);
-const tmpNestedComplexRhs$1 = /foo/;
-let a = tmpNestedComplexRhs$1;
+let a = /foo/;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpNestedComplexRhs$2 = /foo/;
-  a = tmpNestedComplexRhs$2;
+  a = /foo/;
 }
 $(a);
 `````
@@ -92,14 +88,12 @@ $( 100 );
 $( 100 );
 $( 100 );
 $( 100 );
-const a = /foo/;
-let b = a;
+let a = /foo/;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const c = /foo/;
-  b = c;
+  a = /foo/;
 }
-$( b );
+$( a );
 `````
 
 ## Globals

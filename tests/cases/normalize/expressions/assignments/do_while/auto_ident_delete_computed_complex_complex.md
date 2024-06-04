@@ -25,13 +25,13 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = delete $(arg)[$(`y`)];
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = delete $(arg)[$(`y`)])) {
+  } else {
+    break;
   }
 }
 $(a, arg);
@@ -42,15 +42,13 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpDeleteCompObj = $(arg);
-    const tmpDeleteCompProp = $(`y`);
-    const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  const tmpDeleteCompObj = $(arg);
+  const tmpDeleteCompProp = $(`y`);
+  a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -61,28 +59,23 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 $(100);
 const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-let tmpSSA_a = tmpNestedComplexRhs;
-let tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
-if (tmpNestedComplexRhs) {
-  $(100);
-  const tmpDeleteCompObj$1 = $(arg);
-  const tmpDeleteCompProp$1 = $(`y`);
-  const tmpNestedComplexRhs$1 = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
-  tmpSSA_a = tmpNestedComplexRhs$1;
-  tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
-  while ($LOOP_UNROLL_9) {
-    if (tmpSSA_tmpDoWhileFlag) {
-      $(100);
-      const tmpDeleteCompObj$2 = $(arg);
-      const tmpDeleteCompProp$2 = $(`y`);
-      const tmpNestedComplexRhs$2 = delete tmpDeleteCompObj$2[tmpDeleteCompProp$2];
-      tmpSSA_a = tmpNestedComplexRhs$2;
-      tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
+let tmpSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+if (tmpSSA_a) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpDeleteCompObj$1 = $(arg);
+    const tmpDeleteCompProp$1 = $(`y`);
+    tmpSSA_a = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
+    if (tmpSSA_a) {
     } else {
       break;
     }
@@ -97,35 +90,33 @@ $(tmpSSA_a, arg);
 With rename=true
 
 `````js filename=intro
+let a = true;
 $( 100 );
-const a = { y: 1 };
-const b = $( a );
-const c = $( "y" );
-const d = deleteb[ c ];
-let e = d;
-let f = d;
-if (d) {
-  $( 100 );
-  const g = $( a );
-  const h = $( "y" );
-  const i = deleteg[ h ];
-  e = i;
-  f = i;
-  while ($LOOP_UNROLL_9) {
-    if (f) {
-      $( 100 );
-      const j = $( a );
-      const k = $( "y" );
-      const l = deletej[ k ];
-      e = l;
-      f = l;
+const b = { y: 1 };
+const c = $( b );
+const d = $( "y" );
+let e = deletec[ d ];
+if (e) {
+
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const f = $( b );
+    const g = $( "y" );
+    e = deletef[ g ];
+    if (e) {
+
     }
     else {
       break;
     }
   }
 }
-$( e, a );
+$( e, b );
 `````
 
 ## Globals

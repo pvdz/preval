@@ -25,31 +25,31 @@ $(3);
 ## Pre Normal
 
 `````js filename=intro
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
+while (true) {
+  {
     {
-      {
-        let $implicitThrow = false;
-        let $finalCatchArg = undefined;
-        $finally: {
-          try {
-            $(1);
-          } catch ($finalImplicit) {
-            $implicitThrow = true;
-            $finalCatchArg = $finalImplicit;
-          }
-        }
-        {
-          $(2);
-          break;
-        }
-        if ($implicitThrow) throw $finalCatchArg;
-        else {
+      let $implicitThrow = false;
+      let $finalCatchArg = undefined;
+      $finally: {
+        try {
+          $(1);
+        } catch ($finalImplicit) {
+          $implicitThrow = true;
+          $finalCatchArg = $finalImplicit;
         }
       }
+      {
+        $(2);
+        break;
+      }
+      if ($implicitThrow) throw $finalCatchArg;
+      else {
+      }
     }
-    tmpDoWhileFlag = $LOOP_DONE_UNROLLING_ALWAYS_TRUE;
+  }
+  if ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  } else {
+    break;
   }
 }
 $(3);
@@ -58,22 +58,17 @@ $(3);
 ## Normalized
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    let $implicitThrow = false;
-    let $finalCatchArg = undefined;
-    try {
-      $(1);
-    } catch ($finalImplicit) {
-      $implicitThrow = true;
-      $finalCatchArg = $finalImplicit;
-    }
-    $(2);
-    break;
-  } else {
-    break;
+  let $implicitThrow = false;
+  let $finalCatchArg = undefined;
+  try {
+    $(1);
+  } catch ($finalImplicit) {
+    $implicitThrow = true;
+    $finalCatchArg = $finalImplicit;
   }
+  $(2);
+  break;
 }
 $(3);
 `````

@@ -280,17 +280,14 @@ export function phaseNormalOnce(fdata) {
         loopStack.pop();
 
         rule('A do-while must be simple regular while');
-        example('do { f(); } while (g());', 'let tmp = true; while (tmp) { f(); tmp = g(); }');
+        //example('do { f(); } while (g());', 'let tmp = true; while (tmp) { f(); tmp = g(); }');
+        example('do { f(); } while (g());', 'while (true) { f(); if (!g()) break; }');
         before(node, parentNode);
 
-        const tmpName = createFreshVar('tmpDoWhileFlag', fdata);
-        const newNodes = AST.blockStatement([
-          AST.variableDeclaration(tmpName, AST.tru(), 'let'),
-          AST.whileStatement(
-            AST.identifier(tmpName),
-            AST.blockStatement(node.body, AST.expressionStatement(AST.assignmentExpression(tmpName, node.test))),
-          ),
-        ]);
+        const newNodes = AST.whileStatement(true, AST.blockStatement(
+          node.body,
+          AST.ifStatement(node.test, AST.blockStatement(), AST.blockStatement(AST.breakStatement())),
+        ))
 
         if (parentIndex < 0) parentNode[parentProp] = newNodes;
         else parentNode[parentProp][parentIndex] = newNodes;

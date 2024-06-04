@@ -25,19 +25,19 @@ $('after, wont eval due to infinite loop');
 
 `````js filename=intro
 while ($(true)) {
-  {
-    let tmpDoWhileFlag = true;
-    while (tmpDoWhileFlag) {
-      {
-        $continue: {
-          {
-            $(`loop`);
-            break $continue;
-            $(`fail`);
-          }
+  while (true) {
+    {
+      $continue: {
+        {
+          $(`loop`);
+          break $continue;
+          $(`fail`);
         }
       }
-      tmpDoWhileFlag = $(true);
+    }
+    if ($(true)) {
+    } else {
+      break;
     }
   }
 }
@@ -50,14 +50,13 @@ $(`after, wont eval due to infinite loop`);
 let tmpIfTest = $(true);
 while (true) {
   if (tmpIfTest) {
-    let tmpDoWhileFlag = true;
     while (true) {
-      if (tmpDoWhileFlag) {
-        $continue: {
-          $(`loop`);
-          break $continue;
-        }
-        tmpDoWhileFlag = $(true);
+      $continue: {
+        $(`loop`);
+        break $continue;
+      }
+      const tmpIfTest$1 = $(true);
+      if (tmpIfTest$1) {
       } else {
         break;
       }
@@ -76,15 +75,23 @@ $(`after, wont eval due to infinite loop`);
 let tmpIfTest = $(true);
 while (true) {
   if (tmpIfTest) {
+    let $tmpLoopUnrollCheck = true;
     $(`loop`);
-    let tmpDoWhileFlag = $(true);
-    while ($LOOP_UNROLL_10) {
-      if (tmpDoWhileFlag) {
+    const tmpIfTest$1 = $(true);
+    if (tmpIfTest$1) {
+    } else {
+      $tmpLoopUnrollCheck = false;
+    }
+    if ($tmpLoopUnrollCheck) {
+      while ($LOOP_UNROLL_10) {
         $(`loop`);
-        tmpDoWhileFlag = $(true);
-      } else {
-        break;
+        const tmpIfTest$2 = $(true);
+        if (tmpIfTest$2) {
+        } else {
+          break;
+        }
       }
+    } else {
     }
     tmpIfTest = $(true);
   } else {
@@ -102,15 +109,25 @@ With rename=true
 let a = $( true );
 while (true) {
   if (a) {
+    let b = true;
     $( "loop" );
-    let b = $( true );
-    while ($LOOP_UNROLL_10) {
-      if (b) {
+    const c = $( true );
+    if (c) {
+
+    }
+    else {
+      b = false;
+    }
+    if (b) {
+      while ($LOOP_UNROLL_10) {
         $( "loop" );
-        b = $( true );
-      }
-      else {
-        break;
+        const d = $( true );
+        if (d) {
+
+        }
+        else {
+          break;
+        }
       }
     }
     a = $( true );

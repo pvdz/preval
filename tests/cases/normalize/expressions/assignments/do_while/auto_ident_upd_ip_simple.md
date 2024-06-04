@@ -25,13 +25,13 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = b++;
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = b++)) {
+  } else {
+    break;
   }
 }
 $(a, b);
@@ -42,15 +42,13 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpPostUpdArgIdent = b;
-    b = b + 1;
-    const tmpNestedComplexRhs = tmpPostUpdArgIdent;
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  const tmpPostUpdArgIdent = b;
+  b = b + 1;
+  a = tmpPostUpdArgIdent;
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -61,7 +59,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
+let a = 11;
 $(100);
 $(100);
 $(100);
@@ -74,14 +72,12 @@ $(100);
 $(100);
 $(100);
 let b = 12;
-let a = 11;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpPostUpdArgIdent$1 = b;
-    b = b + 1;
-    a = tmpPostUpdArgIdent$1;
-    tmpDoWhileFlag = tmpPostUpdArgIdent$1;
+  $(100);
+  const tmpPostUpdArgIdent$1 = b;
+  b = b + 1;
+  a = tmpPostUpdArgIdent$1;
+  if (tmpPostUpdArgIdent$1) {
   } else {
     break;
   }
@@ -94,7 +90,7 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-let a = true;
+let a = 11;
 $( 100 );
 $( 100 );
 $( 100 );
@@ -107,20 +103,19 @@ $( 100 );
 $( 100 );
 $( 100 );
 let b = 12;
-let c = 11;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (a) {
-    $( 100 );
-    const d = b;
-    b = b + 1;
-    c = d;
-    a = d;
+  $( 100 );
+  const c = b;
+  b = b + 1;
+  a = c;
+  if (c) {
+
   }
   else {
     break;
   }
 }
-$( c, b );
+$( a, b );
 `````
 
 ## Globals

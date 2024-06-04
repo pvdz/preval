@@ -25,13 +25,13 @@ $(a, arg);
 `````js filename=intro
 let arg = 1;
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = typeof $(arg);
+while (true) {
+  {
+    $(100);
+  }
+  if (typeof $(arg)) {
+  } else {
+    break;
   }
 }
 $(a, arg);
@@ -42,12 +42,11 @@ $(a, arg);
 `````js filename=intro
 let arg = 1;
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpUnaryArg = $(arg);
-    tmpDoWhileFlag = typeof tmpUnaryArg;
+  $(100);
+  const tmpUnaryArg = $(arg);
+  const tmpIfTest = typeof tmpUnaryArg;
+  if (tmpIfTest) {
   } else {
     break;
   }

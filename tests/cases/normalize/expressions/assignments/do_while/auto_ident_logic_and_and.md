@@ -22,13 +22,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = $($(1)) && $($(1)) && $($(2));
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = $($(1)) && $($(1)) && $($(2)))) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -38,27 +38,25 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(1);
-    let tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
-    if (tmpNestedComplexRhs) {
-      const tmpCallCallee$1 = $;
-      const tmpCalleeParam$1 = $(1);
-      tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$1);
-      if (tmpNestedComplexRhs) {
-        const tmpCallCallee$3 = $;
-        const tmpCalleeParam$3 = $(2);
-        tmpNestedComplexRhs = tmpCallCallee$3(tmpCalleeParam$3);
-      } else {
-      }
+  $(100);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(1);
+  a = tmpCallCallee(tmpCalleeParam);
+  if (a) {
+    const tmpCallCallee$1 = $;
+    const tmpCalleeParam$1 = $(1);
+    a = tmpCallCallee$1(tmpCalleeParam$1);
+    if (a) {
+      const tmpCallCallee$3 = $;
+      const tmpCalleeParam$3 = $(2);
+      a = tmpCallCallee$3(tmpCalleeParam$3);
     } else {
     }
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  } else {
+  }
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -69,59 +67,49 @@ $(a);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpCalleeParam = $(1);
-let tmpNestedComplexRhs = $(tmpCalleeParam);
-if (tmpNestedComplexRhs) {
+let a = $(tmpCalleeParam);
+if (a) {
   const tmpCalleeParam$1 = $(1);
-  tmpNestedComplexRhs = $(tmpCalleeParam$1);
-  if (tmpNestedComplexRhs) {
+  a = $(tmpCalleeParam$1);
+  if (a) {
     const tmpCalleeParam$3 = $(2);
-    tmpNestedComplexRhs = $(tmpCalleeParam$3);
+    a = $(tmpCalleeParam$3);
   } else {
   }
 } else {
 }
-let tmpSSA_a = tmpNestedComplexRhs;
-if (tmpNestedComplexRhs) {
-  $(100);
-  const tmpCalleeParam$2 = $(1);
-  let tmpNestedComplexRhs$1 = $(tmpCalleeParam$2);
-  if (tmpNestedComplexRhs$1) {
-    const tmpCalleeParam$4 = $(1);
-    tmpNestedComplexRhs$1 = $(tmpCalleeParam$4);
-    if (tmpNestedComplexRhs$1) {
-      const tmpCalleeParam$6 = $(2);
-      tmpNestedComplexRhs$1 = $(tmpCalleeParam$6);
-    } else {
-    }
-  } else {
-  }
-  tmpSSA_a = tmpNestedComplexRhs$1;
-  while ($LOOP_UNROLL_9) {
-    if (tmpSSA_a) {
-      $(100);
-      const tmpCalleeParam$5 = $(1);
-      let tmpNestedComplexRhs$2 = $(tmpCalleeParam$5);
-      if (tmpNestedComplexRhs$2) {
-        const tmpCalleeParam$7 = $(1);
-        tmpNestedComplexRhs$2 = $(tmpCalleeParam$7);
-        if (tmpNestedComplexRhs$2) {
-          const tmpCalleeParam$9 = $(2);
-          tmpNestedComplexRhs$2 = $(tmpCalleeParam$9);
+if (a) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCalleeParam$2 = $(1);
+    a = $(tmpCalleeParam$2);
+    if (a) {
+      const tmpCalleeParam$4 = $(1);
+      a = $(tmpCalleeParam$4);
+      if (a) {
+        const tmpCalleeParam$6 = $(2);
+        a = $(tmpCalleeParam$6);
+        if (a) {
         } else {
+          break;
         }
       } else {
+        break;
       }
-      tmpSSA_a = tmpNestedComplexRhs$2;
-      tmpSSA_a = tmpNestedComplexRhs$2;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpSSA_a);
+$(a);
 `````
 
 ## PST Output
@@ -129,53 +117,52 @@ $(tmpSSA_a);
 With rename=true
 
 `````js filename=intro
+let a = true;
 $( 100 );
-const a = $( 1 );
-let b = $( a );
-if (b) {
-  const c = $( 1 );
-  b = $( c );
-  if (b) {
-    const d = $( 2 );
-    b = $( d );
+const b = $( 1 );
+let c = $( b );
+if (c) {
+  const d = $( 1 );
+  c = $( d );
+  if (c) {
+    const e = $( 2 );
+    c = $( e );
   }
 }
-let e = b;
-if (b) {
-  $( 100 );
-  const f = $( 1 );
-  let g = $( f );
-  if (g) {
-    const h = $( 1 );
-    g = $( h );
-    if (g) {
-      const i = $( 2 );
-      g = $( i );
-    }
-  }
-  e = g;
-  while ($LOOP_UNROLL_9) {
-    if (e) {
-      $( 100 );
-      const j = $( 1 );
-      let k = $( j );
-      if (k) {
-        const l = $( 1 );
-        k = $( l );
-        if (k) {
-          const m = $( 2 );
-          k = $( m );
+if (c) {
+
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const f = $( 1 );
+    c = $( f );
+    if (c) {
+      const g = $( 1 );
+      c = $( g );
+      if (c) {
+        const h = $( 2 );
+        c = $( h );
+        if (c) {
+
+        }
+        else {
+          break;
         }
       }
-      e = k;
-      e = k;
+      else {
+        break;
+      }
     }
     else {
       break;
     }
   }
 }
-$( e );
+$( c );
 `````
 
 ## Globals

@@ -23,13 +23,13 @@ let a = 1,
   y = 4,
   p,
   q;
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      [p, q] = $(b);
-    }
-    tmpDoWhileFlag = x + y;
+while (true) {
+  {
+    [p, q] = $(b);
+  }
+  if (x + y) {
+  } else {
+    break;
   }
 }
 $(p, q);
@@ -44,14 +44,13 @@ let x = 3;
 let y = 4;
 let p = undefined;
 let q = undefined;
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    const arrAssignPatternRhs = $(b);
-    const arrPatternSplat = [...arrAssignPatternRhs];
-    p = arrPatternSplat[0];
-    q = arrPatternSplat[1];
-    tmpDoWhileFlag = x + y;
+  const arrAssignPatternRhs = $(b);
+  const arrPatternSplat = [...arrAssignPatternRhs];
+  p = arrPatternSplat[0];
+  q = arrPatternSplat[1];
+  const tmpIfTest = x + y;
+  if (tmpIfTest) {
   } else {
     break;
   }

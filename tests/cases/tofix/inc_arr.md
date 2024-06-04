@@ -23,15 +23,15 @@ $(arr);
 
 `````js filename=intro
 let arr;
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      arr = [0];
-      arr[0] = arr[0] + 1;
-      $(arr);
-    }
-    tmpDoWhileFlag = arr[0] < 10;
+while (true) {
+  {
+    arr = [0];
+    arr[0] = arr[0] + 1;
+    $(arr);
+  }
+  if (arr[0] < 10) {
+  } else {
+    break;
   }
 }
 $(arr);
@@ -41,18 +41,17 @@ $(arr);
 
 `````js filename=intro
 let arr = undefined;
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    arr = [0];
-    const tmpAssignComputedObj = arr;
-    const tmpAssignComputedProp = 0;
-    const tmpBinLhs = arr[0];
-    const tmpAssignComputedRhs = tmpBinLhs + 1;
-    tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-    $(arr);
-    const tmpBinLhs$1 = arr[0];
-    tmpDoWhileFlag = tmpBinLhs$1 < 10;
+  arr = [0];
+  const tmpAssignComputedObj = arr;
+  const tmpAssignComputedProp = 0;
+  const tmpBinLhs = arr[0];
+  const tmpAssignComputedRhs = tmpBinLhs + 1;
+  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  $(arr);
+  const tmpBinLhs$1 = arr[0];
+  const tmpIfTest = tmpBinLhs$1 < 10;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -70,26 +69,18 @@ const tmpAssignComputedRhs = tmpBinLhs + 1;
 tmpAssignComputedObj[0] = tmpAssignComputedRhs;
 $(arr);
 const tmpBinLhs$1 = arr[0];
-let tmpSSA_tmpDoWhileFlag = tmpBinLhs$1 < 10;
-if (tmpSSA_tmpDoWhileFlag) {
-  arr = [0];
-  const tmpAssignComputedObj$1 = arr;
-  const tmpBinLhs$2 = arr[0];
-  const tmpAssignComputedRhs$1 = tmpBinLhs$2 + 1;
-  tmpAssignComputedObj$1[0] = tmpAssignComputedRhs$1;
-  $(arr);
-  const tmpBinLhs$4 = arr[0];
-  tmpSSA_tmpDoWhileFlag = tmpBinLhs$4 < 10;
-  while ($LOOP_UNROLL_9) {
-    if (tmpSSA_tmpDoWhileFlag) {
-      arr = [0];
-      const tmpAssignComputedObj$2 = arr;
-      const tmpBinLhs$3 = arr[0];
-      const tmpAssignComputedRhs$2 = tmpBinLhs$3 + 1;
-      tmpAssignComputedObj$2[0] = tmpAssignComputedRhs$2;
-      $(arr);
-      const tmpBinLhs$5 = arr[0];
-      tmpSSA_tmpDoWhileFlag = tmpBinLhs$5 < 10;
+const tmpIfTest = tmpBinLhs$1 < 10;
+if (tmpIfTest) {
+  while ($LOOP_UNROLL_10) {
+    arr = [0];
+    const tmpAssignComputedObj$1 = arr;
+    const tmpBinLhs$2 = arr[0];
+    const tmpAssignComputedRhs$1 = tmpBinLhs$2 + 1;
+    tmpAssignComputedObj$1[0] = tmpAssignComputedRhs$1;
+    $(arr);
+    const tmpBinLhs$4 = arr[0];
+    const tmpIfTest$1 = tmpBinLhs$4 < 10;
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -111,26 +102,19 @@ const d = c + 1;
 b[0] = d;
 $( a );
 const e = a[ 0 ];
-let f = e < 10;
+const f = e < 10;
 if (f) {
-  a = [ 0 ];
-  const g = a;
-  const h = a[ 0 ];
-  const i = h + 1;
-  g[0] = i;
-  $( a );
-  const j = a[ 0 ];
-  f = j < 10;
-  while ($LOOP_UNROLL_9) {
-    if (f) {
-      a = [ 0 ];
-      const k = a;
-      const l = a[ 0 ];
-      const m = l + 1;
-      k[0] = m;
-      $( a );
-      const n = a[ 0 ];
-      f = n < 10;
+  while ($LOOP_UNROLL_10) {
+    a = [ 0 ];
+    const g = a;
+    const h = a[ 0 ];
+    const i = h + 1;
+    g[0] = i;
+    $( a );
+    const j = a[ 0 ];
+    const k = j < 10;
+    if (k) {
+
     }
     else {
       break;

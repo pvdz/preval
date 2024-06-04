@@ -25,13 +25,13 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = b++;
+while (true) {
+  {
+    $(100);
+  }
+  if (b++) {
+  } else {
+    break;
   }
 }
 $(a, b);
@@ -42,13 +42,12 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpPostUpdArgIdent = b;
-    b = b + 1;
-    tmpDoWhileFlag = tmpPostUpdArgIdent;
+  $(100);
+  const tmpPostUpdArgIdent = b;
+  b = b + 1;
+  const tmpIfTest = tmpPostUpdArgIdent;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -59,7 +58,6 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
 $(100);
 $(100);
 $(100);
@@ -73,11 +71,10 @@ $(100);
 $(100);
 let b = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpPostUpdArgIdent$1 = b;
-    b = b + 1;
-    tmpDoWhileFlag = tmpPostUpdArgIdent$1;
+  $(100);
+  const tmpPostUpdArgIdent$1 = b;
+  b = b + 1;
+  if (tmpPostUpdArgIdent$1) {
   } else {
     break;
   }
@@ -91,7 +88,6 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-let a = true;
 $( 100 );
 $( 100 );
 $( 100 );
@@ -103,23 +99,23 @@ $( 100 );
 $( 100 );
 $( 100 );
 $( 100 );
-let b = 12;
+let a = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (a) {
-    $( 100 );
-    const c = b;
-    b = b + 1;
-    a = c;
+  $( 100 );
+  const b = a;
+  a = a + 1;
+  if (b) {
+
   }
   else {
     break;
   }
 }
-const d = {
+const c = {
 a: 999,
 b: 1000
 ;
-$( d, b );
+$( c, a );
 `````
 
 ## Globals

@@ -22,15 +22,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = function () {
+while (true) {
+  {
+    $(100);
+  }
+  if (
+    (a = function () {
       debugger;
-    };
+    })
+  ) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -40,16 +42,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpNestedComplexRhs = function () {
-      debugger;
-      return undefined;
-    };
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  a = function () {
+    debugger;
+    return undefined;
+  };
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -63,11 +63,10 @@ $(a);
 let a = { a: 999, b: 1000 };
 while (true) {
   $(100);
-  const tmpNestedComplexRhs = function () {
+  a = function () {
     debugger;
     return undefined;
   };
-  a = tmpNestedComplexRhs;
 }
 $(a);
 `````
@@ -83,11 +82,10 @@ b: 1000
 ;
 while (true) {
   $( 100 );
-  const b = function() {
+  a = function() {
     debugger;
     return undefined;
   };
-  a = b;
 }
 $( a );
 `````

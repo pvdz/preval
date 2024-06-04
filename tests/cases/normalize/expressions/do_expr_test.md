@@ -21,11 +21,11 @@ do $(a); while (x + y);
 let a = 1,
   x = 3,
   y = 4;
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    $(a);
-    tmpDoWhileFlag = x + y;
+while (true) {
+  $(a);
+  if (x + y) {
+  } else {
+    break;
   }
 }
 `````
@@ -36,11 +36,10 @@ let a = 1,
 let a = 1;
 let x = 3;
 let y = 4;
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(a);
-    tmpDoWhileFlag = x + y;
+  $(a);
+  const tmpIfTest = x + y;
+  if (tmpIfTest) {
   } else {
     break;
   }

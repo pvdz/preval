@@ -131,9 +131,12 @@ const allFileNames = CONFIG.targetFile ? [CONFIG.targetFile] : getTestFileNames(
 const fastFileNames = allFileNames.filter(
   (fname) => {
     if (!CONFIG.fastTest) return true;
-    const isSlowTest = (fname.includes('normalize/expressions/bindings') ||
+    const isSlowTest = (
+      fname.includes('normalize/expressions/bindings') ||
       fname.includes('normalize/expressions/assignment') ||
-      (fname.includes('normalize/expressions/statement') && !fname.includes('normalize/expressions/statement/statement')));
+      (fname.includes('normalize/expressions/statement') && !fname.includes('normalize/expressions/statement/statement')) ||
+      fname.includes('tests/cases/normalize/pattern')
+    );
     if (CONFIG.fastTest === 'only') return isSlowTest; // _Only_ include the slow tests because "-fast" was passed in
     return !isSlowTest; // Do not include the slow tests because fast is enabled
   }

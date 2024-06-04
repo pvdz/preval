@@ -25,13 +25,13 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = ++b;
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = ++b)) {
+  } else {
+    break;
   }
 }
 $(a, b);
@@ -42,14 +42,14 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    b = b + 1;
-    let tmpNestedComplexRhs = b;
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  const tmpNestedCompoundLhs = b;
+  const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
+  b = tmpNestedComplexRhs;
+  a = tmpNestedComplexRhs;
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -73,14 +73,12 @@ $(100);
 $(100);
 let b = 12;
 let a = 12;
-let tmpDoWhileFlag = true;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    b = b + 1;
-    const tmpNestedComplexRhs$1 = b;
-    a = tmpNestedComplexRhs$1;
-    tmpDoWhileFlag = tmpNestedComplexRhs$1;
+  $(100);
+  const tmpNestedComplexRhs$1 = b + 1;
+  b = tmpNestedComplexRhs$1;
+  a = tmpNestedComplexRhs$1;
+  if (tmpNestedComplexRhs$1) {
   } else {
     break;
   }
@@ -106,14 +104,13 @@ $( 100 );
 $( 100 );
 let a = 12;
 let b = 12;
-let c = true;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 100 );
+  const c = a + 1;
+  a = c;
+  b = c;
   if (c) {
-    $( 100 );
-    a = a + 1;
-    const d = a;
-    b = d;
-    c = d;
+
   }
   else {
     break;

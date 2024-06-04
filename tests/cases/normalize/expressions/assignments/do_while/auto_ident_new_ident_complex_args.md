@@ -25,13 +25,13 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = new $($(1), $(2));
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = new $($(1), $(2)))) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -42,16 +42,14 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpNewCallee = $;
-    const tmpCalleeParam = $(1);
-    const tmpCalleeParam$1 = $(2);
-    const tmpNestedComplexRhs = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  const tmpNewCallee = $;
+  const tmpCalleeParam = $(1);
+  const tmpCalleeParam$1 = $(2);
+  a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -105,16 +103,14 @@ new $(tmpCalleeParam$18, tmpCalleeParam$20);
 $(100);
 const tmpCalleeParam$19 = $(1);
 const tmpCalleeParam$21 = $(2);
-const tmpNestedComplexRhs$1 = new $(tmpCalleeParam$19, tmpCalleeParam$21);
-let tmpSSA_a$2 = tmpNestedComplexRhs$1;
+let a = new $(tmpCalleeParam$19, tmpCalleeParam$21);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   const tmpCalleeParam$22 = $(1);
   const tmpCalleeParam$24 = $(2);
-  const tmpNestedComplexRhs$2 = new $(tmpCalleeParam$22, tmpCalleeParam$24);
-  tmpSSA_a$2 = tmpNestedComplexRhs$2;
+  a = new $(tmpCalleeParam$22, tmpCalleeParam$24);
 }
-$(tmpSSA_a$2);
+$(a);
 `````
 
 ## PST Output
@@ -165,16 +161,14 @@ new $( s, t );
 $( 100 );
 const u = $( 1 );
 const v = $( 2 );
-const w = new $( u, v );
-let x = w;
+let w = new $( u, v );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const y = $( 1 );
-  const z = $( 2 );
-  const 01 = new $( y, z );
-  x = 01;
+  const x = $( 1 );
+  const y = $( 2 );
+  w = new $( x, y );
 }
-$( x );
+$( w );
 `````
 
 ## Globals

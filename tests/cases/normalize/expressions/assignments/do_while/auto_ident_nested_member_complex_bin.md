@@ -31,13 +31,13 @@ let b = { x: 1 },
   d = 3,
   e = 4;
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = $(b)[$(`x`)] = $(c)[$(`y`)] = d + e;
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = $(b)[$(`x`)] = $(c)[$(`y`)] = d + e)) {
+  } else {
+    break;
   }
 }
 $(a, b, c, d, e);
@@ -51,21 +51,20 @@ let c = { y: 2 };
 let d = 3;
 let e = 4;
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const varInitAssignLhsComputedObj = $(b);
-    const varInitAssignLhsComputedProp = $(`x`);
-    const varInitAssignLhsComputedObj$1 = $(c);
-    const varInitAssignLhsComputedProp$1 = $(`y`);
-    const varInitAssignLhsComputedRhs$1 = d + e;
-    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-    const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  const tmpNestedAssignComMemberObj = $(b);
+  const tmpNestedAssignComMemberProp = $(`x`);
+  const varInitAssignLhsComputedObj = $(c);
+  const varInitAssignLhsComputedProp = $(`y`);
+  const varInitAssignLhsComputedRhs = d + e;
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+  const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -79,90 +78,90 @@ $(a, b, c, d, e);
 const b = { x: 1 };
 const c = { y: 2 };
 $(100);
-const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $(`x`);
+const tmpNestedAssignComMemberObj = $(b);
+const tmpNestedAssignComMemberProp = $(`x`);
+const varInitAssignLhsComputedObj = $(c);
+const varInitAssignLhsComputedProp = $(`y`);
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
+$(100);
+const tmpNestedAssignComMemberObj$1 = $(b);
+const tmpNestedAssignComMemberProp$1 = $(`x`);
 const varInitAssignLhsComputedObj$1 = $(c);
 const varInitAssignLhsComputedProp$1 = $(`y`);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = 7;
 $(100);
-const varInitAssignLhsComputedObj$2 = $(b);
-const varInitAssignLhsComputedProp$2 = $(`x`);
+const tmpNestedAssignComMemberObj$2 = $(b);
+const tmpNestedAssignComMemberProp$2 = $(`x`);
+const varInitAssignLhsComputedObj$2 = $(c);
+const varInitAssignLhsComputedProp$2 = $(`y`);
+varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = 7;
+tmpNestedAssignComMemberObj$2[tmpNestedAssignComMemberProp$2] = 7;
+$(100);
+const tmpNestedAssignComMemberObj$3 = $(b);
+const tmpNestedAssignComMemberProp$3 = $(`x`);
+const varInitAssignLhsComputedObj$3 = $(c);
+const varInitAssignLhsComputedProp$3 = $(`y`);
+varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 7;
+tmpNestedAssignComMemberObj$3[tmpNestedAssignComMemberProp$3] = 7;
+$(100);
+const tmpNestedAssignComMemberObj$4 = $(b);
+const tmpNestedAssignComMemberProp$4 = $(`x`);
 const varInitAssignLhsComputedObj$4 = $(c);
 const varInitAssignLhsComputedProp$4 = $(`y`);
 varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = 7;
-varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = 7;
+tmpNestedAssignComMemberObj$4[tmpNestedAssignComMemberProp$4] = 7;
 $(100);
-const varInitAssignLhsComputedObj$3 = $(b);
-const varInitAssignLhsComputedProp$3 = $(`x`);
+const tmpNestedAssignComMemberObj$5 = $(b);
+const tmpNestedAssignComMemberProp$5 = $(`x`);
 const varInitAssignLhsComputedObj$5 = $(c);
 const varInitAssignLhsComputedProp$5 = $(`y`);
 varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 7;
-varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 7;
+tmpNestedAssignComMemberObj$5[tmpNestedAssignComMemberProp$5] = 7;
 $(100);
-const varInitAssignLhsComputedObj$6 = $(b);
-const varInitAssignLhsComputedProp$6 = $(`x`);
+const tmpNestedAssignComMemberObj$6 = $(b);
+const tmpNestedAssignComMemberProp$6 = $(`x`);
+const varInitAssignLhsComputedObj$6 = $(c);
+const varInitAssignLhsComputedProp$6 = $(`y`);
+varInitAssignLhsComputedObj$6[varInitAssignLhsComputedProp$6] = 7;
+tmpNestedAssignComMemberObj$6[tmpNestedAssignComMemberProp$6] = 7;
+$(100);
+const tmpNestedAssignComMemberObj$7 = $(b);
+const tmpNestedAssignComMemberProp$7 = $(`x`);
+const varInitAssignLhsComputedObj$7 = $(c);
+const varInitAssignLhsComputedProp$7 = $(`y`);
+varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = 7;
+tmpNestedAssignComMemberObj$7[tmpNestedAssignComMemberProp$7] = 7;
+$(100);
+const tmpNestedAssignComMemberObj$8 = $(b);
+const tmpNestedAssignComMemberProp$8 = $(`x`);
 const varInitAssignLhsComputedObj$8 = $(c);
 const varInitAssignLhsComputedProp$8 = $(`y`);
 varInitAssignLhsComputedObj$8[varInitAssignLhsComputedProp$8] = 7;
-varInitAssignLhsComputedObj$6[varInitAssignLhsComputedProp$6] = 7;
+tmpNestedAssignComMemberObj$8[tmpNestedAssignComMemberProp$8] = 7;
 $(100);
-const varInitAssignLhsComputedObj$7 = $(b);
-const varInitAssignLhsComputedProp$7 = $(`x`);
+const tmpNestedAssignComMemberObj$9 = $(b);
+const tmpNestedAssignComMemberProp$9 = $(`x`);
 const varInitAssignLhsComputedObj$9 = $(c);
 const varInitAssignLhsComputedProp$9 = $(`y`);
 varInitAssignLhsComputedObj$9[varInitAssignLhsComputedProp$9] = 7;
-varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = 7;
+tmpNestedAssignComMemberObj$9[tmpNestedAssignComMemberProp$9] = 7;
 $(100);
-const varInitAssignLhsComputedObj$10 = $(b);
-const varInitAssignLhsComputedProp$10 = $(`x`);
-const varInitAssignLhsComputedObj$12 = $(c);
-const varInitAssignLhsComputedProp$12 = $(`y`);
-varInitAssignLhsComputedObj$12[varInitAssignLhsComputedProp$12] = 7;
+const tmpNestedAssignComMemberObj$10 = $(b);
+const tmpNestedAssignComMemberProp$10 = $(`x`);
+const varInitAssignLhsComputedObj$10 = $(c);
+const varInitAssignLhsComputedProp$10 = $(`y`);
 varInitAssignLhsComputedObj$10[varInitAssignLhsComputedProp$10] = 7;
-$(100);
-const varInitAssignLhsComputedObj$11 = $(b);
-const varInitAssignLhsComputedProp$11 = $(`x`);
-const varInitAssignLhsComputedObj$13 = $(c);
-const varInitAssignLhsComputedProp$13 = $(`y`);
-varInitAssignLhsComputedObj$13[varInitAssignLhsComputedProp$13] = 7;
-varInitAssignLhsComputedObj$11[varInitAssignLhsComputedProp$11] = 7;
-$(100);
-const varInitAssignLhsComputedObj$14 = $(b);
-const varInitAssignLhsComputedProp$14 = $(`x`);
-const varInitAssignLhsComputedObj$16 = $(c);
-const varInitAssignLhsComputedProp$16 = $(`y`);
-varInitAssignLhsComputedObj$16[varInitAssignLhsComputedProp$16] = 7;
-varInitAssignLhsComputedObj$14[varInitAssignLhsComputedProp$14] = 7;
-$(100);
-const varInitAssignLhsComputedObj$15 = $(b);
-const varInitAssignLhsComputedProp$15 = $(`x`);
-const varInitAssignLhsComputedObj$17 = $(c);
-const varInitAssignLhsComputedProp$17 = $(`y`);
-varInitAssignLhsComputedObj$17[varInitAssignLhsComputedProp$17] = 7;
-varInitAssignLhsComputedObj$15[varInitAssignLhsComputedProp$15] = 7;
-$(100);
-const varInitAssignLhsComputedObj$18 = $(b);
-const varInitAssignLhsComputedProp$18 = $(`x`);
-const varInitAssignLhsComputedObj$20 = $(c);
-const varInitAssignLhsComputedProp$20 = $(`y`);
-varInitAssignLhsComputedObj$20[varInitAssignLhsComputedProp$20] = 7;
-varInitAssignLhsComputedObj$18[varInitAssignLhsComputedProp$18] = 7;
-$(100);
-const varInitAssignLhsComputedObj$19 = $(b);
-const varInitAssignLhsComputedProp$19 = $(`x`);
-const varInitAssignLhsComputedObj$21 = $(c);
-const varInitAssignLhsComputedProp$21 = $(`y`);
-varInitAssignLhsComputedObj$21[varInitAssignLhsComputedProp$21] = 7;
-varInitAssignLhsComputedObj$19[varInitAssignLhsComputedProp$19] = 7;
+tmpNestedAssignComMemberObj$10[tmpNestedAssignComMemberProp$10] = 7;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const varInitAssignLhsComputedObj$22 = $(b);
-  const varInitAssignLhsComputedProp$22 = $(`x`);
-  const varInitAssignLhsComputedObj$24 = $(c);
-  const varInitAssignLhsComputedProp$24 = $(`y`);
-  varInitAssignLhsComputedObj$24[varInitAssignLhsComputedProp$24] = 7;
-  varInitAssignLhsComputedObj$22[varInitAssignLhsComputedProp$22] = 7;
+  const tmpNestedAssignComMemberObj$11 = $(b);
+  const tmpNestedAssignComMemberProp$11 = $(`x`);
+  const varInitAssignLhsComputedObj$11 = $(c);
+  const varInitAssignLhsComputedProp$11 = $(`y`);
+  varInitAssignLhsComputedObj$11[varInitAssignLhsComputedProp$11] = 7;
+  tmpNestedAssignComMemberObj$11[tmpNestedAssignComMemberProp$11] = 7;
 }
 $(7, b, c, 3, 4);
 `````

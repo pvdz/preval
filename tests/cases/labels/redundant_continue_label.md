@@ -20,18 +20,18 @@ foo: do {
 ## Pre Normal
 
 `````js filename=intro
-foo: {
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $continue: {
-        {
-          $(1);
-          break $continue;
-        }
+foo: while (true) {
+  {
+    $continue: {
+      {
+        $(1);
+        break $continue;
       }
     }
-    tmpDoWhileFlag = false;
+  }
+  if (false) {
+  } else {
+    break;
   }
 }
 `````
@@ -39,17 +39,12 @@ foo: {
 ## Normalized
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $continue: {
-      $(1);
-      break $continue;
-    }
-    tmpDoWhileFlag = false;
-  } else {
-    break;
+  $continue: {
+    $(1);
+    break $continue;
   }
+  break;
 }
 `````
 

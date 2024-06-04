@@ -19,13 +19,13 @@ do {
 ## Pre Normal
 
 `````js filename=intro
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(1);
-    }
-    tmpDoWhileFlag = $(2);
+while (true) {
+  {
+    $(1);
+  }
+  if ($(2)) {
+  } else {
+    break;
   }
 }
 `````
@@ -33,11 +33,10 @@ do {
 ## Normalized
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(1);
-    tmpDoWhileFlag = $(2);
+  $(1);
+  const tmpIfTest = $(2);
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -47,15 +46,18 @@ while (true) {
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 $(1);
-let tmpDoWhileFlag = $(2);
-if (tmpDoWhileFlag) {
-  $(1);
-  tmpDoWhileFlag = $(2);
-  while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
-      $(1);
-      tmpDoWhileFlag = $(2);
+const tmpIfTest = $(2);
+if (tmpIfTest) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(1);
+    const tmpIfTest$1 = $(2);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -69,15 +71,21 @@ if (tmpDoWhileFlag) {
 With rename=true
 
 `````js filename=intro
+let a = true;
 $( 1 );
-let a = $( 2 );
+const b = $( 2 );
+if (b) {
+
+}
+else {
+  a = false;
+}
 if (a) {
-  $( 1 );
-  a = $( 2 );
-  while ($LOOP_UNROLL_9) {
-    if (a) {
-      $( 1 );
-      a = $( 2 );
+  while ($LOOP_UNROLL_10) {
+    $( 1 );
+    const c = $( 2 );
+    if (c) {
+
     }
     else {
       break;

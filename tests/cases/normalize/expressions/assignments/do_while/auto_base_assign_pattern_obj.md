@@ -25,13 +25,13 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = { b: b } = $({ b: $(2) });
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = { b: b } = $({ b: $(2) }))) {
+  } else {
+    break;
   }
 }
 $(a, b);
@@ -42,19 +42,16 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    let tmpNestedComplexRhs = undefined;
-    const tmpCallCallee = $;
-    const tmpObjLitVal = $(2);
-    const tmpCalleeParam = { b: tmpObjLitVal };
-    const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-    b = tmpNestedAssignObjPatternRhs.b;
-    tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  const tmpCallCallee = $;
+  const tmpObjLitVal = $(2);
+  const tmpCalleeParam = { b: tmpObjLitVal };
+  const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+  b = tmpNestedAssignObjPatternRhs.b;
+  a = tmpNestedAssignObjPatternRhs;
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -65,30 +62,26 @@ $(a, b);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 let tmpSSA_b = tmpNestedAssignObjPatternRhs.b;
 let tmpSSA_a = tmpNestedAssignObjPatternRhs;
-let tmpSSA_tmpDoWhileFlag = tmpNestedAssignObjPatternRhs;
 if (tmpNestedAssignObjPatternRhs) {
-  $(100);
-  const tmpObjLitVal$1 = $(2);
-  const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
-  const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
-  tmpSSA_b = tmpNestedAssignObjPatternRhs$1.b;
-  tmpSSA_a = tmpNestedAssignObjPatternRhs$1;
-  tmpSSA_tmpDoWhileFlag = tmpNestedAssignObjPatternRhs$1;
-  while ($LOOP_UNROLL_9) {
-    if (tmpSSA_tmpDoWhileFlag) {
-      $(100);
-      const tmpObjLitVal$2 = $(2);
-      const tmpCalleeParam$2 = { b: tmpObjLitVal$2 };
-      const tmpNestedAssignObjPatternRhs$2 = $(tmpCalleeParam$2);
-      tmpSSA_b = tmpNestedAssignObjPatternRhs$2.b;
-      tmpSSA_a = tmpNestedAssignObjPatternRhs$2;
-      tmpSSA_tmpDoWhileFlag = tmpNestedAssignObjPatternRhs$2;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpObjLitVal$1 = $(2);
+    const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
+    const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
+    tmpSSA_b = tmpNestedAssignObjPatternRhs$1.b;
+    tmpSSA_a = tmpNestedAssignObjPatternRhs$1;
+    if (tmpNestedAssignObjPatternRhs$1) {
     } else {
       break;
     }
@@ -103,37 +96,36 @@ $(tmpSSA_a, tmpSSA_b);
 With rename=true
 
 `````js filename=intro
+let a = true;
 $( 100 );
-const a = $( 2 );
-const b = { b: a };
-const c = $( b );
-let d = c.b;
-let e = c;
-let f = c;
-if (c) {
-  $( 100 );
-  const g = $( 2 );
-  const h = { b: g };
-  const i = $( h );
-  d = i.b;
-  e = i;
-  f = i;
-  while ($LOOP_UNROLL_9) {
-    if (f) {
-      $( 100 );
-      const j = $( 2 );
-      const k = { b: j };
-      const l = $( k );
-      d = l.b;
-      e = l;
-      f = l;
+const b = $( 2 );
+const c = { b: b };
+const d = $( c );
+let e = d.b;
+let f = d;
+if (d) {
+
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const g = $( 2 );
+    const h = { b: g };
+    const i = $( h );
+    e = i.b;
+    f = i;
+    if (i) {
+
     }
     else {
       break;
     }
   }
 }
-$( e, d );
+$( f, e );
 `````
 
 ## Globals

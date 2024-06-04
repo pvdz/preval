@@ -22,13 +22,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = [1, 2, 3];
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = [1, 2, 3])) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -38,13 +38,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpNestedComplexRhs = [1, 2, 3];
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  a = [1, 2, 3];
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -66,12 +64,10 @@ $(100);
 $(100);
 $(100);
 $(100);
-const tmpNestedComplexRhs$1 = [1, 2, 3];
-let a = tmpNestedComplexRhs$1;
+let a = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpNestedComplexRhs$2 = [1, 2, 3];
-  a = tmpNestedComplexRhs$2;
+  a = [1, 2, 3];
 }
 $(a);
 `````
@@ -92,14 +88,12 @@ $( 100 );
 $( 100 );
 $( 100 );
 $( 100 );
-const a = [ 1, 2, 3 ];
-let b = a;
+let a = [ 1, 2, 3 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const c = [ 1, 2, 3 ];
-  b = c;
+  a = [ 1, 2, 3 ];
 }
-$( b );
+$( a );
 `````
 
 ## Globals

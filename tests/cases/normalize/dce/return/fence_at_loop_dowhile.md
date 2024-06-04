@@ -35,15 +35,15 @@ let f = function () {
   debugger;
   while ($(true)) {
     $(`loop`);
-    {
-      let tmpDoWhileFlag = true;
-      while (tmpDoWhileFlag) {
-        {
-          $(`loop`);
-          return $(100, `return`);
-          $(`fail`);
-        }
-        tmpDoWhileFlag = $(true);
+    while (true) {
+      {
+        $(`loop`);
+        return $(100, `return`);
+        $(`fail`);
+      }
+      if ($(true)) {
+      } else {
+        break;
       }
     }
     $(`do not visit, do not eliminate`);
@@ -62,15 +62,10 @@ let f = function () {
   while (true) {
     if (tmpIfTest) {
       $(`loop`);
-      let tmpDoWhileFlag = true;
       while (true) {
-        if (tmpDoWhileFlag) {
-          $(`loop`);
-          const tmpReturnArg = $(100, `return`);
-          return tmpReturnArg;
-        } else {
-          break;
-        }
+        $(`loop`);
+        const tmpReturnArg = $(100, `return`);
+        return tmpReturnArg;
       }
       $(`do not visit, do not eliminate`);
       tmpIfTest = $(true);

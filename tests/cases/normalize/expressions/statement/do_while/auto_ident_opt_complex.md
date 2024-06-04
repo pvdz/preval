@@ -25,13 +25,13 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = $(b)?.x;
+while (true) {
+  {
+    $(100);
+  }
+  if ($(b)?.x) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -42,19 +42,18 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    tmpDoWhileFlag = undefined;
-    const tmpChainRootCall = $;
-    const tmpChainElementCall = tmpChainRootCall(b);
-    const tmpIfTest = tmpChainElementCall != null;
-    if (tmpIfTest) {
-      const tmpChainElementObject = tmpChainElementCall.x;
-      tmpDoWhileFlag = tmpChainElementObject;
-    } else {
-    }
+  $(100);
+  let tmpIfTest = undefined;
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = tmpChainRootCall(b);
+  const tmpIfTest$1 = tmpChainElementCall != null;
+  if (tmpIfTest$1) {
+    const tmpChainElementObject = tmpChainElementCall.x;
+    tmpIfTest = tmpChainElementObject;
+  } else {
+  }
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -67,41 +66,32 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
+let $tmpLoopUnrollCheck = true;
 $(100);
-let tmpDoWhileFlag = false;
+let tmpIfTest = false;
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall == null;
-let $tmpLoopUnrollCheck = false;
-if (tmpIfTest) {
+const tmpIfTest$1 = tmpChainElementCall == null;
+if (tmpIfTest$1) {
 } else {
   const tmpChainElementObject = tmpChainElementCall.x;
-  tmpDoWhileFlag = tmpChainElementObject;
-  $tmpLoopUnrollCheck = tmpChainElementObject;
+  tmpIfTest = tmpChainElementObject;
 }
-if (tmpDoWhileFlag) {
-  $(100);
-  tmpDoWhileFlag = false;
-  const tmpChainElementCall$1 = $(b);
-  const tmpIfTest$1 = tmpChainElementCall$1 == null;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpChainElementObject$1 = tmpChainElementCall$1.x;
-    tmpDoWhileFlag = tmpChainElementObject$1;
-  }
+if (tmpIfTest) {
 } else {
+  $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
-      $(100);
-      tmpDoWhileFlag = false;
-      const tmpChainElementCall$2 = $(b);
-      const tmpIfTest$2 = tmpChainElementCall$2 == null;
-      if (tmpIfTest$2) {
-      } else {
-        const tmpChainElementObject$2 = tmpChainElementCall$2.x;
-        tmpDoWhileFlag = tmpChainElementObject$2;
-      }
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    let tmpIfTest$2 = false;
+    const tmpChainElementCall$1 = $(b);
+    const tmpIfTest$4 = tmpChainElementCall$1 == null;
+    if (tmpIfTest$4) {
+    } else {
+      const tmpChainElementObject$1 = tmpChainElementCall$1.x;
+      tmpIfTest$2 = tmpChainElementObject$1;
+    }
+    if (tmpIfTest$2) {
     } else {
       break;
     }
@@ -121,46 +111,39 @@ const b = {
 a: 999,
 b: 1000
 ;
+let c = true;
 $( 100 );
-let c = false;
-const d = $( a );
-const e = d == null;
-let f = false;
-if (e) {
+let d = false;
+const e = $( a );
+const f = e == null;
+if (f) {
 
 }
 else {
-  const g = d.x;
-  c = g;
-  f = g;
+  const g = e.x;
+  d = g;
+}
+if (d) {
+
+}
+else {
+  c = false;
 }
 if (c) {
-  $( 100 );
-  c = false;
-  const h = $( a );
-  const i = h == null;
-  if (i) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    let h = false;
+    const i = $( a );
+    const j = i == null;
+    if (j) {
 
-  }
-  else {
-    const j = h.x;
-    c = j;
-  }
-}
-if (f) {
-  while ($LOOP_UNROLL_9) {
-    if (c) {
-      $( 100 );
-      c = false;
-      const k = $( a );
-      const l = k == null;
-      if (l) {
+    }
+    else {
+      const k = i.x;
+      h = k;
+    }
+    if (h) {
 
-      }
-      else {
-        const m = k.x;
-        c = m;
-      }
     }
     else {
       break;

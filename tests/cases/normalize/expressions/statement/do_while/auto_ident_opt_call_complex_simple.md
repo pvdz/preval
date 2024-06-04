@@ -22,13 +22,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = $($)?.(1);
+while (true) {
+  {
+    $(100);
+  }
+  if ($($)?.(1)) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -38,19 +38,18 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    tmpDoWhileFlag = undefined;
-    const tmpChainRootCall = $;
-    const tmpChainElementCall = tmpChainRootCall($);
-    const tmpIfTest = tmpChainElementCall != null;
-    if (tmpIfTest) {
-      const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, 1);
-      tmpDoWhileFlag = tmpChainElementCall$1;
-    } else {
-    }
+  $(100);
+  let tmpIfTest = undefined;
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = tmpChainRootCall($);
+  const tmpIfTest$1 = tmpChainElementCall != null;
+  if (tmpIfTest$1) {
+    const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, 1);
+    tmpIfTest = tmpChainElementCall$1;
+  } else {
+  }
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -61,41 +60,32 @@ $(a);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 $(100);
-let tmpDoWhileFlag = false;
+let tmpIfTest = false;
 const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall == null;
-let $tmpLoopUnrollCheck = false;
-if (tmpIfTest) {
+const tmpIfTest$1 = tmpChainElementCall == null;
+if (tmpIfTest$1) {
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
-  tmpDoWhileFlag = tmpChainElementCall$1;
-  $tmpLoopUnrollCheck = tmpChainElementCall$1;
+  tmpIfTest = tmpChainElementCall$1;
 }
-if (tmpDoWhileFlag) {
-  $(100);
-  tmpDoWhileFlag = false;
-  const tmpChainElementCall$2 = $($);
-  const tmpIfTest$1 = tmpChainElementCall$2 == null;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpChainElementCall$4 = $dotCall(tmpChainElementCall$2, $, 1);
-    tmpDoWhileFlag = tmpChainElementCall$4;
-  }
+if (tmpIfTest) {
 } else {
+  $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
-      $(100);
-      tmpDoWhileFlag = false;
-      const tmpChainElementCall$3 = $($);
-      const tmpIfTest$2 = tmpChainElementCall$3 == null;
-      if (tmpIfTest$2) {
-      } else {
-        const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, $, 1);
-        tmpDoWhileFlag = tmpChainElementCall$5;
-      }
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    let tmpIfTest$2 = false;
+    const tmpChainElementCall$2 = $($);
+    const tmpIfTest$4 = tmpChainElementCall$2 == null;
+    if (tmpIfTest$4) {
+    } else {
+      const tmpChainElementCall$4 = $dotCall(tmpChainElementCall$2, $, 1);
+      tmpIfTest$2 = tmpChainElementCall$4;
+    }
+    if (tmpIfTest$2) {
     } else {
       break;
     }
@@ -111,57 +101,50 @@ $(a);
 With rename=true
 
 `````js filename=intro
+let a = true;
 $( 100 );
-let a = false;
-const b = $( $ );
-const c = b == null;
-let d = false;
-if (c) {
+let b = false;
+const c = $( $ );
+const d = c == null;
+if (d) {
 
 }
 else {
-  const e = $dotCall( b, $, 1 );
-  a = e;
-  d = e;
+  const e = $dotCall( c, $, 1 );
+  b = e;
+}
+if (b) {
+
+}
+else {
+  a = false;
 }
 if (a) {
-  $( 100 );
-  a = false;
-  const f = $( $ );
-  const g = f == null;
-  if (g) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    let f = false;
+    const g = $( $ );
+    const h = g == null;
+    if (h) {
 
-  }
-  else {
-    const h = $dotCall( f, $, 1 );
-    a = h;
-  }
-}
-if (d) {
-  while ($LOOP_UNROLL_9) {
-    if (a) {
-      $( 100 );
-      a = false;
-      const i = $( $ );
-      const j = i == null;
-      if (j) {
+    }
+    else {
+      const i = $dotCall( g, $, 1 );
+      f = i;
+    }
+    if (f) {
 
-      }
-      else {
-        const k = $dotCall( i, $, 1 );
-        a = k;
-      }
     }
     else {
       break;
     }
   }
 }
-const l = {
+const j = {
 a: 999,
 b: 1000
 ;
-$( l );
+$( j );
 `````
 
 ## Globals

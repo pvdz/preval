@@ -22,13 +22,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = $(1) + $(2);
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = $(1) + $(2))) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -38,15 +38,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpBinBothLhs = $(1);
-    const tmpBinBothRhs = $(2);
-    const tmpNestedComplexRhs = tmpBinBothLhs + tmpBinBothRhs;
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  const tmpBinBothLhs = $(1);
+  const tmpBinBothRhs = $(2);
+  a = tmpBinBothLhs + tmpBinBothRhs;
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -57,34 +55,29 @@ $(a);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const tmpNestedComplexRhs = tmpBinBothLhs + tmpBinBothRhs;
-let tmpSSA_a = tmpNestedComplexRhs;
-let tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
-if (tmpNestedComplexRhs) {
-  $(100);
-  const tmpBinBothLhs$1 = $(1);
-  const tmpBinBothRhs$1 = $(2);
-  const tmpNestedComplexRhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-  tmpSSA_a = tmpNestedComplexRhs$1;
-  tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
-  while ($LOOP_UNROLL_9) {
-    if (tmpSSA_tmpDoWhileFlag) {
-      $(100);
-      const tmpBinBothLhs$2 = $(1);
-      const tmpBinBothRhs$2 = $(2);
-      const tmpNestedComplexRhs$2 = tmpBinBothLhs$2 + tmpBinBothRhs$2;
-      tmpSSA_a = tmpNestedComplexRhs$2;
-      tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
+let a = tmpBinBothLhs + tmpBinBothRhs;
+if (a) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpBinBothLhs$1 = $(1);
+    const tmpBinBothRhs$1 = $(2);
+    a = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+    if (a) {
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpSSA_a);
+$(a);
 `````
 
 ## PST Output
@@ -92,27 +85,25 @@ $(tmpSSA_a);
 With rename=true
 
 `````js filename=intro
+let a = true;
 $( 100 );
-const a = $( 1 );
-const b = $( 2 );
-const c = a + b;
-let d = c;
-let e = c;
-if (c) {
-  $( 100 );
-  const f = $( 1 );
-  const g = $( 2 );
-  const h = f + g;
-  d = h;
-  e = h;
-  while ($LOOP_UNROLL_9) {
-    if (e) {
-      $( 100 );
-      const i = $( 1 );
-      const j = $( 2 );
-      const k = i + j;
-      d = k;
-      e = k;
+const b = $( 1 );
+const c = $( 2 );
+let d = b + c;
+if (d) {
+
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const e = $( 1 );
+    const f = $( 2 );
+    d = e + f;
+    if (d) {
+
     }
     else {
       break;

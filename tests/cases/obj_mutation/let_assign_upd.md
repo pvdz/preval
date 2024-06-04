@@ -22,15 +22,15 @@ $(blob);
 
 `````js filename=intro
 let blob;
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      blob = { thing: `woop`, xyz: 0 };
-      blob.xyz = blob.xyz + 1;
-      $(blob);
-    }
-    tmpDoWhileFlag = blob.xyz < 10;
+while (true) {
+  {
+    blob = { thing: `woop`, xyz: 0 };
+    blob.xyz = blob.xyz + 1;
+    $(blob);
+  }
+  if (blob.xyz < 10) {
+  } else {
+    break;
   }
 }
 $(blob);
@@ -40,17 +40,16 @@ $(blob);
 
 `````js filename=intro
 let blob = undefined;
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    blob = { thing: `woop`, xyz: 0 };
-    const tmpAssignMemLhsObj = blob;
-    const tmpBinLhs = blob.xyz;
-    const tmpAssignMemRhs = tmpBinLhs + 1;
-    tmpAssignMemLhsObj.xyz = tmpAssignMemRhs;
-    $(blob);
-    const tmpBinLhs$1 = blob.xyz;
-    tmpDoWhileFlag = tmpBinLhs$1 < 10;
+  blob = { thing: `woop`, xyz: 0 };
+  const tmpAssignMemLhsObj = blob;
+  const tmpBinLhs = blob.xyz;
+  const tmpAssignMemRhs = tmpBinLhs + 1;
+  tmpAssignMemLhsObj.xyz = tmpAssignMemRhs;
+  $(blob);
+  const tmpBinLhs$1 = blob.xyz;
+  const tmpIfTest = tmpBinLhs$1 < 10;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -68,26 +67,18 @@ const tmpAssignMemRhs = tmpBinLhs + 1;
 tmpAssignMemLhsObj.xyz = tmpAssignMemRhs;
 $(blob);
 const tmpBinLhs$1 = blob.xyz;
-let tmpSSA_tmpDoWhileFlag = tmpBinLhs$1 < 10;
-if (tmpSSA_tmpDoWhileFlag) {
-  blob = { thing: `woop`, xyz: 0 };
-  const tmpAssignMemLhsObj$1 = blob;
-  const tmpBinLhs$2 = blob.xyz;
-  const tmpAssignMemRhs$1 = tmpBinLhs$2 + 1;
-  tmpAssignMemLhsObj$1.xyz = tmpAssignMemRhs$1;
-  $(blob);
-  const tmpBinLhs$4 = blob.xyz;
-  tmpSSA_tmpDoWhileFlag = tmpBinLhs$4 < 10;
-  while ($LOOP_UNROLL_9) {
-    if (tmpSSA_tmpDoWhileFlag) {
-      blob = { thing: `woop`, xyz: 0 };
-      const tmpAssignMemLhsObj$2 = blob;
-      const tmpBinLhs$3 = blob.xyz;
-      const tmpAssignMemRhs$2 = tmpBinLhs$3 + 1;
-      tmpAssignMemLhsObj$2.xyz = tmpAssignMemRhs$2;
-      $(blob);
-      const tmpBinLhs$5 = blob.xyz;
-      tmpSSA_tmpDoWhileFlag = tmpBinLhs$5 < 10;
+const tmpIfTest = tmpBinLhs$1 < 10;
+if (tmpIfTest) {
+  while ($LOOP_UNROLL_10) {
+    blob = { thing: `woop`, xyz: 0 };
+    const tmpAssignMemLhsObj$1 = blob;
+    const tmpBinLhs$2 = blob.xyz;
+    const tmpAssignMemRhs$1 = tmpBinLhs$2 + 1;
+    tmpAssignMemLhsObj$1.xyz = tmpAssignMemRhs$1;
+    $(blob);
+    const tmpBinLhs$4 = blob.xyz;
+    const tmpIfTest$1 = tmpBinLhs$4 < 10;
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -112,32 +103,22 @@ const d = c + 1;
 b.xyz = d;
 $( a );
 const e = a.xyz;
-let f = e < 10;
+const f = e < 10;
 if (f) {
-  a = {
+  while ($LOOP_UNROLL_10) {
+    a = {
 thing: "woop",
 xyz: 0
-  ;
-  const g = a;
-  const h = a.xyz;
-  const i = h + 1;
-  g.xyz = i;
-  $( a );
-  const j = a.xyz;
-  f = j < 10;
-  while ($LOOP_UNROLL_9) {
-    if (f) {
-      a = {
-thing: "woop",
-xyz: 0
-      ;
-      const k = a;
-      const l = a.xyz;
-      const m = l + 1;
-      k.xyz = m;
-      $( a );
-      const n = a.xyz;
-      f = n < 10;
+    ;
+    const g = a;
+    const h = a.xyz;
+    const i = h + 1;
+    g.xyz = i;
+    $( a );
+    const j = a.xyz;
+    const k = j < 10;
+    if (k) {
+
     }
     else {
       break;

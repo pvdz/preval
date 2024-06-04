@@ -29,13 +29,13 @@ let b = { x: 1 },
   c = { y: 2 },
   d = 3;
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = $(b)[$(`x`)] = $(c)[$(`y`)] = $(d);
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = $(b)[$(`x`)] = $(c)[$(`y`)] = $(d))) {
+  } else {
+    break;
   }
 }
 $(a, b, c, d);
@@ -48,21 +48,20 @@ let b = { x: 1 };
 let c = { y: 2 };
 let d = 3;
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const varInitAssignLhsComputedObj = $(b);
-    const varInitAssignLhsComputedProp = $(`x`);
-    const varInitAssignLhsComputedObj$1 = $(c);
-    const varInitAssignLhsComputedProp$1 = $(`y`);
-    const varInitAssignLhsComputedRhs$1 = $(d);
-    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-    const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  const tmpNestedAssignComMemberObj = $(b);
+  const tmpNestedAssignComMemberProp = $(`x`);
+  const varInitAssignLhsComputedObj = $(c);
+  const varInitAssignLhsComputedProp = $(`y`);
+  const varInitAssignLhsComputedRhs = $(d);
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+  const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -75,39 +74,32 @@ $(a, b, c, d);
 `````js filename=intro
 const b = { x: 1 };
 const c = { y: 2 };
+let $tmpLoopUnrollCheck = true;
 $(100);
-const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $(`x`);
-const varInitAssignLhsComputedObj$1 = $(c);
-const varInitAssignLhsComputedProp$1 = $(`y`);
-const varInitAssignLhsComputedRhs$1 = $(3);
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
-let tmpSSA_a = varInitAssignLhsComputedRhs$1;
-let tmpSSA_tmpDoWhileFlag = varInitAssignLhsComputedRhs$1;
-if (varInitAssignLhsComputedRhs$1) {
-  $(100);
-  const varInitAssignLhsComputedObj$2 = $(b);
-  const varInitAssignLhsComputedProp$2 = $(`x`);
-  const varInitAssignLhsComputedObj$4 = $(c);
-  const varInitAssignLhsComputedProp$4 = $(`y`);
-  const varInitAssignLhsComputedRhs$2 = $(3);
-  varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = varInitAssignLhsComputedRhs$2;
-  varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$2;
-  tmpSSA_a = varInitAssignLhsComputedRhs$2;
-  tmpSSA_tmpDoWhileFlag = varInitAssignLhsComputedRhs$2;
-  while ($LOOP_UNROLL_9) {
-    if (tmpSSA_tmpDoWhileFlag) {
-      $(100);
-      const varInitAssignLhsComputedObj$3 = $(b);
-      const varInitAssignLhsComputedProp$3 = $(`x`);
-      const varInitAssignLhsComputedObj$5 = $(c);
-      const varInitAssignLhsComputedProp$5 = $(`y`);
-      const varInitAssignLhsComputedRhs$3 = $(3);
-      varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = varInitAssignLhsComputedRhs$3;
-      varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
-      tmpSSA_a = varInitAssignLhsComputedRhs$3;
-      tmpSSA_tmpDoWhileFlag = varInitAssignLhsComputedRhs$3;
+const tmpNestedAssignComMemberObj = $(b);
+const tmpNestedAssignComMemberProp = $(`x`);
+const varInitAssignLhsComputedObj = $(c);
+const varInitAssignLhsComputedProp = $(`y`);
+const varInitAssignLhsComputedRhs = $(3);
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
+let tmpSSA_a = varInitAssignLhsComputedRhs;
+if (varInitAssignLhsComputedRhs) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpNestedAssignComMemberObj$1 = $(b);
+    const tmpNestedAssignComMemberProp$1 = $(`x`);
+    const varInitAssignLhsComputedObj$1 = $(c);
+    const varInitAssignLhsComputedProp$1 = $(`y`);
+    const varInitAssignLhsComputedRhs$1 = $(3);
+    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+    tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = varInitAssignLhsComputedRhs$1;
+    tmpSSA_a = varInitAssignLhsComputedRhs$1;
+    if (varInitAssignLhsComputedRhs$1) {
     } else {
       break;
     }
@@ -124,46 +116,42 @@ With rename=true
 `````js filename=intro
 const a = { x: 1 };
 const b = { y: 2 };
+let c = true;
 $( 100 );
-const c = $( a );
-const d = $( "x" );
-const e = $( b );
-const f = $( "y" );
-const g = $( 3 );
-e[f] = g;
-c[d] = g;
-let h = g;
-let i = g;
-if (g) {
-  $( 100 );
-  const j = $( a );
-  const k = $( "x" );
-  const l = $( b );
-  const m = $( "y" );
-  const n = $( 3 );
-  l[m] = n;
-  j[k] = n;
-  h = n;
-  i = n;
-  while ($LOOP_UNROLL_9) {
-    if (i) {
-      $( 100 );
-      const o = $( a );
-      const p = $( "x" );
-      const q = $( b );
-      const r = $( "y" );
-      const s = $( 3 );
-      q[r] = s;
-      o[p] = s;
-      h = s;
-      i = s;
+const d = $( a );
+const e = $( "x" );
+const f = $( b );
+const g = $( "y" );
+const h = $( 3 );
+f[g] = h;
+d[e] = h;
+let i = h;
+if (h) {
+
+}
+else {
+  c = false;
+}
+if (c) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const j = $( a );
+    const k = $( "x" );
+    const l = $( b );
+    const m = $( "y" );
+    const n = $( 3 );
+    l[m] = n;
+    j[k] = n;
+    i = n;
+    if (n) {
+
     }
     else {
       break;
     }
   }
 }
-$( h, a, b, 3 );
+$( i, a, b, 3 );
 `````
 
 ## Globals

@@ -25,13 +25,13 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = $(b).$(1);
+while (true) {
+  {
+    $(100);
+  }
+  if ($(b).$(1)) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -42,12 +42,11 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpCallObj = $(b);
-    tmpDoWhileFlag = tmpCallObj.$(1);
+  $(100);
+  const tmpCallObj = $(b);
+  const tmpIfTest = tmpCallObj.$(1);
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -60,18 +59,20 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
+let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpCallObj = $(b);
-let tmpSSA_tmpDoWhileFlag = tmpCallObj.$(1);
-if (tmpSSA_tmpDoWhileFlag) {
-  $(100);
-  const tmpCallObj$1 = $(b);
-  tmpSSA_tmpDoWhileFlag = tmpCallObj$1.$(1);
-  while ($LOOP_UNROLL_9) {
-    if (tmpSSA_tmpDoWhileFlag) {
-      $(100);
-      const tmpCallObj$2 = $(b);
-      tmpSSA_tmpDoWhileFlag = tmpCallObj$2.$(1);
+const tmpIfTest = tmpCallObj.$(1);
+if (tmpIfTest) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCallObj$1 = $(b);
+    const tmpIfTest$1 = tmpCallObj$1.$(1);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -91,18 +92,23 @@ const b = {
 a: 999,
 b: 1000
 ;
+let c = true;
 $( 100 );
-const c = $( a );
-let d = c.$( 1 );
-if (d) {
-  $( 100 );
-  const e = $( a );
-  d = e.$( 1 );
-  while ($LOOP_UNROLL_9) {
-    if (d) {
-      $( 100 );
-      const f = $( a );
-      d = f.$( 1 );
+const d = $( a );
+const e = d.$( 1 );
+if (e) {
+
+}
+else {
+  c = false;
+}
+if (c) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const f = $( a );
+    const g = f.$( 1 );
+    if (g) {
+
     }
     else {
       break;

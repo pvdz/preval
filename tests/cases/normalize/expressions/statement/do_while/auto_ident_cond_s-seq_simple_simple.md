@@ -22,13 +22,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = (10, 20, 30) ? $(2) : $($(100));
+while (true) {
+  {
+    $(100);
+  }
+  if ((10, 20, 30) ? $(2) : $($(100))) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -38,18 +38,18 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpIfTest = 30;
-    if (tmpIfTest) {
-      tmpDoWhileFlag = $(2);
-    } else {
-      const tmpCallCallee = $;
-      const tmpCalleeParam = $(100);
-      tmpDoWhileFlag = tmpCallCallee(tmpCalleeParam);
-    }
+  $(100);
+  let tmpIfTest = undefined;
+  const tmpIfTest$1 = 30;
+  if (tmpIfTest$1) {
+    tmpIfTest = $(2);
+  } else {
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(100);
+    tmpIfTest = tmpCallCallee(tmpCalleeParam);
+  }
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -60,15 +60,18 @@ $(a);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 $(100);
-let tmpDoWhileFlag = $(2);
-if (tmpDoWhileFlag) {
-  $(100);
-  tmpDoWhileFlag = $(2);
-  while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
-      $(100);
-      tmpDoWhileFlag = $(2);
+const tmpIfTest = $(2);
+if (tmpIfTest) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpIfTest$1 = $(2);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -84,26 +87,32 @@ $(a);
 With rename=true
 
 `````js filename=intro
+let a = true;
 $( 100 );
-let a = $( 2 );
+const b = $( 2 );
+if (b) {
+
+}
+else {
+  a = false;
+}
 if (a) {
-  $( 100 );
-  a = $( 2 );
-  while ($LOOP_UNROLL_9) {
-    if (a) {
-      $( 100 );
-      a = $( 2 );
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const c = $( 2 );
+    if (c) {
+
     }
     else {
       break;
     }
   }
 }
-const b = {
+const d = {
 a: 999,
 b: 1000
 ;
-$( b );
+$( d );
 `````
 
 ## Globals

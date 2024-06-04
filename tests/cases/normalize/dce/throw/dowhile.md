@@ -25,14 +25,14 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  {
-    let tmpDoWhileFlag = true;
-    while (tmpDoWhileFlag) {
-      {
-        throw $(1, `throw`);
-        $(`fail`);
-      }
-      tmpDoWhileFlag = $(true);
+  while (true) {
+    {
+      throw $(1, `throw`);
+      $(`fail`);
+    }
+    if ($(true)) {
+    } else {
+      break;
     }
   }
 };
@@ -44,14 +44,9 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  let tmpDoWhileFlag = true;
   while (true) {
-    if (tmpDoWhileFlag) {
-      const tmpThrowArg = $(1, `throw`);
-      throw tmpThrowArg;
-    } else {
-      break;
-    }
+    const tmpThrowArg = $(1, `throw`);
+    throw tmpThrowArg;
   }
   return undefined;
 };

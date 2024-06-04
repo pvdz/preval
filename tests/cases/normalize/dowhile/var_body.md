@@ -18,11 +18,11 @@ do var x = 0; while (false);
 
 `````js filename=intro
 let x = undefined;
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    x = 0;
-    tmpDoWhileFlag = false;
+while (true) {
+  x = 0;
+  if (false) {
+  } else {
+    break;
   }
 }
 `````
@@ -31,14 +31,9 @@ let x = undefined;
 
 `````js filename=intro
 let x = undefined;
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    x = 0;
-    tmpDoWhileFlag = false;
-  } else {
-    break;
-  }
+  x = 0;
+  break;
 }
 `````
 

@@ -25,13 +25,13 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = (1, 2, b)[`\$`](1);
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = (1, 2, b)[`\$`](1))) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -42,14 +42,12 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpCallObj = b;
-    const tmpNestedComplexRhs = tmpCallObj.$(1);
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  const tmpCallObj = b;
+  a = tmpCallObj.$(1);
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -60,29 +58,26 @@ $(a);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 $(100);
 const b = { $: $ };
-const tmpNestedComplexRhs = b.$(1);
-let tmpSSA_a = tmpNestedComplexRhs;
-let tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
-if (tmpNestedComplexRhs) {
-  $(100);
-  const tmpNestedComplexRhs$1 = b.$(1);
-  tmpSSA_a = tmpNestedComplexRhs$1;
-  tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
-  while ($LOOP_UNROLL_9) {
-    if (tmpSSA_tmpDoWhileFlag) {
-      $(100);
-      const tmpNestedComplexRhs$2 = b.$(1);
-      tmpSSA_a = tmpNestedComplexRhs$2;
-      tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
+let a = b.$(1);
+if (a) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    a = b.$(1);
+    if (a) {
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpSSA_a);
+$(a);
 `````
 
 ## PST Output
@@ -90,22 +85,22 @@ $(tmpSSA_a);
 With rename=true
 
 `````js filename=intro
+let a = true;
 $( 100 );
-const a = { $: $ };
-const b = a.$( 1 );
-let c = b;
-let d = b;
-if (b) {
-  $( 100 );
-  const e = a.$( 1 );
-  c = e;
-  d = e;
-  while ($LOOP_UNROLL_9) {
-    if (d) {
-      $( 100 );
-      const f = a.$( 1 );
-      c = f;
-      d = f;
+const b = { $: $ };
+let c = b.$( 1 );
+if (c) {
+
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    c = b.$( 1 );
+    if (c) {
+
     }
     else {
       break;

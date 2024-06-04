@@ -25,13 +25,13 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = $(b)[$(`c`)];
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = $(b)[$(`c`)])) {
+  } else {
+    break;
   }
 }
 $(a, b);
@@ -42,15 +42,13 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpCompObj = $(b);
-    const tmpCompProp = $(`c`);
-    const tmpNestedComplexRhs = tmpCompObj[tmpCompProp];
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  const tmpAssignRhsCompObj = $(b);
+  const tmpAssignRhsCompProp = $(`c`);
+  a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -61,28 +59,23 @@ $(a, b);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 $(100);
 const b = { c: 1 };
-const tmpCompObj = $(b);
-const tmpCompProp = $(`c`);
-const tmpNestedComplexRhs = tmpCompObj[tmpCompProp];
-let tmpSSA_a = tmpNestedComplexRhs;
-let tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
-if (tmpNestedComplexRhs) {
-  $(100);
-  const tmpCompObj$1 = $(b);
-  const tmpCompProp$1 = $(`c`);
-  const tmpNestedComplexRhs$1 = tmpCompObj$1[tmpCompProp$1];
-  tmpSSA_a = tmpNestedComplexRhs$1;
-  tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
-  while ($LOOP_UNROLL_9) {
-    if (tmpSSA_tmpDoWhileFlag) {
-      $(100);
-      const tmpCompObj$2 = $(b);
-      const tmpCompProp$2 = $(`c`);
-      const tmpNestedComplexRhs$2 = tmpCompObj$2[tmpCompProp$2];
-      tmpSSA_a = tmpNestedComplexRhs$2;
-      tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
+const tmpAssignRhsCompObj = $(b);
+const tmpAssignRhsCompProp = $(`c`);
+let tmpSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+if (tmpSSA_a) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpAssignRhsCompObj$1 = $(b);
+    const tmpAssignRhsCompProp$1 = $(`c`);
+    tmpSSA_a = tmpAssignRhsCompObj$1[tmpAssignRhsCompProp$1];
+    if (tmpSSA_a) {
     } else {
       break;
     }
@@ -97,35 +90,33 @@ $(tmpSSA_a, b);
 With rename=true
 
 `````js filename=intro
+let a = true;
 $( 100 );
-const a = { c: 1 };
-const b = $( a );
-const c = $( "c" );
-const d = b[ c ];
-let e = d;
-let f = d;
-if (d) {
-  $( 100 );
-  const g = $( a );
-  const h = $( "c" );
-  const i = g[ h ];
-  e = i;
-  f = i;
-  while ($LOOP_UNROLL_9) {
-    if (f) {
-      $( 100 );
-      const j = $( a );
-      const k = $( "c" );
-      const l = j[ k ];
-      e = l;
-      f = l;
+const b = { c: 1 };
+const c = $( b );
+const d = $( "c" );
+let e = c[ d ];
+if (e) {
+
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const f = $( b );
+    const g = $( "c" );
+    e = f[ g ];
+    if (e) {
+
     }
     else {
       break;
     }
   }
 }
-$( e, a );
+$( e, b );
 `````
 
 ## Globals

@@ -25,13 +25,13 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = $($(1), $(2));
+while (true) {
+  {
+    $(100);
+  }
+  if ($($(1), $(2))) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -42,14 +42,13 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(1);
-    const tmpCalleeParam$1 = $(2);
-    tmpDoWhileFlag = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  $(100);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(1);
+  const tmpCalleeParam$1 = $(2);
+  const tmpIfTest = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -60,21 +59,22 @@ $(a);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-let tmpDoWhileFlag = $(tmpCalleeParam, tmpCalleeParam$1);
-if (tmpDoWhileFlag) {
-  $(100);
-  const tmpCalleeParam$2 = $(1);
-  const tmpCalleeParam$4 = $(2);
-  tmpDoWhileFlag = $(tmpCalleeParam$2, tmpCalleeParam$4);
-  while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
-      $(100);
-      const tmpCalleeParam$3 = $(1);
-      const tmpCalleeParam$5 = $(2);
-      tmpDoWhileFlag = $(tmpCalleeParam$3, tmpCalleeParam$5);
+const tmpIfTest = $(tmpCalleeParam, tmpCalleeParam$1);
+if (tmpIfTest) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCalleeParam$2 = $(1);
+    const tmpCalleeParam$4 = $(2);
+    const tmpIfTest$1 = $(tmpCalleeParam$2, tmpCalleeParam$4);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -90,21 +90,25 @@ $(a);
 With rename=true
 
 `````js filename=intro
+let a = true;
 $( 100 );
-const a = $( 1 );
-const b = $( 2 );
-let c = $( a, b );
-if (c) {
-  $( 100 );
-  const d = $( 1 );
-  const e = $( 2 );
-  c = $( d, e );
-  while ($LOOP_UNROLL_9) {
-    if (c) {
-      $( 100 );
-      const f = $( 1 );
-      const g = $( 2 );
-      c = $( f, g );
+const b = $( 1 );
+const c = $( 2 );
+const d = $( b, c );
+if (d) {
+
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const e = $( 1 );
+    const f = $( 2 );
+    const g = $( e, f );
+    if (g) {
+
     }
     else {
       break;

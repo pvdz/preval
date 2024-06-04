@@ -22,13 +22,13 @@ $(a);
 
 `````js filename=intro
 let [a] = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = [a] = $([1, 2]);
+while (true) {
+  {
+    $(100);
+  }
+  if (([a] = $([1, 2]))) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -40,16 +40,16 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpCallCallee = $;
-    const tmpCalleeParam = [1, 2];
-    const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
-    const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-    a = arrPatternSplat$1[0];
-    tmpDoWhileFlag = tmpNestedAssignArrPatternRhs;
+  $(100);
+  let tmpIfTest = undefined;
+  const tmpCallCallee = $;
+  const tmpCalleeParam = [1, 2];
+  const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
+  const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
+  a = arrPatternSplat$1[0];
+  tmpIfTest = tmpNestedAssignArrPatternRhs;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -63,27 +63,24 @@ $(a);
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 arrPatternSplat[0];
+let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpCalleeParam = [1, 2];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 let tmpSSA_a = arrPatternSplat$1[0];
-let tmpSSA_tmpDoWhileFlag = tmpNestedAssignArrPatternRhs;
 if (tmpNestedAssignArrPatternRhs) {
-  $(100);
-  const tmpCalleeParam$1 = [1, 2];
-  const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$1);
-  const arrPatternSplat$2 = [...tmpNestedAssignArrPatternRhs$1];
-  tmpSSA_a = arrPatternSplat$2[0];
-  tmpSSA_tmpDoWhileFlag = tmpNestedAssignArrPatternRhs$1;
-  while ($LOOP_UNROLL_9) {
-    if (tmpSSA_tmpDoWhileFlag) {
-      $(100);
-      const tmpCalleeParam$2 = [1, 2];
-      const tmpNestedAssignArrPatternRhs$2 = $(tmpCalleeParam$2);
-      const arrPatternSplat$3 = [...tmpNestedAssignArrPatternRhs$2];
-      tmpSSA_a = arrPatternSplat$3[0];
-      tmpSSA_tmpDoWhileFlag = tmpNestedAssignArrPatternRhs$2;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCalleeParam$1 = [1, 2];
+    const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$1);
+    const arrPatternSplat$2 = [...tmpNestedAssignArrPatternRhs$1];
+    tmpSSA_a = arrPatternSplat$2[0];
+    if (tmpNestedAssignArrPatternRhs$1) {
     } else {
       break;
     }
@@ -104,34 +101,34 @@ b: 1000
 ;
 const b = [ ... a ];
 b[ 0 ];
+let c = true;
 $( 100 );
-const c = [ 1, 2 ];
-const d = $( c );
-const e = [ ... d ];
-let f = e[ 0 ];
-let g = d;
-if (d) {
-  $( 100 );
-  const h = [ 1, 2 ];
-  const i = $( h );
-  const j = [ ... i ];
-  f = j[ 0 ];
-  g = i;
-  while ($LOOP_UNROLL_9) {
-    if (g) {
-      $( 100 );
-      const k = [ 1, 2 ];
-      const l = $( k );
-      const m = [ ... l ];
-      f = m[ 0 ];
-      g = l;
+const d = [ 1, 2 ];
+const e = $( d );
+const f = [ ... e ];
+let g = f[ 0 ];
+if (e) {
+
+}
+else {
+  c = false;
+}
+if (c) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const h = [ 1, 2 ];
+    const i = $( h );
+    const j = [ ... i ];
+    g = j[ 0 ];
+    if (i) {
+
     }
     else {
       break;
     }
   }
 }
-$( f );
+$( g );
 `````
 
 ## Globals

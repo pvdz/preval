@@ -25,13 +25,13 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = b[`c`] = $(b)[$(`d`)];
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = b[`c`] = $(b)[$(`d`)])) {
+  } else {
+    break;
   }
 }
 $(a, b);
@@ -42,17 +42,16 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpCompObj = $(b);
-    const tmpCompProp = $(`d`);
-    const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-    b.c = varInitAssignLhsComputedRhs;
-    const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  const tmpCompObj = $(b);
+  const tmpCompProp = $(`d`);
+  const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+  b.c = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -63,31 +62,27 @@ $(a, b);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 $(100);
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-b.c = varInitAssignLhsComputedRhs;
-let tmpSSA_a = varInitAssignLhsComputedRhs;
-let tmpSSA_tmpDoWhileFlag = varInitAssignLhsComputedRhs;
-if (varInitAssignLhsComputedRhs) {
-  $(100);
-  const tmpCompObj$1 = $(b);
-  const tmpCompProp$1 = $(`d`);
-  const varInitAssignLhsComputedRhs$1 = tmpCompObj$1[tmpCompProp$1];
-  b.c = varInitAssignLhsComputedRhs$1;
-  tmpSSA_a = varInitAssignLhsComputedRhs$1;
-  tmpSSA_tmpDoWhileFlag = varInitAssignLhsComputedRhs$1;
-  while ($LOOP_UNROLL_9) {
-    if (tmpSSA_tmpDoWhileFlag) {
-      $(100);
-      const tmpCompObj$2 = $(b);
-      const tmpCompProp$2 = $(`d`);
-      const varInitAssignLhsComputedRhs$2 = tmpCompObj$2[tmpCompProp$2];
-      b.c = varInitAssignLhsComputedRhs$2;
-      tmpSSA_a = varInitAssignLhsComputedRhs$2;
-      tmpSSA_tmpDoWhileFlag = varInitAssignLhsComputedRhs$2;
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+b.c = tmpNestedAssignPropRhs;
+let tmpSSA_a = tmpNestedAssignPropRhs;
+if (tmpNestedAssignPropRhs) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCompObj$1 = $(b);
+    const tmpCompProp$1 = $(`d`);
+    const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
+    b.c = tmpNestedAssignPropRhs$1;
+    tmpSSA_a = tmpNestedAssignPropRhs$1;
+    if (tmpNestedAssignPropRhs$1) {
     } else {
       break;
     }
@@ -102,41 +97,40 @@ $(tmpSSA_a, b);
 With rename=true
 
 `````js filename=intro
+let a = true;
 $( 100 );
-const a = {
+const b = {
 c: 10,
 d: 20
 ;
-const b = $( a );
-const c = $( "d" );
-const d = b[ c ];
-a.c = d;
-let e = d;
-let f = d;
-if (d) {
-  $( 100 );
-  const g = $( a );
-  const h = $( "d" );
-  const i = g[ h ];
-  a.c = i;
-  e = i;
-  f = i;
-  while ($LOOP_UNROLL_9) {
-    if (f) {
-      $( 100 );
-      const j = $( a );
-      const k = $( "d" );
-      const l = j[ k ];
-      a.c = l;
-      e = l;
-      f = l;
+const c = $( b );
+const d = $( "d" );
+const e = c[ d ];
+b.c = e;
+let f = e;
+if (e) {
+
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const g = $( b );
+    const h = $( "d" );
+    const i = g[ h ];
+    b.c = i;
+    f = i;
+    if (i) {
+
     }
     else {
       break;
     }
   }
 }
-$( e, a );
+$( f, b );
 `````
 
 ## Globals

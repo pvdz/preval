@@ -22,13 +22,13 @@ $(a);
 
 `````js filename=intro
 let { a: a } = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = $({ a: 1, b: 2 });
+while (true) {
+  {
+    $(100);
+  }
+  if ($({ a: 1, b: 2 })) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -39,13 +39,12 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpCallCallee = $;
-    const tmpCalleeParam = { a: 1, b: 2 };
-    tmpDoWhileFlag = tmpCallCallee(tmpCalleeParam);
+  $(100);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = { a: 1, b: 2 };
+  const tmpIfTest = tmpCallCallee(tmpCalleeParam);
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -56,18 +55,20 @@ $(a);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpCalleeParam = { a: 1, b: 2 };
-let tmpDoWhileFlag = $(tmpCalleeParam);
-if (tmpDoWhileFlag) {
-  $(100);
-  const tmpCalleeParam$1 = { a: 1, b: 2 };
-  tmpDoWhileFlag = $(tmpCalleeParam$1);
-  while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
-      $(100);
-      const tmpCalleeParam$2 = { a: 1, b: 2 };
-      tmpDoWhileFlag = $(tmpCalleeParam$2);
+const tmpIfTest = $(tmpCalleeParam);
+if (tmpIfTest) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCalleeParam$1 = { a: 1, b: 2 };
+    const tmpIfTest$1 = $(tmpCalleeParam$1);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -82,27 +83,29 @@ $(999);
 With rename=true
 
 `````js filename=intro
+let a = true;
 $( 100 );
-const a = {
+const b = {
 a: 1,
 b: 2
 ;
-let b = $( a );
-if (b) {
-  $( 100 );
-  const c = {
+const c = $( b );
+if (c) {
+
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const d = {
 a: 1,
 b: 2
-  ;
-  b = $( c );
-  while ($LOOP_UNROLL_9) {
-    if (b) {
-      $( 100 );
-      const d = {
-a: 1,
-b: 2
-      ;
-      b = $( d );
+    ;
+    const e = $( d );
+    if (e) {
+
     }
     else {
       break;

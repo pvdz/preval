@@ -23,13 +23,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = { b: $(1) };
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = { b: $(1) })) {
+  } else {
+    break;
   }
 }
 ($(1), a)[`b`] = $(2);
@@ -40,14 +40,12 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpObjLitVal = $(1);
-    const tmpNestedComplexRhs = { b: tmpObjLitVal };
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  const tmpObjLitVal = $(1);
+  a = { b: tmpObjLitVal };
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -85,19 +83,17 @@ $(100);
 $(1);
 $(100);
 const tmpObjLitVal$1 = $(1);
-const tmpNestedComplexRhs$1 = { b: tmpObjLitVal$1 };
-let tmpSSA_a$2 = tmpNestedComplexRhs$1;
+let a = { b: tmpObjLitVal$1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   const tmpObjLitVal$2 = $(1);
-  const tmpNestedComplexRhs$2 = { b: tmpObjLitVal$2 };
-  tmpSSA_a$2 = tmpNestedComplexRhs$2;
+  a = { b: tmpObjLitVal$2 };
 }
 $(1);
-const tmpAssignMemLhsObj = tmpSSA_a$2;
+const tmpAssignMemLhsObj = a;
 const tmpAssignMemRhs = $(2);
 tmpAssignMemLhsObj.b = tmpAssignMemRhs;
-$(tmpSSA_a$2);
+$(a);
 `````
 
 ## PST Output
@@ -127,19 +123,17 @@ $( 100 );
 $( 1 );
 $( 100 );
 const a = $( 1 );
-const b = { b: a };
-let c = b;
+let b = { b: a };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const d = $( 1 );
-  const e = { b: d };
-  c = e;
+  const c = $( 1 );
+  b = { b: c };
 }
 $( 1 );
-const f = c;
-const g = $( 2 );
-f.b = g;
-$( c );
+const d = b;
+const e = $( 2 );
+d.b = e;
+$( b );
 `````
 
 ## Globals

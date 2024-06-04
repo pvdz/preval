@@ -25,13 +25,13 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = (1, 2, b)[$(`c`)];
+while (true) {
+  {
+    $(100);
+  }
+  if ((1, 2, b)[$(`c`)]) {
+  } else {
+    break;
   }
 }
 $(a, b);
@@ -42,13 +42,12 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpAssignRhsCompObj = b;
-    const tmpAssignRhsCompProp = $(`c`);
-    tmpDoWhileFlag = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+  $(100);
+  const tmpCompObj = b;
+  const tmpCompProp = $(`c`);
+  const tmpIfTest = tmpCompObj[tmpCompProp];
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -61,18 +60,20 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
+let $tmpLoopUnrollCheck = true;
 $(100);
-const tmpAssignRhsCompProp = $(`c`);
-let tmpDoWhileFlag = b[tmpAssignRhsCompProp];
-if (tmpDoWhileFlag) {
-  $(100);
-  const tmpAssignRhsCompProp$1 = $(`c`);
-  tmpDoWhileFlag = b[tmpAssignRhsCompProp$1];
-  while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
-      $(100);
-      const tmpAssignRhsCompProp$2 = $(`c`);
-      tmpDoWhileFlag = b[tmpAssignRhsCompProp$2];
+const tmpCompProp = $(`c`);
+const tmpIfTest = b[tmpCompProp];
+if (tmpIfTest) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCompProp$1 = $(`c`);
+    const tmpIfTest$1 = b[tmpCompProp$1];
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -92,18 +93,23 @@ const b = {
 a: 999,
 b: 1000
 ;
+let c = true;
 $( 100 );
-const c = $( "c" );
-let d = a[ c ];
-if (d) {
-  $( 100 );
-  const e = $( "c" );
-  d = a[ e ];
-  while ($LOOP_UNROLL_9) {
-    if (d) {
-      $( 100 );
-      const f = $( "c" );
-      d = a[ f ];
+const d = $( "c" );
+const e = a[ d ];
+if (e) {
+
+}
+else {
+  c = false;
+}
+if (c) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const f = $( "c" );
+    const g = a[ f ];
+    if (g) {
+
     }
     else {
       break;

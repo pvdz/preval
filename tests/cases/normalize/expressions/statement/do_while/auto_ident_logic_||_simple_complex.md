@@ -22,13 +22,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = 0 || $($(1));
+while (true) {
+  {
+    $(100);
+  }
+  if (0 || $($(1))) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -38,19 +38,18 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    tmpDoWhileFlag = 0;
-    if (tmpDoWhileFlag) {
-    } else {
-      const tmpCallCallee = $;
-      const tmpCalleeParam = $(1);
-      tmpDoWhileFlag = tmpCallCallee(tmpCalleeParam);
-    }
+  $(100);
+  let tmpIfTest = 0;
+  if (tmpIfTest) {
   } else {
-    break;
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(1);
+    tmpIfTest = tmpCallCallee(tmpCalleeParam);
+    if (tmpIfTest) {
+    } else {
+      break;
+    }
   }
 }
 $(a);
@@ -59,20 +58,20 @@ $(a);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpCalleeParam = $(1);
-let tmpDoWhileFlag = $(tmpCalleeParam);
-if (tmpDoWhileFlag) {
-  $(100);
-  tmpDoWhileFlag = false;
-  const tmpCalleeParam$1 = $(1);
-  tmpDoWhileFlag = $(tmpCalleeParam$1);
-  while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
-      $(100);
-      tmpDoWhileFlag = false;
-      const tmpCalleeParam$2 = $(1);
-      tmpDoWhileFlag = $(tmpCalleeParam$2);
+const tmpIfTest = $(tmpCalleeParam);
+if (tmpIfTest) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCalleeParam$1 = $(1);
+    const tmpIfTest$1 = $(tmpCalleeParam$1);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -88,31 +87,34 @@ $(a);
 With rename=true
 
 `````js filename=intro
+let a = true;
 $( 100 );
-const a = $( 1 );
-let b = $( a );
-if (b) {
-  $( 100 );
-  b = false;
-  const c = $( 1 );
-  b = $( c );
-  while ($LOOP_UNROLL_9) {
-    if (b) {
-      $( 100 );
-      b = false;
-      const d = $( 1 );
-      b = $( d );
+const b = $( 1 );
+const c = $( b );
+if (c) {
+
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const d = $( 1 );
+    const e = $( d );
+    if (e) {
+
     }
     else {
       break;
     }
   }
 }
-const e = {
+const f = {
 a: 999,
 b: 1000
 ;
-$( e );
+$( f );
 `````
 
 ## Globals

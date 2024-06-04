@@ -25,13 +25,13 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = new ($(b)[$(`\$`)])(1);
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = new ($(b)[$(`\$`)])(1))) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -42,16 +42,14 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpCompObj = $(b);
-    const tmpCompProp = $(`\$`);
-    const tmpNewCallee = tmpCompObj[tmpCompProp];
-    const tmpNestedComplexRhs = new tmpNewCallee(1);
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  const tmpCompObj = $(b);
+  const tmpCompProp = $(`\$`);
+  const tmpNewCallee = tmpCompObj[tmpCompProp];
+  a = new tmpNewCallee(1);
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -117,15 +115,13 @@ $(100);
 const tmpCompObj$10 = $(b);
 const tmpCompProp$10 = $(`\$`);
 const tmpNewCallee$10 = tmpCompObj$10[tmpCompProp$10];
-const tmpNestedComplexRhs$1 = new tmpNewCallee$10(1);
-let tmpSSA_a$2 = tmpNestedComplexRhs$1;
+let tmpSSA_a$2 = new tmpNewCallee$10(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   const tmpCompObj$11 = $(b);
   const tmpCompProp$11 = $(`\$`);
   const tmpNewCallee$11 = tmpCompObj$11[tmpCompProp$11];
-  const tmpNestedComplexRhs$2 = new tmpNewCallee$11(1);
-  tmpSSA_a$2 = tmpNestedComplexRhs$2;
+  tmpSSA_a$2 = new tmpNewCallee$11(1);
 }
 $(tmpSSA_a$2);
 `````
@@ -190,17 +186,15 @@ $( 100 );
 const 51 = $( a );
 const 61 = $( "$" );
 const 71 = 51[ 61 ];
-const 81 = new 71( 1 );
-let 91 = 81;
+let 81 = new 71( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const a1 = $( a );
-  const b1 = $( "$" );
-  const c1 = a1[ b1 ];
-  const d1 = new c1( 1 );
-  91 = d1;
+  const 91 = $( a );
+  const a1 = $( "$" );
+  const b1 = 91[ a1 ];
+  81 = new b1( 1 );
 }
-$( 91 );
+$( 81 );
 `````
 
 ## Globals

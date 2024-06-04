@@ -25,13 +25,13 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = ++$($(b)).x;
+while (true) {
+  {
+    $(100);
+  }
+  if (++$($(b)).x) {
+  } else {
+    break;
   }
 }
 $(a, b);
@@ -42,17 +42,16 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(b);
-    const tmpNestedAssignObj = tmpCallCallee(tmpCalleeParam);
-    const tmpBinLhs = tmpNestedAssignObj.x;
-    const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
-    tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-    tmpDoWhileFlag = tmpNestedPropCompoundComplexRhs;
+  $(100);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(b);
+  const varInitAssignLhsComputedObj = tmpCallCallee(tmpCalleeParam);
+  const tmpBinLhs = varInitAssignLhsComputedObj.x;
+  const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
+  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+  const tmpIfTest = varInitAssignLhsComputedRhs;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -65,30 +64,26 @@ $(a, b);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
+let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpCalleeParam = $(b);
-const tmpNestedAssignObj = $(tmpCalleeParam);
-const tmpBinLhs = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-let tmpSSA_tmpDoWhileFlag = tmpNestedPropCompoundComplexRhs;
-if (tmpNestedPropCompoundComplexRhs) {
-  $(100);
-  const tmpCalleeParam$1 = $(b);
-  const tmpNestedAssignObj$1 = $(tmpCalleeParam$1);
-  const tmpBinLhs$1 = tmpNestedAssignObj$1.x;
-  const tmpNestedPropCompoundComplexRhs$1 = tmpBinLhs$1 + 1;
-  tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
-  tmpSSA_tmpDoWhileFlag = tmpNestedPropCompoundComplexRhs$1;
-  while ($LOOP_UNROLL_9) {
-    if (tmpSSA_tmpDoWhileFlag) {
-      $(100);
-      const tmpCalleeParam$2 = $(b);
-      const tmpNestedAssignObj$2 = $(tmpCalleeParam$2);
-      const tmpBinLhs$2 = tmpNestedAssignObj$2.x;
-      const tmpNestedPropCompoundComplexRhs$2 = tmpBinLhs$2 + 1;
-      tmpNestedAssignObj$2.x = tmpNestedPropCompoundComplexRhs$2;
-      tmpSSA_tmpDoWhileFlag = tmpNestedPropCompoundComplexRhs$2;
+const varInitAssignLhsComputedObj = $(tmpCalleeParam);
+const tmpBinLhs = varInitAssignLhsComputedObj.x;
+const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+if (varInitAssignLhsComputedRhs) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCalleeParam$1 = $(b);
+    const varInitAssignLhsComputedObj$1 = $(tmpCalleeParam$1);
+    const tmpBinLhs$1 = varInitAssignLhsComputedObj$1.x;
+    const varInitAssignLhsComputedRhs$1 = tmpBinLhs$1 + 1;
+    varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
+    if (varInitAssignLhsComputedRhs$1) {
     } else {
       break;
     }
@@ -108,30 +103,29 @@ const b = {
 a: 999,
 b: 1000
 ;
+let c = true;
 $( 100 );
-const c = $( a );
-const d = $( c );
-const e = d.x;
-const f = e + 1;
-d.x = f;
-let g = f;
-if (f) {
-  $( 100 );
-  const h = $( a );
-  const i = $( h );
-  const j = i.x;
-  const k = j + 1;
-  i.x = k;
-  g = k;
-  while ($LOOP_UNROLL_9) {
-    if (g) {
-      $( 100 );
-      const l = $( a );
-      const m = $( l );
-      const n = m.x;
-      const o = n + 1;
-      m.x = o;
-      g = o;
+const d = $( a );
+const e = $( d );
+const f = e.x;
+const g = f + 1;
+e.x = g;
+if (g) {
+
+}
+else {
+  c = false;
+}
+if (c) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const h = $( a );
+    const i = $( h );
+    const j = i.x;
+    const k = j + 1;
+    i.x = k;
+    if (k) {
+
     }
     else {
       break;

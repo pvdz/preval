@@ -23,27 +23,27 @@ foo: do {
 ## Pre Normal
 
 `````js filename=intro
-foo: {
-  let tmpDoWhileFlag$1 = true;
-  while (tmpDoWhileFlag$1) {
-    {
-      $continue: {
-        {
-          $(1, `outer`);
+foo: while (true) {
+  {
+    $continue: {
+      {
+        $(1, `outer`);
+        while (true) {
           {
-            let tmpDoWhileFlag = true;
-            while (tmpDoWhileFlag) {
-              {
-                $(1, `inner`);
-                break $continue;
-              }
-              tmpDoWhileFlag = $(false);
-            }
+            $(1, `inner`);
+            break $continue;
+          }
+          if ($(false)) {
+          } else {
+            break;
           }
         }
       }
     }
-    tmpDoWhileFlag$1 = $(false);
+  }
+  if ($(false)) {
+  } else {
+    break;
   }
 }
 `````
@@ -51,22 +51,16 @@ foo: {
 ## Normalized
 
 `````js filename=intro
-let tmpDoWhileFlag$1 = true;
 while (true) {
-  if (tmpDoWhileFlag$1) {
-    $continue: {
-      $(1, `outer`);
-      let tmpDoWhileFlag = true;
-      while (true) {
-        if (tmpDoWhileFlag) {
-          $(1, `inner`);
-          break $continue;
-        } else {
-          break;
-        }
-      }
+  $continue: {
+    $(1, `outer`);
+    while (true) {
+      $(1, `inner`);
+      break $continue;
     }
-    tmpDoWhileFlag$1 = $(false);
+  }
+  const tmpIfTest = $(false);
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -76,17 +70,16 @@ while (true) {
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag$1 = true;
 while (true) {
-  if (tmpDoWhileFlag$1) {
-    $continue: {
-      $(1, `outer`);
-      while (true) {
-        $(1, `inner`);
-        break $continue;
-      }
+  $continue: {
+    $(1, `outer`);
+    while (true) {
+      $(1, `inner`);
+      break $continue;
     }
-    tmpDoWhileFlag$1 = $(false);
+  }
+  const tmpIfTest = $(false);
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -98,17 +91,17 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-let a = true;
 while (true) {
-  if (a) {
-    $continue:     {
-      $( 1, "outer" );
-      while (true) {
-        $( 1, "inner" );
-        break $continue;
-      }
+  $continue:   {
+    $( 1, "outer" );
+    while (true) {
+      $( 1, "inner" );
+      break $continue;
     }
-    a = $( false );
+  }
+  const a = $( false );
+  if (a) {
+
   }
   else {
     break;

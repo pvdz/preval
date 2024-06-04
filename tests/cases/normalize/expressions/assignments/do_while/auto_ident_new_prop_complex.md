@@ -25,13 +25,13 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = new ($(b).$)(1);
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = new ($(b).$)(1))) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -42,15 +42,13 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpCompObj = $(b);
-    const tmpNewCallee = tmpCompObj.$;
-    const tmpNestedComplexRhs = new tmpNewCallee(1);
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  const tmpCompObj = $(b);
+  const tmpNewCallee = tmpCompObj.$;
+  a = new tmpNewCallee(1);
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -105,14 +103,12 @@ new tmpNewCallee$9(1);
 $(100);
 const tmpCompObj$10 = $(b);
 const tmpNewCallee$10 = tmpCompObj$10.$;
-const tmpNestedComplexRhs$1 = new tmpNewCallee$10(1);
-let tmpSSA_a$2 = tmpNestedComplexRhs$1;
+let tmpSSA_a$2 = new tmpNewCallee$10(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   const tmpCompObj$11 = $(b);
   const tmpNewCallee$11 = tmpCompObj$11.$;
-  const tmpNestedComplexRhs$2 = new tmpNewCallee$11(1);
-  tmpSSA_a$2 = tmpNestedComplexRhs$2;
+  tmpSSA_a$2 = new tmpNewCallee$11(1);
 }
 $(tmpSSA_a$2);
 `````
@@ -166,16 +162,14 @@ new u( 1 );
 $( 100 );
 const v = $( a );
 const w = v.$;
-const x = new w( 1 );
-let y = x;
+let x = new w( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const z = $( a );
-  const 01 = z.$;
-  const 11 = new 01( 1 );
-  y = 11;
+  const y = $( a );
+  const z = y.$;
+  x = new z( 1 );
 }
-$( y );
+$( x );
 `````
 
 ## Globals

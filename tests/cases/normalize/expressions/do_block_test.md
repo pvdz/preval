@@ -20,14 +20,14 @@ let a = 1,
   b = 2,
   x = 3,
   y = 4;
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(a);
-      null;
-    }
-    tmpDoWhileFlag = x + y;
+while (true) {
+  {
+    $(a);
+    null;
+  }
+  if (x + y) {
+  } else {
+    break;
   }
 }
 `````
@@ -39,11 +39,10 @@ let a = 1;
 let b = 2;
 let x = 3;
 let y = 4;
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(a);
-    tmpDoWhileFlag = x + y;
+  $(a);
+  const tmpIfTest = x + y;
+  if (tmpIfTest) {
   } else {
     break;
   }

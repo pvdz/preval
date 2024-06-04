@@ -25,13 +25,13 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = b?.x;
+while (true) {
+  {
+    $(100);
+  }
+  if (b?.x) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -42,18 +42,17 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    tmpDoWhileFlag = undefined;
-    const tmpChainRootProp = b;
-    const tmpIfTest = tmpChainRootProp != null;
-    if (tmpIfTest) {
-      const tmpChainElementObject = tmpChainRootProp.x;
-      tmpDoWhileFlag = tmpChainElementObject;
-    } else {
-    }
+  $(100);
+  let tmpIfTest = undefined;
+  const tmpChainRootProp = b;
+  const tmpIfTest$1 = tmpChainRootProp != null;
+  if (tmpIfTest$1) {
+    const tmpChainElementObject = tmpChainRootProp.x;
+    tmpIfTest = tmpChainElementObject;
+  } else {
+  }
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -64,7 +63,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
 $(100);
 $(100);
 $(100);
@@ -77,13 +75,7 @@ $(100);
 $(100);
 $(100);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    tmpDoWhileFlag = false;
-    tmpDoWhileFlag = true;
-  } else {
-    break;
-  }
+  $(100);
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -94,7 +86,6 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = true;
 $( 100 );
 $( 100 );
 $( 100 );
@@ -107,20 +98,13 @@ $( 100 );
 $( 100 );
 $( 100 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (a) {
-    $( 100 );
-    a = false;
-    a = true;
-  }
-  else {
-    break;
-  }
+  $( 100 );
 }
-const b = {
+const a = {
 a: 999,
 b: 1000
 ;
-$( b );
+$( a );
 `````
 
 ## Globals

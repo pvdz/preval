@@ -25,13 +25,13 @@ $(a);
 `````js filename=intro
 let b = { c: { d: { e: $ } } };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = b?.c.d.e(1);
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = b?.c.d.e(1))) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -44,23 +44,21 @@ const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 let b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    let tmpNestedComplexRhs = undefined;
-    const tmpChainRootProp = b;
-    const tmpIfTest = tmpChainRootProp != null;
-    if (tmpIfTest) {
-      const tmpChainElementObject = tmpChainRootProp.c;
-      const tmpChainElementObject$1 = tmpChainElementObject.d;
-      const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-      const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-      tmpNestedComplexRhs = tmpChainElementCall;
-    } else {
-    }
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  a = undefined;
+  const tmpChainRootProp = b;
+  const tmpIfTest$1 = tmpChainRootProp != null;
+  if (tmpIfTest$1) {
+    const tmpChainElementObject = tmpChainRootProp.c;
+    const tmpChainElementObject$1 = tmpChainElementObject.d;
+    const tmpChainElementObject$3 = tmpChainElementObject$1.e;
+    const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
+    a = tmpChainElementCall;
+  } else {
+  }
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -71,24 +69,22 @@ $(a);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpObjLitVal$1 = { e: $ };
 const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
 let tmpSSA_a = tmpChainElementCall;
-let tmpSSA_tmpDoWhileFlag = tmpChainElementCall;
 if (tmpChainElementCall) {
-  $(100);
-  const tmpChainElementObject$4 = tmpObjLitVal$1.e;
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$4, tmpObjLitVal$1, 1);
-  tmpSSA_a = tmpChainElementCall$1;
-  tmpSSA_tmpDoWhileFlag = tmpChainElementCall$1;
-  while ($LOOP_UNROLL_9) {
-    if (tmpSSA_tmpDoWhileFlag) {
-      $(100);
-      const tmpChainElementObject$1 = tmpObjLitVal$1.e;
-      const tmpChainElementCall$2 = $dotCall(tmpChainElementObject$1, tmpObjLitVal$1, 1);
-      tmpSSA_a = tmpChainElementCall$2;
-      tmpSSA_tmpDoWhileFlag = tmpChainElementCall$2;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpChainElementObject$4 = tmpObjLitVal$1.e;
+    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$4, tmpObjLitVal$1, 1);
+    tmpSSA_a = tmpChainElementCall$1;
+    if (tmpChainElementCall$1) {
     } else {
       break;
     }
@@ -103,31 +99,32 @@ $(tmpSSA_a);
 With rename=true
 
 `````js filename=intro
+let a = true;
 $( 100 );
-const a = { e: $ };
-const b = $dotCall( $, a, 1 );
-let c = b;
-let d = b;
-if (b) {
-  $( 100 );
-  const e = a.e;
-  const f = $dotCall( e, a, 1 );
-  c = f;
-  d = f;
-  while ($LOOP_UNROLL_9) {
-    if (d) {
-      $( 100 );
-      const g = a.e;
-      const h = $dotCall( g, a, 1 );
-      c = h;
-      d = h;
+const b = { e: $ };
+const c = $dotCall( $, b, 1 );
+let d = c;
+if (c) {
+
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const e = b.e;
+    const f = $dotCall( e, b, 1 );
+    d = f;
+    if (f) {
+
     }
     else {
       break;
     }
   }
 }
-$( c );
+$( d );
 `````
 
 ## Globals

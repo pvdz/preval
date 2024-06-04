@@ -22,13 +22,13 @@ $(a);
 
 `````js filename=intro
 let { a: a } = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = { a: a } = $({ a: 1, b: 2 });
+while (true) {
+  {
+    $(100);
+  }
+  if (({ a: a } = $({ a: 1, b: 2 }))) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -39,15 +39,15 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpCallCallee = $;
-    const tmpCalleeParam = { a: 1, b: 2 };
-    const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-    a = tmpNestedAssignObjPatternRhs.a;
-    tmpDoWhileFlag = tmpNestedAssignObjPatternRhs;
+  $(100);
+  let tmpIfTest = undefined;
+  const tmpCallCallee = $;
+  const tmpCalleeParam = { a: 1, b: 2 };
+  const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+  a = tmpNestedAssignObjPatternRhs.a;
+  tmpIfTest = tmpNestedAssignObjPatternRhs;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -58,24 +58,22 @@ $(a);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 let tmpSSA_a = tmpNestedAssignObjPatternRhs.a;
-let tmpSSA_tmpDoWhileFlag = tmpNestedAssignObjPatternRhs;
 if (tmpNestedAssignObjPatternRhs) {
-  $(100);
-  const tmpCalleeParam$1 = { a: 1, b: 2 };
-  const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
-  tmpSSA_a = tmpNestedAssignObjPatternRhs$1.a;
-  tmpSSA_tmpDoWhileFlag = tmpNestedAssignObjPatternRhs$1;
-  while ($LOOP_UNROLL_9) {
-    if (tmpSSA_tmpDoWhileFlag) {
-      $(100);
-      const tmpCalleeParam$2 = { a: 1, b: 2 };
-      const tmpNestedAssignObjPatternRhs$2 = $(tmpCalleeParam$2);
-      tmpSSA_a = tmpNestedAssignObjPatternRhs$2.a;
-      tmpSSA_tmpDoWhileFlag = tmpNestedAssignObjPatternRhs$2;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCalleeParam$1 = { a: 1, b: 2 };
+    const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
+    tmpSSA_a = tmpNestedAssignObjPatternRhs$1.a;
+    if (tmpNestedAssignObjPatternRhs$1) {
     } else {
       break;
     }
@@ -90,40 +88,38 @@ $(tmpSSA_a);
 With rename=true
 
 `````js filename=intro
+let a = true;
 $( 100 );
-const a = {
+const b = {
 a: 1,
 b: 2
 ;
-const b = $( a );
-let c = b.a;
-let d = b;
-if (b) {
-  $( 100 );
-  const e = {
+const c = $( b );
+let d = c.a;
+if (c) {
+
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const e = {
 a: 1,
 b: 2
-  ;
-  const f = $( e );
-  c = f.a;
-  d = f;
-  while ($LOOP_UNROLL_9) {
-    if (d) {
-      $( 100 );
-      const g = {
-a: 1,
-b: 2
-      ;
-      const h = $( g );
-      c = h.a;
-      d = h;
+    ;
+    const f = $( e );
+    d = f.a;
+    if (f) {
+
     }
     else {
       break;
     }
   }
 }
-$( c );
+$( d );
 `````
 
 ## Globals

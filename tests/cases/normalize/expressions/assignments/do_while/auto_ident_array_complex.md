@@ -22,13 +22,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = [$(1), 2, $(3)];
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = [$(1), 2, $(3)])) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -38,16 +38,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpArrElement = $(1);
-    const tmpArrElement$1 = 2;
-    const tmpArrElement$3 = $(3);
-    const tmpNestedComplexRhs = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  const tmpArrElement = $(1);
+  const tmpArrElement$1 = 2;
+  const tmpArrElement$3 = $(3);
+  a = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -89,16 +87,14 @@ $(100);
 $(1);
 $(3);
 $(100);
-const tmpArrElement$2 = $(1);
-const tmpArrElement$5 = $(3);
-const tmpNestedComplexRhs$1 = [tmpArrElement$2, 2, tmpArrElement$5];
-let a = tmpNestedComplexRhs$1;
+const tmpArrElement$1 = $(1);
+const tmpArrElement$4 = $(3);
+let a = [tmpArrElement$1, 2, tmpArrElement$4];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpArrElement$6 = $(1);
-  const tmpArrElement$8 = $(3);
-  const tmpNestedComplexRhs$2 = [tmpArrElement$6, 2, tmpArrElement$8];
-  a = tmpNestedComplexRhs$2;
+  const tmpArrElement$2 = $(1);
+  const tmpArrElement$5 = $(3);
+  a = [tmpArrElement$2, 2, tmpArrElement$5];
 }
 $(a);
 `````
@@ -141,16 +137,14 @@ $( 3 );
 $( 100 );
 const a = $( 1 );
 const b = $( 3 );
-const c = [ a, 2, b ];
-let d = c;
+let c = [ a, 2, b ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const e = $( 1 );
-  const f = $( 3 );
-  const g = [ e, 2, f ];
-  d = g;
+  const d = $( 1 );
+  const e = $( 3 );
+  c = [ d, 2, e ];
 }
-$( d );
+$( c );
 `````
 
 ## Globals

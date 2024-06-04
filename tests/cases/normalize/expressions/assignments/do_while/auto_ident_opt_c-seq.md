@@ -25,13 +25,13 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = (1, 2, $(b))?.x;
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = (1, 2, $(b))?.x)) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -42,20 +42,18 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    let tmpNestedComplexRhs = undefined;
-    const tmpChainRootProp = $(b);
-    const tmpIfTest = tmpChainRootProp != null;
-    if (tmpIfTest) {
-      const tmpChainElementObject = tmpChainRootProp.x;
-      tmpNestedComplexRhs = tmpChainElementObject;
-    } else {
-    }
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  a = undefined;
+  const tmpChainRootProp = $(b);
+  const tmpIfTest$1 = tmpChainRootProp != null;
+  if (tmpIfTest$1) {
+    const tmpChainElementObject = tmpChainRootProp.x;
+    a = tmpChainElementObject;
+  } else {
+  }
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -66,51 +64,39 @@ $(a);
 ## Output
 
 `````js filename=intro
+let a = undefined;
+let $tmpLoopUnrollCheck = true;
 $(100);
-let tmpNestedComplexRhs = undefined;
 const b = { x: 1 };
 const tmpChainRootProp = $(b);
-const tmpIfTest = tmpChainRootProp == null;
-let tmpSSA_a = undefined;
-if (tmpIfTest) {
+const tmpIfTest$1 = tmpChainRootProp == null;
+if (tmpIfTest$1) {
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;
-  tmpNestedComplexRhs = tmpChainElementObject;
-  tmpSSA_a = tmpChainElementObject;
+  a = tmpChainElementObject;
 }
-let tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
-if (tmpNestedComplexRhs) {
-  $(100);
-  let tmpNestedComplexRhs$1 = undefined;
-  const tmpChainRootProp$1 = $(b);
-  const tmpIfTest$1 = tmpChainRootProp$1 == null;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpChainElementObject$1 = tmpChainRootProp$1.x;
-    tmpNestedComplexRhs$1 = tmpChainElementObject$1;
-  }
-  tmpSSA_a = tmpNestedComplexRhs$1;
-  tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
-  while ($LOOP_UNROLL_9) {
-    if (tmpSSA_tmpDoWhileFlag) {
-      $(100);
-      let tmpNestedComplexRhs$2 = undefined;
-      const tmpChainRootProp$2 = $(b);
-      const tmpIfTest$2 = tmpChainRootProp$2 == null;
-      if (tmpIfTest$2) {
-      } else {
-        const tmpChainElementObject$2 = tmpChainRootProp$2.x;
-        tmpNestedComplexRhs$2 = tmpChainElementObject$2;
-      }
-      tmpSSA_a = tmpNestedComplexRhs$2;
-      tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
+if (a) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpChainRootProp$1 = $(b);
+    const tmpIfTest$2 = tmpChainRootProp$1 == null;
+    if (tmpIfTest$2) {
+    } else {
+      const tmpChainElementObject$1 = tmpChainRootProp$1.x;
+      a = tmpChainElementObject$1;
+    }
+    if (a) {
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpSSA_a);
+$(a);
 `````
 
 ## PST Output
@@ -118,57 +104,46 @@ $(tmpSSA_a);
 With rename=true
 
 `````js filename=intro
-$( 100 );
 let a = undefined;
-const b = { x: 1 };
-const c = $( b );
-const d = c == null;
-let e = undefined;
-if (d) {
+let b = true;
+$( 100 );
+const c = { x: 1 };
+const d = $( c );
+const e = d == null;
+if (e) {
 
 }
 else {
-  const f = c.x;
+  const f = d.x;
   a = f;
-  e = f;
 }
-let g = a;
 if (a) {
-  $( 100 );
-  let h = undefined;
-  const i = $( b );
-  const j = i == null;
-  if (j) {
 
-  }
-  else {
-    const k = i.x;
-    h = k;
-  }
-  e = h;
-  g = h;
-  while ($LOOP_UNROLL_9) {
-    if (g) {
-      $( 100 );
-      let l = undefined;
-      const m = $( b );
-      const n = m == null;
-      if (n) {
+}
+else {
+  b = false;
+}
+if (b) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const g = $( c );
+    const h = g == null;
+    if (h) {
 
-      }
-      else {
-        const o = m.x;
-        l = o;
-      }
-      e = l;
-      g = l;
+    }
+    else {
+      const i = g.x;
+      a = i;
+    }
+    if (a) {
+
     }
     else {
       break;
     }
   }
 }
-$( e );
+$( a );
 `````
 
 ## Globals

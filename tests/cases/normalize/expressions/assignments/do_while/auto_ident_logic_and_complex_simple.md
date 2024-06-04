@@ -22,13 +22,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    {
-      $(100);
-    }
-    tmpDoWhileFlag = a = $($(1)) && 2;
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = $($(1)) && 2)) {
+  } else {
+    break;
   }
 }
 $(a);
@@ -38,19 +38,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 while (true) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(1);
-    let tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
-    if (tmpNestedComplexRhs) {
-      tmpNestedComplexRhs = 2;
-    } else {
-    }
-    a = tmpNestedComplexRhs;
-    tmpDoWhileFlag = tmpNestedComplexRhs;
+  $(100);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(1);
+  a = tmpCallCallee(tmpCalleeParam);
+  if (a) {
+    a = 2;
+  } else {
+  }
+  let tmpIfTest = a;
+  if (tmpIfTest) {
   } else {
     break;
   }
@@ -61,50 +59,29 @@ $(a);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpCalleeParam = $(1);
-let tmpNestedComplexRhs = $(tmpCalleeParam);
-let tmpSSA_a = 2;
-let tmpSSA_tmpDoWhileFlag = true;
-let $tmpLoopUnrollCheck = true;
-if (tmpNestedComplexRhs) {
-  tmpNestedComplexRhs = 2;
+let a = $(tmpCalleeParam);
+if (a) {
+  a = 2;
 } else {
-  tmpSSA_a = tmpNestedComplexRhs;
-  tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
-  $tmpLoopUnrollCheck = tmpSSA_tmpDoWhileFlag;
-}
-if (tmpSSA_tmpDoWhileFlag) {
-  $(100);
-  const tmpCalleeParam$1 = $(1);
-  let tmpNestedComplexRhs$1 = $(tmpCalleeParam$1);
-  if (tmpNestedComplexRhs$1) {
-    tmpNestedComplexRhs$1 = 2;
-  } else {
-  }
-  tmpSSA_a = tmpNestedComplexRhs$1;
-  tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
-} else {
+  $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_9) {
-    if (tmpSSA_tmpDoWhileFlag) {
-      $(100);
-      const tmpCalleeParam$2 = $(1);
-      let tmpNestedComplexRhs$2 = $(tmpCalleeParam$2);
-      if (tmpNestedComplexRhs$2) {
-        tmpNestedComplexRhs$2 = 2;
-      } else {
-      }
-      tmpSSA_a = tmpNestedComplexRhs$2;
-      tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCalleeParam$1 = $(1);
+    a = $(tmpCalleeParam$1);
+    if (a) {
+      a = 2;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpSSA_a);
+$(a);
 `````
 
 ## PST Output
@@ -112,41 +89,23 @@ $(tmpSSA_a);
 With rename=true
 
 `````js filename=intro
+let a = true;
 $( 100 );
-const a = $( 1 );
-let b = $( a );
-let c = 2;
-let d = true;
-let e = true;
-if (b) {
-  b = 2;
+const b = $( 1 );
+let c = $( b );
+if (c) {
+  c = 2;
 }
 else {
-  c = b;
-  d = b;
-  e = d;
+  a = false;
 }
-if (d) {
-  $( 100 );
-  const f = $( 1 );
-  let g = $( f );
-  if (g) {
-    g = 2;
-  }
-  c = g;
-  d = g;
-}
-if (e) {
-  while ($LOOP_UNROLL_9) {
-    if (d) {
-      $( 100 );
-      const h = $( 1 );
-      let i = $( h );
-      if (i) {
-        i = 2;
-      }
-      c = i;
-      d = i;
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $( 100 );
+    const d = $( 1 );
+    c = $( d );
+    if (c) {
+      c = 2;
     }
     else {
       break;

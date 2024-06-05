@@ -36,37 +36,34 @@
 `````filename=intro
 let x___4__ = 1;
 $(x___9__);
-while (true) {
-  /*12*/ let $implicitThrow___15__ = false;
-  let $finalCatchArg___19__ = undefined___20__;
-  try /*22*/ {
-    $(x___26__);
-  } catch ($finalImplicit___28__) /*29*/ {
-    $implicitThrow___33__ = true;
-    $finalCatchArg___37__ = $finalImplicit___36__;
-  }
-  $(x___41__);
-  x___45__ = 2;
-  break;
+let $implicitThrow___12__ = false;
+let $finalCatchArg___16__ = undefined___17__;
+try /*19*/ {
+  $(x___23__);
+} catch ($finalImplicit___25__) /*26*/ {
+  $implicitThrow___30__ = true;
+  $finalCatchArg___34__ = $finalImplicit___33__;
 }
-$(x___50__);
+$(x___38__);
+x___42__ = 2;
+$(x___46__);
 `````
 
 Ref tracking result:
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 9,26,41     | none           | 45
+  - w @4       | ########## | 9,23,38     | none           | 42
   - r @9       | 4
-  - r @26      | 4
-  - r @41      | 4
-  - w @45      | ########## | 50          | 4              | none
-  - r @50      | 45
+  - r @23      | 4
+  - r @38      | 4
+  - w @42      | ########## | 46          | 4              | none
+  - r @46      | 42
 
 $implicitThrow:
-  - w @15          | ########## | not read    | none           | 33
-  - w @33          | ########## | not read    | 15             | none
+  - w @12          | ########## | not read    | none           | 30
+  - w @30          | ########## | not read    | 12             | none
 
 $finalCatchArg:
-  - w @19          | ########## | not read    | none           | 37
-  - w @37          | ########## | not read    | 19             | none
+  - w @16          | ########## | not read    | none           | 34
+  - w @34          | ########## | not read    | 16             | none

@@ -5,6 +5,7 @@
 > Tofix > Assign implicit2
 >
 > Certain statements probably never benefit from running inside a try
+> But the output `$($)` is incorrect as the reference would be caught and y remains 100
 
 #TODO
 

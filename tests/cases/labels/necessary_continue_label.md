@@ -52,13 +52,8 @@ foo: while (true) {
 
 `````js filename=intro
 while (true) {
-  $continue: {
-    $(1, `outer`);
-    while (true) {
-      $(1, `inner`);
-      break $continue;
-    }
-  }
+  $(1, `outer`);
+  $(1, `inner`);
   const tmpIfTest = $(false);
   if (tmpIfTest) {
   } else {
@@ -70,19 +65,25 @@ while (true) {
 ## Output
 
 `````js filename=intro
-while (true) {
-  $continue: {
+let $tmpLoopUnrollCheck = true;
+$(1, `outer`);
+$(1, `inner`);
+const tmpIfTest = $(false);
+if (tmpIfTest) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
     $(1, `outer`);
-    while (true) {
-      $(1, `inner`);
-      break $continue;
+    $(1, `inner`);
+    const tmpIfTest$1 = $(false);
+    if (tmpIfTest$1) {
+    } else {
+      break;
     }
   }
-  const tmpIfTest = $(false);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+} else {
 }
 `````
 
@@ -91,20 +92,27 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-while (true) {
-  $continue:   {
-    $( 1, "outer" );
-    while (true) {
-      $( 1, "inner" );
-      break $continue;
-    }
-  }
-  const a = $( false );
-  if (a) {
+let a = true;
+$( 1, "outer" );
+$( 1, "inner" );
+const b = $( false );
+if (b) {
 
-  }
-  else {
-    break;
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $( 1, "outer" );
+    $( 1, "inner" );
+    const c = $( false );
+    if (c) {
+
+    }
+    else {
+      break;
+    }
   }
 }
 `````

@@ -47,9 +47,6 @@ while (true) {
     const tmpForOfDeclRhs = [10, 20];
     let x = undefined;
     for (x of tmpForOfDeclRhs) {
-      $continue: {
-        break $continue;
-      }
     }
     tmpIfTest = $(true);
   } else {

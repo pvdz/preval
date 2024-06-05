@@ -31,10 +31,7 @@ while (true) {
 
 `````js filename=intro
 let x = undefined;
-while (true) {
-  x = 0;
-  break;
-}
+x = 0;
 `````
 
 ## Output

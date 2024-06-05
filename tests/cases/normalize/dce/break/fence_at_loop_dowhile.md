@@ -53,10 +53,7 @@ let tmpIfTest = $(true);
 while (true) {
   if (tmpIfTest) {
     $(`loop`);
-    while (true) {
-      $(`loop`);
-      break;
-    }
+    $(`loop`);
     $(`infiloop, do not eliminate`);
     tmpIfTest = $(true);
   } else {

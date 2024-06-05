@@ -57,9 +57,6 @@ const f = function ($$0) {
       t = 0;
     } else {
     }
-    stop: {
-      break stop;
-    }
   }
   x + 0;
   return undefined;

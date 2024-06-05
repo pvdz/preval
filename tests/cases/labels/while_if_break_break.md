@@ -1,51 +1,47 @@
 # Preval test case
 
-# double_name.md
+# while_if_break_break.md
 
-> Normalize > Label > Double name
+> Labels > While if break break
 >
-> Check the label renaming algo. The label names ought to be unique just like binding idents.
+> 
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-foo: {
-  break foo;
-}
-foo: {
-  break foo;
-}
-foo: {
-  break foo;
+A: {
+  while (true) {
+    $();
+    break A;
+  }
+  $('fail');
 }
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-foo: {
-  break foo;
-}
-foo$1: {
-  break foo$1;
-}
-foo$3: {
-  break foo$3;
+A: {
+  while (true) {
+    $();
+    break A;
+  }
+  $(`fail`);
 }
 `````
 
 ## Normalized
 
 `````js filename=intro
-
+$();
 `````
 
 ## Output
 
 `````js filename=intro
-
+$();
 `````
 
 ## PST Output
@@ -53,7 +49,7 @@ foo$3: {
 With rename=true
 
 `````js filename=intro
-
+$();
 `````
 
 ## Globals
@@ -63,6 +59,7 @@ None
 ## Result
 
 Should call `$` with:
+ - 1: 
  - eval returned: undefined
 
 Pre normalization calls: Same

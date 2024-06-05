@@ -29,16 +29,13 @@
 
 `````filename=intro
 let c___4__ = 1;
-while ($LOOP_UNROLL_500___7__) {
-  /*8*/ c___14__ = c___12__ + 1;
-  break;
-}
+c___11__ = c___9__ + 1;
 `````
 
 Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 c:
-  - w @4       | ########## | 12          | none           | 14
-  - r @12      | 4
-  - w @14      | ########## | not read    | 4              | none
+  - w @4       | ########## | 9           | none           | 11
+  - r @9       | 4
+  - w @11      | ########## | not read    | 4              | none

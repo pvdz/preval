@@ -2,12 +2,10 @@
 
 # broken_loop_unroll.md
 
-> Tofix > Broken loop unroll
+> While > Broken loop unroll
 >
-> There's a bug in the loop unroll when the while body contains a labeled break.
-> The unroll will copy and repeat the break even though the break may exit the loop.
-
-#TODO
+> There was a bug in the loop unroll when the while body contains a labeled break.
+> The unroll would copy and repeat the break even though the break may exit the loop.
 
 ## Input
 
@@ -41,27 +39,39 @@ while (true) {
 
 `````js filename=intro
 while (true) {
-  $continue: {
-    $(1);
-    while (true) {
-      $(2);
-      break $continue;
-    }
-  }
+  $(1);
+  $(2);
 }
 `````
 
 ## Output
 
 `````js filename=intro
-while (true) {
-  $continue: {
-    $(1);
-    while (true) {
-      $(2);
-      break $continue;
-    }
-  }
+$(1);
+$(2);
+$(1);
+$(2);
+$(1);
+$(2);
+$(1);
+$(2);
+$(1);
+$(2);
+$(1);
+$(2);
+$(1);
+$(2);
+$(1);
+$(2);
+$(1);
+$(2);
+$(1);
+$(2);
+$(1);
+$(2);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(1);
+  $(2);
 }
 `````
 
@@ -70,14 +80,31 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-while (true) {
-  $continue:   {
-    $( 1 );
-    while (true) {
-      $( 2 );
-      break $continue;
-    }
-  }
+$( 1 );
+$( 2 );
+$( 1 );
+$( 2 );
+$( 1 );
+$( 2 );
+$( 1 );
+$( 2 );
+$( 1 );
+$( 2 );
+$( 1 );
+$( 2 );
+$( 1 );
+$( 2 );
+$( 1 );
+$( 2 );
+$( 1 );
+$( 2 );
+$( 1 );
+$( 2 );
+$( 1 );
+$( 2 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 1 );
+  $( 2 );
 }
 `````
 

@@ -47,14 +47,11 @@ $(cTmp);
 `````js filename=intro
 let cTmp = $;
 let cTail = c;
-while (true) {
-  if ($) {
-    cTail = $(`keep`);
-    cTmp = $(cTmp);
-  } else {
-    cTmp = cTail;
-  }
-  break;
+if ($) {
+  cTail = $(`keep`);
+  cTmp = $(cTmp);
+} else {
+  cTmp = cTail;
 }
 $(cTmp);
 `````

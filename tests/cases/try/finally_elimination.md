@@ -2,11 +2,9 @@
 
 # finally_elimination.md
 
-> Tofix > Finally elimination
+> Try > Finally elimination
 >
-> We probably want to eliminate finally?
-
-#TODO
+> This turned ugly fast.
 
 ## Input
 
@@ -197,7 +195,7 @@ let f = function () {
         throw $finalCatchArg;
       } else {
         if ($finalStep) {
-          break;
+          return undefined;
         } else {
           if ($finalStep$1) {
             return $finalArg;
@@ -225,7 +223,6 @@ $(f);
 `````js filename=intro
 const f = function () {
   debugger;
-  let $tmpLoopUnrollCheck = true;
   let $implicitThrow = false;
   let $finalStep = false;
   let $finalStep$1 = false;
@@ -259,7 +256,7 @@ const f = function () {
     throw $finalCatchArg;
   } else {
     if ($finalStep) {
-      $tmpLoopUnrollCheck = false;
+      return undefined;
     } else {
       if ($finalStep$1) {
         return $finalArg;
@@ -267,60 +264,56 @@ const f = function () {
         if ($finalStep$3) {
           throw $finalArg$1;
         } else {
-        }
-      }
-    }
-    if ($tmpLoopUnrollCheck) {
-      while ($LOOP_UNROLL_10) {
-        let $implicitThrow$1 = false;
-        let $finalStep$2 = false;
-        let $finalStep$4 = false;
-        let $finalStep$6 = false;
-        let $finalCatchArg$1 = undefined;
-        let $finalArg$2 = undefined;
-        let $finalArg$4 = undefined;
-        try {
-          $(a);
-          if ($1) {
-            $finalStep$2 = true;
-          } else {
-            if ($2) {
-              $finalStep$4 = true;
-              $finalArg$2 = value;
-            } else {
-              if ($3) {
-                $finalStep$6 = true;
-                $finalArg$4 = x;
+          while ($LOOP_UNROLL_10) {
+            let $implicitThrow$1 = false;
+            let $finalStep$2 = false;
+            let $finalStep$4 = false;
+            let $finalStep$6 = false;
+            let $finalCatchArg$1 = undefined;
+            let $finalArg$2 = undefined;
+            let $finalArg$4 = undefined;
+            try {
+              $(a);
+              if ($1) {
+                $finalStep$2 = true;
               } else {
-                $4;
+                if ($2) {
+                  $finalStep$4 = true;
+                  $finalArg$2 = value;
+                } else {
+                  if ($3) {
+                    $finalStep$6 = true;
+                    $finalArg$4 = x;
+                  } else {
+                    $4;
+                  }
+                }
+              }
+            } catch ($finalImplicit$1) {
+              $implicitThrow$1 = true;
+              $finalCatchArg$1 = $finalImplicit$1;
+            }
+            $(b);
+            if ($implicitThrow$1) {
+              throw $finalCatchArg$1;
+            } else {
+              if ($finalStep$2) {
+                return undefined;
+              } else {
+                if ($finalStep$4) {
+                  return $finalArg$2;
+                } else {
+                  if ($finalStep$6) {
+                    throw $finalArg$4;
+                  } else {
+                  }
+                }
               }
             }
           }
-        } catch ($finalImplicit$1) {
-          $implicitThrow$1 = true;
-          $finalCatchArg$1 = $finalImplicit$1;
-        }
-        $(b);
-        if ($implicitThrow$1) {
-          throw $finalCatchArg$1;
-        } else {
-          if ($finalStep$2) {
-            break;
-          } else {
-            if ($finalStep$4) {
-              return $finalArg$2;
-            } else {
-              if ($finalStep$6) {
-                throw $finalArg$4;
-              } else {
-              }
-            }
-          }
+          return undefined;
         }
       }
-      return undefined;
-    } else {
-      return undefined;
     }
   }
 };
@@ -334,28 +327,27 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  let b = true;
+  let b = false;
   let c = false;
   let d = false;
   let e = false;
-  let f = false;
+  let f = undefined;
   let g = undefined;
   let h = undefined;
-  let i = undefined;
   try {
     $( a );
     if ($1) {
-      d = true;
+      c = true;
     }
     else {
       if ($2) {
-        e = true;
-        h = value;
+        d = true;
+        g = value;
       }
       else {
         if ($3) {
-          f = true;
-          i = x;
+          e = true;
+          h = x;
         }
         else {
           $4;
@@ -363,86 +355,83 @@ const a = function() {
       }
     }
   }
-catch (j) {
-    c = true;
-    g = j;
+catch (i) {
+    b = true;
+    f = i;
   }
   $( b );
-  if (c) {
-    throw g;
+  if (b) {
+    throw f;
   }
   else {
-    if (d) {
-      b = false;
+    if (c) {
+      return undefined;
     }
     else {
-      if (e) {
-        return h;
+      if (d) {
+        return g;
       }
       else {
-        if (f) {
-          throw i;
-        }
-      }
-    }
-    if (b) {
-      while ($LOOP_UNROLL_10) {
-        let k = false;
-        let l = false;
-        let m = false;
-        let n = false;
-        let o = undefined;
-        let p = undefined;
-        let q = undefined;
-        try {
-          $( a );
-          if ($1) {
-            l = true;
-          }
-          else {
-            if ($2) {
-              m = true;
-              p = value;
-            }
-            else {
-              if ($3) {
-                n = true;
-                q = x;
-              }
-              else {
-                $4;
-              }
-            }
-          }
-        }
-catch (r) {
-          k = true;
-          o = r;
-        }
-        $( b );
-        if (k) {
-          throw o;
+        if (e) {
+          throw h;
         }
         else {
-          if (l) {
-            break;
-          }
-          else {
-            if (m) {
-              return p;
+          while ($LOOP_UNROLL_10) {
+            let j = false;
+            let k = false;
+            let l = false;
+            let m = false;
+            let n = undefined;
+            let o = undefined;
+            let p = undefined;
+            try {
+              $( a );
+              if ($1) {
+                k = true;
+              }
+              else {
+                if ($2) {
+                  l = true;
+                  o = value;
+                }
+                else {
+                  if ($3) {
+                    m = true;
+                    p = x;
+                  }
+                  else {
+                    $4;
+                  }
+                }
+              }
+            }
+catch (q) {
+              j = true;
+              n = q;
+            }
+            $( b );
+            if (j) {
+              throw n;
             }
             else {
-              if (n) {
-                throw q;
+              if (k) {
+                return undefined;
+              }
+              else {
+                if (l) {
+                  return o;
+                }
+                else {
+                  if (m) {
+                    throw p;
+                  }
+                }
               }
             }
           }
+          return undefined;
         }
       }
-      return undefined;
-    }
-    else {
-      return undefined;
     }
   }
 };

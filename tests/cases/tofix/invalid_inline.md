@@ -13,7 +13,7 @@
 
 `````js filename=intro
 let cTmp = $;
-let cTail = c;
+let cTail = $fail;
 while (true) {
   if ($) {
     cTail = $('keep');
@@ -30,7 +30,7 @@ $(cTmp);
 
 `````js filename=intro
 let cTmp = $;
-let cTail = c;
+let cTail = $fail;
 while (true) {
   if ($) {
     cTail = $(`keep`);
@@ -47,15 +47,12 @@ $(cTmp);
 
 `````js filename=intro
 let cTmp = $;
-let cTail = c;
-while (true) {
-  if ($) {
-    cTail = $(`keep`);
-    cTmp = $(cTmp);
-  } else {
-    cTmp = cTail;
-  }
-  break;
+let cTail = $fail;
+if ($) {
+  cTail = $(`keep`);
+  cTmp = $(cTmp);
+} else {
+  cTmp = cTail;
 }
 $(cTmp);
 `````
@@ -64,7 +61,7 @@ $(cTmp);
 
 `````js filename=intro
 let cTmp = $;
-let cTail = c;
+let cTail = $fail;
 if ($) {
   cTail = $(`keep`);
   cTmp = $($);
@@ -81,7 +78,7 @@ With rename=true
 
 `````js filename=intro
 let a = $;
-let b = c;
+let b = $fail;
 if ($) {
   b = $( "keep" );
   a = $( $ );
@@ -97,7 +94,7 @@ else {
 
 BAD@! Found 1 implicit global bindings:
 
-c
+$fail
 
 ## Result
 

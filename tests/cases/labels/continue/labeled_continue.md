@@ -56,7 +56,7 @@ $(x);
 let x = $(1);
 while (true) {
   $continue: {
-    while (true) {
+    unlabeledBreak: {
       $(x);
       x = $(2);
       if ($) {
@@ -64,7 +64,7 @@ while (true) {
       } else {
         x = $(3);
         $(x);
-        break;
+        break unlabeledBreak;
       }
     }
   }
@@ -76,19 +76,90 @@ $(x);
 
 `````js filename=intro
 let x = $(1);
-while (true) {
-  $continue: {
-    while (true) {
-      $(x);
-      x = $(2);
-      if ($) {
-        break $continue;
-      } else {
-        x = $(3);
-        $(x);
-        break;
-      }
-    }
+$(x);
+x = $(2);
+if ($) {
+} else {
+  x = $(3);
+  $(x);
+}
+$(x);
+x = $(2);
+if ($) {
+} else {
+  x = $(3);
+  $(x);
+}
+$(x);
+x = $(2);
+if ($) {
+} else {
+  x = $(3);
+  $(x);
+}
+$(x);
+x = $(2);
+if ($) {
+} else {
+  x = $(3);
+  $(x);
+}
+$(x);
+x = $(2);
+if ($) {
+} else {
+  x = $(3);
+  $(x);
+}
+$(x);
+x = $(2);
+if ($) {
+} else {
+  x = $(3);
+  $(x);
+}
+$(x);
+x = $(2);
+if ($) {
+} else {
+  x = $(3);
+  $(x);
+}
+$(x);
+x = $(2);
+if ($) {
+} else {
+  x = $(3);
+  $(x);
+}
+$(x);
+x = $(2);
+if ($) {
+} else {
+  x = $(3);
+  $(x);
+}
+$(x);
+x = $(2);
+if ($) {
+} else {
+  x = $(3);
+  $(x);
+}
+$(x);
+x = $(2);
+if ($) {
+} else {
+  x = $(3);
+  $(x);
+}
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(x);
+  x = $(2);
+  if ($) {
+  } else {
+    x = $(3);
+    $(x);
   }
 }
 $(x);
@@ -100,20 +171,114 @@ With rename=true
 
 `````js filename=intro
 let a = $( 1 );
-while (true) {
-  $continue:   {
-    while (true) {
-      $( a );
-      a = $( 2 );
-      if ($) {
-        break $continue;
-      }
-      else {
-        a = $( 3 );
-        $( a );
-        break;
-      }
-    }
+$( a );
+a = $( 2 );
+if ($) {
+
+}
+else {
+  a = $( 3 );
+  $( a );
+}
+$( a );
+a = $( 2 );
+if ($) {
+
+}
+else {
+  a = $( 3 );
+  $( a );
+}
+$( a );
+a = $( 2 );
+if ($) {
+
+}
+else {
+  a = $( 3 );
+  $( a );
+}
+$( a );
+a = $( 2 );
+if ($) {
+
+}
+else {
+  a = $( 3 );
+  $( a );
+}
+$( a );
+a = $( 2 );
+if ($) {
+
+}
+else {
+  a = $( 3 );
+  $( a );
+}
+$( a );
+a = $( 2 );
+if ($) {
+
+}
+else {
+  a = $( 3 );
+  $( a );
+}
+$( a );
+a = $( 2 );
+if ($) {
+
+}
+else {
+  a = $( 3 );
+  $( a );
+}
+$( a );
+a = $( 2 );
+if ($) {
+
+}
+else {
+  a = $( 3 );
+  $( a );
+}
+$( a );
+a = $( 2 );
+if ($) {
+
+}
+else {
+  a = $( 3 );
+  $( a );
+}
+$( a );
+a = $( 2 );
+if ($) {
+
+}
+else {
+  a = $( 3 );
+  $( a );
+}
+$( a );
+a = $( 2 );
+if ($) {
+
+}
+else {
+  a = $( 3 );
+  $( a );
+}
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( a );
+  a = $( 2 );
+  if ($) {
+
+  }
+  else {
+    a = $( 3 );
+    $( a );
   }
 }
 $( a );

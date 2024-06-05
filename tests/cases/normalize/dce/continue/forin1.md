@@ -47,9 +47,6 @@ while (true) {
     const tmpForInDeclRhs = { a: 1, b: 2 };
     let x = undefined;
     for (x in tmpForInDeclRhs) {
-      $continue: {
-        break $continue;
-      }
     }
     $(`keep`);
     tmpIfTest = $(true);

@@ -869,22 +869,19 @@ if ($implicitThrow) {
           considerMutated(x$23);
           let f$3 = function () {
             debugger;
-            stop: {
-              let $implicitThrow$21 = false;
-              let $finalStep$11 = false;
-              let $finalCatchArg$21 = undefined;
-              let $finalArg$1 = undefined;
-              $finally$21: {
-                try {
-                  $finalStep$11 = true;
-                  $finalArg$1 = x$25;
-                  break $finally$21;
-                } catch ($finalImplicit$21) {
-                  $implicitThrow$21 = true;
-                  $finalCatchArg$21 = $finalImplicit$21;
-                }
+            let $implicitThrow$21 = false;
+            let $finalStep$11 = false;
+            let $finalCatchArg$21 = undefined;
+            let $finalArg$1 = undefined;
+            $finally$21: {
+              try {
+                $finalStep$11 = true;
+                $finalArg$1 = x$25;
+                break $finally$21;
+              } catch ($finalImplicit$21) {
+                $implicitThrow$21 = true;
+                $finalCatchArg$21 = $finalImplicit$21;
               }
-              break stop;
             }
             x$25 = 1;
             return undefined;
@@ -894,22 +891,19 @@ if ($implicitThrow) {
           considerMutated(x$25);
           let f$5 = function () {
             debugger;
-            stop$1: {
-              let $implicitThrow$23 = false;
-              let $finalStep$13 = false;
-              let $finalCatchArg$23 = undefined;
-              let $finalArg$3 = undefined;
-              $finally$23: {
-                try {
-                  $finalStep$13 = true;
-                  $finalArg$3 = `one`;
-                  break $finally$23;
-                } catch ($finalImplicit$23) {
-                  $implicitThrow$23 = true;
-                  $finalCatchArg$23 = $finalImplicit$23;
-                }
+            let $implicitThrow$23 = false;
+            let $finalStep$13 = false;
+            let $finalCatchArg$23 = undefined;
+            let $finalArg$3 = undefined;
+            $finally$23: {
+              try {
+                $finalStep$13 = true;
+                $finalArg$3 = `one`;
+                break $finally$23;
+              } catch ($finalImplicit$23) {
+                $implicitThrow$23 = true;
+                $finalCatchArg$23 = $finalImplicit$23;
               }
-              break stop$1;
             }
             x$27 = 1;
             return undefined;
@@ -923,16 +917,14 @@ if ($implicitThrow) {
             let $finalStep$15 = false;
             let $finalCatchArg$25 = undefined;
             let $finalArg$5 = undefined;
-            $finally$25: {
-              try {
-                x$29 = 1;
-                $finalStep$15 = true;
-                $finalArg$5 = `one`;
-                break $finally$25;
-              } catch ($finalImplicit$25) {
-                $implicitThrow$25 = true;
-                $finalCatchArg$25 = $finalImplicit$25;
-              }
+            try {
+              x$29 = 1;
+              $finalStep$15 = true;
+              $finalArg$5 = `one`;
+              return undefined;
+            } catch ($finalImplicit$25) {
+              $implicitThrow$25 = true;
+              $finalCatchArg$25 = $finalImplicit$25;
             }
             return undefined;
           };
@@ -945,15 +937,13 @@ if ($implicitThrow) {
             let $finalStep$17 = false;
             let $finalCatchArg$27 = undefined;
             let $finalArg$7 = undefined;
-            $finally$27: {
-              try {
-                $finalStep$17 = true;
-                $finalArg$7 = `one`;
-                break $finally$27;
-              } catch ($finalImplicit$27) {
-                $implicitThrow$27 = true;
-                $finalCatchArg$27 = $finalImplicit$27;
-              }
+            try {
+              $finalStep$17 = true;
+              $finalArg$7 = `one`;
+              return undefined;
+            } catch ($finalImplicit$27) {
+              $implicitThrow$27 = true;
+              $finalCatchArg$27 = $finalImplicit$27;
             }
             return undefined;
           };

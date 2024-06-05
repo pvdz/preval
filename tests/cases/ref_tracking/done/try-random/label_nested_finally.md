@@ -43,44 +43,41 @@ let x___4__ = 1;
 try /*7*/ {
   $(x___11__);
   x___15__ = 2;
-  A___17__: /*18*/ {
-    let $implicitThrow___21__ = false;
-    let $finalCatchArg___25__ = undefined___26__;
-    try /*28*/ {
-      $(x___32__);
-      x___36__ = 3;
-    } catch ($finalImplicit___38__) /*39*/ {
-      $implicitThrow___43__ = true;
-      $finalCatchArg___47__ = $finalImplicit___46__;
-    }
-    break A___49__;
+  let $implicitThrow___18__ = false;
+  let $finalCatchArg___22__ = undefined___23__;
+  try /*25*/ {
+    $(x___29__);
+    x___33__ = 3;
+  } catch ($finalImplicit___35__) /*36*/ {
+    $implicitThrow___40__ = true;
+    $finalCatchArg___44__ = $finalImplicit___43__;
   }
-  x___53__ = 6;
-} catch (e$1___55__) /*56*/ {
-  $(x___60__);
-  x___64__ = 5;
+  x___48__ = 6;
+} catch (e$1___50__) /*51*/ {
+  $(x___55__);
+  x___59__ = 5;
 }
-$(x___68__);
+$(x___63__);
 `````
 
 Ref tracking result:
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 11,60       | none           | 15,64
+  - w @4       | ########## | 11,55       | none           | 15,59
   - r @11      | 4
-  - w @15      | ########## | 32,60       | 4              | 36,53,64
-  - r @32      | 15
-  - w @36      | ########## | 60          | 15             | 53,64
-  - w @53      | ########## | 60,68       | 15,36          | 64
-  - r @60      | 4,15,36,53
-  - w @64      | ########## | 68          | 4,15,36,53     | none
-  - r @68      | 53,64
+  - w @15      | ########## | 29,55       | 4              | 33,48,59
+  - r @29      | 15
+  - w @33      | ########## | 55          | 15             | 48,59
+  - w @48      | ########## | 55,63       | 15,33          | 59
+  - r @55      | 4,15,33,48
+  - w @59      | ########## | 63          | 4,15,33,48     | none
+  - r @63      | 48,59
 
 $implicitThrow:
-  - w @21          | ########## | not read    | none           | 43
-  - w @43          | ########## | not read    | 21             | none
+  - w @18          | ########## | not read    | none           | 40
+  - w @40          | ########## | not read    | 18             | none
 
 $finalCatchArg:
-  - w @25          | ########## | not read    | none           | 47
-  - w @47          | ########## | not read    | 25             | none
+  - w @22          | ########## | not read    | none           | 44
+  - w @44          | ########## | not read    | 22             | none

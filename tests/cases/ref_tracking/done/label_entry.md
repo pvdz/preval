@@ -34,13 +34,10 @@ $(x); // unreachable
 let x___4__ = 1;
 while (true) {
   /*8*/ x___12__ = 2;
-  A___14__: /*15*/ {
-    $(x___19__);
-    x___23__ = 3;
-    break A___25__;
-  }
+  $(x___16__);
+  x___20__ = 3;
 }
-$(x___29__);
+$(x___24__);
 `````
 
 Ref tracking result:
@@ -48,7 +45,7 @@ Ref tracking result:
                | reads      | read by     | overWrites     | overwritten by
 x:
   - w @4       | ########## | not read    | none           | 12
-  - w @12      | ########## | 19          | 4,23           | 23
-  - r @19      | 12
-  - w @23      | ########## | not read    | 12             | 12
-  - r @29      | none (unreachable?)
+  - w @12      | ########## | 16          | 4,20           | 20
+  - r @16      | 12
+  - w @20      | ########## | not read    | 12             | 12
+  - r @24      | none (unreachable?)

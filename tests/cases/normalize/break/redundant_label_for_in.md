@@ -47,21 +47,23 @@ exit: for (const key in $({ a: 1, b: 2 })) {
 
 `````js filename=intro
 let x = $(2);
-const tmpCallCallee = $;
-const tmpCalleeParam = { a: 1, b: 2 };
-const tmpForInDeclRhs = tmpCallCallee(tmpCalleeParam);
-let key = undefined;
-for (key in tmpForInDeclRhs) {
-  $(`key:`, key);
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    x = $(3);
-  } else {
-  }
-  if (x) {
-    break;
-  } else {
-    x = $(4);
+exit: {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = { a: 1, b: 2 };
+  const tmpForInDeclRhs = tmpCallCallee(tmpCalleeParam);
+  let key = undefined;
+  for (key in tmpForInDeclRhs) {
+    $(`key:`, key);
+    const tmpIfTest = $(1);
+    if (tmpIfTest) {
+      x = $(3);
+    } else {
+    }
+    if (x) {
+      break exit;
+    } else {
+      x = $(4);
+    }
   }
 }
 `````
@@ -70,20 +72,22 @@ for (key in tmpForInDeclRhs) {
 
 `````js filename=intro
 let x = $(2);
-const tmpCalleeParam = { a: 1, b: 2 };
-const tmpForInDeclRhs = $(tmpCalleeParam);
-let key = undefined;
-for (key in tmpForInDeclRhs) {
-  $(`key:`, key);
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    x = $(3);
-  } else {
-  }
-  if (x) {
-    break;
-  } else {
-    x = $(4);
+exit: {
+  const tmpCalleeParam = { a: 1, b: 2 };
+  const tmpForInDeclRhs = $(tmpCalleeParam);
+  let key = undefined;
+  for (key in tmpForInDeclRhs) {
+    $(`key:`, key);
+    const tmpIfTest = $(1);
+    if (tmpIfTest) {
+      x = $(3);
+    } else {
+    }
+    if (x) {
+      break exit;
+    } else {
+      x = $(4);
+    }
   }
 }
 `````
@@ -94,23 +98,25 @@ With rename=true
 
 `````js filename=intro
 let a = $( 2 );
-const b = {
+exit: {
+  const b = {
 a: 1,
 b: 2
-;
-const c = $( b );
-let d = undefined;
-for (d in c) {
-  $( "key:", d );
-  const e = $( 1 );
-  if (e) {
-    a = $( 3 );
-  }
-  if (a) {
-    break;
-  }
-  else {
-    a = $( 4 );
+  ;
+  const c = $( b );
+  let d = undefined;
+  for (d in c) {
+    $( "key:", d );
+    const e = $( 1 );
+    if (e) {
+      a = $( 3 );
+    }
+    if (a) {
+      break exit;
+    }
+    else {
+      a = $( 4 );
+    }
   }
 }
 `````

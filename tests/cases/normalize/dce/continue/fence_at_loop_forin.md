@@ -54,10 +54,7 @@ while (true) {
     const tmpForInDeclRhs = { a: 1, b: 2 };
     let x = undefined;
     for (x in tmpForInDeclRhs) {
-      $continue: {
-        $(`loop`, x);
-        break $continue;
-      }
+      $(`loop`, x);
     }
     $(`infiloop, do not eliminate`);
     tmpIfTest = $(true);

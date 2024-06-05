@@ -39,13 +39,7 @@ foo: while (true) {
 ## Normalized
 
 `````js filename=intro
-while (true) {
-  $continue: {
-    $(1);
-    break $continue;
-  }
-  break;
-}
+$(1);
 `````
 
 ## Output

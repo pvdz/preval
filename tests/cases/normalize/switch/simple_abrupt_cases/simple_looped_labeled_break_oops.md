@@ -108,13 +108,15 @@ let f = function () {
   const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$7) {
     $(`one`);
-    let tmpIfTest$9 = $(1);
-    while (true) {
-      if (tmpIfTest$9) {
-        $(2);
-        break;
-      } else {
-        break;
+    oops: {
+      let tmpIfTest$9 = $(1);
+      while (true) {
+        if (tmpIfTest$9) {
+          $(2);
+          break oops;
+        } else {
+          break;
+        }
       }
     }
   } else {
@@ -178,10 +180,16 @@ if (tmpIfTest) {
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$7) {
   $(`one`);
-  const tmpIfTest$9 = $(1);
-  if (tmpIfTest$9) {
-    $(2);
-  } else {
+  oops: {
+    const tmpIfTest$9 = $(1);
+    while (true) {
+      if (tmpIfTest$9) {
+        $(2);
+        break oops;
+      } else {
+        break;
+      }
+    }
   }
 } else {
 }
@@ -236,9 +244,17 @@ else {
 const g = b <= 0;
 if (g) {
   $( "one" );
-  const h = $( 1 );
-  if (h) {
-    $( 2 );
+  oops:   {
+    const h = $( 1 );
+    while (true) {
+      if (h) {
+        $( 2 );
+        break oops;
+      }
+      else {
+        break;
+      }
+    }
   }
 }
 const i = b <= 1;

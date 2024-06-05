@@ -33,12 +33,9 @@ while (true) {
 ## Normalized
 
 `````js filename=intro
-while (true) {
-  let a = undefined;
-  a = $(1);
-  $(a);
-  break;
-}
+let a = undefined;
+a = $(1);
+$(a);
 `````
 
 ## Output

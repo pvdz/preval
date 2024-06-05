@@ -27,9 +27,7 @@ foo: {
 ## Normalized
 
 `````js filename=intro
-foo: {
-  break foo;
-}
+
 `````
 
 ## Output

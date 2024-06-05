@@ -28,27 +28,24 @@ $(x); // 5 or 6
 
 `````filename=intro
 let x___4__ = 5;
-while (true) {
-  /*8*/ const tmpIfTest___11__ = $(false);
-  if (tmpIfTest___16__) {
-    /*17*/ x___21__ = 6;
-  } /*22*/ else {
-  }
-  $(x___26__);
-  break;
+const tmpIfTest___8__ = $(false);
+if (tmpIfTest___13__) {
+  /*14*/ x___18__ = 6;
+} /*19*/ else {
 }
-$(x___31__);
+$(x___23__);
+$(x___27__);
 `````
 
 Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 26,31       | none           | 21
-  - w @21      | ########## | 26,31       | 4              | none
-  - r @26      | 4,21
-  - r @31      | 4,21
+  - w @4       | ########## | 23,27       | none           | 18
+  - w @18      | ########## | 23,27       | 4              | none
+  - r @23      | 4,18
+  - r @27      | 4,18
 
 tmpIfTest:
-  - w @11      | ########## | 16          | none           | none
-  - r @16      | 11
+  - w @8       | ########## | 13          | none           | none
+  - r @13      | 8

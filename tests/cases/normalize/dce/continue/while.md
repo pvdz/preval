@@ -47,9 +47,6 @@ while (true) {
     let tmpIfTest$1 = $(true);
     while (true) {
       if (tmpIfTest$1) {
-        $continue: {
-          break $continue;
-        }
         tmpIfTest$1 = $(true);
       } else {
         break;

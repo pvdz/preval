@@ -72,17 +72,15 @@ let f = function () {
   let $finalStep = false;
   let $finalCatchArg = undefined;
   let $finalArg = undefined;
-  $finally: {
-    try {
-      fail_early;
-      x = 1;
-      $finalStep = true;
-      $finalArg = `one`;
-      break $finally;
-    } catch ($finalImplicit) {
-      $implicitThrow = true;
-      $finalCatchArg = $finalImplicit;
-    }
+  try {
+    fail_early;
+    x = 1;
+    $finalStep = true;
+    $finalArg = `one`;
+    return undefined;
+  } catch ($finalImplicit) {
+    $implicitThrow = true;
+    $finalCatchArg = $finalImplicit;
   }
   return undefined;
 };
@@ -94,11 +92,17 @@ considerMutated(x);
 ## Output
 
 `````js filename=intro
+const f = function () {
+  debugger;
+  try {
+    fail_early;
+    x = 1;
+    return undefined;
+  } catch ($finalImplicit) {}
+  return undefined;
+};
 let x = 0;
-try {
-  fail_early;
-  x = 1;
-} catch ($finalImplicit) {}
+f();
 considerMutated(x);
 `````
 
@@ -107,15 +111,21 @@ considerMutated(x);
 With rename=true
 
 `````js filename=intro
-let a = 0;
-try {
-  fail_early;
-  a = 1;
-}
-catch (b) {
+const a = function() {
+  debugger;
+  try {
+    fail_early;
+    b = 1;
+    return undefined;
+  }
+catch (c) {
 
-}
-considerMutated( a );
+  }
+  return undefined;
+};
+let b = 0;
+a();
+considerMutated( b );
 `````
 
 ## Globals

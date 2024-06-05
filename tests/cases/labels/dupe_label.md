@@ -27,15 +27,7 @@ foo$3: break foo$3;
 ## Normalized
 
 `````js filename=intro
-foo: {
-  break foo;
-}
-foo$1: {
-  break foo$1;
-}
-foo$3: {
-  break foo$3;
-}
+
 `````
 
 ## Output

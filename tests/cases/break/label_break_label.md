@@ -1,25 +1,24 @@
 # Preval test case
 
-# cancel_return_pass.md
+# label_break_label.md
 
-> Tofix > Cancel return pass
+> Break > Label break label
 >
 > Just random things
-
-#TODO
+> The hack: { break hack } thing should also be removed
 
 ## Input
 
 `````js filename=intro
 function f() {
-  hack: try {
+  try {
     return 1;
   } finally {
-    break hack; // Spoilers: does cancel the return
+    hack: break hack; // Spoilers: does not cancel the return
   }
   return 2;
 }
-$(f()); // 2
+$(f()); // 1
 `````
 
 ## Pre Normal
@@ -27,7 +26,7 @@ $(f()); // 2
 `````js filename=intro
 let f = function () {
   debugger;
-  hack: {
+  {
     let $implicitThrow = false;
     let $finalStep = false;
     let $finalCatchArg = undefined;
@@ -45,7 +44,7 @@ let f = function () {
       }
     }
     {
-      break hack;
+      hack: break hack;
     }
     if ($implicitThrow) throw $finalCatchArg;
     else return $finalArg;
@@ -60,24 +59,25 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  hack: {
-    let $implicitThrow = false;
-    let $finalStep = false;
-    let $finalCatchArg = undefined;
-    let $finalArg = undefined;
-    $finally: {
-      try {
-        $finalStep = true;
-        $finalArg = 1;
-        break $finally;
-      } catch ($finalImplicit) {
-        $implicitThrow = true;
-        $finalCatchArg = $finalImplicit;
-      }
+  let $implicitThrow = false;
+  let $finalStep = false;
+  let $finalCatchArg = undefined;
+  let $finalArg = undefined;
+  $finally: {
+    try {
+      $finalStep = true;
+      $finalArg = 1;
+      break $finally;
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
     }
-    break hack;
   }
-  return 2;
+  if ($implicitThrow) {
+    throw $finalCatchArg;
+  } else {
+    return $finalArg;
+  }
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -87,7 +87,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$(2);
+$(1);
 `````
 
 ## PST Output
@@ -95,7 +95,7 @@ $(2);
 With rename=true
 
 `````js filename=intro
-$( 2 );
+$( 1 );
 `````
 
 ## Globals
@@ -105,7 +105,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 2
+ - 1: 1
  - eval returned: undefined
 
 Pre normalization calls: Same

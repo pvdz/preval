@@ -58,18 +58,15 @@ $(3);
 ## Normalized
 
 `````js filename=intro
-while (true) {
-  let $implicitThrow = false;
-  let $finalCatchArg = undefined;
-  try {
-    $(1);
-  } catch ($finalImplicit) {
-    $implicitThrow = true;
-    $finalCatchArg = $finalImplicit;
-  }
-  $(2);
-  break;
+let $implicitThrow = false;
+let $finalCatchArg = undefined;
+try {
+  $(1);
+} catch ($finalImplicit) {
+  $implicitThrow = true;
+  $finalCatchArg = $finalImplicit;
 }
+$(2);
 $(3);
 `````
 

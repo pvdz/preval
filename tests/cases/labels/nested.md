@@ -23,9 +23,7 @@ a: b: c: break a;
 ## Normalized
 
 `````js filename=intro
-a: {
-  break a;
-}
+
 `````
 
 ## Output

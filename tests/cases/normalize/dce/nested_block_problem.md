@@ -41,9 +41,7 @@ x: {
 ## Normalized
 
 `````js filename=intro
-x: {
-  break x;
-}
+
 `````
 
 ## Output

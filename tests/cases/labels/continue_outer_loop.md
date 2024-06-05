@@ -40,27 +40,39 @@ foo: while (true) {
 
 `````js filename=intro
 while (true) {
-  $continue: {
-    $(1);
-    while (true) {
-      $(2);
-      break $continue;
-    }
-  }
+  $(1);
+  $(2);
 }
 `````
 
 ## Output
 
 `````js filename=intro
-while (true) {
-  $continue: {
-    $(1);
-    while (true) {
-      $(2);
-      break $continue;
-    }
-  }
+$(1);
+$(2);
+$(1);
+$(2);
+$(1);
+$(2);
+$(1);
+$(2);
+$(1);
+$(2);
+$(1);
+$(2);
+$(1);
+$(2);
+$(1);
+$(2);
+$(1);
+$(2);
+$(1);
+$(2);
+$(1);
+$(2);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(1);
+  $(2);
 }
 `````
 
@@ -69,14 +81,31 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-while (true) {
-  $continue:   {
-    $( 1 );
-    while (true) {
-      $( 2 );
-      break $continue;
-    }
-  }
+$( 1 );
+$( 2 );
+$( 1 );
+$( 2 );
+$( 1 );
+$( 2 );
+$( 1 );
+$( 2 );
+$( 1 );
+$( 2 );
+$( 1 );
+$( 2 );
+$( 1 );
+$( 2 );
+$( 1 );
+$( 2 );
+$( 1 );
+$( 2 );
+$( 1 );
+$( 2 );
+$( 1 );
+$( 2 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 1 );
+  $( 2 );
 }
 `````
 

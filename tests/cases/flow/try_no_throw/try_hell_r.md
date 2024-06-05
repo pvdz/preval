@@ -69,15 +69,13 @@ let f = function () {
   let $finalStep = false;
   let $finalCatchArg = undefined;
   let $finalArg = undefined;
-  $finally: {
-    try {
-      $finalStep = true;
-      $finalArg = `one`;
-      break $finally;
-    } catch ($finalImplicit) {
-      $implicitThrow = true;
-      $finalCatchArg = $finalImplicit;
-    }
+  try {
+    $finalStep = true;
+    $finalArg = `one`;
+    return undefined;
+  } catch ($finalImplicit) {
+    $implicitThrow = true;
+    $finalCatchArg = $finalImplicit;
   }
   return undefined;
 };

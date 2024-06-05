@@ -53,13 +53,13 @@ $(f());
 let f = function () {
   debugger;
   while (true) {
-    let tmpIfTest = $(false);
-    while (true) {
+    unlabeledBreak: {
+      const tmpIfTest = $(false);
       if (tmpIfTest) {
         $(`fail too`);
         throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
       } else {
-        break;
+        break unlabeledBreak;
       }
     }
     let x = $(`fail`);

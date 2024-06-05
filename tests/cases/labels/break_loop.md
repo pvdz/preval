@@ -31,10 +31,7 @@ $(2);
 ## Normalized
 
 `````js filename=intro
-while (true) {
-  $(1);
-  break;
-}
+$(1);
 $(2);
 `````
 

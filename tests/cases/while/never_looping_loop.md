@@ -13,43 +13,42 @@
   if ($) {
     let A = `jhayon.vercel.app`;
     let B = `jhayon.vercel.app`;
-    let tmpClusterSSA__0x2c65c8$1 = 1;
-    const tmpClusterSSA__0x15f773 = $('x');
-    while ($LOOP_UNROLL_500) {
-      const tmpIfTest$8 = tmpClusterSSA__0x2c65c8$1 < 1;
-        A = tmpClusterSSA__0x15f773.length;
-        const tmpBinBothLhs$30 = A[0];
-        const tmpIfTest$10 = tmpBinBothLhs$30 === `.`;
-        if (tmpIfTest$10) {
-          B = A.slice(1);
-        } else {
-          B = A;
-        }
-        const tmpBinBothLhs$32 = tmpClusterSSA__0x26b289.length;
-        const tmpBinBothRhs$32 = B.length;
-        tmpClusterSSA__0x30c47e = tmpBinBothLhs$32 - tmpBinBothRhs$32;
-        tmpClusterSSA__0x2a669d = tmpClusterSSA__0x26b289.indexOf(B, tmpClusterSSA__0x30c47e);
-        tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d !== (-1);
-        if (tmpClusterSSA__0x5dc746) {
-          tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
-          if (tmpClusterSSA__0x5dc746) {
-            const tmpBinBothLhs$34 = tmpClusterSSA__0x26b289.length;
-            const tmpBinBothRhs$34 = A.length;
-            let tmpIfTest$12 = tmpBinBothLhs$34 === tmpBinBothRhs$34;
-            if (tmpIfTest$12) {
+    let y = 1;
+    const x = $('x');
+    while (true) {
+      A = x.length;
+      const tmpBinBothLhs$30 = A[0];
+      const tmpIfTest$10 = tmpBinBothLhs$30 === `.`;
+      if (tmpIfTest$10) {
+        B = A.slice(1);
+      } else {
+        B = A;
+      }
+      const len = $.length;
+      const len2 = B.length;
+      let diff = len - len2;
+      let pos = $.indexOf(B, diff);
+      let isnot = pos !== (-1);
+      if (isnot) {
+        isnot = pos === diff;
+        if (isnot) {
+          const len3 = $.length;
+          const lena2 = A.length;
+          let isa2 = len3 === lena2;
+          if (isa2) {
 
-            } else {
-              const tmpBinLhs$23 = A.indexOf(`.`);
-              tmpIfTest$12 = tmpBinLhs$23 === 0;
-            }
           } else {
-
+            const pos4 = A.indexOf(`.`);
+            isa2 = pos4 === 0;
           }
         } else {
 
         }
-        tmpClusterSSA__0x2c65c8$1 = tmpClusterSSA__0x2c65c8$1 + 1;
-        break;
+      } else {
+
+      }
+      y = y + 1;
+      break;
     }
   } else {
   }
@@ -63,11 +62,10 @@
   if ($) {
     let A = `jhayon.vercel.app`;
     let B = `jhayon.vercel.app`;
-    let tmpClusterSSA__0x2c65c8$1 = 1;
-    const tmpClusterSSA__0x15f773 = $(`x`);
-    while ($LOOP_UNROLL_500) {
-      const tmpIfTest$8 = tmpClusterSSA__0x2c65c8$1 < 1;
-      A = tmpClusterSSA__0x15f773.length;
+    let y = 1;
+    const x = $(`x`);
+    while (true) {
+      A = x.length;
       const tmpBinBothLhs$30 = A[0];
       const tmpIfTest$10 = tmpBinBothLhs$30 === `.`;
       if (tmpIfTest$10) {
@@ -75,27 +73,27 @@
       } else {
         B = A;
       }
-      const tmpBinBothLhs$32 = tmpClusterSSA__0x26b289.length;
-      const tmpBinBothRhs$32 = B.length;
-      tmpClusterSSA__0x30c47e = tmpBinBothLhs$32 - tmpBinBothRhs$32;
-      tmpClusterSSA__0x2a669d = tmpClusterSSA__0x26b289.indexOf(B, tmpClusterSSA__0x30c47e);
-      tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d !== -1;
-      if (tmpClusterSSA__0x5dc746) {
-        tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
-        if (tmpClusterSSA__0x5dc746) {
-          const tmpBinBothLhs$34 = tmpClusterSSA__0x26b289.length;
-          const tmpBinBothRhs$34 = A.length;
-          let tmpIfTest$12 = tmpBinBothLhs$34 === tmpBinBothRhs$34;
-          if (tmpIfTest$12) {
+      const len = $.length;
+      const len2 = B.length;
+      let diff = len - len2;
+      let pos = $.indexOf(B, diff);
+      let isnot = pos !== -1;
+      if (isnot) {
+        isnot = pos === diff;
+        if (isnot) {
+          const len3 = $.length;
+          const lena2 = A.length;
+          let isa2 = len3 === lena2;
+          if (isa2) {
           } else {
-            const tmpBinLhs$23 = A.indexOf(`.`);
-            tmpIfTest$12 = tmpBinLhs$23 === 0;
+            const pos4 = A.indexOf(`.`);
+            isa2 = pos4 === 0;
           }
         } else {
         }
       } else {
       }
-      tmpClusterSSA__0x2c65c8$1 = tmpClusterSSA__0x2c65c8$1 + 1;
+      y = y + 1;
       break;
     }
   } else {
@@ -109,41 +107,37 @@
 if ($) {
   let A = `jhayon.vercel.app`;
   let B = `jhayon.vercel.app`;
-  let tmpClusterSSA__0x2c65c8$1 = 1;
-  const tmpClusterSSA__0x15f773 = $(`x`);
-  while ($LOOP_UNROLL_500) {
-    const tmpIfTest$8 = tmpClusterSSA__0x2c65c8$1 < 1;
-    A = tmpClusterSSA__0x15f773.length;
-    const tmpBinBothLhs$30 = A[0];
-    const tmpIfTest$10 = tmpBinBothLhs$30 === `.`;
-    if (tmpIfTest$10) {
-      B = A.slice(1);
-    } else {
-      B = A;
-    }
-    const tmpBinBothLhs$32 = tmpClusterSSA__0x26b289.length;
-    const tmpBinBothRhs$32 = B.length;
-    tmpClusterSSA__0x30c47e = tmpBinBothLhs$32 - tmpBinBothRhs$32;
-    tmpClusterSSA__0x2a669d = tmpClusterSSA__0x26b289.indexOf(B, tmpClusterSSA__0x30c47e);
-    tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d !== -1;
-    if (tmpClusterSSA__0x5dc746) {
-      tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
-      if (tmpClusterSSA__0x5dc746) {
-        const tmpBinBothLhs$34 = tmpClusterSSA__0x26b289.length;
-        const tmpBinBothRhs$34 = A.length;
-        let tmpIfTest$12 = tmpBinBothLhs$34 === tmpBinBothRhs$34;
-        if (tmpIfTest$12) {
-        } else {
-          const tmpBinLhs$23 = A.indexOf(`.`);
-          tmpIfTest$12 = tmpBinLhs$23 === 0;
-        }
+  let y = 1;
+  const x = $(`x`);
+  A = x.length;
+  const tmpBinBothLhs$30 = A[0];
+  const tmpIfTest$10 = tmpBinBothLhs$30 === `.`;
+  if (tmpIfTest$10) {
+    B = A.slice(1);
+  } else {
+    B = A;
+  }
+  const len = $.length;
+  const len2 = B.length;
+  let diff = len - len2;
+  let pos = $.indexOf(B, diff);
+  let isnot = pos !== -1;
+  if (isnot) {
+    isnot = pos === diff;
+    if (isnot) {
+      const len3 = $.length;
+      const lena2 = A.length;
+      let isa2 = len3 === lena2;
+      if (isa2) {
       } else {
+        const pos4 = A.indexOf(`.`);
+        isa2 = pos4 === 0;
       }
     } else {
     }
-    tmpClusterSSA__0x2c65c8$1 = tmpClusterSSA__0x2c65c8$1 + 1;
-    break;
+  } else {
   }
+  y = y + 1;
 } else {
 }
 `````
@@ -152,41 +146,35 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  let A = `jhayon.vercel.app`;
   let B = `jhayon.vercel.app`;
-  let tmpClusterSSA__0x2c65c8$1 = 1;
-  const tmpClusterSSA__0x15f773 = $(`x`);
-  while ($LOOP_UNROLL_500) {
-    A = tmpClusterSSA__0x15f773.length;
-    const tmpBinBothLhs$30 = A[0];
-    const tmpIfTest$10 = tmpBinBothLhs$30 === `.`;
-    if (tmpIfTest$10) {
-      B = A.slice(1);
-    } else {
-      B = A;
-    }
-    const tmpBinBothLhs$32 = tmpClusterSSA__0x26b289.length;
-    const tmpBinBothRhs$32 = B.length;
-    tmpClusterSSA__0x30c47e = tmpBinBothLhs$32 - tmpBinBothRhs$32;
-    tmpClusterSSA__0x2a669d = tmpClusterSSA__0x26b289.indexOf(B, tmpClusterSSA__0x30c47e);
-    tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d !== -1;
-    if (tmpClusterSSA__0x5dc746) {
-      tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
-      if (tmpClusterSSA__0x5dc746) {
-        const tmpBinBothLhs$34 = tmpClusterSSA__0x26b289.length;
-        const tmpBinBothRhs$34 = A.length;
-        let tmpIfTest$12 = tmpBinBothLhs$34 === tmpBinBothRhs$34;
-        if (tmpIfTest$12) {
-        } else {
-          const tmpBinLhs$23 = A.indexOf(`.`);
-          tmpIfTest$12 = tmpBinLhs$23 === 0;
-        }
+  const x = $(`x`);
+  const A = x.length;
+  const tmpBinBothLhs$30 = A[0];
+  const tmpIfTest$10 = tmpBinBothLhs$30 === `.`;
+  if (tmpIfTest$10) {
+    B = A.slice(1);
+  } else {
+    B = A;
+  }
+  const len = $.length;
+  const len2 = B.length;
+  const diff = len - len2;
+  const pos = $.indexOf(B, diff);
+  let isnot = pos !== -1;
+  if (isnot) {
+    isnot = pos === diff;
+    if (isnot) {
+      const len3 = $.length;
+      const lena2 = A.length;
+      let isa2 = len3 === lena2;
+      if (isa2) {
       } else {
+        const pos4 = A.indexOf(`.`);
+        isa2 = pos4 === 0;
       }
     } else {
     }
-    tmpClusterSSA__0x2c65c8$1 = tmpClusterSSA__0x2c65c8$1 + 1;
-    break;
+  } else {
   }
 } else {
 }
@@ -199,56 +187,48 @@ With rename=true
 `````js filename=intro
 if ($) {
   let a = "jhayon.vercel.app";
-  let b = "jhayon.vercel.app";
-  let c = 1;
-  const d = $( "x" );
-  while ($LOOP_UNROLL_500) {
-    a = d.length;
-    const e = a[ 0 ];
-    const f = e === ".";
-    if (f) {
-      b = a.slice( 1 );
-    }
-    else {
-      b = a;
-    }
-    const g = tmpClusterSSA__0x26b289.length;
-    const h = b.length;
-    tmpClusterSSA__0x30c47e = g - h;
-    tmpClusterSSA__0x2a669d = tmpClusterSSA__0x26b289.indexOf( b, tmpClusterSSA__0x30c47e );
-    tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d !== -1;
-    if (tmpClusterSSA__0x5dc746) {
-      tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
-      if (tmpClusterSSA__0x5dc746) {
-        const i = tmpClusterSSA__0x26b289.length;
-        const j = a.length;
-        let k = i === j;
-        if (k) {
+  const b = $( "x" );
+  const c = b.length;
+  const d = c[ 0 ];
+  const e = d === ".";
+  if (e) {
+    a = c.slice( 1 );
+  }
+  else {
+    a = c;
+  }
+  const f = $.length;
+  const g = a.length;
+  const h = f - g;
+  const i = $.indexOf( a, h );
+  let j = i !== -1;
+  if (j) {
+    j = i === h;
+    if (j) {
+      const k = $.length;
+      const l = c.length;
+      let m = k === l;
+      if (m) {
 
-        }
-        else {
-          const l = a.indexOf( "." );
-          k = l === 0;
-        }
+      }
+      else {
+        const n = c.indexOf( "." );
+        m = n === 0;
       }
     }
-    c = c + 1;
-    break;
   }
 }
 `````
 
 ## Globals
 
-BAD@! Found 4 implicit global bindings:
-
-tmpClusterSSA__0x26b289, tmpClusterSSA__0x30c47e, tmpClusterSSA__0x2a669d, tmpClusterSSA__0x5dc746
+None
 
 ## Result
 
 Should call `$` with:
  - 1: 'x'
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Pre normalization calls: Same
 

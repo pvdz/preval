@@ -32,40 +32,34 @@ $(x); // x=5, always
 
 `````filename=intro
 let x___4__ = 1;
-while (true) {
-  /*8*/ const tmpIfTest___11__ = $();
-  if (tmpIfTest___15__) {
-    /*16*/ x___20__ = 2;
-  } /*21*/ else {
-  }
-  while (true) {
-    /*24*/ const tmpIfTest$1___27__ = $();
-    if (tmpIfTest$1___31__) {
-      /*32*/ x___36__ = 3;
-    } /*37*/ else {
-    }
-    break;
-  }
-  x___42__ = 5;
-  break;
+const tmpIfTest___8__ = $();
+if (tmpIfTest___12__) {
+  /*13*/ x___17__ = 2;
+} /*18*/ else {
 }
-$(x___47__);
+const tmpIfTest$1___21__ = $();
+if (tmpIfTest$1___25__) {
+  /*26*/ x___30__ = 3;
+} /*31*/ else {
+}
+x___35__ = 5;
+$(x___39__);
 `````
 
 Ref tracking result:
 
                 | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | not read    | none           | 20,36,42
-  - w @20      | ########## | not read    | 4              | 36,42
-  - w @36      | ########## | not read    | 4,20           | 42
-  - w @42      | ########## | 47          | 4,20,36        | none
-  - r @47      | 42
+  - w @4       | ########## | not read    | none           | 17,30,35
+  - w @17      | ########## | not read    | 4              | 30,35
+  - w @30      | ########## | not read    | 4,17           | 35
+  - w @35      | ########## | 39          | 4,17,30        | none
+  - r @39      | 35
 
 tmpIfTest:
-  - w @11      | ########## | 15          | none           | none
-  - r @15      | 11
+  - w @8       | ########## | 12          | none           | none
+  - r @12      | 8
 
 tmpIfTest$1:
-  - w @27       | ########## | 31          | none           | none
-  - r @31       | 27
+  - w @21       | ########## | 25          | none           | none
+  - r @25       | 21

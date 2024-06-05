@@ -71,16 +71,14 @@ let f = function () {
   let $finalStep = false;
   let $finalCatchArg = undefined;
   let $finalArg = undefined;
-  $finally: {
-    try {
-      fail_early;
-      $finalStep = true;
-      $finalArg = `one`;
-      break $finally;
-    } catch ($finalImplicit) {
-      $implicitThrow = true;
-      $finalCatchArg = $finalImplicit;
-    }
+  try {
+    fail_early;
+    $finalStep = true;
+    $finalArg = `one`;
+    return undefined;
+  } catch ($finalImplicit) {
+    $implicitThrow = true;
+    $finalCatchArg = $finalImplicit;
   }
   return undefined;
 };
@@ -92,9 +90,15 @@ considerMutated(x);
 ## Output
 
 `````js filename=intro
-try {
-  fail_early;
-} catch ($finalImplicit) {}
+const f = function () {
+  debugger;
+  try {
+    fail_early;
+    return undefined;
+  } catch ($finalImplicit) {}
+  return undefined;
+};
+f();
 considerMutated(0);
 `````
 
@@ -103,12 +107,18 @@ considerMutated(0);
 With rename=true
 
 `````js filename=intro
-try {
-  fail_early;
-}
-catch (a) {
+const a = function() {
+  debugger;
+  try {
+    fail_early;
+    return undefined;
+  }
+catch (b) {
 
-}
+  }
+  return undefined;
+};
+a();
 considerMutated( 0 );
 `````
 

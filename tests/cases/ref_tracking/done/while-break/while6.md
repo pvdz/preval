@@ -27,17 +27,14 @@ $(x);
 
 `````filename=intro
 let x___4__ = 1;
-while (true) {
-  /*8*/ $(x___12__);
-  break;
-}
-$(x___17__);
+$(x___9__);
+$(x___13__);
 `````
 
 Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 12,17       | none           | none
-  - r @12      | 4
-  - r @17      | 4
+  - w @4       | ########## | 9,13        | none           | none
+  - r @9       | 4
+  - r @13      | 4

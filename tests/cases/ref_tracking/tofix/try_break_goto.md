@@ -42,54 +42,45 @@
 `````filename=intro
 let x___4__ = 1;
 $(x___9__);
-A___11__: /*12*/ {
-  while (true) {
-    /*15*/ let $implicitThrow___18__ = false;
-    let $finalStep___22__ = false;
-    let $finalCatchArg___26__ = undefined___27__;
-    $finally___29__: /*30*/ {
-      try /*32*/ {
-        $(x___36__);
-        x___40__ = 2;
-        $finalStep___44__ = true;
-        break $finally___46__;
-      } catch ($finalImplicit___48__) /*49*/ {
-        $implicitThrow___53__ = true;
-        $finalCatchArg___57__ = $finalImplicit___56__;
-      }
-    }
-    $(x___61__);
-    x___65__ = 3;
-    break A___67__;
+let $implicitThrow___12__ = false;
+let $finalStep___16__ = false;
+let $finalCatchArg___20__ = undefined___21__;
+$finally___23__: /*24*/ {
+  try /*26*/ {
+    $(x___30__);
+    x___34__ = 2;
+    $finalStep___38__ = true;
+    break $finally___40__;
+  } catch ($finalImplicit___42__) /*43*/ {
+    $implicitThrow___47__ = true;
+    $finalCatchArg___51__ = $finalImplicit___50__;
   }
-  $(x___71__);
-  x___75__ = 4;
 }
-$(x___79__);
+$(x___55__);
+x___59__ = 3;
+$(x___63__);
 `````
 
 Ref tracking result:
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 9,36,61     | none           | 40,65
+  - w @4       | ########## | 9,30,55     | none           | 34,59
   - r @9       | 4
-  - r @36      | 4
-  - w @40      | ########## | 61          | 4              | 65
-  - r @61      | 4,40
-  - w @65      | ########## | 79          | 4,40           | none
-  - r @71      | none (unreachable?)
-  - w @75      | ########## | 79          | none           | none
-  - r @79      | 65,75
+  - r @30      | 4
+  - w @34      | ########## | 55          | 4              | 59
+  - r @55      | 4,34
+  - w @59      | ########## | 63          | 4,34           | none
+  - r @63      | 59
 
 $implicitThrow:
-  - w @18          | ########## | not read    | none           | 53
-  - w @53          | ########## | not read    | 18             | none
+  - w @12          | ########## | not read    | none           | 47
+  - w @47          | ########## | not read    | 12             | none
 
 $finalStep:
-  - w @22          | ########## | not read    | none           | 44
-  - w @44          | ########## | not read    | 22             | none
+  - w @16          | ########## | not read    | none           | 38
+  - w @38          | ########## | not read    | 16             | none
 
 $finalCatchArg:
-  - w @26          | ########## | not read    | none           | 57
-  - w @57          | ########## | not read    | 26             | none
+  - w @20          | ########## | not read    | none           | 51
+  - w @51          | ########## | not read    | 20             | none

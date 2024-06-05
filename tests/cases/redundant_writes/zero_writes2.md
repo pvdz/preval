@@ -62,10 +62,7 @@ while (true) {
     let x$1 = undefined;
     const obj = { a: 1, b: 2 };
     for (x$1 in obj) {
-      $continue: {
-        $(x$1, y);
-        break $continue;
-      }
+      $(x$1, y);
     }
     $(x$1, y, `after`);
     y = $(true);

@@ -59,18 +59,15 @@ $(3);
 const tmpForOfDeclRhs = [`a`, `b`, `c`];
 let x = undefined;
 for (x of tmpForOfDeclRhs) {
-  $continue: {
-    let $implicitThrow = false;
-    let $finalCatchArg = undefined;
-    try {
-      $(x, 1);
-    } catch ($finalImplicit) {
-      $implicitThrow = true;
-      $finalCatchArg = $finalImplicit;
-    }
-    $(2);
-    break $continue;
+  let $implicitThrow = false;
+  let $finalCatchArg = undefined;
+  try {
+    $(x, 1);
+  } catch ($finalImplicit) {
+    $implicitThrow = true;
+    $finalCatchArg = $finalImplicit;
   }
+  $(2);
 }
 $(3);
 `````

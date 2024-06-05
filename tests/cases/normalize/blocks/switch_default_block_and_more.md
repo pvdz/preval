@@ -37,11 +37,8 @@ tmpSwitchBreak: {
 ## Normalized
 
 `````js filename=intro
-tmpSwitchBreak: {
-  const tmpSwitchDisc = $(1);
-  $(3);
-  break tmpSwitchBreak;
-}
+const tmpSwitchDisc = $(1);
+$(3);
 `````
 
 ## Output

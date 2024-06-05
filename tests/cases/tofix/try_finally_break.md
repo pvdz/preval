@@ -52,31 +52,25 @@ $(3);
 ## Normalized
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let $implicitThrow = false;
-  let $finalCatchArg = undefined;
-  try {
-    $(1);
-  } catch ($finalImplicit) {
-    $implicitThrow = true;
-    $finalCatchArg = $finalImplicit;
-  }
-  $(2);
-  break;
+let $implicitThrow = false;
+let $finalCatchArg = undefined;
+try {
+  $(1);
+} catch ($finalImplicit) {
+  $implicitThrow = true;
+  $finalCatchArg = $finalImplicit;
 }
+$(2);
 $(3);
 `````
 
 ## Output
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  try {
-    $(1);
-  } catch ($finalImplicit) {}
-  $(2);
-  break;
-}
+try {
+  $(1);
+} catch ($finalImplicit) {}
+$(2);
 $(3);
 `````
 
@@ -85,16 +79,13 @@ $(3);
 With rename=true
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  try {
-    $( 1 );
-  }
+try {
+  $( 1 );
+}
 catch (a) {
 
-  }
-  $( 2 );
-  break;
 }
+$( 2 );
 $( 3 );
 `````
 

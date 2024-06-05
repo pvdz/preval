@@ -32,12 +32,9 @@ while (true) {
 
 `````js filename=intro
 let a = undefined;
-while (true) {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(2);
-  a = tmpCallCallee(tmpCalleeParam);
-  break;
-}
+const tmpCallCallee = $;
+const tmpCalleeParam = $(2);
+a = tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output

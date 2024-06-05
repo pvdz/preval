@@ -36,10 +36,7 @@ woop: while (true) {
 
 `````js filename=intro
 while (true) {
-  $continue: {
-    $(1);
-    break $continue;
-  }
+  $(1);
 }
 `````
 

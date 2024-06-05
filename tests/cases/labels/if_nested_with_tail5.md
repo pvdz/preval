@@ -42,9 +42,6 @@ f(1);
 const f = function ($$0) {
   let x = $$0;
   debugger;
-  label3: {
-    break label3;
-  }
   const tmpReturnArg = $(x);
   return tmpReturnArg;
 };

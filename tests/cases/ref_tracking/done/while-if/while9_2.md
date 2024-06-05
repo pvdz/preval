@@ -36,26 +36,23 @@ $(x); // 2, not one (always overwritten before break)
 `````filename=intro
 let x___4__ = 1;
 while (true) {
-  /*8*/ while (true) {
-    /*11*/ if ($) {
-      /*14*/ $(x___18__);
-    } /*19*/ else {
-      $(x___23__);
-      x___27__ = 2;
-      break;
-    }
+  /*8*/ if ($) {
+    /*11*/ $(x___15__);
+  } /*16*/ else {
+    $(x___20__);
+    x___24__ = 2;
+    break;
   }
-  break;
 }
-$(x___33__);
+$(x___29__);
 `````
 
 Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 18,23       | none           | 27
-  - r @18      | 4
-  - r @23      | 4
-  - w @27      | ########## | 33          | 4              | none
-  - r @33      | 27
+  - w @4       | ########## | 15,20       | none           | 24
+  - r @15      | 4
+  - r @20      | 4
+  - w @24      | ########## | 29          | 4              | none
+  - r @29      | 24

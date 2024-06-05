@@ -50,13 +50,10 @@ let f = function () {
   debugger;
   let n = 0;
   while (true) {
-    $continue: {
-      const tmpCallCallee = $;
-      n = n + 1;
-      let tmpCalleeParam = n;
-      tmpCallCallee(tmpCalleeParam);
-      break $continue;
-    }
+    const tmpCallCallee = $;
+    n = n + 1;
+    let tmpCalleeParam = n;
+    tmpCallCallee(tmpCalleeParam);
   }
   $(`afterwards`);
   return 100;

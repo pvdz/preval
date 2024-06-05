@@ -1,26 +1,21 @@
 # Preval test case
 
-# cancel_return_fail.md
+# finally_cancels_return.md
 
-> Tofix > Cancel return fail
->
-> Just random things
-> The hack: { break hack } thing should also be removed
-
-#TODO
+> Try > Finally cancels return
 
 ## Input
 
 `````js filename=intro
 function f() {
-  try {
+  hack: try {
     return 1;
   } finally {
-    hack: break hack; // Spoilers: does not cancel the return
+    break hack; // Spoilers: does cancel the return
   }
   return 2;
 }
-$(f()); // 1
+$(f()); // 2
 `````
 
 ## Pre Normal
@@ -28,7 +23,7 @@ $(f()); // 1
 `````js filename=intro
 let f = function () {
   debugger;
-  {
+  hack: {
     let $implicitThrow = false;
     let $finalStep = false;
     let $finalCatchArg = undefined;
@@ -46,7 +41,7 @@ let f = function () {
       }
     }
     {
-      hack: break hack;
+      break hack;
     }
     if ($implicitThrow) throw $finalCatchArg;
     else return $finalArg;
@@ -75,14 +70,7 @@ let f = function () {
       $finalCatchArg = $finalImplicit;
     }
   }
-  hack: {
-    break hack;
-  }
-  if ($implicitThrow) {
-    throw $finalCatchArg;
-  } else {
-    return $finalArg;
-  }
+  return 2;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -92,7 +80,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$(1);
+$(2);
 `````
 
 ## PST Output
@@ -100,7 +88,7 @@ $(1);
 With rename=true
 
 `````js filename=intro
-$( 1 );
+$( 2 );
 `````
 
 ## Globals
@@ -110,7 +98,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 1
+ - 1: 2
  - eval returned: undefined
 
 Pre normalization calls: Same

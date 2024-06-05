@@ -63,18 +63,15 @@ $(3);
 
 `````js filename=intro
 while (true) {
-  $continue: {
-    let $implicitThrow = false;
-    let $finalCatchArg = undefined;
-    try {
-      $(1);
-    } catch ($finalImplicit) {
-      $implicitThrow = true;
-      $finalCatchArg = $finalImplicit;
-    }
-    $(2);
-    break $continue;
+  let $implicitThrow = false;
+  let $finalCatchArg = undefined;
+  try {
+    $(1);
+  } catch ($finalImplicit) {
+    $implicitThrow = true;
+    $finalCatchArg = $finalImplicit;
   }
+  $(2);
   if ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     break;

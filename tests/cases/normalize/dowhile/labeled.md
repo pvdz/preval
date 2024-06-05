@@ -44,10 +44,7 @@ foo: while (true) {
 
 `````js filename=intro
 while (true) {
-  $continue: {
-    $(1);
-    break $continue;
-  }
+  $(1);
   const tmpIfTest = $(2);
   if (tmpIfTest) {
   } else {

@@ -39,7 +39,7 @@ import { BUILTIN_FUNC_CALL_NAME } from '../constants.mjs';
 import {
   createFreshVar,
   findBoundNamesInVarDeclaration,
-  findBoundNamesInUnnormalizedVarDeclaration,
+  findBoundNamesInUnnormalizedVarDeclaration, createFreshLabel,
 } from '../bindings.mjs';
 import globals from '../globals.mjs';
 import { cloneFunctionNode, createNormalizedFunctionFromString } from '../utils/serialize_func.mjs';
@@ -781,7 +781,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     groupEnd();
   }
 
-  function anyBlock(block, funcNode = null) {
+  function anyBlock(block, funcNode = null, labelStatementParentNode = null) {
     // program, body of a function, actual block statement, switch case body, try/catch body (finallys are eliminated)
     group('anyBlock');
     const body = block.body;
@@ -789,7 +789,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     let somethingChanged = false;
     for (let i = 0; i < body.length; ++i) {
       const cnode = body[i];
-      if (jumpTable(cnode, body, i, block, funcNode)) {
+      if (jumpTable(cnode, body, i, block, funcNode, labelStatementParentNode)) {
         changed = true;
         somethingChanged = true;
         --i;
@@ -801,20 +801,20 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     return somethingChanged;
   }
 
-  function jumpTable(node, body, i, parent, funcNode) {
+  function jumpTable(node, body, i, parent, funcNode, labelStatementParentNode) {
     vgroup('jumpTable', node.type);
     ASSERT(node.type, 'nodes have types oye?', node);
-    const r = _jumpTable(node, body, i, parent, funcNode);
+    const r = _jumpTable(node, body, i, parent, funcNode, labelStatementParentNode);
     vgroupEnd();
     return r;
   }
 
-  function _jumpTable(node, body, i, parent, funcNode) {
+  function _jumpTable(node, body, i, parent, funcNode, labelStatementParentNode) {
     switch (node.type) {
       case 'BlockStatement':
         return transformBlock(node, body, i, parent, true);
       case 'BreakStatement':
-        return transformBreakStatement(node, body, i, parent);
+        return transformBreakStatement(node, body, i, parent, labelStatementParentNode);
       case 'DebuggerStatement':
         return false;
       case 'EmptyStatement': {
@@ -971,7 +971,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     return true;
   }
 
-  function transformBlock(node, body, i, parent, isNested) {
+  function transformBlock(node, body, i, parent, isNested, labelStatementParentNode) {
     // Note: isNested=false means this is a sub-statement (if () {}), otherwise it's a block inside a block/func/program node
     ASSERT(isNested ? body && i >= 0 : !body && i < 0, 'body and index are only given for nested blocks');
 
@@ -1016,7 +1016,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       return true;
     }
 
-    if (anyBlock(node, undefined)) {
+    if (anyBlock(node, undefined, labelStatementParentNode)) {
       return true;
     }
 
@@ -1036,19 +1036,34 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     return false;
   }
 
-  function transformBreakStatement(node, body, i, parent) {
+  function transformBreakStatement(node, body, i, parent, labelStatementParentNode) {
     vlog(BLUE + 'Marking parent (' + parent.type + ') as breaking early' + RESET);
     parent.$p.returnBreakThrow = 'break';
     if (node.label) {
-      if (node.$p.redundantLabel) {
-        rule('If a labeled break would behave the same without the label then the label should be dropped');
-        example('foo: { while (x) if (f()) break foo; }', 'foo: { while (x) if (f()) break; }');
+      if (
+        labelStatementParentNode?.type === 'LabeledStatement' &&
+        labelStatementParentNode.label.name === node.label.name &&
+        labelStatementParentNode.body.body[labelStatementParentNode.body.body.length - 1] === node // is last
+      ) {
+        rule('A labeled statement with a labeled break targeting its label in its body tail position can drop the break');
+        example('A: { f(); break A; }', 'A: { f(); }');
         before(node);
 
-        node.label = null;
+        // Note: We can NOT eliminate the label based on this because there might be other breaks to this label nested in the body
+        //       Instead, we can safely eliminate the break statement, and if that's the only reference to the label then another
+        //       rule will clean up the (now unused) label.
+
+        body[i] = AST.emptyStatement();
+        const labelMeta = fdata.globallyUniqueLabelRegistry.get(node.label.name);
+        labelMeta.labelUsageMap.delete(node.$p.pid);
+        for (let i=0; i<labelMeta.usages.length; ++i) {
+          if (node === labelMeta.usages[i].node) {
+            labelMeta.usages.splice(i, 1);
+            break;
+          }
+        }
 
         after(node);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
 
@@ -8011,7 +8026,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     vlog('label has block, noop');
     ASSERT(node.body.type === 'BlockStatement');
     ifelseStack.push(node);
-    const anyChange = transformBlock(node.body, undefined, -1, node, false);
+    const anyChange = transformBlock(node.body, undefined, -1, node, false, node);
     ifelseStack.pop();
     vlog('Changes?', anyChange);
 
@@ -8711,6 +8726,59 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     //  const initTestNode = AST.variableDeclaration(tmpName, node.test, 'let');
     //  const
     //}
+
+    // If a while body contains a `break` statement then the while can't loop. Note that we eliminated `continue`.
+    if (node.body.type === 'BlockStatement' && node.body.body.some(node => node.type === 'BreakStatement')) {
+      rule('If a `while` body contains `break` statement in the root then it cannot loop');
+      example('while(true) { f(); break; }', '{ f(); }');
+      before(node);
+
+      // Find all unlabeled breaks and make them break to this label. If there aren't any unlabeled breaks then skip the label entirely.
+      const rootNode = node;
+      const breaks = [];
+      function _walker(node, before, nodeType, path) {
+        ASSERT(node, 'node should be truthy', node);
+        ASSERT(nodeType === node.type);
+
+        switch (nodeType) {
+          case 'WhileStatement': {
+            if (node === rootNode) break; // Ignore
+            return true; // Do not visit
+          }
+          case 'ForStatement':
+          case 'ForInStatement':
+          case 'ForOfStatement':
+          case 'FunctionExpression':
+          case 'ArrowFunctionExpression':
+          {
+            return true; // Do not traverse
+          }
+
+          case 'BreakStatement': {
+            if (node.label) {
+              // Ignore
+            } else {
+              breaks.push(node);
+            }
+            break;
+          }
+        } // switch(key)
+      } // /walker
+      walk(_walker, node, 'body');
+
+      if (breaks.length) {
+        vlog('Found unlabeled breaks. Compiling a fresh label');
+        const newLabelIdentNode = createFreshLabel('unlabeledBreak', fdata);
+        breaks.forEach(node => node.label = AST.identifier(newLabelIdentNode.name));
+        body[i] = AST.labeledStatement(newLabelIdentNode, node.body);
+      } else {
+        vlog('Did not find unlabeled breaks. Just moving the body');
+        body[i] = node.body;
+      }
+
+      after(body[i]);
+      return true;
+    }
 
     ASSERT(node.body.type === 'BlockStatement');
     ifelseStack.push(node);

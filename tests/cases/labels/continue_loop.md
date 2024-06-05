@@ -41,11 +41,8 @@ $(2);
 `````js filename=intro
 let fail = false;
 while (true) {
-  $continue: {
-    $(1);
-    fail = true;
-    break $continue;
-  }
+  $(1);
+  fail = true;
 }
 $(2);
 `````

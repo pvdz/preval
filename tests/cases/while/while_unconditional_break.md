@@ -1,12 +1,10 @@
 # Preval test case
 
-# broken-loop.md
+# while_unconditional_break.md
 
-> Tofix > Broken-loop
+> While > While unconditional break
 >
 > A loop where the body unconditionally breaks is not a loop
-
-#TODO
 
 ## Input
 
@@ -64,22 +62,15 @@ $(x);
 `````js filename=intro
 let x = 1;
 $(x);
-A: {
-  while (true) {
-    $finally: {
-      try {
-        $(x);
-        x = 2;
-        break $finally;
-      } catch (_) {}
-    }
+$finally: {
+  try {
     $(x);
-    x = 3;
-    break A;
-  }
-  $(x);
-  x = 4;
+    x = 2;
+    break $finally;
+  } catch (_) {}
 }
+$(x);
+x = 3;
 $(x);
 `````
 
@@ -88,20 +79,13 @@ $(x);
 `````js filename=intro
 let x = 1;
 $(1);
-A: {
-  while (true) {
-    try {
-      $(x);
-      x = 2;
-    } catch (_) {}
-    $(x);
-    x = 3;
-    break A;
-  }
-  $(x);
-  x = 4;
-}
+try {
+  $(1);
+  x = 2;
+} catch (_) {}
 $(x);
+x = 3;
+$(3);
 `````
 
 ## PST Output
@@ -111,23 +95,16 @@ With rename=true
 `````js filename=intro
 let a = 1;
 $( 1 );
-A: {
-  while (true) {
-    try {
-      $( a );
-      a = 2;
-    }
+try {
+  $( 1 );
+  a = 2;
+}
 catch (b) {
 
-    }
-    $( a );
-    a = 3;
-    break A;
-  }
-  $( a );
-  a = 4;
 }
 $( a );
+a = 3;
+$( 3 );
 `````
 
 ## Globals

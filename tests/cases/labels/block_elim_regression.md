@@ -32,10 +32,7 @@ $(A);
 
 `````js filename=intro
 let A = $(`mefirst`);
-loopStop: {
-  A = `oops`;
-  break loopStop;
-}
+A = `oops`;
 $(A);
 `````
 

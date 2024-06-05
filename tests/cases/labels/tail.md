@@ -38,12 +38,7 @@ $(`end`);
 
 `````js filename=intro
 $(`start`);
-$continue: {
-  while (true) {
-    $(`inner`);
-    break $continue;
-  }
-}
+$(`inner`);
 $(`end`);
 `````
 
@@ -51,12 +46,7 @@ $(`end`);
 
 `````js filename=intro
 $(`start`);
-$continue: {
-  while (true) {
-    $(`inner`);
-    break $continue;
-  }
-}
+$(`inner`);
 $(`end`);
 `````
 
@@ -66,12 +56,7 @@ With rename=true
 
 `````js filename=intro
 $( "start" );
-$continue: {
-  while (true) {
-    $( "inner" );
-    break $continue;
-  }
-}
+$( "inner" );
 $( "end" );
 `````
 

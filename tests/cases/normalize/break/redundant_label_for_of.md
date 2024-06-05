@@ -74,23 +74,21 @@ exit: {
 
 `````js filename=intro
 let x = $(2);
-exit: {
-  const tmpCalleeParam$1 = [`a`, `b`];
-  const tmpCalleeParam = new Set(tmpCalleeParam$1);
-  const tmpForOfDeclRhs = $(tmpCalleeParam);
-  let key = undefined;
-  for (key of tmpForOfDeclRhs) {
-    $(`key:`, key);
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      x = $(3);
-    } else {
-    }
-    if (x) {
-      break exit;
-    } else {
-      x = $(4);
-    }
+const tmpCalleeParam$1 = [`a`, `b`];
+const tmpCalleeParam = new Set(tmpCalleeParam$1);
+const tmpForOfDeclRhs = $(tmpCalleeParam);
+let key = undefined;
+for (key of tmpForOfDeclRhs) {
+  $(`key:`, key);
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    x = $(3);
+  } else {
+  }
+  if (x) {
+    break;
+  } else {
+    x = $(4);
   }
 }
 `````
@@ -101,23 +99,21 @@ With rename=true
 
 `````js filename=intro
 let a = $( 2 );
-exit: {
-  const b = [ "a", "b" ];
-  const c = new Set( b );
-  const d = $( c );
-  let e = undefined;
-  for (e of d) {
-    $( "key:", e );
-    const f = $( 1 );
-    if (f) {
-      a = $( 3 );
-    }
-    if (a) {
-      break exit;
-    }
-    else {
-      a = $( 4 );
-    }
+const b = [ "a", "b" ];
+const c = new Set( b );
+const d = $( c );
+let e = undefined;
+for (e of d) {
+  $( "key:", e );
+  const f = $( 1 );
+  if (f) {
+    a = $( 3 );
+  }
+  if (a) {
+    break;
+  }
+  else {
+    a = $( 4 );
   }
 }
 `````

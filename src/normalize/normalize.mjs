@@ -1067,6 +1067,19 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         return true;
       }
 
+      if (node.$p.removeBreakLabel) {
+        // Conditions have been verified in the prepare step.
+        // (I hope I'm not wrong about this one. It kind of feels like it's an unsafe transform but I can't think of an example)
+        rule('A labeled break inside a loop when the loop is the last element of the child of the label block, does not need the label');
+        example('A: { while (true) break A; }', 'A: { while (true) break; }');
+        before(node, parent);
+
+        node.label = null;
+
+        after(node, parent);
+        return true;
+      }
+
       fdata.globallyUniqueLabelRegistry.get(node.label.name).labelUsageMap.set(node.$p.pid, {
         node,
         body,

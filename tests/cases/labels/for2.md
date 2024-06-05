@@ -42,14 +42,12 @@ $(2);
 
 `````js filename=intro
 $(0);
-foo: {
-  let tmpIfTest = $(true);
-  while (true) {
-    if (tmpIfTest) {
-      tmpIfTest = $(true);
-    } else {
-      break;
-    }
+let tmpIfTest = $(true);
+while (true) {
+  if (tmpIfTest) {
+    tmpIfTest = $(true);
+  } else {
+    break;
   }
 }
 $(2);

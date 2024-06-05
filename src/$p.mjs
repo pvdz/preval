@@ -29,7 +29,7 @@ export function $p() {
     // - isBlockFuncDecl // bool. Is the node that is a FunctionDeclaration nested in a block (but not a func body)?
     // - doesBreak // bool. Does this loop/switch have any break statement?
     // - doesContinue // bool. Does this loop have any continue statement?
-    // - redundantLabel // bool. For break/continue statements. Should the label be droppable?
+    // - removeBreakLabel // bool. Only in prepare. Used by normalize to mark a break label cleared for elimination.
     // - regularBreaks // Array<Node>. For breakable nodes (switch,loops,etc). Contains unlabeled break nodes nested directly in it.
     // - hasMiddleDefaultCase // bool. For switch. True iif it contains a regular case that follows a default case
     // - completesAbrupt // bool. For any node that can contain other nodes. This is true if that node has a child node that is continue/break/return/throw. The IfStatement has two specific properties for each branch. Other multi-child-block capable nodes like `try` should not look at this or be fixed to support it.

@@ -72,22 +72,20 @@ exit: {
 
 `````js filename=intro
 let x = $(2);
-exit: {
-  const tmpCalleeParam = { a: 1, b: 2 };
-  const tmpForInDeclRhs = $(tmpCalleeParam);
-  let key = undefined;
-  for (key in tmpForInDeclRhs) {
-    $(`key:`, key);
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      x = $(3);
-    } else {
-    }
-    if (x) {
-      break exit;
-    } else {
-      x = $(4);
-    }
+const tmpCalleeParam = { a: 1, b: 2 };
+const tmpForInDeclRhs = $(tmpCalleeParam);
+let key = undefined;
+for (key in tmpForInDeclRhs) {
+  $(`key:`, key);
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    x = $(3);
+  } else {
+  }
+  if (x) {
+    break;
+  } else {
+    x = $(4);
   }
 }
 `````
@@ -98,25 +96,23 @@ With rename=true
 
 `````js filename=intro
 let a = $( 2 );
-exit: {
-  const b = {
+const b = {
 a: 1,
 b: 2
-  ;
-  const c = $( b );
-  let d = undefined;
-  for (d in c) {
-    $( "key:", d );
-    const e = $( 1 );
-    if (e) {
-      a = $( 3 );
-    }
-    if (a) {
-      break exit;
-    }
-    else {
-      a = $( 4 );
-    }
+;
+const c = $( b );
+let d = undefined;
+for (d in c) {
+  $( "key:", d );
+  const e = $( 1 );
+  if (e) {
+    a = $( 3 );
+  }
+  if (a) {
+    break;
+  }
+  else {
+    a = $( 4 );
   }
 }
 `````

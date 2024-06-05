@@ -34,6 +34,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
   const funcStack = [];
   const lexScopeStack = [];
   const labelStack = []; // No need to validate this or track func boundaries. That's what the parser should have done already.
+  const loopStack = []; // while, for-loop, for-in, for-of, do-while
   let lexScopeCounter = 0;
   const funcScopeStack = [];
   const thisStack = [];
@@ -536,7 +537,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
 
         if (node.label) {
           const name = node.label.name;
-          vlog('Label:', name, ', now searching for definition... Label stack depth:', labelStack.length);
+          vlog('Label:', name, ', now searching for definition to check for renames... Label stack depth:', labelStack.length);
           let i = labelStack.length;
           while (--i >= 0) {
             const labelNode = labelStack[i];
@@ -550,32 +551,23 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
                 vlog('- Found it. Label not renamed');
               }
 
-              // Note: since parse enforces validity of breaks and continues and since those can't cross functions, we don't need to worry about the null case here
-              let n = breakableStack.length - 1;
-              let innerMostBranchNode = breakableStack[n];
-              if (node.type === 'ContinueStatement') {
-                while (innerMostBranchNode?.type === 'SwitchStatement') {
-                  innerMostBranchNode = breakableStack[n];
-                  --n;
-                }
-              }
-              ASSERT(
-                node.type === 'BreakStatement' || innerMostBranchNode.type !== 'SwitchStatement',
-                'continue cannot have switch as target here',
-              );
-
-              if (node.type === 'BreakStatement' && !innerMostBranchNode) {
-                vlog('The label is necessary because it does not break a loop or switch', innerMostBranchNode?.type, breakableStack.length);
-              } else if (labelNode.body === innerMostBranchNode) {
-                vlog('The label was redundant because', labelNode.body.type, 'is', innerMostBranchNode.type);
-                node.$p.redundantLabel = true;
-              } else {
-                vlog('The label was useful because', labelNode.body.type, 'is not', innerMostBranchNode.type);
-                node.$p.redundantLabel = false;
-              }
               break;
             }
           }
+
+          const labelStatementNode = labelStack[i];
+          const nearestLoopNode = loopStack[loopStack.length - 1];
+          // The label is redundant if the target label is the direct (with block) parent of a loop
+          // because even if it breaks without a label then code flow would still continue after the label
+          // Note: this is going to require the label to have a Block child. It will, eventually.
+          if (
+            nearestLoopNode &&
+            labelStatementNode.body.type === 'BlockStatement' &&
+            labelStatementNode.body.body[labelStatementNode.body.body.length - 1] === nearestLoopNode
+          ) {
+            node.$p.removeBreakLabel = true;
+          }
+
 
           const parentNode = path.nodes[path.nodes.length - 2];
           const parentProp = path.props[path.props.length - 1];
@@ -649,6 +641,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
         node.$p.unqualifiedLabelUsages = [];
         node.$p.regularBreaks = [];
         if (node.type === 'SwitchStatement') node.$p.hasMiddleDefaultCase = false;
+        loopStack.push(node);
         fenceStack.push(node);
         breakableStack.push(node);
         break;
@@ -659,6 +652,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
       case 'WhileStatement:after':
       case 'DoWhileStatement:after':
       case 'SwitchStatement:after': {
+        loopStack.pop();
         fenceStack.pop();
         breakableStack.pop();
         break;

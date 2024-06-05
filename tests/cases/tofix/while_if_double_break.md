@@ -49,16 +49,14 @@ $(`end`);
 
 `````js filename=intro
 $(`start`);
-oops: {
-  const x = $(1);
-  while (true) {
-    if (x) {
-      $(2);
-      break oops;
-    } else {
-      $(3);
-      break;
-    }
+const x = $(1);
+while (true) {
+  if (x) {
+    $(2);
+    break;
+  } else {
+    $(3);
+    break;
   }
 }
 $(`end`);
@@ -68,17 +66,11 @@ $(`end`);
 
 `````js filename=intro
 $(`start`);
-oops: {
-  const x = $(1);
-  while (true) {
-    if (x) {
-      $(2);
-      break oops;
-    } else {
-      $(3);
-      break;
-    }
-  }
+const x = $(1);
+if (x) {
+  $(2);
+} else {
+  $(3);
 }
 $(`end`);
 `````
@@ -89,18 +81,12 @@ With rename=true
 
 `````js filename=intro
 $( "start" );
-oops: {
-  const a = $( 1 );
-  while (true) {
-    if (a) {
-      $( 2 );
-      break oops;
-    }
-    else {
-      $( 3 );
-      break;
-    }
-  }
+const a = $( 1 );
+if (a) {
+  $( 2 );
+}
+else {
+  $( 3 );
 }
 $( "end" );
 `````

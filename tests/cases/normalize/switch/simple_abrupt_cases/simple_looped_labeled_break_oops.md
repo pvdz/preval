@@ -180,16 +180,10 @@ if (tmpIfTest) {
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$7) {
   $(`one`);
-  oops: {
-    const tmpIfTest$9 = $(1);
-    while (true) {
-      if (tmpIfTest$9) {
-        $(2);
-        break oops;
-      } else {
-        break;
-      }
-    }
+  const tmpIfTest$9 = $(1);
+  if (tmpIfTest$9) {
+    $(2);
+  } else {
   }
 } else {
 }
@@ -244,17 +238,9 @@ else {
 const g = b <= 0;
 if (g) {
   $( "one" );
-  oops:   {
-    const h = $( 1 );
-    while (true) {
-      if (h) {
-        $( 2 );
-        break oops;
-      }
-      else {
-        break;
-      }
-    }
+  const h = $( 1 );
+  if (h) {
+    $( 2 );
   }
 }
 const i = b <= 1;

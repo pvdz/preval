@@ -42,22 +42,20 @@ $(2);
 
 `````js filename=intro
 $(0);
-foo: {
-  let tmpIfTest = $(true);
-  while (true) {
-    if (tmpIfTest) {
-      $continue: {
-        const tmpIfTest$1 = $();
-        if (tmpIfTest$1) {
-          break foo;
-        } else {
-          break $continue;
-        }
+let tmpIfTest = $(true);
+while (true) {
+  if (tmpIfTest) {
+    $continue: {
+      const tmpIfTest$1 = $();
+      if (tmpIfTest$1) {
+        break;
+      } else {
+        break $continue;
       }
-      tmpIfTest = $(true);
-    } else {
-      break;
     }
+    tmpIfTest = $(true);
+  } else {
+    break;
   }
 }
 $(2);
@@ -67,13 +65,24 @@ $(2);
 
 `````js filename=intro
 $(0);
-foo: {
-  let tmpIfTest = $(true);
-  while (true) {
+let tmpIfTest = $(true);
+let $tmpLoopUnrollCheck = true;
+if (tmpIfTest) {
+  const tmpIfTest$1 = $();
+  if (tmpIfTest$1) {
+    $tmpLoopUnrollCheck = false;
+  } else {
+    tmpIfTest = $(true);
+  }
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
     if (tmpIfTest) {
-      const tmpIfTest$1 = $();
-      if (tmpIfTest$1) {
-        break foo;
+      const tmpIfTest$2 = $();
+      if (tmpIfTest$2) {
+        break;
       } else {
         tmpIfTest = $(true);
       }
@@ -81,6 +90,7 @@ foo: {
       break;
     }
   }
+} else {
 }
 $(2);
 `````
@@ -91,13 +101,26 @@ With rename=true
 
 `````js filename=intro
 $( 0 );
-foo: {
-  let a = $( true );
-  while (true) {
+let a = $( true );
+let b = true;
+if (a) {
+  const c = $();
+  if (c) {
+    b = false;
+  }
+  else {
+    a = $( true );
+  }
+}
+else {
+  b = false;
+}
+if (b) {
+  while ($LOOP_UNROLL_10) {
     if (a) {
-      const b = $();
-      if (b) {
-        break foo;
+      const d = $();
+      if (d) {
+        break;
       }
       else {
         a = $( true );

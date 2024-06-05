@@ -8305,9 +8305,39 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         return true;
     }
 
-    if (node.handler) {
-      // TODO: catch arg as pattern
-      transformBlock(node.handler.body, undefined, -1, node, false);
+    transformBlock(node.handler.body, undefined, -1, node, false);
+
+    if (
+      node.block.body.length === 1 &&
+      node.block.body[0].type === 'TryStatement' &&
+      node.block.body[0].handler.body.body.length === 0
+    ) {
+      rule('Nested try with empty body can be squashed because the outer catch can never catch anything');
+      example('try { try { $(); } catch {} } catch { $() }', 'try { $(); } catch {}');
+      before(node);
+
+      body[i] = node.block.body[0];
+
+      after(body[i]);
+      return true;
+    }
+
+    if (
+      node.block.body.length === 1 &&
+      node.block.body[0].type === 'TryStatement'
+    ) {
+      rule('Nested Try nodes means the inner Catch is wrapped by the outer Try'); // (But the outer Try does not trap the Try Block)
+      example('try { try { $(1); } catch { $(2); } } catch { $(3) }', 'try { $(1); } catch { try { $(2) } catch { $(3) } }');
+      before(node);
+
+      const inner = node.block.body[0];
+      node.block = inner.handler.body;
+      inner.handler.body = AST.blockStatement(node);
+      body[i] = inner;
+
+      after(body[i]);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      return true;
     }
 
     return false;

@@ -2,12 +2,9 @@
 
 # double_catch.md
 
-> Tofix > Double catch
+> Try > Double catch
 >
 > Nested empty catches can be squashed
-> Probably more aggressively but let's start with this.
-
-#TODO
 
 ## Input
 
@@ -45,32 +42,24 @@ try {
 
 `````js filename=intro
 try {
-  try {
-    if ($) {
-      throw `pass`;
-    } else {
-      $(`fail`);
-    }
-  } catch (e) {}
-} catch (e$1) {
-  $(`fail`);
-}
+  if ($) {
+    throw `pass`;
+  } else {
+    $(`fail`);
+  }
+} catch (e) {}
 `````
 
 ## Output
 
 `````js filename=intro
 try {
-  try {
-    if ($) {
-      throw `pass`;
-    } else {
-      $(`fail`);
-    }
-  } catch (e) {}
-} catch (e$1) {
-  $(`fail`);
-}
+  if ($) {
+    throw `pass`;
+  } else {
+    $(`fail`);
+  }
+} catch (e) {}
 `````
 
 ## PST Output
@@ -79,20 +68,15 @@ With rename=true
 
 `````js filename=intro
 try {
-  try {
-    if ($) {
-      throw "pass";
-    }
-    else {
-      $( "fail" );
-    }
+  if ($) {
+    throw "pass";
   }
-catch (a) {
-
+  else {
+    $( "fail" );
   }
 }
-catch (b) {
-  $( "fail" );
+catch (a) {
+
 }
 `````
 

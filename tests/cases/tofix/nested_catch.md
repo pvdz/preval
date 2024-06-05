@@ -13,8 +13,6 @@
 > - With the catch block empty you know that the catch clause is unused
 > - That means the throw, if it ever triggers, doesn't observe the argument
 > - (So you can replace that with undefined)
-> - A nested try/catch with no trailing code and no catch block code can be
->   squashed together (or eliminated)
 > - For the exception case of a try/catch with just an identifier statement
 >   when the catch is empty, we should be able to safely remove the whole
 >   thing because if it throws it'll be squashed and if it doesn't throw
@@ -34,7 +32,7 @@ try {
     x = 2;
   }
 } catch ($finalImplicit) {}
-considerMutated(x);
+$(x);
 `````
 
 ## Pre Normal
@@ -49,7 +47,7 @@ try {
     x = 2;
   }
 } catch ($finalImplicit) {}
-considerMutated(x);
+$(x);
 `````
 
 ## Normalized
@@ -57,29 +55,24 @@ considerMutated(x);
 `````js filename=intro
 let x = 0;
 try {
+  fail_early;
+  throw `one`;
+} catch (e) {
   try {
-    fail_early;
-    throw `one`;
-  } catch (e) {
     x = 2;
-  }
-} catch ($finalImplicit) {}
-considerMutated(x);
+  } catch ($finalImplicit) {}
+}
+$(x);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 0;
 try {
-  try {
-    fail_early;
-    throw `one`;
-  } catch (e) {
-    x = 2;
-  }
-} catch ($finalImplicit) {}
-considerMutated(x);
+  fail_early;
+  throw `one`;
+} catch (e) {}
+$(2);
 `````
 
 ## PST Output
@@ -87,32 +80,27 @@ considerMutated(x);
 With rename=true
 
 `````js filename=intro
-let a = 0;
 try {
-  try {
-    fail_early;
-    throw "one";
-  }
-catch (b) {
-    a = 2;
-  }
+  fail_early;
+  throw "one";
 }
-catch (c) {
+catch (a) {
 
 }
-considerMutated( a );
+$( 2 );
 `````
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
+BAD@! Found 1 implicit global bindings:
 
-fail_early, considerMutated
+fail_early
 
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: 2
+ - eval returned: undefined
 
 Pre normalization calls: Same
 

@@ -24,7 +24,8 @@ function f() {
   }
 }
 f();
-considerMutated(x) // always true (!)
+//considerMutated(x) // always true (!)
+$(x);
 `````
 
 ## Pre Normal
@@ -59,7 +60,7 @@ let f = function () {
 };
 let x = 0;
 f();
-considerMutated(x);
+$(x);
 `````
 
 ## Normalized
@@ -84,13 +85,13 @@ let f = function () {
 };
 let x = 0;
 f();
-considerMutated(x);
+$(x);
 `````
 
 ## Output
 
 `````js filename=intro
-considerMutated(1);
+$(1);
 `````
 
 ## PST Output
@@ -98,19 +99,18 @@ considerMutated(1);
 With rename=true
 
 `````js filename=intro
-considerMutated( 1 );
+$( 1 );
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-considerMutated
+None
 
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: 1
+ - eval returned: undefined
 
 Pre normalization calls: Same
 

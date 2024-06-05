@@ -829,18 +829,22 @@ if ($implicitThrow) {
           considerMutated(x$19);
           let f = function () {
             debugger;
-            let $implicitThrow$17 = false;
-            let $finalStep$7 = false;
-            let $finalCatchArg$17 = undefined;
-            $finally$17: {
-              try {
-                $finalStep$7 = true;
-                break $finally$17;
-              } catch ($finalImplicit$17) {
-                $implicitThrow$17 = true;
-                $finalCatchArg$17 = $finalImplicit$17;
+            foo$7: {
+              let $implicitThrow$17 = false;
+              let $finalStep$7 = false;
+              let $finalCatchArg$17 = undefined;
+              $finally$17: {
+                try {
+                  $finalStep$7 = true;
+                  break $finally$17;
+                } catch ($finalImplicit$17) {
+                  $implicitThrow$17 = true;
+                  $finalCatchArg$17 = $finalImplicit$17;
+                }
               }
+              return undefined;
             }
+            x$21 = `fail`;
             return undefined;
           };
           let x$21 = 0;

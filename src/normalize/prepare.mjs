@@ -15,13 +15,13 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule
 import {$p, resetUid} from '../$p.mjs';
 import globals from '../globals.mjs';
 import {
-  createFreshLabel,
   getIdentUsageKind,
   registerGlobalIdent,
   findUniqueNameForBindingIdent,
   preprocessScopeNode,
   createFreshVar,
 } from '../bindings.mjs';
+import { addLabelReference, createUniqueGlobalLabel, registerGlobalLabel } from '../labels.mjs';
 
 // This phase is fairly mechanical and should only do discovery, no AST changes (though labels are renamed).
 // It sets up scope tracking, imports/exports tracking, return value analysis. That sort of thing.
@@ -578,12 +578,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
             node,
             fdata.globallyUniqueLabelRegistry,
           );
-          fdata.globallyUniqueLabelRegistry.get(node.label.name).usages.push({
-            node,
-            parentNode,
-            parentProp,
-            parentIndex,
-          });
+          addLabelReference(fdata, node.label, parentNode.body, parentIndex, true);
         }
         else {
           vlog('No label');
@@ -618,12 +613,15 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
         vlog('Label:', node.label.name);
         labelStack.push(node);
         node.$p.originalLabelName = node.label.name;
-        const newLabel = createFreshLabel(node.label.name, fdata);
-        if (node.label.name !== newLabel.name) {
-          vlog('- Unique label name:', newLabel.name);
-          node.label = newLabel;
+        const uniqueName = createUniqueGlobalLabel(node.label.name, fdata);
+        if (node.label.name !== uniqueName) {
+          vlog('- Renaming to new unique label:', uniqueName);
+          registerGlobalLabel(fdata, uniqueName, node.label.name, node);
+          node.label = AST.identifier(uniqueName);
+          // The break handler in this walker will find the original name of ancestor label nodes and rename the break label to match
         } else {
-          vlog('- Label is now registered and unique');
+          registerGlobalLabel(fdata, uniqueName, uniqueName, node);
+          vlog('- Label is now registered, was already unique');
         }
         break;
       }

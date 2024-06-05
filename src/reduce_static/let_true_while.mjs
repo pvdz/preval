@@ -8,9 +8,6 @@
 import walk from '../../lib/walk.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import {createFreshLabel, createFreshVar} from '../bindings.mjs';
-import {deepCloneForFuncInlining, updateExpression} from "../ast.mjs"
-import {MAX_UNROLL_TRUE_COUNT} from "../globals.mjs"
 
 export function letTrueWhile(fdata, unrollTrueLimit = 10) {
   group('\n\n\nChecking for while loops with let true as condition');

@@ -39,10 +39,12 @@ import { BUILTIN_FUNC_CALL_NAME } from '../constants.mjs';
 import {
   createFreshVar,
   findBoundNamesInVarDeclaration,
-  findBoundNamesInUnnormalizedVarDeclaration, createFreshLabel,
+  findBoundNamesInUnnormalizedVarDeclaration,
 } from '../bindings.mjs';
+
 import globals from '../globals.mjs';
 import { cloneFunctionNode, createNormalizedFunctionFromString } from '../utils/serialize_func.mjs';
+import { addLabelReference, createFreshLabelStatement, removeLabelReference } from '../labels.mjs';
 
 // pattern: tests/cases/ssa/back2back_bad.md (the call should be moved into the branches, replacing the var assigns)
 
@@ -1053,15 +1055,8 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         //       Instead, we can safely eliminate the break statement, and if that's the only reference to the label then another
         //       rule will clean up the (now unused) label.
 
+        removeLabelReference(fdata, node.label);
         body[i] = AST.emptyStatement();
-        const labelMeta = fdata.globallyUniqueLabelRegistry.get(node.label.name);
-        labelMeta.labelUsageMap.delete(node.$p.pid);
-        for (let i=0; i<labelMeta.usages.length; ++i) {
-          if (node === labelMeta.usages[i].node) {
-            labelMeta.usages.splice(i, 1);
-            break;
-          }
-        }
 
         after(node);
         return true;
@@ -1074,17 +1069,14 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         example('A: { while (true) break A; }', 'A: { while (true) break; }');
         before(node, parent);
 
+        removeLabelReference(fdata, node.label);
         node.label = null;
 
         after(node, parent);
         return true;
       }
 
-      fdata.globallyUniqueLabelRegistry.get(node.label.name).labelUsageMap.set(node.$p.pid, {
-        node,
-        body,
-        index: i,
-      });
+      addLabelReference(fdata, node.label, body, i);
     }
 
     if (body.length > i + 1) {
@@ -6765,8 +6757,6 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     // - if the lhs is a decl with identifier, outline the rhs, then the decl without init, inline the assignment
     // - if the lhs is a binding decl then find all the bindings defined, outline them, move the original decl to assignment pattern inline
 
-    // TODO: loops that are direct children of labels are significant
-
     if (node.left.type === 'VariableDeclaration') {
       // `for (let x in y)`
       const vardecl = node.left;
@@ -8055,7 +8045,8 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       return true;
     }
 
-    if (!anyChange && labelMeta.labelUsageMap.size === 0) {
+    vlog('label usage count:', labelMeta.usages.size);
+    if (!anyChange && labelMeta.usages.length === 0) {
       vlog('Label was not used in any of its children. Should be safe to eliminate.');
       rule('Unused labels must be dropped; non-loop body');
       example('foo: {}', '{}');
@@ -8077,8 +8068,8 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       if (i === body.length - 1) {
         rule('Labeled break as direct child of function with no code following. Drop the label.');
         example(
-          'function f() { before(); foo: { inside(); break foo; } } f();',
-          'function f(){ before(); foo: { inside(); } } f();',
+          'function f() { before(); foo: { inside(); if (x) if (y) break foo; } } f();',
+          'function f(){ before(); foo: { inside(); if (x) if (y) return; } } f();',
         );
         before(node, body);
 
@@ -8092,18 +8083,21 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         // Replace all `break foo` cases pointing to this label with a return statement with `undefined`
         // Note that there can't be any `continue` cases here because we transformed them.
         ASSERT(fdata.globallyUniqueLabelRegistry.has(node.label.name), 'the label should be registered', node);
-        const labelUsageMap = fdata.globallyUniqueLabelRegistry.get(node.label.name).labelUsageMap;
-        labelUsageMap.forEach(({ node, body, index }, pid) => {
+        vgroup('Replacing breaks that have the label with return');
+        const usages = fdata.globallyUniqueLabelRegistry.get(node.label.name).usages;
+        usages.forEach((obj) => {
+          ASSERT(typeof obj === 'object' && obj && obj.node && obj.block && obj.index >= 0, 'usages type should be good', obj);
+          const { node, block, index } = obj;
           const finalNode = AST.returnStatement(AST.identifier('undefined'));
-          ASSERT(body[index] === node, 'should not be stale', parentNode);
-          body[index] = finalNode;
-          labelUsageMap.delete(pid);
+          ASSERT(block[index]?.type === 'BreakStatement' && block[index].label === node, 'should not be stale', obj);
+          before(block[index]);
+          block[index] = finalNode;
+          after(block[index]);
         });
+        vgroupEnd();
+        usages.length = 0;
 
-        after(body);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-
-        after(parentNode);
+        after(body, parentNode);
         assertNoDupeNodes(AST.blockStatement(body), 'body');
 
         return true;
@@ -8748,10 +8742,12 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
       // Find all unlabeled breaks and make them break to this label. If there aren't any unlabeled breaks then skip the label entirely.
       const rootNode = node;
+      /** @var {Array<{node, block, index}>} */
       const breaks = [];
       function _walker(node, before, nodeType, path) {
         ASSERT(node, 'node should be truthy', node);
         ASSERT(nodeType === node.type);
+        if (!before) return;
 
         switch (nodeType) {
           case 'WhileStatement': {
@@ -8771,7 +8767,9 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             if (node.label) {
               // Ignore
             } else {
-              breaks.push(node);
+              const parentNode = path.nodes[path.nodes.length - 2];
+              const parentIndex = path.indexes[path.indexes.length - 1];
+              breaks.push({ node, block: parentNode.body, index: parentIndex });
             }
             break;
           }
@@ -8781,9 +8779,15 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
       if (breaks.length) {
         vlog('Found unlabeled breaks. Compiling a fresh label');
-        const newLabelIdentNode = createFreshLabel('unlabeledBreak', fdata);
-        breaks.forEach(node => node.label = AST.identifier(newLabelIdentNode.name));
-        body[i] = AST.labeledStatement(newLabelIdentNode, node.body);
+        const newLabelStatement = createFreshLabelStatement('unlabeledBreak', fdata, node.body);
+        breaks.forEach((obj) => {
+          ASSERT(typeof obj === 'object' && obj && obj.node && obj.block && obj.index >= 0, 'fail?', obj);
+          const {node, block, index} = obj;
+          ASSERT(!node.label, 'you _are_ unlabeled, no?', obj);
+          node.label = AST.identifier(newLabelStatement.label.name);
+          addLabelReference(fdata, node.label, block, index);
+        });
+        body[i] = newLabelStatement;
       } else {
         vlog('Did not find unlabeled breaks. Just moving the body');
         body[i] = node.body;

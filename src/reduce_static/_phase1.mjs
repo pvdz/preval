@@ -13,7 +13,6 @@ import {
   inferNodeTyping,
   mergeTyping,
   registerGlobalIdent,
-  registerGlobalLabel,
 } from '../bindings.mjs';
 import globals from '../globals.mjs';
 import {
@@ -47,6 +46,7 @@ import {
   openRefsOnBeforeLabel,
   openRefsOnAfterLabel,
 } from '../utils/ref_tracking.mjs';
+import { addLabelReference, registerGlobalLabel } from '../labels.mjs';
 
 // This phase is fairly mechanical and should only do discovery, no AST changes.
 // It sets up scope tracking, imports/exports tracking, return value analysis, ref tracking (which binding can see which binding). That sort of thing.
@@ -370,12 +370,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
             node,
             fdata.globallyUniqueLabelRegistry,
           );
-          fdata.globallyUniqueLabelRegistry.get(node.label.name).usages.push({
-            node,
-            parentNode,
-            parentProp,
-            parentIndex,
-          });
+          addLabelReference(fdata, node.label, parentNode.body, parentIndex);
         }
 
         break;
@@ -399,12 +394,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
             node,
             fdata.globallyUniqueLabelRegistry,
           );
-          fdata.globallyUniqueLabelRegistry.get(node.label.name).usages.push({
-            node,
-            parentNode,
-            parentProp,
-            parentIndex,
-          });
+          addLabelReference(fdata, node.label, parentNode.body, parentIndex);
         }
 
         break;

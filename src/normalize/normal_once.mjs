@@ -30,12 +30,12 @@ import {
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import {
-  createFreshLabel,
   createFreshVar,
   findBoundNamesInVarDeclaration,
   findBoundNamesInVarDeclarator,
   getIdentUsageKind,
 } from '../bindings.mjs';
+import { addLabelReference, createFreshLabelStatement, updateGlobalLabelStatementRef } from '../labels.mjs';
 
 export function phaseNormalOnce(fdata) {
   const ast = fdata.tenkoOutput.ast;
@@ -521,9 +521,9 @@ export function phaseNormalOnce(fdata) {
         // - the switch does not contain a default that is not the last case
         // Either way we must still do the variable hoisting step first
 
-        const newLabelIdentNode = createFreshLabel('tmpSwitchBreak', fdata);
         const wrapper = AST.blockStatement();
-        const newLabelNode = AST.labeledStatement(newLabelIdentNode, wrapper);
+        const newLabelNode = createFreshLabelStatement('tmpSwitchBreak', fdata, wrapper);
+        const newLabelIdentNode = newLabelNode.label;
 
         // Variables declared on the toplevel of a switch case have to be hoisted to before the switch case, and const
         // converted to let, to ensure that all cases still have access to that binding after the transformations.
@@ -696,6 +696,16 @@ export function phaseNormalOnce(fdata) {
         });
         node.$p.unqualifiedLabelUsages.length = 0;
 
+        const labelStmt =AST.labeledStatement(
+          newLabelIdentNode,
+          AST.blockStatement(
+            ...node.cases.map((cnode, i) => {
+              return AST.ifStatement(AST.binaryExpression('<=', tmpNameCase, AST.literal(i)), AST.blockStatement(cnode.consequent));
+            }),
+          ),
+        )
+        updateGlobalLabelStatementRef(fdata, labelStmt);
+
         const newNodes = [
           AST.variableDeclaration(tmpNameValue, node.discriminant, 'const'),
           AST.variableDeclaration(tmpNameCase, AST.literal(defaultIndex >= 0 ? defaultIndex : node.cases.length)),
@@ -710,14 +720,7 @@ export function phaseNormalOnce(fdata) {
                 prev,
               );
             }, AST.emptyStatement()),
-          AST.labeledStatement(
-            newLabelIdentNode,
-            AST.blockStatement(
-              ...node.cases.map((cnode, i) => {
-                return AST.ifStatement(AST.binaryExpression('<=', tmpNameCase, AST.literal(i)), AST.blockStatement(cnode.consequent));
-              }),
-            ),
-          ),
+          labelStmt,
         ];
         wrapper.body.push(...newNodes);
 
@@ -848,10 +851,11 @@ export function phaseNormalOnce(fdata) {
             // Implicit throw must go first otherwise logic may be incorrect
             {keyword: 'throw', actionName: createFreshVar('$implicitThrow', fdata), argName: createFreshVar('$finalCatchArg', fdata)}
           ];
-          const labelNode = createFreshLabel('$finally', fdata);
+          // Note: this is just a placeholder because we don't know the body yet.
+          const labelStatementNode = createFreshLabelStatement('$finally', fdata, AST.blockStatement());
 
           const rootNode = node;
-          function _walker(node, before, nodeType, path) {
+          function _walker(node, beforeWalk, nodeType, path) {
             ASSERT(node, 'node should be truthy', node);
             ASSERT(nodeType === node.type);
 
@@ -863,7 +867,7 @@ export function phaseNormalOnce(fdata) {
             const parentProp = pathProps[pathProps.length - 1];
             const parentIndex = pathIndexes[pathIndexes.length - 1];
 
-            const key = nodeType + ':' + (before ? 'before' : 'after');
+            const key = nodeType + ':' + (beforeWalk ? 'before' : 'after');
             switch (key) {
               case 'SwitchStatement:before':
                 ASSERT(false, 'switch shouldnt exist anymore on the way back because it was eliminated by this phase??');
@@ -943,11 +947,13 @@ export function phaseNormalOnce(fdata) {
                 const arg = createFreshVar('$finalArg', fdata);
                 const actionName = createFreshVar('$finalStep', fdata);
                 keywords.push({keyword: 'return', actionName, argName: arg});
+                const labelNode = AST.identifier(labelStatementNode.label.name)
                 const freshNode = AST.blockStatement(
                   AST.expressionStatement(AST.assignmentExpression(actionName, AST.primitive(true))),
                   AST.expressionStatement(AST.assignmentExpression(arg, node.argument ?? AST.identifier('undefined'))),
-                  AST.breakStatement(AST.identifier(labelNode.name)),
+                  AST.breakStatement(labelNode),
                 );
+                addLabelReference(fdata, labelNode, freshNode.body, 2);
                 if (parentIndex < 0) parentNode[parentProp] = freshNode;
                 else parentNode[parentProp][parentIndex] = freshNode;
                 break;
@@ -958,17 +964,21 @@ export function phaseNormalOnce(fdata) {
                   // Ignore. This throw is unconditionally caught by the catch. So unless the
                   // catch throws too, we don't care. And if the catch throws we'll handle it.
                 } else {
+                  before(node, parentNode);
                   keywordsFound += 1;
                   const arg = createFreshVar('$finalArg', fdata);
                   const actionName = createFreshVar('$finalStep', fdata);
                   keywords.push({keyword: 'throw', actionName, argName: arg});
+                  const labelNode = AST.identifier(labelStatementNode.label.name)
                   const freshNode = AST.blockStatement(
                     AST.expressionStatement(AST.assignmentExpression(actionName, AST.primitive(true))),
                     AST.expressionStatement(AST.assignmentExpression(arg, node.argument)), // throw arg can't be null
-                    AST.breakStatement(AST.identifier(labelNode.name)),
+                    AST.breakStatement(labelNode),
                   );
+                  addLabelReference(fdata, labelNode, freshNode.body, 2);
                   if (parentIndex < 0) parentNode[parentProp] = freshNode;
                   else parentNode[parentProp][parentIndex] = freshNode;
+                  after(freshNode, parentNode);
                 }
                 break;
               }
@@ -981,10 +991,12 @@ export function phaseNormalOnce(fdata) {
                     const actionName = createFreshVar('$finalStep', fdata);
                     keywords.push({keyword: 'break', actionName, labelName: node.label.name});
 
+                    const labelNode = AST.identifier(labelStatementNode.label.name)
                     const freshNode = AST.blockStatement(
                       AST.expressionStatement(AST.assignmentExpression(actionName, AST.primitive(true))),
-                      AST.breakStatement(AST.identifier(labelNode.name)),
+                      AST.breakStatement(labelNode),
                     );
+                    addLabelReference(fdata, labelNode, freshNode.body, 1);
                     if (parentIndex < 0) parentNode[parentProp] = freshNode;
                     else parentNode[parentProp][parentIndex] = freshNode;
                   }
@@ -995,10 +1007,12 @@ export function phaseNormalOnce(fdata) {
                     const actionName = createFreshVar('$finalStep', fdata);
                     keywords.push({keyword: 'break', actionName, labelName: undefined});
 
+                    const labelNode = AST.identifier(labelStatementNode.label.name)
                     const freshNode = AST.blockStatement(
                       AST.expressionStatement(AST.assignmentExpression(actionName, AST.primitive(true))),
-                      AST.breakStatement(AST.identifier(labelNode.name)),
+                      AST.breakStatement(labelNode),
                     );
+                    addLabelReference(fdata, labelNode, freshNode.body, 1);
                     if (parentIndex < 0) parentNode[parentProp] = freshNode;
                     else parentNode[parentProp][parentIndex] = freshNode;
                   }
@@ -1057,10 +1071,12 @@ export function phaseNormalOnce(fdata) {
             conditions.push([null, AST.blockStatement()]); // Empty else
           }
 
+          const finalLabelStatementNode = AST.labeledStatement(AST.identifier(labelStatementNode.label.name), labelBody);
+          updateGlobalLabelStatementRef(fdata, finalLabelStatementNode);
           const wrapper = AST.blockStatement(
             ...keywords.map(({actionName}) => AST.variableDeclaration(actionName, AST.primitive(false), 'let')),
             ...keywords.map(({argName}) => argName && AST.variableDeclaration(argName, AST.primitive(undefined), 'let')).filter(Boolean),
-            AST.labeledStatement(AST.identifier(labelNode.name), labelBody),
+            finalLabelStatementNode,
             node.finalizer, // We won't be using this anymore anyways since we'll replace it
             AST.ifElseChain(conditions, undefined, true)
           );
@@ -1177,14 +1193,16 @@ export function phaseNormalOnce(fdata) {
         )) {
           // We need to wrap the current body in a labeled block
           // Be mindful that this is not normalized code: We must first replace the continue before replacing the loop body.
-          const labelNode = createFreshLabel('$continue', fdata);
+          const labelStatementNode = createFreshLabelStatement('$continue', fdata, AST.blockStatement(target.body));
 
           // Replace the continue now. Otherwise this case can break: `while (x) continue` when replacing the loop body first.
-          if (parentIndex < 0) parentNode[parentProp] = AST.breakStatement(labelNode.name);
-          else parentNode[parentProp][parentIndex] = AST.breakStatement(labelNode.name);
+          const freshBreakNode = AST.breakStatement(AST.identifier(labelStatementNode.label.name));
+          if (parentIndex < 0) parentNode[parentProp] = freshBreakNode;
+          else parentNode[parentProp][parentIndex] = freshBreakNode;
+          addLabelReference(fdata, freshBreakNode.label, parentNode.body, parentIndex, true);
 
-          vlog('Wrapping loop body in fresh label;', labelNode.name);
-          target.body = AST.blockStatement(AST.labeledStatement(labelNode, AST.blockStatement(target.body)));
+          vlog('Wrapping loop body in fresh label;', freshBreakNode.name);
+          target.body = AST.blockStatement(labelStatementNode);
         } else {
           ASSERT(target.body.body[0].label?.type === 'Identifier', 'should have been asserted and ensured above', target);
           if (parentIndex < 0) parentNode[parentProp] = AST.breakStatement(target.body.body[0].label.name);

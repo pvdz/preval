@@ -5,7 +5,7 @@
 
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { createFreshLabel, createFreshVar } from '../bindings.mjs';
+import { createFreshVar } from '../bindings.mjs';
 
 export function boolTrampolines(fdata) {
   group('\n\n\nPruning boolean trampolines\n');

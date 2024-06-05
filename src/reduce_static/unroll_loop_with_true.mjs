@@ -36,9 +36,10 @@
 import walk from '../../lib/walk.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import {createFreshLabel, createFreshVar} from '../bindings.mjs';
+import {createFreshVar} from '../bindings.mjs';
 import {deepCloneForFuncInlining, updateExpression} from "../ast.mjs"
 import {MAX_UNROLL_TRUE_COUNT} from "../globals.mjs"
+import { createFreshLabelStatement } from '../labels.mjs';
 
 export function unrollLoopWithTrue(fdata, unrollTrueLimit = 10) {
   group('\n\n\nChecking for while loops with true to unroll (limit =' , unrollTrueLimit, ')');
@@ -161,7 +162,7 @@ function processAttempt(fdata, unrollTrueLimit) {
     // Next do preliminary work on the clone to replace the break/continue
 
     const tmpName = createFreshVar('$tmpLoopUnrollCheck', fdata);
-    const tmpLabel = createFreshLabel('loopStop', fdata);
+    const labelStatementNode = createFreshLabelStatement('loopStop', fdata, clone);
 
     const condCount = AST.isTrue(whileNode.test) ? unrollTrueLimit : parseInt(whileNode.test.name.slice('$LOOP_UNROLL_'.length), 10) - 1;
     const condIdent = condCount > 0 ? '$LOOP_UNROLL_' + condCount : ('$LOOP_DONE_UNROLLING_ALWAYS_TRUE');
@@ -182,7 +183,7 @@ function processAttempt(fdata, unrollTrueLimit) {
 
         const newNode = AST.blockStatement([
           AST.expressionStatement(AST.assignmentExpression(tmpName, AST.fals(), '=')),
-          AST.breakStatement(tmpLabel.name),
+          AST.breakStatement(labelStatementNode.label.name),
         ])
 
         if (parentIndex < 0) parentNode[parentProp] = newNode;
@@ -197,7 +198,7 @@ function processAttempt(fdata, unrollTrueLimit) {
         const parentIndex = path.indexes[path.indexes.length - 1];
 
         const newNode = AST.blockStatement([
-          AST.breakStatement(tmpLabel.name),
+          AST.breakStatement(labelStatementNode.label.name),
         ])
 
         if (parentIndex < 0) parentNode[parentProp] = newNode;
@@ -224,7 +225,7 @@ function processAttempt(fdata, unrollTrueLimit) {
 
     const newNodes = AST.blockStatement([
       AST.variableDeclaration(tmpName, AST.tru(), 'let'),
-      AST.labeledStatement(tmpLabel.name, clone),
+      labelStatementNode,
       AST.ifStatement(
         AST.identifier(tmpName),
         AST.blockStatement(

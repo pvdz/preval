@@ -19,7 +19,7 @@ import {
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { createFreshLabel, createFreshVar } from '../bindings.mjs';
+import { addLabelReference, createFreshLabelStatement } from '../labels.mjs';
 
 export function fakeLoops(fdata) {
   group('\n\n\nFind loops that never loop and drop them if we can\n');
@@ -32,6 +32,7 @@ function _fakeLoops(fdata) {
 
   let changed = 0;
 
+  /** @var { {breaks: Array<{node, block, index}>, others: boolean, bail: boolean} } */
   const loopStack = [];
 
   walk(_walker, ast, 'ast');
@@ -63,15 +64,16 @@ function _fakeLoops(fdata) {
           ASSERT(whileTest, 'while test?', whileTest, node);
           ASSERT(whileBlock.type === 'BlockStatement', 'body is a block', whileBlock, node);
           // We can keep pretty much all the structure and swap them out in place, maintaining normalization
-          const tmpLabelIdentNode = createFreshLabel('tmpWhile', fdata);
+          const labelStatementNode = createFreshLabelStatement('tmpWhile', fdata);
           // Slap a label on those breaks. Other rules will sort out whether they are redundant or whatever.
-          obj.breaks.forEach((node) => {
+          obj.breaks.forEach(({node, block, index}) => {
             // If the loop had a labeled statement then it would bail based on that. But we're here, so no label.
             // If the break has a label then it must break past the current loop so don't change the label
             if (node.label) {
               vlog('Break has label so not changing it...');
             } else {
-              node.label = AST.identifier(tmpLabelIdentNode.name);
+              node.label = AST.identifier(labelStatementNode.label.name);
+              addLabelReference(fdata, node.label, block, index);
             }
           });
           // Swap out the loop statement for a label statement. No need to revisit it. Even in a nested loop.
@@ -80,7 +82,7 @@ function _fakeLoops(fdata) {
           const parentIndex = path.indexes[path.indexes.length - 1];
           parentNode[parentProp][parentIndex] = AST.ifStatement(
             whileTest,
-            AST.blockStatement(AST.labeledStatement(tmpLabelIdentNode, whileBlock)),
+            AST.blockStatement(labelStatementNode),
             AST.blockStatement(),
           );
 
@@ -134,7 +136,9 @@ function _fakeLoops(fdata) {
         //   We don't know whether the break goes through the loop or not so we just bail for now
         //loopStack[loopStack.length - 1].bail = true;
         //} else {
-        loopStack[loopStack.length - 1].breaks.push(node);
+        const parentNode = path.nodes[path.nodes.length - 2];
+        const parentIndex = path.indexes[path.indexes.length - 1];
+        loopStack[loopStack.length - 1].breaks.push({ node, block: parentNode, index: parentIndex });
         //}
       } else if (['ContinueStatement', 'TryStatement', 'LabeledStatement'].includes(nodeType)) {
         vlog('- bail inside a loop');

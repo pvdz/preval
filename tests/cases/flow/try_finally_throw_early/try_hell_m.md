@@ -72,19 +72,23 @@ considerMutated(x);
 `````js filename=intro
 let f = function () {
   debugger;
-  let $implicitThrow = false;
-  let $finalStep = false;
-  let $finalCatchArg = undefined;
-  $finally: {
-    try {
-      $finalStep = true;
-      break $finally;
-    } catch ($finalImplicit) {
-      $implicitThrow = true;
-      $finalCatchArg = $finalImplicit;
+  foo: {
+    let $implicitThrow = false;
+    let $finalStep = false;
+    let $finalCatchArg = undefined;
+    $finally: {
+      try {
+        $finalStep = true;
+        break $finally;
+      } catch ($finalImplicit) {
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
+      }
     }
+    throw_early;
+    return undefined;
   }
-  throw_early;
+  x = `fail`;
   return undefined;
 };
 let x = 0;

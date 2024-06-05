@@ -2,10 +2,12 @@
 
 import walk from '../../lib/walk.mjs';
 
+import * as AST from '../ast.mjs';
 import { RED, BLUE, RESET } from '../constants.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd } from '../utils.mjs';
-import {$p, resetUid} from '../$p.mjs';
-import { getIdentUsageKind, createFreshLabel, findUniqueNameForBindingIdent, preprocessScopeNode } from '../bindings.mjs';
+import { $p } from '../$p.mjs';
+import { getIdentUsageKind, findUniqueNameForBindingIdent, preprocessScopeNode } from '../bindings.mjs';
+import { createUniqueGlobalLabel, registerGlobalLabel } from '../labels.mjs';
 
 export function uniqify_idents(funcAst, fdata) {
   const lexScopeStack = [];
@@ -115,11 +117,13 @@ export function uniqify_idents(funcAst, fdata) {
         vlog('Label:', node.label.name);
         node.$p.originalLabelName = node.label.name;
 
-        const newLabelNode = createFreshLabel(node.label.name, fdata);
-        if (node.label.name !== newLabelNode.name) {
-          vlog('- Unique label name:', newLabelNode.name);
-          node.label = newLabelNode;
+        const newLabelName = createUniqueGlobalLabel(node.label.name, fdata);
+        if (node.label.name !== newLabelName) {
+          vlog('- Unique label name:', newLabelName);
+          registerGlobalLabel(fdata, newLabelName, node.label.name, node);
+          node.label = AST.identifier(newLabelName);
         } else {
+          registerGlobalLabel(fdata, node.label.name, node.label.name, node);
           vlog('- Label is now registered and unique');
         }
         break;

@@ -24,9 +24,6 @@ import {
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import {createFreshLabel, createFreshVar, mayBindingMutateBetweenRefs} from '../bindings.mjs';
-import {RESET, GREEN, VERBOSE_TRACING} from '../constants.mjs';
-import {deepCloneForFuncInlining} from "../ast.mjs"
 
 export function letIfWhileX(fdata) {
   group('\n\n\nChecking for let-if-while-x');

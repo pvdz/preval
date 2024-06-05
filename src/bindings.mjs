@@ -462,7 +462,7 @@ export function registerGlobalIdent(
     typing: getCleanTypingObject(),
   };
   ASSERT(name);
-  if (/^\$\$\d+$/.test(name)) fixme;
+  ASSERT(!/^\$\$\d+$/.test(name), 'Should not be calling this function for special param name idents $$123');
   fdata.globallyUniqueNamingRegistry.set(name, newMeta);
   return newMeta;
 }
@@ -478,50 +478,6 @@ export function createFreshVar(name, fdata) {
   const tmpName = generateUniqueGlobalName(name, fdata, false);
   registerGlobalIdent(fdata, tmpName, tmpName);
   return tmpName;
-}
-
-export function createUniqueGlobalLabel(name, fdata) {
-  const globallyUniqueLabelRegistry = fdata.globallyUniqueLabelRegistry;
-
-  if (globallyUniqueLabelRegistry.has(name)) {
-    // Cache the offset otherwise large inputs will literally test every suffix 1 through n which causes perf problems
-    const labelNameSuffixOffset = fdata.labelNameSuffixOffset;
-
-    // No point in having a `foo$1$22$1$1$1$1$1$1$1$1$1$1$1$1$1`
-    if (name.includes('$')) {
-      name = name.replace(/\$\d+$/, '');
-    }
-
-    // Create a (module) globally unique name. Then use that name for the local scope.
-    let n = labelNameSuffixOffset.get(name) ?? 0;
-
-    while (globallyUniqueLabelRegistry.has(name + '$' + ++n));
-    labelNameSuffixOffset.set(name, n + 1);
-
-    return n ? name + '$' + n : name;
-  }
-
-  return name;
-}
-export function registerGlobalLabel(fdata, name, originalName, labelNode) {
-  ASSERT(!fdata.globallyUniqueLabelRegistry.has(name), 'this func should be called with the unique label name');
-
-  fdata.globallyUniqueLabelRegistry.set(name, {
-    // ident meta data
-    uid: ++fdata.globalNameCounter,
-    originalName,
-    uniqueName: name,
-    node: labelNode, // All referenced labels must exist (syntax error), labels must appear before their usage when traversing
-    usages: [], // {node, parentNode, parentProp, parentIndex} of the break/continue statement referring to the label
-    labelUsageMap: new Map(), // Map<labelName, {node, body, index}>. References to a label
-  });
-}
-export function createFreshLabel(name, fdata) {
-  ASSERT(createFreshLabel.length === arguments.length, 'arg count');
-  const tmpName = createUniqueGlobalLabel(name, fdata, false);
-  const labelNode = AST.identifier(tmpName);
-  registerGlobalLabel(fdata, tmpName, tmpName, labelNode);
-  return labelNode;
 }
 
 export function createReadRef(obj) {

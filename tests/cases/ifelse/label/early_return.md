@@ -47,14 +47,16 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(100);
-    return 20;
-  } else {
-    $(`after`);
-    return undefined;
+  foo: {
+    const tmpIfTest = $(true);
+    if (tmpIfTest) {
+      $(100);
+      return 20;
+    } else {
+    }
   }
+  $(`after`);
+  return undefined;
 };
 f();
 `````

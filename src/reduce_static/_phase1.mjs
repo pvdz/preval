@@ -39,8 +39,6 @@ import {
   openRefsOnAfterProgram,
   openRefsOnBeforeBreak,
   openRefsOnAfterBreak,
-  openRefsOnBeforeContinue,
-  openRefsOnAfterContinue,
   openRefsOnAfterReturn,
   openRefsOnAfterThrow,
   openRefsOnBeforeLabel,
@@ -52,22 +50,6 @@ import { addLabelReference, registerGlobalLabel } from '../labels.mjs';
 // It sets up scope tracking, imports/exports tracking, return value analysis, ref tracking (which binding can see which binding). That sort of thing.
 // It does replace Identifier nodes in the AST that are $$123 param names with a special custom Param node
 // It runs twice; once for actual input code and once on normalized code.
-
-// Single scope read/write tracking:
-// For each binding that is not caught by a function, we want to know if the next ref
-// is always a read, a write, prop read, prop mutation, nothing, or unknown/maybe
-// Should also track whether the branch ends (return etc)
-// - When a write is followed by one write, the first write can be eliminated
-// - When a write is followed by multiple writes, the rhs can be split out and replaced by a primitive
-// - When a write is followed by no ref, the write can be replaced with the rhs
-// - When one branch of an if refers to an open binding and the other does not, the next ref for that open binding is unknown.
-// - While loops are always visited for the sake of the open binding, but should consider to loop
-//   - open bindings at the end of a loop point both to the next refs at the start of it as well as the next refs after the loop. it gets wild.
-// - For-in/of loops should just boot the next ref state to unknown because the body might not be visited
-// - Functions are irrelevant because this whole thing does not apply to closures, which is determined separately
-// - Labeled break: TODO
-// - Continue/break: TODO
-// - Return/Throw: end of a branch, right.
 
 export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, refTest) {
   const ast = fdata.tenkoOutput.ast;
@@ -359,7 +341,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       case 'BreakStatement:before': {
         openRefsOnBeforeBreak(node, blockStack);
 
-        // Note: continue/break state is verified by the parser so we should be able to assume this continue/break has a valid target
+        // Note: break state is verified by the parser so we should be able to assume this break has a valid target
         if (node.label) {
           const name = node.label.name;
           vlog('Label:', name);
@@ -377,30 +359,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
       case 'BreakStatement:after': {
         openRefsOnAfterBreak(node, blockStack);
-        break;
-      }
-
-      case 'ContinueStatement:before': {
-        openRefsOnBeforeContinue(node, blockStack);
-
-        // Note: continue/break state is verified by the parser so we should be able to assume this continue/break has a valid target
-        if (node.label) {
-          const name = node.label.name;
-          vlog('Label:', name);
-
-          ASSERT(
-            fdata.globallyUniqueLabelRegistry.has(node.label.name),
-            'the label should be registered',
-            node,
-            fdata.globallyUniqueLabelRegistry,
-          );
-          addLabelReference(fdata, node.label, parentNode.body, parentIndex);
-        }
-
-        break;
-      }
-      case 'ContinueStatement:after': {
-        openRefsOnAfterContinue(node, blockStack);
         break;
       }
 
@@ -1329,7 +1287,7 @@ function isTailNode(completionNode, tailNode) {
   return false;
 }
 function markEarlyCompletion(completionNode, funcNode, isReturn, parentNode) {
-  // And early completion is a return/throw/continue/break that is not the last statement of a function.
+  // And early completion is a return/throw/break that is not the last statement of a function.
   // If the completion is the last statement of a branch then the other branch must not complete or not be last. Recursively.
 
   // From the end of the function. Check if the statement is the return, in that case bail because this is not early.

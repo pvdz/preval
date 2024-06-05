@@ -14,7 +14,7 @@ import { REF_TRACK_TRACING } from './utils.mjs';
  *    entryReads: Map<string, Set<Read>>,
  *    entryWrites: Map<string, Set<Write>>,
  *    exitWrites: Map<string, Set<Write>>,
- *    wasAbruptType: '' | 'break' | 'continue' | 'return' | 'throw',
+ *    wasAbruptType: '' | 'break' | 'return' | 'throw',
  *    wasAbruptLabel: undefined | string,
  *    reads: Map<string, Array<Read>>,
  *    writes: Map<string, Array<Write>>,
@@ -57,7 +57,7 @@ export function createTreblo(
      * @type{Array<{
      *    pid: number,
      *    dst: Node,
-     *    wasAbruptType: '' | 'break' | 'continue' | 'return' | 'throw',
+     *    wasAbruptType: '' | 'break' | 'return' | 'throw',
      *    wasAbruptLabel: undefined | string,
      *    overwritten: Set<string>, // Local to the block
      *    // Anywhere between src and dst Block, previously "overwrittens"
@@ -131,7 +131,7 @@ export function createTreblo(
      * Did the node abruptly change flow (break,continue,return,throw)? Implies things for exitWrites
      * If it did then the abrupt completion node is direct a child of this node, not nested.
      *
-     * @type {'' | 'break' | 'continue' | 'return' | 'throw'}
+     * @type {'' | 'break' | 'return' | 'throw'}
      */
     wasAbruptType: undefined,
     /**

@@ -10,7 +10,7 @@ import { REF_TRACK_TRACING } from './utils.mjs';
  * @typedef {
  *  {
  *    pendingLoopWriteChecks: Array<{
- *      abruptReason: '' | 'break' | 'continue' | 'return' | 'throw',
+ *      abruptReason: '' | 'break' | | 'return' | 'throw',
  *      srcPid: number,
  *      exitWrites: Map<string, Set<Write>>,
  *      mutedRefs: Set<string>

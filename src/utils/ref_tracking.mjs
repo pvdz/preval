@@ -314,23 +314,6 @@ export function openRefsOnAfterBreak(node, blockStack) {
   if (REF_TRACK_TRACING) console.groupEnd(); // BREAK
 }
 
-export function openRefsOnBeforeContinue(node, blockStack) {
-  if (REF_TRACK_TRACING) console.group('RTT: CONTINUE:before');
-
-  blockStack[blockStack.length - 1].$p.treblo.wasAbruptType = 'continue';
-  blockStack[blockStack.length - 1].$p.treblo.wasAbruptLabel = node.label?.name;
-
-  if (REF_TRACK_TRACING) console.groupEnd(); // CONTINUE:after
-  if (REF_TRACK_TRACING) console.groupEnd(); // CONTINUE
-}
-
-export function openRefsOnAfterContinue(node, blockStack) {
-  if (REF_TRACK_TRACING) console.group('RTT: CONTINUE:after');
-
-  if (REF_TRACK_TRACING) console.groupEnd(); // CONTINUE:after
-  if (REF_TRACK_TRACING) console.groupEnd(); // CONTINUE
-}
-
 export function openRefsOnBeforeReturn(blockStack, node) {
   if (REF_TRACK_TRACING) console.group('RTT: RETURN');
   if (REF_TRACK_TRACING) console.group('RTT: RETURN:before');
@@ -653,7 +636,7 @@ function findAndQueueContinuationBlock(fromBlockTreblo, fromBlockPid, wasAbruptT
   }
 
   // Find the "parentBlock" of the statement that's executed _after_ each block.
-  // This is the one we need to update, break, continue, or not abrupt at all.
+  // This is the one we need to update, break, or not abrupt at all.
   // Return null if there's no need to update anything due to a `return`
   // There s always ever one. The implicit throw case is handled in the catch explicitly
   // and there is no finally (but even with finally it would be one).
@@ -674,7 +657,6 @@ function findAndQueueContinuationBlock(fromBlockTreblo, fromBlockPid, wasAbruptT
   // This is usually the same as the continuationBlock, but there are some exceptions:
   // - return/throw has no continuation block. In that case it's the nearest scope floor (func/program)
   // - if throw and target is catch block then target is the parent block of its try
-  // - for a continue that loops the target is the parent of the loop
   let targetDefinedBlock = continuationBlock;
   if (!targetDefinedBlock) {
     if (REF_TRACK_TRACING) console.log('Have no continuationNode so finding nearest scope to use as `defined` target');
@@ -697,8 +679,8 @@ function findAndQueueContinuationBlock(fromBlockTreblo, fromBlockPid, wasAbruptT
   // If there is no continuation block (return/throw) then target the nearest function boundary instead
 
   // Code may also loop if not abrupt and fromBlock is body of a loop (checked later)
-  let loops = wasAbruptType === 'continue' || +continuationBlock?.$p.pid === fromBlockPid;
-  if (REF_TRACK_TRACING) console.log(`TTR: Loops? Only if abrupt was "continue" (= "${wasAbruptType}"), or if continuation block has same pid as from block (`, +continuationBlock?.$p.pid === fromBlockPid, '), verdict:', loops);
+  let loops = +continuationBlock?.$p.pid === fromBlockPid; // (The Continue statement was eliminated so we only check for implicit loopers)
+  if (REF_TRACK_TRACING) console.log(`TTR: Loops? Only if continuation block has same pid as from block (`, +continuationBlock?.$p.pid === fromBlockPid, '), verdict:', loops);
 
   // If code doesn't abrupt then it can't go through a trap and we can skip this search
   if (wasAbruptType) {
@@ -819,19 +801,6 @@ function findSimpleContinuationBlock(wasAbruptType, wasAbruptLabel, walkerPath, 
         // The break continues code execution _after_ the target loop statement so on the next index (or otherwise its parent)
         return parentBlock;
       }
-    }
-  }
-  else if (wasAbruptType === 'continue') {
-    // code continues _with_ the node (same index in the parent block)
-    if (wasAbruptLabel) {
-      // We can return the label statement since that's essentially the same
-      const labelNode = globallyUniqueLabelRegistry.get(wasAbruptLabel).node;
-      ASSERT(['WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(labelNode.body.type), 'if continue can syntactically target a label then it must have a loop as body');
-      ASSERT(labelNode.body.body.type === 'BlockStatement', 'and this is the loop body');
-      return labelNode.body.body;
-    } else {
-      // Nearest loop, then that body
-      return loopStack[loopStack.length - 1].body;
     }
   }
   else {

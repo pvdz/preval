@@ -60,19 +60,19 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const f = function ($$0, $$1) {
+const f = function ($$0) {
   const tmpParamBare = $$0;
-  const tmpOutlinedParam = $$1;
   debugger;
-  if (tmpOutlinedParam) {
+  const tmpIfTest = tmpParamBare === undefined;
+  if (tmpIfTest) {
     return `foo`;
   } else {
     return tmpParamBare;
   }
 };
-const tmpCalleeParam = f(`x`, false);
+const tmpCalleeParam = f(`x`);
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = f(undefined, true);
+const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 `````
 
@@ -81,10 +81,10 @@ $(tmpCalleeParam$1);
 With rename=true
 
 `````js filename=intro
-const a = function($$0,$$1 ) {
+const a = function($$0 ) {
   const b = c;
-  const d = e;
   debugger;
+  const d = b === undefined;
   if (d) {
     return "foo";
   }
@@ -92,10 +92,10 @@ const a = function($$0,$$1 ) {
     return b;
   }
 };
-const f = a( "x", false );
+const e = a( "x" );
+$( e );
+const f = a();
 $( f );
-const g = a( undefined, true );
-$( g );
 `````
 
 ## Globals

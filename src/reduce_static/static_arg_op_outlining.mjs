@@ -23,9 +23,11 @@ import {
   tmat,
   coerce,
   findBodyOffset,
+  assertNoDupeNodes,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
+import { cloneSimple, isSimpleNodeOrSimpleMember } from '../ast.mjs';
 
 export function staticArgOpOutlining(fdata) {
   group('\n\n\nFinding static param ops to outline\n');
@@ -48,8 +50,8 @@ function _staticArgOpOutlining(fdata) {
     if (!meta.isConstant) return; // I don't think this really matters. But perhaps in that case we should just skip the lets...
     if (meta.constValueRef.node.type !== 'FunctionExpression') return;
 
-    vgroup('-', name);
-    process(meta, name);
+    vgroup(`- processing function "${name}"`);
+    processFunctionName(meta, name);
     vgroupEnd();
   });
 
@@ -233,7 +235,7 @@ function _staticArgOpOutlining(fdata) {
     }
   }
 
-  function process(meta, name) {
+  function processFunctionName(funcMeta, name) {
     // Verify that
     // - The function is only called, doesn't escape
     // - The function has at least one arg
@@ -241,7 +243,7 @@ function _staticArgOpOutlining(fdata) {
     // - None of the calls use a spread (and later we can still proceed if the param is before the spread in all calls)
     // - The function is not direct recursive (tests/cases/primitive_arg_inlining/recursion/_base.md). Probably also not indirectly recursive (?)
 
-    const funcNode = meta.constValueRef.node;
+    const funcNode = funcMeta.constValueRef.node;
     const paramCount = funcNode.params.length;
     if (paramCount === 0) {
       vlog('- Function has no params, bailing');
@@ -249,6 +251,7 @@ function _staticArgOpOutlining(fdata) {
     }
 
     if (funcNode.$p.readsArgumentsLen || funcNode.$p.readsArgumentsAny) {
+      // TODO: We can support this just don't remove the args after outlining them. Replace caller values with `undefined`.
       vlog('- The function uses `arguments` so we should bail');
       return;
     }
@@ -261,7 +264,7 @@ function _staticArgOpOutlining(fdata) {
 
     // Try to validate whether function is safe to modify (does not escape, only called, etc)
     if (
-      meta.reads.some((read) => {
+      funcMeta.reads.some((read) => {
         // TODO: ignore .call() etc as part of this
         //if (
         //  read.parentNode.type === 'MemberExpression' &&
@@ -293,6 +296,13 @@ function _staticArgOpOutlining(fdata) {
           return true;
         }
 
+        if (read.parentNode.arguments.length < funcNode.params.length) {
+          // TODO: we can support this for the args that have been passed on and infer `undefined` for the missing ones...
+          // (We don't care as much about arg overflow, only underflow)
+          vlog('- The function has at least one call where it has fewer args than parameters');
+          return true;
+        }
+
         if (read.pfuncNode === funcNode) {
           vlog('- This is a recursive function. It is too dangerous.');
           return true;
@@ -302,7 +312,8 @@ function _staticArgOpOutlining(fdata) {
       return;
     }
 
-    // Find the first statement of the function and check if it uses an arg.
+    // Okay, we've verified the function is only called, doesn't escape, and gets at least as many args as params in all calls.
+    // Find the first statement of the function and check if and how it uses an arg.
     // TODO: in certain cases we can skip statements (ones that can't possibly spy) to try the next statement.
 
     let max = funcNode.body.body.length - 1;
@@ -321,15 +332,198 @@ function _staticArgOpOutlining(fdata) {
       paramIndex = actionable(stmt, names);
       vlog('  -', paramIndex === FAIL ? 'FAIL' : paramIndex === SKIP ? 'SKIP' : paramIndex);
       if (paramIndex === FAIL) {
-        vlog('  - Found a blocking statement before finding a target, bailing');
-        return;
+        vlog('  - Found a blocking statement before finding a target, this is not a statement with op');
+        paramIndex = -1;
+        break;
       }
       ++stmtIndex;
     }
-    if (paramIndex < 0) {
-      vlog('- Was unable to find a target statement, bailing');
+    if (paramIndex >= 0) {
+      inlineOp(funcMeta, funcNode, paramIndex, paramCount, stmt, stmtIndex);
       return;
     }
+
+    vlog('\nWas unable to find a target statement to inline an op. Now checking the assignment case.');
+
+    // Check if first statement is a regular assignment to a closure. Would be cool if we could outline that.
+
+    const firstStmt = funcNode.body.body[stmtOffset];
+    if (
+      firstStmt.type === 'ExpressionStatement' &&
+      firstStmt.expression.type === 'AssignmentExpression' &&
+      firstStmt.expression.left.type === 'Identifier' &&
+      AST.isPrimitive(firstStmt.expression.right)
+    ) {
+      // `function f() { x = 1 }` or `function f(x) { x = 1 }`
+
+      vlog('- First statement is a regular assignment (ident=primitive). Check if it is assigning a param to a closure.');
+      // Check whether left or right is a closure. Neither have to be and they might both be.
+      // We can do a simple param name check for this. Either it's a param or it's a closure.
+      const left = firstStmt.expression.left;
+      const right = firstStmt.expression.right;
+
+      const leftIsParam = funcNode.$p.paramNames.indexOf(left.name);
+
+      if (leftIsParam >= 0) {
+        // `function f(b) { b = 1; }`
+        // Why would you ever do this, but okay.
+        TODO // find me a test case. we can support this but i think other rules supersede it
+        return
+      }
+
+      // `let a = 1; function f(b) { a = 100; }`
+
+      const leftMeta = fdata.globallyUniqueNamingRegistry.get(left.name);
+
+      if (leftMeta.constValueRef.containerNode.type !== 'VariableDeclaration') {
+        // TODO: we can probably still support this case...? As long as we have a scope to check, who cares what you assign to
+        TODO // find me a test case...
+        vlog('- The lhs is a closure but it was not a variable declaration, so bailing');
+        return; // catch, for-x, ???
+      }
+      if (funcMeta.reads.some(read => !read.blockChain.startsWith(leftMeta.constValueRef.node.$p.blockChain))) {
+        vlog('- Not all call sites can reach the closure, bailing');
+        return;
+      }
+
+      rule('Function that does not escape where first statement is assignment of param to closure can be simplified');
+      example('let x=1; function f(a){ x = a; } f(2); f(3);', 'let x=1; function f(a){ x = a; } x = 2; f(2); x = 3; f(3);');
+      before(firstStmt);
+
+      // Note: We'll replace the statement with a block that wraps both expressions.
+      //       Then before this trick returns we'll flatten that in reverse pid order.
+
+      funcMeta.reads.forEach(read => {
+        before(read.blockBody[read.blockIndex]);
+
+        read.blockBody[read.blockIndex] = AST.blockStatement(
+          AST.expressionStatement(AST.assignmentExpression(AST.identifier(left.name), cloneSimple(right))),
+          read.blockBody[read.blockIndex],
+        );
+
+        queue.push({
+          index: read.blockIndex,
+          func: () => {
+            // Flatten the block
+            read.blockBody.splice(read.blockIndex, 1, ...read.blockBody[read.blockIndex].body);
+          }
+        });
+
+        after(read.blockBody[read.blockIndex]);
+      });
+
+
+      funcNode.body.body[stmtOffset] = AST.emptyStatement();
+      assertNoDupeNodes(fdata.tenkoOutput.ast, 'body');
+
+      ++changes;
+      return;
+    }
+
+    if (
+      firstStmt.type === 'ExpressionStatement' &&
+      firstStmt.expression.type === 'AssignmentExpression' &&
+      firstStmt.expression.left.type === 'Identifier' &&
+      firstStmt.expression.right.type === 'Identifier'
+    ) {
+      vlog('- First statement is a regular assignment (ident=ident). Check if it is assigning a param to a closure.');
+      // Check whether left or right is a closure. Neither have to be and they might both be.
+      // We can do a simple param name check for this. Either it's a param or it's a closure.
+      const left = firstStmt.expression.left;
+      const right = firstStmt.expression.right;
+
+      const leftIsParam = funcNode.$p.paramNames.indexOf(left.name);
+      const rightIsParam = funcNode.$p.paramNames.indexOf(right.name);
+
+      if (leftIsParam >= 0 && rightIsParam >= 0) {
+        // Hmmmm. Assigning one param to another as the first statement?? (`function f(a,b) { a=b; }`) Kay, maybe we can simplify this?
+        // But only if one of the params isn't used any further. Huge edge case tho.
+        TODO
+        return;
+      }
+
+      if (leftIsParam >= 0 && AST.isPrimitive(right)) {
+        // TODO: outer if is asserting identifier so we should move this check outward
+        // Assigning a primitive value to a param binding as the first statement? ksure.
+        TODO // We can support this sort of case (`function f(a) { a = 1; }`). Not sure if that's worth the effort. find me a test case
+        return;
+      }
+
+      if (leftIsParam >= 0) {
+        // `let a = 1; function f(b) { b = a; }`
+        // Why would you ever do this, but okay.
+        TODO // find me a test case. we can support this but i think other rules supersede it
+        return
+      }
+
+      if (rightIsParam >= 0) {
+        // `let a = 1; function f(b) { a = b; }`
+        const leftMeta = fdata.globallyUniqueNamingRegistry.get(left.name);
+
+        if (leftMeta.constValueRef.containerNode.type !== 'VariableDeclaration') {
+          // TODO: we can probably still support this case...? As long as we have a scope to check, who cares what you assign to
+          TODO // find me a test case...
+          vlog('- The lhs is a closure but it was not a variable declaration, so bailing');
+          return; // catch, for-x, ???
+        }
+        if (funcMeta.reads.some(read => !read.blockChain.startsWith(leftMeta.constValueRef.node.$p.blockChain))) {
+          vlog('- Not all call sites can reach the closure, bailing');
+          return;
+        }
+
+        rule('Function that does not escape where first statement is assignment of param to closure can be simplified');
+        example('let x=1; function f(a){ x = a; } f(2); f(3);', 'let x=1; function f(a){ x = a; } x = 2; f(2); x = 3; f(3);');
+        before(firstStmt);
+
+
+        // Note: We'll replace the statement with a block that wraps both expressions.
+        //       Then before this trick returns we'll flatten that in reverse pid order.
+
+
+
+        funcMeta.reads.forEach(read => {
+          before(read.blockBody[read.blockIndex]);
+
+          const arg = read.parentNode.arguments[rightIsParam];
+          ASSERT(isSimpleNodeOrSimpleMember(arg), 'should be normalized code so call should have simple args');
+
+          read.blockBody[read.blockIndex] = AST.blockStatement(
+            AST.expressionStatement(AST.assignmentExpression(AST.identifier(left.name), cloneSimple(arg))),
+            read.blockBody[read.blockIndex],
+          );
+
+          queue.push({
+            index: read.blockIndex,
+            func: () => {
+              // Flatten the block
+              read.blockBody.splice(read.blockIndex, 1, ...read.blockBody[read.blockIndex].body);
+            }
+          });
+
+          after(read.blockBody[read.blockIndex]);
+        });
+
+
+        funcNode.body.body[stmtOffset] = AST.emptyStatement();
+        assertNoDupeNodes(fdata.tenkoOutput.ast, 'body');
+
+        ++changes;
+        return;
+      } else {
+        TODO
+
+        rule('Function that does not escape where first statement is assignment between two closures can be simplified');
+        example('let x=1; let y=2; function f(a){ x=y; } f(2); f(3);', 'let x=1; let y=2; function f(a){ } x=y; f(undefined); x=y; f(undefined);');
+        return;
+      }
+
+
+
+    }
+
+  }
+  function inlineOp(funcMeta, funcNode, paramIndex, paramCount, stmt, stmtIndex) {
+    const names = funcNode.$p.paramNames;
 
     let oldParamName = names[paramIndex];
     vlog('- Target param name: `' + oldParamName + '` with param index:', paramIndex, ', at statement index', stmtIndex);
@@ -339,8 +533,8 @@ function _staticArgOpOutlining(fdata) {
       'function f(a) { const x = a + 1; g(a); return x; } f(1); f("a");',
       'function f(a, b) { const x = b; g(a); return x; } f(1, 1 + 1); f("a" + 1);',
     );
-    before(meta.constValueRef.containerNode);
-    meta.reads.forEach((read) => before(read.parentNode));
+    before(funcMeta.constValueRef.containerNode);
+    funcMeta.reads.forEach((read) => before(read.parentNode));
 
     // We create a fresh param name and add it to the end
     // We replace the binary expression with the new param name
@@ -381,7 +575,7 @@ function _staticArgOpOutlining(fdata) {
     // Update all the call sites. They need to add a clone of the expression to their argument list.
     // They need to replace the occurrence of the parameter with the argument that represents it (same index).
     // `function f(a) { a + 2 } f(1)` -> `function f(a, b) { b } f(1, 1 + 2)`
-    meta.reads.forEach((read) => {
+    funcMeta.reads.forEach((read) => {
       queue.push({
         index: read.blockIndex,
         func: () => {
@@ -461,14 +655,14 @@ function _staticArgOpOutlining(fdata) {
       });
     });
 
-    after(meta.constValueRef.containerNode);
+    after(funcMeta.constValueRef.containerNode);
     ++changes;
   }
 
   if (changes) {
     vgroup('Unrolling call queue now:');
 
-    queue.sort(({ index: a }, { index: b }) => (a < b ? 1 : a > b ? -1 : 0));
+    queue.sort(({ index: a }, { index: b }) => b-a);
     queue.forEach(({ index, func }) => func());
 
     vgroupEnd();

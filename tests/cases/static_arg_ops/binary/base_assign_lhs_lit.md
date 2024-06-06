@@ -73,23 +73,15 @@ $(y);
 
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpOutlinedParam = $$0;
-  debugger;
-  y = tmpOutlinedParam;
-  const tmpReturnArg = $(100);
-  return tmpReturnArg;
-};
-let y = undefined;
-const tmpCalleeParam = f(2);
+const tmpCalleeParam = $(100);
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = f(3);
+const tmpCalleeParam$1 = $(100);
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f(`a1`);
+const tmpCalleeParam$3 = $(100);
 $(tmpCalleeParam$3);
-const tmpCalleeParam$5 = f(2);
+const tmpCalleeParam$5 = $(100);
 $(tmpCalleeParam$5);
-$(y);
+$(2);
 `````
 
 ## PST Output
@@ -97,23 +89,15 @@ $(y);
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = c;
-  debugger;
-  d = b;
-  const e = $( 100 );
-  return e;
-};
-let d = undefined;
-const f = a( 2 );
-$( f );
-const g = a( 3 );
-$( g );
-const h = a( "a1" );
-$( h );
-const i = a( 2 );
-$( i );
+const a = $( 100 );
+$( a );
+const b = $( 100 );
+$( b );
+const c = $( 100 );
+$( c );
+const d = $( 100 );
 $( d );
+$( 2 );
 `````
 
 ## Globals

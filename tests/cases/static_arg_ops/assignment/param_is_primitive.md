@@ -1,15 +1,15 @@
 # Preval test case
 
-# param_is_closure.md
+# param_is_primitive.md
 
-> Static arg ops > Assignment > Param is closure
+> Static arg ops > Assignment > Param is primitive
 
 ## Input
 
 `````js filename=intro
 let a = 1;
 function f(b) {
-  b = a;
+  b = 100;
   $(b);
 }
 $(f);
@@ -26,7 +26,7 @@ $(3);
 let f = function ($$0) {
   let b = $$0;
   debugger;
-  b = a;
+  b = 100;
   $(b);
 };
 let a = 1;
@@ -44,7 +44,7 @@ $(3);
 let f = function ($$0) {
   let b = $$0;
   debugger;
-  b = a;
+  b = 100;
   $(b);
   return undefined;
 };
@@ -62,13 +62,13 @@ $(3);
 `````js filename=intro
 const f = function ($$0) {
   debugger;
-  $(1);
+  $(100);
   return undefined;
 };
 $(f);
-$(1);
-$(1);
-$(1);
+$(100);
+$(100);
+$(100);
 $(3);
 `````
 
@@ -79,13 +79,13 @@ With rename=true
 `````js filename=intro
 const a = function($$0 ) {
   debugger;
-  $( 1 );
+  $( 100 );
   return undefined;
 };
 $( a );
-$( 1 );
-$( 1 );
-$( 1 );
+$( 100 );
+$( 100 );
+$( 100 );
 $( 3 );
 `````
 
@@ -97,9 +97,9 @@ None
 
 Should call `$` with:
  - 1: '<function>'
- - 2: 1
- - 3: 1
- - 4: 1
+ - 2: 100
+ - 3: 100
+ - 4: 100
  - 5: 3
  - eval returned: undefined
 

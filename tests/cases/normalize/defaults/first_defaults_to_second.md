@@ -90,12 +90,12 @@ tmpCallCallee$5(tmpCalleeParam$5);
 
 
 `````js filename=intro
-const f = function ($$0, $$1, $$2) {
+const f = function ($$0, $$1) {
   const tmpParamBare = $$0;
   const tmpParamBare$1 = $$1;
-  const tmpOutlinedParam = $$2;
   debugger;
-  if (tmpOutlinedParam) {
+  const tmpIfTest = tmpParamBare === undefined;
+  if (tmpIfTest) {
     throw `Preval: TDZ triggered for this read: ((tmpParamBare === undefined)? b : tmpParamBare)`;
   } else {
     let b = `bar`;
@@ -108,13 +108,13 @@ const f = function ($$0, $$1, $$2) {
     return tmpReturnArg;
   }
 };
-const tmpCalleeParam = f(undefined, undefined, true);
+const tmpCalleeParam = f();
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = f(`x`, undefined, false);
+const tmpCalleeParam$1 = f(`x`);
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f(undefined, `y`, true);
+const tmpCalleeParam$3 = f(undefined, `y`);
 $(tmpCalleeParam$3);
-const tmpCalleeParam$5 = f(`x`, `y`, false);
+const tmpCalleeParam$5 = f(`x`, `y`);
 $(tmpCalleeParam$5);
 `````
 
@@ -123,35 +123,35 @@ $(tmpCalleeParam$5);
 With rename=true
 
 `````js filename=intro
-const a = function($$0,$$1,$$2 ) {
+const a = function($$0,$$1 ) {
   const b = c;
   const d = e;
-  const f = g;
   debugger;
+  const f = b === undefined;
   if (f) {
     throw "Preval: TDZ triggered for this read: ((tmpParamBare === undefined)? b : tmpParamBare)";
   }
   else {
-    let h = "bar";
-    const i = d === undefined;
-    if (i) {
+    let g = "bar";
+    const h = d === undefined;
+    if (h) {
 
     }
     else {
-      h = d;
+      g = d;
     }
-    const j = [ b, h ];
-    return j;
+    const i = [ b, g ];
+    return i;
   }
 };
-const k = a( undefined, undefined, true );
+const j = a();
+$( j );
+const k = a( "x" );
 $( k );
-const l = a( "x", undefined, false );
+const l = a( undefined, "y" );
 $( l );
-const m = a( undefined, "y", true );
+const m = a( "x", "y" );
 $( m );
-const n = a( "x", "y", false );
-$( n );
 `````
 
 ## Globals

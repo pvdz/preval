@@ -3,10 +3,6 @@
 # param_is_catch_var.md
 
 > Static arg ops > Assignment > Param is catch var
->
-> 
-
-#TODO
 
 ## Input
 
@@ -15,10 +11,10 @@ try {
   $(1);
   throw 'foo';
 } catch (a) {
-  let f = (b) => {
+  function f(b) {
     b = a;
     $(a, b);
-  }
+  };
 
   f(11);
   f(12);
@@ -35,7 +31,7 @@ try {
   $(1);
   throw `foo`;
 } catch (a) {
-  let f = ($$0) => {
+  let f = function ($$0) {
     let b = $$0;
     debugger;
     b = a;

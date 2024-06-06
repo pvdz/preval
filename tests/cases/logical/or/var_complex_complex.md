@@ -16,11 +16,13 @@ const x = $(1) || $(2);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = $(1) || $(2);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = $(1);
@@ -31,6 +33,7 @@ if (x) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = $(1);

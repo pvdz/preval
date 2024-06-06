@@ -14,11 +14,13 @@ $('hello world'.split('', $, unknown));
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(`hello world`.split(``, $, unknown));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -27,6 +29,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 unknown;

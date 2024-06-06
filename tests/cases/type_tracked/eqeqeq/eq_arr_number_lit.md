@@ -17,12 +17,14 @@ $(x === 2); // Must be false
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = [1, 2, 3];
 $(x === 2);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const x = [1, 2, 3];
@@ -32,6 +34,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(false);

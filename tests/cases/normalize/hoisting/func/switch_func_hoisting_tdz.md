@@ -23,6 +23,7 @@ switch ($(1)) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 f();
 tmpSwitchBreak: {
@@ -41,6 +42,7 @@ tmpSwitchBreak: {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 f();
@@ -66,6 +68,7 @@ tmpSwitchBreak: {
 `````
 
 ## Output
+
 
 `````js filename=intro
 f();

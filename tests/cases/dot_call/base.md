@@ -17,6 +17,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const arr = [1, 2];
 const tmpCallVal = arr.push;
@@ -26,6 +27,7 @@ $(x);
 
 ## Normalized
 
+
 `````js filename=intro
 const arr = [1, 2];
 const tmpCallVal = arr.push;
@@ -34,6 +36,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(3);

@@ -17,6 +17,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const bool = true;
 const tmpCallVal = bool.toString;
@@ -26,6 +27,7 @@ $(x);
 
 ## Normalized
 
+
 `````js filename=intro
 const bool = true;
 const tmpCallVal = bool.toString;
@@ -34,6 +36,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`true`);

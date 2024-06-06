@@ -28,6 +28,7 @@ $(cTmp);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let cTmp = $;
 let cTail = $fail;
@@ -45,6 +46,7 @@ $(cTmp);
 
 ## Normalized
 
+
 `````js filename=intro
 let cTmp = $;
 let cTail = $fail;
@@ -58,6 +60,7 @@ $(cTmp);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $fail;

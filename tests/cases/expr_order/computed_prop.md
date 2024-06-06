@@ -16,11 +16,13 @@ $(1)[$(2)];
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(1)[$(2)];
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCompObj = $(1);
@@ -29,6 +31,7 @@ tmpCompObj[tmpCompProp];
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCompObj = $(1);

@@ -20,6 +20,7 @@ $(Number([spy, spy]));
 
 ## Pre Normal
 
+
 `````js filename=intro
 const spy = {
   valueOf() {
@@ -35,6 +36,7 @@ $(Number([spy, spy]));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const spy = {
@@ -56,6 +58,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const spy = {

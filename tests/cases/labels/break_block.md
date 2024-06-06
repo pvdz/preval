@@ -18,6 +18,7 @@ foo: {
 
 ## Pre Normal
 
+
 `````js filename=intro
 foo: {
   break foo;
@@ -26,11 +27,13 @@ foo: {
 
 ## Normalized
 
+
 `````js filename=intro
 
 `````
 
 ## Output
+
 
 `````js filename=intro
 

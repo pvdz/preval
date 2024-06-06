@@ -22,6 +22,7 @@ if (y) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = $(1);
 const y = x != 1;
@@ -34,6 +35,7 @@ if (y) {
 
 ## Normalized
 
+
 `````js filename=intro
 const x = $(1);
 const y = x != 1;
@@ -45,6 +47,7 @@ if (y) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = $(1);

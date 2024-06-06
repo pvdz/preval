@@ -49,6 +49,7 @@ $(arr2);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = {
   toString() {
@@ -89,6 +90,7 @@ $(arr2);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const x = {
@@ -197,6 +199,7 @@ $(arr2);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = {

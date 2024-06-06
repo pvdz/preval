@@ -17,12 +17,14 @@ $(a['$']);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = { [`\$`]: 1 };
 $(a[`\$`]);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const a = { $: 1 };
@@ -32,6 +34,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

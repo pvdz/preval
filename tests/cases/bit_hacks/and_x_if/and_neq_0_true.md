@@ -19,6 +19,7 @@ $(z);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = +$(1);
 const y = x & 32768;
@@ -27,6 +28,7 @@ $(z);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
@@ -37,6 +39,7 @@ $(z);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpUnaryArg = $(1);

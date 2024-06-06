@@ -22,6 +22,7 @@ f(400, `def`, 500, 600);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const f = function ($$0, $$1, $$2, $$3) {
   let a = $$0;
@@ -38,6 +39,7 @@ f(400, `def`, 500, 600);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const f = function ($$0, $$1, $$2, $$3) {
@@ -56,6 +58,7 @@ f(400, `def`, 500, 600);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`abc`, 100, NaN, 230);

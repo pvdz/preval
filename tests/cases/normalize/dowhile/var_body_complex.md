@@ -17,6 +17,7 @@ while (0);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = undefined;
 while (true) {
@@ -30,6 +31,7 @@ while (true) {
 
 ## Normalized
 
+
 `````js filename=intro
 let a = undefined;
 const tmpCallCallee = $;
@@ -38,6 +40,7 @@ a = tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam = $(2);

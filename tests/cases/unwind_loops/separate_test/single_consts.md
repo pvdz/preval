@@ -25,6 +25,7 @@ while (test) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const arr = [101, 102, 103, 104, 105, 106, 107, 108, 109, 1010];
 const max = $(10);
@@ -39,6 +40,7 @@ while (test) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const arr = [101, 102, 103, 104, 105, 106, 107, 108, 109, 1010];
@@ -58,6 +60,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const max = $(10);

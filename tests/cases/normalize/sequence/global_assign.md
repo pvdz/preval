@@ -16,11 +16,13 @@ This wouldn't occur in actual code but we will see it as an artifact of other tr
 
 ## Pre Normal
 
+
 `````js filename=intro
 ($(1), $(2)).x = 1;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 $(1);
@@ -29,6 +31,7 @@ tmpAssignMemLhsObj.x = 1;
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

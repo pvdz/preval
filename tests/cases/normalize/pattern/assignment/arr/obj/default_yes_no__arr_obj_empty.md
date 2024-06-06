@@ -17,12 +17,14 @@ $('ok');
 
 ## Pre Normal
 
+
 `````js filename=intro
 [{} = $(`fail`)] = [{}, 20, 30];
 $(`ok`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpArrElement = {};
@@ -49,6 +51,7 @@ $(`ok`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`ok`);

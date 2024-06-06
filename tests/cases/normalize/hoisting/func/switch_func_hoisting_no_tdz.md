@@ -23,6 +23,7 @@ f(); // This should work
 
 ## Pre Normal
 
+
 `````js filename=intro
 tmpSwitchBreak: {
   let f$1 = function () {
@@ -41,6 +42,7 @@ f();
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 tmpSwitchBreak: {
@@ -66,6 +68,7 @@ f();
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpSwitchDisc = $(1);

@@ -20,6 +20,7 @@ switch (1) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 tmpSwitchBreak: {
   let a;
@@ -34,6 +35,7 @@ tmpSwitchBreak: {
 
 ## Normalized
 
+
 `````js filename=intro
 let a = undefined;
 const tmpSwitchDisc = 1;
@@ -46,6 +48,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpClusterSSA_a = new $(1);

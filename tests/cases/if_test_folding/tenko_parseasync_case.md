@@ -21,6 +21,7 @@ if (tmpIfTest$3265) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const tmpIfTest$3265 = fromStmtOrExpr$1 === 1;
 if (tmpIfTest$3265) {
@@ -32,6 +33,7 @@ if (tmpIfTest$3265) {
 
 ## Normalized
 
+
 `````js filename=intro
 const tmpIfTest$3265 = fromStmtOrExpr$1 === 1;
 if (tmpIfTest$3265) {
@@ -42,6 +44,7 @@ if (tmpIfTest$3265) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpIfTest$3265 = fromStmtOrExpr$1 !== 1;

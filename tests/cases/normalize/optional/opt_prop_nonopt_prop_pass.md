@@ -17,12 +17,14 @@ $(a?.b.c);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = { b: { c: 100 } };
 $(a?.b.c);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpObjLitVal = { c: 100 };
@@ -41,6 +43,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(100);

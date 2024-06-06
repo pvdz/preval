@@ -30,6 +30,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let b = { x: { y: { z: 100 } } };
 let a = { a: 999, b: 1000 };
@@ -58,6 +59,7 @@ $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpObjLitVal$1 = { z: 100 };
@@ -106,6 +108,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };

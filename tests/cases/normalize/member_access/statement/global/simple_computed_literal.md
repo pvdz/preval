@@ -15,6 +15,7 @@ obj['foo'];
 
 ## Pre Normal
 
+
 `````js filename=intro
 const obj = { foo: 10 };
 obj[`foo`];
@@ -22,12 +23,14 @@ obj[`foo`];
 
 ## Normalized
 
+
 `````js filename=intro
 const obj = { foo: 10 };
 obj.foo;
 `````
 
 ## Output
+
 
 `````js filename=intro
 

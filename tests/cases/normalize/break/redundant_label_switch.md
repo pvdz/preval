@@ -34,6 +34,7 @@ exit: switch ($(100)) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = $(2);
 exit: {
@@ -67,6 +68,7 @@ exit: {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = $(2);
@@ -120,6 +122,7 @@ exit: {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let x = $(2);

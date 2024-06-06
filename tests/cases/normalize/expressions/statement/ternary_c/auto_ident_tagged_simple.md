@@ -17,12 +17,14 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = $([`fo`, `o`], 1);
 $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -33,6 +35,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam = [`fo`, `o`];

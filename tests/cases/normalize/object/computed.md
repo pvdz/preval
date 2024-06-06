@@ -19,12 +19,14 @@ $(obj);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const obj = { [$(1)]: $(2) };
 $(obj);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpObjLitPropKey = $(1);
@@ -34,6 +36,7 @@ $(obj);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpObjLitPropKey = $(1);

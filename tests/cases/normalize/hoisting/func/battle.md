@@ -27,6 +27,7 @@ $(top());
 
 ## Pre Normal
 
+
 `````js filename=intro
 let top = function () {
   debugger;
@@ -43,6 +44,7 @@ $(top());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let top = function () {
@@ -64,6 +66,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(3);

@@ -21,6 +21,7 @@ $(r);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const f = function () {
   debugger;
@@ -33,6 +34,7 @@ $(r);
 
 ## Normalized
 
+
 `````js filename=intro
 const f = function () {
   debugger;
@@ -44,6 +46,7 @@ $(r);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const r = $();

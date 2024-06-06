@@ -19,6 +19,7 @@ $('pass');
 
 ## Pre Normal
 
+
 `````js filename=intro
 while (true) {
   break;
@@ -28,11 +29,13 @@ $(`pass`);
 
 ## Normalized
 
+
 `````js filename=intro
 $(`pass`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`pass`);

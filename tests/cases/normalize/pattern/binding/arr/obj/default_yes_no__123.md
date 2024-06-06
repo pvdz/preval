@@ -17,12 +17,14 @@ $('ok');
 
 ## Pre Normal
 
+
 `````js filename=intro
 const [{} = $(`pass`)] = undefined;
 $(`ok`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const bindingPatternArrRoot = undefined;
@@ -48,6 +50,7 @@ $(`ok`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 [...undefined];

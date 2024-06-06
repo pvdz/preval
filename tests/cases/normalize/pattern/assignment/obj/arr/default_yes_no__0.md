@@ -17,12 +17,14 @@ $('ok');
 
 ## Pre Normal
 
+
 `````js filename=intro
 ({ x: [] = $([`fail`]) } = 0);
 $(`ok`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpAssignObjPatternRhs = 0;
@@ -41,6 +43,7 @@ $(`ok`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const objPatternBeforeDefault = (0).x;

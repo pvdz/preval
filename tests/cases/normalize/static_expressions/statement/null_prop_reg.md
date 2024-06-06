@@ -17,12 +17,14 @@ $('fail, DCE me');
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(null.foo);
 $(`fail, DCE me`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -31,6 +33,7 @@ throw `[Preval]: Can not reach here`;
 `````
 
 ## Output
+
 
 `````js filename=intro
 null.foo;

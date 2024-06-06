@@ -17,12 +17,14 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 [{ ...x } = $({ a: `pass` })] = [];
 $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const arrAssignPatternRhs = [];
@@ -46,6 +48,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam = { a: `pass` };

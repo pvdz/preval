@@ -16,11 +16,13 @@ null.foo
 
 ## Pre Normal
 
+
 `````js filename=intro
 null.foo;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 null.foo;
@@ -28,6 +30,7 @@ throw `[Preval]: Can not reach here`;
 `````
 
 ## Output
+
 
 `````js filename=intro
 null.foo;

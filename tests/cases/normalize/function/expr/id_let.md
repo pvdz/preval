@@ -21,6 +21,7 @@ $(x, typeof f);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function findme() {
   debugger;
@@ -32,6 +33,7 @@ $(x, typeof f);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const findme = function () {
@@ -50,6 +52,7 @@ tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const findme = function () {

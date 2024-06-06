@@ -17,6 +17,7 @@ for (let a = [x, y] = z;false;) $(a, x, y, z);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = 1,
   x = 1,
@@ -32,6 +33,7 @@ let a = 1,
 
 ## Normalized
 
+
 `````js filename=intro
 let a = 1;
 let x = 1;
@@ -46,6 +48,7 @@ a$1 = tmpNestedAssignArrPatternRhs;
 `````
 
 ## Output
+
 
 `````js filename=intro
 

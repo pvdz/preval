@@ -15,12 +15,14 @@ if (({ x } = 1).foo) y;
 
 ## Pre Normal
 
+
 `````js filename=intro
 let y;
 if (({ x: x } = 1).foo) null;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let y = undefined;
@@ -32,6 +34,7 @@ const tmpIfTest = tmpCompObj.foo;
 `````
 
 ## Output
+
 
 `````js filename=intro
 x = (1).x;

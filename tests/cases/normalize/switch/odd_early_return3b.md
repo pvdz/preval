@@ -30,6 +30,7 @@ if ($) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const inlineMe = function () {
   debugger;
@@ -47,6 +48,7 @@ if ($) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const inlineMe = function () {
@@ -70,6 +72,7 @@ if ($) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 if ($) {

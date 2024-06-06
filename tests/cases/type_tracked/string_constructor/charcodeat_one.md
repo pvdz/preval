@@ -16,11 +16,13 @@ $(String.fromCharCode(80));
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(String.fromCharCode(80));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -29,6 +31,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`P`);

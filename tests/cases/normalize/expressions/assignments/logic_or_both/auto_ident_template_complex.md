@@ -17,12 +17,14 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = `foo` + $coerce($(1), `string`) + ``;
 $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpBinBothLhs = `foo`;
@@ -34,6 +36,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCallCallee = $(1);

@@ -17,12 +17,14 @@ $('bad');
 
 ## Pre Normal
 
+
 `````js filename=intro
 const [[...x] = $(`fail`)] = 0;
 $(`bad`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const bindingPatternArrRoot = 0;
@@ -41,6 +43,7 @@ $(`bad`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 [...0];

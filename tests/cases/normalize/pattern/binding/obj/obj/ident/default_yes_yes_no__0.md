@@ -17,12 +17,14 @@ $(y);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const { x: { y: y = $(`fail`) } = $({ y: `pass2` }) } = 0;
 $(y);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const bindingPatternObjRoot = 0;
@@ -48,6 +50,7 @@ $(y);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const objPatternBeforeDefault = (0).x;

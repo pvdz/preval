@@ -34,6 +34,7 @@ $(f(v, p, q, r));
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0, $$1, $$2, $$3) {
   let a$1 = $$0;
@@ -64,6 +65,7 @@ $(f(v, p, q, r));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0, $$1, $$2, $$3) {
@@ -99,6 +101,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(true);

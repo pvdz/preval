@@ -17,12 +17,14 @@ $(!((x = 'foo'), $(x)));
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = undefined;
 $(!((x = `foo`), $(x)));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = undefined;
@@ -34,6 +36,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpUnaryArg = $(`foo`);

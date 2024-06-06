@@ -25,6 +25,7 @@ f();
 
 ## Pre Normal
 
+
 `````js filename=intro
 let parseDecimalEscape = function ($$0) {
   let c = $$0;
@@ -41,6 +42,7 @@ f();
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let parseDecimalEscape = function ($$0) {
@@ -61,6 +63,7 @@ f();
 `````
 
 ## Output
+
 
 `````js filename=intro
 f();

@@ -18,6 +18,7 @@ $('after');
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(`before`);
 (class x {}());
@@ -25,6 +26,7 @@ $(`after`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 $(`before`);
@@ -34,6 +36,7 @@ $(`after`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`before`);

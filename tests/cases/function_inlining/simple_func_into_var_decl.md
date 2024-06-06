@@ -22,6 +22,7 @@ $(p, q);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function () {
   debugger;
@@ -34,6 +35,7 @@ $(p, q);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function () {
@@ -48,6 +50,7 @@ $(p, q);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(undefined, undefined);

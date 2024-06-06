@@ -26,6 +26,7 @@ outer: {
 
 ## Pre Normal
 
+
 `````js filename=intro
 outer: {
   inner: {
@@ -42,6 +43,7 @@ outer: {
 
 ## Normalized
 
+
 `````js filename=intro
 outer: {
   inner: {
@@ -57,6 +59,7 @@ outer: {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const b = $(3);

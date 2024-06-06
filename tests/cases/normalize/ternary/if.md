@@ -18,6 +18,7 @@ else $(200);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = 1,
   b = 2,
@@ -27,6 +28,7 @@ else $(200);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = 1;
@@ -46,6 +48,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(100);

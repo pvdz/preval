@@ -17,12 +17,14 @@ $('ok');
 
 ## Pre Normal
 
+
 `````js filename=intro
 [{} = $(`fail`)] = [undefined, 20, 30];
 $(`ok`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const arrAssignPatternRhs = [undefined, 20, 30];
@@ -48,6 +50,7 @@ $(`ok`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const arrPatternStep = $(`fail`);

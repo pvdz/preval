@@ -34,6 +34,7 @@ $(tmpClusterSSA_s);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const s = $(10);
 let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
@@ -57,6 +58,7 @@ $(tmpClusterSSA_s);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const s = $(10);
@@ -85,6 +87,7 @@ $(tmpClusterSSA_s);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const s = $(10);

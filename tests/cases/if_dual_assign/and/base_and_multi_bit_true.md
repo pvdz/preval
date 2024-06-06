@@ -21,6 +21,7 @@ if (x) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = $(33) & 33;
 if (x) {
@@ -31,6 +32,7 @@ if (x) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpBinLhs = $(33);
@@ -43,6 +45,7 @@ if (x) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpBinLhs = $(33);

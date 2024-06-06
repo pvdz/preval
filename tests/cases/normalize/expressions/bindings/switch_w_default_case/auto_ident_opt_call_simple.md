@@ -24,6 +24,7 @@ switch (1) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   let a;
@@ -48,6 +49,7 @@ switch (1) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = undefined;
@@ -89,6 +91,7 @@ if (tmpIfTest$9) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpIfTest$5 = $ == null;

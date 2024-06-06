@@ -18,6 +18,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 for ((a = (10, 20, $(30)) ? (40, 50, 60) : $($(100))).x in $({ x: 1 }));
@@ -25,6 +26,7 @@ $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
@@ -48,6 +50,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let a = 60;

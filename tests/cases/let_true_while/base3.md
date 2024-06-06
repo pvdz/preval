@@ -24,6 +24,7 @@ $(x, y);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let y = 5;
 let x = true;
@@ -37,6 +38,7 @@ $(x, y);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let y = 5;
@@ -55,6 +57,7 @@ $(x, y);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(true);

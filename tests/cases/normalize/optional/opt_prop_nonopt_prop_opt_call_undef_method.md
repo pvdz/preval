@@ -17,12 +17,14 @@ a?.b.c?.(1);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = { b: {} };
 a?.b.c?.(1);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpObjLitVal = {};
@@ -42,6 +44,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpChainElementObject$1 = $ObjectPrototype.c;

@@ -17,6 +17,7 @@ $(function(){ $(...arguments); }.apply({}, ['x']));
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(
   function () {
@@ -28,6 +29,7 @@ $(
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -45,6 +47,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCallObj = function () {

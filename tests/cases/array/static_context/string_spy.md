@@ -23,6 +23,7 @@ $(String(arr));
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function () {
   debugger;
@@ -36,6 +37,7 @@ $(String(arr));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function () {
@@ -54,6 +56,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const f = function () {

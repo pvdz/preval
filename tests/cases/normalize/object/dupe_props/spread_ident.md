@@ -17,12 +17,14 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = { ...$({ a: `ignored` }), a: $(`prop`) };
 $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -34,6 +36,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam = { a: `ignored` };

@@ -15,6 +15,7 @@ else $(2);
 
 ## Pre Normal
 
+
 `````js filename=intro
 if (undefined) $(1);
 else $(2);
@@ -22,11 +23,13 @@ else $(2);
 
 ## Normalized
 
+
 `````js filename=intro
 $(2);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(2);

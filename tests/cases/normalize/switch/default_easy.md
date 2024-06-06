@@ -19,6 +19,7 @@ switch (1) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   const tmpSwitchValue = 1;
@@ -37,6 +38,7 @@ switch (1) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpSwitchValue = 1;
@@ -59,6 +61,7 @@ if (tmpIfTest$3) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

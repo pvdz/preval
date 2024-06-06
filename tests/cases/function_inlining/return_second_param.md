@@ -19,6 +19,7 @@ $(f(10, 20));
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0, $$1) {
   let a = $$0;
@@ -30,6 +31,7 @@ $(f(10, 20));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0, $$1) {
@@ -44,6 +46,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(20);

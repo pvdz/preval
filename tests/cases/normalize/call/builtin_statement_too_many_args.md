@@ -16,11 +16,13 @@ isNaN($spy('a'), $spy('b'), $spy('c'));
 
 ## Pre Normal
 
+
 `````js filename=intro
 isNaN($spy(`a`), $spy(`b`), $spy(`c`));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpArgOverflow = $spy(`a`);
@@ -30,6 +32,7 @@ isNaN(tmpArgOverflow);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpArgOverflow = $spy(`a`);

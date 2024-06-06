@@ -16,11 +16,13 @@ $(typeof setTimeout)
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(typeof setTimeout);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -29,6 +31,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`function`);

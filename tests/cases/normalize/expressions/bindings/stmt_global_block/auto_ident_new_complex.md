@@ -19,6 +19,7 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   let a = new ($($))(1);
@@ -28,6 +29,7 @@
 
 ## Normalized
 
+
 `````js filename=intro
 const tmpNewCallee = $($);
 let a = new tmpNewCallee(1);
@@ -35,6 +37,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpNewCallee = $($);

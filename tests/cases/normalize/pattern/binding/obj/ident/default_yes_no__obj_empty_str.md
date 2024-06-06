@@ -17,12 +17,14 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const { x: x = $(`fail`) } = { x: `` };
 $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const bindingPatternObjRoot = { x: `` };
@@ -38,6 +40,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(``);

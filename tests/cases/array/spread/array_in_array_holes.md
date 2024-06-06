@@ -18,6 +18,7 @@ $(y);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = [1, , , , 2, 3];
 const y = [`a`, ...x, `b`];
@@ -26,6 +27,7 @@ $(y);
 
 ## Normalized
 
+
 `````js filename=intro
 const x = [1, , , , 2, 3];
 const y = [`a`, ...x, `b`];
@@ -33,6 +35,7 @@ $(y);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const y = [`a`, 1, undefined, undefined, undefined, 2, 3, `b`];

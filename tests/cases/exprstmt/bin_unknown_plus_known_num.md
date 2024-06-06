@@ -18,6 +18,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = 2 * $;
 x + $;
@@ -26,6 +27,7 @@ $(x);
 
 ## Normalized
 
+
 `````js filename=intro
 const x = 2 * $;
 x + $;
@@ -33,6 +35,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $ + 0;

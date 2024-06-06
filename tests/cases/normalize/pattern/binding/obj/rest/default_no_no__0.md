@@ -17,12 +17,14 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const { ...x } = 0;
 $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const bindingPatternObjRoot = 0;
@@ -35,6 +37,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam$1 = [];

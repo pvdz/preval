@@ -24,6 +24,7 @@ else $('fail');
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = $(4);
 if (x === 2 || x === 3) $(`pass`);
@@ -31,6 +32,7 @@ else $(`fail`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const x = $(4);
@@ -47,6 +49,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = $(4);

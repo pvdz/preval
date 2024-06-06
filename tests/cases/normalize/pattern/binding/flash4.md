@@ -17,6 +17,7 @@ x({x});
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = function ($$0) {
   const tmpParamBare = $$0;
@@ -28,6 +29,7 @@ x({ x: x });
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = function ($$0) {
@@ -43,6 +45,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 

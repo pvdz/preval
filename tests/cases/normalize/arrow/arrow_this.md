@@ -34,6 +34,7 @@ $(f.call({x: 100}));
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function () {
   const tmpPrevalAliasThis = this;
@@ -48,6 +49,7 @@ $(f.call({ x: 100 }));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function () {
@@ -70,6 +72,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const f = function () {

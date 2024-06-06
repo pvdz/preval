@@ -28,6 +28,7 @@ $(`after`);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = $(false);
 let $tmpLoopUnrollCheck = true;
@@ -48,6 +49,7 @@ $(`after`);
 
 ## Normalized
 
+
 `````js filename=intro
 const x = $(false);
 let $tmpLoopUnrollCheck = true;
@@ -67,6 +69,7 @@ $(`after`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = $(false);

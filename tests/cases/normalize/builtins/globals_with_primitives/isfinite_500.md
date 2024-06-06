@@ -16,11 +16,13 @@ $(isFinite(500));
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(isFinite(500));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -29,6 +31,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(true);

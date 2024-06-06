@@ -17,12 +17,14 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const [x = $(`pass`)] = [, , 1];
 $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const bindingPatternArrRoot = [, , 1];
@@ -39,6 +41,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpClusterSSA_x = $(`pass`);

@@ -17,12 +17,14 @@ $(y);
 
 ## Pre Normal
 
+
 `````js filename=intro
 ({ x: { y: y = $(`fail`) } = $({ y: `pass2` }) } = {});
 $(y);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpAssignObjPatternRhs = {};
@@ -47,6 +49,7 @@ $(y);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const objPatternBeforeDefault = $ObjectPrototype.x;

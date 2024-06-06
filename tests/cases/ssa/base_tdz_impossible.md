@@ -23,6 +23,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 if ($) $($throwTDZError(`Preval: TDZ triggered for this read: \$(x)`));
 let x = $(5);
@@ -32,6 +33,7 @@ $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 if ($) {
@@ -46,6 +48,7 @@ if ($) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 if ($) {

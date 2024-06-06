@@ -16,11 +16,13 @@ while ($(1)) $(2);
 
 ## Pre Normal
 
+
 `````js filename=intro
 while ($(1)) $(2);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let tmpIfTest = $(1);
@@ -35,6 +37,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpIfTest = $(1);

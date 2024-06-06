@@ -17,12 +17,14 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 [{ x: x = $(`pass`) } = $({ x: `fail2` })] = `abc`;
 $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const arrAssignPatternRhs = `abc`;
@@ -48,6 +50,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const objPatternBeforeDefault = `a`.x;

@@ -27,6 +27,7 @@ $(x, 'third read (C)');
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = 1;
 if ($) {
@@ -42,6 +43,7 @@ $(x, `third read (C)`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = 1;
@@ -60,6 +62,7 @@ $(x, `third read (C)`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let x = 1;

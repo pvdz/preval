@@ -28,6 +28,7 @@ closure();
 
 ## Pre Normal
 
+
 `````js filename=intro
 const closure = function () {
   debugger;
@@ -47,6 +48,7 @@ closure();
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const closure = function () {
@@ -71,6 +73,7 @@ closure();
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = $(100, `init`);

@@ -54,6 +54,7 @@ exit: {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x;
 let fallthrough = false;
@@ -82,6 +83,7 @@ exit: {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = undefined;
@@ -127,6 +129,7 @@ exit: {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let fallthrough = false;

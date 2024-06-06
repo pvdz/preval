@@ -17,6 +17,7 @@ $(f);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const f = (31).toString(`20`);
 $(f);
@@ -24,12 +25,14 @@ $(f);
 
 ## Normalized
 
+
 `````js filename=intro
 const f = `1b`;
 $(f);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`1b`);

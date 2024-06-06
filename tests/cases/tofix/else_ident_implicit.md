@@ -32,6 +32,7 @@ $(x, 'end');
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = false;
 const a = b === c;
@@ -50,6 +51,7 @@ $(x, `end`);
 
 ## Normalized
 
+
 `````js filename=intro
 let x = false;
 const a = b === c;
@@ -67,6 +69,7 @@ $(x, `end`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(false, `middle`);

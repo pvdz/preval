@@ -16,6 +16,7 @@ const { x } = 1;
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   let x$1 = 1;
@@ -28,6 +29,7 @@ const { x: x } = 1;
 
 ## Normalized
 
+
 `````js filename=intro
 let x$1 = 1;
 const bindingPatternObjRoot = 1;
@@ -36,6 +38,7 @@ let x$3 = 1;
 `````
 
 ## Output
+
 
 `````js filename=intro
 (1).x;

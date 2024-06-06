@@ -19,6 +19,7 @@ $(y);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = $(100) & 32;
 $(x);
@@ -27,6 +28,7 @@ $(y);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpBinLhs = $(100);
@@ -37,6 +39,7 @@ $(y);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpBinLhs = $(100);

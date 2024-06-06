@@ -17,6 +17,7 @@ $('bad');
 
 ## Pre Normal
 
+
 `````js filename=intro
 ({
   x: {},
@@ -25,6 +26,7 @@ $(`bad`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpAssignObjPatternRhs = { x: undefined, b: 11, c: 12 };
@@ -42,6 +44,7 @@ $(`bad`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 undefined.cannotDestructureThis;

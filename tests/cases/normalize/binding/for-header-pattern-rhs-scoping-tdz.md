@@ -21,6 +21,7 @@ for (let [x] in [x]) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = 1;
 let y = 1;
@@ -31,6 +32,7 @@ for (let [x$1] in [x$1]) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = 1;
@@ -48,6 +50,7 @@ for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 throw `Preval: Cannot access \`x\$1\` before initialization`;

@@ -37,12 +37,14 @@ $( b );
 
 ## Pre Normal
 
+
 `````js filename=intro
 const obj = { foo: { bar: 10 } };
 $({ ...obj.foo });
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpObjLitVal = { bar: 10 };
@@ -54,6 +56,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpObjLitVal = { bar: 10 };

@@ -16,11 +16,13 @@ $(`${[1,,3]}`);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(`` + $coerce([1, , 3], `string`) + ``);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -33,6 +35,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`1,,3`);

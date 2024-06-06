@@ -21,6 +21,7 @@ $(arr);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let arr;
 while (true) {
@@ -38,6 +39,7 @@ $(arr);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let arr = undefined;
@@ -60,6 +62,7 @@ $(arr);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let arr = [0];

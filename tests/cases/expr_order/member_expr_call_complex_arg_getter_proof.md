@@ -32,6 +32,7 @@ x.y(a.b);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = undefined;
 let x = undefined;
@@ -53,6 +54,7 @@ x.y(a.b);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = undefined;
@@ -78,6 +80,7 @@ $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = {

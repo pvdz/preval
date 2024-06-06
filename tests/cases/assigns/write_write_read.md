@@ -18,6 +18,7 @@ $(x, 'a');
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = $(1);
 x = $(2);
@@ -26,6 +27,7 @@ $(x, `a`);
 
 ## Normalized
 
+
 `````js filename=intro
 let x = $(1);
 x = $(2);
@@ -33,6 +35,7 @@ $(x, `a`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

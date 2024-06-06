@@ -27,6 +27,7 @@ $(f(function(a,b,c,d,e){ $('pass3', a,b,c,d,e); }));
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0) {
   let x = $$0;
@@ -73,6 +74,7 @@ $(
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0) {
@@ -129,6 +131,7 @@ tmpCallCallee$7(tmpCalleeParam$7);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const f = function ($$0) {

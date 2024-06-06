@@ -48,6 +48,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = 1;
 here: {
@@ -86,6 +87,7 @@ $(x);
 
 ## Normalized
 
+
 `````js filename=intro
 let x = 1;
 here: {
@@ -123,6 +125,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let x = 1;

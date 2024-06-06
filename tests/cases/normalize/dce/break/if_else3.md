@@ -23,6 +23,7 @@ $('after');
 
 ## Pre Normal
 
+
 `````js filename=intro
 while ($(true)) {
   if ($(1)) {
@@ -35,6 +36,7 @@ $(`after`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let tmpIfTest = $(true);
@@ -54,6 +56,7 @@ $(`after`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpIfTest = $(true);

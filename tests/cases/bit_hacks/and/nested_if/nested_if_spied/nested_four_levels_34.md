@@ -29,6 +29,7 @@ if (x & 8) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = $spy(34);
 if (x & 8) {
@@ -43,6 +44,7 @@ if (x & 8) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const x = $spy(34);
@@ -66,6 +68,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = $spy(34);

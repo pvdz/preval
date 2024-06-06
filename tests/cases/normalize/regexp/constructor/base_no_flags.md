@@ -16,11 +16,13 @@ $(new RegExp("foo\\(x\\)"));
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(new RegExp(`foo\\(x\\)`));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -29,6 +31,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam = /foo\(x\)/;

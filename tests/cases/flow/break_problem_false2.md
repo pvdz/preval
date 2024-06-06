@@ -29,6 +29,7 @@ tmpLabeledBlockFunc();
 
 ## Pre Normal
 
+
 `````js filename=intro
 const tmpLabeledBlockFunc = function () {
   debugger;
@@ -48,6 +49,7 @@ tmpLabeledBlockFunc();
 
 ## Normalized
 
+
 `````js filename=intro
 const tmpLabeledBlockFunc = function () {
   debugger;
@@ -64,6 +66,7 @@ tmpLabeledBlockFunc();
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpIfTest$3 = $(false);

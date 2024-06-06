@@ -16,6 +16,7 @@ $(x < y);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = `xyz`;
 const y = x;
@@ -23,6 +24,7 @@ $(x < y);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const x = `xyz`;
@@ -33,6 +35,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(false);

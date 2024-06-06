@@ -17,12 +17,14 @@ $(typeof x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = `` + $(2);
 $(typeof x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpBinBothLhs = ``;
@@ -34,6 +36,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpBinBothRhs = $(2);

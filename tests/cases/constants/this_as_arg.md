@@ -18,17 +18,20 @@ $(this);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(undefined);
 `````
 
 ## Normalized
 
+
 `````js filename=intro
 $(undefined);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(undefined);

@@ -19,6 +19,7 @@ class x {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const y = `y`;
 let x = class {
@@ -29,6 +30,7 @@ let x = class {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const y = `y`;
@@ -41,6 +43,7 @@ let x = class {
 `````
 
 ## Output
+
 
 `````js filename=intro
 

@@ -18,6 +18,7 @@ if (!$(1))
 
 ## Pre Normal
 
+
 `````js filename=intro
 if (!$(1))
   if ($(2)) $(3);
@@ -25,6 +26,7 @@ if (!$(1))
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpIfTest = $(1);
@@ -40,6 +42,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpIfTest = $(1);

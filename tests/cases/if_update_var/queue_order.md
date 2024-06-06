@@ -39,6 +39,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const b = { x: 1 };
 ({ a: 999, b: 1000 });
@@ -68,6 +69,7 @@ $(a);
 
 ## Normalized
 
+
 `````js filename=intro
 const b = { x: 1 };
 let a = undefined;
@@ -95,6 +97,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

@@ -22,6 +22,7 @@ $(diff);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = $(1);
 const b = $(2);
@@ -32,6 +33,7 @@ $(diff);
 
 ## Normalized
 
+
 `````js filename=intro
 const a = $(1);
 const b = $(2);
@@ -41,6 +43,7 @@ $(diff);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = $(1);

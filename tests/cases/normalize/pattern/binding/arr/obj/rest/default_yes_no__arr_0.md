@@ -17,12 +17,14 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const [{ ...x } = $({ a: `fail` })] = [0, 20, 30];
 $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const bindingPatternArrRoot = [0, 20, 30];
@@ -46,6 +48,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam$3 = [];

@@ -25,6 +25,7 @@ if (f) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = [0];
 const b = a;
@@ -42,6 +43,7 @@ if (f) {
 
 ## Normalized
 
+
 `````js filename=intro
 let a = [0];
 const b = a;
@@ -58,6 +60,7 @@ if (f) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = [1];

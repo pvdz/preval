@@ -17,6 +17,7 @@ $(wow)
 
 ## Pre Normal
 
+
 `````js filename=intro
 const foo = `five`;
 const bar = foo;
@@ -26,6 +27,7 @@ $(wow);
 
 ## Normalized
 
+
 `````js filename=intro
 const foo = `five`;
 const bar = foo;
@@ -34,6 +36,7 @@ $(wow);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`five`);

@@ -31,6 +31,7 @@ $(closure(), 'closure-global2');
 
 ## Pre Normal
 
+
 `````js filename=intro
 let closure = function () {
   debugger;
@@ -50,6 +51,7 @@ $(closure(), `closure-global2`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let closure = function () {
@@ -81,6 +83,7 @@ tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const f = function () {

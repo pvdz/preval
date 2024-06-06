@@ -16,17 +16,20 @@ $(1, 2);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(1, 2);
 `````
 
 ## Normalized
 
+
 `````js filename=intro
 $(1, 2);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1, 2);

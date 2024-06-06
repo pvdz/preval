@@ -18,6 +18,7 @@ $('after');
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(`before`);
 $([1, 2, ...3]);
@@ -25,6 +26,7 @@ $(`after`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 $(`before`);
@@ -34,6 +36,7 @@ throw `[Preval]: Array spread must crash before this line`;
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`before`);

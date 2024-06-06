@@ -18,6 +18,7 @@ $({...x, ...y});
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = 100;
 const y = 200;
@@ -25,6 +26,7 @@ $({ ...x, ...y });
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const x = 100;
@@ -35,6 +37,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam = {};

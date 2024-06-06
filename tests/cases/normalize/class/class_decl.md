@@ -17,6 +17,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = class {};
 $(x);
@@ -24,12 +25,14 @@ $(x);
 
 ## Normalized
 
+
 `````js filename=intro
 let x = class {};
 $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = class {};

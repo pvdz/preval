@@ -19,6 +19,7 @@ $(a, b);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let b = [];
 let a = ([b] = $([$(2)]));
@@ -27,6 +28,7 @@ $(a, b);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let b = [];
@@ -43,6 +45,7 @@ $(a, b);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let a = undefined;

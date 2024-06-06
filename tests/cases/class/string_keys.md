@@ -20,6 +20,7 @@ $(new x()['very stringy']());
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = class {
   [`very stringy`]() {
@@ -31,6 +32,7 @@ $(new x()[`very stringy`]());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = class {
@@ -47,6 +49,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = class {

@@ -17,12 +17,14 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const [x] = `abc`;
 $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const bindingPatternArrRoot = `abc`;
@@ -32,6 +34,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`a`);

@@ -24,6 +24,7 @@ $(aa, zz, a, b);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = [];
 const y = [];
@@ -34,6 +35,7 @@ $(aa, zz, a, b);
 
 ## Normalized
 
+
 `````js filename=intro
 const x = [];
 const y = [];
@@ -43,6 +45,7 @@ $(aa, zz, a, b);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const aa = [];

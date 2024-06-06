@@ -21,6 +21,7 @@ $(z);
 
 ## Pre Normal
 
+
 `````js filename=intro
 ({
   x: {
@@ -31,6 +32,7 @@ $(z);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpObjLitVal$1 = 13;
@@ -45,6 +47,7 @@ $(z);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const arrPatternSplat = [1, 2, 3];

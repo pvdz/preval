@@ -22,6 +22,7 @@ for (test of $({a: 1})) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let counter = 0;
 let test = counter < 10;
@@ -33,6 +34,7 @@ for (test of $({ a: 1 })) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let counter = 0;
@@ -48,6 +50,7 @@ for (test of tmpForOfRhs) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let counter = 0;

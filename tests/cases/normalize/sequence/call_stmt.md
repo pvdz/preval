@@ -16,11 +16,13 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 ($(), Date)();
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 $();
@@ -29,6 +31,7 @@ tmpCallComplexCallee();
 `````
 
 ## Output
+
 
 `````js filename=intro
 $();

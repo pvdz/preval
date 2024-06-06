@@ -22,6 +22,7 @@ f(); // Fails in strict mode (would be fine otherwise)
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   let f$1 = function () {
@@ -35,6 +36,7 @@ f();
 
 ## Normalized
 
+
 `````js filename=intro
 let f$1 = function () {
   debugger;
@@ -46,6 +48,7 @@ f();
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

@@ -17,6 +17,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = 1 ? $(2) : $($(100));
 export { a };
@@ -24,6 +25,7 @@ $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = undefined;
@@ -33,6 +35,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = $(2);

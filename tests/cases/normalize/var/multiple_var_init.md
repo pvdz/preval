@@ -16,6 +16,7 @@ var a = $(1), b = $(2), c = $(3);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = undefined;
 let b = undefined;
@@ -24,6 +25,7 @@ let c = undefined;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = undefined;
@@ -35,6 +37,7 @@ c = $(3);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

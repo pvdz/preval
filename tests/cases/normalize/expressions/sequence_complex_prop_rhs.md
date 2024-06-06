@@ -20,6 +20,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = 0,
   b = 1,
@@ -29,6 +30,7 @@ $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = 0;
@@ -44,6 +46,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpObjLitVal = { y: 10 };

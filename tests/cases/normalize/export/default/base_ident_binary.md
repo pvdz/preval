@@ -16,12 +16,14 @@ export default $(1) + $(2);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const tmpAnonDefaultExport = $(1) + $(2);
 export { tmpAnonDefaultExport as default };
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpBinBothLhs = $(1);
@@ -31,6 +33,7 @@ export { tmpAnonDefaultExport as default };
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpBinBothLhs = $(1);

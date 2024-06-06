@@ -20,6 +20,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = undefined;
 {
@@ -43,6 +44,7 @@ $(x);
 
 ## Normalized
 
+
 `````js filename=intro
 let x = undefined;
 let $implicitThrow = false;
@@ -55,6 +57,7 @@ if ($implicitThrow) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(undefined);

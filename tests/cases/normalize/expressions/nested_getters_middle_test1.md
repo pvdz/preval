@@ -21,6 +21,7 @@ const b = {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const b = {
   get foo() {
@@ -30,6 +31,7 @@ const b = {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const b = {
@@ -41,6 +43,7 @@ const b = {
 `````
 
 ## Output
+
 
 `````js filename=intro
 

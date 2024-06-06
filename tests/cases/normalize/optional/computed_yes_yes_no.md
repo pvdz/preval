@@ -18,6 +18,7 @@ $(a?.[b]?.[c][d]);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = { b: { c: { d: 10 } } };
 const b = `b`,
@@ -27,6 +28,7 @@ $(a?.[b]?.[c][d]);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpObjLitVal$1 = { d: 10 };
@@ -57,6 +59,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(10);

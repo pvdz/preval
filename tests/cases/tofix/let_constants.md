@@ -24,6 +24,7 @@ if ($) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = `fail`;
 if ($) {
@@ -38,6 +39,7 @@ if ($) {
 
 ## Normalized
 
+
 `````js filename=intro
 let a = `fail`;
 if ($) {
@@ -51,6 +53,7 @@ if ($) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 if ($) {

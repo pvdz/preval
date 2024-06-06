@@ -37,6 +37,7 @@ f(e, drop3);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function (...$$0) {
   let args = $$0;
@@ -56,6 +57,7 @@ f(e, drop3);
 
 ## Normalized
 
+
 `````js filename=intro
 let f = function (...$$0) {
   let args = $$0;
@@ -74,6 +76,7 @@ f(e, drop3);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const f = function (...$$0) {

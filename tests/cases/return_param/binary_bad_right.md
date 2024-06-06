@@ -27,6 +27,7 @@ $(f('three'));
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0) {
   let x = $$0;
@@ -43,6 +44,7 @@ $(f(`three`));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0) {
@@ -66,6 +68,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const f = function ($$0) {

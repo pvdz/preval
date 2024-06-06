@@ -17,12 +17,14 @@ $(a, b);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let [a, b] = [1, 2];
 $(a, b);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let bindingPatternArrRoot = [1, 2];
@@ -33,6 +35,7 @@ $(a, b);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1, 2);

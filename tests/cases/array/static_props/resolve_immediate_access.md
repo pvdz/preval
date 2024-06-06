@@ -18,6 +18,7 @@ $(v);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const arr = [1];
 const v = arr[0];
@@ -26,6 +27,7 @@ $(v);
 
 ## Normalized
 
+
 `````js filename=intro
 const arr = [1];
 const v = arr[0];
@@ -33,6 +35,7 @@ $(v);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

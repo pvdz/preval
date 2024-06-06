@@ -16,6 +16,7 @@ export default 500;
 
 ## Pre Normal
 
+
 `````js filename=intro
 const tmpAnonDefaultExport = 500;
 export { tmpAnonDefaultExport as default };
@@ -23,12 +24,14 @@ export { tmpAnonDefaultExport as default };
 
 ## Normalized
 
+
 `````js filename=intro
 const tmpAnonDefaultExport = 500;
 export { tmpAnonDefaultExport as default };
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpAnonDefaultExport = 500;

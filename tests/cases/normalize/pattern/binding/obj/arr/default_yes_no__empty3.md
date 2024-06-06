@@ -17,12 +17,14 @@ $(val);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const val = true ? false : undefined;
 $(val);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let val = undefined;
@@ -31,6 +33,7 @@ $(val);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(false);

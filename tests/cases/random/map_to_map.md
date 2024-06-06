@@ -32,6 +32,7 @@ $(
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(
   new Map(
@@ -55,6 +56,7 @@ $(
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -84,6 +86,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpArrElement = [`clearInterval`, `global.clearInterval`];

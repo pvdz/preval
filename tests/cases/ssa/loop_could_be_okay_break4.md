@@ -18,6 +18,7 @@ while (tmpLoopRetCode) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let tmpLoopRetCode = true;
 while (tmpLoopRetCode) {
@@ -29,6 +30,7 @@ while (tmpLoopRetCode) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let tmpLoopRetCode = true;
@@ -45,6 +47,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let tmpLoopRetCode = true;

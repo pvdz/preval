@@ -28,6 +28,7 @@ while (x) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let check = function ($$0) {
   let r = $$0;
@@ -43,6 +44,7 @@ while (x) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let check = function ($$0) {
@@ -66,6 +68,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = /foo/;

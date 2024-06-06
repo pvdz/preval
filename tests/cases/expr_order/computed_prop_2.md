@@ -26,6 +26,7 @@ var c;
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = undefined;
 let b = undefined;
@@ -34,6 +35,7 @@ let c = undefined;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = undefined;
@@ -48,6 +50,7 @@ tmpCompObj[tmpCompProp];
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = $(1);

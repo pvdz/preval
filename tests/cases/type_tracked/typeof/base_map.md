@@ -17,12 +17,14 @@ $(typeof x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = new Map();
 $(typeof x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const x = new Map();
@@ -32,6 +34,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 new Map();

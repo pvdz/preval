@@ -18,6 +18,7 @@ $('out:', y);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = Boolean($(true));
 const y = x === false;
@@ -25,6 +26,7 @@ $(`out:`, y);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = Boolean;
@@ -35,6 +37,7 @@ $(`out:`, y);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam = $(true);

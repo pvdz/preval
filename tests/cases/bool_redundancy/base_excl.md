@@ -22,6 +22,7 @@ if ($(0)) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = !$;
 $(!x);
@@ -33,6 +34,7 @@ if ($(0)) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const x = !$;
@@ -50,6 +52,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam = Boolean($);

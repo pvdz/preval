@@ -18,6 +18,7 @@ for (a of b) $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a;
 let b = { x: 1, y: 2 };
@@ -25,6 +26,7 @@ for (a of b) $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = undefined;
@@ -35,6 +37,7 @@ for (a of b) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let a = undefined;

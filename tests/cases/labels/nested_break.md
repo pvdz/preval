@@ -19,6 +19,7 @@ a: b: c: {
 
 ## Pre Normal
 
+
 `````js filename=intro
 a: b: c: {
   if ($(1)) break a;
@@ -27,6 +28,7 @@ a: b: c: {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 a: {
@@ -42,6 +44,7 @@ a: {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

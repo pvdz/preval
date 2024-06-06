@@ -18,6 +18,7 @@ $('after');
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(`before`);
 (`` + $coerce($, `string`) + ``)();
@@ -25,6 +26,7 @@ $(`after`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 $(`before`);
@@ -37,6 +39,7 @@ $(`after`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`before`);

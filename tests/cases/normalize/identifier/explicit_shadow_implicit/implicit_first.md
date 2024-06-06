@@ -20,6 +20,7 @@ $(n);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(n);
 {
@@ -30,6 +31,7 @@ $(n);
 
 ## Normalized
 
+
 `````js filename=intro
 $(n);
 let n$1 = $(10);
@@ -37,6 +39,7 @@ $(n$1);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(n);

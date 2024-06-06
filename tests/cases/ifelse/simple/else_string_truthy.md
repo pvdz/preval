@@ -18,6 +18,7 @@ if ("pass") {
 
 ## Pre Normal
 
+
 `````js filename=intro
 if (`pass`) {
   $(1);
@@ -28,11 +29,13 @@ if (`pass`) {
 
 ## Normalized
 
+
 `````js filename=intro
 $(1);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

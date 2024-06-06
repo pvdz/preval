@@ -17,12 +17,14 @@ delete o?.x;
 
 ## Pre Normal
 
+
 `````js filename=intro
 let o = $(undefined);
 delete o?.x;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let o = $(undefined);
@@ -35,6 +37,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const o = $(undefined);

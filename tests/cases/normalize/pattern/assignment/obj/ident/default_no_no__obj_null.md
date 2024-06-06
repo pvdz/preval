@@ -17,12 +17,14 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 ({ x: x } = { x: null });
 $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpAssignObjPatternRhs = { x: null };
@@ -31,6 +33,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 x = null;

@@ -23,6 +23,7 @@ $(f(), g());
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0) {
   const tmpParamBare = $$0;
@@ -41,6 +42,7 @@ $(f(), g());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0) {
@@ -81,6 +83,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Output
+
 
 `````js filename=intro
 undefined.x;

@@ -21,6 +21,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function () {
   const tmpPrevalAliasArgumentsAny = arguments;
@@ -33,6 +34,7 @@ $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function () {
@@ -49,6 +51,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };

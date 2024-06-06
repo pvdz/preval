@@ -21,6 +21,7 @@ if (x === 100) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = $(100);
 if (x === 100) {
@@ -31,6 +32,7 @@ if (x === 100) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const x = $(100);
@@ -43,6 +45,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = $(100);

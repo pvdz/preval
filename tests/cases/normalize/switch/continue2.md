@@ -45,6 +45,7 @@ This was (at some point) an intermediate state after one cycle.
 
 ## Pre Normal
 
+
 `````js filename=intro
 let run = true;
 while (run) {
@@ -83,6 +84,7 @@ while (run) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let run = true;
@@ -128,6 +130,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

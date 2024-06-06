@@ -19,6 +19,7 @@ f(a.x === 1 ? 2 : 3);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function () {
   debugger;
@@ -28,6 +29,7 @@ f(a.x === 1 ? 2 : 3);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function () {
@@ -48,6 +50,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 

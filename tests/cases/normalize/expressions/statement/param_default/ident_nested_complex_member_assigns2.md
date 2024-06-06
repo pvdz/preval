@@ -26,6 +26,7 @@ $(100, a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function () {
   debugger;
@@ -39,6 +40,7 @@ $(100, a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function () {
@@ -54,6 +56,7 @@ $(100, a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(100, 3);

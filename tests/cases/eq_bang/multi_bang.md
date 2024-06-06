@@ -23,6 +23,7 @@ $(!same);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = $(1);
 const b = $(2);
@@ -33,6 +34,7 @@ $(!same);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const a = $(1);
@@ -50,6 +52,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = $(1);

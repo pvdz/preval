@@ -17,12 +17,14 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = 1 ? 2 : $($(100));
 $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = undefined;
@@ -31,6 +33,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(2);

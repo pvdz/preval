@@ -14,17 +14,20 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 15;
 `````
 
 ## Normalized
 
+
 `````js filename=intro
 
 `````
 
 ## Output
+
 
 `````js filename=intro
 

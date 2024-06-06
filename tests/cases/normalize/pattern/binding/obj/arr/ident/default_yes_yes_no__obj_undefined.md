@@ -17,12 +17,14 @@ $('bad');
 
 ## Pre Normal
 
+
 `````js filename=intro
 const { x: [y = `fail`] = $([`pass2`]) } = { x: undefined, a: 11, b: 12 };
 $(`bad`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const bindingPatternObjRoot = { x: undefined, a: 11, b: 12 };
@@ -49,6 +51,7 @@ $(`bad`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam = [`pass2`];

@@ -16,11 +16,13 @@ crash($spy('a'), $spy('b'), $spy('c'));
 
 ## Pre Normal
 
+
 `````js filename=intro
 crash($spy(`a`), $spy(`b`), $spy(`c`));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = crash;
@@ -31,6 +33,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 `````
 
 ## Output
+
 
 `````js filename=intro
 crash;

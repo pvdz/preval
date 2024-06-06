@@ -17,6 +17,7 @@ $(a = b = $(c).x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = undefined;
 let b = undefined;
@@ -26,6 +27,7 @@ $((a = b = $(c).x));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = undefined;
@@ -44,6 +46,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const c = {};

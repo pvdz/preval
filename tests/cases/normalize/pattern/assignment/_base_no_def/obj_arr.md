@@ -15,6 +15,7 @@ let x = 10, y = 20;
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = 10,
   y = 20;
@@ -24,6 +25,7 @@ let x = 10,
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = 10;
@@ -35,6 +37,7 @@ y = arrPatternSplat[0];
 `````
 
 ## Output
+
 
 `````js filename=intro
 const objPatternNoDefault = (1).x;

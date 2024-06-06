@@ -17,6 +17,7 @@ $(y);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const y = RegExp(`x`, `g`);
 $(y);
@@ -24,12 +25,14 @@ $(y);
 
 ## Normalized
 
+
 `````js filename=intro
 const y = /x/g;
 $(y);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const y = /x/g;

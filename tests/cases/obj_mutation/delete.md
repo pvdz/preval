@@ -17,6 +17,7 @@ delete blob.thing;
 
 ## Pre Normal
 
+
 `````js filename=intro
 const blob = { thing: `bloop` };
 delete blob.thing;
@@ -24,12 +25,14 @@ delete blob.thing;
 
 ## Normalized
 
+
 `````js filename=intro
 const blob = { thing: `bloop` };
 delete blob.thing;
 `````
 
 ## Output
+
 
 `````js filename=intro
 

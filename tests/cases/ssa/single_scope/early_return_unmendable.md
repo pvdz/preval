@@ -33,6 +33,7 @@ $(tmpLabeledBlockFunc$3);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const tmpLabeledBlockFunc$3 = function ($$0) {
   let x = $$0;
@@ -54,6 +55,7 @@ $(tmpLabeledBlockFunc$3);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpLabeledBlockFunc$3 = function ($$0) {
@@ -78,6 +80,7 @@ $(tmpLabeledBlockFunc$3);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpLabeledBlockFunc$3 = function ($$0) {

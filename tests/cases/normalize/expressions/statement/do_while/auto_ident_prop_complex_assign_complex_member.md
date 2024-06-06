@@ -22,6 +22,7 @@ $(a, b);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
@@ -38,6 +39,7 @@ $(a, b);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let b = { c: 10, d: 20 };
@@ -59,6 +61,7 @@ $(a, b);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const b = { c: 10, d: 20 };

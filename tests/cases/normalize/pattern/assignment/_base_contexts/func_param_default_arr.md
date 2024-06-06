@@ -17,6 +17,7 @@ f();
 
 ## Pre Normal
 
+
 `````js filename=intro
 const f = ($$0) => {
   const tmpParamBare = $$0;
@@ -28,6 +29,7 @@ f();
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const f = function ($$0) {
@@ -50,6 +52,7 @@ f();
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpNestedAssignArrPatternRhs = [100];

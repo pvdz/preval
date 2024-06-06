@@ -19,6 +19,7 @@ foo: do {
 
 ## Pre Normal
 
+
 `````js filename=intro
 foo: while (true) {
   {
@@ -38,11 +39,13 @@ foo: while (true) {
 
 ## Normalized
 
+
 `````js filename=intro
 $(1);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

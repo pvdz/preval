@@ -20,6 +20,7 @@ $(arr.length);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const arr = [1, 2, 3];
 arr.splice.call(arr, $(1), 2, 10, 20);
@@ -27,6 +28,7 @@ $(arr.length);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const arr = [1, 2, 3];
@@ -44,6 +46,7 @@ tmpCallCallee(tmpCalleeParam$9);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const arr = [1, 2, 3];

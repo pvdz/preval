@@ -18,6 +18,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let { a: a } = { a: 999, b: 1000 };
 const tmpAnonDefaultExport = $({ a: 1, b: 2 });
@@ -26,6 +27,7 @@ $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
@@ -38,6 +40,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam = { a: 1, b: 2 };

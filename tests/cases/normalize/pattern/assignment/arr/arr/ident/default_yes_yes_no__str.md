@@ -17,12 +17,14 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 [[x = $(`fail`)] = $([`fail2`])] = `abc`;
 $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const arrAssignPatternRhs = `abc`;
@@ -49,6 +51,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 x = `a`;

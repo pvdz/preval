@@ -18,6 +18,7 @@ $(2);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(1);
 foo: {
@@ -27,12 +28,14 @@ $(2);
 
 ## Normalized
 
+
 `````js filename=intro
 $(1);
 $(2);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

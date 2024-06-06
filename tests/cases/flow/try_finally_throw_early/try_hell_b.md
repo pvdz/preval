@@ -23,6 +23,7 @@ considerMutated(x) // always true
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = 0;
 try {
@@ -35,12 +36,14 @@ considerMutated(x);
 
 ## Normalized
 
+
 `````js filename=intro
 let x = 0;
 considerMutated(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 considerMutated(0);

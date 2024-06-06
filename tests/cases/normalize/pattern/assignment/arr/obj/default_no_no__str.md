@@ -17,12 +17,14 @@ $('bad');
 
 ## Pre Normal
 
+
 `````js filename=intro
 [{}] = `abc`;
 $(`bad`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const arrAssignPatternRhs = `abc`;
@@ -41,6 +43,7 @@ $(`bad`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`bad`);

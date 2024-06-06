@@ -23,6 +23,7 @@ $(y);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = ``;
 if (a) {
@@ -36,6 +37,7 @@ $(y);
 
 ## Normalized
 
+
 `````js filename=intro
 let x = ``;
 if (a) {
@@ -48,6 +50,7 @@ $(y);
 `````
 
 ## Output
+
 
 `````js filename=intro
 if (a) {

@@ -34,6 +34,7 @@ $(3);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let tmpSwitchCaseToStart = 1;
 let tmpIfTest$1 = true;
@@ -56,6 +57,7 @@ $(3);
 
 ## Normalized
 
+
 `````js filename=intro
 let tmpSwitchCaseToStart = 1;
 let tmpIfTest$1 = true;
@@ -77,6 +79,7 @@ $(3);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpIfTest = $ === $;

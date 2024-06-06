@@ -24,6 +24,7 @@ $(g());
 
 ## Pre Normal
 
+
 `````js filename=intro
 let g = function () {
   debugger;
@@ -39,6 +40,7 @@ $(g());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let g = function () {
@@ -61,6 +63,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const y = $(20);

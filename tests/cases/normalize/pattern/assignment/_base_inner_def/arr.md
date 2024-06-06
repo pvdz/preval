@@ -14,11 +14,13 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 [x = a] = [1];
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const arrAssignPatternRhs = [1];
@@ -33,6 +35,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 x = 1;

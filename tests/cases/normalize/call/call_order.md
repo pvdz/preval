@@ -16,11 +16,13 @@ $spy(isNaN)($spy('a'), $spy('b'), $spy('c'));
 
 ## Pre Normal
 
+
 `````js filename=intro
 $spy(isNaN)($spy(`a`), $spy(`b`), $spy(`c`));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $spy(isNaN);
@@ -31,6 +33,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCallCallee = $spy(isNaN);

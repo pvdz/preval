@@ -16,17 +16,20 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 [...[10, 20], 2, ...[30, 40]];
 `````
 
 ## Normalized
 
+
 `````js filename=intro
 
 `````
 
 ## Output
+
 
 `````js filename=intro
 

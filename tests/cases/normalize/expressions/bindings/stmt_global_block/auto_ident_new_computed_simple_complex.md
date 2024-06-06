@@ -21,6 +21,7 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   let b = { $: $ };
@@ -30,6 +31,7 @@
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let b = { $: $ };
@@ -41,6 +43,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCompProp = $(`\$`);

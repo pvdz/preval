@@ -27,6 +27,7 @@ This turned out to be a Tenko bug regarding try-scope tracking.
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   let AAAAAAAAAAAAAAAAAAAA;
@@ -40,6 +41,7 @@ This turned out to be a Tenko bug regarding try-scope tracking.
 
 ## Normalized
 
+
 `````js filename=intro
 let AAAAAAAAAAAAAAAAAAAA = undefined;
 try {
@@ -50,6 +52,7 @@ try {
 `````
 
 ## Output
+
 
 `````js filename=intro
 

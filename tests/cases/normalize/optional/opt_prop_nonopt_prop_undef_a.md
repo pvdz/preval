@@ -17,12 +17,14 @@ $(a?.b.c);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = undefined;
 $(a?.b.c);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const a = undefined;
@@ -40,6 +42,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(undefined);

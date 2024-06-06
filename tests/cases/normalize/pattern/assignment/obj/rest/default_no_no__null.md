@@ -17,12 +17,14 @@ $('bad');
 
 ## Pre Normal
 
+
 `````js filename=intro
 ({ ...x } = null);
 $(`bad`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpAssignObjPatternRhs = null;
@@ -35,6 +37,7 @@ $(`bad`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam$1 = [];

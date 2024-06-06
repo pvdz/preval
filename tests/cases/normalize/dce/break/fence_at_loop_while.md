@@ -27,6 +27,7 @@ $('after (not invoked)');
 
 ## Pre Normal
 
+
 `````js filename=intro
 while ($(true)) {
   $(`loop`);
@@ -41,6 +42,7 @@ $(`after (not invoked)`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let tmpIfTest = $(true);
@@ -66,6 +68,7 @@ $(`after (not invoked)`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpIfTest = $(true);

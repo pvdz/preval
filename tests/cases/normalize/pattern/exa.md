@@ -26,6 +26,7 @@ var {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let arr_1 = undefined;
 let arr_2 = undefined;
@@ -43,6 +44,7 @@ let val_3_1 = undefined;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let arr_1 = undefined;
@@ -77,6 +79,7 @@ val_1_4 = tmpAssignObjPatternRhs.val_1_4;
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpAssignObjPatternRhs = foo();

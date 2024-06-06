@@ -17,6 +17,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = [];
 export { a };
@@ -25,6 +26,7 @@ $(a);
 
 ## Normalized
 
+
 `````js filename=intro
 let a = [];
 export { a };
@@ -32,6 +34,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = [];

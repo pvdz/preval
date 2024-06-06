@@ -28,6 +28,7 @@ X = 10;
 
 ## Pre Normal
 
+
 `````js filename=intro
 import x from 'x';
 $(x);
@@ -41,6 +42,7 @@ X = 10;
 
 ## Normalized
 
+
 `````js filename=intro
 import { default as x } from 'x';
 $(x);
@@ -53,6 +55,7 @@ X = 10;
 `````
 
 ## Output
+
 
 `````js filename=intro
 import { default as x } from 'x';

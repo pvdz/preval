@@ -17,12 +17,14 @@ $('bad');
 
 ## Pre Normal
 
+
 `````js filename=intro
 ({ x: [y = `fail`] = $([`fail2`]) } = undefined);
 $(`bad`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpAssignObjPatternRhs = undefined;
@@ -48,6 +50,7 @@ $(`bad`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 undefined.x;

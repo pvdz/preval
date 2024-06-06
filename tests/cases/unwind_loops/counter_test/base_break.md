@@ -25,6 +25,7 @@ $('finished');
 
 ## Pre Normal
 
+
 `````js filename=intro
 let counter = 5;
 while (true) {
@@ -39,6 +40,7 @@ $(`finished`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let counter = 5;
@@ -55,6 +57,7 @@ $(`finished`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`x`);

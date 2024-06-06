@@ -17,12 +17,14 @@ $($(a)?.[$('x')]?.[$('y')][$('z')])?.(100);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = { x: { y: { z: $ } } };
 $($(a)?.[$(`x`)]?.[$(`y`)][$(`z`)])?.(100);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpObjLitVal$1 = { z: $ };
@@ -57,6 +59,7 @@ if (tmpIfTest$3) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpObjLitVal$1 = { z: $ };

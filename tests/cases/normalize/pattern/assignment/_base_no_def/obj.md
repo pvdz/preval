@@ -15,12 +15,14 @@ let x = 10;
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = 10;
 ({ x: x } = 1);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = 10;
@@ -29,6 +31,7 @@ x = tmpAssignObjPatternRhs.x;
 `````
 
 ## Output
+
 
 `````js filename=intro
 (1).x;

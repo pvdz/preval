@@ -17,12 +17,14 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 [{ x: x = $(`pass`) } = $({ x: `fail2` })] = [{}, 20, 30];
 $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpArrElement = {};
@@ -49,6 +51,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const objPatternBeforeDefault = $ObjectPrototype.x;

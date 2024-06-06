@@ -17,12 +17,14 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = `` + $coerce([1, 2, 3], `string`) + ``;
 $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpBinBothLhs = ``;
@@ -34,6 +36,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`1,2,3`);

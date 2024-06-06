@@ -18,6 +18,7 @@ $(tmpBinLhs);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const tmpBinBothRhs = [1, , 3];
 const tmpBinLhs = `` + tmpBinBothRhs;
@@ -26,6 +27,7 @@ $(tmpBinLhs);
 
 ## Normalized
 
+
 `````js filename=intro
 const tmpBinBothRhs = [1, , 3];
 const tmpBinLhs = $coerce(tmpBinBothRhs, `plustr`);
@@ -33,6 +35,7 @@ $(tmpBinLhs);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`1,,3`);

@@ -16,17 +16,20 @@ $.length;
 
 ## Pre Normal
 
+
 `````js filename=intro
 $.length;
 `````
 
 ## Normalized
 
+
 `````js filename=intro
 $.length;
 `````
 
 ## Output
+
 
 `````js filename=intro
 $.length;

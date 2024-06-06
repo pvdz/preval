@@ -1023,6 +1023,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let b = [5, 6, 7];
 {
@@ -1033,6 +1034,7 @@ let b = [5, 6, 7];
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let b = [5, 6, 7];
@@ -1055,6 +1057,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

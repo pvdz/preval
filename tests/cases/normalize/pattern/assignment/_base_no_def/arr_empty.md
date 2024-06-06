@@ -23,12 +23,14 @@ let x = 10;
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = 10;
 [] = [1, 2, 3];
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = 10;
@@ -37,6 +39,7 @@ const arrPatternSplat = [...arrAssignPatternRhs];
 `````
 
 ## Output
+
 
 `````js filename=intro
 

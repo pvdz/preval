@@ -23,6 +23,7 @@ $(f([{ x: [1, 2, 3], y: 11 }, 20, 30], 200));
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0) {
   const tmpParamBare = $$0;
@@ -38,6 +39,7 @@ $(f([{ x: [1, 2, 3], y: 11 }, 20, 30], 200));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0) {
@@ -62,6 +64,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const arrPatternSplat$1 = [1, 2, 3];

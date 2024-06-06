@@ -14,11 +14,13 @@ $('hello   world'.slice(10));
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(`hello   world`.slice(10));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -27,6 +29,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`rld`);

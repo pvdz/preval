@@ -20,6 +20,7 @@ f(y); // In this test, this is the call we expect to be replaced by trampoline i
 
 ## Pre Normal
 
+
 `````js filename=intro
 const y = $(`pass`);
 const f = function ($$0) {
@@ -31,6 +32,7 @@ f(y);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const y = $(`pass`);
@@ -44,6 +46,7 @@ f(y);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const y = $(`pass`);

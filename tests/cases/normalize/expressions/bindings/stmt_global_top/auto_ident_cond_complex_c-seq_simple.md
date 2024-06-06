@@ -17,12 +17,14 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = $(1) ? (40, 50, $(60)) : $($(100));
 $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = undefined;
@@ -38,6 +40,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpIfTest = $(1);

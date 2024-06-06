@@ -23,6 +23,7 @@ $('after, wont eval due to infinite loop');
 
 ## Pre Normal
 
+
 `````js filename=intro
 while ($(true)) {
   while (true) {
@@ -46,6 +47,7 @@ $(`after, wont eval due to infinite loop`);
 
 ## Normalized
 
+
 `````js filename=intro
 let tmpIfTest = $(true);
 while (true) {
@@ -67,6 +69,7 @@ $(`after, wont eval due to infinite loop`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let tmpIfTest = $(true);

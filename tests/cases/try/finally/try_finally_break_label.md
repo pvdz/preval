@@ -24,6 +24,7 @@ $(3);
 
 ## Pre Normal
 
+
 `````js filename=intro
 A: {
   {
@@ -51,6 +52,7 @@ $(3);
 
 ## Normalized
 
+
 `````js filename=intro
 let $implicitThrow = false;
 let $finalCatchArg = undefined;
@@ -65,6 +67,7 @@ $(3);
 `````
 
 ## Output
+
 
 `````js filename=intro
 try {

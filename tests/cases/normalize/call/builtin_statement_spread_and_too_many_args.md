@@ -16,11 +16,13 @@ isNaN(...$([1, 2, 3, 4]), $spy('b'), $spy('c'));
 
 ## Pre Normal
 
+
 `````js filename=intro
 isNaN(...$([1, 2, 3, 4]), $spy(`b`), $spy(`c`));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -34,6 +36,7 @@ isNaN(tmpArgOverflow);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam = [1, 2, 3, 4];

@@ -17,6 +17,7 @@ export const x = $(f());
 
 ## Pre Normal
 
+
 `````js filename=intro
 let g = function ($$0) {
   let x$1 = $$0;
@@ -29,6 +30,7 @@ export { g };
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let g = function ($$0) {
@@ -44,6 +46,7 @@ export { g };
 `````
 
 ## Output
+
 
 `````js filename=intro
 const g = function ($$0) {

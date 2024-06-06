@@ -47,6 +47,7 @@ tmpCallCallee(tmpCalleeParam);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function () {
   debugger;
@@ -94,6 +95,7 @@ tmpCallCallee(tmpCalleeParam);
 
 ## Normalized
 
+
 `````js filename=intro
 let f = function () {
   debugger;
@@ -140,6 +142,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const f = function () {

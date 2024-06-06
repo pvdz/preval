@@ -21,6 +21,7 @@ if (x) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = function () {
   debugger;
@@ -34,6 +35,7 @@ if (x) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const x = function () {
@@ -49,6 +51,7 @@ if (x) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`pass`);

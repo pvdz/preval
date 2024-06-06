@@ -16,6 +16,7 @@ export let a = 10, b = 20;
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = 10,
   b = 20;
@@ -24,6 +25,7 @@ export { a, b };
 
 ## Normalized
 
+
 `````js filename=intro
 let a = 10;
 let b = 20;
@@ -31,6 +33,7 @@ export { a, b };
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = 10;

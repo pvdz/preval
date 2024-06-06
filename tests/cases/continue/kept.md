@@ -73,6 +73,7 @@ $continue();
 
 ## Pre Normal
 
+
 `````js filename=intro
 let $continue = function () {
   debugger;
@@ -134,6 +135,7 @@ $continue();
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let $continue = function () {
@@ -221,6 +223,7 @@ $continue();
 `````
 
 ## Output
+
 
 `````js filename=intro
 const $continue = function () {

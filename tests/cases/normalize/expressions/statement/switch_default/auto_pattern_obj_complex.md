@@ -21,6 +21,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let { a: a } = { a: 999, b: 1000 };
 tmpSwitchBreak: {
@@ -35,6 +36,7 @@ $(a);
 
 ## Normalized
 
+
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
@@ -46,6 +48,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

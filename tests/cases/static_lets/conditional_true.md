@@ -26,6 +26,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = 5;
 if ($(true)) {
@@ -41,6 +42,7 @@ $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = 5;
@@ -58,6 +60,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let x = 10;

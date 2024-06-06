@@ -18,6 +18,7 @@ function i([[ x ]]) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let i = function ($$0) {
   const tmpParamBare = $$0;
@@ -32,6 +33,7 @@ let x = 1;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let i = function ($$0) {
@@ -49,6 +51,7 @@ let x = 1;
 `````
 
 ## Output
+
 
 `````js filename=intro
 

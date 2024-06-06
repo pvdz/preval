@@ -123,6 +123,7 @@ $('end', x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = 1;
 if ($) {
@@ -146,6 +147,7 @@ $(`end`, x);
 
 ## Normalized
 
+
 `````js filename=intro
 let x = 1;
 if ($) {
@@ -168,6 +170,7 @@ $(`end`, x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let x = 1;

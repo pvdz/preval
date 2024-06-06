@@ -16,6 +16,7 @@ test: var x = 0;
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = undefined;
 test: x = 0;
@@ -23,12 +24,14 @@ test: x = 0;
 
 ## Normalized
 
+
 `````js filename=intro
 let x = undefined;
 x = 0;
 `````
 
 ## Output
+
 
 `````js filename=intro
 

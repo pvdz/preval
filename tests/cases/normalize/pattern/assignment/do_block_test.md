@@ -16,6 +16,7 @@ $(p, q);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = 1,
   b = [10, 20],
@@ -36,6 +37,7 @@ $(p, q);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = 1;
@@ -59,6 +61,7 @@ $(p, q);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const b = [10, 20];

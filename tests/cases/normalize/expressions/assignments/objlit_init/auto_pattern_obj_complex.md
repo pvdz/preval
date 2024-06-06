@@ -18,6 +18,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let { a: a } = { a: 999, b: 1000 };
 $({ x: ({ a: a } = $({ a: 1, b: 2 })) });
@@ -25,6 +26,7 @@ $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
@@ -42,6 +44,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam$1 = { a: 1, b: 2 };

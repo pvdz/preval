@@ -17,6 +17,7 @@ spy in Number;
 
 ## Pre Normal
 
+
 `````js filename=intro
 const spy = {
   toString() {
@@ -32,6 +33,7 @@ spy in Number;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const spy = {
@@ -50,6 +52,7 @@ spy in Number;
 `````
 
 ## Output
+
 
 `````js filename=intro
 const spy = {

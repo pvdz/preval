@@ -19,6 +19,7 @@ $(c);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = 10,
   b = (a, $(2))?.toString,
@@ -27,6 +28,7 @@ $(c);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const a = 10;
@@ -50,6 +52,7 @@ $(c);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpChainRootProp = $(2);

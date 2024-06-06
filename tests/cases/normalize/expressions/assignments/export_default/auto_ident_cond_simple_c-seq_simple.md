@@ -18,6 +18,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpAnonDefaultExport = (a = 1 ? (40, 50, $(60)) : $($(100)));
@@ -26,6 +27,7 @@ $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
@@ -36,6 +38,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = $(60);

@@ -17,6 +17,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const str = `worldy`;
 const tmpCallVal = str.slice;
@@ -26,6 +27,7 @@ $(x);
 
 ## Normalized
 
+
 `````js filename=intro
 const str = `worldy`;
 const tmpCallVal = str.slice;
@@ -34,6 +36,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`rl`);

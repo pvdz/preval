@@ -44,6 +44,7 @@ $(arr2);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const arr = [
   x ** NaN,
@@ -73,6 +74,7 @@ $(arr2);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 x * 0;
@@ -139,6 +141,7 @@ $(arr2);
 `````
 
 ## Output
+
 
 `````js filename=intro
 x ** 0;

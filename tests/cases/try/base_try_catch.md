@@ -22,6 +22,7 @@ $(3);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(1);
 try {
@@ -34,6 +35,7 @@ $(3);
 
 ## Normalized
 
+
 `````js filename=intro
 $(1);
 try {
@@ -45,6 +47,7 @@ $(3);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

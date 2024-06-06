@@ -24,6 +24,7 @@ $(3);
 
 ## Pre Normal
 
+
 `````js filename=intro
 while (true) {
   {
@@ -61,6 +62,7 @@ $(3);
 
 ## Normalized
 
+
 `````js filename=intro
 while (true) {
   let $implicitThrow = false;
@@ -81,6 +83,7 @@ $(3);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let $tmpLoopUnrollCheck = true;

@@ -22,6 +22,7 @@ while (test) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let counter = 0;
 let test = counter < 10;
@@ -34,6 +35,7 @@ while (test) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let counter = 0;
@@ -54,6 +56,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let counter = 0;

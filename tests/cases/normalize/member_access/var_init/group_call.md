@@ -15,12 +15,14 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = ($(1), $(2), $($)).length;
 $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 $(1);
@@ -31,6 +33,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

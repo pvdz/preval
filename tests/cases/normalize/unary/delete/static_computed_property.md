@@ -17,6 +17,7 @@ delete obj['x'];
 
 ## Pre Normal
 
+
 `````js filename=intro
 const obj = { x: 1 };
 delete obj[`x`];
@@ -24,12 +25,14 @@ delete obj[`x`];
 
 ## Normalized
 
+
 `````js filename=intro
 const obj = { x: 1 };
 delete obj.x;
 `````
 
 ## Output
+
 
 `````js filename=intro
 

@@ -17,12 +17,14 @@ $('ok');
 
 ## Pre Normal
 
+
 `````js filename=intro
 [[] = $([`pass2`])] = [undefined, 4, 5];
 $(`ok`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const arrAssignPatternRhs = [undefined, 4, 5];
@@ -42,6 +44,7 @@ $(`ok`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam = [`pass2`];

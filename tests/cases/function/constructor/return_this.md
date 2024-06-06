@@ -24,6 +24,7 @@ $(glbl);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let glbl;
 try {
@@ -37,6 +38,7 @@ $(glbl);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let glbl = undefined;
@@ -54,6 +56,7 @@ $(glbl);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(window);

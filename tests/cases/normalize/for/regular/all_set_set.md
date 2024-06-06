@@ -16,6 +16,7 @@ for (let b = 2, c = 3, d = 4; b; ) $(d);
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   let b = 2,
@@ -28,6 +29,7 @@ for (let b = 2, c = 3, d = 4; b; ) $(d);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let b = 2;
@@ -43,6 +45,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(4);

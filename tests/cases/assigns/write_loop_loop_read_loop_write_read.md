@@ -24,6 +24,7 @@ $(x, 'outer');
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = $(10);
 while (true) {
@@ -37,6 +38,7 @@ $(x, `outer`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = $(10);
@@ -55,6 +57,7 @@ $(x, `outer`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let x = $(10);

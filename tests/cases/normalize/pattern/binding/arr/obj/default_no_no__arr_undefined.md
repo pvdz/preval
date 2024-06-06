@@ -17,12 +17,14 @@ $('ok');
 
 ## Pre Normal
 
+
 `````js filename=intro
 const [{}] = [undefined, 20, 30];
 $(`ok`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const bindingPatternArrRoot = [undefined, 20, 30];
@@ -41,6 +43,7 @@ $(`ok`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 undefined.cannotDestructureThis;

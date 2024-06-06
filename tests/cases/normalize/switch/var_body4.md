@@ -26,6 +26,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = undefined;
 let tmpSwitchCaseToStart = $(0);
@@ -42,6 +43,7 @@ $(x);
 
 ## Normalized
 
+
 `````js filename=intro
 let x = undefined;
 let tmpSwitchCaseToStart = $(0);
@@ -57,6 +59,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpSwitchCaseToStart = $(0);

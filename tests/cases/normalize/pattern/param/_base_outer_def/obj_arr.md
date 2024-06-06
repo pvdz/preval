@@ -14,6 +14,7 @@ function i({x: [ y ]} = c ) { return y }
 
 ## Pre Normal
 
+
 `````js filename=intro
 let i = function ($$0) {
   const tmpParamBare = $$0;
@@ -26,6 +27,7 @@ let i = function ($$0) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let i = function ($$0) {
@@ -46,6 +48,7 @@ let i = function ($$0) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 

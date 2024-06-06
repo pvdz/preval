@@ -30,6 +30,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let danger = function () {
   debugger;
@@ -51,6 +52,7 @@ $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let danger = function () {
@@ -81,6 +83,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const danger = function () {

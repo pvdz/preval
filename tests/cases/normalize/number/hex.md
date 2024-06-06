@@ -19,6 +19,7 @@ $(0xffffffffffffffffff);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(327698);
 $(327698);
@@ -28,6 +29,7 @@ $(4.722366482869645e21);
 
 ## Normalized
 
+
 `````js filename=intro
 $(327698);
 $(327698);
@@ -36,6 +38,7 @@ $(4.722366482869645e21);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(327698);

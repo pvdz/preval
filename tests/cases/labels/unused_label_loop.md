@@ -17,12 +17,14 @@ foo: while (--x) $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = 2;
 foo: while (--x) $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = 2;
@@ -38,6 +40,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

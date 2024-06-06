@@ -22,6 +22,7 @@ switch (1) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 tmpSwitchBreak: {
   let arg;
@@ -38,6 +39,7 @@ tmpSwitchBreak: {
 
 ## Normalized
 
+
 `````js filename=intro
 let arg = undefined;
 let a = undefined;
@@ -52,6 +54,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(-1, 1);

@@ -26,6 +26,7 @@ $(a.f());
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = {
   foo: 10,
@@ -43,6 +44,7 @@ $(a.f());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpObjLitVal = 10;
@@ -70,6 +72,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const f = function () {

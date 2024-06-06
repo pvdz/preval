@@ -18,6 +18,7 @@ $('out:', y);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = Number($(100));
 const y = x !== ``;
@@ -25,6 +26,7 @@ $(`out:`, y);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpStringFirstArg = $(100);
@@ -34,6 +36,7 @@ $(`out:`, y);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpStringFirstArg = $(100);

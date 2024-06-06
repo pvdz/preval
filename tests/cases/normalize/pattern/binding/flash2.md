@@ -25,6 +25,7 @@ x();
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = function ($$0, $$1) {
   const tmpParamBare = $$0;
@@ -37,6 +38,7 @@ x();
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = function ($$0, $$1) {
@@ -58,6 +60,7 @@ x();
 `````
 
 ## Output
+
 
 `````js filename=intro
 throw `Preval: Cannot access \`x\$1\` before initialization`;

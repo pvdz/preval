@@ -30,6 +30,7 @@ $(y);
 
 ## Pre Normal
 
+
 `````js filename=intro
 drop1;
 drop1 + 1;
@@ -44,6 +45,7 @@ $(y);
 
 ## Normalized
 
+
 `````js filename=intro
 drop1 + 0;
 const x = drop2 + 1;
@@ -54,6 +56,7 @@ $(y);
 `````
 
 ## Output
+
 
 `````js filename=intro
 drop1 + 0;

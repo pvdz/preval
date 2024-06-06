@@ -18,6 +18,7 @@ $(typeof foo)
 
 ## Pre Normal
 
+
 `````js filename=intro
 let foo = 1;
 $(delete (null, foo));
@@ -25,6 +26,7 @@ $(typeof foo);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let foo = 1;
@@ -37,6 +39,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(true);

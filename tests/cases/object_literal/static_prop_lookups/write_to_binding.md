@@ -18,6 +18,7 @@ $(o.x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let o = { x: $(1) };
 o = {};
@@ -25,6 +26,7 @@ $(o.x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
@@ -36,6 +38,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

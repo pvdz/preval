@@ -17,6 +17,7 @@ spy instanceof 150; // This'll crash
 
 ## Pre Normal
 
+
 `````js filename=intro
 const spy = {
   toString() {
@@ -32,6 +33,7 @@ spy instanceof 150;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const spy = {
@@ -50,6 +52,7 @@ undefined instanceof 150;
 `````
 
 ## Output
+
 
 `````js filename=intro
 undefined instanceof 150;

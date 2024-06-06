@@ -15,12 +15,14 @@ obj.a.b.c;
 
 ## Pre Normal
 
+
 `````js filename=intro
 const obj = { a: { b: { c: $() } } };
 obj.a.b.c;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpObjLitVal$3 = $();
@@ -33,6 +35,7 @@ tmpCompObj.c;
 `````
 
 ## Output
+
 
 `````js filename=intro
 $();

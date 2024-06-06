@@ -43,6 +43,7 @@ if (alwaysFalse) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let alwaysFalse = false;
 const f = function () {
@@ -62,6 +63,7 @@ if (alwaysFalse) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let alwaysFalse = false;
@@ -84,6 +86,7 @@ if (alwaysFalse) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`b`);

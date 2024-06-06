@@ -37,6 +37,7 @@ $(f());
 
 ## Pre Normal
 
+
 `````js filename=intro
 const f = function () {
   debugger;
@@ -55,6 +56,7 @@ $(f());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const f = function () {
@@ -79,6 +81,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 throw `Preval: Cannot access \`xyz\` before initialization`;

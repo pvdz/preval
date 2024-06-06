@@ -29,6 +29,7 @@ g(4);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let g = function ($$0) {
   let a = $$0;
@@ -49,6 +50,7 @@ g(4);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let g = function ($$0) {
@@ -76,6 +78,7 @@ g(4);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const g = function ($$0) {

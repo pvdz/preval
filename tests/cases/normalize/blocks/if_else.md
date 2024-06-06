@@ -15,12 +15,14 @@ else $(3);
 
 ## Pre Normal
 
+
 `````js filename=intro
 if ($(1)) $(2);
 else $(3);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpIfTest = $(1);
@@ -32,6 +34,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpIfTest = $(1);

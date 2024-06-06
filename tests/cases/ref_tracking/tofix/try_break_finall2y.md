@@ -27,6 +27,7 @@ $(x); // x can be 1 or 2 but not 3. we can cover this.
 
 ## Pre Normal
 
+
 `````js filename=intro
 foo: {
   let x$1 = 1;
@@ -59,6 +60,7 @@ $(x);
 
 ## Normalized
 
+
 `````js filename=intro
 foo: {
   let x$1 = 1;
@@ -85,6 +87,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(x);

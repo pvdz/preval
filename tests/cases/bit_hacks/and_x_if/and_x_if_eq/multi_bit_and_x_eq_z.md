@@ -22,6 +22,7 @@ if (y === 3) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = $(200);
 const y = x & 200;
@@ -33,6 +34,7 @@ if (y === 3) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const x = $(200);
@@ -46,6 +48,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = $(200);

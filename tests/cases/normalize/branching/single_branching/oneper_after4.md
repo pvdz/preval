@@ -68,6 +68,7 @@ X();
 
 ## Pre Normal
 
+
 `````js filename=intro
 const X = function ($$0, $$1, $$2, $$3, $$4) {
   let a = $$0;
@@ -196,6 +197,7 @@ X();
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const X = function ($$0, $$1, $$2, $$3, $$4) {
@@ -338,6 +340,7 @@ X();
 `````
 
 ## Output
+
 
 `````js filename=intro
 undefined.length;

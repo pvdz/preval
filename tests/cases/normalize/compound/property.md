@@ -31,6 +31,7 @@ $(a, s); // 5, 'read;write[5]'
 
 ## Pre Normal
 
+
 `````js filename=intro
 let s = ``;
 let a = 0;
@@ -53,6 +54,7 @@ $(a, s);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let s = ``;
@@ -85,6 +87,7 @@ $(a, s);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let s = ``;

@@ -26,6 +26,7 @@ $('after, do not evaluate (infinite loop)');
 
 ## Pre Normal
 
+
 `````js filename=intro
 while ($(true)) {
   $continue: {
@@ -48,6 +49,7 @@ $(`after, do not evaluate (infinite loop)`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let tmpIfTest = $(true);
@@ -74,6 +76,7 @@ $(`after, do not evaluate (infinite loop)`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpIfTest = $(true);

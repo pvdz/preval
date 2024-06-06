@@ -21,6 +21,7 @@ $(b)[$('c')] = $(3);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let b = {
   get c() {
@@ -37,6 +38,7 @@ $(b)[$(`c`)] = $(3);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let b = {
@@ -61,6 +63,7 @@ tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 `````
 
 ## Output
+
 
 `````js filename=intro
 const b = {

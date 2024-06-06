@@ -24,6 +24,7 @@ if (x) $('d'); else $('c');
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x;
 if ($(true)) {
@@ -40,6 +41,7 @@ else $(`c`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = undefined;
@@ -65,6 +67,7 @@ if (x) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let x = false;

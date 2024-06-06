@@ -15,6 +15,7 @@ let x = 1, b = 2, c = 3;
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = 1,
   b = 2,
@@ -23,6 +24,7 @@ let x = 1,
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = 1;
@@ -35,6 +37,7 @@ tmpIfTest = tmpNestedAssignObjPatternRhs;
 `````
 
 ## Output
+
 
 `````js filename=intro
 (1).x;

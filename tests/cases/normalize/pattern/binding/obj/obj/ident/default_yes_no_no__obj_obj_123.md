@@ -17,6 +17,7 @@ $(y);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const {
   x: { y: y = $(`fail`) },
@@ -25,6 +26,7 @@ $(y);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpObjLitVal = { x: 1, y: 2, z: 3 };
@@ -42,6 +44,7 @@ $(y);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(2);

@@ -22,6 +22,7 @@ $(x + $('prevent inlining'));
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = 1;
 if ($) {
@@ -33,6 +34,7 @@ $(x + $(`prevent inlining`));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = 1;
@@ -49,6 +51,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpBinBothRhs = $(`prevent inlining`);

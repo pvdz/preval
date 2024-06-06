@@ -17,12 +17,14 @@ $(x === ''); // Must be false (number !== string)
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = 1 * $(2);
 $(x === ``);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpBinBothLhs = 1;
@@ -34,6 +36,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpBinBothRhs = $(2);

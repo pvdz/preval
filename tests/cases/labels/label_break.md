@@ -16,17 +16,20 @@ foo: break foo;
 
 ## Pre Normal
 
+
 `````js filename=intro
 foo: break foo;
 `````
 
 ## Normalized
 
+
 `````js filename=intro
 
 `````
 
 ## Output
+
 
 `````js filename=intro
 

@@ -16,6 +16,7 @@ let a = $(1), b = $(2), c = $(3);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = $(1),
   b = $(2),
@@ -24,6 +25,7 @@ let a = $(1),
 
 ## Normalized
 
+
 `````js filename=intro
 let a = $(1);
 let b = $(2);
@@ -31,6 +33,7 @@ let c = $(3);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

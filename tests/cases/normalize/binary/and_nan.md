@@ -18,6 +18,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = $(100);
 const b = a | NaN;
@@ -26,6 +27,7 @@ $(a);
 
 ## Normalized
 
+
 `````js filename=intro
 const a = $(100);
 const b = a | 0;
@@ -33,6 +35,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = $(100);

@@ -14,6 +14,7 @@ const {x: [ y ]} = 1
 
 ## Pre Normal
 
+
 `````js filename=intro
 const {
   x: [y],
@@ -21,6 +22,7 @@ const {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const bindingPatternObjRoot = 1;
@@ -30,6 +32,7 @@ const y = arrPatternSplat[0];
 `````
 
 ## Output
+
 
 `````js filename=intro
 const objPatternNoDefault = (1).x;

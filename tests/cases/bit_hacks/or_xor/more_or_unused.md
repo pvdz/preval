@@ -25,6 +25,7 @@ $(setAssignable($(100)));
 
 ## Pre Normal
 
+
 `````js filename=intro
 const setAssignable = function ($$0) {
   let a = $$0;
@@ -37,6 +38,7 @@ $(setAssignable($(100)));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const setAssignable = function ($$0) {
@@ -54,6 +56,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam$1 = $(100);

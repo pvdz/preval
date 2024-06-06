@@ -23,6 +23,7 @@ $(test);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = $(false);
 const b = $(`alt`);
@@ -36,6 +37,7 @@ $(test);
 
 ## Normalized
 
+
 `````js filename=intro
 const a = $(false);
 const b = $(`alt`);
@@ -48,6 +50,7 @@ $(test);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = $(false);

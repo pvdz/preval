@@ -14,6 +14,7 @@ for ({ x } = 1;false;) y;
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   ({ x: x } = 1);
@@ -25,12 +26,14 @@ for ({ x } = 1;false;) y;
 
 ## Normalized
 
+
 `````js filename=intro
 const tmpAssignObjPatternRhs = 1;
 x = tmpAssignObjPatternRhs.x;
 `````
 
 ## Output
+
 
 `````js filename=intro
 x = (1).x;

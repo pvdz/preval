@@ -18,6 +18,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 ({ [(10, 20, $(30)) ? (40, 50, 60) : $($(100))]: 10 });
@@ -25,6 +26,7 @@ $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
@@ -39,6 +41,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpIfTest = $(30);

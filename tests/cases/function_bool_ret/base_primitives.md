@@ -26,6 +26,7 @@ $(!f(), 'three');
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function () {
   debugger;
@@ -41,6 +42,7 @@ $(!f(), `three`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function () {
@@ -69,6 +71,7 @@ tmpCallCallee$3(tmpCalleeParam$7, tmpCalleeParam$9);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpUnaryArg = Boolean($);

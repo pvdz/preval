@@ -25,6 +25,7 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   let x = 1;
@@ -40,6 +41,7 @@
 
 ## Normalized
 
+
 `````js filename=intro
 let x = 1;
 if ($) {
@@ -52,6 +54,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let x = 1;

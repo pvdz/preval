@@ -20,6 +20,7 @@ while ($(x)) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = $(10);
 while ($(x)) {
@@ -29,6 +30,7 @@ while ($(x)) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = $(10);
@@ -49,6 +51,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = $(10);

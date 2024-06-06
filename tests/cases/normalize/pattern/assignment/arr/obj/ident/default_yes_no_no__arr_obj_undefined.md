@@ -17,12 +17,14 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 [{ x: x = $(`pass`) }] = [{ x: undefined, y: 2, z: 3 }, 20, 30];
 $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpArrElement = { x: undefined, y: 2, z: 3 };
@@ -40,6 +42,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 x = $(`pass`);

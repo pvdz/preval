@@ -15,12 +15,14 @@ obj['fo' + 'o'];
 
 ## Pre Normal
 
+
 `````js filename=intro
 const obj = { foo: 10 };
 obj[`fo` + `o`];
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const obj = { foo: 10 };
@@ -30,6 +32,7 @@ tmpCompObj[tmpCompProp];
 `````
 
 ## Output
+
 
 `````js filename=intro
 

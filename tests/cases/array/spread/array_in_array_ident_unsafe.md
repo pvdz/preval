@@ -20,6 +20,7 @@ $(y);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = 10;
 const x = [1, a, 3];
@@ -30,6 +31,7 @@ $(y);
 
 ## Normalized
 
+
 `````js filename=intro
 let a = 10;
 const x = [1, a, 3];
@@ -39,6 +41,7 @@ $(y);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const y = [`a`, 1, 10, 3, `b`];

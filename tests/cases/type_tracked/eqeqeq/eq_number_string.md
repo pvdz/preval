@@ -18,6 +18,7 @@ $(x === y); // Must be false (number !== bool)
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = 1 * $(2);
 const y = `` + $(2);
@@ -25,6 +26,7 @@ $(x === y);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpBinBothLhs = 1;
@@ -39,6 +41,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpBinBothRhs = $(2);

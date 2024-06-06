@@ -30,6 +30,7 @@ $(problem2);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let problem2 = undefined;
 let problem1 = undefined;
@@ -44,6 +45,7 @@ $(problem2);
 
 ## Normalized
 
+
 `````js filename=intro
 let problem2 = undefined;
 let problem1 = undefined;
@@ -57,6 +59,7 @@ $(problem2);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $ObjectPrototype.now;

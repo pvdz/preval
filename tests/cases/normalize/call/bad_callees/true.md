@@ -18,6 +18,7 @@ $('after');
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(`before`);
 true();
@@ -26,6 +27,7 @@ $(`after`);
 
 ## Normalized
 
+
 `````js filename=intro
 $(`before`);
 true();
@@ -33,6 +35,7 @@ throw `[Preval]: Call expression with illegal callee must crash before this line
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`before`);

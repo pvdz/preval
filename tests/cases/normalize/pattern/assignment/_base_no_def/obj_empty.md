@@ -14,11 +14,13 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 ({} = 1);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpAssignObjPatternRhs = 1;
@@ -34,6 +36,7 @@ if (objPatternCrashTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 

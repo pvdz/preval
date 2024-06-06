@@ -33,6 +33,7 @@ $$(obja, objb, objc, objd, obje);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = undefined;
 let b = undefined;
@@ -176,6 +177,7 @@ tmp(obja, objb, objc, objd, obje);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = undefined;
@@ -338,6 +340,7 @@ tmp(obja, objb, objc, objd, obje);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmp = function (...$$0) {

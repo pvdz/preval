@@ -20,6 +20,7 @@ woop: while (true) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 woop: while (true) {
   $continue: {
@@ -34,6 +35,7 @@ woop: while (true) {
 
 ## Normalized
 
+
 `````js filename=intro
 while (true) {
   $(1);
@@ -41,6 +43,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

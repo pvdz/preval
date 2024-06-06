@@ -18,6 +18,7 @@ $(tmpCalleeParam);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const tmpArrSpread = true.toString();
 const tmpCalleeParam = [...tmpArrSpread];
@@ -26,6 +27,7 @@ $(tmpCalleeParam);
 
 ## Normalized
 
+
 `````js filename=intro
 const tmpArrSpread = true.toString();
 const tmpCalleeParam = [...tmpArrSpread];
@@ -33,6 +35,7 @@ $(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam = [`t`, `r`, `u`, `e`];

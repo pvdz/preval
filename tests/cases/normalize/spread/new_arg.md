@@ -17,6 +17,7 @@ new y(x, 8, ...((a = b.c), (d = e[f]), g).h);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = 1,
   b = 2,
@@ -32,6 +33,7 @@ new y(x, 8, ...((a = b.c), (d = e[f]), g).h);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = 1;
@@ -56,6 +58,7 @@ new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1, ...tmpCalleeParamSpread);
 `````
 
 ## Output
+
 
 `````js filename=intro
 (2).c;

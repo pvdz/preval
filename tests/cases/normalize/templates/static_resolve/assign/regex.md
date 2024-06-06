@@ -18,6 +18,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = undefined;
 x = `` + $coerce(/foo/g, `string`) + ``;
@@ -25,6 +26,7 @@ $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = undefined;
@@ -37,6 +39,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`/foo/g`);

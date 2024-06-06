@@ -16,17 +16,20 @@ implicit1 + implicit2;
 
 ## Pre Normal
 
+
 `````js filename=intro
 implicit1 + implicit2;
 `````
 
 ## Normalized
 
+
 `````js filename=intro
 implicit1 + implicit2;
 `````
 
 ## Output
+
 
 `````js filename=intro
 implicit1 + implicit2;

@@ -18,6 +18,7 @@ let a = b = c.x
 
 ## Pre Normal
 
+
 `````js filename=intro
 let b = 10;
 let c = 20;
@@ -25,6 +26,7 @@ let a = (b = c.x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let b = 10;
@@ -34,6 +36,7 @@ let a = b;
 `````
 
 ## Output
+
 
 `````js filename=intro
 (20).x;

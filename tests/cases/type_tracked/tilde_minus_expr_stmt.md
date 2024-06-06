@@ -18,6 +18,7 @@ $('finished');
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = ~-4;
 x >> NaN;
@@ -26,6 +27,7 @@ $(`finished`);
 
 ## Normalized
 
+
 `````js filename=intro
 const x = 3;
 x >> 0;
@@ -33,6 +35,7 @@ $(`finished`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`finished`);

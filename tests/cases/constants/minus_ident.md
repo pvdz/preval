@@ -19,6 +19,7 @@ $(z); // Should be inlined to y, not -5
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = $(5);
 const y = -x;
@@ -28,6 +29,7 @@ $(z);
 
 ## Normalized
 
+
 `````js filename=intro
 const x = $(5);
 const y = -x;
@@ -36,6 +38,7 @@ $(z);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = $(5);

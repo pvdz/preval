@@ -17,12 +17,14 @@ while (((x = x * 'str'), (x = x * 8), (x = x), (x = x * x), (x = x.x), x?.x(x)))
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = 1;
 while (((x = x * `str`), (x = x * 8), (x = x), (x = x * x), (x = x.x), x?.x(x))) {}
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = 1;
@@ -49,6 +51,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let $tmpLoopUnrollCheck = true;

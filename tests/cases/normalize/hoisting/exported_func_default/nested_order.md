@@ -23,6 +23,7 @@ export default function f() {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function () {
   debugger;
@@ -45,6 +46,7 @@ export { f as default };
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function () {
@@ -78,6 +80,7 @@ export { f as default };
 `````
 
 ## Output
+
 
 `````js filename=intro
 const f = function () {

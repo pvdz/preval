@@ -15,12 +15,14 @@ let x, b, c
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x, b, c;
 ({ x: x } = 1) ? b : c;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = undefined;
@@ -33,6 +35,7 @@ tmpIfTest = tmpNestedAssignObjPatternRhs;
 `````
 
 ## Output
+
 
 `````js filename=intro
 (1).x;

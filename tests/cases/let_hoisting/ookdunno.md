@@ -22,6 +22,7 @@ let b = { x: tmpObjLitVal };
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0) {
   let tmpParamBare = $$0;
@@ -33,6 +34,7 @@ let b = { x: tmpObjLitVal };
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0) {
@@ -46,6 +48,7 @@ let b = { x: tmpObjLitVal };
 `````
 
 ## Output
+
 
 `````js filename=intro
 

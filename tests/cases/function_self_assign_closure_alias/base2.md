@@ -58,6 +58,7 @@ c();
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = undefined;
 let c = undefined;
@@ -78,6 +79,7 @@ c();
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = undefined;
@@ -101,6 +103,7 @@ c();
 `````
 
 ## Output
+
 
 `````js filename=intro
 let a = function () {

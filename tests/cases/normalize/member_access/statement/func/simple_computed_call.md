@@ -18,6 +18,7 @@ $(f());
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function () {
   debugger;
@@ -28,6 +29,7 @@ $(f());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function () {
@@ -44,6 +46,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCompProp = $(`foo`);

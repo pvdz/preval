@@ -35,6 +35,7 @@ if ($) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 if ($) {
   let x = $();
@@ -54,6 +55,7 @@ if ($) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 if ($) {
@@ -83,6 +85,7 @@ if ($) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 if ($) {

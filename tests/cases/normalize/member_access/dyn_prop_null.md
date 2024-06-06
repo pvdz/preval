@@ -17,12 +17,14 @@ $(a['null']);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = {};
 $(a[`null`]);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const a = {};
@@ -32,6 +34,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam = $ObjectPrototype.null;

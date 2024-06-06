@@ -14,11 +14,13 @@ const [ x = a ] = [];
 
 ## Pre Normal
 
+
 `````js filename=intro
 const [x = a] = [];
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const bindingPatternArrRoot = [];
@@ -34,6 +36,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 a;

@@ -16,6 +16,7 @@ do var x = 0; while ($(x));
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = undefined;
 while (true) {
@@ -28,6 +29,7 @@ while (true) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = undefined;
@@ -42,6 +44,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let $tmpLoopUnrollCheck = true;

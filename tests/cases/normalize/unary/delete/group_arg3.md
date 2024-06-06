@@ -18,6 +18,7 @@ $(typeof foo)
 
 ## Pre Normal
 
+
 `````js filename=intro
 let foo = undefined;
 foo = 1;
@@ -26,6 +27,7 @@ $(typeof foo);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let foo = undefined;
@@ -39,6 +41,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(true);

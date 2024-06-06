@@ -33,6 +33,7 @@ $(g(4)(), 'outer');
 
 ## Pre Normal
 
+
 `````js filename=intro
 let g = function ($$0) {
   let a = $$0;
@@ -58,6 +59,7 @@ $(g(4)(), `outer`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let g = function ($$0) {
@@ -106,6 +108,7 @@ tmpCallCallee$7(tmpCalleeParam$15, tmpCalleeParam$17);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const g = function ($$0) {

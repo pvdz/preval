@@ -21,6 +21,7 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   let arg = { y: 1 };
@@ -31,6 +32,7 @@
 
 ## Normalized
 
+
 `````js filename=intro
 let arg = { y: 1 };
 let a = delete arg.y;
@@ -38,6 +40,7 @@ $(a, arg);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const arg = { y: 1 };

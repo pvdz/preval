@@ -22,6 +22,7 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   let f = function () {
@@ -35,6 +36,7 @@
 
 ## Normalized
 
+
 `````js filename=intro
 let f = function () {
   debugger;
@@ -47,6 +49,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(100);

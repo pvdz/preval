@@ -32,6 +32,7 @@ considerMutated(x) // always false
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function () {
   debugger;
@@ -69,6 +70,7 @@ considerMutated(x);
 
 ## Normalized
 
+
 `````js filename=intro
 let f = function () {
   debugger;
@@ -97,6 +99,7 @@ considerMutated(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 try {

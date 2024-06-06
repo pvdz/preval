@@ -16,6 +16,7 @@ $(bar + foo)
 
 ## Pre Normal
 
+
 `````js filename=intro
 const foo = `five`;
 const bar = `six`;
@@ -23,6 +24,7 @@ $(bar + foo);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const foo = `five`;
@@ -33,6 +35,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`sixfive`);

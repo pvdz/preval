@@ -36,6 +36,7 @@ exit: while (x) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = $(2);
 exit: while (x) {
@@ -75,6 +76,7 @@ exit: while (x) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = $(2);
@@ -132,6 +134,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let x = $(2);

@@ -17,12 +17,14 @@ $(y);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const { x: { y: y = $(`pass`) } = $({ y: `fail2` }) } = { x: { x: 1, y: undefined, z: 3 }, b: 11, c: 12 };
 $(y);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpObjLitVal = { x: 1, y: undefined, z: 3 };
@@ -49,6 +51,7 @@ $(y);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpClusterSSA_y = $(`pass`);

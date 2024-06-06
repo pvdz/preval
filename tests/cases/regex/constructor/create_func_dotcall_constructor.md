@@ -19,12 +19,14 @@ $(f);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const f = /foo/.constructor(`bar`, `g`);
 $(f);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallObj = /foo/;
@@ -33,6 +35,7 @@ $(f);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const f = /bar/g;

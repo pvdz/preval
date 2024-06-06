@@ -20,6 +20,7 @@ x = $('redundant'); // This assignment should be dropped (but the expression is 
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = $(1);
 $(x);
@@ -30,6 +31,7 @@ x = $(`redundant`);
 
 ## Normalized
 
+
 `````js filename=intro
 let x = $(1);
 $(x);
@@ -39,6 +41,7 @@ x = $(`redundant`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = $(1);

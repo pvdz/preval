@@ -19,6 +19,7 @@ $(f([0, 20, 30], 200));
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0) {
   const tmpParamBare = $$0;
@@ -30,6 +31,7 @@ $(f([0, 20, 30], 200));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0) {
@@ -54,6 +56,7 @@ tmpCallCallee$1(tmpCalleeParam$5);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam$1 = [];

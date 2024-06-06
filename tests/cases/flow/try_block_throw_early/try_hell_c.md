@@ -22,6 +22,7 @@ considerMutated(x) // always true
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = 0;
 {
@@ -47,6 +48,7 @@ considerMutated(x);
 
 ## Normalized
 
+
 `````js filename=intro
 let x = 0;
 let $implicitThrow = false;
@@ -66,6 +68,7 @@ if ($implicitThrow) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let $implicitThrow = false;

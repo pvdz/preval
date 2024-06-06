@@ -24,6 +24,7 @@ $(simplifyMe);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const useless = new $(1);
 let simplifyMe = useless;
@@ -39,6 +40,7 @@ $(simplifyMe);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const useless = new $(1);
@@ -56,6 +58,7 @@ $(simplifyMe);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const useless = new $(1);

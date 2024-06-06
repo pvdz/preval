@@ -18,6 +18,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 ({ [1 ? (40, 50, $(60)) : $($(100))]: 10 });
@@ -26,6 +27,7 @@ $(a);
 
 ## Normalized
 
+
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 $(60);
@@ -33,6 +35,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(60);

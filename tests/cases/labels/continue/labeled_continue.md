@@ -29,6 +29,7 @@ $(x); // unreachable
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = $(1);
 A: while (true) {
@@ -52,6 +53,7 @@ $(x);
 
 ## Normalized
 
+
 `````js filename=intro
 let x = $(1);
 while (true) {
@@ -73,6 +75,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = $(1);

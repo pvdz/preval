@@ -18,6 +18,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 $({ ...(a = { x: 1, y: 2, z: 3 }) });
@@ -25,6 +26,7 @@ $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
@@ -37,6 +39,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = { x: 1, y: 2, z: 3 };

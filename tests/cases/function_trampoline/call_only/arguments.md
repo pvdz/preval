@@ -19,6 +19,7 @@ f(1, 2, 3, 4, 5); // The use of `arguments` should prevent inlining this call, f
 
 ## Pre Normal
 
+
 `````js filename=intro
 const f = function ($$0, $$1, $$2, $$3, $$4) {
   const tmpPrevalAliasArgumentsAny = arguments;
@@ -34,6 +35,7 @@ f(1, 2, 3, 4, 5);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const f = function ($$0, $$1, $$2, $$3, $$4) {
@@ -51,6 +53,7 @@ f(1, 2, 3, 4, 5);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const f = function ($$0, $$1, $$2, $$3, $$4) {

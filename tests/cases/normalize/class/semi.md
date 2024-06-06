@@ -21,6 +21,7 @@ $(new x().b());
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = class {
   a() {
@@ -34,6 +35,7 @@ $(new x().b());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = class {
@@ -53,6 +55,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = class {

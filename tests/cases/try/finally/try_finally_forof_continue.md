@@ -24,6 +24,7 @@ $(3);
 
 ## Pre Normal
 
+
 `````js filename=intro
 for (const x of [`a`, `b`, `c`]) {
   $continue: {
@@ -55,6 +56,7 @@ $(3);
 
 ## Normalized
 
+
 `````js filename=intro
 const tmpForOfDeclRhs = [`a`, `b`, `c`];
 let x = undefined;
@@ -73,6 +75,7 @@ $(3);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let x = undefined;

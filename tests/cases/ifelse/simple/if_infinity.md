@@ -14,17 +14,20 @@ if (Infinity) $();
 
 ## Pre Normal
 
+
 `````js filename=intro
 if (Infinity) $();
 `````
 
 ## Normalized
 
+
 `````js filename=intro
 $();
 `````
 
 ## Output
+
 
 `````js filename=intro
 $();

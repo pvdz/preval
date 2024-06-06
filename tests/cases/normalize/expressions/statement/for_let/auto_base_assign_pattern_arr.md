@@ -20,6 +20,7 @@ $(a, b);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
@@ -34,6 +35,7 @@ $(a, b);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let b = [];
@@ -54,6 +56,7 @@ $(a, b);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const b = [];

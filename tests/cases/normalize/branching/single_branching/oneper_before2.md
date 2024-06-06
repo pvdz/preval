@@ -71,6 +71,7 @@ tmpBranchingB();
 
 ## Pre Normal
 
+
 `````js filename=intro
 let c = `c`;
 let d = `d`;
@@ -131,6 +132,7 @@ tmpBranchingB();
 
 ## Normalized
 
+
 `````js filename=intro
 let c = `c`;
 let d = `d`;
@@ -190,6 +192,7 @@ tmpBranchingB();
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`a`, `b`, `no`, `c`, `e`, 1, false, `string`, true, 0, true);

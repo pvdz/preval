@@ -21,6 +21,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = $(3);
 const y = x | 32;
@@ -31,6 +32,7 @@ $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = $(3);
@@ -43,6 +45,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = $(3);

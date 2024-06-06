@@ -21,6 +21,7 @@ onlyNumbers ** 0;
 
 ## Pre Normal
 
+
 `````js filename=intro
 let onlyNumbers = 0;
 if ($) {
@@ -32,6 +33,7 @@ onlyNumbers ** 0;
 
 ## Normalized
 
+
 `````js filename=intro
 let onlyNumbers = 0;
 if ($) {
@@ -42,6 +44,7 @@ onlyNumbers ** 0;
 `````
 
 ## Output
+
 
 `````js filename=intro
 

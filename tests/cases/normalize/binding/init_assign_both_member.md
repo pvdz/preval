@@ -18,6 +18,7 @@ let a = b.x = c.x
 
 ## Pre Normal
 
+
 `````js filename=intro
 let b = 10;
 let c = 20;
@@ -25,6 +26,7 @@ let a = (b.x = c.x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let b = 10;
@@ -35,6 +37,7 @@ let a = varInitAssignLhsComputedRhs;
 `````
 
 ## Output
+
 
 `````js filename=intro
 const varInitAssignLhsComputedRhs = (20).x;

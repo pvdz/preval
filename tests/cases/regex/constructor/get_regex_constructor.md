@@ -19,6 +19,7 @@ $(y); // the regex `/x/g`
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = /foo/;
 const c = x.constructor;
@@ -28,6 +29,7 @@ $(y);
 
 ## Normalized
 
+
 `````js filename=intro
 const x = /foo/;
 const c = x.constructor;
@@ -36,6 +38,7 @@ $(y);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const y = /x/g;

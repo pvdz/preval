@@ -19,6 +19,7 @@ while (x) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = /foo/;
 while (x) {
@@ -27,6 +28,7 @@ while (x) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = /foo/;
@@ -43,6 +45,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpClusterSSA_x = /foo/;

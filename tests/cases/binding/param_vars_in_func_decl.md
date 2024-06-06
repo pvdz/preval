@@ -20,6 +20,7 @@ $(f());
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0) {
   let a = $$0;
@@ -32,6 +33,7 @@ $(f());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0) {
@@ -49,6 +51,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpClusterSSA_a = $(10);

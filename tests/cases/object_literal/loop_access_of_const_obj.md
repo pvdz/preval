@@ -122,6 +122,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let b = { x: 1 };
 {
@@ -132,6 +133,7 @@ let b = { x: 1 };
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let b = { x: 1 };
@@ -154,6 +156,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

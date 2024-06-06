@@ -32,6 +32,7 @@ $(a).length = b;
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = $([]),
   b;
@@ -39,6 +40,7 @@ $(a).length = b;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -50,6 +52,7 @@ tmpAssignMemLhsObj.length = b;
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam = [];

@@ -20,6 +20,7 @@ function x([[[[[[foo = x] = y]]]]], {x: {...x}}) {}
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = function ($$0, $$1) {
   const tmpParamBare = $$0;
@@ -33,6 +34,7 @@ let x = function ($$0, $$1) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = function ($$0, $$1) {
@@ -78,6 +80,7 @@ let x = function ($$0, $$1) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 

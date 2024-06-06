@@ -22,6 +22,7 @@ if (y === 1) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = $(1) & 1;
 let y = x & 1;
@@ -33,6 +34,7 @@ if (y === 1) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpBinLhs = $(1);
@@ -47,6 +49,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpBinLhs = $(1);

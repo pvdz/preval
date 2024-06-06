@@ -22,6 +22,7 @@ if (x) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = $(true);
 const x = a === true;
@@ -34,6 +35,7 @@ if (x) {
 
 ## Normalized
 
+
 `````js filename=intro
 const a = $(true);
 const x = a === true;
@@ -45,6 +47,7 @@ if (x) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = $(true);

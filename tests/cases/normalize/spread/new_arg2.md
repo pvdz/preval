@@ -19,6 +19,7 @@ new String(8.5, 8, ...tmpObjLitVal);
 
 ## Pre Normal
 
+
 `````js filename=intro
 (2).c;
 (5)[6];
@@ -28,6 +29,7 @@ new String(8.5, 8, ...tmpObjLitVal);
 
 ## Normalized
 
+
 `````js filename=intro
 (2).c;
 (5)[6];
@@ -36,6 +38,7 @@ new String(8.5, 8, ...tmpObjLitVal);
 `````
 
 ## Output
+
 
 `````js filename=intro
 (2).c;

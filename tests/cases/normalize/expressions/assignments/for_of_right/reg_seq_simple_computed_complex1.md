@@ -16,11 +16,13 @@ for (let x of $([]));
 
 ## Pre Normal
 
+
 `````js filename=intro
 for (let x of $([]));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -32,6 +34,7 @@ for (x of tmpForOfDeclRhs) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam = [];

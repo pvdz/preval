@@ -23,6 +23,7 @@ while (test) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let counter1 = 0;
 let counter2 = 0;
@@ -35,6 +36,7 @@ while (test) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let counter1 = 0;
@@ -52,6 +54,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`yolo`);

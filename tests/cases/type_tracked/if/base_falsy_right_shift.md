@@ -29,6 +29,7 @@ if (x) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = $(1) >>> 0;
 if (x) {
@@ -44,6 +45,7 @@ if (x) {
 
 ## Normalized
 
+
 `````js filename=intro
 const tmpBinLhs = $(1);
 const x = tmpBinLhs >>> 0;
@@ -55,6 +57,7 @@ if (x) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpBinLhs = $(1);

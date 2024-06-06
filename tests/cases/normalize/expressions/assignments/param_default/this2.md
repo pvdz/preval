@@ -24,6 +24,7 @@ if ($) $(g());
 
 ## Pre Normal
 
+
 `````js filename=intro
 let g = function () {
   debugger;
@@ -41,6 +42,7 @@ if ($) $(g());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let g = function () {
@@ -76,6 +78,7 @@ if ($) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 if ($) {

@@ -17,12 +17,14 @@ $(String(x)); // Is the same as `x` and dropping the `String` call should not be
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = `` + $(1);
 $(String(x));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpBinBothLhs = ``;
@@ -35,6 +37,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpBinBothRhs = $(1);

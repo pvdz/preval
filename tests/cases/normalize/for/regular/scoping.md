@@ -17,6 +17,7 @@ for (const x = 2;;) $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = 1;
 {
@@ -29,6 +30,7 @@ const x = 1;
 
 ## Normalized
 
+
 `````js filename=intro
 const x = 1;
 const x$1 = 2;
@@ -38,6 +40,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(2);

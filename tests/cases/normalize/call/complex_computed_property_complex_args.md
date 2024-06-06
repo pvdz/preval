@@ -18,6 +18,7 @@ $(a)[b()]($(1), $(2));
 
 ## Pre Normal
 
+
 `````js filename=intro
 let b = function () {
   debugger;
@@ -28,6 +29,7 @@ $(a)[b()]($(1), $(2));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let b = function () {
@@ -45,6 +47,7 @@ $dotCall(tmpCallCompVal, tmpCallCompObj, tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = { b: $ };

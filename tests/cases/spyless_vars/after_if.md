@@ -22,6 +22,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = +$(`1`);
 const x = a * 2;
@@ -32,6 +33,7 @@ $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpUnaryArg = $(`1`);
@@ -45,6 +47,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpUnaryArg = $(`1`);

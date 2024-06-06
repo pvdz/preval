@@ -33,6 +33,7 @@ if ($) $(outer(), 'outer');
 
 ## Pre Normal
 
+
 `````js filename=intro
 let outer = function () {
   debugger;
@@ -57,6 +58,7 @@ if ($) $(outer(), `outer`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let outer = function () {
@@ -92,6 +94,7 @@ if ($) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const outer = function () {

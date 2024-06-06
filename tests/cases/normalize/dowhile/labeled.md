@@ -23,6 +23,7 @@ foo: do {
 
 ## Pre Normal
 
+
 `````js filename=intro
 foo: while (true) {
   {
@@ -42,6 +43,7 @@ foo: while (true) {
 
 ## Normalized
 
+
 `````js filename=intro
 while (true) {
   $(1);
@@ -54,6 +56,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let $tmpLoopUnrollCheck = true;

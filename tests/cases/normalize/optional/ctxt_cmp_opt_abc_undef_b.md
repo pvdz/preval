@@ -17,12 +17,14 @@ $($(a)?.[$('b')]?.[$('c')]?.(100));
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = {};
 $($(a)?.[$(`b`)]?.[$(`c`)]?.(100));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const a = {};
@@ -52,6 +54,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let tmpCalleeParam = undefined;

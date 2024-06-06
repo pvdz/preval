@@ -24,6 +24,7 @@ $(a, x, y);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function () {
   debugger;
@@ -37,6 +38,7 @@ $(a, x, y);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function () {
@@ -60,6 +62,7 @@ $(a, x, y);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };

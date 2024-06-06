@@ -44,6 +44,7 @@ $(arr2);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const arr = [
   x ** true,
@@ -73,6 +74,7 @@ $(arr2);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpArrElement = x ** 1;
@@ -125,6 +127,7 @@ $(arr2);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpArrElement = x ** 1;

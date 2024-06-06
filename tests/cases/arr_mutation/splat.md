@@ -18,6 +18,7 @@ for (const a in arr) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const arr = [1, 2, 3];
 for (const a in arr) {
@@ -27,6 +28,7 @@ for (const a in arr) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const arr = [1, 2, 3];
@@ -39,6 +41,7 @@ for (a in tmpForInDeclRhs) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let a = undefined;

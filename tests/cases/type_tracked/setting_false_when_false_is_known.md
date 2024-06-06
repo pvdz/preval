@@ -23,6 +23,7 @@ else {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let tmpIfTest$1917 = $(`is`) === 67636;
 if (tmpIfTest$1917) {
@@ -34,6 +35,7 @@ if (tmpIfTest$1917) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpBinLhs = $(`is`);
@@ -47,6 +49,7 @@ if (tmpIfTest$1917) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpBinLhs = $(`is`);

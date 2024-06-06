@@ -16,11 +16,13 @@ $(`${`a ${$(1)} b`}`);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(`` + $coerce(`a ` + $coerce($(1), `string`) + ` b`, `string`) + ``);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -38,6 +40,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCallCallee$3 = $(1);

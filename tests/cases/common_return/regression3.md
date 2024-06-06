@@ -31,6 +31,7 @@ c();
 
 ## Pre Normal
 
+
 `````js filename=intro
 const d = function ($$0) {
   let x = $$0;
@@ -52,6 +53,7 @@ c();
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const d = function ($$0) {
@@ -82,6 +84,7 @@ c();
 `````
 
 ## Output
+
 
 `````js filename=intro
 const d = function () {

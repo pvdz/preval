@@ -19,6 +19,7 @@ for (let i=0; i<10; ++i) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   let i = 0;
@@ -33,6 +34,7 @@ for (let i=0; i<10; ++i) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let i = 0;
@@ -50,6 +52,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(0, `a`);

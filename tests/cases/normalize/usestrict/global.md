@@ -16,6 +16,7 @@ $();
 
 ## Pre Normal
 
+
 `````js filename=intro
 `use strict`;
 $();
@@ -23,11 +24,13 @@ $();
 
 ## Normalized
 
+
 `````js filename=intro
 $();
 `````
 
 ## Output
+
 
 `````js filename=intro
 $();

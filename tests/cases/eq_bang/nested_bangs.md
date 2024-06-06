@@ -20,6 +20,7 @@ $(!a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = $(1) === $(2);
 $(!a);
@@ -29,6 +30,7 @@ $(!a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpBinBothLhs = $(1);
@@ -49,6 +51,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpBinBothLhs = $(1);

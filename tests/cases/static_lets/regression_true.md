@@ -31,6 +31,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const oops = function (...$$0) {
   let args = $$0;
@@ -51,6 +52,7 @@ $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const oops = function (...$$0) {
@@ -73,6 +75,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const oops = function (...$$0) {

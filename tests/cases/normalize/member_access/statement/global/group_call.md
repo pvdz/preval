@@ -14,11 +14,13 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 ($(1), $(2), $($)).length;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 $(1);
@@ -28,6 +30,7 @@ tmpCompObj.length;
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

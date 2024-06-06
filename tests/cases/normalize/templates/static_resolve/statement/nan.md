@@ -16,11 +16,13 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 `` + $coerce(NaN, `string`) + ``;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpBinBothLhs = ``;
@@ -30,6 +32,7 @@ $coerce(tmpBinLhs, `plustr`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 

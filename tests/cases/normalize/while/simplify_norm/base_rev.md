@@ -22,6 +22,7 @@ while (true) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 while (true) {
   const tmpIfTest = $();
@@ -33,6 +34,7 @@ while (true) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpUnaryArg = $();
@@ -48,6 +50,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpUnaryArg = $();

@@ -16,11 +16,13 @@ $(5 instanceof Infinity);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(5 instanceof Infinity);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -29,6 +31,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam = 5 instanceof Infinity;

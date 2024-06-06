@@ -20,6 +20,7 @@ $(j);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let i = 0;
 let j = ++i + i;
@@ -27,6 +28,7 @@ $(j);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let i = 0;
@@ -37,6 +39,7 @@ $(j);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(2);

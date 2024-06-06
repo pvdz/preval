@@ -20,6 +20,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
@@ -34,6 +35,7 @@ $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let b = { $: $ };
@@ -50,6 +52,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpClusterSSA_a = new $(1);

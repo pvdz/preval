@@ -16,17 +16,20 @@ Infinity;
 
 ## Pre Normal
 
+
 `````js filename=intro
 Infinity;
 `````
 
 ## Normalized
 
+
 `````js filename=intro
 
 `````
 
 ## Output
+
 
 `````js filename=intro
 

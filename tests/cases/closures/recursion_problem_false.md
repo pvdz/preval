@@ -35,6 +35,7 @@ $(f());
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0) {
   let bool = $$0;
@@ -58,6 +59,7 @@ $(f());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0) {
@@ -86,6 +88,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpReturnArg = function () {

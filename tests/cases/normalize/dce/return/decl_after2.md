@@ -31,6 +31,7 @@ $(undefined);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const f = function () {
   debugger;
@@ -46,6 +47,7 @@ $(undefined);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const f = function () {
@@ -64,6 +66,7 @@ $(undefined);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpIfTest = $(false);

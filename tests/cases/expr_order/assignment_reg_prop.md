@@ -21,6 +21,7 @@ $(b).c = $(2);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let b = {
   get c() {
@@ -37,6 +38,7 @@ $(b).c = $(2);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let b = {
@@ -59,6 +61,7 @@ tmpAssignMemLhsObj$1.c = tmpAssignMemRhs;
 `````
 
 ## Output
+
 
 `````js filename=intro
 const b = {

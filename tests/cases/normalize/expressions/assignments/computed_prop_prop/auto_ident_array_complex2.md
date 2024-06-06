@@ -22,6 +22,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const obj = {};
 const tmpArrElement = $(1);
@@ -33,6 +34,7 @@ $(a);
 
 ## Normalized
 
+
 `````js filename=intro
 const obj = {};
 const tmpArrElement = $(1);
@@ -43,6 +45,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const obj = {};

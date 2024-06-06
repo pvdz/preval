@@ -90,6 +90,7 @@ $(typeof Number.NaN, 'Number.NaN');
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(typeof String($(`String`)));
 $(typeof Number($(`Number`)));
@@ -164,6 +165,7 @@ $(typeof Number.NaN, `Number.NaN`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -524,6 +526,7 @@ tmpCallCallee$147(tmpCalleeParam$271, tmpCalleeParam$273);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpStringFirstArg = $(`String`);

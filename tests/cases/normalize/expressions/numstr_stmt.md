@@ -18,11 +18,13 @@ $spy() + '';
 
 ## Pre Normal
 
+
 `````js filename=intro
 $spy() + ``;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpBinLhs = $spy();
@@ -30,6 +32,7 @@ $coerce(tmpBinLhs, `plustr`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpBinLhs = $spy();

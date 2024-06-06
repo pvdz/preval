@@ -17,6 +17,7 @@ f();
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = async function () {
   debugger;
@@ -26,6 +27,7 @@ f();
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = async function () {
@@ -37,6 +39,7 @@ f();
 `````
 
 ## Output
+
 
 `````js filename=intro
 const f = async function () {

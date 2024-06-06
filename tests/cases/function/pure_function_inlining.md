@@ -55,6 +55,7 @@ rule('You have to listen to me');
 
 ## Pre Normal
 
+
 `````js filename=intro
 let rule = function ($$0) {
   let desc = $$0;
@@ -74,6 +75,7 @@ rule(`You have to listen to me`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let rule = function ($$0) {
@@ -98,6 +100,7 @@ rule(`You have to listen to me`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const rule = function ($$0) {

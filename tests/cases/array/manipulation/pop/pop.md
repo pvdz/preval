@@ -22,6 +22,7 @@ $(ARR);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const ARR = [`a`, `b`, `c`];
 const NOOP = function () {
@@ -36,6 +37,7 @@ $(ARR);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const ARR = [`a`, `b`, `c`];
@@ -52,6 +54,7 @@ $(ARR);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const ARR = [`a`, `b`, `c`];

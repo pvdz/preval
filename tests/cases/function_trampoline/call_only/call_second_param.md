@@ -19,6 +19,7 @@ f(1, 2, 3, 4, 5); // This should end up being $(3)
 
 ## Pre Normal
 
+
 `````js filename=intro
 const f = function ($$0, $$1, $$2, $$3, $$4) {
   let a = $$0;
@@ -33,6 +34,7 @@ f(1, 2, 3, 4, 5);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const f = function ($$0, $$1, $$2, $$3, $$4) {
@@ -49,6 +51,7 @@ f(1, 2, 3, 4, 5);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(3);

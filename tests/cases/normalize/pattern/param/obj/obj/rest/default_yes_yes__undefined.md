@@ -19,6 +19,7 @@ $(f(undefined, 10));
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0) {
   const tmpParamBare = $$0;
@@ -30,6 +31,7 @@ $(f(undefined, 10));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0) {
@@ -68,6 +70,7 @@ tmpCallCallee$5(tmpCalleeParam$9);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpObjLitVal = { a: `pass2` };

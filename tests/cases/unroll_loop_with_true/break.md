@@ -22,6 +22,7 @@ while (true) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 while (true) {
   const test = $(`first`);
@@ -36,6 +37,7 @@ while (true) {
 
 ## Normalized
 
+
 `````js filename=intro
 while (true) {
   const test = $(`first`);
@@ -49,6 +51,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let $tmpLoopUnrollCheck = true;

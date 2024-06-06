@@ -57,6 +57,7 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   if ($) {
@@ -103,6 +104,7 @@
 
 ## Normalized
 
+
 `````js filename=intro
 if ($) {
   let A = `jhayon.vercel.app`;
@@ -143,6 +145,7 @@ if ($) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 if ($) {

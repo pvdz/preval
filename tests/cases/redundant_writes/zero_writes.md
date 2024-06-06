@@ -28,6 +28,7 @@ $(y, 'last');
 
 ## Pre Normal
 
+
 `````js filename=intro
 let y = $(true);
 while (true) {
@@ -54,6 +55,7 @@ $(y, `last`);
 
 ## Normalized
 
+
 `````js filename=intro
 let y = $(true);
 while (true) {
@@ -74,6 +76,7 @@ $(y, `last`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let y = $(true);

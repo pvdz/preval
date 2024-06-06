@@ -17,12 +17,14 @@ let b = "foo";
 
 ## Pre Normal
 
+
 `````js filename=intro
 let b = `foo`;
 ($(1), b).length;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let b = `foo`;
@@ -32,6 +34,7 @@ tmpCompObj.length;
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

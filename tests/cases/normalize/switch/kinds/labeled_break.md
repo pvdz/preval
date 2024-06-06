@@ -35,6 +35,7 @@ $('pass');
 
 ## Pre Normal
 
+
 `````js filename=intro
 foo: {
   if ($(1)) {
@@ -62,6 +63,7 @@ $(`pass`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 foo: {
@@ -102,6 +104,7 @@ $(`pass`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 foo: {

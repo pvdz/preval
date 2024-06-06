@@ -18,6 +18,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 throw (a = () => {
@@ -27,6 +28,7 @@ $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
@@ -39,6 +41,7 @@ throw tmpThrowArg;
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = function () {

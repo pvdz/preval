@@ -15,12 +15,14 @@ let x = 10;
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = 10;
 [{ x: x }] = 1;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = 10;
@@ -31,6 +33,7 @@ x = arrPatternStep.x;
 `````
 
 ## Output
+
 
 `````js filename=intro
 [...1];

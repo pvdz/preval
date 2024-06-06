@@ -31,6 +31,7 @@ if ($) f();
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function () {
   debugger;
@@ -51,6 +52,7 @@ if ($) f();
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function () {
@@ -84,6 +86,7 @@ if ($) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 if ($) {

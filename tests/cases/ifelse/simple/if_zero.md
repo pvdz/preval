@@ -14,17 +14,20 @@ if (0) $();
 
 ## Pre Normal
 
+
 `````js filename=intro
 if (0) $();
 `````
 
 ## Normalized
 
+
 `````js filename=intro
 
 `````
 
 ## Output
+
 
 `````js filename=intro
 

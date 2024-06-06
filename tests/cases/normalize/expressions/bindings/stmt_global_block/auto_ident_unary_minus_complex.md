@@ -19,6 +19,7 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   let a = -$(100);
@@ -28,6 +29,7 @@
 
 ## Normalized
 
+
 `````js filename=intro
 const tmpUnaryArg = $(100);
 let a = -tmpUnaryArg;
@@ -35,6 +37,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpUnaryArg = $(100);

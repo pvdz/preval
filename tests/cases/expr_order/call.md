@@ -23,12 +23,14 @@ $(i, ++i);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let i = 0;
 $(i, ++i);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let i = 0;
@@ -40,6 +42,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(0, 1);

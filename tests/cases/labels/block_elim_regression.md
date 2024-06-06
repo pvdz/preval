@@ -19,6 +19,7 @@ $(A);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let A = $(`mefirst`);
 loopStop: {
@@ -30,6 +31,7 @@ $(A);
 
 ## Normalized
 
+
 `````js filename=intro
 let A = $(`mefirst`);
 A = `oops`;
@@ -37,6 +39,7 @@ $(A);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`mefirst`);

@@ -19,12 +19,14 @@ $(o.toString());
 
 ## Pre Normal
 
+
 `````js filename=intro
 const o = {};
 $(o.toString());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const o = {};
@@ -34,6 +36,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpObjectMethod = $ObjectPrototype.toString;

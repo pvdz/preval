@@ -19,6 +19,7 @@ $(a, b, c);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = unknown1;
 const b = unknown2;
@@ -28,6 +29,7 @@ $(a, b, c);
 
 ## Normalized
 
+
 `````js filename=intro
 const a = unknown1;
 const b = unknown2;
@@ -36,6 +38,7 @@ $(a, b, c);
 `````
 
 ## Output
+
 
 `````js filename=intro
 unknown1;

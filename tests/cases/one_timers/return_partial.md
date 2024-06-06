@@ -27,6 +27,7 @@ f();
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function () {
   debugger;
@@ -45,6 +46,7 @@ f();
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function () {
@@ -68,6 +70,7 @@ f();
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpIfTest = $(1);

@@ -17,12 +17,14 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = `foo`.length.toString;
 $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCompObj = 3;
@@ -31,6 +33,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $($Number_toString);

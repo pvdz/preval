@@ -32,6 +32,7 @@ $(a, b);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let tmpDoWhileFlag = true;
 let b = 12;
@@ -51,6 +52,7 @@ $(a, b);
 
 ## Normalized
 
+
 `````js filename=intro
 let tmpDoWhileFlag = true;
 let b = 12;
@@ -69,6 +71,7 @@ $(a, b);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let tmpDoWhileFlag = true;

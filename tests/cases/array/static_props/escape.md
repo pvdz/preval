@@ -20,6 +20,7 @@ $(arr.length);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const arr = [1, 2, 3];
 $(arr);
@@ -27,6 +28,7 @@ $(arr.length);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const arr = [1, 2, 3];
@@ -37,6 +39,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const arr = [1, 2, 3];

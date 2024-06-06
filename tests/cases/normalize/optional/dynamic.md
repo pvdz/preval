@@ -15,12 +15,14 @@ $(obj?.[$()]);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const obj = { foo: 10 };
 $(obj?.[$()]);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const obj = { foo: 10 };
@@ -38,6 +40,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpChainRootComputed = $();

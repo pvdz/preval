@@ -23,6 +23,7 @@ $(f([{ x: { x: 1, y: 2, z: 3 }, y: 11 }, 10], 100));
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0) {
   const tmpParamBare = $$0;
@@ -38,6 +39,7 @@ $(f([{ x: { x: 1, y: 2, z: 3 }, y: 11 }, 10], 100));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0) {
@@ -61,6 +63,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(2);

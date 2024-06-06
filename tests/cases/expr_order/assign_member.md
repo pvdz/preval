@@ -18,6 +18,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = {};
 a.foo = a = $();
@@ -25,6 +26,7 @@ $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = {};
@@ -36,6 +38,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpClusterSSA_a = $();

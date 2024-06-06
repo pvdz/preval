@@ -16,6 +16,7 @@ do var x; while ($(x));
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = undefined;
 while (true) {
@@ -27,6 +28,7 @@ while (true) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = undefined;
@@ -41,6 +43,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpIfTest = $(undefined);

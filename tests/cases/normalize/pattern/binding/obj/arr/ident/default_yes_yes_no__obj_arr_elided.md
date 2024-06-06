@@ -17,12 +17,14 @@ $(y);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const { x: [y = `pass`] = $([`fail2`]) } = { x: [, , , 1], a: 11, b: 12 };
 $(y);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpObjLitVal = [, , , 1];
@@ -50,6 +52,7 @@ $(y);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`pass`);

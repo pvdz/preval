@@ -35,6 +35,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let n = 0;
 let flag = true;
@@ -57,6 +58,7 @@ $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let n = 0;
@@ -85,6 +87,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let n = 0;

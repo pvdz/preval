@@ -28,6 +28,7 @@ $(g());
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0, $$1, $$2) {
   const tmpPrevalAliasThis = this;
@@ -51,6 +52,7 @@ $(g());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0, $$1, $$2) {
@@ -83,6 +85,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpFuncLock = function ($$0, $$1, $$2) {

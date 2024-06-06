@@ -52,6 +52,7 @@ switch (x) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = 1;
 {
@@ -78,6 +79,7 @@ let x = 1;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = 1;
@@ -123,6 +125,7 @@ tmpSwitchBreak: {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let tmpSwitchCaseToStart = 3;

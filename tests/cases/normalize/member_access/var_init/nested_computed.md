@@ -16,6 +16,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const obj = { a: { b: $() } };
 let x = obj.a[`b`];
@@ -23,6 +24,7 @@ $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpObjLitVal$1 = $();
@@ -34,6 +36,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpObjLitVal$1 = $();

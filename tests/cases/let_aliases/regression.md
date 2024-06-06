@@ -20,6 +20,7 @@ const aa = [A, B, C];
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = $();
 const A = a;
@@ -31,6 +32,7 @@ const aa = [A, B, C];
 
 ## Normalized
 
+
 `````js filename=intro
 let a = $();
 const A = a;
@@ -41,6 +43,7 @@ const aa = [A, B, C];
 `````
 
 ## Output
+
 
 `````js filename=intro
 $();

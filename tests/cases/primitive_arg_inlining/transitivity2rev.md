@@ -23,6 +23,7 @@ $(f(1, 2)); // Should ultimately reuse the cloned func from the prev call
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0, $$1) {
   let a = $$0;
@@ -40,6 +41,7 @@ $(f(1, 2));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0, $$1) {
@@ -66,6 +68,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam = $(1, 2);

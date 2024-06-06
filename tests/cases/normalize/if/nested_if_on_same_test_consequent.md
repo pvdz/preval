@@ -22,6 +22,7 @@ if ($) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 if ($) {
   if ($) {
@@ -34,6 +35,7 @@ if ($) {
 
 ## Normalized
 
+
 `````js filename=intro
 if ($) {
   $(`keep me`);
@@ -42,6 +44,7 @@ if ($) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 if ($) {

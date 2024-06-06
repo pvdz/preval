@@ -20,6 +20,7 @@ $(x, x['Hey, me too!']());
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = {
   [`hello, world!`]: $(1),
@@ -32,6 +33,7 @@ $(x, x[`Hey, me too!`]());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpObjLitPropKey = `hello, world!`;
@@ -51,6 +53,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpObjLitPropVal = $(1);

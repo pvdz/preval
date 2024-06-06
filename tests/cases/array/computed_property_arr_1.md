@@ -17,12 +17,14 @@ $(x[[1]]);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = [`fail`, `pass`];
 $(x[[1]]);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const x = [`fail`, `pass`];
@@ -34,6 +36,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`pass`);

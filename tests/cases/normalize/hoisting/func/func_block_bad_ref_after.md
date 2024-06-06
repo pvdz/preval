@@ -24,6 +24,7 @@ g();
 
 ## Pre Normal
 
+
 `````js filename=intro
 let g = function () {
   debugger;
@@ -40,6 +41,7 @@ g();
 
 ## Normalized
 
+
 `````js filename=intro
 let g = function () {
   debugger;
@@ -55,6 +57,7 @@ g();
 `````
 
 ## Output
+
 
 `````js filename=intro
 f();

@@ -20,6 +20,7 @@ try {
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   let $implicitThrow = false;
@@ -48,6 +49,7 @@ try {
 
 ## Normalized
 
+
 `````js filename=intro
 let $implicitThrow = false;
 let $finalStep = false;
@@ -72,6 +74,7 @@ if ($implicitThrow) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(2);

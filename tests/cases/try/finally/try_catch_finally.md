@@ -22,6 +22,7 @@ try {
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   let $implicitThrow = false;
@@ -45,6 +46,7 @@ try {
 
 ## Normalized
 
+
 `````js filename=intro
 let $implicitThrow = false;
 let $finalCatchArg = undefined;
@@ -62,6 +64,7 @@ if ($implicitThrow) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let $implicitThrow = false;

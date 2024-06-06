@@ -16,6 +16,7 @@ function f(x, y) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0, $$1) {
   let x = $$0;
@@ -26,6 +27,7 @@ let f = function ($$0, $$1) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0, $$1) {
@@ -38,6 +40,7 @@ let f = function ($$0, $$1) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 

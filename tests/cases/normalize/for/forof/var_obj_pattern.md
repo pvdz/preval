@@ -16,11 +16,13 @@ for (let [x] of {a: 1, b: 2}) $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 for (let [x] of { a: 1, b: 2 }) $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpForOfPatDeclRhs = { a: 1, b: 2 };
@@ -35,6 +37,7 @@ for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let tmpForOfPatDeclLhs = undefined;

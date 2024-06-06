@@ -18,6 +18,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = undefined;
 x = `` + $coerce(`a ` + $coerce($(1), `string`) + ` b`, `string`) + ``;
@@ -25,6 +26,7 @@ $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = undefined;
@@ -42,6 +44,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCallCallee$1 = $(1);

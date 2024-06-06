@@ -24,6 +24,7 @@ $(3);
 
 ## Pre Normal
 
+
 `````js filename=intro
 for (const x in { a: 1 }) {
   {
@@ -51,6 +52,7 @@ $(3);
 
 ## Normalized
 
+
 `````js filename=intro
 const tmpForInDeclRhs = { a: 1 };
 let x = undefined;
@@ -70,6 +72,7 @@ $(3);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let x = undefined;

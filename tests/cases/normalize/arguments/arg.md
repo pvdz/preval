@@ -18,6 +18,7 @@ function f() {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function () {
   const tmpPrevalAliasThis = this;
@@ -28,6 +29,7 @@ let f = function () {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function () {
@@ -40,6 +42,7 @@ let f = function () {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const f = function () {

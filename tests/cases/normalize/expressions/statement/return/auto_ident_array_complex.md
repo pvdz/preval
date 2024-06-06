@@ -21,6 +21,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function () {
   debugger;
@@ -32,6 +33,7 @@ $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function () {
@@ -50,6 +52,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };

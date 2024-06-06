@@ -24,6 +24,7 @@ $(bindingPatternObjRoot);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let bindingPatternObjRoot = undefined;
 if ($) {
@@ -36,6 +37,7 @@ $(bindingPatternObjRoot);
 
 ## Normalized
 
+
 `````js filename=intro
 let bindingPatternObjRoot = undefined;
 if ($) {
@@ -47,6 +49,7 @@ $(bindingPatternObjRoot);
 `````
 
 ## Output
+
 
 `````js filename=intro
 if ($) {

@@ -19,6 +19,7 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 (class x {
   [$(`a`)]() {
@@ -32,12 +33,14 @@
 
 ## Normalized
 
+
 `````js filename=intro
 const tmpClassComputedKey = $(`a`);
 const tmpClassComputedKey$1 = $(`b`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`a`);

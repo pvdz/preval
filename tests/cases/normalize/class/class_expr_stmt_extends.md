@@ -16,17 +16,20 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 (class x extends $(Number) {});
 `````
 
 ## Normalized
 
+
 `````js filename=intro
 const tmpClassSuper = $(Number);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(Number);

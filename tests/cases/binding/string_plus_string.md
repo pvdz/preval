@@ -26,6 +26,7 @@ $(f());
 
 ## Pre Normal
 
+
 `````js filename=intro
 const arr = [`A`, `B`];
 const f = function () {
@@ -43,6 +44,7 @@ $(f());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const arr = [`A`, `B`];
@@ -63,6 +65,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const f = function () {

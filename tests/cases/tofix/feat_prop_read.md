@@ -17,6 +17,7 @@ for (; b?.["x"]; $(1));
 
 ## Pre Normal
 
+
 `````js filename=intro
 let b = { x: 1 };
 {
@@ -27,6 +28,7 @@ let b = { x: 1 };
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let b = { x: 1 };
@@ -49,6 +51,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

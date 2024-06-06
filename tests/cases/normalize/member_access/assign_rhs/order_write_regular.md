@@ -23,6 +23,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const obj = {
   get x() {
@@ -41,6 +42,7 @@ $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const obj = {
@@ -65,6 +67,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const obj = {

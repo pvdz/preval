@@ -22,6 +22,7 @@ $(new x().y());
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = class {
   y($$0) {
@@ -35,6 +36,7 @@ $(new x().y());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = class {
@@ -59,6 +61,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = class {

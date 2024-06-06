@@ -14,11 +14,13 @@ $('hello world'.replace(' ', ', '));
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(`hello world`.replace(` `, `, `));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -27,6 +29,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`hello, world`);

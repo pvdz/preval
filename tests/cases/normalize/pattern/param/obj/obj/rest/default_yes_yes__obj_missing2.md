@@ -18,6 +18,7 @@ $(objPatternBeforeDefault);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const tmpParamBare = { b: 11, c: 12 };
 let objPatternBeforeDefault = tmpParamBare.x;
@@ -26,6 +27,7 @@ $(objPatternBeforeDefault);
 
 ## Normalized
 
+
 `````js filename=intro
 const tmpParamBare = { b: 11, c: 12 };
 let objPatternBeforeDefault = tmpParamBare.x;
@@ -33,6 +35,7 @@ $(objPatternBeforeDefault);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const objPatternBeforeDefault = $ObjectPrototype.x;

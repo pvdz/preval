@@ -17,6 +17,7 @@ obj.a.b.c();
 
 ## Pre Normal
 
+
 `````js filename=intro
 const obj = {
   a: {
@@ -33,6 +34,7 @@ obj.a.b.c();
 
 ## Normalized
 
+
 `````js filename=intro
 const tmpObjLitVal$3 = function () {
   debugger;
@@ -48,6 +50,7 @@ tmpCallObj.c();
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

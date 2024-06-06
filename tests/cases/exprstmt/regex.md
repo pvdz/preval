@@ -14,17 +14,20 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 /foo/g;
 `````
 
 ## Normalized
 
+
 `````js filename=intro
 
 `````
 
 ## Output
+
 
 `````js filename=intro
 

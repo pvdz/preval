@@ -23,6 +23,7 @@ if ($) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = +$(`1`);
 const x = a * 2;
@@ -34,6 +35,7 @@ if ($) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpUnaryArg = $(`1`);
@@ -47,6 +49,7 @@ if ($) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpUnaryArg = $(`1`);

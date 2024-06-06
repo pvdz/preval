@@ -16,11 +16,13 @@ $({}).foo = 10;
 
 ## Pre Normal
 
+
 `````js filename=intro
 $({}).foo = 10;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -30,6 +32,7 @@ tmpAssignMemLhsObj.foo = 10;
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam = {};

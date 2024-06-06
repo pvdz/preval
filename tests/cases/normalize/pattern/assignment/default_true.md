@@ -22,6 +22,7 @@ $(b);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let b;
 ({ a: b = $(`default`) } = {});
@@ -29,6 +30,7 @@ $(b);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let b = undefined;
@@ -44,6 +46,7 @@ $(b);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const objPatternBeforeDefault = $ObjectPrototype.a;

@@ -20,6 +20,7 @@ $(g, f());
 
 ## Pre Normal
 
+
 `````js filename=intro
 const g = 10;
 const f = function g$1() {
@@ -30,6 +31,7 @@ $(g, f());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const g = 10;
@@ -48,6 +50,7 @@ tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`function`);

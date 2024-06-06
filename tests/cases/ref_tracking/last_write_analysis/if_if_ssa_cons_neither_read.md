@@ -28,6 +28,7 @@ if ($(1)) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = $(`a`);
 $(x);
@@ -42,6 +43,7 @@ if ($(1)) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = $(`a`);
@@ -61,6 +63,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = $(`a`);

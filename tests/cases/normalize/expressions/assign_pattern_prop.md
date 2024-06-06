@@ -14,11 +14,13 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 ({ x: x } = 1).foo;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let tmpCompObj = undefined;
@@ -29,6 +31,7 @@ tmpCompObj.foo;
 `````
 
 ## Output
+
 
 `````js filename=intro
 x = (1).x;

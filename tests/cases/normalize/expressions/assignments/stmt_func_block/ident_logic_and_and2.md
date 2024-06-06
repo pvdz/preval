@@ -43,6 +43,7 @@ $(undefined);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let theneedle = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
@@ -76,6 +77,7 @@ $(undefined);
 
 ## Normalized
 
+
 `````js filename=intro
 let theneedle = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
@@ -108,6 +110,7 @@ $(undefined);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam = $(1);

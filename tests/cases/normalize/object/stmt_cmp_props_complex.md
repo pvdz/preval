@@ -16,11 +16,13 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 ({ [$(`x`)]: 1, y: $(2) });
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 $(`x`);
@@ -28,6 +30,7 @@ $(2);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`x`);

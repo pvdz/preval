@@ -21,6 +21,7 @@ $(`A${`A${a}B${b}C`}B${`A${a}B${b}C`}C`);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = $(`x`);
 const b = $(`y`);
@@ -35,6 +36,7 @@ $(
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const a = $(`x`);
@@ -82,6 +84,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = $(`x`);

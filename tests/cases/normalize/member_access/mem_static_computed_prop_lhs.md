@@ -18,6 +18,7 @@ $(obj);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const obj = { x: 1 };
 obj[`x`] = 2;
@@ -26,6 +27,7 @@ $(obj);
 
 ## Normalized
 
+
 `````js filename=intro
 const obj = { x: 1 };
 obj.x = 2;
@@ -33,6 +35,7 @@ $(obj);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const obj = { x: 2 };

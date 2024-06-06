@@ -17,6 +17,7 @@ x[a + b] = c;
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = undefined;
 let b = undefined;
@@ -27,6 +28,7 @@ x[a + b] = c;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = undefined;
@@ -43,6 +45,7 @@ tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = c;
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = {};

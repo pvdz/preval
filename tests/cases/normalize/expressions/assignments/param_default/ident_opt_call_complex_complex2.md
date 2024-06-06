@@ -45,6 +45,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const f = function ($$0) {
   let tmpParamDefault = $$0;
@@ -84,6 +85,7 @@ $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const f = function ($$0) {
@@ -125,6 +127,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };

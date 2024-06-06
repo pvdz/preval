@@ -17,6 +17,7 @@ $(1e1000);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(10000000000);
 $(Infinity);
@@ -24,12 +25,14 @@ $(Infinity);
 
 ## Normalized
 
+
 `````js filename=intro
 $(10000000000);
 $(Infinity);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(10000000000);

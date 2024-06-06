@@ -25,6 +25,7 @@ export default 100;
 
 ## Pre Normal
 
+
 `````js filename=intro
 import x from 'x';
 $(x);
@@ -37,6 +38,7 @@ export { tmpAnonDefaultExport as default };
 
 ## Normalized
 
+
 `````js filename=intro
 import { default as x } from 'x';
 $(x);
@@ -48,6 +50,7 @@ export { tmpAnonDefaultExport as default };
 `````
 
 ## Output
+
 
 `````js filename=intro
 import { default as x } from 'x';

@@ -25,6 +25,7 @@ try {
 
 ## Pre Normal
 
+
 `````js filename=intro
 try {
   try {
@@ -40,6 +41,7 @@ try {
 
 ## Normalized
 
+
 `````js filename=intro
 try {
   if ($) {
@@ -51,6 +53,7 @@ try {
 `````
 
 ## Output
+
 
 `````js filename=intro
 try {

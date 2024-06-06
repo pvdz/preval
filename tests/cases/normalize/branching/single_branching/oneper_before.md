@@ -51,6 +51,7 @@ X('a', 'b', 'c', 'd', 'e');
 
 ## Pre Normal
 
+
 `````js filename=intro
 const X = function ($$0, $$1, $$2, $$3, $$4) {
   let a = $$0;
@@ -93,6 +94,7 @@ X(`a`, `b`, `c`, `d`, `e`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const X = function ($$0, $$1, $$2, $$3, $$4) {
@@ -140,6 +142,7 @@ X(`a`, `b`, `c`, `d`, `e`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`a`, `b`, `no`, `c`, `e`, 1, false, `string`, true, 0, true);

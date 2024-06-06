@@ -26,6 +26,7 @@ tmpCallCallee(tmpCalleeParam);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = 1;
 if ($) {
@@ -42,6 +43,7 @@ tmpCallCallee(tmpCalleeParam);
 
 ## Normalized
 
+
 `````js filename=intro
 let x = 1;
 if ($) {
@@ -57,6 +59,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpBinBothRhs = $(`prevent inlining`);

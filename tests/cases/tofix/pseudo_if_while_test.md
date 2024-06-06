@@ -41,6 +41,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let chk = true;
 const x = $(1);
@@ -74,6 +75,7 @@ $(a);
 
 ## Normalized
 
+
 `````js filename=intro
 let chk = true;
 const x = $(1);
@@ -106,6 +108,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let chk = true;

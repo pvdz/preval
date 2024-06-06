@@ -28,6 +28,7 @@ $(`after`);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = $(false);
 if (x) {
@@ -46,6 +47,7 @@ $(`after`);
 
 ## Normalized
 
+
 `````js filename=intro
 const x = $(false);
 if (x) {
@@ -63,6 +65,7 @@ $(`after`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = $(false);

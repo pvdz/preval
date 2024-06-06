@@ -24,6 +24,7 @@ $(obj.f());
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function () {
   const tmpPrevalAliasArgumentsAny = arguments;
@@ -39,6 +40,7 @@ $(obj.f());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function () {
@@ -63,6 +65,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const f = function () {

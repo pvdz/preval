@@ -19,6 +19,7 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   let a = `foo`;
@@ -28,12 +29,14 @@
 
 ## Normalized
 
+
 `````js filename=intro
 let a = `foo`;
 $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`foo`);

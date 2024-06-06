@@ -17,6 +17,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = `foo`.toString();
 $(x);
@@ -24,12 +25,14 @@ $(x);
 
 ## Normalized
 
+
 `````js filename=intro
 let x = `foo`;
 $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`foo`);

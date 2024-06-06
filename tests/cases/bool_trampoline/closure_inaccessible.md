@@ -32,6 +32,7 @@ else $('fail');
 
 ## Pre Normal
 
+
 `````js filename=intro
 let g = function () {
   debugger;
@@ -52,6 +53,7 @@ else $(`fail`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let g = function () {
@@ -77,6 +79,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const f$1 = function () {

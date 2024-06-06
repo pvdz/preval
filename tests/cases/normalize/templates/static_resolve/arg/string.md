@@ -16,11 +16,13 @@ $(`${"why"}`);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(`` + $coerce(`why`, `string`) + ``);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -32,6 +34,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`why`);

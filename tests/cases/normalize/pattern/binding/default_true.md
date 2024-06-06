@@ -19,11 +19,13 @@ const {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const { a: b = $(`default`) } = {};
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const bindingPatternObjRoot = {};
@@ -38,6 +40,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const objPatternBeforeDefault = $ObjectPrototype.a;

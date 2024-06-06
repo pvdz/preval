@@ -16,11 +16,13 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 ({ x: 1, y: 2, ...{ a: $(10) } });
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpObjLitVal = $(10);
@@ -29,6 +31,7 @@ const tmpObjSpreadArg = { a: tmpObjLitVal };
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpObjLitVal = $(10);

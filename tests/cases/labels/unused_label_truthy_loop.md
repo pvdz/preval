@@ -16,11 +16,13 @@ foo: while (true) $(1);
 
 ## Pre Normal
 
+
 `````js filename=intro
 foo: while (true) $(1);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 while (true) {
@@ -29,6 +31,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

@@ -21,6 +21,7 @@ $($(obj)[$('x')]);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const obj = {
   get x() {
@@ -37,6 +38,7 @@ $($(obj)[$(`x`)]);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const obj = {
@@ -60,6 +62,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const obj = {

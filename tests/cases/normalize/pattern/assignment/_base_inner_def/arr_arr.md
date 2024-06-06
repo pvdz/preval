@@ -16,6 +16,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = 10;
 [[x = a]] = [[]];
@@ -23,6 +24,7 @@ $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const a = 10;
@@ -42,6 +44,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 x = 10;

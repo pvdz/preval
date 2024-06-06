@@ -14,11 +14,13 @@ if (class{}) $();
 
 ## Pre Normal
 
+
 `````js filename=intro
 if (class {}) $();
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpIfTest = class {};
@@ -29,6 +31,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $();

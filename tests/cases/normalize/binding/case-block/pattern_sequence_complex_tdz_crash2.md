@@ -27,6 +27,7 @@ switch (1) { default: let x = x; $('fail'); }
 
 ## Pre Normal
 
+
 `````js filename=intro
 tmpSwitchBreak: {
   let x;
@@ -41,6 +42,7 @@ tmpSwitchBreak: {
 
 ## Normalized
 
+
 `````js filename=intro
 let x = undefined;
 const tmpSwitchDisc = 1;
@@ -48,6 +50,7 @@ $(`fail`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`fail`);

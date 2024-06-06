@@ -16,11 +16,13 @@ $(`${NaN}`);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(`` + $coerce(NaN, `string`) + ``);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -32,6 +34,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`NaN`);

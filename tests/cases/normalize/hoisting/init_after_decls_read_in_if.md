@@ -23,6 +23,7 @@ $(y);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = undefined;
 let f = function () {
@@ -35,6 +36,7 @@ $(y);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = undefined;
@@ -49,6 +51,7 @@ $(y);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const y = $(10, `final`);

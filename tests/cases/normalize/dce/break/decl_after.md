@@ -26,6 +26,7 @@ $('after');
 
 ## Pre Normal
 
+
 `````js filename=intro
 while ($(true)) {
   if ($(false)) $(`fail too`), $throwTDZError(`Preval: TDZ triggered for this assignment: x = \$('fail too')`);
@@ -36,6 +37,7 @@ $(`after`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let tmpIfTest = $(true);
@@ -57,6 +59,7 @@ $(`after`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpIfTest = $(true);

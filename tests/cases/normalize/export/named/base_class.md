@@ -17,6 +17,7 @@ new X();
 
 ## Pre Normal
 
+
 `````js filename=intro
 let X = class {};
 export { X };
@@ -25,6 +26,7 @@ new X();
 
 ## Normalized
 
+
 `````js filename=intro
 let X = class {};
 export { X };
@@ -32,6 +34,7 @@ new X();
 `````
 
 ## Output
+
 
 `````js filename=intro
 const X = class {};

@@ -22,6 +22,7 @@ x(undefined, {x: 1});
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = function ($$0, $$1) {
   let a = $$0;
@@ -34,6 +35,7 @@ x(undefined, { x: 1 });
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = function ($$0, $$1) {
@@ -58,6 +60,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Output
+
 
 `````js filename=intro
 throw `Preval: Cannot access \`propTDZ\` before initialization`;

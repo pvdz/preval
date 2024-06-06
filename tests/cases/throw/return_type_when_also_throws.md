@@ -31,6 +31,7 @@ $(_THROW())
 
 ## Pre Normal
 
+
 `````js filename=intro
 const _THROW = function () {
   debugger;
@@ -48,6 +49,7 @@ $(_THROW());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const _THROW = function () {
@@ -78,6 +80,7 @@ tmpCallCallee$5(tmpCalleeParam$5);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const _THROW = function () {

@@ -18,6 +18,7 @@ $(c);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = ($(1), $(2))[$(`toString`)];
 $(x);
@@ -25,6 +26,7 @@ $(c);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 $(1);
@@ -36,6 +38,7 @@ $(c);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

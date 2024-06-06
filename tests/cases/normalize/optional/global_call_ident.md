@@ -14,11 +14,13 @@ $?.(15);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $?.(15);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpChainRootCall = $;
@@ -30,6 +32,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpIfTest = $ == null;

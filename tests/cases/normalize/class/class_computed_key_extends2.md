@@ -21,6 +21,7 @@ x().y;
 
 ## Pre Normal
 
+
 `````js filename=intro
 const y = `y`;
 let x = class {
@@ -32,6 +33,7 @@ x().y;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const y = `y`;
@@ -46,6 +48,7 @@ tmpCompObj.y;
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = class {

@@ -24,6 +24,7 @@ switch (1) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   let a;
@@ -50,6 +51,7 @@ switch (1) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = undefined;
@@ -87,6 +89,7 @@ if (tmpIfTest$7) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpClusterSSA_a = function () {

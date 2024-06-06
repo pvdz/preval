@@ -19,6 +19,7 @@ f(10);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0, $$1, $$2) {
   let x = $$0;
@@ -31,6 +32,7 @@ f(10);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0, $$1, $$2) {
@@ -45,6 +47,7 @@ f(10);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(10, undefined);

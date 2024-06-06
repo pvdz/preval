@@ -16,11 +16,13 @@ $(/foo/.test("brafoody"));
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(/foo/.test(`brafoody`));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -30,6 +32,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(true);

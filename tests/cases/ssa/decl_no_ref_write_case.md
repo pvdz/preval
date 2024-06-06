@@ -35,6 +35,7 @@ if ($) tmpArrElement$513();
 
 ## Pre Normal
 
+
 `````js filename=intro
 const tmpArrElement$513 = function () {
   debugger;
@@ -52,6 +53,7 @@ if ($) tmpArrElement$513();
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpArrElement$513 = function () {
@@ -74,6 +76,7 @@ if ($) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 if ($) {

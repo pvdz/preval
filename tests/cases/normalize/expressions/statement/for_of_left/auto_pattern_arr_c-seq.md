@@ -18,6 +18,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let [a] = { a: 999, b: 1000 };
 for (($(10), $(20), $([1, 2])).x of $({ x: 1 }));
@@ -25,6 +26,7 @@ $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let bindingPatternArrRoot = { a: 999, b: 1000 };
@@ -46,6 +48,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };

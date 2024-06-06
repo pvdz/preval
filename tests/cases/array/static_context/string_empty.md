@@ -16,11 +16,13 @@ String([]);
 
 ## Pre Normal
 
+
 `````js filename=intro
 String([]);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = [];
@@ -28,6 +30,7 @@ $coerce(tmpCallCallee, `string`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 

@@ -16,11 +16,13 @@ $(isNaN(Infinity));
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(isNaN(Infinity));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -29,6 +31,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(false);

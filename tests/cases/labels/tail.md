@@ -23,6 +23,7 @@ $('end');
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(`start`);
 $continue: {
@@ -36,6 +37,7 @@ $(`end`);
 
 ## Normalized
 
+
 `````js filename=intro
 $(`start`);
 $(`inner`);
@@ -43,6 +45,7 @@ $(`end`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`start`);

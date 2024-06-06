@@ -23,6 +23,7 @@ while (tmp) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let tmp = true;
 while (tmp) {
@@ -37,6 +38,7 @@ while (tmp) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let tmp = true;
@@ -56,6 +58,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let tmp = true;

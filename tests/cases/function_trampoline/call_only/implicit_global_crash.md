@@ -20,6 +20,7 @@ f(implicitGlobalShouldCrash, a, b, c);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0, $$1, $$2, $$3) {
   let w = $$0;
@@ -34,6 +35,7 @@ f(implicitGlobalShouldCrash, a, b, c);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0, $$1, $$2, $$3) {
@@ -50,6 +52,7 @@ f(implicitGlobalShouldCrash, a, b, c);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`inline me`);

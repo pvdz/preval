@@ -14,11 +14,13 @@ $('hello'.indexOf());
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(`hello`.indexOf());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -27,6 +29,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(-1);

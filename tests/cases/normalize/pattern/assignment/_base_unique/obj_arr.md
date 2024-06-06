@@ -16,6 +16,7 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   let y$3 = 1;
@@ -30,6 +31,7 @@
 
 ## Normalized
 
+
 `````js filename=intro
 let y$3 = 1;
 const tmpAssignObjPatternRhs = 1;
@@ -40,6 +42,7 @@ let y$1 = 1;
 `````
 
 ## Output
+
 
 `````js filename=intro
 const objPatternNoDefault = (1).x;

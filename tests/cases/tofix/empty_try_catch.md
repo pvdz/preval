@@ -26,6 +26,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = 1;
 {
@@ -50,6 +51,7 @@ $(x);
 
 ## Normalized
 
+
 `````js filename=intro
 let x = 1;
 let $implicitThrow = false;
@@ -63,6 +65,7 @@ if ($implicitThrow) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

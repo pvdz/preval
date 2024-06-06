@@ -17,6 +17,7 @@ $(foo);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let foo = 10;
 export { foo };
@@ -25,6 +26,7 @@ $(foo);
 
 ## Normalized
 
+
 `````js filename=intro
 let foo = 10;
 export { foo };
@@ -32,6 +34,7 @@ $(foo);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const foo = 10;

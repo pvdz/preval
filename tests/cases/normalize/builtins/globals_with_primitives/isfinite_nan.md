@@ -16,11 +16,13 @@ $(isFinite(NaN));
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(isFinite(NaN));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -29,6 +31,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(false);

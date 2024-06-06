@@ -21,6 +21,7 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   let b = { $: $ };
@@ -31,6 +32,7 @@
 
 ## Normalized
 
+
 `````js filename=intro
 let b = { $: $ };
 const tmpCallObj = $(b);
@@ -39,6 +41,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const b = { $: $ };

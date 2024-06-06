@@ -20,6 +20,7 @@ $(arr);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = $spy();
 const arr = [[] + x];
@@ -27,6 +28,7 @@ $(arr);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const x = $spy();
@@ -37,6 +39,7 @@ $(arr);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = $spy();

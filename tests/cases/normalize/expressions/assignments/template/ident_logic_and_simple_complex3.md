@@ -19,6 +19,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const obj = {
   toString() {
@@ -38,6 +39,7 @@ $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const obj = {
@@ -72,6 +74,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const obj = {

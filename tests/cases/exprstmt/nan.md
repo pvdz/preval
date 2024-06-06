@@ -14,17 +14,20 @@ NaN;
 
 ## Pre Normal
 
+
 `````js filename=intro
 NaN;
 `````
 
 ## Normalized
 
+
 `````js filename=intro
 
 `````
 
 ## Output
+
 
 `````js filename=intro
 

@@ -19,6 +19,7 @@ $('after');
 
 ## Pre Normal
 
+
 `````js filename=intro
 while ({ a: 1, b: 2 }) {
   $(`loop`);
@@ -27,6 +28,7 @@ $(`after`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let tmpIfTest = { a: 1, b: 2 };
@@ -42,6 +44,7 @@ $(`after`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`loop`);

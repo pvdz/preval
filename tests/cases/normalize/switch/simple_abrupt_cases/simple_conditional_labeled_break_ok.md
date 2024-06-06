@@ -34,6 +34,7 @@ ok: switch ($(1)) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 ok: {
   const tmpSwitchValue = $(1);
@@ -70,6 +71,7 @@ ok: {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 ok: {
@@ -133,6 +135,7 @@ ok: {
 `````
 
 ## Output
+
 
 `````js filename=intro
 ok: {

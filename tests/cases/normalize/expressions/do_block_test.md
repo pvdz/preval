@@ -15,6 +15,7 @@ do { $(a); b; } while (x + y);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = 1,
   b = 2,
@@ -34,6 +35,7 @@ while (true) {
 
 ## Normalized
 
+
 `````js filename=intro
 let a = 1;
 let b = 2;
@@ -50,6 +52,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

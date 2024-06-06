@@ -19,6 +19,7 @@ while (x) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = /foo/;
 while (x) {
@@ -27,6 +28,7 @@ while (x) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const x = /foo/;
@@ -40,6 +42,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = /foo/;

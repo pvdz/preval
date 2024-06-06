@@ -17,6 +17,7 @@ a['$']();
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = {
   [`\$`]() {
@@ -28,6 +29,7 @@ a[`\$`]();
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const a = {
@@ -41,6 +43,7 @@ a.$();
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = {

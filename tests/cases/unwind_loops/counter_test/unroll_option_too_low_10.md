@@ -26,6 +26,7 @@ while (counter) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const arr = [`a`, `b`, `c`];
 let counter = 10;
@@ -37,6 +38,7 @@ while (counter) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const arr = [`a`, `b`, `c`];
@@ -53,6 +55,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 

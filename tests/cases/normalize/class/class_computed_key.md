@@ -21,6 +21,7 @@ $(new x().f());
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = class {
   [$(`f`)]() {
@@ -32,6 +33,7 @@ $(new x().f());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpClassComputedKey = $(`f`);
@@ -49,6 +51,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpClassComputedKey = $(`f`);

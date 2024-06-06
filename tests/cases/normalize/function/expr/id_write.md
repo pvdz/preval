@@ -23,6 +23,7 @@ $(x, typeof f);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const f = function funcexprname() {
   debugger;
@@ -34,6 +35,7 @@ $(x, typeof f);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const funcexprname = function () {
@@ -50,6 +52,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Output
+
 
 `````js filename=intro
 throw `Preval: Cannot write to const binding \`funcexprname\``;

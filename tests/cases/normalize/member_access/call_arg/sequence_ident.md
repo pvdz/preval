@@ -17,12 +17,14 @@ $(($(1), b).length);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let b = `foo`;
 $(($(1), b).length);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let b = `foo`;
@@ -34,6 +36,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

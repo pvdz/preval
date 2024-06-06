@@ -21,6 +21,7 @@ $(y, o);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const o = { x: 1 };
 let y = 1;
@@ -31,6 +32,7 @@ $(y, o);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const o = { x: 1 };
@@ -44,6 +46,7 @@ $(y, o);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(true);

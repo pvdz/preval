@@ -30,6 +30,7 @@ for (lhs in rhs) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const rhs = [$throwTDZError(`Preval: TDZ triggered for this read: [firstElement]`)];
 let lhs = undefined;
@@ -44,6 +45,7 @@ for (lhs in rhs) {
 
 ## Normalized
 
+
 `````js filename=intro
 throw `Preval: TDZ triggered for this read: [firstElement]`;
 const rhs = 0;
@@ -52,6 +54,7 @@ let firstElement = 0;
 `````
 
 ## Output
+
 
 `````js filename=intro
 throw `Preval: TDZ triggered for this read: [firstElement]`;

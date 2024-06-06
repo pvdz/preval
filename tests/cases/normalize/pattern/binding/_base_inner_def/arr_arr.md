@@ -14,11 +14,13 @@ const [[ x = a ]] = [[]];
 
 ## Pre Normal
 
+
 `````js filename=intro
 const [[x = a]] = [[]];
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpArrElement = [];
@@ -37,6 +39,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 a;

@@ -17,12 +17,14 @@ $('okay, do not DCE');
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(null?.foo);
 $(`okay, do not DCE`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -39,6 +41,7 @@ $(`okay, do not DCE`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(undefined);

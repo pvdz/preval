@@ -24,6 +24,7 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = undefined;
 let c = undefined;
@@ -37,6 +38,7 @@ $(tmpCalleeParam);
 
 ## Normalized
 
+
 `````js filename=intro
 let a = undefined;
 let c = undefined;
@@ -48,6 +50,7 @@ $(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(undefined);

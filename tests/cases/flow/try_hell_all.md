@@ -251,6 +251,7 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   let x = 0;
@@ -677,6 +678,7 @@
 
 ## Normalized
 
+
 `````js filename=intro
 let x = 0;
 try {
@@ -962,6 +964,7 @@ if ($implicitThrow) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 considerMutated(1);

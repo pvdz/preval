@@ -17,6 +17,7 @@ throw 'foo\`bar\`'
 
 ## Pre Normal
 
+
 `````js filename=intro
 null.foo;
 throw `foo\`bar\``;
@@ -24,12 +25,14 @@ throw `foo\`bar\``;
 
 ## Normalized
 
+
 `````js filename=intro
 null.foo;
 throw `[Preval]: Can not reach here`;
 `````
 
 ## Output
+
 
 `````js filename=intro
 null.foo;

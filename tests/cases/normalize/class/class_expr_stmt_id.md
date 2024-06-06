@@ -16,17 +16,20 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 (class x {});
 `````
 
 ## Normalized
 
+
 `````js filename=intro
 
 `````
 
 ## Output
+
 
 `````js filename=intro
 

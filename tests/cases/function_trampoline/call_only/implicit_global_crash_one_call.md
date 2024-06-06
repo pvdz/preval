@@ -20,6 +20,7 @@ f(implicitGlobalShouldCrash, a, b, c);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const f = function () {
   debugger;
@@ -31,6 +32,7 @@ f(implicitGlobalShouldCrash, a, b, c);
 
 ## Normalized
 
+
 `````js filename=intro
 const f = function () {
   debugger;
@@ -41,6 +43,7 @@ f(implicitGlobalShouldCrash, a, b, c);
 `````
 
 ## Output
+
 
 `````js filename=intro
 implicitGlobalShouldCrash;

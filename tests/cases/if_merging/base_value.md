@@ -18,6 +18,7 @@ if (y) $('d'); else $('c');
 
 ## Pre Normal
 
+
 `````js filename=intro
 const y = !$spy(10);
 if (y) $(`a`);
@@ -27,6 +28,7 @@ else $(`c`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpUnaryArg = $spy(10);
@@ -44,6 +46,7 @@ if (y) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpUnaryArg = $spy(10);

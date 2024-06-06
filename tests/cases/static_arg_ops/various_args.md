@@ -30,6 +30,7 @@ $(y);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const f = function ($$0) {
   let $dlr_$$0 = $$0;
@@ -53,6 +54,7 @@ $(y);
 
 ## Normalized
 
+
 `````js filename=intro
 const f = function ($$0) {
   let $dlr_$$0 = $$0;
@@ -75,6 +77,7 @@ $(y);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const f = function ($$0) {

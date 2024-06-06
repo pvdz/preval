@@ -26,6 +26,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const r = function () {
   debugger;
@@ -42,6 +43,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 
 ## Normalized
 
+
 `````js filename=intro
 const r = function () {
   debugger;
@@ -57,6 +59,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Output
+
 
 `````js filename=intro
 throw `Preval: Cannot write to const binding \`r\``;

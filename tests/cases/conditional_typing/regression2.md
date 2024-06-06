@@ -37,6 +37,7 @@ f();
 
 ## Pre Normal
 
+
 `````js filename=intro
 let curtype = 0;
 const f = function () {
@@ -64,6 +65,7 @@ f();
 
 ## Normalized
 
+
 `````js filename=intro
 let curtype = 0;
 const f = function () {
@@ -89,6 +91,7 @@ f();
 `````
 
 ## Output
+
 
 `````js filename=intro
 let curtype = 0;

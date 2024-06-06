@@ -20,6 +20,7 @@ $(arr);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0) {
   let a = $$0;
@@ -33,6 +34,7 @@ $(arr);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0) {
@@ -48,6 +50,7 @@ $(arr);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const arr = [1];

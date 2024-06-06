@@ -21,6 +21,7 @@ if (x) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = { a: 1, b: 2 };
 if (x) {
@@ -32,6 +33,7 @@ if (x) {
 
 ## Normalized
 
+
 `````js filename=intro
 const x = { a: 1, b: 2 };
 if (x) {
@@ -42,6 +44,7 @@ if (x) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`pass`);

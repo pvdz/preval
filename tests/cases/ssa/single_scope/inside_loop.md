@@ -24,6 +24,7 @@ for (let styleName$5 in {x:100}) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 for (let styleName$5 in { x: 100 }) {
   let checkme = $(1);
@@ -37,6 +38,7 @@ for (let styleName$5 in { x: 100 }) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpForInDeclRhs = { x: 100 };
@@ -55,6 +57,7 @@ for (styleName$5 in tmpForInDeclRhs) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let styleName$5 = undefined;

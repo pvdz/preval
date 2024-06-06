@@ -16,17 +16,20 @@ foo: if (false) $(1);
 
 ## Pre Normal
 
+
 `````js filename=intro
 foo: if (false) $(1);
 `````
 
 ## Normalized
 
+
 `````js filename=intro
 
 `````
 
 ## Output
+
 
 `````js filename=intro
 

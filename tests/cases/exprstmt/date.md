@@ -14,17 +14,20 @@ Date;
 
 ## Pre Normal
 
+
 `````js filename=intro
 Date;
 `````
 
 ## Normalized
 
+
 `````js filename=intro
 
 `````
 
 ## Output
+
 
 `````js filename=intro
 

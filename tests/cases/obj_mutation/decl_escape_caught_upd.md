@@ -20,6 +20,7 @@ $(blob);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0) {
   let a = $$0;
@@ -33,6 +34,7 @@ $(blob);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0) {
@@ -48,6 +50,7 @@ $(blob);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const blob = { thing: `boing` };

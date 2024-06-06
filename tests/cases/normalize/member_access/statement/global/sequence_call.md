@@ -16,11 +16,13 @@ If a group normalization would "hoist" the inits outside of the var decls withou
 
 ## Pre Normal
 
+
 `````js filename=intro
 ($(1), $(2)).toString;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 $(1);
@@ -29,6 +31,7 @@ tmpCompObj.toString;
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

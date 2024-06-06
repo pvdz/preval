@@ -26,6 +26,7 @@ export default class X {};
 
 ## Pre Normal
 
+
 `````js filename=intro
 import x from 'x';
 $(x);
@@ -38,6 +39,7 @@ export { X };
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 import { default as x } from 'x';
@@ -53,6 +55,7 @@ export { X };
 `````
 
 ## Output
+
 
 `````js filename=intro
 import { default as x } from 'x';

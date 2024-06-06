@@ -17,12 +17,14 @@ $('bad');
 
 ## Pre Normal
 
+
 `````js filename=intro
 const {} = null;
 $(`bad`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const bindingPatternObjRoot = null;
@@ -39,6 +41,7 @@ $(`bad`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 null.cannotDestructureThis;

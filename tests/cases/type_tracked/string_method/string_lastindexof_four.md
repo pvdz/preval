@@ -14,11 +14,13 @@ $('hello'.lastIndexOf('e', 4, $, unknown));
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(`hello`.lastIndexOf(`e`, 4, $, unknown));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -27,6 +29,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 unknown;

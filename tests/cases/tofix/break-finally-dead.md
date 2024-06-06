@@ -28,6 +28,7 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   here: {
@@ -61,6 +62,7 @@
 
 ## Normalized
 
+
 `````js filename=intro
 here: {
   let $implicitThrow = false;
@@ -87,6 +89,7 @@ $(3);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let $implicitThrow = false;

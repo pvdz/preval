@@ -27,6 +27,7 @@ let test = counter < 10;
 
 ## Pre Normal
 
+
 `````js filename=intro
 while ($throwTDZError(`Preval: TDZ triggered for this read: while (test) {`)) {
   $(`yolo`);
@@ -56,6 +57,7 @@ let test = counter < 10;
 
 ## Normalized
 
+
 `````js filename=intro
 while (true) {
   throw `Preval: TDZ triggered for this read: while (test) {`;
@@ -68,6 +70,7 @@ let test = counter < 10;
 `````
 
 ## Output
+
 
 `````js filename=intro
 throw `Preval: TDZ triggered for this read: while (test) {`;

@@ -16,11 +16,13 @@ $([...$("foo")]);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $([...$(`foo`)]);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -30,6 +32,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpArrSpread = $(`foo`);

@@ -24,6 +24,7 @@ $('fail');
 
 ## Pre Normal
 
+
 `````js filename=intro
 $throwTDZError(`Preval: TDZ triggered for this read: x;`);
 let x = 10;
@@ -32,12 +33,14 @@ $(`fail`);
 
 ## Normalized
 
+
 `````js filename=intro
 throw `Preval: TDZ triggered for this read: x;`;
 let x = 0;
 `````
 
 ## Output
+
 
 `````js filename=intro
 throw `Preval: TDZ triggered for this read: x;`;

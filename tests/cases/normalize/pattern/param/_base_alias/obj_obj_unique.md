@@ -25,6 +25,7 @@ $(i({x: {y: {z: {a: 10}}}}));
 
 ## Pre Normal
 
+
 `````js filename=intro
 let i = function ($$0) {
   const tmpParamBare = $$0;
@@ -44,6 +45,7 @@ $(i({ x: { y: { z: { a: 10 } } } }));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let i = function ($$0) {
@@ -68,6 +70,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpObjLitVal$3 = { a: 10 };

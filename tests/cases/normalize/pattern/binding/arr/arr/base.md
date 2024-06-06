@@ -17,12 +17,14 @@ $('ok');
 
 ## Pre Normal
 
+
 `````js filename=intro
 const [[]] = [[1, 2, 3], 4, 5];
 $(`ok`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpArrElement = [1, 2, 3];
@@ -34,6 +36,7 @@ $(`ok`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`ok`);

@@ -27,6 +27,7 @@ considerMutated(x) // always false
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = 0;
 const f = () => {
@@ -63,6 +64,7 @@ considerMutated(x);
 
 ## Normalized
 
+
 `````js filename=intro
 let x = 0;
 const f = function () {
@@ -88,6 +90,7 @@ considerMutated(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 considerMutated(0);

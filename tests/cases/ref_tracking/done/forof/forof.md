@@ -21,6 +21,7 @@ $('keep, do not eval');
 
 ## Pre Normal
 
+
 `````js filename=intro
 for (let x of [10, 20]) {
   $(`fail`);
@@ -29,6 +30,7 @@ $(`keep, do not eval`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpForOfDeclRhs = [10, 20];
@@ -40,6 +42,7 @@ $(`keep, do not eval`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let x = undefined;

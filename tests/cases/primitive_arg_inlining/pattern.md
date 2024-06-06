@@ -30,6 +30,7 @@ $(out);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0) {
   let op = $$0;
@@ -52,6 +53,7 @@ $(out);
 
 ## Normalized
 
+
 `````js filename=intro
 let f = function ($$0) {
   let op = $$0;
@@ -73,6 +75,7 @@ $(out);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam$2 = [];

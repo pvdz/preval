@@ -21,6 +21,7 @@ $();
 
 ## Pre Normal
 
+
 `````js filename=intro
 const wat = { a: 1, b: 2 };
 for (const x in wat) {
@@ -31,6 +32,7 @@ $();
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const wat = { a: 1, b: 2 };
@@ -44,6 +46,7 @@ $();
 `````
 
 ## Output
+
 
 `````js filename=intro
 let x = undefined;

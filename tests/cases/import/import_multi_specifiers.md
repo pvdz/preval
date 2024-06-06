@@ -23,6 +23,7 @@ export default 100;
 
 ## Pre Normal
 
+
 `````js filename=intro
 import a, { b as b, c as c } from 'd';
 `````
@@ -39,6 +40,7 @@ export { tmpAnonDefaultExport as default };
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 import { default as a } from 'd';
@@ -58,6 +60,7 @@ export { tmpAnonDefaultExport as default };
 `````
 
 ## Output
+
 
 `````js filename=intro
 import { default as a } from 'd';

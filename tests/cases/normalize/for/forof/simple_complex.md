@@ -17,12 +17,14 @@ for (a of $({x: 1, y: 2})) $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a;
 for (a of $({ x: 1, y: 2 })) $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = undefined;
@@ -35,6 +37,7 @@ for (a of tmpForOfRhs) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let a = undefined;

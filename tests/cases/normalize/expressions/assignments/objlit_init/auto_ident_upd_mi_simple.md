@@ -20,6 +20,7 @@ $(a, b);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
@@ -28,6 +29,7 @@ $(a, b);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let b = 1;
@@ -44,6 +46,7 @@ $(a, b);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam = { x: 0 };

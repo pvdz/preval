@@ -28,6 +28,7 @@ $(arr1);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const arr1 = [];
 const arr2 = [101, 102, 103, 104, 105, 106, 107, 108, 109, 1010];
@@ -45,6 +46,7 @@ $(arr1);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const arr1 = [];
@@ -67,6 +69,7 @@ $(arr1);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const max = $(10);

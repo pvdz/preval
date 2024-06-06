@@ -24,6 +24,7 @@ f();
 
 ## Pre Normal
 
+
 `````js filename=intro
 let bool = true;
 const f = function () {
@@ -39,6 +40,7 @@ f();
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let bool = true;
@@ -58,6 +60,7 @@ f();
 `````
 
 ## Output
+
 
 `````js filename=intro
 unknown();

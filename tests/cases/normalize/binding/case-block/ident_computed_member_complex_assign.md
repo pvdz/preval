@@ -22,6 +22,7 @@ $(a, b, c, d, obj);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let obj = {
   get c() {
@@ -51,6 +52,7 @@ $(a, b, c, d, obj);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let obj = {
@@ -95,6 +97,7 @@ $(a, b, c, d, obj);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const obj = {

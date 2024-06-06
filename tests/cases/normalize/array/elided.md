@@ -14,11 +14,13 @@ $([1, $(),, 2,, $(),,]);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $([1, $(), , 2, , $(), ,]);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -31,6 +33,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpArrElement$1 = $();

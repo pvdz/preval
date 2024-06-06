@@ -16,11 +16,13 @@ $(String(Infinity));
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(String(Infinity));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -29,6 +31,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`Infinity`);

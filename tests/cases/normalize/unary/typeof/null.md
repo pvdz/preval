@@ -16,11 +16,13 @@ $(typeof null);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(typeof null);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -29,6 +31,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`object`);

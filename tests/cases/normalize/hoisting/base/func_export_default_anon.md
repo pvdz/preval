@@ -18,6 +18,7 @@ $(f);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(f);
 const tmpAnonDefaultExport = function () {
@@ -28,6 +29,7 @@ $(f);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 $(f);
@@ -40,6 +42,7 @@ $(f);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(f);

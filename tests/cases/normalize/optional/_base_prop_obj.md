@@ -17,6 +17,7 @@ $(f?.x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = undefined;
 f = { x: 10 };
@@ -24,6 +25,7 @@ $(f?.x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = undefined;
@@ -41,6 +43,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(10);

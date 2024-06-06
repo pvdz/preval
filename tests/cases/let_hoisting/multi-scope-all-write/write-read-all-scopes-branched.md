@@ -29,6 +29,7 @@ if ($) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = 1;
 const f = function () {
@@ -48,6 +49,7 @@ if ($) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = 1;
@@ -72,6 +74,7 @@ if ($) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 if ($) {

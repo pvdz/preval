@@ -21,6 +21,7 @@ $(2);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(0);
 foo: {
@@ -40,6 +41,7 @@ $(2);
 
 ## Normalized
 
+
 `````js filename=intro
 $(0);
 let tmpIfTest = $(true);
@@ -57,6 +59,7 @@ $(2);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(0);

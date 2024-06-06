@@ -20,6 +20,7 @@ $(a)[$('x')]?.(1, 2, 3);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = {
   x: function (...$$0) {
@@ -34,6 +35,7 @@ $(a)[$(`x`)]?.(1, 2, 3);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpObjLitVal = function (...$$0) {
@@ -59,6 +61,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpObjLitVal = function (...$$0) {

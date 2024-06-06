@@ -18,6 +18,7 @@ $(a)[b()](1);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let b = function () {
   debugger;
@@ -28,6 +29,7 @@ $(a)[b()](1);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let b = function () {
@@ -42,6 +44,7 @@ tmpCallCompObj[tmpCallCompProp](1);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = { b: $ };

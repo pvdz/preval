@@ -21,6 +21,7 @@ $('ok');
 
 ## Pre Normal
 
+
 `````js filename=intro
 ({
   x: {
@@ -31,6 +32,7 @@ $(`ok`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpObjLitVal$1 = 13;
@@ -47,6 +49,7 @@ $(`ok`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`ok`);

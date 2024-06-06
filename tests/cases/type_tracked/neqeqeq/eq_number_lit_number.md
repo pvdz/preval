@@ -17,12 +17,14 @@ $(x !== 2); // Both are number so we can't predict the outcome
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = 1 * $(2);
 $(x !== 2);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpBinBothLhs = 1;
@@ -34,6 +36,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpBinBothRhs = $(2);

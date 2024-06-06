@@ -16,11 +16,13 @@ if (($(1), $(2)).foo) $(3);
 
 ## Pre Normal
 
+
 `````js filename=intro
 if (($(1), $(2)).foo) $(3);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 $(1);
@@ -33,6 +35,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

@@ -17,6 +17,7 @@ a ? b : c;
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = undefined;
 let b = undefined;
@@ -26,6 +27,7 @@ a ? b : c;
 
 ## Normalized
 
+
 `````js filename=intro
 let a = undefined;
 let b = undefined;
@@ -33,6 +35,7 @@ let c = undefined;
 `````
 
 ## Output
+
 
 `````js filename=intro
 

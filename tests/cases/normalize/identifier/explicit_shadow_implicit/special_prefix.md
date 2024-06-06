@@ -21,6 +21,7 @@ $($implicit$foo);
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   const $implicit$foo$1 = $(1);
@@ -31,6 +32,7 @@ $($implicit$foo);
 
 ## Normalized
 
+
 `````js filename=intro
 const $implicit$foo$1 = $(1);
 $($implicit$foo$1);
@@ -38,6 +40,7 @@ $($implicit$foo);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const $implicit$foo$1 = $(1);

@@ -25,6 +25,7 @@ $(x)
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = $(67636);
 let x = a === 67636;
@@ -37,6 +38,7 @@ $(x);
 
 ## Normalized
 
+
 `````js filename=intro
 const a = $(67636);
 let x = a === 67636;
@@ -48,6 +50,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = $(67636);

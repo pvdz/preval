@@ -18,6 +18,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 throw `foo`;
@@ -26,12 +27,14 @@ $(a);
 
 ## Normalized
 
+
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 throw `foo`;
 `````
 
 ## Output
+
 
 `````js filename=intro
 throw `foo`;

@@ -15,6 +15,7 @@ let x = 10, y = 20, z = 30;
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = 10,
   y = 20,
@@ -28,6 +29,7 @@ let x = 10,
 
 ## Normalized
 
+
 `````js filename=intro
 let x = 10;
 let y = 20;
@@ -39,6 +41,7 @@ z = objPatternNoDefault$1.z;
 `````
 
 ## Output
+
 
 `````js filename=intro
 const objPatternNoDefault = (1).x;

@@ -15,12 +15,14 @@ $(y);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const y = (1, 2, $())?.foo;
 $(y);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let y = undefined;
@@ -35,6 +37,7 @@ $(y);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpChainRootProp = $();

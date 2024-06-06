@@ -22,6 +22,7 @@ f.call({pass: 1});
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function () {
   const tmpPrevalAliasThis = this;
@@ -33,6 +34,7 @@ f.call({ pass: 1 });
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function () {
@@ -49,6 +51,7 @@ $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const f = function () {

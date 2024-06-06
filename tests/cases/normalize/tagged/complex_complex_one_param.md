@@ -31,6 +31,7 @@ f`abc ${ $(10) } ${ $(20) } def`;
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0) {
   let x = $$0;
@@ -41,6 +42,7 @@ f([`abc `, ` `, ` def`], $(10), $(20));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0) {
@@ -56,6 +58,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(10);

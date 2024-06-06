@@ -44,6 +44,7 @@ $(h);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = undefined;
 let h = function () {
@@ -64,6 +65,7 @@ $(h);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = undefined;
@@ -88,6 +90,7 @@ $(h);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const h = function () {

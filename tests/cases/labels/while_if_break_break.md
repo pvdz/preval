@@ -22,6 +22,7 @@ A: {
 
 ## Pre Normal
 
+
 `````js filename=intro
 A: {
   while (true) {
@@ -34,11 +35,13 @@ A: {
 
 ## Normalized
 
+
 `````js filename=intro
 $();
 `````
 
 ## Output
+
 
 `````js filename=intro
 $();

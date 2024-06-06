@@ -19,6 +19,7 @@ for (let [x] in [y]) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let y = {};
 for (let [x] in [y]) {
@@ -27,6 +28,7 @@ for (let [x] in [y]) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let y = {};
@@ -42,6 +44,7 @@ for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const y = {};

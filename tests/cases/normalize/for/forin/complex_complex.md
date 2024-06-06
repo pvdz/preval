@@ -18,6 +18,7 @@ for ($(a).x in $(b)) $(a.x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = {};
 let b = { x: 1, y: 2 };
@@ -25,6 +26,7 @@ for ($(a).x in $(b)) $(a.x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = {};
@@ -41,6 +43,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = {};

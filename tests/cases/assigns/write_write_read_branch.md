@@ -19,6 +19,7 @@ if ($(10)) $(x, 'branch')
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = $(1);
 x = $(2);
@@ -27,6 +28,7 @@ if ($(10)) $(x, `branch`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = $(1);
@@ -40,6 +42,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

@@ -20,6 +20,7 @@ while ($LOOP_UNROLL_500) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let y = 1;
 while ($LOOP_UNROLL_500) {
@@ -30,12 +31,14 @@ while ($LOOP_UNROLL_500) {
 
 ## Normalized
 
+
 `````js filename=intro
 let y = 1;
 y = y + 1;
 `````
 
 ## Output
+
 
 `````js filename=intro
 

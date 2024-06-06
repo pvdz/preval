@@ -22,6 +22,7 @@ while (x) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 while (x) {
   const tmpIfTest = $(`yes`);
@@ -33,6 +34,7 @@ while (x) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 while (true) {
@@ -49,6 +51,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let $tmpLoopUnrollCheck = true;

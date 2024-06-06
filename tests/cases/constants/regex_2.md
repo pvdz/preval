@@ -22,6 +22,7 @@ $(bar);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const foo = /foo/g;
 const bar = foo;
@@ -30,6 +31,7 @@ $(bar);
 
 ## Normalized
 
+
 `````js filename=intro
 const foo = /foo/g;
 const bar = foo;
@@ -37,6 +39,7 @@ $(bar);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const foo = /foo/g;

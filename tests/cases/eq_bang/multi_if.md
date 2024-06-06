@@ -23,6 +23,7 @@ if (!same) $('c');
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = $(1);
 const b = $(2);
@@ -33,6 +34,7 @@ if (!same) $(`c`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const a = $(1);
@@ -53,6 +55,7 @@ if (same) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = $(1);

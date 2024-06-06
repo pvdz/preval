@@ -23,6 +23,7 @@ if ($(10)) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = $(1);
 if ($(10)) {
@@ -35,6 +36,7 @@ if ($(10)) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = $(1);
@@ -52,6 +54,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let x = $(1);

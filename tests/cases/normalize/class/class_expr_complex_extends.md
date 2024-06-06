@@ -17,12 +17,14 @@ $(a, x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = class x extends $(String) {};
 $(a, x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpClassSuper = $(String);
@@ -31,6 +33,7 @@ $(a, x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpClassSuper = $(String);

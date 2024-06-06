@@ -20,6 +20,7 @@ In particular, the pattern's "y" should be replaced with a different name.
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   let a$3 = 1;
@@ -32,6 +33,7 @@ In particular, the pattern's "y" should be replaced with a different name.
 
 ## Normalized
 
+
 `````js filename=intro
 let a$3 = 1;
 const tmpAssignObjPatternRhs = 1;
@@ -40,6 +42,7 @@ let a$1 = 1;
 `````
 
 ## Output
+
 
 `````js filename=intro
 a = (1).x;

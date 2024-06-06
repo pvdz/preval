@@ -28,6 +28,7 @@ if (atest) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = x & 1;
 const atest = a === 1;
@@ -46,6 +47,7 @@ if (atest) {
 
 ## Normalized
 
+
 `````js filename=intro
 const a = x & 1;
 const atest = a === 1;
@@ -63,6 +65,7 @@ if (atest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = x & 1;

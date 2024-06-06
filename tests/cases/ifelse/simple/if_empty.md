@@ -14,17 +14,20 @@ if (1) ;
 
 ## Pre Normal
 
+
 `````js filename=intro
 if (1);
 `````
 
 ## Normalized
 
+
 `````js filename=intro
 
 `````
 
 ## Output
+
 
 `````js filename=intro
 

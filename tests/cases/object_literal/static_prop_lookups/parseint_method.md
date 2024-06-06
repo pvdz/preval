@@ -19,12 +19,14 @@ $(o.f("200", 15));
 
 ## Pre Normal
 
+
 `````js filename=intro
 const o = { f: parseInt };
 $(o.f(`200`, 15));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const o = { f: parseInt };
@@ -34,6 +36,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(450);

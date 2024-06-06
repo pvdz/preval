@@ -14,11 +14,13 @@ a ? b : ({ x } = 1);
 
 ## Pre Normal
 
+
 `````js filename=intro
 a ? b : ({ x: x } = 1);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 if (a) {
@@ -30,6 +32,7 @@ if (a) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 if (a) {

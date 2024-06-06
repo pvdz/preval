@@ -21,6 +21,7 @@ while (true) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 while (true) {
   let a = undefined;
@@ -32,6 +33,7 @@ while (true) {
 
 ## Normalized
 
+
 `````js filename=intro
 let a = undefined;
 a = $(1);
@@ -39,6 +41,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = $(1);

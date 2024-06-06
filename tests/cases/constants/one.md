@@ -15,6 +15,7 @@ $(foo)
 
 ## Pre Normal
 
+
 `````js filename=intro
 const foo = `five`;
 $(foo);
@@ -22,12 +23,14 @@ $(foo);
 
 ## Normalized
 
+
 `````js filename=intro
 const foo = `five`;
 $(foo);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`five`);

@@ -20,6 +20,7 @@ $(y);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = $(10);
 const x = [1, `` + $coerce($(`x`), `string`) + ` ` + $coerce($(`y`), `string`) + ``, 3];
@@ -29,6 +30,7 @@ $(y);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = $(10);
@@ -53,6 +55,7 @@ $(y);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(10);

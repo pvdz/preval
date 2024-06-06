@@ -17,12 +17,14 @@ $('after');
 
 ## Pre Normal
 
+
 `````js filename=intro
 while ($(true)) break;
 $(`after`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpUnaryArg = $(true);
@@ -38,6 +40,7 @@ $(`after`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(true);

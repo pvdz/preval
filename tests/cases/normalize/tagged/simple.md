@@ -16,11 +16,13 @@ $`abc ${ $(1) } def`;
 
 ## Pre Normal
 
+
 `````js filename=intro
 $([`abc `, ` def`], $(1));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -30,6 +32,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);

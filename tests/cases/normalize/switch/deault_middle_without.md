@@ -58,6 +58,7 @@ switch (6) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   const tmpSwitchValue = 6;
@@ -92,6 +93,7 @@ switch (6) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpSwitchValue = 6;
@@ -159,6 +161,7 @@ tmpSwitchBreak: {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let tmpSwitchCaseToStart = 5;

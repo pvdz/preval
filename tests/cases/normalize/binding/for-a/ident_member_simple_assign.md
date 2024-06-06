@@ -17,6 +17,7 @@ for (let a = b.x = $(c).y = $(d);false;) $(a, b, c);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = 1,
   b = { x: 2 },
@@ -32,6 +33,7 @@ let a = 1,
 
 ## Normalized
 
+
 `````js filename=intro
 let a = 1;
 let b = { x: 2 };
@@ -46,6 +48,7 @@ let a$1 = varInitAssignLhsComputedRhs;
 `````
 
 ## Output
+
 
 `````js filename=intro
 const varInitAssignLhsComputedObj = $(3);

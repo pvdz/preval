@@ -19,6 +19,7 @@ if ($) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const o = { x: $(1) };
 if ($) {
@@ -27,6 +28,7 @@ if ($) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
@@ -40,6 +42,7 @@ if ($) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpObjLitVal = $(1);

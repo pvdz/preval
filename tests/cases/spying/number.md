@@ -20,6 +20,7 @@ $(Number($spy('x', 'y')));
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(Number($spy()));
 $(Number($spy(1, 2)));
@@ -27,6 +28,7 @@ $(Number($spy(`x`, `y`)));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -44,6 +46,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpStringFirstArg = $spy();

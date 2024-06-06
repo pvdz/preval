@@ -23,6 +23,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const useless = new $(1);
 let a = useless;
@@ -36,6 +37,7 @@ $(a);
 
 ## Normalized
 
+
 `````js filename=intro
 const useless = new $(1);
 let a = useless;
@@ -48,6 +50,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const useless = new $(1);

@@ -21,6 +21,7 @@ if (x) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = $(/foo/g);
 if (x) {
@@ -31,6 +32,7 @@ if (x) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -44,6 +46,7 @@ if (x) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam = /foo/g;

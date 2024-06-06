@@ -17,12 +17,14 @@ $(typeof x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = class {};
 $(typeof x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const x = class {};
@@ -32,6 +34,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`function`);

@@ -17,12 +17,14 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 ({ a: a, b: b, ...x } = { x: 1, a: 2, b: 3, c: 4 });
 $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpAssignObjPatternRhs = { x: 1, a: 2, b: 3, c: 4 };
@@ -37,6 +39,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpAssignObjPatternRhs = { x: 1, a: 2, b: 3, c: 4 };

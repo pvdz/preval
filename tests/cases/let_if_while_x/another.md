@@ -46,6 +46,7 @@ $(a, b, c, 3);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const b = { x: 1 };
 const c = { y: 2 };
@@ -81,6 +82,7 @@ $(a, b, c, 3);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const b = { x: 1 };
@@ -121,6 +123,7 @@ $(a, b, c, 3);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const b = { x: 1 };

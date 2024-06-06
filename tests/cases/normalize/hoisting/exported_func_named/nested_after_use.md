@@ -20,6 +20,7 @@ export function g() {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let g = function () {
   debugger;
@@ -34,6 +35,7 @@ export { g };
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let g = function () {
@@ -55,6 +57,7 @@ export { g };
 `````
 
 ## Output
+
 
 `````js filename=intro
 const g = function () {

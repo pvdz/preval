@@ -21,6 +21,7 @@ f(8, 2, 9);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0, $$1, $$2) {
   let a = $$0;
@@ -37,6 +38,7 @@ f(8, 2, 9);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0, $$1, $$2) {
@@ -57,6 +59,7 @@ f(8, 2, 9);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const f = function ($$0, $$1, $$2) {

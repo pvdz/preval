@@ -19,6 +19,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let b = { c: { d: { e: $ } } };
 let a = b?.c.d.e(1);
@@ -26,6 +27,7 @@ $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
@@ -46,6 +48,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };

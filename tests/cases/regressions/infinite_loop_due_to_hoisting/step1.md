@@ -23,6 +23,7 @@ f(tmpArg);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let tmpArg = undefined;
 let tmpBinaryLeft = undefined;
@@ -35,6 +36,7 @@ f(tmpArg);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let tmpArg = undefined;
@@ -55,6 +57,7 @@ f(tmpArg);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpBinaryLeft = a.x;

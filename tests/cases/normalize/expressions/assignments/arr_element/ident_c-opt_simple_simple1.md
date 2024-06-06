@@ -18,6 +18,7 @@ $(a = b?.x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let b = { x: 1 };
@@ -25,6 +26,7 @@ $((a = b?.x));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
@@ -43,6 +45,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

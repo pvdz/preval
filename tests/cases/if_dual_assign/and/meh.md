@@ -37,6 +37,7 @@ getFuncIdentGeneratorState();
 
 ## Pre Normal
 
+
 `````js filename=intro
 const getFuncIdentGeneratorState = function ($$0, $$1, $$2) {
   let isRealFuncExpr$3 = $$0;
@@ -68,6 +69,7 @@ getFuncIdentGeneratorState();
 
 ## Normalized
 
+
 `````js filename=intro
 const getFuncIdentGeneratorState = function ($$0, $$1, $$2) {
   let isRealFuncExpr$3 = $$0;
@@ -98,6 +100,7 @@ getFuncIdentGeneratorState();
 `````
 
 ## Output
+
 
 `````js filename=intro
 

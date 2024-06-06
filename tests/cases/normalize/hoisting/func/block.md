@@ -21,6 +21,7 @@ At some point the block would be dropped but the function wouldn't be hoisted
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   let f = function () {
@@ -33,6 +34,7 @@ At some point the block would be dropped but the function wouldn't be hoisted
 
 ## Normalized
 
+
 `````js filename=intro
 let f = function () {
   debugger;
@@ -43,6 +45,7 @@ f();
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

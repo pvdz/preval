@@ -16,6 +16,7 @@ const {x: [ y ]} = 1;
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   let y$1 = 1;
@@ -30,6 +31,7 @@ const {
 
 ## Normalized
 
+
 `````js filename=intro
 let y$1 = 1;
 const bindingPatternObjRoot = 1;
@@ -40,6 +42,7 @@ let y$3 = 1;
 `````
 
 ## Output
+
 
 `````js filename=intro
 const objPatternNoDefault = (1).x;

@@ -18,6 +18,7 @@ a < b; // This shouldn't be eliminated
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = $(1);
 const b = 2;
@@ -26,6 +27,7 @@ a < b;
 
 ## Normalized
 
+
 `````js filename=intro
 const a = $(1);
 const b = 2;
@@ -33,6 +35,7 @@ a < b;
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = $(1);

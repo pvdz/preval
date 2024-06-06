@@ -21,6 +21,7 @@ $(obj)[$('x')] = 30;
 
 ## Pre Normal
 
+
 `````js filename=intro
 const obj = {
   get x() {
@@ -37,6 +38,7 @@ $(obj)[$(`x`)] = 30;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const obj = {
@@ -58,6 +60,7 @@ tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 30;
 `````
 
 ## Output
+
 
 `````js filename=intro
 const obj = {

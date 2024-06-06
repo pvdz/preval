@@ -16,12 +16,14 @@ for(const n of [1,2,3]) var x = n;
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = undefined;
 for (const n of [1, 2, 3]) x = n;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = undefined;
@@ -33,6 +35,7 @@ for (n of tmpForOfDeclRhs) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let n = undefined;

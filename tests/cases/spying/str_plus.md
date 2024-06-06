@@ -16,11 +16,13 @@ $('' + $spy());
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(`` + $spy());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -31,6 +33,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpBinBothRhs = $spy();

@@ -27,6 +27,7 @@ if ($(2)) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = undefined;
 if ($(1)) {
@@ -40,6 +41,7 @@ if ($(2)) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = undefined;
@@ -60,6 +62,7 @@ if (tmpIfTest$1) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let x = undefined;

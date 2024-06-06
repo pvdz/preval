@@ -19,6 +19,7 @@ f(1); // In this test, this is the call we expect to be replaced by trampoline i
 
 ## Pre Normal
 
+
 `````js filename=intro
 const f = function ($$0) {
   let x = $$0;
@@ -29,6 +30,7 @@ f(1);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const f = function ($$0) {
@@ -41,6 +43,7 @@ f(1);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

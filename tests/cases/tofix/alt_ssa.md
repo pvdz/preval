@@ -27,6 +27,7 @@ $(a); // can observe  1 2 3
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = 1;
 if ($()) {
@@ -41,6 +42,7 @@ $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = 1;
@@ -59,6 +61,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpIfTest = $();

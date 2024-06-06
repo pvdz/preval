@@ -19,6 +19,7 @@ $(x, y, z);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = $spy(1234);
 const y = x & 200;
@@ -28,6 +29,7 @@ $(x, y, z);
 
 ## Normalized
 
+
 `````js filename=intro
 const x = $spy(1234);
 const y = x & 200;
@@ -36,6 +38,7 @@ $(x, y, z);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = $spy(1234);

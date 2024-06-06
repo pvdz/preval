@@ -17,12 +17,14 @@ $(o.oops());
 
 ## Pre Normal
 
+
 `````js filename=intro
 const o = { oops: `fail` };
 $(o.oops());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const o = { oops: `fail` };
@@ -32,6 +34,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 `fail`();

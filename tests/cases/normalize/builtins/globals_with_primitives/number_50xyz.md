@@ -18,11 +18,13 @@ $(Number("50xyz"));
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(Number(`50xyz`));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -31,6 +33,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(NaN);

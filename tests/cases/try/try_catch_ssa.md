@@ -70,6 +70,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = $(1);
 try {
@@ -127,6 +128,7 @@ $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = $(1);
@@ -194,6 +196,7 @@ $tryCatch(one, two, three);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let x = $(1);

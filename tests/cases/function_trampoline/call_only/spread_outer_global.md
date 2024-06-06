@@ -21,6 +21,7 @@ f(...x); // This should NOT be inlined (for now) because we can't safely reason 
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = $(`pass`);
 const f = function ($$0) {
@@ -32,6 +33,7 @@ f(...x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const x = $(`pass`);
@@ -45,6 +47,7 @@ f(...x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = $(`pass`);

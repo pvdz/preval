@@ -21,6 +21,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0) {
   const tmpPrevalAliasThis = this;
@@ -34,6 +35,7 @@ $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0) {
@@ -59,6 +61,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(undefined);

@@ -18,6 +18,7 @@ $(f);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = [].flat;
 const f = x.constructor;
@@ -25,6 +26,7 @@ $(f);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCompObj = [];
@@ -34,6 +36,7 @@ $(f);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(Function);

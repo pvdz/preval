@@ -66,6 +66,7 @@ if (test2) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const g = function () {
   debugger;
@@ -113,6 +114,7 @@ if (test2) {
 
 ## Normalized
 
+
 `````js filename=intro
 const g = function () {
   debugger;
@@ -159,6 +161,7 @@ if (test2) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const result = mainCall();

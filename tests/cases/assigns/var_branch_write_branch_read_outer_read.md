@@ -21,6 +21,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = undefined;
 if ($(`if`)) {
@@ -31,6 +32,7 @@ $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = undefined;
@@ -44,6 +46,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let x = undefined;

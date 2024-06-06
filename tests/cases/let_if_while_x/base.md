@@ -33,6 +33,7 @@ $('after');
 
 ## Pre Normal
 
+
 `````js filename=intro
 let n = 0;
 let flag = true;
@@ -54,6 +55,7 @@ $(`after`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let n = 0;
@@ -83,6 +85,7 @@ $(`after`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`before`);

@@ -16,6 +16,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x;
 if (({ x: x } = { x: $(1) })) $(2);
@@ -23,6 +24,7 @@ $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = undefined;
@@ -39,6 +41,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpObjLitVal = $(1);

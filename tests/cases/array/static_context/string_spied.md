@@ -20,6 +20,7 @@ String([spy, spy]);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const spy = {
   valueOf() {
@@ -35,6 +36,7 @@ String([spy, spy]);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const spy = {
@@ -54,6 +56,7 @@ $coerce(tmpCallCallee, `string`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const spy = {

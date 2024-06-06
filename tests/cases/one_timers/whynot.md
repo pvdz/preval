@@ -42,6 +42,7 @@ $(parseIdentifierRest);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const inlineMe = function () {
   debugger;
@@ -67,6 +68,7 @@ $(parseIdentifierRest);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const inlineMe = function () {
@@ -96,6 +98,7 @@ $(parseIdentifierRest);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const parseIdentifierRest = function () {

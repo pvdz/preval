@@ -22,6 +22,7 @@ $(a, x, y);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0) {
   const tmpParamBare = $$0;
@@ -36,6 +37,7 @@ $(a, x, y);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0) {
@@ -68,6 +70,7 @@ $(a, x, y);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

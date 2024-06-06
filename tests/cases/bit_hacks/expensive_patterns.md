@@ -60,6 +60,7 @@ $(y);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let y = undefined;
 const bit = objDestructible & 1;
@@ -74,6 +75,7 @@ $(y);
 
 ## Normalized
 
+
 `````js filename=intro
 let y = undefined;
 const bit = objDestructible & 1;
@@ -87,6 +89,7 @@ $(y);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const bit = objDestructible & 1;

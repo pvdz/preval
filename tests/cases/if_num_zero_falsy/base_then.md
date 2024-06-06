@@ -20,6 +20,7 @@ else $('b');
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = $(1);
 const a = x & $(1);
@@ -29,6 +30,7 @@ else $(`b`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const x = $(1);
@@ -44,6 +46,7 @@ if (atest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = $(1);

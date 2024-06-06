@@ -23,6 +23,7 @@ if (set) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const v = $(32);
 const and = v & 64;
@@ -36,6 +37,7 @@ if (set) {
 
 ## Normalized
 
+
 `````js filename=intro
 const v = $(32);
 const and = v & 64;
@@ -48,6 +50,7 @@ if (set) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const v = $(32);

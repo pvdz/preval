@@ -17,12 +17,14 @@ $(Boolean(x)); // Is the same as `x` and dropping the `Boolean` call should not 
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = $(1) === $(1);
 $(Boolean(x));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpBinBothLhs = $(1);
@@ -34,6 +36,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpBinBothLhs = $(1);

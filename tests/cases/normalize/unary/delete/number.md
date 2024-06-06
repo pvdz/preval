@@ -16,11 +16,13 @@ $(delete 0x5005);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(delete 20485);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -29,6 +31,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(true);

@@ -14,6 +14,7 @@ const {x: {y: {z}}} = 1;
 
 ## Pre Normal
 
+
 `````js filename=intro
 const {
   x: {
@@ -24,6 +25,7 @@ const {
 
 ## Normalized
 
+
 `````js filename=intro
 const bindingPatternObjRoot = 1;
 const objPatternNoDefault = bindingPatternObjRoot.x;
@@ -32,6 +34,7 @@ const z = objPatternNoDefault$1.z;
 `````
 
 ## Output
+
 
 `````js filename=intro
 const objPatternNoDefault = (1).x;

@@ -23,12 +23,14 @@ $(a = 5);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(a);
 $((a = 5));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 $(a);
@@ -39,6 +41,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(a);

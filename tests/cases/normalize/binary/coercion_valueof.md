@@ -18,6 +18,7 @@ a < b; // This shouldn't be eliminated because it triggers the valueOf above
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = $({ valueOf: $ });
 const b = 2;
@@ -25,6 +26,7 @@ a < b;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -35,6 +37,7 @@ a < b;
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam = { valueOf: $ };

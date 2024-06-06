@@ -19,6 +19,7 @@ switch (6) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   const tmpSwitchValue = 6;
@@ -36,6 +37,7 @@ switch (6) {
 
 ## Normalized
 
+
 `````js filename=intro
 const tmpSwitchValue = 6;
 let tmpSwitchCaseToStart = 0;
@@ -50,6 +52,7 @@ const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(30);

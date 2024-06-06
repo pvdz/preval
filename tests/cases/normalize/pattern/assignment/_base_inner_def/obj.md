@@ -14,11 +14,13 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 ({ x: x = b } = 1);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpAssignObjPatternRhs = 1;
@@ -32,6 +34,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const objPatternBeforeDefault = (1).x;

@@ -34,6 +34,7 @@ $(f(1, 2, 3, 4));
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function () {
   const tmpPrevalAliasArgumentsLen = arguments.length;
@@ -48,6 +49,7 @@ $(f(1, 2, 3, 4));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function () {
@@ -66,6 +68,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpPrevalAliasArgumentsLen = 4;

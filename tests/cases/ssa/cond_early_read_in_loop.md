@@ -25,6 +25,7 @@ for (lhs in rhs) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let lhs = undefined;
 for (lhs in rhs) {
@@ -40,6 +41,7 @@ for (lhs in rhs) {
 
 ## Normalized
 
+
 `````js filename=intro
 let lhs = undefined;
 for (lhs in rhs) {
@@ -54,6 +56,7 @@ for (lhs in rhs) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let lhs = undefined;

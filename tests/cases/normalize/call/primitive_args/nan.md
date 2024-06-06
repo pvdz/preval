@@ -16,17 +16,20 @@ $(NaN);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(NaN);
 `````
 
 ## Normalized
 
+
 `````js filename=intro
 $(NaN);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(NaN);

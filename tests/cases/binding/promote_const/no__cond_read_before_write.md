@@ -27,6 +27,7 @@ var x;
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = undefined;
 {
@@ -41,6 +42,7 @@ let x = undefined;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = undefined;
@@ -58,6 +60,7 @@ if (tmpIfTest$1) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpIfTest = $(0);

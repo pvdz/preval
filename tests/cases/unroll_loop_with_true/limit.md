@@ -25,6 +25,7 @@ $(str);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let str = ``;
 while (true) {
@@ -37,6 +38,7 @@ $(str);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let str = ``;
@@ -54,6 +56,7 @@ $(str);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`);

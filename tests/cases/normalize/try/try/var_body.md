@@ -20,6 +20,7 @@ try {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = undefined;
 try {
@@ -28,11 +29,13 @@ try {
 
 ## Normalized
 
+
 `````js filename=intro
 let x = undefined;
 `````
 
 ## Output
+
 
 `````js filename=intro
 

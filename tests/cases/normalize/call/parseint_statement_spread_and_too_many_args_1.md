@@ -16,11 +16,13 @@ parseInt(...$([1]), $spy('b'), $spy('c'));
 
 ## Pre Normal
 
+
 `````js filename=intro
 parseInt(...$([1]), $spy(`b`), $spy(`c`));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -52,6 +54,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam = [1];

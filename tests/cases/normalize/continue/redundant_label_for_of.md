@@ -28,6 +28,7 @@ exit: for (const key of $(new Set(['a', 'b']))) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = $(2);
 exit: for (const key of $(new Set([`a`, `b`]))) {
@@ -48,6 +49,7 @@ exit: for (const key of $(new Set([`a`, `b`]))) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = $(2);
@@ -75,6 +77,7 @@ for (key of tmpForOfDeclRhs) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let x = $(2);

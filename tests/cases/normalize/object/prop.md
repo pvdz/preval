@@ -22,6 +22,7 @@ const program = {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const fdata = { name: 1 };
 let tmpElement_1 = 2;
@@ -33,6 +34,7 @@ const program = {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const fdata = { name: 1 };
@@ -48,6 +50,7 @@ const program = { modules: tmpObjLitVal, main: tmpObjLitVal$1 };
 `````
 
 ## Output
+
 
 `````js filename=intro
 const fdata = { name: 1 };

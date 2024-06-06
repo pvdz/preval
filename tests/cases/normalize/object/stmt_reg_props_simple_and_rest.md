@@ -16,11 +16,13 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 ({ x: 1, y: 2, ...{ a: 10 } });
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpObjSpreadArg = { a: 10 };
@@ -28,6 +30,7 @@ const tmpObjSpreadArg = { a: 10 };
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpObjSpreadArg = { a: 10 };

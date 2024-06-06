@@ -27,6 +27,7 @@ $('c');
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = { a: 0, b: 1 };
 A: for (const y in x) {
@@ -47,6 +48,7 @@ $(`c`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = { a: 0, b: 1 };
@@ -70,6 +72,7 @@ $(`c`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let y = undefined;

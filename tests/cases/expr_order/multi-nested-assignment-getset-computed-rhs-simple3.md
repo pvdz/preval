@@ -37,6 +37,7 @@ g(d);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let g = function ($$0) {
   let x = $$0;
@@ -65,6 +66,7 @@ g(d);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let g = function ($$0) {
@@ -97,6 +99,7 @@ g(d);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const d = function () {

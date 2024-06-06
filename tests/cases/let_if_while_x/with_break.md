@@ -34,6 +34,7 @@ $(wat);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const s = $(10);
 let count = $LOOP_UNROLL_10;
@@ -57,6 +58,7 @@ $(wat);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const s = $(10);
@@ -85,6 +87,7 @@ $(wat);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const s = $(10);

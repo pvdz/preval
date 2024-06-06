@@ -20,6 +20,7 @@ $(f());
 
 ## Pre Normal
 
+
 `````js filename=intro
 const obj = { Function: Function };
 const f = obj.Function(a, b, c, d);
@@ -27,6 +28,7 @@ $(f());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const obj = { Function: Function };
@@ -37,6 +39,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const f = Function(a, b, c, d);

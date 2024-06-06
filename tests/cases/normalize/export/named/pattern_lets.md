@@ -17,6 +17,7 @@ $(a, b, d);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let [
   a,
@@ -30,6 +31,7 @@ $(a, b, d);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpArrElement = 1;
@@ -49,6 +51,7 @@ $(a, b, d);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = 1;

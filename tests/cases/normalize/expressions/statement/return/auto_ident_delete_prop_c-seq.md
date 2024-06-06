@@ -23,6 +23,7 @@ $(a, arg);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function () {
   debugger;
@@ -35,6 +36,7 @@ $(a, arg);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function () {
@@ -54,6 +56,7 @@ $(a, arg);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const arg = { y: 1 };

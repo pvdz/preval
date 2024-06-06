@@ -16,12 +16,14 @@ if ($(true)) var x = 0;
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = undefined;
 if ($(true)) x = 0;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = undefined;
@@ -33,6 +35,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(true);

@@ -16,11 +16,13 @@ $(Math.pow('3', '5'));
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(Math.pow(`3`, `5`));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -29,6 +31,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(243);

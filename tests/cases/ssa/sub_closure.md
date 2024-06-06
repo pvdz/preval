@@ -49,6 +49,7 @@ parseUnicodeQuadEscape($(50), $(true));
 
 ## Pre Normal
 
+
 `````js filename=intro
 const parseUnicodeQuadEscape = function ($$0, $$1) {
   let a$7 = $$0;
@@ -89,6 +90,7 @@ parseUnicodeQuadEscape($(50), $(true));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const parseUnicodeQuadEscape = function ($$0, $$1) {
@@ -132,6 +134,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(50);

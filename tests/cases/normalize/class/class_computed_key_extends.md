@@ -36,6 +36,7 @@ $(new x().y());
 
 ## Pre Normal
 
+
 `````js filename=intro
 let s = String;
 const y = `y`;
@@ -64,6 +65,7 @@ $(new x().y());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let s = String;
@@ -113,6 +115,7 @@ tmpCallCallee$5(tmpCalleeParam$5);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpClassSuper = $(String);

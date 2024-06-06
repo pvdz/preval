@@ -19,6 +19,7 @@ h()
 
 ## Pre Normal
 
+
 `````js filename=intro
 let h = function ($$0) {
   const tmpParamBare = $$0;
@@ -34,6 +35,7 @@ h();
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let h = function ($$0) {
@@ -51,6 +53,7 @@ h();
 `````
 
 ## Output
+
 
 `````js filename=intro
 [...undefined];

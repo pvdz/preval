@@ -32,6 +32,7 @@ $(t);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const tmpIfTest = $(true);
 let t = true;
@@ -51,6 +52,7 @@ $(t);
 
 ## Normalized
 
+
 `````js filename=intro
 const tmpIfTest = $(true);
 let t = true;
@@ -69,6 +71,7 @@ $(t);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpIfTest = $(true);

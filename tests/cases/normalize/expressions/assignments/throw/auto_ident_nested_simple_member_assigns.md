@@ -21,6 +21,7 @@ $(a, b, c);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let b = { x: 1 },
   c = 3;
@@ -30,6 +31,7 @@ $(a, b, c);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let b = { x: 1 };
@@ -54,6 +56,7 @@ throw tmpThrowArg;
 `````
 
 ## Output
+
 
 `````js filename=intro
 throw 3;

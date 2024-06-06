@@ -17,6 +17,7 @@ for (const a = 1; b; c) $(d);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let b = 2,
   c = 3,
@@ -31,6 +32,7 @@ let b = 2,
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let b = 2;
@@ -47,6 +49,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(4);

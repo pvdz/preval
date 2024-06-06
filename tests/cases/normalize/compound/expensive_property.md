@@ -22,6 +22,7 @@ superExpensiveFunction().x += 5;
 
 ## Pre Normal
 
+
 `````js filename=intro
 let superExpensiveFunction = function () {
   debugger;
@@ -31,6 +32,7 @@ superExpensiveFunction().x += 5;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let superExpensiveFunction = function () {
@@ -46,6 +48,7 @@ tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpAssignMemLhsObj = $();

@@ -19,12 +19,14 @@ a.foo = a += $();
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = {};
 a.foo = a += $();
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = {};
@@ -37,6 +39,7 @@ tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpBinBothRhs = $();

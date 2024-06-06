@@ -21,6 +21,7 @@ f(); // This ought to trigger TDZ (or whatever)...
 
 ## Pre Normal
 
+
 `````js filename=intro
 f();
 {
@@ -33,6 +34,7 @@ f();
 
 ## Normalized
 
+
 `````js filename=intro
 f();
 let f$1 = function () {
@@ -43,6 +45,7 @@ let f$1 = function () {
 `````
 
 ## Output
+
 
 `````js filename=intro
 f();

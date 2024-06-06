@@ -19,6 +19,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = 100;
 const a = { b: { c: $ } };
@@ -27,6 +28,7 @@ $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = 100;
@@ -50,6 +52,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpIfTest$1 = $ == null;

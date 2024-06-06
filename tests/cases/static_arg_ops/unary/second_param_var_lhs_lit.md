@@ -24,6 +24,7 @@ $(f(true, false));
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0, $$1) {
   let a = $$0;
@@ -39,6 +40,7 @@ $(f(true, false));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0, $$1) {
@@ -64,6 +66,7 @@ tmpCallCallee$5(tmpCalleeParam$5);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(-2);

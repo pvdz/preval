@@ -31,6 +31,7 @@ $(a() === a());
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = undefined;
 let b = undefined;
@@ -51,6 +52,7 @@ $(a() === a());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let a = undefined;
@@ -85,6 +87,7 @@ tmpCallCallee$5(tmpCalleeParam$5);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let a = function () {

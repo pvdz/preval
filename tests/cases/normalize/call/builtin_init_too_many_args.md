@@ -17,12 +17,14 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = isNaN($spy(`a`), $spy(`b`), $spy(`c`));
 $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpArgOverflow = $spy(`a`);
@@ -33,6 +35,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpArgOverflow = $spy(`a`);

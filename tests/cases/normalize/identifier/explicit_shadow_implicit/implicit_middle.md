@@ -24,6 +24,7 @@ $(n);
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   let n$3 = $(10);
@@ -38,6 +39,7 @@ $(n);
 
 ## Normalized
 
+
 `````js filename=intro
 let n$3 = $(10);
 $(n$3);
@@ -47,6 +49,7 @@ $(n$1);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const n$3 = $(10);

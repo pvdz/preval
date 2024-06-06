@@ -28,6 +28,7 @@ $('end');
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(`start`);
 oops: {
@@ -47,6 +48,7 @@ $(`end`);
 
 ## Normalized
 
+
 `````js filename=intro
 $(`start`);
 const x = $(1);
@@ -63,6 +65,7 @@ $(`end`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`start`);

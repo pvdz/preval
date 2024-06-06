@@ -16,17 +16,20 @@
 
 ## Pre Normal
 
+
 `````js filename=intro
 ({ [`x`]: 1, y: 2 });
 `````
 
 ## Normalized
 
+
 `````js filename=intro
 
 `````
 
 ## Output
+
 
 `````js filename=intro
 

@@ -27,6 +27,7 @@ if (test) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = x & 1;
 let test = a === 1;
@@ -44,6 +45,7 @@ if (test) {
 
 ## Normalized
 
+
 `````js filename=intro
 const a = x & 1;
 let test = a === 1;
@@ -60,6 +62,7 @@ if (test) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = x & 1;

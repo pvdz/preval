@@ -19,6 +19,7 @@ f($spy(), $spy());
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0, $$1, ...$$2) {
   let a = $$0;
@@ -31,6 +32,7 @@ f($spy(), $spy());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0, $$1, ...$$2) {
@@ -48,6 +50,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpCalleeParam = $spy();

@@ -16,11 +16,13 @@ $(`${`I am a string`}`);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(`` + $coerce(`I am a string`, `string`) + ``);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -32,6 +34,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`I am a string`);

@@ -27,6 +27,7 @@ try { $(f()); } catch {}
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function () {
   debugger;
@@ -50,6 +51,7 @@ try {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function () {
@@ -76,6 +78,7 @@ try {
 `````
 
 ## Output
+
 
 `````js filename=intro
 try {

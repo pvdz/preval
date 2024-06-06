@@ -16,11 +16,13 @@ $(/foo/ + "xyz");
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(/foo/ + `xyz`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -31,6 +33,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`/foo/xyz`);

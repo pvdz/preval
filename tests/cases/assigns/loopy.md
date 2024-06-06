@@ -20,6 +20,7 @@ Make sure SSA doesn't apply here, or at least makes sure that the assignment in 
 
 ## Pre Normal
 
+
 `````js filename=intro
 let run = true;
 while (run) {
@@ -29,6 +30,7 @@ while (run) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let run = true;
@@ -43,6 +45,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

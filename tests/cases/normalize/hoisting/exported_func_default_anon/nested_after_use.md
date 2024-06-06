@@ -22,6 +22,7 @@ export default function() {
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(1);
 const tmpAnonDefaultExport = function () {
@@ -36,6 +37,7 @@ export { tmpAnonDefaultExport as default };
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 $(1);
@@ -55,6 +57,7 @@ export { tmpAnonDefaultExport as default };
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

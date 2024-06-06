@@ -20,12 +20,14 @@ $(o.f("200", 15));
 
 ## Pre Normal
 
+
 `````js filename=intro
 const o = { f: $ };
 $(o.f(`200`, 15));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const o = { f: $ };
@@ -35,6 +37,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const o = { f: $ };

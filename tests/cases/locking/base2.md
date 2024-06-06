@@ -35,6 +35,7 @@ $(undefined);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const tmpFuncLock = function () {
   debugger;
@@ -60,6 +61,7 @@ $(undefined);
 
 ## Normalized
 
+
 `````js filename=intro
 const tmpFuncLock = function () {
   debugger;
@@ -84,6 +86,7 @@ $(undefined);
 `````
 
 ## Output
+
 
 `````js filename=intro
 let f = true;

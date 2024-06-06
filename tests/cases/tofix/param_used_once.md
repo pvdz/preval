@@ -816,6 +816,7 @@ $(TP$cloneX2$cloneX1);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
   let fNeX1786 = $$0;
@@ -1763,6 +1764,7 @@ $(TP$cloneX2$cloneX1);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
@@ -2899,6 +2901,7 @@ $(TP$cloneX2$cloneX1);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const fooCalleeParamX11238 = function ($$0) {

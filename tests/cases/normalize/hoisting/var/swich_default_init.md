@@ -24,6 +24,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = undefined;
 {
@@ -46,6 +47,7 @@ $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = undefined;
@@ -74,6 +76,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpSwitchValue = $(1);

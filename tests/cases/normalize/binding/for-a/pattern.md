@@ -17,6 +17,7 @@ for (let [x, y] = z;false;) $(x, y, z);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = 1,
   y = 2,
@@ -31,6 +32,7 @@ let x = 1,
 
 ## Normalized
 
+
 `````js filename=intro
 let x = 1;
 let y = 2;
@@ -42,6 +44,7 @@ let y$1 = arrPatternSplat[1];
 `````
 
 ## Output
+
 
 `````js filename=intro
 

@@ -19,6 +19,7 @@ $(a, arg);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let arg = 1;
 let a = typeof arg;
@@ -27,6 +28,7 @@ $(a, arg);
 
 ## Normalized
 
+
 `````js filename=intro
 let arg = 1;
 let a = typeof arg;
@@ -34,6 +36,7 @@ $(a, arg);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`number`, 1);

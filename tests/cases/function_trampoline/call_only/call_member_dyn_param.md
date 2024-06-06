@@ -20,6 +20,7 @@ f(obj, '$'); // In this test, this is the call we expect to be replaced by tramp
 
 ## Pre Normal
 
+
 `````js filename=intro
 const f = function ($$0, $$1) {
   let obj$1 = $$0;
@@ -32,6 +33,7 @@ f(obj, `\$`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const f = function ($$0, $$1) {
@@ -46,6 +48,7 @@ f(obj, `\$`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const obj = { $: $ };

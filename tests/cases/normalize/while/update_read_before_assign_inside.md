@@ -21,6 +21,7 @@ $('unreachable');
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = true;
 while (true) {
@@ -32,6 +33,7 @@ $(`unreachable`);
 
 ## Normalized
 
+
 `````js filename=intro
 let x = true;
 while (true) {
@@ -42,6 +44,7 @@ $(`unreachable`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(true);

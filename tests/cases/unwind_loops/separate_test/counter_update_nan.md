@@ -17,6 +17,7 @@ for (let i=0; i<10; i += NaN) $(i);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const max = $(10);
 {
@@ -29,6 +30,7 @@ const max = $(10);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const max = $(10);
@@ -46,6 +48,7 @@ while (true) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(10);

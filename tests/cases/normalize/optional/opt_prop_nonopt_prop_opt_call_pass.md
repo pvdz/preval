@@ -17,12 +17,14 @@ a?.b.c?.(1);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = { b: { c: $ } };
 a?.b.c?.(1);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpObjLitVal = { c: $ };
@@ -42,6 +44,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpIfTest$1 = $ == null;

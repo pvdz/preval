@@ -19,6 +19,7 @@ $(blob);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const blob = { thing: `woop`, xyz: 0 };
 while (true) {
@@ -35,6 +36,7 @@ $(blob);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const blob = { thing: `woop`, xyz: 0 };
@@ -55,6 +57,7 @@ $(blob);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const blob = { thing: `woop`, xyz: 1 };

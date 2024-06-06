@@ -21,6 +21,7 @@ if (a === 32) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = $(33);
 if (a === 32) {
@@ -31,6 +32,7 @@ if (a === 32) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const a = $(33);
@@ -46,6 +48,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = $(33);

@@ -19,6 +19,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = $(1);
 if ($(10)) $(x, `branch`);
@@ -27,6 +28,7 @@ $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = $(1);
@@ -40,6 +42,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = $(1);

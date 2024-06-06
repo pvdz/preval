@@ -16,11 +16,13 @@ $(typeof delete $(100).x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(typeof delete $(100).x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -31,6 +33,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpDeleteObj = $(100);

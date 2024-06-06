@@ -20,11 +20,13 @@ const {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const { a: b = $(`default`) } = { a: $(`prop`) };
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpObjLitVal = $(`prop`);
@@ -40,6 +42,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpObjLitVal = $(`prop`);

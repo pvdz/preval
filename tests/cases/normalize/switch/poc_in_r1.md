@@ -22,6 +22,7 @@ switch (x) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = 1;
 tmpSwitchBreak: {
@@ -34,6 +35,7 @@ tmpSwitchBreak: {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = 1;
@@ -48,6 +50,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpBinBothRhs = $(1);

@@ -17,12 +17,14 @@ $(c);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(($(1), $(2))[$(`toString`)]);
 $(c);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -35,6 +37,7 @@ $(c);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

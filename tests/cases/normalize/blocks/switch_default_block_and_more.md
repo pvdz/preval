@@ -21,6 +21,7 @@ switch ($(1)) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 tmpSwitchBreak: {
   const tmpSwitchDisc = $(1);
@@ -36,12 +37,14 @@ tmpSwitchBreak: {
 
 ## Normalized
 
+
 `````js filename=intro
 const tmpSwitchDisc = $(1);
 $(3);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(1);

@@ -16,11 +16,13 @@ $($spy(0xffffffffffffffffffffffffffffffff) ^ 0);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $($spy(3.402823669209385e38) ^ 0);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -30,6 +32,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpBinLhs = $spy(3.402823669209385e38);

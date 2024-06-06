@@ -16,17 +16,20 @@ let b = { $ };
 
 ## Pre Normal
 
+
 `````js filename=intro
 let b = { $: $ };
 `````
 
 ## Normalized
 
+
 `````js filename=intro
 let b = { $: $ };
 `````
 
 ## Output
+
 
 `````js filename=intro
 

@@ -20,6 +20,7 @@ if ($(true)) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 if ($(true)) {
   let b = 2,
@@ -30,6 +31,7 @@ if ($(true)) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpIfTest = $(true);
@@ -43,6 +45,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpIfTest = $(true);

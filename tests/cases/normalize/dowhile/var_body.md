@@ -16,6 +16,7 @@ do var x = 0; while (false);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = undefined;
 while (true) {
@@ -29,12 +30,14 @@ while (true) {
 
 ## Normalized
 
+
 `````js filename=intro
 let x = undefined;
 x = 0;
 `````
 
 ## Output
+
 
 `````js filename=intro
 

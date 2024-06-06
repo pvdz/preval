@@ -17,6 +17,7 @@ spy in class {};
 
 ## Pre Normal
 
+
 `````js filename=intro
 const spy = {
   toString() {
@@ -32,6 +33,7 @@ spy in class {};
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const spy = {
@@ -52,6 +54,7 @@ tmpBinBothLhs in tmpBinBothRhs;
 `````
 
 ## Output
+
 
 `````js filename=intro
 const spy = {

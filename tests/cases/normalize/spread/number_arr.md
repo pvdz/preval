@@ -18,6 +18,7 @@ $('fail');
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = 100;
 $([...x]);
@@ -25,6 +26,7 @@ $(`fail`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const x = 100;
@@ -35,6 +37,7 @@ $(`fail`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 [...100];

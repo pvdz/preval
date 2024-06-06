@@ -14,11 +14,13 @@ $(+/1/);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(+/1/);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -28,6 +30,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpUnaryArg = /1/;

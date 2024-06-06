@@ -14,11 +14,13 @@ $('b' >= 'a');
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(`b` >= `a`);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -27,6 +29,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(true);

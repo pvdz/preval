@@ -14,11 +14,13 @@ const [{ x = a }] = [{}];
 
 ## Pre Normal
 
+
 `````js filename=intro
 const [{ x: x = a }] = [{}];
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpArrElement = {};
@@ -36,6 +38,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const objPatternBeforeDefault = $ObjectPrototype.x;

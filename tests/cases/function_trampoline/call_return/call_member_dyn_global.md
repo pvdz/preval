@@ -23,6 +23,7 @@ $(q);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const obj = { $: $ };
 const str = `\$`;
@@ -37,6 +38,7 @@ $(q);
 
 ## Normalized
 
+
 `````js filename=intro
 const obj = { $: $ };
 const str = `\$`;
@@ -50,6 +52,7 @@ $(q);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const obj = { $: $ };

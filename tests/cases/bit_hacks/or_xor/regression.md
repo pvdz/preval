@@ -30,6 +30,7 @@ if ($(true)) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = +$(1);
 if ($) {
@@ -45,6 +46,7 @@ if ($(true)) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
@@ -65,6 +67,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpUnaryArg = $(1);

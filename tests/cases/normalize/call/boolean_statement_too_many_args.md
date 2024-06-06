@@ -16,11 +16,13 @@ Boolean($spy('a'), $spy('b'), $spy('c'));
 
 ## Pre Normal
 
+
 `````js filename=intro
 Boolean($spy(`a`), $spy(`b`), $spy(`c`));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpArgOverflow = $spy(`a`);
@@ -29,6 +31,7 @@ $spy(`c`);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $spy(`a`);

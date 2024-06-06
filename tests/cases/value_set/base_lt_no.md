@@ -79,6 +79,7 @@ if (n <= 10) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = $();
 let n = 11;
@@ -146,6 +147,7 @@ if (n <= 10) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const x = $();
@@ -215,6 +217,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const x = $();

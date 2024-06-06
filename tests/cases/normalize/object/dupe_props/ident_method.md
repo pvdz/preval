@@ -17,6 +17,7 @@ $(x);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = {
   a: $(`prop`),
@@ -28,6 +29,7 @@ $(x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 $(`prop`);
@@ -41,6 +43,7 @@ $(x);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`prop`);

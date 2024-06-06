@@ -17,12 +17,14 @@ $(a).b($(1), $(2));
 
 ## Pre Normal
 
+
 `````js filename=intro
 const a = { b: $ };
 $(a).b($(1), $(2));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const a = { b: $ };
@@ -34,6 +36,7 @@ $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const a = { b: $ };

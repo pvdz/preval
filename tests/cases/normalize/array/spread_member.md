@@ -16,11 +16,13 @@ $([...true.toString.name]);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $([...true.toString.name]);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -31,6 +33,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpArrSpread = $Boolean_toString.name;

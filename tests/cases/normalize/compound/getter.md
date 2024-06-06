@@ -20,6 +20,7 @@ $(obj.x); // 5
 
 ## Pre Normal
 
+
 `````js filename=intro
 const obj = { x: 0 };
 obj.x += 5;
@@ -27,6 +28,7 @@ $(obj.x);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const obj = { x: 0 };
@@ -40,6 +42,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(5);

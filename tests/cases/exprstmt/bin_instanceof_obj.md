@@ -17,6 +17,7 @@ spy instanceof {};
 
 ## Pre Normal
 
+
 `````js filename=intro
 const spy = {
   toString() {
@@ -32,6 +33,7 @@ spy instanceof {};
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const spy = {
@@ -52,6 +54,7 @@ undefined instanceof tmpBinBothRhs;
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpBinBothRhs = {};

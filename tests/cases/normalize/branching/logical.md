@@ -85,12 +85,14 @@ if (a) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 if (a && b) c;
 else d;
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let tmpIfTest = a;
@@ -106,6 +108,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let tmpIfTest = a;

@@ -210,6 +210,7 @@ node.elements.forEach(d);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let createFreshVarInCurrentRootScope, assigns, AST, newElements, crumb, isComplexNode, uncrumb, node;
 node.elements.forEach(($$0, $$1) => {
@@ -236,6 +237,7 @@ node.elements.forEach(($$0, $$1) => {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let createFreshVarInCurrentRootScope = undefined;
@@ -299,6 +301,7 @@ $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 undefined.elements;

@@ -17,12 +17,14 @@ $(Number(x)); // Is the same as `x` and dropping the `Number` call should not be
 
 ## Pre Normal
 
+
 `````js filename=intro
 const x = $(5) * $(`10`);
 $(Number(x));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpBinBothLhs = $(5);
@@ -35,6 +37,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpBinBothLhs = $(5);

@@ -18,6 +18,7 @@ $(foo);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let foo = undefined;
 let a = 1,
@@ -28,6 +29,7 @@ $(foo);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let foo = undefined;
@@ -43,6 +45,7 @@ $(foo);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(2);

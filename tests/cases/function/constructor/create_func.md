@@ -17,12 +17,14 @@ $(f());
 
 ## Pre Normal
 
+
 `````js filename=intro
 const f = Function(`return 500`);
 $(f());
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const f = function () {
@@ -35,6 +37,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(500);

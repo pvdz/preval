@@ -24,6 +24,7 @@ $(f(true, false));
 
 ## Pre Normal
 
+
 `````js filename=intro
 let f = function ($$0, $$1, $$2, $$3, $$4) {
   let no = $$0;
@@ -42,6 +43,7 @@ $(f(true, false));
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function ($$0, $$1, $$2, $$3, $$4) {
@@ -70,6 +72,7 @@ tmpCallCallee$5(tmpCalleeParam$5);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(NaN);

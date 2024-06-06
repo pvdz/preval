@@ -14,11 +14,13 @@ for (x of $(1)) $(2);
 
 ## Pre Normal
 
+
 `````js filename=intro
 for (x of $(1)) $(2);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpForOfRhs = $(1);
@@ -28,6 +30,7 @@ for (x of tmpForOfRhs) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpForOfRhs = $(1);

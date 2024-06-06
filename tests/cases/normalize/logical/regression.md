@@ -18,6 +18,7 @@ if (false || $(2)) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 if (false || $(2)) {
   {
@@ -26,6 +27,7 @@ if (false || $(2)) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let tmpIfTest = false;
@@ -36,6 +38,7 @@ if (tmpIfTest) {
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(2);

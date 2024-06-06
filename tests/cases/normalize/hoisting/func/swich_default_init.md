@@ -23,6 +23,7 @@ switch ($(1)) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 {
   let f = function () {
@@ -46,6 +47,7 @@ switch ($(1)) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let f = function () {
@@ -76,6 +78,7 @@ tmpSwitchBreak: {
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpSwitchValue = $(1);

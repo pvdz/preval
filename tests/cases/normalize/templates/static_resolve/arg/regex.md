@@ -16,11 +16,13 @@ $(`${/foo/g}`);
 
 ## Pre Normal
 
+
 `````js filename=intro
 $(`` + $coerce(/foo/g, `string`) + ``);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpCallCallee = $;
@@ -33,6 +35,7 @@ tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
+
 
 `````js filename=intro
 $(`/foo/g`);

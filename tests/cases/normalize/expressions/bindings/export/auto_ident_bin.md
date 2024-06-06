@@ -17,6 +17,7 @@ $(a);
 
 ## Pre Normal
 
+
 `````js filename=intro
 let a = $(1) + $(2);
 export { a };
@@ -24,6 +25,7 @@ $(a);
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 const tmpBinBothLhs = $(1);
@@ -34,6 +36,7 @@ $(a);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const tmpBinBothLhs = $(1);

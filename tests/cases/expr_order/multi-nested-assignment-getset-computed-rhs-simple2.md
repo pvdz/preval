@@ -34,6 +34,7 @@ $(d);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const objd = {
   get foo() {
@@ -58,6 +59,7 @@ $(d);
 
 ## Normalized
 
+
 `````js filename=intro
 const objd = {
   get foo() {
@@ -81,6 +83,7 @@ $(d);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const objd = {

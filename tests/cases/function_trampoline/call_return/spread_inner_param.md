@@ -22,6 +22,7 @@ $(q);
 
 ## Pre Normal
 
+
 `````js filename=intro
 const y = $(`pass`);
 const f = function ($$0) {
@@ -36,6 +37,7 @@ $(q);
 
 ## Normalized
 
+
 `````js filename=intro
 const y = $(`pass`);
 const f = function ($$0) {
@@ -49,6 +51,7 @@ $(q);
 `````
 
 ## Output
+
 
 `````js filename=intro
 const y = $(`pass`);

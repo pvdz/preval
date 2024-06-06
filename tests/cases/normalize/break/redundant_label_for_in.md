@@ -28,6 +28,7 @@ exit: for (const key in $({a: 1, b: 2})) {
 
 ## Pre Normal
 
+
 `````js filename=intro
 let x = $(2);
 exit: for (const key in $({ a: 1, b: 2 })) {
@@ -44,6 +45,7 @@ exit: for (const key in $({ a: 1, b: 2 })) {
 `````
 
 ## Normalized
+
 
 `````js filename=intro
 let x = $(2);
@@ -69,6 +71,7 @@ exit: {
 `````
 
 ## Output
+
 
 `````js filename=intro
 let x = $(2);

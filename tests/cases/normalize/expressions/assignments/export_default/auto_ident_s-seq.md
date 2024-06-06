@@ -62,7 +62,7 @@ With rename=true
 $( 1 );
 $( 2 );
 const a = 1;
-export { a as default from "undefined"
+export { a as default };
 $( 1, 1 );
 `````
 

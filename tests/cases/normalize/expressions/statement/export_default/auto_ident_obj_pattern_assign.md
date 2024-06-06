@@ -80,7 +80,7 @@ x: c,
 y: d
 ;
 b = e;
-export { b as default from "undefined"
+export { b as default };
 $( a, c, d );
 `````
 

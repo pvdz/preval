@@ -70,7 +70,7 @@ if (b) {
 else {
   b = 2;
 }
-export { b as default from "undefined"
+export { b as default };
 const c = {
 a: 999,
 b: 1000

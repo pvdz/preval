@@ -72,7 +72,7 @@ const c = $( b );
 const d = [ ... c ];
 const e = d[ 0 ];
 const f = c;
-export { f as default from "undefined"
+export { f as default };
 $( c, e );
 `````
 

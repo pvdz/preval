@@ -70,7 +70,7 @@ const c = $( "d" );
 const d = b[ c ];
 a.c = d;
 const e = d;
-export { e as a from "undefined"
+export { e as a };
 $( d, a );
 `````
 

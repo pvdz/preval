@@ -75,7 +75,7 @@ const d = b[ 2 ];
 const e = [ ... a ];
 const f = e[ 0 ];
 const g = e[ 1 ];
-export { f as a,g as b from "undefined"
+export { f as a,g as b };
 $( f, g, c, d, a );
 `````
 

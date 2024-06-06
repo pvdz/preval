@@ -61,7 +61,7 @@ const a = $( 1 );
 const b = $( 3 );
 const c = [ a, 2, b ];
 const d = c;
-export { d as default from "undefined"
+export { d as default };
 $( c );
 `````
 

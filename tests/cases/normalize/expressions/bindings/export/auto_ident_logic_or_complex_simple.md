@@ -66,7 +66,7 @@ if (b) {
 else {
   b = 2;
 }
-export { b as a from "undefined"
+export { b as a };
 $( b );
 `````
 

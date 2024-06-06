@@ -63,7 +63,7 @@ $( 2 );
 const a = { y: 1 };
 const b = $( a );
 const c = deleteb.y;
-export { c as a from "undefined"
+export { c as a };
 $( c, a );
 `````
 

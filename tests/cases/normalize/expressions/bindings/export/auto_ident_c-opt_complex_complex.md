@@ -81,7 +81,7 @@ else {
   const f = c[ e ];
   a = f;
 }
-export { a as a from "undefined"
+export { a as a };
 $( a );
 `````
 

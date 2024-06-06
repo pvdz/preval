@@ -84,7 +84,7 @@ const a = function() {
 };
 a();
 $( undefined );
-export { a as g from "undefined"
+export { a as g };
 `````
 
 ## Globals

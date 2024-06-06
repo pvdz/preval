@@ -78,7 +78,7 @@ b: 1000
 let c = undefined;
 const d = $dotCall( $, a, 1 );
 c = d;
-export { c as default from "undefined"
+export { c as default };
 $( b );
 `````
 

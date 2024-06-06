@@ -7,6 +7,7 @@
 > Spread on number is an error
 
 the index props should resolve to numbers, at least, not strings. i think.
+does it matter? its cleaner as numbers. if there's no semantic difference, we should try to do that
 
 ## Input
 
@@ -14,36 +15,6 @@ the index props should resolve to numbers, at least, not strings. i think.
 const x = "hello";
 const y = "world";
 $({...x, ...y});
-`````
-
-## PST Output:
-
-With rename=true
-
-`````js filename=intro
-const a = {
-"0"[ "w" ]: "w",
-"1"[ "o" ]: "o",
-"2"[ "r" ]: "r",
-"3"[ "l" ]: "l",
-"4"[ "d" ]: "d"
-;
-$( a );
-`````
-
-## PST Output:
-
-With rename=true
-
-`````js filename=intro
-const a = {
-"0"[ "w" ]: "w",
-"1"[ "o" ]: "o",
-"2"[ "r" ]: "r",
-"3"[ "l" ]: "l",
-"4"[ "d" ]: "d"
-;
-$( a );
 `````
 
 ## Pre Normal

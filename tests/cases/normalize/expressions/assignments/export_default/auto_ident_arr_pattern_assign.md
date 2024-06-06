@@ -77,7 +77,7 @@ const d = [ ... c ];
 const e = d[ 0 ];
 const f = d[ 1 ];
 const g = c;
-export { g as default from "undefined"
+export { g as default };
 $( c, e, f );
 `````
 

@@ -60,7 +60,7 @@ a: 999,
 b: 1000
 ;
 const b = false;
-export { b as default from "undefined"
+export { b as default };
 $( a, 1 );
 `````
 

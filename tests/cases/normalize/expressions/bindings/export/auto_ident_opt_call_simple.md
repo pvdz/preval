@@ -69,7 +69,7 @@ else {
   const c = $( 1 );
   a = c;
 }
-export { a as a from "undefined"
+export { a as a };
 $( a );
 `````
 

@@ -76,7 +76,7 @@ With rename=true
 let a = class   {
 
 };
-export { a as X from "undefined"
+export { a as X };
 a = 10;
 `````
 
@@ -84,7 +84,7 @@ a = 10;
 let a = class   {
 
 };
-export { a as X from "undefined"
+export { a as X };
 a = 10;
 `````
 

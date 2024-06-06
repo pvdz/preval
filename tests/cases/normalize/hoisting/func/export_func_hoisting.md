@@ -167,9 +167,9 @@ const g = function() {
   return undefined;
 };
 $( a, b, c, d, e, g );
-export { f as l from "undefined"
-export { e as h from "undefined"
-export { a as a from "undefined"
+export { f as l };
+export { e as h };
+export { a as a };
 `````
 
 ## Globals

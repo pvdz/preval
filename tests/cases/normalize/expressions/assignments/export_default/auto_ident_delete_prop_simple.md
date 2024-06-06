@@ -60,7 +60,7 @@ With rename=true
 const a = { y: 1 };
 const b = deletea.y;
 const c = b;
-export { c as default from "undefined"
+export { c as default };
 $( b, a );
 `````
 

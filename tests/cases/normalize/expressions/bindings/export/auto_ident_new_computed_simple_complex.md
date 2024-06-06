@@ -61,7 +61,7 @@ const a = $( "$" );
 const b = { $: $ };
 const c = b[ a ];
 const d = new c( 1 );
-export { d as a from "undefined"
+export { d as a };
 $( d );
 `````
 

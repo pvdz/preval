@@ -50,7 +50,7 @@ With rename=true
 const a = class   {
 
 };
-export { a as X from "undefined"
+export { a as X };
 new a();
 `````
 

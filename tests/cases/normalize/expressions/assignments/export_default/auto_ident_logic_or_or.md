@@ -94,7 +94,7 @@ else {
   }
 }
 const e = b;
-export { e as default from "undefined"
+export { e as default };
 $( b );
 `````
 

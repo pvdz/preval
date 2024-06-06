@@ -5,6 +5,7 @@
 > Tofix > Label registry
 >
 > Remove this file after fixing it but the label registry needs a fixup
+> Why is the label still not eliminated here...?
 
 ## Input
 

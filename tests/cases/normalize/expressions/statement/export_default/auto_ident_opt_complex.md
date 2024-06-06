@@ -86,7 +86,7 @@ else {
   const f = d.x;
   c = f;
 }
-export { c as default from "undefined"
+export { c as default };
 $( b );
 `````
 

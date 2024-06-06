@@ -85,7 +85,7 @@ const f = $( "y" );
 e[f] = 7;
 c[d] = 7;
 const g = 7;
-export { g as a from "undefined"
+export { g as a };
 $( 7, a, b, 3, 4 );
 `````
 

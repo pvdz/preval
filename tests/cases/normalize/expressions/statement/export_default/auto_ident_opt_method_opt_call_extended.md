@@ -92,7 +92,7 @@ else {
   const e = $dotCall( $, d, 1 );
   b = e;
 }
-export { b as default from "undefined"
+export { b as default };
 $( a );
 `````
 

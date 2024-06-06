@@ -70,7 +70,7 @@ let a = undefined;
 const b = { c: $ };
 const c = $dotCall( $, b, 1 );
 a = c;
-export { a as default from "undefined"
+export { a as default };
 $( c );
 `````
 

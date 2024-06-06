@@ -50,7 +50,7 @@ With rename=true
 const a = $( 1 );
 const b = $( 2 );
 const c = a + b;
-export { c as default from "undefined"
+export { c as default };
 `````
 
 ## Globals

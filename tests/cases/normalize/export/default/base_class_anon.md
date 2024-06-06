@@ -46,7 +46,7 @@ With rename=true
 const a = class   {
 
 };
-export { a as default from "undefined"
+export { a as default };
 `````
 
 ## Globals

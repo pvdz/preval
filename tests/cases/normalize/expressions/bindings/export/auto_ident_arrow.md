@@ -59,7 +59,7 @@ const a = function() {
   debugger;
   return undefined;
 };
-export { a as a from "undefined"
+export { a as a };
 $( a );
 `````
 

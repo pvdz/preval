@@ -64,8 +64,8 @@ $( undefined, undefined );
 const a = 10;
 const b = 20;
 $( 10, 20 );
-export { a as x from "undefined"
-export { b as y from "undefined"
+export { a as x };
+export { b as y };
 `````
 
 ## Globals

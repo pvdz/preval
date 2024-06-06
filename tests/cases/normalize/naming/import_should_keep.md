@@ -109,12 +109,12 @@ const c = function($$0 ) {
 const f = class   {
 
 };
-export { f as c from "undefined"
+export { f as c };
 const g = $( 1 );
 const h = $( g );
-export { h as x from "undefined"
-export { a as f from "undefined"
-export { c as g from "undefined"
+export { h as x };
+export { a as f };
+export { c as g };
 `````
 
 ## Globals

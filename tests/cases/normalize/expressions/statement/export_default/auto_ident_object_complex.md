@@ -67,7 +67,7 @@ x: b,
 y: 2,
 z: c
 ;
-export { d as default from "undefined"
+export { d as default };
 $( a );
 `````
 

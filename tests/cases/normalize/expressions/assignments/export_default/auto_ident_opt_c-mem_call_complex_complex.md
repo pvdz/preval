@@ -110,7 +110,7 @@ else {
   }
 }
 const j = a;
-export { j as default from "undefined"
+export { j as default };
 $( a );
 `````
 

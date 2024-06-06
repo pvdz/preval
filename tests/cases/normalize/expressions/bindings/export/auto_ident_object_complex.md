@@ -59,7 +59,7 @@ x: a,
 y: 2,
 z: b
 ;
-export { c as a from "undefined"
+export { c as a };
 $( c );
 `````
 

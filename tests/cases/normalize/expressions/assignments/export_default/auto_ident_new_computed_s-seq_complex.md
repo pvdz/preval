@@ -67,7 +67,7 @@ const b = { $: $ };
 const c = b[ a ];
 const d = new c( 1 );
 const e = d;
-export { e as default from "undefined"
+export { e as default };
 $( d );
 `````
 

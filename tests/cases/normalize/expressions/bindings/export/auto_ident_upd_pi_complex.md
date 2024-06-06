@@ -70,7 +70,7 @@ const d = c.x;
 const e = d + 1;
 c.x = e;
 const f = e;
-export { f as a from "undefined"
+export { f as a };
 $( e, a );
 `````
 

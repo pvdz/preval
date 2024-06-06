@@ -79,7 +79,7 @@ const f = $( 4 );
 d[e] = f;
 b[c] = f;
 const g = f;
-export { g as a from "undefined"
+export { g as a };
 $( f, a, 3, 4 );
 `````
 

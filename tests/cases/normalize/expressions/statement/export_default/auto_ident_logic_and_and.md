@@ -86,7 +86,7 @@ if (b) {
     b = $( d );
   }
 }
-export { b as default from "undefined"
+export { b as default };
 const e = {
 a: 999,
 b: 1000

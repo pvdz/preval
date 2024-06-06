@@ -70,7 +70,7 @@ a.y = b;
 const c = { x: 2 };
 c.x = b;
 const d = b;
-export { d as a from "undefined"
+export { d as a };
 $( b, c, 3 );
 `````
 

@@ -62,7 +62,7 @@ const a = function() {
   return undefined;
 };
 const b = a;
-export { b as a from "undefined"
+export { b as a };
 $( a );
 `````
 

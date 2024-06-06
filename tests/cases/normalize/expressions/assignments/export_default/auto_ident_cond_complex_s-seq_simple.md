@@ -77,7 +77,7 @@ else {
   a = $( d );
   c = a;
 }
-export { c as default from "undefined"
+export { c as default };
 $( a );
 `````
 

@@ -79,7 +79,7 @@ const e = d.x;
 const f = e - 1;
 d.x = f;
 const g = e;
-export { g as default from "undefined"
+export { g as default };
 $( b, a );
 `````
 

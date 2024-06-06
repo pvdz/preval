@@ -98,7 +98,7 @@ function _printStatement(indent, config, node) {
       return 'debugger;';
     }
     case 'ExportNamed': {
-      return `export { ${node.pairs.map(pair => `${printRef(indent, config, pair[0])} as ${pair[1]}`).join(',')} from "${node.source}"`;
+      return `export { ${node.pairs.map(pair => `${printRef(indent, config, pair[0])} as ${pair[1]}`).join(',')} }${node.source ? ` from "${node.source}"` : ''};`;
     }
     case 'ExpressionStatement': {
       return `${printExpression(indent, config, node.expression)};`;
@@ -113,7 +113,7 @@ function _printStatement(indent, config, node) {
       return `if (${printSimple(indent, config, node.test)}) ${printBlock(indent, config, node.yes)}${node.no && node.no.body.length > 0 ? `\n${indent}else ${printBlock(indent, config, node.no)}` : ''}`;
     }
     case 'ImportNamed': {
-      return `import { ${node.pairs.map(pair => `${pair[0]} as ${printRef(indent, config, pair[1])}`).join(', ')} from "${node.source}";`;
+      return `import { ${node.pairs.map(pair => `${pair[0]} as ${printRef(indent, config, pair[1])}`).join(', ')}${node.source ? ` from "${node.source}"` : ''};`;
     }
     case 'LabelStatement': {
       // There exists language exceptions around the label being a

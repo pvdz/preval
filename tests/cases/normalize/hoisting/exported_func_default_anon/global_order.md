@@ -116,9 +116,9 @@ const g = function() {
   const h = $();
   return h;
 };
-export { g as default from "undefined"
-export { a as f from "undefined"
-export { c as g from "undefined"
+export { g as default };
+export { a as f };
+export { c as g };
 `````
 
 ## Globals

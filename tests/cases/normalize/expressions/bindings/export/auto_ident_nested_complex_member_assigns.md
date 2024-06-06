@@ -119,7 +119,7 @@ f[g] = 3;
 d[e] = 3;
 b[c] = 3;
 const n = 3;
-export { n as a from "undefined"
+export { n as a };
 $( 3, a, 3 );
 `````
 

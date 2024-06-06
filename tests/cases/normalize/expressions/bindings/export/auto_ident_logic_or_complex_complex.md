@@ -70,7 +70,7 @@ else {
   const c = $( 2 );
   b = $( c );
 }
-export { b as a from "undefined"
+export { b as a };
 $( b );
 `````
 

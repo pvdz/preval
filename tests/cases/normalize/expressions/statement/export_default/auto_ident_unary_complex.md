@@ -63,7 +63,7 @@ b: 1000
 ;
 const b = $( 1 );
 const c = typeofb;
-export { c as default from "undefined"
+export { c as default };
 $( a, 1 );
 `````
 

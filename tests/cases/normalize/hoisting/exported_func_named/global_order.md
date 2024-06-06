@@ -119,9 +119,9 @@ const g = $();
 const h = $();
 const i = $();
 $( g, h, i );
-export { a as f from "undefined"
-export { e as h from "undefined"
-export { c as g from "undefined"
+export { a as f };
+export { e as h };
+export { c as g };
 `````
 
 ## Globals

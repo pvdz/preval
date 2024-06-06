@@ -14,14 +14,14 @@
 ## Input
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
+let flag = true;
 let b = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (tmpDoWhileFlag) {
+  if (flag) {
     $(100);
     const tmpPostUpdArgIdent$1 = b;
     b = b + 1;
-    tmpDoWhileFlag = tmpPostUpdArgIdent$1;
+    flag = tmpPostUpdArgIdent$1;
   } else {
     break;
   }
@@ -34,14 +34,14 @@ $(a, b);
 
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
+let flag = true;
 let b = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (tmpDoWhileFlag) {
+  if (flag) {
     $(100);
     const tmpPostUpdArgIdent$1 = b;
     b = b + 1;
-    tmpDoWhileFlag = tmpPostUpdArgIdent$1;
+    flag = tmpPostUpdArgIdent$1;
   } else {
     break;
   }
@@ -54,14 +54,14 @@ $(a, b);
 
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
+let flag = true;
 let b = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (tmpDoWhileFlag) {
+  if (flag) {
     $(100);
     const tmpPostUpdArgIdent$1 = b;
     b = b + 1;
-    tmpDoWhileFlag = tmpPostUpdArgIdent$1;
+    flag = tmpPostUpdArgIdent$1;
   } else {
     break;
   }
@@ -74,14 +74,14 @@ $(a, b);
 
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
+let flag = true;
 let b = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (tmpDoWhileFlag) {
+  if (flag) {
     $(100);
     const tmpPostUpdArgIdent$1 = b;
     b = b + 1;
-    tmpDoWhileFlag = tmpPostUpdArgIdent$1;
+    flag = tmpPostUpdArgIdent$1;
   } else {
     break;
   }

@@ -58,7 +58,7 @@ With rename=true
 const a = $( "$" );
 const b = { $: $ };
 const c = b[ a ]( 1 )};
-export { c as a from "undefined"
+export { c as a };
 $( c );
 `````
 

@@ -64,7 +64,7 @@ const a = function() {
   debugger;
   return undefined;
 };
-export { a as default from "undefined"
+export { a as default };
 $( f );
 `````
 

@@ -56,7 +56,7 @@ a: 999,
 b: 1000
 ;
 const b = /foo/;
-export { b as default from "undefined"
+export { b as default };
 $( a );
 `````
 

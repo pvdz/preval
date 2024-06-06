@@ -60,7 +60,7 @@ With rename=true
 `````js filename=intro
 const a = new $( 1 );
 const b = a;
-export { b as default from "undefined"
+export { b as default };
 $( a );
 `````
 

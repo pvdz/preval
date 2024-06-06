@@ -65,7 +65,7 @@ const a = $( 3 );
 const b = $( 3 );
 a.x = b;
 const c = b;
-export { c as a from "undefined"
+export { c as a };
 $( b, 2, 3 );
 `````
 

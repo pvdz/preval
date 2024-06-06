@@ -65,7 +65,7 @@ y: 2,
 z: b
 ;
 const d = c;
-export { d as default from "undefined"
+export { d as default };
 $( c );
 `````
 

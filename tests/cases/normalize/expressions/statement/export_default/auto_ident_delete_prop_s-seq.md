@@ -69,7 +69,7 @@ b: 1000
 $( 1 );
 $( 2 );
 const c = deletea.y;
-export { c as default from "undefined"
+export { c as default };
 $( b, a );
 `````
 

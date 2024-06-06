@@ -59,7 +59,7 @@ With rename=true
 
 `````js filename=intro
 const a = 0;
-export { a as default from "undefined"
+export { a as default };
 $( 0, 0 );
 `````
 

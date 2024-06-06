@@ -73,7 +73,7 @@ const d = $( 4 );
 c.y = d;
 b.x = d;
 const e = d;
-export { e as a from "undefined"
+export { e as a };
 $( d, a, 3, 4 );
 `````
 

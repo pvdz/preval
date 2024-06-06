@@ -68,7 +68,7 @@ const c = { b: b };
 const d = $( c );
 const e = d.b;
 a = d;
-export { a as a from "undefined"
+export { a as a };
 $( a, e );
 `````
 

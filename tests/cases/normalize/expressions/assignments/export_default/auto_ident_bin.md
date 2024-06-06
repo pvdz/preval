@@ -60,7 +60,7 @@ const a = $( 1 );
 const b = $( 2 );
 const c = a + b;
 const d = c;
-export { d as default from "undefined"
+export { d as default };
 $( c );
 `````
 

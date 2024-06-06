@@ -61,7 +61,7 @@ With rename=true
 const a = $( 1 );
 const b = typeofa;
 const c = b;
-export { c as default from "undefined"
+export { c as default };
 $( b, 1 );
 `````
 

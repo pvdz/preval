@@ -85,24 +85,24 @@ With rename=true
 
 `````js filename=intro
 const a = 10;
-export { a as a from "undefined"
+export { a as a };
 const b = 20;
-export { b as b from "undefined"
+export { b as b };
 const c = 30;
-export { c as c from "undefined"
+export { c as c };
 const a = 100;
-export { a as default from "undefined"
+export { a as default };
 `````
 
 `````js filename=d
 const a = 10;
-export { a as a from "undefined"
+export { a as a };
 const b = 20;
-export { b as b from "undefined"
+export { b as b };
 const c = 30;
-export { c as c from "undefined"
+export { c as c };
 const a = 100;
-export { a as default from "undefined"
+export { a as default };
 `````
 
 ## Globals

@@ -56,7 +56,7 @@ With rename=true
 $( undefined );
 $( 10 );
 const a = 10;
-export { a as x from "undefined"
+export { a as x };
 `````
 
 ## Globals

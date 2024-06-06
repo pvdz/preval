@@ -7,6 +7,7 @@
 > The triple eq identity check can resolve for an ident on itself
 > And let's face it. The whole example should be collapsed.
 > The <= 0 check can also be inferred to be true.
+> What about NaN tho? (And document.all kinds of cases)
 
 #TODO
 

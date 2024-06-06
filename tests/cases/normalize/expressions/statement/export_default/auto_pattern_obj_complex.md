@@ -59,7 +59,7 @@ a: 1,
 b: 2
 ;
 const b = $( a );
-export { b as default from "undefined"
+export { b as default };
 $( 999 );
 `````
 

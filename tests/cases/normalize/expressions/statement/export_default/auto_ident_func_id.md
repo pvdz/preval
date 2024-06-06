@@ -66,7 +66,7 @@ const a = function() {
   return undefined;
 };
 const b = a;
-export { b as default from "undefined"
+export { b as default };
 const c = {
 a: 999,
 b: 1000

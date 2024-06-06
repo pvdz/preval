@@ -73,7 +73,7 @@ if (b) {
 else {
   b = 2;
 }
-export { c as default from "undefined"
+export { c as default };
 $( b );
 `````
 

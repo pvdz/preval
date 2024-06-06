@@ -75,7 +75,7 @@ const d = c.x;
 const e = d - 1;
 c.x = e;
 const f = d;
-export { f as default from "undefined"
+export { f as default };
 $( d, a );
 `````
 

@@ -63,7 +63,7 @@ let b = $( a );
 if (b) {
   b = 2;
 }
-export { b as a from "undefined"
+export { b as a };
 $( b );
 `````
 

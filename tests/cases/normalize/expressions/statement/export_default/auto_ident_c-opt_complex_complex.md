@@ -89,7 +89,7 @@ else {
   const g = d[ f ];
   c = g;
 }
-export { c as default from "undefined"
+export { c as default };
 $( b );
 `````
 

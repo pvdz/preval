@@ -57,7 +57,7 @@ With rename=true
 const a = $( 100 );
 const b = !a;
 const c = b;
-export { c as default from "undefined"
+export { c as default };
 $( b );
 `````
 

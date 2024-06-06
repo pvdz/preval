@@ -51,7 +51,7 @@ With rename=true
 `````js filename=intro
 const a = $( $ );
 const b = a( 1 );
-export { b as a from "undefined"
+export { b as a };
 $( b );
 `````
 

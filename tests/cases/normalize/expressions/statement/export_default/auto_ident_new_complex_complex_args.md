@@ -65,7 +65,7 @@ const a = $( $ );
 const b = $( 1 );
 const c = $( 2 );
 const d = new a( b, c );
-export { d as default from "undefined"
+export { d as default };
 const e = {
 a: 999,
 b: 1000

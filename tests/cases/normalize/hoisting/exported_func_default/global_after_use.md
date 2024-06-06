@@ -66,7 +66,7 @@ const a = function() {
 };
 const c = $( 2 );
 $( c );
-export { a as default from "undefined"
+export { a as default };
 `````
 
 ## Globals

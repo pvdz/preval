@@ -79,7 +79,7 @@ const a = function() {
   $( b );
   return undefined;
 };
-export { a as default from "undefined"
+export { a as default };
 `````
 
 ## Globals

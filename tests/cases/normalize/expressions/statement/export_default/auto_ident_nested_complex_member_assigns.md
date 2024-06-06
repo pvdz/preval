@@ -127,7 +127,7 @@ g[h] = 3;
 e[f] = 3;
 c[d] = 3;
 const o = 3;
-export { o as default from "undefined"
+export { o as default };
 $( b, a, 3 );
 `````
 

@@ -88,7 +88,7 @@ else {
     b = $( d );
   }
 }
-export { b as a from "undefined"
+export { b as a };
 $( b );
 `````
 

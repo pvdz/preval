@@ -104,7 +104,7 @@ else {
     a = i;
   }
 }
-export { a as a from "undefined"
+export { a as a };
 $( a );
 `````
 

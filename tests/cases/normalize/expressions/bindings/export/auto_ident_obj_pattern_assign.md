@@ -72,7 +72,7 @@ x: b,
 y: c
 ;
 a = d;
-export { a as a from "undefined"
+export { a as a };
 $( a, b, c );
 `````
 

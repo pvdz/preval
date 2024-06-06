@@ -63,7 +63,7 @@ b: 1000
 const b = $( 1 );
 const c = $( 3 );
 const d = [ b, 2, c ];
-export { d as default from "undefined"
+export { d as default };
 $( a );
 `````
 

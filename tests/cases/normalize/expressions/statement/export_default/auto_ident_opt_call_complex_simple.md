@@ -76,7 +76,7 @@ else {
   const d = $dotCall( b, $, 1 );
   a = d;
 }
-export { a as default from "undefined"
+export { a as default };
 const e = {
 a: 999,
 b: 1000

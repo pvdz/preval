@@ -85,7 +85,7 @@ else {
   const d = $( 2 );
   b = $( d );
 }
-export { b as a from "undefined"
+export { b as a };
 $( b );
 `````
 

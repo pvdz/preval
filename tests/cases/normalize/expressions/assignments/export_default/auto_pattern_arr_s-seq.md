@@ -80,7 +80,7 @@ const d = [ 1, 2 ];
 const e = [ ... d ];
 const f = e[ 0 ];
 c = d;
-export { c as default from "undefined"
+export { c as default };
 $( f );
 `````
 

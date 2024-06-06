@@ -72,7 +72,7 @@ $( 1 );
 $( 2 );
 const c = $( "y" );
 const d = deletea[ c ];
-export { d as default from "undefined"
+export { d as default };
 $( b, a );
 `````
 

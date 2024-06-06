@@ -67,7 +67,7 @@ let b = $( a );
 if (b) {
   b = 2;
 }
-export { b as default from "undefined"
+export { b as default };
 const c = {
 a: 999,
 b: 1000

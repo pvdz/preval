@@ -112,7 +112,7 @@ else {
     d = k;
   }
 }
-export { d as default from "undefined"
+export { d as default };
 $( c );
 `````
 

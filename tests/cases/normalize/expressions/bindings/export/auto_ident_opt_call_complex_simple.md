@@ -72,7 +72,7 @@ else {
   const d = $dotCall( b, $, 1 );
   a = d;
 }
-export { a as a from "undefined"
+export { a as a };
 $( a );
 `````
 

@@ -89,7 +89,7 @@ const g = $( 3 );
 e[f] = g;
 c[d] = g;
 const h = g;
-export { h as default from "undefined"
+export { h as default };
 $( g, a, b, 3 );
 `````
 

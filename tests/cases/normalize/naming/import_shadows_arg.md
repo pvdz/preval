@@ -72,8 +72,8 @@ const a = function($$0 ) {
 };
 const d = f();
 const e = $( d );
-export { e as x from "undefined"
-export { a as g from "undefined"
+export { e as x };
+export { a as g };
 `````
 
 ## Globals

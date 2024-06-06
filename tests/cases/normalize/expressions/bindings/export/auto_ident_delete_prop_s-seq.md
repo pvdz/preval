@@ -61,7 +61,7 @@ $( 1 );
 $( 2 );
 const a = { y: 1 };
 const b = deletea.y;
-export { b as a from "undefined"
+export { b as a };
 $( b, a );
 `````
 

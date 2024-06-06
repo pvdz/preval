@@ -66,7 +66,7 @@ const a = function() {
 };
 const c = $( 2 );
 $( c );
-export { a as f from "undefined"
+export { a as f };
 `````
 
 ## Globals

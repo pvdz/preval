@@ -58,8 +58,8 @@ const blob = [2, 3];
 try {
   $(`try`, 1);
 } catch (e) {
-  const tmpCalleeParam$1 = blob.shift();
-  $(`catch`, tmpCalleeParam$1);
+  const tmpCalleeParam$5 = blob.shift();
+  $(`catch`, tmpCalleeParam$5);
 }
 $(`after`, blob);
 `````

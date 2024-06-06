@@ -44,8 +44,8 @@ const a = x;
 try {
   $();
 } catch (e) {
-  const b$1 = x;
-  $(a, b$1);
+  const b = x;
+  $(a, b);
   $(f);
 }
 `````
@@ -69,8 +69,8 @@ const a = x;
 try {
   $();
 } catch (e) {
-  const b$2 = x;
-  $(a, b$2);
+  const b = x;
+  $(a, b);
   $(f);
 }
 `````

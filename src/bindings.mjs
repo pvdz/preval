@@ -384,6 +384,7 @@ export function registerGlobalIdent(
   originalName,
   { isExport = false, isImplicitGlobal = false, isBuiltin = false, ...rest } = {},
 ) {
+
   ASSERT(!/^\$\$\d+$/.test(name), 'param placeholders should not reach this place', name);
   ASSERT(Object.keys(rest).length === 0, 'invalid args', rest);
 
@@ -803,6 +804,7 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
   do {
     vgroup('Checking scope... (sid=', s.$sid, ')');
     vlog('- type:', s.type, ', bindings?', s.names === Tenko.HAS_NO_BINDINGS ? 'no' : 'yes, ' + s.names.size);
+
     if (node.type === 'BlockStatement' && s.type === Tenko.SCOPE_LAYER_FUNC_PARAMS) {
       vlog('Breaking for function header scopes in Block');
       vgroupEnd();
@@ -849,6 +851,12 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
 
         if (!oncePass && (s.type === Tenko.SCOPE_LAYER_FUNC_PARAMS || s.type === Tenko.SCOPE_LAYER_ARROW_PARAMS)) {
           vlog('  - Skipping params because this is not the first pass?');
+          return;
+        }
+
+        if (parentNode?.type === 'CatchClause') {
+          // Not sure if Tenko bug or ... but this is causing redundant var renaming when defined in catch scopes
+          vlog('  - Skipping double catch scope');
           return;
         }
 

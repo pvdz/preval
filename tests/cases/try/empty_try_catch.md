@@ -2,7 +2,7 @@
 
 # empty_try_catch.md
 
-> Tofix > Empty try catch
+> Try > Empty try catch
 >
 > If the try is empty then the catch can't trigger and we can safely eliminate it
 

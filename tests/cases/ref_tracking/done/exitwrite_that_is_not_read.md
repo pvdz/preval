@@ -2,7 +2,7 @@
 
 # exitwrite_that_is_not_read.md
 
-> Tofix > Exitwrite that is not read
+> Ref tracking > Done > Exitwrite that is not read
 >
 > An exitWrite that is not read should be eliminated.
 > Pretty trivial case but.

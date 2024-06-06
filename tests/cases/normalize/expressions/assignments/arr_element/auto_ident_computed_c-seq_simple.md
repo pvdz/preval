@@ -52,14 +52,13 @@ $(a, b);
 const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $(`c`);
-let tmpSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-const tmpBinBothLhs = tmpSSA_a;
+const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 const tmpAssignRhsCompObj$1 = $(b);
 const tmpAssignRhsCompProp$1 = $(`c`);
-tmpSSA_a = tmpAssignRhsCompObj$1[tmpAssignRhsCompProp$1];
-const tmpCalleeParam = tmpBinBothLhs + tmpSSA_a;
+const tmpClusterSSA_a$1 = tmpAssignRhsCompObj$1[tmpAssignRhsCompProp$1];
+const tmpCalleeParam = tmpClusterSSA_a + tmpClusterSSA_a$1;
 $(tmpCalleeParam);
-$(tmpSSA_a, b);
+$(tmpClusterSSA_a$1, b);
 `````
 
 ## PST Output
@@ -70,14 +69,13 @@ With rename=true
 const a = { c: 1 };
 const b = $( a );
 const c = $( "c" );
-let d = b[ c ];
-const e = d;
-const f = $( a );
-const g = $( "c" );
-d = f[ g ];
-const h = e + d;
+const d = b[ c ];
+const e = $( a );
+const f = $( "c" );
+const g = e[ f ];
+const h = d + g;
 $( h );
-$( d, a );
+$( g, a );
 `````
 
 ## Globals

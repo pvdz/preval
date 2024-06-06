@@ -45,10 +45,10 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const tmpCallObj = $(b);
-const tmpSSA_a = tmpCallObj.$(1);
-const tmpAnonDefaultExport = tmpSSA_a;
+const tmpClusterSSA_a = tmpCallObj.$(1);
+const tmpAnonDefaultExport = tmpClusterSSA_a;
 export { tmpAnonDefaultExport as default };
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

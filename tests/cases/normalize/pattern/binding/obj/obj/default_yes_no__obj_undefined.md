@@ -53,13 +53,13 @@ $(`ok`);
 `````js filename=intro
 const tmpCalleeParam = { x: `pass` };
 const objPatternAfterDefault = $(tmpCalleeParam);
-let tmpSSA_objPatternCrashTest = objPatternAfterDefault === undefined;
-if (tmpSSA_objPatternCrashTest) {
+let tmpClusterSSA_objPatternCrashTest = objPatternAfterDefault === undefined;
+if (tmpClusterSSA_objPatternCrashTest) {
 } else {
-  tmpSSA_objPatternCrashTest = objPatternAfterDefault === null;
+  tmpClusterSSA_objPatternCrashTest = objPatternAfterDefault === null;
 }
-if (tmpSSA_objPatternCrashTest) {
-  tmpSSA_objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
+if (tmpClusterSSA_objPatternCrashTest) {
+  objPatternAfterDefault.cannotDestructureThis;
 } else {
 }
 $(`ok`);
@@ -80,7 +80,7 @@ else {
   c = b === null;
 }
 if (c) {
-  c = b.cannotDestructureThis;
+  b.cannotDestructureThis;
 }
 $( "ok" );
 `````

@@ -41,12 +41,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = new $(1);
-const tmpBinBothLhs = a;
-a = new $(1);
-const tmpCalleeParam = tmpBinBothLhs + a;
+const a = new $(1);
+const tmpClusterSSA_a = new $(1);
+const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output
@@ -54,12 +53,11 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = new $( 1 );
-const b = a;
-a = new $( 1 );
-const c = b + a;
+const a = new $( 1 );
+const b = new $( 1 );
+const c = a + b;
 $( c );
-$( a );
+$( b );
 `````
 
 ## Globals

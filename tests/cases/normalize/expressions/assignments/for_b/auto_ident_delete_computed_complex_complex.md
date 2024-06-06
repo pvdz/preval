@@ -57,8 +57,8 @@ let $tmpLoopUnrollCheck = true;
 const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-let tmpSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-if (tmpSSA_a) {
+let tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+if (tmpClusterSSA_a) {
   $(1);
 } else {
   $tmpLoopUnrollCheck = false;
@@ -67,8 +67,8 @@ if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     const tmpDeleteCompObj$1 = $(arg);
     const tmpDeleteCompProp$1 = $(`y`);
-    tmpSSA_a = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
-    if (tmpSSA_a) {
+    tmpClusterSSA_a = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
+    if (tmpClusterSSA_a) {
       $(1);
     } else {
       break;
@@ -76,7 +76,7 @@ if ($tmpLoopUnrollCheck) {
   }
 } else {
 }
-$(tmpSSA_a, arg);
+$(tmpClusterSSA_a, arg);
 `````
 
 ## PST Output

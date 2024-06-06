@@ -116,8 +116,8 @@ if (tmpBinLhs) {
   tmpIfTest = tmpBinLhs === tmpSwitchValue;
 } else {
   const tmpCalleeParam$3 = $(2);
-  tmpBinLhs = $(tmpCalleeParam$3);
-  tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  const tmpClusterSSA_tmpBinLhs = $(tmpCalleeParam$3);
+  tmpIfTest = tmpClusterSSA_tmpBinLhs === tmpSwitchValue;
 }
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -161,34 +161,34 @@ if (d) {
 }
 else {
   const g = $( 2 );
-  d = $( g );
-  f = d === a;
+  const h = $( g );
+  f = h === a;
 }
 if (f) {
   b = 0;
 }
 else {
-  const h = 2 === a;
-  if (h) {
+  const i = 2 === a;
+  if (i) {
     b = 2;
   }
 }
-const i = b <= 0;
-if (i) {
+const j = b <= 0;
+if (j) {
 
 }
 else {
-  const j = b <= 1;
-  if (j) {
+  const k = b <= 1;
+  if (k) {
     $( "fail1" );
   }
   $( "fail2" );
 }
-const k = {
+const l = {
 a: 999,
 b: 1000
 ;
-$( k );
+$( l );
 `````
 
 ## Globals

@@ -57,7 +57,6 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpObjLitVal = $(2);
@@ -65,11 +64,10 @@ if (tmpIfTest) {
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
   b = tmpNestedAssignObjPatternRhs.b;
   a = tmpNestedAssignObjPatternRhs;
-  tmpCalleeParam = tmpNestedAssignObjPatternRhs;
   $(tmpNestedAssignObjPatternRhs);
 } else {
-  tmpCalleeParam = $(200);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam = $(200);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
 $(a, b);
 `````
@@ -84,20 +82,18 @@ let b = {
 a: 999,
 b: 1000
 ;
-let c = undefined;
-const d = $( 1 );
-if (d) {
-  const e = $( 2 );
-  const f = { b: e };
-  const g = $( f );
-  a = g.b;
-  b = g;
-  c = g;
-  $( g );
+const c = $( 1 );
+if (c) {
+  const d = $( 2 );
+  const e = { b: d };
+  const f = $( e );
+  a = f.b;
+  b = f;
+  $( f );
 }
 else {
-  c = $( 200 );
-  $( c );
+  const g = $( 200 );
+  $( g );
 }
 $( b, a );
 `````

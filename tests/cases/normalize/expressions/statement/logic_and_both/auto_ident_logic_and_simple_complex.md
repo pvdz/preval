@@ -52,9 +52,8 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-let tmpIfTest = $(tmpCalleeParam);
-if (tmpIfTest) {
-  tmpIfTest = true;
+const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam);
+if (tmpClusterSSA_tmpIfTest) {
   const tmpCalleeParam$1 = $(1);
   $(tmpCalleeParam$1);
 } else {
@@ -69,9 +68,8 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = $( a );
+const b = $( a );
 if (b) {
-  b = true;
   const c = $( 1 );
   $( c );
 }

@@ -56,12 +56,13 @@ $(a, b);
 ## Output
 
 `````js filename=intro
+const b = [];
 const a = { a: 999, b: 1000 };
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-const tmpSSA_b = arrPatternSplat[0];
+arrPatternSplat[0];
 $(tmpNestedAssignArrPatternRhs);
 $(1);
 $(tmpNestedAssignArrPatternRhs);
@@ -88,7 +89,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedAssignArrPatternRhs);
   $(1);
 }
-$(a, tmpSSA_b);
+$(a, b);
 `````
 
 ## PST Output
@@ -96,42 +97,43 @@ $(a, tmpSSA_b);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = [];
+const b = {
 a: 999,
 b: 1000
 ;
-const b = $( 2 );
-const c = [ b ];
-const d = $( c );
-const e = [ ... d ];
-const f = e[ 0 ];
-$( d );
+const c = $( 2 );
+const d = [ c ];
+const e = $( d );
+const f = [ ... e ];
+f[ 0 ];
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( d );
+  $( e );
   $( 1 );
 }
-$( a, f );
+$( b, a );
 `````
 
 ## Globals

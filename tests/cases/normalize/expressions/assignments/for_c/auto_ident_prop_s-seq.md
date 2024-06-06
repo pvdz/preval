@@ -52,20 +52,15 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-const $tmpLoopUnrollCheck = tmpIfTest;
-if (tmpIfTest) {
-  a = 1;
-  tmpIfTest = $(1);
-} else {
-}
 const b = { c: 1 };
-if ($tmpLoopUnrollCheck) {
+const a = { a: 999, b: 1000 };
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      a = b.c;
-      tmpIfTest = $(1);
+    if (tmpClusterSSA_tmpIfTest) {
+      b.c;
+      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -80,29 +75,25 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-let a = {
+const a = { c: 1 };
+const b = {
 a: 999,
 b: 1000
 ;
-let b = $( 1 );
-const c = b;
-if (b) {
-  a = 1;
-  b = $( 1 );
-}
-const d = { c: 1 };
+const c = $( 1 );
 if (c) {
+  let d = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (b) {
-      a = d.c;
-      b = $( 1 );
+    if (d) {
+      a.c;
+      d = $( 1 );
     }
     else {
       break;
     }
   }
 }
-$( a, d );
+$( b, a );
 `````
 
 ## Globals

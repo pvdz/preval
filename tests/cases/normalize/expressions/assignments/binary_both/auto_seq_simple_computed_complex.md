@@ -53,18 +53,16 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-let a = { b: tmpObjLitVal };
-const tmpBinBothLhs = a;
+const a = { b: tmpObjLitVal };
 const tmpObjLitVal$1 = $(1);
-a = { b: tmpObjLitVal$1 };
-const tmpCalleeParam = tmpBinBothLhs + a;
+const tmpClusterSSA_a = { b: tmpObjLitVal$1 };
+const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(1);
-const tmpAssignComMemLhsObj = a;
 const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
-tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-$(a);
+tmpClusterSSA_a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output
@@ -73,18 +71,16 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = { b: a };
-const c = b;
-const d = $( 1 );
-b = { b: d };
-const e = c + b;
+const b = { b: a };
+const c = $( 1 );
+const d = { b: c };
+const e = b + d;
 $( e );
 $( 1 );
-const f = b;
-const g = $( "b" );
-const h = $( 2 );
-f[g] = h;
-$( b );
+const f = $( "b" );
+const g = $( 2 );
+d[f] = g;
+$( d );
 `````
 
 ## Globals

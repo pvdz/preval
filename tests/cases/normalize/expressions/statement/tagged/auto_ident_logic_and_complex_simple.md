@@ -47,9 +47,8 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = [`before `, ` after`];
 const tmpCalleeParam$3 = $(1);
-let tmpCalleeParam$1 = $(tmpCalleeParam$3);
+const tmpCalleeParam$1 = $(tmpCalleeParam$3);
 if (tmpCalleeParam$1) {
-  tmpCalleeParam$1 = 2;
   $(tmpCalleeParam, 2);
 } else {
   $(tmpCalleeParam, tmpCalleeParam$1);
@@ -68,9 +67,8 @@ b: 1000
 ;
 const b = [ "before ", " after" ];
 const c = $( 1 );
-let d = $( c );
+const d = $( c );
 if (d) {
-  d = 2;
   $( b, 2 );
 }
 else {

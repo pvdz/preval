@@ -68,9 +68,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 const f = function () {
   debugger;
-  let x = $(1);
+  const x = $(1);
   $(x);
-  x = 10;
   return undefined;
 };
 f();
@@ -86,9 +85,8 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  let b = $( 1 );
+  const b = $( 1 );
   $( b );
-  b = 10;
   return undefined;
 };
 a();

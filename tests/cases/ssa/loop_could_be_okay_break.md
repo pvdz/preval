@@ -70,16 +70,16 @@ if ($) {
 if ($) {
   $(1);
   let $tmpLoopUnrollCheck = true;
-  let x = $(2);
-  $(x);
+  const tmpClusterSSA_x = $(2);
+  $(tmpClusterSSA_x);
   if ($) {
     $tmpLoopUnrollCheck = false;
   } else {
   }
   if ($tmpLoopUnrollCheck) {
     while ($LOOP_UNROLL_10) {
-      x = $(2);
-      $(x);
+      const tmpClusterSSA_x$1 = $(2);
+      $(tmpClusterSSA_x$1);
       if ($) {
         break;
       } else {
@@ -99,15 +99,15 @@ With rename=true
 if ($) {
   $( 1 );
   let a = true;
-  let b = $( 2 );
+  const b = $( 2 );
   $( b );
   if ($) {
     a = false;
   }
   if (a) {
     while ($LOOP_UNROLL_10) {
-      b = $( 2 );
-      $( b );
+      const c = $( 2 );
+      $( c );
       if ($) {
         break;
       }

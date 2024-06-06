@@ -53,14 +53,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = undefined;
 let xyz = undefined;
 const tmpIfTest = $ == null;
 if (tmpIfTest) {
   $(undefined);
 } else {
   const tmpChainElementCall = $(1);
-  a = tmpChainElementCall;
   xyz = tmpChainElementCall;
   $(tmpChainElementCall);
 }
@@ -89,7 +87,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
 }
-$(a);
+$(undefined);
 `````
 
 ## PST Output
@@ -98,43 +96,41 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-let b = undefined;
-const c = $ == null;
-if (c) {
+const b = $ == null;
+if (b) {
   $( undefined );
 }
 else {
-  const d = $( 1 );
-  a = d;
-  b = d;
-  $( d );
+  const c = $( 1 );
+  a = c;
+  $( c );
 }
 $( 1 );
-$( b );
+$( a );
 $( 1 );
-$( b );
+$( a );
 $( 1 );
-$( b );
+$( a );
 $( 1 );
-$( b );
+$( a );
 $( 1 );
-$( b );
+$( a );
 $( 1 );
-$( b );
+$( a );
 $( 1 );
-$( b );
+$( a );
 $( 1 );
-$( b );
+$( a );
 $( 1 );
-$( b );
+$( a );
 $( 1 );
-$( b );
+$( a );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( b );
+  $( a );
   $( 1 );
 }
-$( a );
+$( undefined );
 `````
 
 ## Globals

@@ -100,15 +100,8 @@ $(3);
 ## Output
 
 `````js filename=intro
-let tmpSwitchCaseToStart = 1;
-let tmpIfTest$1 = true;
 const tmpIfTest = $ === $;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-}
-if (tmpIfTest$1) {
   try {
     $(x, 1);
   } catch ($finalImplicit) {}
@@ -124,20 +117,12 @@ $(3);
 With rename=true
 
 `````js filename=intro
-let a = 1;
-let b = true;
-const c = $ === $;
-if (c) {
-  a = 0;
-}
-else {
-  b = a <= 0;
-}
-if (b) {
+const a = $ === $;
+if (a) {
   try {
     $( x, 1 );
   }
-catch (d) {
+catch (b) {
 
   }
   $( 2 );

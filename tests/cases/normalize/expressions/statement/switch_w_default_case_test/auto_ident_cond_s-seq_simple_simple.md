@@ -98,8 +98,8 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $(2);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpClusterSSA_tmpBinLhs = $(2);
+const tmpIfTest = tmpClusterSSA_tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {

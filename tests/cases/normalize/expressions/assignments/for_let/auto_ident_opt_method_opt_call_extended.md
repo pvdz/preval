@@ -66,7 +66,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = undefined;
 let xyz = undefined;
 const tmpIfTest$1 = $ == null;
 if (tmpIfTest$1) {
@@ -74,7 +73,6 @@ if (tmpIfTest$1) {
 } else {
   const tmpObjLitVal$1 = { e: $ };
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
-  a = tmpChainElementCall;
   xyz = tmpChainElementCall;
   $(tmpChainElementCall);
 }
@@ -103,7 +101,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
 }
-$(a);
+$(undefined);
 `````
 
 ## PST Output
@@ -112,44 +110,42 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-let b = undefined;
-const c = $ == null;
-if (c) {
+const b = $ == null;
+if (b) {
   $( undefined );
 }
 else {
-  const d = { e: $ };
-  const e = $dotCall( $, d, 1 );
-  a = e;
-  b = e;
-  $( e );
+  const c = { e: $ };
+  const d = $dotCall( $, c, 1 );
+  a = d;
+  $( d );
 }
 $( 1 );
-$( b );
+$( a );
 $( 1 );
-$( b );
+$( a );
 $( 1 );
-$( b );
+$( a );
 $( 1 );
-$( b );
+$( a );
 $( 1 );
-$( b );
+$( a );
 $( 1 );
-$( b );
+$( a );
 $( 1 );
-$( b );
+$( a );
 $( 1 );
-$( b );
+$( a );
 $( 1 );
-$( b );
+$( a );
 $( 1 );
-$( b );
+$( a );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( b );
+  $( a );
   $( 1 );
 }
-$( a );
+$( undefined );
 `````
 
 ## Globals

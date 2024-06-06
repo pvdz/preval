@@ -50,11 +50,11 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const tmpAssignRhsProp = $(b);
-const tmpSSA_a = tmpAssignRhsProp.c;
-const tmpBinBothRhs = $coerce(tmpSSA_a, `string`);
+const tmpClusterSSA_a = tmpAssignRhsProp.c;
+const tmpBinBothRhs = $coerce(tmpClusterSSA_a, `string`);
 const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
-$(tmpSSA_a, b);
+$(tmpClusterSSA_a, b);
 `````
 
 ## PST Output

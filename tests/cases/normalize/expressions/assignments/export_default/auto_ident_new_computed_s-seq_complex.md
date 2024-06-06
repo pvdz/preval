@@ -48,10 +48,10 @@ $(a);
 const tmpCompProp = $(`\$`);
 const b = { $: $ };
 const tmpNewCallee = b[tmpCompProp];
-const tmpSSA_a = new tmpNewCallee(1);
-const tmpAnonDefaultExport = tmpSSA_a;
+const tmpClusterSSA_a = new tmpNewCallee(1);
+const tmpAnonDefaultExport = tmpClusterSSA_a;
 export { tmpAnonDefaultExport as default };
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

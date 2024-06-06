@@ -60,15 +60,14 @@ $(a);
 `````js filename=intro
 const f = function () {
   debugger;
-  let tmpReturnArg = undefined;
   const tmpIfTest = $(30);
   if (tmpIfTest) {
-    tmpReturnArg = $(2);
-    return tmpReturnArg;
+    const tmpClusterSSA_tmpReturnArg = $(2);
+    return tmpClusterSSA_tmpReturnArg;
   } else {
     const tmpCalleeParam = $(100);
-    tmpReturnArg = $(tmpCalleeParam);
-    return tmpReturnArg;
+    const tmpClusterSSA_tmpReturnArg$1 = $(tmpCalleeParam);
+    return tmpClusterSSA_tmpReturnArg$1;
   }
 };
 const tmpCalleeParam$1 = f();
@@ -84,25 +83,24 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  let b = undefined;
-  const c = $( 30 );
-  if (c) {
-    b = $( 2 );
-    return b;
+  const b = $( 30 );
+  if (b) {
+    const c = $( 2 );
+    return c;
   }
   else {
     const d = $( 100 );
-    b = $( d );
-    return b;
+    const e = $( d );
+    return e;
   }
 };
-const e = a();
-$( e );
-const f = {
+const f = a();
+$( f );
+const g = {
 a: 999,
 b: 1000
 ;
-$( f );
+$( g );
 `````
 
 ## Globals

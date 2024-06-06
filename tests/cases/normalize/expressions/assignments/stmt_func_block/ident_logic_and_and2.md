@@ -111,16 +111,16 @@ $(undefined);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-let theneedle = $(tmpCalleeParam);
+const theneedle = $(tmpCalleeParam);
 if (theneedle) {
   const tmpCalleeParam$3 = $(1);
-  theneedle = $(tmpCalleeParam$3);
-  if (theneedle) {
+  const tmpClusterSSA_theneedle = $(tmpCalleeParam$3);
+  if (tmpClusterSSA_theneedle) {
     const tmpCalleeParam$7 = $(2);
-    theneedle = $(tmpCalleeParam$7);
-    $(theneedle);
+    const tmpClusterSSA_theneedle$1 = $(tmpCalleeParam$7);
+    $(tmpClusterSSA_theneedle$1);
   } else {
-    $(theneedle);
+    $(tmpClusterSSA_theneedle);
   }
 } else {
   $(theneedle);
@@ -134,17 +134,17 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = $( a );
+const b = $( a );
 if (b) {
   const c = $( 1 );
-  b = $( c );
-  if (b) {
-    const d = $( 2 );
-    b = $( d );
-    $( b );
+  const d = $( c );
+  if (d) {
+    const e = $( 2 );
+    const f = $( e );
+    $( f );
   }
   else {
-    $( b );
+    $( d );
   }
 }
 else {

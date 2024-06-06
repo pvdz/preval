@@ -58,8 +58,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpReturnArg = $(2);
-$(tmpReturnArg);
+const tmpCalleeParam$1 = $(2);
+$(tmpCalleeParam$1);
 const a = { a: 999, b: 1000 };
 $(a);
 `````

@@ -63,9 +63,9 @@ f();
 ## Output
 
 `````js filename=intro
-let t = $(1);
+const t = $(1);
 if (t) {
-  t = $(2);
+  $(2);
 } else {
 }
 `````
@@ -75,9 +75,9 @@ if (t) {
 With rename=true
 
 `````js filename=intro
-let a = $( 1 );
+const a = $( 1 );
 if (a) {
-  a = $( 2 );
+  $( 2 );
 }
 `````
 

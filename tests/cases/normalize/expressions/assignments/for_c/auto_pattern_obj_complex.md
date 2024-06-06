@@ -51,26 +51,25 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = 999;
-let tmpIfTest = $(1);
+const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpCalleeParam = { a: 1, b: 2 };
   const tmpAssignObjPatternRhs = $(tmpCalleeParam);
-  a = tmpAssignObjPatternRhs.a;
-  tmpIfTest = $(1);
+  tmpAssignObjPatternRhs.a;
+  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       const tmpCalleeParam$1 = { a: 1, b: 2 };
       const tmpAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
-      a = tmpAssignObjPatternRhs$1.a;
-      tmpIfTest = $(1);
+      tmpAssignObjPatternRhs$1.a;
+      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
   }
 } else {
 }
-$(a);
+$(999);
 `````
 
 ## PST Output
@@ -78,32 +77,31 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = 999;
-let b = $( 1 );
-if (b) {
-  const c = {
+const a = $( 1 );
+if (a) {
+  const b = {
 a: 1,
 b: 2
   ;
-  const d = $( c );
-  a = d.a;
-  b = $( 1 );
+  const c = $( b );
+  c.a;
+  let d = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (b) {
+    if (d) {
       const e = {
 a: 1,
 b: 2
       ;
       const f = $( e );
-      a = f.a;
-      b = $( 1 );
+      f.a;
+      d = $( 1 );
     }
     else {
       break;
     }
   }
 }
-$( a );
+$( 999 );
 `````
 
 ## Globals

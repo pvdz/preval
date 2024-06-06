@@ -56,14 +56,14 @@ if (x) {
 ## Output
 
 `````js filename=intro
-let x = $(1);
+const x = $(1);
 if (x) {
 } else {
   $(x, `pass`);
-  x = $(1);
-  if (x) {
+  const tmpClusterSSA_x = $(1);
+  if (tmpClusterSSA_x) {
   } else {
-    $(x, `hit`);
+    $(tmpClusterSSA_x, `hit`);
   }
 }
 `````
@@ -73,18 +73,18 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-let a = $( 1 );
+const a = $( 1 );
 if (a) {
 
 }
 else {
   $( a, "pass" );
-  a = $( 1 );
-  if (a) {
+  const b = $( 1 );
+  if (b) {
 
   }
   else {
-    $( a, "hit" );
+    $( b, "hit" );
   }
 }
 `````

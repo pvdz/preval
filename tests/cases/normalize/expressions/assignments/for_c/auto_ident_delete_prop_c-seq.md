@@ -54,27 +54,22 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-let $tmpLoopUnrollCheck = true;
 const arg = { y: 1 };
+const a = { a: 999, b: 1000 };
+const tmpIfTest = $(1);
 if (tmpIfTest) {
   $(1);
   $(2);
   const tmpDeleteObj = $(arg);
-  a = delete tmpDeleteObj.y;
-  tmpIfTest = $(1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  delete tmpDeleteObj.y;
+  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       $(1);
       $(2);
       const tmpDeleteObj$1 = $(arg);
-      a = delete tmpDeleteObj$1.y;
-      tmpIfTest = $(1);
+      delete tmpDeleteObj$1.y;
+      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -89,38 +84,32 @@ $(a, arg);
 With rename=true
 
 `````js filename=intro
-let a = {
+const a = { y: 1 };
+const b = {
 a: 999,
 b: 1000
 ;
-let b = $( 1 );
-let c = true;
-const d = { y: 1 };
-if (b) {
+const c = $( 1 );
+if (c) {
   $( 1 );
   $( 2 );
-  const e = $( d );
-  a = deletee.y;
-  b = $( 1 );
-}
-else {
-  c = false;
-}
-if (c) {
+  const d = $( a );
+  deleted.y;
+  let e = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (b) {
+    if (e) {
       $( 1 );
       $( 2 );
-      const f = $( d );
-      a = deletef.y;
-      b = $( 1 );
+      const f = $( a );
+      deletef.y;
+      e = $( 1 );
     }
     else {
       break;
     }
   }
 }
-$( a, d );
+$( b, a );
 `````
 
 ## Globals

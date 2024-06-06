@@ -50,10 +50,10 @@ $(a);
 const b = { $: $ };
 const tmpCompProp = $(`\$`);
 const tmpNewCallee = b[tmpCompProp];
-const tmpSSA_a = new tmpNewCallee(1);
-const tmpCalleeParam = { [tmpSSA_a]: 10 };
+const tmpClusterSSA_a = new tmpNewCallee(1);
+const tmpCalleeParam = { [tmpClusterSSA_a]: 10 };
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

@@ -49,15 +49,14 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
-const tmpSSA_a = tmpNestedAssignObjPatternRhs.a;
-let tmpSSA_tmpCalleeParam = tmpNestedAssignObjPatternRhs;
+const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
 if (tmpNestedAssignObjPatternRhs) {
   $(tmpNestedAssignObjPatternRhs);
 } else {
-  tmpSSA_tmpCalleeParam = $(100);
-  $(tmpSSA_tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(100);
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output
@@ -71,12 +70,11 @@ b: 2
 ;
 const b = $( a );
 const c = b.a;
-let d = b;
 if (b) {
   $( b );
 }
 else {
-  d = $( 100 );
+  const d = $( 100 );
   $( d );
 }
 $( c );

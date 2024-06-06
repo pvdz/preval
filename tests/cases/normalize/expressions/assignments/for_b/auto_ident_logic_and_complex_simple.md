@@ -67,7 +67,6 @@ if ($tmpLoopUnrollCheck) {
     const tmpCalleeParam$1 = $(1);
     a = $(tmpCalleeParam$1);
     if (a) {
-      a = 2;
       $(1);
     } else {
       break;
@@ -98,7 +97,6 @@ if (a) {
     const d = $( 1 );
     c = $( d );
     if (c) {
-      c = 2;
       $( 1 );
     }
     else {

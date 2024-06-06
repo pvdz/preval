@@ -121,8 +121,8 @@ if (chk) {
   while ($LOOP_UNROLL_10) {
     if (test) {
       const y = $(1);
-      test = $(y);
-      if (test) {
+      const tmpClusterSSA_test = $(y);
+      if (tmpClusterSSA_test) {
         $(100);
         test = true;
       } else {
@@ -157,8 +157,8 @@ if (a) {
   while ($LOOP_UNROLL_10) {
     if (c) {
       const d = $( 1 );
-      c = $( d );
-      if (c) {
+      const e = $( d );
+      if (e) {
         $( 100 );
         c = true;
       }
@@ -171,11 +171,11 @@ if (a) {
     }
   }
 }
-const e = {
+const f = {
 a: 999,
 b: 1000
 ;
-$( e );
+$( f );
 `````
 
 ## Globals

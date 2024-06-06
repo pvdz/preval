@@ -53,12 +53,11 @@ const tmpCallCallee$1 = $($);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
 const a = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
-let tmpCalleeParam = a;
 if (a) {
-  tmpCalleeParam = $(100);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  $(tmpCalleeParam);
+  $(a);
 }
 $(a);
 `````
@@ -72,13 +71,12 @@ const a = $( $ );
 const b = $( 1 );
 const c = $( 2 );
 const d = a( b, c );
-let e = d;
 if (d) {
-  e = $( 100 );
+  const e = $( 100 );
   $( e );
 }
 else {
-  $( e );
+  $( d );
 }
 $( d );
 `````

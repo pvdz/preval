@@ -6,11 +6,11 @@
 >
 > A regex is always truthy
 
-The point of this check is to verify that the system treats regex like the object it is and not like an immutable primitive.
+The point of this check is to verify that the system treats regex like the
+object it is and not like an immutable primitive.
 
-It may fluke an optimization where it incorrectly eliminates and outlines the property. But at the time of writing, this was working correct.
-
-#TODO
+It may fluke an optimization where it incorrectly eliminates and outlines
+the property. But at the time of writing, this was working correct.
 
 ## Input
 
@@ -68,56 +68,56 @@ while (true) {
 ## Output
 
 `````js filename=intro
-let x = /foo/;
+const x = /foo/;
 const tmpCalleeParam = x.foo;
 $(tmpCalleeParam);
-x = /foo/;
-x.foo = `object`;
-const tmpCalleeParam$1 = x.foo;
+const tmpClusterSSA_x = /foo/;
+tmpClusterSSA_x.foo = `object`;
+const tmpCalleeParam$1 = tmpClusterSSA_x.foo;
 $(tmpCalleeParam$1);
-x = /foo/;
-x.foo = `object`;
-const tmpCalleeParam$2 = x.foo;
+const tmpClusterSSA_x$1 = /foo/;
+tmpClusterSSA_x$1.foo = `object`;
+const tmpCalleeParam$2 = tmpClusterSSA_x$1.foo;
 $(tmpCalleeParam$2);
-x = /foo/;
-x.foo = `object`;
-const tmpCalleeParam$3 = x.foo;
+const tmpClusterSSA_x$2 = /foo/;
+tmpClusterSSA_x$2.foo = `object`;
+const tmpCalleeParam$3 = tmpClusterSSA_x$2.foo;
 $(tmpCalleeParam$3);
-x = /foo/;
-x.foo = `object`;
-const tmpCalleeParam$4 = x.foo;
+const tmpClusterSSA_x$3 = /foo/;
+tmpClusterSSA_x$3.foo = `object`;
+const tmpCalleeParam$4 = tmpClusterSSA_x$3.foo;
 $(tmpCalleeParam$4);
-x = /foo/;
-x.foo = `object`;
-const tmpCalleeParam$5 = x.foo;
+const tmpClusterSSA_x$4 = /foo/;
+tmpClusterSSA_x$4.foo = `object`;
+const tmpCalleeParam$5 = tmpClusterSSA_x$4.foo;
 $(tmpCalleeParam$5);
-x = /foo/;
-x.foo = `object`;
-const tmpCalleeParam$6 = x.foo;
+const tmpClusterSSA_x$5 = /foo/;
+tmpClusterSSA_x$5.foo = `object`;
+const tmpCalleeParam$6 = tmpClusterSSA_x$5.foo;
 $(tmpCalleeParam$6);
-x = /foo/;
-x.foo = `object`;
-const tmpCalleeParam$7 = x.foo;
+const tmpClusterSSA_x$6 = /foo/;
+tmpClusterSSA_x$6.foo = `object`;
+const tmpCalleeParam$7 = tmpClusterSSA_x$6.foo;
 $(tmpCalleeParam$7);
-x = /foo/;
-x.foo = `object`;
-const tmpCalleeParam$8 = x.foo;
+const tmpClusterSSA_x$7 = /foo/;
+tmpClusterSSA_x$7.foo = `object`;
+const tmpCalleeParam$8 = tmpClusterSSA_x$7.foo;
 $(tmpCalleeParam$8);
-x = /foo/;
-x.foo = `object`;
-const tmpCalleeParam$9 = x.foo;
+const tmpClusterSSA_x$8 = /foo/;
+tmpClusterSSA_x$8.foo = `object`;
+const tmpCalleeParam$9 = tmpClusterSSA_x$8.foo;
 $(tmpCalleeParam$9);
-x = /foo/;
-x.foo = `object`;
-const tmpCalleeParam$10 = x.foo;
+const tmpClusterSSA_x$9 = /foo/;
+tmpClusterSSA_x$9.foo = `object`;
+const tmpCalleeParam$10 = tmpClusterSSA_x$9.foo;
 $(tmpCalleeParam$10);
-x = /foo/;
-x.foo = `object`;
+let tmpClusterSSA_x$10 = /foo/;
+tmpClusterSSA_x$10.foo = `object`;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCalleeParam$11 = x.foo;
+  const tmpCalleeParam$11 = tmpClusterSSA_x$10.foo;
   $(tmpCalleeParam$11);
-  x = /foo/;
-  x.foo = `object`;
+  tmpClusterSSA_x$10 = /foo/;
+  tmpClusterSSA_x$10.foo = `object`;
 }
 `````
 
@@ -126,56 +126,56 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 With rename=true
 
 `````js filename=intro
-let a = /foo/;
+const a = /foo/;
 const b = a.foo;
 $( b );
-a = /foo/;
-a.foo = "object";
-const c = a.foo;
-$( c );
-a = /foo/;
-a.foo = "object";
-const d = a.foo;
+const c = /foo/;
+c.foo = "object";
+const d = c.foo;
 $( d );
-a = /foo/;
-a.foo = "object";
-const e = a.foo;
-$( e );
-a = /foo/;
-a.foo = "object";
-const f = a.foo;
+const e = /foo/;
+e.foo = "object";
+const f = e.foo;
 $( f );
-a = /foo/;
-a.foo = "object";
-const g = a.foo;
-$( g );
-a = /foo/;
-a.foo = "object";
-const h = a.foo;
+const g = /foo/;
+g.foo = "object";
+const h = g.foo;
 $( h );
-a = /foo/;
-a.foo = "object";
-const i = a.foo;
-$( i );
-a = /foo/;
-a.foo = "object";
-const j = a.foo;
+const i = /foo/;
+i.foo = "object";
+const j = i.foo;
 $( j );
-a = /foo/;
-a.foo = "object";
-const k = a.foo;
-$( k );
-a = /foo/;
-a.foo = "object";
-const l = a.foo;
+const k = /foo/;
+k.foo = "object";
+const l = k.foo;
 $( l );
-a = /foo/;
-a.foo = "object";
+const m = /foo/;
+m.foo = "object";
+const n = m.foo;
+$( n );
+const o = /foo/;
+o.foo = "object";
+const p = o.foo;
+$( p );
+const q = /foo/;
+q.foo = "object";
+const r = q.foo;
+$( r );
+const s = /foo/;
+s.foo = "object";
+const t = s.foo;
+$( t );
+const u = /foo/;
+u.foo = "object";
+const v = u.foo;
+$( v );
+let w = /foo/;
+w.foo = "object";
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const m = a.foo;
-  $( m );
-  a = /foo/;
-  a.foo = "object";
+  const x = w.foo;
+  $( x );
+  w = /foo/;
+  w.foo = "object";
 }
 `````
 

@@ -90,7 +90,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpChainElementCall);
   $(1);
 }
-$(tmpChainElementCall);
+$(undefined);
 `````
 
 ## PST Output
@@ -126,7 +126,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( b );
   $( 1 );
 }
-$( b );
+$( undefined );
 `````
 
 ## Globals

@@ -86,7 +86,6 @@ $(a, b, c);
 
 `````js filename=intro
 const b = { x: 1 };
-let a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
@@ -109,9 +108,9 @@ if (tmpIfTest) {
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-  a = 3;
   $(3, b, 3);
 } else {
+  const a = { a: 999, b: 1000 };
   $(a, b, 3);
 }
 `````
@@ -122,37 +121,36 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-let b = {
-a: 999,
-b: 1000
-;
+const b = $( 1 );
 const c = $( 1 );
-const d = $( 1 );
-const e = c === d;
-if (e) {
-  const f = $( a );
-  const g = $( "x" );
-  const h = $( a );
-  const i = $( "x" );
-  const j = $( a );
-  const k = $( "x" );
-  const l = $( a );
-  const m = $( "x" );
-  const n = $( a );
-  const o = $( "x" );
-  const p = $( a );
-  const q = $( "x" );
-  p[q] = 3;
-  n[o] = 3;
-  l[m] = 3;
-  j[k] = 3;
-  h[i] = 3;
-  f[g] = 3;
-  b = 3;
+const d = b === c;
+if (d) {
+  const e = $( a );
+  const f = $( "x" );
+  const g = $( a );
+  const h = $( "x" );
+  const i = $( a );
+  const j = $( "x" );
+  const k = $( a );
+  const l = $( "x" );
+  const m = $( a );
+  const n = $( "x" );
+  const o = $( a );
+  const p = $( "x" );
+  o[p] = 3;
+  m[n] = 3;
+  k[l] = 3;
+  i[j] = 3;
+  g[h] = 3;
+  e[f] = 3;
   $( 3, a, 3 );
 }
 else {
-  $( b, a, 3 );
+  const q = {
+a: 999,
+b: 1000
+  ;
+  $( q, a, 3 );
 }
 `````
 

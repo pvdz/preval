@@ -123,24 +123,19 @@ $(tmpArrElement$18);
 $(tmpArrElement$20);
 const tmpArrElement$19 = $(3);
 const tmpArrElement$21 = $(4);
-const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$19, tmpArrElement$21];
-const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
-let tmpSSA_x$2 = arrPatternSplat$1[0];
-let tmpSSA_y$2 = arrPatternSplat$1[1];
-let tmpSSA_a$2 = tmpNestedAssignArrPatternRhs$1;
+let tmpClusterSSA_x$2 = tmpArrElement$19;
+let tmpClusterSSA_y$2 = tmpArrElement$21;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  $(tmpSSA_x$2);
-  $(tmpSSA_y$2);
+  $(tmpClusterSSA_x$2);
+  $(tmpClusterSSA_y$2);
   const tmpArrElement$22 = $(3);
   const tmpArrElement$24 = $(4);
-  const tmpNestedAssignArrPatternRhs$2 = [tmpArrElement$22, tmpArrElement$24];
-  const arrPatternSplat$2 = [...tmpNestedAssignArrPatternRhs$2];
-  tmpSSA_x$2 = arrPatternSplat$2[0];
-  tmpSSA_y$2 = arrPatternSplat$2[1];
-  tmpSSA_a$2 = tmpNestedAssignArrPatternRhs$2;
+  tmpClusterSSA_x$2 = tmpArrElement$22;
+  tmpClusterSSA_y$2 = tmpArrElement$24;
 }
-$(tmpSSA_a$2, tmpSSA_x$2, tmpSSA_y$2);
+const a = { a: 999, b: 1000 };
+$(a, 1, 2);
 `````
 
 ## PST Output
@@ -203,24 +198,22 @@ $( s );
 $( t );
 const u = $( 3 );
 const v = $( 4 );
-const w = [ u, v ];
-const x = [ ... w ];
-let y = x[ 0 ];
-let z = x[ 1 ];
-let 01 = w;
+let w = u;
+let x = v;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  $( y );
-  $( z );
-  const 11 = $( 3 );
-  const 21 = $( 4 );
-  const 31 = [ 11, 21 ];
-  const 41 = [ ... 31 ];
-  y = 41[ 0 ];
-  z = 41[ 1 ];
-  01 = 31;
+  $( w );
+  $( x );
+  const y = $( 3 );
+  const z = $( 4 );
+  w = y;
+  x = z;
 }
-$( 01, y, z );
+const 01 = {
+a: 999,
+b: 1000
+;
+$( 01, 1, 2 );
 `````
 
 ## Globals

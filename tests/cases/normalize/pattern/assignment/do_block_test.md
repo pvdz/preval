@@ -104,15 +104,15 @@ arrPatternSplat$9[0];
 arrPatternSplat$9[1];
 const arrAssignPatternRhs$10 = $(b);
 const arrPatternSplat$10 = [...arrAssignPatternRhs$10];
-let tmpSSA_p$2 = arrPatternSplat$10[0];
-let tmpSSA_q$2 = arrPatternSplat$10[1];
+arrPatternSplat$10[0];
+arrPatternSplat$10[1];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const arrAssignPatternRhs$11 = $(b);
   const arrPatternSplat$11 = [...arrAssignPatternRhs$11];
-  tmpSSA_p$2 = arrPatternSplat$11[0];
-  tmpSSA_q$2 = arrPatternSplat$11[1];
+  arrPatternSplat$11[0];
+  arrPatternSplat$11[1];
 }
-$(tmpSSA_p$2, tmpSSA_q$2);
+$(undefined, undefined);
 `````
 
 ## PST Output
@@ -163,15 +163,15 @@ u[ 0 ];
 u[ 1 ];
 const v = $( a );
 const w = [ ... v ];
-let x = w[ 0 ];
-let y = w[ 1 ];
+w[ 0 ];
+w[ 1 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const z = $( a );
-  const 01 = [ ... z ];
-  x = 01[ 0 ];
-  y = 01[ 1 ];
+  const x = $( a );
+  const y = [ ... x ];
+  y[ 0 ];
+  y[ 1 ];
 }
-$( x, y );
+$( undefined, undefined );
 `````
 
 ## Globals

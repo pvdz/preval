@@ -56,15 +56,14 @@ let a = undefined;
 const b = { x: 1 };
 const tmpChainRootProp = $(b);
 const tmpIfTest = tmpChainRootProp == null;
-let tmpCalleeParam = undefined;
 if (tmpIfTest) {
-  tmpCalleeParam = tmpBinBothLhs + undefined;
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + undefined;
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;
   a = tmpChainElementObject;
-  tmpCalleeParam = tmpBinBothLhs + tmpChainElementObject;
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam$1 = tmpBinBothLhs + tmpChainElementObject;
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
 $(a);
 `````
@@ -79,16 +78,15 @@ let b = undefined;
 const c = { x: 1 };
 const d = $( c );
 const e = d == null;
-let f = undefined;
 if (e) {
-  f = a + undefined;
+  const f = a + undefined;
   $( f );
 }
 else {
   const g = d.x;
   b = g;
-  f = a + g;
-  $( f );
+  const h = a + g;
+  $( h );
 }
 $( b );
 `````

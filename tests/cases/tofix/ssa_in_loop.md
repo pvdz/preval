@@ -91,7 +91,7 @@ const s = $(10);
 let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 parseExpression(lexerFlags$285, astProp$181);
 let tmpClusterSSA_s = s | 10;
-let tmpClusterSSA_x = $(true);
+const tmpClusterSSA_x = $(true);
 if (tmpClusterSSA_x) {
 } else {
   $tmpLoopUnrollCheck = false;
@@ -100,8 +100,8 @@ let $tmpLoopUnrollCheck$1 = true;
 if ($tmpLoopUnrollCheck) {
   parseExpression(lexerFlags$285, astProp$181);
   tmpClusterSSA_s = tmpClusterSSA_s | 10;
-  tmpClusterSSA_x = $(true);
-  if (tmpClusterSSA_x) {
+  const tmpClusterSSA_x$1 = $(true);
+  if (tmpClusterSSA_x$1) {
   } else {
     $tmpLoopUnrollCheck$1 = false;
   }
@@ -113,8 +113,8 @@ if ($tmpLoopUnrollCheck$1) {
     if ($tmpLoopUnrollCheck) {
       parseExpression(lexerFlags$285, astProp$181);
       tmpClusterSSA_s = tmpClusterSSA_s | 10;
-      tmpClusterSSA_x = $(true);
-      if (tmpClusterSSA_x) {
+      const tmpClusterSSA_x$2 = $(true);
+      if (tmpClusterSSA_x$2) {
       } else {
         break;
       }
@@ -136,7 +136,7 @@ const a = $( 10 );
 let b = $LOOP_UNROLL_10;
 parseExpression( lexerFlags$285, astProp$181 );
 let c = a | 10;
-let d = $( true );
+const d = $( true );
 if (d) {
 
 }
@@ -147,8 +147,8 @@ let e = true;
 if (b) {
   parseExpression( lexerFlags$285, astProp$181 );
   c = c | 10;
-  d = $( true );
-  if (d) {
+  const f = $( true );
+  if (f) {
 
   }
   else {
@@ -163,8 +163,8 @@ if (e) {
     if (b) {
       parseExpression( lexerFlags$285, astProp$181 );
       c = c | 10;
-      d = $( true );
-      if (d) {
+      const g = $( true );
+      if (g) {
 
       }
       else {

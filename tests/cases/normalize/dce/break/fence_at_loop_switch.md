@@ -89,7 +89,7 @@ $(`after (not invoked)`);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = $(true);
+const tmpIfTest = $(true);
 if (tmpIfTest) {
   $(`loop`);
   const tmpSwitchDisc = $(true, `dis`);
@@ -101,9 +101,9 @@ if (tmpIfTest) {
     $(`do not visit, default`);
   }
   $(`infiloop, do not eliminate`);
-  tmpIfTest = $(true);
+  let tmpClusterSSA_tmpIfTest = $(true);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       $(`loop`);
       const tmpSwitchDisc$1 = $(true, `dis`);
       const tmpBinBothRhs$1 = $(true, `case`);
@@ -114,7 +114,7 @@ if (tmpIfTest) {
         $(`do not visit, default`);
       }
       $(`infiloop, do not eliminate`);
-      tmpIfTest = $(true);
+      tmpClusterSSA_tmpIfTest = $(true);
     } else {
       break;
     }
@@ -129,7 +129,7 @@ $(`after (not invoked)`);
 With rename=true
 
 `````js filename=intro
-let a = $( true );
+const a = $( true );
 if (a) {
   $( "loop" );
   const b = $( true, "dis" );
@@ -142,21 +142,21 @@ if (a) {
     $( "do not visit, default" );
   }
   $( "infiloop, do not eliminate" );
-  a = $( true );
+  let e = $( true );
   while ($LOOP_UNROLL_10) {
-    if (a) {
+    if (e) {
       $( "loop" );
-      const e = $( true, "dis" );
-      const f = $( true, "case" );
-      const g = e === f;
-      if (g) {
+      const f = $( true, "dis" );
+      const g = $( true, "case" );
+      const h = f === g;
+      if (h) {
         $( "case" );
       }
       else {
         $( "do not visit, default" );
       }
       $( "infiloop, do not eliminate" );
-      a = $( true );
+      e = $( true );
     }
     else {
       break;

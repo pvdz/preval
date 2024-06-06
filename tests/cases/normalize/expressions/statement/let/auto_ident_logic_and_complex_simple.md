@@ -45,9 +45,8 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-let xyz = $(tmpCalleeParam);
+const xyz = $(tmpCalleeParam);
 if (xyz) {
-  xyz = 2;
   $(2);
 } else {
   $(xyz);
@@ -62,9 +61,8 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = $( a );
+const b = $( a );
 if (b) {
-  b = 2;
   $( 2 );
 }
 else {

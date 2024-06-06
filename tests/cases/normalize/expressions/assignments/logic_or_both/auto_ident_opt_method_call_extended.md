@@ -72,16 +72,16 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
 const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
-let tmpSSA_a = tmpChainElementCall;
+let tmpClusterSSA_a = tmpChainElementCall;
 if (tmpChainElementCall) {
   $(tmpChainElementCall);
 } else {
   const tmpChainElementObject$9 = tmpObjLitVal$1.e;
   const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, 1);
-  tmpSSA_a = tmpChainElementCall$1;
+  tmpClusterSSA_a = tmpChainElementCall$1;
   $(tmpChainElementCall$1);
 }
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

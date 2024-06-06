@@ -67,7 +67,7 @@ $(100);
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-let tmpSSA_b = tmpNestedAssignObjPatternRhs.b;
+let tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
 if (tmpNestedAssignObjPatternRhs) {
 } else {
   $tmpLoopUnrollCheck = false;
@@ -78,7 +78,7 @@ if ($tmpLoopUnrollCheck) {
     const tmpObjLitVal$1 = $(2);
     const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
     const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
-    tmpSSA_b = tmpNestedAssignObjPatternRhs$1.b;
+    tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
     if (tmpNestedAssignObjPatternRhs$1) {
     } else {
       break;
@@ -87,7 +87,7 @@ if ($tmpLoopUnrollCheck) {
 } else {
 }
 const a = { a: 999, b: 1000 };
-$(a, tmpSSA_b);
+$(a, tmpClusterSSA_b);
 `````
 
 ## PST Output

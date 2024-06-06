@@ -79,12 +79,8 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  let tmpssa2_x = undefined;
-  if ($) {
-    tmpssa2_x = $(2);
-    $(tmpssa2_x);
-  } else {
-  }
+  const tmpClusterSSA_tmpssa2_x = $(2);
+  $(tmpClusterSSA_tmpssa2_x);
 } else {
 }
 `````
@@ -95,11 +91,8 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  let a = undefined;
-  if ($) {
-    a = $( 2 );
-    $( a );
-  }
+  const a = $( 2 );
+  $( a );
 }
 `````
 

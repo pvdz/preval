@@ -55,19 +55,18 @@ $(a);
 const b = { $: $ };
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
-let tmpSSA_a = new tmpNewCallee(1);
-let tmpCalleeParam = tmpSSA_a;
-if (tmpSSA_a) {
+let tmpClusterSSA_a = new tmpNewCallee(1);
+const tmpCalleeParam = tmpClusterSSA_a;
+if (tmpClusterSSA_a) {
   $(tmpCalleeParam);
 } else {
   const tmpCompObj$1 = $(b);
   const tmpNewCallee$1 = tmpCompObj$1.$;
   const tmpNestedComplexRhs = new tmpNewCallee$1(1);
-  tmpSSA_a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  tmpClusterSSA_a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output
@@ -79,7 +78,7 @@ const a = { $: $ };
 const b = $( a );
 const c = b.$;
 let d = new c( 1 );
-let e = d;
+const e = d;
 if (d) {
   $( e );
 }
@@ -88,7 +87,6 @@ else {
   const g = f.$;
   const h = new g( 1 );
   d = h;
-  e = h;
   $( h );
 }
 $( d );

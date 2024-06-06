@@ -56,16 +56,16 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(0);
-let tmpIfTest = $(tmpCalleeParam);
+const tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam$1 = $(2);
-  tmpIfTest = $(tmpCalleeParam$1);
-  if (tmpIfTest) {
+  const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam$1);
+  if (tmpClusterSSA_tmpIfTest) {
   } else {
     const tmpCalleeParam$3 = $(0);
-    tmpIfTest = $(tmpCalleeParam$3);
-    if (tmpIfTest) {
+    const tmpClusterSSA_tmpIfTest$1 = $(tmpCalleeParam$3);
+    if (tmpClusterSSA_tmpIfTest$1) {
     } else {
       const tmpCalleeParam$5 = $(2);
       $(tmpCalleeParam$5);
@@ -82,33 +82,33 @@ With rename=true
 
 `````js filename=intro
 const a = $( 0 );
-let b = $( a );
+const b = $( a );
 if (b) {
 
 }
 else {
   const c = $( 2 );
-  b = $( c );
-  if (b) {
+  const d = $( c );
+  if (d) {
 
   }
   else {
-    const d = $( 0 );
-    b = $( d );
-    if (b) {
+    const e = $( 0 );
+    const f = $( e );
+    if (f) {
 
     }
     else {
-      const e = $( 2 );
-      $( e );
+      const g = $( 2 );
+      $( g );
     }
   }
 }
-const f = {
+const h = {
 a: 999,
 b: 1000
 ;
-$( f );
+$( h );
 `````
 
 ## Globals

@@ -51,25 +51,25 @@ while (true) {
 ## Output
 
 `````js filename=intro
-let x = $(10);
-let tmpIfTest = $(x);
+const x = $(10);
+const tmpIfTest = $(x);
 if (tmpIfTest) {
-  x = $(0);
+  const tmpClusterSSA_x = $(0);
   const tmpIfTest$1 = $(true);
   if (tmpIfTest$1) {
-    $(x, `branch`);
+    $(tmpClusterSSA_x, `branch`);
   } else {
   }
-  tmpIfTest = $(x);
+  let tmpClusterSSA_tmpIfTest = $(tmpClusterSSA_x);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      x = $(0);
+    if (tmpClusterSSA_tmpIfTest) {
+      const tmpClusterSSA_x$1 = $(0);
       const tmpIfTest$2 = $(true);
       if (tmpIfTest$2) {
-        $(x, `branch`);
+        $(tmpClusterSSA_x$1, `branch`);
       } else {
       }
-      tmpIfTest = $(x);
+      tmpClusterSSA_tmpIfTest = $(tmpClusterSSA_x$1);
     } else {
       break;
     }
@@ -83,23 +83,23 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-let a = $( 10 );
-let b = $( a );
+const a = $( 10 );
+const b = $( a );
 if (b) {
-  a = $( 0 );
-  const c = $( true );
-  if (c) {
-    $( a, "branch" );
+  const c = $( 0 );
+  const d = $( true );
+  if (d) {
+    $( c, "branch" );
   }
-  b = $( a );
+  let e = $( c );
   while ($LOOP_UNROLL_10) {
-    if (b) {
-      a = $( 0 );
-      const d = $( true );
-      if (d) {
-        $( a, "branch" );
+    if (e) {
+      const f = $( 0 );
+      const g = $( true );
+      if (g) {
+        $( f, "branch" );
       }
-      b = $( a );
+      e = $( f );
     }
     else {
       break;

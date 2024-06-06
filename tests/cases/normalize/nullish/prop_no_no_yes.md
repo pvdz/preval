@@ -41,11 +41,11 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpCompObj = $ObjectPrototype.b;
-let tmpCalleeParam = tmpCompObj.c;
+const tmpCalleeParam = tmpCompObj.c;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
-  tmpCalleeParam = d;
-  $(tmpCalleeParam);
+  d;
+  $(d);
 } else {
   $(tmpCalleeParam);
 }
@@ -57,11 +57,11 @@ With rename=true
 
 `````js filename=intro
 const a = $ObjectPrototype.b;
-let b = a.c;
+const b = a.c;
 const c = b == null;
 if (c) {
-  b = d;
-  $( b );
+  d;
+  $( d );
 }
 else {
   $( b );

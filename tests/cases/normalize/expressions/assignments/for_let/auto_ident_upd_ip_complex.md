@@ -58,6 +58,7 @@ $(a, b);
 
 `````js filename=intro
 const b = { x: 1 };
+const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
@@ -89,7 +90,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpPostUpdArgVal);
   $(1);
 }
-$(tmpPostUpdArgVal, b);
+$(a, b);
 `````
 
 ## PST Output
@@ -98,38 +99,42 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = $( a );
-const c = $( b );
-const d = c.x;
-const e = d + 1;
-c.x = e;
-$( d );
+const b = {
+a: 999,
+b: 1000
+;
+const c = $( a );
+const d = $( c );
+const e = d.x;
+const f = e + 1;
+d.x = f;
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( d );
+  $( e );
   $( 1 );
 }
-$( d, a );
+$( b, a );
 `````
 
 ## Globals

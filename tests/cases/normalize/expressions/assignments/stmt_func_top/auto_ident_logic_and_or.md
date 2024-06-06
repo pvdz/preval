@@ -74,8 +74,8 @@ if (a) {
   $(a);
 } else {
   const tmpCalleeParam$3 = $(2);
-  a = $(tmpCalleeParam$3);
-  $(a);
+  const tmpClusterSSA_a = $(tmpCalleeParam$3);
+  $(tmpClusterSSA_a);
 }
 $(undefined);
 `````
@@ -96,8 +96,8 @@ if (b) {
 }
 else {
   const d = $( 2 );
-  b = $( d );
-  $( b );
+  const e = $( d );
+  $( e );
 }
 $( undefined );
 `````

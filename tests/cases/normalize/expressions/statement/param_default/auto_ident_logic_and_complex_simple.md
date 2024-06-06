@@ -64,11 +64,7 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-let p = $(tmpCalleeParam);
-if (p) {
-  p = true;
-} else {
-}
+$(tmpCalleeParam);
 $(undefined);
 const a = { a: 999, b: 1000 };
 $(a);
@@ -80,16 +76,13 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = $( a );
-if (b) {
-  b = true;
-}
+$( a );
 $( undefined );
-const c = {
+const b = {
 a: 999,
 b: 1000
 ;
-$( c );
+$( b );
 `````
 
 ## Globals

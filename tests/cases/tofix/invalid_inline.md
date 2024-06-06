@@ -60,15 +60,14 @@ $(cTmp);
 ## Output
 
 `````js filename=intro
-let cTmp = $;
-let cTail = $fail;
+$fail;
 if ($) {
-  cTail = $(`keep`);
-  cTmp = $($);
-  $(cTmp);
+  $(`keep`);
+  const tmpClusterSSA_cTmp = $($);
+  $(tmpClusterSSA_cTmp);
 } else {
-  cTmp = cTail;
-  $(cTmp);
+  $fail;
+  $($fail);
 }
 `````
 
@@ -77,16 +76,15 @@ if ($) {
 With rename=true
 
 `````js filename=intro
-let a = $;
-let b = $fail;
+$fail;
 if ($) {
-  b = $( "keep" );
-  a = $( $ );
+  $( "keep" );
+  const a = $( $ );
   $( a );
 }
 else {
-  a = b;
-  $( a );
+  $fail;
+  $( $fail );
 }
 `````
 

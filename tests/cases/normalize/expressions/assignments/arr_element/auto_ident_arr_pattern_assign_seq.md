@@ -73,19 +73,19 @@ const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-let tmpSSA_x = arrPatternSplat[0];
-let tmpSSA_y = arrPatternSplat[1];
-$(tmpSSA_x);
-$(tmpSSA_y);
+const tmpClusterSSA_x = arrPatternSplat[0];
+const tmpClusterSSA_y = arrPatternSplat[1];
+$(tmpClusterSSA_x);
+$(tmpClusterSSA_y);
 const tmpArrElement$3 = $(3);
 const tmpArrElement$5 = $(4);
 const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$3, tmpArrElement$5];
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
-tmpSSA_x = arrPatternSplat$1[0];
-tmpSSA_y = arrPatternSplat$1[1];
+const tmpClusterSSA_x$1 = arrPatternSplat$1[0];
+const tmpClusterSSA_y$1 = arrPatternSplat$1[1];
 const tmpCalleeParam = tmpNestedAssignArrPatternRhs + tmpNestedAssignArrPatternRhs$1;
 $(tmpCalleeParam);
-$(tmpNestedAssignArrPatternRhs$1, tmpSSA_x, tmpSSA_y);
+$(tmpNestedAssignArrPatternRhs$1, tmpClusterSSA_x$1, tmpClusterSSA_y$1);
 `````
 
 ## PST Output
@@ -99,19 +99,19 @@ const a = $( 3 );
 const b = $( 4 );
 const c = [ a, b ];
 const d = [ ... c ];
-let e = d[ 0 ];
-let f = d[ 1 ];
+const e = d[ 0 ];
+const f = d[ 1 ];
 $( e );
 $( f );
 const g = $( 3 );
 const h = $( 4 );
 const i = [ g, h ];
 const j = [ ... i ];
-e = j[ 0 ];
-f = j[ 1 ];
-const k = c + i;
-$( k );
-$( i, e, f );
+const k = j[ 0 ];
+const l = j[ 1 ];
+const m = c + i;
+$( m );
+$( i, k, l );
 `````
 
 ## Globals

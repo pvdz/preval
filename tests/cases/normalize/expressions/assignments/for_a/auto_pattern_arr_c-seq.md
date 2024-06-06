@@ -53,13 +53,13 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
-arrPatternSplat[0];
+const a = arrPatternSplat[0];
 $(10);
 $(20);
 const tmpCalleeParam = [1, 2];
 const arrAssignPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat$1 = [...arrAssignPatternRhs];
-const tmpSSA_a = arrPatternSplat$1[0];
+arrPatternSplat$1[0];
 $(1);
 $(1);
 $(1);
@@ -74,7 +74,7 @@ $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-$(tmpSSA_a);
+$(a);
 `````
 
 ## PST Output
@@ -87,13 +87,13 @@ a: 999,
 b: 1000
 ;
 const b = [ ... a ];
-b[ 0 ];
+const c = b[ 0 ];
 $( 10 );
 $( 20 );
-const c = [ 1, 2 ];
-const d = $( c );
-const e = [ ... d ];
-const f = e[ 0 ];
+const d = [ 1, 2 ];
+const e = $( d );
+const f = [ ... e ];
+f[ 0 ];
 $( 1 );
 $( 1 );
 $( 1 );
@@ -108,7 +108,7 @@ $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-$( f );
+$( c );
 `````
 
 ## Globals

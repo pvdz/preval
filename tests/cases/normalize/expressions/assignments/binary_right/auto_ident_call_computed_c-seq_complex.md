@@ -50,10 +50,10 @@ const tmpBinBothLhs = $(100);
 const b = { $: $ };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $(`\$`);
-const tmpSSA_a = tmpCallCompObj[tmpCallCompProp](1);
-const tmpCalleeParam = tmpBinBothLhs + tmpSSA_a;
+const tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
+const tmpCalleeParam = tmpBinBothLhs + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

@@ -44,16 +44,16 @@ while (true) {
 
 `````js filename=intro
 $(1);
-let tmpIfTest = $(2);
+const tmpIfTest = $(2);
 if (tmpIfTest) {
   $(4);
   $(3);
-  tmpIfTest = $(2);
+  let tmpClusterSSA_tmpIfTest = $(2);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       $(4);
       $(3);
-      tmpIfTest = $(2);
+      tmpClusterSSA_tmpIfTest = $(2);
     } else {
       break;
     }
@@ -68,16 +68,16 @@ With rename=true
 
 `````js filename=intro
 $( 1 );
-let a = $( 2 );
+const a = $( 2 );
 if (a) {
   $( 4 );
   $( 3 );
-  a = $( 2 );
+  let b = $( 2 );
   while ($LOOP_UNROLL_10) {
-    if (a) {
+    if (b) {
       $( 4 );
       $( 3 );
-      a = $( 2 );
+      b = $( 2 );
     }
     else {
       break;

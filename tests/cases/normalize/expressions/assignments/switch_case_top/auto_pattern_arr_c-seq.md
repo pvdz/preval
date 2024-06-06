@@ -61,7 +61,7 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
+const a = arrPatternSplat[0];
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
@@ -71,8 +71,8 @@ if (tmpIfTest) {
   const tmpCalleeParam = [1, 2];
   const arrAssignPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat$1 = [...arrAssignPatternRhs];
-  a = arrPatternSplat$1[0];
-  $(a);
+  const tmpClusterSSA_a = arrPatternSplat$1[0];
+  $(tmpClusterSSA_a);
 } else {
   $(a);
 }
@@ -88,7 +88,7 @@ a: 999,
 b: 1000
 ;
 const b = [ ... a ];
-let c = b[ 0 ];
+const c = b[ 0 ];
 const d = $( 1 );
 const e = $( 1 );
 const f = d === e;
@@ -98,8 +98,8 @@ if (f) {
   const g = [ 1, 2 ];
   const h = $( g );
   const i = [ ... h ];
-  c = i[ 0 ];
-  $( c );
+  const j = i[ 0 ];
+  $( j );
 }
 else {
   $( c );

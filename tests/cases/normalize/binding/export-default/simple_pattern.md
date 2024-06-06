@@ -49,11 +49,11 @@ $(a, x, y, z);
 let a = undefined;
 const z = [10, 20, 30];
 const arrPatternSplat = [...z];
-const tmpSSA_x = arrPatternSplat[0];
-const tmpSSA_y = arrPatternSplat[1];
+const tmpClusterSSA_x = arrPatternSplat[0];
+const tmpClusterSSA_y = arrPatternSplat[1];
 a = z;
 export { a };
-$(a, tmpSSA_x, tmpSSA_y, z);
+$(a, tmpClusterSSA_x, tmpClusterSSA_y, z);
 `````
 
 ## PST Output

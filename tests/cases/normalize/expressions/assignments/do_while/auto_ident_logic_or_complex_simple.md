@@ -61,89 +61,41 @@ $(a);
 `````js filename=intro
 $(100);
 const tmpCalleeParam = $(0);
-let a = $(tmpCalleeParam);
-if (a) {
-} else {
-  a = 2;
-}
+const a = $(tmpCalleeParam);
 $(100);
 const tmpCalleeParam$1 = $(0);
-a = $(tmpCalleeParam$1);
-if (a) {
-} else {
-  a = 2;
-}
+$(tmpCalleeParam$1);
 $(100);
 const tmpCalleeParam$2 = $(0);
-a = $(tmpCalleeParam$2);
-if (a) {
-} else {
-  a = 2;
-}
+$(tmpCalleeParam$2);
 $(100);
 const tmpCalleeParam$3 = $(0);
-a = $(tmpCalleeParam$3);
-if (a) {
-} else {
-  a = 2;
-}
+$(tmpCalleeParam$3);
 $(100);
 const tmpCalleeParam$4 = $(0);
-a = $(tmpCalleeParam$4);
-if (a) {
-} else {
-  a = 2;
-}
+$(tmpCalleeParam$4);
 $(100);
 const tmpCalleeParam$5 = $(0);
-a = $(tmpCalleeParam$5);
-if (a) {
-} else {
-  a = 2;
-}
+$(tmpCalleeParam$5);
 $(100);
 const tmpCalleeParam$6 = $(0);
-a = $(tmpCalleeParam$6);
-if (a) {
-} else {
-  a = 2;
-}
+$(tmpCalleeParam$6);
 $(100);
 const tmpCalleeParam$7 = $(0);
-a = $(tmpCalleeParam$7);
-if (a) {
-} else {
-  a = 2;
-}
+$(tmpCalleeParam$7);
 $(100);
 const tmpCalleeParam$8 = $(0);
-a = $(tmpCalleeParam$8);
-if (a) {
-} else {
-  a = 2;
-}
+$(tmpCalleeParam$8);
 $(100);
 const tmpCalleeParam$9 = $(0);
-a = $(tmpCalleeParam$9);
-if (a) {
-} else {
-  a = 2;
-}
+$(tmpCalleeParam$9);
 $(100);
 const tmpCalleeParam$10 = $(0);
-a = $(tmpCalleeParam$10);
-if (a) {
-} else {
-  a = 2;
-}
+$(tmpCalleeParam$10);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   const tmpCalleeParam$11 = $(0);
-  a = $(tmpCalleeParam$11);
-  if (a) {
-  } else {
-    a = 2;
-  }
+  $(tmpCalleeParam$11);
 }
 $(a);
 `````
@@ -155,113 +107,41 @@ With rename=true
 `````js filename=intro
 $( 100 );
 const a = $( 0 );
-let b = $( a );
-if (b) {
-
-}
-else {
-  b = 2;
-}
+const b = $( a );
 $( 100 );
 const c = $( 0 );
-b = $( c );
-if (b) {
-
-}
-else {
-  b = 2;
-}
+$( c );
 $( 100 );
 const d = $( 0 );
-b = $( d );
-if (b) {
-
-}
-else {
-  b = 2;
-}
+$( d );
 $( 100 );
 const e = $( 0 );
-b = $( e );
-if (b) {
-
-}
-else {
-  b = 2;
-}
+$( e );
 $( 100 );
 const f = $( 0 );
-b = $( f );
-if (b) {
-
-}
-else {
-  b = 2;
-}
+$( f );
 $( 100 );
 const g = $( 0 );
-b = $( g );
-if (b) {
-
-}
-else {
-  b = 2;
-}
+$( g );
 $( 100 );
 const h = $( 0 );
-b = $( h );
-if (b) {
-
-}
-else {
-  b = 2;
-}
+$( h );
 $( 100 );
 const i = $( 0 );
-b = $( i );
-if (b) {
-
-}
-else {
-  b = 2;
-}
+$( i );
 $( 100 );
 const j = $( 0 );
-b = $( j );
-if (b) {
-
-}
-else {
-  b = 2;
-}
+$( j );
 $( 100 );
 const k = $( 0 );
-b = $( k );
-if (b) {
-
-}
-else {
-  b = 2;
-}
+$( k );
 $( 100 );
 const l = $( 0 );
-b = $( l );
-if (b) {
-
-}
-else {
-  b = 2;
-}
+$( l );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
   const m = $( 0 );
-  b = $( m );
-  if (b) {
-
-  }
-  else {
-    b = 2;
-  }
+  $( m );
 }
 $( b );
 `````

@@ -63,18 +63,15 @@ $(aa, zz, a, b);
 ## Output
 
 `````js filename=intro
-let a = $(`x`);
+const a = $(`x`);
 $(`y`);
-const arrEl$15 = a;
-a = $(`u`);
-let b = $(`w`);
-const arrEl$23 = b;
-const arrEl$25 = a;
-a = $(`o`);
-b = $(`p`);
-const aa = [`a`, arrEl$15, arrEl$15, arrEl$15, arrEl$15, 2, 3, 1, arrEl$23, arrEl$25, arrEl$25, arrEl$23, 3, `a`];
-const zz = [`z`, 1, arrEl$23, arrEl$25, arrEl$25, arrEl$23, 3, arrEl$15, arrEl$15, arrEl$15, arrEl$15, 2, 3, `z`];
-$(aa, zz, a, b);
+const tmpClusterSSA_a = $(`u`);
+const b = $(`w`);
+const tmpClusterSSA_a$1 = $(`o`);
+const tmpClusterSSA_b = $(`p`);
+const aa = [`a`, a, a, a, a, 2, 3, 1, b, tmpClusterSSA_a, tmpClusterSSA_a, b, 3, `a`];
+const zz = [`z`, 1, b, tmpClusterSSA_a, tmpClusterSSA_a, b, 3, a, a, a, a, 2, 3, `z`];
+$(aa, zz, tmpClusterSSA_a$1, tmpClusterSSA_b);
 `````
 
 ## PST Output
@@ -82,18 +79,15 @@ $(aa, zz, a, b);
 With rename=true
 
 `````js filename=intro
-let a = $( "x" );
+const a = $( "x" );
 $( "y" );
-const b = a;
-a = $( "u" );
-let c = $( "w" );
-const d = c;
-const e = a;
-a = $( "o" );
-c = $( "p" );
-const f = [ "a", b, b, b, b, 2, 3, 1, d, e, e, d, 3, "a" ];
-const g = [ "z", 1, d, e, e, d, 3, b, b, b, b, 2, 3, "z" ];
-$( f, g, a, c );
+const b = $( "u" );
+const c = $( "w" );
+const d = $( "o" );
+const e = $( "p" );
+const f = [ "a", a, a, a, a, 2, 3, 1, c, b, b, c, 3, "a" ];
+const g = [ "z", 1, c, b, b, c, 3, a, a, a, a, 2, 3, "z" ];
+$( f, g, d, e );
 `````
 
 ## Globals

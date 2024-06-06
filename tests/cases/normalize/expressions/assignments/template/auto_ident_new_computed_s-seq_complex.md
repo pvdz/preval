@@ -53,11 +53,11 @@ $(a);
 const b = { $: $ };
 const tmpCompProp = $(`\$`);
 const tmpNewCallee = b[tmpCompProp];
-const tmpSSA_a = new tmpNewCallee(1);
-const tmpBinBothRhs = $coerce(tmpSSA_a, `string`);
+const tmpClusterSSA_a = new tmpNewCallee(1);
+const tmpBinBothRhs = $coerce(tmpClusterSSA_a, `string`);
 const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

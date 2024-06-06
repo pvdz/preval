@@ -47,9 +47,9 @@ $(a, b);
 const b = { c: 1 };
 const tmpCalleeParam = [`before `, ` after`];
 const tmpAssignRhsProp = $(b);
-const tmpSSA_a = tmpAssignRhsProp.c;
-$(tmpCalleeParam, tmpSSA_a);
-$(tmpSSA_a, b);
+const tmpClusterSSA_a = tmpAssignRhsProp.c;
+$(tmpCalleeParam, tmpClusterSSA_a);
+$(tmpClusterSSA_a, b);
 `````
 
 ## PST Output

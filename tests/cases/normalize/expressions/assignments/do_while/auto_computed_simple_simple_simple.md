@@ -78,14 +78,12 @@ $(1);
 $(100);
 $(1);
 $(100);
-const tmpObjLitVal$1 = $(1);
-let a = { b: tmpObjLitVal$1 };
+$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpObjLitVal$2 = $(1);
-  a = { b: tmpObjLitVal$2 };
+  $(1);
 }
-a.b = 2;
+const a = { b: 2 };
 $(a);
 `````
 
@@ -115,15 +113,13 @@ $( 1 );
 $( 100 );
 $( 1 );
 $( 100 );
-const a = $( 1 );
-let b = { b: a };
+$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const c = $( 1 );
-  b = { b: c };
+  $( 1 );
 }
-b.b = 2;
-$( b );
+const a = { b: 2 };
+$( a );
 `````
 
 ## Globals

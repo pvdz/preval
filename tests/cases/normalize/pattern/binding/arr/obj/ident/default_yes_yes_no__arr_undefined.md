@@ -54,13 +54,11 @@ $(x);
 const tmpCalleeParam = { x: `pass2` };
 const arrPatternStep = $(tmpCalleeParam);
 const objPatternBeforeDefault = arrPatternStep.x;
-let x = undefined;
 const tmpIfTest$1 = objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
-  x = $(`pass`);
-  $(x);
+  const tmpClusterSSA_x = $(`pass`);
+  $(tmpClusterSSA_x);
 } else {
-  x = objPatternBeforeDefault;
   $(objPatternBeforeDefault);
 }
 `````
@@ -73,14 +71,12 @@ With rename=true
 const a = { x: "pass2" };
 const b = $( a );
 const c = b.x;
-let d = undefined;
-const e = c === undefined;
-if (e) {
-  d = $( "pass" );
-  $( d );
+const d = c === undefined;
+if (d) {
+  const e = $( "pass" );
+  $( e );
 }
 else {
-  d = c;
   $( c );
 }
 `````

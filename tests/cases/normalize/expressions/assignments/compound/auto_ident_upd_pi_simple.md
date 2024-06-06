@@ -46,9 +46,9 @@ $(a, b);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpSSA_a = a * 2;
-$(tmpSSA_a);
-$(tmpSSA_a, 2);
+const tmpClusterSSA_a = a * 2;
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a, 2);
 `````
 
 ## PST Output

@@ -61,12 +61,12 @@ $(2);
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 delete tmpDeleteCompObj[tmpDeleteCompProp];
-let tmpIfTest = $(0);
+const tmpIfTest = $(0);
 if (tmpIfTest) {
-  tmpIfTest = $(0);
+  let tmpClusterSSA_tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      tmpIfTest = $(0);
+    if (tmpClusterSSA_tmpIfTest) {
+      tmpClusterSSA_tmpIfTest = $(0);
     } else {
       break;
     }
@@ -91,12 +91,12 @@ $( 2 );
 const c = $( a );
 const d = $( "y" );
 deletec[ d ];
-let e = $( 0 );
+const e = $( 0 );
 if (e) {
-  e = $( 0 );
+  let f = $( 0 );
   while ($LOOP_UNROLL_10) {
-    if (e) {
-      e = $( 0 );
+    if (f) {
+      f = $( 0 );
     }
     else {
       break;

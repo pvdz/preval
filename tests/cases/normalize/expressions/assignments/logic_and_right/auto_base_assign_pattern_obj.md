@@ -55,14 +55,13 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = $(100);
+const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   const tmpObjLitVal = $(2);
   const tmpCalleeParam$1 = { b: tmpObjLitVal };
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
   b = tmpNestedAssignObjPatternRhs.b;
   a = tmpNestedAssignObjPatternRhs;
-  tmpCalleeParam = tmpNestedAssignObjPatternRhs;
   $(tmpNestedAssignObjPatternRhs);
 } else {
   $(tmpCalleeParam);
@@ -80,14 +79,13 @@ let b = {
 a: 999,
 b: 1000
 ;
-let c = $( 100 );
+const c = $( 100 );
 if (c) {
   const d = $( 2 );
   const e = { b: d };
   const f = $( e );
   a = f.b;
   b = f;
-  c = f;
   $( f );
 }
 else {

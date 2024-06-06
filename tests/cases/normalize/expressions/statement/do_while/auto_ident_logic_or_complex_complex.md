@@ -63,12 +63,12 @@ $(a);
 let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpCalleeParam = $(0);
-let tmpIfTest = $(tmpCalleeParam);
+const tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam$1 = $(2);
-  tmpIfTest = $(tmpCalleeParam$1);
-  if (tmpIfTest) {
+  const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam$1);
+  if (tmpClusterSSA_tmpIfTest) {
   } else {
     $tmpLoopUnrollCheck = false;
   }
@@ -77,12 +77,12 @@ if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpCalleeParam$2 = $(0);
-    let tmpIfTest$1 = $(tmpCalleeParam$2);
+    const tmpIfTest$1 = $(tmpCalleeParam$2);
     if (tmpIfTest$1) {
     } else {
       const tmpCalleeParam$4 = $(2);
-      tmpIfTest$1 = $(tmpCalleeParam$4);
-      if (tmpIfTest$1) {
+      const tmpClusterSSA_tmpIfTest$1 = $(tmpCalleeParam$4);
+      if (tmpClusterSSA_tmpIfTest$1) {
       } else {
         break;
       }
@@ -102,14 +102,14 @@ With rename=true
 let a = true;
 $( 100 );
 const b = $( 0 );
-let c = $( b );
+const c = $( b );
 if (c) {
 
 }
 else {
   const d = $( 2 );
-  c = $( d );
-  if (c) {
+  const e = $( d );
+  if (e) {
 
   }
   else {
@@ -119,15 +119,15 @@ else {
 if (a) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const e = $( 0 );
-    let f = $( e );
-    if (f) {
+    const f = $( 0 );
+    const g = $( f );
+    if (g) {
 
     }
     else {
-      const g = $( 2 );
-      f = $( g );
-      if (f) {
+      const h = $( 2 );
+      const i = $( h );
+      if (i) {
 
       }
       else {
@@ -136,11 +136,11 @@ if (a) {
     }
   }
 }
-const h = {
+const j = {
 a: 999,
 b: 1000
 ;
-$( h );
+$( j );
 `````
 
 ## Globals

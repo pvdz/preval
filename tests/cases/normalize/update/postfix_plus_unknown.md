@@ -36,10 +36,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let x = $(1);
-const tmpPostUpdArgIdent = x;
-x = x + 1;
-$(tmpPostUpdArgIdent);
+const x = $(1);
+x + 0;
+$(x);
 `````
 
 ## PST Output
@@ -47,10 +46,9 @@ $(tmpPostUpdArgIdent);
 With rename=true
 
 `````js filename=intro
-let a = $( 1 );
-const b = a;
-a = a + 1;
-$( b );
+const a = $( 1 );
+a + 0;
+$( a );
 `````
 
 ## Globals

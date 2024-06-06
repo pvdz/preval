@@ -49,13 +49,13 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = [`before `, ` after`];
 const tmpCalleeParam$3 = $(0);
-let tmpCalleeParam$1 = $(tmpCalleeParam$3);
+const tmpCalleeParam$1 = $(tmpCalleeParam$3);
 if (tmpCalleeParam$1) {
   $(tmpCalleeParam, tmpCalleeParam$1);
 } else {
   const tmpCalleeParam$5 = $(2);
-  tmpCalleeParam$1 = $(tmpCalleeParam$5);
-  $(tmpCalleeParam, tmpCalleeParam$1);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(tmpCalleeParam$5);
+  $(tmpCalleeParam, tmpClusterSSA_tmpCalleeParam$1);
 }
 $(a);
 `````
@@ -71,14 +71,14 @@ b: 1000
 ;
 const b = [ "before ", " after" ];
 const c = $( 0 );
-let d = $( c );
+const d = $( c );
 if (d) {
   $( b, d );
 }
 else {
   const e = $( 2 );
-  d = $( e );
-  $( b, d );
+  const f = $( e );
+  $( b, f );
 }
 $( a );
 `````

@@ -59,7 +59,7 @@ $(a);
 
 `````js filename=intro
 $(100);
-$(1);
+const tmpObjLitVal = $(1);
 $(100);
 $(1);
 $(100);
@@ -79,13 +79,12 @@ $(1);
 $(100);
 $(1);
 $(100);
-const tmpObjLitVal$1 = $(1);
-let a = { b: tmpObjLitVal$1 };
+$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpObjLitVal$2 = $(1);
-  a = { b: tmpObjLitVal$2 };
+  $(1);
 }
+const a = { b: tmpObjLitVal };
 const tmpAssignMemLhsObj = $(a);
 tmpAssignMemLhsObj.b = 2;
 $(a);
@@ -97,35 +96,34 @@ With rename=true
 
 `````js filename=intro
 $( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
 const a = $( 1 );
-let b = { b: a };
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const c = $( 1 );
-  b = { b: c };
+  $( 1 );
 }
-const d = $( b );
-d.b = 2;
+const b = { b: a };
+const c = $( b );
+c.b = 2;
 $( b );
 `````
 

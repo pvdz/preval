@@ -50,9 +50,10 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
+const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
-const tmpSSA_a = new tmpNewCallee(1);
+new tmpNewCallee(1);
 $(1);
 $(1);
 $(1);
@@ -67,7 +68,7 @@ $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-$(tmpSSA_a);
+$(a);
 `````
 
 ## PST Output
@@ -76,9 +77,13 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-const b = $( a );
-const c = b.$;
-const d = new c( 1 );
+const b = {
+a: 999,
+b: 1000
+;
+const c = $( a );
+const d = c.$;
+new d( 1 );
 $( 1 );
 $( 1 );
 $( 1 );
@@ -93,7 +98,7 @@ $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-$( d );
+$( b );
 `````
 
 ## Globals

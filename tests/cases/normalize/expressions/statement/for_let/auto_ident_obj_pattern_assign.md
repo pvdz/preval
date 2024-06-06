@@ -88,7 +88,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedAssignObjPatternRhs);
   $(1);
 }
-$(a, tmpObjLitVal, tmpObjLitVal$1);
+$(a, 1, 2);
 `````
 
 ## PST Output
@@ -132,7 +132,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( d );
   $( 1 );
 }
-$( a, b, c );
+$( a, 1, 2 );
 `````
 
 ## Globals

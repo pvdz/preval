@@ -50,16 +50,15 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(100);
 const tmpIfTest = $(1);
-let tmpCalleeParam = undefined;
 if (tmpIfTest) {
   a = $(60);
-  tmpCalleeParam = tmpBinBothLhs + a;
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + a;
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpCalleeParam$1 = $(100);
   a = $(tmpCalleeParam$1);
-  tmpCalleeParam = tmpBinBothLhs + a;
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam$1 = tmpBinBothLhs + a;
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
 $(a);
 `````
@@ -75,17 +74,16 @@ b: 1000
 ;
 const b = $( 100 );
 const c = $( 1 );
-let d = undefined;
 if (c) {
   a = $( 60 );
-  d = b + a;
+  const d = b + a;
   $( d );
 }
 else {
   const e = $( 100 );
   a = $( e );
-  d = b + a;
-  $( d );
+  const f = b + a;
+  $( f );
 }
 $( a );
 `````

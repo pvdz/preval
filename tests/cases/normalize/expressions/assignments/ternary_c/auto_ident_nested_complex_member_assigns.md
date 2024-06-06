@@ -83,12 +83,11 @@ $(a, b, c);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = 3;
 const tmpIfTest = $(0);
 const b = { x: 1 };
 if (tmpIfTest) {
-  tmpCalleeParam = $(100);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const varInitAssignLhsComputedObj = $(b);
   const varInitAssignLhsComputedProp = $(`x`);
@@ -123,25 +122,24 @@ let a = {
 a: 999,
 b: 1000
 ;
-let b = 3;
-const c = $( 0 );
-const d = { x: 1 };
-if (c) {
-  b = $( 100 );
-  $( b );
+const b = $( 0 );
+const c = { x: 1 };
+if (b) {
+  const d = $( 100 );
+  $( d );
 }
 else {
-  const e = $( d );
+  const e = $( c );
   const f = $( "x" );
-  const g = $( d );
+  const g = $( c );
   const h = $( "x" );
-  const i = $( d );
+  const i = $( c );
   const j = $( "x" );
-  const k = $( d );
+  const k = $( c );
   const l = $( "x" );
-  const m = $( d );
+  const m = $( c );
   const n = $( "x" );
-  const o = $( d );
+  const o = $( c );
   const p = $( "x" );
   o[p] = 3;
   m[n] = 3;
@@ -152,7 +150,7 @@ else {
   a = 3;
   $( 3 );
 }
-$( a, d, 3 );
+$( a, c, 3 );
 `````
 
 ## Globals

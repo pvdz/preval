@@ -42,11 +42,9 @@ $(x);
 ## Output
 
 `````js filename=intro
-let a = $(1);
-const tmpNestedCompoundLhs = a;
+const a = $(1);
 const tmpBinBothRhs = $(2);
-const tmpNestedComplexRhs = tmpNestedCompoundLhs + tmpBinBothRhs;
-a = tmpNestedComplexRhs;
+const tmpNestedComplexRhs = a + tmpBinBothRhs;
 $(tmpNestedComplexRhs);
 `````
 
@@ -55,12 +53,10 @@ $(tmpNestedComplexRhs);
 With rename=true
 
 `````js filename=intro
-let a = $( 1 );
-const b = a;
-const c = $( 2 );
-const d = b + c;
-a = d;
-$( d );
+const a = $( 1 );
+const b = $( 2 );
+const c = a + b;
+$( c );
 `````
 
 ## Globals

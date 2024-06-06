@@ -62,36 +62,36 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
+const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpCalleeParam = $(0);
   a = $(tmpCalleeParam);
   if (a) {
   } else {
     const tmpCalleeParam$1 = $(1);
-    a = $(tmpCalleeParam$1);
-    if (a) {
+    const tmpClusterSSA_a = $(tmpCalleeParam$1);
+    if (tmpClusterSSA_a) {
     } else {
       const tmpCalleeParam$3 = $(2);
-      a = $(tmpCalleeParam$3);
+      $(tmpCalleeParam$3);
     }
   }
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       const tmpCalleeParam$2 = $(0);
       a = $(tmpCalleeParam$2);
       if (a) {
       } else {
         const tmpCalleeParam$4 = $(1);
-        a = $(tmpCalleeParam$4);
-        if (a) {
+        const tmpClusterSSA_a$1 = $(tmpCalleeParam$4);
+        if (tmpClusterSSA_a$1) {
         } else {
           const tmpCalleeParam$6 = $(2);
-          a = $(tmpCalleeParam$6);
+          $(tmpCalleeParam$6);
         }
       }
-      tmpIfTest = $(1);
+      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -110,7 +110,7 @@ let a = {
 a: 999,
 b: 1000
 ;
-let b = $( 1 );
+const b = $( 1 );
 if (b) {
   const c = $( 0 );
   a = $( c );
@@ -119,35 +119,35 @@ if (b) {
   }
   else {
     const d = $( 1 );
-    a = $( d );
-    if (a) {
+    const e = $( d );
+    if (e) {
 
     }
     else {
-      const e = $( 2 );
-      a = $( e );
+      const f = $( 2 );
+      $( f );
     }
   }
-  b = $( 1 );
+  let g = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (b) {
-      const f = $( 0 );
-      a = $( f );
+    if (g) {
+      const h = $( 0 );
+      a = $( h );
       if (a) {
 
       }
       else {
-        const g = $( 1 );
-        a = $( g );
-        if (a) {
+        const i = $( 1 );
+        const j = $( i );
+        if (j) {
 
         }
         else {
-          const h = $( 2 );
-          a = $( h );
+          const k = $( 2 );
+          $( k );
         }
       }
-      b = $( 1 );
+      g = $( 1 );
     }
     else {
       break;

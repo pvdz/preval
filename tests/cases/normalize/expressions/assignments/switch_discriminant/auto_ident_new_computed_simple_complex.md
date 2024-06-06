@@ -56,9 +56,9 @@ $(a);
 const tmpCompProp = $(`\$`);
 const b = { $: $ };
 const tmpNewCallee = b[tmpCompProp];
-const tmpSSA_a = new tmpNewCallee(1);
+const tmpClusterSSA_a = new tmpNewCallee(1);
 $(100);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

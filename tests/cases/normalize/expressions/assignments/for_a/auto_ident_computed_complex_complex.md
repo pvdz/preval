@@ -50,9 +50,10 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
+const a = { a: 999, b: 1000 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $(`c`);
-const tmpSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 $(1);
 $(1);
 $(1);
@@ -67,7 +68,7 @@ $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-$(tmpSSA_a, b);
+$(a, b);
 `````
 
 ## PST Output
@@ -76,9 +77,13 @@ With rename=true
 
 `````js filename=intro
 const a = { c: 1 };
-const b = $( a );
-const c = $( "c" );
-const d = b[ c ];
+const b = {
+a: 999,
+b: 1000
+;
+const c = $( a );
+const d = $( "c" );
+c[ d ];
 $( 1 );
 $( 1 );
 $( 1 );
@@ -93,7 +98,7 @@ $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-$( d, a );
+$( b, a );
 `````
 
 ## Globals

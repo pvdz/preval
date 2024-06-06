@@ -54,7 +54,6 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 const b = { x: 1 };
 const tmpCalleeParam$1 = $(b);
 const tmpNestedAssignObj = $(tmpCalleeParam$1);
@@ -62,11 +61,11 @@ const tmpBinLhs = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
 if (tmpNestedPropCompoundComplexRhs) {
-  tmpCalleeParam = $(100);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  tmpCalleeParam = $(200);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
 $(tmpNestedPropCompoundComplexRhs, b);
 `````
@@ -76,22 +75,21 @@ $(tmpNestedPropCompoundComplexRhs, b);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { x: 1 };
+const a = { x: 1 };
+const b = $( a );
 const c = $( b );
-const d = $( c );
-const e = d.x;
-const f = e + 1;
-d.x = f;
-if (f) {
-  a = $( 100 );
-  $( a );
+const d = c.x;
+const e = d + 1;
+c.x = e;
+if (e) {
+  const f = $( 100 );
+  $( f );
 }
 else {
-  a = $( 200 );
-  $( a );
+  const g = $( 200 );
+  $( g );
 }
-$( f, b );
+$( e, a );
 `````
 
 ## Globals

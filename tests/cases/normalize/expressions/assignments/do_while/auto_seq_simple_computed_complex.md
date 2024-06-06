@@ -64,7 +64,7 @@ $(a);
 
 `````js filename=intro
 $(100);
-$(1);
+const tmpObjLitVal = $(1);
 $(100);
 $(1);
 $(100);
@@ -84,18 +84,16 @@ $(1);
 $(100);
 $(1);
 $(100);
-const tmpObjLitVal$1 = $(1);
-let a = { b: tmpObjLitVal$1 };
+$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpObjLitVal$2 = $(1);
-  a = { b: tmpObjLitVal$2 };
+  $(1);
 }
 $(1);
-const tmpAssignComMemLhsObj = a;
 const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
-tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+const a = { b: tmpObjLitVal };
+a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);
 `````
 
@@ -105,39 +103,37 @@ With rename=true
 
 `````js filename=intro
 $( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
 const a = $( 1 );
-let b = { b: a };
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const c = $( 1 );
-  b = { b: c };
+  $( 1 );
 }
 $( 1 );
-const d = b;
-const e = $( "b" );
-const f = $( 2 );
-d[e] = f;
-$( b );
+const b = $( "b" );
+const c = $( 2 );
+const d = { b: a };
+d[b] = c;
+$( d );
 `````
 
 ## Globals

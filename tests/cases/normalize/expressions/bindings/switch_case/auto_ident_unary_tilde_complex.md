@@ -50,8 +50,8 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const a = ~tmpUnaryArg;
-$(a);
+const tmpClusterSSA_a = ~tmpUnaryArg;
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

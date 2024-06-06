@@ -86,6 +86,7 @@ $(a, b, c);
 
 `````js filename=intro
 const b = { x: 1 };
+const a = { a: 999, b: 1000 };
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`x`);
 const varInitAssignLhsComputedObj = $(b);
@@ -130,7 +131,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(3);
   $(1);
 }
-$(3, b, 3);
+$(a, b, 3);
 `````
 
 ## PST Output
@@ -139,24 +140,28 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = $( a );
-const c = $( "x" );
-const d = $( a );
-const e = $( "x" );
-const f = $( a );
-const g = $( "x" );
-const h = $( a );
-const i = $( "x" );
-const j = $( a );
-const k = $( "x" );
-const l = $( a );
-const m = $( "x" );
-l[m] = 3;
-j[k] = 3;
-h[i] = 3;
-f[g] = 3;
-d[e] = 3;
-b[c] = 3;
+const b = {
+a: 999,
+b: 1000
+;
+const c = $( a );
+const d = $( "x" );
+const e = $( a );
+const f = $( "x" );
+const g = $( a );
+const h = $( "x" );
+const i = $( a );
+const j = $( "x" );
+const k = $( a );
+const l = $( "x" );
+const m = $( a );
+const n = $( "x" );
+m[n] = 3;
+k[l] = 3;
+i[j] = 3;
+g[h] = 3;
+e[f] = 3;
+c[d] = 3;
 $( 3 );
 $( 1 );
 $( 3 );
@@ -183,7 +188,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 3 );
   $( 1 );
 }
-$( 3, a, 3 );
+$( b, a, 3 );
 `````
 
 ## Globals

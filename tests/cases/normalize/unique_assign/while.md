@@ -51,16 +51,16 @@ $(a);
 
 `````js filename=intro
 let a = $(1);
-let tmpIfTest = a < 10;
+const tmpIfTest = a < 10;
 if (tmpIfTest) {
   a = a + 1;
   $(a);
-  tmpIfTest = a < 10;
+  let tmpClusterSSA_tmpIfTest = a < 10;
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       a = a + 1;
       $(a);
-      tmpIfTest = a < 10;
+      tmpClusterSSA_tmpIfTest = a < 10;
     } else {
       break;
     }
@@ -76,16 +76,16 @@ With rename=true
 
 `````js filename=intro
 let a = $( 1 );
-let b = a < 10;
+const b = a < 10;
 if (b) {
   a = a + 1;
   $( a );
-  b = a < 10;
+  let c = a < 10;
   while ($LOOP_UNROLL_10) {
-    if (b) {
+    if (c) {
       a = a + 1;
       $( a );
-      b = a < 10;
+      c = a < 10;
     }
     else {
       break;

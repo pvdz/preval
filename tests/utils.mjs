@@ -186,7 +186,7 @@ export function fmat(code) {
 
 export function toPreResult(obj) {
   return (
-    '\n\n## Pre Normal\n\n' +
+    '\n\n## Pre Normal\n\n\n' + // two empty lines. this way diff always captures this as the hunk header (with the default U3)
     Object.keys(obj)
       .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
       .map((key) => '`````js filename=' + key + '\n' + fmat(obj[key]).trim() + '\n`````')
@@ -196,7 +196,7 @@ export function toPreResult(obj) {
 
 export function toNormalizedResult(obj) {
   return (
-    '\n\n## Normalized\n\n' +
+    '\n\n## Normalized\n\n\n' + // two empty lines. this way diff always captures this as the hunk header (with the default U3)
     Object.keys(obj)
       .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
       .map((key) => '`````js filename=' + key + '\n' + fmat(obj[key]).trim() + '\n`````')
@@ -294,7 +294,7 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
         (setPrintPids(false), '')
       )) +
       (wasRefTest ? '' : (
-        '\n\n## Output\n\n' +
+        '\n\n## Output\n\n\n' + // two empty lines. this way diff always captures this as the hunk header (with the default U3)
         Object.keys(output.files)
         .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
         .map((key) => '`````js filename=' + key + '\n' + fmat(output.files[key]).trim() + '\n`````')

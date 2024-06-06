@@ -48,10 +48,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = $();
-const tmpObjLitVal = { b: tmpObjLitVal$1 };
+$();
+const tmpObjLitVal = { b: 15 };
 const obj = { a: tmpObjLitVal };
-tmpObjLitVal.b = 15;
 $(obj);
 `````
 
@@ -60,11 +59,10 @@ $(obj);
 With rename=true
 
 `````js filename=intro
-const a = $();
-const b = { b: a };
-const c = { a: b };
-b.b = 15;
-$( c );
+$();
+const a = { b: 15 };
+const b = { a: a };
+$( b );
 `````
 
 ## Globals

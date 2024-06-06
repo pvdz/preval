@@ -64,8 +64,8 @@ if (tmpIfTest) {
 `````js filename=intro
 const f = function ($$0) {
   debugger;
-  const tmpSSA_x = $(0);
-  const y = Boolean(tmpSSA_x);
+  const tmpClusterSSA_x = $(0);
+  const y = Boolean(tmpClusterSSA_x);
   return y;
 };
 $(f);

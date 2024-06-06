@@ -50,11 +50,10 @@ $(a, arg);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = false;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
-  tmpCalleeParam = $(100);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   a = false;
   $(false);
@@ -71,11 +70,10 @@ let a = {
 a: 999,
 b: 1000
 ;
-let b = false;
-const c = $( 0 );
-if (c) {
-  b = $( 100 );
-  $( b );
+const b = $( 0 );
+if (b) {
+  const c = $( 100 );
+  $( c );
 }
 else {
   a = false;

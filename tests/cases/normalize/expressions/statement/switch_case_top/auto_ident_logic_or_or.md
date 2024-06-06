@@ -71,12 +71,12 @@ const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpCalleeParam = $(0);
-  let tmpIfTest$1 = $(tmpCalleeParam);
+  const tmpIfTest$1 = $(tmpCalleeParam);
   if (tmpIfTest$1) {
   } else {
     const tmpCalleeParam$1 = $(1);
-    tmpIfTest$1 = $(tmpCalleeParam$1);
-    if (tmpIfTest$1) {
+    const tmpClusterSSA_tmpIfTest$1 = $(tmpCalleeParam$1);
+    if (tmpClusterSSA_tmpIfTest$1) {
     } else {
       const tmpCalleeParam$3 = $(2);
       $(tmpCalleeParam$3);
@@ -101,19 +101,19 @@ const c = $( 1 );
 const d = b === c;
 if (d) {
   const e = $( 0 );
-  let f = $( e );
+  const f = $( e );
   if (f) {
 
   }
   else {
     const g = $( 1 );
-    f = $( g );
-    if (f) {
+    const h = $( g );
+    if (h) {
 
     }
     else {
-      const h = $( 2 );
-      $( h );
+      const i = $( 2 );
+      $( i );
     }
   }
 }

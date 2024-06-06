@@ -54,11 +54,11 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(0);
-let tmpSwitchDisc = $(tmpCalleeParam);
+const tmpSwitchDisc = $(tmpCalleeParam);
 if (tmpSwitchDisc) {
 } else {
   const tmpCalleeParam$1 = $(2);
-  tmpSwitchDisc = $(tmpCalleeParam$1);
+  $(tmpCalleeParam$1);
 }
 $(100);
 const a = { a: 999, b: 1000 };
@@ -71,13 +71,13 @@ With rename=true
 
 `````js filename=intro
 const a = $( 0 );
-let b = $( a );
+const b = $( a );
 if (b) {
 
 }
 else {
   const c = $( 2 );
-  b = $( c );
+  $( c );
 }
 $( 100 );
 const d = {

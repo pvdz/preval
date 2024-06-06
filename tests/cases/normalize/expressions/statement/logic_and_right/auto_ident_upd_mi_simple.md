@@ -43,14 +43,12 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
 const tmpIfTest = $(100);
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  b = 0;
   $(a, 0);
 } else {
-  $(a, b);
+  $(a, 1);
 }
 `````
 
@@ -59,18 +57,16 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-let a = 1;
-const b = $( 100 );
-const c = {
+const a = $( 100 );
+const b = {
 a: 999,
 b: 1000
 ;
-if (b) {
-  a = 0;
-  $( c, 0 );
+if (a) {
+  $( b, 0 );
 }
 else {
-  $( c, a );
+  $( b, 1 );
 }
 `````
 

@@ -46,14 +46,11 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = [];
-const tmpNestedAssignArrPatternRhs = b;
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-b = arrPatternSplat[0];
-const tmpCalleeParam = { ...tmpNestedAssignArrPatternRhs };
-$(tmpCalleeParam);
+const b = [];
 const a = { a: 999, b: 1000 };
-$(a, b);
+const tmpCalleeParam = { ...b };
+$(tmpCalleeParam);
+$(a, undefined);
 `````
 
 ## PST Output
@@ -61,17 +58,14 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-let a = [];
-const b = a;
-const c = [ ... b ];
-a = c[ 0 ];
-const d = { ... b };
-$( d );
-const e = {
+const a = [];
+const b = {
 a: 999,
 b: 1000
 ;
-$( e, a );
+const c = { ... a };
+$( c );
+$( b, undefined );
 `````
 
 ## Globals

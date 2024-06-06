@@ -53,23 +53,18 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-let $tmpLoopUnrollCheck = true;
 const arg = { y: 1 };
+const a = { a: 999, b: 1000 };
+const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpDeleteCompProp = $(`y`);
-  a = delete arg[tmpDeleteCompProp];
-  tmpIfTest = $(1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  delete arg[tmpDeleteCompProp];
+  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       const tmpDeleteCompProp$1 = $(`y`);
-      a = delete arg[tmpDeleteCompProp$1];
-      tmpIfTest = $(1);
+      delete arg[tmpDeleteCompProp$1];
+      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -84,34 +79,28 @@ $(a, arg);
 With rename=true
 
 `````js filename=intro
-let a = {
+const a = { y: 1 };
+const b = {
 a: 999,
 b: 1000
 ;
-let b = $( 1 );
-let c = true;
-const d = { y: 1 };
-if (b) {
-  const e = $( "y" );
-  a = deleted[ e ];
-  b = $( 1 );
-}
-else {
-  c = false;
-}
+const c = $( 1 );
 if (c) {
+  const d = $( "y" );
+  deletea[ d ];
+  let e = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (b) {
+    if (e) {
       const f = $( "y" );
-      a = deleted[ f ];
-      b = $( 1 );
+      deletea[ f ];
+      e = $( 1 );
     }
     else {
       break;
     }
   }
 }
-$( a, d );
+$( b, a );
 `````
 
 ## Globals

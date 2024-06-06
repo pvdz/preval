@@ -60,8 +60,8 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-$(3);
-$(4);
+const tmpArrElement = $(3);
+const tmpArrElement$1 = $(4);
 $(1);
 $(3);
 $(4);
@@ -90,20 +90,16 @@ $(1);
 $(3);
 $(4);
 $(1);
-const tmpArrElement$2 = $(3);
-const tmpArrElement$4 = $(4);
-let x = tmpArrElement$2;
-let y = tmpArrElement$4;
+$(3);
+$(4);
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpArrElement$3 = $(3);
-  const tmpArrElement$5 = $(4);
-  x = tmpArrElement$3;
-  y = tmpArrElement$5;
+  $(3);
+  $(4);
   $(1);
 }
 const a = { a: 999, b: 1000 };
-$(a, x, y);
+$(a, tmpArrElement, tmpArrElement$1);
 `````
 
 ## PST Output
@@ -111,53 +107,49 @@ $(a, x, y);
 With rename=true
 
 `````js filename=intro
-$( 3 );
-$( 4 );
-$( 1 );
-$( 3 );
-$( 4 );
-$( 1 );
-$( 3 );
-$( 4 );
-$( 1 );
-$( 3 );
-$( 4 );
-$( 1 );
-$( 3 );
-$( 4 );
-$( 1 );
-$( 3 );
-$( 4 );
-$( 1 );
-$( 3 );
-$( 4 );
-$( 1 );
-$( 3 );
-$( 4 );
-$( 1 );
-$( 3 );
-$( 4 );
-$( 1 );
-$( 3 );
-$( 4 );
-$( 1 );
 const a = $( 3 );
 const b = $( 4 );
-let c = a;
-let d = b;
+$( 1 );
+$( 3 );
+$( 4 );
+$( 1 );
+$( 3 );
+$( 4 );
+$( 1 );
+$( 3 );
+$( 4 );
+$( 1 );
+$( 3 );
+$( 4 );
+$( 1 );
+$( 3 );
+$( 4 );
+$( 1 );
+$( 3 );
+$( 4 );
+$( 1 );
+$( 3 );
+$( 4 );
+$( 1 );
+$( 3 );
+$( 4 );
+$( 1 );
+$( 3 );
+$( 4 );
+$( 1 );
+$( 3 );
+$( 4 );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const e = $( 3 );
-  const f = $( 4 );
-  c = e;
-  d = f;
+  $( 3 );
+  $( 4 );
   $( 1 );
 }
-const g = {
+const c = {
 a: 999,
 b: 1000
 ;
-$( g, c, d );
+$( c, a, b );
 `````
 
 ## Globals

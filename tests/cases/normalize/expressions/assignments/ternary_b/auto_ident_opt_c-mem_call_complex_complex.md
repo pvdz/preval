@@ -68,7 +68,6 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   let tmpNestedComplexRhs = undefined;
@@ -88,11 +87,10 @@ if (tmpIfTest) {
     }
   }
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
-  $(tmpCalleeParam);
+  $(tmpNestedComplexRhs);
 } else {
-  tmpCalleeParam = $(200);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
 $(a);
 `````
@@ -106,36 +104,34 @@ let a = {
 a: 999,
 b: 1000
 ;
-let b = undefined;
-const c = $( 1 );
-if (c) {
-  let d = undefined;
-  const e = { $: $ };
-  const f = $( e );
-  const g = f == null;
-  if (g) {
+const b = $( 1 );
+if (b) {
+  let c = undefined;
+  const d = { $: $ };
+  const e = $( d );
+  const f = e == null;
+  if (f) {
 
   }
   else {
-    const h = $( "$" );
-    const i = f[ h ];
-    const j = i == null;
-    if (j) {
+    const g = $( "$" );
+    const h = e[ g ];
+    const i = h == null;
+    if (i) {
 
     }
     else {
-      const k = $( 1 );
-      const l = $dotCall( i, f, k );
-      d = l;
+      const j = $( 1 );
+      const k = $dotCall( h, e, j );
+      c = k;
     }
   }
-  a = d;
-  b = d;
-  $( b );
+  a = c;
+  $( c );
 }
 else {
-  b = $( 200 );
-  $( b );
+  const l = $( 200 );
+  $( l );
 }
 $( a );
 `````

@@ -62,12 +62,11 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = $();
-const tmpObjLitVal = { b: tmpObjLitVal$1 };
+$();
+const tmpObjLitVal = { b: 15 };
 const obj = { a: tmpObjLitVal };
-tmpObjLitVal.b = 15;
-const tmpReturnArg = $(obj);
-$(tmpReturnArg);
+const tmpClusterSSA_tmpReturnArg$1 = $(obj);
+$(tmpClusterSSA_tmpReturnArg$1);
 `````
 
 ## PST Output
@@ -75,12 +74,11 @@ $(tmpReturnArg);
 With rename=true
 
 `````js filename=intro
-const a = $();
-const b = { b: a };
-const c = { a: b };
-b.b = 15;
-const d = $( c );
-$( d );
+$();
+const a = { b: 15 };
+const b = { a: a };
+const c = $( b );
+$( c );
 `````
 
 ## Globals

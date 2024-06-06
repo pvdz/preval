@@ -56,7 +56,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = $(1);
+const tmpIfTest = $(1);
 if (tmpIfTest) {
   const b = { x: 1 };
   const tmpChainRootProp = $(b);
@@ -65,16 +65,16 @@ if (tmpIfTest) {
   } else {
     tmpChainRootProp.x;
   }
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       const tmpChainRootProp$1 = $(b);
       const tmpIfTest$2 = tmpChainRootProp$1 == null;
       if (tmpIfTest$2) {
       } else {
         tmpChainRootProp$1.x;
       }
-      tmpIfTest = $(1);
+      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -90,7 +90,7 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = $( 1 );
+const a = $( 1 );
 if (a) {
   const b = { x: 1 };
   const c = $( b );
@@ -101,29 +101,29 @@ if (a) {
   else {
     c.x;
   }
-  a = $( 1 );
+  let e = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (a) {
-      const e = $( b );
-      const f = e == null;
-      if (f) {
+    if (e) {
+      const f = $( b );
+      const g = f == null;
+      if (g) {
 
       }
       else {
-        e.x;
+        f.x;
       }
-      a = $( 1 );
+      e = $( 1 );
     }
     else {
       break;
     }
   }
 }
-const g = {
+const h = {
 a: 999,
 b: 1000
 ;
-$( g );
+$( h );
 `````
 
 ## Globals

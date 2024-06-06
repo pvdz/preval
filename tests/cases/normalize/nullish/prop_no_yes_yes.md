@@ -54,8 +54,8 @@ if (tmpIfTest) {
   tmpIfTest$1 = tmpCalleeParam == null;
 }
 if (tmpIfTest$1) {
-  tmpCalleeParam = d;
-  $(tmpCalleeParam);
+  d;
+  $(d);
 } else {
   $(tmpCalleeParam);
 }
@@ -77,8 +77,8 @@ else {
   c = a == null;
 }
 if (c) {
-  a = d;
-  $( a );
+  d;
+  $( d );
 }
 else {
   $( a );

@@ -53,11 +53,7 @@ $(a);
 `````js filename=intro
 $(1);
 const tmpCalleeParam = $(0);
-let tmpBinBothRhs = $(tmpCalleeParam);
-if (tmpBinBothRhs) {
-} else {
-  tmpBinBothRhs = true;
-}
+$(tmpCalleeParam);
 const a = { a: 999, b: 1000 };
 $(a);
 `````
@@ -69,18 +65,12 @@ With rename=true
 `````js filename=intro
 $( 1 );
 const a = $( 0 );
-let b = $( a );
-if (b) {
-
-}
-else {
-  b = true;
-}
-const c = {
+$( a );
+const b = {
 a: 999,
 b: 1000
 ;
-$( c );
+$( b );
 `````
 
 ## Globals

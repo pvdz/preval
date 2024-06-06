@@ -59,7 +59,6 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   let tmpNestedComplexRhs = undefined;
@@ -73,11 +72,10 @@ if (tmpIfTest) {
     tmpNestedComplexRhs = tmpChainElementObject;
   }
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
-  $(tmpCalleeParam);
+  $(tmpNestedComplexRhs);
 } else {
-  tmpCalleeParam = $(200);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
 $(a);
 `````
@@ -91,28 +89,26 @@ let a = {
 a: 999,
 b: 1000
 ;
-let b = undefined;
-const c = $( 1 );
-if (c) {
-  let d = undefined;
-  const e = { x: 1 };
-  const f = $( e );
-  const g = f == null;
-  if (g) {
+const b = $( 1 );
+if (b) {
+  let c = undefined;
+  const d = { x: 1 };
+  const e = $( d );
+  const f = e == null;
+  if (f) {
 
   }
   else {
-    const h = $( "x" );
-    const i = f[ h ];
-    d = i;
+    const g = $( "x" );
+    const h = e[ g ];
+    c = h;
   }
-  a = d;
-  b = d;
-  $( b );
+  a = c;
+  $( c );
 }
 else {
-  b = $( 200 );
-  $( b );
+  const i = $( 200 );
+  $( i );
 }
 $( a );
 `````

@@ -46,11 +46,11 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-let tmpCalleeParamSpread = $(tmpCalleeParam);
+const tmpCalleeParamSpread = $(tmpCalleeParam);
 if (tmpCalleeParamSpread) {
   const tmpCalleeParam$1 = $(2);
-  tmpCalleeParamSpread = $(tmpCalleeParam$1);
-  $(...tmpCalleeParamSpread);
+  const tmpClusterSSA_tmpCalleeParamSpread = $(tmpCalleeParam$1);
+  $(...tmpClusterSSA_tmpCalleeParamSpread);
 } else {
   const tmpIfTest = tmpCalleeParamSpread === ``;
   if (tmpIfTest) {
@@ -69,26 +69,26 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = $( a );
+const b = $( a );
 if (b) {
   const c = $( 2 );
-  b = $( c );
-  $( ... b );
+  const d = $( c );
+  $( ... d );
 }
 else {
-  const d = b === "";
-  if (d) {
+  const e = b === "";
+  if (e) {
     $();
   }
   else {
     throw "Preval: Attempting to spread primitive that is not an empty string";
   }
 }
-const e = {
+const f = {
 a: 999,
 b: 1000
 ;
-$( e );
+$( f );
 `````
 
 ## Globals

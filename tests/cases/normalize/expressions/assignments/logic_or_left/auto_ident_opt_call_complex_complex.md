@@ -57,19 +57,17 @@ $(a);
 let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
-let tmpCalleeParam = undefined;
 if (tmpIfTest) {
   $(undefined);
 } else {
   const tmpCalleeParam$5 = $(1);
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$5);
   a = tmpChainElementCall$1;
-  tmpCalleeParam = tmpChainElementCall$1;
-  if (a) {
-    $(tmpCalleeParam);
+  if (tmpChainElementCall$1) {
+    $(tmpChainElementCall$1);
   } else {
-    tmpCalleeParam = $(100);
-    $(tmpCalleeParam);
+    const tmpClusterSSA_tmpCalleeParam = $(100);
+    $(tmpClusterSSA_tmpCalleeParam);
   }
 }
 $(a);
@@ -83,21 +81,19 @@ With rename=true
 let a = undefined;
 const b = $( $ );
 const c = b == null;
-let d = undefined;
 if (c) {
   $( undefined );
 }
 else {
-  const e = $( 1 );
-  const f = $dotCall( b, $, e );
-  a = f;
-  d = f;
-  if (a) {
-    $( d );
+  const d = $( 1 );
+  const e = $dotCall( b, $, d );
+  a = e;
+  if (e) {
+    $( e );
   }
   else {
-    d = $( 100 );
-    $( d );
+    const f = $( 100 );
+    $( f );
   }
 }
 $( a );

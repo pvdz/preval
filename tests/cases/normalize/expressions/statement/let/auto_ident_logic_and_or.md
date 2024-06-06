@@ -63,8 +63,8 @@ if (xyz) {
   $(xyz);
 } else {
   const tmpCalleeParam$3 = $(2);
-  xyz = $(tmpCalleeParam$3);
-  $(xyz);
+  const tmpClusterSSA_xyz = $(tmpCalleeParam$3);
+  $(tmpClusterSSA_xyz);
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -86,14 +86,14 @@ if (b) {
 }
 else {
   const d = $( 2 );
-  b = $( d );
-  $( b );
+  const e = $( d );
+  $( e );
 }
-const e = {
+const f = {
 a: 999,
 b: 1000
 ;
-$( e );
+$( f );
 `````
 
 ## Globals

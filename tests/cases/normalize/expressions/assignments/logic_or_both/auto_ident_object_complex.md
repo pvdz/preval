@@ -53,7 +53,7 @@ $(a);
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
 let a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 if (a) {
   $(tmpCalleeParam);
 } else {
@@ -61,7 +61,6 @@ if (a) {
   const tmpObjLitVal$9 = $(3);
   const tmpNestedComplexRhs = { x: tmpObjLitVal$5, y: 2, z: tmpObjLitVal$9 };
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }
 $(a);
@@ -79,7 +78,7 @@ x: a,
 y: 2,
 z: b
 ;
-let d = c;
+const d = c;
 if (c) {
   $( d );
 }
@@ -92,7 +91,6 @@ y: 2,
 z: f
   ;
   c = g;
-  d = g;
   $( g );
 }
 $( c );

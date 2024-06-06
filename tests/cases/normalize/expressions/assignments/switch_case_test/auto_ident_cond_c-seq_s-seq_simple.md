@@ -53,15 +53,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = 60;
 $(1);
 const tmpIfTest$1 = $(30);
 if (tmpIfTest$1) {
   $(60);
 } else {
   const tmpCalleeParam = $(100);
-  a = $(tmpCalleeParam);
-  $(a);
+  const tmpClusterSSA_a = $(tmpCalleeParam);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -70,16 +69,15 @@ if (tmpIfTest$1) {
 With rename=true
 
 `````js filename=intro
-let a = 60;
 $( 1 );
-const b = $( 30 );
-if (b) {
+const a = $( 30 );
+if (a) {
   $( 60 );
 }
 else {
-  const c = $( 100 );
-  a = $( c );
-  $( a );
+  const b = $( 100 );
+  const c = $( b );
+  $( c );
 }
 `````
 

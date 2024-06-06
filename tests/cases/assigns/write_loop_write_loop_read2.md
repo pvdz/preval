@@ -49,33 +49,33 @@ while (true) {
 
 `````js filename=intro
 $(10);
-let x = $(1, `set`);
-$(x, `loop`);
-x = $(2, `set`);
-$(x, `loop`);
-x = $(3, `set`);
-$(x, `loop`);
-x = $(4, `set`);
-$(x, `loop`);
-x = $(5, `set`);
-$(x, `loop`);
-x = $(6, `set`);
-$(x, `loop`);
-x = $(7, `set`);
-$(x, `loop`);
-x = $(8, `set`);
-$(x, `loop`);
-x = $(9, `set`);
-$(x, `loop`);
-x = $(10, `set`);
-$(x, `loop`);
-let tmpSSA_i$1 = 11;
-x = $(11, `set`);
-$(x, `loop`);
+const tmpClusterSSA_x = $(1, `set`);
+$(tmpClusterSSA_x, `loop`);
+const tmpClusterSSA_x$1 = $(2, `set`);
+$(tmpClusterSSA_x$1, `loop`);
+const tmpClusterSSA_x$2 = $(3, `set`);
+$(tmpClusterSSA_x$2, `loop`);
+const tmpClusterSSA_x$3 = $(4, `set`);
+$(tmpClusterSSA_x$3, `loop`);
+const tmpClusterSSA_x$4 = $(5, `set`);
+$(tmpClusterSSA_x$4, `loop`);
+const tmpClusterSSA_x$5 = $(6, `set`);
+$(tmpClusterSSA_x$5, `loop`);
+const tmpClusterSSA_x$6 = $(7, `set`);
+$(tmpClusterSSA_x$6, `loop`);
+const tmpClusterSSA_x$7 = $(8, `set`);
+$(tmpClusterSSA_x$7, `loop`);
+const tmpClusterSSA_x$8 = $(9, `set`);
+$(tmpClusterSSA_x$8, `loop`);
+const tmpClusterSSA_x$9 = $(10, `set`);
+$(tmpClusterSSA_x$9, `loop`);
+let tmpClusterSSA_i$1 = 11;
+const tmpClusterSSA_x$10 = $(11, `set`);
+$(tmpClusterSSA_x$10, `loop`);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  tmpSSA_i$1 = tmpSSA_i$1 + 1;
-  x = $(tmpSSA_i$1, `set`);
-  $(x, `loop`);
+  tmpClusterSSA_i$1 = tmpClusterSSA_i$1 + 1;
+  const tmpClusterSSA_x$11 = $(tmpClusterSSA_i$1, `set`);
+  $(tmpClusterSSA_x$11, `loop`);
 }
 `````
 
@@ -85,33 +85,33 @@ With rename=true
 
 `````js filename=intro
 $( 10 );
-let a = $( 1, "set" );
+const a = $( 1, "set" );
 $( a, "loop" );
-a = $( 2, "set" );
-$( a, "loop" );
-a = $( 3, "set" );
-$( a, "loop" );
-a = $( 4, "set" );
-$( a, "loop" );
-a = $( 5, "set" );
-$( a, "loop" );
-a = $( 6, "set" );
-$( a, "loop" );
-a = $( 7, "set" );
-$( a, "loop" );
-a = $( 8, "set" );
-$( a, "loop" );
-a = $( 9, "set" );
-$( a, "loop" );
-a = $( 10, "set" );
-$( a, "loop" );
-let b = 11;
-a = $( 11, "set" );
-$( a, "loop" );
+const b = $( 2, "set" );
+$( b, "loop" );
+const c = $( 3, "set" );
+$( c, "loop" );
+const d = $( 4, "set" );
+$( d, "loop" );
+const e = $( 5, "set" );
+$( e, "loop" );
+const f = $( 6, "set" );
+$( f, "loop" );
+const g = $( 7, "set" );
+$( g, "loop" );
+const h = $( 8, "set" );
+$( h, "loop" );
+const i = $( 9, "set" );
+$( i, "loop" );
+const j = $( 10, "set" );
+$( j, "loop" );
+let k = 11;
+const l = $( 11, "set" );
+$( l, "loop" );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  b = b + 1;
-  a = $( b, "set" );
-  $( a, "loop" );
+  k = k + 1;
+  const m = $( k, "set" );
+  $( m, "loop" );
 }
 `````
 

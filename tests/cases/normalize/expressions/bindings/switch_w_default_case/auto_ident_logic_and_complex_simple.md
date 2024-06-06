@@ -91,12 +91,11 @@ if (tmpIfTest$7) {
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-let a = $(tmpCalleeParam);
-if (a) {
-  a = 2;
+const tmpClusterSSA_a = $(tmpCalleeParam);
+if (tmpClusterSSA_a) {
   $(2);
 } else {
-  $(a);
+  $(tmpClusterSSA_a);
 }
 $(`fail1`);
 $(`fail2`);
@@ -108,9 +107,8 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = $( a );
+const b = $( a );
 if (b) {
-  b = 2;
   $( 2 );
 }
 else {

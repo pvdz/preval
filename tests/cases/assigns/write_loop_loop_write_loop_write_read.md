@@ -57,10 +57,10 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = $(10);
+const x = $(10);
 while (true) {
   let $tmpLoopUnrollCheck = true;
-  x = $(20);
+  $(20);
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     $tmpLoopUnrollCheck = false;
@@ -68,7 +68,7 @@ while (true) {
   }
   if ($tmpLoopUnrollCheck) {
     while ($LOOP_UNROLL_10) {
-      x = $(20);
+      $(20);
       const tmpIfTest$1 = $(true);
       if (tmpIfTest$1) {
         break;
@@ -77,7 +77,7 @@ while (true) {
     }
   } else {
   }
-  x = $(30);
+  $(30);
 }
 $(x);
 `````
@@ -87,24 +87,24 @@ $(x);
 With rename=true
 
 `````js filename=intro
-let a = $( 10 );
+const a = $( 10 );
 while (true) {
   let b = true;
-  a = $( 20 );
+  $( 20 );
   const c = $( true );
   if (c) {
     b = false;
   }
   if (b) {
     while ($LOOP_UNROLL_10) {
-      a = $( 20 );
+      $( 20 );
       const d = $( true );
       if (d) {
         break;
       }
     }
   }
-  a = $( 30 );
+  $( 30 );
 }
 $( a );
 `````

@@ -66,12 +66,12 @@ $(`after, do not evaluate (infinite loop)`);
 let tmpIfTest = $(true);
 while (true) {
   if (tmpIfTest) {
-    let tmpIfTest$1 = $(true);
+    const tmpIfTest$1 = $(true);
     if (tmpIfTest$1) {
-      tmpIfTest$1 = $(true);
+      let tmpClusterSSA_tmpIfTest$1 = $(true);
       while ($LOOP_UNROLL_10) {
-        if (tmpIfTest$1) {
-          tmpIfTest$1 = $(true);
+        if (tmpClusterSSA_tmpIfTest$1) {
+          tmpClusterSSA_tmpIfTest$1 = $(true);
         } else {
           break;
         }
@@ -94,12 +94,12 @@ With rename=true
 let a = $( true );
 while (true) {
   if (a) {
-    let b = $( true );
+    const b = $( true );
     if (b) {
-      b = $( true );
+      let c = $( true );
       while ($LOOP_UNROLL_10) {
-        if (b) {
-          b = $( true );
+        if (c) {
+          c = $( true );
         }
         else {
           break;

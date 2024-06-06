@@ -66,12 +66,12 @@ if (tmpIfTest) {
   const tmpChainRootComputed = $(`x`);
   tmpChainElementCall[tmpChainRootComputed];
 }
-let tmpIfTest$1 = $(0);
+const tmpIfTest$1 = $(0);
 if (tmpIfTest$1) {
-  tmpIfTest$1 = $(0);
+  let tmpClusterSSA_tmpIfTest$1 = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest$1) {
-      tmpIfTest$1 = $(0);
+    if (tmpClusterSSA_tmpIfTest$1) {
+      tmpClusterSSA_tmpIfTest$1 = $(0);
     } else {
       break;
     }
@@ -100,12 +100,12 @@ else {
   const e = $( "x" );
   c[ e ];
 }
-let f = $( 0 );
+const f = $( 0 );
 if (f) {
-  f = $( 0 );
+  let g = $( 0 );
   while ($LOOP_UNROLL_10) {
-    if (f) {
-      f = $( 0 );
+    if (g) {
+      g = $( 0 );
     }
     else {
       break;

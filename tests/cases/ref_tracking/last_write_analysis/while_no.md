@@ -60,9 +60,9 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = $(`a`);
+const x = $(`a`);
 $(x);
-x = $(`b`);
+const tmpClusterSSA_x = $(`b`);
 if ($) {
   $(`123`);
   if ($) {
@@ -77,7 +77,7 @@ if ($) {
   }
 } else {
 }
-$(x);
+$(tmpClusterSSA_x);
 `````
 
 ## PST Output
@@ -85,9 +85,9 @@ $(x);
 With rename=true
 
 `````js filename=intro
-let a = $( "a" );
+const a = $( "a" );
 $( a );
-a = $( "b" );
+const b = $( "b" );
 if ($) {
   $( "123" );
   if ($) {
@@ -101,7 +101,7 @@ if ($) {
     }
   }
 }
-$( a );
+$( b );
 `````
 
 ## Globals

@@ -65,7 +65,6 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = 2;
 const tmpSwitchDisc = $(`a`);
 const tmpBinBothRhs = $(`a`);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
@@ -73,10 +72,9 @@ if (tmpIfTest) {
   const varInitAssignLhsComputedObj = $(3);
   const varInitAssignLhsComputedRhs = $(4);
   varInitAssignLhsComputedObj.y = varInitAssignLhsComputedRhs;
-  b = varInitAssignLhsComputedRhs;
   $(1, varInitAssignLhsComputedRhs, 3);
 } else {
-  $(1, b, 3);
+  $(1, 2, 3);
 }
 `````
 
@@ -85,19 +83,17 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-let a = 2;
+const a = $( "a" );
 const b = $( "a" );
-const c = $( "a" );
-const d = b === c;
-if (d) {
-  const e = $( 3 );
-  const f = $( 4 );
-  e.y = f;
-  a = f;
-  $( 1, f, 3 );
+const c = a === b;
+if (c) {
+  const d = $( 3 );
+  const e = $( 4 );
+  d.y = e;
+  $( 1, e, 3 );
 }
 else {
-  $( 1, a, 3 );
+  $( 1, 2, 3 );
 }
 `````
 

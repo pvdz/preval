@@ -50,7 +50,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = $(60);
+$(60);
 $(1);
 $(1);
 $(1);
@@ -65,6 +65,7 @@ $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -73,7 +74,7 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = $( 60 );
+$( 60 );
 $( 1 );
 $( 1 );
 $( 1 );
@@ -88,6 +89,10 @@ $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
+const a = {
+a: 999,
+b: 1000
+;
 $( a );
 `````
 

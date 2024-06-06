@@ -53,14 +53,13 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpChainRootCall = $();
 const tmpIfTest = tmpChainRootCall == null;
-let tmpReturnArg = undefined;
 if (tmpIfTest) {
-  tmpReturnArg = $(undefined);
-  $(tmpReturnArg);
+  const tmpClusterSSA_tmpReturnArg = $(undefined);
+  $(tmpClusterSSA_tmpReturnArg);
 } else {
   const tmpChainElementCall = tmpChainRootCall();
-  tmpReturnArg = $(tmpChainElementCall);
-  $(tmpReturnArg);
+  const tmpClusterSSA_tmpReturnArg$1 = $(tmpChainElementCall);
+  $(tmpClusterSSA_tmpReturnArg$1);
 }
 `````
 
@@ -71,15 +70,14 @@ With rename=true
 `````js filename=intro
 const a = $();
 const b = a == null;
-let c = undefined;
 if (b) {
-  c = $( undefined );
+  const c = $( undefined );
   $( c );
 }
 else {
   const d = a();
-  c = $( d );
-  $( c );
+  const e = $( d );
+  $( e );
 }
 `````
 

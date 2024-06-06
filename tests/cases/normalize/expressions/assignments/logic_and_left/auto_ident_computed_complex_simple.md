@@ -49,15 +49,14 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const tmpAssignRhsProp = $(b);
-const tmpSSA_a = tmpAssignRhsProp.c;
-let tmpCalleeParam = tmpSSA_a;
-if (tmpSSA_a) {
-  tmpCalleeParam = $(100);
-  $(tmpCalleeParam);
+const tmpClusterSSA_a = tmpAssignRhsProp.c;
+if (tmpClusterSSA_a) {
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  $(tmpCalleeParam);
+  $(tmpClusterSSA_a);
 }
-$(tmpSSA_a, b);
+$(tmpClusterSSA_a, b);
 `````
 
 ## PST Output
@@ -68,13 +67,12 @@ With rename=true
 const a = { c: 1 };
 const b = $( a );
 const c = b.c;
-let d = c;
 if (c) {
-  d = $( 100 );
+  const d = $( 100 );
   $( d );
 }
 else {
-  $( d );
+  $( c );
 }
 $( c, a );
 `````

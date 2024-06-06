@@ -52,12 +52,11 @@ $(a);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
 const a = $(tmpCalleeParam$1, tmpCalleeParam$3);
-let tmpCalleeParam = a;
 if (a) {
   $(a);
 } else {
-  tmpCalleeParam = $(100);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
 $(a);
 `````
@@ -70,12 +69,11 @@ With rename=true
 const a = $( 1 );
 const b = $( 2 );
 const c = $( a, b );
-let d = c;
 if (c) {
   $( c );
 }
 else {
-  d = $( 100 );
+  const d = $( 100 );
   $( d );
 }
 $( c );

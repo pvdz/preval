@@ -56,12 +56,12 @@ $(a);
 const tmpIfTest = $(100);
 if (tmpIfTest) {
   const tmpCalleeParam = $(0);
-  let tmpIfTest$1 = $(tmpCalleeParam);
+  const tmpIfTest$1 = $(tmpCalleeParam);
   if (tmpIfTest$1) {
   } else {
     const tmpCalleeParam$1 = $(1);
-    tmpIfTest$1 = $(tmpCalleeParam$1);
-    if (tmpIfTest$1) {
+    const tmpClusterSSA_tmpIfTest$1 = $(tmpCalleeParam$1);
+    if (tmpClusterSSA_tmpIfTest$1) {
     } else {
       const tmpCalleeParam$3 = $(2);
       $(tmpCalleeParam$3);
@@ -81,27 +81,27 @@ With rename=true
 const a = $( 100 );
 if (a) {
   const b = $( 0 );
-  let c = $( b );
+  const c = $( b );
   if (c) {
 
   }
   else {
     const d = $( 1 );
-    c = $( d );
-    if (c) {
+    const e = $( d );
+    if (e) {
 
     }
     else {
-      const e = $( 2 );
-      $( e );
+      const f = $( 2 );
+      $( f );
     }
   }
 }
-const f = {
+const g = {
 a: 999,
 b: 1000
 ;
-$( f );
+$( g );
 `````
 
 ## Globals

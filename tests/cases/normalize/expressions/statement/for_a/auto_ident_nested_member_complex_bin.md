@@ -77,12 +77,12 @@ const varInitAssignLhsComputedObj = $(c);
 const varInitAssignLhsComputedProp = $(`y`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 7;
-let tmpIfTest = $(0);
+const tmpIfTest = $(0);
 if (tmpIfTest) {
-  tmpIfTest = $(0);
+  let tmpClusterSSA_tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      tmpIfTest = $(0);
+    if (tmpClusterSSA_tmpIfTest) {
+      tmpClusterSSA_tmpIfTest = $(0);
     } else {
       break;
     }
@@ -109,12 +109,12 @@ const f = $( b );
 const g = $( "y" );
 f[g] = 7;
 d[e] = 7;
-let h = $( 0 );
+const h = $( 0 );
 if (h) {
-  h = $( 0 );
+  let i = $( 0 );
   while ($LOOP_UNROLL_10) {
-    if (h) {
-      h = $( 0 );
+    if (i) {
+      i = $( 0 );
     }
     else {
       break;

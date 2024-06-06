@@ -94,7 +94,7 @@ if (tmpIfTest) {
   }
 }
 const tmpBinBothLhs = a;
-a = undefined;
+let tmpClusterSSA_a = undefined;
 const tmpChainElementCall$1 = $(b);
 const tmpIfTest$3 = tmpChainElementCall$1 == null;
 if (tmpIfTest$3) {
@@ -106,12 +106,12 @@ if (tmpIfTest$3) {
   } else {
     const tmpChainRootComputed$5 = $(`y`);
     const tmpChainElementObject$5 = tmpChainElementObject$3[tmpChainRootComputed$5];
-    a = tmpChainElementObject$5;
+    tmpClusterSSA_a = tmpChainElementObject$5;
   }
 }
-const tmpCalleeParam = tmpBinBothLhs + a;
+const tmpCalleeParam = tmpBinBothLhs + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output
@@ -141,28 +141,28 @@ else {
   }
 }
 const k = c;
-c = undefined;
-const l = $( b );
-const m = l == null;
-if (m) {
+let l = undefined;
+const m = $( b );
+const n = m == null;
+if (n) {
 
 }
 else {
-  const n = $( "x" );
-  const o = l[ n ];
-  const p = o == null;
-  if (p) {
+  const o = $( "x" );
+  const p = m[ o ];
+  const q = p == null;
+  if (q) {
 
   }
   else {
-    const q = $( "y" );
-    const r = o[ q ];
-    c = r;
+    const r = $( "y" );
+    const s = p[ r ];
+    l = s;
   }
 }
-const s = k + c;
-$( s );
-$( c );
+const t = k + l;
+$( t );
+$( l );
 `````
 
 ## Globals

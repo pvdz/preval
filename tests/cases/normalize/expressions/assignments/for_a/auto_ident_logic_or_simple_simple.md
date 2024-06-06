@@ -61,7 +61,7 @@ $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-$(2);
+$(0);
 `````
 
 ## PST Output
@@ -83,7 +83,7 @@ $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-$( 2 );
+$( 0 );
 `````
 
 ## Globals

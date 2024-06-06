@@ -58,13 +58,12 @@ $(1);
 $(2);
 const arg = { y: 1 };
 let a = delete arg.y;
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 if (a) {
   $(1);
   $(2);
   const tmpNestedComplexRhs = delete arg.y;
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
@@ -81,13 +80,12 @@ $( 1 );
 $( 2 );
 const a = { y: 1 };
 let b = deletea.y;
-let c = b;
+const c = b;
 if (b) {
   $( 1 );
   $( 2 );
   const d = deletea.y;
   b = d;
-  c = d;
   $( d );
 }
 else {

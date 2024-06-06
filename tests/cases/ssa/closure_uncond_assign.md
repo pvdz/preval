@@ -82,17 +82,16 @@ if ($) {
 ## Output
 
 `````js filename=intro
+const tmpClusterSSA_x = function () {
+  debugger;
+  return undefined;
+};
 const f = function () {
   debugger;
-  let x = undefined;
   if ($) {
-    x = function () {
-      debugger;
-      return undefined;
-    };
     $();
-    $(x);
-    return x;
+    $(tmpClusterSSA_x);
+    return tmpClusterSSA_x;
   } else {
     return undefined;
   }
@@ -111,22 +110,21 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  let b = undefined;
+  return undefined;
+};
+const b = function() {
+  debugger;
   if ($) {
-    b = function() {
-      debugger;
-      return undefined;
-    };
     $();
-    $( b );
-    return b;
+    $( a );
+    return a;
   }
   else {
     return undefined;
   }
 };
 if ($) {
-  const c = a();
+  const c = b();
   $( c );
 }
 `````

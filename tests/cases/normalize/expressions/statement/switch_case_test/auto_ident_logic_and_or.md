@@ -70,7 +70,7 @@ if (tmpBinBothRhs) {
 if (tmpBinBothRhs) {
 } else {
   const tmpCalleeParam$3 = $(2);
-  tmpBinBothRhs = $(tmpCalleeParam$3);
+  $(tmpCalleeParam$3);
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -93,7 +93,7 @@ if (b) {
 }
 else {
   const d = $( 2 );
-  b = $( d );
+  $( d );
 }
 const e = {
 a: 999,

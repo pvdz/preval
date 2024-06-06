@@ -78,16 +78,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpSSA_a = undefined;
+let tmpClusterSSA_a = undefined;
 const tmpIfTest$3 = $ == null;
 if (tmpIfTest$3) {
 } else {
   const tmpObjLitVal$1 = { e: $ };
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
-  tmpSSA_a = tmpChainElementCall;
+  tmpClusterSSA_a = tmpChainElementCall;
 }
 $(undefined);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

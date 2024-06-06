@@ -56,24 +56,24 @@ $(s);
 `````js filename=intro
 const s = $(10);
 parseExpression(lexerFlags$285, astProp$181);
-let tmpSSA_s = s | 10;
-let tmpSSA_x = $(true);
-if (tmpSSA_x) {
+let tmpClusterSSA_s = s | 10;
+const tmpClusterSSA_x = $(true);
+if (tmpClusterSSA_x) {
   parseExpression(lexerFlags$285, astProp$181);
-  tmpSSA_s = tmpSSA_s | 10;
-  tmpSSA_x = $(true);
+  tmpClusterSSA_s = tmpClusterSSA_s | 10;
+  let tmpClusterSSA_x$1 = $(true);
   while ($LOOP_UNROLL_9) {
-    if (tmpSSA_x) {
+    if (tmpClusterSSA_x$1) {
       parseExpression(lexerFlags$285, astProp$181);
-      tmpSSA_s = tmpSSA_s | 10;
-      tmpSSA_x = $(true);
+      tmpClusterSSA_s = tmpClusterSSA_s | 10;
+      tmpClusterSSA_x$1 = $(true);
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpSSA_s);
+$(tmpClusterSSA_s);
 `````
 
 ## PST Output
@@ -84,16 +84,16 @@ With rename=true
 const a = $( 10 );
 parseExpression( lexerFlags$285, astProp$181 );
 let b = a | 10;
-let c = $( true );
+const c = $( true );
 if (c) {
   parseExpression( lexerFlags$285, astProp$181 );
   b = b | 10;
-  c = $( true );
+  let d = $( true );
   while ($LOOP_UNROLL_9) {
-    if (c) {
+    if (d) {
       parseExpression( lexerFlags$285, astProp$181 );
       b = b | 10;
-      c = $( true );
+      d = $( true );
     }
     else {
       break;

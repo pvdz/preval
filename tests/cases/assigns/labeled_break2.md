@@ -74,14 +74,10 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = 10;
+$(10);
 if ($) {
-  $(10);
-  x = 20;
   $(20);
 } else {
-  $(x);
-  x = 40;
   $(40);
 }
 `````
@@ -91,15 +87,11 @@ if ($) {
 With rename=true
 
 `````js filename=intro
-let a = 10;
+$( 10 );
 if ($) {
-  $( 10 );
-  a = 20;
   $( 20 );
 }
 else {
-  $( a );
-  a = 40;
   $( 40 );
 }
 `````

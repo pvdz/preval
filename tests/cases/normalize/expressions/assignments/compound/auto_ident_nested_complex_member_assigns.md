@@ -75,9 +75,8 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = a;
 const b = { x: 1 };
+const a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $(`x`);
 const varInitAssignLhsComputedObj$1 = $(b);
@@ -96,9 +95,9 @@ varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
 varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-a = tmpBinBothLhs * 3;
-$(a);
-$(a, b, 3);
+const tmpClusterSSA_a = a * 3;
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a, b, 3);
 `````
 
 ## PST Output
@@ -106,33 +105,32 @@ $(a, b, 3);
 With rename=true
 
 `````js filename=intro
-let a = {
+const a = { x: 1 };
+const b = {
 a: 999,
 b: 1000
 ;
-const b = a;
-const c = { x: 1 };
-const d = $( c );
-const e = $( "x" );
-const f = $( c );
-const g = $( "x" );
-const h = $( c );
-const i = $( "x" );
-const j = $( c );
-const k = $( "x" );
-const l = $( c );
-const m = $( "x" );
-const n = $( c );
-const o = $( "x" );
-n[o] = 3;
-l[m] = 3;
-j[k] = 3;
-h[i] = 3;
-f[g] = 3;
-d[e] = 3;
-a = b * 3;
-$( a );
-$( a, c, 3 );
+const c = $( a );
+const d = $( "x" );
+const e = $( a );
+const f = $( "x" );
+const g = $( a );
+const h = $( "x" );
+const i = $( a );
+const j = $( "x" );
+const k = $( a );
+const l = $( "x" );
+const m = $( a );
+const n = $( "x" );
+m[n] = 3;
+k[l] = 3;
+i[j] = 3;
+g[h] = 3;
+e[f] = 3;
+c[d] = 3;
+const o = b * 3;
+$( o );
+$( o, a, 3 );
 `````
 
 ## Globals

@@ -57,8 +57,8 @@ $(a);
 const a = { a: 999, b: 1000 };
 const b = { c: $ };
 const tmpChainElementCall = $dotCall($, b, 1);
-const tmpSSA_tmpBinBothRhs = $coerce(tmpChainElementCall, `string`);
-const tmpCalleeParam = `before  ${tmpSSA_tmpBinBothRhs}  after`;
+const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpChainElementCall, `string`);
+const tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

@@ -65,20 +65,20 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = $(`a`);
+const x = $(`a`);
 $(x);
-x = $(`b`);
+let tmpClusterSSA_x = $(`b`);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
 } else {
-  x = $(`c`);
+  tmpClusterSSA_x = $(`c`);
   const tmpIfTest$1 = $(2);
   if (tmpIfTest$1) {
   } else {
-    x = $(`d`);
+    tmpClusterSSA_x = $(`d`);
   }
 }
-$(x);
+$(tmpClusterSSA_x);
 `````
 
 ## PST Output
@@ -86,24 +86,24 @@ $(x);
 With rename=true
 
 `````js filename=intro
-let a = $( "a" );
+const a = $( "a" );
 $( a );
-a = $( "b" );
-const b = $( 1 );
-if (b) {
+let b = $( "b" );
+const c = $( 1 );
+if (c) {
 
 }
 else {
-  a = $( "c" );
-  const c = $( 2 );
-  if (c) {
+  b = $( "c" );
+  const d = $( 2 );
+  if (d) {
 
   }
   else {
-    a = $( "d" );
+    b = $( "d" );
   }
 }
-$( a );
+$( b );
 `````
 
 ## Globals

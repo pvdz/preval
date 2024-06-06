@@ -111,7 +111,6 @@ if (tmpIfTest) {
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
-  a = 0;
   const tmpCalleeParam = $(1);
   a = $(tmpCalleeParam);
 } else {
@@ -149,7 +148,6 @@ else {
 }
 const g = c <= 0;
 if (g) {
-  a = 0;
   const h = $( 1 );
   a = $( h );
 }

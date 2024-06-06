@@ -85,7 +85,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
-  let tmpIfTest = $(true);
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
     $(`loop`);
     const tmpIfTest$1 = $(true);
@@ -95,9 +95,9 @@ const f = function () {
       return tmpReturnArg;
     } else {
       $(`do not visit, do not eliminate`);
-      tmpIfTest = $(true);
+      let tmpClusterSSA_tmpIfTest = $(true);
       while ($LOOP_UNROLL_10) {
-        if (tmpIfTest) {
+        if (tmpClusterSSA_tmpIfTest) {
           $(`loop`);
           const tmpIfTest$2 = $(true);
           if (tmpIfTest$2) {
@@ -106,7 +106,7 @@ const f = function () {
             return tmpReturnArg$1;
           } else {
             $(`do not visit, do not eliminate`);
-            tmpIfTest = $(true);
+            tmpClusterSSA_tmpIfTest = $(true);
           }
         } else {
           break;
@@ -129,7 +129,7 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  let b = $( true );
+  const b = $( true );
   if (b) {
     $( "loop" );
     const c = $( true );
@@ -140,19 +140,19 @@ const a = function() {
     }
     else {
       $( "do not visit, do not eliminate" );
-      b = $( true );
+      let e = $( true );
       while ($LOOP_UNROLL_10) {
-        if (b) {
+        if (e) {
           $( "loop" );
-          const e = $( true );
-          if (e) {
+          const f = $( true );
+          if (f) {
             $( "loop" );
-            const f = $( 100, "return" );
-            return f;
+            const g = $( 100, "return" );
+            return g;
           }
           else {
             $( "do not visit, do not eliminate" );
-            b = $( true );
+            e = $( true );
           }
         }
         else {
@@ -164,8 +164,8 @@ const a = function() {
   $( "after (not invoked)" );
   return undefined;
 };
-const g = a();
-$( g );
+const h = a();
+$( h );
 `````
 
 ## Globals

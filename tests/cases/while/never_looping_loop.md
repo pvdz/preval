@@ -160,21 +160,20 @@ if ($) {
   const len2 = B.length;
   const diff = len - len2;
   const pos = $.indexOf(B, diff);
-  let isnot = pos !== -1;
+  const isnot = pos === -1;
   if (isnot) {
-    isnot = pos === diff;
-    if (isnot) {
+  } else {
+    const tmpClusterSSA_isnot = pos === diff;
+    if (tmpClusterSSA_isnot) {
       const len3 = $.length;
       const lena2 = A.length;
-      let isa2 = len3 === lena2;
+      const isa2 = len3 === lena2;
       if (isa2) {
       } else {
-        const pos4 = A.indexOf(`.`);
-        isa2 = pos4 === 0;
+        A.indexOf(`.`);
       }
     } else {
     }
-  } else {
   }
 } else {
 }
@@ -201,19 +200,21 @@ if ($) {
   const g = a.length;
   const h = f - g;
   const i = $.indexOf( a, h );
-  let j = i !== -1;
+  const j = i === -1;
   if (j) {
-    j = i === h;
-    if (j) {
-      const k = $.length;
-      const l = c.length;
-      let m = k === l;
-      if (m) {
+
+  }
+  else {
+    const k = i === h;
+    if (k) {
+      const l = $.length;
+      const m = c.length;
+      const n = l === m;
+      if (n) {
 
       }
       else {
-        const n = c.indexOf( "." );
-        m = n === 0;
+        c.indexOf( "." );
       }
     }
   }

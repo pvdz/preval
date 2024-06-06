@@ -93,8 +93,8 @@ function _singleScopeSSA(fdata) {
     }
 
     let failingWrite = '';
-    if (meta.writes.some((write) => (failingWrite = write.kind) !== 'assign')) {
-      vlog(`At least one write is not an "assign" (it was "${failingWrite}"), bailing`);
+    if (meta.writes.some((write) => (failingWrite = write.kind) !== 'assign' && write.kind !== 'var')) {
+      vlog(`At least one write is not an "assign" kind (it was "${failingWrite}"), bailing`);
       return;
     }
 
@@ -226,7 +226,7 @@ function _singleScopeSSA(fdata) {
           return;
         }
 
-        ASSERT(firstWrite.kind === 'assign', 'ehh, or fix me :) dont think for-header is gonna work here', firstWrite.kind);
+        ASSERT(firstWrite.kind === 'assign', 'ehh, or fix me :) dont think for-header/catch is gonna work here', firstWrite.kind);
 
         // I believe that we should be good to go for changing this write to a var decl now...
         // TODO: confirm this properly ignores for-header lhs cases.

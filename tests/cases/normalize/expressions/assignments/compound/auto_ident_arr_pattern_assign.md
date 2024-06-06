@@ -54,17 +54,16 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = a;
+const a = { a: 999, b: 1000 };
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-const tmpSSA_x = arrPatternSplat[0];
-const tmpSSA_y = arrPatternSplat[1];
-a = tmpBinBothLhs * tmpNestedAssignArrPatternRhs;
-$(a);
-$(a, tmpSSA_x, tmpSSA_y);
+const tmpClusterSSA_x = arrPatternSplat[0];
+const tmpClusterSSA_y = arrPatternSplat[1];
+const tmpClusterSSA_a = a * tmpNestedAssignArrPatternRhs;
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a, tmpClusterSSA_x, tmpClusterSSA_y);
 `````
 
 ## PST Output
@@ -72,20 +71,19 @@ $(a, tmpSSA_x, tmpSSA_y);
 With rename=true
 
 `````js filename=intro
-let a = {
+const a = {
 a: 999,
 b: 1000
 ;
-const b = a;
-const c = $( 3 );
-const d = $( 4 );
-const e = [ c, d ];
-const f = [ ... e ];
-const g = f[ 0 ];
-const h = f[ 1 ];
-a = b * e;
-$( a );
-$( a, g, h );
+const b = $( 3 );
+const c = $( 4 );
+const d = [ b, c ];
+const e = [ ... d ];
+const f = e[ 0 ];
+const g = e[ 1 ];
+const h = a * d;
+$( h );
+$( h, f, g );
 `````
 
 ## Globals

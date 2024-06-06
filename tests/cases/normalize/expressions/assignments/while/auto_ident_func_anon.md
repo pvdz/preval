@@ -51,14 +51,21 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-while (true) {
-  a = function () {
-    debugger;
-    return undefined;
-  };
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -67,17 +74,24 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
+$( 100 );
+$( 100 );
+$( 100 );
+$( 100 );
+$( 100 );
+$( 100 );
+$( 100 );
+$( 100 );
+$( 100 );
+$( 100 );
+$( 100 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 100 );
+}
+const a = {
 a: 999,
 b: 1000
 ;
-while (true) {
-  a = function() {
-    debugger;
-    return undefined;
-  };
-  $( 100 );
-}
 $( a );
 `````
 

@@ -63,13 +63,11 @@ if (test) {
 
 `````js filename=intro
 const a = x & 1;
-let test = Boolean(a);
 if (a) {
   $(`yes`);
 } else {
   const b = x & 4;
-  test = Boolean(b);
-  if (test) {
+  if (b) {
     $(`yes`);
   } else {
     $(`no 2`);
@@ -83,13 +81,11 @@ With rename=true
 
 `````js filename=intro
 const a = x & 1;
-let b = Boolean( a );
 if (a) {
   $( "yes" );
 }
 else {
-  const c = x & 4;
-  b = Boolean( c );
+  const b = x & 4;
   if (b) {
     $( "yes" );
   }

@@ -58,14 +58,13 @@ const tmpCallCallee$1 = $($);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
 let a = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 if (a) {
   const tmpCallCallee$3 = $($);
   const tmpCalleeParam$5 = $(1);
   const tmpCalleeParam$7 = $(2);
   const tmpNestedComplexRhs = tmpCallCallee$3(tmpCalleeParam$5, tmpCalleeParam$7);
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
@@ -82,14 +81,13 @@ const a = $( $ );
 const b = $( 1 );
 const c = $( 2 );
 let d = a( b, c );
-let e = d;
+const e = d;
 if (d) {
   const f = $( $ );
   const g = $( 1 );
   const h = $( 2 );
   const i = f( g, h );
   d = i;
-  e = i;
   $( i );
 }
 else {

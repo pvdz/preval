@@ -60,8 +60,8 @@ $(problem2);
 
 `````js filename=intro
 $ObjectPrototype.now;
-const tmpSSA_problem2 = {};
-$(tmpSSA_problem2);
+const tmpClusterSSA_problem2 = {};
+$(tmpClusterSSA_problem2);
 `````
 
 ## PST Output

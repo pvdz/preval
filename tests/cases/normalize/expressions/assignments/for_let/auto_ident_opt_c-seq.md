@@ -57,7 +57,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = undefined;
 const b = { x: 1 };
 const tmpChainRootProp = $(b);
 const tmpIfTest = tmpChainRootProp == null;
@@ -66,7 +65,6 @@ if (tmpIfTest) {
   $(undefined);
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;
-  a = tmpChainElementObject;
   xyz = tmpChainElementObject;
   $(tmpChainElementObject);
 }
@@ -95,7 +93,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
 }
-$(a);
+$(undefined);
 `````
 
 ## PST Output
@@ -103,46 +101,44 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { x: 1 };
-const c = $( b );
-const d = c == null;
-let e = undefined;
-if (d) {
+const a = { x: 1 };
+const b = $( a );
+const c = b == null;
+let d = undefined;
+if (c) {
   $( undefined );
 }
 else {
-  const f = c.x;
-  a = f;
-  e = f;
-  $( f );
+  const e = b.x;
+  d = e;
+  $( e );
 }
 $( 1 );
-$( e );
+$( d );
 $( 1 );
-$( e );
+$( d );
 $( 1 );
-$( e );
+$( d );
 $( 1 );
-$( e );
+$( d );
 $( 1 );
-$( e );
+$( d );
 $( 1 );
-$( e );
+$( d );
 $( 1 );
-$( e );
+$( d );
 $( 1 );
-$( e );
+$( d );
 $( 1 );
-$( e );
+$( d );
 $( 1 );
-$( e );
+$( d );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( e );
+  $( d );
   $( 1 );
 }
-$( a );
+$( undefined );
 `````
 
 ## Globals

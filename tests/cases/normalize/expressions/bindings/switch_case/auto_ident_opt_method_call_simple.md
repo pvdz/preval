@@ -62,8 +62,8 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const b = { c: $ };
-const tmpChainElementCall = $dotCall($, b, 1);
+const tmpClusterSSA_b = { c: $ };
+const tmpChainElementCall = $dotCall($, tmpClusterSSA_b, 1);
 $(tmpChainElementCall);
 `````
 

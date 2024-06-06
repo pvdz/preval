@@ -53,8 +53,6 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
 const tmpIfTest = $(100);
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
@@ -62,11 +60,9 @@ if (tmpIfTest) {
   $(2);
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);
-  x = tmpArrElement;
-  y = tmpArrElement$1;
-  $(a, x, tmpArrElement$1);
+  $(a, tmpArrElement, tmpArrElement$1);
 } else {
-  $(a, x, y);
+  $(a, 1, 2);
 }
 `````
 
@@ -75,24 +71,20 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-let a = 1;
-let b = 2;
-const c = $( 100 );
-const d = {
+const a = $( 100 );
+const b = {
 a: 999,
 b: 1000
 ;
-if (c) {
+if (a) {
   $( 1 );
   $( 2 );
-  const e = $( 3 );
-  const f = $( 4 );
-  a = e;
-  b = f;
-  $( d, a, f );
+  const c = $( 3 );
+  const d = $( 4 );
+  $( b, c, d );
 }
 else {
-  $( d, a, b );
+  $( b, 1, 2 );
 }
 `````
 

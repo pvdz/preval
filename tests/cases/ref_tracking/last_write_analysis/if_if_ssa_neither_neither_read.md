@@ -59,9 +59,9 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-let x = $(`a`);
+const x = $(`a`);
 $(x);
-x = $(`b`);
+const tmpClusterSSA_x = $(`b`);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpIfTest$1 = $(2);
@@ -69,7 +69,7 @@ if (tmpIfTest) {
     $(`xyz`);
   } else {
   }
-  $(x);
+  $(tmpClusterSSA_x);
 } else {
 }
 `````
@@ -79,16 +79,16 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-let a = $( "a" );
+const a = $( "a" );
 $( a );
-a = $( "b" );
-const b = $( 1 );
-if (b) {
-  const c = $( 2 );
-  if (c) {
+const b = $( "b" );
+const c = $( 1 );
+if (c) {
+  const d = $( 2 );
+  if (d) {
     $( "xyz" );
   }
-  $( a );
+  $( b );
 }
 `````
 

@@ -63,7 +63,6 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
@@ -74,9 +73,9 @@ if (tmpIfTest) {
   const tmpCompProp = $(`d`);
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-  a = tmpNestedAssignPropRhs;
   $(tmpNestedAssignPropRhs, b);
 } else {
+  const a = { a: 999, b: 1000 };
   $(a, b);
 }
 `````
@@ -90,25 +89,24 @@ const a = {
 c: 10,
 d: 20
 ;
-let b = {
-a: 999,
-b: 1000
-;
+const b = $( 1 );
 const c = $( 1 );
-const d = $( 1 );
-const e = c === d;
-if (e) {
-  const f = $( a );
-  const g = $( "c" );
-  const h = $( a );
-  const i = $( "d" );
-  const j = h[ i ];
-  f[g] = j;
-  b = j;
-  $( j, a );
+const d = b === c;
+if (d) {
+  const e = $( a );
+  const f = $( "c" );
+  const g = $( a );
+  const h = $( "d" );
+  const i = g[ h ];
+  e[f] = i;
+  $( i, a );
 }
 else {
-  $( b, a );
+  const j = {
+a: 999,
+b: 1000
+  ;
+  $( j, a );
 }
 `````
 

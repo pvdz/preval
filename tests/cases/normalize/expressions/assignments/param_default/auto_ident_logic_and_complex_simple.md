@@ -65,15 +65,14 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-let tmpNestedComplexRhs = $(tmpCalleeParam);
-let tmpSSA_a = 2;
+const tmpNestedComplexRhs = $(tmpCalleeParam);
+let tmpClusterSSA_a = 2;
 if (tmpNestedComplexRhs) {
-  tmpNestedComplexRhs = 2;
 } else {
-  tmpSSA_a = tmpNestedComplexRhs;
+  tmpClusterSSA_a = tmpNestedComplexRhs;
 }
 $(undefined);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output
@@ -82,10 +81,10 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = $( a );
+const b = $( a );
 let c = 2;
 if (b) {
-  b = 2;
+
 }
 else {
   c = b;

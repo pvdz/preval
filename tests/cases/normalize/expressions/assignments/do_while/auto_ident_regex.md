@@ -64,11 +64,10 @@ $(100);
 $(100);
 $(100);
 $(100);
-let a = /foo/;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  a = /foo/;
 }
+const a = /foo/;
 $(a);
 `````
 
@@ -88,11 +87,10 @@ $( 100 );
 $( 100 );
 $( 100 );
 $( 100 );
-let a = /foo/;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  a = /foo/;
 }
+const a = /foo/;
 $( a );
 `````
 

@@ -67,11 +67,10 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
-  tmpCalleeParam = $(100);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   let tmpNestedComplexRhs = undefined;
   const b = { x: tmpObjLitVal };
@@ -90,8 +89,7 @@ if (tmpIfTest) {
     }
   }
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
-  $(tmpCalleeParam);
+  $(tmpNestedComplexRhs);
 }
 $(a);
 `````
@@ -106,11 +104,10 @@ let b = {
 a: 999,
 b: 1000
 ;
-let c = undefined;
-const d = $( 0 );
-if (d) {
-  c = $( 100 );
-  $( c );
+const c = $( 0 );
+if (c) {
+  const d = $( 100 );
+  $( d );
 }
 else {
   let e = undefined;
@@ -134,8 +131,7 @@ else {
     }
   }
   b = e;
-  c = e;
-  $( c );
+  $( e );
 }
 $( b );
 `````

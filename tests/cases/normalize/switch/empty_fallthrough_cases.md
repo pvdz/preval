@@ -51,11 +51,10 @@ $();
 `````js filename=intro
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $spy(0);
-let tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
+const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
 } else {
-  const tmpBinBothRhs$1 = $spy(1);
-  tmpIfTest = tmpSwitchDisc === tmpBinBothRhs$1;
+  $spy(1);
 }
 $();
 `````
@@ -67,13 +66,12 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = $spy( 0 );
-let c = a === b;
+const c = a === b;
 if (c) {
 
 }
 else {
-  const d = $spy( 1 );
-  c = a === d;
+  $spy( 1 );
 }
 $();
 `````

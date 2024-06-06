@@ -83,7 +83,7 @@ const varInitAssignLhsComputedProp = $(`y`);
 const varInitAssignLhsComputedRhs = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-let tmpSSA_a = varInitAssignLhsComputedRhs;
+let tmpClusterSSA_a = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
 } else {
   $tmpLoopUnrollCheck = false;
@@ -98,7 +98,7 @@ if ($tmpLoopUnrollCheck) {
     const varInitAssignLhsComputedRhs$1 = $(3);
     varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
     tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = varInitAssignLhsComputedRhs$1;
-    tmpSSA_a = varInitAssignLhsComputedRhs$1;
+    tmpClusterSSA_a = varInitAssignLhsComputedRhs$1;
     if (varInitAssignLhsComputedRhs$1) {
     } else {
       break;
@@ -106,7 +106,7 @@ if ($tmpLoopUnrollCheck) {
   }
 } else {
 }
-$(tmpSSA_a, b, c, 3);
+$(tmpClusterSSA_a, b, c, 3);
 `````
 
 ## PST Output

@@ -50,17 +50,17 @@ while (true) {
 `````js filename=intro
 const max = $(10);
 $(0);
-let i = 0 + max;
-let tmpSSA_tmpIfTest = i < 10;
-if (tmpSSA_tmpIfTest) {
+const i = 0 + max;
+const tmpClusterSSA_tmpIfTest = i < 10;
+if (tmpClusterSSA_tmpIfTest) {
   $(i);
-  i = i + max;
-  tmpSSA_tmpIfTest = i < 10;
+  let tmpClusterSSA_i = i + max;
+  let tmpClusterSSA_tmpIfTest$1 = tmpClusterSSA_i < 10;
   while ($LOOP_UNROLL_9) {
-    if (tmpSSA_tmpIfTest) {
-      $(i);
-      i = i + max;
-      tmpSSA_tmpIfTest = i < 10;
+    if (tmpClusterSSA_tmpIfTest$1) {
+      $(tmpClusterSSA_i);
+      tmpClusterSSA_i = tmpClusterSSA_i + max;
+      tmpClusterSSA_tmpIfTest$1 = tmpClusterSSA_i < 10;
     } else {
       break;
     }
@@ -76,17 +76,17 @@ With rename=true
 `````js filename=intro
 const a = $( 10 );
 $( 0 );
-let b = 0 + a;
-let c = b < 10;
+const b = 0 + a;
+const c = b < 10;
 if (c) {
   $( b );
-  b = b + a;
-  c = b < 10;
+  let d = b + a;
+  let e = d < 10;
   while ($LOOP_UNROLL_9) {
-    if (c) {
-      $( b );
-      b = b + a;
-      c = b < 10;
+    if (e) {
+      $( d );
+      d = d + a;
+      e = d < 10;
     }
     else {
       break;

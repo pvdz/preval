@@ -51,12 +51,12 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = { a: 1, b: 2 };
 $(tmpCalleeParam);
-let tmpIfTest = $(0);
+const tmpIfTest = $(0);
 if (tmpIfTest) {
-  tmpIfTest = $(0);
+  let tmpClusterSSA_tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      tmpIfTest = $(0);
+    if (tmpClusterSSA_tmpIfTest) {
+      tmpClusterSSA_tmpIfTest = $(0);
     } else {
       break;
     }
@@ -76,12 +76,12 @@ a: 1,
 b: 2
 ;
 $( a );
-let b = $( 0 );
+const b = $( 0 );
 if (b) {
-  b = $( 0 );
+  let c = $( 0 );
   while ($LOOP_UNROLL_10) {
-    if (b) {
-      b = $( 0 );
+    if (c) {
+      c = $( 0 );
     }
     else {
       break;

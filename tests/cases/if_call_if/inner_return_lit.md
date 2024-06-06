@@ -93,13 +93,12 @@ if ($) {
 `````js filename=intro
 const f = function () {
   debugger;
-  let x = $(1);
+  const x = $(1);
   if (x) {
-    x = true;
     return 500;
   } else {
-    x = $(0);
-    if (x) {
+    const tmpClusterSSA_x = $(0);
+    if (tmpClusterSSA_x) {
       return 500;
     } else {
       return 1000;
@@ -120,14 +119,13 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  let b = $( 1 );
+  const b = $( 1 );
   if (b) {
-    b = true;
     return 500;
   }
   else {
-    b = $( 0 );
-    if (b) {
+    const c = $( 0 );
+    if (c) {
       return 500;
     }
     else {
@@ -136,8 +134,8 @@ const a = function() {
   }
 };
 if ($) {
-  const c = a();
-  $( c );
+  const d = a();
+  $( d );
 }
 `````
 

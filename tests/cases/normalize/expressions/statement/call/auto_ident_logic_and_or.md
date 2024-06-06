@@ -62,8 +62,8 @@ if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {
   const tmpCalleeParam$5 = $(2);
-  tmpCalleeParam = $(tmpCalleeParam$5);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam = $(tmpCalleeParam$5);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -85,14 +85,14 @@ if (b) {
 }
 else {
   const d = $( 2 );
-  b = $( d );
-  $( b );
+  const e = $( d );
+  $( e );
 }
-const e = {
+const f = {
 a: 999,
 b: 1000
 ;
-$( e );
+$( f );
 `````
 
 ## Globals

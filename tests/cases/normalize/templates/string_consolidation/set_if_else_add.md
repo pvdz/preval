@@ -86,16 +86,13 @@ $(z);
 const s = $(`s`);
 const t = $(`t`);
 const tmpStringConcatR = $coerce(s, `plustr`);
-let y = `ghi`;
-let z = undefined;
 if (t) {
   const tmpStringConcatL = $coerce(t, `plustr`);
-  y = `def${tmpStringConcatL}`;
-  z = `${tmpStringConcatR}abc${y}`;
-  $(z);
+  const tmpClusterSSA_z = `${tmpStringConcatR}abcdef${tmpStringConcatL}`;
+  $(tmpClusterSSA_z);
 } else {
-  z = `${tmpStringConcatR}abcghi`;
-  $(z);
+  const tmpClusterSSA_z$1 = `${tmpStringConcatR}abcghi`;
+  $(tmpClusterSSA_z$1);
 }
 `````
 
@@ -107,17 +104,14 @@ With rename=true
 const a = $( "s" );
 const b = $( "t" );
 const c = $coerce( a, "plustr" );
-let d = "ghi";
-let e = undefined;
 if (b) {
-  const f = $coerce( b, "plustr" );
-  d = `def${[object Object]}`;
-  e = `${[object Object]}abc`;
+  const d = $coerce( b, "plustr" );
+  const e = `${[object Object]}abcdef`;
   $( e );
 }
 else {
-  e = `${[object Object]}abcghi`;
-  $( e );
+  const f = `${[object Object]}abcghi`;
+  $( f );
 }
 `````
 

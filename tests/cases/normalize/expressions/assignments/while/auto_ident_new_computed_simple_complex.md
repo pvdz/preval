@@ -50,8 +50,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCompProp = $(`\$`);
+const a = { a: 999, b: 1000 };
 const b = { $: $ };
+const tmpCompProp = $(`\$`);
 const tmpNewCallee = b[tmpCompProp];
 new tmpNewCallee(1);
 $(100);
@@ -93,15 +94,15 @@ new tmpNewCallee$9(1);
 $(100);
 const tmpCompProp$10 = $(`\$`);
 const tmpNewCallee$10 = b[tmpCompProp$10];
-let tmpSSA_a$2 = new tmpNewCallee$10(1);
+new tmpNewCallee$10(1);
 $(100);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpCompProp$11 = $(`\$`);
   const tmpNewCallee$11 = b[tmpCompProp$11];
-  tmpSSA_a$2 = new tmpNewCallee$11(1);
+  new tmpNewCallee$11(1);
   $(100);
 }
-$(tmpSSA_a$2);
+$(a);
 `````
 
 ## PST Output
@@ -109,58 +110,62 @@ $(tmpSSA_a$2);
 With rename=true
 
 `````js filename=intro
-const a = $( "$" );
+const a = {
+a: 999,
+b: 1000
+;
 const b = { $: $ };
-const c = b[ a ];
-new c( 1 );
+const c = $( "$" );
+const d = b[ c ];
+new d( 1 );
 $( 100 );
-const d = $( "$" );
-const e = b[ d ];
-new e( 1 );
+const e = $( "$" );
+const f = b[ e ];
+new f( 1 );
 $( 100 );
-const f = $( "$" );
-const g = b[ f ];
-new g( 1 );
+const g = $( "$" );
+const h = b[ g ];
+new h( 1 );
 $( 100 );
-const h = $( "$" );
-const i = b[ h ];
-new i( 1 );
+const i = $( "$" );
+const j = b[ i ];
+new j( 1 );
 $( 100 );
-const j = $( "$" );
-const k = b[ j ];
-new k( 1 );
+const k = $( "$" );
+const l = b[ k ];
+new l( 1 );
 $( 100 );
-const l = $( "$" );
-const m = b[ l ];
-new m( 1 );
+const m = $( "$" );
+const n = b[ m ];
+new n( 1 );
 $( 100 );
-const n = $( "$" );
-const o = b[ n ];
-new o( 1 );
+const o = $( "$" );
+const p = b[ o ];
+new p( 1 );
 $( 100 );
-const p = $( "$" );
-const q = b[ p ];
-new q( 1 );
+const q = $( "$" );
+const r = b[ q ];
+new r( 1 );
 $( 100 );
-const r = $( "$" );
-const s = b[ r ];
-new s( 1 );
+const s = $( "$" );
+const t = b[ s ];
+new t( 1 );
 $( 100 );
-const t = $( "$" );
-const u = b[ t ];
-new u( 1 );
+const u = $( "$" );
+const v = b[ u ];
+new v( 1 );
 $( 100 );
-const v = $( "$" );
-const w = b[ v ];
-let x = new w( 1 );
+const w = $( "$" );
+const x = b[ w ];
+new x( 1 );
 $( 100 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const y = $( "$" );
   const z = b[ y ];
-  x = new z( 1 );
+  new z( 1 );
   $( 100 );
 }
-$( x );
+$( a );
 `````
 
 ## Globals

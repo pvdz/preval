@@ -63,7 +63,7 @@ $(a, b, c);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = $(100);
+const tmpCalleeParam = $(100);
 const b = { x: 1 };
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
@@ -75,7 +75,6 @@ if (tmpCalleeParam) {
   b.x = 3;
   b.x = 3;
   a = 3;
-  tmpCalleeParam = 3;
   $(3);
 }
 $(a, b, 3);
@@ -90,7 +89,7 @@ let a = {
 a: 999,
 b: 1000
 ;
-let b = $( 100 );
+const b = $( 100 );
 const c = { x: 1 };
 if (b) {
   $( b );
@@ -103,7 +102,6 @@ else {
   c.x = 3;
   c.x = 3;
   a = 3;
-  b = 3;
   $( 3 );
 }
 $( a, c, 3 );

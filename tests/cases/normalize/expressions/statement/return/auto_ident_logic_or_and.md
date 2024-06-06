@@ -68,18 +68,18 @@ $(a);
 const f = function () {
   debugger;
   const tmpCalleeParam = $(0);
-  let tmpReturnArg = $(tmpCalleeParam);
+  const tmpReturnArg = $(tmpCalleeParam);
   if (tmpReturnArg) {
     return tmpReturnArg;
   } else {
     const tmpCalleeParam$1 = $(1);
-    tmpReturnArg = $(tmpCalleeParam$1);
-    if (tmpReturnArg) {
+    const tmpClusterSSA_tmpReturnArg = $(tmpCalleeParam$1);
+    if (tmpClusterSSA_tmpReturnArg) {
       const tmpCalleeParam$3 = $(2);
-      tmpReturnArg = $(tmpCalleeParam$3);
-      return tmpReturnArg;
+      const tmpClusterSSA_tmpReturnArg$1 = $(tmpCalleeParam$3);
+      return tmpClusterSSA_tmpReturnArg$1;
     } else {
-      return tmpReturnArg;
+      return tmpClusterSSA_tmpReturnArg;
     }
   }
 };
@@ -97,30 +97,30 @@ With rename=true
 const a = function() {
   debugger;
   const b = $( 0 );
-  let c = $( b );
+  const c = $( b );
   if (c) {
     return c;
   }
   else {
     const d = $( 1 );
-    c = $( d );
-    if (c) {
-      const e = $( 2 );
-      c = $( e );
-      return c;
+    const e = $( d );
+    if (e) {
+      const f = $( 2 );
+      const g = $( f );
+      return g;
     }
     else {
-      return c;
+      return e;
     }
   }
 };
-const f = a();
-$( f );
-const g = {
+const h = a();
+$( h );
+const i = {
 a: 999,
 b: 1000
 ;
-$( g );
+$( i );
 `````
 
 ## Globals

@@ -51,22 +51,17 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 = $(0);
-let tmpCallCallee$1 = $(tmpCalleeParam$1);
-let tmpBinBothRhs = undefined;
-let tmpStringConcatL = undefined;
-let tmpCalleeParam = undefined;
+const tmpCallCallee$1 = $(tmpCalleeParam$1);
 if (tmpCallCallee$1) {
-  tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
-  tmpStringConcatL = $coerce(tmpBinBothRhs, `plustr`);
-  tmpCalleeParam = `before  ${tmpStringConcatL}  after`;
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
+  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpCalleeParam$3 = $(2);
-  tmpCallCallee$1 = $(tmpCalleeParam$3);
-  tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
-  tmpStringConcatL = $coerce(tmpBinBothRhs, `plustr`);
-  tmpCalleeParam = `before  ${tmpStringConcatL}  after`;
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCallCallee$1 = $(tmpCalleeParam$3);
+  const tmpClusterSSA_tmpBinBothRhs$1 = $coerce(tmpClusterSSA_tmpCallCallee$1, `string`);
+  const tmpClusterSSA_tmpCalleeParam$1 = `before  ${tmpClusterSSA_tmpBinBothRhs$1}  after`;
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -78,29 +73,24 @@ With rename=true
 
 `````js filename=intro
 const a = $( 0 );
-let b = $( a );
-let c = undefined;
-let d = undefined;
-let e = undefined;
+const b = $( a );
 if (b) {
-  c = $coerce( b, "string" );
-  d = $coerce( c, "plustr" );
-  e = `before  ${[object Object]}  after`;
-  $( e );
+  const c = $coerce( b, "string" );
+  const d = `before  ${[object Object]}  after`;
+  $( d );
 }
 else {
-  const f = $( 2 );
-  b = $( f );
-  c = $coerce( b, "string" );
-  d = $coerce( c, "plustr" );
-  e = `before  ${[object Object]}  after`;
-  $( e );
+  const e = $( 2 );
+  const f = $( e );
+  const g = $coerce( f, "string" );
+  const h = `before  ${[object Object]}  after`;
+  $( h );
 }
-const g = {
+const i = {
 a: 999,
 b: 1000
 ;
-$( g );
+$( i );
 `````
 
 ## Globals

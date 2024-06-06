@@ -53,14 +53,11 @@ if ($) {
 ## Output
 
 `````js filename=intro
-let a = `fail`;
 if ($) {
-  a = `pass`;
   $(`pass`);
 } else {
-  const b = a;
-  $(b);
-  $(b);
+  $(`fail`);
+  $(`fail`);
 }
 `````
 
@@ -69,15 +66,12 @@ if ($) {
 With rename=true
 
 `````js filename=intro
-let a = "fail";
 if ($) {
-  a = "pass";
   $( "pass" );
 }
 else {
-  const b = a;
-  $( b );
-  $( b );
+  $( "fail" );
+  $( "fail" );
 }
 `````
 

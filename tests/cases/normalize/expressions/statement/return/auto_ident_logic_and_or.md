@@ -77,8 +77,8 @@ const f = function () {
     return tmpReturnArg;
   } else {
     const tmpCalleeParam$3 = $(2);
-    tmpReturnArg = $(tmpCalleeParam$3);
-    return tmpReturnArg;
+    const tmpClusterSSA_tmpReturnArg = $(tmpCalleeParam$3);
+    return tmpClusterSSA_tmpReturnArg;
   }
 };
 const tmpCalleeParam$5 = f();
@@ -105,17 +105,17 @@ const a = function() {
   }
   else {
     const e = $( 2 );
-    c = $( e );
-    return c;
+    const f = $( e );
+    return f;
   }
 };
-const f = a();
-$( f );
-const g = {
+const g = a();
+$( g );
+const h = {
 a: 999,
 b: 1000
 ;
-$( g );
+$( h );
 `````
 
 ## Globals

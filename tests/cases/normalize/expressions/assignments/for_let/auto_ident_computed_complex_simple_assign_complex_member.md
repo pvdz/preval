@@ -57,6 +57,7 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 10, d: 20 };
+const a = { a: 999, b: 1000 };
 const tmpNestedAssignObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
@@ -88,7 +89,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedAssignPropRhs);
   $(1);
 }
-$(tmpNestedAssignPropRhs, b);
+$(a, b);
 `````
 
 ## PST Output
@@ -100,38 +101,42 @@ const a = {
 c: 10,
 d: 20
 ;
-const b = $( a );
+const b = {
+a: 999,
+b: 1000
+;
 const c = $( a );
-const d = $( "d" );
-const e = c[ d ];
-b.c = e;
-$( e );
+const d = $( a );
+const e = $( "d" );
+const f = d[ e ];
+c.c = f;
+$( f );
 $( 1 );
-$( e );
+$( f );
 $( 1 );
-$( e );
+$( f );
 $( 1 );
-$( e );
+$( f );
 $( 1 );
-$( e );
+$( f );
 $( 1 );
-$( e );
+$( f );
 $( 1 );
-$( e );
+$( f );
 $( 1 );
-$( e );
+$( f );
 $( 1 );
-$( e );
+$( f );
 $( 1 );
-$( e );
+$( f );
 $( 1 );
-$( e );
+$( f );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( e );
+  $( f );
   $( 1 );
 }
-$( e, a );
+$( b, a );
 `````
 
 ## Globals

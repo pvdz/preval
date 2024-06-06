@@ -56,19 +56,18 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
+const arg = { y: 1 };
 $(1);
 $(2);
 const tmpDeleteCompProp = $(`y`);
-const arg = { y: 1 };
-let a = delete arg[tmpDeleteCompProp];
-const tmpBinBothLhs = a;
+const a = delete arg[tmpDeleteCompProp];
 $(1);
 $(2);
 const tmpDeleteCompProp$1 = $(`y`);
-a = delete arg[tmpDeleteCompProp$1];
-const tmpCalleeParam = tmpBinBothLhs + a;
+const tmpClusterSSA_a = delete arg[tmpDeleteCompProp$1];
+const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(a, arg);
+$(tmpClusterSSA_a, arg);
 `````
 
 ## PST Output
@@ -76,19 +75,18 @@ $(a, arg);
 With rename=true
 
 `````js filename=intro
+const a = { y: 1 };
 $( 1 );
 $( 2 );
-const a = $( "y" );
-const b = { y: 1 };
-let c = deleteb[ a ];
-const d = c;
+const b = $( "y" );
+const c = deletea[ b ];
 $( 1 );
 $( 2 );
-const e = $( "y" );
-c = deleteb[ e ];
-const f = d + c;
+const d = $( "y" );
+const e = deletea[ d ];
+const f = c + e;
 $( f );
-$( c, b );
+$( e, a );
 `````
 
 ## Globals

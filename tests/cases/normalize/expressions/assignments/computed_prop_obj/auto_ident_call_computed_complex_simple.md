@@ -47,9 +47,9 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const tmpCallObj = $(b);
-const tmpSSA_a = tmpCallObj.$(1);
-tmpSSA_a.a;
-$(tmpSSA_a);
+const tmpClusterSSA_a = tmpCallObj.$(1);
+tmpClusterSSA_a.a;
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

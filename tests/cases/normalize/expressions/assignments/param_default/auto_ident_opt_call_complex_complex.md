@@ -72,15 +72,15 @@ $(a);
 `````js filename=intro
 const tmpChainElementCall = $($);
 const tmpIfTest$1 = tmpChainElementCall == null;
-let tmpSSA_a = undefined;
+let tmpClusterSSA_a = undefined;
 if (tmpIfTest$1) {
 } else {
   const tmpCalleeParam$3 = $(1);
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
-  tmpSSA_a = tmpChainElementCall$1;
+  tmpClusterSSA_a = tmpChainElementCall$1;
 }
 $(undefined);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

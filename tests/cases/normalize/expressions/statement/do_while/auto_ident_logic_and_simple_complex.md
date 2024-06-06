@@ -62,8 +62,8 @@ $(a);
 let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpCalleeParam = $(1);
-const tmpIfTest = $(tmpCalleeParam);
-if (tmpIfTest) {
+const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam);
+if (tmpClusterSSA_tmpIfTest) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
@@ -71,8 +71,8 @@ if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpCalleeParam$1 = $(1);
-    const tmpIfTest$1 = $(tmpCalleeParam$1);
-    if (tmpIfTest$1) {
+    const tmpClusterSSA_tmpIfTest$1 = $(tmpCalleeParam$1);
+    if (tmpClusterSSA_tmpIfTest$1) {
     } else {
       break;
     }

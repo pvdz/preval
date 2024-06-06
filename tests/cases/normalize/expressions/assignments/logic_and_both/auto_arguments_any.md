@@ -44,11 +44,11 @@ $(a);
 
 `````js filename=intro
 let a = arguments;
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 if (a) {
   a = arguments;
-  tmpCalleeParam = arguments;
-  $(tmpCalleeParam);
+  arguments;
+  $(arguments);
 } else {
   $(tmpCalleeParam);
 }
@@ -61,11 +61,11 @@ With rename=true
 
 `````js filename=intro
 let a = arguments;
-let b = a;
+const b = a;
 if (a) {
   a = arguments;
-  b = arguments;
-  $( b );
+  arguments;
+  $( arguments );
 }
 else {
   $( b );

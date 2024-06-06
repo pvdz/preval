@@ -56,28 +56,25 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
+const tmpIfTest = $(1);
 if (tmpIfTest) {
   a = undefined;
   const tmpChainElementCall = $($);
   const tmpIfTest$1 = tmpChainElementCall == null;
   if (tmpIfTest$1) {
   } else {
-    const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
-    a = tmpChainElementCall$1;
+    $dotCall(tmpChainElementCall, $, 1);
   }
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      a = undefined;
+    if (tmpClusterSSA_tmpIfTest) {
       const tmpChainElementCall$2 = $($);
       const tmpIfTest$2 = tmpChainElementCall$2 == null;
       if (tmpIfTest$2) {
       } else {
-        const tmpChainElementCall$4 = $dotCall(tmpChainElementCall$2, $, 1);
-        a = tmpChainElementCall$4;
+        $dotCall(tmpChainElementCall$2, $, 1);
       }
-      tmpIfTest = $(1);
+      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -96,7 +93,7 @@ let a = {
 a: 999,
 b: 1000
 ;
-let b = $( 1 );
+const b = $( 1 );
 if (b) {
   a = undefined;
   const c = $( $ );
@@ -105,23 +102,20 @@ if (b) {
 
   }
   else {
-    const e = $dotCall( c, $, 1 );
-    a = e;
+    $dotCall( c, $, 1 );
   }
-  b = $( 1 );
+  let e = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (b) {
-      a = undefined;
+    if (e) {
       const f = $( $ );
       const g = f == null;
       if (g) {
 
       }
       else {
-        const h = $dotCall( f, $, 1 );
-        a = h;
+        $dotCall( f, $, 1 );
       }
-      b = $( 1 );
+      e = $( 1 );
     }
     else {
       break;

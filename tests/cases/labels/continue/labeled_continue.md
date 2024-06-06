@@ -75,94 +75,94 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = $(1);
+const x = $(1);
 $(x);
-x = $(2);
+let tmpClusterSSA_x = $(2);
 if ($) {
 } else {
-  x = $(3);
-  $(x);
+  tmpClusterSSA_x = $(3);
+  $(tmpClusterSSA_x);
 }
-$(x);
-x = $(2);
+$(tmpClusterSSA_x);
+let tmpClusterSSA_x$1 = $(2);
 if ($) {
 } else {
-  x = $(3);
-  $(x);
+  tmpClusterSSA_x$1 = $(3);
+  $(tmpClusterSSA_x$1);
 }
-$(x);
-x = $(2);
+$(tmpClusterSSA_x$1);
+let tmpClusterSSA_x$2 = $(2);
 if ($) {
 } else {
-  x = $(3);
-  $(x);
+  tmpClusterSSA_x$2 = $(3);
+  $(tmpClusterSSA_x$2);
 }
-$(x);
-x = $(2);
+$(tmpClusterSSA_x$2);
+let tmpClusterSSA_x$3 = $(2);
 if ($) {
 } else {
-  x = $(3);
-  $(x);
+  tmpClusterSSA_x$3 = $(3);
+  $(tmpClusterSSA_x$3);
 }
-$(x);
-x = $(2);
+$(tmpClusterSSA_x$3);
+let tmpClusterSSA_x$4 = $(2);
 if ($) {
 } else {
-  x = $(3);
-  $(x);
+  tmpClusterSSA_x$4 = $(3);
+  $(tmpClusterSSA_x$4);
 }
-$(x);
-x = $(2);
+$(tmpClusterSSA_x$4);
+let tmpClusterSSA_x$5 = $(2);
 if ($) {
 } else {
-  x = $(3);
-  $(x);
+  tmpClusterSSA_x$5 = $(3);
+  $(tmpClusterSSA_x$5);
 }
-$(x);
-x = $(2);
+$(tmpClusterSSA_x$5);
+let tmpClusterSSA_x$6 = $(2);
 if ($) {
 } else {
-  x = $(3);
-  $(x);
+  tmpClusterSSA_x$6 = $(3);
+  $(tmpClusterSSA_x$6);
 }
-$(x);
-x = $(2);
+$(tmpClusterSSA_x$6);
+let tmpClusterSSA_x$7 = $(2);
 if ($) {
 } else {
-  x = $(3);
-  $(x);
+  tmpClusterSSA_x$7 = $(3);
+  $(tmpClusterSSA_x$7);
 }
-$(x);
-x = $(2);
+$(tmpClusterSSA_x$7);
+let tmpClusterSSA_x$8 = $(2);
 if ($) {
 } else {
-  x = $(3);
-  $(x);
+  tmpClusterSSA_x$8 = $(3);
+  $(tmpClusterSSA_x$8);
 }
-$(x);
-x = $(2);
+$(tmpClusterSSA_x$8);
+let tmpClusterSSA_x$9 = $(2);
 if ($) {
 } else {
-  x = $(3);
-  $(x);
+  tmpClusterSSA_x$9 = $(3);
+  $(tmpClusterSSA_x$9);
 }
-$(x);
-x = $(2);
+$(tmpClusterSSA_x$9);
+let tmpClusterSSA_x$10 = $(2);
 if ($) {
 } else {
-  x = $(3);
-  $(x);
+  tmpClusterSSA_x$10 = $(3);
+  $(tmpClusterSSA_x$10);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(x);
-  x = $(2);
+  $(tmpClusterSSA_x$10);
+  tmpClusterSSA_x$10 = $(2);
   if ($) {
   } else {
-    x = $(3);
-    $(x);
+    tmpClusterSSA_x$10 = $(3);
+    $(tmpClusterSSA_x$10);
   }
 }
-$(x);
+$(tmpClusterSSA_x$10);
 `````
 
 ## PST Output
@@ -170,118 +170,118 @@ $(x);
 With rename=true
 
 `````js filename=intro
-let a = $( 1 );
+const a = $( 1 );
 $( a );
-a = $( 2 );
+let b = $( 2 );
 if ($) {
 
 }
 else {
-  a = $( 3 );
-  $( a );
+  b = $( 3 );
+  $( b );
 }
-$( a );
-a = $( 2 );
+$( b );
+let c = $( 2 );
 if ($) {
 
 }
 else {
-  a = $( 3 );
-  $( a );
+  c = $( 3 );
+  $( c );
 }
-$( a );
-a = $( 2 );
+$( c );
+let d = $( 2 );
 if ($) {
 
 }
 else {
-  a = $( 3 );
-  $( a );
+  d = $( 3 );
+  $( d );
 }
-$( a );
-a = $( 2 );
+$( d );
+let e = $( 2 );
 if ($) {
 
 }
 else {
-  a = $( 3 );
-  $( a );
+  e = $( 3 );
+  $( e );
 }
-$( a );
-a = $( 2 );
+$( e );
+let f = $( 2 );
 if ($) {
 
 }
 else {
-  a = $( 3 );
-  $( a );
+  f = $( 3 );
+  $( f );
 }
-$( a );
-a = $( 2 );
+$( f );
+let g = $( 2 );
 if ($) {
 
 }
 else {
-  a = $( 3 );
-  $( a );
+  g = $( 3 );
+  $( g );
 }
-$( a );
-a = $( 2 );
+$( g );
+let h = $( 2 );
 if ($) {
 
 }
 else {
-  a = $( 3 );
-  $( a );
+  h = $( 3 );
+  $( h );
 }
-$( a );
-a = $( 2 );
+$( h );
+let i = $( 2 );
 if ($) {
 
 }
 else {
-  a = $( 3 );
-  $( a );
+  i = $( 3 );
+  $( i );
 }
-$( a );
-a = $( 2 );
+$( i );
+let j = $( 2 );
 if ($) {
 
 }
 else {
-  a = $( 3 );
-  $( a );
+  j = $( 3 );
+  $( j );
 }
-$( a );
-a = $( 2 );
+$( j );
+let k = $( 2 );
 if ($) {
 
 }
 else {
-  a = $( 3 );
-  $( a );
+  k = $( 3 );
+  $( k );
 }
-$( a );
-a = $( 2 );
+$( k );
+let l = $( 2 );
 if ($) {
 
 }
 else {
-  a = $( 3 );
-  $( a );
+  l = $( 3 );
+  $( l );
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( a );
-  a = $( 2 );
+  $( l );
+  l = $( 2 );
   if ($) {
 
   }
   else {
-    a = $( 3 );
-    $( a );
+    l = $( 3 );
+    $( l );
   }
 }
-$( a );
+$( l );
 `````
 
 ## Globals

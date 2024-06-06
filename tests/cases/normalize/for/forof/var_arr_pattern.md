@@ -37,11 +37,10 @@ for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
 
 `````js filename=intro
 let tmpForOfPatDeclLhs = undefined;
-let x = undefined;
 const tmpForOfPatDeclRhs = { a: 1, b: 2 };
 for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
-  x = tmpForOfPatDeclLhs.x;
-  $(x);
+  const tmpClusterSSA_x = tmpForOfPatDeclLhs.x;
+  $(tmpClusterSSA_x);
 }
 `````
 
@@ -51,14 +50,13 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-let b = undefined;
-const c = {
+const b = {
 a: 1,
 b: 2
 ;
-for (a of c) {
-  b = a.x;
-  $( b );
+for (a of b) {
+  const c = a.x;
+  $( c );
 }
 `````
 

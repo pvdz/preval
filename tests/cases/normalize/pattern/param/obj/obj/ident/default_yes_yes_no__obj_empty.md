@@ -81,13 +81,11 @@ const f = function ($$0) {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
   const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-  let y = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
-    y = $(`fail`);
-    return y;
+    const tmpClusterSSA_y = $(`fail`);
+    return tmpClusterSSA_y;
   } else {
-    y = objPatternBeforeDefault$1;
     return objPatternBeforeDefault$1;
   }
 };
@@ -115,14 +113,12 @@ const a = function($$0 ) {
     e = d;
   }
   const h = e.y;
-  let i = undefined;
-  const j = h === undefined;
-  if (j) {
-    i = $( "fail" );
-    return i;
+  const i = h === undefined;
+  if (i) {
+    const j = $( "fail" );
+    return j;
   }
   else {
-    i = h;
     return h;
   }
 };

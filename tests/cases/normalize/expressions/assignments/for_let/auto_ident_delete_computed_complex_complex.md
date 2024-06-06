@@ -53,36 +53,37 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
+const a = { a: 999, b: 1000 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-const tmpSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-$(tmpSSA_a);
+const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(tmpSSA_a);
+  $(tmpClusterSSA_a);
   $(1);
 }
-$(tmpSSA_a, arg);
+$(a, arg);
 `````
 
 ## PST Output
@@ -91,36 +92,40 @@ With rename=true
 
 `````js filename=intro
 const a = { y: 1 };
-const b = $( a );
-const c = $( "y" );
-const d = deleteb[ c ];
-$( d );
+const b = {
+a: 999,
+b: 1000
+;
+const c = $( a );
+const d = $( "y" );
+const e = deletec[ d ];
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
-$( d );
+$( e );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( d );
+  $( e );
   $( 1 );
 }
-$( d, a );
+$( b, a );
 `````
 
 ## Globals

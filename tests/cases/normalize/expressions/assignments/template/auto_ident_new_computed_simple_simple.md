@@ -48,11 +48,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = new $(1);
-const tmpBinBothRhs = $coerce(tmpSSA_a, `string`);
+const tmpClusterSSA_a = new $(1);
+const tmpBinBothRhs = $coerce(tmpClusterSSA_a, `string`);
 const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

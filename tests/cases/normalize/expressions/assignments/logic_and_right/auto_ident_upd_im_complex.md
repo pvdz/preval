@@ -55,7 +55,7 @@ $(a, b);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = $(100);
+const tmpCalleeParam = $(100);
 const b = { x: 1 };
 if (tmpCalleeParam) {
   const tmpCalleeParam$1 = $(b);
@@ -64,7 +64,6 @@ if (tmpCalleeParam) {
   const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
   tmpPostUpdArgObj.x = tmpAssignMemRhs;
   a = tmpPostUpdArgVal;
-  tmpCalleeParam = tmpPostUpdArgVal;
   $(tmpPostUpdArgVal);
 } else {
   $(tmpCalleeParam);
@@ -81,7 +80,7 @@ let a = {
 a: 999,
 b: 1000
 ;
-let b = $( 100 );
+const b = $( 100 );
 const c = { x: 1 };
 if (b) {
   const d = $( c );
@@ -90,7 +89,6 @@ if (b) {
   const g = f - 1;
   e.x = g;
   a = f;
-  b = f;
   $( f );
 }
 else {

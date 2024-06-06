@@ -53,29 +53,24 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-let $tmpLoopUnrollCheck = true;
-const b = { $: $ };
+const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpCallCompProp = $(`\$`);
-  a = b[tmpCallCompProp](1);
-  tmpIfTest = $(1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  const b = { $: $ };
+  b[tmpCallCompProp](1);
+  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       const tmpCallCompProp$1 = $(`\$`);
-      a = b[tmpCallCompProp$1](1);
-      tmpIfTest = $(1);
+      b[tmpCallCompProp$1](1);
+      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
   }
 } else {
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -84,34 +79,28 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
-a: 999,
-b: 1000
-;
-let b = $( 1 );
-let c = true;
-const d = { $: $ };
-if (b) {
-  const e = $( "$" );
-  a = d[ e ]( 1 )};
-  b = $( 1 );
-}
-else {
-  c = false;
-}
-if (c) {
+const a = $( 1 );
+if (a) {
+  const b = $( "$" );
+  const c = { $: $ };
+  c[ b ]( 1 )};
+  let d = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (b) {
-      const f = $( "$" );
-      a = d[ f ]( 1 )};
-      b = $( 1 );
+    if (d) {
+      const e = $( "$" );
+      c[ e ]( 1 )};
+      d = $( 1 );
     }
     else {
       break;
     }
   }
 }
-$( a );
+const f = {
+a: 999,
+b: 1000
+;
+$( f );
 `````
 
 ## Globals

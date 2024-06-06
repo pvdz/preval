@@ -48,12 +48,11 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = delete arg.y;
-let tmpCalleeParam = a;
 if (a) {
   $(true);
 } else {
-  tmpCalleeParam = $(100);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
 $(a, arg);
 `````
@@ -65,12 +64,11 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 const b = deletea.y;
-let c = b;
 if (b) {
   $( true );
 }
 else {
-  c = $( 100 );
+  const c = $( 100 );
   $( c );
 }
 $( b, a );

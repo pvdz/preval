@@ -61,7 +61,7 @@ let a = function () {
   debugger;
   return undefined;
 };
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 if (a) {
   $(tmpCalleeParam);
 } else {
@@ -70,7 +70,6 @@ if (a) {
     return undefined;
   };
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }
 $(a);
@@ -85,7 +84,7 @@ let a = function() {
   debugger;
   return undefined;
 };
-let b = a;
+const b = a;
 if (a) {
   $( b );
 }
@@ -95,7 +94,6 @@ else {
     return undefined;
   };
   a = c;
-  b = c;
   $( c );
 }
 $( a );

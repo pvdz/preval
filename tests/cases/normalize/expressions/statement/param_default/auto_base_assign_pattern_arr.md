@@ -70,10 +70,10 @@ const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-const tmpSSA_b = arrPatternSplat[0];
+const tmpClusterSSA_b = arrPatternSplat[0];
 $(undefined);
 const a = { a: 999, b: 1000 };
-$(a, tmpSSA_b);
+$(a, tmpClusterSSA_b);
 `````
 
 ## PST Output

@@ -219,48 +219,48 @@ if (tmpIfTest) {
 `````js filename=intro
 const x = $();
 let n = 11;
-let t = 0 === x;
+const t = 0 === x;
 if (t) {
   n = 0;
 } else {
-  t = 1 === x;
-  if (t) {
+  const tmpClusterSSA_t = 1 === x;
+  if (tmpClusterSSA_t) {
     n = 1;
   } else {
-    t = 2 === x;
-    if (t) {
+    const tmpClusterSSA_t$1 = 2 === x;
+    if (tmpClusterSSA_t$1) {
       n = 2;
     } else {
-      t = 3 === x;
-      if (t) {
+      const tmpClusterSSA_t$3 = 3 === x;
+      if (tmpClusterSSA_t$3) {
         n = 3;
       } else {
-        t = 4 === x;
-        if (t) {
+        const tmpClusterSSA_t$5 = 4 === x;
+        if (tmpClusterSSA_t$5) {
           n = 4;
         } else {
-          t = 5 === x;
-          if (t) {
+          const tmpClusterSSA_t$7 = 5 === x;
+          if (tmpClusterSSA_t$7) {
             n = 5;
           } else {
-            t = 6 === x;
-            if (t) {
+            const tmpClusterSSA_t$9 = 6 === x;
+            if (tmpClusterSSA_t$9) {
               n = 6;
             } else {
-              t = 7 === x;
-              if (t) {
+              const tmpClusterSSA_t$11 = 7 === x;
+              if (tmpClusterSSA_t$11) {
                 n = 7;
               } else {
-                t = 8 === x;
-                if (t) {
+                const tmpClusterSSA_t$13 = 8 === x;
+                if (tmpClusterSSA_t$13) {
                   n = 8;
                 } else {
-                  t = 10 === x;
-                  if (t) {
+                  const tmpClusterSSA_t$15 = 10 === x;
+                  if (tmpClusterSSA_t$15) {
                     n = 9;
                   } else {
-                    t = 9 === x;
-                    if (t) {
+                    const tmpClusterSSA_t$17 = 9 === x;
+                    if (tmpClusterSSA_t$17) {
                       n = 10;
                     } else {
                       $(`must be 11`);
@@ -290,58 +290,58 @@ With rename=true
 `````js filename=intro
 const a = $();
 let b = 11;
-let c = 0 === a;
+const c = 0 === a;
 if (c) {
   b = 0;
 }
 else {
-  c = 1 === a;
-  if (c) {
+  const d = 1 === a;
+  if (d) {
     b = 1;
   }
   else {
-    c = 2 === a;
-    if (c) {
+    const e = 2 === a;
+    if (e) {
       b = 2;
     }
     else {
-      c = 3 === a;
-      if (c) {
+      const f = 3 === a;
+      if (f) {
         b = 3;
       }
       else {
-        c = 4 === a;
-        if (c) {
+        const g = 4 === a;
+        if (g) {
           b = 4;
         }
         else {
-          c = 5 === a;
-          if (c) {
+          const h = 5 === a;
+          if (h) {
             b = 5;
           }
           else {
-            c = 6 === a;
-            if (c) {
+            const i = 6 === a;
+            if (i) {
               b = 6;
             }
             else {
-              c = 7 === a;
-              if (c) {
+              const j = 7 === a;
+              if (j) {
                 b = 7;
               }
               else {
-                c = 8 === a;
-                if (c) {
+                const k = 8 === a;
+                if (k) {
                   b = 8;
                 }
                 else {
-                  c = 10 === a;
-                  if (c) {
+                  const l = 10 === a;
+                  if (l) {
                     b = 9;
                   }
                   else {
-                    c = 9 === a;
-                    if (c) {
+                    const m = 9 === a;
+                    if (m) {
                       b = 10;
                     }
                     else {
@@ -357,8 +357,8 @@ else {
     }
   }
 }
-const d = b <= 10;
-if (d) {
+const n = b <= 10;
+if (n) {
   $( "pass" );
 }
 else {

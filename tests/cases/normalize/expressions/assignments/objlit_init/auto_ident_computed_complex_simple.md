@@ -46,10 +46,10 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const tmpAssignRhsProp = $(b);
-const tmpSSA_a = tmpAssignRhsProp.c;
-const tmpCalleeParam = { x: tmpSSA_a };
+const tmpClusterSSA_a = tmpAssignRhsProp.c;
+const tmpCalleeParam = { x: tmpClusterSSA_a };
 $(tmpCalleeParam);
-$(tmpSSA_a, b);
+$(tmpClusterSSA_a, b);
 `````
 
 ## PST Output

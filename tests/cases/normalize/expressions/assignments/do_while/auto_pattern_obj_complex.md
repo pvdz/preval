@@ -62,7 +62,7 @@ let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-let tmpSSA_a = tmpNestedAssignObjPatternRhs.a;
+let tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
 if (tmpNestedAssignObjPatternRhs) {
 } else {
   $tmpLoopUnrollCheck = false;
@@ -72,7 +72,7 @@ if ($tmpLoopUnrollCheck) {
     $(100);
     const tmpCalleeParam$1 = { a: 1, b: 2 };
     const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
-    tmpSSA_a = tmpNestedAssignObjPatternRhs$1.a;
+    tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1.a;
     if (tmpNestedAssignObjPatternRhs$1) {
     } else {
       break;
@@ -80,7 +80,7 @@ if ($tmpLoopUnrollCheck) {
   }
 } else {
 }
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

@@ -49,9 +49,9 @@ $(a);
 const b = { $: $ };
 const obj = {};
 const tmpCallObj = $(b);
-const tmpSSA_a = tmpCallObj.$(1);
-obj[tmpSSA_a];
-$(tmpSSA_a);
+const tmpClusterSSA_a = tmpCallObj.$(1);
+obj[tmpClusterSSA_a];
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

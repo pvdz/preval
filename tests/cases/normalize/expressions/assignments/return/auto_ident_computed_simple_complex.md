@@ -57,9 +57,9 @@ $(a, b);
 `````js filename=intro
 const tmpAssignRhsCompProp = $(`c`);
 const b = { c: 1 };
-const tmpSSA_a = b[tmpAssignRhsCompProp];
-$(tmpSSA_a);
-$(tmpSSA_a, b);
+const tmpClusterSSA_a = b[tmpAssignRhsCompProp];
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a, b);
 `````
 
 ## PST Output

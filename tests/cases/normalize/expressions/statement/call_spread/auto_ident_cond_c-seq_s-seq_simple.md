@@ -45,14 +45,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParamSpread = 60;
 const tmpIfTest = $(30);
 if (tmpIfTest) {
   $(...60);
 } else {
   const tmpCalleeParam = $(100);
-  tmpCalleeParamSpread = $(tmpCalleeParam);
-  $(...tmpCalleeParamSpread);
+  const tmpClusterSSA_tmpCalleeParamSpread = $(tmpCalleeParam);
+  $(...tmpClusterSSA_tmpCalleeParamSpread);
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -63,15 +62,14 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = 60;
-const b = $( 30 );
-if (b) {
+const a = $( 30 );
+if (a) {
   $( ... 60 );
 }
 else {
-  const c = $( 100 );
-  a = $( c );
-  $( ... a );
+  const b = $( 100 );
+  const c = $( b );
+  $( ... c );
 }
 const d = {
 a: 999,

@@ -53,34 +53,34 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-const a = $(tmpCalleeParam);
-$(a);
+const tmpClusterSSA_a = $(tmpCalleeParam);
+$(tmpClusterSSA_a);
 $(1);
-$(a);
+$(tmpClusterSSA_a);
 $(1);
-$(a);
+$(tmpClusterSSA_a);
 $(1);
-$(a);
+$(tmpClusterSSA_a);
 $(1);
-$(a);
+$(tmpClusterSSA_a);
 $(1);
-$(a);
+$(tmpClusterSSA_a);
 $(1);
-$(a);
+$(tmpClusterSSA_a);
 $(1);
-$(a);
+$(tmpClusterSSA_a);
 $(1);
-$(a);
+$(tmpClusterSSA_a);
 $(1);
-$(a);
+$(tmpClusterSSA_a);
 $(1);
-$(a);
+$(tmpClusterSSA_a);
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(a);
+  $(tmpClusterSSA_a);
   $(1);
 }
-$(a);
+$(0);
 `````
 
 ## PST Output
@@ -116,7 +116,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( b );
   $( 1 );
 }
-$( b );
+$( 0 );
 `````
 
 ## Globals

@@ -90,16 +90,9 @@ tmpCallCallee(tmpCalleeParam);
 const f = function () {
   debugger;
   const tmpSwitchValue = $(1, `disc`);
-  let tmpSwitchCaseToStart = 1;
   const tmpBinLhs = $(0);
-  let tmpIfTest$1 = true;
   const tmpIfTest = tmpBinLhs === tmpSwitchValue;
   if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-    tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  }
-  if (tmpIfTest$1) {
     $(`keep, do not eval`);
     return undefined;
   } else {
@@ -119,27 +112,19 @@ With rename=true
 const a = function() {
   debugger;
   const b = $( 1, "disc" );
-  let c = 1;
-  const d = $( 0 );
-  let e = true;
-  const f = d === b;
-  if (f) {
-    c = 0;
-  }
-  else {
-    e = c <= 0;
-  }
-  if (e) {
+  const c = $( 0 );
+  const d = c === b;
+  if (d) {
     $( "keep, do not eval" );
     return undefined;
   }
   else {
-    const g = $( 2, "ret" );
-    return g;
+    const e = $( 2, "ret" );
+    return e;
   }
 };
-const h = a();
-$( h );
+const f = a();
+$( f );
 `````
 
 ## Globals

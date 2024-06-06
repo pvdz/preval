@@ -60,8 +60,8 @@ if ($) {
 `````js filename=intro
 if ($) {
   const x = $(5);
-  const tmpSSA_x = x + 1;
-  $(tmpSSA_x);
+  const tmpClusterSSA_x = x + 1;
+  $(tmpClusterSSA_x);
 } else {
 }
 `````

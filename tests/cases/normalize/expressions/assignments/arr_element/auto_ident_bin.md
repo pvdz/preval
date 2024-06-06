@@ -47,14 +47,13 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs$1 = $(1);
 const tmpBinBothRhs$1 = $(2);
-let a = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpBinBothLhs = a;
+const a = tmpBinBothLhs$1 + tmpBinBothRhs$1;
 const tmpBinBothLhs$3 = $(1);
 const tmpBinBothRhs$3 = $(2);
-a = tmpBinBothLhs$3 + tmpBinBothRhs$3;
-const tmpCalleeParam = tmpBinBothLhs + a;
+const tmpClusterSSA_a = tmpBinBothLhs$3 + tmpBinBothRhs$3;
+const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output
@@ -64,14 +63,13 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = $( 2 );
-let c = a + b;
-const d = c;
-const e = $( 1 );
-const f = $( 2 );
-c = e + f;
-const g = d + c;
+const c = a + b;
+const d = $( 1 );
+const e = $( 2 );
+const f = d + e;
+const g = c + f;
 $( g );
-$( c );
+$( f );
 `````
 
 ## Globals

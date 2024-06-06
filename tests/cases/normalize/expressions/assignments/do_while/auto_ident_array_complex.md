@@ -57,8 +57,8 @@ $(a);
 
 `````js filename=intro
 $(100);
-$(1);
-$(3);
+const tmpArrElement = $(1);
+const tmpArrElement$3 = $(3);
 $(100);
 $(1);
 $(3);
@@ -87,15 +87,14 @@ $(100);
 $(1);
 $(3);
 $(100);
-const tmpArrElement$1 = $(1);
-const tmpArrElement$4 = $(3);
-let a = [tmpArrElement$1, 2, tmpArrElement$4];
+$(1);
+$(3);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpArrElement$2 = $(1);
-  const tmpArrElement$5 = $(3);
-  a = [tmpArrElement$2, 2, tmpArrElement$5];
+  $(1);
+  $(3);
 }
+const a = [tmpArrElement, 2, tmpArrElement$3];
 $(a);
 `````
 
@@ -105,45 +104,44 @@ With rename=true
 
 `````js filename=intro
 $( 100 );
-$( 1 );
-$( 3 );
-$( 100 );
-$( 1 );
-$( 3 );
-$( 100 );
-$( 1 );
-$( 3 );
-$( 100 );
-$( 1 );
-$( 3 );
-$( 100 );
-$( 1 );
-$( 3 );
-$( 100 );
-$( 1 );
-$( 3 );
-$( 100 );
-$( 1 );
-$( 3 );
-$( 100 );
-$( 1 );
-$( 3 );
-$( 100 );
-$( 1 );
-$( 3 );
-$( 100 );
-$( 1 );
-$( 3 );
-$( 100 );
 const a = $( 1 );
 const b = $( 3 );
-let c = [ a, 2, b ];
+$( 100 );
+$( 1 );
+$( 3 );
+$( 100 );
+$( 1 );
+$( 3 );
+$( 100 );
+$( 1 );
+$( 3 );
+$( 100 );
+$( 1 );
+$( 3 );
+$( 100 );
+$( 1 );
+$( 3 );
+$( 100 );
+$( 1 );
+$( 3 );
+$( 100 );
+$( 1 );
+$( 3 );
+$( 100 );
+$( 1 );
+$( 3 );
+$( 100 );
+$( 1 );
+$( 3 );
+$( 100 );
+$( 1 );
+$( 3 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const d = $( 1 );
-  const e = $( 3 );
-  c = [ d, 2, e ];
+  $( 1 );
+  $( 3 );
 }
+const c = [ a, 2, b ];
 $( c );
 `````
 

@@ -62,8 +62,8 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
-const tmpChainElementCall = $(b);
+const tmpClusterSSA_b = { x: 1 };
+const tmpChainElementCall = $(tmpClusterSSA_b);
 const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
   $(undefined);

@@ -77,8 +77,8 @@ if (x) {
 }
 problem1.now;
 y;
-const tmpSSA_problem2 = {};
-$(tmpSSA_problem2);
+const tmpClusterSSA_problem2 = {};
+$(tmpClusterSSA_problem2);
 $(undefined);
 `````
 

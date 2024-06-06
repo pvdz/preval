@@ -52,18 +52,17 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const tmpCallObj = $(b);
-let tmpSSA_a = tmpCallObj.$(1);
-let tmpCalleeParam = tmpSSA_a;
-if (tmpSSA_a) {
+let tmpClusterSSA_a = tmpCallObj.$(1);
+const tmpCalleeParam = tmpClusterSSA_a;
+if (tmpClusterSSA_a) {
   const tmpCallObj$1 = $(b);
   const tmpNestedComplexRhs = tmpCallObj$1.$(1);
-  tmpSSA_a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  tmpClusterSSA_a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
 }
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output
@@ -74,12 +73,11 @@ With rename=true
 const a = { $: $ };
 const b = $( a );
 let c = b.$( 1 );
-let d = c;
+const d = c;
 if (c) {
   const e = $( a );
   const f = e.$( 1 );
   c = f;
-  d = f;
   $( f );
 }
 else {

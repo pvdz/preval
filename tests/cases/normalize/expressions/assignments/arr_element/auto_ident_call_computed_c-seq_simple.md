@@ -49,13 +49,12 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const tmpCallObj = $(b);
-let tmpSSA_a = tmpCallObj.$(1);
-const tmpBinBothLhs = tmpSSA_a;
+const tmpClusterSSA_a = tmpCallObj.$(1);
 const tmpCallObj$1 = $(b);
-tmpSSA_a = tmpCallObj$1.$(1);
-const tmpCalleeParam = tmpBinBothLhs + tmpSSA_a;
+const tmpClusterSSA_a$1 = tmpCallObj$1.$(1);
+const tmpCalleeParam = tmpClusterSSA_a + tmpClusterSSA_a$1;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a$1);
 `````
 
 ## PST Output
@@ -65,13 +64,12 @@ With rename=true
 `````js filename=intro
 const a = { $: $ };
 const b = $( a );
-let c = b.$( 1 );
-const d = c;
-const e = $( a );
-c = e.$( 1 );
-const f = d + c;
+const c = b.$( 1 );
+const d = $( a );
+const e = d.$( 1 );
+const f = c + e;
 $( f );
-$( c );
+$( e );
 `````
 
 ## Globals

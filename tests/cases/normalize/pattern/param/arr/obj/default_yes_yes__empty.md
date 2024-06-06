@@ -91,7 +91,7 @@ if (objPatternCrashTest) {
   objPatternCrashTest = arrPatternStep === null;
 }
 if (objPatternCrashTest) {
-  objPatternCrashTest = arrPatternStep.cannotDestructureThis;
+  arrPatternStep.cannotDestructureThis;
 } else {
 }
 $(`bad`);
@@ -123,7 +123,7 @@ else {
   f = e === null;
 }
 if (f) {
-  f = e.cannotDestructureThis;
+  e.cannotDestructureThis;
 }
 $( "bad" );
 `````

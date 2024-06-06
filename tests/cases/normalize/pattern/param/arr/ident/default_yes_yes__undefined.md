@@ -67,13 +67,11 @@ const f = function () {
   const bindingPatternArrRoot = $(`pass2`);
   const arrPatternSplat = [...bindingPatternArrRoot];
   const arrPatternBeforeDefault = arrPatternSplat[0];
-  let x = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    x = $(`fail`);
-    return x;
+    const tmpClusterSSA_x = $(`fail`);
+    return tmpClusterSSA_x;
   } else {
-    x = arrPatternBeforeDefault;
     return arrPatternBeforeDefault;
   }
 };
@@ -91,14 +89,12 @@ const a = function() {
   const b = $( "pass2" );
   const c = [ ... b ];
   const d = c[ 0 ];
-  let e = undefined;
-  const f = d === undefined;
-  if (f) {
-    e = $( "fail" );
-    return e;
+  const e = d === undefined;
+  if (e) {
+    const f = $( "fail" );
+    return f;
   }
   else {
-    e = d;
     return d;
   }
 };

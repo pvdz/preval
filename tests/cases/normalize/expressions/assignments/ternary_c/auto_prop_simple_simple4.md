@@ -63,18 +63,17 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 2 };
 const tmpIfTest = $(0);
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
+  const a = { a: 999, b: 2 };
   $(a);
 } else {
   const tmpObjLitVal = $(1);
   const tmpNestedComplexRhs = { b: tmpObjLitVal };
-  a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
-  $(a);
+  $(tmpNestedComplexRhs);
 }
 `````
 
@@ -83,22 +82,21 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-let a = {
+const a = $( 0 );
+if (a) {
+  const b = $( 100 );
+  $( b );
+  const c = {
 a: 999,
 b: 2
-;
-const b = $( 0 );
-if (b) {
-  const c = $( 100 );
+  ;
   $( c );
-  $( a );
 }
 else {
   const d = $( 1 );
   const e = { b: d };
-  a = e;
   $( e );
-  $( a );
+  $( e );
 }
 `````
 

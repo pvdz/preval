@@ -76,18 +76,15 @@ $(f);
 const f = function ($$0) {
   const y = $$0;
   debugger;
-  let n = 0;
   if (y) {
     let $tmpLoopUnrollCheck = true;
     if ($) {
-      n = 1;
       $tmpLoopUnrollCheck = false;
     } else {
     }
     if ($tmpLoopUnrollCheck) {
       while ($LOOP_UNROLL_10) {
         if ($) {
-          n = n + 1;
           break;
         } else {
         }
@@ -111,17 +108,14 @@ With rename=true
 const a = function($$0 ) {
   const b = c;
   debugger;
-  let d = 0;
   if (b) {
-    let e = true;
+    let d = true;
     if ($) {
-      d = 1;
-      e = false;
+      d = false;
     }
-    if (e) {
+    if (d) {
       while ($LOOP_UNROLL_10) {
         if ($) {
-          d = d + 1;
           break;
         }
       }

@@ -60,12 +60,11 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
 const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
-let tmpSSA_tmpCalleeParam = tmpChainElementCall;
 if (tmpChainElementCall) {
-  tmpSSA_tmpCalleeParam = $(100);
-  $(tmpSSA_tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  $(tmpSSA_tmpCalleeParam);
+  $(tmpChainElementCall);
 }
 $(tmpChainElementCall);
 `````
@@ -77,13 +76,12 @@ With rename=true
 `````js filename=intro
 const a = { e: $ };
 const b = $dotCall( $, a, 1 );
-let c = b;
 if (b) {
-  c = $( 100 );
+  const c = $( 100 );
   $( c );
 }
 else {
-  $( c );
+  $( b );
 }
 $( b );
 `````

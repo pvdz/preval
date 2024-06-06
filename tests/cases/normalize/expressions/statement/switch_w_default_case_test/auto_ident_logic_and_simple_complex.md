@@ -97,9 +97,9 @@ $(a);
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpCalleeParam = $(1);
-const tmpBinLhs = $(tmpCalleeParam);
-const tmpSSA_tmpIfTest = tmpBinLhs === tmpSwitchValue;
-if (tmpSSA_tmpIfTest) {
+const tmpClusterSSA_tmpBinLhs = $(tmpCalleeParam);
+const tmpClusterSSA_tmpIfTest = tmpClusterSSA_tmpBinLhs === tmpSwitchValue;
+if (tmpClusterSSA_tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
   const tmpIfTest$1 = 2 === tmpSwitchValue;

@@ -53,12 +53,11 @@ $(a, b);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = 2;
 const tmpIfTest = $(0);
 const b = { c: 1 };
 if (tmpIfTest) {
-  tmpCalleeParam = $(100);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   b.c = 2;
   a = 2;
@@ -76,19 +75,18 @@ let a = {
 a: 999,
 b: 1000
 ;
-let b = 2;
-const c = $( 0 );
-const d = { c: 1 };
-if (c) {
-  b = $( 100 );
-  $( b );
+const b = $( 0 );
+const c = { c: 1 };
+if (b) {
+  const d = $( 100 );
+  $( d );
 }
 else {
-  d.c = 2;
+  c.c = 2;
   a = 2;
   $( 2 );
 }
-$( a, d );
+$( a, c );
 `````
 
 ## Globals

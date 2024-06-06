@@ -49,10 +49,9 @@ $(x, a, `final`);
 ## Output
 
 `````js filename=intro
-let x = $(10);
-const a = x;
-x = $(20);
-$(x, a, `final`);
+const x = $(10);
+const tmpClusterSSA_x = $(20);
+$(tmpClusterSSA_x, x, `final`);
 `````
 
 ## PST Output
@@ -60,10 +59,9 @@ $(x, a, `final`);
 With rename=true
 
 `````js filename=intro
-let a = $( 10 );
-const b = a;
-a = $( 20 );
-$( a, b, "final" );
+const a = $( 10 );
+const b = $( 20 );
+$( b, a, "final" );
 `````
 
 ## Globals

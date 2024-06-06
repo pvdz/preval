@@ -222,9 +222,8 @@ try {
   if (ignore) {
     throw e$3;
   } else {
-    let x$3 = x$1;
-    $(x$3);
-    x$3 = $(3);
+    $(x$1);
+    $(3);
     x$1 = undefined;
   }
 }
@@ -268,9 +267,8 @@ catch (f) {
     throw f;
   }
   else {
-    let g = e;
-    $( g );
-    g = $( 3 );
+    $( e );
+    $( 3 );
     e = undefined;
   }
 }

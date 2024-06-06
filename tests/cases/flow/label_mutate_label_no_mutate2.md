@@ -113,14 +113,11 @@ f();
 ## Output
 
 `````js filename=intro
-let x = `fail`;
 if ($) {
-  x = `pass`;
   $(`pass`);
 } else {
-  const $dlr_$$1 = x;
-  $($dlr_$$1);
-  $($dlr_$$1);
+  $(`fail`);
+  $(`fail`);
 }
 `````
 
@@ -129,15 +126,12 @@ if ($) {
 With rename=true
 
 `````js filename=intro
-let a = "fail";
 if ($) {
-  a = "pass";
   $( "pass" );
 }
 else {
-  const b = a;
-  $( b );
-  $( b );
+  $( "fail" );
+  $( "fail" );
 }
 `````
 

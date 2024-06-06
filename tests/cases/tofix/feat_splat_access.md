@@ -58,9 +58,9 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
+arrPatternSplat[0];
 $(10);
 $(20);
-arrPatternSplat[0];
 $(1);
 $(10);
 $(20);
@@ -110,9 +110,9 @@ a: 999,
 b: 1000
 ;
 const b = [ ... a ];
+b[ 0 ];
 $( 10 );
 $( 20 );
-b[ 0 ];
 $( 1 );
 $( 10 );
 $( 20 );

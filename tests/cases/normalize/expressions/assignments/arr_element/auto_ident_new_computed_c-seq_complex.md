@@ -55,15 +55,14 @@ const b = { $: $ };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`\$`);
 const tmpNewCallee = tmpCompObj[tmpCompProp];
-let tmpSSA_a = new tmpNewCallee(1);
-const tmpBinBothLhs = tmpSSA_a;
+const tmpClusterSSA_a = new tmpNewCallee(1);
 const tmpCompObj$1 = $(b);
 const tmpCompProp$1 = $(`\$`);
 const tmpNewCallee$1 = tmpCompObj$1[tmpCompProp$1];
-tmpSSA_a = new tmpNewCallee$1(1);
-const tmpCalleeParam = tmpBinBothLhs + tmpSSA_a;
+const tmpClusterSSA_a$1 = new tmpNewCallee$1(1);
+const tmpCalleeParam = tmpClusterSSA_a + tmpClusterSSA_a$1;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a$1);
 `````
 
 ## PST Output
@@ -75,15 +74,14 @@ const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
 const d = b[ c ];
-let e = new d( 1 );
-const f = e;
-const g = $( a );
-const h = $( "$" );
-const i = g[ h ];
-e = new i( 1 );
-const j = f + e;
+const e = new d( 1 );
+const f = $( a );
+const g = $( "$" );
+const h = f[ g ];
+const i = new h( 1 );
+const j = e + i;
 $( j );
-$( e );
+$( i );
 `````
 
 ## Globals

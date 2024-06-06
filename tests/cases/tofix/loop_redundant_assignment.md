@@ -170,11 +170,10 @@ if ($) {
     if (tmpClusterSSA__0x5dc746) {
       const tmpBinBothLhs$34 = tmpClusterSSA__0x26b289.length;
       const tmpBinBothRhs$34 = A.length;
-      let tmpIfTest$12 = tmpBinBothLhs$34 === tmpBinBothRhs$34;
+      const tmpIfTest$12 = tmpBinBothLhs$34 === tmpBinBothRhs$34;
       if (tmpIfTest$12) {
       } else {
-        const tmpBinLhs$23 = A.indexOf(`.`);
-        tmpIfTest$12 = tmpBinLhs$23 === 0;
+        A.indexOf(`.`);
       }
     } else {
     }
@@ -211,13 +210,12 @@ if ($) {
     if (tmpClusterSSA__0x5dc746) {
       const h = tmpClusterSSA__0x26b289.length;
       const i = c.length;
-      let j = h === i;
+      const j = h === i;
       if (j) {
 
       }
       else {
-        const k = c.indexOf( "." );
-        j = k === 0;
+        c.indexOf( "." );
       }
     }
   }

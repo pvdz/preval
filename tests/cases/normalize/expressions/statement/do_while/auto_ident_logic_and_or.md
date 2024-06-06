@@ -78,8 +78,8 @@ if (tmpIfTest) {
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam$3 = $(2);
-  tmpIfTest = $(tmpCalleeParam$3);
-  if (tmpIfTest) {
+  const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam$3);
+  if (tmpClusterSSA_tmpIfTest) {
   } else {
     $tmpLoopUnrollCheck = false;
   }
@@ -97,8 +97,8 @@ if ($tmpLoopUnrollCheck) {
     if (tmpIfTest$1) {
     } else {
       const tmpCalleeParam$6 = $(2);
-      tmpIfTest$1 = $(tmpCalleeParam$6);
-      if (tmpIfTest$1) {
+      const tmpClusterSSA_tmpIfTest$1 = $(tmpCalleeParam$6);
+      if (tmpClusterSSA_tmpIfTest$1) {
       } else {
         break;
       }
@@ -128,8 +128,8 @@ if (c) {
 }
 else {
   const e = $( 2 );
-  c = $( e );
-  if (c) {
+  const f = $( e );
+  if (f) {
 
   }
   else {
@@ -139,19 +139,19 @@ else {
 if (a) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const f = $( 1 );
-    let g = $( f );
-    if (g) {
-      const h = $( 1 );
-      g = $( h );
+    const g = $( 1 );
+    let h = $( g );
+    if (h) {
+      const i = $( 1 );
+      h = $( i );
     }
-    if (g) {
+    if (h) {
 
     }
     else {
-      const i = $( 2 );
-      g = $( i );
-      if (g) {
+      const j = $( 2 );
+      const k = $( j );
+      if (k) {
 
       }
       else {
@@ -160,11 +160,11 @@ if (a) {
     }
   }
 }
-const j = {
+const l = {
 a: 999,
 b: 1000
 ;
-$( j );
+$( l );
 `````
 
 ## Globals

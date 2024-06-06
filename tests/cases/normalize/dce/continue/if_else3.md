@@ -63,14 +63,14 @@ $(`after, wont eval due to infinite loop`);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = $(true);
+const tmpIfTest = $(true);
 if (tmpIfTest) {
   $(1);
-  tmpIfTest = $(true);
+  let tmpClusterSSA_tmpIfTest = $(true);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       $(1);
-      tmpIfTest = $(true);
+      tmpClusterSSA_tmpIfTest = $(true);
     } else {
       break;
     }
@@ -85,14 +85,14 @@ $(`after, wont eval due to infinite loop`);
 With rename=true
 
 `````js filename=intro
-let a = $( true );
+const a = $( true );
 if (a) {
   $( 1 );
-  a = $( true );
+  let b = $( true );
   while ($LOOP_UNROLL_10) {
-    if (a) {
+    if (b) {
       $( 1 );
-      a = $( true );
+      b = $( true );
     }
     else {
       break;

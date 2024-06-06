@@ -56,11 +56,11 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
-const tmpCallCompObj = $(b);
+const tmpClusterSSA_b = { $: $ };
+const tmpCallCompObj = $(tmpClusterSSA_b);
 const tmpCallCompProp = $(`\$`);
-const tmpSSA_a = tmpCallCompObj[tmpCallCompProp](1);
-$(tmpSSA_a);
+const tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

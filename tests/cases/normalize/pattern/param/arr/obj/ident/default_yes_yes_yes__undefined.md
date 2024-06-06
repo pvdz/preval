@@ -91,13 +91,11 @@ const f = function () {
     arrPatternStep = arrPatternBeforeDefault;
   }
   const objPatternBeforeDefault = arrPatternStep.x;
-  let x = undefined;
   const tmpIfTest$3 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$3) {
-    x = $(`pass`);
-    return x;
+    const tmpClusterSSA_x = $(`pass`);
+    return tmpClusterSSA_x;
   } else {
-    x = objPatternBeforeDefault;
     return objPatternBeforeDefault;
   }
 };
@@ -127,14 +125,12 @@ const a = function() {
     g = f;
   }
   const j = g.x;
-  let k = undefined;
-  const l = j === undefined;
-  if (l) {
-    k = $( "pass" );
-    return k;
+  const k = j === undefined;
+  if (k) {
+    const l = $( "pass" );
+    return l;
   }
   else {
-    k = j;
     return j;
   }
 };

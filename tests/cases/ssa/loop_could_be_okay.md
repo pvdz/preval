@@ -61,11 +61,11 @@ if ($) {
 `````js filename=intro
 if ($) {
   $(1);
-  let x = $(2);
-  $(x);
+  const tmpClusterSSA_x = $(2);
+  $(tmpClusterSSA_x);
   while ($LOOP_UNROLL_10) {
-    x = $(2);
-    $(x);
+    const tmpClusterSSA_x$1 = $(2);
+    $(tmpClusterSSA_x$1);
   }
 } else {
 }
@@ -78,11 +78,11 @@ With rename=true
 `````js filename=intro
 if ($) {
   $( 1 );
-  let a = $( 2 );
+  const a = $( 2 );
   $( a );
   while ($LOOP_UNROLL_10) {
-    a = $( 2 );
-    $( a );
+    const b = $( 2 );
+    $( b );
   }
 }
 `````

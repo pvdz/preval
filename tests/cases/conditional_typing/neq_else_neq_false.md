@@ -50,12 +50,11 @@ $(x);
 
 `````js filename=intro
 const a = $(67637);
-let x = a !== 67636;
+const x = a === 67636;
 if (x) {
-  $(x);
+  $(false);
 } else {
-  x = a !== 67636;
-  $(x);
+  $(true);
 }
 `````
 
@@ -65,13 +64,12 @@ With rename=true
 
 `````js filename=intro
 const a = $( 67637 );
-let b = a !== 67636;
+const b = a === 67636;
 if (b) {
-  $( b );
+  $( false );
 }
 else {
-  b = a !== 67636;
-  $( b );
+  $( true );
 }
 `````
 

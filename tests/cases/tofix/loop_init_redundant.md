@@ -49,13 +49,11 @@ $(a);
 
 `````js filename=intro
 const useless = new $(1);
-let a = useless;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpNestedComplexRhs$2 = new $(1);
-  a = tmpNestedComplexRhs$2;
+  new $(1);
 }
-$(a);
+$(useless);
 `````
 
 ## PST Output
@@ -64,13 +62,11 @@ With rename=true
 
 `````js filename=intro
 const a = new $( 1 );
-let b = a;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const c = new $( 1 );
-  b = c;
+  new $( 1 );
 }
-$( b );
+$( a );
 `````
 
 ## Globals

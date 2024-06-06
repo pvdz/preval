@@ -51,34 +51,35 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = new $(1);
-$(tmpSSA_a);
+const tmpClusterSSA_a = new $(1);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(tmpSSA_a);
+  $(tmpClusterSSA_a);
   $(1);
 }
-$(tmpSSA_a);
+const a = { a: 999, b: 1000 };
+$(a);
 `````
 
 ## PST Output
@@ -113,7 +114,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( a );
   $( 1 );
 }
-$( a );
+const b = {
+a: 999,
+b: 1000
+;
+$( b );
 `````
 
 ## Globals

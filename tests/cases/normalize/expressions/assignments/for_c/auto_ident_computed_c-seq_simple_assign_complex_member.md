@@ -58,10 +58,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-let $tmpLoopUnrollCheck = true;
 const b = { c: 10, d: 20 };
+const a = { a: 999, b: 1000 };
+const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpNestedAssignComMemberObj = $(b);
   const tmpNestedAssignComMemberProp = $(`c`);
@@ -69,22 +68,16 @@ if (tmpIfTest) {
   const tmpCompProp = $(`d`);
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-  a = tmpNestedAssignPropRhs;
-  tmpIfTest = $(1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       const tmpNestedAssignComMemberObj$1 = $(b);
       const tmpNestedAssignComMemberProp$1 = $(`c`);
       const tmpCompObj$1 = $(b);
       const tmpCompProp$1 = $(`d`);
       const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
       tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedAssignPropRhs$1;
-      a = tmpNestedAssignPropRhs$1;
-      tmpIfTest = $(1);
+      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -99,47 +92,39 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-let a = {
-a: 999,
-b: 1000
-;
-let b = $( 1 );
-let c = true;
-const d = {
+const a = {
 c: 10,
 d: 20
 ;
-if (b) {
-  const e = $( d );
-  const f = $( "c" );
-  const g = $( d );
-  const h = $( "d" );
-  const i = g[ h ];
-  e[f] = i;
-  a = i;
-  b = $( 1 );
-}
-else {
-  c = false;
-}
+const b = {
+a: 999,
+b: 1000
+;
+const c = $( 1 );
 if (c) {
+  const d = $( a );
+  const e = $( "c" );
+  const f = $( a );
+  const g = $( "d" );
+  const h = f[ g ];
+  d[e] = h;
+  let i = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (b) {
-      const j = $( d );
+    if (i) {
+      const j = $( a );
       const k = $( "c" );
-      const l = $( d );
+      const l = $( a );
       const m = $( "d" );
       const n = l[ m ];
       j[k] = n;
-      a = n;
-      b = $( 1 );
+      i = $( 1 );
     }
     else {
       break;
     }
   }
 }
-$( a, d );
+$( b, a );
 `````
 
 ## Globals

@@ -66,8 +66,8 @@ if (tmpIfTest) {
   tmpCalleeParam = tmpChainElementObject;
 }
 if (a) {
-  tmpCalleeParam = $(100);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   $(tmpCalleeParam);
 }
@@ -93,8 +93,8 @@ else {
   e = f;
 }
 if (a) {
-  e = $( 100 );
-  $( e );
+  const g = $( 100 );
+  $( g );
 }
 else {
   $( e );

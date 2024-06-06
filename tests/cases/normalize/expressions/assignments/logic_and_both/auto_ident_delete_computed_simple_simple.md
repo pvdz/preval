@@ -50,11 +50,10 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 let a = delete arg.y;
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 if (a) {
   const tmpNestedComplexRhs = delete arg.y;
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
@@ -69,11 +68,10 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 let b = deletea.y;
-let c = b;
+const c = b;
 if (b) {
   const d = deletea.y;
   b = d;
-  c = d;
   $( d );
 }
 else {

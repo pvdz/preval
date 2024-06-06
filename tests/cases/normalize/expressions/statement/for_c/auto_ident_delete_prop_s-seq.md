@@ -56,18 +56,18 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
+const tmpIfTest = $(1);
 if (tmpIfTest) {
   $(1);
   $(2);
   delete arg.y;
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       $(1);
       $(2);
       delete arg.y;
-      tmpIfTest = $(1);
+      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -87,18 +87,18 @@ const b = {
 a: 999,
 b: 1000
 ;
-let c = $( 1 );
+const c = $( 1 );
 if (c) {
   $( 1 );
   $( 2 );
   deletea.y;
-  c = $( 1 );
+  let d = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (c) {
+    if (d) {
       $( 1 );
       $( 2 );
       deletea.y;
-      c = $( 1 );
+      d = $( 1 );
     }
     else {
       break;

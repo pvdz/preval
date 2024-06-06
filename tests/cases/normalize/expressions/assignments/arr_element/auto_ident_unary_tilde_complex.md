@@ -44,13 +44,12 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-let a = ~tmpUnaryArg;
-const tmpBinBothLhs = a;
+const a = ~tmpUnaryArg;
 const tmpUnaryArg$1 = $(100);
-a = ~tmpUnaryArg$1;
-const tmpCalleeParam = tmpBinBothLhs + a;
+const tmpClusterSSA_a = ~tmpUnaryArg$1;
+const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output
@@ -59,13 +58,12 @@ With rename=true
 
 `````js filename=intro
 const a = $( 100 );
-let b = ~a;
-const c = b;
-const d = $( 100 );
-b = ~d;
-const e = c + b;
+const b = ~a;
+const c = $( 100 );
+const d = ~c;
+const e = b + d;
 $( e );
-$( b );
+$( d );
 `````
 
 ## Globals

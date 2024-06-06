@@ -70,16 +70,14 @@ let a = undefined;
 const b = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
-let tmpCalleeParam = undefined;
 if (tmpIfTest) {
   $(undefined);
 } else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   a = tmpChainElementObject;
-  tmpCalleeParam = tmpChainElementObject;
-  if (a) {
-    $(tmpCalleeParam);
+  if (tmpChainElementObject) {
+    $(tmpChainElementObject);
   } else {
     let tmpNestedComplexRhs = undefined;
     const tmpChainElementCall$1 = $(b);
@@ -91,8 +89,7 @@ if (tmpIfTest) {
       tmpNestedComplexRhs = tmpChainElementObject$1;
     }
     a = tmpNestedComplexRhs;
-    tmpCalleeParam = tmpNestedComplexRhs;
-    $(tmpCalleeParam);
+    $(tmpNestedComplexRhs);
   }
 }
 $(a);
@@ -107,33 +104,30 @@ let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 const d = c == null;
-let e = undefined;
 if (d) {
   $( undefined );
 }
 else {
-  const f = $( "x" );
-  const g = c[ f ];
-  a = g;
-  e = g;
-  if (a) {
-    $( e );
+  const e = $( "x" );
+  const f = c[ e ];
+  a = f;
+  if (f) {
+    $( f );
   }
   else {
-    let h = undefined;
-    const i = $( b );
-    const j = i == null;
-    if (j) {
+    let g = undefined;
+    const h = $( b );
+    const i = h == null;
+    if (i) {
 
     }
     else {
-      const k = $( "x" );
-      const l = i[ k ];
-      h = l;
+      const j = $( "x" );
+      const k = h[ j ];
+      g = k;
     }
-    a = h;
-    e = h;
-    $( e );
+    a = g;
+    $( g );
   }
 }
 $( a );

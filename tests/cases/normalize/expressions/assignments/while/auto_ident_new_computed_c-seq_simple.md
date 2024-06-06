@@ -49,6 +49,7 @@ $(a);
 ## Output
 
 `````js filename=intro
+const a = { a: 999, b: 1000 };
 const b = { $: $ };
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
@@ -92,15 +93,15 @@ new tmpNewCallee$9(1);
 $(100);
 const tmpCompObj$10 = $(b);
 const tmpNewCallee$10 = tmpCompObj$10.$;
-let tmpSSA_a$2 = new tmpNewCallee$10(1);
+new tmpNewCallee$10(1);
 $(100);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpCompObj$11 = $(b);
   const tmpNewCallee$11 = tmpCompObj$11.$;
-  tmpSSA_a$2 = new tmpNewCallee$11(1);
+  new tmpNewCallee$11(1);
   $(100);
 }
-$(tmpSSA_a$2);
+$(a);
 `````
 
 ## PST Output
@@ -108,58 +109,62 @@ $(tmpSSA_a$2);
 With rename=true
 
 `````js filename=intro
-const a = { $: $ };
-const b = $( a );
-const c = b.$;
-new c( 1 );
+const a = {
+a: 999,
+b: 1000
+;
+const b = { $: $ };
+const c = $( b );
+const d = c.$;
+new d( 1 );
 $( 100 );
-const d = $( a );
-const e = d.$;
-new e( 1 );
+const e = $( b );
+const f = e.$;
+new f( 1 );
 $( 100 );
-const f = $( a );
-const g = f.$;
-new g( 1 );
+const g = $( b );
+const h = g.$;
+new h( 1 );
 $( 100 );
-const h = $( a );
-const i = h.$;
-new i( 1 );
+const i = $( b );
+const j = i.$;
+new j( 1 );
 $( 100 );
-const j = $( a );
-const k = j.$;
-new k( 1 );
+const k = $( b );
+const l = k.$;
+new l( 1 );
 $( 100 );
-const l = $( a );
-const m = l.$;
-new m( 1 );
+const m = $( b );
+const n = m.$;
+new n( 1 );
 $( 100 );
-const n = $( a );
-const o = n.$;
-new o( 1 );
+const o = $( b );
+const p = o.$;
+new p( 1 );
 $( 100 );
-const p = $( a );
-const q = p.$;
-new q( 1 );
+const q = $( b );
+const r = q.$;
+new r( 1 );
 $( 100 );
-const r = $( a );
-const s = r.$;
-new s( 1 );
+const s = $( b );
+const t = s.$;
+new t( 1 );
 $( 100 );
-const t = $( a );
-const u = t.$;
-new u( 1 );
+const u = $( b );
+const v = u.$;
+new v( 1 );
 $( 100 );
-const v = $( a );
-const w = v.$;
-let x = new w( 1 );
+const w = $( b );
+const x = w.$;
+new x( 1 );
 $( 100 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const y = $( a );
+  const y = $( b );
   const z = y.$;
-  x = new z( 1 );
+  new z( 1 );
   $( 100 );
 }
-$( x );
+$( a );
 `````
 
 ## Globals

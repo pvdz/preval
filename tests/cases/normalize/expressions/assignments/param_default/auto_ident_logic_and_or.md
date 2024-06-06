@@ -79,16 +79,16 @@ if (tmpNestedComplexRhs) {
   tmpNestedComplexRhs = $(tmpCalleeParam$1);
 } else {
 }
-let tmpSSA_a = undefined;
+let tmpClusterSSA_a = undefined;
 if (tmpNestedComplexRhs) {
-  tmpSSA_a = tmpNestedComplexRhs;
+  tmpClusterSSA_a = tmpNestedComplexRhs;
 } else {
   const tmpCalleeParam$3 = $(2);
-  tmpNestedComplexRhs = $(tmpCalleeParam$3);
-  tmpSSA_a = tmpNestedComplexRhs;
+  const tmpClusterSSA_tmpNestedComplexRhs = $(tmpCalleeParam$3);
+  tmpClusterSSA_a = tmpClusterSSA_tmpNestedComplexRhs;
 }
 $(undefined);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output
@@ -108,8 +108,8 @@ if (b) {
 }
 else {
   const e = $( 2 );
-  b = $( e );
-  d = b;
+  const f = $( e );
+  d = f;
 }
 $( undefined );
 $( d );

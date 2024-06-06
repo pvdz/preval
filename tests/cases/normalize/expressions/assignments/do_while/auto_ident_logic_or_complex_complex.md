@@ -78,8 +78,8 @@ if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpCalleeParam$2 = $(0);
-    a = $(tmpCalleeParam$2);
-    if (a) {
+    const tmpClusterSSA_a = $(tmpCalleeParam$2);
+    if (tmpClusterSSA_a) {
     } else {
       const tmpCalleeParam$4 = $(2);
       a = $(tmpCalleeParam$4);
@@ -120,13 +120,13 @@ if (a) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
     const e = $( 0 );
-    c = $( e );
-    if (c) {
+    const f = $( e );
+    if (f) {
 
     }
     else {
-      const f = $( 2 );
-      c = $( f );
+      const g = $( 2 );
+      c = $( g );
       if (c) {
 
       }

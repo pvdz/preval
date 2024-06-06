@@ -73,17 +73,14 @@ closure();
 ## Output
 
 `````js filename=intro
-let x = $(100, `init`);
+const x = $(100, `init`);
 $(x, `closure`);
 if ($) {
   $(1, `f`);
-  x = undefined;
-  $(undefined, `x`);
 } else {
-  x = undefined;
-  $(undefined, `x`);
 }
-$(x, `closure`);
+$(undefined, `x`);
+$(undefined, `closure`);
 `````
 
 ## PST Output
@@ -91,18 +88,13 @@ $(x, `closure`);
 With rename=true
 
 `````js filename=intro
-let a = $( 100, "init" );
+const a = $( 100, "init" );
 $( a, "closure" );
 if ($) {
   $( 1, "f" );
-  a = undefined;
-  $( undefined, "x" );
 }
-else {
-  a = undefined;
-  $( undefined, "x" );
-}
-$( a, "closure" );
+$( undefined, "x" );
+$( undefined, "closure" );
 `````
 
 ## Globals

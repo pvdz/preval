@@ -62,26 +62,24 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let b = $(2);
+const b = $(2);
 const tmpIfTest = b == null;
 let c = undefined;
 let tmpIfTest$1 = false;
 if (tmpIfTest) {
-  b = toString;
-  c = b;
+  c = toString;
   tmpIfTest$1 = c == null;
 } else {
   c = b;
-  tmpIfTest$1 = c == null;
+  tmpIfTest$1 = b == null;
 }
-let tmpReturnArg = undefined;
 if (tmpIfTest$1) {
-  c = length;
-  tmpReturnArg = $(c);
-  $(tmpReturnArg);
+  length;
+  const tmpClusterSSA_tmpReturnArg = $(length);
+  $(tmpClusterSSA_tmpReturnArg);
 } else {
-  tmpReturnArg = $(c);
-  $(tmpReturnArg);
+  const tmpClusterSSA_tmpReturnArg$1 = $(c);
+  $(tmpClusterSSA_tmpReturnArg$1);
 }
 `````
 
@@ -90,28 +88,26 @@ if (tmpIfTest$1) {
 With rename=true
 
 `````js filename=intro
-let a = $( 2 );
+const a = $( 2 );
 const b = a == null;
 let c = undefined;
 let d = false;
 if (b) {
-  a = toString;
-  c = a;
+  c = toString;
   d = c == null;
 }
 else {
   c = a;
-  d = c == null;
+  d = a == null;
 }
-let e = undefined;
 if (d) {
-  c = length;
-  e = $( c );
+  length;
+  const e = $( length );
   $( e );
 }
 else {
-  e = $( c );
-  $( e );
+  const f = $( c );
+  $( f );
 }
 `````
 

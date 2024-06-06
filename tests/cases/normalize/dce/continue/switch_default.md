@@ -72,7 +72,7 @@ $(`after, do not evaluate (infinite loop)`);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = $(true);
+const tmpIfTest = $(true);
 if (tmpIfTest) {
   const tmpSwitchDisc = $(1, `disc`);
   const tmpBinBothRhs = $(0);
@@ -81,9 +81,9 @@ if (tmpIfTest) {
     $(`wrong branch`);
   } else {
   }
-  tmpIfTest = $(true);
+  let tmpClusterSSA_tmpIfTest = $(true);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       const tmpSwitchDisc$1 = $(1, `disc`);
       const tmpBinBothRhs$1 = $(0);
       const tmpIfTest$2 = tmpSwitchDisc$1 === tmpBinBothRhs$1;
@@ -91,7 +91,7 @@ if (tmpIfTest) {
         $(`wrong branch`);
       } else {
       }
-      tmpIfTest = $(true);
+      tmpClusterSSA_tmpIfTest = $(true);
     } else {
       break;
     }
@@ -106,7 +106,7 @@ $(`after, do not evaluate (infinite loop)`);
 With rename=true
 
 `````js filename=intro
-let a = $( true );
+const a = $( true );
 if (a) {
   const b = $( 1, "disc" );
   const c = $( 0 );
@@ -114,16 +114,16 @@ if (a) {
   if (d) {
     $( "wrong branch" );
   }
-  a = $( true );
+  let e = $( true );
   while ($LOOP_UNROLL_10) {
-    if (a) {
-      const e = $( 1, "disc" );
-      const f = $( 0 );
-      const g = e === f;
-      if (g) {
+    if (e) {
+      const f = $( 1, "disc" );
+      const g = $( 0 );
+      const h = f === g;
+      if (h) {
         $( "wrong branch" );
       }
-      a = $( true );
+      e = $( true );
     }
     else {
       break;

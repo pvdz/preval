@@ -68,15 +68,15 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = $(`a`);
+const x = $(`a`);
 $(x);
-x = $(`b`);
+let tmpClusterSSA_x = $(`b`);
 try {
-  x = $(`c`);
+  tmpClusterSSA_x = $(`c`);
 } catch (e) {
   $(`fail`);
 }
-$(x);
+$(tmpClusterSSA_x);
 `````
 
 ## PST Output
@@ -84,16 +84,16 @@ $(x);
 With rename=true
 
 `````js filename=intro
-let a = $( "a" );
+const a = $( "a" );
 $( a );
-a = $( "b" );
+let b = $( "b" );
 try {
-  a = $( "c" );
+  b = $( "c" );
 }
-catch (b) {
+catch (c) {
   $( "fail" );
 }
-$( a );
+$( b );
 `````
 
 ## Globals

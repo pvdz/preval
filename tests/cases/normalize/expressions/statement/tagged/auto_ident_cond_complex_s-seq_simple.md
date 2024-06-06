@@ -48,14 +48,13 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = [`before `, ` after`];
-let tmpCalleeParam$1 = 60;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   $(tmpCalleeParam, 60);
 } else {
   const tmpCalleeParam$3 = $(100);
-  tmpCalleeParam$1 = $(tmpCalleeParam$3);
-  $(tmpCalleeParam, tmpCalleeParam$1);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(tmpCalleeParam$3);
+  $(tmpCalleeParam, tmpClusterSSA_tmpCalleeParam$1);
 }
 $(a);
 `````
@@ -70,15 +69,14 @@ a: 999,
 b: 1000
 ;
 const b = [ "before ", " after" ];
-let c = 60;
-const d = $( 1 );
-if (d) {
+const c = $( 1 );
+if (c) {
   $( b, 60 );
 }
 else {
-  const e = $( 100 );
-  c = $( e );
-  $( b, c );
+  const d = $( 100 );
+  const e = $( d );
+  $( b, e );
 }
 $( a );
 `````

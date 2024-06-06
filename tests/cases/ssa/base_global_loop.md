@@ -54,21 +54,21 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = $(3);
+const x = $(3);
 $(x);
 let $tmpLoopUnrollCheck = true;
-x = x + 1;
-$(x);
-const tmpIfTest = x > 5;
+let tmpClusterSSA_x = x + 1;
+$(tmpClusterSSA_x);
+const tmpIfTest = tmpClusterSSA_x > 5;
 if (tmpIfTest) {
   $tmpLoopUnrollCheck = false;
 } else {
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    x = x + 1;
-    $(x);
-    const tmpIfTest$1 = x > 5;
+    tmpClusterSSA_x = tmpClusterSSA_x + 1;
+    $(tmpClusterSSA_x);
+    const tmpIfTest$1 = tmpClusterSSA_x > 5;
     if (tmpIfTest$1) {
       break;
     } else {
@@ -76,7 +76,7 @@ if ($tmpLoopUnrollCheck) {
   }
 } else {
 }
-$(x);
+$(tmpClusterSSA_x);
 `````
 
 ## PST Output
@@ -84,26 +84,26 @@ $(x);
 With rename=true
 
 `````js filename=intro
-let a = $( 3 );
+const a = $( 3 );
 $( a );
 let b = true;
-a = a + 1;
-$( a );
-const c = a > 5;
-if (c) {
+let c = a + 1;
+$( c );
+const d = c > 5;
+if (d) {
   b = false;
 }
 if (b) {
   while ($LOOP_UNROLL_10) {
-    a = a + 1;
-    $( a );
-    const d = a > 5;
-    if (d) {
+    c = c + 1;
+    $( c );
+    const e = c > 5;
+    if (e) {
       break;
     }
   }
 }
-$( a );
+$( c );
 `````
 
 ## Globals

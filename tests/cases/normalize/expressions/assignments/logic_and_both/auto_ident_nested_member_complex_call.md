@@ -83,8 +83,7 @@ const varInitAssignLhsComputedProp = $(`y`);
 const varInitAssignLhsComputedRhs = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-let tmpSSA_a = varInitAssignLhsComputedRhs;
-let tmpCalleeParam = varInitAssignLhsComputedRhs;
+let tmpClusterSSA_a = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
   const varInitAssignLhsComputedObj$1 = $(b);
   const varInitAssignLhsComputedProp$1 = $(`x`);
@@ -93,13 +92,12 @@ if (varInitAssignLhsComputedRhs) {
   const varInitAssignLhsComputedRhs$3 = $(3);
   varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$3;
-  tmpSSA_a = varInitAssignLhsComputedRhs$3;
-  tmpCalleeParam = varInitAssignLhsComputedRhs$3;
+  tmpClusterSSA_a = varInitAssignLhsComputedRhs$3;
   $(varInitAssignLhsComputedRhs$3);
 } else {
-  $(tmpCalleeParam);
+  $(varInitAssignLhsComputedRhs);
 }
-$(tmpSSA_a, b, c, 3);
+$(tmpClusterSSA_a, b, c, 3);
 `````
 
 ## PST Output
@@ -117,21 +115,19 @@ const g = $( 3 );
 e[f] = g;
 c[d] = g;
 let h = g;
-let i = g;
 if (g) {
-  const j = $( a );
-  const k = $( "x" );
-  const l = $( b );
-  const m = $( "y" );
-  const n = $( 3 );
-  l[m] = n;
-  j[k] = n;
-  h = n;
-  i = n;
-  $( n );
+  const i = $( a );
+  const j = $( "x" );
+  const k = $( b );
+  const l = $( "y" );
+  const m = $( 3 );
+  k[l] = m;
+  i[j] = m;
+  h = m;
+  $( m );
 }
 else {
-  $( i );
+  $( g );
 }
 $( h, a, b, 3 );
 `````

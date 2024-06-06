@@ -60,17 +60,17 @@ arrPatternSplat[0];
 const tmpCalleeParam$1 = [1, 2];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-let tmpSSA_a = arrPatternSplat$1[0];
+let tmpClusterSSA_a = arrPatternSplat$1[0];
 if (tmpNestedAssignArrPatternRhs) {
   $(tmpNestedAssignArrPatternRhs);
 } else {
   const tmpCalleeParam$3 = [1, 2];
   const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$3);
   const arrPatternSplat$3 = [...tmpNestedAssignArrPatternRhs$1];
-  tmpSSA_a = arrPatternSplat$3[0];
+  tmpClusterSSA_a = arrPatternSplat$3[0];
   $(tmpNestedAssignArrPatternRhs$1);
 }
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

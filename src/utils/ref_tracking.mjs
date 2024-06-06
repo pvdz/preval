@@ -224,6 +224,15 @@ export function openRefsOnAfterLoop(kind /* loop | in | of */, node, parentBlock
   if (REF_TRACK_TRACING) console.group('RTT: findAndQueueContinuationBlock(loop, @', +node.body.$p.pid, ')');
   findAndQueueContinuationBlock(node.body.$p.treblo, +node.body.$p.pid, treblo.wasAbruptType, treblo.wasAbruptLabel, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack);
   if (REF_TRACK_TRACING) console.groupEnd();
+  // For the `for-in` and `for-of` case, we must schedule an implicit break too unless the body abruptly completes already
+  if (node.type === 'ForInStatement' || node.type === 'ForOfStatement') {
+    if (!treblo.wasAbruptType) {
+      // This body may loop and break and we can't tell at compile time because it depends on the arg the iteration
+      if (REF_TRACK_TRACING) console.group('RTT: findAndQueueContinuationBlock(loop, @', +node.body.$p.pid, ')');
+      findAndQueueContinuationBlock(node.body.$p.treblo, +node.body.$p.pid, 'break', treblo.wasAbruptLabel, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack);
+      if (REF_TRACK_TRACING) console.groupEnd();
+    }
+  }
 
   // Keep in mind: we assume normalized code, so all while loops are while(true) and all for-in/of-loops don't introduce a new binding
 
@@ -679,6 +688,7 @@ function findAndQueueContinuationBlock(fromBlockTreblo, fromBlockPid, wasAbruptT
   // If there is no continuation block (return/throw) then target the nearest function boundary instead
 
   // Code may also loop if not abrupt and fromBlock is body of a loop (checked later)
+  // Note: `for-in` and `for-of` may break and/or loop and we don't know so we must schedule both.
   let loops = +continuationBlock?.$p.pid === fromBlockPid; // (The Continue statement was eliminated so we only check for implicit loopers)
   if (REF_TRACK_TRACING) console.log(`TTR: Loops? Only if continuation block has same pid as from block (`, +continuationBlock?.$p.pid === fromBlockPid, '), verdict:', loops);
 

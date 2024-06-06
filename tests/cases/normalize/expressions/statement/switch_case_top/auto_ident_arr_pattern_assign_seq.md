@@ -65,8 +65,6 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
 const a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
@@ -76,11 +74,9 @@ if (tmpIfTest) {
   $(2);
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);
-  x = tmpArrElement;
-  y = tmpArrElement$1;
-  $(a, x, tmpArrElement$1);
+  $(a, tmpArrElement, tmpArrElement$1);
 } else {
-  $(a, x, y);
+  $(a, 1, 2);
 }
 `````
 
@@ -89,26 +85,22 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-let a = 1;
-let b = 2;
-const c = {
+const a = {
 a: 999,
 b: 1000
 ;
-const d = $( 1 );
-const e = $( 1 );
-const f = d === e;
-if (f) {
+const b = $( 1 );
+const c = $( 1 );
+const d = b === c;
+if (d) {
   $( 1 );
   $( 2 );
-  const g = $( 3 );
-  const h = $( 4 );
-  a = g;
-  b = h;
-  $( c, a, h );
+  const e = $( 3 );
+  const f = $( 4 );
+  $( a, e, f );
 }
 else {
-  $( c, a, b );
+  $( a, 1, 2 );
 }
 `````
 

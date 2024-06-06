@@ -51,7 +51,7 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
-arrPatternSplat[0];
+const a = arrPatternSplat[0];
 $(10);
 $(20);
 $(1);
@@ -68,7 +68,7 @@ $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-$(1);
+$(a);
 `````
 
 ## PST Output
@@ -81,7 +81,7 @@ a: 999,
 b: 1000
 ;
 const b = [ ... a ];
-b[ 0 ];
+const c = b[ 0 ];
 $( 10 );
 $( 20 );
 $( 1 );
@@ -98,7 +98,7 @@ $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-$( 1 );
+$( c );
 `````
 
 ## Globals

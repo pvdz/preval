@@ -115,20 +115,20 @@ $(tmpObjLitVal$18);
 $(tmpObjLitVal$20);
 const tmpObjLitVal$19 = $(3);
 const tmpObjLitVal$21 = $(4);
-let tmpSSA_x$1 = tmpObjLitVal$19;
-let tmpSSA_y$1 = tmpObjLitVal$21;
+let tmpClusterSSA_x$1 = tmpObjLitVal$19;
+let tmpClusterSSA_y$1 = tmpObjLitVal$21;
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(tmpSSA_x$1);
-  $(tmpSSA_y$1);
+  $(tmpClusterSSA_x$1);
+  $(tmpClusterSSA_y$1);
   const tmpObjLitVal$22 = $(3);
   const tmpObjLitVal$24 = $(4);
-  tmpSSA_x$1 = tmpObjLitVal$22;
-  tmpSSA_y$1 = tmpObjLitVal$24;
+  tmpClusterSSA_x$1 = tmpObjLitVal$22;
+  tmpClusterSSA_y$1 = tmpObjLitVal$24;
   $(1);
 }
 const a = { a: 999, b: 1000 };
-$(a, tmpSSA_x$1, tmpSSA_y$1);
+$(a, tmpClusterSSA_x$1, tmpClusterSSA_y$1);
 `````
 
 ## PST Output

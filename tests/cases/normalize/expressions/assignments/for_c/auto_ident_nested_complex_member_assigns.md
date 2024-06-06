@@ -85,10 +85,9 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-let $tmpLoopUnrollCheck = true;
 const b = { x: 1 };
+const a = { a: 999, b: 1000 };
+const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpNestedAssignComMemberObj = $(b);
   const tmpNestedAssignComMemberProp = $(`x`);
@@ -108,14 +107,9 @@ if (tmpIfTest) {
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-  a = 3;
-  tmpIfTest = $(1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       const tmpNestedAssignComMemberObj$1 = $(b);
       const tmpNestedAssignComMemberProp$1 = $(`x`);
       const varInitAssignLhsComputedObj$2 = $(b);
@@ -134,8 +128,7 @@ if ($tmpLoopUnrollCheck) {
       varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = 3;
       varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = 3;
       tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = 3;
-      a = 3;
-      tmpIfTest = $(1);
+      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -150,52 +143,45 @@ $(a, b, 3);
 With rename=true
 
 `````js filename=intro
-let a = {
+const a = { x: 1 };
+const b = {
 a: 999,
 b: 1000
 ;
-let b = $( 1 );
-let c = true;
-const d = { x: 1 };
-if (b) {
-  const e = $( d );
-  const f = $( "x" );
-  const g = $( d );
-  const h = $( "x" );
-  const i = $( d );
-  const j = $( "x" );
-  const k = $( d );
-  const l = $( "x" );
-  const m = $( d );
-  const n = $( "x" );
-  const o = $( d );
-  const p = $( "x" );
-  o[p] = 3;
-  m[n] = 3;
-  k[l] = 3;
-  i[j] = 3;
-  g[h] = 3;
-  e[f] = 3;
-  a = 3;
-  b = $( 1 );
-}
-else {
-  c = false;
-}
+const c = $( 1 );
 if (c) {
+  const d = $( a );
+  const e = $( "x" );
+  const f = $( a );
+  const g = $( "x" );
+  const h = $( a );
+  const i = $( "x" );
+  const j = $( a );
+  const k = $( "x" );
+  const l = $( a );
+  const m = $( "x" );
+  const n = $( a );
+  const o = $( "x" );
+  n[o] = 3;
+  l[m] = 3;
+  j[k] = 3;
+  h[i] = 3;
+  f[g] = 3;
+  d[e] = 3;
+  let p = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (b) {
-      const q = $( d );
+    if (p) {
+      const q = $( a );
       const r = $( "x" );
-      const s = $( d );
+      const s = $( a );
       const t = $( "x" );
-      const u = $( d );
+      const u = $( a );
       const v = $( "x" );
-      const w = $( d );
+      const w = $( a );
       const x = $( "x" );
-      const y = $( d );
+      const y = $( a );
       const z = $( "x" );
-      const 01 = $( d );
+      const 01 = $( a );
       const 11 = $( "x" );
       01[11] = 3;
       y[z] = 3;
@@ -203,15 +189,14 @@ if (c) {
       u[v] = 3;
       s[t] = 3;
       q[r] = 3;
-      a = 3;
-      b = $( 1 );
+      p = $( 1 );
     }
     else {
       break;
     }
   }
 }
-$( a, d, 3 );
+$( b, a, 3 );
 `````
 
 ## Globals

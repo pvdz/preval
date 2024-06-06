@@ -55,21 +55,21 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
-let tmpIfTest = $(1);
+const a = arrPatternSplat[0];
+const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpCalleeParam = [1, 2];
   const arrAssignPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat$1 = [...arrAssignPatternRhs];
-  a = arrPatternSplat$1[0];
-  tmpIfTest = $(1);
+  arrPatternSplat$1[0];
+  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       const tmpCalleeParam$1 = [1, 2];
       const arrAssignPatternRhs$1 = $(tmpCalleeParam$1);
       const arrPatternSplat$2 = [...arrAssignPatternRhs$1];
-      a = arrPatternSplat$2[0];
-      tmpIfTest = $(1);
+      arrPatternSplat$2[0];
+      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -89,21 +89,21 @@ a: 999,
 b: 1000
 ;
 const b = [ ... a ];
-let c = b[ 0 ];
-let d = $( 1 );
+const c = b[ 0 ];
+const d = $( 1 );
 if (d) {
   const e = [ 1, 2 ];
   const f = $( e );
   const g = [ ... f ];
-  c = g[ 0 ];
-  d = $( 1 );
+  g[ 0 ];
+  let h = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (d) {
-      const h = [ 1, 2 ];
-      const i = $( h );
-      const j = [ ... i ];
-      c = j[ 0 ];
-      d = $( 1 );
+    if (h) {
+      const i = [ 1, 2 ];
+      const j = $( i );
+      const k = [ ... j ];
+      k[ 0 ];
+      h = $( 1 );
     }
     else {
       break;

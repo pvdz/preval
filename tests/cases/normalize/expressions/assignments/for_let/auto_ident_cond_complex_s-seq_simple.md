@@ -53,16 +53,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = 60;
 const tmpIfTest = $(1);
 let xyz = 60;
 if (tmpIfTest) {
   $(60);
 } else {
   const tmpCalleeParam = $(100);
-  a = $(tmpCalleeParam);
-  xyz = a;
-  $(xyz);
+  const tmpClusterSSA_a = $(tmpCalleeParam);
+  xyz = tmpClusterSSA_a;
+  $(tmpClusterSSA_a);
 }
 $(1);
 $(xyz);
@@ -89,6 +88,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -97,44 +97,47 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = 60;
-const b = $( 1 );
-let c = 60;
-if (b) {
+const a = $( 1 );
+let b = 60;
+if (a) {
   $( 60 );
 }
 else {
-  const d = $( 100 );
-  a = $( d );
-  c = a;
-  $( c );
+  const c = $( 100 );
+  const d = $( c );
+  b = d;
+  $( d );
 }
 $( 1 );
-$( c );
+$( b );
 $( 1 );
-$( c );
+$( b );
 $( 1 );
-$( c );
+$( b );
 $( 1 );
-$( c );
+$( b );
 $( 1 );
-$( c );
+$( b );
 $( 1 );
-$( c );
+$( b );
 $( 1 );
-$( c );
+$( b );
 $( 1 );
-$( c );
+$( b );
 $( 1 );
-$( c );
+$( b );
 $( 1 );
-$( c );
+$( b );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( c );
+  $( b );
   $( 1 );
 }
-$( a );
+const e = {
+a: 999,
+b: 1000
+;
+$( e );
 `````
 
 ## Globals

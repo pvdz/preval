@@ -66,8 +66,8 @@ $(a, x, y);
 
 `````js filename=intro
 $(100);
-$(3);
-$(4);
+const tmpObjLitVal = $(3);
+const tmpObjLitVal$1 = $(4);
 $(100);
 $(3);
 $(4);
@@ -96,22 +96,15 @@ $(100);
 $(3);
 $(4);
 $(100);
-const tmpObjLitVal$2 = $(3);
-const tmpObjLitVal$4 = $(4);
-let tmpSSA_x$1 = tmpObjLitVal$2;
-let tmpSSA_y$1 = tmpObjLitVal$4;
-const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$2, y: tmpObjLitVal$4 };
-let tmpSSA_a$2 = tmpNestedAssignObjPatternRhs$1;
+$(3);
+$(4);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpObjLitVal$3 = $(3);
-  const tmpObjLitVal$5 = $(4);
-  tmpSSA_x$1 = tmpObjLitVal$3;
-  tmpSSA_y$1 = tmpObjLitVal$5;
-  const tmpNestedAssignObjPatternRhs$2 = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
-  tmpSSA_a$2 = tmpNestedAssignObjPatternRhs$2;
+  $(3);
+  $(4);
 }
-$(tmpSSA_a$2, tmpSSA_x$1, tmpSSA_y$1);
+const a = { a: 999, b: 1000 };
+$(a, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
 ## PST Output
@@ -120,58 +113,48 @@ With rename=true
 
 `````js filename=intro
 $( 100 );
-$( 3 );
-$( 4 );
-$( 100 );
-$( 3 );
-$( 4 );
-$( 100 );
-$( 3 );
-$( 4 );
-$( 100 );
-$( 3 );
-$( 4 );
-$( 100 );
-$( 3 );
-$( 4 );
-$( 100 );
-$( 3 );
-$( 4 );
-$( 100 );
-$( 3 );
-$( 4 );
-$( 100 );
-$( 3 );
-$( 4 );
-$( 100 );
-$( 3 );
-$( 4 );
-$( 100 );
-$( 3 );
-$( 4 );
-$( 100 );
 const a = $( 3 );
 const b = $( 4 );
-let c = a;
-let d = b;
-const e = {
-x: a,
-y: b
-;
-let f = e;
+$( 100 );
+$( 3 );
+$( 4 );
+$( 100 );
+$( 3 );
+$( 4 );
+$( 100 );
+$( 3 );
+$( 4 );
+$( 100 );
+$( 3 );
+$( 4 );
+$( 100 );
+$( 3 );
+$( 4 );
+$( 100 );
+$( 3 );
+$( 4 );
+$( 100 );
+$( 3 );
+$( 4 );
+$( 100 );
+$( 3 );
+$( 4 );
+$( 100 );
+$( 3 );
+$( 4 );
+$( 100 );
+$( 3 );
+$( 4 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const g = $( 3 );
-  const h = $( 4 );
-  c = g;
-  d = h;
-  const i = {
-x: g,
-y: h
-  ;
-  f = i;
+  $( 3 );
+  $( 4 );
 }
-$( f, c, d );
+const c = {
+a: 999,
+b: 1000
+;
+$( c, a, b );
 `````
 
 ## Globals

@@ -79,8 +79,7 @@ if (a) {
     tmpNestedComplexRhs = $(tmpCalleeParam$3);
   }
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
-  $(tmpCalleeParam);
+  $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
 }
@@ -114,8 +113,7 @@ if (a) {
     e = $( g );
   }
   a = e;
-  c = e;
-  $( c );
+  $( e );
 }
 else {
   $( c );

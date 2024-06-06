@@ -79,8 +79,8 @@ const f = function () {
   debugger;
   const tmpObjLitVal = [`pass3`];
   const tmpCalleeParam = { x: tmpObjLitVal };
-  const tmpSSA_bindingPatternObjRoot = $(tmpCalleeParam);
-  const objPatternBeforeDefault = tmpSSA_bindingPatternObjRoot.x;
+  const tmpClusterSSA_bindingPatternObjRoot = $(tmpCalleeParam);
+  const objPatternBeforeDefault = tmpClusterSSA_bindingPatternObjRoot.x;
   let objPatternAfterDefault = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {

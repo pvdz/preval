@@ -48,7 +48,7 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-$(1);
+const tmpUnaryArg = $(1);
 $(100);
 $(1);
 $(100);
@@ -68,14 +68,13 @@ $(1);
 $(100);
 $(1);
 $(100);
-const tmpUnaryArg$1 = $(1);
-let a = typeof tmpUnaryArg$1;
+$(1);
 $(100);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpUnaryArg$2 = $(1);
-  a = typeof tmpUnaryArg$2;
+  $(1);
   $(100);
 }
+const a = typeof tmpUnaryArg;
 $(a, 1);
 `````
 
@@ -84,34 +83,33 @@ $(a, 1);
 With rename=true
 
 `````js filename=intro
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
 const a = $( 1 );
-let b = typeofa;
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
 $( 100 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const c = $( 1 );
-  b = typeofc;
+  $( 1 );
   $( 100 );
 }
+const b = typeofa;
 $( b, 1 );
 `````
 

@@ -35,11 +35,11 @@ $(y);
 ## Output
 
 `````js filename=intro
-let y = $();
+const y = $();
 const tmpIfTest = y == null;
 if (tmpIfTest) {
-  y = foo;
-  $(y);
+  foo;
+  $(foo);
 } else {
   $(y);
 }
@@ -50,11 +50,11 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-let a = $();
+const a = $();
 const b = a == null;
 if (b) {
-  a = foo;
-  $( a );
+  foo;
+  $( foo );
 }
 else {
   $( a );

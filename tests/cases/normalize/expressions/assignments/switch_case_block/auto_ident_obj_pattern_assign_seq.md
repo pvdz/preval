@@ -68,9 +68,6 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-let a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
@@ -79,13 +76,11 @@ if (tmpIfTest) {
   $(2);
   const tmpObjLitVal = $(3);
   const tmpObjLitVal$1 = $(4);
-  x = tmpObjLitVal;
-  y = tmpObjLitVal$1;
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-  a = tmpNestedAssignObjPatternRhs;
-  $(tmpNestedAssignObjPatternRhs, x, y);
+  $(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 } else {
-  $(a, x, y);
+  const a = { a: 999, b: 1000 };
+  $(a, 1, 2);
 }
 `````
 
@@ -94,31 +89,26 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-let a = 1;
-let b = 2;
-let c = {
-a: 999,
-b: 1000
-;
-const d = $( 1 );
-const e = $( 1 );
-const f = d === e;
-if (f) {
+const a = $( 1 );
+const b = $( 1 );
+const c = a === b;
+if (c) {
   $( 1 );
   $( 2 );
-  const g = $( 3 );
-  const h = $( 4 );
-  a = g;
-  b = h;
-  const i = {
-x: g,
-y: h
+  const d = $( 3 );
+  const e = $( 4 );
+  const f = {
+x: d,
+y: e
   ;
-  c = i;
-  $( i, a, b );
+  $( f, d, e );
 }
 else {
-  $( c, a, b );
+  const g = {
+a: 999,
+b: 1000
+  ;
+  $( g, 1, 2 );
 }
 `````
 

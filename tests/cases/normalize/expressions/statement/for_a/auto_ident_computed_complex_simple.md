@@ -55,12 +55,12 @@ const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 tmpCompObj.c;
-let tmpIfTest = $(0);
+const tmpIfTest = $(0);
 if (tmpIfTest) {
-  tmpIfTest = $(0);
+  let tmpClusterSSA_tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      tmpIfTest = $(0);
+    if (tmpClusterSSA_tmpIfTest) {
+      tmpClusterSSA_tmpIfTest = $(0);
     } else {
       break;
     }
@@ -82,12 +82,12 @@ b: 1000
 ;
 const c = $( a );
 c.c;
-let d = $( 0 );
+const d = $( 0 );
 if (d) {
-  d = $( 0 );
+  let e = $( 0 );
   while ($LOOP_UNROLL_10) {
-    if (d) {
-      d = $( 0 );
+    if (e) {
+      e = $( 0 );
     }
     else {
       break;

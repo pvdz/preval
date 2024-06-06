@@ -65,11 +65,11 @@ $(tmpLabeledBlockFunc$3);
 
 `````js filename=intro
 const tmpLabeledBlockFunc$3 = function ($$0) {
-  let x = $$0;
+  const x = $$0;
   debugger;
   if ($) {
-    x = $(1);
-    $(x);
+    const tmpClusterSSA_x = $(1);
+    $(tmpClusterSSA_x);
     return undefined;
   } else {
     $(x);
@@ -85,11 +85,11 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  let b = c;
+  const b = c;
   debugger;
   if ($) {
-    b = $( 1 );
-    $( b );
+    const d = $( 1 );
+    $( d );
     return undefined;
   }
   else {

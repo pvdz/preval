@@ -86,7 +86,7 @@ if (a) {
   } else {
   }
 }
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 if (a) {
   const tmpCalleeParam$7 = $(0);
   let tmpNestedComplexRhs = $(tmpCalleeParam$7);
@@ -101,8 +101,7 @@ if (a) {
     }
   }
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
-  $(tmpCalleeParam);
+  $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
 }
@@ -127,7 +126,7 @@ else {
     b = $( d );
   }
 }
-let e = b;
+const e = b;
 if (b) {
   const f = $( 0 );
   let g = $( f );
@@ -143,8 +142,7 @@ if (b) {
     }
   }
   b = g;
-  e = g;
-  $( e );
+  $( g );
 }
 else {
   $( e );

@@ -69,7 +69,7 @@ let $tmpLoopUnrollCheck = true;
 $(100);
 const b = { c: $ };
 const tmpChainElementCall = $dotCall($, b, 1);
-let tmpSSA_a = tmpChainElementCall;
+let tmpClusterSSA_a = tmpChainElementCall;
 if (tmpChainElementCall) {
 } else {
   $tmpLoopUnrollCheck = false;
@@ -79,7 +79,7 @@ if ($tmpLoopUnrollCheck) {
     $(100);
     const tmpChainElementObject$1 = b.c;
     const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, b, 1);
-    tmpSSA_a = tmpChainElementCall$1;
+    tmpClusterSSA_a = tmpChainElementCall$1;
     if (tmpChainElementCall$1) {
     } else {
       break;
@@ -87,7 +87,7 @@ if ($tmpLoopUnrollCheck) {
   }
 } else {
 }
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

@@ -64,7 +64,8 @@ $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-$(60);
+const a = { a: 999, b: 1000 };
+$(a);
 `````
 
 ## PST Output
@@ -86,7 +87,11 @@ $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-$( 60 );
+const a = {
+a: 999,
+b: 1000
+;
+$( a );
 `````
 
 ## Globals

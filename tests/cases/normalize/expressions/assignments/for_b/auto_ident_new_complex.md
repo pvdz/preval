@@ -49,7 +49,7 @@ $(a);
 
 `````js filename=intro
 const tmpNewCallee = $($);
-new tmpNewCallee(1);
+const a = new tmpNewCallee(1);
 $(1);
 const tmpNewCallee$1 = $($);
 new tmpNewCallee$1(1);
@@ -79,11 +79,11 @@ const tmpNewCallee$9 = $($);
 new tmpNewCallee$9(1);
 $(1);
 const tmpNewCallee$10 = $($);
-let a = new tmpNewCallee$10(1);
+new tmpNewCallee$10(1);
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpNewCallee$11 = $($);
-  a = new tmpNewCallee$11(1);
+  new tmpNewCallee$11(1);
   $(1);
 }
 $(a);
@@ -95,10 +95,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( $ );
-new a( 1 );
-$( 1 );
-const b = $( $ );
-new b( 1 );
+const b = new a( 1 );
 $( 1 );
 const c = $( $ );
 new c( 1 );
@@ -125,14 +122,17 @@ const j = $( $ );
 new j( 1 );
 $( 1 );
 const k = $( $ );
-let l = new k( 1 );
+new k( 1 );
+$( 1 );
+const l = $( $ );
+new l( 1 );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const m = $( $ );
-  l = new m( 1 );
+  new m( 1 );
   $( 1 );
 }
-$( l );
+$( b );
 `````
 
 ## Globals

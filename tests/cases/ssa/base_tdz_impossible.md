@@ -51,10 +51,10 @@ if ($) {
 if ($) {
   throw `Preval: TDZ triggered for this read: \$(x)`;
 } else {
-  let x = $(5);
+  const x = $(5);
   $(x);
-  x = $(10);
-  $(x);
+  const tmpClusterSSA_x = $(10);
+  $(tmpClusterSSA_x);
 }
 `````
 
@@ -67,10 +67,10 @@ if ($) {
   throw "Preval: TDZ triggered for this read: $(x)";
 }
 else {
-  let a = $( 5 );
+  const a = $( 5 );
   $( a );
-  a = $( 10 );
-  $( a );
+  const b = $( 10 );
+  $( b );
 }
 `````
 

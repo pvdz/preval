@@ -90,9 +90,9 @@ if (tmpIfTest$7) {
 ## Output
 
 `````js filename=intro
-const arg = { y: 1 };
-const a = delete arg.y;
-$(a, arg);
+const tmpClusterSSA_arg = { y: 1 };
+const tmpClusterSSA_a = delete tmpClusterSSA_arg.y;
+$(tmpClusterSSA_a, tmpClusterSSA_arg);
 $(`fail1`);
 $(`fail2`);
 `````

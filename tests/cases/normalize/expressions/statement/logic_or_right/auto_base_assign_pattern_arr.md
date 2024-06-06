@@ -48,18 +48,18 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = [];
 const tmpIfTest = $(100);
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
+  const b = [];
   $(a, b);
 } else {
   const tmpArrElement = $(2);
   const tmpCalleeParam = [tmpArrElement];
   const arrAssignPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat = [...arrAssignPatternRhs];
-  b = arrPatternSplat[0];
-  $(a, b);
+  const tmpClusterSSA_b = arrPatternSplat[0];
+  $(a, tmpClusterSSA_b);
 }
 `````
 
@@ -68,22 +68,22 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-let a = [];
-const b = $( 100 );
-const c = {
+const a = $( 100 );
+const b = {
 a: 999,
 b: 1000
 ;
-if (b) {
-  $( c, a );
+if (a) {
+  const c = [];
+  $( b, c );
 }
 else {
   const d = $( 2 );
   const e = [ d ];
   const f = $( e );
   const g = [ ... f ];
-  a = g[ 0 ];
-  $( c, a );
+  const h = g[ 0 ];
+  $( b, h );
 }
 `````
 

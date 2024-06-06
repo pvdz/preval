@@ -58,31 +58,29 @@ $(a, b);
 
 `````js filename=intro
 let b = [];
-let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
+const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpArrElement = $(2);
   const tmpCalleeParam = [tmpArrElement];
   const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   b = arrPatternSplat[0];
-  a = tmpNestedAssignArrPatternRhs;
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       const tmpArrElement$1 = $(2);
       const tmpCalleeParam$1 = [tmpArrElement$1];
       const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$1);
       const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
       b = arrPatternSplat$1[0];
-      a = tmpNestedAssignArrPatternRhs$1;
-      tmpIfTest = $(1);
+      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
   }
 } else {
 }
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -92,35 +90,33 @@ With rename=true
 
 `````js filename=intro
 let a = [];
-let b = {
-a: 999,
-b: 1000
-;
-let c = $( 1 );
-if (c) {
-  const d = $( 2 );
-  const e = [ d ];
-  const f = $( e );
-  const g = [ ... f ];
-  a = g[ 0 ];
-  b = f;
-  c = $( 1 );
+const b = $( 1 );
+if (b) {
+  const c = $( 2 );
+  const d = [ c ];
+  const e = $( d );
+  const f = [ ... e ];
+  a = f[ 0 ];
+  let g = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (c) {
+    if (g) {
       const h = $( 2 );
       const i = [ h ];
       const j = $( i );
       const k = [ ... j ];
       a = k[ 0 ];
-      b = j;
-      c = $( 1 );
+      g = $( 1 );
     }
     else {
       break;
     }
   }
 }
-$( b, a );
+const l = {
+a: 999,
+b: 1000
+;
+$( l, a );
 `````
 
 ## Globals

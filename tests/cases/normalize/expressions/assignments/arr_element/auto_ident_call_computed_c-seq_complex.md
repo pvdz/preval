@@ -52,14 +52,13 @@ $(a);
 const b = { $: $ };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $(`\$`);
-let tmpSSA_a = tmpCallCompObj[tmpCallCompProp](1);
-const tmpBinBothLhs = tmpSSA_a;
+const tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
 const tmpCallCompObj$1 = $(b);
 const tmpCallCompProp$1 = $(`\$`);
-tmpSSA_a = tmpCallCompObj$1[tmpCallCompProp$1](1);
-const tmpCalleeParam = tmpBinBothLhs + tmpSSA_a;
+const tmpClusterSSA_a$1 = tmpCallCompObj$1[tmpCallCompProp$1](1);
+const tmpCalleeParam = tmpClusterSSA_a + tmpClusterSSA_a$1;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a$1);
 `````
 
 ## PST Output
@@ -70,14 +69,13 @@ With rename=true
 const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
-let d = b[ c ]( 1 )};
-const e = d;
-const f = $( a );
-const g = $( "$" );
-d = f[ g ]( 1 )};
-const h = e + d;
+const d = b[ c ]( 1 )};
+const e = $( a );
+const f = $( "$" );
+const g = e[ f ]( 1 )};
+const h = d + g;
 $( h );
-$( d );
+$( g );
 `````
 
 ## Globals

@@ -67,7 +67,7 @@ if (a) {
 if (a) {
 } else {
   const tmpCalleeParam$3 = $(2);
-  a = $(tmpCalleeParam$3);
+  $(tmpCalleeParam$3);
 }
 $(1);
 $(1);
@@ -102,7 +102,7 @@ if (b) {
 }
 else {
   const d = $( 2 );
-  b = $( d );
+  $( d );
 }
 $( 1 );
 $( 1 );

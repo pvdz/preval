@@ -55,7 +55,7 @@ $(a, x);
 $(1);
 $(2);
 let a = $(1);
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 if (a) {
   $(tmpCalleeParam);
 } else {
@@ -63,7 +63,6 @@ if (a) {
   $(2);
   const tmpNestedComplexRhs = $(1);
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }
 $(a, 1);
@@ -77,7 +76,7 @@ With rename=true
 $( 1 );
 $( 2 );
 let a = $( 1 );
-let b = a;
+const b = a;
 if (a) {
   $( b );
 }
@@ -86,7 +85,6 @@ else {
   $( 2 );
   const c = $( 1 );
   a = c;
-  b = c;
   $( c );
 }
 $( a, 1 );

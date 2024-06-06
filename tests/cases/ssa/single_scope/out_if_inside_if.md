@@ -50,11 +50,10 @@ if (dedupeMe) {
 ## Output
 
 `````js filename=intro
-let dedupeMe = !tmpUnaryArg$83;
 if (tmpUnaryArg$83) {
   const c = props$15.children;
-  dedupeMe = c == null;
-  $(dedupeMe, `xyz`);
+  const tmpClusterSSA_dedupeMe = c == null;
+  $(tmpClusterSSA_dedupeMe, `xyz`);
 } else {
   $(true, `abc`);
 }
@@ -65,11 +64,10 @@ if (tmpUnaryArg$83) {
 With rename=true
 
 `````js filename=intro
-let a = !tmpUnaryArg$83;
 if (tmpUnaryArg$83) {
-  const b = props$15.children;
-  a = b == null;
-  $( a, "xyz" );
+  const a = props$15.children;
+  const b = a == null;
+  $( b, "xyz" );
 }
 else {
   $( true, "abc" );

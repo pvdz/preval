@@ -55,7 +55,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 let a = undefined;
 const b = { x: 1 };
 const tmpChainRootProp = $(b);
@@ -66,11 +65,11 @@ if (tmpIfTest$1) {
   a = tmpChainElementObject;
 }
 if (a) {
-  tmpCalleeParam = $(100);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  tmpCalleeParam = $(200);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
 $(a);
 `````
@@ -81,26 +80,25 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-let b = undefined;
-const c = { x: 1 };
-const d = $( c );
-const e = d == null;
-if (e) {
+const b = { x: 1 };
+const c = $( b );
+const d = c == null;
+if (d) {
 
 }
 else {
-  const f = d.x;
-  b = f;
+  const e = c.x;
+  a = e;
 }
-if (b) {
-  a = $( 100 );
-  $( a );
+if (a) {
+  const f = $( 100 );
+  $( f );
 }
 else {
-  a = $( 200 );
-  $( a );
+  const g = $( 200 );
+  $( g );
 }
-$( b );
+$( a );
 `````
 
 ## Globals

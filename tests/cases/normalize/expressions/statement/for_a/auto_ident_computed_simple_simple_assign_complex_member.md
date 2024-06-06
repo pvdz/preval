@@ -60,12 +60,12 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
 b.c = tmpAssignMemRhs;
-let tmpIfTest = $(0);
+const tmpIfTest = $(0);
 if (tmpIfTest) {
-  tmpIfTest = $(0);
+  let tmpClusterSSA_tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      tmpIfTest = $(0);
+    if (tmpClusterSSA_tmpIfTest) {
+      tmpClusterSSA_tmpIfTest = $(0);
     } else {
       break;
     }
@@ -92,12 +92,12 @@ const c = $( a );
 const d = $( "d" );
 const e = c[ d ];
 a.c = e;
-let f = $( 0 );
+const f = $( 0 );
 if (f) {
-  f = $( 0 );
+  let g = $( 0 );
   while ($LOOP_UNROLL_10) {
-    if (f) {
-      f = $( 0 );
+    if (g) {
+      g = $( 0 );
     }
     else {
       break;

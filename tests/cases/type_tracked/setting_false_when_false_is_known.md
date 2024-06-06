@@ -50,11 +50,10 @@ if (tmpIfTest$1917) {
 
 `````js filename=intro
 const tmpBinLhs = $(`is`);
-let tmpIfTest$1917 = tmpBinLhs === 67636;
+const tmpIfTest$1917 = tmpBinLhs === 67636;
 if (tmpIfTest$1917) {
   $(`it was`);
 } else {
-  tmpIfTest$1917 = false;
   $(`it was not`);
 }
 `````
@@ -65,12 +64,11 @@ With rename=true
 
 `````js filename=intro
 const a = $( "is" );
-let b = a === 67636;
+const b = a === 67636;
 if (b) {
   $( "it was" );
 }
 else {
-  b = false;
   $( "it was not" );
 }
 `````

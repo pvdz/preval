@@ -77,24 +77,24 @@ const f = function () {
   debugger;
   const s = $(10);
   parseExpression(lexerFlags$285, astProp$181);
-  let tmpSSA_s = s | 10;
-  let tmpSSA_x = $(true);
-  if (tmpSSA_x) {
+  let tmpClusterSSA_s = s | 10;
+  const tmpClusterSSA_x = $(true);
+  if (tmpClusterSSA_x) {
     parseExpression(lexerFlags$285, astProp$181);
-    tmpSSA_s = tmpSSA_s | 10;
-    tmpSSA_x = $(true);
+    tmpClusterSSA_s = tmpClusterSSA_s | 10;
+    let tmpClusterSSA_x$1 = $(true);
     while ($LOOP_UNROLL_9) {
-      if (tmpSSA_x) {
+      if (tmpClusterSSA_x$1) {
         parseExpression(lexerFlags$285, astProp$181);
-        tmpSSA_s = tmpSSA_s | 10;
-        tmpSSA_x = $(true);
+        tmpClusterSSA_s = tmpClusterSSA_s | 10;
+        tmpClusterSSA_x$1 = $(true);
       } else {
         break;
       }
     }
   } else {
   }
-  $(tmpSSA_s);
+  $(tmpClusterSSA_s);
   return undefined;
 };
 f();
@@ -113,16 +113,16 @@ const a = function() {
   const b = $( 10 );
   parseExpression( lexerFlags$285, astProp$181 );
   let c = b | 10;
-  let d = $( true );
+  const d = $( true );
   if (d) {
     parseExpression( lexerFlags$285, astProp$181 );
     c = c | 10;
-    d = $( true );
+    let e = $( true );
     while ($LOOP_UNROLL_9) {
-      if (d) {
+      if (e) {
         parseExpression( lexerFlags$285, astProp$181 );
         c = c | 10;
-        d = $( true );
+        e = $( true );
       }
       else {
         break;

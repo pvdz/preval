@@ -62,8 +62,8 @@ let $tmpLoopUnrollCheck = true;
 $(100);
 const b = { $: $ };
 const tmpCallObj = $(b);
-let tmpSSA_a = tmpCallObj.$(1);
-if (tmpSSA_a) {
+let tmpClusterSSA_a = tmpCallObj.$(1);
+if (tmpClusterSSA_a) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
@@ -71,15 +71,15 @@ if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpCallObj$1 = $(b);
-    tmpSSA_a = tmpCallObj$1.$(1);
-    if (tmpSSA_a) {
+    tmpClusterSSA_a = tmpCallObj$1.$(1);
+    if (tmpClusterSSA_a) {
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

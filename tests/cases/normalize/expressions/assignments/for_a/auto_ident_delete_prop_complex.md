@@ -49,8 +49,9 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
+const a = { a: 999, b: 1000 };
 const tmpDeleteObj = $(arg);
-const tmpSSA_a = delete tmpDeleteObj.y;
+delete tmpDeleteObj.y;
 $(1);
 $(1);
 $(1);
@@ -65,7 +66,7 @@ $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-$(tmpSSA_a, arg);
+$(a, arg);
 `````
 
 ## PST Output
@@ -74,8 +75,12 @@ With rename=true
 
 `````js filename=intro
 const a = { y: 1 };
-const b = $( a );
-const c = deleteb.y;
+const b = {
+a: 999,
+b: 1000
+;
+const c = $( a );
+deletec.y;
 $( 1 );
 $( 1 );
 $( 1 );
@@ -90,7 +95,7 @@ $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-$( c, a );
+$( b, a );
 `````
 
 ## Globals

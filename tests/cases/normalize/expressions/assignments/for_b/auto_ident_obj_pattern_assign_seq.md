@@ -115,23 +115,20 @@ $(tmpObjLitVal$18);
 $(tmpObjLitVal$20);
 const tmpObjLitVal$19 = $(3);
 const tmpObjLitVal$21 = $(4);
-let tmpSSA_x$1 = tmpObjLitVal$19;
-let tmpSSA_y$1 = tmpObjLitVal$21;
-const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$19, y: tmpObjLitVal$21 };
-let tmpSSA_a$2 = tmpNestedAssignObjPatternRhs$1;
+let tmpClusterSSA_x$1 = tmpObjLitVal$19;
+let tmpClusterSSA_y$1 = tmpObjLitVal$21;
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(tmpSSA_x$1);
-  $(tmpSSA_y$1);
+  $(tmpClusterSSA_x$1);
+  $(tmpClusterSSA_y$1);
   const tmpObjLitVal$22 = $(3);
   const tmpObjLitVal$24 = $(4);
-  tmpSSA_x$1 = tmpObjLitVal$22;
-  tmpSSA_y$1 = tmpObjLitVal$24;
-  const tmpNestedAssignObjPatternRhs$2 = { x: tmpObjLitVal$22, y: tmpObjLitVal$24 };
-  tmpSSA_a$2 = tmpNestedAssignObjPatternRhs$2;
+  tmpClusterSSA_x$1 = tmpObjLitVal$22;
+  tmpClusterSSA_y$1 = tmpObjLitVal$24;
   $(1);
 }
-$(tmpSSA_a$2, tmpSSA_x$1, tmpSSA_y$1);
+const a = { a: 999, b: 1000 };
+$(a, tmpClusterSSA_x$1, tmpClusterSSA_y$1);
 `````
 
 ## PST Output
@@ -195,27 +192,21 @@ const u = $( 3 );
 const v = $( 4 );
 let w = u;
 let x = v;
-const y = {
-x: u,
-y: v
-;
-let z = y;
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( w );
   $( x );
-  const 01 = $( 3 );
-  const 11 = $( 4 );
-  w = 01;
-  x = 11;
-  const 21 = {
-x: 01,
-y: 11
-  ;
-  z = 21;
+  const y = $( 3 );
+  const z = $( 4 );
+  w = y;
+  x = z;
   $( 1 );
 }
-$( z, w, x );
+const 01 = {
+a: 999,
+b: 1000
+;
+$( 01, w, x );
 `````
 
 ## Globals

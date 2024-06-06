@@ -54,25 +54,20 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-let $tmpLoopUnrollCheck = true;
 const arg = { y: 1 };
+const a = { a: 999, b: 1000 };
+const tmpIfTest = $(1);
 if (tmpIfTest) {
   $(1);
   $(2);
-  a = delete arg.y;
-  tmpIfTest = $(1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  delete arg.y;
+  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       $(1);
       $(2);
-      a = delete arg.y;
-      tmpIfTest = $(1);
+      delete arg.y;
+      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -87,36 +82,30 @@ $(a, arg);
 With rename=true
 
 `````js filename=intro
-let a = {
+const a = { y: 1 };
+const b = {
 a: 999,
 b: 1000
 ;
-let b = $( 1 );
-let c = true;
-const d = { y: 1 };
-if (b) {
+const c = $( 1 );
+if (c) {
   $( 1 );
   $( 2 );
-  a = deleted.y;
-  b = $( 1 );
-}
-else {
-  c = false;
-}
-if (c) {
+  deletea.y;
+  let d = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (b) {
+    if (d) {
       $( 1 );
       $( 2 );
-      a = deleted.y;
-      b = $( 1 );
+      deletea.y;
+      d = $( 1 );
     }
     else {
       break;
     }
   }
 }
-$( a, d );
+$( b, a );
 `````
 
 ## Globals

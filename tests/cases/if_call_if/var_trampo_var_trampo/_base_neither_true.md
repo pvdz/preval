@@ -93,12 +93,11 @@ if ($) {
 `````js filename=intro
 const outer = function () {
   debugger;
-  let x = $(1);
+  const x = $(1);
   if (x) {
     const tmpReturnArg$3 = $(`inner if`, x);
     return tmpReturnArg$3;
   } else {
-    x = false;
     const tmpReturnArg$5 = $(`inner else`, false);
     return tmpReturnArg$5;
   }
@@ -117,13 +116,12 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  let b = $( 1 );
+  const b = $( 1 );
   if (b) {
     const c = $( "inner if", b );
     return c;
   }
   else {
-    b = false;
     const d = $( "inner else", false );
     return d;
   }

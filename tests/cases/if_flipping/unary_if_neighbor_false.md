@@ -52,11 +52,9 @@ $(test);
 `````js filename=intro
 const a = $(false);
 const b = $(`alt`);
-let test = !a;
 if (a) {
-  $(test);
+  $(false);
 } else {
-  test = b;
   $(b);
 }
 `````
@@ -68,12 +66,10 @@ With rename=true
 `````js filename=intro
 const a = $( false );
 const b = $( "alt" );
-let c = !a;
 if (a) {
-  $( c );
+  $( false );
 }
 else {
-  c = b;
   $( b );
 }
 `````

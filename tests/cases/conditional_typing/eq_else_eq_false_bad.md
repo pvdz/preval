@@ -55,17 +55,16 @@ $(x);
 ## Output
 
 `````js filename=intro
-let a = $(67637);
-let x = a === 67636;
+const a = $(67637);
+const x = a === 67636;
 if (x) {
-  $(x);
+  $(true);
 } else {
   if ($) {
-    a = 67636;
+    $(true);
   } else {
+    $(false);
   }
-  x = a === 67636;
-  $(x);
 }
 `````
 
@@ -74,17 +73,18 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-let a = $( 67637 );
-let b = a === 67636;
+const a = $( 67637 );
+const b = a === 67636;
 if (b) {
-  $( b );
+  $( true );
 }
 else {
   if ($) {
-    a = 67636;
+    $( true );
   }
-  b = a === 67636;
-  $( b );
+  else {
+    $( false );
+  }
 }
 `````
 

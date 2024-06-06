@@ -99,18 +99,18 @@ if (tmpIfTest$7) {
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-let a = $(tmpCalleeParam);
-if (a) {
+let tmpClusterSSA_a = $(tmpCalleeParam);
+if (tmpClusterSSA_a) {
   const tmpCalleeParam$1 = $(1);
-  a = $(tmpCalleeParam$1);
+  tmpClusterSSA_a = $(tmpCalleeParam$1);
 } else {
 }
-if (a) {
-  $(a);
+if (tmpClusterSSA_a) {
+  $(tmpClusterSSA_a);
 } else {
   const tmpCalleeParam$3 = $(2);
-  a = $(tmpCalleeParam$3);
-  $(a);
+  const tmpClusterSSA_a$1 = $(tmpCalleeParam$3);
+  $(tmpClusterSSA_a$1);
 }
 $(`fail1`);
 $(`fail2`);
@@ -132,8 +132,8 @@ if (b) {
 }
 else {
   const d = $( 2 );
-  b = $( d );
-  $( b );
+  const e = $( d );
+  $( e );
 }
 $( "fail1" );
 $( "fail2" );

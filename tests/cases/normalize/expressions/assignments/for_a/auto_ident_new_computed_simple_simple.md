@@ -48,7 +48,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = new $(1);
+new $(1);
 $(1);
 $(1);
 $(1);
@@ -63,7 +63,8 @@ $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-$(tmpSSA_a);
+const a = { a: 999, b: 1000 };
+$(a);
 `````
 
 ## PST Output
@@ -71,7 +72,7 @@ $(tmpSSA_a);
 With rename=true
 
 `````js filename=intro
-const a = new $( 1 );
+new $( 1 );
 $( 1 );
 $( 1 );
 $( 1 );
@@ -86,6 +87,10 @@ $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
+const a = {
+a: 999,
+b: 1000
+;
 $( a );
 `````
 

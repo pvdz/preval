@@ -91,10 +91,10 @@ if (tmpIfTest$7) {
 ## Output
 
 `````js filename=intro
-const b = { c: 1 };
-const tmpAssignRhsProp = $(b);
-const tmpSSA_a = tmpAssignRhsProp.c;
-$(tmpSSA_a, b);
+const tmpClusterSSA_b = { c: 1 };
+const tmpAssignRhsProp = $(tmpClusterSSA_b);
+const tmpClusterSSA_a = tmpAssignRhsProp.c;
+$(tmpClusterSSA_a, tmpClusterSSA_b);
 $(`fail1`);
 $(`fail2`);
 `````

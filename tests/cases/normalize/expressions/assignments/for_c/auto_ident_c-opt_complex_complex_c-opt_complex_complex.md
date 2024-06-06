@@ -68,10 +68,8 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
-let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
+const tmpIfTest = $(1);
 if (tmpIfTest) {
-  a = undefined;
   const b = { x: tmpObjLitVal };
   const tmpChainElementCall = $(b);
   const tmpIfTest$1 = tmpChainElementCall == null;
@@ -83,14 +81,12 @@ if (tmpIfTest) {
     if (tmpIfTest$3) {
     } else {
       const tmpChainRootComputed$1 = $(`y`);
-      const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-      a = tmpChainElementObject$1;
+      tmpChainElementObject[tmpChainRootComputed$1];
     }
   }
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      a = undefined;
+    if (tmpClusterSSA_tmpIfTest) {
       const tmpChainElementCall$1 = $(b);
       const tmpIfTest$2 = tmpChainElementCall$1 == null;
       if (tmpIfTest$2) {
@@ -101,17 +97,17 @@ if (tmpIfTest) {
         if (tmpIfTest$4) {
         } else {
           const tmpChainRootComputed$4 = $(`y`);
-          const tmpChainElementObject$4 = tmpChainElementObject$2[tmpChainRootComputed$4];
-          a = tmpChainElementObject$4;
+          tmpChainElementObject$2[tmpChainRootComputed$4];
         }
       }
-      tmpIfTest = $(1);
+      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
   }
 } else {
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -121,62 +117,58 @@ With rename=true
 
 `````js filename=intro
 const a = { y: 1 };
-let b = {
-a: 999,
-b: 1000
-;
-let c = $( 1 );
-if (c) {
-  b = undefined;
-  const d = { x: a };
-  const e = $( d );
-  const f = e == null;
-  if (f) {
+const b = $( 1 );
+if (b) {
+  const c = { x: a };
+  const d = $( c );
+  const e = d == null;
+  if (e) {
 
   }
   else {
-    const g = $( "x" );
-    const h = e[ g ];
-    const i = h == null;
-    if (i) {
+    const f = $( "x" );
+    const g = d[ f ];
+    const h = g == null;
+    if (h) {
 
     }
     else {
-      const j = $( "y" );
-      const k = h[ j ];
-      b = k;
+      const i = $( "y" );
+      g[ i ];
     }
   }
-  c = $( 1 );
+  let j = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (c) {
-      b = undefined;
-      const l = $( d );
-      const m = l == null;
-      if (m) {
+    if (j) {
+      const k = $( c );
+      const l = k == null;
+      if (l) {
 
       }
       else {
-        const n = $( "x" );
-        const o = l[ n ];
-        const p = o == null;
-        if (p) {
+        const m = $( "x" );
+        const n = k[ m ];
+        const o = n == null;
+        if (o) {
 
         }
         else {
-          const q = $( "y" );
-          const r = o[ q ];
-          b = r;
+          const p = $( "y" );
+          n[ p ];
         }
       }
-      c = $( 1 );
+      j = $( 1 );
     }
     else {
       break;
     }
   }
 }
-$( b );
+const q = {
+a: 999,
+b: 1000
+;
+$( q );
 `````
 
 ## Globals

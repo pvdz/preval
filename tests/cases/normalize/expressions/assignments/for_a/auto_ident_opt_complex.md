@@ -55,14 +55,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = undefined;
 const b = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject = tmpChainElementCall.x;
-  a = tmpChainElementObject;
+  tmpChainElementCall.x;
 }
 $(1);
 $(1);
@@ -78,7 +76,7 @@ $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-$(a);
+$(undefined);
 `````
 
 ## PST Output
@@ -86,16 +84,14 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { x: 1 };
-const c = $( b );
-const d = c == null;
-if (d) {
+const a = { x: 1 };
+const b = $( a );
+const c = b == null;
+if (c) {
 
 }
 else {
-  const e = c.x;
-  a = e;
+  b.x;
 }
 $( 1 );
 $( 1 );
@@ -111,7 +107,7 @@ $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-$( a );
+$( undefined );
 `````
 
 ## Globals

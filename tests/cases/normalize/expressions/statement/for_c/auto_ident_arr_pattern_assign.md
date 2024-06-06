@@ -60,21 +60,18 @@ $(a, x, y);
 
 `````js filename=intro
 let x = 1;
-let y = 2;
-let tmpIfTest = $(1);
+const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpArrElement = $(3);
-  const tmpArrElement$1 = $(4);
+  $(4);
   x = tmpArrElement;
-  y = tmpArrElement$1;
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       const tmpArrElement$2 = $(3);
-      const tmpArrElement$4 = $(4);
+      $(4);
       x = tmpArrElement$2;
-      y = tmpArrElement$4;
-      tmpIfTest = $(1);
+      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -82,7 +79,7 @@ if (tmpIfTest) {
 } else {
 }
 const a = { a: 999, b: 1000 };
-$(a, x, y);
+$(a, x, 2);
 `````
 
 ## PST Output
@@ -91,32 +88,29 @@ With rename=true
 
 `````js filename=intro
 let a = 1;
-let b = 2;
-let c = $( 1 );
-if (c) {
-  const d = $( 3 );
-  const e = $( 4 );
-  a = d;
-  b = e;
-  c = $( 1 );
+const b = $( 1 );
+if (b) {
+  const c = $( 3 );
+  $( 4 );
+  a = c;
+  let d = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (c) {
-      const f = $( 3 );
-      const g = $( 4 );
-      a = f;
-      b = g;
-      c = $( 1 );
+    if (d) {
+      const e = $( 3 );
+      $( 4 );
+      a = e;
+      d = $( 1 );
     }
     else {
       break;
     }
   }
 }
-const h = {
+const f = {
 a: 999,
 b: 1000
 ;
-$( h, a, b );
+$( f, a, 2 );
 `````
 
 ## Globals

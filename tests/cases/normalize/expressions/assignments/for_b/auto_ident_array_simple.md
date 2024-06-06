@@ -57,12 +57,11 @@ $(1);
 $(1);
 $(1);
 $(1);
-let a = [1, 2, 3];
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  a = [1, 2, 3];
   $(1);
 }
+const a = [1, 2, 3];
 $(a);
 `````
 
@@ -81,12 +80,11 @@ $( 1 );
 $( 1 );
 $( 1 );
 $( 1 );
-let a = [ 1, 2, 3 ];
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  a = [ 1, 2, 3 ];
   $( 1 );
 }
+const a = [ 1, 2, 3 ];
 $( a );
 `````
 

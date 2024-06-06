@@ -61,8 +61,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 const tmpObjLitVal$1 = $();
 const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
-const tmpReturnArg = $(obj);
-$(tmpReturnArg);
+const tmpClusterSSA_tmpReturnArg$1 = $(obj);
+$(tmpClusterSSA_tmpReturnArg$1);
 `````
 
 ## PST Output

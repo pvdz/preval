@@ -65,7 +65,6 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
-let a = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
@@ -76,8 +75,7 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
   } else {
     const tmpChainRootComputed$1 = $(`y`);
-    const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-    a = tmpChainElementObject$1;
+    tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
 $(1);
@@ -94,7 +92,7 @@ $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-$(a);
+$(undefined);
 `````
 
 ## PST Output
@@ -104,23 +102,21 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 const b = { x: a };
-let c = undefined;
-const d = $( b );
-const e = d == null;
-if (e) {
+const c = $( b );
+const d = c == null;
+if (d) {
 
 }
 else {
-  const f = $( "x" );
-  const g = d[ f ];
-  const h = g == null;
-  if (h) {
+  const e = $( "x" );
+  const f = c[ e ];
+  const g = f == null;
+  if (g) {
 
   }
   else {
-    const i = $( "y" );
-    const j = g[ i ];
-    c = j;
+    const h = $( "y" );
+    f[ h ];
   }
 }
 $( 1 );
@@ -137,7 +133,7 @@ $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-$( c );
+$( undefined );
 `````
 
 ## Globals

@@ -65,7 +65,7 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-let tmpSSA_a = tmpNestedAssignPropRhs;
+let tmpClusterSSA_a = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   $(1);
 } else {
@@ -78,7 +78,7 @@ if ($tmpLoopUnrollCheck) {
     const tmpCompProp$1 = $(`d`);
     const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
     b[tmpNestedAssignComMemberProp$1] = tmpNestedAssignPropRhs$1;
-    tmpSSA_a = tmpNestedAssignPropRhs$1;
+    tmpClusterSSA_a = tmpNestedAssignPropRhs$1;
     if (tmpNestedAssignPropRhs$1) {
       $(1);
     } else {
@@ -87,7 +87,7 @@ if ($tmpLoopUnrollCheck) {
   }
 } else {
 }
-$(tmpSSA_a, b);
+$(tmpClusterSSA_a, b);
 `````
 
 ## PST Output

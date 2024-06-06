@@ -58,17 +58,15 @@ $(a);
 let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
-let tmpBinBothRhs = `undefined`;
-let tmpCalleeParam = `before  undefined  after`;
 if (tmpIfTest) {
   $(`before  undefined  after`);
 } else {
   const tmpCalleeParam$5 = $(1);
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$5);
   a = tmpChainElementCall$1;
-  tmpBinBothRhs = $coerce(tmpChainElementCall$1, `string`);
-  tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpChainElementCall$1, `string`);
+  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  $(tmpClusterSSA_tmpCalleeParam);
 }
 $(a);
 `````
@@ -81,18 +79,16 @@ With rename=true
 let a = undefined;
 const b = $( $ );
 const c = b == null;
-let d = "undefined";
-let e = "before  undefined  after";
 if (c) {
   $( "before  undefined  after" );
 }
 else {
-  const f = $( 1 );
-  const g = $dotCall( b, $, f );
-  a = g;
-  d = $coerce( g, "string" );
-  e = `before  ${[object Object]}  after`;
-  $( e );
+  const d = $( 1 );
+  const e = $dotCall( b, $, d );
+  a = e;
+  const f = $coerce( e, "string" );
+  const g = `before  ${[object Object]}  after`;
+  $( g );
 }
 $( a );
 `````

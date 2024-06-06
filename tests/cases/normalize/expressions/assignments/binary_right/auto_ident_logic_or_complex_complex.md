@@ -51,15 +51,14 @@ $(a);
 const tmpBinBothLhs = $(100);
 const tmpCalleeParam$1 = $(0);
 let a = $(tmpCalleeParam$1);
-let tmpCalleeParam = undefined;
 if (a) {
-  tmpCalleeParam = tmpBinBothLhs + a;
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + a;
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpCalleeParam$3 = $(2);
   a = $(tmpCalleeParam$3);
-  tmpCalleeParam = tmpBinBothLhs + a;
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam$1 = tmpBinBothLhs + a;
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
 $(a);
 `````
@@ -72,16 +71,15 @@ With rename=true
 const a = $( 100 );
 const b = $( 0 );
 let c = $( b );
-let d = undefined;
 if (c) {
-  d = a + c;
+  const d = a + c;
   $( d );
 }
 else {
   const e = $( 2 );
   c = $( e );
-  d = a + c;
-  $( d );
+  const f = a + c;
+  $( f );
 }
 $( c );
 `````

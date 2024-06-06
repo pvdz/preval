@@ -123,19 +123,19 @@ $(tmpArrElement$18);
 $(tmpArrElement$20);
 const tmpArrElement$19 = $(3);
 const tmpArrElement$21 = $(4);
-let tmpSSA_x$1 = tmpArrElement$19;
-let tmpSSA_y$1 = tmpArrElement$21;
+let tmpClusterSSA_x$1 = tmpArrElement$19;
+let tmpClusterSSA_y$1 = tmpArrElement$21;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  $(tmpSSA_x$1);
-  $(tmpSSA_y$1);
+  $(tmpClusterSSA_x$1);
+  $(tmpClusterSSA_y$1);
   const tmpArrElement$22 = $(3);
   const tmpArrElement$24 = $(4);
-  tmpSSA_x$1 = tmpArrElement$22;
-  tmpSSA_y$1 = tmpArrElement$24;
+  tmpClusterSSA_x$1 = tmpArrElement$22;
+  tmpClusterSSA_y$1 = tmpArrElement$24;
 }
 const a = { a: 999, b: 1000 };
-$(a, tmpSSA_x$1, tmpSSA_y$1);
+$(a, tmpClusterSSA_x$1, tmpClusterSSA_y$1);
 `````
 
 ## PST Output

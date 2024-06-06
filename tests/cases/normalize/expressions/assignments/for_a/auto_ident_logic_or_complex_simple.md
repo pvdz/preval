@@ -50,11 +50,7 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(0);
-let a = $(tmpCalleeParam);
-if (a) {
-} else {
-  a = 2;
-}
+const a = $(tmpCalleeParam);
 $(1);
 $(1);
 $(1);
@@ -78,13 +74,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 0 );
-let b = $( a );
-if (b) {
-
-}
-else {
-  b = 2;
-}
+const b = $( a );
 $( 1 );
 $( 1 );
 $( 1 );

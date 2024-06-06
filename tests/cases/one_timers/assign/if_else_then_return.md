@@ -87,7 +87,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-let x = $(100);
+const x = $(100);
 $(x);
 const tmpIfTest = $();
 if (tmpIfTest) {
@@ -96,9 +96,8 @@ if (tmpIfTest) {
   $(2);
 }
 const tmpReturnArg = $(3);
-x = tmpReturnArg;
 $(tmpReturnArg);
-$(x);
+$(tmpReturnArg);
 `````
 
 ## PST Output
@@ -106,7 +105,7 @@ $(x);
 With rename=true
 
 `````js filename=intro
-let a = $( 100 );
+const a = $( 100 );
 $( a );
 const b = $();
 if (b) {
@@ -116,9 +115,8 @@ else {
   $( 2 );
 }
 const c = $( 3 );
-a = c;
 $( c );
-$( a );
+$( c );
 `````
 
 ## Globals

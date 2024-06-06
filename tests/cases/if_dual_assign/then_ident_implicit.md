@@ -67,14 +67,12 @@ $(x, `end`);
 ## Output
 
 `````js filename=intro
-let x = false;
 const a = b === c;
 if (a) {
-  x = true;
   $(true, `middle`);
   $(true, `end`);
 } else {
-  $(x, `middle`);
+  $(false, `middle`);
   $(false, `end`);
 }
 `````
@@ -84,15 +82,13 @@ if (a) {
 With rename=true
 
 `````js filename=intro
-let a = false;
-const b = b === c;
-if (b) {
-  a = true;
+const a = b === c;
+if (a) {
   $( true, "middle" );
   $( true, "end" );
 }
 else {
-  $( a, "middle" );
+  $( false, "middle" );
   $( false, "end" );
 }
 `````

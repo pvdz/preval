@@ -50,9 +50,9 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = $(1);
-const tmpCallCallee$1 = $(tmpCalleeParam$1);
-const tmpSSA_tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
-const tmpCalleeParam = `before  ${tmpSSA_tmpBinBothRhs}  after`;
+const tmpClusterSSA_tmpCallCallee$1 = $(tmpCalleeParam$1);
+const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpClusterSSA_tmpCallCallee$1, `string`);
+const tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

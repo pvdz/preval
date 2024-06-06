@@ -51,15 +51,14 @@ $(a, arg);
 const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-const tmpSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-let tmpCalleeParam = tmpSSA_a;
-if (tmpSSA_a) {
-  tmpCalleeParam = $(100);
-  $(tmpCalleeParam);
+const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+if (tmpClusterSSA_a) {
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  $(tmpCalleeParam);
+  $(false);
 }
-$(tmpSSA_a, arg);
+$(tmpClusterSSA_a, arg);
 `````
 
 ## PST Output
@@ -71,13 +70,12 @@ const a = { y: 1 };
 const b = $( a );
 const c = $( "y" );
 const d = deleteb[ c ];
-let e = d;
 if (d) {
-  e = $( 100 );
+  const e = $( 100 );
   $( e );
 }
 else {
-  $( e );
+  $( false );
 }
 $( d, a );
 `````

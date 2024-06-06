@@ -50,8 +50,8 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpNewCallee = $($);
-const a = new tmpNewCallee(1);
-$(a);
+const tmpClusterSSA_a = new tmpNewCallee(1);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

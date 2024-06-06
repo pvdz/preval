@@ -41,12 +41,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = arguments;
-const tmpBinBothLhs = a;
-a = arguments;
-const tmpCalleeParam = tmpBinBothLhs + a;
+arguments;
+const tmpClusterSSA_a = arguments;
+const tmpCalleeParam = arguments + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output
@@ -54,11 +53,10 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = arguments;
-const b = a;
-a = arguments;
-const c = b + a;
-$( c );
+arguments;
+const a = arguments;
+const b = arguments + a;
+$( b );
 $( a );
 `````
 

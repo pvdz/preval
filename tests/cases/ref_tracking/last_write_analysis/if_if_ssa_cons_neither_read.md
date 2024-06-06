@@ -63,18 +63,18 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-let x = $(`a`);
+const x = $(`a`);
 $(x);
-x = $(`b`);
+$(`b`);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  x = $(`c`);
+  const tmpClusterSSA_x = $(`c`);
   const tmpIfTest$1 = $(2);
   if (tmpIfTest$1) {
     $(`123`);
   } else {
   }
-  $(x);
+  $(tmpClusterSSA_x);
 } else {
 }
 `````
@@ -84,17 +84,17 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-let a = $( "a" );
+const a = $( "a" );
 $( a );
-a = $( "b" );
+$( "b" );
 const b = $( 1 );
 if (b) {
-  a = $( "c" );
-  const c = $( 2 );
-  if (c) {
+  const c = $( "c" );
+  const d = $( 2 );
+  if (d) {
     $( "123" );
   }
-  $( a );
+  $( c );
 }
 `````
 

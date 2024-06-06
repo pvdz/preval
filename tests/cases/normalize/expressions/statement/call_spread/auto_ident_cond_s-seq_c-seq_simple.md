@@ -45,8 +45,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParamSpread = $(60);
-$(...tmpCalleeParamSpread);
+const tmpClusterSSA_tmpCalleeParamSpread = $(60);
+$(...tmpClusterSSA_tmpCalleeParamSpread);
 const a = { a: 999, b: 1000 };
 $(a);
 `````

@@ -62,8 +62,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = a;
+const a = { a: 999, b: 1000 };
 let tmpBinBothRhs = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
@@ -79,9 +78,9 @@ if (tmpIfTest) {
     tmpBinBothRhs = tmpChainElementObject$1;
   }
 }
-a = tmpBinBothLhs * tmpBinBothRhs;
-$(a);
-$(a);
+const tmpClusterSSA_a = a * tmpBinBothRhs;
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output
@@ -91,33 +90,32 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 const b = { x: a };
-let c = {
+const c = {
 a: 999,
 b: 1000
 ;
-const d = c;
-let e = undefined;
-const f = $( b );
-const g = f == null;
-if (g) {
+let d = undefined;
+const e = $( b );
+const f = e == null;
+if (f) {
 
 }
 else {
-  const h = $( "x" );
-  const i = f[ h ];
-  const j = i == null;
-  if (j) {
+  const g = $( "x" );
+  const h = e[ g ];
+  const i = h == null;
+  if (i) {
 
   }
   else {
-    const k = $( "y" );
-    const l = i[ k ];
-    e = l;
+    const j = $( "y" );
+    const k = h[ j ];
+    d = k;
   }
 }
-c = d * e;
-$( c );
-$( c );
+const l = c * d;
+$( l );
+$( l );
 `````
 
 ## Globals

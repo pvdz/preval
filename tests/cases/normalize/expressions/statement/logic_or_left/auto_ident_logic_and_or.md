@@ -63,8 +63,8 @@ if (tmpIfTest) {
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam$3 = $(2);
-  tmpIfTest = $(tmpCalleeParam$3);
-  if (tmpIfTest) {
+  const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam$3);
+  if (tmpClusterSSA_tmpIfTest) {
   } else {
     $(100);
   }
@@ -89,19 +89,19 @@ if (b) {
 }
 else {
   const d = $( 2 );
-  b = $( d );
-  if (b) {
+  const e = $( d );
+  if (e) {
 
   }
   else {
     $( 100 );
   }
 }
-const e = {
+const f = {
 a: 999,
 b: 1000
 ;
-$( e );
+$( f );
 `````
 
 ## Globals

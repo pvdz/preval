@@ -52,35 +52,36 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
+const a = { a: 999, b: 1000 };
 const tmpAssignRhsProp = $(b);
-const tmpSSA_a = tmpAssignRhsProp.c;
-$(tmpSSA_a);
+const tmpClusterSSA_a = tmpAssignRhsProp.c;
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(tmpSSA_a);
+  $(tmpClusterSSA_a);
   $(1);
 }
-$(tmpSSA_a, b);
+$(a, b);
 `````
 
 ## PST Output
@@ -89,35 +90,39 @@ With rename=true
 
 `````js filename=intro
 const a = { c: 1 };
-const b = $( a );
-const c = b.c;
-$( c );
+const b = {
+a: 999,
+b: 1000
+;
+const c = $( a );
+const d = c.c;
+$( d );
 $( 1 );
-$( c );
+$( d );
 $( 1 );
-$( c );
+$( d );
 $( 1 );
-$( c );
+$( d );
 $( 1 );
-$( c );
+$( d );
 $( 1 );
-$( c );
+$( d );
 $( 1 );
-$( c );
+$( d );
 $( 1 );
-$( c );
+$( d );
 $( 1 );
-$( c );
+$( d );
 $( 1 );
-$( c );
+$( d );
 $( 1 );
-$( c );
+$( d );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( c );
+  $( d );
   $( 1 );
 }
-$( c, a );
+$( b, a );
 `````
 
 ## Globals

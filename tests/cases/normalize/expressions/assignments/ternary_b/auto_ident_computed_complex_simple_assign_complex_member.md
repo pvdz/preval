@@ -55,7 +55,6 @@ $(a, b);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 const b = { c: 10, d: 20 };
 if (tmpIfTest) {
@@ -65,11 +64,10 @@ if (tmpIfTest) {
   const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
   varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
   a = varInitAssignLhsComputedRhs;
-  tmpCalleeParam = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs);
 } else {
-  tmpCalleeParam = $(200);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam = $(200);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
 $(a, b);
 `````
@@ -83,27 +81,25 @@ let a = {
 a: 999,
 b: 1000
 ;
-let b = undefined;
-const c = $( 1 );
-const d = {
+const b = $( 1 );
+const c = {
 c: 10,
 d: 20
 ;
-if (c) {
-  const e = $( d );
-  const f = $( d );
-  const g = $( "d" );
-  const h = f[ g ];
-  e.c = h;
-  a = h;
-  b = h;
-  $( h );
+if (b) {
+  const d = $( c );
+  const e = $( c );
+  const f = $( "d" );
+  const g = e[ f ];
+  d.c = g;
+  a = g;
+  $( g );
 }
 else {
-  b = $( 200 );
-  $( b );
+  const h = $( 200 );
+  $( h );
 }
-$( a, d );
+$( a, c );
 `````
 
 ## Globals

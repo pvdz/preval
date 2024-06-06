@@ -52,15 +52,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
+const tmpIfTest = $(1);
 if (tmpIfTest) {
-  a = 2;
-  tmpIfTest = $(1);
+  a = 1;
+  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      a = 1;
-      a = 2;
-      tmpIfTest = $(1);
+    if (tmpClusterSSA_tmpIfTest) {
+      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -79,15 +77,13 @@ let a = {
 a: 999,
 b: 1000
 ;
-let b = $( 1 );
+const b = $( 1 );
 if (b) {
-  a = 2;
-  b = $( 1 );
+  a = 1;
+  let c = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (b) {
-      a = 1;
-      a = 2;
-      b = $( 1 );
+    if (c) {
+      c = $( 1 );
     }
     else {
       break;

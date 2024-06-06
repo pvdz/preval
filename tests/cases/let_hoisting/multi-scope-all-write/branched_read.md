@@ -105,17 +105,14 @@ const f = function ($$0) {
   if (promoMe) {
     return true;
   } else {
-    let v = undefined;
     const r = $(`.`);
-    let tmpssa2_promoMe = r === `.`;
+    const tmpssa2_promoMe = r === `.`;
     if (tmpssa2_promoMe) {
       const t = $(``);
-      tmpssa2_promoMe = t !== `.`;
-      v = tmpssa2_promoMe;
-      return v;
+      const tmpClusterSSA_tmpssa2_promoMe = t !== `.`;
+      return tmpClusterSSA_tmpssa2_promoMe;
     } else {
-      v = tmpssa2_promoMe;
-      return v;
+      return false;
     }
   }
 };
@@ -138,18 +135,15 @@ const a = function($$0 ) {
     return true;
   }
   else {
-    let e = undefined;
-    const f = $( "." );
-    let g = f === ".";
-    if (g) {
-      const h = $( "" );
-      g = h !== ".";
-      e = g;
-      return e;
+    const e = $( "." );
+    const f = e === ".";
+    if (f) {
+      const g = $( "" );
+      const h = g !== ".";
+      return h;
     }
     else {
-      e = g;
-      return e;
+      return false;
     }
   }
 };

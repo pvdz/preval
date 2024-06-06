@@ -45,31 +45,31 @@ while (true) {
 ## Output
 
 `````js filename=intro
-let x = /foo/;
-$(x);
-x = /foo/;
-$(x);
-x = /foo/;
-$(x);
-x = /foo/;
-$(x);
-x = /foo/;
-$(x);
-x = /foo/;
-$(x);
-x = /foo/;
-$(x);
-x = /foo/;
-$(x);
-x = /foo/;
-$(x);
-x = /foo/;
-$(x);
-x = /foo/;
-$(x);
+const tmpClusterSSA_x = /foo/;
+$(tmpClusterSSA_x);
+const tmpClusterSSA_x$1 = /foo/;
+$(tmpClusterSSA_x$1);
+const tmpClusterSSA_x$2 = /foo/;
+$(tmpClusterSSA_x$2);
+const tmpClusterSSA_x$3 = /foo/;
+$(tmpClusterSSA_x$3);
+const tmpClusterSSA_x$4 = /foo/;
+$(tmpClusterSSA_x$4);
+const tmpClusterSSA_x$5 = /foo/;
+$(tmpClusterSSA_x$5);
+const tmpClusterSSA_x$6 = /foo/;
+$(tmpClusterSSA_x$6);
+const tmpClusterSSA_x$7 = /foo/;
+$(tmpClusterSSA_x$7);
+const tmpClusterSSA_x$8 = /foo/;
+$(tmpClusterSSA_x$8);
+const tmpClusterSSA_x$9 = /foo/;
+$(tmpClusterSSA_x$9);
+const tmpClusterSSA_x$10 = /foo/;
+$(tmpClusterSSA_x$10);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  x = /foo/;
-  $(x);
+  const tmpClusterSSA_x$11 = /foo/;
+  $(tmpClusterSSA_x$11);
 }
 `````
 
@@ -78,31 +78,31 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 With rename=true
 
 `````js filename=intro
-let a = /foo/;
+const a = /foo/;
 $( a );
-a = /foo/;
-$( a );
-a = /foo/;
-$( a );
-a = /foo/;
-$( a );
-a = /foo/;
-$( a );
-a = /foo/;
-$( a );
-a = /foo/;
-$( a );
-a = /foo/;
-$( a );
-a = /foo/;
-$( a );
-a = /foo/;
-$( a );
-a = /foo/;
-$( a );
+const b = /foo/;
+$( b );
+const c = /foo/;
+$( c );
+const d = /foo/;
+$( d );
+const e = /foo/;
+$( e );
+const f = /foo/;
+$( f );
+const g = /foo/;
+$( g );
+const h = /foo/;
+$( h );
+const i = /foo/;
+$( i );
+const j = /foo/;
+$( j );
+const k = /foo/;
+$( k );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  a = /foo/;
-  $( a );
+  const l = /foo/;
+  $( l );
 }
 `````
 

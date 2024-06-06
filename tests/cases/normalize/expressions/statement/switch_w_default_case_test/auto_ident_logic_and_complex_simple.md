@@ -97,10 +97,9 @@ $(a);
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpCalleeParam = $(1);
-let tmpBinLhs = $(tmpCalleeParam);
+const tmpBinLhs = $(tmpCalleeParam);
 let tmpIfTest = false;
 if (tmpBinLhs) {
-  tmpBinLhs = 2;
   tmpIfTest = 2 === tmpSwitchValue;
 } else {
   tmpIfTest = tmpBinLhs === tmpSwitchValue;
@@ -136,10 +135,9 @@ With rename=true
 const a = $( 1 );
 let b = 1;
 const c = $( 1 );
-let d = $( c );
+const d = $( c );
 let e = false;
 if (d) {
-  d = 2;
   e = 2 === a;
 }
 else {

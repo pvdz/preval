@@ -56,21 +56,20 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
+const arg = { y: 1 };
 $(1);
 $(2);
-const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-let tmpSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-const tmpBinBothLhs = tmpSSA_a;
+const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 $(1);
 $(2);
 const tmpDeleteCompObj$1 = $(arg);
 const tmpDeleteCompProp$1 = $(`y`);
-tmpSSA_a = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
-const tmpCalleeParam = tmpBinBothLhs + tmpSSA_a;
+const tmpClusterSSA_a$1 = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
+const tmpCalleeParam = tmpClusterSSA_a + tmpClusterSSA_a$1;
 $(tmpCalleeParam);
-$(tmpSSA_a, arg);
+$(tmpClusterSSA_a$1, arg);
 `````
 
 ## PST Output
@@ -78,21 +77,20 @@ $(tmpSSA_a, arg);
 With rename=true
 
 `````js filename=intro
+const a = { y: 1 };
 $( 1 );
 $( 2 );
-const a = { y: 1 };
 const b = $( a );
 const c = $( "y" );
-let d = deleteb[ c ];
-const e = d;
+const d = deleteb[ c ];
 $( 1 );
 $( 2 );
-const f = $( a );
-const g = $( "y" );
-d = deletef[ g ];
-const h = e + d;
+const e = $( a );
+const f = $( "y" );
+const g = deletee[ f ];
+const h = d + g;
 $( h );
-$( d, a );
+$( g, a );
 `````
 
 ## Globals

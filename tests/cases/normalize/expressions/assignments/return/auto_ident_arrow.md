@@ -54,12 +54,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = function () {
+const tmpClusterSSA_a = function () {
   debugger;
   return undefined;
 };
-$(tmpSSA_a);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

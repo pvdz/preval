@@ -69,7 +69,7 @@ if (tmpSwitchDisc) {
 if (tmpSwitchDisc) {
 } else {
   const tmpCalleeParam$3 = $(2);
-  tmpSwitchDisc = $(tmpCalleeParam$3);
+  $(tmpCalleeParam$3);
 }
 $(100);
 const a = { a: 999, b: 1000 };
@@ -92,7 +92,7 @@ if (b) {
 }
 else {
   const d = $( 2 );
-  b = $( d );
+  $( d );
 }
 $( 100 );
 const e = {

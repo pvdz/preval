@@ -69,13 +69,11 @@ tmpCallCallee$1(tmpCalleeParam$1);
 const f = function () {
   debugger;
   const objPatternBeforeDefault = `a`.x;
-  let x = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    x = $(`pass`);
-    return x;
+    const tmpClusterSSA_x = $(`pass`);
+    return tmpClusterSSA_x;
   } else {
-    x = objPatternBeforeDefault;
     return objPatternBeforeDefault;
   }
 };
@@ -91,14 +89,12 @@ With rename=true
 const a = function() {
   debugger;
   const b = "a".x;
-  let c = undefined;
-  const d = b === undefined;
-  if (d) {
-    c = $( "pass" );
-    return c;
+  const c = b === undefined;
+  if (c) {
+    const d = $( "pass" );
+    return d;
   }
   else {
-    c = b;
     return b;
   }
 };

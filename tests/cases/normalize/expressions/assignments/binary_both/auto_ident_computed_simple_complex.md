@@ -51,13 +51,12 @@ $(a, b);
 `````js filename=intro
 const tmpAssignRhsCompProp = $(`c`);
 const b = { c: 1 };
-let a = b[tmpAssignRhsCompProp];
-const tmpBinBothLhs = a;
+const a = b[tmpAssignRhsCompProp];
 const tmpAssignRhsCompProp$1 = $(`c`);
-a = b[tmpAssignRhsCompProp$1];
-const tmpCalleeParam = tmpBinBothLhs + a;
+const tmpClusterSSA_a = b[tmpAssignRhsCompProp$1];
+const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(a, b);
+$(tmpClusterSSA_a, b);
 `````
 
 ## PST Output
@@ -67,13 +66,12 @@ With rename=true
 `````js filename=intro
 const a = $( "c" );
 const b = { c: 1 };
-let c = b[ a ];
-const d = c;
-const e = $( "c" );
-c = b[ e ];
-const f = d + c;
+const c = b[ a ];
+const d = $( "c" );
+const e = b[ d ];
+const f = c + e;
 $( f );
-$( c, b );
+$( e, b );
 `````
 
 ## Globals

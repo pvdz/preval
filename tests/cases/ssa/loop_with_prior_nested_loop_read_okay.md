@@ -67,33 +67,33 @@ if ($) {
 `````js filename=intro
 if ($) {
   while (true) {
-    let x = $(1);
+    const x = $(1);
     $(x);
-    x = $(2);
-    $(x);
-    x = $(2);
-    $(x);
-    x = $(2);
-    $(x);
-    x = $(2);
-    $(x);
-    x = $(2);
-    $(x);
-    x = $(2);
-    $(x);
-    x = $(2);
-    $(x);
-    x = $(2);
-    $(x);
-    x = $(2);
-    $(x);
-    x = $(2);
-    $(x);
-    x = $(2);
-    $(x);
+    const tmpClusterSSA_x = $(2);
+    $(tmpClusterSSA_x);
+    const tmpClusterSSA_x$1 = $(2);
+    $(tmpClusterSSA_x$1);
+    const tmpClusterSSA_x$2 = $(2);
+    $(tmpClusterSSA_x$2);
+    const tmpClusterSSA_x$3 = $(2);
+    $(tmpClusterSSA_x$3);
+    const tmpClusterSSA_x$4 = $(2);
+    $(tmpClusterSSA_x$4);
+    const tmpClusterSSA_x$5 = $(2);
+    $(tmpClusterSSA_x$5);
+    const tmpClusterSSA_x$6 = $(2);
+    $(tmpClusterSSA_x$6);
+    const tmpClusterSSA_x$7 = $(2);
+    $(tmpClusterSSA_x$7);
+    const tmpClusterSSA_x$8 = $(2);
+    $(tmpClusterSSA_x$8);
+    const tmpClusterSSA_x$9 = $(2);
+    $(tmpClusterSSA_x$9);
+    const tmpClusterSSA_x$10 = $(2);
+    $(tmpClusterSSA_x$10);
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      x = $(2);
-      $(x);
+      const tmpClusterSSA_x$11 = $(2);
+      $(tmpClusterSSA_x$11);
     }
   }
 } else {
@@ -107,33 +107,33 @@ With rename=true
 `````js filename=intro
 if ($) {
   while (true) {
-    let a = $( 1 );
+    const a = $( 1 );
     $( a );
-    a = $( 2 );
-    $( a );
-    a = $( 2 );
-    $( a );
-    a = $( 2 );
-    $( a );
-    a = $( 2 );
-    $( a );
-    a = $( 2 );
-    $( a );
-    a = $( 2 );
-    $( a );
-    a = $( 2 );
-    $( a );
-    a = $( 2 );
-    $( a );
-    a = $( 2 );
-    $( a );
-    a = $( 2 );
-    $( a );
-    a = $( 2 );
-    $( a );
+    const b = $( 2 );
+    $( b );
+    const c = $( 2 );
+    $( c );
+    const d = $( 2 );
+    $( d );
+    const e = $( 2 );
+    $( e );
+    const f = $( 2 );
+    $( f );
+    const g = $( 2 );
+    $( g );
+    const h = $( 2 );
+    $( h );
+    const i = $( 2 );
+    $( i );
+    const j = $( 2 );
+    $( j );
+    const k = $( 2 );
+    $( k );
+    const l = $( 2 );
+    $( l );
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      a = $( 2 );
-      $( a );
+      const m = $( 2 );
+      $( m );
     }
   }
 }

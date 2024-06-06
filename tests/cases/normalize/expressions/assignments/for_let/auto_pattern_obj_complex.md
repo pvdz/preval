@@ -53,7 +53,7 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-const tmpSSA_a = tmpNestedAssignObjPatternRhs.a;
+tmpNestedAssignObjPatternRhs.a;
 $(tmpNestedAssignObjPatternRhs);
 $(1);
 $(tmpNestedAssignObjPatternRhs);
@@ -80,7 +80,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedAssignObjPatternRhs);
   $(1);
 }
-$(tmpSSA_a);
+$(999);
 `````
 
 ## PST Output
@@ -93,7 +93,7 @@ a: 1,
 b: 2
 ;
 const b = $( a );
-const c = b.a;
+b.a;
 $( b );
 $( 1 );
 $( b );
@@ -120,7 +120,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( b );
   $( 1 );
 }
-$( c );
+$( 999 );
 `````
 
 ## Globals

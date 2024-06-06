@@ -67,13 +67,11 @@ const f = function ($$0) {
   const arrPatternSplat = [...tmpParamBare];
   const arrPatternStep = arrPatternSplat[0];
   const objPatternBeforeDefault = arrPatternStep.x;
-  let x = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    x = $(`fail`);
-    return x;
+    const tmpClusterSSA_x = $(`fail`);
+    return tmpClusterSSA_x;
   } else {
-    x = objPatternBeforeDefault;
     return objPatternBeforeDefault;
   }
 };
@@ -94,14 +92,12 @@ const a = function($$0 ) {
   const d = [ ... b ];
   const e = d[ 0 ];
   const f = e.x;
-  let g = undefined;
-  const h = f === undefined;
-  if (h) {
-    g = $( "fail" );
-    return g;
+  const g = f === undefined;
+  if (g) {
+    const h = $( "fail" );
+    return h;
   }
   else {
-    g = f;
     return f;
   }
 };

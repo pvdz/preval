@@ -66,17 +66,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpNestedComplexRhs = 60;
 const tmpIfTest$1 = $(30);
-let tmpSSA_a = 60;
+let tmpClusterSSA_a = 60;
 if (tmpIfTest$1) {
 } else {
   const tmpCalleeParam = $(100);
-  tmpNestedComplexRhs = $(tmpCalleeParam);
-  tmpSSA_a = tmpNestedComplexRhs;
+  const tmpClusterSSA_tmpNestedComplexRhs = $(tmpCalleeParam);
+  tmpClusterSSA_a = tmpClusterSSA_tmpNestedComplexRhs;
 }
 $(undefined);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output
@@ -84,19 +83,18 @@ $(tmpSSA_a);
 With rename=true
 
 `````js filename=intro
-let a = 60;
-const b = $( 30 );
-let c = 60;
-if (b) {
+const a = $( 30 );
+let b = 60;
+if (a) {
 
 }
 else {
-  const d = $( 100 );
-  a = $( d );
-  c = a;
+  const c = $( 100 );
+  const d = $( c );
+  b = d;
 }
 $( undefined );
-$( c );
+$( b );
 `````
 
 ## Globals

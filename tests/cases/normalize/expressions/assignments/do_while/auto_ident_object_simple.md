@@ -64,11 +64,10 @@ $(100);
 $(100);
 $(100);
 $(100);
-let a = { x: 1, y: 2, z: 3 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  a = { x: 1, y: 2, z: 3 };
 }
+const a = { x: 1, y: 2, z: 3 };
 $(a);
 `````
 
@@ -88,19 +87,14 @@ $( 100 );
 $( 100 );
 $( 100 );
 $( 100 );
-let a = {
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 100 );
+}
+const a = {
 x: 1,
 y: 2,
 z: 3
 ;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( 100 );
-  a = {
-x: 1,
-y: 2,
-z: 3
-  ;
-}
 $( a );
 `````
 

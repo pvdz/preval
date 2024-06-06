@@ -57,8 +57,8 @@ let $tmpLoopUnrollCheck = true;
 const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $(`c`);
-let tmpSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-if (tmpSSA_a) {
+let tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+if (tmpClusterSSA_a) {
   $(1);
 } else {
   $tmpLoopUnrollCheck = false;
@@ -67,8 +67,8 @@ if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     const tmpAssignRhsCompObj$1 = $(b);
     const tmpAssignRhsCompProp$1 = $(`c`);
-    tmpSSA_a = tmpAssignRhsCompObj$1[tmpAssignRhsCompProp$1];
-    if (tmpSSA_a) {
+    tmpClusterSSA_a = tmpAssignRhsCompObj$1[tmpAssignRhsCompProp$1];
+    if (tmpClusterSSA_a) {
       $(1);
     } else {
       break;
@@ -76,7 +76,7 @@ if ($tmpLoopUnrollCheck) {
   }
 } else {
 }
-$(tmpSSA_a, b);
+$(tmpClusterSSA_a, b);
 `````
 
 ## PST Output

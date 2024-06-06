@@ -60,7 +60,7 @@ $(a);
 
 `````js filename=intro
 $(100);
-new $(1);
+const a = new $(1);
 $(100);
 new $(1);
 $(100);
@@ -80,10 +80,10 @@ new $(1);
 $(100);
 new $(1);
 $(100);
-let a = new $(1);
+new $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  a = new $(1);
+  new $(1);
 }
 $(a);
 `````
@@ -94,7 +94,7 @@ With rename=true
 
 `````js filename=intro
 $( 100 );
-new $( 1 );
+const a = new $( 1 );
 $( 100 );
 new $( 1 );
 $( 100 );
@@ -114,10 +114,10 @@ new $( 1 );
 $( 100 );
 new $( 1 );
 $( 100 );
-let a = new $( 1 );
+new $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  a = new $( 1 );
+  new $( 1 );
 }
 $( a );
 `````

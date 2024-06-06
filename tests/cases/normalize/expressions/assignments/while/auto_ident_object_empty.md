@@ -53,12 +53,11 @@ $(100);
 $(100);
 $(100);
 $(100);
-let a = {};
 $(100);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  a = {};
   $(100);
 }
+const a = {};
 $(a);
 `````
 
@@ -77,12 +76,11 @@ $( 100 );
 $( 100 );
 $( 100 );
 $( 100 );
-let a = {};
 $( 100 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  a = {};
   $( 100 );
 }
+const a = {};
 $( a );
 `````
 

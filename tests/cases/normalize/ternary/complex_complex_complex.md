@@ -54,14 +54,13 @@ if (tmpIfTest) {
 } else {
   a = $(3);
 }
-let b = undefined;
 const tmpIfTest$1 = $(0);
 if (tmpIfTest$1) {
-  b = $(4);
-  $(a, b);
+  const tmpClusterSSA_b = $(4);
+  $(a, tmpClusterSSA_b);
 } else {
-  b = $(5);
-  $(a, b);
+  const tmpClusterSSA_b$1 = $(5);
+  $(a, tmpClusterSSA_b$1);
 }
 `````
 
@@ -78,15 +77,14 @@ if (b) {
 else {
   a = $( 3 );
 }
-let c = undefined;
-const d = $( 0 );
-if (d) {
-  c = $( 4 );
-  $( a, c );
+const c = $( 0 );
+if (c) {
+  const d = $( 4 );
+  $( a, d );
 }
 else {
-  c = $( 5 );
-  $( a, c );
+  const e = $( 5 );
+  $( a, e );
 }
 `````
 

@@ -91,10 +91,10 @@ if (tmpIfTest$7) {
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
-const tmpCallObj = $(b);
-const tmpSSA_a = tmpCallObj.$(1);
-$(tmpSSA_a);
+const tmpClusterSSA_b = { $: $ };
+const tmpCallObj = $(tmpClusterSSA_b);
+const tmpClusterSSA_a = tmpCallObj.$(1);
+$(tmpClusterSSA_a);
 $(`fail1`);
 $(`fail2`);
 `````

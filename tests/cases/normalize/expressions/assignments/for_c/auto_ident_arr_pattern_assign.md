@@ -61,35 +61,26 @@ $(a, x, y);
 
 `````js filename=intro
 let x = 1;
-let y = 2;
-let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
+const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpArrElement = $(3);
-  const tmpArrElement$1 = $(4);
-  const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
-  a = tmpNestedAssignArrPatternRhs;
-  tmpIfTest = $(1);
+  $(4);
+  x = tmpArrElement;
+  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       const tmpArrElement$2 = $(3);
-      const tmpArrElement$4 = $(4);
-      const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$2, tmpArrElement$4];
-      const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
-      x = arrPatternSplat$1[0];
-      y = arrPatternSplat$1[1];
-      a = tmpNestedAssignArrPatternRhs$1;
-      tmpIfTest = $(1);
+      $(4);
+      x = tmpArrElement$2;
+      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
   }
 } else {
 }
-$(a, x, y);
+const a = { a: 999, b: 1000 };
+$(a, x, 2);
 `````
 
 ## PST Output
@@ -98,30 +89,17 @@ With rename=true
 
 `````js filename=intro
 let a = 1;
-let b = 2;
-let c = {
-a: 999,
-b: 1000
-;
-let d = $( 1 );
-if (d) {
-  const e = $( 3 );
-  const f = $( 4 );
-  const g = [ e, f ];
-  const h = [ ... g ];
-  a = h[ 0 ];
-  b = h[ 1 ];
-  c = g;
-  d = $( 1 );
+const b = $( 1 );
+if (b) {
+  const c = $( 3 );
+  $( 4 );
+  a = c;
+  let d = $( 1 );
   while ($LOOP_UNROLL_10) {
     if (d) {
-      const i = $( 3 );
-      const j = $( 4 );
-      const k = [ i, j ];
-      const l = [ ... k ];
-      a = l[ 0 ];
-      b = l[ 1 ];
-      c = k;
+      const e = $( 3 );
+      $( 4 );
+      a = e;
       d = $( 1 );
     }
     else {
@@ -129,7 +107,11 @@ if (d) {
     }
   }
 }
-$( c, a, b );
+const f = {
+a: 999,
+b: 1000
+;
+$( f, a, 2 );
 `````
 
 ## Globals

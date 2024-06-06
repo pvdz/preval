@@ -61,7 +61,7 @@ $(x);
 `````js filename=intro
 let x = $(`a`);
 $(x);
-x = $(`b`);
+$(`b`);
 if ($) {
   x = $(`c`);
 } else {
@@ -78,7 +78,7 @@ With rename=true
 `````js filename=intro
 let a = $( "a" );
 $( a );
-a = $( "b" );
+$( "b" );
 if ($) {
   a = $( "c" );
 }

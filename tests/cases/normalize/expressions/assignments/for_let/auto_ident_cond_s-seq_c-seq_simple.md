@@ -53,33 +53,34 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = $(60);
-$(a);
+const tmpClusterSSA_a = $(60);
+$(tmpClusterSSA_a);
 $(1);
-$(a);
+$(tmpClusterSSA_a);
 $(1);
-$(a);
+$(tmpClusterSSA_a);
 $(1);
-$(a);
+$(tmpClusterSSA_a);
 $(1);
-$(a);
+$(tmpClusterSSA_a);
 $(1);
-$(a);
+$(tmpClusterSSA_a);
 $(1);
-$(a);
+$(tmpClusterSSA_a);
 $(1);
-$(a);
+$(tmpClusterSSA_a);
 $(1);
-$(a);
+$(tmpClusterSSA_a);
 $(1);
-$(a);
+$(tmpClusterSSA_a);
 $(1);
-$(a);
+$(tmpClusterSSA_a);
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(a);
+  $(tmpClusterSSA_a);
   $(1);
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -115,7 +116,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( a );
   $( 1 );
 }
-$( a );
+const b = {
+a: 999,
+b: 1000
+;
+$( b );
 `````
 
 ## Globals

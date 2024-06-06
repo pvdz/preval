@@ -46,15 +46,14 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = a;
 const arg = { y: 1 };
+const a = { a: 999, b: 1000 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 const tmpBinBothRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-a = tmpBinBothLhs * tmpBinBothRhs;
-$(a);
-$(a, arg);
+const tmpClusterSSA_a = a * tmpBinBothRhs;
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a, arg);
 `````
 
 ## PST Output
@@ -62,18 +61,17 @@ $(a, arg);
 With rename=true
 
 `````js filename=intro
-let a = {
+const a = { y: 1 };
+const b = {
 a: 999,
 b: 1000
 ;
-const b = a;
-const c = { y: 1 };
-const d = $( c );
-const e = $( "y" );
-const f = deleted[ e ];
-a = b * f;
-$( a );
-$( a, c );
+const c = $( a );
+const d = $( "y" );
+const e = deletec[ d ];
+const f = b * e;
+$( f );
+$( f, a );
 `````
 
 ## Globals

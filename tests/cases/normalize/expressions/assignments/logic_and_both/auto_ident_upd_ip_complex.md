@@ -68,21 +68,19 @@ const tmpPostUpdArgObj = $(tmpCalleeParam$1);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-let tmpSSA_a = tmpPostUpdArgVal;
-let tmpCalleeParam = tmpPostUpdArgVal;
+let tmpClusterSSA_a = tmpPostUpdArgVal;
 if (tmpPostUpdArgVal) {
   const tmpCalleeParam$3 = $(b);
   const tmpPostUpdArgObj$1 = $(tmpCalleeParam$3);
   const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
   const tmpAssignMemRhs$1 = tmpPostUpdArgVal$1 + 1;
   tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
-  tmpSSA_a = tmpPostUpdArgVal$1;
-  tmpCalleeParam = tmpPostUpdArgVal$1;
+  tmpClusterSSA_a = tmpPostUpdArgVal$1;
   $(tmpPostUpdArgVal$1);
 } else {
-  $(tmpCalleeParam);
+  $(tmpPostUpdArgVal);
 }
-$(tmpSSA_a, b);
+$(tmpClusterSSA_a, b);
 `````
 
 ## PST Output
@@ -97,19 +95,17 @@ const d = c.x;
 const e = d + 1;
 c.x = e;
 let f = d;
-let g = d;
 if (d) {
-  const h = $( a );
-  const i = $( h );
-  const j = i.x;
-  const k = j + 1;
-  i.x = k;
-  f = j;
-  g = j;
-  $( j );
+  const g = $( a );
+  const h = $( g );
+  const i = h.x;
+  const j = i + 1;
+  h.x = j;
+  f = i;
+  $( i );
 }
 else {
-  $( g );
+  $( d );
 }
 $( f, a );
 `````

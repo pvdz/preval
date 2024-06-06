@@ -59,16 +59,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   const b = { $: $ };
   const tmpCallObj = $(b);
-  a = tmpCallObj.$(1);
-  $(a);
+  const tmpClusterSSA_a = tmpCallObj.$(1);
+  $(tmpClusterSSA_a);
 } else {
+  const a = { a: 999, b: 1000 };
   $(a);
 }
 `````
@@ -78,21 +78,21 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-let a = {
-a: 999,
-b: 1000
-;
+const a = $( 1 );
 const b = $( 1 );
-const c = $( 1 );
-const d = b === c;
-if (d) {
-  const e = { $: $ };
-  const f = $( e );
-  a = f.$( 1 );
-  $( a );
+const c = a === b;
+if (c) {
+  const d = { $: $ };
+  const e = $( d );
+  const f = e.$( 1 );
+  $( f );
 }
 else {
-  $( a );
+  const g = {
+a: 999,
+b: 1000
+  ;
+  $( g );
 }
 `````
 

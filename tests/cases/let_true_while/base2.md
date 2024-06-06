@@ -57,29 +57,29 @@ $(x, y);
 ## Output
 
 `````js filename=intro
-let y = $(5);
+const y = $(5);
 $(true);
 const z = y - 1;
-y = z;
-let tmpSSA_x = z;
+let tmpClusterSSA_y = z;
+let tmpClusterSSA_x = z;
 if (z) {
   $(z);
-  const z$1 = y - 1;
-  y = z$1;
-  tmpSSA_x = z$1;
+  const z$1 = z - 1;
+  tmpClusterSSA_y = z$1;
+  tmpClusterSSA_x = z$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpSSA_x) {
-      $(tmpSSA_x);
-      const z$2 = y - 1;
-      y = z$2;
-      tmpSSA_x = z$2;
+    if (tmpClusterSSA_x) {
+      $(tmpClusterSSA_x);
+      const z$2 = tmpClusterSSA_y - 1;
+      tmpClusterSSA_y = z$2;
+      tmpClusterSSA_x = z$2;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpSSA_x, y);
+$(tmpClusterSSA_x, tmpClusterSSA_y);
 `````
 
 ## PST Output
@@ -87,29 +87,29 @@ $(tmpSSA_x, y);
 With rename=true
 
 `````js filename=intro
-let a = $( 5 );
+const a = $( 5 );
 $( true );
 const b = a - 1;
-a = b;
 let c = b;
+let d = b;
 if (b) {
   $( b );
-  const d = a - 1;
-  a = d;
-  c = d;
+  const e = b - 1;
+  c = e;
+  d = e;
   while ($LOOP_UNROLL_9) {
-    if (c) {
-      $( c );
-      const e = a - 1;
-      a = e;
-      c = e;
+    if (d) {
+      $( d );
+      const f = c - 1;
+      c = f;
+      d = f;
     }
     else {
       break;
     }
   }
 }
-$( c, a );
+$( d, c );
 `````
 
 ## Globals

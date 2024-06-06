@@ -60,14 +60,13 @@ $(a);
 `````js filename=intro
 const f = function () {
   debugger;
-  let tmpReturnArg = 60;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     return 60;
   } else {
     const tmpCalleeParam = $(100);
-    tmpReturnArg = $(tmpCalleeParam);
-    return tmpReturnArg;
+    const tmpClusterSSA_tmpReturnArg = $(tmpCalleeParam);
+    return tmpClusterSSA_tmpReturnArg;
   }
 };
 const tmpCalleeParam$1 = f();
@@ -83,15 +82,14 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  let b = 60;
-  const c = $( 1 );
-  if (c) {
+  const b = $( 1 );
+  if (b) {
     return 60;
   }
   else {
-    const d = $( 100 );
-    b = $( d );
-    return b;
+    const c = $( 100 );
+    const d = $( c );
+    return d;
   }
 };
 const e = a();

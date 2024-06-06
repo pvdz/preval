@@ -62,13 +62,8 @@ if (tmpCalleeParamSpread) {
   $(...tmpCalleeParamSpread);
 } else {
   const tmpCalleeParam$3 = $(2);
-  tmpCalleeParamSpread = $(tmpCalleeParam$3);
-  const tmpIfTest = tmpCalleeParamSpread === ``;
-  if (tmpIfTest) {
-    $();
-  } else {
-    throw `Preval: Attempting to spread primitive that is not an empty string`;
-  }
+  const tmpClusterSSA_tmpCalleeParamSpread = $(tmpCalleeParam$3);
+  $(...tmpClusterSSA_tmpCalleeParamSpread);
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -90,14 +85,8 @@ if (b) {
 }
 else {
   const d = $( 2 );
-  b = $( d );
-  const e = b === "";
-  if (e) {
-    $();
-  }
-  else {
-    throw "Preval: Attempting to spread primitive that is not an empty string";
-  }
+  const e = $( d );
+  $( ... e );
 }
 const f = {
 a: 999,

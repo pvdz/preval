@@ -99,14 +99,14 @@ $(a);
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpCalleeParam = $(0);
-let tmpBinLhs = $(tmpCalleeParam);
+const tmpBinLhs = $(tmpCalleeParam);
 let tmpIfTest = false;
 if (tmpBinLhs) {
   tmpIfTest = tmpBinLhs === tmpSwitchValue;
 } else {
   const tmpCalleeParam$1 = $(2);
-  tmpBinLhs = $(tmpCalleeParam$1);
-  tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  const tmpClusterSSA_tmpBinLhs = $(tmpCalleeParam$1);
+  tmpIfTest = tmpClusterSSA_tmpBinLhs === tmpSwitchValue;
 }
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -139,41 +139,41 @@ With rename=true
 const a = $( 1 );
 let b = 1;
 const c = $( 0 );
-let d = $( c );
+const d = $( c );
 let e = false;
 if (d) {
   e = d === a;
 }
 else {
   const f = $( 2 );
-  d = $( f );
-  e = d === a;
+  const g = $( f );
+  e = g === a;
 }
 if (e) {
   b = 0;
 }
 else {
-  const g = 2 === a;
-  if (g) {
+  const h = 2 === a;
+  if (h) {
     b = 2;
   }
 }
-const h = b <= 0;
-if (h) {
+const i = b <= 0;
+if (i) {
 
 }
 else {
-  const i = b <= 1;
-  if (i) {
+  const j = b <= 1;
+  if (j) {
     $( "fail1" );
   }
   $( "fail2" );
 }
-const j = {
+const k = {
 a: 999,
 b: 1000
 ;
-$( j );
+$( k );
 `````
 
 ## Globals

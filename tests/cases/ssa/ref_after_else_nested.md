@@ -73,10 +73,10 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  let x = $(1);
+  const x = $(1);
   if ($) {
-    x = $(2);
-    $(x);
+    const tmpClusterSSA_x = $(2);
+    $(tmpClusterSSA_x);
   } else {
     $(x);
   }
@@ -90,10 +90,10 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  let a = $( 1 );
+  const a = $( 1 );
   if ($) {
-    a = $( 2 );
-    $( a );
+    const b = $( 2 );
+    $( b );
   }
   else {
     $( a );

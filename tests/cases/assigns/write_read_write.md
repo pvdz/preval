@@ -41,11 +41,11 @@ x = $(`redundant`);
 ## Output
 
 `````js filename=intro
-let x = $(1);
+const x = $(1);
 $(x);
-x = $(2);
-$(x);
-x = $(`redundant`);
+const tmpClusterSSA_x = $(2);
+$(tmpClusterSSA_x);
+$(`redundant`);
 `````
 
 ## PST Output
@@ -53,11 +53,11 @@ x = $(`redundant`);
 With rename=true
 
 `````js filename=intro
-let a = $( 1 );
+const a = $( 1 );
 $( a );
-a = $( 2 );
-$( a );
-a = $( "redundant" );
+const b = $( 2 );
+$( b );
+$( "redundant" );
 `````
 
 ## Globals

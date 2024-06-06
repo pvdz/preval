@@ -60,17 +60,15 @@ let a = undefined;
 const b = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
-let tmpBinBothRhs = `undefined`;
-let tmpCalleeParam = `before  undefined  after`;
 if (tmpIfTest) {
   $(`before  undefined  after`);
 } else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   a = tmpChainElementObject;
-  tmpBinBothRhs = $coerce(tmpChainElementObject, `string`);
-  tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpChainElementObject, `string`);
+  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  $(tmpClusterSSA_tmpCalleeParam);
 }
 $(a);
 `````
@@ -84,18 +82,16 @@ let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 const d = c == null;
-let e = "undefined";
-let f = "before  undefined  after";
 if (d) {
   $( "before  undefined  after" );
 }
 else {
-  const g = $( "x" );
-  const h = c[ g ];
-  a = h;
-  e = $coerce( h, "string" );
-  f = `before  ${[object Object]}  after`;
-  $( f );
+  const e = $( "x" );
+  const f = c[ e ];
+  a = f;
+  const g = $coerce( f, "string" );
+  const h = `before  ${[object Object]}  after`;
+  $( h );
 }
 $( a );
 `````

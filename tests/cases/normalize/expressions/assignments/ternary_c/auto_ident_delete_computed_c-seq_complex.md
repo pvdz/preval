@@ -54,12 +54,11 @@ $(a, arg);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
 const tmpIfTest = $(0);
 const arg = { y: 1 };
 if (tmpIfTest) {
-  tmpCalleeParam = $(100);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   $(1);
   $(2);
@@ -67,7 +66,6 @@ if (tmpIfTest) {
   const tmpDeleteCompProp = $(`y`);
   const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }
 $(a, arg);
@@ -82,24 +80,22 @@ let a = {
 a: 999,
 b: 1000
 ;
-let b = undefined;
-const c = $( 0 );
-const d = { y: 1 };
-if (c) {
-  b = $( 100 );
-  $( b );
+const b = $( 0 );
+const c = { y: 1 };
+if (b) {
+  const d = $( 100 );
+  $( d );
 }
 else {
   $( 1 );
   $( 2 );
-  const e = $( d );
+  const e = $( c );
   const f = $( "y" );
   const g = deletee[ f ];
   a = g;
-  b = g;
   $( g );
 }
-$( a, d );
+$( a, c );
 `````
 
 ## Globals

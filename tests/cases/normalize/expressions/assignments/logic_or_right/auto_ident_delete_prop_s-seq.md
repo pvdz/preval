@@ -51,7 +51,7 @@ $(a, arg);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = $(100);
+const tmpCalleeParam = $(100);
 const arg = { y: 1 };
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
@@ -60,7 +60,6 @@ if (tmpCalleeParam) {
   $(2);
   const tmpNestedComplexRhs = delete arg.y;
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }
 $(a, arg);
@@ -75,7 +74,7 @@ let a = {
 a: 999,
 b: 1000
 ;
-let b = $( 100 );
+const b = $( 100 );
 const c = { y: 1 };
 if (b) {
   $( b );
@@ -85,7 +84,6 @@ else {
   $( 2 );
   const d = deletec.y;
   a = d;
-  b = d;
   $( d );
 }
 $( a, c );

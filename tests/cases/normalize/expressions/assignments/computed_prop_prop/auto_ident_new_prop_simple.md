@@ -46,10 +46,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = new $(1);
+const tmpClusterSSA_a = new $(1);
 const obj = {};
-obj[tmpSSA_a];
-$(tmpSSA_a);
+obj[tmpClusterSSA_a];
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

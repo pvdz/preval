@@ -56,8 +56,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const x = $(`pass`);
-$(x);
+const tmpCalleeParam = $(`pass`);
+$(tmpCalleeParam);
 `````
 
 ## PST Output

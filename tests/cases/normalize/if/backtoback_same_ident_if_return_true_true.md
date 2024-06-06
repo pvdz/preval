@@ -74,13 +74,13 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
-  let x = $(1);
+  const x = $(1);
   if (x) {
     return x;
   } else {
-    x = $(2);
-    if (x) {
-      return x;
+    const tmpClusterSSA_x = $(2);
+    if (tmpClusterSSA_x) {
+      return tmpClusterSSA_x;
     } else {
       const tmpReturnArg = $(3);
       return tmpReturnArg;
@@ -98,23 +98,23 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  let b = $( 1 );
+  const b = $( 1 );
   if (b) {
     return b;
   }
   else {
-    b = $( 2 );
-    if (b) {
-      return b;
+    const c = $( 2 );
+    if (c) {
+      return c;
     }
     else {
-      const c = $( 3 );
-      return c;
+      const d = $( 3 );
+      return d;
     }
   }
 };
-const d = a();
-$( d );
+const e = a();
+$( e );
 `````
 
 ## Globals

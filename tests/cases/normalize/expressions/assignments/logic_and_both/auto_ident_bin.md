@@ -51,13 +51,12 @@ $(a);
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 let a = tmpBinBothLhs + tmpBinBothRhs;
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 if (a) {
   const tmpBinBothLhs$1 = $(1);
   const tmpBinBothRhs$1 = $(2);
   const tmpNestedComplexRhs = tmpBinBothLhs$1 + tmpBinBothRhs$1;
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
@@ -73,13 +72,12 @@ With rename=true
 const a = $( 1 );
 const b = $( 2 );
 let c = a + b;
-let d = c;
+const d = c;
 if (c) {
   const e = $( 1 );
   const f = $( 2 );
   const g = e + f;
   c = g;
-  d = g;
   $( g );
 }
 else {

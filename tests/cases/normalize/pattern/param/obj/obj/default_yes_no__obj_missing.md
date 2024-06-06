@@ -85,7 +85,7 @@ if (objPatternCrashTest) {
   objPatternCrashTest = objPatternAfterDefault === null;
 }
 if (objPatternCrashTest) {
-  objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
+  objPatternAfterDefault.cannotDestructureThis;
 } else {
 }
 $(`ok`);
@@ -115,7 +115,7 @@ else {
   c = b === null;
 }
 if (c) {
-  c = b.cannotDestructureThis;
+  b.cannotDestructureThis;
 }
 $( "ok" );
 `````

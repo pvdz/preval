@@ -50,11 +50,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-$(1);
-$(3);
-$(1);
-$(1);
-$(3);
+const tmpObjLitVal = $(1);
+const tmpObjLitVal$3 = $(3);
 $(1);
 $(1);
 $(3);
@@ -80,16 +77,18 @@ $(1);
 $(1);
 $(3);
 $(1);
-const tmpObjLitVal$1 = $(1);
-const tmpObjLitVal$4 = $(3);
-let a = { x: tmpObjLitVal$1, y: 2, z: tmpObjLitVal$4 };
+$(1);
+$(3);
+$(1);
+$(1);
+$(3);
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpObjLitVal$2 = $(1);
-  const tmpObjLitVal$5 = $(3);
-  a = { x: tmpObjLitVal$2, y: 2, z: tmpObjLitVal$5 };
+  $(1);
+  $(3);
   $(1);
 }
+const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 $(a);
 `````
 
@@ -98,54 +97,49 @@ $(a);
 With rename=true
 
 `````js filename=intro
-$( 1 );
-$( 3 );
-$( 1 );
-$( 1 );
-$( 3 );
-$( 1 );
-$( 1 );
-$( 3 );
-$( 1 );
-$( 1 );
-$( 3 );
-$( 1 );
-$( 1 );
-$( 3 );
-$( 1 );
-$( 1 );
-$( 3 );
-$( 1 );
-$( 1 );
-$( 3 );
-$( 1 );
-$( 1 );
-$( 3 );
-$( 1 );
-$( 1 );
-$( 3 );
-$( 1 );
-$( 1 );
-$( 3 );
-$( 1 );
 const a = $( 1 );
 const b = $( 3 );
-let c = {
+$( 1 );
+$( 1 );
+$( 3 );
+$( 1 );
+$( 1 );
+$( 3 );
+$( 1 );
+$( 1 );
+$( 3 );
+$( 1 );
+$( 1 );
+$( 3 );
+$( 1 );
+$( 1 );
+$( 3 );
+$( 1 );
+$( 1 );
+$( 3 );
+$( 1 );
+$( 1 );
+$( 3 );
+$( 1 );
+$( 1 );
+$( 3 );
+$( 1 );
+$( 1 );
+$( 3 );
+$( 1 );
+$( 1 );
+$( 3 );
+$( 1 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 1 );
+  $( 3 );
+  $( 1 );
+}
+const c = {
 x: a,
 y: 2,
 z: b
 ;
-$( 1 );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const d = $( 1 );
-  const e = $( 3 );
-  c = {
-x: d,
-y: 2,
-z: e
-  ;
-  $( 1 );
-}
 $( c );
 `````
 

@@ -68,8 +68,8 @@ const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-const tmpSSA_x = arrPatternSplat[0];
-const tmpSSA_y = arrPatternSplat[1];
+arrPatternSplat[0];
+arrPatternSplat[1];
 $(tmpNestedAssignArrPatternRhs);
 $(1);
 $(tmpNestedAssignArrPatternRhs);
@@ -96,7 +96,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedAssignArrPatternRhs);
   $(1);
 }
-$(a, tmpSSA_x, tmpSSA_y);
+$(a, 1, 2);
 `````
 
 ## PST Output
@@ -114,8 +114,8 @@ const b = $( 3 );
 const c = $( 4 );
 const d = [ b, c ];
 const e = [ ... d ];
-const f = e[ 0 ];
-const g = e[ 1 ];
+e[ 0 ];
+e[ 1 ];
 $( d );
 $( 1 );
 $( d );
@@ -142,7 +142,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( d );
   $( 1 );
 }
-$( a, f, g );
+$( a, 1, 2 );
 `````
 
 ## Globals

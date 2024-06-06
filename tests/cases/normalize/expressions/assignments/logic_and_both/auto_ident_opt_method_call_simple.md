@@ -66,18 +66,16 @@ $(a);
 `````js filename=intro
 const b = { c: $ };
 const tmpChainElementCall = $dotCall($, b, 1);
-let tmpSSA_a = tmpChainElementCall;
-let tmpSSA_tmpCalleeParam = tmpChainElementCall;
+let tmpClusterSSA_a = tmpChainElementCall;
 if (tmpChainElementCall) {
   const tmpChainElementObject$1 = b.c;
   const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, b, 1);
-  tmpSSA_a = tmpChainElementCall$1;
-  tmpSSA_tmpCalleeParam = tmpChainElementCall$1;
+  tmpClusterSSA_a = tmpChainElementCall$1;
   $(tmpChainElementCall$1);
 } else {
-  $(tmpSSA_tmpCalleeParam);
+  $(tmpChainElementCall);
 }
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output
@@ -88,16 +86,14 @@ With rename=true
 const a = { c: $ };
 const b = $dotCall( $, a, 1 );
 let c = b;
-let d = b;
 if (b) {
-  const e = a.c;
-  const f = $dotCall( e, a, 1 );
-  c = f;
-  d = f;
-  $( f );
+  const d = a.c;
+  const e = $dotCall( d, a, 1 );
+  c = e;
+  $( e );
 }
 else {
-  $( d );
+  $( b );
 }
 $( c );
 `````

@@ -62,9 +62,8 @@ $(a);
 let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpCalleeParam = $(1);
-let tmpIfTest = $(tmpCalleeParam);
+const tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
-  tmpIfTest = true;
 } else {
   $tmpLoopUnrollCheck = false;
 }
@@ -72,9 +71,8 @@ if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpCalleeParam$1 = $(1);
-    let tmpIfTest$1 = $(tmpCalleeParam$1);
+    const tmpIfTest$1 = $(tmpCalleeParam$1);
     if (tmpIfTest$1) {
-      tmpIfTest$1 = true;
     } else {
       break;
     }
@@ -93,9 +91,9 @@ With rename=true
 let a = true;
 $( 100 );
 const b = $( 1 );
-let c = $( b );
+const c = $( b );
 if (c) {
-  c = true;
+
 }
 else {
   a = false;
@@ -104,9 +102,9 @@ if (a) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
     const d = $( 1 );
-    let e = $( d );
+    const e = $( d );
     if (e) {
-      e = true;
+
     }
     else {
       break;

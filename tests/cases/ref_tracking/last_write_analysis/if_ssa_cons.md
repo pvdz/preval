@@ -49,14 +49,14 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = $(`a`);
+const x = $(`a`);
 $(x);
-x = $(`b`);
+const tmpClusterSSA_x = $(`b`);
 if ($) {
-  x = $(`c`);
-  $(x);
+  const tmpClusterSSA_x$1 = $(`c`);
+  $(tmpClusterSSA_x$1);
 } else {
-  $(x);
+  $(tmpClusterSSA_x);
 }
 `````
 
@@ -65,15 +65,15 @@ if ($) {
 With rename=true
 
 `````js filename=intro
-let a = $( "a" );
+const a = $( "a" );
 $( a );
-a = $( "b" );
+const b = $( "b" );
 if ($) {
-  a = $( "c" );
-  $( a );
+  const c = $( "c" );
+  $( c );
 }
 else {
-  $( a );
+  $( b );
 }
 `````
 

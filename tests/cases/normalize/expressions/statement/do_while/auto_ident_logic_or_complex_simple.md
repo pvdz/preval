@@ -60,89 +60,41 @@ $(a);
 `````js filename=intro
 $(100);
 const tmpCalleeParam = $(0);
-let tmpIfTest = $(tmpCalleeParam);
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
+$(tmpCalleeParam);
 $(100);
 const tmpCalleeParam$1 = $(0);
-let tmpIfTest$1 = $(tmpCalleeParam$1);
-if (tmpIfTest$1) {
-} else {
-  tmpIfTest$1 = true;
-}
+$(tmpCalleeParam$1);
 $(100);
 const tmpCalleeParam$2 = $(0);
-let tmpIfTest$2 = $(tmpCalleeParam$2);
-if (tmpIfTest$2) {
-} else {
-  tmpIfTest$2 = true;
-}
+$(tmpCalleeParam$2);
 $(100);
 const tmpCalleeParam$3 = $(0);
-let tmpIfTest$3 = $(tmpCalleeParam$3);
-if (tmpIfTest$3) {
-} else {
-  tmpIfTest$3 = true;
-}
+$(tmpCalleeParam$3);
 $(100);
 const tmpCalleeParam$4 = $(0);
-let tmpIfTest$4 = $(tmpCalleeParam$4);
-if (tmpIfTest$4) {
-} else {
-  tmpIfTest$4 = true;
-}
+$(tmpCalleeParam$4);
 $(100);
 const tmpCalleeParam$5 = $(0);
-let tmpIfTest$5 = $(tmpCalleeParam$5);
-if (tmpIfTest$5) {
-} else {
-  tmpIfTest$5 = true;
-}
+$(tmpCalleeParam$5);
 $(100);
 const tmpCalleeParam$6 = $(0);
-let tmpIfTest$6 = $(tmpCalleeParam$6);
-if (tmpIfTest$6) {
-} else {
-  tmpIfTest$6 = true;
-}
+$(tmpCalleeParam$6);
 $(100);
 const tmpCalleeParam$7 = $(0);
-let tmpIfTest$7 = $(tmpCalleeParam$7);
-if (tmpIfTest$7) {
-} else {
-  tmpIfTest$7 = true;
-}
+$(tmpCalleeParam$7);
 $(100);
 const tmpCalleeParam$8 = $(0);
-let tmpIfTest$8 = $(tmpCalleeParam$8);
-if (tmpIfTest$8) {
-} else {
-  tmpIfTest$8 = true;
-}
+$(tmpCalleeParam$8);
 $(100);
 const tmpCalleeParam$9 = $(0);
-let tmpIfTest$9 = $(tmpCalleeParam$9);
-if (tmpIfTest$9) {
-} else {
-  tmpIfTest$9 = true;
-}
+$(tmpCalleeParam$9);
 $(100);
 const tmpCalleeParam$10 = $(0);
-let tmpIfTest$10 = $(tmpCalleeParam$10);
-if (tmpIfTest$10) {
-} else {
-  tmpIfTest$10 = true;
-}
+$(tmpCalleeParam$10);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   const tmpCalleeParam$11 = $(0);
-  let tmpIfTest$11 = $(tmpCalleeParam$11);
-  if (tmpIfTest$11) {
-  } else {
-    tmpIfTest$11 = true;
-  }
+  $(tmpCalleeParam$11);
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -155,119 +107,47 @@ With rename=true
 `````js filename=intro
 $( 100 );
 const a = $( 0 );
-let b = $( a );
-if (b) {
-
-}
-else {
-  b = true;
-}
+$( a );
+$( 100 );
+const b = $( 0 );
+$( b );
 $( 100 );
 const c = $( 0 );
-let d = $( c );
-if (d) {
-
-}
-else {
-  d = true;
-}
+$( c );
+$( 100 );
+const d = $( 0 );
+$( d );
 $( 100 );
 const e = $( 0 );
-let f = $( e );
-if (f) {
-
-}
-else {
-  f = true;
-}
+$( e );
+$( 100 );
+const f = $( 0 );
+$( f );
 $( 100 );
 const g = $( 0 );
-let h = $( g );
-if (h) {
-
-}
-else {
-  h = true;
-}
+$( g );
+$( 100 );
+const h = $( 0 );
+$( h );
 $( 100 );
 const i = $( 0 );
-let j = $( i );
-if (j) {
-
-}
-else {
-  j = true;
-}
+$( i );
+$( 100 );
+const j = $( 0 );
+$( j );
 $( 100 );
 const k = $( 0 );
-let l = $( k );
-if (l) {
-
-}
-else {
-  l = true;
-}
-$( 100 );
-const m = $( 0 );
-let n = $( m );
-if (n) {
-
-}
-else {
-  n = true;
-}
-$( 100 );
-const o = $( 0 );
-let p = $( o );
-if (p) {
-
-}
-else {
-  p = true;
-}
-$( 100 );
-const q = $( 0 );
-let r = $( q );
-if (r) {
-
-}
-else {
-  r = true;
-}
-$( 100 );
-const s = $( 0 );
-let t = $( s );
-if (t) {
-
-}
-else {
-  t = true;
-}
-$( 100 );
-const u = $( 0 );
-let v = $( u );
-if (v) {
-
-}
-else {
-  v = true;
-}
+$( k );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const w = $( 0 );
-  let x = $( w );
-  if (x) {
-
-  }
-  else {
-    x = true;
-  }
+  const l = $( 0 );
+  $( l );
 }
-const y = {
+const m = {
 a: 999,
 b: 1000
 ;
-$( y );
+$( m );
 `````
 
 ## Globals

@@ -49,12 +49,12 @@ $(a);
 `````js filename=intro
 const tmpUnaryArg = $(100);
 -tmpUnaryArg;
-let tmpIfTest = $(0);
+const tmpIfTest = $(0);
 if (tmpIfTest) {
-  tmpIfTest = $(0);
+  let tmpClusterSSA_tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      tmpIfTest = $(0);
+    if (tmpClusterSSA_tmpIfTest) {
+      tmpClusterSSA_tmpIfTest = $(0);
     } else {
       break;
     }
@@ -72,23 +72,23 @@ With rename=true
 `````js filename=intro
 const a = $( 100 );
 -a;
-let b = $( 0 );
+const b = $( 0 );
 if (b) {
-  b = $( 0 );
+  let c = $( 0 );
   while ($LOOP_UNROLL_10) {
-    if (b) {
-      b = $( 0 );
+    if (c) {
+      c = $( 0 );
     }
     else {
       break;
     }
   }
 }
-const c = {
+const d = {
 a: 999,
 b: 1000
 ;
-$( c );
+$( d );
 `````
 
 ## Globals

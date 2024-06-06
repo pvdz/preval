@@ -47,11 +47,10 @@ for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
 const y = {};
 const tmpForInPatDeclRhs = [y];
 let tmpForInPatDeclLhs = undefined;
-let x = undefined;
 for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
   const arrPatternSplat = [...tmpForInPatDeclLhs];
-  x = arrPatternSplat[0];
-  $(x);
+  const tmpClusterSSA_x = arrPatternSplat[0];
+  $(tmpClusterSSA_x);
 }
 `````
 
@@ -63,11 +62,10 @@ With rename=true
 const a = {};
 const b = [ a ];
 let c = undefined;
-let d = undefined;
 for (c in b) {
-  const e = [ ... c ];
-  d = e[ 0 ];
-  $( d );
+  const d = [ ... c ];
+  const e = d[ 0 ];
+  $( e );
 }
 `````
 

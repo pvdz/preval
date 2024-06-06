@@ -81,12 +81,12 @@ if (tmpIfTest) {
     $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
   }
 }
-let tmpIfTest$3 = $(0);
+const tmpIfTest$3 = $(0);
 if (tmpIfTest$3) {
-  tmpIfTest$3 = $(0);
+  let tmpClusterSSA_tmpIfTest$3 = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest$3) {
-      tmpIfTest$3 = $(0);
+    if (tmpClusterSSA_tmpIfTest$3) {
+      tmpClusterSSA_tmpIfTest$3 = $(0);
     } else {
       break;
     }
@@ -123,12 +123,12 @@ else {
     $dotCall( f, c, h );
   }
 }
-let i = $( 0 );
+const i = $( 0 );
 if (i) {
-  i = $( 0 );
+  let j = $( 0 );
   while ($LOOP_UNROLL_10) {
-    if (i) {
-      i = $( 0 );
+    if (j) {
+      j = $( 0 );
     }
     else {
       break;

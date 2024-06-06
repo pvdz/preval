@@ -78,10 +78,10 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  let tmpssa2_x = $(1, `a`);
+  const tmpssa2_x = $(1, `a`);
   $(tmpssa2_x, `b`);
-  tmpssa2_x = $(2, `c`);
-  $(tmpssa2_x, `d`);
+  const tmpClusterSSA_tmpssa2_x = $(2, `c`);
+  $(tmpClusterSSA_tmpssa2_x, `d`);
 } else {
 }
 `````
@@ -92,10 +92,10 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  let a = $( 1, "a" );
+  const a = $( 1, "a" );
   $( a, "b" );
-  a = $( 2, "c" );
-  $( a, "d" );
+  const b = $( 2, "c" );
+  $( b, "d" );
 }
 `````
 

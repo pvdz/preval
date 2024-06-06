@@ -72,9 +72,9 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-let a = undefined;
-const b = { $: $ };
-const tmpChainElementCall = $(b);
+let tmpClusterSSA_a = undefined;
+const tmpClusterSSA_b = { $: $ };
+const tmpChainElementCall = $(tmpClusterSSA_b);
 const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
@@ -85,10 +85,10 @@ if (tmpIfTest$1) {
   } else {
     const tmpCalleeParam$3 = $(1);
     const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
-    a = tmpChainElementCall$1;
+    tmpClusterSSA_a = tmpChainElementCall$1;
   }
 }
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

@@ -112,17 +112,11 @@ $(f);
 `````js filename=intro
 const f = function () {
   debugger;
-  let test = $(1);
+  const test = $(1);
   if (test) {
-    test = $(2);
-    if (test) {
-      test = false;
-      $(100);
-      return undefined;
-    } else {
-      $(100);
-      return undefined;
-    }
+    $(2);
+    $(100);
+    return undefined;
   } else {
     $(100);
     return undefined;
@@ -138,18 +132,11 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  let b = $( 1 );
+  const b = $( 1 );
   if (b) {
-    b = $( 2 );
-    if (b) {
-      b = false;
-      $( 100 );
-      return undefined;
-    }
-    else {
-      $( 100 );
-      return undefined;
-    }
+    $( 2 );
+    $( 100 );
+    return undefined;
   }
   else {
     $( 100 );

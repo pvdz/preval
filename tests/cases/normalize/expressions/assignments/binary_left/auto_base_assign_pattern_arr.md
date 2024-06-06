@@ -54,11 +54,11 @@ const tmpArrElement = $(2);
 const tmpCalleeParam$1 = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-const tmpSSA_b = arrPatternSplat[0];
+const tmpClusterSSA_b = arrPatternSplat[0];
 const tmpBinBothRhs = $(100);
 const tmpCalleeParam = tmpNestedAssignArrPatternRhs + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(tmpNestedAssignArrPatternRhs, tmpSSA_b);
+$(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
 `````
 
 ## PST Output

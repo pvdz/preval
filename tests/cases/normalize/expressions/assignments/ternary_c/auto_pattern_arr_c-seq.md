@@ -55,11 +55,10 @@ $(a);
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-let tmpCalleeParam = undefined;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
-  tmpCalleeParam = $(100);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   $(10);
   $(20);
@@ -67,7 +66,6 @@ if (tmpIfTest) {
   const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
   const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
   a = arrPatternSplat$1[0];
-  tmpCalleeParam = tmpNestedAssignArrPatternRhs;
   $(tmpNestedAssignArrPatternRhs);
 }
 $(a);
@@ -84,11 +82,10 @@ b: 1000
 ;
 const b = [ ... a ];
 let c = b[ 0 ];
-let d = undefined;
-const e = $( 0 );
-if (e) {
-  d = $( 100 );
-  $( d );
+const d = $( 0 );
+if (d) {
+  const e = $( 100 );
+  $( e );
 }
 else {
   $( 10 );
@@ -97,7 +94,6 @@ else {
   const g = $( f );
   const h = [ ... g ];
   c = h[ 0 ];
-  d = g;
   $( g );
 }
 $( c );

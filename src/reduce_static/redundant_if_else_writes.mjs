@@ -32,6 +32,8 @@ function _redundantWrites(fdata) {
   const ast = fdata.tenkoOutput.ast;
 
   let changes = 0;
+  /** @var {Array<{pid: number, block: Node, index: number}>} */
+  const schedule = [];
 
   fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
     if (meta.isImplicitGlobal) return;
@@ -50,30 +52,51 @@ function _redundantWrites(fdata) {
     // If the var decl init cannot be observed, replace it with any primitive assigned in a write that reaches ("shadows") the var
     let hasNoPrimitives = false;
     vlog('Reads that can reach this var:', varWrite.reachedByReads.size);
-    let replacedWith; // Prevent reprocessing this deleted write (if any)
+    let eliminatedShadowWrite; // Prevent reprocessing this deleted write (if any)
     if (varWrite.reachedByReads.size === 0) {
+      // Note: this part may not do anything. It'll look for x=1 in `let x=$(); if (a) x=1; else x=2` (for any primitive)
+
       hasNoPrimitives = true;
       vlog('Going to try and find a write with primitive to replace the init (1)');
       Array.from(varWrite.reachedByWrites).some((shadowWrite) => {
         vlog('-', shadowWrite.action + ':' + shadowWrite.kind, shadowWrite.parentNode.right.type);
         if (shadowWrite.kind !== 'assign') {
-          // for
+          // for-in, for-of, catch, etc
+          // We were looking for the x=1 in `let x=$(); if (a) x=1; else x=2` case, which must be an assignment
           return;
         }
         if (AST.isPrimitive(shadowWrite.parentNode.right)) {
-          rule('When the init of a binding cannot be observed it can be replaced with the primitive rhs of an assignment');
+          // The transform must insert a new statement into the body. This is problematic as it changes cached indexes.
+          // We'll use a Block for this instead. Technically that's incorrect because it changes the scope of the binding.
+          // It's also not normalized code because it's a nested Block.
+          // However, it's only temporary as we'll flatten this Block before leaving the trick.
+          // By doing it this way we can avoid stale index caches entirely.
+
+          rule('When the init of a binding cannot be observed and is overwritten by a primitive it can be replaced with that primitive');
           example('let x = $(); if (a) x = 1; else x = 2;', '$(); let x = 1; if (a) ; else x = 2;');
           before(varWrite.blockBody[varWrite.blockIndex]);
           before(shadowWrite.blockBody[shadowWrite.blockIndex]);
 
-          shadowWrite.blockBody[shadowWrite.blockIndex] = AST.expressionStatement(varWrite.parentNode.init);
-          varWrite.parentNode.init = shadowWrite.parentNode.right;
+          varWrite.blockBody[varWrite.blockIndex] = AST.blockStatement(
+            AST.expressionStatement(varWrite.parentNode.init),
+            varWrite.grandNode
+          );
+          varWrite.parentNode.init = AST.primitive(AST.getPrimitiveValue(shadowWrite.parentNode.right));
+          shadowWrite.blockBody[shadowWrite.blockIndex] = AST.emptyStatement();
+
+          // Schedule the newly injected block for flattening. We must do that in this trick before leaving but can't do that immediately.
+          schedule.push({
+            pid: +varWrite.parentNode.$p.pid,
+            block: varWrite.blockBody,
+            index: varWrite.blockIndex,
+          });
 
           after(varWrite.blockBody[varWrite.blockIndex]);
           after(shadowWrite.blockBody[shadowWrite.blockIndex]);
+
           ++changes;
           hasNoPrimitives = false; // We found at least one
-          replacedWith = shadowWrite;
+          eliminatedShadowWrite = shadowWrite;
           return true;
         }
       });
@@ -85,7 +108,7 @@ function _redundantWrites(fdata) {
     } else {
       vgroup('Finding writes that write the same as all previous writes that can reach it');
       meta.writes.forEach((write, wi) => {
-        if (write === replacedWith) return false; // Skip. This one was deleted in previous block.
+        if (write === eliminatedShadowWrite) return false; // Skip. This one was deleted in previous block.
         // Skip the var (it should not reasonably have previous writes) and non-assignments here
         if (write.kind !== 'assign') return false;
 
@@ -116,7 +139,7 @@ function _redundantWrites(fdata) {
         if (
           Array.from(write.reachesWrites).every((prevWrite) => {
             vlog('  -', prevWrite.action + ':' + prevWrite.kind, prevWrite.parentNode.right?.type, prevWrite.parentNode.init?.type);
-            if (prevWrite === replacedWith) {
+            if (prevWrite === eliminatedShadowWrite) {
               vlog('   - Skip. This one was deleted in previous block.');
               return false;
             }
@@ -163,6 +186,12 @@ function _redundantWrites(fdata) {
   });
 
   if (changes) {
+
+    schedule.sort(({pid:a}, {pid: b}) => b-a); // Flatten in reverse order, back to front
+    schedule.forEach(({block, index}) => {
+      block.splice(index, 1, ...block[index].body);
+    });
+
     log('Redundant writes eliminated:', changes, '. Restarting from phase1');
     return 'phase1';
   }

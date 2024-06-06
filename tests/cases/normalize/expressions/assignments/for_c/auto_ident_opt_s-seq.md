@@ -58,22 +58,19 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
+const tmpIfTest = $(1);
 if (tmpIfTest) {
-  a = 1;
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      a = undefined;
-      a = 1;
-      tmpIfTest = $(1);
+    if (tmpClusterSSA_tmpIfTest) {
+      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
   }
 } else {
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -82,18 +79,11 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
-a: 999,
-b: 1000
-;
-let b = $( 1 );
-if (b) {
-  a = 1;
-  b = $( 1 );
+const a = $( 1 );
+if (a) {
+  let b = $( 1 );
   while ($LOOP_UNROLL_10) {
     if (b) {
-      a = undefined;
-      a = 1;
       b = $( 1 );
     }
     else {
@@ -101,7 +91,11 @@ if (b) {
     }
   }
 }
-$( a );
+const c = {
+a: 999,
+b: 1000
+;
+$( c );
 `````
 
 ## Globals

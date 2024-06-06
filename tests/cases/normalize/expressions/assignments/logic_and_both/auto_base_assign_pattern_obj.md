@@ -62,21 +62,19 @@ $(a, b);
 const tmpObjLitVal = $(2);
 const tmpCalleeParam$1 = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
-let tmpSSA_b = tmpNestedAssignObjPatternRhs.b;
-let tmpSSA_a = tmpNestedAssignObjPatternRhs;
-let tmpCalleeParam = tmpNestedAssignObjPatternRhs;
+let tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
+let tmpClusterSSA_a = tmpNestedAssignObjPatternRhs;
 if (tmpNestedAssignObjPatternRhs) {
   const tmpObjLitVal$1 = $(2);
   const tmpCalleeParam$3 = { b: tmpObjLitVal$1 };
   const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$3);
-  tmpSSA_b = tmpNestedAssignObjPatternRhs$1.b;
-  tmpSSA_a = tmpNestedAssignObjPatternRhs$1;
-  tmpCalleeParam = tmpNestedAssignObjPatternRhs$1;
+  tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
+  tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1;
   $(tmpNestedAssignObjPatternRhs$1);
 } else {
-  $(tmpCalleeParam);
+  $(tmpNestedAssignObjPatternRhs);
 }
-$(tmpSSA_a, tmpSSA_b);
+$(tmpClusterSSA_a, tmpClusterSSA_b);
 `````
 
 ## PST Output
@@ -89,18 +87,16 @@ const b = { b: a };
 const c = $( b );
 let d = c.b;
 let e = c;
-let f = c;
 if (c) {
-  const g = $( 2 );
-  const h = { b: g };
-  const i = $( h );
-  d = i.b;
-  e = i;
-  f = i;
-  $( i );
+  const f = $( 2 );
+  const g = { b: f };
+  const h = $( g );
+  d = h.b;
+  e = h;
+  $( h );
 }
 else {
-  $( f );
+  $( c );
 }
 $( e, d );
 `````

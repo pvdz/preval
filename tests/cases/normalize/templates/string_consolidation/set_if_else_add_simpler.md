@@ -71,20 +71,14 @@ $(z);
 `````js filename=intro
 const s = $(`s`);
 const t = $(`t`);
-let y = undefined;
-let z = undefined;
 if (t) {
   const tmpStringConcatL = $coerce(t, `plustr`);
-  y = `def${tmpStringConcatL}`;
-  const tmpStringConcatL$2 = $coerce(y, `plustr`);
-  z = `abc${tmpStringConcatL$2}`;
-  $(z);
+  const tmpClusterSSA_z = `abcdef${tmpStringConcatL}`;
+  $(tmpClusterSSA_z);
 } else {
   const tmpStringConcatL$1 = $coerce(s, `plustr`);
-  y = `ghi${tmpStringConcatL$1}`;
-  const tmpStringConcatL$4 = $coerce(y, `plustr`);
-  z = `abc${tmpStringConcatL$4}`;
-  $(z);
+  const tmpClusterSSA_z$1 = `abcghi${tmpStringConcatL$1}`;
+  $(tmpClusterSSA_z$1);
 }
 `````
 
@@ -95,21 +89,15 @@ With rename=true
 `````js filename=intro
 const a = $( "s" );
 const b = $( "t" );
-let c = undefined;
-let d = undefined;
 if (b) {
-  const e = $coerce( b, "plustr" );
-  c = `def${[object Object]}`;
-  const f = $coerce( c, "plustr" );
-  d = `abc${[object Object]}`;
+  const c = $coerce( b, "plustr" );
+  const d = `abcdef${[object Object]}`;
   $( d );
 }
 else {
-  const g = $coerce( a, "plustr" );
-  c = `ghi${[object Object]}`;
-  const h = $coerce( c, "plustr" );
-  d = `abc${[object Object]}`;
-  $( d );
+  const e = $coerce( a, "plustr" );
+  const f = `abcghi${[object Object]}`;
+  $( f );
 }
 `````
 

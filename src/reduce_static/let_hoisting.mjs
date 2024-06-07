@@ -512,8 +512,9 @@ function processAttempt3OnlyUsedInOtherScope(fdata) {
       );
       const tmpName = createFreshVar('tmpssa3_' + name, fdata);
       vlog('SSA all other refs into `' + tmpName + '`');
-      vlog('Injecting it at the top as undefined');
-      otherFunc.body.body.splice(otherFunc.$p.bodyOffset, 0, AST.variableDeclaration(tmpName, 'undefined', 'let'));
+      const value = AST.getPrimitiveValue(vardeclRef.parentNode.init);
+      vlog('Injecting it at the top, using the original init (ought to be primitive) as init:', value);
+      otherFunc.body.body.splice(otherFunc.$p.bodyOffset, 0, AST.variableDeclaration(tmpName, AST.primitive(value), 'let'));
       vlog('Renaming to `' + tmpName + '`');
       rwOrder.forEach((ref) => {
         if (ref.pfuncNode === otherFunc) {

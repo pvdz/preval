@@ -1,4 +1,4 @@
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, before } from '../utils.mjs';
 import { mergeTyping } from '../bindings.mjs';
 import { pruneEmptyFunctions } from './empty_func.mjs';
 import { pruneTrampolineFunctions } from './trampoline.mjs';

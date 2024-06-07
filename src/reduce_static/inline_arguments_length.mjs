@@ -34,8 +34,8 @@ function _inlineArgLen(fdata) {
 
   log('');
   if (updated) {
-    log('`arguments.length` cases inlined:', updated, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    log('`arguments.length` cases inlined:', updated, '. Restarting from normalization to fix up caches');
+    return true;
   }
   log('`arguments.length` cases inlined: 0.');
 }
@@ -97,21 +97,23 @@ function process(meta, name) {
 
   vlog('Looks like the function is always called with', paramCount, 'args. Queuing for replacement.');
 
+  const varWrite = meta.writes.find((write) => write.kind === 'var');
+  ASSERT(varWrite);
+
+  rule('A function using `arguments.length` that is always called with the same arg count can replace the reference');
+  example('function f() { f(arguments.length); } f(1, 2); f(3, 4);', 'function f() { f(2); } f(1, 2); f(3, 4);');
+  before(funcNode, varWrite.blockBody);
+
   // - There should only ever be one reference to `arguments.length` per function
   // - Index movements relevant to this function should not cross function boundaries
   // So we should be able to move the alias out of the header and assign the constant, without worrying
   // about other functions where we need to do the same.
 
-  const varWrite = meta.writes.find((write) => write.kind === 'var');
-  ASSERT(varWrite);
   ASSERT(funcNode.$p.readsArgumentsLenAt >= 0, 'should be set if it contains it');
 
+  vlog('Arglen alias at', funcNode.$p.readsArgumentsLenAt);
   const aliasVarNode = funcNode.body.body[funcNode.$p.readsArgumentsLenAt];
-  ASSERT(aliasVarNode?.type === 'VariableDeclaration' && aliasVarNode.kind === 'const', 'arg.len alias should be constant');
-
-  rule('A function using `arguments.length` that is always called with the same arg count can replace the reference');
-  example('function f() { f(arguments.length); } f(1, 2); f(3, 4);', 'function f() { f(2); } f(1, 2); f(3, 4);');
-  before(funcNode, varWrite.blockBody);
+  ASSERT(aliasVarNode?.type === 'VariableDeclaration' && aliasVarNode.kind === 'const', 'arg.len alias should be a constant', 'func name: "', funcNode?.$p?.uniqueName, '", alias node:', aliasVarNode);
 
   funcNode.body.body[funcNode.$p.readsArgumentsLenAt] = AST.emptyStatement();
   funcNode.body.body.splice(

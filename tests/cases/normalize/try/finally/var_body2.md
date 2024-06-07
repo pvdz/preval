@@ -29,8 +29,8 @@ let x = undefined;
   $finally: {
     try {
     } catch ($finalImplicit) {
-      $implicitThrow = true;
-      $finalCatchArg = $finalImplicit;
+      x = 10;
+      throw $finalImplicit;
     }
   }
   {

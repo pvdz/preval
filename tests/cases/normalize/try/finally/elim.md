@@ -41,8 +41,8 @@ let f = function () {
         fail;
         $(`fail`);
       } catch ($finalImplicit) {
-        $implicitThrow = true;
-        $finalCatchArg = $finalImplicit;
+        $(3);
+        throw $finalImplicit;
       }
     }
     {
@@ -70,8 +70,8 @@ let f = function () {
     fail;
     $(`fail`);
   } catch ($finalImplicit) {
-    $implicitThrow = true;
-    $finalCatchArg = $finalImplicit;
+    $(3);
+    throw $finalImplicit;
   }
   $(3);
   if ($implicitThrow) {
@@ -90,23 +90,17 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-let $implicitThrow = false;
-let $finalCatchArg = undefined;
 try {
   $(1);
   fail;
   $(`fail`);
 } catch ($finalImplicit) {
-  $implicitThrow = true;
-  $finalCatchArg = $finalImplicit;
+  $(3);
+  throw $finalImplicit;
 }
 $(3);
-if ($implicitThrow) {
-  throw $finalCatchArg;
-} else {
-  $(`fail2`);
-  $(undefined);
-}
+$(`fail2`);
+$(undefined);
 `````
 
 ## PST Output
@@ -114,25 +108,18 @@ if ($implicitThrow) {
 With rename=true
 
 `````js filename=intro
-let a = false;
-let b = undefined;
 try {
   $( 1 );
   fail;
   $( "fail" );
 }
-catch (c) {
-  a = true;
-  b = c;
+catch (a) {
+  $( 3 );
+  throw a;
 }
 $( 3 );
-if (a) {
-  throw b;
-}
-else {
-  $( "fail2" );
-  $( undefined );
-}
+$( "fail2" );
+$( undefined );
 `````
 
 ## Globals

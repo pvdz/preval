@@ -40,15 +40,15 @@ $finally___23__: /*24*/ {
     $finalArg___39__ = `abc`;
     break $finally___41__;
   } catch ($finalImplicit___43__) /*44*/ {
-    $implicitThrow___48__ = true;
-    $finalCatchArg___52__ = $finalImplicit___51__;
+    x___48__ = 3;
+    throw $finalImplicit___50__;
   }
 }
-x___56__ = 3;
-if ($implicitThrow___58__) {
-  /*59*/ throw $finalCatchArg___61__;
-} /*62*/ else {
-  throw $finalArg___64__;
+x___54__ = 3;
+if ($implicitThrow___56__) {
+  /*57*/ throw $finalCatchArg___59__;
+} /*60*/ else {
+  throw $finalArg___62__;
 }
 `````
 
@@ -56,25 +56,24 @@ Ref tracking result:
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | not read    | none           | 30,56
-  - w @30      | ########## | not read    | 4              | 56
-  - w @56      | ########## | not read    | 4,30           | none
+  - w @4       | ########## | not read    | none           | 30,48,54
+  - w @30      | ########## | not read    | 4              | 48,54
+  - w @48      | ########## | not read    | 4,30           | none
+  - w @54      | ########## | not read    | 4,30           | none
 
 $implicitThrow:
-  - w @8           | ########## | 58          | none           | 48
-  - w @48          | ########## | 58          | 8              | none
-  - r @58          | 8,48
+  - w @8           | ########## | 56          | none           | none
+  - r @56          | 8
 
 $finalStep:
   - w @12          | ########## | not read    | none           | 34
   - w @34          | ########## | not read    | 12             | none
 
 $finalCatchArg:
-  - w @16          | ########## | 61          | none           | 52
-  - w @52          | ########## | 61          | 16             | none
-  - r @61          | 16,52
+  - w @16          | ########## | 59          | none           | none
+  - r @59          | 16
 
 $finalArg:
-  - w @20          | ########## | 64          | none           | 39
-  - w @39          | ########## | 64          | 20             | none
-  - r @64          | 20,39
+  - w @20          | ########## | 62          | none           | 39
+  - w @39          | ########## | 62          | 20             | none
+  - r @62          | 20,39

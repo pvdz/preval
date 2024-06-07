@@ -32,8 +32,8 @@ $(1);
     try {
       $(2);
     } catch ($finalImplicit) {
-      $implicitThrow = true;
-      $finalCatchArg = $finalImplicit;
+      $(3);
+      throw $finalImplicit;
     }
   }
   {
@@ -56,8 +56,8 @@ let $finalCatchArg = undefined;
 try {
   $(2);
 } catch ($finalImplicit) {
-  $implicitThrow = true;
-  $finalCatchArg = $finalImplicit;
+  $(3);
+  throw $finalImplicit;
 }
 $(3);
 if ($implicitThrow) {
@@ -72,20 +72,14 @@ if ($implicitThrow) {
 
 `````js filename=intro
 $(1);
-let $implicitThrow = false;
-let $finalCatchArg = undefined;
 try {
   $(2);
 } catch ($finalImplicit) {
-  $implicitThrow = true;
-  $finalCatchArg = $finalImplicit;
+  $(3);
+  throw $finalImplicit;
 }
 $(3);
-if ($implicitThrow) {
-  throw $finalCatchArg;
-} else {
-  $(3);
-}
+$(3);
 `````
 
 ## PST Output
@@ -94,22 +88,15 @@ With rename=true
 
 `````js filename=intro
 $( 1 );
-let a = false;
-let b = undefined;
 try {
   $( 2 );
 }
-catch (c) {
-  a = true;
-  b = c;
+catch (a) {
+  $( 3 );
+  throw a;
 }
 $( 3 );
-if (a) {
-  throw b;
-}
-else {
-  $( 3 );
-}
+$( 3 );
 `````
 
 ## Globals

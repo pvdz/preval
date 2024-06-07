@@ -32,8 +32,8 @@ let x = 0;
     try {
       fail_early;
     } catch ($finalImplicit) {
-      $implicitThrow = true;
-      $finalCatchArg = $finalImplicit;
+      x = 1;
+      throw $finalImplicit;
     }
   }
   {
@@ -56,8 +56,8 @@ let $finalCatchArg = undefined;
 try {
   fail_early;
 } catch ($finalImplicit) {
-  $implicitThrow = true;
-  $finalCatchArg = $finalImplicit;
+  x = 1;
+  throw $finalImplicit;
 }
 x = 1;
 if ($implicitThrow) {
@@ -71,19 +71,12 @@ if ($implicitThrow) {
 
 
 `````js filename=intro
-let $implicitThrow = false;
-let $finalCatchArg = undefined;
 try {
   fail_early;
 } catch ($finalImplicit) {
-  $implicitThrow = true;
-  $finalCatchArg = $finalImplicit;
+  throw $finalImplicit;
 }
-if ($implicitThrow) {
-  throw $finalCatchArg;
-} else {
-  considerMutated(1);
-}
+considerMutated(1);
 `````
 
 ## PST Output
@@ -91,21 +84,13 @@ if ($implicitThrow) {
 With rename=true
 
 `````js filename=intro
-let a = false;
-let b = undefined;
 try {
   fail_early;
 }
-catch (c) {
-  a = true;
-  b = c;
+catch (a) {
+  throw a;
 }
-if (a) {
-  throw b;
-}
-else {
-  considerMutated( 1 );
-}
+considerMutated( 1 );
 `````
 
 ## Globals

@@ -35,8 +35,8 @@ let x = 1;
   $finally: {
     try {
     } catch ($finalImplicit) {
-      $implicitThrow = true;
-      $finalCatchArg = $finalImplicit;
+      $(x);
+      throw $finalImplicit;
     }
   }
   {

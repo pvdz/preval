@@ -42,8 +42,8 @@ foo: {
           break $finally;
         }
       } catch ($finalImplicit) {
-        $implicitThrow = true;
-        $finalCatchArg = $finalImplicit;
+        x = 1;
+        throw $finalImplicit;
       }
     }
     {
@@ -70,8 +70,8 @@ foo: {
       $finalStep = true;
       break $finally;
     } catch ($finalImplicit) {
-      $implicitThrow = true;
-      $finalCatchArg = $finalImplicit;
+      x = 1;
+      throw $finalImplicit;
     }
   }
   x = 1;

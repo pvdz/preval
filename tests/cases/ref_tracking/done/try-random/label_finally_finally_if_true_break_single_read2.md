@@ -56,51 +56,50 @@ back___7__: /*8*/ {
         x___57__ = 6;
       }
     } catch ($finalImplicit___59__) /*60*/ {
-      $implicitThrow___64__ = true;
-      $finalCatchArg___68__ = $finalImplicit___67__;
+      x___64__ = 7;
+      throw $finalImplicit___66__;
     }
   }
-  x___72__ = 7;
-  if ($implicitThrow___74__) {
-    /*75*/ throw $finalCatchArg___77__;
-  } /*78*/ else {
-    if ($finalStep___80__) {
-      /*81*/ break back___83__;
-    } /*84*/ else {
-      x___88__ = 8;
+  x___70__ = 7;
+  if ($implicitThrow___72__) {
+    /*73*/ throw $finalCatchArg___75__;
+  } /*76*/ else {
+    if ($finalStep___78__) {
+      /*79*/ break back___81__;
+    } /*82*/ else {
+      x___86__ = 8;
     }
   }
 }
-$(x___92__);
+$(x___90__);
 `````
 
 Ref tracking result:
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 92          | none           | 12
-  - w @12      | ########## | not read    | 4              | 33,72
-  - w @33      | ########## | not read    | 12             | 46,57,72
-  - w @46      | ########## | not read    | 33             | 72
-  - w @57      | ########## | not read    | 33             | 72
-  - w @72      | ########## | 92          | 12,33,46,57    | 88
-  - w @88      | ########## | 92          | 72             | none
-  - r @92      | 4,72,88
+  - w @4       | ########## | 90          | none           | 12
+  - w @12      | ########## | not read    | 4              | 33,64
+  - w @33      | ########## | not read    | 12             | 46,57,64
+  - w @46      | ########## | not read    | 33             | 64,70
+  - w @57      | ########## | not read    | 33             | 64,70
+  - w @64      | ########## | not read    | 12,33,46,57    | none
+  - w @70      | ########## | 90          | 46,57          | 86
+  - w @86      | ########## | 90          | 70             | none
+  - r @90      | 4,70,86
 
 $implicitThrow:
-  - w @15          | ########## | 74          | none           | 64
-  - w @64          | ########## | 74          | 15             | none
-  - r @74          | 15,64
+  - w @15          | ########## | 72          | none           | none
+  - r @72          | 15
 
 $finalStep:
-  - w @19          | ########## | 80          | none           | 50
-  - w @50          | ########## | 80          | 19             | none
-  - r @80          | 19,50
+  - w @19          | ########## | 78          | none           | 50
+  - w @50          | ########## | 78          | 19             | none
+  - r @78          | 19,50
 
 $finalCatchArg:
-  - w @23          | ########## | 77          | none           | 68
-  - w @68          | ########## | 77          | 23             | none
-  - r @77          | 23,68
+  - w @23          | ########## | 75          | none           | none
+  - r @75          | 23
 
 tmpIfTest:
   - w @36          | ########## | 41          | none           | none

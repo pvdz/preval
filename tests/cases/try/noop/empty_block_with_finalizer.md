@@ -32,8 +32,8 @@ let f = function () {
     $finally: {
       try {
       } catch ($finalImplicit) {
-        $implicitThrow = true;
-        $finalCatchArg = $finalImplicit;
+        $(`pass`);
+        throw $finalImplicit;
       }
     }
     {

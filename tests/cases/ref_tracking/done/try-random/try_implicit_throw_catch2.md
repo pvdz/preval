@@ -46,36 +46,34 @@ try /*11*/ {
     $();
     x___28__ = 2;
   } catch ($finalImplicit___30__) /*31*/ {
-    $implicitThrow___35__ = true;
-    $finalCatchArg___39__ = $finalImplicit___38__;
+    $();
+    throw $finalImplicit___36__;
   }
   $();
-  if ($implicitThrow___44__) {
-    /*45*/ throw $finalCatchArg___47__;
-  } /*48*/ else {
+  if ($implicitThrow___41__) {
+    /*42*/ throw $finalCatchArg___44__;
+  } /*45*/ else {
   }
-} catch (e___50__) /*51*/ {
-  $(x___55__);
+} catch (e___47__) /*48*/ {
+  $(x___52__);
 }
-$(x___59__);
+$(x___56__);
 `````
 
 Ref tracking result:
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 9,55,59     | none           | 28
+  - w @4       | ########## | 9,52,56     | none           | 28
   - r @9       | 4
-  - w @28      | ########## | 55,59       | 4              | none
-  - r @55      | 4,28
-  - r @59      | 4,28
+  - w @28      | ########## | 52,56       | 4              | none
+  - r @52      | 4,28
+  - r @56      | 4,28
 
 $implicitThrow:
-  - w @14          | ########## | 44          | none           | 35
-  - w @35          | ########## | 44          | 14             | none
-  - r @44          | 14,35
+  - w @14          | ########## | 41          | none           | none
+  - r @41          | 14
 
 $finalCatchArg:
-  - w @18          | ########## | 47          | none           | 39
-  - w @39          | ########## | 47          | 18             | none
-  - r @47          | 18,39
+  - w @18          | ########## | 44          | none           | none
+  - r @44          | 18

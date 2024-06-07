@@ -48,41 +48,42 @@ here___7__: /*8*/ {
       $finalStep___36__ = true;
       break $finally___38__;
     } catch ($finalImplicit___40__) /*41*/ {
-      $implicitThrow___45__ = true;
-      $finalCatchArg___49__ = $finalImplicit___48__;
+      $(x___45__);
+      x___49__ = 3;
+      throw $finalImplicit___51__;
     }
   }
-  $(x___53__);
-  x___57__ = 3;
-  if ($implicitThrow___59__) {
-    /*60*/ throw $finalCatchArg___62__;
-  } /*63*/ else {
-    break here___65__;
+  $(x___55__);
+  x___59__ = 3;
+  if ($implicitThrow___61__) {
+    /*62*/ throw $finalCatchArg___64__;
+  } /*65*/ else {
+    break here___67__;
   }
 }
-$(x___69__);
+$(x___71__);
 `````
 
 Ref tracking result:
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 53,69       | none           | 32,57
-  - w @32      | ########## | 53          | 4              | 57
-  - r @53      | 4,32
-  - w @57      | ########## | 69          | 4,32           | none
-  - r @69      | 4,57
+  - w @4       | ########## | 45,55,71    | none           | 32,49,59
+  - w @32      | ########## | 45,55       | 4              | 49,59
+  - r @45      | 4,32
+  - w @49      | ########## | not read    | 4,32           | none
+  - r @55      | 4,32
+  - w @59      | ########## | 71          | 4,32           | none
+  - r @71      | 4,59
 
 $implicitThrow:
-  - w @11          | ########## | 59          | none           | 45
-  - w @45          | ########## | 59          | 11             | none
-  - r @59          | 11,45
+  - w @11          | ########## | 61          | none           | none
+  - r @61          | 11
 
 $finalStep:
   - w @15          | ########## | not read    | none           | 36
   - w @36          | ########## | not read    | 15             | none
 
 $finalCatchArg:
-  - w @19          | ########## | 62          | none           | 49
-  - w @49          | ########## | 62          | 19             | none
-  - r @62          | 19,49
+  - w @19          | ########## | 64          | none           | none
+  - r @64          | 19

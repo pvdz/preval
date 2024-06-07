@@ -56,44 +56,45 @@ here___7__: /*8*/ {
       $finalStep___45__ = true;
       break $finally___47__;
     } catch ($finalImplicit___49__) /*50*/ {
-      $implicitThrow___54__ = true;
-      $finalCatchArg___58__ = $finalImplicit___57__;
+      $(x___54__);
+      x___58__ = 4;
+      throw $finalImplicit___60__;
     }
   }
-  $(x___62__);
-  x___66__ = 4;
-  if ($implicitThrow___68__) {
-    /*69*/ throw $finalCatchArg___71__;
-  } /*72*/ else {
-    break here___74__;
+  $(x___64__);
+  x___68__ = 4;
+  if ($implicitThrow___70__) {
+    /*71*/ throw $finalCatchArg___73__;
+  } /*74*/ else {
+    break here___76__;
   }
 }
-$(x___78__);
+$(x___80__);
 `````
 
 Ref tracking result:
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 12,78       | none           | 16
+  - w @4       | ########## | 12,80       | none           | 16
   - r @12      | 4
-  - w @16      | ########## | 37,62       | 4              | 41,66
+  - w @16      | ########## | 37,54,64    | 4              | 41,58,68
   - r @37      | 16
-  - w @41      | ########## | 62          | 16             | 66
-  - r @62      | 16,41
-  - w @66      | ########## | 78          | 16,41          | none
-  - r @78      | 4,66
+  - w @41      | ########## | 54,64       | 16             | 58,68
+  - r @54      | 16,41
+  - w @58      | ########## | not read    | 16,41          | none
+  - r @64      | 16,41
+  - w @68      | ########## | 80          | 16,41          | none
+  - r @80      | 4,68
 
 $implicitThrow:
-  - w @19          | ########## | 68          | none           | 54
-  - w @54          | ########## | 68          | 19             | none
-  - r @68          | 19,54
+  - w @19          | ########## | 70          | none           | none
+  - r @70          | 19
 
 $finalStep:
   - w @23          | ########## | not read    | none           | 45
   - w @45          | ########## | not read    | 23             | none
 
 $finalCatchArg:
-  - w @27          | ########## | 71          | none           | 58
-  - w @58          | ########## | 71          | 27             | none
-  - r @71          | 27,58
+  - w @27          | ########## | 73          | none           | none
+  - r @73          | 27

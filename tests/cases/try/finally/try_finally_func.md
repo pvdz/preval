@@ -63,8 +63,8 @@ try {
               }
             }
           } catch ($finalImplicit) {
-            $implicitThrow = true;
-            $finalCatchArg = $finalImplicit;
+            $(x);
+            throw $finalImplicit;
           }
         }
         {
@@ -108,8 +108,8 @@ let f = function () {
       } else {
       }
     } catch ($finalImplicit) {
-      $implicitThrow = true;
-      $finalCatchArg = $finalImplicit;
+      $(x);
+      throw $finalImplicit;
     }
   }
   $(x);
@@ -137,9 +137,7 @@ if ($implicitThrow$1) {
 const f = function () {
   debugger;
   let x = 1;
-  let $implicitThrow = false;
   let $finalStep = false;
-  let $finalCatchArg = undefined;
   let $finalArg = undefined;
   try {
     const tmpIfTest = $();
@@ -150,18 +148,14 @@ const f = function () {
     } else {
     }
   } catch ($finalImplicit) {
-    $implicitThrow = true;
-    $finalCatchArg = $finalImplicit;
+    $(x);
+    throw $finalImplicit;
   }
   $(x);
-  if ($implicitThrow) {
-    throw $finalCatchArg;
+  if ($finalStep) {
+    return $finalArg;
   } else {
-    if ($finalStep) {
-      return $finalArg;
-    } else {
-      return undefined;
-    }
+    return undefined;
   }
 };
 $(f);
@@ -176,32 +170,25 @@ const a = function() {
   debugger;
   let b = 1;
   let c = false;
-  let d = false;
-  let e = undefined;
-  let f = undefined;
+  let d = undefined;
   try {
-    const g = $();
-    if (g) {
+    const e = $();
+    if (e) {
       b = 2;
-      d = true;
-      f = 100;
+      c = true;
+      d = 100;
     }
   }
-catch (h) {
-    c = true;
-    e = h;
+catch (f) {
+    $( b );
+    throw f;
   }
   $( b );
   if (c) {
-    throw e;
+    return d;
   }
   else {
-    if (d) {
-      return f;
-    }
-    else {
-      return undefined;
-    }
+    return undefined;
   }
 };
 $( a );

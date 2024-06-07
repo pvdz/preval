@@ -1,8 +1,8 @@
 # Preval test case
 
-# try_finally_throw.md
+# try_finally_throw2.md
 
-> Flow > Try catch throw early > Try finally throw
+> Flow > Try block throw early > Try finally throw2
 >
 > The throw may leave the binding mutated anyways
 
@@ -12,9 +12,9 @@
 
 `````js filename=intro
 function f() {
-  let x = 'fail';
+  let x = 'pass';
   try {
-    x = 'pass';
+    x = 'fail';
     throw 'yes';
   } finally {
     $('still throws');
@@ -31,7 +31,7 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  let x = `fail`;
+  let x = `pass`;
   {
     let $implicitThrow = false;
     let $finalStep = false;
@@ -39,7 +39,7 @@ let f = function () {
     let $finalArg = undefined;
     $finally: {
       try {
-        x = `pass`;
+        x = `fail`;
         {
           $finalStep = true;
           $finalArg = `yes`;
@@ -69,14 +69,14 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  let x = `fail`;
+  let x = `pass`;
   let $implicitThrow = false;
   let $finalStep = false;
   let $finalCatchArg = undefined;
   let $finalArg = undefined;
   $finally: {
     try {
-      x = `pass`;
+      x = `fail`;
       $finalStep = true;
       $finalArg = `yes`;
       break $finally;
@@ -102,7 +102,7 @@ f();
 
 `````js filename=intro
 $(`still throws`);
-$(`pass`);
+$(`fail`);
 throw `yes`;
 `````
 
@@ -112,7 +112,7 @@ With rename=true
 
 `````js filename=intro
 $( "still throws" );
-$( "pass" );
+$( "fail" );
 throw "yes";
 `````
 
@@ -124,7 +124,7 @@ None
 
 Should call `$` with:
  - 1: 'still throws'
- - 2: 'pass'
+ - 2: 'fail'
  - eval returned: ('<crash[ yes ]>')
 
 Pre normalization calls: Same

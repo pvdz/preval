@@ -59,51 +59,50 @@ A___7__: /*8*/ {
     try /*57*/ {
       $(x___61__);
     } catch ($finalImplicit___63__) /*64*/ {
-      $implicitThrow___68__ = true;
-      $finalCatchArg___72__ = $finalImplicit___71__;
+      $(x___68__);
+      throw $finalImplicit___70__;
     }
-    $(x___76__);
-    if ($implicitThrow___78__) {
-      /*79*/ throw $finalCatchArg___81__;
-    } /*82*/ else {
-      if ($implicitThrow$1___84__) {
-        /*85*/ throw $finalCatchArg$1___87__;
-      } /*88*/ else {
+    $(x___74__);
+    if ($implicitThrow___76__) {
+      /*77*/ throw $finalCatchArg___79__;
+    } /*80*/ else {
+      if ($implicitThrow$1___82__) {
+        /*83*/ throw $finalCatchArg$1___85__;
+      } /*86*/ else {
       }
     }
   }
 }
-$(x___92__);
+$(x___90__);
 `````
 
 Ref tracking result:
 
                      | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 22,37,61,76,92 | none           | 44
+  - w @4       | ########## | 22,37,61,68,74,90 | none           | 44
   - r @22      | 4
   - r @37      | 4
-  - w @44      | ########## | 92          | 4              | none
+  - w @44      | ########## | 90          | 4              | none
   - r @61      | 4
-  - r @76      | 4
-  - r @92      | 4,44
+  - r @68      | 4
+  - r @74      | 4
+  - r @90      | 4,44
 
 $implicitThrow$1:
-  - w @11            | ########## | 84          | none           | 29
-  - w @29            | ########## | 84          | 11             | none
-  - r @84            | 11,29
+  - w @11            | ########## | 82          | none           | 29
+  - w @29            | ########## | 82          | 11             | none
+  - r @82            | 11,29
 
 $finalCatchArg$1:
-  - w @15            | ########## | 87          | none           | 33
-  - w @33            | ########## | 87          | 15             | none
-  - r @87            | 15,33
+  - w @15            | ########## | 85          | none           | 33
+  - w @33            | ########## | 85          | 15             | none
+  - r @85            | 15,33
 
 $implicitThrow:
-  - w @50            | ########## | 78          | none           | 68
-  - w @68            | ########## | 78          | 50             | none
-  - r @78            | 50,68
+  - w @50            | ########## | 76          | none           | none
+  - r @76            | 50
 
 $finalCatchArg:
-  - w @54            | ########## | 81          | none           | 72
-  - w @72            | ########## | 81          | 54             | none
-  - r @81            | 54,72
+  - w @54            | ########## | 79          | none           | none
+  - r @79            | 54

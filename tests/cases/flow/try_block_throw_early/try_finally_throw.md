@@ -48,8 +48,9 @@ let f = function () {
           break $finally;
         }
       } catch ($finalImplicit) {
-        $implicitThrow = true;
-        $finalCatchArg = $finalImplicit;
+        $(`still throws`);
+        $(x);
+        throw $finalImplicit;
       }
     }
     {
@@ -83,8 +84,9 @@ let f = function () {
       $finalArg = `yes`;
       break $finally;
     } catch ($finalImplicit) {
-      $implicitThrow = true;
-      $finalCatchArg = $finalImplicit;
+      $(`still throws`);
+      $(x);
+      throw $finalImplicit;
     }
   }
   $(`still throws`);
@@ -103,24 +105,17 @@ f();
 
 `````js filename=intro
 let x = `pass`;
-let $implicitThrow = false;
-let $finalCatchArg = undefined;
-let $finalArg = undefined;
 try {
   fail_early;
   x = `fail`;
-  $finalArg = `yes`;
 } catch ($finalImplicit) {
-  $implicitThrow = true;
-  $finalCatchArg = $finalImplicit;
+  $(`still throws`);
+  $(x);
+  throw $finalImplicit;
 }
 $(`still throws`);
 $(x);
-if ($implicitThrow) {
-  throw $finalCatchArg;
-} else {
-  throw $finalArg;
-}
+throw `yes`;
 `````
 
 ## PST Output
@@ -129,26 +124,18 @@ With rename=true
 
 `````js filename=intro
 let a = "pass";
-let b = false;
-let c = undefined;
-let d = undefined;
 try {
   fail_early;
   a = "fail";
-  d = "yes";
 }
-catch (e) {
-  b = true;
-  c = e;
+catch (b) {
+  $( "still throws" );
+  $( a );
+  throw b;
 }
 $( "still throws" );
 $( a );
-if (b) {
-  throw c;
-}
-else {
-  throw d;
-}
+throw "yes";
 `````
 
 ## Globals

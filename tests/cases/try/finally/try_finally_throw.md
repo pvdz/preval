@@ -35,8 +35,8 @@ try {
         break $finally;
       }
     } catch ($finalImplicit) {
-      $implicitThrow = true;
-      $finalCatchArg = $finalImplicit;
+      $(2);
+      throw $finalImplicit;
     }
   }
   {
@@ -61,8 +61,8 @@ $finally: {
     $finalArg = `exit`;
     break $finally;
   } catch ($finalImplicit) {
-    $implicitThrow = true;
-    $finalCatchArg = $finalImplicit;
+    $(2);
+    throw $finalImplicit;
   }
 }
 $(2);

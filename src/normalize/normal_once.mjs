@@ -36,6 +36,7 @@ import {
   getIdentUsageKind,
 } from '../bindings.mjs';
 import { addLabelReference, createFreshLabelStatement, updateGlobalLabelStatementRef } from '../labels.mjs';
+import { cloneSortOfSimple, isSortOfSimpleNode } from '../ast.mjs';
 
 export function phaseNormalOnce(fdata) {
   const ast = fdata.tenkoOutput.ast;
@@ -1035,12 +1036,64 @@ export function phaseNormalOnce(fdata) {
 
           const implicitName = createFreshVar('$finalImplicit', fdata);
 
-          const catchNode = AST.tryCatchStatement(node.block, implicitName, AST.blockStatement(
-            // $action = ++i
-            // $use = $implicit
-            AST.expressionStatement(AST.assignmentExpression(AST.identifier(keywords[0].actionName), AST.primitive(true))),
-            AST.expressionStatement(AST.assignmentExpression(AST.identifier(keywords[0].argName), AST.identifier(implicitName))),
-          ));
+          // If the finally had one or two (or three?) simple statements with no children then instead it should
+          // copy these with a forced throw in the catch, because it's simpler than the if/else boilerplate.
+
+          const fbody = node.finalizer.body;
+
+          let newCatchBody;
+          let skipCatchBoiler = false;
+
+          vlog('Checking if finally is small and simple...');
+          if (fbody.length === 1 && fbody[0].type === 'ExpressionStatement' && isSortOfSimpleNode(fbody[0].expression)) {
+            vlog('- Finally has one simplish expression statement');
+            newCatchBody = AST.blockStatement(
+              AST.expressionStatement(cloneSortOfSimple(fbody[0].expression)),
+              AST.throwStatement(AST.identifier(implicitName)),
+            );
+            skipCatchBoiler = true;
+          }
+          else if (
+            fbody.length === 2 &&
+            fbody[0].type === 'ExpressionStatement' && isSortOfSimpleNode(fbody[0].expression) &&
+            fbody[1].type === 'ExpressionStatement' && isSortOfSimpleNode(fbody[1].expression)
+          ) {
+            vlog('- Finally has two simplish expression statements');
+            newCatchBody = AST.blockStatement(
+              AST.expressionStatement(cloneSortOfSimple(fbody[0].expression)),
+              AST.expressionStatement(cloneSortOfSimple(fbody[1].expression)),
+              AST.throwStatement(AST.identifier(implicitName)),
+            );
+            skipCatchBoiler = true;
+          }
+          else if (
+            fbody.length === 2 &&
+            fbody[0].type === 'ExpressionStatement' && isSortOfSimpleNode(fbody[0].expression) &&
+            fbody[1].type === 'ExpressionStatement' && isSortOfSimpleNode(fbody[1].expression) &&
+            fbody[2].type === 'ExpressionStatement' && isSortOfSimpleNode(fbody[2].expression)
+          ) {
+            vlog('- Finally has two simplish expression statements');
+            newCatchBody = AST.blockStatement(
+              AST.expressionStatement(cloneSortOfSimple(fbody[0].expression)),
+              AST.expressionStatement(cloneSortOfSimple(fbody[1].expression)),
+              AST.expressionStatement(cloneSortOfSimple(fbody[2].expression)),
+              AST.throwStatement(AST.identifier(implicitName)),
+            );
+            skipCatchBoiler = true;
+          }
+          if (skipCatchBoiler) {
+            keywords.unshift(); // Remove the first element, which is the implicit throw
+          } else {
+            newCatchBody = AST.blockStatement(
+              // $action = ++i
+              // $use = $implicit
+              AST.expressionStatement(AST.assignmentExpression(AST.identifier(keywords[0].actionName), AST.primitive(true))),
+              AST.expressionStatement(AST.assignmentExpression(AST.identifier(keywords[0].argName), AST.identifier(implicitName))),
+            );
+          }
+
+
+          const catchNode = AST.tryCatchStatement(node.block, implicitName, newCatchBody);
           const labelBody = AST.blockStatement(
             catchNode,
           );

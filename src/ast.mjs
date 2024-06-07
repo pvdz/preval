@@ -53,6 +53,35 @@ export function cloneSimpleOrTemplate(node) {
     : cloneSimple(node);
 }
 
+export function cloneSortOfSimple(node) {
+  // This function is used in tandem with isSortOfSimpleNode so make sure to update that to match
+
+  // Used for
+  // - cloning simple expressions like assignments and calls with only simple components
+
+  if (node.type === 'CallExpression') {
+    return callExpression(
+      cloneSimple(node.callee),
+      node.arguments.map(node => cloneSimple(node)),
+      node.optional
+    );
+  }
+
+  if (node.type === 'AssignmentExpression') {
+    return assignmentExpression(
+      cloneSimple(node.left), cloneSimple(node.right), node.op
+    );
+  }
+
+  if (node.type === 'BinaryExpression') {
+    return binaryExpression(
+      node.op, cloneSimple(node.left), cloneSimple(node.right),
+    );
+  }
+
+  return cloneSimpleOrTemplate(node);
+}
+
 export function arrayExpression(...elements) {
   // An array is not a valid element for the AST node so if it is an array it's
   // safe to assume that we want to use the first arg as the elements array verbatim
@@ -1152,6 +1181,19 @@ export function isSimpleNodeOrSimpleMember(node) {
   if (node.type !== 'MemberExpression') return false;
   // Simple member expression must have a simple object and, if computed, a simple property and does not nest.
   return !(isComplexNode(node.object) || (node.computed && isComplexNode(node.property)));
+}
+
+export function isSortOfSimpleNode(node) {
+  // Basically, say yes to anything that's simple and that we wouldn't mind cloning
+  // This function is used in tandem with cloneSortOfSimple so make sure to update that to match
+
+  if (isSimpleNodeOrSimpleMember(node)) return true;
+
+  return (
+    (node.type === 'AssignmentExpression' && isSimpleNodeOrSimpleMember(node.left) && isSimpleNodeOrSimpleMember(node.right)) ||
+    (node.type === 'BinaryExpression' && isSimpleNodeOrSimpleMember(node.left) && isSimpleNodeOrSimpleMember(node.right)) ||
+    (node.type === 'CallExpression' && isSimpleNodeOrSimpleMember(node.callee) && node.arguments.every(node => isSimpleNodeOrSimpleMember(node)))
+  );
 }
 
 export function isComplexNode(node, incNested = true, preNormalization = false) {

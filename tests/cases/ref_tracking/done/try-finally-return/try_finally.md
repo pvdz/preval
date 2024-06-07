@@ -48,55 +48,54 @@ let f___4__ = function () {
       } /*55*/ else {
       }
     } catch ($finalImplicit___57__) /*58*/ {
-      $implicitThrow___62__ = true;
-      $finalCatchArg___66__ = $finalImplicit___65__;
+      $(x___62__);
+      throw $finalImplicit___64__;
     }
   }
-  $(x___70__);
-  if ($implicitThrow___72__) {
-    /*73*/ throw $finalCatchArg___75__;
-  } /*76*/ else {
-    if ($finalStep___78__) {
-      /*79*/ return $finalArg___82__;
-    } /*83*/ else {
-      return undefined___85__;
+  $(x___68__);
+  if ($implicitThrow___70__) {
+    /*71*/ throw $finalCatchArg___73__;
+  } /*74*/ else {
+    if ($finalStep___76__) {
+      /*77*/ return $finalArg___80__;
+    } /*81*/ else {
+      return undefined___83__;
     }
   }
 };
-$(f___89__);
+$(f___87__);
 `````
 
 Ref tracking result:
 
                    | reads      | read by     | overWrites     | overwritten by
 f:
-  - w @4       | ########## | 89          | none           | none
-  - r @89      | 4
+  - w @4       | ########## | 87          | none           | none
+  - r @87      | 4
 
 x:
-  - w @10      | ########## | 70          | none           | 44
-  - w @44      | ########## | 70          | 10             | none
-  - r @70      | 10,44
+  - w @10      | ########## | 62,68       | none           | 44
+  - w @44      | ########## | 62,68       | 10             | none
+  - r @62      | 10,44
+  - r @68      | 10,44
 
 $implicitThrow:
-  - w @14          | ########## | 72          | none           | 62
-  - w @62          | ########## | 72          | 14             | none
-  - r @72          | 14,62
+  - w @14          | ########## | 70          | none           | none
+  - r @70          | 14
 
 $finalStep:
-  - w @18          | ########## | 78          | none           | 48
-  - w @48          | ########## | 78          | 18             | none
-  - r @78          | 18,48
+  - w @18          | ########## | 76          | none           | 48
+  - w @48          | ########## | 76          | 18             | none
+  - r @76          | 18,48
 
 $finalCatchArg:
-  - w @22          | ########## | 75          | none           | 66
-  - w @66          | ########## | 75          | 22             | none
-  - r @75          | 22,66
+  - w @22          | ########## | 73          | none           | none
+  - r @73          | 22
 
 $finalArg:
-  - w @26          | ########## | 82          | none           | 52
-  - w @52          | ########## | 82          | 26             | none
-  - r @82          | 26,52
+  - w @26          | ########## | 80          | none           | 52
+  - w @52          | ########## | 80          | 26             | none
+  - r @80          | 26,52
 
 tmpIfTest:
   - w @35          | ########## | 39          | none           | none

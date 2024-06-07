@@ -276,8 +276,8 @@
     $finally: {
       try {
       } catch ($finalImplicit) {
-        $implicitThrow = true;
-        $finalCatchArg = $finalImplicit;
+        x$3 = 1;
+        throw $finalImplicit;
       }
     }
     {
@@ -359,8 +359,8 @@
     $finally$7: {
       try {
       } catch ($finalImplicit$7) {
-        $implicitThrow$7 = true;
-        $finalCatchArg$7 = $finalImplicit$7;
+        x$11 = 1;
+        throw $finalImplicit$7;
       }
     }
     {
@@ -414,8 +414,8 @@
             break $finally$11;
           }
         } catch ($finalImplicit$11) {
-          $implicitThrow$11 = true;
-          $finalCatchArg$11 = $finalImplicit$11;
+          x$15 = 1;
+          throw $finalImplicit$11;
         }
       }
       {
@@ -441,8 +441,8 @@
             break $finally$13;
           }
         } catch ($finalImplicit$13) {
-          $implicitThrow$13 = true;
-          $finalCatchArg$13 = $finalImplicit$13;
+          x$17 = 1;
+          throw $finalImplicit$13;
         }
       }
       {
@@ -468,8 +468,8 @@
             break $finally$15;
           }
         } catch ($finalImplicit$15) {
-          $implicitThrow$15 = true;
-          $finalCatchArg$15 = $finalImplicit$15;
+          x$19 = 1;
+          throw $finalImplicit$15;
         }
       }
       {
@@ -773,8 +773,8 @@ if ($implicitThrow) {
                 $finalStep$1 = true;
                 break $finally$11;
               } catch ($finalImplicit$11) {
-                $implicitThrow$11 = true;
-                $finalCatchArg$11 = $finalImplicit$11;
+                x$15 = 1;
+                throw $finalImplicit$11;
               }
             }
             x$15 = 1;
@@ -795,8 +795,8 @@ if ($implicitThrow) {
                 $finalStep$3 = true;
                 break $finally$13;
               } catch ($finalImplicit$13) {
-                $implicitThrow$13 = true;
-                $finalCatchArg$13 = $finalImplicit$13;
+                x$17 = 1;
+                throw $finalImplicit$13;
               }
             }
             x$17 = 1;
@@ -817,8 +817,8 @@ if ($implicitThrow) {
                 $finalStep$5 = true;
                 break $finally$15;
               } catch ($finalImplicit$15) {
-                $implicitThrow$15 = true;
-                $finalCatchArg$15 = $finalImplicit$15;
+                x$19 = 1;
+                throw $finalImplicit$15;
               }
             }
             x$19 = 1;

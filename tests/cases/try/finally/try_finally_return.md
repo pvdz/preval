@@ -40,8 +40,8 @@ let f = function () {
           break $finally;
         }
       } catch ($finalImplicit) {
-        $implicitThrow = true;
-        $finalCatchArg = $finalImplicit;
+        $(2);
+        throw $finalImplicit;
       }
     }
     {
@@ -70,8 +70,8 @@ let f = function () {
       $finalArg = `exit`;
       break $finally;
     } catch ($finalImplicit) {
-      $implicitThrow = true;
-      $finalCatchArg = $finalImplicit;
+      $(2);
+      throw $finalImplicit;
     }
   }
   $(2);

@@ -34,8 +34,8 @@ let x = 0;
     try {
       x = 1;
     } catch ($finalImplicit) {
-      $implicitThrow = true;
-      $finalCatchArg = $finalImplicit;
+      throw_early;
+      throw $finalImplicit;
     }
   }
   {
@@ -58,8 +58,8 @@ let $finalCatchArg = undefined;
 try {
   x = 1;
 } catch ($finalImplicit) {
-  $implicitThrow = true;
-  $finalCatchArg = $finalImplicit;
+  throw_early;
+  throw $finalImplicit;
 }
 throw_early;
 if ($implicitThrow) {

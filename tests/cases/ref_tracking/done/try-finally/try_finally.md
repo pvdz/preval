@@ -37,15 +37,16 @@ try /*15*/ {
   $(a___19__);
   a___23__ = 2;
 } catch ($finalImplicit___25__) /*26*/ {
-  $implicitThrow___30__ = true;
-  $finalCatchArg___34__ = $finalImplicit___33__;
+  $(a___30__);
+  a___34__ = 3;
+  throw $finalImplicit___36__;
 }
-$(a___38__);
-a___42__ = 3;
-if ($implicitThrow___44__) {
-  /*45*/ throw $finalCatchArg___47__;
-} /*48*/ else {
-  $(a___52__);
+$(a___40__);
+a___44__ = 3;
+if ($implicitThrow___46__) {
+  /*47*/ throw $finalCatchArg___49__;
+} /*50*/ else {
+  $(a___54__);
 }
 `````
 
@@ -53,19 +54,19 @@ Ref tracking result:
 
                    | reads      | read by     | overWrites     | overwritten by
 a:
-  - w @4       | ########## | 19,38       | none           | 23,42
+  - w @4       | ########## | 19,30       | none           | 23,34
   - r @19      | 4
-  - w @23      | ########## | 38          | 4              | 42
-  - r @38      | 4,23
-  - w @42      | ########## | 52          | 4,23           | none
-  - r @52      | 42
+  - w @23      | ########## | 30,40       | 4              | 34,44
+  - r @30      | 4,23
+  - w @34      | ########## | not read    | 4,23           | none
+  - r @40      | 23
+  - w @44      | ########## | 54          | 23             | none
+  - r @54      | 44
 
 $implicitThrow:
-  - w @8           | ########## | 44          | none           | 30
-  - w @30          | ########## | 44          | 8              | none
-  - r @44          | 8,30
+  - w @8           | ########## | 46          | none           | none
+  - r @46          | 8
 
 $finalCatchArg:
-  - w @12          | ########## | 47          | none           | 34
-  - w @34          | ########## | 47          | 12             | none
-  - r @47          | 12,34
+  - w @12          | ########## | 49          | none           | none
+  - r @49          | 12

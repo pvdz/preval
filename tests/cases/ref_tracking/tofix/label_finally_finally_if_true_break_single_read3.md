@@ -46,40 +46,39 @@ back___7__: /*8*/ {
       $finalStep___37__ = true;
       break $finally___39__;
     } catch ($finalImplicit___41__) /*42*/ {
-      $implicitThrow___46__ = true;
-      $finalCatchArg___50__ = $finalImplicit___49__;
+      x___46__ = 5;
+      throw $finalImplicit___48__;
     }
   }
-  x___54__ = 5;
-  if ($implicitThrow___56__) {
-    /*57*/ throw $finalCatchArg___59__;
-  } /*60*/ else {
-    break back___62__;
+  x___52__ = 5;
+  if ($implicitThrow___54__) {
+    /*55*/ throw $finalCatchArg___57__;
+  } /*58*/ else {
+    break back___60__;
   }
 }
-$(x___66__);
+$(x___64__);
 `````
 
 Ref tracking result:
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 66          | none           | 12
-  - w @12      | ########## | not read    | 4              | 33,54
-  - w @33      | ########## | not read    | 12             | 54
-  - w @54      | ########## | 66          | 12,33          | none
-  - r @66      | 4,54
+  - w @4       | ########## | 64          | none           | 12
+  - w @12      | ########## | not read    | 4              | 33,46,52
+  - w @33      | ########## | not read    | 12             | 46,52
+  - w @46      | ########## | not read    | 12,33          | none
+  - w @52      | ########## | 64          | 12,33          | none
+  - r @64      | 4,52
 
 $implicitThrow:
-  - w @15          | ########## | 56          | none           | 46
-  - w @46          | ########## | 56          | 15             | none
-  - r @56          | 15,46
+  - w @15          | ########## | 54          | none           | none
+  - r @54          | 15
 
 $finalStep:
   - w @19          | ########## | not read    | none           | 37
   - w @37          | ########## | not read    | 19             | none
 
 $finalCatchArg:
-  - w @23          | ########## | 59          | none           | 50
-  - w @50          | ########## | 59          | 23             | none
-  - r @59          | 23,50
+  - w @23          | ########## | 57          | none           | none
+  - r @57          | 23

@@ -47,8 +47,8 @@ try {
         }
       }
     } catch ($finalImplicit) {
-      $implicitThrow = true;
-      $finalCatchArg = $finalImplicit;
+      $(5);
+      throw $finalImplicit;
     }
   }
   {
@@ -80,8 +80,8 @@ try {
     }
   }
 } catch ($finalImplicit) {
-  $implicitThrow = true;
-  $finalCatchArg = $finalImplicit;
+  $(5);
+  throw $finalImplicit;
 }
 $(5);
 if ($implicitThrow) {
@@ -94,8 +94,6 @@ if ($implicitThrow) {
 
 
 `````js filename=intro
-let $implicitThrow = false;
-let $finalCatchArg = undefined;
 try {
   $(1);
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -107,14 +105,10 @@ try {
     }
   }
 } catch ($finalImplicit) {
-  $implicitThrow = true;
-  $finalCatchArg = $finalImplicit;
+  $(5);
+  throw $finalImplicit;
 }
 $(5);
-if ($implicitThrow) {
-  throw $finalCatchArg;
-} else {
-}
 `````
 
 ## PST Output
@@ -122,14 +116,12 @@ if ($implicitThrow) {
 With rename=true
 
 `````js filename=intro
-let a = false;
-let b = undefined;
 try {
   $( 1 );
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $( 2 );
-    const c = $( 3 );
-    if (c) {
+    const a = $( 3 );
+    if (a) {
 
     }
     else {
@@ -137,14 +129,11 @@ try {
     }
   }
 }
-catch (d) {
-  a = true;
-  b = d;
-}
-$( 5 );
-if (a) {
+catch (b) {
+  $( 5 );
   throw b;
 }
+$( 5 );
 `````
 
 ## Globals

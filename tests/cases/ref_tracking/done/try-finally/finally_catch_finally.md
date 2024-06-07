@@ -39,42 +39,51 @@ $(x);         // x=4 5
 let x___4__ = 1;
 let $implicitThrow$1___8__ = false;
 let $finalStep___12__ = false;
-let $finalCatchArg$1___16__ = undefined___17__;
-let $finalArg___20__ = undefined___21__;
-$finally$1___23__: /*24*/ {
-  try /*26*/ {
-    $(x___30__);
-    x___34__ = 2;
-    let $implicitThrow___37__ = false;
-    let $finalCatchArg___41__ = undefined___42__;
-    try /*44*/ {
-      $(x___48__);
-      x___52__ = 3;
-    } catch ($finalImplicit___54__) /*55*/ {
-      $implicitThrow___59__ = true;
-      $finalCatchArg___63__ = $finalImplicit___62__;
+let $finalStep$1___16__ = false;
+let $finalCatchArg$1___20__ = undefined___21__;
+let $finalArg___24__ = undefined___25__;
+let $finalArg$1___28__ = undefined___29__;
+$finally$1___31__: /*32*/ {
+  try /*34*/ {
+    $(x___38__);
+    x___42__ = 2;
+    let $implicitThrow___45__ = false;
+    let $finalCatchArg___49__ = undefined___50__;
+    try /*52*/ {
+      $(x___56__);
+      x___60__ = 3;
+    } catch ($finalImplicit___62__) /*63*/ {
+      $(x___67__);
+      x___71__ = 4;
+      $finalStep___75__ = true;
+      $finalArg___79__ = $finalImplicit___78__;
+      break $finally$1___81__;
     }
-    $(x___67__);
-    x___71__ = 4;
-    if ($implicitThrow___73__) {
-      /*74*/ $finalStep___78__ = true;
-      $finalArg___82__ = $finalCatchArg___81__;
-      break $finally$1___84__;
-    } /*85*/ else {
+    $(x___85__);
+    x___89__ = 4;
+    if ($implicitThrow___91__) {
+      /*92*/ $finalStep$1___96__ = true;
+      $finalArg$1___100__ = $finalCatchArg___99__;
+      break $finally$1___102__;
+    } /*103*/ else {
     }
-  } catch ($finalImplicit$1___87__) /*88*/ {
-    $implicitThrow$1___92__ = true;
-    $finalCatchArg$1___96__ = $finalImplicit$1___95__;
+  } catch ($finalImplicit$1___105__) /*106*/ {
+    $(x___110__);
+    throw $finalImplicit$1___112__;
   }
 }
-$(x___100__);
-if ($implicitThrow$1___102__) {
-  /*103*/ throw $finalCatchArg$1___105__;
-} /*106*/ else {
-  if ($finalStep___108__) {
-    /*109*/ throw $finalArg___111__;
-  } /*112*/ else {
-    $(x___116__);
+$(x___116__);
+if ($implicitThrow$1___118__) {
+  /*119*/ throw $finalCatchArg$1___121__;
+} /*122*/ else {
+  if ($finalStep___124__) {
+    /*125*/ throw $finalArg___127__;
+  } /*128*/ else {
+    if ($finalStep$1___130__) {
+      /*131*/ throw $finalArg$1___133__;
+    } /*134*/ else {
+      $(x___138__);
+    }
   }
 }
 `````
@@ -83,42 +92,51 @@ Ref tracking result:
 
                      | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 30,100,116  | none           | 34
-  - r @30      | 4
-  - w @34      | ########## | 48,67,100,116 | 4              | 52,71
-  - r @48      | 34
-  - w @52      | ########## | 67,100,116  | 34             | 71
-  - r @67      | 34,52
-  - w @71      | ########## | 100,116     | 34,52          | none
-  - r @100     | 4,34,52,71
-  - r @116     | 4,34,52,71
+  - w @4       | ########## | 38,110,116,138 | none           | 42
+  - r @38      | 4
+  - w @42      | ########## | 56,67,110   | 4              | 60,71
+  - r @56      | 42
+  - w @60      | ########## | 67,85,110   | 42             | 71,89
+  - r @67      | 42,60
+  - w @71      | ########## | 110,116,138 | 42,60          | none
+  - r @85      | 60
+  - w @89      | ########## | 110,116,138 | 60             | none
+  - r @110     | 4,42,60,71,89
+  - r @116     | 4,71,89
+  - r @138     | 4,71,89
 
 $implicitThrow$1:
-  - w @8             | ########## | 102         | none           | 92
-  - w @92            | ########## | 102         | 8              | none
-  - r @102           | 8,92
+  - w @8             | ########## | 118         | none           | none
+  - r @118           | 8
 
 $finalStep:
-  - w @12            | ########## | 108         | none           | 78
-  - w @78            | ########## | 108         | 12             | none
-  - r @108           | 12,78
+  - w @12            | ########## | 124         | none           | 75
+  - w @75            | ########## | 124         | 12             | none
+  - r @124           | 12,75
+
+$finalStep$1:
+  - w @16            | ########## | 130         | none           | 96
+  - w @96            | ########## | 130         | 16             | none
+  - r @130           | 16,96
 
 $finalCatchArg$1:
-  - w @16            | ########## | 105         | none           | 96
-  - w @96            | ########## | 105         | 16             | none
-  - r @105           | 16,96
+  - w @20            | ########## | 121         | none           | none
+  - r @121           | 20
 
 $finalArg:
-  - w @20            | ########## | 111         | none           | 82
-  - w @82            | ########## | 111         | 20             | none
-  - r @111           | 20,82
+  - w @24            | ########## | 127         | none           | 79
+  - w @79            | ########## | 127         | 24             | none
+  - r @127           | 24,79
+
+$finalArg$1:
+  - w @28            | ########## | 133         | none           | 100
+  - w @100           | ########## | 133         | 28             | none
+  - r @133           | 28,100
 
 $implicitThrow:
-  - w @37            | ########## | 73          | none           | 59
-  - w @59            | ########## | 73          | 37             | none
-  - r @73            | 37,59
+  - w @45            | ########## | 91          | none           | none
+  - r @91            | 45
 
 $finalCatchArg:
-  - w @41            | ########## | 81          | none           | 63
-  - w @63            | ########## | 81          | 41             | none
-  - r @81            | 41,63
+  - w @49            | ########## | 99          | none           | none
+  - r @99            | 49

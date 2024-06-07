@@ -50,17 +50,17 @@ let $finalCatchArg___45__ = undefined___46__;
 try /*48*/ {
   $(x___52__);
 } catch ($finalImplicit___54__) /*55*/ {
-  $implicitThrow___59__ = true;
-  $finalCatchArg___63__ = $finalImplicit___62__;
+  $(x___59__);
+  throw $finalImplicit___61__;
 }
-$(x___67__);
-if ($implicitThrow___69__) {
-  /*70*/ throw $finalCatchArg___72__;
-} /*73*/ else {
-  if ($implicitThrow$1___75__) {
-    /*76*/ throw $finalCatchArg$1___78__;
-  } /*79*/ else {
-    $(x___83__);
+$(x___65__);
+if ($implicitThrow___67__) {
+  /*68*/ throw $finalCatchArg___70__;
+} /*71*/ else {
+  if ($implicitThrow$1___73__) {
+    /*74*/ throw $finalCatchArg$1___76__;
+  } /*77*/ else {
+    $(x___81__);
   }
 }
 `````
@@ -72,27 +72,26 @@ x:
   - w @4       | ########## | 19,34       | none           | 38
   - r @19      | 4
   - r @34      | 4
-  - w @38      | ########## | 52,67,83    | 4              | none
+  - w @38      | ########## | 52,59,65,81 | 4              | none
   - r @52      | 38
-  - r @67      | 38
-  - r @83      | 38
+  - r @59      | 38
+  - r @65      | 38
+  - r @81      | 38
 
 $implicitThrow$1:
-  - w @8             | ########## | 75          | none           | 26
-  - w @26            | ########## | 75          | 8              | none
-  - r @75            | 8,26
+  - w @8             | ########## | 73          | none           | 26
+  - w @26            | ########## | 73          | 8              | none
+  - r @73            | 8,26
 
 $finalCatchArg$1:
-  - w @12            | ########## | 78          | none           | 30
-  - w @30            | ########## | 78          | 12             | none
-  - r @78            | 12,30
+  - w @12            | ########## | 76          | none           | 30
+  - w @30            | ########## | 76          | 12             | none
+  - r @76            | 12,30
 
 $implicitThrow:
-  - w @41            | ########## | 69          | none           | 59
-  - w @59            | ########## | 69          | 41             | none
-  - r @69            | 41,59
+  - w @41            | ########## | 67          | none           | none
+  - r @67            | 41
 
 $finalCatchArg:
-  - w @45            | ########## | 72          | none           | 63
-  - w @63            | ########## | 72          | 45             | none
-  - r @72            | 45,63
+  - w @45            | ########## | 70          | none           | none
+  - r @70            | 45

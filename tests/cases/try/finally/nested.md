@@ -33,8 +33,10 @@ try {
 {
   let $implicitThrow$3 = false;
   let $finalStep = false;
+  let $finalStep$1 = false;
   let $finalCatchArg$3 = undefined;
   let $finalArg = undefined;
+  let $finalArg$1 = undefined;
   $finally$3: {
     try {
       {
@@ -44,16 +46,20 @@ try {
           try {
             $(1);
           } catch ($finalImplicit) {
-            $implicitThrow = true;
-            $finalCatchArg = $finalImplicit;
+            $(2);
+            {
+              $finalStep = true;
+              $finalArg = $finalImplicit;
+              break $finally$3;
+            }
           }
         }
         {
           $(2);
         }
         if ($implicitThrow) {
-          $finalStep = true;
-          $finalArg = $finalCatchArg;
+          $finalStep$1 = true;
+          $finalArg$1 = $finalCatchArg;
           break $finally$3;
         } else {
         }
@@ -71,8 +77,8 @@ try {
         try {
           $(3);
         } catch ($finalImplicit$1) {
-          $implicitThrow$1 = true;
-          $finalCatchArg$1 = $finalImplicit$1;
+          $(4);
+          throw $finalImplicit$1;
         }
       }
       {
@@ -85,6 +91,7 @@ try {
   }
   if ($implicitThrow$3) throw $finalCatchArg$3;
   else if ($finalStep) throw $finalArg;
+  else if ($finalStep$1) throw $finalArg$1;
   else {
   }
 }
@@ -96,8 +103,10 @@ try {
 `````js filename=intro
 let $implicitThrow$3 = false;
 let $finalStep = false;
+let $finalStep$1 = false;
 let $finalCatchArg$3 = undefined;
 let $finalArg = undefined;
+let $finalArg$1 = undefined;
 $finally$3: {
   try {
     let $implicitThrow = false;
@@ -105,13 +114,15 @@ $finally$3: {
     try {
       $(1);
     } catch ($finalImplicit) {
-      $implicitThrow = true;
-      $finalCatchArg = $finalImplicit;
+      $(2);
+      $finalStep = true;
+      $finalArg = $finalImplicit;
+      break $finally$3;
     }
     $(2);
     if ($implicitThrow) {
-      $finalStep = true;
-      $finalArg = $finalCatchArg;
+      $finalStep$1 = true;
+      $finalArg$1 = $finalCatchArg;
       break $finally$3;
     } else {
     }
@@ -125,8 +136,8 @@ let $finalCatchArg$1 = undefined;
 try {
   $(3);
 } catch ($finalImplicit$1) {
-  $implicitThrow$1 = true;
-  $finalCatchArg$1 = $finalImplicit$1;
+  $(4);
+  throw $finalImplicit$1;
 }
 $(4);
 if ($implicitThrow$1) {
@@ -138,6 +149,10 @@ if ($implicitThrow$1) {
     if ($finalStep) {
       throw $finalArg;
     } else {
+      if ($finalStep$1) {
+        throw $finalArg$1;
+      } else {
+      }
     }
   }
 }
@@ -151,44 +166,35 @@ let $implicitThrow$3 = false;
 let $finalStep = false;
 let $finalCatchArg$3 = undefined;
 let $finalArg = undefined;
-let $implicitThrow = false;
-let $finalCatchArg = undefined;
-try {
+$finally$3: {
   try {
-    $(1);
-  } catch ($finalImplicit) {
-    $implicitThrow = true;
-    $finalCatchArg = $finalImplicit;
+    try {
+      $(1);
+    } catch ($finalImplicit) {
+      $(2);
+      $finalStep = true;
+      $finalArg = $finalImplicit;
+      break $finally$3;
+    }
+    $(2);
+  } catch ($finalImplicit$3) {
+    $implicitThrow$3 = true;
+    $finalCatchArg$3 = $finalImplicit$3;
   }
-  $(2);
-  if ($implicitThrow) {
-    $finalStep = true;
-    $finalArg = $finalCatchArg;
-  } else {
-  }
-} catch ($finalImplicit$3) {
-  $implicitThrow$3 = true;
-  $finalCatchArg$3 = $finalImplicit$3;
 }
-let $implicitThrow$1 = false;
-let $finalCatchArg$1 = undefined;
 try {
   $(3);
 } catch ($finalImplicit$1) {
-  $implicitThrow$1 = true;
-  $finalCatchArg$1 = $finalImplicit$1;
+  $(4);
+  throw $finalImplicit$1;
 }
 $(4);
-if ($implicitThrow$1) {
-  throw $finalCatchArg$1;
+if ($implicitThrow$3) {
+  throw $finalCatchArg$3;
 } else {
-  if ($implicitThrow$3) {
-    throw $finalCatchArg$3;
+  if ($finalStep) {
+    throw $finalArg;
   } else {
-    if ($finalStep) {
-      throw $finalArg;
-    } else {
-    }
   }
 }
 `````
@@ -202,47 +208,38 @@ let a = false;
 let b = false;
 let c = undefined;
 let d = undefined;
-let e = false;
-let f = undefined;
-try {
+$finally$3: {
   try {
-    $( 1 );
+    try {
+      $( 1 );
+    }
+catch (e) {
+      $( 2 );
+      b = true;
+      d = e;
+      break $finally$3;
+    }
+    $( 2 );
   }
-catch (g) {
-    e = true;
-    f = g;
-  }
-  $( 2 );
-  if (e) {
-    b = true;
-    d = f;
+catch (f) {
+    a = true;
+    c = f;
   }
 }
-catch (h) {
-  a = true;
-  c = h;
-}
-let i = false;
-let j = undefined;
 try {
   $( 3 );
 }
-catch (k) {
-  i = true;
-  j = k;
+catch (g) {
+  $( 4 );
+  throw g;
 }
 $( 4 );
-if (i) {
-  throw j;
+if (a) {
+  throw c;
 }
 else {
-  if (a) {
-    throw c;
-  }
-  else {
-    if (b) {
-      throw d;
-    }
+  if (b) {
+    throw d;
   }
 }
 `````

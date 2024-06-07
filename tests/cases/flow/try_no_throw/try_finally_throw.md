@@ -46,8 +46,9 @@ let f = function () {
           break $finally;
         }
       } catch ($finalImplicit) {
-        $implicitThrow = true;
-        $finalCatchArg = $finalImplicit;
+        $(`still throws`);
+        $(x);
+        throw $finalImplicit;
       }
     }
     {
@@ -80,8 +81,9 @@ let f = function () {
       $finalArg = `yes`;
       break $finally;
     } catch ($finalImplicit) {
-      $implicitThrow = true;
-      $finalCatchArg = $finalImplicit;
+      $(`still throws`);
+      $(x);
+      throw $finalImplicit;
     }
   }
   $(`still throws`);

@@ -201,7 +201,9 @@ export function source(node, force, callCount = 0) {
         log(DIM + code + RESET);
         groupEnd();
       } else {
-        if (callCount === 0) {
+        if (force === 'superforce') {
+          log(ORANGE_DIM + 'Source:\n' + RESET + DIM + '| ' + code + RESET);
+        } else if (callCount === 0) {
           // Print the Source thing only for the first line
           log(ORANGE_DIM + 'Source:\n' + RESET + DIM + '| ' + code + RESET);
         } else {

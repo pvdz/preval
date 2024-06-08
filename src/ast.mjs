@@ -2,6 +2,8 @@ import walk from '../lib/walk.mjs';
 import {walkStmt, WALK_NO_FURTHER, HARD_STOP} from '../lib/walk_stmt_norm.mjs';
 import {ASSERT, source, tmat, vlog, log} from './utils.mjs';
 import { $p } from './$p.mjs';
+import { createFreshVar } from './bindings.mjs';
+import { ARGLENGTH_ALIAS_BASE_NAME, ARGUMENTS_ALIAS_BASE_NAME, THIS_ALIAS_BASE_NAME } from './constants.mjs';
 
 export function cloneSimple(node) {
   if (node.type === 'Identifier') {
@@ -336,6 +338,7 @@ export function functionExpressionNormalized(paramNames, body, { id, generator, 
   ASSERT(
     paramNames.every((n) => typeof n === 'string'),
     'these should not be the $$123 kind but regular param names',
+    paramNames
   );
 
   return functionExpression(
@@ -593,7 +596,7 @@ export function one() {
 export function param(name, rest = false) {
   // This is a custom Preval node to represent a param name
   // The goal is to shield it away from general inspection by not being a generic Identifier
-  ASSERT(typeof name === 'string' && name, 'ident names must be valid nonempty strings', name, rest);
+  ASSERT(typeof name === 'string' && name, 'ident names must be valid nonempty strings like $$0 and $$1', name, rest);
   ASSERT(/^\$\$\d+$/.test(name), 'param names should have their index affixed to a double dollar and no suffix', name);
 
   return {
@@ -2296,4 +2299,125 @@ function hasObservableSideEffectsBetween(startBody, fromNode, toNode, mayMiss = 
 
     return HARD_STOP;
   }
+}
+
+export function normalizeFunction(targetFuncNode, fromFuncNode, fdata) {
+  // Note: this function is (also) used in the normal_once step. Assume it can be anything.
+  // Note: fromFuncNode is used for $p data when cloning. In the once step it is the same node.
+
+  const [headLogic, bodyLogic] = transformFunctionParams(targetFuncNode, fdata);
+  const deb = debuggerStatement();
+
+  const aliases = [];
+
+  if (fromFuncNode.$p.thisAccess) {
+    const tmpName = createFreshVar(THIS_ALIAS_BASE_NAME, fdata);
+    const thisNode = thisExpression();
+    thisNode.$p.forAlias = true;
+    const newNode = variableDeclaration(tmpName, thisNode, 'const');
+    aliases.push(newNode);
+    targetFuncNode.$p.thisAccess = true;
+    targetFuncNode.$p.thisAliasName = tmpName;
+  }
+  if (fromFuncNode.$p.readsArgumentsAny) {
+    const tmpName = createFreshVar(ARGUMENTS_ALIAS_BASE_NAME, fdata);
+    const argNode = identifier('arguments');
+    argNode.$p.forAlias = true;
+    const newNode = variableDeclaration(tmpName, argNode, 'const');
+    aliases.push(newNode);
+    targetFuncNode.$p.readsArgumentsAny = true;
+    targetFuncNode.$p.argumentsAliasName = tmpName;
+  }
+  if (fromFuncNode.$p.readsArgumentsLen) {
+    const tmpName = createFreshVar(ARGLENGTH_ALIAS_BASE_NAME, fdata);
+    const argNode = memberExpression('arguments', 'length');
+    argNode.$p.forAlias = true;
+    argNode.object.$p.forAlias = true;
+    const newNode = variableDeclaration(tmpName, argNode, 'const');
+    aliases.push(newNode);
+    targetFuncNode.$p.readsArgumentsLen = true;
+    targetFuncNode.$p.argumentsLenAliasName = tmpName;
+  }
+
+  targetFuncNode.body.body.unshift(...aliases, ...headLogic, deb, ...bodyLogic);
+  deb.$p.funcHeader = true; // Makes sure this statement won't be deleted in this normal_once step
+}
+
+export function transformFunctionParams(node, fdata) {
+  // Note: this function is (also) used in the normal_once step. Assume it can be anything.
+
+  // This transform should move patterns and param defaults to the body of the function.
+  // It should not bother to transform patterns away (we'll have to do this in the normalization step, anyways)
+
+  // Create local copies of all params. Treat actual params as special, not as bindings anymore.
+  // In this approach we could set the args to a fixed $$0 $$1 $$2 and assign then inside the body.
+  // That way we can treat all bindings as var bindings, eliminating the (currently) last variant
+  // of the kind a binding can have (var vs param). And all bindings would have a block as parent.
+
+  const bodyLogic = []; // patterns and default logic go in here. We don't want logic in the function header
+  const headLogic = node.params
+  .map((n, i) => {
+    // Note: Preval treats $$123 as reserved keywords throughout. All occurrences in the original code get replaced.
+
+    const paramIdent = '$$' + i;
+    const isRest = n.type === 'RestElement';
+    node.params[i] = param(paramIdent, isRest);
+
+    if (isRest) {
+      if (n.argument.type === 'Identifier') {
+        // ... rest with plain ident
+        // `let name = $$1`
+        return variableDeclaration(n.argument.name, param(paramIdent), 'let');
+      } else {
+        // ... rest with pattern
+        // `const tmpName = $$1; let pattern = tmpName;`
+        ASSERT(n.argument);
+        const tmpName = createFreshVar('tmpParamBare', fdata);
+        const pattern = variableDeclaration(n.argument, tmpName, 'let');
+        bodyLogic.push(pattern);
+        return variableDeclaration(tmpName, param(paramIdent), 'const');
+      }
+    } else if (n.type === 'Identifier') {
+      // plain ident
+      // `let name = $$1`
+      return variableDeclaration(n.name, param(paramIdent), 'let');
+    } else if (n.type === 'AssignmentPattern') {
+      // Cannot be rest
+      const tmpName = createFreshVar('tmpParamBare', fdata);
+      if (n.left.type === 'Identifier') {
+        // ident param with default
+        // `const tmpName = $$1; let name = tmpName === undefined ? defaultValue : tmpName;`
+        ASSERT(n.left.name);
+
+        const defaultHandler = variableDeclaration(
+          n.left.name,
+          conditionalExpression(binaryExpression('===', tmpName, 'undefined'), n.right, tmpName),
+        );
+        bodyLogic.push(defaultHandler);
+      } else {
+        // pattern with default
+        // `const tmpName = $$1; [pattern] = tmpName === undefined ? defaultValue : tmpName;`
+        ASSERT(n.left);
+        const defaultHandler = variableDeclaration(
+          n.left,
+          conditionalExpression(binaryExpression('===', tmpName, 'undefined'), n.right, tmpName),
+          'let',
+        );
+        bodyLogic.push(defaultHandler);
+      }
+
+      return variableDeclaration(tmpName, param(paramIdent), 'const');
+    } else {
+      ASSERT(n.type === 'ObjectPattern' || n.type === 'ArrayPattern', 'transformFunctionParams it should be a pattern if nothing else', n);
+      // pattern without default
+      // `const tmpName = $$1; [pattern] = tmpName;`
+      const tmpName = createFreshVar('tmpParamBare', fdata);
+      const patternHandler = variableDeclaration(n, tmpName, 'let');
+      bodyLogic.push(patternHandler);
+      return variableDeclaration(tmpName, param(paramIdent), 'const');
+    }
+  })
+  .filter((e) => !!e);
+
+  return [headLogic, bodyLogic];
 }

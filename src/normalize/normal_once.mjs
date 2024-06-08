@@ -36,7 +36,7 @@ import {
   getIdentUsageKind,
 } from '../bindings.mjs';
 import { addLabelReference, createFreshLabelStatement, updateGlobalLabelStatementRef } from '../labels.mjs';
-import { cloneSortOfSimple, isSortOfSimpleNode } from '../ast.mjs';
+import { cloneSortOfSimple, isSortOfSimpleNode, normalizeFunction, transformFunctionParams } from '../ast.mjs';
 
 export function phaseNormalOnce(fdata) {
   const ast = fdata.tenkoOutput.ast;
@@ -357,39 +357,7 @@ export function phaseNormalOnce(fdata) {
 
         hoistingOnce(node, 'funcexpr');
 
-        const [headLogic, bodyLogic] = transformFunctionParams(node, fdata);
-        const deb = AST.debuggerStatement();
-
-        const aliases = [];
-
-        if (node.$p.thisAccess) {
-          const tmpName = createFreshVar(THIS_ALIAS_BASE_NAME, fdata);
-          const thisNode = AST.thisExpression();
-          thisNode.$p.forAlias = true;
-          const newNode = AST.variableDeclaration(tmpName, thisNode, 'const');
-          aliases.push(newNode);
-          node.$p.thisAliasName = tmpName;
-        }
-        if (node.$p.readsArgumentsAny) {
-          const tmpName = createFreshVar(ARGUMENTS_ALIAS_BASE_NAME, fdata);
-          const argNode = AST.identifier('arguments');
-          argNode.$p.forAlias = true;
-          const newNode = AST.variableDeclaration(tmpName, argNode, 'const');
-          aliases.push(newNode);
-          node.$p.argumentsAliasName = tmpName;
-        }
-        if (node.$p.readsArgumentsLen) {
-          const tmpName = createFreshVar(ARGLENGTH_ALIAS_BASE_NAME, fdata);
-          const argNode = AST.memberExpression('arguments', 'length');
-          argNode.$p.forAlias = true;
-          argNode.object.$p.forAlias = true;
-          const newNode = AST.variableDeclaration(tmpName, argNode, 'const');
-          aliases.push(newNode);
-          node.$p.argumentsLenAliasName = tmpName;
-        }
-
-        node.body.body.unshift(...aliases, ...headLogic, deb, ...bodyLogic);
-        deb.$p.funcHeader = true; // Makes sure this statement won't be deleted in this normal_once step
+        normalizeFunction(node, node, fdata);
 
         thisStack.push(node);
 
@@ -1672,82 +1640,6 @@ function hoistingOnce(hoistingRoot, from) {
   vlog('/Hoisting false');
 
   return false;
-}
-function transformFunctionParams(node, fdata) {
-  // This transform should move patterns and param defaults to the body of the function.
-  // It should not bother to transform patterns away (we'll have to do this in the normalization step, anyways)
-
-  // Create local copies of all params. Treat actual params as special, not as bindings anymore.
-  // In this approach we could set the args to a fixed $$0 $$1 $$2 and assign then inside the body.
-  // That way we can treat all bindings as var bindings, eliminating the (currently) last variant
-  // of the kind a binding can have (var vs param). And all bindings would have a block as parent.
-
-  const bodyLogic = []; // patterns and default logic go in here. We don't want logic in the function header
-  const headLogic = node.params
-    .map((n, i) => {
-      // Note: Preval treats $$123 as reserved keywords throughout. All occurrences in the original code get replaced.
-
-      const paramIdent = '$$' + i;
-      const isRest = n.type === 'RestElement';
-      node.params[i] = AST.param(paramIdent, isRest);
-
-      if (isRest) {
-        if (n.argument.type === 'Identifier') {
-          // ... rest with plain ident
-          // `let name = $$1`
-          return AST.variableDeclaration(n.argument.name, AST.param(paramIdent), 'let');
-        } else {
-          // ... rest with pattern
-          // `const tmpName = $$1; let pattern = tmpName;`
-          ASSERT(n.argument);
-          const tmpName = createFreshVar('tmpParamBare', fdata);
-          const pattern = AST.variableDeclaration(n.argument, tmpName, 'let');
-          bodyLogic.push(pattern);
-          return AST.variableDeclaration(tmpName, AST.param(paramIdent), 'const');
-        }
-      } else if (n.type === 'Identifier') {
-        // plain ident
-        // `let name = $$1`
-        return AST.variableDeclaration(n.name, AST.param(paramIdent), 'let');
-      } else if (n.type === 'AssignmentPattern') {
-        // Cannot be rest
-        const tmpName = createFreshVar('tmpParamBare', fdata);
-        if (n.left.type === 'Identifier') {
-          // ident param with default
-          // `const tmpName = $$1; let name = tmpName === undefined ? defaultValue : tmpName;`
-          ASSERT(n.left.name);
-
-          const defaultHandler = AST.variableDeclaration(
-            n.left.name,
-            AST.conditionalExpression(AST.binaryExpression('===', tmpName, 'undefined'), n.right, tmpName),
-          );
-          bodyLogic.push(defaultHandler);
-        } else {
-          // pattern with default
-          // `const tmpName = $$1; [pattern] = tmpName === undefined ? defaultValue : tmpName;`
-          ASSERT(n.left);
-          const defaultHandler = AST.variableDeclaration(
-            n.left,
-            AST.conditionalExpression(AST.binaryExpression('===', tmpName, 'undefined'), n.right, tmpName),
-            'let',
-          );
-          bodyLogic.push(defaultHandler);
-        }
-
-        return AST.variableDeclaration(tmpName, AST.param(paramIdent), 'const');
-      } else {
-        ASSERT(n.type === 'ObjectPattern' || n.type === 'ArrayPattern', 'should be a pattern', n);
-        // pattern without default
-        // `const tmpName = $$1; [pattern] = tmpName;`
-        const tmpName = createFreshVar('tmpParamBare', fdata);
-        const patternHandler = AST.variableDeclaration(n, tmpName, 'let');
-        bodyLogic.push(patternHandler);
-        return AST.variableDeclaration(tmpName, AST.param(paramIdent), 'const');
-      }
-    })
-    .filter((e) => !!e);
-
-  return [headLogic, bodyLogic];
 }
 
 function simpleAbruptCheck(node) {

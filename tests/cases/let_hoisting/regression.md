@@ -80,19 +80,8 @@ $(`!`);
 
 `````js filename=intro
 if ($) {
-  const f = function ($$0) {
-    const a = $$0;
-    debugger;
-    if (a) {
-      $(a, a);
-      return undefined;
-    } else {
-      $(`b`, 1, a);
-      return undefined;
-    }
-  };
-  f(0);
-  f(1);
+  $(`b`, 1, 0);
+  $(1, 1);
 } else {
 }
 $(`!`);
@@ -104,20 +93,8 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  const a = function($$0 ) {
-    const b = c;
-    debugger;
-    if (b) {
-      $( b, b );
-      return undefined;
-    }
-    else {
-      $( "b", 1, b );
-      return undefined;
-    }
-  };
-  a( 0 );
-  a( 1 );
+  $( "b", 1, 0 );
+  $( 1, 1 );
 }
 $( "!" );
 `````

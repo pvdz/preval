@@ -210,7 +210,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         node.$p.blockChain = '0,';
         node.$p.funcChain = funcStack.map((n) => n.$p.pid).join(',');
         node.$p.ownBindings = new Set();
-        node.$p.paramNames = [];
+        node.$p.paramNames = []; // Ends up as a `meta.bfuncNode` in some cases, where this is expected to exist, so leave it.
         loopStack.push(null);
 
         break;
@@ -433,6 +433,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         //node.$p.blockChain = blockIds.join(',');
         node.$p.ownBindings = new Set();
         node.$p.paramNames = [];
+        node.$p.paramNameToIndex = new Map;
+        node.$p.paramIndexToName = new Map;
         node.$p.readsArgumentsAny = false;
         node.$p.readsArgumentsLen = false;
         node.$p.readsArgumentsLenAt = -1;
@@ -920,7 +922,10 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           //// Point from var decl ref to its func header node
           //node.$p.paramFuncHeaderRef = {node: funcHeaderParamNode, funcNode};
 
-          funcNode.$p.paramNames.push(parentNode.id.name);
+          const paramName = parentNode.id.name;
+          funcNode.$p.paramNames.push(paramName);
+          funcNode.$p.paramNameToIndex.set(paramName, node.index);
+          funcNode.$p.paramIndexToName.set(node.index, paramName);
         } else {
           vlog('This is the param');
           // This is the func param (!) `function ($$0) {`

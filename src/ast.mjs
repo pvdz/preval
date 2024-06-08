@@ -353,20 +353,21 @@ export function functionExpressionNormalized(paramNames, body, { id, generator, 
   );
 }
 
-export function functionExpression(params, body, { id, generator, async, normalized = true } = {}) {
+export function functionExpression(params, bodyArr, { id, generator, async, normalized = true } = {}) {
   if (!Array.isArray(params)) params = [params];
   params = params.map((n, i) => (typeof n === 'string' ? param(n) : n));
   ASSERT(
     !normalized || params.every((n) => n.type === 'Param'),
-    'functions generated this way should be normalized, so should use special Param nodes',
+    'functions generated this way should be normalized, so should use special Param nodes, see functionExpressionNormalized() for that',
   );
-  if (!Array.isArray(body)) body = [body];
-  body = blockStatement(body);
+  if (!Array.isArray(bodyArr)) bodyArr = [bodyArr];
 
   generator = !!generator;
   async = !!async;
   id = id || null;
   if (typeof id === 'string') id = identifier(id);
+
+  const body = blockStatement(bodyArr);
 
   return {
     type: 'FunctionExpression',

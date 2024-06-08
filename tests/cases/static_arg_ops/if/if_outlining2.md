@@ -1,16 +1,10 @@
 # Preval test case
 
-# if_outlining.md
+# if_outlining2.md
 
-> Tofix > If outlining
+> Static arg ops > If > If outlining2
 >
-> From react 18
-
-The outer `if` in the siftUp function is driven by an unknown boolean 
-from the push function. While tricky, it is possible to outline the
-whole `if`. Have to be careful about bindings and scopes here.
-
-As an aside, shouldn't we just inline single-use functions entirely?
+> Calling siftup multiple times
 
 ## Input
 
@@ -22,6 +16,9 @@ const push = function($$0, $$1) {
   const index$1 = heap.length;
   const tmpSaooB$1 = index$1 > 0;
   heap.push(node$1);
+  siftUp(heap, node$1, index$1, tmpSaooB$1);
+  siftUp(heap, node$1, index$1, tmpSaooB$1);
+  siftUp(heap, node$1, index$1, tmpSaooB$1);
   siftUp(heap, node$1, index$1, tmpSaooB$1);
   return undefined;
 };
@@ -86,6 +83,9 @@ const push = function ($$0, $$1) {
   const index$1 = heap.length;
   const tmpSaooB$1 = index$1 > 0;
   heap.push(node$1);
+  siftUp(heap, node$1, index$1, tmpSaooB$1);
+  siftUp(heap, node$1, index$1, tmpSaooB$1);
+  siftUp(heap, node$1, index$1, tmpSaooB$1);
   siftUp(heap, node$1, index$1, tmpSaooB$1);
   return undefined;
 };
@@ -154,6 +154,9 @@ const push = function ($$0, $$1) {
   const tmpSaooB$1 = index$1 > 0;
   heap.push(node$1);
   siftUp(heap, node$1, index$1, tmpSaooB$1);
+  siftUp(heap, node$1, index$1, tmpSaooB$1);
+  siftUp(heap, node$1, index$1, tmpSaooB$1);
+  siftUp(heap, node$1, index$1, tmpSaooB$1);
   return undefined;
 };
 const siftUp = function ($$0, $$1, $$2, $$3) {
@@ -218,49 +221,58 @@ const push = function ($$0, $$1) {
   const index$1 = $dlr_$$0.length;
   const tmpSaooB$1 = index$1 > 0;
   $dlr_$$0.push($dlr_$$1);
-  siftUp($dlr_$$0, $dlr_$$1, index$1, tmpSaooB$1);
-  return undefined;
+  if (tmpSaooB$1) {
+    const tmpSaooB$6 = index$1 - 1;
+    const tmpSaooB$9 = tmpSaooB$6 >>> 1;
+    siftUp_t($dlr_$$0, $dlr_$$1, index$1, tmpSaooB$9);
+    const tmpSaooB$4 = index$1 - 1;
+    const tmpSaooB$7 = tmpSaooB$4 >>> 1;
+    siftUp_t($dlr_$$0, $dlr_$$1, index$1, tmpSaooB$7);
+    const tmpSaooB$2 = index$1 - 1;
+    const tmpSaooB$5 = tmpSaooB$2 >>> 1;
+    siftUp_t($dlr_$$0, $dlr_$$1, index$1, tmpSaooB$5);
+    const tmpSaooB = index$1 - 1;
+    const tmpSaooB$3 = tmpSaooB >>> 1;
+    siftUp_t($dlr_$$0, $dlr_$$1, index$1, tmpSaooB$3);
+    return undefined;
+  } else {
+    return undefined;
+  }
 };
-const siftUp = function ($$0, $$1, $$2, $$3) {
+const siftUp_t = function ($$0, $$1, $$2, $$3) {
   const $dlr_$$2 = $$0;
   const $dlr_$$4 = $$1;
   const $dlr_$$6 = $$2;
-  const $dlr_$$3 = $$3;
+  const tmpOutlinedParam$1 = $$3;
   debugger;
-  if ($dlr_$$3) {
-    const tmpBinLhs$261 = $dlr_$$6 - 1;
-    const tmpClusterSSA_parentIndex = tmpBinLhs$261 >>> 1;
-    const tmpClusterSSA_parent = $dlr_$$2[tmpClusterSSA_parentIndex];
-    const tmpBinLhs$263 = compare(tmpClusterSSA_parent, $dlr_$$4);
-    const tmpIfTest$369 = tmpBinLhs$263 > 0;
-    if (tmpIfTest$369) {
-      $dlr_$$2[tmpClusterSSA_parentIndex] = $dlr_$$4;
-      $dlr_$$2[$dlr_$$6] = tmpClusterSSA_parent;
-      let tmpClusterSSA_index$3 = tmpClusterSSA_parentIndex;
-      let tmpClusterSSA_tmpIfTest$367 = tmpClusterSSA_parentIndex > 0;
-      while ($LOOP_UNROLL_100) {
-        if (tmpClusterSSA_tmpIfTest$367) {
-          const tmpBinLhs$1 = tmpClusterSSA_index$3 - 1;
-          const tmpClusterSSA_parentIndex$1 = tmpBinLhs$1 >>> 1;
-          const tmpClusterSSA_parent$1 = $dlr_$$2[tmpClusterSSA_parentIndex$1];
-          const tmpBinLhs$3 = compare(tmpClusterSSA_parent$1, $dlr_$$4);
-          const tmpIfTest$2 = tmpBinLhs$3 > 0;
-          if (tmpIfTest$2) {
-            $dlr_$$2[tmpClusterSSA_parentIndex$1] = $dlr_$$4;
-            $dlr_$$2[tmpClusterSSA_index$3] = tmpClusterSSA_parent$1;
-            tmpClusterSSA_index$3 = tmpClusterSSA_parentIndex$1;
-            tmpClusterSSA_tmpIfTest$367 = tmpClusterSSA_parentIndex$1 > 0;
-          } else {
-            return undefined;
-          }
+  const tmpClusterSSA_parent = $dlr_$$2[tmpOutlinedParam$1];
+  const tmpBinLhs$263 = compare(tmpClusterSSA_parent, $dlr_$$4);
+  const tmpIfTest$369 = tmpBinLhs$263 > 0;
+  if (tmpIfTest$369) {
+    $dlr_$$2[tmpOutlinedParam$1] = $dlr_$$4;
+    $dlr_$$2[$dlr_$$6] = tmpClusterSSA_parent;
+    let tmpClusterSSA_index$3 = tmpOutlinedParam$1;
+    let tmpClusterSSA_tmpIfTest$367 = tmpOutlinedParam$1 > 0;
+    while ($LOOP_UNROLL_100) {
+      if (tmpClusterSSA_tmpIfTest$367) {
+        const tmpBinLhs$1 = tmpClusterSSA_index$3 - 1;
+        const tmpClusterSSA_parentIndex$1 = tmpBinLhs$1 >>> 1;
+        const tmpClusterSSA_parent$1 = $dlr_$$2[tmpClusterSSA_parentIndex$1];
+        const tmpBinLhs$3 = compare(tmpClusterSSA_parent$1, $dlr_$$4);
+        const tmpIfTest$2 = tmpBinLhs$3 > 0;
+        if (tmpIfTest$2) {
+          $dlr_$$2[tmpClusterSSA_parentIndex$1] = $dlr_$$4;
+          $dlr_$$2[tmpClusterSSA_index$3] = tmpClusterSSA_parent$1;
+          tmpClusterSSA_index$3 = tmpClusterSSA_parentIndex$1;
+          tmpClusterSSA_tmpIfTest$367 = tmpClusterSSA_parentIndex$1 > 0;
         } else {
-          break;
+          return undefined;
         }
+      } else {
+        break;
       }
-      return undefined;
-    } else {
-      return undefined;
     }
+    return undefined;
   } else {
     return undefined;
   }
@@ -280,52 +292,61 @@ const a = function($$0,$$1 ) {
   const f = b.length;
   const g = f > 0;
   b.push( d );
-  h( b, d, f, g );
-  return undefined;
-};
-const h = function($$0,$$1,$$2,$$3 ) {
-  const i = c;
-  const j = e;
-  const k = l;
-  const m = n;
-  debugger;
-  if (m) {
-    const o = k - 1;
+  if (g) {
+    const h = f - 1;
+    const i = h >>> 1;
+    j( b, d, f, i );
+    const k = f - 1;
+    const l = k >>> 1;
+    j( b, d, f, l );
+    const m = f - 1;
+    const n = m >>> 1;
+    j( b, d, f, n );
+    const o = f - 1;
     const p = o >>> 1;
-    const q = i[ p ];
-    const r = compare( q, j );
-    const s = r > 0;
-    if (s) {
-      i[p] = j;
-      i[k] = q;
-      let t = p;
-      let u = p > 0;
-      while ($LOOP_UNROLL_100) {
-        if (u) {
-          const v = t - 1;
-          const w = v >>> 1;
-          const x = i[ w ];
-          const y = compare( x, j );
-          const z = y > 0;
-          if (z) {
-            i[w] = j;
-            i[t] = x;
-            t = w;
-            u = w > 0;
-          }
-          else {
-            return undefined;
-          }
+    j( b, d, f, p );
+    return undefined;
+  }
+  else {
+    return undefined;
+  }
+};
+const j = function($$0,$$1,$$2,$$3 ) {
+  const q = c;
+  const r = e;
+  const s = t;
+  const u = v;
+  debugger;
+  const w = q[ u ];
+  const x = compare( w, r );
+  const y = x > 0;
+  if (y) {
+    q[u] = r;
+    q[s] = w;
+    let z = u;
+    let 01 = u > 0;
+    while ($LOOP_UNROLL_100) {
+      if (01) {
+        const 11 = z - 1;
+        const 21 = 11 >>> 1;
+        const 31 = q[ 21 ];
+        const 41 = compare( 31, r );
+        const 51 = 41 > 0;
+        if (51) {
+          q[21] = r;
+          q[z] = 31;
+          z = 21;
+          01 = 21 > 0;
         }
         else {
-          break;
+          return undefined;
         }
       }
-      return undefined;
+      else {
+        break;
+      }
     }
-    else {
-      return undefined;
-    }
+    return undefined;
   }
   else {
     return undefined;

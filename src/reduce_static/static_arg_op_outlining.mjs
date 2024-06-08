@@ -27,7 +27,7 @@ import {
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
-import { cloneSimple, isSimpleNodeOrSimpleMember } from '../ast.mjs';
+import { cloneSimple, functionExpressionNormalized, isSimpleNodeOrSimpleMember, normalizeFunction } from '../ast.mjs';
 
 export function staticArgOpOutlining(fdata) {
   group('\n\n\nFinding static param ops to outline\n');
@@ -235,7 +235,7 @@ function _staticArgOpOutlining(fdata) {
     }
   }
 
-  function processFunctionName(funcMeta, name) {
+  function processFunctionName(funcMeta, funcName) {
     // Verify that
     // - The function is only called, doesn't escape
     // - The function has at least one arg
@@ -243,6 +243,7 @@ function _staticArgOpOutlining(fdata) {
     // - None of the calls use a spread (and later we can still proceed if the param is before the spread in all calls)
     // - The function is not direct recursive (tests/cases/primitive_arg_inlining/recursion/_base.md). Probably also not indirectly recursive (?)
 
+    const funcRef = funcMeta.constValueRef;
     const funcNode = funcMeta.constValueRef.node;
     const paramCount = funcNode.params.length;
     if (paramCount === 0) {
@@ -475,11 +476,8 @@ function _staticArgOpOutlining(fdata) {
         example('let x=1; function f(a){ x = a; } f(2); f(3);', 'let x=1; function f(a){ x = a; } x = 2; f(2); x = 3; f(3);');
         before(firstStmt);
 
-
         // Note: We'll replace the statement with a block that wraps both expressions.
         //       Then before this trick returns we'll flatten that in reverse pid order.
-
-
 
         funcMeta.reads.forEach(read => {
           before(read.blockBody[read.blockIndex]);
@@ -503,7 +501,6 @@ function _staticArgOpOutlining(fdata) {
           after(read.blockBody[read.blockIndex]);
         });
 
-
         funcNode.body.body[stmtOffset] = AST.emptyStatement();
         assertNoDupeNodes(fdata.tenkoOutput.ast, 'body');
 
@@ -516,9 +513,168 @@ function _staticArgOpOutlining(fdata) {
         example('let x=1; let y=2; function f(a){ x=y; } f(2); f(3);', 'let x=1; let y=2; function f(a){ } x=y; f(undefined); x=y; f(undefined);');
         return;
       }
+    }
+
+    if (
+      funcNode.body.body.length-1 === stmtOffset && // Body has 1 statement? with more than one we risk blowing up the size too much.
+      firstStmt.type === 'IfStatement' &&
+      firstStmt.test.type === 'Identifier' &&
+      funcNode.$p.paramNames.includes(firstStmt.test.name)
+    ) {
+      // Function starts with an if/else.
+      // Test of the If is a param
+      // We can try to outline it. It's slightly trickier due to const scoping of parent.
+      // We can take two routes
+      // - move the `if` to the call site
+      //   -   `f(a); function f(b) { if (b) $(x) else {} }`
+      //   ->  `if (a) f(a); function f(b) { $(x) }`
+      //   -   `const r = f(a); function f(b) { if (b) $(x) else {} }`
+      //   ->  `if (a) const r = f(a); function f(b) { $(x) }` , oops
+      //   - also, this won't work if both branches have code, which leads us to the next option
+      // - we split the function and update the callsite where possible
+      //   - `f(a); function f(b) { if (b) $(x) else $(y) }`
+      //   - `f2(a); function f(b) { if (b) f1(b); else f2(b); } function f1(b) { $(x) } function f2(b) { $(y) }`
+      //     - risk of bouncy transform recursion
+      //   - `f2(false); function f1(b) { $(x) } function f2(b) { $(y) }`
+      // - we split the function and compile an `if` at callsite
+      //   - `f(a); function f(b) { if (b) $(x) else $(y) }`
+      //   - `if (a) f1(a); else f2(a); function f1(b) { $(x) } function f2(b) { $(y) }`
+      //   - this has the same binding scope issues as before, of course
+      // For the scope issues, we could also detect the binding case and create a let binding above the if
+      // - this kind of feels like a step back since we aim to create constants
+      // - `let r; if (a) r = f(a); function f(b) { $(x) }`
+      // - still, may be best?
+
+      const paramIndex = funcNode.$p.paramNameToIndex.get(firstStmt.test.name);
+      ASSERT(paramIndex >= 0 && paramIndex < funcNode.params.length, 'map should be legit and cache should not be stale');
+
+      const f1 = AST.functionExpressionNormalized(
+        funcNode.params.map((_, i) => funcNode.$p.paramIndexToName.get(i) ?? '_'),
+          firstStmt.consequent.body,
+        {generator: funcNode.generator, async: funcNode.async}
+      );
+      const f2 = AST.functionExpressionNormalized(
+        funcNode.params.map((_, i) => funcNode.$p.paramIndexToName.get(i) ?? '_'),
+        firstStmt.alternate.body,
+        {generator: funcNode.generator, async: funcNode.async}
+      );
+
+      const funcName1 = createFreshVar(`${funcName}_t`, fdata);
+      const funcName2 = createFreshVar(`${funcName}_f`, fdata);
+
+      const fbody = funcRef.containerParent;
+      const findex = funcRef.containerIndex;
+
+      rule('Outline the first If in a function when conditions are met; step 1/2, split function');
+      example('function f(a) { if (a) $(1); else $(s); } f(0); f(1);', 'function f1(a) { $(1); } function f2(a) { $(2); } if (0) f1(0); else f2(0); if (1) f1(1); else f2(1);')
+      before(fbody[findex]);
+
+      fbody[findex] = AST.blockStatement(
+        AST.variableDeclaration(funcName1, f1, 'const'),
+        AST.variableDeclaration(funcName2, f2, 'const'),
+        //fbody[findex]
+      );
+      queue.push({index: findex, func: () => {
+        fbody.splice(findex, 1, ...fbody[findex].body);
+      }});
+
+      after(fbody[findex]);
+
+      // Now convert all call sites
+      funcMeta.reads.forEach(read => {
+        const cblock = read.blockBody;
+        const cindex = read.blockIndex;
+
+        rule('Outline the first If in a function when conditions are met; step 2/2, wrap callers in if/else');
+        example('function f(a) { if (a) $(1); else $(s); } f(0); f(1);', 'function f1(a) { $(1); } function f2(a) { $(2); } if (0) f1(0); else f2(0); if (1) f1(1); else f2(1);')
+        before(cblock[cindex]);
+
+        const block1 = AST.blockStatement();
+        const block2 = AST.blockStatement();
+
+        if (cblock[cindex].type === 'ExpressionStatement') {
+          if (cblock[cindex].expression.type === 'CallExpression') {
+            // Statement is just the call to the function. Easiest case.
+            block1.body.push(
+              AST.expressionStatement(
+                AST.callExpression(funcName1, read.parentNode.arguments.map(node => AST.cloneSimple(node)))
+              )
+            );
+            block2.body.push(
+              AST.expressionStatement(
+                AST.callExpression(funcName2, read.parentNode.arguments.map(node => AST.cloneSimple(node)))
+              )
+            );
+          }
+          else if (cblock[cindex].expression.type === 'AssignmentExpression') {
+            // Statement is assigning the call to the function. Simple case
+            block1.body.push(
+              AST.expressionStatement(
+                AST.assignmentExpression(
+                  AST.cloneSimple(cblock[cindex].expression.left),
+                  AST.callExpression(funcName1, read.parentNode.arguments.map(node => AST.cloneSimple(node)))
+                )
+              )
+            );
+            block2.body.push(
+              AST.expressionStatement(
+                AST.assignmentExpression(
+                  AST.cloneSimple(cblock[cindex].expression.left),
+                  AST.callExpression(funcName2, read.parentNode.arguments.map(node => AST.cloneSimple(node)))
+                )
+              )
+            );
+          }
+          else {
+            TODO
+          }
+
+          cblock[cindex] = AST.ifStatement(
+            AST.cloneSimple(read.parentNode.arguments[paramIndex] ?? AST.isUndefined()),
+            block1, block2
+          )
+        }
+        else if (cblock[cindex].type === 'VariableDeclaration') {
+          // Meh.
+          // We replace the decl with the if and prepend a let decl instead. Let other rules clean that up.
+          const declName = cblock[cindex].declarations[0].id.name;
+          block1.body.push(
+            AST.expressionStatement(
+              AST.assignmentExpression(
+                AST.identifier(declName),
+                AST.callExpression(funcName1, read.parentNode.arguments.map(node => AST.cloneSimple(node)))
+              )
+            )
+          );
+          block2.body.push(
+            AST.expressionStatement(
+              AST.assignmentExpression(
+                AST.identifier(declName),
+                AST.callExpression(funcName2, read.parentNode.arguments.map(node => AST.cloneSimple(node)))
+              )
+            )
+          );
+
+          // Replace decl with a let, init to undefined
+          cblock[cindex] = AST.variableDeclaration(declName, AST.identifier('undefined'), 'let');
+          // Wrap decl in a block and append the If statement
+          cblock[cindex] = AST.blockStatement(
+            cblock[cindex],
+            AST.ifStatement(
+              AST.cloneSimple(read.parentNode.arguments[paramIndex] ?? AST.isUndefined()),
+              block1, block2
+            )
+          );
+          queue.push({index: cindex, func: () => {
+            cblock.splice(cindex, 1, ...cblock[cindex].body);
+          }});
+        }
+
+        after(cblock[cindex]);
+      });
 
 
-
+      ++changes;
     }
 
   }
@@ -663,12 +819,15 @@ function _staticArgOpOutlining(fdata) {
     vgroup('Unrolling call queue now:');
 
     queue.sort(({ index: a }, { index: b }) => b-a);
-    queue.forEach(({ index, func }) => func());
+    queue.forEach(({ index, func }) => {
+      ASSERT(typeof index === 'number', 'must queue a number...', index);
+      func()
+    });
 
     vgroupEnd();
 
     log('Static arg ops outlined:', changes, '. Restarting from phase1 to fix up read/write registry\n');
-    return 'phase1';
+    return true
   }
   log('Static arg ops outlined: 0.\n');
 }

@@ -145,7 +145,7 @@ f();
 
 
 `````js filename=intro
-const tmpSplitTruthy = function () {
+const tmpAfterLabel_t = function () {
   debugger;
   if (x) {
     $(1);
@@ -175,7 +175,7 @@ if (x) {
   $(1);
   if ($) {
     $(2);
-    tmpSplitTruthy();
+    tmpAfterLabel_t();
   } else {
   }
 } else {

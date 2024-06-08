@@ -65,7 +65,9 @@ export function $p() {
     // - ownBindings // Set<string>. Set of all local bindings in a function scope (may be defined in a block). Excludes the custom $$1 params names.
     // - blockChain // string. Always ends with trailing comma. For all nodes (from phase1), the block chain of this function, including the trailing zero for this function. Same as for refs.
     // - funcChain // string. For functions, the ids of parent functions (and global) up to and including this function. Same as for refs.
-    // - paramNames // Array<string>. Original param names for the function. Those will be $$0 mapped in the same order.
+    // - paramNames // Array<string>. functions. phase1. Original param names for the function. Should be in same order but may have holes if certain params are not actually used.
+    // - paramNameToIndex // Map<string, number>. functions. phase1. if a binding name is a known param, this maps it to the param index.
+    // - paramIndexToName // Map<number, string>. functions. phase1. if a param is still known to have a name, this should give it to you. If an index does have a known name then this map will not have it either and return undefined.
     // - isPrimitive // bool. For binary expression operand nodes
     // - primitiveValue // any. When isPrimitive is true, this should be the value. otherwise ignore.
     // - lastPid // number. Block nodes. Last pid inside the block. Same as block if the block is empty.

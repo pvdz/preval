@@ -76,25 +76,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const f = function ($$0, $$1) {
-  const a = $$0;
-  const tmpOutlinedParam = $$1;
-  debugger;
-  if (tmpOutlinedParam) {
-    const y = a & 4;
-    if (y) {
-      $(`pass`);
-      return undefined;
-    } else {
-      return undefined;
-    }
-  } else {
-    return undefined;
-  }
-};
-f(1, 1);
 $(undefined);
-f(2, 0);
 $(undefined);
 `````
 
@@ -103,27 +85,7 @@ $(undefined);
 With rename=true
 
 `````js filename=intro
-const a = function($$0,$$1 ) {
-  const b = c;
-  const d = e;
-  debugger;
-  if (d) {
-    const f = b & 4;
-    if (f) {
-      $( "pass" );
-      return undefined;
-    }
-    else {
-      return undefined;
-    }
-  }
-  else {
-    return undefined;
-  }
-};
-a( 1, 1 );
 $( undefined );
-a( 2, 0 );
 $( undefined );
 `````
 

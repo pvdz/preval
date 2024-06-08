@@ -7,91 +7,67 @@
 ## Input
 
 `````js filename=intro
-if ($) {
-  let x = 1;
-  const f = function(a) {
-    if (a) {
-      x = a;
-      $(x, a);
-    } else {
-      $('b', x, a);
-    }
-  };
-
-  f(0);
-  f(1);
-}
-$('!');
+const f = function (c) {
+  if (c) {
+    $(undefined);
+    const x = [c];
+    return x;
+  } else {
+    return undefined;
+  }
+};
+const tmpCalleeParam = f($);
+$(tmpCalleeParam);
 `````
 
 ## Pre Normal
 
 
 `````js filename=intro
-if ($) {
-  let x = 1;
-  const f = function ($$0) {
-    let a = $$0;
-    debugger;
-    if (a) {
-      x = a;
-      $(x, a);
-    } else {
-      $(`b`, x, a);
-    }
-  };
-  f(0);
-  f(1);
-}
-$(`!`);
+const f = function ($$0) {
+  let c = $$0;
+  debugger;
+  if (c) {
+    $(undefined);
+    const x = [c];
+    return x;
+  } else {
+    return undefined;
+  }
+};
+const tmpCalleeParam = f($);
+$(tmpCalleeParam);
 `````
 
 ## Normalized
 
 
 `````js filename=intro
-if ($) {
-  let x = 1;
-  const f = function ($$0) {
-    let a = $$0;
-    debugger;
-    if (a) {
-      x = a;
-      $(x, a);
-      return undefined;
-    } else {
-      $(`b`, x, a);
-      return undefined;
-    }
-  };
-  f(0);
-  f(1);
-} else {
-}
-$(`!`);
+const f = function ($$0) {
+  let c = $$0;
+  debugger;
+  if (c) {
+    $(undefined);
+    const x = [c];
+    return x;
+  } else {
+    return undefined;
+  }
+};
+const tmpCalleeParam = f($);
+$(tmpCalleeParam);
 `````
 
 ## Output
 
 
 `````js filename=intro
+$(undefined);
 if ($) {
-  const f = function ($$0) {
-    const a = $$0;
-    debugger;
-    if (a) {
-      $(a, a);
-      return undefined;
-    } else {
-      $(`b`, 1, a);
-      return undefined;
-    }
-  };
-  f(0);
-  f(1);
+  const x = [$];
+  $(x);
 } else {
 }
-$(`!`);
 `````
 
 ## PST Output
@@ -99,23 +75,11 @@ $(`!`);
 With rename=true
 
 `````js filename=intro
+$( undefined );
 if ($) {
-  const a = function($$0 ) {
-    const b = c;
-    debugger;
-    if (b) {
-      $( b, b );
-      return undefined;
-    }
-    else {
-      $( "b", 1, b );
-      return undefined;
-    }
-  };
-  a( 0 );
-  a( 1 );
+  const a = [ $ ];
+  $( a );
 }
-$( "!" );
 `````
 
 ## Globals
@@ -125,9 +89,8 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 'b', 1, 0
- - 2: 1, 1
- - 3: '!'
+ - 1: undefined
+ - 2: ['<$>']
  - eval returned: undefined
 
 Pre normalization calls: Same

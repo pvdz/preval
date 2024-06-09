@@ -938,6 +938,10 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
         funcNode.$p.returnNodes.push(node);
 
+        parentNode.$p.alwaysComplete = true;
+        parentNode.$p.alwaysReturn = true;
+        funcNode.$p.alwaysComplete = true;
+        funcNode.$p.alwaysReturn = true;
         markEarlyCompletion(node, funcNode, true, parentNode);
 
         openRefsOnBeforeReturn(blockStack, node);
@@ -1041,6 +1045,10 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       case 'ThrowStatement:before': {
         // (similar logic to ReturnStatement)
         const funcNode = funcStack[funcStack.length - 1];
+        parentNode.$p.alwaysComplete = true;
+        parentNode.$p.alwaysThrow = true;
+        funcNode.$p.alwaysComplete = true;
+        funcNode.$p.alwaysThrow = true;
         markEarlyCompletion(node, funcNode, false, parentNode);
         node.$p.alwaysComplete = true;
         node.$p.alwaysThrow = true;
@@ -1300,15 +1308,6 @@ function markEarlyCompletion(completionNode, funcNode, isReturn, parentNode) {
   // If the last statement is an `if` then check if the return is the last statement of either branch. If not, check
   // if either branch ends with an if. Repeat exhaustively. If the completion was not the last statement of any `if`
   // in a tail position, then consider it an early completion.
-
-  vlog('markEarlyCompletion(); This was an explicit completion (' + completionNode.type + ')');
-  parentNode.$p.alwaysComplete = true;
-  if (completionNode.type === 'ReturnStatement') parentNode.$p.alwaysReturn = true;
-  else if (completionNode.type === 'ThrowStatement') parentNode.$p.alwaysThrow = true;
-  // TODO: this should automatically propagate to the function. We should add an assertion instead of this so we can verify that the values properly propagate through all statements.
-  funcNode.$p.alwaysComplete = true;
-  if (completionNode.type === 'ReturnStatement') funcNode.$p.alwaysReturn = true;
-  else if (completionNode.type === 'ThrowStatement') funcNode.$p.alwaysThrow = true;
 
   const body = funcNode.type === 'Program' ? funcNode.body : funcNode.body.body;
   ASSERT(body.length, 'the function containing this statement should have at least one statement eh');

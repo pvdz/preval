@@ -81,8 +81,6 @@ import { unrollLoopWithTrue } from './unroll_loop_with_true.mjs';
 import {letAliasing} from "./let_aliase.mjs"
 import {aliasedGlobals} from "./aliasing_globals.mjs"
 import {dotCall} from "./dotcall.mjs"
-//import {letTrueWhile} from "./let_true_while.mjs";
-//import {letIfWhileX} from "./let_if_while_x.mjs";
 import {testingAlias} from "./testing_alias.mjs";
 import {VERBOSE_TRACING} from "../constants.mjs";
 import {aliasIfIf} from "./alias_if_if.mjs";
@@ -268,8 +266,6 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     selfAssignClosure(fdata) ||
     selfAssignNoop(fdata) ||
     letAliasing(fdata) ||
-    //letTrueWhile(fdata) || // Currently superseded by other rules so not worth enabling
-    //letIfWhileX(fdata) || // Not sure this one does anything. Or if it's just superseded by other rules.
     testingAlias(fdata) ||
     aliasIfIf(fdata) ||
     // This one should probably be lowest priority as it might blow up code...

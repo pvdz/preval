@@ -10,9 +10,9 @@ export const DCE_ERROR_MSG = '[Preval]: Can not reach here';
 export const ERR_MSG_ILLEGAL_ARRAY_SPREAD = '[Preval]: Array spread must crash before this line';
 export const ERR_MSG_ILLEGAL_CALLEE = '[Preval]: Call expression with illegal callee must crash before this line ';
 
-export const ALIAS_PREFIX = 'tmpPrevalAlias';
-export const THIS_ALIAS_BASE_NAME = ALIAS_PREFIX + 'This'; // 'tmpThis' 'tmpPrevalAliasThis'
-export const ARGUMENTS_ALIAS_PREFIX = ALIAS_PREFIX + 'Arguments'; // 'tmpArguments' 'tmpPrevalAliasArguments'
+export const ARG_THIS_ALIAS_PREFIX = 'tmpPrevalAlias';
+export const THIS_ALIAS_BASE_NAME = ARG_THIS_ALIAS_PREFIX + 'This'; // 'tmpThis' 'tmpPrevalAliasThis'
+export const ARGUMENTS_ALIAS_PREFIX = ARG_THIS_ALIAS_PREFIX + 'Arguments'; // 'tmpArguments' 'tmpPrevalAliasArguments'
 export const ARGUMENTS_ALIAS_BASE_NAME = ARGUMENTS_ALIAS_PREFIX + 'Any'; // 'tmpArgumentsAny' 'tmpPrevalAliasArgumentsAny'
 export const ARGLENGTH_ALIAS_BASE_NAME = ARGUMENTS_ALIAS_PREFIX + 'Len'; // 'tmpArgumentsLen' 'tmpPrevalAliasArgumentsLen'; `arguments.length`, which is easier than just `arguments`
 export const IMPLICIT_GLOBAL_PREFIX = '$prevalImplicit$';

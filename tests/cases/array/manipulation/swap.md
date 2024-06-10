@@ -4,7 +4,7 @@
 
 > Array > Manipulation > Swap
 >
-> Push a number to an array
+> Rotate a number
 
 #TODO
 

@@ -22,7 +22,6 @@ function _inlineConstants(fdata) {
   fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
-    console.log(`- ${name}: ${meta.reads.length} + ${meta.writes.length}, ${meta.isConstant}, ${meta.writes[0].kind}`);
     if (!meta.isConstant) return;
     if (meta.reads.length > 0 || meta.writes.length > 1) return;
     if (meta.writes[0].kind !== 'var') return;
@@ -31,9 +30,17 @@ function _inlineConstants(fdata) {
     example('const x = f();', 'f();');
     before(meta.writes[0].blockBody[meta.writes[0].blockIndex]);
 
-
     const init = meta.writes[0].blockBody[meta.writes[0].blockIndex].declarations[0].init;
-    meta.writes[0].blockBody[meta.writes[0].blockIndex] = AST.isPrimitive(init) || init.type === 'Param' ? AST.emptyStatement() : AST.expressionStatement(init);
+    meta.writes[0].blockBody[meta.writes[0].blockIndex] =
+      (
+        AST.isPrimitive(init) || // Don't leave primitives as statements
+        init.type === 'Param' || // Don't leave special Param nodes as statements
+        init.type === 'FunctionExpression' || // Don't leave function expressions as statement (without assign and not as decl)
+        (init.type === 'Identifier' && init.name === 'arguments') || // Dont bother leaving `arguments` as statement
+        init.type === 'ThisExpression' // Don't leave `this` as statement
+      )
+        ? AST.emptyStatement()
+        : AST.expressionStatement(init);
 
     after(meta.writes[0].blockBody[meta.writes[0].blockIndex]);
     ++changes;

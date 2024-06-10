@@ -100,13 +100,15 @@ function _testing_only(fdata) {
       if (write.kind === 'var') write.parentNode.init = AST.primitive(bool);
       else write.parentNode.right = AST.primitive(bool);
 
-      // Move the expression to a statement. Need to queue this.
-      queue.push({
-        index: write.blockIndex,
-        func: () => {
-          write.blockBody.splice(write.blockIndex, 0, AST.expressionStatement(expr));
-        }
-      })
+      if (!AST.isPrimitive(expr)) {
+        // Move the expression to a statement. Need to queue this.
+        queue.push({
+          index: write.blockIndex,
+          func: () => {
+            write.blockBody.splice(write.blockIndex, 0, AST.expressionStatement(expr));
+          }
+        });
+      }
 
       after(write.blockBody[write.blockIndex])
     })

@@ -2,7 +2,6 @@
 // `const x = $Array_push; $(x)`
 // -> `$($Array_push)`
 
-import { ALIAS_PREFIX } from '../constants.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import globalNames from "../globals.mjs"
@@ -43,7 +42,7 @@ function _aliasedGlobals(fdata) {
 
     rule('Assigning known implicit globals to constants should eliminate the constant in favor of the global');
     example('const x = $Array_push; $(x);', '$($Array_push)');
-    before(write.parentNode);
+    before(write.blockBody[write.blockIndex]);
 
     // Drop decl
     write.blockBody[write.blockIndex] = AST.emptyStatement();
@@ -53,6 +52,8 @@ function _aliasedGlobals(fdata) {
       read.node.name = globalName;
     });
 
+
+    after(write.blockBody[write.blockIndex]);
     ++dropped;
   }
 

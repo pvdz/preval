@@ -1,6 +1,6 @@
 // Inline constants where values permit it
 
-import { ALIAS_PREFIX } from '../constants.mjs';
+import { ARG_THIS_ALIAS_PREFIX } from '../constants.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createReadRef } from '../bindings.mjs';
@@ -30,7 +30,7 @@ function _inlineConstants(fdata) {
       if (meta.isImplicitGlobal) return;
       vgroup('-- name: `' + name + '`, writes:', meta.writes.length, ', reads:', meta.reads.length);
 
-      if (!name.startsWith(ALIAS_PREFIX)) {
+      if (!name.startsWith(ARG_THIS_ALIAS_PREFIX)) {
         if (meta.writes.length === 1 && meta.writes[0].kind === 'var' && !meta.isConstant) {
           vlog('Binding `' + name + '` has one write so should be considered a constant, even if it wasnt');
           meta.isConstant = true;

@@ -1,7 +1,6 @@
 // Attempt to "promote" functions by moving them up one block, step by step
 
 import walk from '../../lib/walk.mjs';
-import { ALIAS_PREFIX } from '../constants.mjs';
 import {
   ASSERT,
   log,

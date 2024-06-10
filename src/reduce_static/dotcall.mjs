@@ -6,7 +6,6 @@
 // For certain values and builtins we can assert what they're doing, though.
 
 import {
-  ALIAS_PREFIX,
   BUILTIN_ARRAY_METHODS_SYMBOLS,
   BUILTIN_ARRAY_METHOD_LOOKUP_REV,
   BUILTIN_BOOLEAN_METHODS_SYMBOLS,

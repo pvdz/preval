@@ -61,17 +61,13 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    $(`keep, do not eval`);
-    return undefined;
-  } else {
-    return 2;
-  }
-};
-const tmpCalleeParam = f();
+let tmpCalleeParam = undefined;
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  $(`keep, do not eval`);
+} else {
+  tmpCalleeParam = 2;
+}
 $(tmpCalleeParam);
 `````
 
@@ -80,19 +76,15 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = $( 1 );
-  if (b) {
-    $( "keep, do not eval" );
-    return undefined;
-  }
-  else {
-    return 2;
-  }
-};
-const c = a();
-$( c );
+let a = undefined;
+const b = $( 1 );
+if (b) {
+  $( "keep, do not eval" );
+}
+else {
+  a = 2;
+}
+$( a );
 `````
 
 ## Globals

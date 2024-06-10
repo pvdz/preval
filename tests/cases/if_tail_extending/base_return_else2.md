@@ -145,37 +145,24 @@ f();
 
 
 `````js filename=intro
-const tmpAfterLabel_t = function () {
-  debugger;
-  if (x) {
-    $(1);
-    if ($) {
-      $(2);
-      while ($LOOP_UNROLL_9) {
+if (x) {
+  $(1);
+  if ($) {
+    $(2);
+    $inlinedFunction: {
+      while ($LOOP_UNROLL_10) {
         if (x) {
           $(1);
           if ($) {
             $(2);
           } else {
-            return undefined;
+            break $inlinedFunction;
           }
         } else {
           break;
         }
       }
-      return undefined;
-    } else {
-      return undefined;
     }
-  } else {
-    return undefined;
-  }
-};
-if (x) {
-  $(1);
-  if ($) {
-    $(2);
-    tmpAfterLabel_t();
   } else {
   }
 } else {
@@ -187,41 +174,26 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  if (x) {
-    $( 1 );
-    if ($) {
-      $( 2 );
-      while ($LOOP_UNROLL_9) {
+if (x) {
+  $( 1 );
+  if ($) {
+    $( 2 );
+    $inlinedFunction:     {
+      while ($LOOP_UNROLL_10) {
         if (x) {
           $( 1 );
           if ($) {
             $( 2 );
           }
           else {
-            return undefined;
+            break $inlinedFunction;
           }
         }
         else {
           break;
         }
       }
-      return undefined;
     }
-    else {
-      return undefined;
-    }
-  }
-  else {
-    return undefined;
-  }
-};
-if (x) {
-  $( 1 );
-  if ($) {
-    $( 2 );
-    a();
   }
 }
 `````

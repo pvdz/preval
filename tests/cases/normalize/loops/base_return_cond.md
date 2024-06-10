@@ -112,18 +112,23 @@ tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
 
 
 `````js filename=intro
-$(`n:`, 1);
-$(`n:`, 2);
-$(`n:`, 3);
-$(`n:`, 4);
-$(`n:`, 5);
-$(`n:`, 6);
-$(`n:`, 7);
-$(`n:`, 8);
-$(`n:`, 9);
-$(`n:`, 10);
-$(`n:`, 11);
-$(`f():`, 11);
+let tmpCalleeParam$5 = 0;
+$inlinedFunction: {
+  let n = 0;
+  while (true) {
+    n = n + 1;
+    $(`n:`, n);
+    const tmpIfTest = n > 10;
+    if (tmpIfTest) {
+      tmpCalleeParam$5 = n;
+      break $inlinedFunction;
+    } else {
+    }
+  }
+  $(`afterwards`);
+  tmpCalleeParam$5 = 100;
+}
+$(`f():`, tmpCalleeParam$5);
 `````
 
 ## PST Output
@@ -131,18 +136,22 @@ $(`f():`, 11);
 With rename=true
 
 `````js filename=intro
-$( "n:", 1 );
-$( "n:", 2 );
-$( "n:", 3 );
-$( "n:", 4 );
-$( "n:", 5 );
-$( "n:", 6 );
-$( "n:", 7 );
-$( "n:", 8 );
-$( "n:", 9 );
-$( "n:", 10 );
-$( "n:", 11 );
-$( "f():", 11 );
+let a = 0;
+$inlinedFunction: {
+  let b = 0;
+  while (true) {
+    b = b + 1;
+    $( "n:", b );
+    const c = b > 10;
+    if (c) {
+      a = b;
+      break $inlinedFunction;
+    }
+  }
+  $( "afterwards" );
+  a = 100;
+}
+$( "f():", a );
 `````
 
 ## Globals

@@ -121,39 +121,34 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpSwitchValue = $(1, `disc`);
-  let tmpSwitchCaseToStart = 2;
-  const tmpBinLhs = $(0);
-  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
+let tmpCalleeParam = undefined;
+const tmpSwitchValue = $(1, `disc`);
+let tmpSwitchCaseToStart = 2;
+const tmpBinLhs = $(0);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpBinLhs$1 = $(1);
+  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 1;
   } else {
-    const tmpBinLhs$1 = $(1);
-    const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 1;
-    } else {
-    }
   }
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$3) {
+}
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
+  $(`keep, do not eval`);
+} else {
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$5) {
+    $(`keep, eval`);
+  } else {
     $(`keep, do not eval`);
-    return undefined;
-  } else {
-    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$5) {
-      $(`keep, eval`);
-      return undefined;
-    } else {
-      $(`keep, do not eval`);
-      const tmpReturnArg = $(2, `ret`);
-      return tmpReturnArg;
-    }
+    const tmpReturnArg = $(2, `ret`);
+    tmpCalleeParam = tmpReturnArg;
   }
-};
-const tmpCalleeParam = f();
+}
 $(tmpCalleeParam);
 `````
 
@@ -162,42 +157,37 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = $( 1, "disc" );
-  let c = 2;
-  const d = $( 0 );
-  const e = d === b;
-  if (e) {
-    c = 0;
+let a = undefined;
+const b = $( 1, "disc" );
+let c = 2;
+const d = $( 0 );
+const e = d === b;
+if (e) {
+  c = 0;
+}
+else {
+  const f = $( 1 );
+  const g = f === b;
+  if (g) {
+    c = 1;
+  }
+}
+const h = c <= 0;
+if (h) {
+  $( "keep, do not eval" );
+}
+else {
+  const i = c <= 1;
+  if (i) {
+    $( "keep, eval" );
   }
   else {
-    const f = $( 1 );
-    const g = f === b;
-    if (g) {
-      c = 1;
-    }
-  }
-  const h = c <= 0;
-  if (h) {
     $( "keep, do not eval" );
-    return undefined;
+    const j = $( 2, "ret" );
+    a = j;
   }
-  else {
-    const i = c <= 1;
-    if (i) {
-      $( "keep, eval" );
-      return undefined;
-    }
-    else {
-      $( "keep, do not eval" );
-      const j = $( 2, "ret" );
-      return j;
-    }
-  }
-};
-const k = a();
-$( k );
+}
+$( a );
 `````
 
 ## Globals

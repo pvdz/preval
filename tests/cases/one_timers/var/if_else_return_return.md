@@ -64,20 +64,15 @@ $(x);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpIfTest = $();
-  if (tmpIfTest) {
-    $(0);
-    const tmpReturnArg$1 = $(2);
-    return tmpReturnArg$1;
-  } else {
-    const tmpReturnArg = $(1);
-    return tmpReturnArg;
-  }
-};
-const x = f();
-$(x);
+const tmpIfTest = $();
+if (tmpIfTest) {
+  $(0);
+  const tmpReturnArg$1 = $(2);
+  $(tmpReturnArg$1);
+} else {
+  const tmpReturnArg = $(1);
+  $(tmpReturnArg);
+}
 `````
 
 ## PST Output
@@ -85,21 +80,16 @@ $(x);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = $();
-  if (b) {
-    $( 0 );
-    const c = $( 2 );
-    return c;
-  }
-  else {
-    const d = $( 1 );
-    return d;
-  }
-};
-const e = a();
-$( e );
+const a = $();
+if (a) {
+  $( 0 );
+  const b = $( 2 );
+  $( b );
+}
+else {
+  const c = $( 1 );
+  $( c );
+}
 `````
 
 ## Globals

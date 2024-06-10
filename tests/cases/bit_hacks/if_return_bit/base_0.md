@@ -60,7 +60,11 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpCalleeParam$1 = $(0);
 const x = tmpCalleeParam$1 & 16;
-$(x);
+if (x) {
+  $(16);
+} else {
+  $(0);
+}
 `````
 
 ## PST Output
@@ -70,7 +74,12 @@ With rename=true
 `````js filename=intro
 const a = $( 0 );
 const b = a & 16;
-$( b );
+if (b) {
+  $( 16 );
+}
+else {
+  $( 0 );
+}
 `````
 
 ## Globals

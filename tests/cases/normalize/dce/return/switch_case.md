@@ -65,20 +65,15 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpSwitchDisc = $(1, `disc`);
-  const tmpBinBothRhs = $(1, `case`);
-  const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
-  if (tmpIfTest) {
-    const tmpReturnArg = $(2, `ret`);
-    return tmpReturnArg;
-  } else {
-    return undefined;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpSwitchDisc = $(1, `disc`);
+const tmpBinBothRhs = $(1, `case`);
+const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
+if (tmpIfTest) {
+  const tmpReturnArg = $(2, `ret`);
+  $(tmpReturnArg);
+} else {
+  $(undefined);
+}
 `````
 
 ## PST Output
@@ -86,21 +81,16 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = $( 1, "disc" );
-  const c = $( 1, "case" );
-  const d = b === c;
-  if (d) {
-    const e = $( 2, "ret" );
-    return e;
-  }
-  else {
-    return undefined;
-  }
-};
-const f = a();
-$( f );
+const a = $( 1, "disc" );
+const b = $( 1, "case" );
+const c = a === b;
+if (c) {
+  const d = $( 2, "ret" );
+  $( d );
+}
+else {
+  $( undefined );
+}
 `````
 
 ## Globals

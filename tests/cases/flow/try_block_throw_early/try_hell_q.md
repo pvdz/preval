@@ -95,17 +95,11 @@ considerMutated(x);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  try {
-    fail_early;
-    x = 1;
-    return undefined;
-  } catch ($finalImplicit) {}
-  return undefined;
-};
 let x = 0;
-f();
+try {
+  fail_early;
+  x = 1;
+} catch ($finalImplicit) {}
 considerMutated(x);
 `````
 
@@ -114,21 +108,15 @@ considerMutated(x);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  try {
-    fail_early;
-    b = 1;
-    return undefined;
-  }
-catch (c) {
+let a = 0;
+try {
+  fail_early;
+  a = 1;
+}
+catch (b) {
 
-  }
-  return undefined;
-};
-let b = 0;
-a();
-considerMutated( b );
+}
+considerMutated( a );
 `````
 
 ## Globals

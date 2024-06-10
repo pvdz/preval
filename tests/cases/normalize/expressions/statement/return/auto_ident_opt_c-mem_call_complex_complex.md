@@ -76,29 +76,24 @@ $(a);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpChainElementCall = $(b);
-  const tmpIfTest = tmpChainElementCall == null;
-  if (tmpIfTest) {
-    return undefined;
-  } else {
-    const tmpChainRootComputed = $(`\$`);
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$1 = tmpChainElementObject == null;
-    if (tmpIfTest$1) {
-      return undefined;
-    } else {
-      const tmpCalleeParam$3 = $(1);
-      const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
-      return tmpChainElementCall$1;
-    }
-  }
-};
 const b = { $: $ };
-const tmpCalleeParam$5 = f();
-$(tmpCalleeParam$5);
 const a = { a: 999, b: 1000 };
+let tmpCalleeParam$5 = undefined;
+const tmpChainElementCall = $(b);
+const tmpIfTest = tmpChainElementCall == null;
+if (tmpIfTest) {
+} else {
+  const tmpChainRootComputed = $(`\$`);
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  const tmpIfTest$1 = tmpChainElementObject == null;
+  if (tmpIfTest$1) {
+  } else {
+    const tmpCalleeParam$3 = $(1);
+    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
+    tmpCalleeParam$5 = tmpChainElementCall$1;
+  }
+}
+$(tmpCalleeParam$5);
 $(a);
 `````
 
@@ -107,35 +102,32 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = $( c );
-  const d = b == null;
-  if (d) {
-    return undefined;
-  }
-  else {
-    const e = $( "$" );
-    const f = b[ e ];
-    const g = f == null;
-    if (g) {
-      return undefined;
-    }
-    else {
-      const h = $( 1 );
-      const i = $dotCall( f, b, h );
-      return i;
-    }
-  }
-};
-const c = { $: $ };
-const j = a();
-$( j );
-const k = {
+const a = { $: $ };
+const b = {
 a: 999,
 b: 1000
 ;
-$( k );
+let c = undefined;
+const d = $( a );
+const e = d == null;
+if (e) {
+
+}
+else {
+  const f = $( "$" );
+  const g = d[ f ];
+  const h = g == null;
+  if (h) {
+
+  }
+  else {
+    const i = $( 1 );
+    const j = $dotCall( g, d, i );
+    c = j;
+  }
+}
+$( c );
+$( b );
 `````
 
 ## Globals

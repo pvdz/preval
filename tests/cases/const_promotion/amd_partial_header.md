@@ -164,8 +164,12 @@ if (test2) {
 
 
 `````js filename=intro
-const result = mainCall();
-global.React = result;
+$inlinedFunction$1: {
+  $inlinedFunction$3: {
+    const result = mainCall();
+    global.React = result;
+  }
+}
 `````
 
 ## PST Output
@@ -173,8 +177,12 @@ global.React = result;
 With rename=true
 
 `````js filename=intro
-const a = mainCall();
-global.React = a;
+$inlinedFunction$1: {
+  $inlinedFunction$3:   {
+    const a = mainCall();
+    global.React = a;
+  }
+}
 `````
 
 ## Globals

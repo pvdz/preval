@@ -59,18 +59,13 @@ $(a);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpCalleeParam = $(0);
-  const tmpReturnArg = $(tmpCalleeParam);
-  if (tmpReturnArg) {
-    return tmpReturnArg;
-  } else {
-    return 2;
-  }
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+const tmpCalleeParam = $(0);
+const tmpReturnArg = $(tmpCalleeParam);
+if (tmpReturnArg) {
+  $(tmpReturnArg);
+} else {
+  $(2);
+}
 const a = { a: 999, b: 1000 };
 $(a);
 `````
@@ -80,24 +75,19 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = $( 0 );
-  const c = $( b );
-  if (c) {
-    return c;
-  }
-  else {
-    return 2;
-  }
-};
-const d = a();
-$( d );
-const e = {
+const a = $( 0 );
+const b = $( a );
+if (b) {
+  $( b );
+}
+else {
+  $( 2 );
+}
+const c = {
 a: 999,
 b: 1000
 ;
-$( e );
+$( c );
 `````
 
 ## Globals

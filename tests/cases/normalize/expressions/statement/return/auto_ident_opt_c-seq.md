@@ -65,20 +65,15 @@ $(a);
 
 `````js filename=intro
 const b = { x: 1 };
-const f = function () {
-  debugger;
-  const tmpChainRootProp = $(b);
-  const tmpIfTest = tmpChainRootProp == null;
-  if (tmpIfTest) {
-    return undefined;
-  } else {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    return tmpChainElementObject;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
 const a = { a: 999, b: 1000 };
+const tmpChainRootProp = $(b);
+const tmpIfTest = tmpChainRootProp == null;
+if (tmpIfTest) {
+  $(undefined);
+} else {
+  const tmpChainElementObject = tmpChainRootProp.x;
+  $(tmpChainElementObject);
+}
 $(a);
 `````
 
@@ -88,25 +83,20 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = function() {
-  debugger;
-  const c = $( a );
-  const d = c == null;
-  if (d) {
-    return undefined;
-  }
-  else {
-    const e = c.x;
-    return e;
-  }
-};
-const f = b();
-$( f );
-const g = {
+const b = {
 a: 999,
 b: 1000
 ;
-$( g );
+const c = $( a );
+const d = c == null;
+if (d) {
+  $( undefined );
+}
+else {
+  const e = c.x;
+  $( e );
+}
+$( b );
 `````
 
 ## Globals

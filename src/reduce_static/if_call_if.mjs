@@ -494,9 +494,11 @@ function paramAwareClone(expr, callNode, funcNode) {
     case 'ArrayExpression':
       return AST.arrayExpression(
         expr.elements.map((enode) =>
-          enode.type === 'SpreadElement'
+          !enode
+            ? enode
+            : enode.type === 'SpreadElement'
             ? AST.spreadElement(paramAwareClone(enode.argument, callNode, funcNode))
-            : paramAwareClone(enode, callNode, funcNode),
+            : paramAwareClone(enode || AST.identifier('undefined'), callNode, funcNode),
         ),
       );
 

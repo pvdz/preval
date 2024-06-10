@@ -66,20 +66,16 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpSwitchDisc = $(1, `disc`);
-  const tmpBinBothRhs = $(1, `case`);
-  const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
-  if (tmpIfTest) {
-    const tmpReturnArg = $(2, `ret`);
-    return tmpReturnArg;
-  } else {
-    $(`keep, do not eval`);
-    return undefined;
-  }
-};
-const tmpCalleeParam = f();
+let tmpCalleeParam = undefined;
+const tmpSwitchDisc = $(1, `disc`);
+const tmpBinBothRhs = $(1, `case`);
+const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
+if (tmpIfTest) {
+  const tmpReturnArg = $(2, `ret`);
+  tmpCalleeParam = tmpReturnArg;
+} else {
+  $(`keep, do not eval`);
+}
 $(tmpCalleeParam);
 `````
 
@@ -88,22 +84,18 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = $( 1, "disc" );
-  const c = $( 1, "case" );
-  const d = b === c;
-  if (d) {
-    const e = $( 2, "ret" );
-    return e;
-  }
-  else {
-    $( "keep, do not eval" );
-    return undefined;
-  }
-};
-const f = a();
-$( f );
+let a = undefined;
+const b = $( 1, "disc" );
+const c = $( 1, "case" );
+const d = b === c;
+if (d) {
+  const e = $( 2, "ret" );
+  a = e;
+}
+else {
+  $( "keep, do not eval" );
+}
+$( a );
 `````
 
 ## Globals

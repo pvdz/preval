@@ -76,30 +76,24 @@ $(a);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  a = undefined;
-  const tmpChainElementCall = $(b);
-  const tmpIfTest = tmpChainElementCall == null;
-  if (tmpIfTest) {
-    return a;
-  } else {
-    const tmpChainRootComputed = $(`\$`);
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$1 = tmpChainElementObject == null;
-    if (tmpIfTest$1) {
-      return a;
-    } else {
-      const tmpCalleeParam$3 = $(1);
-      const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
-      a = tmpChainElementCall$1;
-      return tmpChainElementCall$1;
-    }
-  }
-};
+let a = undefined;
+let tmpCalleeParam$5 = undefined;
 const b = { $: $ };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam$5 = f();
+const tmpChainElementCall = $(b);
+const tmpIfTest = tmpChainElementCall == null;
+if (tmpIfTest) {
+} else {
+  const tmpChainRootComputed = $(`\$`);
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  const tmpIfTest$1 = tmpChainElementObject == null;
+  if (tmpIfTest$1) {
+  } else {
+    const tmpCalleeParam$3 = $(1);
+    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
+    a = tmpChainElementCall$1;
+    tmpCalleeParam$5 = tmpChainElementCall$1;
+  }
+}
 $(tmpCalleeParam$5);
 $(a);
 `````
@@ -109,37 +103,30 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  b = undefined;
-  const c = $( d );
-  const e = c == null;
-  if (e) {
-    return b;
+let a = undefined;
+let b = undefined;
+const c = { $: $ };
+const d = $( c );
+const e = d == null;
+if (e) {
+
+}
+else {
+  const f = $( "$" );
+  const g = d[ f ];
+  const h = g == null;
+  if (h) {
+
   }
   else {
-    const f = $( "$" );
-    const g = c[ f ];
-    const h = g == null;
-    if (h) {
-      return b;
-    }
-    else {
-      const i = $( 1 );
-      const j = $dotCall( g, c, i );
-      b = j;
-      return j;
-    }
+    const i = $( 1 );
+    const j = $dotCall( g, d, i );
+    a = j;
+    b = j;
   }
-};
-const d = { $: $ };
-let b = {
-a: 999,
-b: 1000
-;
-const k = a();
-$( k );
+}
 $( b );
+$( a );
 `````
 
 ## Globals

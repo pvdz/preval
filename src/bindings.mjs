@@ -934,7 +934,7 @@ export function findBoundNamesInVarDeclarator(decl, names = []) {
       });
     } else if (node.type === 'ArrayPattern') {
       node.elements.forEach((enode) => {
-        if (enode.type !== 'RestElement') {
+        if (enode?.type !== 'RestElement') {
           if (enode.type === 'AssignmentPattern') {
             enode = enode.left;
             ASSERT(enode.type !== 'RestElement', 'rest not allowed to have init');
@@ -2451,7 +2451,8 @@ function exprNodeMightMutateNameUntrapped(expr, singleScope, includeProperties) 
       vlog('Binary expression without side effects');
     }
   } else if (expr.type === 'ArrayExpression') {
-    if (expr.elements.every((enode) => enode.type !== 'SpreadElement')) {
+    // Note: elements may be elided (=> null)
+    if (expr.elements.every((enode) => enode && enode.type !== 'SpreadElement')) {
       vlog('Array literal with spread elements might mutate something as a side effect');
     } else {
       vlog('Array literal without spread elements cannot mutate anything');
@@ -2568,7 +2569,7 @@ function exprContainsMutate(expr, metaName, asSideEffect, includeProperties) {
       vlog('Binary expression without side effects');
     }
   } else if (expr.type === 'ArrayExpression') {
-    if (expr.elements.every((enode) => enode.type !== 'SpreadElement')) {
+    if (expr.elements.every((enode) => enode?.type !== 'SpreadElement')) {
       vlog('Array literal contained a spread element, may trigger side effect');
       return true;
     } else {

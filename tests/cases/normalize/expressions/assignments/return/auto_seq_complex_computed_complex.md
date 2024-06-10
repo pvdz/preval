@@ -65,14 +65,14 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const tmpClusterSSA_a = { b: tmpObjLitVal };
-$(tmpClusterSSA_a);
+const a = { b: tmpObjLitVal };
+$(a);
 $(1);
-const tmpAssignComMemLhsObj = $(tmpClusterSSA_a);
+const tmpAssignComMemLhsObj = $(a);
 const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 ## PST Output

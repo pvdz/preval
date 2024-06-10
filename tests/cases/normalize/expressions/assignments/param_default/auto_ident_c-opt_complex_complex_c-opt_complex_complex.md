@@ -82,8 +82,8 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
-let tmpNestedComplexRhs = undefined;
 const b = { x: tmpObjLitVal };
+let tmpNestedComplexRhs = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
@@ -109,9 +109,9 @@ With rename=true
 
 `````js filename=intro
 const a = { y: 1 };
-let b = undefined;
-const c = { x: a };
-const d = $( c );
+const b = { x: a };
+let c = undefined;
+const d = $( b );
 const e = d == null;
 if (e) {
 
@@ -126,10 +126,10 @@ else {
   else {
     const i = $( "y" );
     const j = g[ i ];
-    b = j;
+    c = j;
   }
 }
-const k = b;
+const k = c;
 $( undefined );
 $( k );
 `````

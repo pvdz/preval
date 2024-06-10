@@ -61,18 +61,14 @@ $(x);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpIfTest = $();
-  if (tmpIfTest) {
-    $(1);
-    return undefined;
-  } else {
-    const tmpReturnArg = $(2);
-    return tmpReturnArg;
-  }
-};
-const x = f();
+let x = undefined;
+const tmpIfTest = $();
+if (tmpIfTest) {
+  $(1);
+} else {
+  const tmpReturnArg = $(2);
+  x = tmpReturnArg;
+}
 $(x);
 `````
 
@@ -81,20 +77,16 @@ $(x);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = $();
-  if (b) {
-    $( 1 );
-    return undefined;
-  }
-  else {
-    const c = $( 2 );
-    return c;
-  }
-};
-const d = a();
-$( d );
+let a = undefined;
+const b = $();
+if (b) {
+  $( 1 );
+}
+else {
+  const c = $( 2 );
+  a = c;
+}
+$( a );
 `````
 
 ## Globals

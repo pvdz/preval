@@ -107,8 +107,8 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
+let tmpCalleeParam = undefined;
+$inlinedFunction: {
   let tmpIfTest = $(true);
   while (true) {
     if (tmpIfTest) {
@@ -121,11 +121,13 @@ const f = function () {
         if (tmpIfTest$1) {
           $(`pass`);
           const tmpReturnArg = $(100, `return`);
-          return tmpReturnArg;
+          tmpCalleeParam = tmpReturnArg;
+          break $inlinedFunction;
         } else {
           $(`do not visit`);
           const tmpReturnArg$1 = $(101, `return`);
-          return tmpReturnArg$1;
+          tmpCalleeParam = tmpReturnArg$1;
+          break $inlinedFunction;
         }
       }
       $(`after (not invoked but should not be eliminated)`);
@@ -135,9 +137,7 @@ const f = function () {
     }
   }
   $(`after (not invoked)`);
-  return undefined;
-};
-const tmpCalleeParam = f();
+}
 $(tmpCalleeParam);
 `````
 
@@ -146,8 +146,8 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
+let a = undefined;
+$inlinedFunction: {
   let b = $( true );
   while (true) {
     if (b) {
@@ -163,12 +163,14 @@ b: 2
         if (e) {
           $( "pass" );
           const f = $( 100, "return" );
-          return f;
+          a = f;
+          break $inlinedFunction;
         }
         else {
           $( "do not visit" );
           const g = $( 101, "return" );
-          return g;
+          a = g;
+          break $inlinedFunction;
         }
       }
       $( "after (not invoked but should not be eliminated)" );
@@ -179,10 +181,8 @@ b: 2
     }
   }
   $( "after (not invoked)" );
-  return undefined;
-};
-const h = a();
-$( h );
+}
+$( a );
 `````
 
 ## Globals

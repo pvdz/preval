@@ -89,30 +89,27 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpIfTest$1 = $(2);
-    if (tmpIfTest$1) {
-      const tmpReturnArg = $(3);
-      return tmpReturnArg;
-    } else {
-      const tmpReturnArg$1 = $(4);
-      return tmpReturnArg$1;
-    }
+let tmpCalleeParam = undefined;
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  const tmpIfTest$1 = $(2);
+  if (tmpIfTest$1) {
+    const tmpReturnArg = $(3);
+    tmpCalleeParam = tmpReturnArg;
   } else {
-    const tmpIfTest$3 = $(5);
-    if (tmpIfTest$3) {
-      const tmpReturnArg$3 = $(6);
-      return tmpReturnArg$3;
-    } else {
-      const tmpReturnArg$5 = $(7);
-      return tmpReturnArg$5;
-    }
+    const tmpReturnArg$1 = $(4);
+    tmpCalleeParam = tmpReturnArg$1;
   }
-};
-const tmpCalleeParam = f();
+} else {
+  const tmpIfTest$3 = $(5);
+  if (tmpIfTest$3) {
+    const tmpReturnArg$3 = $(6);
+    tmpCalleeParam = tmpReturnArg$3;
+  } else {
+    const tmpReturnArg$5 = $(7);
+    tmpCalleeParam = tmpReturnArg$5;
+  }
+}
 $(tmpCalleeParam, `final`);
 `````
 
@@ -121,34 +118,31 @@ $(tmpCalleeParam, `final`);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = $( 1 );
-  if (b) {
-    const c = $( 2 );
-    if (c) {
-      const d = $( 3 );
-      return d;
-    }
-    else {
-      const e = $( 4 );
-      return e;
-    }
+let a = undefined;
+const b = $( 1 );
+if (b) {
+  const c = $( 2 );
+  if (c) {
+    const d = $( 3 );
+    a = d;
   }
   else {
-    const f = $( 5 );
-    if (f) {
-      const g = $( 6 );
-      return g;
-    }
-    else {
-      const h = $( 7 );
-      return h;
-    }
+    const e = $( 4 );
+    a = e;
   }
-};
-const i = a();
-$( i, "final" );
+}
+else {
+  const f = $( 5 );
+  if (f) {
+    const g = $( 6 );
+    a = g;
+  }
+  else {
+    const h = $( 7 );
+    a = h;
+  }
+}
+$( a, "final" );
 `````
 
 ## Globals

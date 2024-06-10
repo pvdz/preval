@@ -59,20 +59,14 @@ $(a);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const f = function () {
-  debugger;
-  const tmpCalleeParam = $(1);
-  a = $(tmpCalleeParam);
-  if (a) {
-    a = 2;
-    return 2;
-  } else {
-    return a;
-  }
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+const tmpCalleeParam = $(1);
+let a = $(tmpCalleeParam);
+if (a) {
+  a = 2;
+  $(2);
+} else {
+  $(a);
+}
 $(a);
 `````
 
@@ -81,25 +75,16 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
-a: 999,
-b: 1000
-;
-const b = function() {
-  debugger;
-  const c = $( 1 );
-  a = $( c );
-  if (a) {
-    a = 2;
-    return 2;
-  }
-  else {
-    return a;
-  }
-};
-const d = b();
-$( d );
-$( a );
+const a = $( 1 );
+let b = $( a );
+if (b) {
+  b = 2;
+  $( 2 );
+}
+else {
+  $( b );
+}
+$( b );
 `````
 
 ## Globals

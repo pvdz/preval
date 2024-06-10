@@ -79,12 +79,11 @@ f();
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
+$inlinedFunction: {
   let x = `fail`;
   try {
     if ($) {
-      return undefined;
+      break $inlinedFunction;
     } else {
       x = `pass`;
       throw `too`;
@@ -93,9 +92,7 @@ const f = function () {
     $(`caught`);
   }
   $(x);
-  return undefined;
-};
-f();
+}
 `````
 
 ## PST Output
@@ -103,25 +100,22 @@ f();
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  let b = "fail";
+$inlinedFunction: {
+  let a = "fail";
   try {
     if ($) {
-      return undefined;
+      break $inlinedFunction;
     }
     else {
-      b = "pass";
+      a = "pass";
       throw "too";
     }
   }
-catch (c) {
+catch (b) {
     $( "caught" );
   }
-  $( b );
-  return undefined;
-};
-a();
+  $( a );
+}
 `````
 
 ## Globals

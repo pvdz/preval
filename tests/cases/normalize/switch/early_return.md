@@ -124,54 +124,49 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpSwitchValue = $(1);
-  let tmpSwitchCaseToStart = 4;
-  const tmpIfTest = 0 === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
+let tmpCalleeParam = undefined;
+const tmpSwitchValue = $(1);
+let tmpSwitchCaseToStart = 4;
+const tmpIfTest = 0 === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpBinLhs = $(1);
+  const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 1;
   } else {
-    const tmpBinLhs = $(1);
-    const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 1;
+    const tmpBinLhs$1 = $(4);
+    const tmpIfTest$3 = tmpBinLhs$1 === tmpSwitchValue;
+    if (tmpIfTest$3) {
+      tmpSwitchCaseToStart = 2;
     } else {
-      const tmpBinLhs$1 = $(4);
-      const tmpIfTest$3 = tmpBinLhs$1 === tmpSwitchValue;
-      if (tmpIfTest$3) {
-        tmpSwitchCaseToStart = 2;
+      const tmpBinLhs$3 = $(7);
+      const tmpIfTest$5 = tmpBinLhs$3 === tmpSwitchValue;
+      if (tmpIfTest$5) {
+        tmpSwitchCaseToStart = 3;
       } else {
-        const tmpBinLhs$3 = $(7);
-        const tmpIfTest$5 = tmpBinLhs$3 === tmpSwitchValue;
-        if (tmpIfTest$5) {
-          tmpSwitchCaseToStart = 3;
-        } else {
-        }
       }
     }
   }
-  const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$7) {
-    $(2);
-    return undefined;
+}
+const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$7) {
+  $(2);
+} else {
+  const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$9) {
+    $(3);
   } else {
-    const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$9) {
-      $(3);
-    } else {
-    }
-    const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$11) {
-      $(5);
-      const tmpReturnArg = $(6);
-      return tmpReturnArg;
-    } else {
-      return undefined;
-    }
   }
-};
-const tmpCalleeParam = f();
+  const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
+  if (tmpIfTest$11) {
+    $(5);
+    const tmpReturnArg = $(6);
+    tmpCalleeParam = tmpReturnArg;
+  } else {
+  }
+}
 $(tmpCalleeParam);
 `````
 
@@ -180,58 +175,51 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = $( 1 );
-  let c = 4;
-  const d = 0 === b;
-  if (d) {
-    c = 0;
+let a = undefined;
+const b = $( 1 );
+let c = 4;
+const d = 0 === b;
+if (d) {
+  c = 0;
+}
+else {
+  const e = $( 1 );
+  const f = e === b;
+  if (f) {
+    c = 1;
   }
   else {
-    const e = $( 1 );
-    const f = e === b;
-    if (f) {
-      c = 1;
+    const g = $( 4 );
+    const h = g === b;
+    if (h) {
+      c = 2;
     }
     else {
-      const g = $( 4 );
-      const h = g === b;
-      if (h) {
-        c = 2;
-      }
-      else {
-        const i = $( 7 );
-        const j = i === b;
-        if (j) {
-          c = 3;
-        }
+      const i = $( 7 );
+      const j = i === b;
+      if (j) {
+        c = 3;
       }
     }
   }
-  const k = c <= 0;
-  if (k) {
-    $( 2 );
-    return undefined;
+}
+const k = c <= 0;
+if (k) {
+  $( 2 );
+}
+else {
+  const l = c <= 1;
+  if (l) {
+    $( 3 );
   }
-  else {
-    const l = c <= 1;
-    if (l) {
-      $( 3 );
-    }
-    const m = c <= 2;
-    if (m) {
-      $( 5 );
-      const n = $( 6 );
-      return n;
-    }
-    else {
-      return undefined;
-    }
+  const m = c <= 2;
+  if (m) {
+    $( 5 );
+    const n = $( 6 );
+    a = n;
   }
-};
-const o = a();
-$( o );
+}
+$( a );
 `````
 
 ## Globals

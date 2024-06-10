@@ -61,22 +61,16 @@ $(a);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const f = function () {
-  debugger;
-  a = undefined;
-  const tmpChainElementCall = $($);
-  const tmpIfTest = tmpChainElementCall == null;
-  if (tmpIfTest) {
-    return a;
-  } else {
-    const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
-    a = tmpChainElementCall$1;
-    return tmpChainElementCall$1;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+let a = undefined;
+const tmpChainElementCall = $($);
+const tmpIfTest = tmpChainElementCall == null;
+if (tmpIfTest) {
+  $(undefined);
+} else {
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
+  a = tmpChainElementCall$1;
+  $(tmpChainElementCall$1);
+}
 $(a);
 `````
 
@@ -85,26 +79,17 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
-a: 999,
-b: 1000
-;
-const b = function() {
-  debugger;
-  a = undefined;
-  const c = $( $ );
-  const d = c == null;
-  if (d) {
-    return a;
-  }
-  else {
-    const e = $dotCall( c, $, 1 );
-    a = e;
-    return e;
-  }
-};
-const f = b();
-$( f );
+let a = undefined;
+const b = $( $ );
+const c = b == null;
+if (c) {
+  $( undefined );
+}
+else {
+  const d = $dotCall( b, $, 1 );
+  a = d;
+  $( d );
+}
 $( a );
 `````
 

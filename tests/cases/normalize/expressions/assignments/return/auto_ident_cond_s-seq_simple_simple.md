@@ -60,8 +60,13 @@ $(a);
 
 
 `````js filename=intro
-const a = $(2);
-$(a);
+let a = { a: 999, b: 1000 };
+let tmpCalleeParam$1 = undefined;
+$inlinedFunction: {
+  a = $(2);
+  tmpCalleeParam$1 = a;
+}
+$(tmpCalleeParam$1);
 $(a);
 `````
 
@@ -70,8 +75,16 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = $( 2 );
-$( a );
+let a = {
+a: 999,
+b: 1000
+;
+let b = undefined;
+$inlinedFunction: {
+  a = $( 2 );
+  b = a;
+}
+$( b );
 $( a );
 `````
 

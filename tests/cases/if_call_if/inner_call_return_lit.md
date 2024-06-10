@@ -100,25 +100,22 @@ if ($) {
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
+if ($) {
+  let tmpCalleeParam = 500;
   const x = $(1);
   if (x) {
     $(`a`);
-    return 500;
   } else {
     const tmpClusterSSA_x = $(0);
+    let tmpReturnArg$1 = 500;
     if (tmpClusterSSA_x) {
       $(`a`);
-      return 500;
     } else {
       $(`b`);
-      return 1000;
+      tmpReturnArg$1 = 1000;
     }
+    tmpCalleeParam = tmpReturnArg$1;
   }
-};
-if ($) {
-  const tmpCalleeParam = f();
   $(tmpCalleeParam);
 } else {
 }
@@ -129,28 +126,25 @@ if ($) {
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
+if ($) {
+  let a = 500;
   const b = $( 1 );
   if (b) {
     $( "a" );
-    return 500;
   }
   else {
     const c = $( 0 );
+    let d = 500;
     if (c) {
       $( "a" );
-      return 500;
     }
     else {
       $( "b" );
-      return 1000;
+      d = 1000;
     }
+    a = d;
   }
-};
-if ($) {
-  const d = a();
-  $( d );
+  $( a );
 }
 `````
 

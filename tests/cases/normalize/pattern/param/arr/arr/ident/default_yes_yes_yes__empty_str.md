@@ -78,22 +78,17 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpCalleeParam$1 = [`pass2`];
-  const arrPatternStep = $(tmpCalleeParam$1);
-  const arrPatternSplat$1 = [...arrPatternStep];
-  const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
-  const tmpIfTest$3 = arrPatternBeforeDefault$1 === undefined;
-  if (tmpIfTest$3) {
-    const tmpClusterSSA_x = $(`fail`);
-    return tmpClusterSSA_x;
-  } else {
-    return arrPatternBeforeDefault$1;
-  }
-};
-const tmpCalleeParam$3 = f();
-$(tmpCalleeParam$3);
+const tmpCalleeParam$1 = [`pass2`];
+const arrPatternStep = $(tmpCalleeParam$1);
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
+const tmpIfTest$3 = arrPatternBeforeDefault$1 === undefined;
+if (tmpIfTest$3) {
+  const tmpClusterSSA_x = $(`fail`);
+  $(tmpClusterSSA_x);
+} else {
+  $(arrPatternBeforeDefault$1);
+}
 `````
 
 ## PST Output
@@ -101,23 +96,18 @@ $(tmpCalleeParam$3);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = [ "pass2" ];
-  const c = $( b );
-  const d = [ ... c ];
-  const e = d[ 0 ];
-  const f = e === undefined;
-  if (f) {
-    const g = $( "fail" );
-    return g;
-  }
-  else {
-    return e;
-  }
-};
-const h = a();
-$( h );
+const a = [ "pass2" ];
+const b = $( a );
+const c = [ ... b ];
+const d = c[ 0 ];
+const e = d === undefined;
+if (e) {
+  const f = $( "fail" );
+  $( f );
+}
+else {
+  $( d );
+}
 `````
 
 ## Globals

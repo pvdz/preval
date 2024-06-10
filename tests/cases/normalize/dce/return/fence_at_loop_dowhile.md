@@ -87,20 +87,22 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
+let tmpCalleeParam = undefined;
+$inlinedFunction: {
   const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(`loop`);
-    $(`loop`);
-    const tmpReturnArg = $(100, `return`);
-    return tmpReturnArg;
-  } else {
-    $(`after (not invoked)`);
-    return undefined;
+  while (true) {
+    if (tmpIfTest) {
+      $(`loop`);
+      $(`loop`);
+      const tmpReturnArg = $(100, `return`);
+      tmpCalleeParam = tmpReturnArg;
+      break $inlinedFunction;
+    } else {
+      break;
+    }
   }
-};
-const tmpCalleeParam = f();
+  $(`after (not invoked)`);
+}
 $(tmpCalleeParam);
 `````
 
@@ -109,22 +111,24 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
+let a = undefined;
+$inlinedFunction: {
   const b = $( true );
-  if (b) {
-    $( "loop" );
-    $( "loop" );
-    const c = $( 100, "return" );
-    return c;
+  while (true) {
+    if (b) {
+      $( "loop" );
+      $( "loop" );
+      const c = $( 100, "return" );
+      a = c;
+      break $inlinedFunction;
+    }
+    else {
+      break;
+    }
   }
-  else {
-    $( "after (not invoked)" );
-    return undefined;
-  }
-};
-const d = a();
-$( d );
+  $( "after (not invoked)" );
+}
+$( a );
 `````
 
 ## Globals

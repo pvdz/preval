@@ -67,21 +67,16 @@ $(a);
 
 `````js filename=intro
 const b = { x: 1 };
-const f = function () {
-  debugger;
-  const tmpChainElementCall = $(b);
-  const tmpIfTest = tmpChainElementCall == null;
-  if (tmpIfTest) {
-    return undefined;
-  } else {
-    const tmpChainRootComputed = $(`x`);
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    return tmpChainElementObject;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
 const a = { a: 999, b: 1000 };
+const tmpChainElementCall = $(b);
+const tmpIfTest = tmpChainElementCall == null;
+if (tmpIfTest) {
+  $(undefined);
+} else {
+  const tmpChainRootComputed = $(`x`);
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  $(tmpChainElementObject);
+}
 $(a);
 `````
 
@@ -91,26 +86,21 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = function() {
-  debugger;
-  const c = $( a );
-  const d = c == null;
-  if (d) {
-    return undefined;
-  }
-  else {
-    const e = $( "x" );
-    const f = c[ e ];
-    return f;
-  }
-};
-const g = b();
-$( g );
-const h = {
+const b = {
 a: 999,
 b: 1000
 ;
-$( h );
+const c = $( a );
+const d = c == null;
+if (d) {
+  $( undefined );
+}
+else {
+  const e = $( "x" );
+  const f = c[ e ];
+  $( f );
+}
+$( b );
 `````
 
 ## Globals

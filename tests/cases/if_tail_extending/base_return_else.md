@@ -69,33 +69,20 @@ f();
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  if (x) {
-    $(1);
-    if ($) {
-      $(2);
-      while ($LOOP_UNROLL_10) {
-        if (x) {
-          $(1);
-          if ($) {
-            $(2);
-          } else {
-            return undefined;
-          }
-        } else {
-          break;
-        }
+$inlinedFunction: {
+  while (true) {
+    if (x) {
+      $(1);
+      if ($) {
+        $(2);
+      } else {
+        break $inlinedFunction;
       }
-      return undefined;
     } else {
-      return undefined;
+      break;
     }
-  } else {
-    return undefined;
   }
-};
-f();
+}
 `````
 
 ## PST Output
@@ -103,37 +90,22 @@ f();
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  if (x) {
-    $( 1 );
-    if ($) {
-      $( 2 );
-      while ($LOOP_UNROLL_10) {
-        if (x) {
-          $( 1 );
-          if ($) {
-            $( 2 );
-          }
-          else {
-            return undefined;
-          }
-        }
-        else {
-          break;
-        }
+$inlinedFunction: {
+  while (true) {
+    if (x) {
+      $( 1 );
+      if ($) {
+        $( 2 );
       }
-      return undefined;
+      else {
+        break $inlinedFunction;
+      }
     }
     else {
-      return undefined;
+      break;
     }
   }
-  else {
-    return undefined;
-  }
-};
-a();
+}
 `````
 
 ## Globals

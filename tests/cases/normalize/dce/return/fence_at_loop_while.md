@@ -86,42 +86,31 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(`loop`);
-    const tmpIfTest$1 = $(true);
-    if (tmpIfTest$1) {
+let tmpCalleeParam = undefined;
+$inlinedFunction: {
+  let tmpIfTest = $(true);
+  while (true) {
+    if (tmpIfTest) {
       $(`loop`);
-      const tmpReturnArg = $(100, `return`);
-      return tmpReturnArg;
-    } else {
-      $(`do not visit, do not eliminate`);
-      let tmpClusterSSA_tmpIfTest = $(true);
-      while ($LOOP_UNROLL_10) {
-        if (tmpClusterSSA_tmpIfTest) {
+      const tmpIfTest$1 = $(true);
+      while (true) {
+        if (tmpIfTest$1) {
           $(`loop`);
-          const tmpIfTest$2 = $(true);
-          if (tmpIfTest$2) {
-            $(`loop`);
-            const tmpReturnArg$1 = $(100, `return`);
-            return tmpReturnArg$1;
-          } else {
-            $(`do not visit, do not eliminate`);
-            tmpClusterSSA_tmpIfTest = $(true);
-          }
+          const tmpReturnArg = $(100, `return`);
+          tmpCalleeParam = tmpReturnArg;
+          break $inlinedFunction;
         } else {
           break;
         }
       }
+      $(`do not visit, do not eliminate`);
+      tmpIfTest = $(true);
+    } else {
+      break;
     }
-  } else {
   }
   $(`after (not invoked)`);
-  return undefined;
-};
-const tmpCalleeParam = f();
+}
 $(tmpCalleeParam);
 `````
 
@@ -130,45 +119,34 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = $( true );
-  if (b) {
-    $( "loop" );
-    const c = $( true );
-    if (c) {
+let a = undefined;
+$inlinedFunction: {
+  let b = $( true );
+  while (true) {
+    if (b) {
       $( "loop" );
-      const d = $( 100, "return" );
-      return d;
-    }
-    else {
-      $( "do not visit, do not eliminate" );
-      let e = $( true );
-      while ($LOOP_UNROLL_10) {
-        if (e) {
+      const c = $( true );
+      while (true) {
+        if (c) {
           $( "loop" );
-          const f = $( true );
-          if (f) {
-            $( "loop" );
-            const g = $( 100, "return" );
-            return g;
-          }
-          else {
-            $( "do not visit, do not eliminate" );
-            e = $( true );
-          }
+          const d = $( 100, "return" );
+          a = d;
+          break $inlinedFunction;
         }
         else {
           break;
         }
       }
+      $( "do not visit, do not eliminate" );
+      b = $( true );
+    }
+    else {
+      break;
     }
   }
   $( "after (not invoked)" );
-  return undefined;
-};
-const h = a();
-$( h );
+}
+$( a );
 `````
 
 ## Globals

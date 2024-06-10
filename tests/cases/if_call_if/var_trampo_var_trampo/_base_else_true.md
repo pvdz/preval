@@ -94,26 +94,21 @@ if ($) {
 
 
 `````js filename=intro
-const outer = function () {
-  debugger;
+if ($) {
   const x = $(1);
   if (x) {
     const tmpReturnArg$3 = $(`inner if`, x);
-    return tmpReturnArg$3;
+    $(tmpReturnArg$3, `outer`);
   } else {
     const tmpClusterSSA_x = $(2);
     if (tmpClusterSSA_x) {
       const tmpReturnArg = $(`inner if`, tmpClusterSSA_x);
-      return tmpReturnArg;
+      $(tmpReturnArg, `outer`);
     } else {
       const tmpReturnArg$1 = $(`inner else`, tmpClusterSSA_x);
-      return tmpReturnArg$1;
+      $(tmpReturnArg$1, `outer`);
     }
   }
-};
-if ($) {
-  const tmpCalleeParam = outer();
-  $(tmpCalleeParam, `outer`);
 } else {
 }
 `````
@@ -123,28 +118,23 @@ if ($) {
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = $( 1 );
-  if (b) {
-    const c = $( "inner if", b );
-    return c;
+if ($) {
+  const a = $( 1 );
+  if (a) {
+    const b = $( "inner if", a );
+    $( b, "outer" );
   }
   else {
-    const d = $( 2 );
-    if (d) {
-      const e = $( "inner if", d );
-      return e;
+    const c = $( 2 );
+    if (c) {
+      const d = $( "inner if", c );
+      $( d, "outer" );
     }
     else {
-      const f = $( "inner else", d );
-      return f;
+      const e = $( "inner else", c );
+      $( e, "outer" );
     }
   }
-};
-if ($) {
-  const g = a();
-  $( g, "outer" );
 }
 `````
 

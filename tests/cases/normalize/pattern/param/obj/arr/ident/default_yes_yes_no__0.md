@@ -69,28 +69,23 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const objPatternBeforeDefault = (0).x;
-  let objPatternAfterDefault = undefined;
-  const tmpIfTest = objPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = [`pass2`];
-    objPatternAfterDefault = $(tmpCalleeParam);
-  } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-  }
-  const arrPatternSplat = [...objPatternAfterDefault];
-  const arrPatternBeforeDefault = arrPatternSplat[0];
-  const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    return `fail`;
-  } else {
-    return arrPatternBeforeDefault;
-  }
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+const objPatternBeforeDefault = (0).x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCalleeParam = [`pass2`];
+  objPatternAfterDefault = $(tmpCalleeParam);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+const arrPatternSplat = [...objPatternAfterDefault];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
+  $(`fail`);
+} else {
+  $(arrPatternBeforeDefault);
+}
 `````
 
 ## PST Output
@@ -98,30 +93,25 @@ $(tmpCalleeParam$1);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = 0.x;
-  let c = undefined;
-  const d = b === undefined;
-  if (d) {
-    const e = [ "pass2" ];
-    c = $( e );
-  }
-  else {
-    c = b;
-  }
-  const f = [ ... c ];
-  const g = f[ 0 ];
-  const h = g === undefined;
-  if (h) {
-    return "fail";
-  }
-  else {
-    return g;
-  }
-};
-const i = a();
-$( i );
+const a = 0.x;
+let b = undefined;
+const c = a === undefined;
+if (c) {
+  const d = [ "pass2" ];
+  b = $( d );
+}
+else {
+  b = a;
+}
+const e = [ ... b ];
+const f = e[ 0 ];
+const g = f === undefined;
+if (g) {
+  $( "fail" );
+}
+else {
+  $( f );
+}
 `````
 
 ## Globals

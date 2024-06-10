@@ -105,6 +105,12 @@ $(tmpCalleeParam);
 
 
 `````js filename=intro
+const outer = function () {
+  debugger;
+  const r = [undefined];
+  $(r);
+  return undefined;
+};
 const inner = function () {
   debugger;
   outer();
@@ -114,12 +120,6 @@ const inner = function () {
   } else {
     return undefined;
   }
-};
-const outer = function () {
-  debugger;
-  const r = [undefined];
-  $(r);
-  return undefined;
 };
 inner();
 if ($) {
@@ -136,24 +136,24 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  b();
+  const b = [ undefined ];
+  $( b );
+  return undefined;
+};
+const c = function() {
+  debugger;
+  a();
   if ($) {
-    b();
+    a();
     return undefined;
   }
   else {
     return undefined;
   }
 };
-const b = function() {
-  debugger;
-  const c = [ undefined ];
-  $( c );
-  return undefined;
-};
-a();
+c();
 if ($) {
-  a();
+  c();
 }
 $( undefined );
 `````

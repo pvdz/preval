@@ -65,23 +65,17 @@ $(a);
 
 
 `````js filename=intro
+let a = undefined;
 const b = { x: 1 };
-let a = { a: 999, b: 1000 };
-const f = function () {
-  debugger;
-  a = undefined;
-  const tmpChainElementCall = $(b);
-  const tmpIfTest = tmpChainElementCall == null;
-  if (tmpIfTest) {
-    return a;
-  } else {
-    const tmpChainElementObject = tmpChainElementCall.x;
-    a = tmpChainElementObject;
-    return tmpChainElementObject;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpChainElementCall = $(b);
+const tmpIfTest = tmpChainElementCall == null;
+if (tmpIfTest) {
+  $(undefined);
+} else {
+  const tmpChainElementObject = tmpChainElementCall.x;
+  a = tmpChainElementObject;
+  $(tmpChainElementObject);
+}
 $(a);
 `````
 
@@ -90,28 +84,19 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-let b = {
-a: 999,
-b: 1000
-;
-const c = function() {
-  debugger;
-  b = undefined;
-  const d = $( a );
-  const e = d == null;
-  if (e) {
-    return b;
-  }
-  else {
-    const f = d.x;
-    b = f;
-    return f;
-  }
-};
-const g = c();
-$( g );
-$( b );
+let a = undefined;
+const b = { x: 1 };
+const c = $( b );
+const d = c == null;
+if (d) {
+  $( undefined );
+}
+else {
+  const e = c.x;
+  a = e;
+  $( e );
+}
+$( a );
 `````
 
 ## Globals

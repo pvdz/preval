@@ -148,25 +148,20 @@ const c = function () {
     return tmpCalleeParam;
   }
 };
-const a = function () {
-  debugger;
+if ($) {
+  $(`a`);
   if ($) {
-    $(`a`);
-    if ($) {
-      $(`b`);
-      const tmpReturnArg$1 = c();
-      return tmpReturnArg$1;
-    } else {
-      const tmpReturnArg$3 = c();
-      return tmpReturnArg$3;
-    }
+    $(`b`);
+    const tmpReturnArg$1 = c();
+    $(tmpReturnArg$1);
   } else {
-    const tmpReturnArg$7 = c();
-    return tmpReturnArg$7;
+    const tmpReturnArg$3 = c();
+    $(tmpReturnArg$3);
   }
-};
-const tmpCalleeParam$1 = a();
-$(tmpCalleeParam$1);
+} else {
+  const tmpReturnArg$7 = c();
+  $(tmpReturnArg$7);
+}
 `````
 
 ## PST Output
@@ -186,27 +181,22 @@ const a = function() {
     return b;
   }
 };
-const c = function() {
-  debugger;
+if ($) {
+  $( "a" );
   if ($) {
-    $( "a" );
-    if ($) {
-      $( "b" );
-      const d = a();
-      return d;
-    }
-    else {
-      const e = a();
-      return e;
-    }
+    $( "b" );
+    const c = a();
+    $( c );
   }
   else {
-    const f = a();
-    return f;
+    const d = a();
+    $( d );
   }
-};
-const g = c();
-$( g );
+}
+else {
+  const e = a();
+  $( e );
+}
 `````
 
 ## Globals

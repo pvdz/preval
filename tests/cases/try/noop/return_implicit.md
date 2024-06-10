@@ -52,14 +52,10 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  try {
-    return xyz;
-  } catch (e) {}
-  return undefined;
-};
-const tmpCalleeParam = f();
+let tmpCalleeParam = undefined;
+try {
+  tmpCalleeParam = xyz;
+} catch (e) {}
 $(tmpCalleeParam);
 `````
 
@@ -68,18 +64,14 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  try {
-    return xyz;
-  }
+let a = undefined;
+try {
+  a = xyz;
+}
 catch (b) {
 
-  }
-  return undefined;
-};
-const c = a();
-$( c );
+}
+$( a );
 `````
 
 ## Globals

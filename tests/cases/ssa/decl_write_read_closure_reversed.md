@@ -86,7 +86,21 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  $(20);
+  let tmpCalleeParam = undefined;
+  if ($) {
+    let x = 5;
+    if ($) {
+      x = 10;
+    } else {
+    }
+    if ($) {
+      tmpCalleeParam = 20;
+    } else {
+      tmpCalleeParam = x;
+    }
+  } else {
+  }
+  $(tmpCalleeParam);
 } else {
 }
 `````
@@ -97,7 +111,20 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  $( 20 );
+  let a = undefined;
+  if ($) {
+    let b = 5;
+    if ($) {
+      b = 10;
+    }
+    if ($) {
+      a = 20;
+    }
+    else {
+      a = b;
+    }
+  }
+  $( a );
 }
 `````
 

@@ -94,20 +94,15 @@ if ($) {
 
 
 `````js filename=intro
-const outer = function () {
-  debugger;
+if ($) {
   const x = $(0);
   if (x) {
     const tmpReturnArg$3 = $(`inner if`, x);
-    return tmpReturnArg$3;
+    $(tmpReturnArg$3, `outer`);
   } else {
     const tmpReturnArg$5 = $(`inner else`, false);
-    return tmpReturnArg$5;
+    $(tmpReturnArg$5, `outer`);
   }
-};
-if ($) {
-  const tmpCalleeParam = outer();
-  $(tmpCalleeParam, `outer`);
 } else {
 }
 `````
@@ -117,21 +112,16 @@ if ($) {
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = $( 0 );
-  if (b) {
-    const c = $( "inner if", b );
-    return c;
+if ($) {
+  const a = $( 0 );
+  if (a) {
+    const b = $( "inner if", a );
+    $( b, "outer" );
   }
   else {
-    const d = $( "inner else", false );
-    return d;
+    const c = $( "inner else", false );
+    $( c, "outer" );
   }
-};
-if ($) {
-  const e = a();
-  $( e, "outer" );
 }
 `````
 

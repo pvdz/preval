@@ -60,21 +60,15 @@ $(a);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const f = function () {
-  debugger;
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    a = 2;
-    return 2;
-  } else {
-    const tmpCalleeParam = $(100);
-    a = $(tmpCalleeParam);
-    return a;
-  }
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+let a = 2;
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  $(2);
+} else {
+  const tmpCalleeParam = $(100);
+  a = $(tmpCalleeParam);
+  $(a);
+}
 $(a);
 `````
 
@@ -83,25 +77,16 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
-a: 999,
-b: 1000
-;
-const b = function() {
-  debugger;
-  const c = $( 1 );
-  if (c) {
-    a = 2;
-    return 2;
-  }
-  else {
-    const d = $( 100 );
-    a = $( d );
-    return a;
-  }
-};
-const e = b();
-$( e );
+let a = 2;
+const b = $( 1 );
+if (b) {
+  $( 2 );
+}
+else {
+  const c = $( 100 );
+  a = $( c );
+  $( a );
+}
 $( a );
 `````
 

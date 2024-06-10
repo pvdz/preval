@@ -61,19 +61,14 @@ $(a);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpChainElementCall = $($);
-  const tmpIfTest = tmpChainElementCall == null;
-  if (tmpIfTest) {
-    return undefined;
-  } else {
-    const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
-    return tmpChainElementCall$1;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpChainElementCall = $($);
+const tmpIfTest = tmpChainElementCall == null;
+if (tmpIfTest) {
+  $(undefined);
+} else {
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
+  $(tmpChainElementCall$1);
+}
 const a = { a: 999, b: 1000 };
 $(a);
 `````
@@ -83,25 +78,20 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = $( $ );
-  const c = b == null;
-  if (c) {
-    return undefined;
-  }
-  else {
-    const d = $dotCall( b, $, 1 );
-    return d;
-  }
-};
-const e = a();
-$( e );
-const f = {
+const a = $( $ );
+const b = a == null;
+if (b) {
+  $( undefined );
+}
+else {
+  const c = $dotCall( a, $, 1 );
+  $( c );
+}
+const d = {
 a: 999,
 b: 1000
 ;
-$( f );
+$( d );
 `````
 
 ## Globals

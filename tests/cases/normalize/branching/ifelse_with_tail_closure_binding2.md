@@ -84,7 +84,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-throw `Preval: Cannot access \`xyz\` before initialization`;
+throw `Preval: TDZ triggered for this read: \$(xyz)`;
 `````
 
 ## PST Output
@@ -92,7 +92,7 @@ throw `Preval: Cannot access \`xyz\` before initialization`;
 With rename=true
 
 `````js filename=intro
-throw "Preval: Cannot access `xyz` before initialization";
+throw "Preval: TDZ triggered for this read: $(xyz)";
 `````
 
 ## Globals

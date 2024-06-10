@@ -85,23 +85,14 @@ if ($) {
 
 
 `````js filename=intro
-const tmpClusterSSA_x = function () {
-  debugger;
-  return undefined;
-};
-const f = function () {
-  debugger;
-  if ($) {
-    $();
-    $(tmpClusterSSA_x);
-    return tmpClusterSSA_x;
-  } else {
-    return undefined;
-  }
-};
 if ($) {
-  const tmpCalleeParam = f();
-  $(tmpCalleeParam);
+  const tmpClusterSSA_x = function () {
+    debugger;
+    return undefined;
+  };
+  $();
+  $(tmpClusterSSA_x);
+  $(tmpClusterSSA_x);
 } else {
 }
 `````
@@ -111,24 +102,14 @@ if ($) {
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  return undefined;
-};
-const b = function() {
-  debugger;
-  if ($) {
-    $();
-    $( a );
-    return a;
-  }
-  else {
-    return undefined;
-  }
-};
 if ($) {
-  const c = b();
-  $( c );
+  const a = function() {
+    debugger;
+    return undefined;
+  };
+  $();
+  $( a );
+  $( a );
 }
 `````
 

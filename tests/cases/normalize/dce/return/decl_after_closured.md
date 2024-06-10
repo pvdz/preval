@@ -66,19 +66,7 @@ tmpCallComplexCallee();
 
 
 `````js filename=intro
-const g = function () {
-  debugger;
-  const f = function () {
-    debugger;
-    $(x);
-    return undefined;
-  };
-  return f;
-  const x = $(1);
-  return undefined;
-};
-const tmpCallComplexCallee = g();
-tmpCallComplexCallee();
+$(0);
 `````
 
 ## PST Output
@@ -86,19 +74,7 @@ tmpCallComplexCallee();
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = function() {
-    debugger;
-    $( c );
-    return undefined;
-  };
-  return b;
-  const c = $( 1 );
-  return undefined;
-};
-const d = a();
-d();
+$( 0 );
 `````
 
 ## Globals
@@ -114,4 +90,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 0
+ - eval returned: undefined

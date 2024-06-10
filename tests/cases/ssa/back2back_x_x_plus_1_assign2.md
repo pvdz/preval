@@ -139,20 +139,19 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  let x = $(5);
+  const x = $(5);
   $(x);
   const tmpCalleeParam = {
     toString() {
       debugger;
       $(`tostring`);
-      x = 20;
       return `hi`;
     },
   };
-  x = $(tmpCalleeParam);
-  x = x + 1;
+  const tmpClusterSSA_x = $(tmpCalleeParam);
+  const tmpClusterSSA_x$1 = tmpClusterSSA_x + 1;
   if ($) {
-    $(x);
+    $(tmpClusterSSA_x$1);
   } else {
   }
 } else {
@@ -165,18 +164,17 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  let a = $( 5 );
+  const a = $( 5 );
   $( a );
   const b = { toString(  ) {
     debugger;
     $( "tostring" );
-    a = 20;
     return "hi";
   }, };
-  a = $( b );
-  a = a + 1;
+  const c = $( b );
+  const d = c + 1;
   if ($) {
-    $( a );
+    $( d );
   }
 }
 `````

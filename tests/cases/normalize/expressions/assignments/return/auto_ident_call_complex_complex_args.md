@@ -62,9 +62,9 @@ $(a);
 const tmpCallCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const tmpClusterSSA_a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+$(a);
+$(a);
 `````
 
 ## PST Output

@@ -87,20 +87,16 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpSwitchValue = $(1, `disc`);
-  const tmpBinLhs = $(0);
-  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-  if (tmpIfTest) {
-    $(`wrong branch`);
-    return undefined;
-  } else {
-    const tmpReturnArg = $(2, `ret`);
-    return tmpReturnArg;
-  }
-};
-const tmpCalleeParam = f();
+let tmpCalleeParam = undefined;
+const tmpSwitchValue = $(1, `disc`);
+const tmpBinLhs = $(0);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  $(`wrong branch`);
+} else {
+  const tmpReturnArg = $(2, `ret`);
+  tmpCalleeParam = tmpReturnArg;
+}
 $(tmpCalleeParam);
 `````
 
@@ -109,22 +105,18 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = $( 1, "disc" );
-  const c = $( 0 );
-  const d = c === b;
-  if (d) {
-    $( "wrong branch" );
-    return undefined;
-  }
-  else {
-    const e = $( 2, "ret" );
-    return e;
-  }
-};
-const f = a();
-$( f );
+let a = undefined;
+const b = $( 1, "disc" );
+const c = $( 0 );
+const d = c === b;
+if (d) {
+  $( "wrong branch" );
+}
+else {
+  const e = $( 2, "ret" );
+  a = e;
+}
+$( a );
 `````
 
 ## Globals

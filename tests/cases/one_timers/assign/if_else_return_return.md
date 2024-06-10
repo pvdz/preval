@@ -91,22 +91,20 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpIfTest = $();
-  if (tmpIfTest) {
-    $(0);
-    const tmpReturnArg$1 = $(2);
-    return tmpReturnArg$1;
-  } else {
-    const tmpReturnArg = $(1);
-    return tmpReturnArg;
-  }
-};
 const x = $(100);
 $(x);
-const tmpClusterSSA_x = f();
-$(tmpClusterSSA_x);
+let tmpClusterSSA_x = undefined;
+const tmpIfTest = $();
+if (tmpIfTest) {
+  $(0);
+  const tmpReturnArg$1 = $(2);
+  tmpClusterSSA_x = tmpReturnArg$1;
+  $(tmpReturnArg$1);
+} else {
+  const tmpReturnArg = $(1);
+  tmpClusterSSA_x = tmpReturnArg;
+  $(tmpReturnArg);
+}
 $(tmpClusterSSA_x);
 `````
 
@@ -115,24 +113,22 @@ $(tmpClusterSSA_x);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = $();
-  if (b) {
-    $( 0 );
-    const c = $( 2 );
-    return c;
-  }
-  else {
-    const d = $( 1 );
-    return d;
-  }
-};
-const e = $( 100 );
-$( e );
-const f = a();
-$( f );
-$( f );
+const a = $( 100 );
+$( a );
+let b = undefined;
+const c = $();
+if (c) {
+  $( 0 );
+  const d = $( 2 );
+  b = d;
+  $( d );
+}
+else {
+  const e = $( 1 );
+  b = e;
+  $( e );
+}
+$( b );
 `````
 
 ## Globals

@@ -74,29 +74,24 @@ $(a);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpChainElementCall = $(b);
-  const tmpIfTest = tmpChainElementCall == null;
-  if (tmpIfTest) {
-    return undefined;
-  } else {
-    const tmpChainRootComputed = $(`x`);
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$1 = tmpChainElementObject == null;
-    if (tmpIfTest$1) {
-      return undefined;
-    } else {
-      const tmpChainRootComputed$1 = $(`y`);
-      const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-      return tmpChainElementObject$1;
-    }
-  }
-};
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
+let tmpCalleeParam = undefined;
+const tmpChainElementCall = $(b);
+const tmpIfTest = tmpChainElementCall == null;
+if (tmpIfTest) {
+} else {
+  const tmpChainRootComputed = $(`x`);
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  const tmpIfTest$1 = tmpChainElementObject == null;
+  if (tmpIfTest$1) {
+  } else {
+    const tmpChainRootComputed$1 = $(`y`);
+    const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+    tmpCalleeParam = tmpChainElementObject$1;
+  }
+}
 $(tmpCalleeParam);
 $(a);
 `````
@@ -106,36 +101,33 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = $( c );
-  const d = b == null;
-  if (d) {
-    return undefined;
-  }
-  else {
-    const e = $( "x" );
-    const f = b[ e ];
-    const g = f == null;
-    if (g) {
-      return undefined;
-    }
-    else {
-      const h = $( "y" );
-      const i = f[ h ];
-      return i;
-    }
-  }
-};
-const j = { y: 1 };
-const c = { x: j };
-const k = {
+const a = { y: 1 };
+const b = { x: a };
+const c = {
 a: 999,
 b: 1000
 ;
-const l = a();
-$( l );
-$( k );
+let d = undefined;
+const e = $( b );
+const f = e == null;
+if (f) {
+
+}
+else {
+  const g = $( "x" );
+  const h = e[ g ];
+  const i = h == null;
+  if (i) {
+
+  }
+  else {
+    const j = $( "y" );
+    const k = h[ j ];
+    d = k;
+  }
+}
+$( d );
+$( c );
 `````
 
 ## Globals

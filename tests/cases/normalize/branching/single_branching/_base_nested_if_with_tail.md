@@ -80,26 +80,21 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpIfTest$1 = $(2);
-    if (tmpIfTest$1) {
-      $(3);
-    } else {
-      $(4);
-    }
-    const tmpReturnArg = $(5);
-    return tmpReturnArg;
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  const tmpIfTest$1 = $(2);
+  if (tmpIfTest$1) {
+    $(3);
   } else {
-    $(6);
-    const tmpReturnArg$1 = $(7);
-    return tmpReturnArg$1;
+    $(4);
   }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam, `final`);
+  const tmpReturnArg = $(5);
+  $(tmpReturnArg, `final`);
+} else {
+  $(6);
+  const tmpReturnArg$1 = $(7);
+  $(tmpReturnArg$1, `final`);
+}
 `````
 
 ## PST Output
@@ -107,28 +102,23 @@ $(tmpCalleeParam, `final`);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = $( 1 );
+const a = $( 1 );
+if (a) {
+  const b = $( 2 );
   if (b) {
-    const c = $( 2 );
-    if (c) {
-      $( 3 );
-    }
-    else {
-      $( 4 );
-    }
-    const d = $( 5 );
-    return d;
+    $( 3 );
   }
   else {
-    $( 6 );
-    const e = $( 7 );
-    return e;
+    $( 4 );
   }
-};
-const f = a();
-$( f, "final" );
+  const c = $( 5 );
+  $( c, "final" );
+}
+else {
+  $( 6 );
+  const d = $( 7 );
+  $( d, "final" );
+}
 `````
 
 ## Globals

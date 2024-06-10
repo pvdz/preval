@@ -150,8 +150,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
+$inlinedFunction: {
   const tmpSwitchValue = $(1);
   let tmpSwitchCaseToStart = 4;
   const tmpIfTest = 0 === tmpSwitchValue;
@@ -179,7 +178,7 @@ const f = function () {
     $(`one`);
     const tmpIfTest$9 = $(1);
     if (tmpIfTest$9) {
-      return undefined;
+      break $inlinedFunction;
     } else {
     }
   } else {
@@ -187,25 +186,20 @@ const f = function () {
   const tmpIfTest$11 = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$11) {
     $(`two`);
-    return undefined;
   } else {
     const tmpIfTest$13 = tmpSwitchCaseToStart <= 2;
     if (tmpIfTest$13) {
       $(`three`);
-      return undefined;
     } else {
       const tmpIfTest$15 = tmpSwitchCaseToStart <= 3;
       if (tmpIfTest$15) {
         $(`four`);
-        return undefined;
       } else {
         $(`def`);
-        return undefined;
       }
     }
   }
-};
-f();
+}
 $(undefined);
 `````
 
@@ -214,65 +208,59 @@ $(undefined);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = $( 1 );
-  let c = 4;
-  const d = 0 === b;
-  if (d) {
-    c = 0;
+$inlinedFunction: {
+  const a = $( 1 );
+  let b = 4;
+  const c = 0 === a;
+  if (c) {
+    b = 0;
   }
   else {
-    const e = 1 === b;
-    if (e) {
-      c = 1;
+    const d = 1 === a;
+    if (d) {
+      b = 1;
     }
     else {
-      const f = 2 === b;
-      if (f) {
-        c = 2;
+      const e = 2 === a;
+      if (e) {
+        b = 2;
       }
       else {
-        const g = 3 === b;
-        if (g) {
-          c = 3;
+        const f = 3 === a;
+        if (f) {
+          b = 3;
         }
       }
     }
   }
-  const h = c <= 0;
-  if (h) {
+  const g = b <= 0;
+  if (g) {
     $( "one" );
-    const i = $( 1 );
-    if (i) {
-      return undefined;
+    const h = $( 1 );
+    if (h) {
+      break $inlinedFunction;
     }
   }
-  const j = c <= 1;
-  if (j) {
+  const i = b <= 1;
+  if (i) {
     $( "two" );
-    return undefined;
   }
   else {
-    const k = c <= 2;
-    if (k) {
+    const j = b <= 2;
+    if (j) {
       $( "three" );
-      return undefined;
     }
     else {
-      const l = c <= 3;
-      if (l) {
+      const k = b <= 3;
+      if (k) {
         $( "four" );
-        return undefined;
       }
       else {
         $( "def" );
-        return undefined;
       }
     }
   }
-};
-a();
+}
 $( undefined );
 `````
 

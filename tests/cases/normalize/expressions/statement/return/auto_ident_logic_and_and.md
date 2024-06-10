@@ -68,25 +68,22 @@ $(a);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpCalleeParam = $(1);
-  const tmpReturnArg = $(tmpCalleeParam);
-  if (tmpReturnArg) {
-    const tmpCalleeParam$1 = $(1);
-    const tmpClusterSSA_tmpReturnArg = $(tmpCalleeParam$1);
-    if (tmpClusterSSA_tmpReturnArg) {
-      const tmpCalleeParam$3 = $(2);
-      const tmpClusterSSA_tmpReturnArg$1 = $(tmpCalleeParam$3);
-      return tmpClusterSSA_tmpReturnArg$1;
-    } else {
-      return tmpClusterSSA_tmpReturnArg;
-    }
+let tmpCalleeParam$5 = undefined;
+const tmpCalleeParam = $(1);
+const tmpReturnArg = $(tmpCalleeParam);
+if (tmpReturnArg) {
+  const tmpCalleeParam$1 = $(1);
+  const tmpClusterSSA_tmpReturnArg = $(tmpCalleeParam$1);
+  if (tmpClusterSSA_tmpReturnArg) {
+    const tmpCalleeParam$3 = $(2);
+    const tmpClusterSSA_tmpReturnArg$1 = $(tmpCalleeParam$3);
+    tmpCalleeParam$5 = tmpClusterSSA_tmpReturnArg$1;
   } else {
-    return tmpReturnArg;
+    tmpCalleeParam$5 = tmpClusterSSA_tmpReturnArg;
   }
-};
-const tmpCalleeParam$5 = f();
+} else {
+  tmpCalleeParam$5 = tmpReturnArg;
+}
 $(tmpCalleeParam$5);
 const a = { a: 999, b: 1000 };
 $(a);
@@ -97,33 +94,30 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = $( 1 );
-  const c = $( b );
-  if (c) {
-    const d = $( 1 );
-    const e = $( d );
-    if (e) {
-      const f = $( 2 );
-      const g = $( f );
-      return g;
-    }
-    else {
-      return e;
-    }
+let a = undefined;
+const b = $( 1 );
+const c = $( b );
+if (c) {
+  const d = $( 1 );
+  const e = $( d );
+  if (e) {
+    const f = $( 2 );
+    const g = $( f );
+    a = g;
   }
   else {
-    return c;
+    a = e;
   }
-};
-const h = a();
-$( h );
-const i = {
+}
+else {
+  a = c;
+}
+$( a );
+const h = {
 a: 999,
 b: 1000
 ;
-$( i );
+$( h );
 `````
 
 ## Globals

@@ -104,21 +104,25 @@ $(parseIdentifierRest);
 const parseIdentifierRest = function () {
   debugger;
   c$53;
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpIfTest$1 = $(1);
-    if (tmpIfTest$1) {
-      return 10;
+  let s$15 = 10;
+  $inlinedFunction: {
+    const tmpIfTest = $(1);
+    if (tmpIfTest) {
+      const tmpIfTest$1 = $(1);
+      if (tmpIfTest$1) {
+        break $inlinedFunction;
+      } else {
+      }
     } else {
+      $(100);
     }
-  } else {
-    $(100);
+    if ($) {
+      s$15 = 3;
+    } else {
+      s$15 = 4;
+    }
   }
-  if ($) {
-    return 3;
-  } else {
-    return 4;
-  }
+  return s$15;
 };
 $(parseIdentifierRest);
 `````
@@ -131,22 +135,26 @@ With rename=true
 const a = function() {
   debugger;
   c$53;
-  const b = $( 1 );
-  if (b) {
+  let b = 10;
+  $inlinedFunction:   {
     const c = $( 1 );
     if (c) {
-      return 10;
+      const d = $( 1 );
+      if (d) {
+        break $inlinedFunction;
+      }
+    }
+    else {
+      $( 100 );
+    }
+    if ($) {
+      b = 3;
+    }
+    else {
+      b = 4;
     }
   }
-  else {
-    $( 100 );
-  }
-  if ($) {
-    return 3;
-  }
-  else {
-    return 4;
-  }
+  return b;
 };
 $( a );
 `````

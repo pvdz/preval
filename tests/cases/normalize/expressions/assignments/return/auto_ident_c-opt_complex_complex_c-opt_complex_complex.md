@@ -74,31 +74,25 @@ $(a);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  a = undefined;
-  const tmpChainElementCall = $(b);
-  const tmpIfTest = tmpChainElementCall == null;
-  if (tmpIfTest) {
-    return a;
-  } else {
-    const tmpChainRootComputed = $(`x`);
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$1 = tmpChainElementObject == null;
-    if (tmpIfTest$1) {
-      return a;
-    } else {
-      const tmpChainRootComputed$1 = $(`y`);
-      const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-      a = tmpChainElementObject$1;
-      return tmpChainElementObject$1;
-    }
-  }
-};
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
+let a = undefined;
+let tmpCalleeParam = undefined;
+const tmpChainElementCall = $(b);
+const tmpIfTest = tmpChainElementCall == null;
+if (tmpIfTest) {
+} else {
+  const tmpChainRootComputed = $(`x`);
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  const tmpIfTest$1 = tmpChainElementObject == null;
+  if (tmpIfTest$1) {
+  } else {
+    const tmpChainRootComputed$1 = $(`y`);
+    const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+    a = tmpChainElementObject$1;
+    tmpCalleeParam = tmpChainElementObject$1;
+  }
+}
 $(tmpCalleeParam);
 $(a);
 `````
@@ -108,38 +102,31 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  b = undefined;
-  const c = $( d );
-  const e = c == null;
-  if (e) {
-    return b;
+const a = { y: 1 };
+const b = { x: a };
+let c = undefined;
+let d = undefined;
+const e = $( b );
+const f = e == null;
+if (f) {
+
+}
+else {
+  const g = $( "x" );
+  const h = e[ g ];
+  const i = h == null;
+  if (i) {
+
   }
   else {
-    const f = $( "x" );
-    const g = c[ f ];
-    const h = g == null;
-    if (h) {
-      return b;
-    }
-    else {
-      const i = $( "y" );
-      const j = g[ i ];
-      b = j;
-      return j;
-    }
+    const j = $( "y" );
+    const k = h[ j ];
+    c = k;
+    d = k;
   }
-};
-const k = { y: 1 };
-const d = { x: k };
-let b = {
-a: 999,
-b: 1000
-;
-const l = a();
-$( l );
-$( b );
+}
+$( d );
+$( c );
 `````
 
 ## Globals

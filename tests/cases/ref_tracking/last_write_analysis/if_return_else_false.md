@@ -71,20 +71,15 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpIfTest = $(false);
-  if (tmpIfTest) {
-    const tmpClusterSSA_x = $(2, `prevent optim`);
-    return tmpClusterSSA_x;
-  } else {
-    const tmpClusterSSA_x$1 = $(3, `prevent optim`);
-    $(`prevent return hoisting`);
-    return tmpClusterSSA_x$1;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpIfTest = $(false);
+if (tmpIfTest) {
+  const tmpClusterSSA_x = $(2, `prevent optim`);
+  $(tmpClusterSSA_x);
+} else {
+  const tmpClusterSSA_x$1 = $(3, `prevent optim`);
+  $(`prevent return hoisting`);
+  $(tmpClusterSSA_x$1);
+}
 `````
 
 ## PST Output
@@ -92,21 +87,16 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = $( false );
-  if (b) {
-    const c = $( 2, "prevent optim" );
-    return c;
-  }
-  else {
-    const d = $( 3, "prevent optim" );
-    $( "prevent return hoisting" );
-    return d;
-  }
-};
-const e = a();
-$( e );
+const a = $( false );
+if (a) {
+  const b = $( 2, "prevent optim" );
+  $( b );
+}
+else {
+  const c = $( 3, "prevent optim" );
+  $( "prevent return hoisting" );
+  $( c );
+}
 `````
 
 ## Globals

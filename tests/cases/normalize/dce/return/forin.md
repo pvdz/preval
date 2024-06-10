@@ -59,17 +59,17 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
+let tmpCalleeParam = undefined;
+$inlinedFunction: {
   let x = undefined;
   const tmpForInDeclRhs = { a: 1, b: 2 };
   for (x in tmpForInDeclRhs) {
     const tmpReturnArg = $(1, `return`);
-    return tmpReturnArg;
+    tmpCalleeParam = tmpReturnArg;
+    break $inlinedFunction;
   }
-  return undefined;
-};
-const tmpCalleeParam = f();
+  tmpCalleeParam = undefined;
+}
 $(tmpCalleeParam);
 `````
 
@@ -78,8 +78,8 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
+let a = undefined;
+$inlinedFunction: {
   let b = undefined;
   const c = {
 a: 1,
@@ -87,12 +87,12 @@ b: 2
   ;
   for (b in c) {
     const d = $( 1, "return" );
-    return d;
+    a = d;
+    break $inlinedFunction;
   }
-  return undefined;
-};
-const e = a();
-$( e );
+  a = undefined;
+}
+$( a );
 `````
 
 ## Globals

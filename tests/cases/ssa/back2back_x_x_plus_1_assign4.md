@@ -177,17 +177,16 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  let x = $(5);
+  const x = $(5);
   $(x);
   const tmpCalleeParam = {
     toString() {
       debugger;
-      x = 200;
       if ($) {
-        $(x, `t`);
+        $(200, `t`);
       } else {
       }
-      $(x);
+      $(200);
       if ($) {
         $(11);
         return `hi`;
@@ -196,13 +195,13 @@ if ($) {
       }
     },
   };
-  x = $(tmpCalleeParam);
-  x = x + 1;
+  const tmpClusterSSA_x = $(tmpCalleeParam);
+  const tmpClusterSSA_x$1 = tmpClusterSSA_x + 1;
   if ($) {
-    $(x);
+    $(tmpClusterSSA_x$1);
   } else {
   }
-  $(x, `t`);
+  $(tmpClusterSSA_x$1, `t`);
   if ($) {
     $(10);
   } else {
@@ -217,15 +216,14 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  let a = $( 5 );
+  const a = $( 5 );
   $( a );
   const b = { toString(  ) {
     debugger;
-    a = 200;
     if ($) {
-      $( a, "t" );
+      $( 200, "t" );
     }
-    $( a );
+    $( 200 );
     if ($) {
       $( 11 );
       return "hi";
@@ -234,12 +232,12 @@ if ($) {
       return "hi";
     }
   }, };
-  a = $( b );
-  a = a + 1;
+  const c = $( b );
+  const d = c + 1;
   if ($) {
-    $( a );
+    $( d );
   }
-  $( a, "t" );
+  $( d, "t" );
   if ($) {
     $( 10 );
   }

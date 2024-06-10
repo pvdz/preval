@@ -57,9 +57,9 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
-const tmpClusterSSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+$(a);
+$(a);
 `````
 
 ## PST Output

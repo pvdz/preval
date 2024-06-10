@@ -167,8 +167,8 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
+let tmpCalleeParam = undefined;
+$inlinedFunction: {
   const tmpSwitchValue = $(1);
   let tmpSwitchCaseToStart = 4;
   const tmpIfTest = 0 === tmpSwitchValue;
@@ -197,7 +197,6 @@ const f = function () {
   const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$7) {
     $(2);
-    return undefined;
   } else {
     const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$9) {
@@ -206,7 +205,8 @@ const f = function () {
         const tmpIfTest$13 = $(9);
         if (tmpIfTest$13) {
           const tmpReturnArg = $(10);
-          return tmpReturnArg;
+          tmpCalleeParam = tmpReturnArg;
+          break $inlinedFunction;
         } else {
           $(11);
           const tmpIfTest$15 = $(2);
@@ -214,7 +214,8 @@ const f = function () {
             $(13);
           } else {
             const tmpReturnArg$1 = $(14);
-            return tmpReturnArg$1;
+            tmpCalleeParam = tmpReturnArg$1;
+            break $inlinedFunction;
           }
         }
       } else {
@@ -226,13 +227,11 @@ const f = function () {
     if (tmpIfTest$17) {
       $(5);
       const tmpReturnArg$3 = $(6);
-      return tmpReturnArg$3;
+      tmpCalleeParam = tmpReturnArg$3;
     } else {
-      return undefined;
     }
   }
-};
-const tmpCalleeParam = f();
+}
 $(tmpCalleeParam);
 `````
 
@@ -241,8 +240,8 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
+let a = undefined;
+$inlinedFunction: {
   const b = $( 1 );
   let c = 4;
   const d = 0 === b;
@@ -273,7 +272,6 @@ const a = function() {
   const k = c <= 0;
   if (k) {
     $( 2 );
-    return undefined;
   }
   else {
     const l = c <= 1;
@@ -283,7 +281,8 @@ const a = function() {
         const n = $( 9 );
         if (n) {
           const o = $( 10 );
-          return o;
+          a = o;
+          break $inlinedFunction;
         }
         else {
           $( 11 );
@@ -293,7 +292,8 @@ const a = function() {
           }
           else {
             const q = $( 14 );
-            return q;
+            a = q;
+            break $inlinedFunction;
           }
         }
       }
@@ -303,15 +303,11 @@ const a = function() {
     if (r) {
       $( 5 );
       const s = $( 6 );
-      return s;
-    }
-    else {
-      return undefined;
+      a = s;
     }
   }
-};
-const t = a();
-$( t );
+}
+$( a );
 `````
 
 ## Globals

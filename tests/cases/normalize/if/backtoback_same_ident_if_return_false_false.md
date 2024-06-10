@@ -75,22 +75,19 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const x = $(0);
-  if (x) {
-    return x;
+let tmpCalleeParam = undefined;
+const x = $(0);
+if (x) {
+  tmpCalleeParam = x;
+} else {
+  const tmpClusterSSA_x = $(0);
+  if (tmpClusterSSA_x) {
+    tmpCalleeParam = tmpClusterSSA_x;
   } else {
-    const tmpClusterSSA_x = $(0);
-    if (tmpClusterSSA_x) {
-      return tmpClusterSSA_x;
-    } else {
-      const tmpReturnArg = $(3);
-      return tmpReturnArg;
-    }
+    const tmpReturnArg = $(3);
+    tmpCalleeParam = tmpReturnArg;
   }
-};
-const tmpCalleeParam = f();
+}
 $(tmpCalleeParam);
 `````
 
@@ -99,25 +96,22 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = $( 0 );
-  if (b) {
-    return b;
+let a = undefined;
+const b = $( 0 );
+if (b) {
+  a = b;
+}
+else {
+  const c = $( 0 );
+  if (c) {
+    a = c;
   }
   else {
-    const c = $( 0 );
-    if (c) {
-      return c;
-    }
-    else {
-      const d = $( 3 );
-      return d;
-    }
+    const d = $( 3 );
+    a = d;
   }
-};
-const e = a();
-$( e );
+}
+$( a );
 `````
 
 ## Globals

@@ -54,9 +54,9 @@ $(a);
 
 `````js filename=intro
 const tmpNewCallee = $($);
-const tmpClusterSSA_a = new tmpNewCallee(1);
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const a = new tmpNewCallee(1);
+$(a);
+$(a);
 `````
 
 ## PST Output

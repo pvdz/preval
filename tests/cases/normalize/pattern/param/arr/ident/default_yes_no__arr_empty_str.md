@@ -62,22 +62,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const arrPatternSplat = [...tmpParamBare];
-  const arrPatternBeforeDefault = arrPatternSplat[0];
-  const tmpIfTest = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    const tmpClusterSSA_x = $(`pass`);
-    return tmpClusterSSA_x;
-  } else {
-    return arrPatternBeforeDefault;
-  }
-};
-const tmpCalleeParam$1 = [``, 201];
-const tmpCalleeParam = f(tmpCalleeParam$1);
-$(tmpCalleeParam);
+$(``);
 `````
 
 ## PST Output
@@ -85,23 +70,7 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = c;
-  debugger;
-  const d = [ ... b ];
-  const e = d[ 0 ];
-  const f = e === undefined;
-  if (f) {
-    const g = $( "pass" );
-    return g;
-  }
-  else {
-    return e;
-  }
-};
-const h = [ "", 201 ];
-const i = a( h );
-$( i );
+$( "" );
 `````
 
 ## Globals

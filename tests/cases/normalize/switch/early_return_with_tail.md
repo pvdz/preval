@@ -133,8 +133,8 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
+let tmpCalleeParam = undefined;
+$inlinedFunction: {
   const tmpSwitchValue = $(7);
   let tmpSwitchCaseToStart = 4;
   const tmpIfTest = 0 === tmpSwitchValue;
@@ -173,14 +173,13 @@ const f = function () {
     if (tmpIfTest$11) {
       $(5);
       const tmpReturnArg = $(6);
-      return tmpReturnArg;
+      tmpCalleeParam = tmpReturnArg;
+      break $inlinedFunction;
     } else {
     }
   }
   $(`after`);
-  return undefined;
-};
-const tmpCalleeParam = f();
+}
 $(tmpCalleeParam);
 `````
 
@@ -189,8 +188,8 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
+let a = undefined;
+$inlinedFunction: {
   const b = $( 7 );
   let c = 4;
   const d = 0 === b;
@@ -231,14 +230,13 @@ const a = function() {
     if (m) {
       $( 5 );
       const n = $( 6 );
-      return n;
+      a = n;
+      break $inlinedFunction;
     }
   }
   $( "after" );
-  return undefined;
-};
-const o = a();
-$( o );
+}
+$( a );
 `````
 
 ## Globals

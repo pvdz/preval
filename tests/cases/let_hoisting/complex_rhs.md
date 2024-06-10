@@ -86,20 +86,15 @@ $(x);
 
 
 `````js filename=intro
-const danger = function () {
-  debugger;
-  if ($) {
-    return 1;
-  } else {
-    return undefined;
-  }
-};
-const x = danger();
-$(x);
 if ($) {
-  const tmpClusterSSA_x = $(`do not inline me`);
-  $(tmpClusterSSA_x);
+  $(1);
+  if ($) {
+    const tmpClusterSSA_x = $(`do not inline me`);
+    $(tmpClusterSSA_x);
+  } else {
+  }
 } else {
+  $(undefined);
 }
 `````
 
@@ -108,20 +103,15 @@ if ($) {
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  if ($) {
-    return 1;
-  }
-  else {
-    return undefined;
-  }
-};
-const b = a();
-$( b );
 if ($) {
-  const c = $( "do not inline me" );
-  $( c );
+  $( 1 );
+  if ($) {
+    const a = $( "do not inline me" );
+    $( a );
+  }
+}
+else {
+  $( undefined );
 }
 `````
 

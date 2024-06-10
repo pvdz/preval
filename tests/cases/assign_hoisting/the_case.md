@@ -136,33 +136,25 @@ if ($) {
 
 
 `````js filename=intro
-const f = function ($$0, $$1, $$2) {
-  const tmpOutlinedParam = $$0;
-  const tmpOutlinedParam$1 = $$1;
-  const tmpOutlinedParam$2 = $$2;
-  debugger;
+if ($) {
+  const a = $(1);
+  const b = $(2);
+  const c = $(3);
   if ($) {
-    $(tmpOutlinedParam);
+    $(a);
     if ($) {
-      $(tmpOutlinedParam$1);
+      $(b);
       if ($) {
-        $(tmpOutlinedParam$2);
+        $(c);
       } else {
       }
     } else {
     }
-    const tmpReturnArg = [tmpOutlinedParam, tmpOutlinedParam$1, tmpOutlinedParam$2];
-    return tmpReturnArg;
+    const tmpReturnArg = [a, b, c];
+    $(tmpReturnArg);
   } else {
-    return undefined;
+    $(undefined);
   }
-};
-if ($) {
-  const tmpSaooB = $(1);
-  const tmpSaooB$1 = $(2);
-  const tmpSaooB$2 = $(3);
-  const tmpCalleeParam = f(tmpSaooB, tmpSaooB$1, tmpSaooB$2);
-  $(tmpCalleeParam);
 } else {
 }
 `````
@@ -172,32 +164,24 @@ if ($) {
 With rename=true
 
 `````js filename=intro
-const a = function($$0,$$1,$$2 ) {
-  const b = c;
-  const d = e;
-  const f = g;
-  debugger;
+if ($) {
+  const a = $( 1 );
+  const b = $( 2 );
+  const c = $( 3 );
   if ($) {
-    $( b );
+    $( a );
     if ($) {
-      $( d );
+      $( b );
       if ($) {
-        $( f );
+        $( c );
       }
     }
-    const h = [ b, d, f ];
-    return h;
+    const d = [ a, b, c ];
+    $( d );
   }
   else {
-    return undefined;
+    $( undefined );
   }
-};
-if ($) {
-  const i = $( 1 );
-  const j = $( 2 );
-  const k = $( 3 );
-  const l = a( i, j, k );
-  $( l );
 }
 `````
 

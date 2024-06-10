@@ -130,24 +130,18 @@ $(a);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const f = function () {
-  debugger;
-  const tmpChainElementCall$2 = $($);
-  const tmpIfTest$3 = tmpChainElementCall$2 == null;
-  if (tmpIfTest$3) {
-    a = undefined;
-    return undefined;
-  } else {
-    const tmpCallVal$2 = tmpChainElementCall$2.call;
-    const tmpCalleeParam$5 = $(1);
-    const tmpChainElementCall$5 = tmpCallVal$2.call(tmpChainElementCall$2, $, tmpCalleeParam$5);
-    a = tmpChainElementCall$5;
-    return tmpChainElementCall$5;
-  }
-};
-const tmpCalleeParam$6 = f();
-$(tmpCalleeParam$6);
+let a = undefined;
+const tmpChainElementCall$2 = $($);
+const tmpIfTest$3 = tmpChainElementCall$2 == null;
+if (tmpIfTest$3) {
+  $(undefined);
+} else {
+  const tmpCallVal$2 = tmpChainElementCall$2.call;
+  const tmpCalleeParam$5 = $(1);
+  const tmpChainElementCall$5 = tmpCallVal$2.call(tmpChainElementCall$2, $, tmpCalleeParam$5);
+  a = tmpChainElementCall$5;
+  $(tmpChainElementCall$5);
+}
 $(a);
 `````
 
@@ -156,28 +150,19 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
-a: 999,
-b: 1000
-;
-const b = function() {
-  debugger;
-  const c = $( $ );
-  const d = c == null;
-  if (d) {
-    a = undefined;
-    return undefined;
-  }
-  else {
-    const e = c.call;
-    const f = $( 1 );
-    const g = e.call( c, $, f );
-    a = g;
-    return g;
-  }
-};
-const h = b();
-$( h );
+let a = undefined;
+const b = $( $ );
+const c = b == null;
+if (c) {
+  $( undefined );
+}
+else {
+  const d = b.call;
+  const e = $( 1 );
+  const f = d.call( b, $, e );
+  a = f;
+  $( f );
+}
 $( a );
 `````
 

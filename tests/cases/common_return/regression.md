@@ -164,29 +164,24 @@ const k = function () {
     return tmpCalleeParam;
   }
 };
-const h = function () {
-  debugger;
+if ($) {
+  $(`prevent`);
+  $(`simple`);
+  $(`inlining`);
   if ($) {
     $(`prevent`);
     $(`simple`);
     $(`inlining`);
-    if ($) {
-      $(`prevent`);
-      $(`simple`);
-      $(`inlining`);
-      const tmpReturnArg$1 = k();
-      return tmpReturnArg$1;
-    } else {
-      const tmpReturnArg$3 = k();
-      return tmpReturnArg$3;
-    }
+    const tmpReturnArg$1 = k();
+    $(tmpReturnArg$1);
   } else {
-    const tmpReturnArg$7 = k();
-    return tmpReturnArg$7;
+    const tmpReturnArg$3 = k();
+    $(tmpReturnArg$3);
   }
-};
-const tmpCalleeParam$1 = h();
-$(tmpCalleeParam$1);
+} else {
+  const tmpReturnArg$7 = k();
+  $(tmpReturnArg$7);
+}
 `````
 
 ## PST Output
@@ -207,31 +202,26 @@ const a = function() {
     return b;
   }
 };
-const c = function() {
-  debugger;
+if ($) {
+  $( "prevent" );
+  $( "simple" );
+  $( "inlining" );
   if ($) {
     $( "prevent" );
     $( "simple" );
     $( "inlining" );
-    if ($) {
-      $( "prevent" );
-      $( "simple" );
-      $( "inlining" );
-      const d = a();
-      return d;
-    }
-    else {
-      const e = a();
-      return e;
-    }
+    const c = a();
+    $( c );
   }
   else {
-    const f = a();
-    return f;
+    const d = a();
+    $( d );
   }
-};
-const g = c();
-$( g );
+}
+else {
+  const e = a();
+  $( e );
+}
 `````
 
 ## Globals

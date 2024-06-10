@@ -72,13 +72,20 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpIfTest = $(false);
-if (tmpIfTest) {
-  $(`fail too`);
-  throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
-} else {
-  $(undefined);
+let tmpCalleeParam = undefined;
+$inlinedFunction: {
+  while (true) {
+    const tmpIfTest = $(false);
+    if (tmpIfTest) {
+      $(`fail too`);
+      throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
+    } else {
+      break $inlinedFunction;
+    }
+  }
+  tmpCalleeParam = undefined;
 }
+$(tmpCalleeParam);
 `````
 
 ## PST Output
@@ -86,14 +93,21 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = $( false );
-if (a) {
-  $( "fail too" );
-  throw "Preval: TDZ triggered for this assignment: x = $('fail too')";
+let a = undefined;
+$inlinedFunction: {
+  while (true) {
+    const b = $( false );
+    if (b) {
+      $( "fail too" );
+      throw "Preval: TDZ triggered for this assignment: x = $('fail too')";
+    }
+    else {
+      break $inlinedFunction;
+    }
+  }
+  a = undefined;
 }
-else {
-  $( undefined );
-}
+$( a );
 `````
 
 ## Globals

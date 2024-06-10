@@ -112,35 +112,30 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  if (tmpIfTest$32854) {
-    const tmpCalleeParam$36039 = $(1);
-    const tmpCalleeParam$36040 = $(2);
-    const tmpCalleeParam$36041 = SSA_SNe$596[4];
-    const tmpCalleeParam$36042 = SSA_SNe$596[2];
-    const tmpCalleeParam$36043 = SSA_SNe$596[3];
-    const tmpCalleeParam$36044 = SSA_SNe$596[1];
-    const tmpReturnArg$21651 = $(
-      100,
-      tmpCalleeParam$36039,
-      101,
-      tmpCalleeParam$36040,
-      tmpCalleeParam$36041,
-      tmpCalleeParam$36042,
-      tmpCalleeParam$36043,
-      102,
-      tmpCalleeParam$36044,
-    );
-    return tmpReturnArg$21651;
-  } else {
-    return undefined;
-  }
-};
 const tmpCalleeParam = [10, 20, 30, 40];
 const SSA_SNe$596 = $(tmpCalleeParam);
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+if (tmpIfTest$32854) {
+  const tmpCalleeParam$36039 = $(1);
+  const tmpCalleeParam$36040 = $(2);
+  const tmpCalleeParam$36041 = SSA_SNe$596[4];
+  const tmpCalleeParam$36042 = SSA_SNe$596[2];
+  const tmpCalleeParam$36043 = SSA_SNe$596[3];
+  const tmpCalleeParam$36044 = SSA_SNe$596[1];
+  const tmpReturnArg$21651 = $(
+    100,
+    tmpCalleeParam$36039,
+    101,
+    tmpCalleeParam$36040,
+    tmpCalleeParam$36041,
+    tmpCalleeParam$36042,
+    tmpCalleeParam$36043,
+    102,
+    tmpCalleeParam$36044,
+  );
+  $(tmpReturnArg$21651);
+} else {
+  $(undefined);
+}
 `````
 
 ## PST Output
@@ -148,26 +143,21 @@ $(tmpCalleeParam$1);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  if (tmpIfTest$32854) {
-    const b = $( 1 );
-    const c = $( 2 );
-    const d = e[ 4 ];
-    const f = e[ 2 ];
-    const g = e[ 3 ];
-    const h = e[ 1 ];
-    const i = $( 100, b, 101, c, d, f, g, 102, h );
-    return i;
-  }
-  else {
-    return undefined;
-  }
-};
-const j = [ 10, 20, 30, 40 ];
-const e = $( j );
-const k = a();
-$( k );
+const a = [ 10, 20, 30, 40 ];
+const b = $( a );
+if (tmpIfTest$32854) {
+  const c = $( 1 );
+  const d = $( 2 );
+  const e = b[ 4 ];
+  const f = b[ 2 ];
+  const g = b[ 3 ];
+  const h = b[ 1 ];
+  const i = $( 100, c, 101, d, e, f, g, 102, h );
+  $( i );
+}
+else {
+  $( undefined );
+}
 `````
 
 ## Globals

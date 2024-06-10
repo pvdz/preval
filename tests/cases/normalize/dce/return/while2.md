@@ -65,18 +65,20 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
+let tmpCalleeParam = undefined;
+$inlinedFunction: {
   const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    const tmpReturnArg = $(1, `return`);
-    return tmpReturnArg;
-  } else {
-    $(`keep, do not eval`);
-    return undefined;
+  while (true) {
+    if (tmpIfTest) {
+      const tmpReturnArg = $(1, `return`);
+      tmpCalleeParam = tmpReturnArg;
+      break $inlinedFunction;
+    } else {
+      break;
+    }
   }
-};
-const tmpCalleeParam = f();
+  $(`keep, do not eval`);
+}
 $(tmpCalleeParam);
 `````
 
@@ -85,20 +87,22 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
+let a = undefined;
+$inlinedFunction: {
   const b = $( true );
-  if (b) {
-    const c = $( 1, "return" );
-    return c;
+  while (true) {
+    if (b) {
+      const c = $( 1, "return" );
+      a = c;
+      break $inlinedFunction;
+    }
+    else {
+      break;
+    }
   }
-  else {
-    $( "keep, do not eval" );
-    return undefined;
-  }
-};
-const d = a();
-$( d );
+  $( "keep, do not eval" );
+}
+$( a );
 `````
 
 ## Globals

@@ -60,9 +60,9 @@ $(a);
 `````js filename=intro
 const tmpCallCompProp = $(`\$`);
 const b = { $: $ };
-const tmpClusterSSA_a = b[tmpCallCompProp](1);
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const a = b[tmpCallCompProp](1);
+$(a);
+$(a);
 `````
 
 ## PST Output

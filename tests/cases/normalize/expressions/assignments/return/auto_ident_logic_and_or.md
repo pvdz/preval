@@ -68,20 +68,20 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-let tmpClusterSSA_a = $(tmpCalleeParam);
-if (tmpClusterSSA_a) {
+let a = $(tmpCalleeParam);
+if (a) {
   const tmpCalleeParam$1 = $(1);
-  tmpClusterSSA_a = $(tmpCalleeParam$1);
+  a = $(tmpCalleeParam$1);
 } else {
 }
-if (tmpClusterSSA_a) {
-  $(tmpClusterSSA_a);
+if (a) {
+  $(a);
 } else {
   const tmpCalleeParam$3 = $(2);
-  tmpClusterSSA_a = $(tmpCalleeParam$3);
-  $(tmpClusterSSA_a);
+  a = $(tmpCalleeParam$3);
+  $(a);
 }
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 ## PST Output

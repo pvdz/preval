@@ -218,52 +218,43 @@ const push = function ($$0, $$1) {
   const index$1 = $dlr_$$0.length;
   const tmpSaooB$1 = index$1 > 0;
   $dlr_$$0.push($dlr_$$1);
-  if (tmpSaooB$1) {
-    const tmpSaooB = index$1 - 1;
-    const tmpSaooB$2 = tmpSaooB >>> 1;
-    siftUp_t($dlr_$$0, $dlr_$$1, index$1, tmpSaooB$2);
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-const siftUp_t = function ($$0, $$1, $$2, $$3) {
-  const $dlr_$$2 = $$0;
-  const $dlr_$$4 = $$1;
-  const $dlr_$$6 = $$2;
-  const tmpOutlinedParam$1 = $$3;
-  debugger;
-  const tmpClusterSSA_parent = $dlr_$$2[tmpOutlinedParam$1];
-  const tmpBinLhs$263 = compare(tmpClusterSSA_parent, $dlr_$$4);
-  const tmpIfTest$369 = tmpBinLhs$263 > 0;
-  if (tmpIfTest$369) {
-    $dlr_$$2[tmpOutlinedParam$1] = $dlr_$$4;
-    $dlr_$$2[$dlr_$$6] = tmpClusterSSA_parent;
-    let tmpClusterSSA_index$3 = tmpOutlinedParam$1;
-    let tmpClusterSSA_tmpIfTest$367 = tmpOutlinedParam$1 > 0;
-    while ($LOOP_UNROLL_100) {
-      if (tmpClusterSSA_tmpIfTest$367) {
-        const tmpBinLhs$1 = tmpClusterSSA_index$3 - 1;
-        const tmpClusterSSA_parentIndex$1 = tmpBinLhs$1 >>> 1;
-        const tmpClusterSSA_parent$1 = $dlr_$$2[tmpClusterSSA_parentIndex$1];
-        const tmpBinLhs$3 = compare(tmpClusterSSA_parent$1, $dlr_$$4);
-        const tmpIfTest$2 = tmpBinLhs$3 > 0;
-        if (tmpIfTest$2) {
-          $dlr_$$2[tmpClusterSSA_parentIndex$1] = $dlr_$$4;
-          $dlr_$$2[tmpClusterSSA_index$3] = tmpClusterSSA_parent$1;
-          tmpClusterSSA_index$3 = tmpClusterSSA_parentIndex$1;
-          tmpClusterSSA_tmpIfTest$367 = tmpClusterSSA_parentIndex$1 > 0;
-        } else {
-          return undefined;
+  $inlinedFunction: {
+    if (tmpSaooB$1) {
+      const tmpBinLhs$261 = index$1 - 1;
+      const tmpClusterSSA_parentIndex = tmpBinLhs$261 >>> 1;
+      const tmpClusterSSA_parent = $dlr_$$0[tmpClusterSSA_parentIndex];
+      const tmpBinLhs$263 = compare(tmpClusterSSA_parent, $dlr_$$1);
+      const tmpIfTest$369 = tmpBinLhs$263 > 0;
+      if (tmpIfTest$369) {
+        $dlr_$$0[tmpClusterSSA_parentIndex] = $dlr_$$1;
+        $dlr_$$0[index$1] = tmpClusterSSA_parent;
+        let tmpClusterSSA_index$3 = tmpClusterSSA_parentIndex;
+        let tmpClusterSSA_tmpIfTest$367 = tmpClusterSSA_parentIndex > 0;
+        while ($LOOP_UNROLL_100) {
+          if (tmpClusterSSA_tmpIfTest$367) {
+            const tmpBinLhs$1 = tmpClusterSSA_index$3 - 1;
+            const tmpClusterSSA_parentIndex$1 = tmpBinLhs$1 >>> 1;
+            const tmpClusterSSA_parent$1 = $dlr_$$0[tmpClusterSSA_parentIndex$1];
+            const tmpBinLhs$3 = compare(tmpClusterSSA_parent$1, $dlr_$$1);
+            const tmpIfTest$2 = tmpBinLhs$3 > 0;
+            if (tmpIfTest$2) {
+              $dlr_$$0[tmpClusterSSA_parentIndex$1] = $dlr_$$1;
+              $dlr_$$0[tmpClusterSSA_index$3] = tmpClusterSSA_parent$1;
+              tmpClusterSSA_index$3 = tmpClusterSSA_parentIndex$1;
+              tmpClusterSSA_tmpIfTest$367 = tmpClusterSSA_parentIndex$1 > 0;
+            } else {
+              break $inlinedFunction;
+            }
+          } else {
+            break;
+          }
         }
       } else {
-        break;
       }
+    } else {
     }
-    return undefined;
-  } else {
-    return undefined;
   }
+  return undefined;
 };
 $(push);
 `````
@@ -280,56 +271,43 @@ const a = function($$0,$$1 ) {
   const f = b.length;
   const g = f > 0;
   b.push( d );
-  if (g) {
-    const h = f - 1;
-    const i = h >>> 1;
-    j( b, d, f, i );
-    return undefined;
-  }
-  else {
-    return undefined;
-  }
-};
-const j = function($$0,$$1,$$2,$$3 ) {
-  const k = c;
-  const l = e;
-  const m = n;
-  const o = p;
-  debugger;
-  const q = k[ o ];
-  const r = compare( q, l );
-  const s = r > 0;
-  if (s) {
-    k[o] = l;
-    k[m] = q;
-    let t = o;
-    let u = o > 0;
-    while ($LOOP_UNROLL_100) {
-      if (u) {
-        const v = t - 1;
-        const w = v >>> 1;
-        const x = k[ w ];
-        const y = compare( x, l );
-        const z = y > 0;
-        if (z) {
-          k[w] = l;
-          k[t] = x;
-          t = w;
-          u = w > 0;
+  $inlinedFunction:   {
+    if (g) {
+      const h = f - 1;
+      const i = h >>> 1;
+      const j = b[ i ];
+      const k = compare( j, d );
+      const l = k > 0;
+      if (l) {
+        b[i] = d;
+        b[f] = j;
+        let m = i;
+        let n = i > 0;
+        while ($LOOP_UNROLL_100) {
+          if (n) {
+            const o = m - 1;
+            const p = o >>> 1;
+            const q = b[ p ];
+            const r = compare( q, d );
+            const s = r > 0;
+            if (s) {
+              b[p] = d;
+              b[m] = q;
+              m = p;
+              n = p > 0;
+            }
+            else {
+              break $inlinedFunction;
+            }
+          }
+          else {
+            break;
+          }
         }
-        else {
-          return undefined;
-        }
-      }
-      else {
-        break;
       }
     }
-    return undefined;
   }
-  else {
-    return undefined;
-  }
+  return undefined;
 };
 $( a );
 `````

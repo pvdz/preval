@@ -83,8 +83,8 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
+let tmpCalleeParam = undefined;
+$inlinedFunction: {
   let tmpIfTest = $(true);
   while (true) {
     if (tmpIfTest) {
@@ -94,7 +94,8 @@ const f = function () {
       for (x in tmpForInDeclRhs) {
         $(`loop`, x);
         const tmpReturnArg = $(100, `return`);
-        return tmpReturnArg;
+        tmpCalleeParam = tmpReturnArg;
+        break $inlinedFunction;
       }
       $(`fail`);
       tmpIfTest = $(true);
@@ -103,9 +104,7 @@ const f = function () {
     }
   }
   $(`after (not invoked but should not be eliminated)`);
-  return undefined;
-};
-const tmpCalleeParam = f();
+}
 $(tmpCalleeParam);
 `````
 
@@ -114,8 +113,8 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
+let a = undefined;
+$inlinedFunction: {
   let b = $( true );
   while (true) {
     if (b) {
@@ -128,7 +127,8 @@ b: 2
       for (c in d) {
         $( "loop", c );
         const e = $( 100, "return" );
-        return e;
+        a = e;
+        break $inlinedFunction;
       }
       $( "fail" );
       b = $( true );
@@ -138,10 +138,8 @@ b: 2
     }
   }
   $( "after (not invoked but should not be eliminated)" );
-  return undefined;
-};
-const f = a();
-$( f );
+}
+$( a );
 `````
 
 ## Globals

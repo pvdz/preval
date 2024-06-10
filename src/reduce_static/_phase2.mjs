@@ -84,6 +84,7 @@ import {dotCall} from "./dotcall.mjs"
 import {testingAlias} from "./testing_alias.mjs";
 import {VERBOSE_TRACING} from "../constants.mjs";
 import {aliasIfIf} from "./alias_if_if.mjs";
+import { removeUnusedConstants } from './remove_unused_constants.mjs';
 
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
@@ -187,6 +188,7 @@ function _phase2(program, fdata, resolve, req, options = {}) {
   return (
     coercials(fdata) ||
     resolveBoundValueSet(fdata) ||
+    removeUnusedConstants(fdata) ||
     // Do early because it can be expensive with many writes
     arr_mutation(fdata) ||
     findThrowers(fdata) ||

@@ -31,7 +31,7 @@ import { cloneSimple, functionExpressionNormalized, isSimpleNodeOrSimpleMember, 
 
 export function staticArgOpOutlining(fdata) {
   group('\n\n\nFinding static param ops to outline\n');
-  vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _staticArgOpOutlining(fdata);
   groupEnd();
   return r;

@@ -16,7 +16,7 @@ import {
   before,
   source,
   after,
-  findBodyOffset,
+  findBodyOffset, riskyRule,
 } from '../utils.mjs';
 import {
   BUILTIN_ARRAY_METHOD_LOOKUP,
@@ -33,13 +33,13 @@ import {
   BUILTIN_FUNCTION_METHODS_SUPPORTED,
   BUILTIN_NUMBER_METHODS_SUPPORTED,
   BUILTIN_NUMBER_METHOD_LOOKUP,
-  BUILTIN_REGEXP_METHODS_SUPPORTED, BUILTIN_REGEXP_METHOD_LOOKUP,
+  BUILTIN_REGEXP_METHODS_SUPPORTED, BUILTIN_REGEXP_METHOD_LOOKUP, KNOWN_IMPLICIT_GLOBALS, BUILTIN_PROTO_TO_LOOKUP,
 } from '../constants.mjs';
 import * as AST from '../ast.mjs';
 import {getPrimitiveType, getPrimitiveValue} from "../ast.mjs"
 
 export function propertyLookups(fdata) {
-  group('\n\n\nFinding static properties to resolve\n');
+  group('\n\n\nFinding static builtin properties to resolve\n');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _propertyLookups(fdata);
   groupEnd();
@@ -76,7 +76,6 @@ function _propertyLookups(fdata) {
 
       //const meta = fdata.globallyUniqueNamingRegistry.get(node.object.name);
       vlog('  -', node.computed ? node.object.name + '[' + node.property.type + ']' : node.object.name + '.' + node.property.name);
-      vlog('the obj is a', mustBe || '<unknown>');
       vlog('    - typing for obj is::', mustBe);
       if (mustBe === 'array') {
         ASSERT(node.property.type === 'Identifier');
@@ -86,7 +85,7 @@ function _propertyLookups(fdata) {
           if (true) {
             // jsf*ck specific support
             // This is Function#flat ...
-            rule('Fetching but not calling a method from Array.prototype should do this explicitly');
+            riskyRule('Fetching but not calling a method from Array.prototype should do this explicitly');
             example('f([].flat)', 'f(' + BUILTIN_ARRAY_METHOD_LOOKUP['flat'] + ')');
             before(node, grandNode);
 
@@ -103,7 +102,7 @@ function _propertyLookups(fdata) {
           if (true) {
             // jsf*ck specific support
             // This is Function ...
-            rule('Fetching the `constructor` prop from an array should return `Array`');
+            riskyRule('Fetching the `constructor` prop from an array should return `Array`');
             example('f([].constructor)', 'f(Array)');
             before(node, grandNode);
 
@@ -124,7 +123,7 @@ function _propertyLookups(fdata) {
           if (true) {
             // jsf*ck specific support
             // This is Function#flat ...
-            rule('Fetching but not calling a method from Function.prototype should do this explicitly');
+            riskyRule('Fetching but not calling a method from Function.prototype should do this explicitly');
             example('f(f.call)', 'f(' + BUILTIN_FUNCTION_METHODS_SUPPORTED['call'] + ')');
             before(node, grandNode);
 
@@ -141,7 +140,7 @@ function _propertyLookups(fdata) {
           if (true) {
             // jsf*ck specific support
             // This is Function ...
-            rule('Fetching the `constructor` prop from a function should return `Function`');
+            riskyRule('Fetching the `constructor` prop from a function should return `Function`');
             example('f(parseInt.constructor)', 'f(Function)');
             before(node, grandNode);
 
@@ -162,7 +161,7 @@ function _propertyLookups(fdata) {
           if (true) {
             // jsf*ck specific support
             // This is Number ...
-            rule('Fetching the `constructor` prop from a boolean should return `Boolean`');
+            riskyRule('Fetching the `constructor` prop from a boolean should return `Boolean`');
             example('f(false.constructor)', 'f(Boolean)');
             before(node, grandNode);
 
@@ -183,7 +182,7 @@ function _propertyLookups(fdata) {
           if (true) {
             // jsf*ck specific support
             // This is Function#flat ...
-            rule('Fetching but not calling a method from Function.prototype should do this explicitly');
+            riskyRule('Fetching but not calling a method from Function.prototype should do this explicitly');
             example('f(NaN.toString)', 'f(' + BUILTIN_NUMBER_METHOD_LOOKUP['toString'] + ')');
             before(node, grandNode);
 
@@ -200,7 +199,7 @@ function _propertyLookups(fdata) {
           if (true) {
             // jsf*ck specific support
             // This is Number ...
-            rule('Fetching the `constructor` prop from a number should return `Number`');
+            riskyRule('Fetching the `constructor` prop from a number should return `Number`');
             example('f("hello".constructor)', 'f(Number)');
             before(node, grandNode);
 
@@ -222,7 +221,7 @@ function _propertyLookups(fdata) {
           if (true) {
             // jsf*ck specific support
             // This is String#toString ...
-            rule('Fetching but not calling a method from String.prototype should do this explicitly');
+            riskyRule('Fetching but not calling a method from String.prototype should do this explicitly');
             example('f("foo".toString)', 'f(' + BUILTIN_STRING_METHOD_LOOKUP['toString'] + ')');
             before(node, grandNode);
 
@@ -239,7 +238,7 @@ function _propertyLookups(fdata) {
           if (true) {
             // jsf*ck specific support
             // This is String ...
-            rule('Fetching the `constructor` prop from a string should return `String`');
+            riskyRule('Fetching the `constructor` prop from a string should return `String`');
             example('f("hello".constructor)', 'f(String)');
             before(node, grandNode);
 
@@ -261,7 +260,7 @@ function _propertyLookups(fdata) {
           if (true) {
             // jsf*ck specific support
             // This is String#toString ...
-            rule('Fetching but not calling a method from String.prototype should do this explicitly');
+            riskyRule('Fetching but not calling a method from String.prototype should do this explicitly');
             example('f(/foo/.test)', 'f(' + BUILTIN_REGEXP_METHOD_LOOKUP['test'] + ')');
             before(node, grandNode);
 
@@ -278,7 +277,7 @@ function _propertyLookups(fdata) {
           if (true) {
             // jsf*ck specific support
             // This is RegExp ...
-            rule('Fetching the `constructor` prop from a function should return `Function`');
+            riskyRule('Fetching the `constructor` prop from a function should return `Function`');
             example('f(/foo/.constructor)', 'f(RegExp)');
             before(node, grandNode);
 
@@ -291,6 +290,38 @@ function _propertyLookups(fdata) {
             return;
           }
         }
+      }
+      else if (mustBe === 'object') {
+        // Eliminate statements that are member expressions where object and property are known builtins
+        // I think it's fine to even drop any property lookup on known builtins.
+        // Technically expandos could cause observable side effects for accessing them. But aren't you just really trying at that point?
+
+        if (!isPrimitive && !node.computed) {
+          if (KNOWN_IMPLICIT_GLOBALS.includes(node.object.name)) {
+            vlog(`    - ${node.object.name} is a known global`);
+
+            if (parentNode.type === 'ExpressionStatement') {
+              vlog(`    - this member expression is a statement so if we know it has no side effects it can be dropped`);
+              if (BUILTIN_PROTO_TO_LOOKUP[node.object.name]?.[node.property.name]) {
+                rule('Known property of built-in prototype that is a statement can be eliminated safely');
+                example('f(); $NumberPrototype.toString; g();', 'f(); ; g();');
+                before(grandNode[grandProp][grandIndex]);
+
+                grandNode[grandProp][grandIndex] = AST.emptyStatement();
+
+                after(grandNode[grandProp][grandIndex]);
+                ++changes;
+                return;
+              }
+              // TODO: another case is more risky but accessing a property of an object literal should be fine
+            }
+          }
+        }
+
+        vlog('    - have no further rules for this...');
+      }
+      else {
+        vlog('    - have no rules for this case...');
       }
     }
   }

@@ -3,7 +3,7 @@ import Prettier from '../lib/prettier.mjs';
 import { printer } from '../lib/printer.mjs';
 import walk from '../lib/walk.mjs';
 
-import { VERBOSE_TRACING, setVerboseTracing, YELLOW, ORANGE_DIM, PURPLE, RESET, DIM } from './constants.mjs';
+import { VERBOSE_TRACING, setVerboseTracing, YELLOW, ORANGE_DIM, PURPLE, RESET, DIM, ORANGE } from './constants.mjs';
 
 export let REF_TRACK_TRACING = false;
 export function setRefTracing(bool) {
@@ -144,6 +144,10 @@ export function fmat(code, shouldPrint = VERBOSE_TRACING, silentError = true, ig
 
 export function rule(desc, ...rest) {
   log(PURPLE + 'Rule:' + RESET + ' "' + desc + '"', ...rest);
+}
+
+export function riskyRule(desc, ...rest) {
+  log(ORANGE + 'RiskyRule:' + RESET + ' "' + desc + '"', ...rest);
 }
 
 export function example(from, to, condition) {

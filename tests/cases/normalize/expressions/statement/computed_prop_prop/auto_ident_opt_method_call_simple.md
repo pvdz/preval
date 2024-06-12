@@ -55,9 +55,9 @@ $(a);
 
 
 `````js filename=intro
+const b = { c: $ };
 const a = { a: 999, b: 1000 };
 const obj = {};
-const b = { c: $ };
 const tmpChainElementCall = $dotCall($, b, 1);
 obj[tmpChainElementCall];
 $(a);
@@ -68,15 +68,15 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = { c: $ };
+const b = {
 a: 999,
 b: 1000
 ;
-const b = {};
-const c = { c: $ };
-const d = $dotCall( $, c, 1 );
-b[ d ];
-$( a );
+const c = {};
+const d = $dotCall( $, a, 1 );
+c[ d ];
+$( b );
 `````
 
 ## Globals

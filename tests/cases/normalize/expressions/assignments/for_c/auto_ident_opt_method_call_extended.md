@@ -73,8 +73,8 @@ if (tmpIfTest) {
   let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
     if (tmpClusterSSA_tmpIfTest) {
-      const tmpChainElementObject$4 = tmpObjLitVal$1.e;
-      $dotCall(tmpChainElementObject$4, tmpObjLitVal$1, 1);
+      const tmpChainElementObject$6 = tmpObjLitVal$1.e;
+      $dotCall(tmpChainElementObject$6, tmpObjLitVal$1, 1);
       tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;

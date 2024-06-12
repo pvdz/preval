@@ -66,23 +66,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const objPatternNoDefault = tmpParamBare.x;
-  const arrPatternSplat = [...objPatternNoDefault];
-  const arrPatternBeforeDefault = arrPatternSplat[0];
-  const tmpIfTest = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    return `pass`;
-  } else {
-    return arrPatternBeforeDefault;
-  }
-};
-const tmpObjLitVal = [];
-const tmpCalleeParam$1 = { x: tmpObjLitVal, a: 11, b: 12 };
-const tmpCalleeParam = f(tmpCalleeParam$1);
-$(tmpCalleeParam);
+$(`pass`);
 `````
 
 ## PST Output
@@ -90,28 +74,7 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = c;
-  debugger;
-  const d = b.x;
-  const e = [ ... d ];
-  const f = e[ 0 ];
-  const g = f === undefined;
-  if (g) {
-    return "pass";
-  }
-  else {
-    return f;
-  }
-};
-const h = [];
-const i = {
-x: h,
-a: 11,
-b: 12
-;
-const j = a( i );
-$( j );
+$( "pass" );
 `````
 
 ## Globals

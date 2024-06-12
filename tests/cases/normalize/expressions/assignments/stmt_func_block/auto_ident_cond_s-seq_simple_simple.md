@@ -63,8 +63,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const a = $(2);
-$(a);
+const tmpClusterSSA_a = $(2);
+$(tmpClusterSSA_a);
 $(undefined);
 `````
 

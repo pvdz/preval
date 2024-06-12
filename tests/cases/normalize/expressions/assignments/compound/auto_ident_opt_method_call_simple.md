@@ -55,8 +55,8 @@ $(a);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const b = { c: $ };
+const a = { a: 999, b: 1000 };
 const tmpChainElementCall = $dotCall($, b, 1);
 const tmpClusterSSA_a$1 = a * tmpChainElementCall;
 $(tmpClusterSSA_a$1);
@@ -68,13 +68,13 @@ $(tmpClusterSSA_a$1);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = { c: $ };
+const b = {
 a: 999,
 b: 1000
 ;
-const b = { c: $ };
-const c = $dotCall( $, b, 1 );
-const d = a * c;
+const c = $dotCall( $, a, 1 );
+const d = b * c;
 $( d );
 $( d );
 `````

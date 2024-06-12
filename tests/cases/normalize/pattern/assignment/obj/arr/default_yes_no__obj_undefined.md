@@ -47,8 +47,8 @@ $(`ok`);
 
 `````js filename=intro
 const tmpCalleeParam = [`fail`];
-const objPatternAfterDefault = $(tmpCalleeParam);
-[...objPatternAfterDefault];
+const tmpClusterSSA_objPatternAfterDefault = $(tmpCalleeParam);
+[...tmpClusterSSA_objPatternAfterDefault];
 $(`ok`);
 `````
 

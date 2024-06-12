@@ -55,14 +55,14 @@ $(`ok`);
 
 `````js filename=intro
 const tmpCalleeParam = { x: `pass` };
-const objPatternAfterDefault = $(tmpCalleeParam);
-let tmpClusterSSA_objPatternCrashTest = objPatternAfterDefault === undefined;
-if (tmpClusterSSA_objPatternCrashTest) {
+const tmpClusterSSA_objPatternAfterDefault = $(tmpCalleeParam);
+let objPatternCrashTest = tmpClusterSSA_objPatternAfterDefault === undefined;
+if (objPatternCrashTest) {
 } else {
-  tmpClusterSSA_objPatternCrashTest = objPatternAfterDefault === null;
+  objPatternCrashTest = tmpClusterSSA_objPatternAfterDefault === null;
 }
-if (tmpClusterSSA_objPatternCrashTest) {
-  objPatternAfterDefault.cannotDestructureThis;
+if (objPatternCrashTest) {
+  tmpClusterSSA_objPatternAfterDefault.cannotDestructureThis;
 } else {
 }
 $(`ok`);

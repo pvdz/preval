@@ -96,9 +96,9 @@ $(a);
 
 
 `````js filename=intro
+const b = { c: $ };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const b = { c: $ };
 const tmpChainElementCall = $dotCall($, b, 1);
 const tmpIfTest = tmpChainElementCall === tmpSwitchValue;
 if (tmpIfTest) {
@@ -124,21 +124,21 @@ $(tmpChainElementCall);
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-let b = 1;
-const c = { c: $ };
-const d = $dotCall( $, c, 1 );
-const e = d === a;
+const a = { c: $ };
+const b = $( 1 );
+let c = 1;
+const d = $dotCall( $, a, 1 );
+const e = d === b;
 if (e) {
-  b = 0;
+  c = 0;
 }
 else {
-  const f = 2 === a;
+  const f = 2 === b;
   if (f) {
-    b = 2;
+    c = 2;
   }
 }
-const g = b <= 1;
+const g = c <= 1;
 if (g) {
   $( "fail1" );
 }

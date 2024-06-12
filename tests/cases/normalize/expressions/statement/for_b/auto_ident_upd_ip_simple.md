@@ -55,17 +55,17 @@ $(a, b);
 
 
 `````js filename=intro
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
 let b = 12;
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpPostUpdArgIdent$1 = b;
@@ -85,17 +85,17 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
 let a = 12;
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const b = a;

@@ -72,30 +72,23 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const objPatternBeforeDefault = tmpParamBare.x;
-  let objPatternAfterDefault = undefined;
-  const tmpIfTest = objPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = [`pass2`];
-    objPatternAfterDefault = $(tmpCalleeParam);
-  } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-  }
-  const arrPatternSplat = [...objPatternAfterDefault];
-  const arrPatternBeforeDefault = arrPatternSplat[0];
-  const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    return `fail`;
-  } else {
-    return arrPatternBeforeDefault;
-  }
-};
-const tmpCalleeParam$3 = {};
-const tmpCalleeParam$1 = f(tmpCalleeParam$3);
-$(tmpCalleeParam$1);
+const objPatternBeforeDefault = $ObjectPrototype.x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCalleeParam = [`pass2`];
+  objPatternAfterDefault = $(tmpCalleeParam);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+const arrPatternSplat = [...objPatternAfterDefault];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
+  $(`fail`);
+} else {
+  $(arrPatternBeforeDefault);
+}
 `````
 
 ## PST Output
@@ -103,32 +96,25 @@ $(tmpCalleeParam$1);
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = c;
-  debugger;
-  const d = b.x;
-  let e = undefined;
-  const f = d === undefined;
-  if (f) {
-    const g = [ "pass2" ];
-    e = $( g );
-  }
-  else {
-    e = d;
-  }
-  const h = [ ... e ];
-  const i = h[ 0 ];
-  const j = i === undefined;
-  if (j) {
-    return "fail";
-  }
-  else {
-    return i;
-  }
-};
-const k = {};
-const l = a( k );
-$( l );
+const a = $ObjectPrototype.x;
+let b = undefined;
+const c = a === undefined;
+if (c) {
+  const d = [ "pass2" ];
+  b = $( d );
+}
+else {
+  b = a;
+}
+const e = [ ... b ];
+const f = e[ 0 ];
+const g = f === undefined;
+if (g) {
+  $( "fail" );
+}
+else {
+  $( f );
+}
 `````
 
 ## Globals

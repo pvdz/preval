@@ -74,8 +74,8 @@ if (tmpIfTest$1) {
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     const tmpChainElementCall$2 = $($);
-    const tmpIfTest$4 = tmpChainElementCall$2 == null;
-    if (tmpIfTest$4) {
+    const tmpIfTest$2 = tmpChainElementCall$2 == null;
+    if (tmpIfTest$2) {
       $(100);
     } else {
       const tmpCalleeParam$1 = $(1);

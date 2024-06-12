@@ -53,7 +53,7 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-$(tmpCalleeParam);
+const a = $(tmpCalleeParam);
 $(1);
 $(1);
 $(1);
@@ -68,7 +68,7 @@ $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-$(1);
+$(a);
 `````
 
 ## PST Output
@@ -77,7 +77,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-$( a );
+const b = $( a );
 $( 1 );
 $( 1 );
 $( 1 );
@@ -92,7 +92,7 @@ $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-$( 1 );
+$( b );
 `````
 
 ## Globals

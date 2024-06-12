@@ -54,16 +54,16 @@ $(a);
 
 `````js filename=intro
 let $tmpLoopUnrollCheck = true;
-const tmpIfTest = $(60);
-if (tmpIfTest) {
+const tmpClusterSSA_tmpIfTest = $(60);
+if (tmpClusterSSA_tmpIfTest) {
   $(100);
 } else {
   $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(60);
-    if (tmpIfTest$1) {
+    const tmpClusterSSA_tmpIfTest$1 = $(60);
+    if (tmpClusterSSA_tmpIfTest$1) {
       $(100);
     } else {
       break;

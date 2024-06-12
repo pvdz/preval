@@ -57,8 +57,8 @@ $(a);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const b = { c: $ };
+const a = { a: 999, b: 1000 };
 const tmpChainElementCall = $dotCall($, b, 1);
 const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpChainElementCall, `string`);
 const tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
@@ -71,16 +71,16 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = { c: $ };
+const b = {
 a: 999,
 b: 1000
 ;
-const b = { c: $ };
-const c = $dotCall( $, b, 1 );
+const c = $dotCall( $, a, 1 );
 const d = $coerce( c, "string" );
 const e = `before  ${[object Object]}  after`;
 $( e );
-$( a );
+$( b );
 `````
 
 ## Globals

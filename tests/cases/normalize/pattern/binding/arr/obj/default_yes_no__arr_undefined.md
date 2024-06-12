@@ -53,14 +53,14 @@ $(`ok`);
 
 
 `````js filename=intro
-const arrPatternStep = $(`fail`);
-let objPatternCrashTest = arrPatternStep === undefined;
+const tmpClusterSSA_arrPatternStep = $(`fail`);
+let objPatternCrashTest = tmpClusterSSA_arrPatternStep === undefined;
 if (objPatternCrashTest) {
 } else {
-  objPatternCrashTest = arrPatternStep === null;
+  objPatternCrashTest = tmpClusterSSA_arrPatternStep === null;
 }
 if (objPatternCrashTest) {
-  arrPatternStep.cannotDestructureThis;
+  tmpClusterSSA_arrPatternStep.cannotDestructureThis;
 } else {
 }
 $(`ok`);

@@ -58,8 +58,8 @@ if (tmpIfTest) {
   a = 2;
   $(2);
 } else {
-  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
-  $(tmpClusterSSA_tmpCalleeParam$1);
+  const tmpClusterSSA_tmpCalleeParam = $(200);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
 $(a);
 `````

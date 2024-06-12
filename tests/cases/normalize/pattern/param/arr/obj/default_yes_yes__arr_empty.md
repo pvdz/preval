@@ -78,14 +78,14 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const arrPatternStep = $(`pass`);
-let objPatternCrashTest = arrPatternStep === undefined;
-if (objPatternCrashTest) {
+const tmpClusterSSA_arrPatternStep = $(`pass`);
+let tmpClusterSSA_objPatternCrashTest = tmpClusterSSA_arrPatternStep === undefined;
+if (tmpClusterSSA_objPatternCrashTest) {
 } else {
-  objPatternCrashTest = arrPatternStep === null;
+  tmpClusterSSA_objPatternCrashTest = tmpClusterSSA_arrPatternStep === null;
 }
-if (objPatternCrashTest) {
-  arrPatternStep.cannotDestructureThis;
+if (tmpClusterSSA_objPatternCrashTest) {
+  tmpClusterSSA_arrPatternStep.cannotDestructureThis;
 } else {
 }
 $(`ok`);

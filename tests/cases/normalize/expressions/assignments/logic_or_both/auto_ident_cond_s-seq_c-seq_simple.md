@@ -65,16 +65,16 @@ $(a);
 
 
 `````js filename=intro
-let a = $(60);
-const tmpCalleeParam = a;
-if (a) {
+let tmpClusterSSA_a = $(60);
+const tmpCalleeParam = tmpClusterSSA_a;
+if (tmpClusterSSA_a) {
   $(tmpCalleeParam);
 } else {
-  const tmpNestedComplexRhs = $(60);
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
+  const tmpClusterSSA_tmpNestedComplexRhs = $(60);
+  tmpClusterSSA_a = tmpClusterSSA_tmpNestedComplexRhs;
+  $(tmpClusterSSA_tmpNestedComplexRhs);
 }
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

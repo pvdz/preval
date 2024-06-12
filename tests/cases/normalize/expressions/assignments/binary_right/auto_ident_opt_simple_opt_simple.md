@@ -61,8 +61,8 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-const tmpCalleeParam = tmpBinBothLhs + 1;
-$(tmpCalleeParam);
+const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + 1;
+$(tmpClusterSSA_tmpCalleeParam);
 $(1);
 `````
 

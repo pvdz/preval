@@ -65,23 +65,8 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const objPatternNoDefault = tmpParamBare.x;
-  const objPatternBeforeDefault = objPatternNoDefault.y;
-  const tmpIfTest = objPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    const tmpClusterSSA_y = $(`pass`);
-    return tmpClusterSSA_y;
-  } else {
-    return objPatternBeforeDefault;
-  }
-};
-const tmpObjLitVal = { x: 1, y: undefined, z: 3 };
-const tmpCalleeParam$1 = { x: tmpObjLitVal, b: 11, c: 12 };
-const tmpCalleeParam = f(tmpCalleeParam$1);
-$(tmpCalleeParam);
+const tmpClusterSSA_y = $(`pass`);
+$(tmpClusterSSA_y);
 `````
 
 ## PST Output
@@ -89,32 +74,8 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = c;
-  debugger;
-  const d = b.x;
-  const e = d.y;
-  const f = e === undefined;
-  if (f) {
-    const g = $( "pass" );
-    return g;
-  }
-  else {
-    return e;
-  }
-};
-const h = {
-x: 1,
-y: undefined,
-z: 3
-;
-const i = {
-x: h,
-b: 11,
-c: 12
-;
-const j = a( i );
-$( j );
+const a = $( "pass" );
+$( a );
 `````
 
 ## Globals

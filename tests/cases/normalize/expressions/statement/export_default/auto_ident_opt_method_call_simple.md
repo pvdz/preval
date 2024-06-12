@@ -52,12 +52,12 @@ $(a);
 
 
 `````js filename=intro
-let tmpAnonDefaultExport = undefined;
 const b = { c: $ };
+const a = { a: 999, b: 1000 };
+let tmpAnonDefaultExport = undefined;
 const tmpChainElementCall = $dotCall($, b, 1);
 tmpAnonDefaultExport = tmpChainElementCall;
 export { tmpAnonDefaultExport as default };
-const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -66,16 +66,16 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { c: $ };
-const c = $dotCall( $, b, 1 );
-a = c;
-export { a as default };
-const d = {
+const a = { c: $ };
+const b = {
 a: 999,
 b: 1000
 ;
-$( d );
+let c = undefined;
+const d = $dotCall( $, a, 1 );
+c = d;
+export { c as default };
+$( b );
 `````
 
 ## Globals

@@ -48,8 +48,8 @@ $(`ok`);
 
 `````js filename=intro
 const tmpCalleeParam = [`pass2`];
-const arrPatternStep = $(tmpCalleeParam);
-[...arrPatternStep];
+const tmpClusterSSA_arrPatternStep = $(tmpCalleeParam);
+[...tmpClusterSSA_arrPatternStep];
 $(`ok`);
 `````
 

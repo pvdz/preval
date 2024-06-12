@@ -59,14 +59,13 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  a = 1;
   const tmpCalleeParam = $(1);
-  $(tmpCalleeParam);
+  a = $(tmpCalleeParam);
   let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
     if (tmpClusterSSA_tmpIfTest) {
       const tmpCalleeParam$1 = $(1);
-      $(tmpCalleeParam$1);
+      a = $(tmpCalleeParam$1);
       tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
@@ -88,14 +87,13 @@ b: 1000
 ;
 const b = $( 1 );
 if (b) {
-  a = 1;
   const c = $( 1 );
-  $( c );
+  a = $( c );
   let d = $( 1 );
   while ($LOOP_UNROLL_10) {
     if (d) {
       const e = $( 1 );
-      $( e );
+      a = $( e );
       d = $( 1 );
     }
     else {

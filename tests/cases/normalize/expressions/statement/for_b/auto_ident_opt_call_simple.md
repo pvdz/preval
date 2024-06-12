@@ -70,8 +70,8 @@ if (tmpIfTest$1) {
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$4 = $ == null;
-    if (tmpIfTest$4) {
+    const tmpIfTest$2 = $ == null;
+    if (tmpIfTest$2) {
       $(1);
     } else {
       const tmpChainElementCall$1 = $(1);

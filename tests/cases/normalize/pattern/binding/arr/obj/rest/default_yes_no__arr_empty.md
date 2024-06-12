@@ -52,9 +52,9 @@ $(x);
 
 `````js filename=intro
 const tmpCalleeParam = { a: `pass` };
-const arrPatternStep = $(tmpCalleeParam);
+const tmpClusterSSA_arrPatternStep = $(tmpCalleeParam);
 const tmpCalleeParam$3 = [];
-const x = objPatternRest(arrPatternStep, tmpCalleeParam$3, undefined);
+const x = objPatternRest(tmpClusterSSA_arrPatternStep, tmpCalleeParam$3, undefined);
 $(x);
 `````
 

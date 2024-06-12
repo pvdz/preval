@@ -73,8 +73,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpCalleeParam = [`pass2`];
-const objPatternAfterDefault = $(tmpCalleeParam);
-const arrPatternSplat = [...objPatternAfterDefault];
+const tmpClusterSSA_objPatternAfterDefault = $(tmpCalleeParam);
+const arrPatternSplat = [...tmpClusterSSA_objPatternAfterDefault];
 arrPatternSplat[0];
 $(`bad`);
 `````

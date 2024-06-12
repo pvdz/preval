@@ -47,10 +47,9 @@ $(a);
 
 
 `````js filename=intro
-let tmpAnonDefaultExport = undefined;
 const tmpCalleeParam = $(1);
 const a = $(tmpCalleeParam);
-tmpAnonDefaultExport = a;
+const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
 $(a);
 `````
@@ -60,12 +59,11 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( 1 );
-const c = $( b );
-a = c;
-export { a as default };
-$( c );
+const a = $( 1 );
+const b = $( a );
+const c = b;
+export { c as default };
+$( b );
 `````
 
 ## Globals

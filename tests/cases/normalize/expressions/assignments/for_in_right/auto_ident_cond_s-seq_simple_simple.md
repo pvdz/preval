@@ -49,11 +49,11 @@ $(a);
 
 
 `````js filename=intro
-const a = $(2);
+const tmpClusterSSA_a = $(2);
 let x = undefined;
-for (x in a) {
+for (x in tmpClusterSSA_a) {
 }
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

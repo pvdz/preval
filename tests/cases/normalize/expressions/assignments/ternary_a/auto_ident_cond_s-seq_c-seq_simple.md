@@ -54,15 +54,15 @@ $(a);
 
 
 `````js filename=intro
-const a = $(60);
-if (a) {
+const tmpClusterSSA_a = $(60);
+if (tmpClusterSSA_a) {
   const tmpClusterSSA_tmpCalleeParam = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpClusterSSA_tmpCalleeParam$1 = $(200);
   $(tmpClusterSSA_tmpCalleeParam$1);
 }
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

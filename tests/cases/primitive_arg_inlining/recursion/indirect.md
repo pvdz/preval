@@ -87,19 +87,19 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const g = function ($$0) {
-  const n$1 = $$0;
+  const tmpOutlinedParam = $$0;
   debugger;
-  const tmpCalleeParam = n$1 + 1;
-  const tmpBinLhs = $(tmpCalleeParam);
+  const tmpBinLhs = $(tmpOutlinedParam);
   const tmpIfTest = tmpBinLhs > 1000;
   if (tmpIfTest) {
-    return tmpCalleeParam;
+    return tmpOutlinedParam;
   } else {
-    const tmpReturnArg$3 = g(tmpCalleeParam);
+    const tmpSaooB$1 = tmpOutlinedParam + 1;
+    const tmpReturnArg$3 = g(tmpSaooB$1);
     return tmpReturnArg$3;
   }
 };
-const tmpCalleeParam$1 = g(0);
+const tmpCalleeParam$1 = g(1);
 $(tmpCalleeParam$1);
 `````
 
@@ -111,18 +111,18 @@ With rename=true
 const a = function($$0 ) {
   const b = c;
   debugger;
-  const d = b + 1;
-  const e = $( d );
-  const f = e > 1000;
-  if (f) {
-    return d;
+  const d = $( b );
+  const e = d > 1000;
+  if (e) {
+    return b;
   }
   else {
-    const g = a( d );
+    const f = b + 1;
+    const g = a( f );
     return g;
   }
 };
-const h = a( 0 );
+const h = a( 1 );
 $( h );
 `````
 

@@ -1,0 +1,15 @@
+// TOFIX regressions:
+
+// tests/cases/normalize/loops/base_return_cond.md -> used to be able to output a series of completely resolved $() with the second params resolved to numbers
+// tests/cases/normalize/nullish/global_nested_assign.md -> used to be able to inline the obj.prop assign and end with `{ b: 15 }` (same tests/cases/normalize/nullish/func_nested_assign.md)
+// tests/cases/normalize/expressions/assignments/while/auto_ident_prop_s-seq_assign_simple.md -> infi loop, dead code needs to be eliminated
+
+
+// TODO:
+
+// tests/cases/normalize/branching/single_branching/_base_nested_else_no_tail.md -> find a way to consolidate?
+// /home/ptr/proj/preval/tests/cases/function/pure_function_inlining.md -> pst printing a string literal weird? double quote ends as \$1
+// tests/cases/function/pure_function_inlining.md -> used to be able to outline the `desc` param coerce step to the caller. the fix is to support $coerce in function outlining
+// tests/cases/normalize/expressions/assignments/for_of_left/auto_ident_logic_and_and.md -> pst printed incorrectly? (objlit)
+// tests/cases/normalize/expressions/assignments/for_of_left/auto_ident_logic_and_and.md -> add test that prints a when it does not enter the for-loop body. (this was a fix that used to be broken)
+// tests/cases/normalize/expressions/assignments/for_c/auto_ident_logic_||_simple_complex.md -> rename file to eliminate the pipes?

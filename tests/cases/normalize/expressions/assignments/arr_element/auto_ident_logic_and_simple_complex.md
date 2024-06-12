@@ -57,10 +57,10 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
-const tmpClusterSSA_a$1 = $(tmpCalleeParam$1);
+const a = $(tmpCalleeParam$1);
 const tmpCalleeParam$3 = $(1);
 const tmpClusterSSA_a = $(tmpCalleeParam$3);
-const tmpCalleeParam = tmpClusterSSA_a$1 + tmpClusterSSA_a;
+const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````

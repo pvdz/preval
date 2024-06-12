@@ -54,11 +54,11 @@ $(a);
 
 `````js filename=intro
 const b = { c: $ };
+const a = { a: 999, b: 1000 };
 const tmpChainElementCall = $dotCall($, b, 1);
 let x = undefined;
 for (x of tmpChainElementCall) {
 }
-const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -68,16 +68,16 @@ With rename=true
 
 `````js filename=intro
 const a = { c: $ };
-const b = $dotCall( $, a, 1 );
-let c = undefined;
-for (c of b) {
-
-}
-const d = {
+const b = {
 a: 999,
 b: 1000
 ;
-$( d );
+const c = $dotCall( $, a, 1 );
+let d = undefined;
+for (d of c) {
+
+}
+$( b );
 `````
 
 ## Globals

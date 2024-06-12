@@ -53,8 +53,8 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const obj = {};
-const tmpCompProp = $(60);
-obj[tmpCompProp];
+const tmpClusterSSA_tmpCompProp = $(60);
+obj[tmpClusterSSA_tmpCompProp];
 $(a);
 `````
 

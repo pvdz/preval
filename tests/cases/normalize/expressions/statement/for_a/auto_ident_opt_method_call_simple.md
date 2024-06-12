@@ -60,6 +60,7 @@ $(a);
 
 `````js filename=intro
 const b = { c: $ };
+const a = { a: 999, b: 1000 };
 $dotCall($, b, 1);
 const tmpIfTest$1 = $(0);
 if (tmpIfTest$1) {
@@ -73,7 +74,6 @@ if (tmpIfTest$1) {
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -83,24 +83,24 @@ With rename=true
 
 `````js filename=intro
 const a = { c: $ };
+const b = {
+a: 999,
+b: 1000
+;
 $dotCall( $, a, 1 );
-const b = $( 0 );
-if (b) {
-  let c = $( 0 );
+const c = $( 0 );
+if (c) {
+  let d = $( 0 );
   while ($LOOP_UNROLL_10) {
-    if (c) {
-      c = $( 0 );
+    if (d) {
+      d = $( 0 );
     }
     else {
       break;
     }
   }
 }
-const d = {
-a: 999,
-b: 1000
-;
-$( d );
+$( b );
 `````
 
 ## Globals

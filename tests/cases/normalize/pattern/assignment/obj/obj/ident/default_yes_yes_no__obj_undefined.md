@@ -53,8 +53,8 @@ $(y);
 
 `````js filename=intro
 const tmpCalleeParam = { y: `pass2` };
-const objPatternAfterDefault = $(tmpCalleeParam);
-const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
+const tmpClusterSSA_objPatternAfterDefault = $(tmpCalleeParam);
+const objPatternBeforeDefault$1 = tmpClusterSSA_objPatternAfterDefault.y;
 const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
 if (tmpIfTest$1) {
   y = $(`fail`);

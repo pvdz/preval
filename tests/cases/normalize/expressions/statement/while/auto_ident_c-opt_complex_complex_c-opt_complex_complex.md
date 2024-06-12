@@ -92,14 +92,14 @@ if (tmpIfTest$1) {
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     const tmpChainElementCall$1 = $(b);
-    const tmpIfTest$4 = tmpChainElementCall$1 == null;
-    if (tmpIfTest$4) {
+    const tmpIfTest$2 = tmpChainElementCall$1 == null;
+    if (tmpIfTest$2) {
       $(100);
     } else {
       const tmpChainRootComputed$2 = $(`x`);
       const tmpChainElementObject$2 = tmpChainElementCall$1[tmpChainRootComputed$2];
-      const tmpIfTest$6 = tmpChainElementObject$2 == null;
-      if (tmpIfTest$6) {
+      const tmpIfTest$4 = tmpChainElementObject$2 == null;
+      if (tmpIfTest$4) {
         $(100);
       } else {
         const tmpChainRootComputed$4 = $(`y`);

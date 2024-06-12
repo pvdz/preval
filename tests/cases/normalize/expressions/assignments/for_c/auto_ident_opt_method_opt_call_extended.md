@@ -70,9 +70,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal$1 = { e: $ };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
+  const tmpObjLitVal$1 = { e: $ };
   const tmpIfTest$3 = $ == null;
   if (tmpIfTest$3) {
   } else {
@@ -81,11 +81,11 @@ if (tmpIfTest) {
   let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
     if (tmpClusterSSA_tmpIfTest) {
-      const tmpChainElementObject$4 = tmpObjLitVal$1.e;
-      const tmpIfTest$1 = tmpChainElementObject$4 == null;
+      const tmpChainElementObject$6 = tmpObjLitVal$1.e;
+      const tmpIfTest$1 = tmpChainElementObject$6 == null;
       if (tmpIfTest$1) {
       } else {
-        $dotCall(tmpChainElementObject$4, tmpObjLitVal$1, 1);
+        $dotCall(tmpChainElementObject$6, tmpObjLitVal$1, 1);
       }
       tmpClusterSSA_tmpIfTest = $(1);
     } else {
@@ -103,26 +103,26 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { e: $ };
-const b = $( 1 );
-if (b) {
+const a = $( 1 );
+if (a) {
+  const b = { e: $ };
   const c = $ == null;
   if (c) {
 
   }
   else {
-    $dotCall( $, a, 1 );
+    $dotCall( $, b, 1 );
   }
   let d = $( 1 );
   while ($LOOP_UNROLL_10) {
     if (d) {
-      const e = a.e;
+      const e = b.e;
       const f = e == null;
       if (f) {
 
       }
       else {
-        $dotCall( e, a, 1 );
+        $dotCall( e, b, 1 );
       }
       d = $( 1 );
     }

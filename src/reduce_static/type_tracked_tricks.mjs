@@ -994,7 +994,7 @@ function _typeTrackedTricks(fdata) {
                         func: () =>
                           blockBody.splice(
                             blockIndex,
-                            1,
+                            0,
                             // Do not ignore the args. If there are any, make sure to preserve their side effects. If any.
                             // If the method was called with a spread, make sure the spread still happens.
                             ...argNodes

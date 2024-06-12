@@ -97,12 +97,13 @@ $(a);
 
 
 `````js filename=intro
+const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpCalleeParam = $(1);
-const tmpClusterSSA_tmpBinLhs = $(tmpCalleeParam);
-const tmpClusterSSA_tmpIfTest = tmpClusterSSA_tmpBinLhs === tmpSwitchValue;
-if (tmpClusterSSA_tmpIfTest) {
+const tmpBinLhs = $(tmpCalleeParam);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
   const tmpIfTest$1 = 2 === tmpSwitchValue;
@@ -121,7 +122,6 @@ if (tmpIfTest$3) {
   }
   $(`fail2`);
 }
-const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -130,36 +130,36 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-let b = 1;
-const c = $( 1 );
-const d = $( c );
-const e = d === a;
-if (e) {
-  b = 0;
+const a = {
+a: 999,
+b: 1000
+;
+const b = $( 1 );
+let c = 1;
+const d = $( 1 );
+const e = $( d );
+const f = e === b;
+if (f) {
+  c = 0;
 }
 else {
-  const f = 2 === a;
-  if (f) {
-    b = 2;
+  const g = 2 === b;
+  if (g) {
+    c = 2;
   }
 }
-const g = b <= 0;
-if (g) {
+const h = c <= 0;
+if (h) {
 
 }
 else {
-  const h = b <= 1;
-  if (h) {
+  const i = c <= 1;
+  if (i) {
     $( "fail1" );
   }
   $( "fail2" );
 }
-const i = {
-a: 999,
-b: 1000
-;
-$( i );
+$( a );
 `````
 
 ## Globals

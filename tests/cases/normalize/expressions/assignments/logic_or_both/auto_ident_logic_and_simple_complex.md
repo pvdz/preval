@@ -61,9 +61,9 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
 let a = $(tmpCalleeParam$1);
-const tmpClusterSSA_tmpCalleeParam = a;
+const tmpCalleeParam = a;
 if (a) {
-  $(tmpClusterSSA_tmpCalleeParam);
+  $(tmpCalleeParam);
 } else {
   const tmpCalleeParam$3 = $(1);
   const tmpNestedComplexRhs = $(tmpCalleeParam$3);

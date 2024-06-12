@@ -49,9 +49,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpForInDeclRhs = $(2);
+const tmpClusterSSA_tmpForInDeclRhs = $(2);
 let x = undefined;
-for (x in tmpForInDeclRhs) {
+for (x in tmpClusterSSA_tmpForInDeclRhs) {
 }
 const a = { a: 999, b: 1000 };
 $(a);

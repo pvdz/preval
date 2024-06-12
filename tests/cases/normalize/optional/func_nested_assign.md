@@ -68,8 +68,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 $();
-const tmpReturnArg = $(15);
-$(tmpReturnArg);
+const tmpClusterSSA_tmpReturnArg = $(15);
+$(tmpClusterSSA_tmpReturnArg);
 `````
 
 ## PST Output

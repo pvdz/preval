@@ -107,18 +107,16 @@ $(`pass`);
 
 
 `````js filename=intro
-foo: {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpSwitchDisc = $(1);
-    const tmpIfTest$1 = tmpSwitchDisc === 0;
-    if (tmpIfTest$1) {
-      $(`one`);
-    } else {
-    }
-    $(`fail`);
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  const tmpSwitchDisc = $(1);
+  const tmpIfTest$1 = tmpSwitchDisc === 0;
+  if (tmpIfTest$1) {
+    $(`one`);
   } else {
   }
+  $(`fail`);
+} else {
 }
 $(`pass`);
 `````
@@ -128,16 +126,14 @@ $(`pass`);
 With rename=true
 
 `````js filename=intro
-foo: {
-  const a = $( 1 );
-  if (a) {
-    const b = $( 1 );
-    const c = b === 0;
-    if (c) {
-      $( "one" );
-    }
-    $( "fail" );
+const a = $( 1 );
+if (a) {
+  const b = $( 1 );
+  const c = b === 0;
+  if (c) {
+    $( "one" );
   }
+  $( "fail" );
 }
 $( "pass" );
 `````

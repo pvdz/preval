@@ -40,8 +40,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = $NumberPrototype.toString;
-$(f);
+$($Number_toString);
 $(`function(){}`);
 `````
 
@@ -50,8 +49,7 @@ $(`function(){}`);
 With rename=true
 
 `````js filename=intro
-const a = $NumberPrototype.toString;
-$( a );
+$( $Number_toString );
 $( "function(){}" );
 `````
 

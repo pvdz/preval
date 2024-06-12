@@ -73,8 +73,8 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 `````js filename=intro
 const tmpCalleeParam$1 = [`pass2`];
-const arrPatternStep = $(tmpCalleeParam$1);
-[...arrPatternStep];
+const tmpClusterSSA_arrPatternStep = $(tmpCalleeParam$1);
+[...tmpClusterSSA_arrPatternStep];
 $(`ok`);
 `````
 

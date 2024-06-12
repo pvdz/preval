@@ -51,8 +51,8 @@ $(a);
 
 `````js filename=intro
 const b = { c: $ };
-$dotCall($, b, 1);
 const a = { a: 999, b: 1000 };
+$dotCall($, b, 1);
 $(a);
 `````
 
@@ -62,11 +62,11 @@ With rename=true
 
 `````js filename=intro
 const a = { c: $ };
-$dotCall( $, a, 1 );
 const b = {
 a: 999,
 b: 1000
 ;
+$dotCall( $, a, 1 );
 $( b );
 `````
 

@@ -85,6 +85,7 @@ import {testingAlias} from "./testing_alias.mjs";
 import {VERBOSE_TRACING} from "../constants.mjs";
 import {aliasIfIf} from "./alias_if_if.mjs";
 import { removeUnusedConstants } from './remove_unused_constants.mjs';
+import { writeOnly } from './write_only.mjs';
 
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
@@ -204,6 +205,7 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     pruneEmptyFunctions(fdata) ||
     pruneTrampolineFunctions(fdata) ||
     inlineConstants(fdata) ||
+    writeOnly(fdata) ||
     dealiasing(fdata) ||
     singleScopeSSA(fdata) ||
     multiScopeSSA(fdata) ||

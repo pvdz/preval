@@ -66,21 +66,16 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpCalleeParam = { x: `pass2` };
-  const bindingPatternObjRoot = $(tmpCalleeParam);
-  const objPatternBeforeDefault = bindingPatternObjRoot.x;
-  const tmpIfTest$1 = objPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    const tmpClusterSSA_x = $(`fail`);
-    return tmpClusterSSA_x;
-  } else {
-    return objPatternBeforeDefault;
-  }
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+const tmpCalleeParam = { x: `pass2` };
+const tmpClusterSSA_bindingPatternObjRoot = $(tmpCalleeParam);
+const objPatternBeforeDefault = tmpClusterSSA_bindingPatternObjRoot.x;
+const tmpIfTest$1 = objPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
+  const tmpClusterSSA_x = $(`fail`);
+  $(tmpClusterSSA_x);
+} else {
+  $(objPatternBeforeDefault);
+}
 `````
 
 ## PST Output
@@ -88,22 +83,17 @@ $(tmpCalleeParam$1);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = { x: "pass2" };
-  const c = $( b );
-  const d = c.x;
-  const e = d === undefined;
-  if (e) {
-    const f = $( "fail" );
-    return f;
-  }
-  else {
-    return d;
-  }
-};
-const g = a();
-$( g );
+const a = { x: "pass2" };
+const b = $( a );
+const c = b.x;
+const d = c === undefined;
+if (d) {
+  const e = $( "fail" );
+  $( e );
+}
+else {
+  $( c );
+}
 `````
 
 ## Globals

@@ -103,9 +103,10 @@ $(a);
 
 
 `````js filename=intro
+const b = { c: $ };
+const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const b = { c: $ };
 const tmpChainElementCall = $dotCall($, b, 1);
 const tmpClusterSSA_tmpIfTest = tmpChainElementCall === tmpSwitchValue;
 if (tmpClusterSSA_tmpIfTest) {
@@ -127,7 +128,6 @@ if (tmpIfTest$5) {
   }
   $(`fail2`);
 }
-const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -136,36 +136,36 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-let b = 1;
-const c = { c: $ };
-const d = $dotCall( $, c, 1 );
-const e = d === a;
-if (e) {
-  b = 0;
+const a = { c: $ };
+const b = {
+a: 999,
+b: 1000
+;
+const c = $( 1 );
+let d = 1;
+const e = $dotCall( $, a, 1 );
+const f = e === c;
+if (f) {
+  d = 0;
 }
 else {
-  const f = 2 === a;
-  if (f) {
-    b = 2;
+  const g = 2 === c;
+  if (g) {
+    d = 2;
   }
 }
-const g = b <= 0;
-if (g) {
+const h = d <= 0;
+if (h) {
 
 }
 else {
-  const h = b <= 1;
-  if (h) {
+  const i = d <= 1;
+  if (i) {
     $( "fail1" );
   }
   $( "fail2" );
 }
-const i = {
-a: 999,
-b: 1000
-;
-$( i );
+$( b );
 `````
 
 ## Globals

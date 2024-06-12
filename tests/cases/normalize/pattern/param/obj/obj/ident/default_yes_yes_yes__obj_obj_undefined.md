@@ -81,31 +81,8 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const objPatternBeforeDefault = tmpParamBare.x;
-  let objPatternAfterDefault = undefined;
-  const tmpIfTest$1 = objPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    const tmpCalleeParam$1 = { y: `fail2` };
-    objPatternAfterDefault = $(tmpCalleeParam$1);
-  } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-  }
-  const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-  const tmpIfTest$3 = objPatternBeforeDefault$1 === undefined;
-  if (tmpIfTest$3) {
-    const tmpClusterSSA_y = $(`pass`);
-    return tmpClusterSSA_y;
-  } else {
-    return objPatternBeforeDefault$1;
-  }
-};
-const tmpObjLitVal$1 = { x: 1, y: undefined, z: 3 };
-const tmpCalleeParam$5 = { x: tmpObjLitVal$1, b: 11, c: 12 };
-const tmpCalleeParam$3 = f(tmpCalleeParam$5);
-$(tmpCalleeParam$3);
+const tmpClusterSSA_y = $(`pass`);
+$(tmpClusterSSA_y);
 `````
 
 ## PST Output
@@ -113,41 +90,8 @@ $(tmpCalleeParam$3);
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = c;
-  debugger;
-  const d = b.x;
-  let e = undefined;
-  const f = d === undefined;
-  if (f) {
-    const g = { y: "fail2" };
-    e = $( g );
-  }
-  else {
-    e = d;
-  }
-  const h = e.y;
-  const i = h === undefined;
-  if (i) {
-    const j = $( "pass" );
-    return j;
-  }
-  else {
-    return h;
-  }
-};
-const k = {
-x: 1,
-y: undefined,
-z: 3
-;
-const l = {
-x: k,
-b: 11,
-c: 12
-;
-const m = a( l );
-$( m );
+const a = $( "pass" );
+$( a );
 `````
 
 ## Globals

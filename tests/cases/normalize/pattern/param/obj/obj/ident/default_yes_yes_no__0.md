@@ -68,28 +68,23 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const objPatternBeforeDefault = (0).x;
-  let objPatternAfterDefault = undefined;
-  const tmpIfTest = objPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = { y: `pass2` };
-    objPatternAfterDefault = $(tmpCalleeParam);
-  } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-  }
-  const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-  const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
-  if (tmpIfTest$1) {
-    const tmpClusterSSA_y = $(`fail`);
-    return tmpClusterSSA_y;
-  } else {
-    return objPatternBeforeDefault$1;
-  }
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+const objPatternBeforeDefault = (0).x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCalleeParam = { y: `pass2` };
+  objPatternAfterDefault = $(tmpCalleeParam);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
+const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
+if (tmpIfTest$1) {
+  const tmpClusterSSA_y = $(`fail`);
+  $(tmpClusterSSA_y);
+} else {
+  $(objPatternBeforeDefault$1);
+}
 `````
 
 ## PST Output
@@ -97,30 +92,25 @@ $(tmpCalleeParam$1);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = 0.x;
-  let c = undefined;
-  const d = b === undefined;
-  if (d) {
-    const e = { y: "pass2" };
-    c = $( e );
-  }
-  else {
-    c = b;
-  }
-  const f = c.y;
-  const g = f === undefined;
-  if (g) {
-    const h = $( "fail" );
-    return h;
-  }
-  else {
-    return f;
-  }
-};
-const i = a();
-$( i );
+const a = 0.x;
+let b = undefined;
+const c = a === undefined;
+if (c) {
+  const d = { y: "pass2" };
+  b = $( d );
+}
+else {
+  b = a;
+}
+const e = b.y;
+const f = e === undefined;
+if (f) {
+  const g = $( "fail" );
+  $( g );
+}
+else {
+  $( e );
+}
 `````
 
 ## Globals

@@ -56,31 +56,31 @@ $(a);
 
 
 `````js filename=intro
-const xyz = $(2);
-$(xyz);
+const tmpClusterSSA_xyz = $(2);
+$(tmpClusterSSA_xyz);
 $(1);
-$(xyz);
+$(tmpClusterSSA_xyz);
 $(1);
-$(xyz);
+$(tmpClusterSSA_xyz);
 $(1);
-$(xyz);
+$(tmpClusterSSA_xyz);
 $(1);
-$(xyz);
+$(tmpClusterSSA_xyz);
 $(1);
-$(xyz);
+$(tmpClusterSSA_xyz);
 $(1);
-$(xyz);
+$(tmpClusterSSA_xyz);
 $(1);
-$(xyz);
+$(tmpClusterSSA_xyz);
 $(1);
-$(xyz);
+$(tmpClusterSSA_xyz);
 $(1);
-$(xyz);
+$(tmpClusterSSA_xyz);
 $(1);
-$(xyz);
+$(tmpClusterSSA_xyz);
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(xyz);
+  $(tmpClusterSSA_xyz);
   $(1);
 }
 const a = { a: 999, b: 1000 };

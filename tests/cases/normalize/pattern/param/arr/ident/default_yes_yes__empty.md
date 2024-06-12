@@ -65,8 +65,8 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const bindingPatternArrRoot = $(`pass2`);
-const arrPatternSplat = [...bindingPatternArrRoot];
+const tmpClusterSSA_bindingPatternArrRoot = $(`pass2`);
+const arrPatternSplat = [...tmpClusterSSA_bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {

@@ -71,7 +71,7 @@ $(a, x, y);
 `````js filename=intro
 $(100);
 const tmpArrElement = $(3);
-const tmpArrElement$1 = $(4);
+$(4);
 $(100);
 $(3);
 $(4);
@@ -108,7 +108,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(4);
 }
 const a = { a: 999, b: 1000 };
-$(a, tmpArrElement, tmpArrElement$1);
+$(a, tmpArrElement, 2);
 `````
 
 ## PST Output
@@ -118,7 +118,7 @@ With rename=true
 `````js filename=intro
 $( 100 );
 const a = $( 3 );
-const b = $( 4 );
+$( 4 );
 $( 100 );
 $( 3 );
 $( 4 );
@@ -154,11 +154,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 3 );
   $( 4 );
 }
-const c = {
+const b = {
 a: 999,
 b: 1000
 ;
-$( c, a, b );
+$( b, a, 2 );
 `````
 
 ## Globals

@@ -78,31 +78,26 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpObjLitVal = [`pass3`];
-  const tmpCalleeParam = { x: tmpObjLitVal };
-  const tmpClusterSSA_bindingPatternObjRoot = $(tmpCalleeParam);
-  const objPatternBeforeDefault = tmpClusterSSA_bindingPatternObjRoot.x;
-  let objPatternAfterDefault = undefined;
-  const tmpIfTest$1 = objPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    const tmpCalleeParam$1 = [`fail2`];
-    objPatternAfterDefault = $(tmpCalleeParam$1);
-  } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-  }
-  const arrPatternSplat = [...objPatternAfterDefault];
-  const arrPatternBeforeDefault = arrPatternSplat[0];
-  const tmpIfTest$3 = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest$3) {
-    return `fail`;
-  } else {
-    return arrPatternBeforeDefault;
-  }
-};
-const tmpCalleeParam$3 = f();
-$(tmpCalleeParam$3);
+const tmpObjLitVal = [`pass3`];
+const tmpCalleeParam = { x: tmpObjLitVal };
+const tmpClusterSSA_bindingPatternObjRoot = $(tmpCalleeParam);
+const objPatternBeforeDefault = tmpClusterSSA_bindingPatternObjRoot.x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest$1 = objPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
+  const tmpCalleeParam$1 = [`fail2`];
+  objPatternAfterDefault = $(tmpCalleeParam$1);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+const arrPatternSplat = [...objPatternAfterDefault];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+const tmpIfTest$3 = arrPatternBeforeDefault === undefined;
+if (tmpIfTest$3) {
+  $(`fail`);
+} else {
+  $(arrPatternBeforeDefault);
+}
 `````
 
 ## PST Output
@@ -110,33 +105,28 @@ $(tmpCalleeParam$3);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = [ "pass3" ];
-  const c = { x: b };
-  const d = $( c );
-  const e = d.x;
-  let f = undefined;
-  const g = e === undefined;
-  if (g) {
-    const h = [ "fail2" ];
-    f = $( h );
-  }
-  else {
-    f = e;
-  }
-  const i = [ ... f ];
-  const j = i[ 0 ];
-  const k = j === undefined;
-  if (k) {
-    return "fail";
-  }
-  else {
-    return j;
-  }
-};
-const l = a();
-$( l );
+const a = [ "pass3" ];
+const b = { x: a };
+const c = $( b );
+const d = c.x;
+let e = undefined;
+const f = d === undefined;
+if (f) {
+  const g = [ "fail2" ];
+  e = $( g );
+}
+else {
+  e = d;
+}
+const h = [ ... e ];
+const i = h[ 0 ];
+const j = i === undefined;
+if (j) {
+  $( "fail" );
+}
+else {
+  $( i );
+}
 `````
 
 ## Globals

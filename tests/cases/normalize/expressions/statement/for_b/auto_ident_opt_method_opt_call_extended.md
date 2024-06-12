@@ -85,12 +85,12 @@ if (tmpIfTest$3) {
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    const tmpChainElementObject$4 = tmpObjLitVal$1.e;
-    const tmpIfTest$4 = tmpChainElementObject$4 == null;
-    if (tmpIfTest$4) {
+    const tmpChainElementObject$6 = tmpObjLitVal$1.e;
+    const tmpIfTest$1 = tmpChainElementObject$6 == null;
+    if (tmpIfTest$1) {
       $(1);
     } else {
-      const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$4, tmpObjLitVal$1, 1);
+      const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$6, tmpObjLitVal$1, 1);
       if (tmpChainElementCall$1) {
         $(1);
       } else {

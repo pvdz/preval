@@ -60,6 +60,7 @@ const tmpForOfRhs = $(tmpCalleeParam);
 for (test of tmpForOfRhs) {
   $(`yolo`);
   counter = counter + 1;
+  test = counter < 10;
 }
 `````
 
@@ -75,6 +76,7 @@ const d = $( c );
 for (b of d) {
   $( "yolo" );
   a = a + 1;
+  b = a < 10;
 }
 `````
 

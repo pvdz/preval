@@ -65,12 +65,12 @@ $(a);
 
 
 `````js filename=intro
+const tmpObjLitVal$1 = { e: $ };
 const a = { a: 999, b: 1000 };
 const tmpIfTest$1 = $ == null;
 if (tmpIfTest$1) {
   $(`before  undefined  after`);
 } else {
-  const tmpObjLitVal$1 = { e: $ };
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
   const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpChainElementCall, `string`);
   const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
@@ -84,22 +84,22 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = { e: $ };
+const b = {
 a: 999,
 b: 1000
 ;
-const b = $ == null;
-if (b) {
+const c = $ == null;
+if (c) {
   $( "before  undefined  after" );
 }
 else {
-  const c = { e: $ };
-  const d = $dotCall( $, c, 1 );
+  const d = $dotCall( $, a, 1 );
   const e = $coerce( d, "string" );
   const f = `before  ${[object Object]}  after`;
   $( f );
 }
-$( a );
+$( b );
 `````
 
 ## Globals

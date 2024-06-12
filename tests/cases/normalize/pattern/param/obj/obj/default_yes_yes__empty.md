@@ -83,8 +83,8 @@ const tmpCalleeParam = { x: tmpObjLitVal };
 const tmpClusterSSA_bindingPatternObjRoot = $(tmpCalleeParam);
 const objPatternBeforeDefault = tmpClusterSSA_bindingPatternObjRoot.x;
 let objPatternAfterDefault = undefined;
-let objPatternCrashTest = false;
 const tmpIfTest$1 = objPatternBeforeDefault === undefined;
+let objPatternCrashTest = false;
 if (tmpIfTest$1) {
   const tmpCalleeParam$1 = { x: `fail` };
   objPatternAfterDefault = $(tmpCalleeParam$1);
@@ -113,23 +113,23 @@ const b = { x: a };
 const c = $( b );
 const d = c.x;
 let e = undefined;
-let f = false;
-const g = d === undefined;
-if (g) {
+const f = d === undefined;
+let g = false;
+if (f) {
   const h = { x: "fail" };
   e = $( h );
-  f = e === undefined;
+  g = e === undefined;
 }
 else {
   e = d;
 }
-if (f) {
+if (g) {
 
 }
 else {
-  f = e === null;
+  g = e === null;
 }
-if (f) {
+if (g) {
   e.cannotDestructureThis;
 }
 $( "ok" );

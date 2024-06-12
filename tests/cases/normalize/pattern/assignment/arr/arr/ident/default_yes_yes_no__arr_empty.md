@@ -55,8 +55,8 @@ $(x);
 
 `````js filename=intro
 const tmpCalleeParam = [`pass2`];
-const arrPatternStep = $(tmpCalleeParam);
-const arrPatternSplat$1 = [...arrPatternStep];
+const tmpClusterSSA_arrPatternStep = $(tmpCalleeParam);
+const arrPatternSplat$1 = [...tmpClusterSSA_arrPatternStep];
 const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
 const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
 if (tmpIfTest$1) {

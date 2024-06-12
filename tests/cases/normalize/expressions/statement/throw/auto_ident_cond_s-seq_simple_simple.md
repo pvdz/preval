@@ -46,8 +46,8 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-const tmpThrowArg = $(2);
-throw tmpThrowArg;
+const tmpClusterSSA_tmpThrowArg = $(2);
+throw tmpClusterSSA_tmpThrowArg;
 `````
 
 ## PST Output

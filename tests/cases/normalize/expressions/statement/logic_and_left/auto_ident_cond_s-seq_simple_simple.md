@@ -50,8 +50,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(2);
-if (tmpIfTest) {
+const tmpClusterSSA_tmpIfTest = $(2);
+if (tmpClusterSSA_tmpIfTest) {
   $(100);
 } else {
 }

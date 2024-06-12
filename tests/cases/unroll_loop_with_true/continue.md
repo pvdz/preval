@@ -76,8 +76,8 @@ while (true) {
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 let i = -1;
+let $tmpLoopUnrollCheck = true;
 const test$2 = $(`first`);
 $(`second`);
 if (test$2) {
@@ -110,20 +110,20 @@ if ($tmpLoopUnrollCheck) {
 With rename=true
 
 `````js filename=intro
-let a = true;
-let b = -1;
+let a = -1;
+let b = true;
 const c = $( "first" );
 $( "second" );
 if (c) {
-  a = false;
+  b = false;
 }
 else {
   $( "third" );
 }
-if (a) {
+if (b) {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const d = b;
-    b = b - 1;
+    const d = a;
+    a = a - 1;
     const e = d > 0;
     if (e) {
 

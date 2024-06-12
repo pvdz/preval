@@ -76,8 +76,8 @@ if (tmpChainElementCall) {
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    const tmpChainElementObject$4 = tmpObjLitVal$1.e;
-    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$4, tmpObjLitVal$1, 1);
+    const tmpChainElementObject$6 = tmpObjLitVal$1.e;
+    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$6, tmpObjLitVal$1, 1);
     if (tmpChainElementCall$1) {
       $(1);
     } else {

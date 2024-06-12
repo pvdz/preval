@@ -82,14 +82,14 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 `````js filename=intro
 const tmpCalleeParam$1 = { x: `pass` };
-const objPatternAfterDefault = $(tmpCalleeParam$1);
-let tmpClusterSSA_objPatternCrashTest = objPatternAfterDefault === undefined;
+const tmpClusterSSA_objPatternAfterDefault = $(tmpCalleeParam$1);
+let tmpClusterSSA_objPatternCrashTest = tmpClusterSSA_objPatternAfterDefault === undefined;
 if (tmpClusterSSA_objPatternCrashTest) {
 } else {
-  tmpClusterSSA_objPatternCrashTest = objPatternAfterDefault === null;
+  tmpClusterSSA_objPatternCrashTest = tmpClusterSSA_objPatternAfterDefault === null;
 }
 if (tmpClusterSSA_objPatternCrashTest) {
-  objPatternAfterDefault.cannotDestructureThis;
+  tmpClusterSSA_objPatternAfterDefault.cannotDestructureThis;
 } else {
 }
 $(`ok`);

@@ -47,8 +47,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjSpreadArg = $(2);
-({ ...tmpObjSpreadArg });
+const tmpClusterSSA_tmpObjSpreadArg = $(2);
+({ ...tmpClusterSSA_tmpObjSpreadArg });
 const a = { a: 999, b: 1000 };
 $(a);
 `````

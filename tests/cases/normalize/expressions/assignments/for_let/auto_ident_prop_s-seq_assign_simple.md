@@ -56,8 +56,6 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 2 };
-const a = { a: 999, b: 1000 };
 $(2);
 $(1);
 $(2);
@@ -84,7 +82,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(2);
   $(1);
 }
-$(a, b);
+const b = { c: 2 };
+$(2, b);
 `````
 
 ## PST Output
@@ -92,11 +91,6 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-const a = { c: 2 };
-const b = {
-a: 999,
-b: 1000
-;
 $( 2 );
 $( 1 );
 $( 2 );
@@ -123,7 +117,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 2 );
   $( 1 );
 }
-$( b, a );
+const a = { c: 2 };
+$( 2, a );
 `````
 
 ## Globals

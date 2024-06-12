@@ -52,14 +52,14 @@ $(a);
 
 
 `````js filename=intro
-const a = $(60);
-if (a) {
+const tmpClusterSSA_a = $(60);
+if (tmpClusterSSA_a) {
   const tmpClusterSSA_tmpCalleeParam = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  $(a);
+  $(tmpClusterSSA_a);
 }
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

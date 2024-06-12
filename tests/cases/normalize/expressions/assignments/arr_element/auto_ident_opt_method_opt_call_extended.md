@@ -78,8 +78,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal$1 = { e: $ };
 let a = undefined;
+const tmpObjLitVal$1 = { e: $ };
 const tmpIfTest$1 = $ == null;
 if (tmpIfTest$1) {
 } else {
@@ -106,27 +106,27 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-const a = { e: $ };
-let b = undefined;
+let a = undefined;
+const b = { e: $ };
 const c = $ == null;
 if (c) {
 
 }
 else {
-  const d = $dotCall( $, a, 1 );
-  b = d;
+  const d = $dotCall( $, b, 1 );
+  a = d;
 }
 let e = undefined;
-const f = a.e;
+const f = b.e;
 const g = f == null;
 if (g) {
-  const h = b + undefined;
+  const h = a + undefined;
   $( h );
 }
 else {
-  const i = $dotCall( f, a, 1 );
+  const i = $dotCall( f, b, 1 );
   e = i;
-  const j = b + i;
+  const j = a + i;
   $( j );
 }
 $( e );

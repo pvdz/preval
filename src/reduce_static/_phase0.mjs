@@ -9,6 +9,7 @@ export function phase0(code, fname, subCall) {
 
   log('- Calling Tenko...');
 
+  const start = Date.now();
   const tenkoOutput = Tenko.Tenko(code, {
     exposeScopes: true, // func cloning needs it. shouldn't add too much overhead except for debug output
     //exposeScopes: false, // At this point all identifiers should be globally unique (relative to the module) so we don't need this
@@ -20,7 +21,7 @@ export function phase0(code, fname, subCall) {
     astUids: false, // For debugging
   });
 
-  log('- Finished parsing');
+  log('- Finished parsing (', Date.now() - start, 'ms)');
 
   groupEnd();
 

@@ -8,6 +8,8 @@ export function parseCode(code, fname) {
 
   log('- Parsing code with Tenko...');
 
+  const start = Date.now();
+
   const tenkoOutput = Tenko.Tenko(code, {
     exposeScopes: true,
     collectTokens: Tenko.COLLECT_TOKENS_NONE,
@@ -20,7 +22,7 @@ export function parseCode(code, fname) {
 
   //console.dir(tenkoOutput.ast, {depth: null});
 
-  log('- Finished parsing');
+  log('- Finished parsing (', Date.now() - start, 'ms)');
 
   groupEnd();
 

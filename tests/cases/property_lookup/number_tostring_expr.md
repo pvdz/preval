@@ -1,37 +1,37 @@
 # Preval test case
 
-# string_concat.md
+# number_tostring_expr.md
 
-> Property lookup > String concat
+> Property lookup > Number tostring expr
 
 ## Input
 
 `````js filename=intro
-$StringPrototype.lastIndexOf; // dropme
-$( "3.48" );
+const x = $NumberPrototype.toString;
+$(x);
 `````
 
 ## Pre Normal
 
 
 `````js filename=intro
-$StringPrototype.lastIndexOf;
-$(`3.48`);
+const x = $NumberPrototype.toString;
+$(x);
 `````
 
 ## Normalized
 
 
 `````js filename=intro
-$StringPrototype.lastIndexOf;
-$(`3.48`);
+const x = $NumberPrototype.toString;
+$(x);
 `````
 
 ## Output
 
 
 `````js filename=intro
-$(`3.48`);
+$($Number_toString);
 `````
 
 ## PST Output
@@ -39,7 +39,7 @@ $(`3.48`);
 With rename=true
 
 `````js filename=intro
-$( "3.48" );
+$( $Number_toString );
 `````
 
 ## Globals
@@ -49,7 +49,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: '3.48'
+ - 1: '<function>'
  - eval returned: undefined
 
 Pre normalization calls: Same

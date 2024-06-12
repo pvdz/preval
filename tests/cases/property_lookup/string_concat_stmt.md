@@ -1,13 +1,13 @@
 # Preval test case
 
-# number_tostring.md
+# string_concat_stmt.md
 
-> Property lookup > Number tostring
+> Property lookup > String concat stmt
 
 ## Input
 
 `````js filename=intro
-$NumberPrototype.toString; // dropme
+$StringPrototype.lastIndexOf; // dropme
 $( "3.48" );
 `````
 
@@ -15,7 +15,7 @@ $( "3.48" );
 
 
 `````js filename=intro
-$NumberPrototype.toString;
+$StringPrototype.lastIndexOf;
 $(`3.48`);
 `````
 
@@ -23,7 +23,7 @@ $(`3.48`);
 
 
 `````js filename=intro
-$NumberPrototype.toString;
+$StringPrototype.lastIndexOf;
 $(`3.48`);
 `````
 

@@ -300,9 +300,11 @@ function _propertyLookups(fdata) {
           if (KNOWN_IMPLICIT_GLOBALS.includes(node.object.name)) {
             vlog(`    - ${node.object.name} is a known global`);
 
+            const knownAlias = BUILTIN_PROTO_TO_LOOKUP[node.object.name]?.[node.property.name];
+
             if (parentNode.type === 'ExpressionStatement') {
               vlog(`    - this member expression is a statement so if we know it has no side effects it can be dropped`);
-              if (BUILTIN_PROTO_TO_LOOKUP[node.object.name]?.[node.property.name]) {
+              if (knownAlias) {
                 rule('Known property of built-in prototype that is a statement can be eliminated safely');
                 example('f(); $NumberPrototype.toString; g();', 'f(); ; g();');
                 before(grandNode[grandProp][grandIndex]);
@@ -314,6 +316,17 @@ function _propertyLookups(fdata) {
                 return;
               }
               // TODO: another case is more risky but accessing a property of an object literal should be fine
+            } else if (knownAlias) {
+              rule('Known property of built-in prototype object should be a special alias');
+              example('f(Number.toString)', 'f($Number_toString)');
+              before(grandNode[grandProp]);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.identifier(knownAlias);
+              else parentNode[parentProp][parentIndex] = AST.identifier(knownAlias);
+
+              after(grandNode[grandProp]);
+              ++changes;
+              return;
             }
           }
         }

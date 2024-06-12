@@ -76,24 +76,13 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
+let n = 1;
 $(1);
-$(2);
-$(3);
-$(4);
-$(5);
-$(6);
-$(7);
-$(8);
-$(9);
-$(10);
-let n = 11;
-$(11);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   n = n + 1;
   $(n);
 }
-$(`afterwards`);
-$(100);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -101,24 +90,13 @@ $(100);
 With rename=true
 
 `````js filename=intro
+let a = 1;
 $( 1 );
-$( 2 );
-$( 3 );
-$( 4 );
-$( 5 );
-$( 6 );
-$( 7 );
-$( 8 );
-$( 9 );
-$( 10 );
-let a = 11;
-$( 11 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   a = a + 1;
   $( a );
 }
-$( "afterwards" );
-$( 100 );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

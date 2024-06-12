@@ -47,22 +47,12 @@ $(blob);
 
 `````js filename=intro
 $(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
 const blob = { thing: `boing` };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   blob.thing = `boing`;
   $(1);
 }
-$(blob);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -71,22 +61,12 @@ With rename=true
 
 `````js filename=intro
 $( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
 const a = { thing: "boing" };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   a.thing = "boing";
   $( 1 );
 }
-$( a );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

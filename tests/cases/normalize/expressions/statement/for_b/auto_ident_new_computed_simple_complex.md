@@ -56,59 +56,18 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
-const a = { a: 999, b: 1000 };
 const tmpCompProp = $(`\$`);
+const b = { $: $ };
 const tmpNewCallee = b[tmpCompProp];
 new tmpNewCallee(1);
 $(1);
-const tmpCompProp$1 = $(`\$`);
-const tmpNewCallee$1 = b[tmpCompProp$1];
-new tmpNewCallee$1(1);
-$(1);
-const tmpCompProp$2 = $(`\$`);
-const tmpNewCallee$2 = b[tmpCompProp$2];
-new tmpNewCallee$2(1);
-$(1);
-const tmpCompProp$3 = $(`\$`);
-const tmpNewCallee$3 = b[tmpCompProp$3];
-new tmpNewCallee$3(1);
-$(1);
-const tmpCompProp$4 = $(`\$`);
-const tmpNewCallee$4 = b[tmpCompProp$4];
-new tmpNewCallee$4(1);
-$(1);
-const tmpCompProp$5 = $(`\$`);
-const tmpNewCallee$5 = b[tmpCompProp$5];
-new tmpNewCallee$5(1);
-$(1);
-const tmpCompProp$6 = $(`\$`);
-const tmpNewCallee$6 = b[tmpCompProp$6];
-new tmpNewCallee$6(1);
-$(1);
-const tmpCompProp$7 = $(`\$`);
-const tmpNewCallee$7 = b[tmpCompProp$7];
-new tmpNewCallee$7(1);
-$(1);
-const tmpCompProp$8 = $(`\$`);
-const tmpNewCallee$8 = b[tmpCompProp$8];
-new tmpNewCallee$8(1);
-$(1);
-const tmpCompProp$9 = $(`\$`);
-const tmpNewCallee$9 = b[tmpCompProp$9];
-new tmpNewCallee$9(1);
-$(1);
-const tmpCompProp$10 = $(`\$`);
-const tmpNewCallee$10 = b[tmpCompProp$10];
-new tmpNewCallee$10(1);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCompProp$11 = $(`\$`);
-  const tmpNewCallee$11 = b[tmpCompProp$11];
-  new tmpNewCallee$11(1);
+  const tmpCompProp$1 = $(`\$`);
+  const tmpNewCallee$1 = b[tmpCompProp$1];
+  new tmpNewCallee$1(1);
   $(1);
 }
-$(a);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -116,62 +75,18 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { $: $ };
-const b = {
-a: 999,
-b: 1000
-;
-const c = $( "$" );
-const d = a[ c ];
-new d( 1 );
-$( 1 );
-const e = $( "$" );
-const f = a[ e ];
-new f( 1 );
-$( 1 );
-const g = $( "$" );
-const h = a[ g ];
-new h( 1 );
-$( 1 );
-const i = $( "$" );
-const j = a[ i ];
-new j( 1 );
-$( 1 );
-const k = $( "$" );
-const l = a[ k ];
-new l( 1 );
-$( 1 );
-const m = $( "$" );
-const n = a[ m ];
-new n( 1 );
-$( 1 );
-const o = $( "$" );
-const p = a[ o ];
-new p( 1 );
-$( 1 );
-const q = $( "$" );
-const r = a[ q ];
-new r( 1 );
-$( 1 );
-const s = $( "$" );
-const t = a[ s ];
-new t( 1 );
-$( 1 );
-const u = $( "$" );
-const v = a[ u ];
-new v( 1 );
-$( 1 );
-const w = $( "$" );
-const x = a[ w ];
-new x( 1 );
+const a = $( "$" );
+const b = { $: $ };
+const c = b[ a ];
+new c( 1 );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const y = $( "$" );
-  const z = a[ y ];
-  new z( 1 );
+  const d = $( "$" );
+  const e = b[ d ];
+  new e( 1 );
   $( 1 );
 }
-$( b );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

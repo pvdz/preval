@@ -57,31 +57,11 @@ const tmpArrElement$3 = $(3);
 const a = [tmpArrElement, 2, tmpArrElement$3];
 $(a);
 $(1);
-$(a);
-$(1);
-$(a);
-$(1);
-$(a);
-$(1);
-$(a);
-$(1);
-$(a);
-$(1);
-$(a);
-$(1);
-$(a);
-$(1);
-$(a);
-$(1);
-$(a);
-$(1);
-$(a);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(a);
   $(1);
 }
-$(a);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -94,31 +74,11 @@ const b = $( 3 );
 const c = [ a, 2, b ];
 $( c );
 $( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( c );
   $( 1 );
 }
-$( c );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

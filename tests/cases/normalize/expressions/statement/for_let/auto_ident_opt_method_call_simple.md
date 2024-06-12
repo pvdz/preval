@@ -61,26 +61,7 @@ $(a);
 
 `````js filename=intro
 const b = { c: $ };
-const a = { a: 999, b: 1000 };
 const tmpChainElementCall = $dotCall($, b, 1);
-$(tmpChainElementCall);
-$(1);
-$(tmpChainElementCall);
-$(1);
-$(tmpChainElementCall);
-$(1);
-$(tmpChainElementCall);
-$(1);
-$(tmpChainElementCall);
-$(1);
-$(tmpChainElementCall);
-$(1);
-$(tmpChainElementCall);
-$(1);
-$(tmpChainElementCall);
-$(1);
-$(tmpChainElementCall);
-$(1);
 $(tmpChainElementCall);
 $(1);
 $(tmpChainElementCall);
@@ -89,7 +70,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpChainElementCall);
   $(1);
 }
-$(a);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -98,38 +79,16 @@ With rename=true
 
 `````js filename=intro
 const a = { c: $ };
-const b = {
-a: 999,
-b: 1000
-;
-const c = $dotCall( $, a, 1 );
-$( c );
+const b = $dotCall( $, a, 1 );
+$( b );
 $( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
-$( c );
+$( b );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( c );
+  $( b );
   $( 1 );
 }
-$( b );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

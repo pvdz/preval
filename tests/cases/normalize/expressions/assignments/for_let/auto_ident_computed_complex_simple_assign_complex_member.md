@@ -60,7 +60,6 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 10, d: 20 };
-const a = { a: 999, b: 1000 };
 const tmpNestedAssignObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
@@ -68,31 +67,11 @@ const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
 $(tmpNestedAssignPropRhs);
 $(1);
-$(tmpNestedAssignPropRhs);
-$(1);
-$(tmpNestedAssignPropRhs);
-$(1);
-$(tmpNestedAssignPropRhs);
-$(1);
-$(tmpNestedAssignPropRhs);
-$(1);
-$(tmpNestedAssignPropRhs);
-$(1);
-$(tmpNestedAssignPropRhs);
-$(1);
-$(tmpNestedAssignPropRhs);
-$(1);
-$(tmpNestedAssignPropRhs);
-$(1);
-$(tmpNestedAssignPropRhs);
-$(1);
-$(tmpNestedAssignPropRhs);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedAssignPropRhs);
   $(1);
 }
-$(a, b);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -104,42 +83,18 @@ const a = {
 c: 10,
 d: 20
 ;
-const b = {
-a: 999,
-b: 1000
-;
+const b = $( a );
 const c = $( a );
-const d = $( a );
-const e = $( "d" );
-const f = d[ e ];
-c.c = f;
-$( f );
-$( 1 );
-$( f );
-$( 1 );
-$( f );
-$( 1 );
-$( f );
-$( 1 );
-$( f );
-$( 1 );
-$( f );
-$( 1 );
-$( f );
-$( 1 );
-$( f );
-$( 1 );
-$( f );
-$( 1 );
-$( f );
-$( 1 );
-$( f );
+const d = $( "d" );
+const e = c[ d ];
+b.c = e;
+$( e );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( f );
+  $( e );
   $( 1 );
 }
-$( b, a );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

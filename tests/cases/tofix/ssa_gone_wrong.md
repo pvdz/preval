@@ -52,34 +52,15 @@ while (true) {
 
 `````js filename=intro
 $(10);
+let i = 1;
 const tmpClusterSSA_x = $(1, `set`);
 $(tmpClusterSSA_x, `loop`);
-const tmpClusterSSA_x$1 = $(2, `set`);
-$(tmpClusterSSA_x$1, `loop`);
-const tmpClusterSSA_x$2 = $(3, `set`);
-$(tmpClusterSSA_x$2, `loop`);
-const tmpClusterSSA_x$3 = $(4, `set`);
-$(tmpClusterSSA_x$3, `loop`);
-const tmpClusterSSA_x$4 = $(5, `set`);
-$(tmpClusterSSA_x$4, `loop`);
-const tmpClusterSSA_x$5 = $(6, `set`);
-$(tmpClusterSSA_x$5, `loop`);
-const tmpClusterSSA_x$6 = $(7, `set`);
-$(tmpClusterSSA_x$6, `loop`);
-const tmpClusterSSA_x$7 = $(8, `set`);
-$(tmpClusterSSA_x$7, `loop`);
-const tmpClusterSSA_x$8 = $(9, `set`);
-$(tmpClusterSSA_x$8, `loop`);
-const tmpClusterSSA_x$9 = $(10, `set`);
-$(tmpClusterSSA_x$9, `loop`);
-let tmpClusterSSA_i$1 = 11;
-const tmpClusterSSA_x$10 = $(11, `set`);
-$(tmpClusterSSA_x$10, `loop`);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  tmpClusterSSA_i$1 = tmpClusterSSA_i$1 + 1;
-  const tmpClusterSSA_x$11 = $(tmpClusterSSA_i$1, `set`);
-  $(tmpClusterSSA_x$11, `loop`);
+  i = i + 1;
+  const tmpClusterSSA_x$1 = $(i, `set`);
+  $(tmpClusterSSA_x$1, `loop`);
 }
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -88,34 +69,15 @@ With rename=true
 
 `````js filename=intro
 $( 10 );
-const a = $( 1, "set" );
-$( a, "loop" );
-const b = $( 2, "set" );
+let a = 1;
+const b = $( 1, "set" );
 $( b, "loop" );
-const c = $( 3, "set" );
-$( c, "loop" );
-const d = $( 4, "set" );
-$( d, "loop" );
-const e = $( 5, "set" );
-$( e, "loop" );
-const f = $( 6, "set" );
-$( f, "loop" );
-const g = $( 7, "set" );
-$( g, "loop" );
-const h = $( 8, "set" );
-$( h, "loop" );
-const i = $( 9, "set" );
-$( i, "loop" );
-const j = $( 10, "set" );
-$( j, "loop" );
-let k = 11;
-const l = $( 11, "set" );
-$( l, "loop" );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  k = k + 1;
-  const m = $( k, "set" );
-  $( m, "loop" );
+  a = a + 1;
+  const c = $( a, "set" );
+  $( c, "loop" );
 }
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

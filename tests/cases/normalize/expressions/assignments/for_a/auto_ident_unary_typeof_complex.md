@@ -51,23 +51,12 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpUnaryArg = $(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
 $(1);
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-const a = typeof tmpUnaryArg;
-$(a, 1);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -75,23 +64,12 @@ $(a, 1);
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
 $( 1 );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-const b = typeofa;
-$( b, 1 );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

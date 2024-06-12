@@ -59,31 +59,11 @@ const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 tmpNestedAssignObjPatternRhs.a;
 $(tmpNestedAssignObjPatternRhs);
 $(1);
-$(tmpNestedAssignObjPatternRhs);
-$(1);
-$(tmpNestedAssignObjPatternRhs);
-$(1);
-$(tmpNestedAssignObjPatternRhs);
-$(1);
-$(tmpNestedAssignObjPatternRhs);
-$(1);
-$(tmpNestedAssignObjPatternRhs);
-$(1);
-$(tmpNestedAssignObjPatternRhs);
-$(1);
-$(tmpNestedAssignObjPatternRhs);
-$(1);
-$(tmpNestedAssignObjPatternRhs);
-$(1);
-$(tmpNestedAssignObjPatternRhs);
-$(1);
-$(tmpNestedAssignObjPatternRhs);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedAssignObjPatternRhs);
   $(1);
 }
-$(999);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -99,31 +79,11 @@ const b = $( a );
 b.a;
 $( b );
 $( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( b );
   $( 1 );
 }
-$( 999 );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

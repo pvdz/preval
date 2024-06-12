@@ -71,7 +71,6 @@ $(a, b, c, d, e);
 `````js filename=intro
 const b = { x: 1 };
 const c = { y: 2 };
-const a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $(`x`);
 const varInitAssignLhsComputedObj$1 = $(c);
@@ -80,31 +79,11 @@ varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
 $(7);
 $(1);
-$(7);
-$(1);
-$(7);
-$(1);
-$(7);
-$(1);
-$(7);
-$(1);
-$(7);
-$(1);
-$(7);
-$(1);
-$(7);
-$(1);
-$(7);
-$(1);
-$(7);
-$(1);
-$(7);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(7);
   $(1);
 }
-$(a, b, c, 3, 4);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -114,43 +93,19 @@ With rename=true
 `````js filename=intro
 const a = { x: 1 };
 const b = { y: 2 };
-const c = {
-a: 999,
-b: 1000
-;
-const d = $( a );
-const e = $( "x" );
-const f = $( b );
-const g = $( "y" );
-f[g] = 7;
-d[e] = 7;
-$( 7 );
-$( 1 );
-$( 7 );
-$( 1 );
-$( 7 );
-$( 1 );
-$( 7 );
-$( 1 );
-$( 7 );
-$( 1 );
-$( 7 );
-$( 1 );
-$( 7 );
-$( 1 );
-$( 7 );
-$( 1 );
-$( 7 );
-$( 1 );
-$( 7 );
-$( 1 );
+const c = $( a );
+const d = $( "x" );
+const e = $( b );
+const f = $( "y" );
+e[f] = 7;
+c[d] = 7;
 $( 7 );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 7 );
   $( 1 );
 }
-$( c, a, b, 3, 4 );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

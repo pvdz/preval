@@ -54,37 +54,16 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
-const a = { a: 999, b: 1000 };
 const tmpDeleteCompProp = $(`y`);
+const arg = { y: 1 };
 const xyz = delete arg[tmpDeleteCompProp];
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
 $(xyz);
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
 }
-$(a, arg);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -92,40 +71,16 @@ $(a, arg);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-const b = {
-a: 999,
-b: 1000
-;
-const c = $( "y" );
-const d = deletea[ c ];
-$( d );
-$( 1 );
-$( d );
-$( 1 );
-$( d );
-$( 1 );
-$( d );
-$( 1 );
-$( d );
-$( 1 );
-$( d );
-$( 1 );
-$( d );
-$( 1 );
-$( d );
-$( 1 );
-$( d );
-$( 1 );
-$( d );
-$( 1 );
-$( d );
+const a = $( "y" );
+const b = { y: 1 };
+const c = deleteb[ a ];
+$( c );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( d );
+  $( c );
   $( 1 );
 }
-$( b, a );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

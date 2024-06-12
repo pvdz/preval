@@ -55,38 +55,17 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
-const a = { a: 999, b: 1000 };
 const tmpCompProp = $(`\$`);
+const b = { $: $ };
 const tmpNewCallee = b[tmpCompProp];
 const xyz = new tmpNewCallee(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
 $(xyz);
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
 }
-$(a);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -94,41 +73,17 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { $: $ };
-const b = {
-a: 999,
-b: 1000
-;
-const c = $( "$" );
-const d = a[ c ];
-const e = new d( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
+const a = $( "$" );
+const b = { $: $ };
+const c = b[ a ];
+const d = new c( 1 );
+$( d );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( e );
+  $( d );
   $( 1 );
 }
-$( b );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

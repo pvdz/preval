@@ -57,43 +57,12 @@ const tmpUnaryArg = $(1);
 const xyz = typeof tmpUnaryArg;
 $(xyz);
 $(1);
-const xyz$1 = typeof tmpUnaryArg;
-$(xyz$1);
-$(1);
-const xyz$2 = typeof tmpUnaryArg;
-$(xyz$2);
-$(1);
-const xyz$3 = typeof tmpUnaryArg;
-$(xyz$3);
-$(1);
-const xyz$4 = typeof tmpUnaryArg;
-$(xyz$4);
-$(1);
-const xyz$5 = typeof tmpUnaryArg;
-$(xyz$5);
-$(1);
-const xyz$6 = typeof tmpUnaryArg;
-$(xyz$6);
-$(1);
-const xyz$7 = typeof tmpUnaryArg;
-$(xyz$7);
-$(1);
-const xyz$8 = typeof tmpUnaryArg;
-$(xyz$8);
-$(1);
-const xyz$9 = typeof tmpUnaryArg;
-$(xyz$9);
-$(1);
-const xyz$10 = typeof tmpUnaryArg;
-$(xyz$10);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const xyz$11 = typeof tmpUnaryArg;
-  $(xyz$11);
+  const xyz$1 = typeof tmpUnaryArg;
+  $(xyz$1);
   $(1);
 }
-const a = { a: 999, b: 1000 };
-$(a, 1);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -105,46 +74,12 @@ const a = $( 1 );
 const b = typeofa;
 $( b );
 $( 1 );
-const c = typeofa;
-$( c );
-$( 1 );
-const d = typeofa;
-$( d );
-$( 1 );
-const e = typeofa;
-$( e );
-$( 1 );
-const f = typeofa;
-$( f );
-$( 1 );
-const g = typeofa;
-$( g );
-$( 1 );
-const h = typeofa;
-$( h );
-$( 1 );
-const i = typeofa;
-$( i );
-$( 1 );
-const j = typeofa;
-$( j );
-$( 1 );
-const k = typeofa;
-$( k );
-$( 1 );
-const l = typeofa;
-$( l );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const m = typeofa;
-  $( m );
+  const c = typeofa;
+  $( c );
   $( 1 );
 }
-const n = {
-a: 999,
-b: 1000
-;
-$( n, 1 );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

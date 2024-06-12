@@ -54,22 +54,12 @@ $(a, arg);
 `````js filename=intro
 const tmpDeleteCompProp = $(`y`);
 const arg = { y: 1 };
-const a = delete arg[tmpDeleteCompProp];
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
+delete arg[tmpDeleteCompProp];
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-$(a, arg);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -79,22 +69,12 @@ With rename=true
 `````js filename=intro
 const a = $( "y" );
 const b = { y: 1 };
-const c = deleteb[ a ];
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
+deleteb[ a ];
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-$( c, b );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

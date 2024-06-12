@@ -54,36 +54,15 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const xyz = tmpCompObj.c;
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
 $(xyz);
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
 }
-$(a, b);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -92,39 +71,15 @@ With rename=true
 
 `````js filename=intro
 const a = { c: 1 };
-const b = {
-a: 999,
-b: 1000
-;
-const c = $( a );
-const d = c.c;
-$( d );
-$( 1 );
-$( d );
-$( 1 );
-$( d );
-$( 1 );
-$( d );
-$( 1 );
-$( d );
-$( 1 );
-$( d );
-$( 1 );
-$( d );
-$( 1 );
-$( d );
-$( 1 );
-$( d );
-$( 1 );
-$( d );
-$( 1 );
-$( d );
+const b = $( a );
+const c = b.c;
+$( c );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( d );
+  $( c );
   $( 1 );
 }
-$( b, a );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

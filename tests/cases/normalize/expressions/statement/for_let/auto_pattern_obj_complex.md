@@ -55,31 +55,11 @@ const tmpCalleeParam = { a: 1, b: 2 };
 const xyz = $(tmpCalleeParam);
 $(xyz);
 $(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
 }
-$(999);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -94,31 +74,11 @@ b: 2
 const b = $( a );
 $( b );
 $( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( b );
   $( 1 );
 }
-$( 999 );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

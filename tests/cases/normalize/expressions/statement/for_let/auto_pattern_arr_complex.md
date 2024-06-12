@@ -54,36 +54,16 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
-const a = arrPatternSplat[0];
+arrPatternSplat[0];
 const tmpCalleeParam = [1, 2];
 const xyz = $(tmpCalleeParam);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
 $(xyz);
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
 }
-$(a);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -96,36 +76,16 @@ a: 999,
 b: 1000
 ;
 const b = [ ... a ];
-const c = b[ 0 ];
-const d = [ 1, 2 ];
-const e = $( d );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
+b[ 0 ];
+const c = [ 1, 2 ];
+const d = $( c );
+$( d );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( e );
+  $( d );
   $( 1 );
 }
-$( c );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

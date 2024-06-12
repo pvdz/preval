@@ -104,6 +104,7 @@ try {
       $(4);
     }
   }
+  throw `[preval] unreachable; infinite loop`;
 } catch ($finalImplicit) {
   $(5);
   throw $finalImplicit;
@@ -128,6 +129,7 @@ try {
       $( 4 );
     }
   }
+  throw "[preval] unreachable; infinite loop";
 }
 catch (b) {
   $( 5 );

@@ -57,38 +57,17 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 10, d: 20 };
-const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 b.c = varInitAssignLhsComputedRhs;
 $(varInitAssignLhsComputedRhs);
 $(1);
-$(varInitAssignLhsComputedRhs);
-$(1);
-$(varInitAssignLhsComputedRhs);
-$(1);
-$(varInitAssignLhsComputedRhs);
-$(1);
-$(varInitAssignLhsComputedRhs);
-$(1);
-$(varInitAssignLhsComputedRhs);
-$(1);
-$(varInitAssignLhsComputedRhs);
-$(1);
-$(varInitAssignLhsComputedRhs);
-$(1);
-$(varInitAssignLhsComputedRhs);
-$(1);
-$(varInitAssignLhsComputedRhs);
-$(1);
-$(varInitAssignLhsComputedRhs);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(varInitAssignLhsComputedRhs);
   $(1);
 }
-$(a, b);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -100,41 +79,17 @@ const a = {
 c: 10,
 d: 20
 ;
-const b = {
-a: 999,
-b: 1000
-;
-const c = $( a );
-const d = $( "d" );
-const e = c[ d ];
-a.c = e;
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
+const b = $( a );
+const c = $( "d" );
+const d = b[ c ];
+a.c = d;
+$( d );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( e );
+  $( d );
   $( 1 );
 }
-$( b, a );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

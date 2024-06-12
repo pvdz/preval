@@ -53,43 +53,12 @@ $(a);
 const tmpNewCallee = $($);
 new tmpNewCallee(1);
 $(1);
-const tmpNewCallee$1 = $($);
-new tmpNewCallee$1(1);
-$(1);
-const tmpNewCallee$2 = $($);
-new tmpNewCallee$2(1);
-$(1);
-const tmpNewCallee$3 = $($);
-new tmpNewCallee$3(1);
-$(1);
-const tmpNewCallee$4 = $($);
-new tmpNewCallee$4(1);
-$(1);
-const tmpNewCallee$5 = $($);
-new tmpNewCallee$5(1);
-$(1);
-const tmpNewCallee$6 = $($);
-new tmpNewCallee$6(1);
-$(1);
-const tmpNewCallee$7 = $($);
-new tmpNewCallee$7(1);
-$(1);
-const tmpNewCallee$8 = $($);
-new tmpNewCallee$8(1);
-$(1);
-const tmpNewCallee$9 = $($);
-new tmpNewCallee$9(1);
-$(1);
-const tmpNewCallee$10 = $($);
-new tmpNewCallee$10(1);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpNewCallee$11 = $($);
-  new tmpNewCallee$11(1);
+  const tmpNewCallee$1 = $($);
+  new tmpNewCallee$1(1);
   $(1);
 }
-const a = { a: 999, b: 1000 };
-$(a);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -100,46 +69,12 @@ With rename=true
 const a = $( $ );
 new a( 1 );
 $( 1 );
-const b = $( $ );
-new b( 1 );
-$( 1 );
-const c = $( $ );
-new c( 1 );
-$( 1 );
-const d = $( $ );
-new d( 1 );
-$( 1 );
-const e = $( $ );
-new e( 1 );
-$( 1 );
-const f = $( $ );
-new f( 1 );
-$( 1 );
-const g = $( $ );
-new g( 1 );
-$( 1 );
-const h = $( $ );
-new h( 1 );
-$( 1 );
-const i = $( $ );
-new i( 1 );
-$( 1 );
-const j = $( $ );
-new j( 1 );
-$( 1 );
-const k = $( $ );
-new k( 1 );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const l = $( $ );
-  new l( 1 );
+  const b = $( $ );
+  new b( 1 );
   $( 1 );
 }
-const m = {
-a: 999,
-b: 1000
-;
-$( m );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

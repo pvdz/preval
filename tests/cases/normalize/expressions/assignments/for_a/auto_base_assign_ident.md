@@ -52,22 +52,12 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpNestedComplexRhs = $(2);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
+$(2);
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-$(tmpNestedComplexRhs, tmpNestedComplexRhs);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -75,22 +65,12 @@ $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 With rename=true
 
 `````js filename=intro
-const a = $( 2 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
+$( 2 );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-$( a, a );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

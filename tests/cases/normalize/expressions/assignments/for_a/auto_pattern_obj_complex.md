@@ -54,20 +54,10 @@ const tmpCalleeParam = { a: 1, b: 2 };
 const tmpAssignObjPatternRhs = $(tmpCalleeParam);
 tmpAssignObjPatternRhs.a;
 $(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-$(999);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -82,20 +72,10 @@ b: 2
 const b = $( a );
 b.a;
 $( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-$( 999 );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

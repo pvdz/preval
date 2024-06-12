@@ -63,35 +63,12 @@ $(a);
 
 `````js filename=intro
 $(100);
-const tmpObjLitVal = $(1);
-$(100);
-$(1);
-$(100);
-$(1);
-$(100);
-$(1);
-$(100);
-$(1);
-$(100);
-$(1);
-$(100);
-$(1);
-$(100);
-$(1);
-$(100);
-$(1);
-$(100);
-$(1);
-$(100);
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   $(1);
 }
-const tmpAssignComMemLhsProp = $(`b`);
-const a = { b: tmpObjLitVal };
-a[tmpAssignComMemLhsProp] = 2;
-$(a);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -100,35 +77,12 @@ With rename=true
 
 `````js filename=intro
 $( 100 );
-const a = $( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
-$( 1 );
-$( 100 );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
   $( 1 );
 }
-const b = $( "b" );
-const c = { b: a };
-c[b] = 2;
-$( c );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

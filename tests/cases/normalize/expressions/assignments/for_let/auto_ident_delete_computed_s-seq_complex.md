@@ -64,31 +64,11 @@ const arg = { y: 1 };
 const a = delete arg[tmpDeleteCompProp];
 $(a);
 $(1);
-$(a);
-$(1);
-$(a);
-$(1);
-$(a);
-$(1);
-$(a);
-$(1);
-$(a);
-$(1);
-$(a);
-$(1);
-$(a);
-$(1);
-$(a);
-$(1);
-$(a);
-$(1);
-$(a);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(a);
   $(1);
 }
-$(a, arg);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -103,31 +83,11 @@ const b = { y: 1 };
 const c = deleteb[ a ];
 $( c );
 $( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
-$( c );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( c );
   $( 1 );
 }
-$( c, b );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

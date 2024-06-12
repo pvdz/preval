@@ -57,32 +57,11 @@ $(a);
 const tmpClusterSSA_a = new $(1);
 $(tmpClusterSSA_a);
 $(1);
-$(tmpClusterSSA_a);
-$(1);
-$(tmpClusterSSA_a);
-$(1);
-$(tmpClusterSSA_a);
-$(1);
-$(tmpClusterSSA_a);
-$(1);
-$(tmpClusterSSA_a);
-$(1);
-$(tmpClusterSSA_a);
-$(1);
-$(tmpClusterSSA_a);
-$(1);
-$(tmpClusterSSA_a);
-$(1);
-$(tmpClusterSSA_a);
-$(1);
-$(tmpClusterSSA_a);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpClusterSSA_a);
   $(1);
 }
-const a = { a: 999, b: 1000 };
-$(a);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -93,35 +72,11 @@ With rename=true
 const a = new $( 1 );
 $( a );
 $( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( a );
   $( 1 );
 }
-const b = {
-a: 999,
-b: 1000
-;
-$( b );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

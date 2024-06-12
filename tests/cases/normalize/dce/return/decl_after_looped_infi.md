@@ -83,7 +83,7 @@ if (tmpIfTest) {
   $(`fail too`);
   throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
 } else {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpIfTest$1 = $(false);
     if (tmpIfTest$1) {
       $(`fail too`);
@@ -91,7 +91,7 @@ if (tmpIfTest) {
     } else {
     }
   }
-  $(undefined);
+  throw `[preval] unreachable; infinite loop`;
 }
 `````
 
@@ -106,14 +106,14 @@ if (a) {
   throw "Preval: TDZ triggered for this assignment: x = $('fail too')";
 }
 else {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const b = $( false );
     if (b) {
       $( "fail too" );
       throw "Preval: TDZ triggered for this assignment: x = $('fail too')";
     }
   }
-  $( undefined );
+  throw "[preval] unreachable; infinite loop";
 }
 `````
 

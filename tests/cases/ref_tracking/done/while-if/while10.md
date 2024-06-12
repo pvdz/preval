@@ -175,7 +175,7 @@ $(`end`, x);
 `````js filename=intro
 let x = 1;
 if ($) {
-  while (true) {
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     let $tmpLoopUnrollCheck = true;
     $(x);
     if ($) {
@@ -195,11 +195,11 @@ if ($) {
     } else {
     }
   }
-  $(`after while`, x);
+  throw `[preval] unreachable; infinite loop`;
 } else {
   $(`oh`);
+  $(`end`, x);
 }
-$(`end`, x);
 `````
 
 ## PST Output
@@ -209,7 +209,7 @@ With rename=true
 `````js filename=intro
 let a = 1;
 if ($) {
-  while (true) {
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     let b = true;
     $( a );
     if ($) {
@@ -232,12 +232,12 @@ if ($) {
       }
     }
   }
-  $( "after while", a );
+  throw "[preval] unreachable; infinite loop";
 }
 else {
   $( "oh" );
+  $( "end", a );
 }
-$( "end", a );
 `````
 
 ## Globals

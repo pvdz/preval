@@ -70,97 +70,18 @@ if (tmpIfTest) {
 } else {
   $(x, `read`);
 }
-const tmpClusterSSA_x$2 = $(10);
-const tmpIfTest$1 = tmpClusterSSA_x$2 % 2;
-if (tmpIfTest$1) {
-  const tmpClusterSSA_x$1 = tmpClusterSSA_x$2 + 1;
-  $(tmpClusterSSA_x$1, `write`);
-} else {
-  $(tmpClusterSSA_x$2, `read`);
-}
-const tmpClusterSSA_x$4 = $(10);
-const tmpIfTest$2 = tmpClusterSSA_x$4 % 2;
-if (tmpIfTest$2) {
-  const tmpClusterSSA_x$3 = tmpClusterSSA_x$4 + 1;
-  $(tmpClusterSSA_x$3, `write`);
-} else {
-  $(tmpClusterSSA_x$4, `read`);
-}
-const tmpClusterSSA_x$6 = $(10);
-const tmpIfTest$3 = tmpClusterSSA_x$6 % 2;
-if (tmpIfTest$3) {
-  const tmpClusterSSA_x$5 = tmpClusterSSA_x$6 + 1;
-  $(tmpClusterSSA_x$5, `write`);
-} else {
-  $(tmpClusterSSA_x$6, `read`);
-}
-const tmpClusterSSA_x$8 = $(10);
-const tmpIfTest$4 = tmpClusterSSA_x$8 % 2;
-if (tmpIfTest$4) {
-  const tmpClusterSSA_x$7 = tmpClusterSSA_x$8 + 1;
-  $(tmpClusterSSA_x$7, `write`);
-} else {
-  $(tmpClusterSSA_x$8, `read`);
-}
-const tmpClusterSSA_x$10 = $(10);
-const tmpIfTest$5 = tmpClusterSSA_x$10 % 2;
-if (tmpIfTest$5) {
-  const tmpClusterSSA_x$9 = tmpClusterSSA_x$10 + 1;
-  $(tmpClusterSSA_x$9, `write`);
-} else {
-  $(tmpClusterSSA_x$10, `read`);
-}
-const tmpClusterSSA_x$12 = $(10);
-const tmpIfTest$6 = tmpClusterSSA_x$12 % 2;
-if (tmpIfTest$6) {
-  const tmpClusterSSA_x$11 = tmpClusterSSA_x$12 + 1;
-  $(tmpClusterSSA_x$11, `write`);
-} else {
-  $(tmpClusterSSA_x$12, `read`);
-}
-const tmpClusterSSA_x$14 = $(10);
-const tmpIfTest$7 = tmpClusterSSA_x$14 % 2;
-if (tmpIfTest$7) {
-  const tmpClusterSSA_x$13 = tmpClusterSSA_x$14 + 1;
-  $(tmpClusterSSA_x$13, `write`);
-} else {
-  $(tmpClusterSSA_x$14, `read`);
-}
-const tmpClusterSSA_x$16 = $(10);
-const tmpIfTest$8 = tmpClusterSSA_x$16 % 2;
-if (tmpIfTest$8) {
-  const tmpClusterSSA_x$15 = tmpClusterSSA_x$16 + 1;
-  $(tmpClusterSSA_x$15, `write`);
-} else {
-  $(tmpClusterSSA_x$16, `read`);
-}
-const tmpClusterSSA_x$18 = $(10);
-const tmpIfTest$9 = tmpClusterSSA_x$18 % 2;
-if (tmpIfTest$9) {
-  const tmpClusterSSA_x$17 = tmpClusterSSA_x$18 + 1;
-  $(tmpClusterSSA_x$17, `write`);
-} else {
-  $(tmpClusterSSA_x$18, `read`);
-}
-const tmpClusterSSA_x$20 = $(10);
-const tmpIfTest$10 = tmpClusterSSA_x$20 % 2;
-if (tmpIfTest$10) {
-  const tmpClusterSSA_x$19 = tmpClusterSSA_x$20 + 1;
-  $(tmpClusterSSA_x$19, `write`);
-} else {
-  $(tmpClusterSSA_x$20, `read`);
-}
-let tmpClusterSSA_x$22 = $(10);
+let tmpClusterSSA_x$2 = $(10);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest$11 = tmpClusterSSA_x$22 % 2;
-  if (tmpIfTest$11) {
-    const tmpClusterSSA_x$21 = tmpClusterSSA_x$22 + 1;
-    $(tmpClusterSSA_x$21, `write`);
+  const tmpIfTest$1 = tmpClusterSSA_x$2 % 2;
+  if (tmpIfTest$1) {
+    const tmpClusterSSA_x$1 = tmpClusterSSA_x$2 + 1;
+    $(tmpClusterSSA_x$1, `write`);
   } else {
-    $(tmpClusterSSA_x$22, `read`);
+    $(tmpClusterSSA_x$2, `read`);
   }
-  tmpClusterSSA_x$22 = $(10);
+  tmpClusterSSA_x$2 = $(10);
 }
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -177,108 +98,19 @@ if (b) {
 else {
   $( a, "read" );
 }
-const d = $( 10 );
-const e = d % 2;
-if (e) {
-  const f = d + 1;
-  $( f, "write" );
-}
-else {
-  $( d, "read" );
-}
-const g = $( 10 );
-const h = g % 2;
-if (h) {
-  const i = g + 1;
-  $( i, "write" );
-}
-else {
-  $( g, "read" );
-}
-const j = $( 10 );
-const k = j % 2;
-if (k) {
-  const l = j + 1;
-  $( l, "write" );
-}
-else {
-  $( j, "read" );
-}
-const m = $( 10 );
-const n = m % 2;
-if (n) {
-  const o = m + 1;
-  $( o, "write" );
-}
-else {
-  $( m, "read" );
-}
-const p = $( 10 );
-const q = p % 2;
-if (q) {
-  const r = p + 1;
-  $( r, "write" );
-}
-else {
-  $( p, "read" );
-}
-const s = $( 10 );
-const t = s % 2;
-if (t) {
-  const u = s + 1;
-  $( u, "write" );
-}
-else {
-  $( s, "read" );
-}
-const v = $( 10 );
-const w = v % 2;
-if (w) {
-  const x = v + 1;
-  $( x, "write" );
-}
-else {
-  $( v, "read" );
-}
-const y = $( 10 );
-const z = y % 2;
-if (z) {
-  const 01 = y + 1;
-  $( 01, "write" );
-}
-else {
-  $( y, "read" );
-}
-const 11 = $( 10 );
-const 21 = 11 % 2;
-if (21) {
-  const 31 = 11 + 1;
-  $( 31, "write" );
-}
-else {
-  $( 11, "read" );
-}
-const 41 = $( 10 );
-const 51 = 41 % 2;
-if (51) {
-  const 61 = 41 + 1;
-  $( 61, "write" );
-}
-else {
-  $( 41, "read" );
-}
-let 71 = $( 10 );
+let d = $( 10 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const 81 = 71 % 2;
-  if (81) {
-    const 91 = 71 + 1;
-    $( 91, "write" );
+  const e = d % 2;
+  if (e) {
+    const f = d + 1;
+    $( f, "write" );
   }
   else {
-    $( 71, "read" );
+    $( d, "read" );
   }
-  71 = $( 10 );
+  d = $( 10 );
 }
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

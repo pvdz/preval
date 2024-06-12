@@ -76,12 +76,13 @@ const tmpBinBothRhs = $(5);
 const x = 0 < tmpBinBothRhs;
 if (x) {
   $(`again`);
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $(`again`);
   }
+  throw `[preval] unreachable; infinite loop`;
 } else {
+  $(`after`);
 }
-$(`after`);
 `````
 
 ## PST Output
@@ -94,11 +95,14 @@ const a = $( 5 );
 const b = 0 < a;
 if (b) {
   $( "again" );
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $( "again" );
   }
+  throw "[preval] unreachable; infinite loop";
 }
-$( "after" );
+else {
+  $( "after" );
+}
 `````
 
 ## Globals

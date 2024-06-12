@@ -66,75 +66,15 @@ if (tmpIfTest) {
 } else {
   $(`exit`);
 }
-const tmpIfTest$1 = $(false);
-if (tmpIfTest$1) {
-  $(`uhoh`);
-} else {
-  $(`exit`);
-}
-const tmpIfTest$2 = $(false);
-if (tmpIfTest$2) {
-  $(`uhoh`);
-} else {
-  $(`exit`);
-}
-const tmpIfTest$3 = $(false);
-if (tmpIfTest$3) {
-  $(`uhoh`);
-} else {
-  $(`exit`);
-}
-const tmpIfTest$4 = $(false);
-if (tmpIfTest$4) {
-  $(`uhoh`);
-} else {
-  $(`exit`);
-}
-const tmpIfTest$5 = $(false);
-if (tmpIfTest$5) {
-  $(`uhoh`);
-} else {
-  $(`exit`);
-}
-const tmpIfTest$6 = $(false);
-if (tmpIfTest$6) {
-  $(`uhoh`);
-} else {
-  $(`exit`);
-}
-const tmpIfTest$7 = $(false);
-if (tmpIfTest$7) {
-  $(`uhoh`);
-} else {
-  $(`exit`);
-}
-const tmpIfTest$8 = $(false);
-if (tmpIfTest$8) {
-  $(`uhoh`);
-} else {
-  $(`exit`);
-}
-const tmpIfTest$9 = $(false);
-if (tmpIfTest$9) {
-  $(`uhoh`);
-} else {
-  $(`exit`);
-}
-const tmpIfTest$10 = $(false);
-if (tmpIfTest$10) {
-  $(`uhoh`);
-} else {
-  $(`exit`);
-}
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest$11 = $(false);
-  if (tmpIfTest$11) {
+  const tmpIfTest$1 = $(false);
+  if (tmpIfTest$1) {
     $(`uhoh`);
   } else {
     $(`exit`);
   }
 }
-$(`woohoo`);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -149,86 +89,16 @@ if (a) {
 else {
   $( "exit" );
 }
-const b = $( false );
-if (b) {
-  $( "uhoh" );
-}
-else {
-  $( "exit" );
-}
-const c = $( false );
-if (c) {
-  $( "uhoh" );
-}
-else {
-  $( "exit" );
-}
-const d = $( false );
-if (d) {
-  $( "uhoh" );
-}
-else {
-  $( "exit" );
-}
-const e = $( false );
-if (e) {
-  $( "uhoh" );
-}
-else {
-  $( "exit" );
-}
-const f = $( false );
-if (f) {
-  $( "uhoh" );
-}
-else {
-  $( "exit" );
-}
-const g = $( false );
-if (g) {
-  $( "uhoh" );
-}
-else {
-  $( "exit" );
-}
-const h = $( false );
-if (h) {
-  $( "uhoh" );
-}
-else {
-  $( "exit" );
-}
-const i = $( false );
-if (i) {
-  $( "uhoh" );
-}
-else {
-  $( "exit" );
-}
-const j = $( false );
-if (j) {
-  $( "uhoh" );
-}
-else {
-  $( "exit" );
-}
-const k = $( false );
-if (k) {
-  $( "uhoh" );
-}
-else {
-  $( "exit" );
-}
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const l = $( false );
-  if (l) {
+  const b = $( false );
+  if (b) {
     $( "uhoh" );
   }
   else {
     $( "exit" );
   }
 }
-$( "woohoo" );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

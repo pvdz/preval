@@ -61,34 +61,11 @@ const tmpObjLitVal = $(1);
 const a = { b: tmpObjLitVal };
 $(a);
 $(1);
-$(a);
-$(1);
-$(a);
-$(1);
-$(a);
-$(1);
-$(a);
-$(1);
-$(a);
-$(1);
-$(a);
-$(1);
-$(a);
-$(1);
-$(a);
-$(1);
-$(a);
-$(1);
-$(a);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(a);
   $(1);
 }
-$(1);
-const tmpAssignMemRhs = $(2);
-a.b = tmpAssignMemRhs;
-$(a);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -100,34 +77,11 @@ const a = $( 1 );
 const b = { b: a };
 $( b );
 $( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( b );
   $( 1 );
 }
-$( 1 );
-const c = $( 2 );
-b.b = c;
-$( b );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

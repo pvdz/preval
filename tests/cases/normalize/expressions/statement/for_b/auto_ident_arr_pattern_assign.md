@@ -63,33 +63,6 @@ $(a, x, y);
 
 
 `````js filename=intro
-const tmpArrElement = $(3);
-$(4);
-$(1);
-$(3);
-$(4);
-$(1);
-$(3);
-$(4);
-$(1);
-$(3);
-$(4);
-$(1);
-$(3);
-$(4);
-$(1);
-$(3);
-$(4);
-$(1);
-$(3);
-$(4);
-$(1);
-$(3);
-$(4);
-$(1);
-$(3);
-$(4);
-$(1);
 $(3);
 $(4);
 $(1);
@@ -101,8 +74,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(4);
   $(1);
 }
-const a = { a: 999, b: 1000 };
-$(a, tmpArrElement, 2);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -110,33 +82,6 @@ $(a, tmpArrElement, 2);
 With rename=true
 
 `````js filename=intro
-const a = $( 3 );
-$( 4 );
-$( 1 );
-$( 3 );
-$( 4 );
-$( 1 );
-$( 3 );
-$( 4 );
-$( 1 );
-$( 3 );
-$( 4 );
-$( 1 );
-$( 3 );
-$( 4 );
-$( 1 );
-$( 3 );
-$( 4 );
-$( 1 );
-$( 3 );
-$( 4 );
-$( 1 );
-$( 3 );
-$( 4 );
-$( 1 );
-$( 3 );
-$( 4 );
-$( 1 );
 $( 3 );
 $( 4 );
 $( 1 );
@@ -148,11 +93,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 4 );
   $( 1 );
 }
-const b = {
-a: 999,
-b: 1000
-;
-$( b, a, 2 );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

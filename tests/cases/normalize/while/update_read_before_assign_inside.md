@@ -48,22 +48,12 @@ $(`unreachable`);
 
 `````js filename=intro
 $(true);
-$(2);
-$(3);
-$(4);
-$(5);
-$(6);
-$(7);
-$(8);
-$(9);
-$(10);
-$(11);
-let x = 12;
+let x = 2;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(x);
   x = x + 1;
 }
-$(`unreachable`);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -72,22 +62,12 @@ With rename=true
 
 `````js filename=intro
 $( true );
-$( 2 );
-$( 3 );
-$( 4 );
-$( 5 );
-$( 6 );
-$( 7 );
-$( 8 );
-$( 9 );
-$( 10 );
-$( 11 );
-let a = 12;
+let a = 2;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( a );
   a = a + 1;
 }
-$( "unreachable" );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

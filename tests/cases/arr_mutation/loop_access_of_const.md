@@ -1062,18 +1062,10 @@ while (true) {
 `````js filename=intro
 $(1);
 $(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -1083,18 +1075,10 @@ With rename=true
 `````js filename=intro
 $( 1 );
 $( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

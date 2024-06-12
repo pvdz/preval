@@ -90,31 +90,11 @@ if (tmpIfTest) {
 const xyz = a;
 $(xyz);
 $(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
 }
-$(a);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -145,31 +125,11 @@ else {
 const j = a;
 $( j );
 $( 1 );
-$( j );
-$( 1 );
-$( j );
-$( 1 );
-$( j );
-$( 1 );
-$( j );
-$( 1 );
-$( j );
-$( 1 );
-$( j );
-$( 1 );
-$( j );
-$( 1 );
-$( j );
-$( 1 );
-$( j );
-$( 1 );
-$( j );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( j );
   $( 1 );
 }
-$( a );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

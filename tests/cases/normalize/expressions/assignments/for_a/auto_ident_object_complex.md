@@ -49,24 +49,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
-const tmpObjLitVal$3 = $(3);
 $(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
+$(3);
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-$(a);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -74,28 +63,13 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-const b = $( 3 );
 $( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
+$( 3 );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-const c = {
-x: a,
-y: 2,
-z: b
-;
-$( c );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

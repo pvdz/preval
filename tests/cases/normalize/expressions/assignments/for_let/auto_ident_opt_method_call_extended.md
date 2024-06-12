@@ -73,27 +73,11 @@ $(tmpChainElementCall);
 $(1);
 $(tmpChainElementCall);
 $(1);
-$(tmpChainElementCall);
-$(1);
-$(tmpChainElementCall);
-$(1);
-$(tmpChainElementCall);
-$(1);
-$(tmpChainElementCall);
-$(1);
-$(tmpChainElementCall);
-$(1);
-$(tmpChainElementCall);
-$(1);
-$(tmpChainElementCall);
-$(1);
-$(tmpChainElementCall);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpChainElementCall);
   $(1);
 }
-$(undefined);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -109,27 +93,11 @@ $( b );
 $( 1 );
 $( b );
 $( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( b );
   $( 1 );
 }
-$( undefined );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

@@ -68,85 +68,16 @@ if (tmpIfTest) {
 } else {
   $(x, `read`);
 }
-const tmpIfTest$1 = x % 2;
-if (tmpIfTest$1) {
-  x = x + 1;
-  $(x, `write`);
-} else {
-  $(x, `read`);
-}
-const tmpIfTest$2 = x % 2;
-if (tmpIfTest$2) {
-  x = x + 1;
-  $(x, `write`);
-} else {
-  $(x, `read`);
-}
-const tmpIfTest$3 = x % 2;
-if (tmpIfTest$3) {
-  x = x + 1;
-  $(x, `write`);
-} else {
-  $(x, `read`);
-}
-const tmpIfTest$4 = x % 2;
-if (tmpIfTest$4) {
-  x = x + 1;
-  $(x, `write`);
-} else {
-  $(x, `read`);
-}
-const tmpIfTest$5 = x % 2;
-if (tmpIfTest$5) {
-  x = x + 1;
-  $(x, `write`);
-} else {
-  $(x, `read`);
-}
-const tmpIfTest$6 = x % 2;
-if (tmpIfTest$6) {
-  x = x + 1;
-  $(x, `write`);
-} else {
-  $(x, `read`);
-}
-const tmpIfTest$7 = x % 2;
-if (tmpIfTest$7) {
-  x = x + 1;
-  $(x, `write`);
-} else {
-  $(x, `read`);
-}
-const tmpIfTest$8 = x % 2;
-if (tmpIfTest$8) {
-  x = x + 1;
-  $(x, `write`);
-} else {
-  $(x, `read`);
-}
-const tmpIfTest$9 = x % 2;
-if (tmpIfTest$9) {
-  x = x + 1;
-  $(x, `write`);
-} else {
-  $(x, `read`);
-}
-const tmpIfTest$10 = x % 2;
-if (tmpIfTest$10) {
-  x = x + 1;
-  $(x, `write`);
-} else {
-  $(x, `read`);
-}
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest$11 = x % 2;
-  if (tmpIfTest$11) {
+  const tmpIfTest$1 = x % 2;
+  if (tmpIfTest$1) {
     x = x + 1;
     $(x, `write`);
   } else {
     $(x, `read`);
   }
 }
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -163,89 +94,9 @@ if (b) {
 else {
   $( a, "read" );
 }
-const c = a % 2;
-if (c) {
-  a = a + 1;
-  $( a, "write" );
-}
-else {
-  $( a, "read" );
-}
-const d = a % 2;
-if (d) {
-  a = a + 1;
-  $( a, "write" );
-}
-else {
-  $( a, "read" );
-}
-const e = a % 2;
-if (e) {
-  a = a + 1;
-  $( a, "write" );
-}
-else {
-  $( a, "read" );
-}
-const f = a % 2;
-if (f) {
-  a = a + 1;
-  $( a, "write" );
-}
-else {
-  $( a, "read" );
-}
-const g = a % 2;
-if (g) {
-  a = a + 1;
-  $( a, "write" );
-}
-else {
-  $( a, "read" );
-}
-const h = a % 2;
-if (h) {
-  a = a + 1;
-  $( a, "write" );
-}
-else {
-  $( a, "read" );
-}
-const i = a % 2;
-if (i) {
-  a = a + 1;
-  $( a, "write" );
-}
-else {
-  $( a, "read" );
-}
-const j = a % 2;
-if (j) {
-  a = a + 1;
-  $( a, "write" );
-}
-else {
-  $( a, "read" );
-}
-const k = a % 2;
-if (k) {
-  a = a + 1;
-  $( a, "write" );
-}
-else {
-  $( a, "read" );
-}
-const l = a % 2;
-if (l) {
-  a = a + 1;
-  $( a, "write" );
-}
-else {
-  $( a, "read" );
-}
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const m = a % 2;
-  if (m) {
+  const c = a % 2;
+  if (c) {
     a = a + 1;
     $( a, "write" );
   }
@@ -253,6 +104,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $( a, "read" );
   }
 }
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

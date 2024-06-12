@@ -244,10 +244,10 @@ const siftUp_f = function ($$0, $$1, $$2) {
   const parentIndex$1 = i$1 > 0;
   if (parentIndex$1) {
     $(123);
-    while ($LOOP_UNROLL_99) {
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       $(123);
     }
-    return undefined;
+    throw `[preval] unreachable; infinite loop`;
   } else {
     return undefined;
   }
@@ -313,10 +313,10 @@ const l = function($$0,$$1,$$2 ) {
   const z = y > 0;
   if (z) {
     $( 123 );
-    while ($LOOP_UNROLL_99) {
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       $( 123 );
     }
-    return undefined;
+    throw "[preval] unreachable; infinite loop";
   }
   else {
     return undefined;

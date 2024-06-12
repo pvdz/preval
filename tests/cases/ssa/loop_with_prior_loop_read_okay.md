@@ -95,12 +95,11 @@ if ($) {
     }
   } else {
   }
-  const tmpClusterSSA_x = $(2);
-  $(tmpClusterSSA_x);
-  while ($LOOP_UNROLL_10) {
-    const tmpClusterSSA_x$1 = $(2);
-    $(tmpClusterSSA_x$1);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    const tmpClusterSSA_x = $(2);
+    $(tmpClusterSSA_x);
   }
+  throw `[preval] unreachable; infinite loop`;
 } else {
 }
 `````
@@ -125,12 +124,11 @@ if ($) {
       }
     }
   }
-  const c = $( 2 );
-  $( c );
-  while ($LOOP_UNROLL_10) {
-    const d = $( 2 );
-    $( d );
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    const c = $( 2 );
+    $( c );
   }
+  throw "[preval] unreachable; infinite loop";
 }
 `````
 

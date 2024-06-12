@@ -66,20 +66,10 @@ if (tmpIfTest) {
   $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
 }
 $(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-$(undefined);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -97,20 +87,10 @@ else {
   $dotCall( a, $, c );
 }
 $( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-$( undefined );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

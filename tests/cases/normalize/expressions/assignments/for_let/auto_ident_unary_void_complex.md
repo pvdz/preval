@@ -53,31 +53,11 @@ $(a);
 $(100);
 $(undefined);
 $(1);
-$(undefined);
-$(1);
-$(undefined);
-$(1);
-$(undefined);
-$(1);
-$(undefined);
-$(1);
-$(undefined);
-$(1);
-$(undefined);
-$(1);
-$(undefined);
-$(1);
-$(undefined);
-$(1);
-$(undefined);
-$(1);
-$(undefined);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(undefined);
   $(1);
 }
-$(undefined);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -88,31 +68,11 @@ With rename=true
 $( 100 );
 $( undefined );
 $( 1 );
-$( undefined );
-$( 1 );
-$( undefined );
-$( 1 );
-$( undefined );
-$( 1 );
-$( undefined );
-$( 1 );
-$( undefined );
-$( 1 );
-$( undefined );
-$( 1 );
-$( undefined );
-$( 1 );
-$( undefined );
-$( 1 );
-$( undefined );
-$( 1 );
-$( undefined );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( undefined );
   $( 1 );
 }
-$( undefined );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

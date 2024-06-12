@@ -62,19 +62,10 @@ const b = { c: $ };
 $dotCall($, b, 1);
 $(1);
 $(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-$(undefined);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -86,19 +77,10 @@ const a = { c: $ };
 $dotCall( $, a, 1 );
 $( 1 );
 $( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-$( undefined );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

@@ -69,36 +69,6 @@ $(a, x, y);
 
 `````js filename=intro
 $(100);
-const tmpObjLitVal = $(3);
-const tmpObjLitVal$1 = $(4);
-$(100);
-$(3);
-$(4);
-$(100);
-$(3);
-$(4);
-$(100);
-$(3);
-$(4);
-$(100);
-$(3);
-$(4);
-$(100);
-$(3);
-$(4);
-$(100);
-$(3);
-$(4);
-$(100);
-$(3);
-$(4);
-$(100);
-$(3);
-$(4);
-$(100);
-$(3);
-$(4);
-$(100);
 $(3);
 $(4);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -106,8 +76,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(3);
   $(4);
 }
-const a = { a: 999, b: 1000 };
-$(a, tmpObjLitVal, tmpObjLitVal$1);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -116,36 +85,6 @@ With rename=true
 
 `````js filename=intro
 $( 100 );
-const a = $( 3 );
-const b = $( 4 );
-$( 100 );
-$( 3 );
-$( 4 );
-$( 100 );
-$( 3 );
-$( 4 );
-$( 100 );
-$( 3 );
-$( 4 );
-$( 100 );
-$( 3 );
-$( 4 );
-$( 100 );
-$( 3 );
-$( 4 );
-$( 100 );
-$( 3 );
-$( 4 );
-$( 100 );
-$( 3 );
-$( 4 );
-$( 100 );
-$( 3 );
-$( 4 );
-$( 100 );
-$( 3 );
-$( 4 );
-$( 100 );
 $( 3 );
 $( 4 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -153,11 +92,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 3 );
   $( 4 );
 }
-const c = {
-a: 999,
-b: 1000
-;
-$( c, a, b );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

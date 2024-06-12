@@ -58,31 +58,11 @@ $(a, b);
 const tmpNestedComplexRhs = $(2);
 $(tmpNestedComplexRhs);
 $(1);
-$(tmpNestedComplexRhs);
-$(1);
-$(tmpNestedComplexRhs);
-$(1);
-$(tmpNestedComplexRhs);
-$(1);
-$(tmpNestedComplexRhs);
-$(1);
-$(tmpNestedComplexRhs);
-$(1);
-$(tmpNestedComplexRhs);
-$(1);
-$(tmpNestedComplexRhs);
-$(1);
-$(tmpNestedComplexRhs);
-$(1);
-$(tmpNestedComplexRhs);
-$(1);
-$(tmpNestedComplexRhs);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedComplexRhs);
   $(1);
 }
-$(tmpNestedComplexRhs, tmpNestedComplexRhs);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -93,31 +73,11 @@ With rename=true
 const a = $( 2 );
 $( a );
 $( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( a );
   $( 1 );
 }
-$( a, a );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

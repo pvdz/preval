@@ -71,16 +71,10 @@ f();
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   s;
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    s;
-  }
-  return undefined;
-};
-f();
-f();
+}
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -88,16 +82,10 @@ f();
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   s;
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    s;
-  }
-  return undefined;
-};
-a();
-a();
+}
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

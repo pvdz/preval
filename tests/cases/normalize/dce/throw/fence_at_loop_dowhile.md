@@ -88,15 +88,21 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpIfTest = $(true);
-if (tmpIfTest) {
-  $(`loop`);
-  $(`loop`);
-  const tmpThrowArg = $(7, `throw`);
-  throw tmpThrowArg;
-} else {
-  $(`after (not invoked)`);
-  $(undefined);
+while (true) {
+  if (tmpIfTest) {
+    $(`loop`);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      $(`loop`);
+      const tmpThrowArg = $(7, `throw`);
+      throw tmpThrowArg;
+    }
+    throw `[preval] unreachable; infinite loop`;
+  } else {
+    break;
+  }
 }
+$(`after (not invoked)`);
+$(undefined);
 `````
 
 ## PST Output
@@ -105,16 +111,22 @@ With rename=true
 
 `````js filename=intro
 const a = $( true );
-if (a) {
-  $( "loop" );
-  $( "loop" );
-  const b = $( 7, "throw" );
-  throw b;
+while (true) {
+  if (a) {
+    $( "loop" );
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      $( "loop" );
+      const b = $( 7, "throw" );
+      throw b;
+    }
+    throw "[preval] unreachable; infinite loop";
+  }
+  else {
+    break;
+  }
 }
-else {
-  $( "after (not invoked)" );
-  $( undefined );
-}
+$( "after (not invoked)" );
+$( undefined );
 `````
 
 ## Globals

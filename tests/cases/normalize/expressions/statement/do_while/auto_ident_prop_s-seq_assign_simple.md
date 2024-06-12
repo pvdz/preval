@@ -62,24 +62,13 @@ $(a, b);
 
 
 `````js filename=intro
+$(100);
 const b = { c: 2 };
-const a = { a: 999, b: 1000 };
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   b.c = 2;
 }
-$(a, b);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -87,27 +76,13 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
+$( 100 );
 const a = { c: 2 };
-const b = {
-a: 999,
-b: 1000
-;
-$( 100 );
-$( 100 );
-$( 100 );
-$( 100 );
-$( 100 );
-$( 100 );
-$( 100 );
-$( 100 );
-$( 100 );
-$( 100 );
-$( 100 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
   a.c = 2;
 }
-$( b, a );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

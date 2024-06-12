@@ -53,43 +53,12 @@ const tmpUnaryArg = $(100);
 const xyz = !tmpUnaryArg;
 $(xyz);
 $(1);
-const xyz$1 = !tmpUnaryArg;
-$(xyz$1);
-$(1);
-const xyz$2 = !tmpUnaryArg;
-$(xyz$2);
-$(1);
-const xyz$3 = !tmpUnaryArg;
-$(xyz$3);
-$(1);
-const xyz$4 = !tmpUnaryArg;
-$(xyz$4);
-$(1);
-const xyz$5 = !tmpUnaryArg;
-$(xyz$5);
-$(1);
-const xyz$6 = !tmpUnaryArg;
-$(xyz$6);
-$(1);
-const xyz$7 = !tmpUnaryArg;
-$(xyz$7);
-$(1);
-const xyz$8 = !tmpUnaryArg;
-$(xyz$8);
-$(1);
-const xyz$9 = !tmpUnaryArg;
-$(xyz$9);
-$(1);
-const xyz$10 = !tmpUnaryArg;
-$(xyz$10);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const xyz$11 = !tmpUnaryArg;
-  $(xyz$11);
+  const xyz$1 = !tmpUnaryArg;
+  $(xyz$1);
   $(1);
 }
-const a = { a: 999, b: 1000 };
-$(a);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -101,46 +70,12 @@ const a = $( 100 );
 const b = !a;
 $( b );
 $( 1 );
-const c = !a;
-$( c );
-$( 1 );
-const d = !a;
-$( d );
-$( 1 );
-const e = !a;
-$( e );
-$( 1 );
-const f = !a;
-$( f );
-$( 1 );
-const g = !a;
-$( g );
-$( 1 );
-const h = !a;
-$( h );
-$( 1 );
-const i = !a;
-$( i );
-$( 1 );
-const j = !a;
-$( j );
-$( 1 );
-const k = !a;
-$( k );
-$( 1 );
-const l = !a;
-$( l );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const m = !a;
-  $( m );
+  const c = !a;
+  $( c );
   $( 1 );
 }
-const n = {
-a: 999,
-b: 1000
-;
-$( n );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

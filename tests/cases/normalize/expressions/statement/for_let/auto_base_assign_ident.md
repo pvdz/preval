@@ -56,32 +56,11 @@ $(a, b);
 const b = $(2);
 $(b);
 $(1);
-$(b);
-$(1);
-$(b);
-$(1);
-$(b);
-$(1);
-$(b);
-$(1);
-$(b);
-$(1);
-$(b);
-$(1);
-$(b);
-$(1);
-$(b);
-$(1);
-$(b);
-$(1);
-$(b);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(b);
   $(1);
 }
-const a = { a: 999, b: 1000 };
-$(a, b);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -92,35 +71,11 @@ With rename=true
 const a = $( 2 );
 $( a );
 $( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( a );
   $( 1 );
 }
-const b = {
-a: 999,
-b: 1000
-;
-$( b, a );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

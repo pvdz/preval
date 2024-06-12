@@ -226,87 +226,48 @@ $(f);
 `````js filename=intro
 const f = function () {
   debugger;
-  let $finalStep = false;
-  let $finalStep$1 = false;
-  let $finalStep$3 = false;
-  let $finalArg = undefined;
-  let $finalArg$1 = undefined;
-  try {
-    $(a);
-    if ($1) {
-      $finalStep = true;
-    } else {
-      if ($2) {
-        $finalStep$1 = true;
-        $finalArg = value;
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let $finalStep = false;
+    let $finalStep$1 = false;
+    let $finalStep$3 = false;
+    let $finalArg = undefined;
+    let $finalArg$1 = undefined;
+    try {
+      $(a);
+      if ($1) {
+        $finalStep = true;
       } else {
-        if ($3) {
-          $finalStep$3 = true;
-          $finalArg$1 = x;
+        if ($2) {
+          $finalStep$1 = true;
+          $finalArg = value;
         } else {
-          $4;
-        }
-      }
-    }
-  } catch ($finalImplicit) {
-    $(b);
-    throw $finalImplicit;
-  }
-  $(b);
-  if ($finalStep) {
-    return undefined;
-  } else {
-    if ($finalStep$1) {
-      return $finalArg;
-    } else {
-      if ($finalStep$3) {
-        throw $finalArg$1;
-      } else {
-        while ($LOOP_UNROLL_10) {
-          let $finalStep$2 = false;
-          let $finalStep$4 = false;
-          let $finalStep$6 = false;
-          let $finalArg$2 = undefined;
-          let $finalArg$4 = undefined;
-          try {
-            $(a);
-            if ($1) {
-              $finalStep$2 = true;
-            } else {
-              if ($2) {
-                $finalStep$4 = true;
-                $finalArg$2 = value;
-              } else {
-                if ($3) {
-                  $finalStep$6 = true;
-                  $finalArg$4 = x;
-                } else {
-                  $4;
-                }
-              }
-            }
-          } catch ($finalImplicit$1) {
-            $(b);
-            throw $finalImplicit$1;
-          }
-          $(b);
-          if ($finalStep$2) {
-            return undefined;
+          if ($3) {
+            $finalStep$3 = true;
+            $finalArg$1 = x;
           } else {
-            if ($finalStep$4) {
-              return $finalArg$2;
-            } else {
-              if ($finalStep$6) {
-                throw $finalArg$4;
-              } else {
-              }
-            }
+            $4;
           }
         }
-        return undefined;
+      }
+    } catch ($finalImplicit) {
+      $(b);
+      throw $finalImplicit;
+    }
+    $(b);
+    if ($finalStep) {
+      return undefined;
+    } else {
+      if ($finalStep$1) {
+        return $finalArg;
+      } else {
+        if ($finalStep$3) {
+          throw $finalArg$1;
+        } else {
+        }
       }
     }
   }
+  throw `[preval] unreachable; infinite loop`;
 };
 $(f);
 `````
@@ -318,99 +279,53 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  let b = false;
-  let c = false;
-  let d = false;
-  let e = undefined;
-  let f = undefined;
-  try {
-    $( a );
-    if ($1) {
-      b = true;
-    }
-    else {
-      if ($2) {
-        c = true;
-        e = value;
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let b = false;
+    let c = false;
+    let d = false;
+    let e = undefined;
+    let f = undefined;
+    try {
+      $( a );
+      if ($1) {
+        b = true;
       }
       else {
-        if ($3) {
-          d = true;
-          f = x;
+        if ($2) {
+          c = true;
+          e = value;
         }
         else {
-          $4;
-        }
-      }
-    }
-  }
-catch (g) {
-    $( b );
-    throw g;
-  }
-  $( b );
-  if (b) {
-    return undefined;
-  }
-  else {
-    if (c) {
-      return e;
-    }
-    else {
-      if (d) {
-        throw f;
-      }
-      else {
-        while ($LOOP_UNROLL_10) {
-          let h = false;
-          let i = false;
-          let j = false;
-          let k = undefined;
-          let l = undefined;
-          try {
-            $( a );
-            if ($1) {
-              h = true;
-            }
-            else {
-              if ($2) {
-                i = true;
-                k = value;
-              }
-              else {
-                if ($3) {
-                  j = true;
-                  l = x;
-                }
-                else {
-                  $4;
-                }
-              }
-            }
-          }
-catch (m) {
-            $( b );
-            throw m;
-          }
-          $( b );
-          if (h) {
-            return undefined;
+          if ($3) {
+            d = true;
+            f = x;
           }
           else {
-            if (i) {
-              return k;
-            }
-            else {
-              if (j) {
-                throw l;
-              }
-            }
+            $4;
           }
         }
-        return undefined;
+      }
+    }
+catch (g) {
+      $( b );
+      throw g;
+    }
+    $( b );
+    if (b) {
+      return undefined;
+    }
+    else {
+      if (c) {
+        return e;
+      }
+      else {
+        if (d) {
+          throw f;
+        }
       }
     }
   }
+  throw "[preval] unreachable; infinite loop";
 };
 $( a );
 `````

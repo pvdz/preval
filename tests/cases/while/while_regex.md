@@ -47,30 +47,11 @@ while (true) {
 `````js filename=intro
 const x = /foo/;
 $(x);
-const x$1 = /foo/;
-$(x$1);
-const x$2 = /foo/;
-$(x$2);
-const x$3 = /foo/;
-$(x$3);
-const x$4 = /foo/;
-$(x$4);
-const x$5 = /foo/;
-$(x$5);
-const x$6 = /foo/;
-$(x$6);
-const x$7 = /foo/;
-$(x$7);
-const x$8 = /foo/;
-$(x$8);
-const x$9 = /foo/;
-$(x$9);
-const x$10 = /foo/;
-$(x$10);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const x$11 = /foo/;
-  $(x$11);
+  const x$1 = /foo/;
+  $(x$1);
 }
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -80,30 +61,11 @@ With rename=true
 `````js filename=intro
 const a = /foo/;
 $( a );
-const b = /foo/;
-$( b );
-const c = /foo/;
-$( c );
-const d = /foo/;
-$( d );
-const e = /foo/;
-$( e );
-const f = /foo/;
-$( f );
-const g = /foo/;
-$( g );
-const h = /foo/;
-$( h );
-const i = /foo/;
-$( i );
-const j = /foo/;
-$( j );
-const k = /foo/;
-$( k );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const l = /foo/;
-  $( l );
+  const b = /foo/;
+  $( b );
 }
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

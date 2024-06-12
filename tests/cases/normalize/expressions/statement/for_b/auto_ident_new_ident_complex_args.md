@@ -60,54 +60,13 @@ const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 new $(tmpCalleeParam, tmpCalleeParam$1);
 $(1);
-const tmpCalleeParam$2 = $(1);
-const tmpCalleeParam$4 = $(2);
-new $(tmpCalleeParam$2, tmpCalleeParam$4);
-$(1);
-const tmpCalleeParam$3 = $(1);
-const tmpCalleeParam$5 = $(2);
-new $(tmpCalleeParam$3, tmpCalleeParam$5);
-$(1);
-const tmpCalleeParam$6 = $(1);
-const tmpCalleeParam$8 = $(2);
-new $(tmpCalleeParam$6, tmpCalleeParam$8);
-$(1);
-const tmpCalleeParam$7 = $(1);
-const tmpCalleeParam$9 = $(2);
-new $(tmpCalleeParam$7, tmpCalleeParam$9);
-$(1);
-const tmpCalleeParam$10 = $(1);
-const tmpCalleeParam$12 = $(2);
-new $(tmpCalleeParam$10, tmpCalleeParam$12);
-$(1);
-const tmpCalleeParam$11 = $(1);
-const tmpCalleeParam$13 = $(2);
-new $(tmpCalleeParam$11, tmpCalleeParam$13);
-$(1);
-const tmpCalleeParam$14 = $(1);
-const tmpCalleeParam$16 = $(2);
-new $(tmpCalleeParam$14, tmpCalleeParam$16);
-$(1);
-const tmpCalleeParam$15 = $(1);
-const tmpCalleeParam$17 = $(2);
-new $(tmpCalleeParam$15, tmpCalleeParam$17);
-$(1);
-const tmpCalleeParam$18 = $(1);
-const tmpCalleeParam$20 = $(2);
-new $(tmpCalleeParam$18, tmpCalleeParam$20);
-$(1);
-const tmpCalleeParam$19 = $(1);
-const tmpCalleeParam$21 = $(2);
-new $(tmpCalleeParam$19, tmpCalleeParam$21);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCalleeParam$22 = $(1);
-  const tmpCalleeParam$24 = $(2);
-  new $(tmpCalleeParam$22, tmpCalleeParam$24);
+  const tmpCalleeParam$2 = $(1);
+  const tmpCalleeParam$4 = $(2);
+  new $(tmpCalleeParam$2, tmpCalleeParam$4);
   $(1);
 }
-const a = { a: 999, b: 1000 };
-$(a);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -119,57 +78,13 @@ const a = $( 1 );
 const b = $( 2 );
 new $( a, b );
 $( 1 );
-const c = $( 1 );
-const d = $( 2 );
-new $( c, d );
-$( 1 );
-const e = $( 1 );
-const f = $( 2 );
-new $( e, f );
-$( 1 );
-const g = $( 1 );
-const h = $( 2 );
-new $( g, h );
-$( 1 );
-const i = $( 1 );
-const j = $( 2 );
-new $( i, j );
-$( 1 );
-const k = $( 1 );
-const l = $( 2 );
-new $( k, l );
-$( 1 );
-const m = $( 1 );
-const n = $( 2 );
-new $( m, n );
-$( 1 );
-const o = $( 1 );
-const p = $( 2 );
-new $( o, p );
-$( 1 );
-const q = $( 1 );
-const r = $( 2 );
-new $( q, r );
-$( 1 );
-const s = $( 1 );
-const t = $( 2 );
-new $( s, t );
-$( 1 );
-const u = $( 1 );
-const v = $( 2 );
-new $( u, v );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const w = $( 1 );
-  const x = $( 2 );
-  new $( w, x );
+  const c = $( 1 );
+  const d = $( 2 );
+  new $( c, d );
   $( 1 );
 }
-const y = {
-a: 999,
-b: 1000
-;
-$( y );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

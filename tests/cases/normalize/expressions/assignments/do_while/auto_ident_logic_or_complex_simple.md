@@ -64,43 +64,13 @@ $(a);
 `````js filename=intro
 $(100);
 const tmpCalleeParam = $(0);
-const a = $(tmpCalleeParam);
-$(100);
-const tmpCalleeParam$1 = $(0);
-$(tmpCalleeParam$1);
-$(100);
-const tmpCalleeParam$2 = $(0);
-$(tmpCalleeParam$2);
-$(100);
-const tmpCalleeParam$3 = $(0);
-$(tmpCalleeParam$3);
-$(100);
-const tmpCalleeParam$4 = $(0);
-$(tmpCalleeParam$4);
-$(100);
-const tmpCalleeParam$5 = $(0);
-$(tmpCalleeParam$5);
-$(100);
-const tmpCalleeParam$6 = $(0);
-$(tmpCalleeParam$6);
-$(100);
-const tmpCalleeParam$7 = $(0);
-$(tmpCalleeParam$7);
-$(100);
-const tmpCalleeParam$8 = $(0);
-$(tmpCalleeParam$8);
-$(100);
-const tmpCalleeParam$9 = $(0);
-$(tmpCalleeParam$9);
-$(100);
-const tmpCalleeParam$10 = $(0);
-$(tmpCalleeParam$10);
+$(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpCalleeParam$11 = $(0);
-  $(tmpCalleeParam$11);
+  const tmpCalleeParam$1 = $(0);
+  $(tmpCalleeParam$1);
 }
-$(a);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -110,43 +80,13 @@ With rename=true
 `````js filename=intro
 $( 100 );
 const a = $( 0 );
-const b = $( a );
-$( 100 );
-const c = $( 0 );
-$( c );
-$( 100 );
-const d = $( 0 );
-$( d );
-$( 100 );
-const e = $( 0 );
-$( e );
-$( 100 );
-const f = $( 0 );
-$( f );
-$( 100 );
-const g = $( 0 );
-$( g );
-$( 100 );
-const h = $( 0 );
-$( h );
-$( 100 );
-const i = $( 0 );
-$( i );
-$( 100 );
-const j = $( 0 );
-$( j );
-$( 100 );
-const k = $( 0 );
-$( k );
-$( 100 );
-const l = $( 0 );
-$( l );
+$( a );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const m = $( 0 );
-  $( m );
+  const b = $( 0 );
+  $( b );
 }
-$( b );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

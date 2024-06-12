@@ -68,7 +68,6 @@ $(a);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 let xyz = undefined;
 const tmpIfTest$1 = $ == null;
 if (tmpIfTest$1) {
@@ -86,25 +85,11 @@ $(xyz);
 $(1);
 $(xyz);
 $(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
 }
-$(a);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -112,47 +97,29 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {
-a: 999,
-b: 1000
-;
-let b = undefined;
-const c = $ == null;
-if (c) {
+let a = undefined;
+const b = $ == null;
+if (b) {
   $( undefined );
 }
 else {
-  const d = { e: $ };
-  const e = $dotCall( $, d, 1 );
-  b = e;
-  $( e );
+  const c = { e: $ };
+  const d = $dotCall( $, c, 1 );
+  a = d;
+  $( d );
 }
 $( 1 );
-$( b );
+$( a );
 $( 1 );
-$( b );
+$( a );
 $( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
-$( 1 );
-$( b );
+$( a );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( b );
+  $( a );
   $( 1 );
 }
-$( a );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

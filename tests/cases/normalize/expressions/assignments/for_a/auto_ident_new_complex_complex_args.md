@@ -56,22 +56,12 @@ $(a);
 const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
+new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-$(a);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -82,22 +72,12 @@ With rename=true
 const a = $( $ );
 const b = $( 1 );
 const c = $( 2 );
-const d = new a( b, c );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
+new a( b, c );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-$( d );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

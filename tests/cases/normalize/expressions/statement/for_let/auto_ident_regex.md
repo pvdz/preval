@@ -51,43 +51,12 @@ $(a);
 const xyz = /foo/;
 $(xyz);
 $(1);
-const xyz$1 = /foo/;
-$(xyz$1);
-$(1);
-const xyz$2 = /foo/;
-$(xyz$2);
-$(1);
-const xyz$3 = /foo/;
-$(xyz$3);
-$(1);
-const xyz$4 = /foo/;
-$(xyz$4);
-$(1);
-const xyz$5 = /foo/;
-$(xyz$5);
-$(1);
-const xyz$6 = /foo/;
-$(xyz$6);
-$(1);
-const xyz$7 = /foo/;
-$(xyz$7);
-$(1);
-const xyz$8 = /foo/;
-$(xyz$8);
-$(1);
-const xyz$9 = /foo/;
-$(xyz$9);
-$(1);
-const xyz$10 = /foo/;
-$(xyz$10);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const xyz$11 = /foo/;
-  $(xyz$11);
+  const xyz$1 = /foo/;
+  $(xyz$1);
   $(1);
 }
-const a = { a: 999, b: 1000 };
-$(a);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -98,46 +67,12 @@ With rename=true
 const a = /foo/;
 $( a );
 $( 1 );
-const b = /foo/;
-$( b );
-$( 1 );
-const c = /foo/;
-$( c );
-$( 1 );
-const d = /foo/;
-$( d );
-$( 1 );
-const e = /foo/;
-$( e );
-$( 1 );
-const f = /foo/;
-$( f );
-$( 1 );
-const g = /foo/;
-$( g );
-$( 1 );
-const h = /foo/;
-$( h );
-$( 1 );
-const i = /foo/;
-$( i );
-$( 1 );
-const j = /foo/;
-$( j );
-$( 1 );
-const k = /foo/;
-$( k );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const l = /foo/;
-  $( l );
+  const b = /foo/;
+  $( b );
   $( 1 );
 }
-const m = {
-a: 999,
-b: 1000
-;
-$( m );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

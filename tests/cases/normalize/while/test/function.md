@@ -46,20 +46,10 @@ $(`after`);
 
 `````js filename=intro
 $(`loop`);
-$(`loop`);
-$(`loop`);
-$(`loop`);
-$(`loop`);
-$(`loop`);
-$(`loop`);
-$(`loop`);
-$(`loop`);
-$(`loop`);
-$(`loop`);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`loop`);
 }
-$(`after`);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -68,20 +58,10 @@ With rename=true
 
 `````js filename=intro
 $( "loop" );
-$( "loop" );
-$( "loop" );
-$( "loop" );
-$( "loop" );
-$( "loop" );
-$( "loop" );
-$( "loop" );
-$( "loop" );
-$( "loop" );
-$( "loop" );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( "loop" );
 }
-$( "after" );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

@@ -59,32 +59,11 @@ $(2);
 const xyz = $(1);
 $(xyz);
 $(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
 }
-const a = { a: 999, b: 1000 };
-$(a, 1);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -97,35 +76,11 @@ $( 2 );
 const a = $( 1 );
 $( a );
 $( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( a );
   $( 1 );
 }
-const b = {
-a: 999,
-b: 1000
-;
-$( b, 1 );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

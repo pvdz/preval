@@ -59,8 +59,6 @@ $(a, b);
 
 
 `````js filename=intro
-const b = [];
-const a = { a: 999, b: 1000 };
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
@@ -68,31 +66,11 @@ const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 arrPatternSplat[0];
 $(tmpNestedAssignArrPatternRhs);
 $(1);
-$(tmpNestedAssignArrPatternRhs);
-$(1);
-$(tmpNestedAssignArrPatternRhs);
-$(1);
-$(tmpNestedAssignArrPatternRhs);
-$(1);
-$(tmpNestedAssignArrPatternRhs);
-$(1);
-$(tmpNestedAssignArrPatternRhs);
-$(1);
-$(tmpNestedAssignArrPatternRhs);
-$(1);
-$(tmpNestedAssignArrPatternRhs);
-$(1);
-$(tmpNestedAssignArrPatternRhs);
-$(1);
-$(tmpNestedAssignArrPatternRhs);
-$(1);
-$(tmpNestedAssignArrPatternRhs);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedAssignArrPatternRhs);
   $(1);
 }
-$(a, b);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -100,43 +78,18 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-const a = [];
-const b = {
-a: 999,
-b: 1000
-;
-const c = $( 2 );
-const d = [ c ];
-const e = $( d );
-const f = [ ... e ];
-f[ 0 ];
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
-$( 1 );
-$( e );
+const a = $( 2 );
+const b = [ a ];
+const c = $( b );
+const d = [ ... c ];
+d[ 0 ];
+$( c );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( e );
+  $( c );
   $( 1 );
 }
-$( b, a );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

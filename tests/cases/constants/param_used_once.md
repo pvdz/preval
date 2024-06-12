@@ -3151,7 +3151,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
   let vNeX134 = undefined;
   let wNeX70 = undefined;
   let SSA_SNeX76 = yNeX272;
-  while (true) {
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $continue: {
       const fooBinBothRhsX4240 = typeof SSA_SNeX76;
       const fooIfTestX13134 = `number` == fooBinBothRhsX4240;
@@ -3871,7 +3871,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
       }
     }
   }
-  return undefined;
+  throw `[preval] unreachable; infinite loop`;
 };
 $(TP$cloneX2$cloneX1);
 `````
@@ -4130,7 +4130,7 @@ const d = function($$0,$$1,$$2,$$3,$$4 ) {
   let b4 = undefined;
   let f3 = undefined;
   let 75 = i;
-  while (true) {
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $continue:     {
       const 85 = typeof75;
       const 95 = "number" == 85;
@@ -4787,7 +4787,7 @@ const d = function($$0,$$1,$$2,$$3,$$4 ) {
       }
     }
   }
-  return undefined;
+  throw "[preval] unreachable; infinite loop";
 };
 $( d );
 `````

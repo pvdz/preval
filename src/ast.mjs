@@ -71,7 +71,7 @@ export function cloneSortOfSimple(node) {
 
   if (node.type === 'AssignmentExpression') {
     return assignmentExpression(
-      cloneSimple(node.left), cloneSimple(node.right), node.op
+      cloneSimple(node.left), cloneSortOfSimple(node.right), node.op
     );
   }
 
@@ -2421,4 +2421,17 @@ export function transformFunctionParams(node, fdata) {
   .filter((e) => !!e);
 
   return [headLogic, bodyLogic];
+}
+
+export function isArguments(node) {
+  if (node.type !== 'Identifier') return false;
+  if (node.name !== 'arguments') return false;
+  return true;
+}
+export function isArgumentsLength(node) {
+  if (node.type !== 'MemberExpression') return false;
+  if (node.computed) return false;
+  if (!isArguments(node.object)) return false;
+  if (node.property.name !== 'length') return false;
+  return true;
 }

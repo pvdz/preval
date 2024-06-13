@@ -90,7 +90,7 @@ $( 1 );
 $( 2 );
 const a = $( "y" );
 const b = { y: 1 };
-let c = deleteb[ a ];
+let c = delete b[ a ];
 const d = c;
 if (c) {
   $( d );
@@ -99,7 +99,7 @@ else {
   $( 1 );
   $( 2 );
   const e = $( "y" );
-  const f = deleteb[ e ];
+  const f = delete b[ e ];
   c = f;
   $( f );
 }

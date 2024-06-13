@@ -83,18 +83,18 @@ With rename=true
 const a = $( 1 );
 if (a) {
   const b = {
-a: 1,
-b: 2
-  ;
+    a: 1,
+    b: 2,
+  };
   const c = $( b );
   c.a;
   let d = $( 1 );
   while ($LOOP_UNROLL_10) {
     if (d) {
       const e = {
-a: 1,
-b: 2
-      ;
+        a: 1,
+        b: 2,
+      };
       const f = $( e );
       f.a;
       d = $( 1 );

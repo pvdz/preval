@@ -101,16 +101,16 @@ if (c) {
   const d = $( 3 );
   const e = $( 4 );
   const f = {
-x: d,
-y: e
-  ;
+    x: d,
+    y: e,
+  };
   $( f, d, e );
 }
 else {
   const g = {
-a: 999,
-b: 1000
-  ;
+    a: 999,
+    b: 1000,
+  };
   $( g, 1, 2 );
 }
 `````

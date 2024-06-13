@@ -60,9 +60,9 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 const b = {
-a: 10,
-b: 20
-;
+  a: 10,
+  b: 20,
+};
 for (a in b) {
   $( "fail" );
 }

@@ -81,18 +81,18 @@ With rename=true
 
 `````js filename=intro
 let a = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const b = $( 1 );
 if (b) {
   const c = $( 1 );
-  a = typeofc;
+  a = typeof c;
   let d = $( 1 );
   while ($LOOP_UNROLL_10) {
     if (d) {
       const e = $( 1 );
-      a = typeofe;
+      a = typeof e;
       d = $( 1 );
     }
     else {

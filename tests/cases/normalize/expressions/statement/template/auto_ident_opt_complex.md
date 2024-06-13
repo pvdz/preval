@@ -79,9 +79,9 @@ With rename=true
 `````js filename=intro
 const a = { x: 1 };
 const b = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const c = $( a );
 const d = c == null;
 if (d) {
@@ -90,7 +90,7 @@ if (d) {
 else {
   const e = c.x;
   const f = $coerce( e, "string" );
-  const g = `before  ${[object Object]}  after`;
+  const g = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $( g );
 }
 $( b );

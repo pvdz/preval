@@ -60,12 +60,12 @@ With rename=true
 
 `````js filename=intro
 const a = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const b = [ "before ", " after" ];
 const c = $( 1 );
-const d = typeofc;
+const d = typeof c;
 $( b, d );
 $( a, 1 );
 `````

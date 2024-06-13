@@ -80,9 +80,9 @@ const a = $( $ );
 const b = a == null;
 let c = NaN;
 const d = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 if (b) {
   d ** 0;
   $( NaN );

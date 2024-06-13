@@ -67,9 +67,9 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 const b = $( a );
-const c = deleteb.y;
+const c = delete b.y;
 const d = $( a );
-const e = deleted.y;
+const e = delete d.y;
 const f = c + e;
 $( f );
 $( e, a );

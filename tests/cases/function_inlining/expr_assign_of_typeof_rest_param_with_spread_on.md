@@ -97,7 +97,7 @@ let a = 0;
 const b = function($$0,$$1 ) {
   const c = d;
   debugger;
-  a = typeofc;
+  a = typeof c;
   return undefined;
 };
 const e = [ 1, 2 ];

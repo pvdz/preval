@@ -69,7 +69,7 @@ const b = [ "before ", " after" ];
 $( 1 );
 $( 2 );
 const c = $( a );
-const d = deletec.y;
+const d = delete c.y;
 $( b, d );
 $( d, a );
 `````

@@ -108,9 +108,9 @@ while (true) {
     $( a, "before" );
     let b = undefined;
     const c = {
-a: 1,
-b: 2
-    ;
+      a: 1,
+      b: 2,
+    };
     for (b in c) {
       $( b, a );
     }

@@ -86,9 +86,9 @@ let a = undefined;
 $inlinedFunction: {
   let b = undefined;
   const c = {
-a: 1,
-b: 2
-  ;
+    a: 1,
+    b: 2,
+  };
   for (b in c) {
     const d = $( 1, "return" );
     a = d;

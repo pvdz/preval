@@ -65,20 +65,20 @@ With rename=true
 
 `````js filename=intro
 let a = {
-x: 1,
-y: 2,
-z: 3
-;
+  x: 1,
+  y: 2,
+  z: 3,
+};
 const b = a;
 if (a) {
   $( b );
 }
 else {
   const c = {
-x: 1,
-y: 2,
-z: 3
-  ;
+    x: 1,
+    y: 2,
+    z: 3,
+  };
   a = c;
   $( c );
 }

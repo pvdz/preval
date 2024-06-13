@@ -165,38 +165,38 @@ With rename=true
 
 `````js filename=intro
 const a = {
-get a() {
+  get a() {
     debugger;
     const b = $( "a" );
     return b;
-  },,
-get b() {
+  },
+  get b() {
     debugger;
     const c = {
-get c() {
+      get c() {
         debugger;
         const d = $( "b" );
         return d;
-      },,
-get d() {
+      },
+      get d() {
         debugger;
         const e = $( "c" );
         return e;
-      },,
-get e() {
+      },
+      get e() {
         debugger;
         const f = $( "d" );
         return f;
       },
-    ;
+    };
     return c;
-  },,
-get c() {
+  },
+  get c() {
     debugger;
     const g = $( "c" );
     return g;
   },
-;
+};
 const h = a.a;
 const i = a.b;
 const j = [];

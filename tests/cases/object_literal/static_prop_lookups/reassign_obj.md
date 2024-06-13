@@ -79,7 +79,7 @@ let a = { c(  ) {
   debugger;
   a = undefined;
   return undefined;
-}, };
+} };
 a.c = 3;
 $( 1, a, 3 );
 `````

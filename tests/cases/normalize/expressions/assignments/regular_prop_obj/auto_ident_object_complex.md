@@ -62,10 +62,10 @@ const a = $( 1 );
 const b = $( 3 );
 $ObjectPrototype.a;
 const c = {
-x: a,
-y: 2,
-z: b
-;
+  x: a,
+  y: 2,
+  z: b,
+};
 $( c );
 `````
 

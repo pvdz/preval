@@ -74,7 +74,7 @@ const a = { foo(  ) {
   const b = { x: 1 };
   const c = $( b );
   return c;
-}, };
+} };
 const d = a.foo();
 const e = { ... d };
 $( e );

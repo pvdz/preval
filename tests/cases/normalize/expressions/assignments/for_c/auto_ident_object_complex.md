@@ -81,28 +81,28 @@ With rename=true
 
 `````js filename=intro
 let a = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const b = $( 1 );
 if (b) {
   const c = $( 1 );
   const d = $( 3 );
   a = {
-x: c,
-y: 2,
-z: d
-  ;
+    x: c,
+    y: 2,
+    z: d,
+  };
   let e = $( 1 );
   while ($LOOP_UNROLL_10) {
     if (e) {
       const f = $( 1 );
       const g = $( 3 );
       a = {
-x: f,
-y: 2,
-z: g
-      ;
+        x: f,
+        y: 2,
+        z: g,
+      };
       e = $( 1 );
     }
     else {

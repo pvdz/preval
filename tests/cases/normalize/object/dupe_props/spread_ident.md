@@ -55,9 +55,9 @@ const a = { a: "ignored" };
 const b = $( a );
 const c = $( "prop" );
 const d = {
-... b,
-a: c
-;
+  ... b,
+  a: c,
+};
 $( d );
 `````
 

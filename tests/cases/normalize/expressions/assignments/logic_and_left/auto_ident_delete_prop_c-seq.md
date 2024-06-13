@@ -75,7 +75,7 @@ $( 1 );
 $( 2 );
 const a = { y: 1 };
 const b = $( a );
-const c = deleteb.y;
+const c = delete b.y;
 if (c) {
   const d = $( 100 );
   $( d );

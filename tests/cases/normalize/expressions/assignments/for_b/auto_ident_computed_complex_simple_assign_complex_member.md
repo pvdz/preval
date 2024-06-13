@@ -99,9 +99,9 @@ With rename=true
 `````js filename=intro
 let a = true;
 const b = {
-c: 10,
-d: 20
-;
+  c: 10,
+  d: 20,
+};
 const c = $( b );
 const d = $( b );
 const e = $( "d" );

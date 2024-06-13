@@ -70,9 +70,9 @@ With rename=true
 const a = $( 1 );
 $( a );
 const b = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 $( b, 1 );
 `````
 

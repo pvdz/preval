@@ -211,7 +211,7 @@ function printPrimitive(indent, config, node) {
       if (node.value === null) return 'null';
       switch (typeof node.value) {
         case 'number': return String(node.value);
-        case 'string': return `"${node.value.replace(/[\\"]/g, '\\$1')}"`;
+        case 'string': return `"${node.value.replace(/([\\"])/g, '\\$1')}"`;
         case 'boolean': return String(node.value);
         case 'undefined': return 'undefined';
         default:
@@ -275,7 +275,7 @@ function printExpression(indent, config, node) {
     case 'ObjectLiteral': {
       if (node.props.length === 0) return '{}';
       if (node.props.length === 1) return `{ ${node.props.map(s => printPropertyMethodOrSpread(indent, config, s)).join(',') } }`;
-      return `{\n${node.props.map(s => printPropertyMethodOrSpread(`${indent}  `, config, s)).join(',\n') }\n${indent}`;
+      return `{\n${node.props.map(s => `${indent}  ${printPropertyMethodOrSpread(`${indent}  `, config, s)},`).join('\n')}\n${indent}}`;
     }
     case 'Primitive': {
       return printPrimitive(indent, config, node);
@@ -287,7 +287,7 @@ function printExpression(indent, config, node) {
       return `/${node.pattern}/${node.flags}`;
     }
     case 'StringConcat': {
-      return `\`${node.left.replace(/[\\`]/g, '\\$1')}\${${node.middle}}${node.right.replace(/[\\"]/g, '\\$1')}\``;
+      return `\`${node.left.replace(/([\\`])/g, '\\$1')}\${${node.middle.name}}${node.right.replace(/([\\`])/g, '\\$1')}\``;
     }
     case 'ThisExpression': {
       return 'this';
@@ -295,8 +295,13 @@ function printExpression(indent, config, node) {
     case 'UnaryExpression': {
       if (node.op === 'delete') {
         if (node.arg.type === 'MemberComputedExpression' || node.arg.type === 'MemberRefExpression') {
-          return `${node.op}${printExpression(indent, config, node.arg)}`;
+          return `${node.op} ${printExpression(indent, config, node.arg)}`;
         }
+        return `${node.op} ${printSimple(indent, config, node.arg)}`;
+      }
+      if (node.op === 'yield' || node.op === 'await' || node.op === 'typeof') {
+        // `void` should not appear. `new` is not a unary op.
+        return `${node.op} ${printSimple(indent, config, node.arg)}`;
       }
       return `${node.op}${printSimple(indent, config, node.arg)}`;
     }
@@ -329,12 +334,12 @@ function printPropertyMethodOrSpread(indent, config, node) {
 
 function printGetter(indent, config, node) {
   // Note: getters have no arg (syntactically enforced)
-  return `get ${node.key}() ${printBlock(indent, config, node.func.body)},`;
+  return `get ${node.key}() ${printBlock(indent, config, node.func.body)}`;
 }
 
 function printSetter(indent, config, node) {
   // Note: setters have exactly one arg (syntactically enforced)
-  return `set ${node.key}( ${printSimple(indent, config, node.func.params[0])} ) ${printBlock(indent, config, node.func.body)},`;
+  return `set ${node.key}( ${printSimple(indent, config, node.func.params[0])} ) ${printBlock(indent, config, node.func.body)}`;
 }
 
 function printProperty(indent, config, node) {
@@ -350,15 +355,15 @@ function printObjectMethod(indent, config, node) {
   if (node.isComputed) {
     return `[ ${printSimple(indent, config, node.key)} ]( ${node.func.params.map(s => printSimpleOrSpread(indent, config, s))} ) ${printBlock(indent, config, node.func.body)},`;
   }
-  return `${node.key}( ${node.func.params.map(s => printSimpleOrSpread(indent, config, s))} ) ${printBlock(indent, config, node.func.body)},`;
+  return `${node.key}( ${node.func.params.map(s => printSimpleOrSpread(indent, config, s))} ) ${printBlock(indent, config, node.func.body)}`;
 }
 
 function printClassElement(indent, config, node) {
   // For object, not class. See printObjectMethod
   if (node.isComputed) {
-    return `${node.isStatic ? 'static ' : ''}[ ${printSimple(indent, config, node.key)} ]( ${node.func.params.map(s => printSimpleOrSpread(indent, config, s))} ) ${printBlock(indent, config, node.func.body)},`;
+    return `${node.isStatic ? 'static ' : ''}[ ${printSimple(indent, config, node.key)} ]( ${node.func.params.map(s => printSimpleOrSpread(indent, config, s))} ) ${printBlock(indent, config, node.func.body)}`;
   }
-  return `${node.isStatic ? 'static ' : ''}${node.key}( ${node.func.params.map(s => printSimpleOrSpread(indent, config, s))} ) ${printStatement(indent, config, node.func.body)},`;
+  return `${node.isStatic ? 'static ' : ''}${node.key}( ${node.func.params.map(s => printSimpleOrSpread(indent, config, s))} ) ${printStatement(indent, config, node.func.body)}`;
 }
 
 function callArgs(indent, config, node) {

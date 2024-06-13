@@ -83,9 +83,9 @@ With rename=true
 const a = { x: 1 };
 const b = { y: 2 };
 const c = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const d = $( 100 );
 const e = $( a );
 const f = $( "x" );

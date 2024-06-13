@@ -3943,7 +3943,7 @@ const d = function($$0,$$1,$$2,$$3,$$4 ) {
     const m1 = WE( l1 );
     const n1 = YA( k1, m1 );
     const o1 = n1[ 2 ];
-    const p1 = typeofo1;
+    const p1 = typeof o1;
     const q1 = "number" == p1;
     if (q1) {
       const r1 = p;
@@ -4132,7 +4132,7 @@ const d = function($$0,$$1,$$2,$$3,$$4 ) {
   let 75 = i;
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $continue:     {
-      const 85 = typeof75;
+      const 85 = typeof 75;
       const 95 = "number" == 85;
       if (95) {
         const a5 = YE$cloneX5( p, $, n );
@@ -4367,10 +4367,10 @@ const d = function($$0,$$1,$$2,$$3,$$4 ) {
                           const a7 = 75[ 3 ];
                           const b7 = 75[ 2 ];
                           g2 = 75[ 1 ];
-                          const c7 = typeofb7;
+                          const c7 = typeof b7;
                           const d7 = "number" == c7;
                           if (d7) {
-                            const e7 = typeofa7;
+                            const e7 = typeof a7;
                             const f7 = "number" == e7;
                             if (f7) {
                               const g7 = 0 === a7;
@@ -4392,7 +4392,7 @@ const d = function($$0,$$1,$$2,$$3,$$4 ) {
                             if (i7) {
                               f3 = b7[ 2 ];
                               d3 = b7[ 1 ];
-                              const j7 = typeofa7;
+                              const j7 = typeof a7;
                               const k7 = "number" == j7;
                               if (k7) {
                                 const l7 = 0 === a7;
@@ -4410,7 +4410,7 @@ const d = function($$0,$$1,$$2,$$3,$$4 ) {
                             }
                             else {
                               e2 = b7[ 1 ];
-                              const m7 = typeofa7;
+                              const m7 = typeof a7;
                               const n7 = "number" == m7;
                               if (n7) {
                                 const o7 = 0 === a7;
@@ -4564,7 +4564,7 @@ const d = function($$0,$$1,$$2,$$3,$$4 ) {
                                                     if (w8) {
                                                       const x8 = 75[ 2 ];
                                                       const y8 = 75[ 1 ];
-                                                      const z8 = typeofy8;
+                                                      const z8 = typeof y8;
                                                       const 09 = "number" == z8;
                                                       if (09) {
                                                         let 19 = 4;

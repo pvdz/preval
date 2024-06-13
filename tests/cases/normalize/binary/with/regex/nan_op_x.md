@@ -261,17 +261,17 @@ With rename=true
 
 `````js filename=intro
 const a = {
-toString(  ) {
+  toString(  ) {
     debugger;
     const b = $( "toString" );
     return b;
-  },,
-valueOf(  ) {
+  },
+  valueOf(  ) {
     debugger;
     $( "valueOf" );
     return 100;
   },
-;
+};
 const c = /foo/g;
 const d = c ** a;
 const e = /foo/g;
@@ -281,7 +281,7 @@ const h = g / a;
 const i = /foo/g;
 const j = i % a;
 const k = $coerce( a, "plustr" );
-const l = `/foo/g${[object Object]}`;
+const l = `/foo/g${tmpStringConcatL}`;
 const m = /foo/g;
 const n = m - a;
 const o = /foo/g;

@@ -126,7 +126,7 @@ const b = $( 1 );
 let c = 1;
 $( 1 );
 $( 2 );
-const d = deletea.y;
+const d = delete a.y;
 const e = d === b;
 if (e) {
   c = 0;

@@ -745,7 +745,7 @@ $coerce( i, "plustr" );
 $( "number" );
 const j = $( "JSON.stringify" );
 const k = JSON.stringify( j );
-const l = typeofk;
+const l = typeof k;
 $( l );
 const m = $( "Math.abs" );
 +m;

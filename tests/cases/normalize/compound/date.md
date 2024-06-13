@@ -122,22 +122,22 @@ let a = "";
 let b = 0;
 const c = new Date( 12345 );
 const d = {
-get x() {
+  get x() {
     debugger;
-    a = `${[object Object]}read;`;
+    a = `${s}read;`;
     return b;
-  },,
-set x( $$0 ) {
+  },
+  set x( $$0 ) {
     const e = f;
     debugger;
     const g = a;
     const h = $coerce( e, "plustr" );
-    const i = `write[${[object Object]}];`;
+    const i = `write[${tmpStringConcatL}];`;
     a = g + i;
     b = b + e;
     return b;
   },
-;
+};
 d.x = c;
 $( b, a );
 `````

@@ -77,15 +77,15 @@ With rename=true
 
 `````js filename=intro
 let a = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const b = $( 1 );
 const c = { y: 1 };
 if (b) {
   $( 1 );
   $( 2 );
-  const d = deletec.y;
+  const d = delete c.y;
   a = d;
   $( d );
 }

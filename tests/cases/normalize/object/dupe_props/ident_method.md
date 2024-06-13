@@ -65,7 +65,7 @@ $( "prop" );
 const a = { a(  ) {
   debugger;
   return undefined;
-}, };
+} };
 $( a );
 `````
 

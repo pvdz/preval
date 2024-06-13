@@ -66,15 +66,15 @@ With rename=true
 
 `````js filename=intro
 const a = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const b = [ ... a ];
 const c = b[ 0 ];
 const d = [ 1, 2 ];
 const e = $( d );
 const f = $coerce( e, "string" );
-const g = `before  ${[object Object]}  after`;
+const g = `before  ${tmpBinBothRhs}  after`;
 $( g );
 $( c );
 `````

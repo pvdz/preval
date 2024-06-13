@@ -56,9 +56,9 @@ With rename=true
 `````js filename=intro
 $( ... false );
 const a = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 $( a, 1 );
 `````
 

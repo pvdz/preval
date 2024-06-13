@@ -75,9 +75,9 @@ With rename=true
 const a = $( 30 );
 let b = undefined;
 const c = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 if (a) {
   const d = $( 60 );
   b = c * d;

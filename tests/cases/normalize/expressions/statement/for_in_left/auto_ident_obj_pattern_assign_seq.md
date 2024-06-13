@@ -87,9 +87,9 @@ With rename=true
 let a = 1;
 let b = 2;
 const c = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const d = { x: 1 };
 const e = $( d );
 let f = undefined;
@@ -101,9 +101,9 @@ for (f in e) {
   a = g;
   b = h;
   const i = {
-x: g,
-y: h
-  ;
+    x: g,
+    y: h,
+  };
   i.x = f;
 }
 $( c, a, b );

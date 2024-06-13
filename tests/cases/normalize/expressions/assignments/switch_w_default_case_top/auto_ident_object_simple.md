@@ -123,9 +123,9 @@ With rename=true
 
 `````js filename=intro
 let a = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const b = $( 1 );
 let c = 1;
 const d = $( 1 );
@@ -142,10 +142,10 @@ else {
 const g = c <= 0;
 if (g) {
   a = {
-x: 1,
-y: 2,
-z: 3
-  ;
+    x: 1,
+    y: 2,
+    z: 3,
+  };
 }
 const h = c <= 1;
 if (h) {

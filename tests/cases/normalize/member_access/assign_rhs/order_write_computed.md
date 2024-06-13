@@ -95,17 +95,17 @@ With rename=true
 
 `````js filename=intro
 const a = {
-get x() {
+  get x() {
     debugger;
     const b = $( 10 );
     return b;
-  },,
-set x( $$0 ) {
+  },
+  set x( $$0 ) {
     debugger;
     $( 20 );
     return undefined;
   },
-;
+};
 const c = $( a );
 const d = $( "x" );
 c[d] = 30;

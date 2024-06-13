@@ -223,17 +223,17 @@ With rename=true
 
 `````js filename=intro
 const a = {
-toString(  ) {
+  toString(  ) {
     debugger;
     const b = $( "toString" );
     return b;
-  },,
-valueOf(  ) {
+  },
+  valueOf(  ) {
     debugger;
     $( "valueOf" );
     return 100;
   },
-;
+};
 const c = 1 ** a;
 const d = 1 * a;
 const e = 1 / a;

@@ -76,17 +76,17 @@ With rename=true
 
 `````js filename=intro
 const a = {
-toString(  ) {
+  toString(  ) {
     debugger;
     $( "pass" );
     return undefined;
-  },,
-valueOf(  ) {
+  },
+  valueOf(  ) {
     debugger;
     $( "fail" );
     return undefined;
   },
-;
+};
 a in Number;
 `````
 

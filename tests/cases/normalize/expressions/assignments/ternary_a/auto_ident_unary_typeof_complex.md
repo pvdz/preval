@@ -67,7 +67,7 @@ With rename=true
 const a = $( 1 );
 const b = $( 100 );
 $( b );
-const c = typeofa;
+const c = typeof a;
 $( c, 1 );
 `````
 

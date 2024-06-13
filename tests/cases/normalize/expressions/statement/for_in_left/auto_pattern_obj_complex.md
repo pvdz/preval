@@ -69,9 +69,9 @@ const b = $( a );
 let c = undefined;
 for (c in b) {
   const d = {
-a: 1,
-b: 2
-  ;
+    a: 1,
+    b: 2,
+  };
   const e = $( d );
   e.x = c;
 }

@@ -97,9 +97,9 @@ With rename=true
 
 `````js filename=intro
 let a = {
-thing: "woop",
-xyz: 0
-;
+  thing: "woop",
+  xyz: 0,
+};
 const b = a;
 const c = a.xyz;
 const d = c + 1;
@@ -110,9 +110,9 @@ const f = e < 10;
 if (f) {
   while ($LOOP_UNROLL_10) {
     a = {
-thing: "woop",
-xyz: 0
-    ;
+      thing: "woop",
+      xyz: 0,
+    };
     const g = a;
     const h = a.xyz;
     const i = h + 1;

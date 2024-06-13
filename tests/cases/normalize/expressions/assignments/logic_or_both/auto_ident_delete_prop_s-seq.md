@@ -82,7 +82,7 @@ With rename=true
 $( 1 );
 $( 2 );
 const a = { y: 1 };
-let b = deletea.y;
+let b = delete a.y;
 const c = b;
 if (b) {
   $( c );
@@ -90,7 +90,7 @@ if (b) {
 else {
   $( 1 );
   $( 2 );
-  const d = deletea.y;
+  const d = delete a.y;
   b = d;
   $( d );
 }

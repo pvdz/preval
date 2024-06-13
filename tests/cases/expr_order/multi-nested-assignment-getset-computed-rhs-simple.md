@@ -428,27 +428,27 @@ const a = function($$0 ) {
   return m;
 };
 const i = {
-get a() {
+  get a() {
     debugger;
     a( "a.get" );
     return 110;
-  },,
-set a( $$0 ) {
+  },
+  set a( $$0 ) {
     const n = c;
     debugger;
     a( "a.set", n );
     h = "faila";
     return 1000;
   },
-;
+};
 const j = {
-get b() {
+  get b() {
     debugger;
     a( "b.get" );
     o = 210;
     return 100;
-  },,
-set b( $$0 ) {
+  },
+  set b( $$0 ) {
     const p = c;
     debugger;
     a( "b.set", p );
@@ -456,16 +456,16 @@ set b( $$0 ) {
     h = "failb";
     return 2000;
   },
-;
+};
 const k = {
-get c() {
+  get c() {
     debugger;
     a( "c.get" );
     o = 310;
     e = 320;
     return 100;
-  },,
-set c( $$0 ) {
+  },
+  set c( $$0 ) {
     const q = c;
     debugger;
     a( "c.set", q );
@@ -474,17 +474,17 @@ set c( $$0 ) {
     h = "failc";
     return 3000;
   },
-;
+};
 const l = {
-get d() {
+  get d() {
     debugger;
     a( "d.get" );
     o = 410;
     e = 420;
     f = 430;
     return 100;
-  },,
-set d( $$0 ) {
+  },
+  set d( $$0 ) {
     const r = c;
     debugger;
     a( "d.set", r );
@@ -494,7 +494,7 @@ set d( $$0 ) {
     h = "faild";
     return 4000;
   },
-;
+};
 let o = function() {
   debugger;
   a( "a" );

@@ -97,9 +97,9 @@ With rename=true
 const a = { y: 1 };
 const b = { x: a };
 const c = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 let d = undefined;
 const e = $( b );
 const f = e == null;
@@ -120,7 +120,7 @@ else {
   }
 }
 const l = $coerce( d, "string" );
-const m = `before  ${[object Object]}  after`;
+const m = `before  ${tmpBinBothRhs}  after`;
 $( m );
 $( c );
 `````

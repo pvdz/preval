@@ -92,16 +92,16 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 const b = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const c = $( 1 );
 if (c) {
   $( 1 );
   $( 2 );
   const d = $( a );
   const e = $( "y" );
-  deleted[ e ];
+  delete d[ e ];
   let f = $( 1 );
   while ($LOOP_UNROLL_10) {
     if (f) {
@@ -109,7 +109,7 @@ if (c) {
       $( 2 );
       const g = $( a );
       const h = $( "y" );
-      deleteg[ h ];
+      delete g[ h ];
       f = $( 1 );
     }
     else {

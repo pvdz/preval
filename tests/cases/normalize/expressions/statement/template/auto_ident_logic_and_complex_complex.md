@@ -81,18 +81,18 @@ if (b) {
   const c = $( 2 );
   const d = $( c );
   const e = $coerce( d, "string" );
-  const f = `before  ${[object Object]}  after`;
+  const f = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $( f );
 }
 else {
   const g = $coerce( b, "string" );
-  const h = `before  ${[object Object]}  after`;
+  const h = `before  ${tmpClusterSSA_tmpBinBothRhs$1}  after`;
   $( h );
 }
 const i = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 $( i );
 `````
 

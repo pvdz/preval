@@ -71,19 +71,19 @@ With rename=true
 
 `````js filename=intro
 const a = {
-c: 10,
-d: 20
-;
+  c: 10,
+  d: 20,
+};
 const b = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const c = $( a );
 const d = $( "d" );
 const e = c[ d ];
 a.c = e;
 const f = $coerce( e, "string" );
-const g = `before  ${[object Object]}  after`;
+const g = `before  ${tmpBinBothRhs}  after`;
 $( g );
 $( b, a );
 `````

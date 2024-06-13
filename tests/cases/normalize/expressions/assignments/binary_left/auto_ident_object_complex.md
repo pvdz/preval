@@ -64,10 +64,10 @@ const a = $( 1 );
 const b = $( 3 );
 const c = $( 100 );
 const d = {
-x: a,
-y: 2,
-z: b
-;
+  x: a,
+  y: 2,
+  z: b,
+};
 const e = d + c;
 $( e );
 $( d );

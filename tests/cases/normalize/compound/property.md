@@ -123,22 +123,22 @@ With rename=true
 let a = "";
 let b = 0;
 const c = {
-get x() {
+  get x() {
     debugger;
-    a = `${[object Object]}read;`;
+    a = `${s}read;`;
     return b;
-  },,
-set x( $$0 ) {
+  },
+  set x( $$0 ) {
     const d = e;
     debugger;
     const f = a;
     const g = $coerce( d, "plustr" );
-    const h = `write[${[object Object]}];`;
+    const h = `write[${tmpStringConcatL}];`;
     a = f + h;
     b = b + d;
     return b;
   },
-;
+};
 const i = c.x;
 const j = i + 5;
 c.x = j;

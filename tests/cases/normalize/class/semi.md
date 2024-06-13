@@ -82,10 +82,10 @@ const a = class   {
 a(  ) {
   debugger;
   return undefined;
-},,b(  ) {
+},b(  ) {
   debugger;
   return undefined;
-},
+}
 };
 const b = new a();
 const c = b.b();

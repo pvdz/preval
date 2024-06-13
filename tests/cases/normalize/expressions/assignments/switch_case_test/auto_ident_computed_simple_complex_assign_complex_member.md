@@ -78,9 +78,9 @@ With rename=true
 $( 1 );
 const a = $( "c" );
 const b = {
-c: 10,
-d: 20
-;
+  c: 10,
+  d: 20,
+};
 const c = $( b );
 const d = $( "d" );
 const e = c[ d ];

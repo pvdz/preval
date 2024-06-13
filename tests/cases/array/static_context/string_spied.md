@@ -81,17 +81,17 @@ With rename=true
 
 `````js filename=intro
 const a = {
-valueOf(  ) {
+  valueOf(  ) {
     debugger;
     $( "x" );
     return undefined;
-  },,
-toString(  ) {
+  },
+  toString(  ) {
     debugger;
     $( "y" );
     return undefined;
   },
-;
+};
 const b = [ a, a ];
 $coerce( b, "string" );
 `````

@@ -76,17 +76,17 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 const b = {
-a: 999,
-b: 1000
-;
-const c = deletea.y;
+  a: 999,
+  b: 1000,
+};
+const c = delete a.y;
 if (c) {
   $( 100 );
-  let d = deletea.y;
+  let d = delete a.y;
   while ($LOOP_UNROLL_10) {
     if (d) {
       $( 100 );
-      d = deletea.y;
+      d = delete a.y;
     }
     else {
       break;

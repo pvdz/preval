@@ -116,7 +116,7 @@ else {
   }
 }
 const j = $coerce( b, "string" );
-const k = `before  ${[object Object]}  after`;
+const k = `before  ${tmpBinBothRhs}  after`;
 $( k );
 $( b );
 `````

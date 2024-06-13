@@ -93,14 +93,14 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 const b = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 let c = true;
 $( 1 );
 $( 2 );
 const d = $( "y" );
-const e = deletea[ d ];
+const e = delete a[ d ];
 if (e) {
   $( 1 );
 }
@@ -112,7 +112,7 @@ if (c) {
     $( 1 );
     $( 2 );
     const f = $( "y" );
-    const g = deletea[ f ];
+    const g = delete a[ f ];
     if (g) {
       $( 1 );
     }

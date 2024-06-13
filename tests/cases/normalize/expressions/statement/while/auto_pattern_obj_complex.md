@@ -78,9 +78,9 @@ With rename=true
 `````js filename=intro
 let a = true;
 const b = {
-a: 1,
-b: 2
-;
+  a: 1,
+  b: 2,
+};
 const c = $( b );
 if (c) {
   $( 100 );
@@ -91,9 +91,9 @@ else {
 if (a) {
   while ($LOOP_UNROLL_10) {
     const d = {
-a: 1,
-b: 2
-    ;
+      a: 1,
+      b: 2,
+    };
     const e = $( d );
     if (e) {
       $( 100 );

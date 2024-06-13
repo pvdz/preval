@@ -78,7 +78,7 @@ With rename=true
 const a = { e: $ };
 const b = $dotCall( $, a, 1 );
 const c = $coerce( b, "string" );
-const d = `before  ${[object Object]}  after`;
+const d = `before  ${tmpBinBothRhs}  after`;
 $( d );
 $( b );
 `````

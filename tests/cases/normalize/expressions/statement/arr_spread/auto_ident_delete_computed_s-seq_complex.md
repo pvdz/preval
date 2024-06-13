@@ -64,13 +64,13 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 const b = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 $( 1 );
 $( 2 );
 const c = $( "y" );
-const d = deletea[ c ];
+const d = delete a[ c ];
 [ ... d ];
 $( b, a );
 `````

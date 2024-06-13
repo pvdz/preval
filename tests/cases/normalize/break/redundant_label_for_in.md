@@ -100,9 +100,9 @@ With rename=true
 `````js filename=intro
 let a = $( 2 );
 const b = {
-a: 1,
-b: 2
-;
+  a: 1,
+  b: 2,
+};
 const c = $( b );
 let d = undefined;
 for (d in c) {

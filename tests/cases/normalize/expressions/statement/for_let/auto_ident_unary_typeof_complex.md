@@ -71,11 +71,11 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-const b = typeofa;
+const b = typeof a;
 $( b );
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const c = typeofa;
+  const c = typeof a;
   $( c );
   $( 1 );
 }

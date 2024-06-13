@@ -73,11 +73,11 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = typeofa;
+let b = typeof a;
 const c = b;
 if (b) {
   const d = $( 1 );
-  const e = typeofd;
+  const e = typeof d;
   b = e;
   $( e );
 }

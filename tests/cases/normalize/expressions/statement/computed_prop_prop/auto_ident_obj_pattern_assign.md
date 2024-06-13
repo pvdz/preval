@@ -71,16 +71,16 @@ With rename=true
 
 `````js filename=intro
 const a = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const b = {};
 const c = $( 3 );
 const d = $( 4 );
 const e = {
-x: c,
-y: d
-;
+  x: c,
+  y: d,
+};
 b[ e ];
 $( a, c, d );
 `````

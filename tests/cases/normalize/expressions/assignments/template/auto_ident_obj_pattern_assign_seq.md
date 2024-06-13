@@ -81,11 +81,11 @@ $( 2 );
 const a = $( 3 );
 const b = $( 4 );
 const c = {
-x: a,
-y: b
-;
+  x: a,
+  y: b,
+};
 const d = $coerce( c, "string" );
-const e = `before  ${[object Object]}  after`;
+const e = `before  ${tmpBinBothRhs}  after`;
 $( e );
 $( c, a, b );
 `````

@@ -87,9 +87,9 @@ With rename=true
 const a = { x: 1 };
 const b = { y: 2 };
 const c = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const d = $( a );
 const e = $( "x" );
 const f = $( b );
@@ -98,7 +98,7 @@ const h = $( 3 );
 f[g] = h;
 d[e] = h;
 const i = $coerce( h, "string" );
-const j = `before  ${[object Object]}  after`;
+const j = `before  ${tmpBinBothRhs}  after`;
 $( j );
 $( c, a, b, 3 );
 `````

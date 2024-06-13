@@ -63,9 +63,9 @@ With rename=true
 `````js filename=intro
 const a = { c: $ };
 const b = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 $dotCall( $, a, 1 );
 $( b );
 `````

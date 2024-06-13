@@ -82,7 +82,7 @@ const a = $( "x" );
 const b = $coerce( a, "string" );
 const c = $( "y" );
 const d = $coerce( c, "string" );
-const e = `${[object Object]} `;
+const e = `${tmpBinBothRhs$1} `;
 if ($) {
   $( 20 );
 }

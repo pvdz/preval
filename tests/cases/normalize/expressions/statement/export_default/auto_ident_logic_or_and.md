@@ -91,9 +91,9 @@ else {
 }
 export { b as default };
 const e = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 $( e );
 `````
 

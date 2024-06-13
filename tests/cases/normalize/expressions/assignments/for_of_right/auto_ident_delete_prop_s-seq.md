@@ -67,7 +67,7 @@ With rename=true
 $( 1 );
 $( 2 );
 const a = { y: 1 };
-const b = deletea.y;
+const b = delete a.y;
 let c = undefined;
 for (c of b) {
 

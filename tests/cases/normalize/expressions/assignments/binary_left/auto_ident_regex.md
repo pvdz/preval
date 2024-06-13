@@ -59,7 +59,7 @@ With rename=true
 const a = /foo/;
 const b = $( 100 );
 const c = $coerce( b, "plustr" );
-const d = `/foo/${[object Object]}`;
+const d = `/foo/${tmpStringConcatL}`;
 $( d );
 $( a );
 `````

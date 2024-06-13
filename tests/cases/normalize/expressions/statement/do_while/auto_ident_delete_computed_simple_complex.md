@@ -88,17 +88,17 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 const b = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 $( 100 );
 const c = $( "y" );
-const d = deletea[ c ];
+const d = delete a[ c ];
 if (d) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
     const e = $( "y" );
-    const f = deletea[ e ];
+    const f = delete a[ e ];
     if (f) {
 
     }

@@ -77,10 +77,10 @@ With rename=true
 const a = $( 1 );
 const b = $( 3 );
 let c = {
-x: a,
-y: 2,
-z: b
-;
+  x: a,
+  y: 2,
+  z: b,
+};
 const d = c;
 if (c) {
   $( d );
@@ -89,10 +89,10 @@ else {
   const e = $( 1 );
   const f = $( 3 );
   const g = {
-x: e,
-y: 2,
-z: f
-  ;
+    x: e,
+    y: 2,
+    z: f,
+  };
   c = g;
   $( g );
 }

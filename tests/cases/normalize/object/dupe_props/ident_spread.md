@@ -55,9 +55,9 @@ const a = $( "prop" );
 const b = {};
 const c = $( b );
 const d = {
-a: a,
-... c
-;
+  a: a,
+  ... c,
+};
 $( d );
 `````
 

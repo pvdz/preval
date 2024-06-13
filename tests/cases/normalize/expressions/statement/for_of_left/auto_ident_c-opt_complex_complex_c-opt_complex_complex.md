@@ -100,9 +100,9 @@ With rename=true
 const a = { y: 1 };
 const b = { x: a };
 const c = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const d = { x: 1 };
 const e = $( d );
 let f = undefined;

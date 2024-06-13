@@ -90,19 +90,19 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 const b = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 $( 100 );
 const c = $( a );
 const d = $( "y" );
-const e = deletec[ d ];
+const e = delete c[ d ];
 if (e) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
     const f = $( a );
     const g = $( "y" );
-    const h = deletef[ g ];
+    const h = delete f[ g ];
     if (h) {
 
     }

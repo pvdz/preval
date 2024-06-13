@@ -74,9 +74,9 @@ $( 2 );
 const b = $( 3 );
 const c = $( 4 );
 const d = {
-x: b,
-y: c
-;
+  x: b,
+  y: c,
+};
 a = d;
 export { a as a };
 $( a, b, c );

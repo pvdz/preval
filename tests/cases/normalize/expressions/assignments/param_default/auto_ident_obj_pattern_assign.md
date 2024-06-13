@@ -90,9 +90,9 @@ const a = $( 3 );
 const b = $( 4 );
 $( undefined );
 const c = {
-x: a,
-y: b
-;
+  x: a,
+  y: b,
+};
 $( c, a, b );
 `````
 

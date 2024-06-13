@@ -59,7 +59,7 @@ if (b) {
 
 }
 else {
-  deletea.x;
+  delete a.x;
 }
 `````
 

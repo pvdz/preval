@@ -86,13 +86,13 @@ else {
   const c = $( 1 );
   const d = $dotCall( a, $, c );
   const e = $coerce( d, "string" );
-  const f = `before  ${[object Object]}  after`;
+  const f = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $( f );
 }
 const g = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 $( g );
 `````
 

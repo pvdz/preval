@@ -108,9 +108,9 @@ let a = true;
 $( 100 );
 const b = $( "c" );
 const c = {
-c: 10,
-d: 20
-;
+  c: 10,
+  d: 20,
+};
 const d = $( c );
 const e = $( "d" );
 const f = d[ e ];

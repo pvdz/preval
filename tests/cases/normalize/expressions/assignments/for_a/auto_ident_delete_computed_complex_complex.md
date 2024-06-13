@@ -71,7 +71,7 @@ With rename=true
 const a = { y: 1 };
 const b = $( a );
 const c = $( "y" );
-deleteb[ c ];
+delete b[ c ];
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );

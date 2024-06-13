@@ -53,9 +53,9 @@ With rename=true
 
 `````js filename=intro
 const a = {
-a: 1,
-b: 2
-;
+  a: 1,
+  b: 2,
+};
 const b = $( a );
 const c = b.a;
 export { c as a };

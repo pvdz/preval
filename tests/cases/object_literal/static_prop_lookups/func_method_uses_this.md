@@ -94,9 +94,9 @@ const a = function() {
   return c;
 };
 const d = {
-f: a,
-foo: "You got it!"
-;
+  f: a,
+  foo: "You got it!",
+};
 const e = d.f();
 $( e );
 `````

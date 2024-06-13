@@ -91,9 +91,9 @@ if (b) {
 }
 let d = undefined;
 const e = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 if (b) {
   d = e * b;
   $( d );

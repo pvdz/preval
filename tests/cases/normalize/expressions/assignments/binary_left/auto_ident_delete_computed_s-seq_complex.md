@@ -71,7 +71,7 @@ $( 1 );
 $( 2 );
 const a = $( "y" );
 const b = { y: 1 };
-const c = deleteb[ a ];
+const c = delete b[ a ];
 const d = $( 100 );
 const e = c + d;
 $( e );

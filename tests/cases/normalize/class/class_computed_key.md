@@ -78,7 +78,7 @@ const b = class   {
   debugger;
   const c = $( 100 );
   return c;
-},
+}
 };
 const d = new b();
 const e = d.f();

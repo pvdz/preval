@@ -103,21 +103,21 @@ With rename=true
 
 `````js filename=intro
 const a = {
-toString(  ) {
+  toString(  ) {
     debugger;
     $( "toString" );
     return "x";
-  },,
-valueOf(  ) {
+  },
+  valueOf(  ) {
     debugger;
     $( "valueOf" );
     return "y";
   },
-;
+};
 const b = $( a );
 const c = $( b );
 const d = $coerce( c, "string" );
-const e = `before  ${[object Object]}  after`;
+const e = `before  ${tmpBinBothRhs}  after`;
 $( e );
 $( c );
 `````

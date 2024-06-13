@@ -7,10 +7,8 @@
 // TODO:
 
 // tests/cases/normalize/branching/single_branching/_base_nested_else_no_tail.md -> find a way to consolidate?
-// /home/ptr/proj/preval/tests/cases/function/pure_function_inlining.md -> pst printing a string literal weird? double quote ends as \$1
 // tests/cases/function/pure_function_inlining.md -> used to be able to outline the `desc` param coerce step to the caller. the fix is to support $coerce in function outlining
-// tests/cases/normalize/expressions/assignments/for_of_left/auto_ident_logic_and_and.md -> pst printed incorrectly? (objlit)
 // tests/cases/normalize/expressions/assignments/for_of_left/auto_ident_logic_and_and.md -> add test that prints a when it does not enter the for-loop body. (this was a fix that used to be broken)
 // tests/cases/normalize/expressions/assignments/for_c/auto_ident_logic_||_simple_complex.md -> rename file to eliminate the pipes?
 // tests/cases/normalize/dce/return/decl_after_for.md -> while(true) loop that always throws is not a loop (that's a general thing...?)
-// tests/cases/normalize/expressions/assignments/for_a/auto_ident_delete_computed_simple_complex.md -> pst missing space after delete op?
+// while unroll transform does a `if (x) yes=1 else yes=0 if (yes) { while ...} else {}`. it should store the while in the if-branch.

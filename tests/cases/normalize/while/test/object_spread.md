@@ -76,9 +76,9 @@ With rename=true
 const a = $( 1 );
 const b = $( 2 );
 const c = {
-a: a,
-b: b
-;
+  a: a,
+  b: b,
+};
 const d = $( c );
 { ... d };
 $( "loop" );
@@ -86,9 +86,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const e = $( 1 );
   const f = $( 2 );
   const g = {
-a: e,
-b: f
-  ;
+    a: e,
+    b: f,
+  };
   const h = $( g );
   { ... h };
   $( "loop" );

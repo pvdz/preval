@@ -106,9 +106,9 @@ With rename=true
 let a = true;
 $( 100 );
 const b = {
-c: 10,
-d: 20
-;
+  c: 10,
+  d: 20,
+};
 const c = $( b );
 const d = $( b );
 const e = $( "d" );

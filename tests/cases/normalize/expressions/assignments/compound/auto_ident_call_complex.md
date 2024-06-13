@@ -60,9 +60,9 @@ With rename=true
 const a = $( $ );
 const b = a( 1 );
 const c = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const d = c * b;
 $( d );
 $( d );

@@ -111,9 +111,9 @@ const a = function() {
   }
 };
 const e = {
-f: a,
-foo: 10
-;
+  f: a,
+  foo: 10,
+};
 const f = e.f();
 $( f );
 `````

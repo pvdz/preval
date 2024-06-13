@@ -93,7 +93,7 @@ let a = { set c( $$0 ) {
   a = null;
   b = null;
   return 7;
-}, };
+} };
 let b = 3;
 a.c = 3;
 $( 3, a, b );

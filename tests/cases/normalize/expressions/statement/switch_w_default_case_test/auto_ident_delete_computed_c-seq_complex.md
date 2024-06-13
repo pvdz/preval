@@ -138,16 +138,16 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 const b = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const c = $( 1 );
 let d = 1;
 $( 1 );
 $( 2 );
 const e = $( a );
 const f = $( "y" );
-const g = deletee[ f ];
+const g = delete e[ f ];
 const h = g === c;
 if (h) {
   d = 0;

@@ -124,16 +124,16 @@ With rename=true
 
 `````js filename=intro
 const a = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const b = $( 1 );
 let c = 1;
 const d = {
-x: 1,
-y: 2,
-z: 3
-;
+  x: 1,
+  y: 2,
+  z: 3,
+};
 const e = d === b;
 if (e) {
   c = 0;

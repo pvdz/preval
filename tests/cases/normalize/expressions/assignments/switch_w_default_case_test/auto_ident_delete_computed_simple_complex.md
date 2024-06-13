@@ -123,7 +123,7 @@ const a = { y: 1 };
 const b = $( 1 );
 let c = 1;
 const d = $( "y" );
-const e = deletea[ d ];
+const e = delete a[ d ];
 const f = e === b;
 if (f) {
   c = 0;

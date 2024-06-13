@@ -94,17 +94,17 @@ With rename=true
 
 `````js filename=intro
 const a = {
-get c() {
+  get c() {
     debugger;
     $( "should not be called" );
     return undefined;
-  },,
-set c( $$0 ) {
+  },
+  set c( $$0 ) {
     debugger;
     $( "set" );
     return undefined;
   },
-;
+};
 a.c = 3;
 $( 3, a, 3 );
 `````

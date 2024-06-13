@@ -70,9 +70,9 @@ With rename=true
 `````js filename=intro
 const a = { $: $ };
 let b = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const c = { x: 1 };
 const d = $( c );
 let e = undefined;

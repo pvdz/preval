@@ -92,7 +92,7 @@ $( 1 );
 $( 2 );
 const b = $( "y" );
 const c = { y: 1 };
-let d = deletec[ b ];
+let d = delete c[ b ];
 if (d) {
   $( 100 );
 }
@@ -104,7 +104,7 @@ if (a) {
     $( 1 );
     $( 2 );
     const e = $( "y" );
-    d = deletec[ e ];
+    d = delete c[ e ];
     if (d) {
       $( 100 );
     }

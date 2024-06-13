@@ -70,7 +70,7 @@ $( 1 );
 $( 2 );
 const b = $( a );
 const c = $( "y" );
-const d = deleteb[ c ];
+const d = delete b[ c ];
 const e = d;
 export { e as default };
 $( d, a );

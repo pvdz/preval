@@ -64,7 +64,7 @@ With rename=true
 const a = { y: 1 };
 const b = [ "before ", " after" ];
 const c = $( "y" );
-const d = deletea[ c ];
+const d = delete a[ c ];
 $( b, d );
 $( d, a );
 `````

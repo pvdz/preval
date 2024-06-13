@@ -69,7 +69,7 @@ const a = { y: 1 };
 const b = {};
 $( 1 );
 $( 2 );
-const c = deletea.y;
+const c = delete a.y;
 b[ c ];
 $( c, a );
 `````

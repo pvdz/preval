@@ -130,13 +130,13 @@ With rename=true
 
 `````js filename=intro
 const a = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const b = $( 1 );
 let c = 1;
 const d = $( 1 );
-const e = typeofd;
+const e = typeof d;
 const f = e === b;
 if (f) {
   c = 0;

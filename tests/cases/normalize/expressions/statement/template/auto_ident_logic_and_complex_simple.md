@@ -76,13 +76,13 @@ if (b) {
 }
 else {
   const c = $coerce( b, "string" );
-  const d = `before  ${[object Object]}  after`;
+  const d = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $( d );
 }
 const e = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 $( e );
 `````
 

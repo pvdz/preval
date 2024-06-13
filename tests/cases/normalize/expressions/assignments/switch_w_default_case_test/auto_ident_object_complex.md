@@ -121,10 +121,10 @@ let b = 1;
 const c = $( 1 );
 const d = $( 3 );
 const e = {
-x: c,
-y: 2,
-z: d
-;
+  x: c,
+  y: 2,
+  z: d,
+};
 const f = e === a;
 if (f) {
   b = 0;

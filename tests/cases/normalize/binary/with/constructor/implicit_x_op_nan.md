@@ -197,7 +197,7 @@ x ** 0;
 x ** 0;
 x ** 0;
 const a = $coerce( x, "plustr" );
-const b = `${[object Object]}function String() { [native code] }`;
+const b = `${tmpStringConcatR}function String() { [native code] }`;
 x ** 0;
 const c = x << 0;
 const d = x >> 0;

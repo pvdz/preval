@@ -73,7 +73,7 @@ $( "3" );
 const a = { a(  ) {
   debugger;
   return undefined;
-}, };
+} };
 $( a );
 `````
 

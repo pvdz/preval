@@ -77,9 +77,9 @@ const a = $( 3 );
 const b = $( 4 );
 $ObjectPrototype.a;
 const c = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 $( c, a, b );
 `````
 

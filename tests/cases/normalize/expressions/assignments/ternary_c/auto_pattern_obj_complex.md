@@ -78,9 +78,9 @@ if (b) {
 }
 else {
   const d = {
-a: 1,
-b: 2
-  ;
+    a: 1,
+    b: 2,
+  };
   const e = $( d );
   a = e.a;
   $( e );

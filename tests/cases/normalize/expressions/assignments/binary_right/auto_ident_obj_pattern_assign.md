@@ -73,9 +73,9 @@ const a = $( 100 );
 const b = $( 3 );
 const c = $( 4 );
 const d = {
-x: b,
-y: c
-;
+  x: b,
+  y: c,
+};
 const e = a + d;
 $( e );
 $( d, b, c );

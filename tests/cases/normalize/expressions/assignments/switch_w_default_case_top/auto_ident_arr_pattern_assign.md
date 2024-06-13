@@ -146,9 +146,9 @@ With rename=true
 let a = 1;
 let b = 2;
 let c = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const d = $( 1 );
 let e = 1;
 const f = $( 1 );

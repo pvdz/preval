@@ -68,9 +68,9 @@ const a = $( 1 );
 const b = $( 2 );
 const c = $( a, b );
 const d = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const e = d * c;
 $( e );
 $( e );

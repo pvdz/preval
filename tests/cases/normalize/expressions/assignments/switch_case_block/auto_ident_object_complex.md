@@ -86,17 +86,17 @@ if (c) {
   const d = $( 1 );
   const e = $( 3 );
   const f = {
-x: d,
-y: 2,
-z: e
-  ;
+    x: d,
+    y: 2,
+    z: e,
+  };
   $( f );
 }
 else {
   const g = {
-a: 999,
-b: 1000
-  ;
+    a: 999,
+    b: 1000,
+  };
   $( g );
 }
 `````

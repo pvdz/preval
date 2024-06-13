@@ -135,17 +135,17 @@ With rename=true
 
 `````js filename=intro
 const a = {
-get c() {
+  get c() {
     debugger;
     $( "get" );
     return undefined;
-  },,
-set c( $$0 ) {
+  },
+  set c( $$0 ) {
     debugger;
     $( "set" );
     return undefined;
   },
-;
+};
 const b = { x: 2 };
 const c = $( "a" );
 const d = $( "a" );

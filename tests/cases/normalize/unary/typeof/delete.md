@@ -47,7 +47,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 100 );
-deletea.x;
+delete a.x;
 $( "boolean" );
 `````
 

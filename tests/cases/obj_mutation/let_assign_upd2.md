@@ -88,9 +88,9 @@ With rename=true
 
 `````js filename=intro
 const a = {
-thing: "woop",
-xyz: 1
-;
+  thing: "woop",
+  xyz: 1,
+};
 $( a );
 const b = a.xyz;
 const c = b < 10;

@@ -110,21 +110,21 @@ With rename=true
 
 `````js filename=intro
 let a = {
-get c() {
+  get c() {
     debugger;
     $( "b.get" );
     a = undefined;
     b = undefined;
     return 5;
-  },,
-set c( $$0 ) {
+  },
+  set c( $$0 ) {
     debugger;
     $( "b.set" );
     a = null;
     b = null;
     return 7;
   },
-;
+};
 let b = 3;
 a.c = 3;
 $( 3, a, b );

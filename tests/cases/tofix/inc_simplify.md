@@ -109,9 +109,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   }
 }
 const d = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 $( d, b );
 `````
 

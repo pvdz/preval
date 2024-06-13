@@ -107,7 +107,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-const b = typeofa;
+const b = typeof a;
 $( b, 1 );
 $( "fail1" );
 $( "fail2" );

@@ -52,10 +52,10 @@ With rename=true
 
 `````js filename=intro
 const a = {
-x: 1,
-b: 2,
-c: 3
-;
+  x: 1,
+  b: 2,
+  c: 3,
+};
 const b = [];
 x = objPatternRest( a, b, "x" );
 $( x );

@@ -70,14 +70,14 @@ With rename=true
 `````js filename=intro
 const a = { $: $ };
 const b = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const c = $( "$" );
 const d = a[ c ];
 const e = new d( 1 );
 const f = $coerce( e, "string" );
-const g = `before  ${[object Object]}  after`;
+const g = `before  ${tmpBinBothRhs}  after`;
 $( g );
 $( b );
 `````

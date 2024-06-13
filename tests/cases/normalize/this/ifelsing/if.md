@@ -100,9 +100,9 @@ const a = function() {
   }
 };
 const e = {
-foo: 10,
-f: a
-;
+  foo: 10,
+  f: a,
+};
 const f = e.f();
 $( f );
 `````

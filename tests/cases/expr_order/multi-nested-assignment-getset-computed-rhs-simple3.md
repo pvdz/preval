@@ -137,15 +137,15 @@ const a = function() {
 a();
 a();
 const b = {
-get foo() {
+  get foo() {
     debugger;
     return 100;
-  },,
-set foo( $$0 ) {
+  },
+  set foo( $$0 ) {
     debugger;
     return 4000;
   },
-;
+};
 $( b );
 `````
 

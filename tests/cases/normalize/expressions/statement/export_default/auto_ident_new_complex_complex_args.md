@@ -67,9 +67,9 @@ const c = $( 2 );
 const d = new a( b, c );
 export { d as default };
 const e = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 $( e );
 `````
 

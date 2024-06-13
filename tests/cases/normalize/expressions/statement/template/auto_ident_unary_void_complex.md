@@ -60,9 +60,9 @@ With rename=true
 $( 100 );
 $( "before  undefined  after" );
 const a = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 $( a );
 `````
 

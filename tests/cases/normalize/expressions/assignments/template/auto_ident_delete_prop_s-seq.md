@@ -71,9 +71,9 @@ With rename=true
 const a = { y: 1 };
 $( 1 );
 $( 2 );
-const b = deletea.y;
+const b = delete a.y;
 const c = $coerce( b, "string" );
-const d = `before  ${[object Object]}  after`;
+const d = `before  ${tmpBinBothRhs}  after`;
 $( d );
 $( b, a );
 `````

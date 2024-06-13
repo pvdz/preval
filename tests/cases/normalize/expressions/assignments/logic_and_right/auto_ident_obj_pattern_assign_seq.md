@@ -89,9 +89,9 @@ With rename=true
 let a = 1;
 let b = 2;
 let c = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const d = $( 100 );
 if (d) {
   $( 1 );
@@ -101,9 +101,9 @@ if (d) {
   a = e;
   b = f;
   const g = {
-x: e,
-y: f
-  ;
+    x: e,
+    y: f,
+  };
   c = g;
   $( g );
 }

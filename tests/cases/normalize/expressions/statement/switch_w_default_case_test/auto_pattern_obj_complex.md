@@ -129,9 +129,9 @@ With rename=true
 const a = $( 1 );
 let b = 1;
 const c = {
-a: 1,
-b: 2
-;
+  a: 1,
+  b: 2,
+};
 const d = $( c );
 const e = d === a;
 if (e) {

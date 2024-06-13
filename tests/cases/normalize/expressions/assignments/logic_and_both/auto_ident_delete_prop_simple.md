@@ -70,10 +70,10 @@ With rename=true
 
 `````js filename=intro
 const a = { y: 1 };
-let b = deletea.y;
+let b = delete a.y;
 const c = b;
 if (b) {
-  const d = deletea.y;
+  const d = delete a.y;
   b = d;
   $( d );
 }

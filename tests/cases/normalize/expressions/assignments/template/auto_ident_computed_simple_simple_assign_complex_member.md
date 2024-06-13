@@ -72,15 +72,15 @@ With rename=true
 
 `````js filename=intro
 const a = {
-c: 10,
-d: 20
-;
+  c: 10,
+  d: 20,
+};
 const b = $( a );
 const c = $( "d" );
 const d = b[ c ];
 a.c = d;
 const e = $coerce( d, "string" );
-const f = `before  ${[object Object]}  after`;
+const f = `before  ${tmpBinBothRhs}  after`;
 $( f );
 $( d, a );
 `````

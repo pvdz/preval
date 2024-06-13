@@ -65,12 +65,12 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 const b = {
-a: 999,
-b: 1000
-;
-const c = deletea.y;
+  a: 999,
+  b: 1000,
+};
+const c = delete a.y;
 const d = $coerce( c, "string" );
-const e = `before  ${[object Object]}  after`;
+const e = `before  ${tmpBinBothRhs}  after`;
 $( e );
 $( b, a );
 `````

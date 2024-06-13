@@ -154,9 +154,9 @@ $inlinedFunction: {
       $( "loop" );
       let c = undefined;
       const d = {
-a: 1,
-b: 2
-      ;
+        a: 1,
+        b: 2,
+      };
       for (c in d) {
         $( "loop", c );
         const e = $( 1, "if" );

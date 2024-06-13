@@ -147,23 +147,23 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 const b = {
-a(  ) {
-    debugger;
-    return b;
-  },,
-b(  ) {
-    debugger;
-    return b;
-  },,
-c(  ) {
-    debugger;
-    return b;
-  },,
-d(  ) {
+  a(  ) {
     debugger;
     return b;
   },
-;
+  b(  ) {
+    debugger;
+    return b;
+  },
+  c(  ) {
+    debugger;
+    return b;
+  },
+  d(  ) {
+    debugger;
+    return b;
+  },
+};
 const c = b.b;
 const d = c == null;
 if (d) {

@@ -59,10 +59,10 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 const b = {
-a: 999,
-b: 1000
-;
-deletea.y;
+  a: 999,
+  b: 1000,
+};
+delete a.y;
 $( b, a );
 `````
 

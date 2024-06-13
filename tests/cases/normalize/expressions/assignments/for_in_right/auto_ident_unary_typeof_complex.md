@@ -62,7 +62,7 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 let b = undefined;
-const c = typeofa;
+const c = typeof a;
 for (b in c) {
 
 }

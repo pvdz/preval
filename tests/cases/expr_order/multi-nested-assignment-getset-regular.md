@@ -501,42 +501,42 @@ const a = function($$0 ) {
   return undefined;
 };
 const i = {
-get a() {
+  get a() {
     debugger;
     a( "a.get" );
     return 110;
-  },,
-set a( $$0 ) {
+  },
+  set a( $$0 ) {
     const o = c;
     debugger;
     a( "a.set", o );
     return 1000;
   },
-;
+};
 const j = {
-get b() {
+  get b() {
     debugger;
     a( "b.get" );
     p = 210;
     return 100;
-  },,
-set b( $$0 ) {
+  },
+  set b( $$0 ) {
     const q = c;
     debugger;
     a( "b.set", q );
     p = 2100;
     return 2000;
   },
-;
+};
 const k = {
-get c() {
+  get c() {
     debugger;
     a( "c.get" );
     p = 310;
     e = 320;
     return 100;
-  },,
-set c( $$0 ) {
+  },
+  set c( $$0 ) {
     const r = c;
     debugger;
     a( "c.set", r );
@@ -544,17 +544,17 @@ set c( $$0 ) {
     e = 3200;
     return 3000;
   },
-;
+};
 const l = {
-get d() {
+  get d() {
     debugger;
     a( "d.get" );
     p = 410;
     e = 420;
     f = 430;
     return 100;
-  },,
-set d( $$0 ) {
+  },
+  set d( $$0 ) {
     const s = c;
     debugger;
     a( "d.set", s );
@@ -563,9 +563,9 @@ set d( $$0 ) {
     f = 4300;
     return 4000;
   },
-;
+};
 const m = {
-get e() {
+  get e() {
     debugger;
     a( "e.get" );
     p = 510;
@@ -573,8 +573,8 @@ get e() {
     f = 530;
     g = 540;
     return 100;
-  },,
-set e( $$0 ) {
+  },
+  set e( $$0 ) {
     const t = c;
     debugger;
     a( "e.set", t );
@@ -584,7 +584,7 @@ set e( $$0 ) {
     g = 5400;
     return 5000;
   },
-;
+};
 let p = function() {
   debugger;
   a( "a" );

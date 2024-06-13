@@ -61,11 +61,11 @@ With rename=true
 
 `````js filename=intro
 const a = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const b = $( 1 );
-const c = typeofb;
+const c = typeof b;
 let d = undefined;
 for (d in c) {
 

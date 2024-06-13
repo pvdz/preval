@@ -86,9 +86,9 @@ const c = $( 2 );
 new a( b, c );
 $( undefined );
 const d = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 $( d );
 `````
 

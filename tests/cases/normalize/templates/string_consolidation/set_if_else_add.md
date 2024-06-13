@@ -109,11 +109,11 @@ const b = $( "t" );
 const c = $coerce( a, "plustr" );
 if (b) {
   const d = $coerce( b, "plustr" );
-  const e = `${[object Object]}abcdef`;
+  const e = `${tmpStringConcatR}abcdef`;
   $( e );
 }
 else {
-  const f = `${[object Object]}abcghi`;
+  const f = `${tmpStringConcatR}abcghi`;
   $( f );
 }
 `````

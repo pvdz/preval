@@ -72,9 +72,9 @@ const a = $( 1 );
 const b = $( a );
 let c = undefined;
 const d = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 if (b) {
   c = d * 2;
   $( c );

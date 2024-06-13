@@ -61,10 +61,10 @@ With rename=true
 const a = $( 100 );
 $( a );
 const b = {
-x: 1,
-y: 2,
-z: 3
-;
+  x: 1,
+  y: 2,
+  z: 3,
+};
 $( b );
 `````
 

@@ -69,17 +69,17 @@ With rename=true
 const a = $( 1 );
 const b = $( 3 );
 const c = {
-x: a,
-y: 2,
-z: b
-;
+  x: a,
+  y: 2,
+  z: b,
+};
 const d = $( 1 );
 const e = $( 3 );
 const f = {
-x: d,
-y: 2,
-z: e
-;
+  x: d,
+  y: 2,
+  z: e,
+};
 const g = c + f;
 $( g );
 $( f );

@@ -77,9 +77,9 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 let b = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const c = { x: 1 };
 const d = $( c );
 let e = undefined;
@@ -88,7 +88,7 @@ for (e in d) {
   $( 2 );
   const f = $( a );
   const g = $( "y" );
-  b = deletef[ g ];
+  b = delete f[ g ];
   b.x = e;
 }
 $( b, a );

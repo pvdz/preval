@@ -185,17 +185,17 @@ $( "-------- bound" );
 $( "-------- let 1" );
 const a = $( 6 );
 const b = {
-get foo() {
+  get foo() {
     debugger;
     const c = $( 2 );
     return c;
-  },,
-set foo( $$0 ) {
+  },
+  set foo( $$0 ) {
     debugger;
     const d = $( 3 );
     return d;
   },
-;
+};
 b.foo = a;
 $( a );
 $( "-------- test case" );

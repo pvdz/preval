@@ -110,13 +110,13 @@ const a = $( "x" );
 const b = $( "y" );
 const c = $coerce( a, "string" );
 const d = $coerce( b, "string" );
-const e = `A${[object Object]}B`;
+const e = `A${tmpBinBothRhs$1}B`;
 $( e );
 const f = $coerce( a, "string" );
 const g = $coerce( b, "string" );
 const h = $coerce( a, "string" );
 const i = $coerce( b, "string" );
-const j = `AA${[object Object]}B`;
+const j = `AA${tmpBinBothRhs$9}B`;
 $( j );
 `````
 

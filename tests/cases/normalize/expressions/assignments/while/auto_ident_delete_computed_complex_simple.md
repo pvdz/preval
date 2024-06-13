@@ -83,7 +83,7 @@ With rename=true
 let a = true;
 const b = { y: 1 };
 const c = $( b );
-let d = deletec.y;
+let d = delete c.y;
 if (d) {
   $( 100 );
 }
@@ -93,7 +93,7 @@ else {
 if (a) {
   while ($LOOP_UNROLL_10) {
     const e = $( b );
-    d = deletee.y;
+    d = delete e.y;
     if (d) {
       $( 100 );
     }

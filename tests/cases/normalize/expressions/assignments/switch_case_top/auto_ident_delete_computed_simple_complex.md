@@ -85,14 +85,14 @@ const c = $( 1 );
 const d = b === c;
 if (d) {
   const e = $( "y" );
-  const f = deletea[ e ];
+  const f = delete a[ e ];
   $( f, a );
 }
 else {
   const g = {
-a: 999,
-b: 1000
-  ;
+    a: 999,
+    b: 1000,
+  };
   $( g, a );
 }
 `````

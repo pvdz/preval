@@ -60,7 +60,7 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = $coerce( a, "string" );
-const c = `a ${[object Object]} b`;
+const c = `a ${tmpBinBothRhs$1} b`;
 $( c );
 `````
 

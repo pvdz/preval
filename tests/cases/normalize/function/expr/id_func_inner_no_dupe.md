@@ -84,7 +84,7 @@ With rename=true
 const a = function() {
   debugger;
   $( "function" );
-  const b = typeofg;
+  const b = typeof g;
   $( b, undefined );
   return undefined;
 };

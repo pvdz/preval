@@ -150,9 +150,9 @@ else {
 const f = b <= 0;
 if (f) {
   const g = {
-a: 1,
-b: 2
-  ;
+    a: 1,
+    b: 2,
+  };
   $( g );
 }
 else {

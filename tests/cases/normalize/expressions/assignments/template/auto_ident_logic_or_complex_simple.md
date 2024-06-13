@@ -74,7 +74,7 @@ const a = $( 0 );
 let b = $( a );
 if (b) {
   const c = $coerce( b, "string" );
-  const d = `before  ${[object Object]}  after`;
+  const d = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $( d );
 }
 else {

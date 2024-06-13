@@ -119,7 +119,7 @@ With rename=true
 const a = { y: 1 };
 const b = $( 1 );
 let c = 1;
-const d = deletea.y;
+const d = delete a.y;
 const e = d === b;
 if (e) {
   c = 0;

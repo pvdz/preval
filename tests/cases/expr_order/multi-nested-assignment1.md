@@ -294,18 +294,18 @@ With rename=true
 
 `````js filename=intro
 let a = {
-get c() {
+  get c() {
     debugger;
     $( "get" );
     return undefined;
-  },,
-set c( $$0 ) {
+  },
+  set c( $$0 ) {
     debugger;
     a = "boom";
     $( "set" );
     return undefined;
   },
-;
+};
 let b = function() {
   debugger;
   $( "a" );

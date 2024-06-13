@@ -120,7 +120,7 @@ With rename=true
 const a = $( 1 );
 let b = 1;
 const c = $( 1 );
-const d = typeofc;
+const d = typeof c;
 const e = d === a;
 if (e) {
   b = 0;

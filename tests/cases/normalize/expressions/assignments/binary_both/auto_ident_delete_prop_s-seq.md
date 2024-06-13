@@ -74,10 +74,10 @@ With rename=true
 const a = { y: 1 };
 $( 1 );
 $( 2 );
-const b = deletea.y;
+const b = delete a.y;
 $( 1 );
 $( 2 );
-const c = deletea.y;
+const c = delete a.y;
 const d = b + c;
 $( d );
 $( c, a );

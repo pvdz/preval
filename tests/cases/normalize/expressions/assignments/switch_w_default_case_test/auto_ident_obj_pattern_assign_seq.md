@@ -136,9 +136,9 @@ $( 2 );
 const c = $( 3 );
 const d = $( 4 );
 const e = {
-x: c,
-y: d
-;
+  x: c,
+  y: d,
+};
 const f = e === a;
 if (f) {
   b = 0;

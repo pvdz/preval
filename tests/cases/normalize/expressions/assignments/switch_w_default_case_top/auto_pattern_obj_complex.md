@@ -145,9 +145,9 @@ else {
 const g = c <= 0;
 if (g) {
   const h = {
-a: 1,
-b: 2
-  ;
+    a: 1,
+    b: 2,
+  };
   const i = $( h );
   a = i.a;
 }

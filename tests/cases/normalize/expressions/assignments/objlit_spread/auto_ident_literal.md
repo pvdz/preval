@@ -53,10 +53,10 @@ With rename=true
 
 `````js filename=intro
 const a = {
-"0"[ "f" ]: "f",
-"1"[ "o" ]: "o",
-"2"[ "o" ]: "o"
-;
+  "0"[ "f" ]: "f",
+  "1"[ "o" ]: "o",
+  "2"[ "o" ]: "o",
+};
 $( a );
 $( "foo" );
 `````

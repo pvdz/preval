@@ -137,15 +137,15 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 const b = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const c = $( 1 );
 let d = 1;
 $( 1 );
 $( 2 );
 const e = $( "y" );
-const f = deletea[ e ];
+const f = delete a[ e ];
 const g = f === c;
 if (g) {
   d = 0;

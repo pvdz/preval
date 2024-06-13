@@ -94,9 +94,9 @@ With rename=true
 const a = { x: 1 };
 const b = { y: 2 };
 let c = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const d = $( 0 );
 if (d) {
   const e = $( 100 );

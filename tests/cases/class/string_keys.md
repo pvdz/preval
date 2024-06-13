@@ -74,7 +74,7 @@ const a = class   {
   debugger;
   const b = $( 1 );
   return b;
-},
+}
 };
 const c = new a();
 const d = c[ "very stringy" ]()};

@@ -60,7 +60,7 @@ With rename=true
 
 `````js filename=intro
 const a = { y: 1 };
-const b = deletea.y;
+const b = delete a.y;
 let c = undefined;
 for (c in b) {
 

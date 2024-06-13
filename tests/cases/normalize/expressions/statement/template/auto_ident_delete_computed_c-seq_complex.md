@@ -73,16 +73,16 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 const b = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 $( 1 );
 $( 2 );
 const c = $( a );
 const d = $( "y" );
-const e = deletec[ d ];
+const e = delete c[ d ];
 const f = $coerce( e, "string" );
-const g = `before  ${[object Object]}  after`;
+const g = `before  ${tmpBinBothRhs}  after`;
 $( g );
 $( b, a );
 `````

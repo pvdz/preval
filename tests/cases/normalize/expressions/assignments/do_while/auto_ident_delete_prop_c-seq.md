@@ -102,7 +102,7 @@ $( 1 );
 $( 2 );
 const b = { y: 1 };
 const c = $( b );
-let d = deletec.y;
+let d = delete c.y;
 if (d) {
 
 }
@@ -115,7 +115,7 @@ if (a) {
     $( 1 );
     $( 2 );
     const e = $( b );
-    d = deletee.y;
+    d = delete e.y;
     if (d) {
 
     }

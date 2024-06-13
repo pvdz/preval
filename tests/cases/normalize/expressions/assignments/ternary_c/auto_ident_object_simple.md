@@ -67,9 +67,9 @@ With rename=true
 
 `````js filename=intro
 let a = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const b = $( 0 );
 if (b) {
   const c = $( 100 );
@@ -77,10 +77,10 @@ if (b) {
 }
 else {
   const d = {
-x: 1,
-y: 2,
-z: 3
-  ;
+    x: 1,
+    y: 2,
+    z: 3,
+  };
   a = d;
   $( d );
 }

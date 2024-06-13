@@ -82,9 +82,9 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 const b = {
-a: 0,
-b: 1
-;
+  a: 0,
+  b: 1,
+};
 for (a of b) {
   $( "a" );
   $( true );

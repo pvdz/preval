@@ -99,7 +99,7 @@ $( 100 );
 $( 1 );
 $( 2 );
 const b = { y: 1 };
-let c = deleteb.y;
+let c = delete b.y;
 if (c) {
 
 }
@@ -111,7 +111,7 @@ if (a) {
     $( 100 );
     $( 1 );
     $( 2 );
-    c = deleteb.y;
+    c = delete b.y;
     if (c) {
 
     }

@@ -72,7 +72,7 @@ $( 1 );
 $( 1 );
 $( 2 );
 const a = { y: 1 };
-const b = deletea.y;
+const b = delete a.y;
 $( b, a );
 `````
 

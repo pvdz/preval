@@ -96,14 +96,14 @@ if (d) {
   $( 2 );
   const e = $( a );
   const f = $( "y" );
-  const g = deletee[ f ];
+  const g = delete e[ f ];
   $( g, a );
 }
 else {
   const h = {
-a: 999,
-b: 1000
-  ;
+    a: 999,
+    b: 1000,
+  };
   $( h, a );
 }
 `````

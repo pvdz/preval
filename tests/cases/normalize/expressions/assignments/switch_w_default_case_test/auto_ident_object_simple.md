@@ -114,10 +114,10 @@ With rename=true
 const a = $( 1 );
 let b = 1;
 const c = {
-x: 1,
-y: 2,
-z: 3
-;
+  x: 1,
+  y: 2,
+  z: 3,
+};
 const d = c === a;
 if (d) {
   b = 0;

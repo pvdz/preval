@@ -82,14 +82,14 @@ const b = $( 1 );
 const c = a === b;
 if (c) {
   const d = $( 1 );
-  const e = typeofd;
+  const e = typeof d;
   $( e, 1 );
 }
 else {
   const f = {
-a: 999,
-b: 1000
-  ;
+    a: 999,
+    b: 1000,
+  };
   $( f, 1 );
 }
 `````

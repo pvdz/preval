@@ -97,9 +97,9 @@ With rename=true
 `````js filename=intro
 const a = { $: $ };
 const b = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 let c = undefined;
 const d = $( a );
 const e = d == null;
@@ -120,7 +120,7 @@ else {
   }
 }
 const k = $coerce( c, "string" );
-const l = `before  ${[object Object]}  after`;
+const l = `before  ${tmpBinBothRhs}  after`;
 $( l );
 $( b );
 `````

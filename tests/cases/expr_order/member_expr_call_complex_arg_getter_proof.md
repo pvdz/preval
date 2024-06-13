@@ -111,12 +111,12 @@ const a = { get b() {
   debugger;
   $( "b.get" );
   return 100;
-}, };
+} };
 const b = { get y() {
   debugger;
   $( "y.get" );
   return $;
-}, };
+} };
 const c = b.y;
 const d = a.b;
 $dotCall( c, b, d );

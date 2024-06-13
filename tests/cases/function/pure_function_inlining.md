@@ -124,7 +124,7 @@ const a = function($$0 ) {
   const b = c;
   debugger;
   const d = $coerce( b, "plustr" );
-  const e = `purpleRule:reset "${[object Object]}\$1`;
+  const e = `purpleRule:reset "${tmpStringConcatL}"`;
   $( e );
   return undefined;
 };

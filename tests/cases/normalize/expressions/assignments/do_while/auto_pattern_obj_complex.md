@@ -94,9 +94,9 @@ With rename=true
 let a = true;
 $( 100 );
 const b = {
-a: 1,
-b: 2
-;
+  a: 1,
+  b: 2,
+};
 const c = $( b );
 let d = c.a;
 if (c) {
@@ -109,9 +109,9 @@ if (a) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
     const e = {
-a: 1,
-b: 2
-    ;
+      a: 1,
+      b: 2,
+    };
     const f = $( e );
     d = f.a;
     if (f) {

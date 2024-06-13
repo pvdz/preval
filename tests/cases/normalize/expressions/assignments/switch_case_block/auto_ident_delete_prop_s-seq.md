@@ -91,14 +91,14 @@ const d = b === c;
 if (d) {
   $( 1 );
   $( 2 );
-  const e = deletea.y;
+  const e = delete a.y;
   $( e, a );
 }
 else {
   const f = {
-a: 999,
-b: 1000
-  ;
+    a: 999,
+    b: 1000,
+  };
   $( f, a );
 }
 `````

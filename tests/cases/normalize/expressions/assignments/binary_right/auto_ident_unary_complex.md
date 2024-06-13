@@ -63,7 +63,7 @@ With rename=true
 `````js filename=intro
 const a = $( 100 );
 const b = $( 1 );
-const c = typeofb;
+const c = typeof b;
 const d = a + c;
 $( d );
 $( c, 1 );

@@ -151,19 +151,19 @@ const a = function() {
   const b = c.y;
   if (b) {
     $( "yeeting" );
-    deletec.y;
+    delete c.y;
   }
   const d = Object.defineProperty;
   const e = {
-set( $$0 ) {
+    set( $$0 ) {
       debugger;
       return undefined;
-    },,
-get(  ) {
+    },
+    get(  ) {
       debugger;
       return "intercepted";
     },
-  ;
+  };
   $dotCall( d, Object, c, "y", e );
   $( "b" );
   return undefined;

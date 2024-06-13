@@ -125,7 +125,7 @@ const b = $( 1 );
 let c = 1;
 const d = $( a );
 const e = $( "y" );
-const f = deleted[ e ];
+const f = delete d[ e ];
 const g = f === b;
 if (g) {
   c = 0;

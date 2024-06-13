@@ -75,9 +75,9 @@ const c = $( b );
 let d = undefined;
 for (d of c) {
   const e = {
-a: 1,
-b: 2
-  ;
+    a: 1,
+    b: 2,
+  };
   const f = $( e );
   a = f.a;
   f.x = d;

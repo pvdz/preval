@@ -72,18 +72,18 @@ With rename=true
 
 `````js filename=intro
 let a = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const b = $( 1 );
 if (b) {
   const c = $( 1 );
   const d = $( 3 );
   const e = {
-x: c,
-y: 2,
-z: d
-  ;
+    x: c,
+    y: 2,
+    z: d,
+  };
   a = e;
   $( e );
 }

@@ -84,9 +84,9 @@ With rename=true
 
 `````js filename=intro
 const a = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const b = $( 0 );
 let c = $( b );
 if (c) {
@@ -104,7 +104,7 @@ else {
   }
 }
 const f = $coerce( c, "string" );
-const g = `before  ${[object Object]}  after`;
+const g = `before  ${tmpBinBothRhs}  after`;
 $( g );
 $( a );
 `````

@@ -74,20 +74,20 @@ With rename=true
 
 `````js filename=intro
 const a = {
-c: 10,
-d: 20
-;
+  c: 10,
+  d: 20,
+};
 const b = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const c = $( "c" );
 const d = $( a );
 const e = $( "d" );
 const f = d[ e ];
 a[c] = f;
 const g = $coerce( f, "string" );
-const h = `before  ${[object Object]}  after`;
+const h = `before  ${tmpBinBothRhs}  after`;
 $( h );
 $( b, a );
 `````

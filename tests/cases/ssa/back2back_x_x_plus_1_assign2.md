@@ -170,7 +170,7 @@ if ($) {
     debugger;
     $( "tostring" );
     return "hi";
-  }, };
+  } };
   const c = $( b );
   const d = c + 1;
   if ($) {

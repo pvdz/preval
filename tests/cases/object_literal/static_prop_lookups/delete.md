@@ -49,7 +49,7 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-deletea.x;
+delete a.x;
 $( a );
 `````
 

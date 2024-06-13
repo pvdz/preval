@@ -93,21 +93,21 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 const b = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 $( 100 );
 $( 1 );
 $( 2 );
 const c = $( a );
-const d = deletec.y;
+const d = delete c.y;
 if (d) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
     $( 1 );
     $( 2 );
     const e = $( a );
-    const f = deletee.y;
+    const f = delete e.y;
     if (f) {
 
     }

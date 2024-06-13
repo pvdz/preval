@@ -63,9 +63,9 @@ With rename=true
 `````js filename=intro
 const a = {};
 const b = {
-x: 1,
-y: 2
-;
+  x: 1,
+  y: 2,
+};
 let c = undefined;
 for (c in b) {
   const d = $( a );

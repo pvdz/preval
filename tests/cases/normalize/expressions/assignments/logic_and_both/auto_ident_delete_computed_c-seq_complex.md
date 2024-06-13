@@ -93,14 +93,14 @@ $( 2 );
 const a = { y: 1 };
 const b = $( a );
 const c = $( "y" );
-let d = deleteb[ c ];
+let d = delete b[ c ];
 const e = d;
 if (d) {
   $( 1 );
   $( 2 );
   const f = $( a );
   const g = $( "y" );
-  const h = deletef[ g ];
+  const h = delete f[ g ];
   d = h;
   $( h );
 }

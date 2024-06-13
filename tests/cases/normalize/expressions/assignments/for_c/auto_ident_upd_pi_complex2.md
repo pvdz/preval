@@ -165,9 +165,9 @@ With rename=true
 
 `````js filename=intro
 let a = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 let b = $( 1 );
 let c = true;
 const d = { x: 1 };

@@ -59,7 +59,7 @@ With rename=true
 `````js filename=intro
 const a = { x: 1 };
 $( a );
-deletea.x;
+delete a.x;
 $( a );
 `````
 

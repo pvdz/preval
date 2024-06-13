@@ -73,13 +73,13 @@ With rename=true
 
 `````js filename=intro
 const a = {
-c: 10,
-d: 20
-;
+  c: 10,
+  d: 20,
+};
 const b = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const c = $( 100 );
 if (c) {
   const d = $( "c" );

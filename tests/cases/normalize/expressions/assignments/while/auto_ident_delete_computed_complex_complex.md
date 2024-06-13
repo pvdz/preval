@@ -87,7 +87,7 @@ let a = true;
 const b = { y: 1 };
 const c = $( b );
 const d = $( "y" );
-let e = deletec[ d ];
+let e = delete c[ d ];
 if (e) {
   $( 100 );
 }
@@ -98,7 +98,7 @@ if (a) {
   while ($LOOP_UNROLL_10) {
     const f = $( b );
     const g = $( "y" );
-    e = deletef[ g ];
+    e = delete f[ g ];
     if (e) {
       $( 100 );
     }

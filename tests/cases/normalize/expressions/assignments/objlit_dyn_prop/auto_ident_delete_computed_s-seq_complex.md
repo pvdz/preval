@@ -70,7 +70,7 @@ const a = { y: 1 };
 $( 1 );
 $( 2 );
 const b = $( "y" );
-const c = deletea[ b ];
+const c = delete a[ b ];
 const d = { c[ 10 ]: 10 };
 $( d );
 $( c, a );

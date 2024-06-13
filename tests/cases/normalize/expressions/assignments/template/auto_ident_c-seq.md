@@ -70,7 +70,7 @@ $( 1 );
 $( 2 );
 const a = $( 1 );
 const b = $coerce( a, "string" );
-const c = `before  ${[object Object]}  after`;
+const c = `before  ${tmpBinBothRhs}  after`;
 $( c );
 $( a, 1 );
 `````

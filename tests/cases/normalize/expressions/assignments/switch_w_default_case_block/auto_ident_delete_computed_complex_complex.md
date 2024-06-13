@@ -136,9 +136,9 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 let b = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const c = $( 1 );
 let d = 1;
 const e = $( 1 );
@@ -156,7 +156,7 @@ const h = d <= 0;
 if (h) {
   const i = $( a );
   const j = $( "y" );
-  b = deletei[ j ];
+  b = delete i[ j ];
 }
 const k = d <= 1;
 if (k) {

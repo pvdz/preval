@@ -79,9 +79,9 @@ With rename=true
 
 `````js filename=intro
 let a = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const b = $( 0 );
 const c = { y: 1 };
 if (b) {
@@ -92,7 +92,7 @@ else {
   $( 1 );
   $( 2 );
   const e = $( "y" );
-  const f = deletec[ e ];
+  const f = delete c[ e ];
   a = f;
   $( f );
 }

@@ -70,9 +70,9 @@ const a = function() {
   return undefined;
 };
 const b = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const c = b * a;
 $( c );
 $( c );

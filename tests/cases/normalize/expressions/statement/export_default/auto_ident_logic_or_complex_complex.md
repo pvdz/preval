@@ -76,9 +76,9 @@ else {
 }
 export { b as default };
 const d = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 $( d );
 `````
 

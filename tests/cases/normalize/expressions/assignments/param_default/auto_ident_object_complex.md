@@ -80,10 +80,10 @@ const a = $( 1 );
 const b = $( 3 );
 $( undefined );
 const c = {
-x: a,
-y: 2,
-z: b
-;
+  x: a,
+  y: 2,
+  z: b,
+};
 $( c );
 `````
 

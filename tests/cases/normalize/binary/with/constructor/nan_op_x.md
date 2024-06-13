@@ -231,23 +231,23 @@ With rename=true
 
 `````js filename=intro
 const a = {
-toString(  ) {
+  toString(  ) {
     debugger;
     const b = $( "toString" );
     return b;
-  },,
-valueOf(  ) {
+  },
+  valueOf(  ) {
     debugger;
     $( "valueOf" );
     return 100;
   },
-;
+};
 a ** 0;
 a ** 0;
 a ** 0;
 a ** 0;
 const c = $coerce( a, "plustr" );
-const d = `function String() { [native code] }${[object Object]}`;
+const d = `function String() { [native code] }${tmpStringConcatL}`;
 a ** 0;
 const e = 0 << a;
 const f = 0 >> a;

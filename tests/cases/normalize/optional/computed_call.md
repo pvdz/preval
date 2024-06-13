@@ -97,9 +97,9 @@ const a = function($$0 ) {
   return undefined;
 };
 const f = {
-x: a,
-y: 100
-;
+  x: a,
+  y: 100,
+};
 const g = $( f );
 const h = $( "x" );
 const i = g[ h ];

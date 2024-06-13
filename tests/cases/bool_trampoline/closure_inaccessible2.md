@@ -148,8 +148,8 @@ const d = function() {
 };
 $( undefined );
 const e = {
-f: d,
-g(  ) {
+  f: d,
+  g(  ) {
     const f = this;
     debugger;
     const g = f.f();
@@ -162,7 +162,7 @@ g(  ) {
       return undefined;
     }
   },
-;
+};
 $( e );
 `````
 

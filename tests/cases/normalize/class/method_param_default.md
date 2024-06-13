@@ -99,7 +99,7 @@ y( $$0 ) {
   else {
     return b;
   }
-},
+}
 };
 const f = new a();
 const g = f.y();

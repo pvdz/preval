@@ -79,9 +79,9 @@ const a = $( 3 );
 const b = $( 4 );
 const c = $( 100 );
 const d = {
-x: a,
-y: b
-;
+  x: a,
+  y: b,
+};
 const e = d + c;
 $( e );
 $( d, a, b );

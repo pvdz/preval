@@ -86,7 +86,7 @@ $( 1 );
 $( 2 );
 const a = { y: 1 };
 const b = $( a );
-const c = deleteb.y;
+const c = delete b.y;
 $( undefined );
 $( c, a );
 `````

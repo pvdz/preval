@@ -65,7 +65,7 @@ const a = { $(  ) {
   debugger;
   $( 1 );
   return undefined;
-}, };
+} };
 a.$();
 `````
 

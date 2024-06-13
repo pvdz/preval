@@ -76,21 +76,21 @@ With rename=true
 
 `````js filename=intro
 let a = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const b = $( 30 );
 if (b) {
   a = $( 60 );
   const c = $coerce( a, "string" );
-  const d = `before  ${[object Object]}  after`;
+  const d = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $( d );
 }
 else {
   const e = $( 100 );
   a = $( e );
   const f = $coerce( a, "string" );
-  const g = `before  ${[object Object]}  after`;
+  const g = `before  ${tmpClusterSSA_tmpBinBothRhs$1}  after`;
   $( g );
 }
 $( a );

@@ -58,9 +58,9 @@ With rename=true
 let a = undefined;
 let b = undefined;
 const c = {
-a: 1,
-b: 2
-;
+  a: 1,
+  b: 2,
+};
 for (b in c) {
   a = b;
 }

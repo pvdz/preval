@@ -82,12 +82,12 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 const b = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 let c = true;
 const d = $( a );
-const e = deleted.y;
+const e = delete d.y;
 if (e) {
   $( 100 );
 }
@@ -97,7 +97,7 @@ else {
 if (c) {
   while ($LOOP_UNROLL_10) {
     const f = $( a );
-    const g = deletef.y;
+    const g = delete f.y;
     if (g) {
       $( 100 );
     }

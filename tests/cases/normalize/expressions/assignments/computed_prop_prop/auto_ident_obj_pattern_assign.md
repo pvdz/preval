@@ -73,9 +73,9 @@ const a = {};
 const b = $( 3 );
 const c = $( 4 );
 const d = {
-x: b,
-y: c
-;
+  x: b,
+  y: c,
+};
 a[ d ];
 $( d, b, c );
 `````

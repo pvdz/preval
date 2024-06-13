@@ -70,9 +70,9 @@ const b = $( 1 );
 const c = $( 2 );
 const d = new a( b, c );
 const e = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const f = e * d;
 $( f );
 $( f );

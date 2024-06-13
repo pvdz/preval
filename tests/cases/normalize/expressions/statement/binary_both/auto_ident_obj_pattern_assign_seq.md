@@ -85,25 +85,25 @@ With rename=true
 
 `````js filename=intro
 const a = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 $( 1 );
 $( 2 );
 const b = $( 3 );
 const c = $( 4 );
 const d = {
-x: b,
-y: c
-;
+  x: b,
+  y: c,
+};
 $( b );
 $( c );
 const e = $( 3 );
 const f = $( 4 );
 const g = {
-x: e,
-y: f
-;
+  x: e,
+  y: f,
+};
 d + g;
 $( a, e, f );
 `````

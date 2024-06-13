@@ -69,7 +69,7 @@ With rename=true
 `````js filename=intro
 const a = $( "y" );
 const b = { y: 1 };
-deleteb[ a ];
+delete b[ a ];
 $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );

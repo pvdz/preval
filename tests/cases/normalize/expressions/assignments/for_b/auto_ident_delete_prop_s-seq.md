@@ -92,7 +92,7 @@ let a = true;
 $( 1 );
 $( 2 );
 const b = { y: 1 };
-let c = deleteb.y;
+let c = delete b.y;
 if (c) {
   $( 1 );
 }
@@ -103,7 +103,7 @@ if (a) {
   while ($LOOP_UNROLL_10) {
     $( 1 );
     $( 2 );
-    c = deleteb.y;
+    c = delete b.y;
     if (c) {
       $( 1 );
     }

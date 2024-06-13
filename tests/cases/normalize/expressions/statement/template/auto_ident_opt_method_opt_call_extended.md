@@ -86,9 +86,9 @@ With rename=true
 `````js filename=intro
 const a = { e: $ };
 const b = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const c = $ == null;
 if (c) {
   $( "before  undefined  after" );
@@ -96,7 +96,7 @@ if (c) {
 else {
   const d = $dotCall( $, a, 1 );
   const e = $coerce( d, "string" );
-  const f = `before  ${[object Object]}  after`;
+  const f = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $( f );
 }
 $( b );

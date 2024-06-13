@@ -53,7 +53,7 @@ With rename=true
 
 `````js filename=intro
 const a = { y: 1 };
-const b = deletea.y;
+const b = delete a.y;
 export { b as a };
 $( b, a );
 `````

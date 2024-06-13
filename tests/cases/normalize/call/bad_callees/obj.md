@@ -52,9 +52,9 @@ With rename=true
 `````js filename=intro
 $( "before" );
 const a = {
-a: 1,
-b: 2
-;
+  a: 1,
+  b: 2,
+};
 a();
 $( "after" );
 `````

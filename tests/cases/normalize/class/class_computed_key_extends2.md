@@ -70,7 +70,7 @@ const a = class   {
 x(  ) {
   debugger;
   return undefined;
-},
+}
 };
 const b = a();
 b.y;

@@ -67,15 +67,15 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 const b = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const c = $( 100 );
 $( 1 );
 $( 2 );
 const d = $( a );
 const e = $( "y" );
-const f = deleted[ e ];
+const f = delete d[ e ];
 c + f;
 $( b, a );
 `````

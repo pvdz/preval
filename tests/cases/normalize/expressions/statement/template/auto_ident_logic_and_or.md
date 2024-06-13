@@ -94,20 +94,20 @@ if (b) {
 }
 if (b) {
   const d = $coerce( b, "string" );
-  const e = `before  ${[object Object]}  after`;
+  const e = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $( e );
 }
 else {
   const f = $( 2 );
   const g = $( f );
   const h = $coerce( g, "string" );
-  const i = `before  ${[object Object]}  after`;
+  const i = `before  ${tmpClusterSSA_tmpBinBothRhs$1}  after`;
   $( i );
 }
 const j = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 $( j );
 `````
 

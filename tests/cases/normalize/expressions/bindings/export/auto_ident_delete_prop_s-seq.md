@@ -60,7 +60,7 @@ With rename=true
 $( 1 );
 $( 2 );
 const a = { y: 1 };
-const b = deletea.y;
+const b = delete a.y;
 export { b as a };
 $( b, a );
 `````

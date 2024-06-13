@@ -75,9 +75,9 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 const b = {
-a: 1,
-b: 2
-;
+  a: 1,
+  b: 2,
+};
 for (a in b) {
   const c = $( 1, "throw" );
   throw c;

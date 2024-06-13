@@ -69,9 +69,9 @@ const d = new a( b, c );
 const e = $( 100 );
 d + e;
 const f = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 $( f );
 `````
 

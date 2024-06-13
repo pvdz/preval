@@ -64,8 +64,8 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-const b = typeofa;
-const c = `before  ${[object Object]}  after`;
+const b = typeof a;
+const c = `before  ${a}  after`;
 $( c );
 $( b, 1 );
 `````

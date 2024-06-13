@@ -78,9 +78,9 @@ const b = $( 1 );
 const c = a === b;
 if (c) {
   const d = {
-a: 1,
-b: 2
-  ;
+    a: 1,
+    b: 2,
+  };
   $( d );
 }
 $( 999 );

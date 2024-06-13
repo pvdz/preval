@@ -168,19 +168,19 @@ const c = class   {
   debugger;
   const d = $( 100, "method" );
   return d;
-},,g(  ) {
+},g(  ) {
   debugger;
   const e = $( 200, "method" );
   return e;
-},,x(  ) {
+},x(  ) {
   debugger;
   const f = $( 300, "method" );
   return f;
-},,y(  ) {
+},y(  ) {
   debugger;
   const g = $( 400, "method" );
   return g;
-},
+}
 };
 const h = new c();
 const i = h.f();

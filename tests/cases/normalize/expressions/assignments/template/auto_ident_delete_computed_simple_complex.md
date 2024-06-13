@@ -68,9 +68,9 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 const b = $( "y" );
-const c = deletea[ b ];
+const c = delete a[ b ];
 const d = $coerce( c, "string" );
-const e = `before  ${[object Object]}  after`;
+const e = `before  ${tmpBinBothRhs}  after`;
 $( e );
 $( c, a );
 `````

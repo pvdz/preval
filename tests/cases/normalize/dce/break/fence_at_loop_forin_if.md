@@ -128,9 +128,9 @@ while (true) {
     $( "loop" );
     let b = undefined;
     const c = {
-a: 1,
-b: 2
-    ;
+      a: 1,
+      b: 2,
+    };
     for (b in c) {
       $( "loop", b );
       const d = $( 1 );

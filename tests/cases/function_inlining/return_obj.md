@@ -56,10 +56,10 @@ With rename=true
 
 `````js filename=intro
 const a = {
-a: 10,
-b: 20,
-c: 30
-;
+  a: 10,
+  b: 20,
+  c: 30,
+};
 $( a );
 `````
 

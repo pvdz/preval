@@ -91,9 +91,9 @@ const d = [ ... c ];
 const e = d[ 0 ];
 $( undefined );
 const f = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 $( f, e );
 `````
 

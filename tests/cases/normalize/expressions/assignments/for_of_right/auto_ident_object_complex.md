@@ -63,10 +63,10 @@ const a = $( 1 );
 const b = $( 3 );
 let c = undefined;
 const d = {
-x: a,
-y: 2,
-z: b
-;
+  x: a,
+  y: 2,
+  z: b,
+};
 for (c of d) {
 
 }

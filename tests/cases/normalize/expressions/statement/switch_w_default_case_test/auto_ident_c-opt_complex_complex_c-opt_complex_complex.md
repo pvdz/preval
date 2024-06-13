@@ -162,9 +162,9 @@ With rename=true
 const a = { y: 1 };
 const b = { x: a };
 const c = {
-a: 999,
-b: 1000
-;
+  a: 999,
+  b: 1000,
+};
 const d = $( 1 );
 let e = 1;
 let f = undefined;

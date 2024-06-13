@@ -54,9 +54,9 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 const b = {
-a: 1,
-b: 2
-;
+  a: 1,
+  b: 2,
+};
 for (a of b) {
   const c = a.x;
   $( c );

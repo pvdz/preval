@@ -86,9 +86,9 @@ $( 4 );
 const a = $( 3 );
 const b = $( 4 );
 const c = {
-x: a,
-y: b
-;
+  x: a,
+  y: b,
+};
 $( c );
 $( c, a, b );
 `````

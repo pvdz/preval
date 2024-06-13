@@ -76,9 +76,9 @@ With rename=true
 
 `````js filename=intro
 const a = {
-c: 10,
-d: 20
-;
+  c: 10,
+  d: 20,
+};
 const b = $( a );
 const c = $( "c" );
 const d = $( a );
@@ -86,7 +86,7 @@ const e = $( "d" );
 const f = d[ e ];
 b[c] = f;
 const g = $coerce( f, "string" );
-const h = `before  ${[object Object]}  after`;
+const h = `before  ${tmpBinBothRhs}  after`;
 $( h );
 $( f, a );
 `````

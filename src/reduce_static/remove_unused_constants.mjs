@@ -2,6 +2,7 @@
 
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
+import { isArgumentsLength } from '../ast.mjs';
 
 export function removeUnusedConstants(fdata) {
   group('\n\n\nEliminating unused constants\n');
@@ -37,6 +38,7 @@ function _inlineConstants(fdata) {
         init.type === 'Param' || // Don't leave special Param nodes as statements
         init.type === 'FunctionExpression' || // Don't leave function expressions as statement (without assign and not as decl)
         (init.type === 'Identifier' && init.name === 'arguments') || // Dont bother leaving `arguments` as statement
+        isArgumentsLength(init) || // Dont bother leaving `arguments.length` as statement
         init.type === 'ThisExpression' // Don't leave `this` as statement
       )
         ? AST.emptyStatement()

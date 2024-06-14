@@ -506,6 +506,9 @@ function processAttempt3OnlyUsedInOtherScope(fdata) {
       vlog('Failed attempt 3 hoisting.');
     } else if (!otherFunc) {
       vlog('Binding only used in one scope. Nothing to do here.');
+    } else if (!AST.isPrimitive(vardeclRef.parentNode.init)) {
+      // TODO: can we support this?
+      vlog('Init was not a primitive, bailing for now');
     } else {
       vlog(
         'All refs for a binding are in a different scope than the scope where it was defined, all of them in the same scope, and the first ref in that scope was an assignment. Good to go.',

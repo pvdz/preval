@@ -1,4 +1,4 @@
-// Find loops that never loop and drop them if we can
+// Find loops that never break and compile a `throw "unreachable"` after them to induce DCE
 
 import walk from '../../lib/walk.mjs';
 import {
@@ -21,13 +21,13 @@ import {
 import * as AST from '../ast.mjs';
 import { addLabelReference, createFreshLabelStatement } from '../labels.mjs';
 
-export function fakeLoops(fdata) {
-  group('\n\n\nFind loops that never loop and drop them if we can\n');
-  const r = _fakeLoops(fdata);
+export function infiniteLoops(fdata) {
+  group('\n\n\nFind loops that always loop and add a "throw unreachable" after them\n');
+  const r = _infiniteLoops(fdata);
   groupEnd();
   return r;
 }
-function _fakeLoops(fdata) {
+function _infiniteLoops(fdata) {
   const ast = fdata.tenkoOutput.ast;
 
   let changed = 0;
@@ -134,7 +134,7 @@ function _fakeLoops(fdata) {
 
     vgroupEnd();
 
-    log('Fake loops dropped:', changed, '. Restarting from phase1');
+    log('Infinite loops found:', changed, '. Restarting from phase1');
     return 'phase1';
   }
 

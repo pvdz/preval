@@ -63,7 +63,7 @@ import { andIfAndIf } from './and_if_and_if.mjs';
 import { ifMerging } from './if_merging.mjs';
 import { ifFalsySpread } from './if_falsy_spread.mjs';
 import { tailBreaking } from './tail_breaking.mjs';
-import { fakeLoops } from './fake_loops.mjs';
+import { infiniteLoops } from './infinite_loops.mjs';
 import { unwindWhileWithTest } from './unwind_loop_with_test.mjs';
 import { unwindWhileWithCounter } from './unwind_loop_with_counter.mjs';
 import { staticArgOpOutlining } from './static_arg_op_outlining.mjs';
@@ -256,7 +256,7 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     ifMerging(fdata) ||
     ifFalsySpread(fdata) ||
     tailBreaking(fdata) ||
-    fakeLoops(fdata) ||
+    infiniteLoops(fdata) ||
     unwindWhileWithTest(fdata, options.unrollLimit) ||
     unwindWhileWithCounter(fdata, options.unrollLimit) ||
     staticArgOpOutlining(fdata) ||

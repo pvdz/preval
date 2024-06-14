@@ -25,13 +25,11 @@
 // multiple times etc.
 // The clone would have to take care of some cases:
 // - Break: clear the counter, skip the remainder of the copied block
-// - Continue: keep the counter, skip the remainder of the copied block (let it enter
-//   the loop naturally)
 // - Labels: must be unique so that needs to be traversed and updated to ensure
 //   uniqueness. We may just bail on labels for now.
-// - Labeled continue/break: ummm. Bail.
+// - Labeled break: ummm. Bail.
 // - Nested loops: not a problem except that the counter logic would need to be robust
-// I think other constructs like try/catch, return, throw, switch, etc, are all ok...
+// I think other constructs like try/catch, return, throw, etc, are all ok...
 
 import walk from '../../lib/walk.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat } from '../utils.mjs';
@@ -125,14 +123,14 @@ function processAttempt(fdata, unrollTrueLimit) {
         vlog('  - bail: body contained a label');
         return;
       }
-      if ((node.type === 'ContinueStatement' || node.type === 'BreakStatement') && node.label !== null) {
+      if (node.type === 'BreakStatement' && node.label !== null) {
         ok = false;
-        vlog('  - bail: body contained labeled continue/break');
+        vlog('  - bail: body contained labeled break');
         return;
       }
 
-      // TODO: for now, ignore loops so we don't have to worry about scoping of break/continue ;)
-      if (['ForOfStatement', 'ForInStatement', 'ForStatement', 'WhileStatement'].includes(node.type)) {
+      // TODO: for now, ignore loops so we don't have to worry about scoping of break ;)
+      if (['ForOfStatement', 'ForInStatement', 'WhileStatement'].includes(node.type)) {
         ok = false;
         vlog('  - bail: body contained another loop and we will deal with that another day, or never');
         return;
@@ -183,21 +181,6 @@ function processAttempt(fdata, unrollTrueLimit) {
 
         const newNode = AST.blockStatement([
           AST.expressionStatement(AST.assignmentExpression(tmpName, AST.fals(), '=')),
-          AST.breakStatement(labelStatementNode.label.name),
-        ])
-
-        if (parentIndex < 0) parentNode[parentProp] = newNode;
-        else parentNode[parentProp][parentIndex] = newNode;
-
-        return;
-      }
-
-      if (node.type === 'ContinueStatement') {
-        const parentNode = path.nodes[path.nodes.length - 2];
-        const parentProp = path.props[path.props.length - 1];
-        const parentIndex = path.indexes[path.indexes.length - 1];
-
-        const newNode = AST.blockStatement([
           AST.breakStatement(labelStatementNode.label.name),
         ])
 

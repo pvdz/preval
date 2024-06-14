@@ -1,4 +1,5 @@
 // Find loops that never break and compile a `throw "unreachable"` after them to induce DCE
+// And if a loop (`while(true)`) always completes then eliminate it.
 
 import walk from '../../lib/walk.mjs';
 import {
@@ -81,6 +82,27 @@ function _infiniteLoops(fdata) {
             });
             ++changed;
           }
+        }
+
+        if (node.body.$p.alwaysComplete) {
+          // This loop always breaks, returns, or throws.
+          // That means it can never loop. That means we can eliminate the while and replace it with its body...
+
+          rule('A loop that never loops can be replaced with its body');
+          example('while (true) { f(); throw x; }', '{ f(); throw x; }');
+          before(node);
+
+          const parentNode = path.nodes[path.nodes.length - 2];
+          const parentProp = path.props[path.props.length - 1];
+          const parentIndex = path.indexes[path.indexes.length - 1];
+
+          parentNode[parentProp][parentIndex] = node.body;
+          queue.push({index: parentIndex, func: () => {
+            parentNode[parentProp].splice(parentIndex, 1, ...node.body.body);
+          }});
+
+          after(parentNode[parentProp][parentIndex]);
+          ++changed;
         }
         break;
       }

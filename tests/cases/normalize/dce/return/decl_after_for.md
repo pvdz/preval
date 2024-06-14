@@ -62,10 +62,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  throw `Preval: TDZ triggered for this read: while (x) {`;
-}
-throw `[preval] unreachable; infinite loop`;
+throw `Preval: TDZ triggered for this read: while (x) {`;
 `````
 
 ## PST Output
@@ -73,10 +70,7 @@ throw `[preval] unreachable; infinite loop`;
 With rename=true
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  throw "Preval: TDZ triggered for this read: while (x) {";
-}
-throw "[preval] unreachable; infinite loop";
+throw "Preval: TDZ triggered for this read: while (x) {";
 `````
 
 ## Globals

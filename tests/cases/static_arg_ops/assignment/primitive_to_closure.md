@@ -1,8 +1,8 @@
 # Preval test case
 
-# closure_is_primitive.md
+# primitive_to_closure.md
 
-> Static arg ops > Assignment > Closure is primitive
+> Static arg ops > Assignment > Primitive to closure
 
 ## Input
 

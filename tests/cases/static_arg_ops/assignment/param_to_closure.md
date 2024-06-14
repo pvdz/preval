@@ -1,8 +1,8 @@
 # Preval test case
 
-# closure_is_param.md
+# param_to_closure.md
 
-> Static arg ops > Assignment > Closure is param
+> Static arg ops > Assignment > Param to closure
 
 ## Input
 

@@ -1,75 +1,76 @@
 # Preval test case
 
-# param_is_closure.md
+# closure_to_closure.md
 
-> Static arg ops > Assignment > Param is closure
+> Static arg ops > Assignment > Closure to closure
+>
+> 
+
+#TODO
 
 ## Input
 
 `````js filename=intro
-let a = 1;
-function f(b) {
+let a = $();
+let b = $();
+function f() {
   b = a;
+  $(a);
   $(b);
 }
-$(f);
-f(10);
-f(11);
-f(12);
-$(3);
+f($);
+f($);
 `````
 
 ## Pre Normal
 
 
 `````js filename=intro
-let f = function ($$0) {
-  let b = $$0;
+let f = function () {
   debugger;
   b = a;
+  $(a);
   $(b);
 };
-let a = 1;
-$(f);
-f(10);
-f(11);
-f(12);
-$(3);
+let a = $();
+let b = $();
+f($);
+f($);
 `````
 
 ## Normalized
 
 
 `````js filename=intro
-let f = function ($$0) {
-  let b = $$0;
+let f = function () {
   debugger;
   b = a;
+  $(a);
   $(b);
   return undefined;
 };
-let a = 1;
-$(f);
-f(10);
-f(11);
-f(12);
-$(3);
+let a = $();
+let b = $();
+f($);
+f($);
 `````
 
 ## Output
 
 
 `````js filename=intro
-const f = function ($$0) {
+const f = function () {
   debugger;
-  $(1);
+  $(a);
+  $(tmpSSA_b);
   return undefined;
 };
-$(f);
-$(1);
-$(1);
-$(1);
-$(3);
+const a = $();
+$();
+let tmpSSA_b = a;
+f();
+tmpSSA_b = a;
+f();
 `````
 
 ## PST Output
@@ -77,16 +78,18 @@ $(3);
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
+const a = function() {
   debugger;
-  $( 1 );
+  $( b );
+  $( c );
   return undefined;
 };
-$( a );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 3 );
+const b = $();
+$();
+let c = b;
+a();
+c = b;
+a();
 `````
 
 ## Globals
@@ -96,11 +99,12 @@ None
 ## Result
 
 Should call `$` with:
- - 1: '<function>'
- - 2: 1
- - 3: 1
- - 4: 1
- - 5: 3
+ - 1: 
+ - 2: 
+ - 3: undefined
+ - 4: undefined
+ - 5: undefined
+ - 6: undefined
  - eval returned: undefined
 
 Pre normalization calls: Same

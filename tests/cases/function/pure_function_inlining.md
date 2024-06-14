@@ -106,8 +106,7 @@ rule(`You have to listen to me`);
 const rule = function ($$0) {
   const desc = $$0;
   debugger;
-  const tmpStringConcatL = $coerce(desc, `plustr`);
-  const e = `purpleRule:reset "${tmpStringConcatL}"`;
+  const e = `purpleRule:reset "${desc}"`;
   $(e);
   return undefined;
 };
@@ -123,9 +122,8 @@ With rename=true
 const a = function($$0 ) {
   const b = c;
   debugger;
-  const d = $coerce( b, "plustr" );
-  const e = `purpleRule:reset "${tmpStringConcatL}"`;
-  $( e );
+  const d = `purpleRule:reset "${desc}"`;
+  $( d );
   return undefined;
 };
 a( "I want it my way" );

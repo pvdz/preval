@@ -27,7 +27,7 @@ import {
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
-import { cloneSimple, functionExpressionNormalized, isSimpleNodeOrSimpleMember, normalizeFunction } from '../ast.mjs';
+import { cloneSimple, cloneSortOfSimple, functionExpressionNormalized, isSimpleNodeOrSimpleMember, normalizeFunction } from '../ast.mjs';
 
 export function staticArgOpOutlining(fdata) {
   group('\n\n\nFinding static param ops to outline\n');
@@ -46,6 +46,7 @@ function _staticArgOpOutlining(fdata) {
 
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isBuiltin) return;
+    if (meta.isCatchVar) return;
     if (meta.isImplicitGlobal) return;
     if (!meta.isConstant) return; // I don't think this really matters. But perhaps in that case we should just skip the lets...
     if (meta.constValueRef.node.type !== 'FunctionExpression') return;
@@ -246,10 +247,10 @@ function _staticArgOpOutlining(fdata) {
     const funcRef = funcMeta.constValueRef;
     const funcNode = funcMeta.constValueRef.node;
     const paramCount = funcNode.params.length;
-    if (paramCount === 0) {
-      vlog('- Function has no params, bailing');
-      return;
-    }
+    //if (paramCount === 0) {
+    //  vlog('- Function has no params, bailing');
+    //  return;
+    //}
 
     if (funcNode.$p.readsArgumentsLen || funcNode.$p.readsArgumentsAny) {
       // TODO: We can support this just don't remove the args after outlining them. Replace caller values with `undefined`.
@@ -344,11 +345,11 @@ function _staticArgOpOutlining(fdata) {
       return;
     }
 
-    vlog('\nWas unable to find a target statement to inline an op. Now checking the assignment case.');
-
     // Check if first statement is a regular assignment to a closure. Would be cool if we could outline that.
-
     const firstStmt = funcNode.body.body[stmtOffset];
+
+    vlog('\nWas unable to find a target statement to inline an op. Now checking the assignment case. First statement is', firstStmt);
+
     if (
       firstStmt.type === 'ExpressionStatement' &&
       firstStmt.expression.type === 'AssignmentExpression' &&
@@ -357,7 +358,7 @@ function _staticArgOpOutlining(fdata) {
     ) {
       // `function f() { x = 1 }` or `function f(x) { x = 1 }`
 
-      vlog('- First statement is a regular assignment (ident=primitive). Check if it is assigning a param to a closure.');
+      vlog('- First statement is a regular assignment (rhs=primitive). Check if it is assigning a param to a closure.');
       // Check whether left or right is a closure. Neither have to be and they might both be.
       // We can do a simple param name check for this. Either it's a param or it's a closure.
       const left = firstStmt.expression.left;
@@ -365,20 +366,15 @@ function _staticArgOpOutlining(fdata) {
 
       const leftIsParam = funcNode.$p.paramNames.indexOf(left.name);
 
-      if (leftIsParam >= 0) {
-        // `function f(b) { b = 1; }`
-        // Why would you ever do this, but okay.
-        TODO // find me a test case. we can support this but i think other rules supersede it
-        return
-      }
+      // `function f(b) { b = 1; }`
+      ASSERT(!(leftIsParam >= 0), 'if left was a param then it would be SSAd away');
 
       // `let a = 1; function f(b) { a = 100; }`
 
       const leftMeta = fdata.globallyUniqueNamingRegistry.get(left.name);
 
-      if (leftMeta.constValueRef.containerNode.type !== 'VariableDeclaration') {
+      if (leftMeta.constValueRef?.containerNode.type !== 'VariableDeclaration') {
         // TODO: we can probably still support this case...? As long as we have a scope to check, who cares what you assign to
-        TODO // find me a test case...
         vlog('- The lhs is a closure but it was not a variable declaration, so bailing');
         return; // catch, for-x, ???
       }
@@ -436,34 +432,16 @@ function _staticArgOpOutlining(fdata) {
       const leftIsParam = funcNode.$p.paramNames.indexOf(left.name);
       const rightIsParam = funcNode.$p.paramNames.indexOf(right.name);
 
-      if (leftIsParam >= 0 && rightIsParam >= 0) {
-        // Hmmmm. Assigning one param to another as the first statement?? (`function f(a,b) { a=b; }`) Kay, maybe we can simplify this?
-        // But only if one of the params isn't used any further. Huge edge case tho.
-        TODO
-        return;
-      }
+      ASSERT(!(leftIsParam >= 0), 'assignment to param would be SSAd so this is not expected to hit');
 
-      if (leftIsParam >= 0 && AST.isPrimitive(right)) {
-        // TODO: outer if is asserting identifier so we should move this check outward
-        // Assigning a primitive value to a param binding as the first statement? ksure.
-        TODO // We can support this sort of case (`function f(a) { a = 1; }`). Not sure if that's worth the effort. find me a test case
-        return;
-      }
-
-      if (leftIsParam >= 0) {
-        // `let a = 1; function f(b) { b = a; }`
-        // Why would you ever do this, but okay.
-        TODO // find me a test case. we can support this but i think other rules supersede it
-        return
-      }
+      vlog('- leftIsParam:', leftIsParam, ', rightIsParam:', rightIsParam);
 
       if (rightIsParam >= 0) {
         // `let a = 1; function f(b) { a = b; }`
         const leftMeta = fdata.globallyUniqueNamingRegistry.get(left.name);
 
-        if (leftMeta.constValueRef.containerNode.type !== 'VariableDeclaration') {
+        if (leftMeta.constValueRef?.containerNode.type !== 'VariableDeclaration') {
           // TODO: we can probably still support this case...? As long as we have a scope to check, who cares what you assign to
-          TODO // find me a test case...
           vlog('- The lhs is a closure but it was not a variable declaration, so bailing');
           return; // catch, for-x, ???
         }
@@ -507,10 +485,67 @@ function _staticArgOpOutlining(fdata) {
         ++changes;
         return;
       } else {
-        TODO
+        // `let a = 1; let b = $(); function f() { a = b; }`
+        // `let a = 1; function f() { a = arguments.length; }`
+        const leftMeta = fdata.globallyUniqueNamingRegistry.get(left.name);
+        const rightMeta = fdata.globallyUniqueNamingRegistry.get(right.name);
+
+        if (leftMeta.constValueRef?.containerNode.type !== 'VariableDeclaration') {
+          // `try {} catch (e) { let b = $(); function f() { e = b; } }`
+          // TODO: we can probably still support this case...? As long as we have a scope to check, who cares what you assign to
+          vlog('- The lhs is a closure but it was not a variable declaration, so bailing');
+          return; // catch, for-x, ???
+        }
+        if (rightMeta.constValueRef?.containerNode.type !== 'VariableDeclaration') {
+          // `try {} catch (e) { let b = $(); function f() { b = e; } }`
+          // TODO: we can probably still support this case...? As long as we have a scope to check, who cares what you assign to
+          vlog('- The rhs is a closure or this/arguments but it was not a variable declaration, so bailing');
+          return; // catch, for-x, ???
+        }
+        if (funcMeta.reads.some(read => !read.blockChain.startsWith(leftMeta.constValueRef.node.$p.blockChain))) {
+          // `let f; { let b = $(); f = function(a) { b = a; } } f(1); f(2);`
+          // Currently this doesn't hit but it might in the future.
+          vlog('- Not all call sites can reach the lhs closure, bailing');
+          return;
+        }
+        if (funcMeta.reads.some(read => !read.blockChain.startsWith(rightMeta.constValueRef.node.$p.blockChain))) {
+          // `let a = 1; function f() { a = this; }`
+          vlog('- Not all call sites can reach the rhs binding, bailing');
+          return;
+        }
 
         rule('Function that does not escape where first statement is assignment between two closures can be simplified');
         example('let x=1; let y=2; function f(a){ x=y; } f(2); f(3);', 'let x=1; let y=2; function f(a){ } x=y; f(undefined); x=y; f(undefined);');
+
+        // All call sites can reach both closures so we should be able to outline this assignment verbatim
+
+        funcMeta.reads.forEach(read => {
+          before(read.blockBody[read.blockIndex]);
+
+          read.blockBody[read.blockIndex] = AST.blockStatement(
+            AST.expressionStatement(AST.cloneSortOfSimple(firstStmt.expression)),
+            read.blockBody[read.blockIndex],
+          );
+
+          queue.push({
+            index: read.blockIndex,
+            func: () => {
+              // Flatten the block
+              read.blockBody.splice(read.blockIndex, 1, ...read.blockBody[read.blockIndex].body);
+            }
+          });
+
+          after(read.blockBody[read.blockIndex]);
+        });
+
+        before(funcNode.body.body[stmtOffset]);
+        funcNode.body.body[stmtOffset] = AST.emptyStatement();
+        assertNoDupeNodes(fdata.tenkoOutput.ast, 'body');
+        after(funcNode.body.body[stmtOffset]);
+
+        assertNoDupeNodes(fdata.tenkoOutput.ast, 'body');
+
+        ++changes;
         return;
       }
     }
@@ -544,6 +579,8 @@ function _staticArgOpOutlining(fdata) {
       // - this kind of feels like a step back since we aim to create constants
       // - `let r; if (a) r = f(a); function f(b) { $(x) }`
       // - still, may be best?
+
+      vlog('- First and only statement is an If');
 
       const paramIndex = funcNode.$p.paramNameToIndex.get(firstStmt.test.name);
       ASSERT(paramIndex >= 0 && paramIndex < funcNode.params.length, 'map should be legit and cache should not be stale');
@@ -626,7 +663,7 @@ function _staticArgOpOutlining(fdata) {
             );
           }
           else {
-            TODO
+            ASSERT(false, 'in normalized code, a call would be a statement expression, rhs of an assignment, or init of var decl. this is an expression so it must be one of the two and wasnt');
           }
 
           cblock[cindex] = AST.ifStatement(
@@ -675,8 +712,410 @@ function _staticArgOpOutlining(fdata) {
 
 
       ++changes;
+      return;
     }
 
+    if (
+      firstStmt.type === 'IfStatement' &&
+      firstStmt.test.type === 'Identifier' &&
+      funcNode.$p.paramNames.includes(firstStmt.test.name)
+    ) {
+      vlog('First statement is If but it is not the only statement in the body, bailing');
+      return;
+    }
+
+    if (
+      firstStmt.type === 'ExpressionStatement' &&
+      firstStmt.expression.type === 'CallExpression' &&
+      firstStmt.expression.callee.type === 'Identifier' &&
+      firstStmt.expression.callee.name === '$coerce'
+    ) {
+      // `function f() { $(coerce, x, 'string') }`
+      // Coerce as a statement
+
+      vlog('- First statement is a $coerce');
+
+      // Check whether arg `x` is a closure. It doesn't have to be. Note that it can't be a Param because
+      // they can only appear in the func header, where $coerce should not be possible.
+
+      const arg = firstStmt.expression.arguments[0];
+      ASSERT(arg, 'in normalized code, $coerce should be crafted by us and so this arg should exist');
+
+      const argMeta = fdata.globallyUniqueNamingRegistry.get(arg.name);
+
+      if (arg.type === 'Identifier' && funcNode.$p.paramNames.includes(arg.name)) {
+        // `function f($$1) { const b = $$1; debugger; $coerce( b, "plustr" ); } f(1)`
+        vgroup('- Arg is a param');
+
+        rule('Special $coerce with param as first statement of function can be outlined');
+        example('let b = $; function f(a) { $coerce( a, "plustr" ); g(); } f(b)', 'let b = $; function f(b) { g(); } $coerce( b, "plustr" ); f(b)');
+
+        before(funcMeta.constValueRef.containerParent[funcMeta.constValueRef.containerIndex]);
+
+        funcNode.body.body[funcNode.$p.bodyOffset] = AST.emptyStatement();
+
+        after(funcMeta.constValueRef.containerParent[funcMeta.constValueRef.containerIndex]);
+
+        funcMeta.reads.forEach(read => {
+          before(read.blockBody[read.blockIndex]);
+
+          const paramIndex = funcNode.$p.paramNameToIndex.get(arg.name);
+          ASSERT(paramIndex >= 0, 'cause it was a param?');
+          const clonedCall = AST.cloneSortOfSimple(firstStmt.expression);
+          clonedCall.arguments[0] = AST.cloneSimple(read.parentNode.arguments[paramIndex]);
+          read.blockBody[read.blockIndex] = AST.blockStatement(
+            AST.expressionStatement(clonedCall),
+            read.blockBody[read.blockIndex],
+          );
+
+          queue.push({
+            index: read.blockIndex,
+            func: () => {
+              // Flatten the block
+              read.blockBody.splice(read.blockIndex, 1, ...read.blockBody[read.blockIndex].body);
+            }
+          });
+
+          after(read.blockBody[read.blockIndex]);
+        });
+
+        assertNoDupeNodes(funcNode, 'body');
+
+        vgroupEnd();
+        ++changes;
+        return;
+      }
+      else if (arg.type === 'Identifier') {
+        // `let b = $; function f() { $coerce( b, "plustr" ); } f()`
+        vgroup('  - Arg is a closure or arguments or this.');
+
+        if (argMeta.constValueRef?.containerNode.type !== 'VariableDeclaration') {
+          // `try {} catch (b) { function f() { $coerce( b, "plustr" ); } f() }`
+          // Maybe we can support catch etc but not today.
+          vlog('  - Closure is not a var binding, bailing');
+          return;
+        }
+
+        if (funcMeta.reads.some(read => !read.blockChain.startsWith(argMeta.constValueRef.node.$p.blockChain))) {
+          // `let f; { let b = $; f = function() { $coerce( b, "plustr" ); } } f()`
+          vlog('  - Not all call sites can reach the closure, bailing');
+          return;
+        }
+
+        rule('Special $coerce with closure as first statement of function can be outlined');
+        example('let b = $; function f() { $coerce( b, "plustr" ); g(); } f()', 'let b = $; function f() { g(); } $coerce( b, "plustr" ); f()');
+
+        before(funcMeta.constValueRef.containerParent[funcMeta.constValueRef.containerIndex]);
+
+        funcNode.body.body[funcNode.$p.bodyOffset] = AST.emptyStatement();
+
+        after(funcMeta.constValueRef.containerParent[funcMeta.constValueRef.containerIndex]);
+
+        funcMeta.reads.forEach(read => {
+          before(read.blockBody[read.blockIndex]);
+
+          read.blockBody[read.blockIndex] = AST.blockStatement(
+            AST.expressionStatement(AST.cloneSortOfSimple(firstStmt.expression)),
+            read.blockBody[read.blockIndex],
+          );
+
+          queue.push({
+            index: read.blockIndex,
+            func: () => {
+              // Flatten the block
+              read.blockBody.splice(read.blockIndex, 1, ...read.blockBody[read.blockIndex].body);
+            }
+          });
+
+          after(read.blockBody[read.blockIndex]);
+        });
+
+        assertNoDupeNodes(funcNode, 'body');
+
+        vgroupEnd();
+        ++changes;
+        return;
+      }
+
+      ASSERT(arg.type !== 'Param', 'The param to a $coerce call cannot be a Param because they should be kept in the func header where $coerce should not be possible');
+      // this/arguments alias? Maybe primitives before normalization or something...?
+      vlog('  - Arg is not an ident or param (', arg.type, '), bailing');
+      return;
+    }
+
+    if (
+      firstStmt.type === 'ExpressionStatement' &&
+      firstStmt.expression.type === 'AssignmentExpression' &&
+      firstStmt.expression.right.type === 'CallExpression' &&
+      firstStmt.expression.right.callee.type === 'Identifier' &&
+      firstStmt.expression.right.callee.name === '$coerce'
+    ) {
+      // `function f() { y = $(coerce, x, 'string') }`
+      // Coerce as a statement
+
+      vlog('- First statement is assignment (not decl) of a $coerce');
+
+      // Check whether arg `x` is a closure. It doesn't have to be. Note that it can't be a Param because
+      // they can only appear in the func header, where $coerce should not be possible. But it can be the
+      // name of a param, which is pretty much what we need to check.
+      const arg = firstStmt.expression.right.arguments[0];
+      ASSERT(arg, 'in normalized code, $coerce should be crafted by us and so this arg should exist');
+      const argMeta = fdata.globallyUniqueNamingRegistry.get(arg.name);
+
+      const lhs = firstStmt.expression.left;
+      ASSERT(lhs?.type === 'Identifier', 'right? what else could it be?', lhs);
+      const lhsMeta = fdata.globallyUniqueNamingRegistry.get(lhs.name);
+
+      if (arg.type === 'Identifier' && funcNode.$p.paramNames.includes(arg.name)) {
+        // `let b = $; function f(a, b) { a = $coerce( b, "plustr" ); } f()`
+        // `let a = undefined; let b = $; function f(b) { a = $coerce( b, "plustr" ); } f()`
+        vlog('  - $coerce arg is a param.'); // Kind of unusual but ok
+
+        // Check if lhs is closure or param (this is the first statement so there is no other choice..?)
+        if (funcNode.$p.paramNames.includes(lhs.name)) {
+          ASSERT(false, 'param to param assignment should be SSAd first and then it should not get here');
+          return;
+        }
+        else {
+          // `let a = undefined; let b = $; function f(b) { a = $coerce( b, "plustr" ); } f()`
+          vlog('  - LHS is a closure. Assigning param to closure.'); // or the arguments/this alias
+          // In this case we move the entire assignment out while replacing the rhs with the arg value.
+
+          if (argMeta.constValueRef?.containerNode.type !== 'VariableDeclaration') {
+            // `try {} catch (b) { function f() { $coerce( b, "plustr" ); } f() }`
+            // Maybe we can support catch etc but not today.
+            vlog('  - Closure is not a var binding, bailing');
+            return;
+          }
+
+          if (funcMeta.reads.some(read => !read.blockChain.startsWith(argMeta.constValueRef.node.$p.blockChain))) {
+            // `let f; { let b = $; f = function() { $coerce( b, "plustr" ); } } f()`
+            vlog('  - Not all call sites can reach the closure, bailing');
+            return;
+          }
+
+          rule('Special $coerce with param assigned to closure as first statement of function can be outlined');
+          example(
+            'let a = undefined; let b = $; function f(c) { a = $coerce( c, "plustr" ); g(); } f(b)',
+            'let a = undefined; let b = $; function f(c) { g(); } a = $coerce( b, "plustr" ); f(b)'
+          );
+
+          before(funcMeta.constValueRef.containerParent[funcMeta.constValueRef.containerIndex]);
+
+          funcNode.body.body[funcNode.$p.bodyOffset] = AST.emptyStatement();
+
+          after(funcMeta.constValueRef.containerParent[funcMeta.constValueRef.containerIndex]);
+
+          funcMeta.reads.forEach(read => {
+            before(read.blockBody[read.blockIndex]);
+
+            read.blockBody[read.blockIndex] = AST.blockStatement(
+              AST.expressionStatement(AST.cloneSortOfSimple(firstStmt.expression)),
+              read.blockBody[read.blockIndex],
+            );
+
+            queue.push({
+              index: read.blockIndex,
+              func: () => {
+                // Flatten the block
+                read.blockBody.splice(read.blockIndex, 1, ...read.blockBody[read.blockIndex].body);
+              }
+            });
+
+            after(read.blockBody[read.blockIndex]);
+          });
+
+          assertNoDupeNodes(funcNode, 'body');
+
+          ++changes;
+          return;
+        }
+
+      }
+      else if (arg.type === 'Identifier') {
+        // `let a = undefined; let b = $; function f() { a = $coerce( b, "plustr" ); } f()`
+        // `let a = undefined; let b = $; function f() { a = $coerce( b, "plustr" ); } f()`
+        vlog('  - Arg is a closure.');
+
+        if (funcNode.$p.paramNames.includes(lhs.name)) {
+          // `let a = undefined; let b = $; function f(c) { c = $coerce( b, "plustr" ); } f(a)`
+          vlog('  - LHS is a param. Assigning param to closure.'); // or the arguments/this alias
+          ASSERT(false, 'should not get here because c should be SSAd');
+        } else {
+          // `let a = undefined; let b = $; function f(b) { a = $coerce( b, "plustr" ); } f()`
+          vlog('  - LHS is a closure. Assigning param to closure.'); // or the arguments/this alias
+          // In this case we move the entire assignment out while replacing the rhs with the arg value.
+
+          const lhsMeta = fdata.globallyUniqueNamingRegistry.get(lhs.name);
+
+          if (lhsMeta.constValueRef?.containerNode.type !== 'VariableDeclaration') {
+            // `let a = $(); try {} catch (b) { function f() { b = $coerce( a, "plustr" ); } f() }`
+            // Maybe we can support catch etc but not today.
+            vlog('  - Closure is not a var binding, bailing');
+            return;
+          }
+
+          if (argMeta.constValueRef?.containerNode.type !== 'VariableDeclaration') {
+            // `let a = undefined; try {} catch (b) { function f() { a = $coerce( b, "plustr" ); } f() }`
+            // Maybe we can support catch etc but not today.
+            vlog('  - Closure is not a var binding, bailing');
+            return;
+          }
+
+          if (funcMeta.reads.some(read => !read.blockChain.startsWith(lhsMeta.constValueRef.node.$p.blockChain))) {
+            // `let a = $(); let f; { let b = $; f = function() { b = $coerce( a, "plustr" ); } } f()`
+            vlog('  - Not all call sites can reach the closure, bailing');
+            return;
+          }
+
+          if (funcMeta.reads.some(read => !read.blockChain.startsWith(argMeta.constValueRef.node.$p.blockChain))) {
+            // `let a; let f; { let b = $; f = function() { b = $coerce( a, "plustr" ); } } f()`
+            vlog('  - Not all call sites can reach the closure, bailing');
+            return;
+          }
+          rule('Special $coerce with closure assigning to closure as first statement of function can be outlined');
+          example(
+            'let a = undefined; let b = $; function f(c) { a = $coerce( c, "plustr" ); g(); } f(b)',
+            'let a = undefined; let b = $; function f(c) { g(); } a = $coerce( b, "plustr" ); f(b)'
+          );
+
+          before(funcMeta.constValueRef.containerParent[funcMeta.constValueRef.containerIndex]);
+
+          funcNode.body.body[funcNode.$p.bodyOffset] = AST.emptyStatement();
+
+          after(funcMeta.constValueRef.containerParent[funcMeta.constValueRef.containerIndex]);
+
+          funcMeta.reads.forEach(read => {
+            before(read.blockBody[read.blockIndex]);
+
+            const clonedAssign = AST.cloneSortOfSimple(firstStmt.expression); // This is closure to closure so we shouldn't need anything else...
+            read.blockBody[read.blockIndex] = AST.blockStatement(
+              AST.expressionStatement(clonedAssign),
+              read.blockBody[read.blockIndex],
+            );
+
+            queue.push({
+              index: read.blockIndex,
+              func: () => {
+                // Flatten the block
+                read.blockBody.splice(read.blockIndex, 1, ...read.blockBody[read.blockIndex].body);
+              }
+            });
+
+            after(read.blockBody[read.blockIndex]);
+          });
+
+          assertNoDupeNodes(funcNode, 'body');
+
+          vgroupEnd();
+          ++changes;
+          return;
+        }
+      }
+
+      ASSERT(arg.type !== 'Param', 'The param to a $coerce call cannot be a Param because they should be kept in the func header where $coerce should not be possible');
+      // this/arguments alias? Maybe primitives before normalization or something...?
+      vlog('  - Arg is not an ident or param (', arg.type, '), bailing');
+      return;
+    }
+
+    if (
+      firstStmt.type === 'VariableDeclaration' &&
+      firstStmt.declarations[0].init.type === 'CallExpression' &&
+      firstStmt.declarations[0].init.callee.type === 'Identifier' &&
+      firstStmt.declarations[0].init.callee.name === '$coerce'
+    ) {
+      // `function f() { y = $(coerce, x, 'string') }`
+      // Coerce as a statement
+
+      vlog('- First statement is var decl with a $coerce');
+
+      const callExpr = firstStmt.declarations[0].init;
+
+      // Check whether arg `x` is a closure. It doesn't have to be. Note that it can't be a Param because
+      // they can only appear in the func header, where $coerce should not be possible. But it can be the
+      // name of a param, which is pretty much what we need to check.
+      const arg = callExpr.arguments[0];
+      ASSERT(arg, 'in normalized code, $coerce should be crafted by us and so this arg should exist');
+      const argMeta = fdata.globallyUniqueNamingRegistry.get(arg.name);
+
+      if (arg.type === 'Identifier' && funcNode.$p.paramNames.includes(arg.name)) {
+        // `let b = $; function f(b) { const c = $coerce( b, "plustr" ); } f(b)`
+        vlog('  - $coerce arg is a param. Init decl with param');
+
+        // In this case we move the $coerce out, passing in the result instead, and replacing the rhs with the arg value.
+
+        rule('Special $coerce that is decl init with param as first statement of function can be outlined');
+        example(
+          'let a = $; function f(b) { const c = $coerce( b, "plustr" ); g(); } f(a)',
+          'let a = $; function f(b) { const c = b; g(); } const tmp = $coerce( a, "plustr" ); f(tmp)'
+        );
+
+        before(funcMeta.constValueRef.containerParent[funcMeta.constValueRef.containerIndex]);
+
+        funcNode.body.body[funcNode.$p.bodyOffset].declarations[0].init = arg; // Replaces `const b = $coerce(a)` with `const b = a;`
+
+        after(funcMeta.constValueRef.containerParent[funcMeta.constValueRef.containerIndex]);
+
+        funcMeta.reads.forEach(read => {
+          before(read.blockBody[read.blockIndex]);
+
+          const rhsParamIndex = funcNode.$p.paramNameToIndex.get(arg.name);
+          const clonedCall = AST.cloneSortOfSimple(callExpr);
+          const tmpName = createFreshVar('tmp', fdata);
+          clonedCall.arguments[0] = read.parentNode.arguments[rhsParamIndex];
+          read.parentNode.arguments[rhsParamIndex] = AST.identifier(tmpName);
+          read.blockBody[read.blockIndex] = AST.blockStatement(
+            AST.variableDeclaration(tmpName, clonedCall),
+            read.blockBody[read.blockIndex],
+          );
+
+          queue.push({
+            index: read.blockIndex,
+            func: () => {
+              // Flatten the block
+              read.blockBody.splice(read.blockIndex, 1, ...read.blockBody[read.blockIndex].body);
+            }
+          });
+
+          after(read.blockBody[read.blockIndex]);
+        });
+
+        assertNoDupeNodes(funcNode, 'body');
+
+        ++changes;
+        return;
+      }
+      else if (arg.type === 'Identifier') {
+        // `let b = $; function f() { const c = $coerce( b, "plustr" ); } f()`
+        vlog('  - Arg is a closure.'); // or argument/this
+
+        // `let a = undefined; let b = $; function f(b) { a = $coerce( b, "plustr" ); } f()`
+        vlog('  - LHS is a closure. Assigning param to closure.'); // or the arguments/this alias
+        // In this case we move the entire assignment out while replacing the rhs with the arg value.
+
+        if (argMeta.constValueRef?.containerNode.type !== 'VariableDeclaration') {
+          // `let a = undefined; try {} catch (b) { function f() { a = $coerce( b, "plustr" ); } f() }`
+          // Maybe we can support catch etc but not today.
+          vlog('  - Closure is not a var binding, bailing');
+          return;
+        }
+
+        if (funcMeta.reads.some(read => !read.blockChain.startsWith(argMeta.constValueRef.node.$p.blockChain))) {
+          // `let a; let f; { let b = $; f = function() { b = $coerce( a, "plustr" ); } } f()`
+          vlog('  - Not all call sites can reach the closure, bailing');
+          return;
+        }
+
+        vlog('TODO: we would have to add a new parameter and pass in the result of the $coerce call to be able to outline this and even then it may still not be "better"')
+
+      }
+
+      ASSERT(arg.type !== 'Param', 'The param to a $coerce call cannot be a Param because they should be kept in the func header where $coerce should not be possible');
+      // this/arguments alias? Maybe primitives before normalization or something...?
+      vlog('  - Arg is not an ident or param (', arg.type, '), bailing');
+      return;
+    }
   }
   function inlineOp(funcMeta, funcNode, paramIndex, paramCount, stmt, stmtIndex) {
     const names = funcNode.$p.paramNames;

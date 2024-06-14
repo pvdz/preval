@@ -18,8 +18,6 @@ function f() {
 $(f());
 ($(1), $(a))[$("b")] = $(2);
 $(a);
-
-//*/// (end of file artifact)
 `````
 
 ## Pre Normal

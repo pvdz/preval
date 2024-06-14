@@ -15,8 +15,6 @@ let a = { a: 999, b: 1000 };
 for ((a = { b: $(1) }).x in $({ x: 1 }));
 ($(1), $(a))[$("b")] = $(2);
 $(a);
-
-//*/// (end of file artifact)
 `````
 
 ## Pre Normal

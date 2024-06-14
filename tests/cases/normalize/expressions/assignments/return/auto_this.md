@@ -17,8 +17,6 @@ function f() {
 }
 $(f());
 $(a);
-
-//*/// (end of file artifact)
 `````
 
 ## Pre Normal

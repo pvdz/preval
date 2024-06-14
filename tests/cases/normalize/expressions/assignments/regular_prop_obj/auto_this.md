@@ -15,8 +15,6 @@ let a = { a: 999, b: 1000 };
 let obj = {};
 (a = this).a;
 $(a);
-
-//*/// (end of file artifact)
 `````
 
 ## Pre Normal

@@ -14,8 +14,6 @@
 let a = { a: 999, b: 1000 };
 $`before ${(a = this)} after`;
 $(a);
-
-//*/// (end of file artifact)
 `````
 
 ## Pre Normal

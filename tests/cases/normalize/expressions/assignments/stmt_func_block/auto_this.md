@@ -16,8 +16,6 @@ function f() {
     let a = { a: 999, b: 1000 };
     a = this;
     $(a);
-
-    //*/// (end of file artifact)
   }
 }
 $(f());

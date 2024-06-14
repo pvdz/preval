@@ -14,8 +14,6 @@
 let a = { a: 999, b: 1000 };
 for (let xyz = (a = this); ; $(1)) $(xyz);
 $(a);
-
-//*/// (end of file artifact)
 `````
 
 ## Pre Normal

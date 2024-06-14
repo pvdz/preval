@@ -16,8 +16,6 @@ do {
   $(100);
 } while ((a = this));
 $(a);
-
-//*/// (end of file artifact)
 `````
 
 ## Pre Normal

@@ -16,8 +16,6 @@ let obj = {};
 (a = { b: $(1) })["a"];
 ($(1), $(a))[$("b")] = $(2);
 $(a);
-
-//*/// (end of file artifact)
 `````
 
 ## Pre Normal

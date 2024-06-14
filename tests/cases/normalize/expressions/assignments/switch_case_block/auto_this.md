@@ -18,8 +18,6 @@ switch ($(1)) {
   }
 }
 $(a);
-
-//*/// (end of file artifact)
 `````
 
 ## Pre Normal

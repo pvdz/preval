@@ -21,8 +21,6 @@ switch ($(1)) {
     $("fail2");
 }
 $(a);
-
-//*/// (end of file artifact)
 `````
 
 ## Pre Normal

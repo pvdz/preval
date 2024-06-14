@@ -11,5 +11,4 @@
 // tests/cases/normalize/expressions/assignments/for_c/auto_ident_logic_||_simple_complex.md -> rename file to eliminate the pipes?
 // tests/cases/normalize/dce/return/decl_after_for.md -> while(true) loop that always throws is not a loop (that's a general thing...?)
 // while unroll transform does a `if (x) yes=1 else yes=0 if (yes) { while ...} else {}`. it should store the while in the if-branch.
-// tests/cases/normalize/expressions/assignments/return/auto_this.md -> remove that comment cruft
 // Redundant write: try { $(); } catch (e) { e = 1; $(e); e = 1; $(e); }

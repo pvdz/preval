@@ -22,8 +22,6 @@ switch ($(1)) {
 }
 ($(1), $(a))[$("b")] = $(2);
 $(a);
-
-//*/// (end of file artifact)
 `````
 
 ## Pre Normal

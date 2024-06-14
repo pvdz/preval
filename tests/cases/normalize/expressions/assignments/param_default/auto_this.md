@@ -15,8 +15,6 @@ let a = { a: 999, b: 1000 };
 function f(p = (a = this)) {}
 $(f());
 $(a);
-
-//*/// (end of file artifact)
 `````
 
 ## Pre Normal

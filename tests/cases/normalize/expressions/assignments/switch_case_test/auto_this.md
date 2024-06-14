@@ -16,8 +16,6 @@ switch ($(1)) {
   case (a = this):
 }
 $(a);
-
-//*/// (end of file artifact)
 `````
 
 ## Pre Normal

@@ -50,14 +50,9 @@ $(a);
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 let a = $(2);
 if (a) {
   $(1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     a = $(2);
     if (a) {
@@ -76,18 +71,12 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = true;
-let b = $( 2 );
-if (b) {
-  $( 1 );
-}
-else {
-  a = false;
-}
+let a = $( 2 );
 if (a) {
+  $( 1 );
   while ($LOOP_UNROLL_10) {
-    b = $( 2 );
-    if (b) {
+    a = $( 2 );
+    if (a) {
       $( 1 );
     }
     else {
@@ -95,7 +84,7 @@ if (a) {
     }
   }
 }
-$( b );
+$( a );
 `````
 
 ## Globals

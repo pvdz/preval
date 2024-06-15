@@ -63,15 +63,10 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
-let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpCompProp = $(`c`);
 const tmpIfTest = b[tmpCompProp];
 if (tmpIfTest) {
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpCompProp$1 = $(`c`);
@@ -96,22 +91,15 @@ const b = {
   a: 999,
   b: 1000,
 };
-let c = true;
 $( 100 );
-const d = $( "c" );
-const e = a[ d ];
-if (e) {
-
-}
-else {
-  c = false;
-}
-if (c) {
+const c = $( "c" );
+const d = a[ c ];
+if (d) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const f = $( "c" );
-    const g = a[ f ];
-    if (g) {
+    const e = $( "c" );
+    const f = a[ e ];
+    if (f) {
 
     }
     else {

@@ -64,7 +64,6 @@ $(a);
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 const tmpCalleeParam = $(1);
 let a = $(tmpCalleeParam);
 if (a) {
@@ -73,36 +72,32 @@ if (a) {
   if (a) {
     const tmpCalleeParam$3 = $(2);
     a = $(tmpCalleeParam$3);
-  } else {
-  }
-} else {
-}
-if (a) {
-  $(1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    const tmpCalleeParam$2 = $(1);
-    a = $(tmpCalleeParam$2);
     if (a) {
-      const tmpCalleeParam$4 = $(1);
-      a = $(tmpCalleeParam$4);
-      if (a) {
-        const tmpCalleeParam$6 = $(2);
-        a = $(tmpCalleeParam$6);
+      $(1);
+      while ($LOOP_UNROLL_10) {
+        const tmpCalleeParam$2 = $(1);
+        a = $(tmpCalleeParam$2);
         if (a) {
-          $(1);
+          const tmpCalleeParam$4 = $(1);
+          a = $(tmpCalleeParam$4);
+          if (a) {
+            const tmpCalleeParam$6 = $(2);
+            a = $(tmpCalleeParam$6);
+            if (a) {
+              $(1);
+            } else {
+              break;
+            }
+          } else {
+            break;
+          }
         } else {
           break;
         }
-      } else {
-        break;
       }
     } else {
-      break;
     }
+  } else {
   }
 } else {
 }
@@ -114,50 +109,44 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = true;
-const b = $( 1 );
-let c = $( b );
-if (c) {
-  const d = $( 1 );
-  c = $( d );
-  if (c) {
-    const e = $( 2 );
-    c = $( e );
-  }
-}
-if (c) {
-  $( 1 );
-}
-else {
-  a = false;
-}
-if (a) {
-  while ($LOOP_UNROLL_10) {
-    const f = $( 1 );
-    c = $( f );
-    if (c) {
-      const g = $( 1 );
-      c = $( g );
-      if (c) {
-        const h = $( 2 );
-        c = $( h );
-        if (c) {
-          $( 1 );
+const a = $( 1 );
+let b = $( a );
+if (b) {
+  const c = $( 1 );
+  b = $( c );
+  if (b) {
+    const d = $( 2 );
+    b = $( d );
+    if (b) {
+      $( 1 );
+      while ($LOOP_UNROLL_10) {
+        const e = $( 1 );
+        b = $( e );
+        if (b) {
+          const f = $( 1 );
+          b = $( f );
+          if (b) {
+            const g = $( 2 );
+            b = $( g );
+            if (b) {
+              $( 1 );
+            }
+            else {
+              break;
+            }
+          }
+          else {
+            break;
+          }
         }
         else {
           break;
         }
       }
-      else {
-        break;
-      }
-    }
-    else {
-      break;
     }
   }
 }
-$( c );
+$( b );
 `````
 
 ## Globals

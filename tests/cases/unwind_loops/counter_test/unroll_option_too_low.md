@@ -58,10 +58,10 @@ while (true) {
 
 
 `````js filename=intro
-let counter = 9;
+let tmpClusterSSA_counter$2 = 9;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (counter) {
-    counter = counter - 1;
+  if (tmpClusterSSA_counter$2) {
+    tmpClusterSSA_counter$2 = tmpClusterSSA_counter$2 - 1;
   } else {
     break;
   }

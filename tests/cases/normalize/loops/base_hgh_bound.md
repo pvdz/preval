@@ -78,13 +78,13 @@ $(7);
 $(8);
 $(9);
 $(10);
-let i = 11;
-let tmpIfTest = true;
+let tmpClusterSSA_i$2 = 11;
+let tmpClusterSSA_tmpIfTest$2 = true;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (tmpIfTest) {
-    $(i);
-    i = i + 1;
-    tmpIfTest = i < 1000000000;
+  if (tmpClusterSSA_tmpIfTest$2) {
+    $(tmpClusterSSA_i$2);
+    tmpClusterSSA_i$2 = tmpClusterSSA_i$2 + 1;
+    tmpClusterSSA_tmpIfTest$2 = tmpClusterSSA_i$2 < 1000000000;
   } else {
     break;
   }

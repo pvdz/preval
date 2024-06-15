@@ -76,7 +76,6 @@ $(a, b, c, d);
 const b = { x: 1 };
 const c = { y: 2 };
 const a = { a: 999, b: 1000 };
-let $tmpLoopUnrollCheck = true;
 $(100);
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $(`x`);
@@ -86,10 +85,6 @@ const varInitAssignLhsComputedRhs$1 = $(3);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
 if (varInitAssignLhsComputedRhs$1) {
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const varInitAssignLhsComputedObj$2 = $(b);
@@ -120,32 +115,25 @@ const c = {
   a: 999,
   b: 1000,
 };
-let d = true;
 $( 100 );
-const e = $( a );
-const f = $( "x" );
-const g = $( b );
-const h = $( "y" );
-const i = $( 3 );
-g[h] = i;
-e[f] = i;
-if (i) {
-
-}
-else {
-  d = false;
-}
-if (d) {
+const d = $( a );
+const e = $( "x" );
+const f = $( b );
+const g = $( "y" );
+const h = $( 3 );
+f[g] = h;
+d[e] = h;
+if (h) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const j = $( a );
-    const k = $( "x" );
-    const l = $( b );
-    const m = $( "y" );
-    const n = $( 3 );
-    l[m] = n;
-    j[k] = n;
-    if (n) {
+    const i = $( a );
+    const j = $( "x" );
+    const k = $( b );
+    const l = $( "y" );
+    const m = $( 3 );
+    k[l] = m;
+    i[j] = m;
+    if (m) {
 
     }
     else {

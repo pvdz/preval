@@ -76,19 +76,15 @@ while (true) {
 
 
 `````js filename=intro
-let i = -1;
-let $tmpLoopUnrollCheck = true;
+let tmpClusterSSA_i$2 = -1;
 const test$2 = $(`first`);
 $(`second`);
 if (test$2) {
-  $tmpLoopUnrollCheck = false;
 } else {
   $(`third`);
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const tmpPostUpdArgIdent$1 = i;
-    i = i - 1;
+    const tmpPostUpdArgIdent$1 = tmpClusterSSA_i$2;
+    tmpClusterSSA_i$2 = tmpClusterSSA_i$2 - 1;
     const tmpIfTest$1 = tmpPostUpdArgIdent$1 > 0;
     if (tmpIfTest$1) {
     } else {
@@ -101,7 +97,6 @@ if ($tmpLoopUnrollCheck) {
       }
     }
   }
-} else {
 }
 `````
 
@@ -111,27 +106,24 @@ With rename=true
 
 `````js filename=intro
 let a = -1;
-let b = true;
-const c = $( "first" );
+const b = $( "first" );
 $( "second" );
-if (c) {
-  b = false;
+if (b) {
+
 }
 else {
   $( "third" );
-}
-if (b) {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const d = a;
+    const c = a;
     a = a - 1;
-    const e = d > 0;
-    if (e) {
+    const d = c > 0;
+    if (d) {
 
     }
     else {
-      const f = $( "first" );
+      const e = $( "first" );
       $( "second" );
-      if (f) {
+      if (e) {
         break;
       }
       else {

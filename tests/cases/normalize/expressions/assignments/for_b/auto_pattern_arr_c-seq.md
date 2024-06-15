@@ -62,7 +62,6 @@ $(a);
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 arrPatternSplat[0];
-let $tmpLoopUnrollCheck = true;
 $(10);
 $(20);
 const tmpCalleeParam = [1, 2];
@@ -71,10 +70,6 @@ const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 let tmpClusterSSA_a = arrPatternSplat$1[0];
 if (tmpNestedAssignArrPatternRhs) {
   $(1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     $(10);
     $(20);
@@ -104,28 +99,22 @@ const a = {
 };
 const b = [ ... a ];
 b[ 0 ];
-let c = true;
 $( 10 );
 $( 20 );
-const d = [ 1, 2 ];
-const e = $( d );
-const f = [ ... e ];
-let g = f[ 0 ];
-if (e) {
+const c = [ 1, 2 ];
+const d = $( c );
+const e = [ ... d ];
+let f = e[ 0 ];
+if (d) {
   $( 1 );
-}
-else {
-  c = false;
-}
-if (c) {
   while ($LOOP_UNROLL_10) {
     $( 10 );
     $( 20 );
-    const h = [ 1, 2 ];
-    const i = $( h );
-    const j = [ ... i ];
-    g = j[ 0 ];
-    if (i) {
+    const g = [ 1, 2 ];
+    const h = $( g );
+    const i = [ ... h ];
+    f = i[ 0 ];
+    if (h) {
       $( 1 );
     }
     else {
@@ -133,7 +122,7 @@ if (c) {
     }
   }
 }
-$( g );
+$( f );
 `````
 
 ## Globals

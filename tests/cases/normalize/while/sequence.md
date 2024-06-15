@@ -54,7 +54,6 @@ while (true) {
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 let tmpClusterSSA_x = NaN.x;
 let tmpIfTest = false;
 const tmpChainRootProp = tmpClusterSSA_x;
@@ -66,10 +65,6 @@ if (tmpIfTest$1) {
   tmpIfTest = tmpChainElementCall;
 }
 if (tmpIfTest) {
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     tmpClusterSSA_x ** 0;
     tmpClusterSSA_x = NaN.x;
@@ -96,41 +91,34 @@ if ($tmpLoopUnrollCheck) {
 With rename=true
 
 `````js filename=intro
-let a = true;
-let b = NaN.x;
-let c = false;
-const d = b;
-const e = d == null;
-if (e) {
+let a = NaN.x;
+let b = false;
+const c = a;
+const d = c == null;
+if (d) {
 
 }
 else {
-  const f = d.x;
-  const g = $dotCall( f, d, b );
-  c = g;
+  const e = c.x;
+  const f = $dotCall( e, c, a );
+  b = f;
 }
-if (c) {
-
-}
-else {
-  a = false;
-}
-if (a) {
+if (b) {
   while ($LOOP_UNROLL_10) {
-    b ** 0;
-    b = NaN.x;
-    let h = false;
-    const i = b;
-    const j = i == null;
-    if (j) {
+    a ** 0;
+    a = NaN.x;
+    let g = false;
+    const h = a;
+    const i = h == null;
+    if (i) {
 
     }
     else {
-      const k = i.x;
-      const l = $dotCall( k, i, b );
-      h = l;
+      const j = h.x;
+      const k = $dotCall( j, h, a );
+      g = k;
     }
-    if (h) {
+    if (g) {
 
     }
     else {

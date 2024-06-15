@@ -62,16 +62,11 @@ $(a, b);
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpAssignRhsCompProp = $(`c`);
 const b = { c: 1 };
 let a = b[tmpAssignRhsCompProp];
 if (a) {
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpAssignRhsCompProp$1 = $(`c`);
@@ -91,23 +86,16 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-let a = true;
 $( 100 );
-const b = $( "c" );
-const c = { c: 1 };
-let d = c[ b ];
-if (d) {
-
-}
-else {
-  a = false;
-}
-if (a) {
+const a = $( "c" );
+const b = { c: 1 };
+let c = b[ a ];
+if (c) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const e = $( "c" );
-    d = c[ e ];
-    if (d) {
+    const d = $( "c" );
+    c = b[ d ];
+    if (c) {
 
     }
     else {
@@ -115,7 +103,7 @@ if (a) {
     }
   }
 }
-$( d, c );
+$( c, b );
 `````
 
 ## Globals

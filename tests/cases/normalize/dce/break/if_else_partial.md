@@ -60,31 +60,25 @@ $(`after`);
 
 
 `````js filename=intro
-let tmpIfTest = $(true);
-let $tmpLoopUnrollCheck = true;
+const tmpIfTest = $(true);
 if (tmpIfTest) {
   const tmpIfTest$1 = $(1);
   if (tmpIfTest$1) {
-    $tmpLoopUnrollCheck = false;
   } else {
     $(`keep, do not eval`);
-    tmpIfTest = $(true);
-  }
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      const tmpIfTest$2 = $(1);
-      if (tmpIfTest$2) {
-        break;
+    let tmpClusterSSA_tmpIfTest = $(true);
+    while ($LOOP_UNROLL_10) {
+      if (tmpClusterSSA_tmpIfTest) {
+        const tmpIfTest$2 = $(1);
+        if (tmpIfTest$2) {
+          break;
+        } else {
+          $(`keep, do not eval`);
+          tmpClusterSSA_tmpIfTest = $(true);
+        }
       } else {
-        $(`keep, do not eval`);
-        tmpIfTest = $(true);
+        break;
       }
-    } else {
-      break;
     }
   }
 } else {
@@ -97,35 +91,29 @@ $(`after`);
 With rename=true
 
 `````js filename=intro
-let a = $( true );
-let b = true;
+const a = $( true );
 if (a) {
-  const c = $( 1 );
-  if (c) {
-    b = false;
+  const b = $( 1 );
+  if (b) {
+
   }
   else {
     $( "keep, do not eval" );
-    a = $( true );
-  }
-}
-else {
-  b = false;
-}
-if (b) {
-  while ($LOOP_UNROLL_10) {
-    if (a) {
-      const d = $( 1 );
-      if (d) {
-        break;
+    let c = $( true );
+    while ($LOOP_UNROLL_10) {
+      if (c) {
+        const d = $( 1 );
+        if (d) {
+          break;
+        }
+        else {
+          $( "keep, do not eval" );
+          c = $( true );
+        }
       }
       else {
-        $( "keep, do not eval" );
-        a = $( true );
+        break;
       }
-    }
-    else {
-      break;
     }
   }
 }

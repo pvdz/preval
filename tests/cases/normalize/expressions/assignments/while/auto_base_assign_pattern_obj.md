@@ -55,7 +55,6 @@ $(a, b);
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
@@ -63,10 +62,6 @@ let tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
 let tmpClusterSSA_a = tmpNestedAssignObjPatternRhs;
 if (tmpNestedAssignObjPatternRhs) {
   $(100);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     const tmpObjLitVal$1 = $(2);
     const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
@@ -89,26 +84,20 @@ $(tmpClusterSSA_a, tmpClusterSSA_b);
 With rename=true
 
 `````js filename=intro
-let a = true;
-const b = $( 2 );
-const c = { b: b };
-const d = $( c );
-let e = d.b;
-let f = d;
-if (d) {
+const a = $( 2 );
+const b = { b: a };
+const c = $( b );
+let d = c.b;
+let e = c;
+if (c) {
   $( 100 );
-}
-else {
-  a = false;
-}
-if (a) {
   while ($LOOP_UNROLL_10) {
-    const g = $( 2 );
-    const h = { b: g };
-    const i = $( h );
-    e = i.b;
-    f = i;
-    if (i) {
+    const f = $( 2 );
+    const g = { b: f };
+    const h = $( g );
+    d = h.b;
+    e = h;
+    if (h) {
       $( 100 );
     }
     else {
@@ -116,7 +105,7 @@ if (a) {
     }
   }
 }
-$( f, e );
+$( e, d );
 `````
 
 ## Globals

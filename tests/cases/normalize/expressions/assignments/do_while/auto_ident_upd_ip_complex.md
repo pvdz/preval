@@ -67,7 +67,6 @@ $(a, b);
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 $(100);
 const b = { x: 1 };
 const tmpCalleeParam = $(b);
@@ -77,10 +76,6 @@ const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
 let tmpClusterSSA_a = tmpPostUpdArgVal;
 if (tmpPostUpdArgVal) {
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpCalleeParam$1 = $(b);
@@ -104,31 +99,24 @@ $(tmpClusterSSA_a, b);
 With rename=true
 
 `````js filename=intro
-let a = true;
 $( 100 );
-const b = { x: 1 };
+const a = { x: 1 };
+const b = $( a );
 const c = $( b );
-const d = $( c );
-const e = d.x;
-const f = e + 1;
-d.x = f;
-let g = e;
-if (e) {
-
-}
-else {
-  a = false;
-}
-if (a) {
+const d = c.x;
+const e = d + 1;
+c.x = e;
+let f = d;
+if (d) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const h = $( b );
-    const i = $( h );
-    const j = i.x;
-    const k = j + 1;
-    i.x = k;
-    g = j;
-    if (j) {
+    const g = $( a );
+    const h = $( g );
+    const i = h.x;
+    const j = i + 1;
+    h.x = j;
+    f = i;
+    if (i) {
 
     }
     else {
@@ -136,7 +124,7 @@ if (a) {
     }
   }
 }
-$( g, b );
+$( f, a );
 `````
 
 ## Globals

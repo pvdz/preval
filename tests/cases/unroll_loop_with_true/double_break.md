@@ -63,35 +63,29 @@ while (true) {
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 const test = $(`first`);
 $(`second`);
 if (test) {
-  $tmpLoopUnrollCheck = false;
 } else {
   const tmpIfTest = $(test);
   if (tmpIfTest) {
-    $tmpLoopUnrollCheck = false;
   } else {
     $(`third`);
-  }
-}
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    const test$1 = $(`first`);
-    $(`second`);
-    if (test$1) {
-      break;
-    } else {
-      const tmpIfTest$1 = $(test$1);
-      if (tmpIfTest$1) {
+    while ($LOOP_UNROLL_10) {
+      const test$1 = $(`first`);
+      $(`second`);
+      if (test$1) {
         break;
       } else {
-        $(`third`);
+        const tmpIfTest$1 = $(test$1);
+        if (tmpIfTest$1) {
+          break;
+        } else {
+          $(`third`);
+        }
       }
     }
   }
-} else {
 }
 `````
 
@@ -100,35 +94,32 @@ if ($tmpLoopUnrollCheck) {
 With rename=true
 
 `````js filename=intro
-let a = true;
-const b = $( "first" );
+const a = $( "first" );
 $( "second" );
-if (b) {
-  a = false;
+if (a) {
+
 }
 else {
-  const c = $( b );
-  if (c) {
-    a = false;
+  const b = $( a );
+  if (b) {
+
   }
   else {
     $( "third" );
-  }
-}
-if (a) {
-  while ($LOOP_UNROLL_10) {
-    const d = $( "first" );
-    $( "second" );
-    if (d) {
-      break;
-    }
-    else {
-      const e = $( d );
-      if (e) {
+    while ($LOOP_UNROLL_10) {
+      const c = $( "first" );
+      $( "second" );
+      if (c) {
         break;
       }
       else {
-        $( "third" );
+        const d = $( c );
+        if (d) {
+          break;
+        }
+        else {
+          $( "third" );
+        }
       }
     }
   }

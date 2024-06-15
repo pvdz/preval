@@ -62,16 +62,11 @@ $(a, b);
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpNestedComplexRhs = $(2);
 let b = tmpNestedComplexRhs;
 let a = tmpNestedComplexRhs;
 if (tmpNestedComplexRhs) {
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpNestedComplexRhs$1 = $(2);
@@ -92,24 +87,17 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-let a = true;
 $( 100 );
-const b = $( 2 );
-let c = b;
-let d = b;
-if (b) {
-
-}
-else {
-  a = false;
-}
+const a = $( 2 );
+let b = a;
+let c = a;
 if (a) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const e = $( 2 );
-    c = e;
-    d = e;
-    if (e) {
+    const d = $( 2 );
+    b = d;
+    c = d;
+    if (d) {
 
     }
     else {
@@ -117,7 +105,7 @@ if (a) {
     }
   }
 }
-$( d, c );
+$( c, b );
 `````
 
 ## Globals

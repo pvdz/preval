@@ -56,15 +56,10 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-let $tmpLoopUnrollCheck = true;
 const tmpDeleteObj = $(arg);
 const tmpIfTest = delete tmpDeleteObj.y;
 if (tmpIfTest) {
   $(1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     const tmpDeleteObj$1 = $(arg);
     const tmpIfTest$1 = delete tmpDeleteObj$1.y;
@@ -89,20 +84,14 @@ const b = {
   a: 999,
   b: 1000,
 };
-let c = true;
-const d = $( a );
-const e = delete d.y;
-if (e) {
+const c = $( a );
+const d = delete c.y;
+if (d) {
   $( 1 );
-}
-else {
-  c = false;
-}
-if (c) {
   while ($LOOP_UNROLL_10) {
-    const f = $( a );
-    const g = delete f.y;
-    if (g) {
+    const e = $( a );
+    const f = delete e.y;
+    if (f) {
       $( 1 );
     }
     else {

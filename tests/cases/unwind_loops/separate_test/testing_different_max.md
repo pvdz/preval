@@ -65,13 +65,13 @@ $(`yolo`);
 $(`yolo`);
 $(`yolo`);
 $(`yolo`);
-let counter = 11;
-let test = true;
+let tmpClusterSSA_counter$2 = 11;
+let tmpClusterSSA_test$2 = true;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (test) {
+  if (tmpClusterSSA_test$2) {
     $(`yolo`);
-    counter = counter + 1;
-    test = counter < 20;
+    tmpClusterSSA_counter$2 = tmpClusterSSA_counter$2 + 1;
+    tmpClusterSSA_test$2 = tmpClusterSSA_counter$2 < 20;
   } else {
     break;
   }

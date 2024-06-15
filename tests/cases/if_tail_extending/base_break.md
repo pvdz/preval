@@ -67,28 +67,22 @@ f();
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 if (x) {
   $(1);
   if ($) {
-    $tmpLoopUnrollCheck = false;
   } else {
     $(2);
-  }
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    if (x) {
-      $(1);
-      if ($) {
-        break;
+    while ($LOOP_UNROLL_10) {
+      if (x) {
+        $(1);
+        if ($) {
+          break;
+        } else {
+          $(2);
+        }
       } else {
-        $(2);
+        break;
       }
-    } else {
-      break;
     }
   }
 } else {
@@ -100,32 +94,26 @@ if ($tmpLoopUnrollCheck) {
 With rename=true
 
 `````js filename=intro
-let a = true;
 if (x) {
   $( 1 );
   if ($) {
-    a = false;
+
   }
   else {
     $( 2 );
-  }
-}
-else {
-  a = false;
-}
-if (a) {
-  while ($LOOP_UNROLL_10) {
-    if (x) {
-      $( 1 );
-      if ($) {
-        break;
+    while ($LOOP_UNROLL_10) {
+      if (x) {
+        $( 1 );
+        if ($) {
+          break;
+        }
+        else {
+          $( 2 );
+        }
       }
       else {
-        $( 2 );
+        break;
       }
-    }
-    else {
-      break;
     }
   }
 }

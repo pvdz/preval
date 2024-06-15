@@ -64,17 +64,12 @@ $(a);
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
-let $tmpLoopUnrollCheck = true;
 $(100);
 $(10);
 $(20);
 const tmpCalleeParam = [1, 2];
 const tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     $(100);
     $(10);
@@ -102,26 +97,19 @@ const a = {
 };
 const b = [ ... a ];
 const c = b[ 0 ];
-let d = true;
 $( 100 );
 $( 10 );
 $( 20 );
-const e = [ 1, 2 ];
-const f = $( e );
-if (f) {
-
-}
-else {
-  d = false;
-}
-if (d) {
+const d = [ 1, 2 ];
+const e = $( d );
+if (e) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
     $( 10 );
     $( 20 );
-    const g = [ 1, 2 ];
-    const h = $( g );
-    if (h) {
+    const f = [ 1, 2 ];
+    const g = $( f );
+    if (g) {
 
     }
     else {

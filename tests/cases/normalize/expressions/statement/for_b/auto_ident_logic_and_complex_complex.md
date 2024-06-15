@@ -58,7 +58,6 @@ $(a);
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 const tmpCalleeParam = $(1);
 const tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
@@ -66,27 +65,22 @@ if (tmpIfTest) {
   const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam$1);
   if (tmpClusterSSA_tmpIfTest) {
     $(1);
-  } else {
-    $tmpLoopUnrollCheck = false;
-  }
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    const tmpCalleeParam$2 = $(1);
-    const tmpIfTest$1 = $(tmpCalleeParam$2);
-    if (tmpIfTest$1) {
-      const tmpCalleeParam$4 = $(2);
-      const tmpClusterSSA_tmpIfTest$1 = $(tmpCalleeParam$4);
-      if (tmpClusterSSA_tmpIfTest$1) {
-        $(1);
+    while ($LOOP_UNROLL_10) {
+      const tmpCalleeParam$2 = $(1);
+      const tmpIfTest$1 = $(tmpCalleeParam$2);
+      if (tmpIfTest$1) {
+        const tmpCalleeParam$4 = $(2);
+        const tmpClusterSSA_tmpIfTest$1 = $(tmpCalleeParam$4);
+        if (tmpClusterSSA_tmpIfTest$1) {
+          $(1);
+        } else {
+          break;
+        }
       } else {
         break;
       }
-    } else {
-      break;
     }
+  } else {
   }
 } else {
 }
@@ -99,46 +93,37 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = true;
-const b = $( 1 );
-const c = $( b );
-if (c) {
-  const d = $( 2 );
-  const e = $( d );
-  if (e) {
+const a = $( 1 );
+const b = $( a );
+if (b) {
+  const c = $( 2 );
+  const d = $( c );
+  if (d) {
     $( 1 );
-  }
-  else {
-    a = false;
-  }
-}
-else {
-  a = false;
-}
-if (a) {
-  while ($LOOP_UNROLL_10) {
-    const f = $( 1 );
-    const g = $( f );
-    if (g) {
-      const h = $( 2 );
-      const i = $( h );
-      if (i) {
-        $( 1 );
+    while ($LOOP_UNROLL_10) {
+      const e = $( 1 );
+      const f = $( e );
+      if (f) {
+        const g = $( 2 );
+        const h = $( g );
+        if (h) {
+          $( 1 );
+        }
+        else {
+          break;
+        }
       }
       else {
         break;
       }
     }
-    else {
-      break;
-    }
   }
 }
-const j = {
+const i = {
   a: 999,
   b: 1000,
 };
-$( j );
+$( i );
 `````
 
 ## Globals

@@ -58,21 +58,20 @@ $(a);
 
 `````js filename=intro
 let a = 60;
-let $tmpLoopUnrollCheck = true;
-const tmpIfTest$1 = $(1);
-if (tmpIfTest$1) {
-  $(1);
-} else {
-  const tmpCalleeParam = $(100);
-  a = $(tmpCalleeParam);
-  if (a) {
+loopStop: {
+  const tmpIfTest$1 = $(1);
+  if (tmpIfTest$1) {
     $(1);
   } else {
-    $tmpLoopUnrollCheck = false;
+    const tmpCalleeParam = $(100);
+    a = $(tmpCalleeParam);
+    if (a) {
+      $(1);
+    } else {
+      break loopStop;
+    }
   }
-}
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
+  loopStop$1: {
     const tmpIfTest$2 = $(1);
     if (tmpIfTest$2) {
       $(1);
@@ -82,11 +81,150 @@ if ($tmpLoopUnrollCheck) {
       if (a) {
         $(1);
       } else {
-        break;
+        break loopStop$1;
+      }
+    }
+    loopStop$2: {
+      const tmpIfTest$3 = $(1);
+      if (tmpIfTest$3) {
+        $(1);
+      } else {
+        const tmpCalleeParam$2 = $(100);
+        a = $(tmpCalleeParam$2);
+        if (a) {
+          $(1);
+        } else {
+          break loopStop$2;
+        }
+      }
+      loopStop$3: {
+        const tmpIfTest$4 = $(1);
+        if (tmpIfTest$4) {
+          $(1);
+        } else {
+          const tmpCalleeParam$3 = $(100);
+          a = $(tmpCalleeParam$3);
+          if (a) {
+            $(1);
+          } else {
+            break loopStop$3;
+          }
+        }
+        loopStop$4: {
+          const tmpIfTest$5 = $(1);
+          if (tmpIfTest$5) {
+            $(1);
+          } else {
+            const tmpCalleeParam$4 = $(100);
+            a = $(tmpCalleeParam$4);
+            if (a) {
+              $(1);
+            } else {
+              break loopStop$4;
+            }
+          }
+          loopStop$5: {
+            const tmpIfTest$6 = $(1);
+            if (tmpIfTest$6) {
+              $(1);
+            } else {
+              const tmpCalleeParam$5 = $(100);
+              a = $(tmpCalleeParam$5);
+              if (a) {
+                $(1);
+              } else {
+                break loopStop$5;
+              }
+            }
+            loopStop$6: {
+              const tmpIfTest$7 = $(1);
+              if (tmpIfTest$7) {
+                $(1);
+              } else {
+                const tmpCalleeParam$6 = $(100);
+                a = $(tmpCalleeParam$6);
+                if (a) {
+                  $(1);
+                } else {
+                  break loopStop$6;
+                }
+              }
+              loopStop$7: {
+                const tmpIfTest$8 = $(1);
+                if (tmpIfTest$8) {
+                  $(1);
+                } else {
+                  const tmpCalleeParam$7 = $(100);
+                  a = $(tmpCalleeParam$7);
+                  if (a) {
+                    $(1);
+                  } else {
+                    break loopStop$7;
+                  }
+                }
+                loopStop$8: {
+                  const tmpIfTest$9 = $(1);
+                  if (tmpIfTest$9) {
+                    $(1);
+                  } else {
+                    const tmpCalleeParam$8 = $(100);
+                    a = $(tmpCalleeParam$8);
+                    if (a) {
+                      $(1);
+                    } else {
+                      break loopStop$8;
+                    }
+                  }
+                  loopStop$9: {
+                    const tmpIfTest$10 = $(1);
+                    if (tmpIfTest$10) {
+                      $(1);
+                    } else {
+                      const tmpCalleeParam$9 = $(100);
+                      a = $(tmpCalleeParam$9);
+                      if (a) {
+                        $(1);
+                      } else {
+                        break loopStop$9;
+                      }
+                    }
+                    loopStop$10: {
+                      const tmpIfTest$11 = $(1);
+                      if (tmpIfTest$11) {
+                        $(1);
+                      } else {
+                        const tmpCalleeParam$10 = $(100);
+                        a = $(tmpCalleeParam$10);
+                        if (a) {
+                          $(1);
+                        } else {
+                          break loopStop$10;
+                        }
+                      }
+                      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+                        const tmpIfTest$12 = $(1);
+                        if (tmpIfTest$12) {
+                          $(1);
+                        } else {
+                          const tmpCalleeParam$11 = $(100);
+                          a = $(tmpCalleeParam$11);
+                          if (a) {
+                            $(1);
+                          } else {
+                            break;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
-} else {
 }
 $(a);
 `````
@@ -97,35 +235,194 @@ With rename=true
 
 `````js filename=intro
 let a = 60;
-let b = true;
-const c = $( 1 );
-if (c) {
-  $( 1 );
-}
-else {
-  const d = $( 100 );
-  a = $( d );
-  if (a) {
+loopStop: {
+  const b = $( 1 );
+  if (b) {
     $( 1 );
   }
   else {
-    b = false;
-  }
-}
-if (b) {
-  while ($LOOP_UNROLL_10) {
-    const e = $( 1 );
-    if (e) {
+    const c = $( 100 );
+    a = $( c );
+    if (a) {
       $( 1 );
     }
     else {
-      const f = $( 100 );
-      a = $( f );
+      break loopStop;
+    }
+  }
+  loopStop$1:   {
+    const d = $( 1 );
+    if (d) {
+      $( 1 );
+    }
+    else {
+      const e = $( 100 );
+      a = $( e );
       if (a) {
         $( 1 );
       }
       else {
-        break;
+        break loopStop$1;
+      }
+    }
+    loopStop$2:     {
+      const f = $( 1 );
+      if (f) {
+        $( 1 );
+      }
+      else {
+        const g = $( 100 );
+        a = $( g );
+        if (a) {
+          $( 1 );
+        }
+        else {
+          break loopStop$2;
+        }
+      }
+      loopStop$3:       {
+        const h = $( 1 );
+        if (h) {
+          $( 1 );
+        }
+        else {
+          const i = $( 100 );
+          a = $( i );
+          if (a) {
+            $( 1 );
+          }
+          else {
+            break loopStop$3;
+          }
+        }
+        loopStop$4:         {
+          const j = $( 1 );
+          if (j) {
+            $( 1 );
+          }
+          else {
+            const k = $( 100 );
+            a = $( k );
+            if (a) {
+              $( 1 );
+            }
+            else {
+              break loopStop$4;
+            }
+          }
+          loopStop$5:           {
+            const l = $( 1 );
+            if (l) {
+              $( 1 );
+            }
+            else {
+              const m = $( 100 );
+              a = $( m );
+              if (a) {
+                $( 1 );
+              }
+              else {
+                break loopStop$5;
+              }
+            }
+            loopStop$6:             {
+              const n = $( 1 );
+              if (n) {
+                $( 1 );
+              }
+              else {
+                const o = $( 100 );
+                a = $( o );
+                if (a) {
+                  $( 1 );
+                }
+                else {
+                  break loopStop$6;
+                }
+              }
+              loopStop$7:               {
+                const p = $( 1 );
+                if (p) {
+                  $( 1 );
+                }
+                else {
+                  const q = $( 100 );
+                  a = $( q );
+                  if (a) {
+                    $( 1 );
+                  }
+                  else {
+                    break loopStop$7;
+                  }
+                }
+                loopStop$8:                 {
+                  const r = $( 1 );
+                  if (r) {
+                    $( 1 );
+                  }
+                  else {
+                    const s = $( 100 );
+                    a = $( s );
+                    if (a) {
+                      $( 1 );
+                    }
+                    else {
+                      break loopStop$8;
+                    }
+                  }
+                  loopStop$9:                   {
+                    const t = $( 1 );
+                    if (t) {
+                      $( 1 );
+                    }
+                    else {
+                      const u = $( 100 );
+                      a = $( u );
+                      if (a) {
+                        $( 1 );
+                      }
+                      else {
+                        break loopStop$9;
+                      }
+                    }
+                    loopStop$10:                     {
+                      const v = $( 1 );
+                      if (v) {
+                        $( 1 );
+                      }
+                      else {
+                        const w = $( 100 );
+                        a = $( w );
+                        if (a) {
+                          $( 1 );
+                        }
+                        else {
+                          break loopStop$10;
+                        }
+                      }
+                      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+                        const x = $( 1 );
+                        if (x) {
+                          $( 1 );
+                        }
+                        else {
+                          const y = $( 100 );
+                          a = $( y );
+                          if (a) {
+                            $( 1 );
+                          }
+                          else {
+                            break;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

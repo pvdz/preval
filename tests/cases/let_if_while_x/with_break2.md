@@ -95,21 +95,12 @@ $(`before`);
 let wat = s | 10;
 const chk = $(true);
 if (chk) {
-  let $tmpLoopUnrollCheck = true;
   if ($LOOP_UNROLL_10) {
     $(`inside`);
     wat = wat | 10;
     const tmpClusterSSA_chk = $(true);
     if (tmpClusterSSA_chk) {
-    } else {
-      $tmpLoopUnrollCheck = false;
-    }
-  } else {
-    $tmpLoopUnrollCheck = false;
-  }
-  if ($tmpLoopUnrollCheck) {
-    while ($LOOP_UNROLL_10) {
-      if ($LOOP_UNROLL_10) {
+      while ($LOOP_UNROLL_10) {
         $(`inside`);
         wat = wat | 10;
         const tmpClusterSSA_chk$1 = $(true);
@@ -117,9 +108,8 @@ if (chk) {
         } else {
           break;
         }
-      } else {
-        break;
       }
+    } else {
     }
   } else {
   }
@@ -138,36 +128,21 @@ $( "before" );
 let b = a | 10;
 const c = $( true );
 if (c) {
-  let d = true;
   if ($LOOP_UNROLL_10) {
     $( "inside" );
     b = b | 10;
-    const e = $( true );
-    if (e) {
-
-    }
-    else {
-      d = false;
-    }
-  }
-  else {
-    d = false;
-  }
-  if (d) {
-    while ($LOOP_UNROLL_10) {
-      if ($LOOP_UNROLL_10) {
+    const d = $( true );
+    if (d) {
+      while ($LOOP_UNROLL_10) {
         $( "inside" );
         b = b | 10;
-        const f = $( true );
-        if (f) {
+        const e = $( true );
+        if (e) {
 
         }
         else {
           break;
         }
-      }
-      else {
-        break;
       }
     }
   }

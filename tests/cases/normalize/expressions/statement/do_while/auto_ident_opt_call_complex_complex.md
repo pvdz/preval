@@ -67,7 +67,6 @@ $(a);
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 $(100);
 let tmpIfTest = false;
 const tmpChainElementCall = $($);
@@ -79,10 +78,6 @@ if (tmpIfTest$1) {
   tmpIfTest = tmpChainElementCall$1;
 }
 if (tmpIfTest) {
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     $(100);
     let tmpIfTest$2 = false;
@@ -110,40 +105,33 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = true;
 $( 100 );
-let b = false;
-const c = $( $ );
-const d = c == null;
-if (d) {
+let a = false;
+const b = $( $ );
+const c = b == null;
+if (c) {
 
 }
 else {
-  const e = $( 1 );
-  const f = $dotCall( c, $, e );
-  b = f;
-}
-if (b) {
-
-}
-else {
-  a = false;
+  const d = $( 1 );
+  const e = $dotCall( b, $, d );
+  a = e;
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    let g = false;
-    const h = $( $ );
-    const i = h == null;
-    if (i) {
+    let f = false;
+    const g = $( $ );
+    const h = g == null;
+    if (h) {
 
     }
     else {
-      const j = $( 1 );
-      const k = $dotCall( h, $, j );
-      g = k;
+      const i = $( 1 );
+      const j = $dotCall( g, $, i );
+      f = j;
     }
-    if (g) {
+    if (f) {
 
     }
     else {
@@ -151,11 +139,11 @@ if (a) {
     }
   }
 }
-const l = {
+const k = {
   a: 999,
   b: 1000,
 };
-$( l );
+$( k );
 `````
 
 ## Globals

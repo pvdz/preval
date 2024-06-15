@@ -60,7 +60,6 @@ $(a, b);
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
@@ -69,10 +68,6 @@ b.c = tmpNestedAssignPropRhs;
 let tmpClusterSSA_a = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   $(1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     const tmpCompObj$1 = $(b);
     const tmpCompProp$1 = $(`d`);
@@ -95,30 +90,24 @@ $(tmpClusterSSA_a, b);
 With rename=true
 
 `````js filename=intro
-let a = true;
-const b = {
+const a = {
   c: 10,
   d: 20,
 };
-const c = $( b );
-const d = $( "d" );
-const e = c[ d ];
-b.c = e;
-let f = e;
-if (e) {
+const b = $( a );
+const c = $( "d" );
+const d = b[ c ];
+a.c = d;
+let e = d;
+if (d) {
   $( 1 );
-}
-else {
-  a = false;
-}
-if (a) {
   while ($LOOP_UNROLL_10) {
-    const g = $( b );
-    const h = $( "d" );
-    const i = g[ h ];
-    b.c = i;
-    f = i;
-    if (i) {
+    const f = $( a );
+    const g = $( "d" );
+    const h = f[ g ];
+    a.c = h;
+    e = h;
+    if (h) {
       $( 1 );
     }
     else {
@@ -126,7 +115,7 @@ if (a) {
     }
   }
 }
-$( f, b );
+$( e, a );
 `````
 
 ## Globals

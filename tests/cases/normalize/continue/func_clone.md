@@ -74,15 +74,12 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 if ($) {
   $(1);
-  if ($) {
-    while ($LOOP_UNROLL_10) {
-      if ($) {
-        $(1);
-      } else {
-        break;
-      }
+  while ($LOOP_UNROLL_10) {
+    if ($) {
+      $(1);
+    } else {
+      break;
     }
-  } else {
   }
 } else {
 }
@@ -96,14 +93,12 @@ With rename=true
 `````js filename=intro
 if ($) {
   $( 1 );
-  if ($) {
-    while ($LOOP_UNROLL_10) {
-      if ($) {
-        $( 1 );
-      }
-      else {
-        break;
-      }
+  while ($LOOP_UNROLL_10) {
+    if ($) {
+      $( 1 );
+    }
+    else {
+      break;
     }
   }
 }

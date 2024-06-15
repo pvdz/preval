@@ -55,17 +55,12 @@ $(a, b);
 `````js filename=intro
 const b = { c: 10, d: 20 };
 const a = { a: 999, b: 1000 };
-let $tmpLoopUnrollCheck = true;
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 b.c = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
   $(100);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     const tmpCompObj$1 = $(b);
     const tmpCompProp$1 = $(`d`);
@@ -95,24 +90,18 @@ const b = {
   a: 999,
   b: 1000,
 };
-let c = true;
-const d = $( a );
-const e = $( "d" );
-const f = d[ e ];
-a.c = f;
-if (f) {
+const c = $( a );
+const d = $( "d" );
+const e = c[ d ];
+a.c = e;
+if (e) {
   $( 100 );
-}
-else {
-  c = false;
-}
-if (c) {
   while ($LOOP_UNROLL_10) {
-    const g = $( a );
-    const h = $( "d" );
-    const i = g[ h ];
-    a.c = i;
-    if (i) {
+    const f = $( a );
+    const g = $( "d" );
+    const h = f[ g ];
+    a.c = h;
+    if (h) {
       $( 100 );
     }
     else {

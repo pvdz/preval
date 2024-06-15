@@ -72,14 +72,10 @@ if ($) {
 `````js filename=intro
 if ($) {
   $(1);
-  let $tmpLoopUnrollCheck = true;
   let x = $(2);
   $(x);
   if ($) {
-    $tmpLoopUnrollCheck = false;
   } else {
-  }
-  if ($tmpLoopUnrollCheck) {
     while ($LOOP_UNROLL_10) {
       x = $(2);
       $(x);
@@ -88,7 +84,6 @@ if ($) {
       } else {
       }
     }
-  } else {
   }
   $(x);
 } else {
@@ -102,22 +97,21 @@ With rename=true
 `````js filename=intro
 if ($) {
   $( 1 );
-  let a = true;
-  let b = $( 2 );
-  $( b );
+  let a = $( 2 );
+  $( a );
   if ($) {
-    a = false;
+
   }
-  if (a) {
+  else {
     while ($LOOP_UNROLL_10) {
-      b = $( 2 );
-      $( b );
+      a = $( 2 );
+      $( a );
       if ($) {
         break;
       }
     }
   }
-  $( b );
+  $( a );
 }
 `````
 

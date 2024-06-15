@@ -62,7 +62,6 @@ $(a);
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 $(100);
 let tmpIfTest = false;
 const tmpIfTest$1 = $ == null;
@@ -72,10 +71,6 @@ if (tmpIfTest$1) {
   tmpIfTest = tmpChainElementCall;
 }
 if (tmpIfTest) {
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     $(100);
     let tmpIfTest$2 = false;
@@ -101,36 +96,29 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = true;
 $( 100 );
-let b = false;
-const c = $ == null;
-if (c) {
-
-}
-else {
-  const d = $( 1 );
-  b = d;
-}
+let a = false;
+const b = $ == null;
 if (b) {
 
 }
 else {
-  a = false;
+  const c = $( 1 );
+  a = c;
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    let e = false;
-    const f = $ == null;
-    if (f) {
+    let d = false;
+    const e = $ == null;
+    if (e) {
 
     }
     else {
-      const g = $( 1 );
-      e = g;
+      const f = $( 1 );
+      d = f;
     }
-    if (e) {
+    if (d) {
 
     }
     else {
@@ -138,11 +126,11 @@ if (a) {
     }
   }
 }
-const h = {
+const g = {
   a: 999,
   b: 1000,
 };
-$( h );
+$( g );
 `````
 
 ## Globals

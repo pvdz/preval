@@ -35,7 +35,7 @@ import walk from '../../lib/walk.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import {createFreshVar} from '../bindings.mjs';
-import {deepCloneForFuncInlining, updateExpression} from "../ast.mjs"
+import { deepCloneForFuncInlining, labeledStatement, updateExpression } from '../ast.mjs';
 import {MAX_UNROLL_TRUE_COUNT} from "../globals.mjs"
 import { createFreshLabelStatement } from '../labels.mjs';
 
@@ -77,21 +77,22 @@ function processAttempt(fdata, unrollTrueLimit) {
     if (beforeWalk) return; // Go from inner to outer...?
     if (updated) return; // TODO: allow to do this for multiple loops in the same iteration as long as they're not nested
     if (whileNode.type !== 'WhileStatement') return;
+    if (whileNode.test.type === 'Identifier' && whileNode.test.name === '$LOOP_DONE_UNROLLING_ALWAYS_TRUE') return;
 
-    // Look for `while (true)` or for a `let x = true; while (x)`
-    // Aside from `true`, also look for `$LOOP_UNROLL_` because that's how we prevent this trick from infinitely looping
-
-    // This is for the `while(true)` case
     const isWhileTrue =
       AST.isTrue(whileNode.test) ||
       (
         whileNode.test.type === 'Identifier' &&
-        whileNode.test.name.startsWith('$LOOP_UNROLL_') &&
-        (path.nodes[path.nodes.length - 3]?.type !== 'IfStatement')
+        whileNode.test.name.startsWith('$LOOP_UNROLL_')
       );
+    ASSERT(isWhileTrue, 'all whiles must be normalized to while(true) (in some form) at this point', whileNode.test);
 
-    if (!isWhileTrue) {
-      vlog('  - bail: while test does not match expectations');
+    if (
+      whileNode.test.type === 'Identifier' &&
+      whileNode.test.name.startsWith('$LOOP_UNROLL_') &&
+      (path.nodes[path.nodes.length - 3]?.type === 'IfStatement')
+    ) {
+      // Technically we don't need this check but it leads to a significant uptick in code bloat so for now we're keeping this check
       return;
     }
 
@@ -103,11 +104,7 @@ function processAttempt(fdata, unrollTrueLimit) {
     const blockBody = path.blockBodies[path.blockBodies.length - 1];
     const blockIndex = path.blockIndexes[path.blockIndexes.length - 1];
 
-    // Skip if parent node is a label, because we don't want to deal with that complexity right now.
-    if (parentNode.type === 'LabeledStatement') {
-      vlog('  - bail: while is labeled');
-      return;
-    }
+    ASSERT(parentNode.type !== 'LabeledStatement', 'normalized code wont have this');
 
     // Scan body and confirm that it does not contain labeled continue/break
     // statements and no labeled statements.
@@ -121,7 +118,7 @@ function processAttempt(fdata, unrollTrueLimit) {
       if (node.type === 'LabeledStatement') {
         ok = false;
         vlog('  - bail: body contained a label');
-        return;
+        return true; // Do not enter
       }
       if (node.type === 'BreakStatement' && node.label !== null) {
         ok = false;
@@ -129,18 +126,22 @@ function processAttempt(fdata, unrollTrueLimit) {
         return;
       }
 
-      // TODO: for now, ignore loops so we don't have to worry about scoping of break ;)
+      // Don't unroll nested loops. That just risks too much code growth
       if (['ForOfStatement', 'ForInStatement', 'WhileStatement'].includes(node.type)) {
         ok = false;
         vlog('  - bail: body contained another loop and we will deal with that another day, or never');
-        return;
+        return true; // Do not enter
       }
 
       // TODO: improve this. For now skip some of the gnarly bits for cloning. Our target does not contain these.
       if (['FunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
         ok = false;
         vlog('  - bail: body contained function');
-        return;
+        return true; // Do not enter
+      }
+
+      if (!ok) {
+        return ok; // Do not enter. We have our answer but we have no better way of stopping the walk.
       }
     }
     if (!ok) {
@@ -165,20 +166,17 @@ function processAttempt(fdata, unrollTrueLimit) {
     const condCount = AST.isTrue(whileNode.test) ? unrollTrueLimit : parseInt(whileNode.test.name.slice('$LOOP_UNROLL_'.length), 10) - 1;
     const condIdent = condCount > 0 ? '$LOOP_UNROLL_' + condCount : ('$LOOP_DONE_UNROLLING_ALWAYS_TRUE');
 
-    const replacer = function replacer(node, beforeWalk, nodeType, path) {
+    const walker = function replacer(node, beforeWalk, nodeType, path) {
       if (beforeWalk) {
         return;
       }
-      //// Inside a nested loop we don't need to do anything. In fact, we shouldn't.
-      //if (['WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(node.type)) {
-      //  return true; // Do not enter
-      //}
 
       if (node.type === 'BreakStatement') {
         const parentNode = path.nodes[path.nodes.length - 2];
         const parentProp = path.props[path.props.length - 1];
         const parentIndex = path.indexes[path.indexes.length - 1];
 
+        // Break is already asserted to not have a label
         const newNode = AST.blockStatement([
           AST.expressionStatement(AST.assignmentExpression(tmpName, AST.fals(), '=')),
           AST.breakStatement(labelStatementNode.label.name),
@@ -186,18 +184,17 @@ function processAttempt(fdata, unrollTrueLimit) {
 
         if (parentIndex < 0) parentNode[parentProp] = newNode;
         else parentNode[parentProp][parentIndex] = newNode;
-
-        return;
       }
     };
-    walk(replacer, clone, 'BlockStatement');
+    walk(walker, clone, 'BlockStatement');
 
-    rule('while(true) should be unrolled');
+    rule('while(true) with any one break or only simple breaks should be unrolled');
 
     example(
       'while (true) { if ($()) break; }',
       //'{ let tmp = $LOOP_COUNTER_1000; stop: { if ($()) { tmp = false; break stop; } } while (tmp) { if ($()) break; }'
-      '{ let tmp = true; stop: if ($()) { tmp = false; break stop; } if (tmp) { while ($LOOP_COUNTER_999) { if ($()) break; } }'
+      //'{ let tmp = true; stop: if ($()) { tmp = false; break stop; } if (tmp) { while ($LOOP_COUNTER_999) { if ($()) break; } }'
+      '{ if ($()) { } else { while ($LOOP_COUNTER_999) { if ($()) break; } }'
     );
 
 
@@ -206,21 +203,12 @@ function processAttempt(fdata, unrollTrueLimit) {
     vlog(whileNode.test)
     vlog('Counter:', condCount, ', ident:', condIdent, ', tmpName:', tmpName, ', whileNode.test.name:', whileNode.test.name);
 
+    labelStatementNode.body.body.push(blockBody[blockIndex]);
+    blockBody[blockIndex].test = AST.identifier(condIdent);
+
     const newNodes = AST.blockStatement([
       AST.variableDeclaration(tmpName, AST.tru(), 'let'),
       labelStatementNode,
-      AST.ifStatement(
-        AST.identifier(tmpName),
-        AST.blockStatement(
-          AST.whileStatement(
-            AST.identifier(condIdent),
-            AST.blockStatement([
-              whileNode.body,
-            ]),
-          )
-        ),
-        AST.blockStatement()
-      )
     ]);
 
     blockBody[blockIndex] = newNodes;

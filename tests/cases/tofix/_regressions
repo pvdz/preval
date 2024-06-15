@@ -3,6 +3,7 @@
 // tests/cases/normalize/loops/base_return_cond.md -> used to be able to output a series of completely resolved $() with the second params resolved to numbers
 // tests/cases/normalize/nullish/global_nested_assign.md -> used to be able to inline the obj.prop assign and end with `{ b: 15 }` (same tests/cases/normalize/nullish/func_nested_assign.md)
 // tests/cases/normalize/dce/throw/fence_at_loop_dowhile.md -> regression?
+// tests/cases/normalize/expressions/assignments/do_while/auto_ident_upd_ip_simple.md -> should detect that `a` is invariably overwritten in the loop. maybe a ref tracking bug (perhaps it considers while(true) an optional branch)
 
 // TODO:
 
@@ -15,3 +16,12 @@
 // tests/cases/normalize/dce/return/decl_after_looped_infi.md -> when a branch exits the loop we could replace it with a break and move the branch to after the loop? but I guess only if there are no other breaks. maybe too edge casy
 // investigate while(true) loops and if there are cases where we could rotate statements in the body, then move one out before/after. the loop is wrap-around after all.
 // nested labels can be squashed when they have no tail
+// occurrences of $LOOP_DONE_UNROLLING_ALWAYS_TRUE not in a while test should convert back to true
+// tests/cases/normalize/expressions/assignments/for_b/auto_ident_opt_simple_opt_simple.md -> trivial infinite loops could gobble the previous statement(s) if it is the same as the body
+// the loopStop label pattern could be rewritten in a var-if-test way
+// while unrolling can be super generic now with one break in the loop body, and probably even if there are multiple
+// Replace literals of LOOP_UNROLL_CONSTANT_COUNT_PREFIX and MAX_UNROLL_CONSTANT_NAME with the constants in code
+// tests/cases/tofix/infinite_loops2.md -> while with nested while (nothing else in root body) could eliminate outer while by compiling breaks like you do for continue
+// tests/cases/while/const_test_true.md -> (but then not global) if a variable is not a closure and is tested twice in a row without writes in between then it must have the same boolean value. `if (x) { $(); if (x)` -> `if (x) $(); if (true)`. Trickier for globals I guess,
+// tests/cases/unwind_loops/separate_test/multi_loop_test_nested.md -> a counter that only increases can probably have its value inferred even if in a loop?
+

@@ -100,7 +100,6 @@ while (true) {
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 let $finalStep = false;
 try {
   const test = $(`first`);
@@ -116,10 +115,7 @@ try {
 }
 $(`finally`);
 if ($finalStep) {
-  $tmpLoopUnrollCheck = false;
 } else {
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     let $finalStep$1 = false;
     try {
@@ -140,7 +136,6 @@ if ($tmpLoopUnrollCheck) {
     } else {
     }
   }
-} else {
 }
 `````
 
@@ -149,45 +144,44 @@ if ($tmpLoopUnrollCheck) {
 With rename=true
 
 `````js filename=intro
-let a = true;
-let b = false;
+let a = false;
 try {
-  const c = $( "first" );
+  const b = $( "first" );
   $( "second" );
-  if (c) {
-    b = true;
+  if (b) {
+    a = true;
   }
   else {
     $( "third" );
   }
 }
-catch (d) {
+catch (c) {
   $( "finally" );
-  throw d;
+  throw c;
 }
 $( "finally" );
-if (b) {
-  a = false;
-}
 if (a) {
+
+}
+else {
   while ($LOOP_UNROLL_10) {
-    let e = false;
+    let d = false;
     try {
-      const f = $( "first" );
+      const e = $( "first" );
       $( "second" );
-      if (f) {
-        e = true;
+      if (e) {
+        d = true;
       }
       else {
         $( "third" );
       }
     }
-catch (g) {
+catch (f) {
       $( "finally" );
-      throw g;
+      throw f;
     }
     $( "finally" );
-    if (e) {
+    if (d) {
       break;
     }
   }

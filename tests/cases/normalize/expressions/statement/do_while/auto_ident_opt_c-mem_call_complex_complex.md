@@ -79,7 +79,6 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-let $tmpLoopUnrollCheck = true;
 $(100);
 let tmpIfTest = false;
 const tmpChainElementCall = $(b);
@@ -97,10 +96,6 @@ if (tmpIfTest$1) {
   }
 }
 if (tmpIfTest) {
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     $(100);
     let tmpIfTest$2 = false;
@@ -138,56 +133,49 @@ const b = {
   a: 999,
   b: 1000,
 };
-let c = true;
 $( 100 );
-let d = false;
-const e = $( a );
-const f = e == null;
-if (f) {
+let c = false;
+const d = $( a );
+const e = d == null;
+if (e) {
 
 }
 else {
-  const g = $( "$" );
-  const h = e[ g ];
-  const i = h == null;
-  if (i) {
+  const f = $( "$" );
+  const g = d[ f ];
+  const h = g == null;
+  if (h) {
 
   }
   else {
-    const j = $( 1 );
-    const k = $dotCall( h, e, j );
-    d = k;
+    const i = $( 1 );
+    const j = $dotCall( g, d, i );
+    c = j;
   }
-}
-if (d) {
-
-}
-else {
-  c = false;
 }
 if (c) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    let l = false;
-    const m = $( a );
-    const n = m == null;
-    if (n) {
+    let k = false;
+    const l = $( a );
+    const m = l == null;
+    if (m) {
 
     }
     else {
-      const o = $( "$" );
-      const p = m[ o ];
-      const q = p == null;
-      if (q) {
+      const n = $( "$" );
+      const o = l[ n ];
+      const p = o == null;
+      if (p) {
 
       }
       else {
-        const r = $( 1 );
-        const s = $dotCall( p, m, r );
-        l = s;
+        const q = $( 1 );
+        const r = $dotCall( o, l, q );
+        k = r;
       }
     }
-    if (l) {
+    if (k) {
 
     }
     else {

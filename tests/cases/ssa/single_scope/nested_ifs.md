@@ -80,20 +80,15 @@ const f = function ($$0) {
   const y = $$0;
   debugger;
   if (y) {
-    let $tmpLoopUnrollCheck = true;
     if ($) {
-      $tmpLoopUnrollCheck = false;
+      return undefined;
     } else {
-    }
-    if ($tmpLoopUnrollCheck) {
       while ($LOOP_UNROLL_10) {
         if ($) {
           break;
         } else {
         }
       }
-      return undefined;
-    } else {
       return undefined;
     }
   } else {
@@ -112,19 +107,15 @@ const a = function($$0 ) {
   const b = c;
   debugger;
   if (b) {
-    let d = true;
     if ($) {
-      d = false;
+      return undefined;
     }
-    if (d) {
+    else {
       while ($LOOP_UNROLL_10) {
         if ($) {
           break;
         }
       }
-      return undefined;
-    }
-    else {
       return undefined;
     }
   }

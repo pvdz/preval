@@ -62,14 +62,10 @@ $(x);
 `````js filename=intro
 $(10);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let $tmpLoopUnrollCheck = true;
   let tmpClusterSSA_x = $(20);
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    $tmpLoopUnrollCheck = false;
   } else {
-  }
-  if ($tmpLoopUnrollCheck) {
     while ($LOOP_UNROLL_10) {
       tmpClusterSSA_x = $(20);
       const tmpIfTest$1 = $(true);
@@ -78,7 +74,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       } else {
       }
     }
-  } else {
   }
   $(tmpClusterSSA_x);
 }
@@ -92,22 +87,21 @@ With rename=true
 `````js filename=intro
 $( 10 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let a = true;
-  let b = $( 20 );
-  const c = $( true );
-  if (c) {
-    a = false;
+  let a = $( 20 );
+  const b = $( true );
+  if (b) {
+
   }
-  if (a) {
+  else {
     while ($LOOP_UNROLL_10) {
-      b = $( 20 );
-      const d = $( true );
-      if (d) {
+      a = $( 20 );
+      const c = $( true );
+      if (c) {
         break;
       }
     }
   }
-  $( b );
+  $( a );
 }
 throw "[preval] unreachable; infinite loop";
 `````

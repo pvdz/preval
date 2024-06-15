@@ -79,13 +79,9 @@ if ($) {
 `````js filename=intro
 if ($) {
   const x = $(1);
-  let $tmpLoopUnrollCheck = true;
   $(x);
   if ($) {
-    $tmpLoopUnrollCheck = false;
   } else {
-  }
-  if ($tmpLoopUnrollCheck) {
     while ($LOOP_UNROLL_10) {
       $(x);
       if ($) {
@@ -93,7 +89,6 @@ if ($) {
       } else {
       }
     }
-  } else {
   }
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpClusterSSA_x = $(2);
@@ -111,12 +106,11 @@ With rename=true
 `````js filename=intro
 if ($) {
   const a = $( 1 );
-  let b = true;
   $( a );
   if ($) {
-    b = false;
+
   }
-  if (b) {
+  else {
     while ($LOOP_UNROLL_10) {
       $( a );
       if ($) {
@@ -125,8 +119,8 @@ if ($) {
     }
   }
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const c = $( 2 );
-    $( c );
+    const b = $( 2 );
+    $( b );
   }
   throw "[preval] unreachable; infinite loop";
 }

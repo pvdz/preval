@@ -70,7 +70,6 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-let $tmpLoopUnrollCheck = true;
 $(100);
 const b = { x: 1 };
 const tmpChainElementCall = $(b);
@@ -82,10 +81,6 @@ if (tmpIfTest$1) {
   a = tmpChainElementObject;
 }
 if (a) {
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpChainElementCall$1 = $(b);
@@ -112,37 +107,30 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-let b = true;
 $( 100 );
-const c = { x: 1 };
-const d = $( c );
-const e = d == null;
-if (e) {
+const b = { x: 1 };
+const c = $( b );
+const d = c == null;
+if (d) {
 
 }
 else {
-  const f = $( "x" );
-  const g = d[ f ];
-  a = g;
+  const e = $( "x" );
+  const f = c[ e ];
+  a = f;
 }
 if (a) {
-
-}
-else {
-  b = false;
-}
-if (b) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const h = $( c );
-    const i = h == null;
-    if (i) {
+    const g = $( b );
+    const h = g == null;
+    if (h) {
 
     }
     else {
-      const j = $( "x" );
-      const k = h[ j ];
-      a = k;
+      const i = $( "x" );
+      const j = g[ i ];
+      a = j;
     }
     if (a) {
 

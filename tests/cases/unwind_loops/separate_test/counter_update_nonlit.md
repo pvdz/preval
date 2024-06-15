@@ -53,17 +53,17 @@ while (true) {
 `````js filename=intro
 const max = $(10);
 $(0);
-const i = 0 + max;
-const tmpClusterSSA_tmpIfTest = i < 10;
+const tmpClusterSSA_i = 0 + max;
+const tmpClusterSSA_tmpIfTest = tmpClusterSSA_i < 10;
 if (tmpClusterSSA_tmpIfTest) {
-  $(i);
-  let tmpClusterSSA_i = i + max;
-  let tmpClusterSSA_tmpIfTest$1 = tmpClusterSSA_i < 10;
+  $(tmpClusterSSA_i);
+  let tmpClusterSSA_i$1 = tmpClusterSSA_i + max;
+  let tmpClusterSSA_tmpIfTest$1 = tmpClusterSSA_i$1 < 10;
   while ($LOOP_UNROLL_9) {
     if (tmpClusterSSA_tmpIfTest$1) {
-      $(tmpClusterSSA_i);
-      tmpClusterSSA_i = tmpClusterSSA_i + max;
-      tmpClusterSSA_tmpIfTest$1 = tmpClusterSSA_i < 10;
+      $(tmpClusterSSA_i$1);
+      tmpClusterSSA_i$1 = tmpClusterSSA_i$1 + max;
+      tmpClusterSSA_tmpIfTest$1 = tmpClusterSSA_i$1 < 10;
     } else {
       break;
     }

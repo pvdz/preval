@@ -73,26 +73,20 @@ $(arr1);
 
 `````js filename=intro
 const max = $(10);
-let counter = 2;
-let test = 2 < max;
-let $tmpLoopUnrollCheck = true;
+const test = 2 < max;
 const arr1 = [];
 if (test) {
   arr1[0] = 103;
-  counter = 3;
-  test = 3 < max;
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_counter = 3;
+  let tmpClusterSSA_test = 3 < max;
   const arr2 = [101, 102, 103, 104, 105, 106, 107, 108, 109, 1010];
   while ($LOOP_UNROLL_10) {
-    if (test) {
-      const x$1 = counter - 2;
-      const y$1 = arr2[counter];
+    if (tmpClusterSSA_test) {
+      const x$1 = tmpClusterSSA_counter - 2;
+      const y$1 = arr2[tmpClusterSSA_counter];
       arr1[x$1] = y$1;
-      counter = counter + 1;
-      test = counter < max;
+      tmpClusterSSA_counter = tmpClusterSSA_counter + 1;
+      tmpClusterSSA_test = tmpClusterSSA_counter < max;
     } else {
       break;
     }
@@ -108,34 +102,27 @@ With rename=true
 
 `````js filename=intro
 const a = $( 10 );
-let b = 2;
-let c = 2 < a;
-let d = true;
-const e = [];
-if (c) {
-  e[0] = 103;
-  b = 3;
-  c = 3 < a;
-}
-else {
-  d = false;
-}
-if (d) {
+const b = 2 < a;
+const c = [];
+if (b) {
+  c[0] = 103;
+  let d = 3;
+  let e = 3 < a;
   const f = [ 101, 102, 103, 104, 105, 106, 107, 108, 109, 1010 ];
   while ($LOOP_UNROLL_10) {
-    if (c) {
-      const g = b - 2;
-      const h = f[ b ];
-      e[g] = h;
-      b = b + 1;
-      c = b < a;
+    if (e) {
+      const g = d - 2;
+      const h = f[ d ];
+      c[g] = h;
+      d = d + 1;
+      e = d < a;
     }
     else {
       break;
     }
   }
 }
-$( e );
+$( c );
 `````
 
 ## Globals

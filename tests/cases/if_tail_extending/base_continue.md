@@ -79,19 +79,16 @@ if (x) {
   } else {
     $(2);
   }
-  if (x) {
-    while ($LOOP_UNROLL_10) {
-      if (x) {
-        $(1);
-        if ($) {
-        } else {
-          $(2);
-        }
+  while ($LOOP_UNROLL_10) {
+    if (x) {
+      $(1);
+      if ($) {
       } else {
-        break;
+        $(2);
       }
+    } else {
+      break;
     }
-  } else {
   }
 } else {
 }
@@ -110,20 +107,18 @@ if (x) {
   else {
     $( 2 );
   }
-  if (x) {
-    while ($LOOP_UNROLL_10) {
-      if (x) {
-        $( 1 );
-        if ($) {
+  while ($LOOP_UNROLL_10) {
+    if (x) {
+      $( 1 );
+      if ($) {
 
-        }
-        else {
-          $( 2 );
-        }
       }
       else {
-        break;
+        $( 2 );
       }
+    }
+    else {
+      break;
     }
   }
 }

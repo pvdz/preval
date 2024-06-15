@@ -64,8 +64,6 @@ import { ifMerging } from './if_merging.mjs';
 import { ifFalsySpread } from './if_falsy_spread.mjs';
 import { tailBreaking } from './tail_breaking.mjs';
 import { infiniteLoops } from './infinite_loops.mjs';
-import { unwindWhileWithTest } from './unwind_loop_with_test.mjs';
-import { unwindWhileWithCounter } from './unwind_loop_with_counter.mjs';
 import { staticArgOpOutlining } from './static_arg_op_outlining.mjs';
 import { arr_mutation } from './arr_mutation.mjs';
 import { functionLocks } from './function_locks.mjs';
@@ -256,9 +254,7 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     ifMerging(fdata) ||
     ifFalsySpread(fdata) ||
     tailBreaking(fdata) ||
-    infiniteLoops(fdata) ||
-    unwindWhileWithTest(fdata, options.unrollLimit) ||
-    unwindWhileWithCounter(fdata, options.unrollLimit) ||
+    infiniteLoops(fdata) || // Make sure to do this before loop unrolling
     staticArgOpOutlining(fdata) ||
     functionLocks(fdata) ||
     readOnce(fdata) ||

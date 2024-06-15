@@ -61,14 +61,10 @@ $(x);
 `````js filename=intro
 $(10);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let $tmpLoopUnrollCheck = true;
   $(20);
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    $tmpLoopUnrollCheck = false;
   } else {
-  }
-  if ($tmpLoopUnrollCheck) {
     while ($LOOP_UNROLL_10) {
       $(20);
       const tmpIfTest$1 = $(true);
@@ -77,7 +73,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       } else {
       }
     }
-  } else {
   }
   $(30);
 }
@@ -91,17 +86,16 @@ With rename=true
 `````js filename=intro
 $( 10 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let a = true;
   $( 20 );
-  const b = $( true );
-  if (b) {
-    a = false;
-  }
+  const a = $( true );
   if (a) {
+
+  }
+  else {
     while ($LOOP_UNROLL_10) {
       $( 20 );
-      const c = $( true );
-      if (c) {
+      const b = $( true );
+      if (b) {
         break;
       }
     }

@@ -60,7 +60,6 @@ $(a, b);
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
@@ -69,10 +68,6 @@ let tmpClusterSSA_b = arrPatternSplat[0];
 let tmpClusterSSA_a = tmpNestedAssignArrPatternRhs;
 if (tmpNestedAssignArrPatternRhs) {
   $(1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     const tmpArrElement$1 = $(2);
     const tmpCalleeParam$1 = [tmpArrElement$1];
@@ -96,28 +91,22 @@ $(tmpClusterSSA_a, tmpClusterSSA_b);
 With rename=true
 
 `````js filename=intro
-let a = true;
-const b = $( 2 );
-const c = [ b ];
-const d = $( c );
-const e = [ ... d ];
-let f = e[ 0 ];
-let g = d;
-if (d) {
+const a = $( 2 );
+const b = [ a ];
+const c = $( b );
+const d = [ ... c ];
+let e = d[ 0 ];
+let f = c;
+if (c) {
   $( 1 );
-}
-else {
-  a = false;
-}
-if (a) {
   while ($LOOP_UNROLL_10) {
-    const h = $( 2 );
-    const i = [ h ];
-    const j = $( i );
-    const k = [ ... j ];
-    f = k[ 0 ];
-    g = j;
-    if (j) {
+    const g = $( 2 );
+    const h = [ g ];
+    const i = $( h );
+    const j = [ ... i ];
+    e = j[ 0 ];
+    f = i;
+    if (i) {
       $( 1 );
     }
     else {
@@ -125,7 +114,7 @@ if (a) {
     }
   }
 }
-$( g, f );
+$( f, e );
 `````
 
 ## Globals

@@ -79,7 +79,6 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
 let a = undefined;
-let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall == null;
@@ -96,10 +95,6 @@ if (tmpIfTest$1) {
   }
 }
 if (a) {
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpChainElementCall$1 = $(b);
@@ -134,51 +129,44 @@ With rename=true
 const a = { y: 1 };
 const b = { x: a };
 let c = undefined;
-let d = true;
 $( 100 );
-const e = $( b );
-const f = e == null;
-if (f) {
+const d = $( b );
+const e = d == null;
+if (e) {
 
 }
 else {
-  const g = $( "x" );
-  const h = e[ g ];
-  const i = h == null;
-  if (i) {
+  const f = $( "x" );
+  const g = d[ f ];
+  const h = g == null;
+  if (h) {
 
   }
   else {
-    const j = $( "y" );
-    const k = h[ j ];
-    c = k;
+    const i = $( "y" );
+    const j = g[ i ];
+    c = j;
   }
 }
 if (c) {
-
-}
-else {
-  d = false;
-}
-if (d) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const l = $( b );
-    const m = l == null;
-    if (m) {
+    const k = $( b );
+    const l = k == null;
+    if (l) {
 
     }
     else {
-      const n = $( "x" );
-      const o = l[ n ];
-      const p = o == null;
-      if (p) {
+      const m = $( "x" );
+      const n = k[ m ];
+      const o = n == null;
+      if (o) {
 
       }
       else {
-        const q = $( "y" );
-        const r = o[ q ];
-        c = r;
+        const p = $( "y" );
+        const q = n[ p ];
+        c = q;
       }
     }
     if (c) {

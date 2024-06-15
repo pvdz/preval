@@ -61,16 +61,11 @@ $(a, b);
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 $(100);
 const b = { c: 1 };
 const tmpAssignRhsProp = $(b);
 let tmpClusterSSA_a = tmpAssignRhsProp.c;
 if (tmpClusterSSA_a) {
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpAssignRhsProp$1 = $(b);
@@ -90,23 +85,16 @@ $(tmpClusterSSA_a, b);
 With rename=true
 
 `````js filename=intro
-let a = true;
 $( 100 );
-const b = { c: 1 };
-const c = $( b );
-let d = c.c;
-if (d) {
-
-}
-else {
-  a = false;
-}
-if (a) {
+const a = { c: 1 };
+const b = $( a );
+let c = b.c;
+if (c) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const e = $( b );
-    d = e.c;
-    if (d) {
+    const d = $( a );
+    c = d.c;
+    if (c) {
 
     }
     else {
@@ -114,7 +102,7 @@ if (a) {
     }
   }
 }
-$( d, b );
+$( c, a );
 `````
 
 ## Globals

@@ -12,8 +12,8 @@
 
 `````js filename=intro
 let x = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE_5) { // infinite
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE_5) {
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) { // infinite
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     if ($) {
       $(x);
     } else {
@@ -91,8 +91,8 @@ $(x); // <- DCE me
 
 `````js filename=intro
 let x = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE_5) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE_5) {
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     if ($) {
       $(x);
     } else {
@@ -110,8 +110,8 @@ $(x);
 
 `````js filename=intro
 let x = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE_5) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE_5) {
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     if ($) {
       $(x);
     } else {
@@ -130,7 +130,7 @@ $(x);
 `````js filename=intro
 let x = 1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE_5) {
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $(x);
     if ($) {
     } else {
@@ -149,7 +149,7 @@ With rename=true
 `````js filename=intro
 let a = 1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE_5) {
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $( a );
     if ($) {
 
@@ -165,14 +165,38 @@ throw "[preval] unreachable; infinite loop";
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-$LOOP_DONE_UNROLLING_ALWAYS_TRUE_5
+None
 
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: 1
+ - 2: 1
+ - 3: 1
+ - 4: 1
+ - 5: 1
+ - 6: 1
+ - 7: 1
+ - 8: 1
+ - 9: 1
+ - 10: 1
+ - 11: 1
+ - 12: 1
+ - 13: 1
+ - 14: 1
+ - 15: 1
+ - 16: 1
+ - 17: 1
+ - 18: 1
+ - 19: 1
+ - 20: 1
+ - 21: 1
+ - 22: 1
+ - 23: 1
+ - 24: 1
+ - 25: 1
+ - 26: 1
+ - eval returned: ('<crash[ Loop aborted by Preval test runner (this simply curbs infinite loops in tests) ]>')
 
 Pre normalization calls: Same
 

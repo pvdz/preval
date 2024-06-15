@@ -62,15 +62,10 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
-let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpCompObj = $(b);
 const tmpIfTest = tmpCompObj.c;
 if (tmpIfTest) {
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpCompObj$1 = $(b);
@@ -95,22 +90,15 @@ const b = {
   a: 999,
   b: 1000,
 };
-let c = true;
 $( 100 );
-const d = $( a );
-const e = d.c;
-if (e) {
-
-}
-else {
-  c = false;
-}
-if (c) {
+const c = $( a );
+const d = c.c;
+if (d) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const f = $( a );
-    const g = f.c;
-    if (g) {
+    const e = $( a );
+    const f = e.c;
+    if (f) {
 
     }
     else {

@@ -85,15 +85,17 @@ const globalNames = new Map([
   }),
 ]);
 
+export const LOOP_UNROLL_CONSTANT_COUNT_PREFIX = '$LOOP_UNROLL_'; // TODO: replace usages
 for (let i=0; i<=MAX_UNROLL_TRUE_COUNT; ++i) {
   // $LOOP_UNROLL_1 $LOOP_UNROLL_2 $LOOP_UNROLL_3 etc
   // Special symbols whose number suffix has semantic meaning. Ultimately they boil down to an alias for "true",
   // where the name implies that we can still unroll this infinite `while(true)` that many times, before bailing.
   // We can't set it to actual `true` though because then loop unrolling goes infinite.
-  globalNames.set(`$LOOP_UNROLL_${i}`, { mustBeType: 'boolean', mustBeFalsy: false, mustBeTruthy: false, mustBePrimitive: true });
+  globalNames.set(`${LOOP_UNROLL_CONSTANT_COUNT_PREFIX}${i}`, { mustBeType: 'boolean', mustBeFalsy: false, mustBeTruthy: false, mustBePrimitive: true });
 }
-// $LOOP_DONE_UNROLLING_ALWAYS_TRUE_5
+// $LOOP_DONE_UNROLLING_ALWAYS_TRUE
 // "signals not to unroll any further. Cannot set this as "true" because that'll cause infinite loops when transforming.
-globalNames.set(`$LOOP_DONE_UNROLLING_ALWAYS_TRUE`, { mustBeType: 'boolean', mustBeFalsy: false, mustBeTruthy: false, mustBePrimitive: true });
+export const MAX_UNROLL_CONSTANT_NAME = '$LOOP_DONE_UNROLLING_ALWAYS_TRUE'; // TODO: replace usages
+globalNames.set(MAX_UNROLL_CONSTANT_NAME, { mustBeType: 'boolean', mustBeFalsy: false, mustBeTruthy: false, mustBePrimitive: true });
 
 export default globalNames;

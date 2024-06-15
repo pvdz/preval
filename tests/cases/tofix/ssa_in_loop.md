@@ -99,31 +99,25 @@ if (tmpClusterSSA_x) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-let $tmpLoopUnrollCheck$1 = true;
 if ($tmpLoopUnrollCheck) {
   parseExpression(lexerFlags$285, astProp$181);
   tmpClusterSSA_s = tmpClusterSSA_s | 10;
   const tmpClusterSSA_x$1 = $(true);
   if (tmpClusterSSA_x$1) {
-  } else {
-    $tmpLoopUnrollCheck$1 = false;
-  }
-} else {
-  $tmpLoopUnrollCheck$1 = false;
-}
-if ($tmpLoopUnrollCheck$1) {
-  while ($LOOP_UNROLL_10) {
-    if ($tmpLoopUnrollCheck) {
-      parseExpression(lexerFlags$285, astProp$181);
-      tmpClusterSSA_s = tmpClusterSSA_s | 10;
-      const tmpClusterSSA_x$2 = $(true);
-      if (tmpClusterSSA_x$2) {
+    while ($LOOP_UNROLL_10) {
+      if ($tmpLoopUnrollCheck) {
+        parseExpression(lexerFlags$285, astProp$181);
+        tmpClusterSSA_s = tmpClusterSSA_s | 10;
+        const tmpClusterSSA_x$2 = $(true);
+        if (tmpClusterSSA_x$2) {
+        } else {
+          break;
+        }
       } else {
         break;
       }
-    } else {
-      break;
     }
+  } else {
   }
 } else {
 }
@@ -146,36 +140,26 @@ if (d) {
 else {
   b = false;
 }
-let e = true;
 if (b) {
   parseExpression( lexerFlags$285, astProp$181 );
   c = c | 10;
-  const f = $( true );
-  if (f) {
+  const e = $( true );
+  if (e) {
+    while ($LOOP_UNROLL_10) {
+      if (b) {
+        parseExpression( lexerFlags$285, astProp$181 );
+        c = c | 10;
+        const f = $( true );
+        if (f) {
 
-  }
-  else {
-    e = false;
-  }
-}
-else {
-  e = false;
-}
-if (e) {
-  while ($LOOP_UNROLL_10) {
-    if (b) {
-      parseExpression( lexerFlags$285, astProp$181 );
-      c = c | 10;
-      const g = $( true );
-      if (g) {
-
+        }
+        else {
+          break;
+        }
       }
       else {
         break;
       }
-    }
-    else {
-      break;
     }
   }
 }

@@ -58,7 +58,6 @@ $(a, b);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-let $tmpLoopUnrollCheck = true;
 const tmpCalleeParam = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
@@ -66,10 +65,6 @@ const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
 if (tmpPostUpdArgVal) {
   $(100);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     const tmpCalleeParam$1 = $(b);
     const tmpPostUpdArgObj$1 = $(tmpCalleeParam$1);
@@ -97,26 +92,20 @@ const b = {
   a: 999,
   b: 1000,
 };
-let c = true;
-const d = $( a );
-const e = $( d );
-const f = e.x;
-const g = f + 1;
-e.x = g;
-if (f) {
+const c = $( a );
+const d = $( c );
+const e = d.x;
+const f = e + 1;
+d.x = f;
+if (e) {
   $( 100 );
-}
-else {
-  c = false;
-}
-if (c) {
   while ($LOOP_UNROLL_10) {
-    const h = $( a );
-    const i = $( h );
-    const j = i.x;
-    const k = j + 1;
-    i.x = k;
-    if (j) {
+    const g = $( a );
+    const h = $( g );
+    const i = h.x;
+    const j = i + 1;
+    h.x = j;
+    if (i) {
       $( 100 );
     }
     else {

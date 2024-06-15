@@ -142,7 +142,6 @@ if (three) {
 } else {
   loopTest = false;
 }
-let $tmpLoopUnrollCheck = true;
 if (loopTest) {
   $(100);
   const B$1 = $(b);
@@ -153,30 +152,25 @@ if (loopTest) {
   C[Y$1] = T;
   B$1[X$1] = T;
   if (T) {
-  } else {
-    $tmpLoopUnrollCheck = false;
-  }
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    if (loopTest) {
-      $(100);
-      const B$2 = $(b);
-      const X$2 = $(`x`);
-      const C$1 = $(c);
-      const Y$2 = $(`y`);
-      const T$1 = $(3);
-      C$1[Y$2] = T$1;
-      B$2[X$2] = T$1;
-      if (T$1) {
+    while ($LOOP_UNROLL_10) {
+      if (loopTest) {
+        $(100);
+        const B$2 = $(b);
+        const X$2 = $(`x`);
+        const C$1 = $(c);
+        const Y$2 = $(`y`);
+        const T$1 = $(3);
+        C$1[Y$2] = T$1;
+        B$2[X$2] = T$1;
+        if (T$1) {
+        } else {
+          break;
+        }
       } else {
         break;
       }
-    } else {
-      break;
     }
+  } else {
   }
 } else {
 }
@@ -209,46 +203,36 @@ if (i) {
 else {
   d = false;
 }
-let j = true;
 if (d) {
   $( 100 );
-  const k = $( a );
-  const l = $( "x" );
-  const m = $( b );
-  const n = $( "y" );
-  const o = $( 3 );
-  m[n] = o;
-  k[l] = o;
-  if (o) {
+  const j = $( a );
+  const k = $( "x" );
+  const l = $( b );
+  const m = $( "y" );
+  const n = $( 3 );
+  l[m] = n;
+  j[k] = n;
+  if (n) {
+    while ($LOOP_UNROLL_10) {
+      if (d) {
+        $( 100 );
+        const o = $( a );
+        const p = $( "x" );
+        const q = $( b );
+        const r = $( "y" );
+        const s = $( 3 );
+        q[r] = s;
+        o[p] = s;
+        if (s) {
 
-  }
-  else {
-    j = false;
-  }
-}
-else {
-  j = false;
-}
-if (j) {
-  while ($LOOP_UNROLL_10) {
-    if (d) {
-      $( 100 );
-      const p = $( a );
-      const q = $( "x" );
-      const r = $( b );
-      const s = $( "y" );
-      const t = $( 3 );
-      r[s] = t;
-      p[q] = t;
-      if (t) {
-
+        }
+        else {
+          break;
+        }
       }
       else {
         break;
       }
-    }
-    else {
-      break;
     }
   }
 }

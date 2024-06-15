@@ -108,15 +108,9 @@ $(`woohoo`);
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck$1 = true;
 const tmpIfTest = $(false);
 if (tmpIfTest) {
   $(`uhoh`);
-} else {
-  $(`exit`);
-  $tmpLoopUnrollCheck$1 = false;
-}
-if ($tmpLoopUnrollCheck$1) {
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 = $(false);
     if (tmpIfTest$1) {
@@ -127,17 +121,12 @@ if ($tmpLoopUnrollCheck$1) {
     }
   }
 } else {
+  $(`exit`);
 }
 $(`woohoo`);
-let $tmpLoopUnrollCheck = true;
 const tmpIfTest$3 = $(false);
 if (tmpIfTest$3) {
   $(`uhoh`);
-} else {
-  $(`exit`);
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$2 = $(false);
     if (tmpIfTest$2) {
@@ -148,6 +137,7 @@ if ($tmpLoopUnrollCheck) {
     }
   }
 } else {
+  $(`exit`);
 }
 $(`woohoo`);
 `````
@@ -157,19 +147,12 @@ $(`woohoo`);
 With rename=true
 
 `````js filename=intro
-let a = true;
-const b = $( false );
-if (b) {
-  $( "uhoh" );
-}
-else {
-  $( "exit" );
-  a = false;
-}
+const a = $( false );
 if (a) {
+  $( "uhoh" );
   while ($LOOP_UNROLL_10) {
-    const c = $( false );
-    if (c) {
+    const b = $( false );
+    if (b) {
       $( "uhoh" );
     }
     else {
@@ -177,21 +160,17 @@ if (a) {
       break;
     }
   }
+}
+else {
+  $( "exit" );
 }
 $( "woohoo" );
-let d = true;
-const e = $( false );
-if (e) {
+const c = $( false );
+if (c) {
   $( "uhoh" );
-}
-else {
-  $( "exit" );
-  d = false;
-}
-if (d) {
   while ($LOOP_UNROLL_10) {
-    const f = $( false );
-    if (f) {
+    const d = $( false );
+    if (d) {
       $( "uhoh" );
     }
     else {
@@ -199,6 +178,9 @@ if (d) {
       break;
     }
   }
+}
+else {
+  $( "exit" );
 }
 $( "woohoo" );
 `````

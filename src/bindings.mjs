@@ -782,7 +782,7 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
       // Special symbols whose number suffix has semantic meaning
       node.$p.nameMapping.set(`$LOOP_UNROLL_${i}`, `$LOOP_UNROLL_${i}`);
     }
-    // $LOOP_DONE_UNROLLING_ALWAYS_TRUE_5
+    // $LOOP_DONE_UNROLLING_ALWAYS_TRUE
     // "signals not to unroll any further, but to treat this as "true" anyways"
     node.$p.nameMapping.set(`$LOOP_DONE_UNROLLING_ALWAYS_TRUE`, `$LOOP_DONE_UNROLLING_ALWAYS_TRUE`);
 

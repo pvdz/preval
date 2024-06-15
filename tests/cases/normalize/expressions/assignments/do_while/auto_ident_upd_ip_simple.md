@@ -63,7 +63,7 @@ $(a, b);
 
 `````js filename=intro
 let b = 12;
-let a = 11;
+let a = { a: 999, b: 1000 };
 $(100);
 $(100);
 $(100);
@@ -94,7 +94,10 @@ With rename=true
 
 `````js filename=intro
 let a = 12;
-let b = 11;
+let b = {
+  a: 999,
+  b: 1000,
+};
 $( 100 );
 $( 100 );
 $( 100 );

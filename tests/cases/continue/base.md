@@ -145,15 +145,9 @@ const $continue = function () {
     return undefined;
   }
 };
-let $tmpLoopUnrollCheck = true;
 const tmpIfTest$1 = $(false);
 if (tmpIfTest$1) {
   $(`uhoh`);
-} else {
-  $(`exit`);
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$2 = $(false);
     if (tmpIfTest$2) {
@@ -164,6 +158,7 @@ if ($tmpLoopUnrollCheck) {
     }
   }
 } else {
+  $(`exit`);
 }
 $(`woohoo`);
 $continue();
@@ -188,19 +183,12 @@ const a = function() {
     return undefined;
   }
 };
-let c = true;
-const d = $( false );
-if (d) {
-  $( "uhoh" );
-}
-else {
-  $( "exit" );
-  c = false;
-}
+const c = $( false );
 if (c) {
+  $( "uhoh" );
   while ($LOOP_UNROLL_10) {
-    const e = $( false );
-    if (e) {
+    const d = $( false );
+    if (d) {
       $( "uhoh" );
     }
     else {
@@ -208,6 +196,9 @@ if (c) {
       break;
     }
   }
+}
+else {
+  $( "exit" );
 }
 $( "woohoo" );
 a();

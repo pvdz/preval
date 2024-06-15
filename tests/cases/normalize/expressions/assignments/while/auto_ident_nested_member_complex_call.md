@@ -67,7 +67,6 @@ $(a, b, c, d);
 `````js filename=intro
 const b = { x: 1 };
 const c = { y: 2 };
-let $tmpLoopUnrollCheck = true;
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`x`);
 const varInitAssignLhsComputedObj = $(c);
@@ -78,10 +77,6 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComp
 let tmpClusterSSA_a = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
   $(100);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     const tmpNestedAssignComMemberObj$1 = $(b);
     const tmpNestedAssignComMemberProp$1 = $(`x`);
@@ -109,32 +104,26 @@ With rename=true
 `````js filename=intro
 const a = { x: 1 };
 const b = { y: 2 };
-let c = true;
-const d = $( a );
-const e = $( "x" );
-const f = $( b );
-const g = $( "y" );
-const h = $( 3 );
-f[g] = h;
-d[e] = h;
-let i = h;
-if (h) {
+const c = $( a );
+const d = $( "x" );
+const e = $( b );
+const f = $( "y" );
+const g = $( 3 );
+e[f] = g;
+c[d] = g;
+let h = g;
+if (g) {
   $( 100 );
-}
-else {
-  c = false;
-}
-if (c) {
   while ($LOOP_UNROLL_10) {
-    const j = $( a );
-    const k = $( "x" );
-    const l = $( b );
-    const m = $( "y" );
-    const n = $( 3 );
-    l[m] = n;
-    j[k] = n;
-    i = n;
-    if (n) {
+    const i = $( a );
+    const j = $( "x" );
+    const k = $( b );
+    const l = $( "y" );
+    const m = $( 3 );
+    k[l] = m;
+    i[j] = m;
+    h = m;
+    if (m) {
       $( 100 );
     }
     else {
@@ -142,7 +131,7 @@ if (c) {
     }
   }
 }
-$( i, a, b, 3 );
+$( h, a, b, 3 );
 `````
 
 ## Globals

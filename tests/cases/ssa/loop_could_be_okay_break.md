@@ -72,14 +72,10 @@ if ($) {
 `````js filename=intro
 if ($) {
   $(1);
-  let $tmpLoopUnrollCheck = true;
   const tmpClusterSSA_x = $(2);
   $(tmpClusterSSA_x);
   if ($) {
-    $tmpLoopUnrollCheck = false;
   } else {
-  }
-  if ($tmpLoopUnrollCheck) {
     while ($LOOP_UNROLL_10) {
       const tmpClusterSSA_x$1 = $(2);
       $(tmpClusterSSA_x$1);
@@ -88,7 +84,6 @@ if ($) {
       } else {
       }
     }
-  } else {
   }
 } else {
 }
@@ -101,16 +96,15 @@ With rename=true
 `````js filename=intro
 if ($) {
   $( 1 );
-  let a = true;
-  const b = $( 2 );
-  $( b );
+  const a = $( 2 );
+  $( a );
   if ($) {
-    a = false;
+
   }
-  if (a) {
+  else {
     while ($LOOP_UNROLL_10) {
-      const c = $( 2 );
-      $( c );
+      const b = $( 2 );
+      $( b );
       if ($) {
         break;
       }

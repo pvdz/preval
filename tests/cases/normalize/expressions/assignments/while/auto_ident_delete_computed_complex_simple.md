@@ -51,16 +51,11 @@ $(a, arg);
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
 let tmpClusterSSA_a = delete tmpDeleteObj.y;
 if (tmpClusterSSA_a) {
   $(100);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     const tmpDeleteObj$1 = $(arg);
     tmpClusterSSA_a = delete tmpDeleteObj$1.y;
@@ -80,21 +75,15 @@ $(tmpClusterSSA_a, arg);
 With rename=true
 
 `````js filename=intro
-let a = true;
-const b = { y: 1 };
-const c = $( b );
-let d = delete c.y;
-if (d) {
+const a = { y: 1 };
+const b = $( a );
+let c = delete b.y;
+if (c) {
   $( 100 );
-}
-else {
-  a = false;
-}
-if (a) {
   while ($LOOP_UNROLL_10) {
-    const e = $( b );
-    d = delete e.y;
-    if (d) {
+    const d = $( a );
+    c = delete d.y;
+    if (c) {
       $( 100 );
     }
     else {
@@ -102,7 +91,7 @@ if (a) {
     }
   }
 }
-$( d, b );
+$( c, a );
 `````
 
 ## Globals

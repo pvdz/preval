@@ -69,15 +69,15 @@ $(1);
 $(2);
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
-let x = tmpArrElement;
+let tmpClusterSSA_x = tmpArrElement;
 let tmpClusterSSA_y = tmpArrElement$1;
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(x);
+  $(tmpClusterSSA_x);
   $(tmpClusterSSA_y);
   const tmpArrElement$2 = $(3);
   const tmpArrElement$4 = $(4);
-  x = tmpArrElement$2;
+  tmpClusterSSA_x = tmpArrElement$2;
   tmpClusterSSA_y = tmpArrElement$4;
   $(1);
 }

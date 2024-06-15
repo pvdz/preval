@@ -79,7 +79,6 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-let $tmpLoopUnrollCheck = true;
 $(100);
 const b = { $: $ };
 const tmpChainElementCall = $(b);
@@ -97,10 +96,6 @@ if (tmpIfTest$1) {
   }
 }
 if (a) {
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpChainElementCall$2 = $(b);
@@ -133,52 +128,45 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-let b = true;
 $( 100 );
-const c = { $: $ };
-const d = $( c );
-const e = d == null;
-if (e) {
+const b = { $: $ };
+const c = $( b );
+const d = c == null;
+if (d) {
 
 }
 else {
-  const f = $( "$" );
-  const g = d[ f ];
-  const h = g == null;
-  if (h) {
+  const e = $( "$" );
+  const f = c[ e ];
+  const g = f == null;
+  if (g) {
 
   }
   else {
-    const i = $( 1 );
-    const j = $dotCall( g, d, i );
-    a = j;
+    const h = $( 1 );
+    const i = $dotCall( f, c, h );
+    a = i;
   }
 }
 if (a) {
-
-}
-else {
-  b = false;
-}
-if (b) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const k = $( c );
-    const l = k == null;
-    if (l) {
+    const j = $( b );
+    const k = j == null;
+    if (k) {
 
     }
     else {
-      const m = $( "$" );
-      const n = k[ m ];
-      const o = n == null;
-      if (o) {
+      const l = $( "$" );
+      const m = j[ l ];
+      const n = m == null;
+      if (n) {
 
       }
       else {
-        const p = $( 1 );
-        const q = $dotCall( n, k, p );
-        a = q;
+        const o = $( 1 );
+        const p = $dotCall( m, j, o );
+        a = p;
       }
     }
     if (a) {

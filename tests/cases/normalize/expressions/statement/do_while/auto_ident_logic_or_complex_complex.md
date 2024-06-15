@@ -63,21 +63,20 @@ $(a);
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
-$(100);
-const tmpCalleeParam = $(0);
-const tmpIfTest = $(tmpCalleeParam);
-if (tmpIfTest) {
-} else {
-  const tmpCalleeParam$1 = $(2);
-  const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam$1);
-  if (tmpClusterSSA_tmpIfTest) {
+loopStop: {
+  $(100);
+  const tmpCalleeParam = $(0);
+  const tmpIfTest = $(tmpCalleeParam);
+  if (tmpIfTest) {
   } else {
-    $tmpLoopUnrollCheck = false;
+    const tmpCalleeParam$1 = $(2);
+    const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam$1);
+    if (tmpClusterSSA_tmpIfTest) {
+    } else {
+      break loopStop;
+    }
   }
-}
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
+  loopStop$1: {
     $(100);
     const tmpCalleeParam$2 = $(0);
     const tmpIfTest$1 = $(tmpCalleeParam$2);
@@ -87,11 +86,150 @@ if ($tmpLoopUnrollCheck) {
       const tmpClusterSSA_tmpIfTest$1 = $(tmpCalleeParam$4);
       if (tmpClusterSSA_tmpIfTest$1) {
       } else {
-        break;
+        break loopStop$1;
+      }
+    }
+    loopStop$2: {
+      $(100);
+      const tmpCalleeParam$3 = $(0);
+      const tmpIfTest$2 = $(tmpCalleeParam$3);
+      if (tmpIfTest$2) {
+      } else {
+        const tmpCalleeParam$5 = $(2);
+        const tmpClusterSSA_tmpIfTest$2 = $(tmpCalleeParam$5);
+        if (tmpClusterSSA_tmpIfTest$2) {
+        } else {
+          break loopStop$2;
+        }
+      }
+      loopStop$3: {
+        $(100);
+        const tmpCalleeParam$6 = $(0);
+        const tmpIfTest$3 = $(tmpCalleeParam$6);
+        if (tmpIfTest$3) {
+        } else {
+          const tmpCalleeParam$8 = $(2);
+          const tmpClusterSSA_tmpIfTest$3 = $(tmpCalleeParam$8);
+          if (tmpClusterSSA_tmpIfTest$3) {
+          } else {
+            break loopStop$3;
+          }
+        }
+        loopStop$4: {
+          $(100);
+          const tmpCalleeParam$7 = $(0);
+          const tmpIfTest$4 = $(tmpCalleeParam$7);
+          if (tmpIfTest$4) {
+          } else {
+            const tmpCalleeParam$9 = $(2);
+            const tmpClusterSSA_tmpIfTest$4 = $(tmpCalleeParam$9);
+            if (tmpClusterSSA_tmpIfTest$4) {
+            } else {
+              break loopStop$4;
+            }
+          }
+          loopStop$5: {
+            $(100);
+            const tmpCalleeParam$10 = $(0);
+            const tmpIfTest$5 = $(tmpCalleeParam$10);
+            if (tmpIfTest$5) {
+            } else {
+              const tmpCalleeParam$12 = $(2);
+              const tmpClusterSSA_tmpIfTest$5 = $(tmpCalleeParam$12);
+              if (tmpClusterSSA_tmpIfTest$5) {
+              } else {
+                break loopStop$5;
+              }
+            }
+            loopStop$6: {
+              $(100);
+              const tmpCalleeParam$11 = $(0);
+              const tmpIfTest$6 = $(tmpCalleeParam$11);
+              if (tmpIfTest$6) {
+              } else {
+                const tmpCalleeParam$13 = $(2);
+                const tmpClusterSSA_tmpIfTest$6 = $(tmpCalleeParam$13);
+                if (tmpClusterSSA_tmpIfTest$6) {
+                } else {
+                  break loopStop$6;
+                }
+              }
+              loopStop$7: {
+                $(100);
+                const tmpCalleeParam$14 = $(0);
+                const tmpIfTest$7 = $(tmpCalleeParam$14);
+                if (tmpIfTest$7) {
+                } else {
+                  const tmpCalleeParam$16 = $(2);
+                  const tmpClusterSSA_tmpIfTest$7 = $(tmpCalleeParam$16);
+                  if (tmpClusterSSA_tmpIfTest$7) {
+                  } else {
+                    break loopStop$7;
+                  }
+                }
+                loopStop$8: {
+                  $(100);
+                  const tmpCalleeParam$15 = $(0);
+                  const tmpIfTest$8 = $(tmpCalleeParam$15);
+                  if (tmpIfTest$8) {
+                  } else {
+                    const tmpCalleeParam$17 = $(2);
+                    const tmpClusterSSA_tmpIfTest$8 = $(tmpCalleeParam$17);
+                    if (tmpClusterSSA_tmpIfTest$8) {
+                    } else {
+                      break loopStop$8;
+                    }
+                  }
+                  loopStop$9: {
+                    $(100);
+                    const tmpCalleeParam$18 = $(0);
+                    const tmpIfTest$9 = $(tmpCalleeParam$18);
+                    if (tmpIfTest$9) {
+                    } else {
+                      const tmpCalleeParam$20 = $(2);
+                      const tmpClusterSSA_tmpIfTest$9 = $(tmpCalleeParam$20);
+                      if (tmpClusterSSA_tmpIfTest$9) {
+                      } else {
+                        break loopStop$9;
+                      }
+                    }
+                    loopStop$10: {
+                      $(100);
+                      const tmpCalleeParam$19 = $(0);
+                      const tmpIfTest$10 = $(tmpCalleeParam$19);
+                      if (tmpIfTest$10) {
+                      } else {
+                        const tmpCalleeParam$21 = $(2);
+                        const tmpClusterSSA_tmpIfTest$10 = $(tmpCalleeParam$21);
+                        if (tmpClusterSSA_tmpIfTest$10) {
+                        } else {
+                          break loopStop$10;
+                        }
+                      }
+                      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+                        $(100);
+                        const tmpCalleeParam$22 = $(0);
+                        const tmpIfTest$11 = $(tmpCalleeParam$22);
+                        if (tmpIfTest$11) {
+                        } else {
+                          const tmpCalleeParam$24 = $(2);
+                          const tmpClusterSSA_tmpIfTest$11 = $(tmpCalleeParam$24);
+                          if (tmpClusterSSA_tmpIfTest$11) {
+                          } else {
+                            break;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
-} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -102,48 +240,227 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = true;
-$( 100 );
-const b = $( 0 );
-const c = $( b );
-if (c) {
-
-}
-else {
-  const d = $( 2 );
-  const e = $( d );
-  if (e) {
+loopStop: {
+  $( 100 );
+  const a = $( 0 );
+  const b = $( a );
+  if (b) {
 
   }
   else {
-    a = false;
-  }
-}
-if (a) {
-  while ($LOOP_UNROLL_10) {
-    $( 100 );
-    const f = $( 0 );
-    const g = $( f );
-    if (g) {
+    const c = $( 2 );
+    const d = $( c );
+    if (d) {
 
     }
     else {
-      const h = $( 2 );
-      const i = $( h );
-      if (i) {
+      break loopStop;
+    }
+  }
+  loopStop$1:   {
+    $( 100 );
+    const e = $( 0 );
+    const f = $( e );
+    if (f) {
+
+    }
+    else {
+      const g = $( 2 );
+      const h = $( g );
+      if (h) {
 
       }
       else {
-        break;
+        break loopStop$1;
+      }
+    }
+    loopStop$2:     {
+      $( 100 );
+      const i = $( 0 );
+      const j = $( i );
+      if (j) {
+
+      }
+      else {
+        const k = $( 2 );
+        const l = $( k );
+        if (l) {
+
+        }
+        else {
+          break loopStop$2;
+        }
+      }
+      loopStop$3:       {
+        $( 100 );
+        const m = $( 0 );
+        const n = $( m );
+        if (n) {
+
+        }
+        else {
+          const o = $( 2 );
+          const p = $( o );
+          if (p) {
+
+          }
+          else {
+            break loopStop$3;
+          }
+        }
+        loopStop$4:         {
+          $( 100 );
+          const q = $( 0 );
+          const r = $( q );
+          if (r) {
+
+          }
+          else {
+            const s = $( 2 );
+            const t = $( s );
+            if (t) {
+
+            }
+            else {
+              break loopStop$4;
+            }
+          }
+          loopStop$5:           {
+            $( 100 );
+            const u = $( 0 );
+            const v = $( u );
+            if (v) {
+
+            }
+            else {
+              const w = $( 2 );
+              const x = $( w );
+              if (x) {
+
+              }
+              else {
+                break loopStop$5;
+              }
+            }
+            loopStop$6:             {
+              $( 100 );
+              const y = $( 0 );
+              const z = $( y );
+              if (z) {
+
+              }
+              else {
+                const 01 = $( 2 );
+                const 11 = $( 01 );
+                if (11) {
+
+                }
+                else {
+                  break loopStop$6;
+                }
+              }
+              loopStop$7:               {
+                $( 100 );
+                const 21 = $( 0 );
+                const 31 = $( 21 );
+                if (31) {
+
+                }
+                else {
+                  const 41 = $( 2 );
+                  const 51 = $( 41 );
+                  if (51) {
+
+                  }
+                  else {
+                    break loopStop$7;
+                  }
+                }
+                loopStop$8:                 {
+                  $( 100 );
+                  const 61 = $( 0 );
+                  const 71 = $( 61 );
+                  if (71) {
+
+                  }
+                  else {
+                    const 81 = $( 2 );
+                    const 91 = $( 81 );
+                    if (91) {
+
+                    }
+                    else {
+                      break loopStop$8;
+                    }
+                  }
+                  loopStop$9:                   {
+                    $( 100 );
+                    const a1 = $( 0 );
+                    const b1 = $( a1 );
+                    if (b1) {
+
+                    }
+                    else {
+                      const c1 = $( 2 );
+                      const d1 = $( c1 );
+                      if (d1) {
+
+                      }
+                      else {
+                        break loopStop$9;
+                      }
+                    }
+                    loopStop$10:                     {
+                      $( 100 );
+                      const e1 = $( 0 );
+                      const f1 = $( e1 );
+                      if (f1) {
+
+                      }
+                      else {
+                        const g1 = $( 2 );
+                        const h1 = $( g1 );
+                        if (h1) {
+
+                        }
+                        else {
+                          break loopStop$10;
+                        }
+                      }
+                      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+                        $( 100 );
+                        const i1 = $( 0 );
+                        const j1 = $( i1 );
+                        if (j1) {
+
+                        }
+                        else {
+                          const k1 = $( 2 );
+                          const l1 = $( k1 );
+                          if (l1) {
+
+                          }
+                          else {
+                            break;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
 }
-const j = {
+const m1 = {
   a: 999,
   b: 1000,
 };
-$( j );
+$( m1 );
 `````
 
 ## Globals

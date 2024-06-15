@@ -86,29 +86,21 @@ $(3);
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 try {
   $(1);
 } catch ($finalImplicit) {}
 $(2);
 if ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     try {
       $(1);
     } catch ($finalImplicit$1) {}
     $(2);
-    if ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    } else {
-      break;
-    }
   }
+  throw `[preval] unreachable; infinite loop`;
 } else {
+  $(3);
 }
-$(3);
 `````
 
 ## PST Output
@@ -116,38 +108,28 @@ $(3);
 With rename=true
 
 `````js filename=intro
-let a = true;
 try {
   $( 1 );
 }
-catch (b) {
+catch (a) {
 
 }
 $( 2 );
 if ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-
-}
-else {
-  a = false;
-}
-if (a) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     try {
       $( 1 );
     }
-catch (c) {
+catch (b) {
 
     }
     $( 2 );
-    if ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-
-    }
-    else {
-      break;
-    }
   }
+  throw "[preval] unreachable; infinite loop";
 }
-$( 3 );
+else {
+  $( 3 );
+}
 `````
 
 ## Globals

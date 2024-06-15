@@ -64,24 +64,23 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-let $tmpLoopUnrollCheck = true;
 const b = { x: 1 };
-const tmpChainElementCall = $(b);
-const tmpIfTest$1 = tmpChainElementCall == null;
-if (tmpIfTest$1) {
-  $(1);
-} else {
-  const tmpChainRootComputed = $(`x`);
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  a = tmpChainElementObject;
-  if (tmpChainElementObject) {
+loopStop: {
+  const tmpChainElementCall = $(b);
+  const tmpIfTest$1 = tmpChainElementCall == null;
+  if (tmpIfTest$1) {
     $(1);
   } else {
-    $tmpLoopUnrollCheck = false;
+    const tmpChainRootComputed = $(`x`);
+    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+    a = tmpChainElementObject;
+    if (tmpChainElementObject) {
+      $(1);
+    } else {
+      break loopStop;
+    }
   }
-}
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
+  loopStop$1: {
     const tmpChainElementCall$1 = $(b);
     const tmpIfTest$2 = tmpChainElementCall$1 == null;
     if (tmpIfTest$2) {
@@ -93,11 +92,170 @@ if ($tmpLoopUnrollCheck) {
       if (tmpChainElementObject$1) {
         $(1);
       } else {
-        break;
+        break loopStop$1;
+      }
+    }
+    loopStop$2: {
+      const tmpChainElementCall$2 = $(b);
+      const tmpIfTest$3 = tmpChainElementCall$2 == null;
+      if (tmpIfTest$3) {
+        $(1);
+      } else {
+        const tmpChainRootComputed$2 = $(`x`);
+        const tmpChainElementObject$2 = tmpChainElementCall$2[tmpChainRootComputed$2];
+        a = tmpChainElementObject$2;
+        if (tmpChainElementObject$2) {
+          $(1);
+        } else {
+          break loopStop$2;
+        }
+      }
+      loopStop$3: {
+        const tmpChainElementCall$3 = $(b);
+        const tmpIfTest$4 = tmpChainElementCall$3 == null;
+        if (tmpIfTest$4) {
+          $(1);
+        } else {
+          const tmpChainRootComputed$3 = $(`x`);
+          const tmpChainElementObject$3 = tmpChainElementCall$3[tmpChainRootComputed$3];
+          a = tmpChainElementObject$3;
+          if (tmpChainElementObject$3) {
+            $(1);
+          } else {
+            break loopStop$3;
+          }
+        }
+        loopStop$4: {
+          const tmpChainElementCall$4 = $(b);
+          const tmpIfTest$5 = tmpChainElementCall$4 == null;
+          if (tmpIfTest$5) {
+            $(1);
+          } else {
+            const tmpChainRootComputed$4 = $(`x`);
+            const tmpChainElementObject$4 = tmpChainElementCall$4[tmpChainRootComputed$4];
+            a = tmpChainElementObject$4;
+            if (tmpChainElementObject$4) {
+              $(1);
+            } else {
+              break loopStop$4;
+            }
+          }
+          loopStop$5: {
+            const tmpChainElementCall$5 = $(b);
+            const tmpIfTest$6 = tmpChainElementCall$5 == null;
+            if (tmpIfTest$6) {
+              $(1);
+            } else {
+              const tmpChainRootComputed$5 = $(`x`);
+              const tmpChainElementObject$5 = tmpChainElementCall$5[tmpChainRootComputed$5];
+              a = tmpChainElementObject$5;
+              if (tmpChainElementObject$5) {
+                $(1);
+              } else {
+                break loopStop$5;
+              }
+            }
+            loopStop$6: {
+              const tmpChainElementCall$6 = $(b);
+              const tmpIfTest$7 = tmpChainElementCall$6 == null;
+              if (tmpIfTest$7) {
+                $(1);
+              } else {
+                const tmpChainRootComputed$6 = $(`x`);
+                const tmpChainElementObject$6 = tmpChainElementCall$6[tmpChainRootComputed$6];
+                a = tmpChainElementObject$6;
+                if (tmpChainElementObject$6) {
+                  $(1);
+                } else {
+                  break loopStop$6;
+                }
+              }
+              loopStop$7: {
+                const tmpChainElementCall$7 = $(b);
+                const tmpIfTest$8 = tmpChainElementCall$7 == null;
+                if (tmpIfTest$8) {
+                  $(1);
+                } else {
+                  const tmpChainRootComputed$7 = $(`x`);
+                  const tmpChainElementObject$7 = tmpChainElementCall$7[tmpChainRootComputed$7];
+                  a = tmpChainElementObject$7;
+                  if (tmpChainElementObject$7) {
+                    $(1);
+                  } else {
+                    break loopStop$7;
+                  }
+                }
+                loopStop$8: {
+                  const tmpChainElementCall$8 = $(b);
+                  const tmpIfTest$9 = tmpChainElementCall$8 == null;
+                  if (tmpIfTest$9) {
+                    $(1);
+                  } else {
+                    const tmpChainRootComputed$8 = $(`x`);
+                    const tmpChainElementObject$8 = tmpChainElementCall$8[tmpChainRootComputed$8];
+                    a = tmpChainElementObject$8;
+                    if (tmpChainElementObject$8) {
+                      $(1);
+                    } else {
+                      break loopStop$8;
+                    }
+                  }
+                  loopStop$9: {
+                    const tmpChainElementCall$9 = $(b);
+                    const tmpIfTest$10 = tmpChainElementCall$9 == null;
+                    if (tmpIfTest$10) {
+                      $(1);
+                    } else {
+                      const tmpChainRootComputed$9 = $(`x`);
+                      const tmpChainElementObject$9 = tmpChainElementCall$9[tmpChainRootComputed$9];
+                      a = tmpChainElementObject$9;
+                      if (tmpChainElementObject$9) {
+                        $(1);
+                      } else {
+                        break loopStop$9;
+                      }
+                    }
+                    loopStop$10: {
+                      const tmpChainElementCall$10 = $(b);
+                      const tmpIfTest$11 = tmpChainElementCall$10 == null;
+                      if (tmpIfTest$11) {
+                        $(1);
+                      } else {
+                        const tmpChainRootComputed$10 = $(`x`);
+                        const tmpChainElementObject$10 = tmpChainElementCall$10[tmpChainRootComputed$10];
+                        a = tmpChainElementObject$10;
+                        if (tmpChainElementObject$10) {
+                          $(1);
+                        } else {
+                          break loopStop$10;
+                        }
+                      }
+                      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+                        const tmpChainElementCall$11 = $(b);
+                        const tmpIfTest$12 = tmpChainElementCall$11 == null;
+                        if (tmpIfTest$12) {
+                          $(1);
+                        } else {
+                          const tmpChainRootComputed$11 = $(`x`);
+                          const tmpChainElementObject$11 = tmpChainElementCall$11[tmpChainRootComputed$11];
+                          a = tmpChainElementObject$11;
+                          if (tmpChainElementObject$11) {
+                            $(1);
+                          } else {
+                            break;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
-} else {
 }
 $(a);
 `````
@@ -108,40 +266,219 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-let b = true;
-const c = { x: 1 };
-const d = $( c );
-const e = d == null;
-if (e) {
-  $( 1 );
-}
-else {
-  const f = $( "x" );
-  const g = d[ f ];
-  a = g;
-  if (g) {
+const b = { x: 1 };
+loopStop: {
+  const c = $( b );
+  const d = c == null;
+  if (d) {
     $( 1 );
   }
   else {
-    b = false;
-  }
-}
-if (b) {
-  while ($LOOP_UNROLL_10) {
-    const h = $( c );
-    const i = h == null;
-    if (i) {
+    const e = $( "x" );
+    const f = c[ e ];
+    a = f;
+    if (f) {
       $( 1 );
     }
     else {
-      const j = $( "x" );
-      const k = h[ j ];
-      a = k;
-      if (k) {
+      break loopStop;
+    }
+  }
+  loopStop$1:   {
+    const g = $( b );
+    const h = g == null;
+    if (h) {
+      $( 1 );
+    }
+    else {
+      const i = $( "x" );
+      const j = g[ i ];
+      a = j;
+      if (j) {
         $( 1 );
       }
       else {
-        break;
+        break loopStop$1;
+      }
+    }
+    loopStop$2:     {
+      const k = $( b );
+      const l = k == null;
+      if (l) {
+        $( 1 );
+      }
+      else {
+        const m = $( "x" );
+        const n = k[ m ];
+        a = n;
+        if (n) {
+          $( 1 );
+        }
+        else {
+          break loopStop$2;
+        }
+      }
+      loopStop$3:       {
+        const o = $( b );
+        const p = o == null;
+        if (p) {
+          $( 1 );
+        }
+        else {
+          const q = $( "x" );
+          const r = o[ q ];
+          a = r;
+          if (r) {
+            $( 1 );
+          }
+          else {
+            break loopStop$3;
+          }
+        }
+        loopStop$4:         {
+          const s = $( b );
+          const t = s == null;
+          if (t) {
+            $( 1 );
+          }
+          else {
+            const u = $( "x" );
+            const v = s[ u ];
+            a = v;
+            if (v) {
+              $( 1 );
+            }
+            else {
+              break loopStop$4;
+            }
+          }
+          loopStop$5:           {
+            const w = $( b );
+            const x = w == null;
+            if (x) {
+              $( 1 );
+            }
+            else {
+              const y = $( "x" );
+              const z = w[ y ];
+              a = z;
+              if (z) {
+                $( 1 );
+              }
+              else {
+                break loopStop$5;
+              }
+            }
+            loopStop$6:             {
+              const 01 = $( b );
+              const 11 = 01 == null;
+              if (11) {
+                $( 1 );
+              }
+              else {
+                const 21 = $( "x" );
+                const 31 = 01[ 21 ];
+                a = 31;
+                if (31) {
+                  $( 1 );
+                }
+                else {
+                  break loopStop$6;
+                }
+              }
+              loopStop$7:               {
+                const 41 = $( b );
+                const 51 = 41 == null;
+                if (51) {
+                  $( 1 );
+                }
+                else {
+                  const 61 = $( "x" );
+                  const 71 = 41[ 61 ];
+                  a = 71;
+                  if (71) {
+                    $( 1 );
+                  }
+                  else {
+                    break loopStop$7;
+                  }
+                }
+                loopStop$8:                 {
+                  const 81 = $( b );
+                  const 91 = 81 == null;
+                  if (91) {
+                    $( 1 );
+                  }
+                  else {
+                    const a1 = $( "x" );
+                    const b1 = 81[ a1 ];
+                    a = b1;
+                    if (b1) {
+                      $( 1 );
+                    }
+                    else {
+                      break loopStop$8;
+                    }
+                  }
+                  loopStop$9:                   {
+                    const c1 = $( b );
+                    const d1 = c1 == null;
+                    if (d1) {
+                      $( 1 );
+                    }
+                    else {
+                      const e1 = $( "x" );
+                      const f1 = c1[ e1 ];
+                      a = f1;
+                      if (f1) {
+                        $( 1 );
+                      }
+                      else {
+                        break loopStop$9;
+                      }
+                    }
+                    loopStop$10:                     {
+                      const g1 = $( b );
+                      const h1 = g1 == null;
+                      if (h1) {
+                        $( 1 );
+                      }
+                      else {
+                        const i1 = $( "x" );
+                        const j1 = g1[ i1 ];
+                        a = j1;
+                        if (j1) {
+                          $( 1 );
+                        }
+                        else {
+                          break loopStop$10;
+                        }
+                      }
+                      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+                        const k1 = $( b );
+                        const l1 = k1 == null;
+                        if (l1) {
+                          $( 1 );
+                        }
+                        else {
+                          const m1 = $( "x" );
+                          const n1 = k1[ m1 ];
+                          a = n1;
+                          if (n1) {
+                            $( 1 );
+                          }
+                          else {
+                            break;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

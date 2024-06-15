@@ -67,11 +67,11 @@ $(1);
 $(1);
 $(1);
 $(1);
-let tmpIfTest = true;
+let tmpClusterSSA_tmpIfTest$2 = true;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (tmpIfTest) {
+  if (tmpClusterSSA_tmpIfTest$2) {
     $(1);
-    tmpIfTest = b.c;
+    tmpClusterSSA_tmpIfTest$2 = b.c;
   } else {
     break;
   }

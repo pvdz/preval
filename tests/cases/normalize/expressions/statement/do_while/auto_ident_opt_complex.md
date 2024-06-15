@@ -69,7 +69,6 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-let $tmpLoopUnrollCheck = true;
 $(100);
 let tmpIfTest = false;
 const tmpChainElementCall = $(b);
@@ -80,10 +79,6 @@ if (tmpIfTest$1) {
   tmpIfTest = tmpChainElementObject;
 }
 if (tmpIfTest) {
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     $(100);
     let tmpIfTest$2 = false;
@@ -114,38 +109,31 @@ const b = {
   a: 999,
   b: 1000,
 };
-let c = true;
 $( 100 );
-let d = false;
-const e = $( a );
-const f = e == null;
-if (f) {
+let c = false;
+const d = $( a );
+const e = d == null;
+if (e) {
 
 }
 else {
-  const g = e.x;
-  d = g;
-}
-if (d) {
-
-}
-else {
-  c = false;
+  const f = d.x;
+  c = f;
 }
 if (c) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    let h = false;
-    const i = $( a );
-    const j = i == null;
-    if (j) {
+    let g = false;
+    const h = $( a );
+    const i = h == null;
+    if (i) {
 
     }
     else {
-      const k = i.x;
-      h = k;
+      const j = h.x;
+      g = j;
     }
-    if (h) {
+    if (g) {
 
     }
     else {

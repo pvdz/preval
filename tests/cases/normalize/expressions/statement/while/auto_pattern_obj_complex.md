@@ -48,15 +48,10 @@ $(a);
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
   $(100);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     const tmpCalleeParam$1 = { a: 1, b: 2 };
     const tmpIfTest$1 = $(tmpCalleeParam$1);
@@ -76,26 +71,20 @@ $(999);
 With rename=true
 
 `````js filename=intro
-let a = true;
-const b = {
+const a = {
   a: 1,
   b: 2,
 };
-const c = $( b );
-if (c) {
+const b = $( a );
+if (b) {
   $( 100 );
-}
-else {
-  a = false;
-}
-if (a) {
   while ($LOOP_UNROLL_10) {
-    const d = {
+    const c = {
       a: 1,
       b: 2,
     };
-    const e = $( d );
-    if (e) {
+    const d = $( c );
+    if (d) {
       $( 100 );
     }
     else {

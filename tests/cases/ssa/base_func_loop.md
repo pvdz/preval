@@ -77,15 +77,11 @@ if ($) {
 if ($) {
   const x = $(3);
   $(x);
-  let $tmpLoopUnrollCheck = true;
   let tmpClusterSSA_x = x + 1;
   $(tmpClusterSSA_x);
   const tmpIfTest = tmpClusterSSA_x > 5;
   if (tmpIfTest) {
-    $tmpLoopUnrollCheck = false;
   } else {
-  }
-  if ($tmpLoopUnrollCheck) {
     while ($LOOP_UNROLL_10) {
       tmpClusterSSA_x = tmpClusterSSA_x + 1;
       $(tmpClusterSSA_x);
@@ -95,7 +91,6 @@ if ($) {
       } else {
       }
     }
-  } else {
   }
   $(tmpClusterSSA_x);
   $(undefined);
@@ -111,24 +106,23 @@ With rename=true
 if ($) {
   const a = $( 3 );
   $( a );
-  let b = true;
-  let c = a + 1;
-  $( c );
-  const d = c > 5;
-  if (d) {
-    b = false;
+  let b = a + 1;
+  $( b );
+  const c = b > 5;
+  if (c) {
+
   }
-  if (b) {
+  else {
     while ($LOOP_UNROLL_10) {
-      c = c + 1;
-      $( c );
-      const e = c > 5;
-      if (e) {
+      b = b + 1;
+      $( b );
+      const d = b > 5;
+      if (d) {
         break;
       }
     }
   }
-  $( c );
+  $( b );
   $( undefined );
 }
 `````

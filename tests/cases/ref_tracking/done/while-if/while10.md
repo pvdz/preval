@@ -176,14 +176,8 @@ $(`end`, x);
 let x = 1;
 if ($) {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let $tmpLoopUnrollCheck = true;
     $(x);
     if ($) {
-    } else {
-      x = 2;
-      $tmpLoopUnrollCheck = false;
-    }
-    if ($tmpLoopUnrollCheck) {
       while ($LOOP_UNROLL_10) {
         $(x);
         if ($) {
@@ -193,6 +187,7 @@ if ($) {
         }
       }
     } else {
+      x = 2;
     }
   }
   throw `[preval] unreachable; infinite loop`;
@@ -210,16 +205,8 @@ With rename=true
 let a = 1;
 if ($) {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let b = true;
     $( a );
     if ($) {
-
-    }
-    else {
-      a = 2;
-      b = false;
-    }
-    if (b) {
       while ($LOOP_UNROLL_10) {
         $( a );
         if ($) {
@@ -230,6 +217,9 @@ if ($) {
           break;
         }
       }
+    }
+    else {
+      a = 2;
     }
   }
   throw "[preval] unreachable; infinite loop";

@@ -55,16 +55,11 @@ $(a);
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 let tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
 if (tmpNestedAssignObjPatternRhs) {
   $(1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     const tmpCalleeParam$1 = { a: 1, b: 2 };
     const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
@@ -85,28 +80,22 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-let a = true;
-const b = {
+const a = {
   a: 1,
   b: 2,
 };
-const c = $( b );
-let d = c.a;
-if (c) {
+const b = $( a );
+let c = b.a;
+if (b) {
   $( 1 );
-}
-else {
-  a = false;
-}
-if (a) {
   while ($LOOP_UNROLL_10) {
-    const e = {
+    const d = {
       a: 1,
       b: 2,
     };
-    const f = $( e );
-    d = f.a;
-    if (f) {
+    const e = $( d );
+    c = e.a;
+    if (e) {
       $( 1 );
     }
     else {
@@ -114,7 +103,7 @@ if (a) {
     }
   }
 }
-$( d );
+$( c );
 `````
 
 ## Globals

@@ -56,20 +56,19 @@ $(a);
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
-const tmpIfTest$1 = $ == null;
-if (tmpIfTest$1) {
-  $(1);
-} else {
-  const tmpChainElementCall = $(1);
-  if (tmpChainElementCall) {
+loopStop: {
+  const tmpIfTest$1 = $ == null;
+  if (tmpIfTest$1) {
     $(1);
   } else {
-    $tmpLoopUnrollCheck = false;
+    const tmpChainElementCall = $(1);
+    if (tmpChainElementCall) {
+      $(1);
+    } else {
+      break loopStop;
+    }
   }
-}
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
+  loopStop$1: {
     const tmpIfTest$2 = $ == null;
     if (tmpIfTest$2) {
       $(1);
@@ -78,11 +77,140 @@ if ($tmpLoopUnrollCheck) {
       if (tmpChainElementCall$1) {
         $(1);
       } else {
-        break;
+        break loopStop$1;
+      }
+    }
+    loopStop$2: {
+      const tmpIfTest$3 = $ == null;
+      if (tmpIfTest$3) {
+        $(1);
+      } else {
+        const tmpChainElementCall$2 = $(1);
+        if (tmpChainElementCall$2) {
+          $(1);
+        } else {
+          break loopStop$2;
+        }
+      }
+      loopStop$3: {
+        const tmpIfTest$4 = $ == null;
+        if (tmpIfTest$4) {
+          $(1);
+        } else {
+          const tmpChainElementCall$3 = $(1);
+          if (tmpChainElementCall$3) {
+            $(1);
+          } else {
+            break loopStop$3;
+          }
+        }
+        loopStop$4: {
+          const tmpIfTest$5 = $ == null;
+          if (tmpIfTest$5) {
+            $(1);
+          } else {
+            const tmpChainElementCall$4 = $(1);
+            if (tmpChainElementCall$4) {
+              $(1);
+            } else {
+              break loopStop$4;
+            }
+          }
+          loopStop$5: {
+            const tmpIfTest$6 = $ == null;
+            if (tmpIfTest$6) {
+              $(1);
+            } else {
+              const tmpChainElementCall$5 = $(1);
+              if (tmpChainElementCall$5) {
+                $(1);
+              } else {
+                break loopStop$5;
+              }
+            }
+            loopStop$6: {
+              const tmpIfTest$7 = $ == null;
+              if (tmpIfTest$7) {
+                $(1);
+              } else {
+                const tmpChainElementCall$6 = $(1);
+                if (tmpChainElementCall$6) {
+                  $(1);
+                } else {
+                  break loopStop$6;
+                }
+              }
+              loopStop$7: {
+                const tmpIfTest$8 = $ == null;
+                if (tmpIfTest$8) {
+                  $(1);
+                } else {
+                  const tmpChainElementCall$7 = $(1);
+                  if (tmpChainElementCall$7) {
+                    $(1);
+                  } else {
+                    break loopStop$7;
+                  }
+                }
+                loopStop$8: {
+                  const tmpIfTest$9 = $ == null;
+                  if (tmpIfTest$9) {
+                    $(1);
+                  } else {
+                    const tmpChainElementCall$8 = $(1);
+                    if (tmpChainElementCall$8) {
+                      $(1);
+                    } else {
+                      break loopStop$8;
+                    }
+                  }
+                  loopStop$9: {
+                    const tmpIfTest$10 = $ == null;
+                    if (tmpIfTest$10) {
+                      $(1);
+                    } else {
+                      const tmpChainElementCall$9 = $(1);
+                      if (tmpChainElementCall$9) {
+                        $(1);
+                      } else {
+                        break loopStop$9;
+                      }
+                    }
+                    loopStop$10: {
+                      const tmpIfTest$11 = $ == null;
+                      if (tmpIfTest$11) {
+                        $(1);
+                      } else {
+                        const tmpChainElementCall$10 = $(1);
+                        if (tmpChainElementCall$10) {
+                          $(1);
+                        } else {
+                          break loopStop$10;
+                        }
+                      }
+                      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+                        const tmpIfTest$12 = $ == null;
+                        if (tmpIfTest$12) {
+                          $(1);
+                        } else {
+                          const tmpChainElementCall$11 = $(1);
+                          if (tmpChainElementCall$11) {
+                            $(1);
+                          } else {
+                            break;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
-} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -93,42 +221,191 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = true;
-const b = $ == null;
-if (b) {
-  $( 1 );
-}
-else {
-  const c = $( 1 );
-  if (c) {
+loopStop: {
+  const a = $ == null;
+  if (a) {
     $( 1 );
   }
   else {
-    a = false;
-  }
-}
-if (a) {
-  while ($LOOP_UNROLL_10) {
-    const d = $ == null;
-    if (d) {
+    const b = $( 1 );
+    if (b) {
       $( 1 );
     }
     else {
-      const e = $( 1 );
+      break loopStop;
+    }
+  }
+  loopStop$1:   {
+    const c = $ == null;
+    if (c) {
+      $( 1 );
+    }
+    else {
+      const d = $( 1 );
+      if (d) {
+        $( 1 );
+      }
+      else {
+        break loopStop$1;
+      }
+    }
+    loopStop$2:     {
+      const e = $ == null;
       if (e) {
         $( 1 );
       }
       else {
-        break;
+        const f = $( 1 );
+        if (f) {
+          $( 1 );
+        }
+        else {
+          break loopStop$2;
+        }
+      }
+      loopStop$3:       {
+        const g = $ == null;
+        if (g) {
+          $( 1 );
+        }
+        else {
+          const h = $( 1 );
+          if (h) {
+            $( 1 );
+          }
+          else {
+            break loopStop$3;
+          }
+        }
+        loopStop$4:         {
+          const i = $ == null;
+          if (i) {
+            $( 1 );
+          }
+          else {
+            const j = $( 1 );
+            if (j) {
+              $( 1 );
+            }
+            else {
+              break loopStop$4;
+            }
+          }
+          loopStop$5:           {
+            const k = $ == null;
+            if (k) {
+              $( 1 );
+            }
+            else {
+              const l = $( 1 );
+              if (l) {
+                $( 1 );
+              }
+              else {
+                break loopStop$5;
+              }
+            }
+            loopStop$6:             {
+              const m = $ == null;
+              if (m) {
+                $( 1 );
+              }
+              else {
+                const n = $( 1 );
+                if (n) {
+                  $( 1 );
+                }
+                else {
+                  break loopStop$6;
+                }
+              }
+              loopStop$7:               {
+                const o = $ == null;
+                if (o) {
+                  $( 1 );
+                }
+                else {
+                  const p = $( 1 );
+                  if (p) {
+                    $( 1 );
+                  }
+                  else {
+                    break loopStop$7;
+                  }
+                }
+                loopStop$8:                 {
+                  const q = $ == null;
+                  if (q) {
+                    $( 1 );
+                  }
+                  else {
+                    const r = $( 1 );
+                    if (r) {
+                      $( 1 );
+                    }
+                    else {
+                      break loopStop$8;
+                    }
+                  }
+                  loopStop$9:                   {
+                    const s = $ == null;
+                    if (s) {
+                      $( 1 );
+                    }
+                    else {
+                      const t = $( 1 );
+                      if (t) {
+                        $( 1 );
+                      }
+                      else {
+                        break loopStop$9;
+                      }
+                    }
+                    loopStop$10:                     {
+                      const u = $ == null;
+                      if (u) {
+                        $( 1 );
+                      }
+                      else {
+                        const v = $( 1 );
+                        if (v) {
+                          $( 1 );
+                        }
+                        else {
+                          break loopStop$10;
+                        }
+                      }
+                      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+                        const w = $ == null;
+                        if (w) {
+                          $( 1 );
+                        }
+                        else {
+                          const x = $( 1 );
+                          if (x) {
+                            $( 1 );
+                          }
+                          else {
+                            break;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
 }
-const f = {
+const y = {
   a: 999,
   b: 1000,
 };
-$( f );
+$( y );
 `````
 
 ## Globals

@@ -63,14 +63,9 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
 const a = { a: 999, b: 1000 };
-let $tmpLoopUnrollCheck = true;
 const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
 if (tmpChainElementCall) {
   $(100);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     const tmpChainElementObject$6 = tmpObjLitVal$1.e;
     const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$6, tmpObjLitVal$1, 1);
@@ -95,19 +90,13 @@ const b = {
   a: 999,
   b: 1000,
 };
-let c = true;
-const d = $dotCall( $, a, 1 );
-if (d) {
-  $( 100 );
-}
-else {
-  c = false;
-}
+const c = $dotCall( $, a, 1 );
 if (c) {
+  $( 100 );
   while ($LOOP_UNROLL_10) {
-    const e = a.e;
-    const f = $dotCall( e, a, 1 );
-    if (f) {
+    const d = a.e;
+    const e = $dotCall( d, a, 1 );
+    if (e) {
       $( 100 );
     }
     else {

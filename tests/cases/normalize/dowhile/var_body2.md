@@ -47,13 +47,8 @@ while (true) {
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 = $(0);
     if (tmpIfTest$1) {
@@ -70,18 +65,11 @@ if ($tmpLoopUnrollCheck) {
 With rename=true
 
 `````js filename=intro
-let a = true;
-const b = $( 0 );
-if (b) {
-
-}
-else {
-  a = false;
-}
+const a = $( 0 );
 if (a) {
   while ($LOOP_UNROLL_10) {
-    const c = $( 0 );
-    if (c) {
+    const b = $( 0 );
+    if (b) {
 
     }
     else {

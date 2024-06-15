@@ -90,27 +90,21 @@ $(x);
 
 
 `````js filename=intro
-let n = 0;
 let flag = true;
 $(`before`);
 const x = $(`what`);
-let $tmpLoopUnrollCheck = true;
 if (x) {
 } else {
   flag = false;
-  $tmpLoopUnrollCheck = false;
 }
 if (flag) {
   $(`inner`, 0);
-  n = 1;
-} else {
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_n = 1;
   while ($LOOP_UNROLL_10) {
     if (flag) {
-      $(`inner`, n);
-      n = n + 1;
-      const tmpIfTest$1 = n >= 5;
+      $(`inner`, tmpClusterSSA_n);
+      tmpClusterSSA_n = tmpClusterSSA_n + 1;
+      const tmpIfTest$1 = tmpClusterSSA_n >= 5;
       if (tmpIfTest$1) {
         flag = false;
       } else {
@@ -130,30 +124,25 @@ $(x);
 With rename=true
 
 `````js filename=intro
-let a = 0;
-let b = true;
+let a = true;
 $( "before" );
-const c = $( "what" );
-let d = true;
-if (c) {
+const b = $( "what" );
+if (b) {
 
 }
 else {
-  b = false;
-  d = false;
+  a = false;
 }
-if (b) {
+if (a) {
   $( "inner", 0 );
-  a = 1;
-}
-if (d) {
+  let c = 1;
   while ($LOOP_UNROLL_10) {
-    if (b) {
-      $( "inner", a );
-      a = a + 1;
-      const e = a >= 5;
-      if (e) {
-        b = false;
+    if (a) {
+      $( "inner", c );
+      c = c + 1;
+      const d = c >= 5;
+      if (d) {
+        a = false;
       }
     }
     else {
@@ -162,7 +151,7 @@ if (d) {
   }
 }
 $( "after" );
-$( c );
+$( b );
 `````
 
 ## Globals

@@ -63,14 +63,9 @@ $(a);
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpClusterSSA_tmpIfTest = $(60);
 if (tmpClusterSSA_tmpIfTest) {
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpClusterSSA_tmpIfTest$1 = $(60);
@@ -90,20 +85,13 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = true;
 $( 100 );
-const b = $( 60 );
-if (b) {
-
-}
-else {
-  a = false;
-}
+const a = $( 60 );
 if (a) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const c = $( 60 );
-    if (c) {
+    const b = $( 60 );
+    if (b) {
 
     }
     else {
@@ -111,11 +99,11 @@ if (a) {
     }
   }
 }
-const d = {
+const c = {
   a: 999,
   b: 1000,
 };
-$( d );
+$( c );
 `````
 
 ## Globals

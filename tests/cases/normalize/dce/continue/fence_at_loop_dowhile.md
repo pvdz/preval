@@ -84,14 +84,9 @@ let tmpIfTest = $(true);
 while (true) {
   if (tmpIfTest) {
     $(`loop`);
-    let $tmpLoopUnrollCheck = true;
     $(`loop`);
     const tmpIfTest$1 = $(true);
     if (tmpIfTest$1) {
-    } else {
-      $tmpLoopUnrollCheck = false;
-    }
-    if ($tmpLoopUnrollCheck) {
       while ($LOOP_UNROLL_10) {
         $(`loop`);
         const tmpIfTest$2 = $(true);
@@ -120,20 +115,13 @@ let a = $( true );
 while (true) {
   if (a) {
     $( "loop" );
-    let b = true;
     $( "loop" );
-    const c = $( true );
-    if (c) {
-
-    }
-    else {
-      b = false;
-    }
+    const b = $( true );
     if (b) {
       while ($LOOP_UNROLL_10) {
         $( "loop" );
-        const d = $( true );
-        if (d) {
+        const c = $( true );
+        if (c) {
 
         }
         else {

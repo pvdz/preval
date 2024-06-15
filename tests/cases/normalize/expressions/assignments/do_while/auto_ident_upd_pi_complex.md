@@ -66,7 +66,6 @@ $(a, b);
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 $(100);
 const b = { x: 1 };
 const tmpCalleeParam = $(b);
@@ -76,10 +75,6 @@ const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
 let tmpClusterSSA_a = tmpNestedPropCompoundComplexRhs;
 if (tmpNestedPropCompoundComplexRhs) {
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpCalleeParam$1 = $(b);
@@ -103,31 +98,24 @@ $(tmpClusterSSA_a, b);
 With rename=true
 
 `````js filename=intro
-let a = true;
 $( 100 );
-const b = { x: 1 };
+const a = { x: 1 };
+const b = $( a );
 const c = $( b );
-const d = $( c );
-const e = d.x;
-const f = e + 1;
-d.x = f;
-let g = f;
-if (f) {
-
-}
-else {
-  a = false;
-}
-if (a) {
+const d = c.x;
+const e = d + 1;
+c.x = e;
+let f = e;
+if (e) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const h = $( b );
-    const i = $( h );
-    const j = i.x;
-    const k = j + 1;
-    i.x = k;
-    g = k;
-    if (k) {
+    const g = $( a );
+    const h = $( g );
+    const i = h.x;
+    const j = i + 1;
+    h.x = j;
+    f = j;
+    if (j) {
 
     }
     else {
@@ -135,7 +123,7 @@ if (a) {
     }
   }
 }
-$( g, b );
+$( f, a );
 `````
 
 ## Globals

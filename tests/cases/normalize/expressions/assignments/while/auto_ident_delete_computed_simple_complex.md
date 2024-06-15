@@ -52,16 +52,11 @@ $(a, arg);
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 const tmpDeleteCompProp = $(`y`);
 const arg = { y: 1 };
 let a = delete arg[tmpDeleteCompProp];
 if (a) {
   $(100);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     const tmpDeleteCompProp$1 = $(`y`);
     a = delete arg[tmpDeleteCompProp$1];
@@ -81,21 +76,15 @@ $(a, arg);
 With rename=true
 
 `````js filename=intro
-let a = true;
-const b = $( "y" );
-const c = { y: 1 };
-let d = delete c[ b ];
-if (d) {
+const a = $( "y" );
+const b = { y: 1 };
+let c = delete b[ a ];
+if (c) {
   $( 100 );
-}
-else {
-  a = false;
-}
-if (a) {
   while ($LOOP_UNROLL_10) {
-    const e = $( "y" );
-    d = delete c[ e ];
-    if (d) {
+    const d = $( "y" );
+    c = delete b[ d ];
+    if (c) {
       $( 100 );
     }
     else {
@@ -103,7 +92,7 @@ if (a) {
     }
   }
 }
-$( d, c );
+$( c, b );
 `````
 
 ## Globals

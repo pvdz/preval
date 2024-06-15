@@ -81,13 +81,13 @@ $(10);
 $(11);
 $(12);
 $(13);
-let i = 14;
-let tst = true;
+let tmpClusterSSA_i$2 = 14;
+let tmpClusterSSA_tst$2 = true;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (tst) {
-    $(i);
-    i = i + 1;
-    tst = i > -5;
+  if (tmpClusterSSA_tst$2) {
+    $(tmpClusterSSA_i$2);
+    tmpClusterSSA_i$2 = tmpClusterSSA_i$2 + 1;
+    tmpClusterSSA_tst$2 = tmpClusterSSA_i$2 > -5;
   } else {
     break;
   }

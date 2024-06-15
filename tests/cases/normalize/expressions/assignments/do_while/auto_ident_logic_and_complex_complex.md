@@ -64,34 +64,29 @@ $(a);
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 $(100);
 const tmpCalleeParam = $(1);
 let a = $(tmpCalleeParam);
 if (a) {
   const tmpCalleeParam$1 = $(2);
   a = $(tmpCalleeParam$1);
-} else {
-}
-if (a) {
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    const tmpCalleeParam$2 = $(1);
-    a = $(tmpCalleeParam$2);
-    if (a) {
-      const tmpCalleeParam$4 = $(2);
-      a = $(tmpCalleeParam$4);
+  if (a) {
+    while ($LOOP_UNROLL_10) {
+      $(100);
+      const tmpCalleeParam$2 = $(1);
+      a = $(tmpCalleeParam$2);
       if (a) {
+        const tmpCalleeParam$4 = $(2);
+        a = $(tmpCalleeParam$4);
+        if (a) {
+        } else {
+          break;
+        }
       } else {
         break;
       }
-    } else {
-      break;
     }
+  } else {
   }
 } else {
 }
@@ -103,41 +98,34 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = true;
 $( 100 );
-const b = $( 1 );
-let c = $( b );
-if (c) {
-  const d = $( 2 );
-  c = $( d );
-}
-if (c) {
+const a = $( 1 );
+let b = $( a );
+if (b) {
+  const c = $( 2 );
+  b = $( c );
+  if (b) {
+    while ($LOOP_UNROLL_10) {
+      $( 100 );
+      const d = $( 1 );
+      b = $( d );
+      if (b) {
+        const e = $( 2 );
+        b = $( e );
+        if (b) {
 
-}
-else {
-  a = false;
-}
-if (a) {
-  while ($LOOP_UNROLL_10) {
-    $( 100 );
-    const e = $( 1 );
-    c = $( e );
-    if (c) {
-      const f = $( 2 );
-      c = $( f );
-      if (c) {
-
+        }
+        else {
+          break;
+        }
       }
       else {
         break;
       }
     }
-    else {
-      break;
-    }
   }
 }
-$( c );
+$( b );
 `````
 
 ## Globals

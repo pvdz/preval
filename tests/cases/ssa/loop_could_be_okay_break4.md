@@ -51,20 +51,15 @@ while (true) {
 
 `````js filename=intro
 let tmpLoopRetCode = true;
-let $tmpLoopUnrollCheck = false;
 if ($) {
   tmpLoopRetCode = false;
 } else {
-  $tmpLoopUnrollCheck = tmpLoopRetCode;
 }
 if (tmpLoopRetCode) {
   if ($) {
     tmpLoopRetCode = false;
   } else {
   }
-} else {
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
     if (tmpLoopRetCode) {
       if ($) {
@@ -85,19 +80,13 @@ With rename=true
 
 `````js filename=intro
 let a = true;
-let b = false;
 if ($) {
   a = false;
-}
-else {
-  b = a;
 }
 if (a) {
   if ($) {
     a = false;
   }
-}
-if (b) {
   while ($LOOP_UNROLL_9) {
     if (a) {
       if ($) {

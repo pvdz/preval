@@ -55,7 +55,6 @@ $(a);
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 const tmpCalleeParam = $(0);
 let tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
@@ -64,10 +63,6 @@ if (tmpIfTest) {
 }
 if (tmpIfTest) {
   $(1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     const tmpCalleeParam$1 = $(0);
     let tmpIfTest$1 = $(tmpCalleeParam$1);
@@ -92,32 +87,26 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = true;
-const b = $( 0 );
-let c = $( b );
-if (c) {
+const a = $( 0 );
+let b = $( a );
+if (b) {
 
 }
 else {
-  c = true;
+  b = true;
 }
-if (c) {
+if (b) {
   $( 1 );
-}
-else {
-  a = false;
-}
-if (a) {
   while ($LOOP_UNROLL_10) {
-    const d = $( 0 );
-    let e = $( d );
-    if (e) {
+    const c = $( 0 );
+    let d = $( c );
+    if (d) {
 
     }
     else {
-      e = true;
+      d = true;
     }
-    if (e) {
+    if (d) {
       $( 1 );
     }
     else {
@@ -125,11 +114,11 @@ if (a) {
     }
   }
 }
-const f = {
+const e = {
   a: 999,
   b: 1000,
 };
-$( f );
+$( e );
 `````
 
 ## Globals

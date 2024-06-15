@@ -11,6 +11,7 @@
 ## Input
 
 `````js filename=intro
+{
 let counter = 0;
 let test = counter < 10;
 while (test) {
@@ -20,19 +21,22 @@ while (test) {
     test = counter < 10;
   }
 }
+}
 `````
 
 ## Pre Normal
 
 
 `````js filename=intro
-let counter = 0;
-let test = counter < 10;
-while (test) {
+{
+  let counter = 0;
+  let test = counter < 10;
   while (test) {
-    $(`yolo`);
-    counter = counter + 1;
-    test = counter < 10;
+    while (test) {
+      $(`yolo`);
+      counter = counter + 1;
+      test = counter < 10;
+    }
   }
 }
 `````

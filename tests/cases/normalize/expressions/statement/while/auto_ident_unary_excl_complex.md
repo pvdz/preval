@@ -49,26 +49,20 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-let tmpIfTest = tmpUnaryArg;
-let $tmpLoopUnrollCheck = true;
 if (tmpUnaryArg) {
-  $tmpLoopUnrollCheck = false;
 } else {
   $(100);
   const tmpUnaryArg$1 = $(100);
-  tmpIfTest = tmpUnaryArg$1;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpIfTest = tmpUnaryArg$1;
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       break;
     } else {
       $(100);
       const tmpUnaryArg$2 = $(100);
-      tmpIfTest = tmpUnaryArg$2;
+      tmpClusterSSA_tmpIfTest = tmpUnaryArg$2;
     }
   }
-} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -80,33 +74,29 @@ With rename=true
 
 `````js filename=intro
 const a = $( 100 );
-let b = a;
-let c = true;
 if (a) {
-  c = false;
+
 }
 else {
   $( 100 );
-  const d = $( 100 );
-  b = d;
-}
-if (c) {
+  const b = $( 100 );
+  let c = b;
   while ($LOOP_UNROLL_10) {
-    if (b) {
+    if (c) {
       break;
     }
     else {
       $( 100 );
-      const e = $( 100 );
-      b = e;
+      const d = $( 100 );
+      c = d;
     }
   }
 }
-const f = {
+const e = {
   a: 999,
   b: 1000,
 };
-$( f );
+$( e );
 `````
 
 ## Globals

@@ -42,7 +42,7 @@ import {
   findBoundNamesInUnnormalizedVarDeclaration,
 } from '../bindings.mjs';
 
-import globals from '../globals.mjs';
+import globals, { LOOP_UNROLL_CONSTANT_COUNT_PREFIX, MAX_UNROLL_CONSTANT_NAME } from '../globals.mjs';
 import { cloneFunctionNode, createNormalizedFunctionFromString } from '../utils/serialize_func.mjs';
 import { addLabelReference, createFreshLabelStatement, removeLabelReference } from '../labels.mjs';
 
@@ -7188,9 +7188,20 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             before(node);
 
             node.test = AST.fals();
-          } else if (['Infinity'].includes(name)) {
+          }
+          else if (['Infinity'].includes(name)) {
             rule('The if test that is +/- Infinity is always true');
             example('if (-Infinity) f();', 'if (true) f();');
+            before(node);
+
+            node.test = AST.tru();
+
+            after(node);
+            return true;
+          }
+          else if (name === MAX_UNROLL_CONSTANT_NAME || name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX)) {
+            rule('The if test that is the special infinite loop `true` value can just be `true`');
+            example('if ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) f();', 'if (true) f();');
             before(node);
 
             node.test = AST.tru();

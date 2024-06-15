@@ -68,16 +68,11 @@ $(a);
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 $(100);
 const b = { c: $ };
 const tmpChainElementCall = $dotCall($, b, 1);
 let tmpClusterSSA_a = tmpChainElementCall;
 if (tmpChainElementCall) {
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpChainElementObject$1 = b.c;
@@ -98,24 +93,17 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-let a = true;
 $( 100 );
-const b = { c: $ };
-const c = $dotCall( $, b, 1 );
-let d = c;
-if (c) {
-
-}
-else {
-  a = false;
-}
-if (a) {
+const a = { c: $ };
+const b = $dotCall( $, a, 1 );
+let c = b;
+if (b) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const e = b.c;
-    const f = $dotCall( e, b, 1 );
-    d = f;
-    if (f) {
+    const d = a.c;
+    const e = $dotCall( d, a, 1 );
+    c = e;
+    if (e) {
 
     }
     else {
@@ -123,7 +111,7 @@ if (a) {
     }
   }
 }
-$( d );
+$( c );
 `````
 
 ## Globals

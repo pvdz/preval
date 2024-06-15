@@ -78,7 +78,6 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-let $tmpLoopUnrollCheck = true;
 $(100);
 let tmpIfTest = false;
 const tmpChainElementCall = $(b);
@@ -96,10 +95,6 @@ if (tmpIfTest$1) {
   }
 }
 if (tmpIfTest) {
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     $(100);
     let tmpIfTest$2 = false;
@@ -138,56 +133,49 @@ const c = {
   a: 999,
   b: 1000,
 };
-let d = true;
 $( 100 );
-let e = false;
-const f = $( b );
-const g = f == null;
-if (g) {
+let d = false;
+const e = $( b );
+const f = e == null;
+if (f) {
 
 }
 else {
-  const h = $( "x" );
-  const i = f[ h ];
-  const j = i == null;
-  if (j) {
+  const g = $( "x" );
+  const h = e[ g ];
+  const i = h == null;
+  if (i) {
 
   }
   else {
-    const k = $( "y" );
-    const l = i[ k ];
-    e = l;
+    const j = $( "y" );
+    const k = h[ j ];
+    d = k;
   }
-}
-if (e) {
-
-}
-else {
-  d = false;
 }
 if (d) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    let m = false;
-    const n = $( b );
-    const o = n == null;
-    if (o) {
+    let l = false;
+    const m = $( b );
+    const n = m == null;
+    if (n) {
 
     }
     else {
-      const p = $( "x" );
-      const q = n[ p ];
-      const r = q == null;
-      if (r) {
+      const o = $( "x" );
+      const p = m[ o ];
+      const q = p == null;
+      if (q) {
 
       }
       else {
-        const s = $( "y" );
-        const t = q[ s ];
-        m = t;
+        const r = $( "y" );
+        const s = p[ r ];
+        l = s;
       }
     }
-    if (m) {
+    if (l) {
 
     }
     else {

@@ -54,24 +54,18 @@ while (true) {
 
 `````js filename=intro
 const tmpUnaryArg = $();
-let tmpIfTest = tmpUnaryArg;
-let $tmpLoopUnrollCheck = true;
 if (tmpUnaryArg) {
-  $tmpLoopUnrollCheck = false;
 } else {
   const tmpUnaryArg$1 = $();
-  tmpIfTest = tmpUnaryArg$1;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpIfTest = tmpUnaryArg$1;
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       break;
     } else {
       const tmpUnaryArg$2 = $();
-      tmpIfTest = tmpUnaryArg$2;
+      tmpClusterSSA_tmpIfTest = tmpUnaryArg$2;
     }
   }
-} else {
 }
 `````
 
@@ -81,23 +75,19 @@ With rename=true
 
 `````js filename=intro
 const a = $();
-let b = a;
-let c = true;
 if (a) {
-  c = false;
+
 }
 else {
-  const d = $();
-  b = d;
-}
-if (c) {
+  const b = $();
+  let c = b;
   while ($LOOP_UNROLL_10) {
-    if (b) {
+    if (c) {
       break;
     }
     else {
-      const e = $();
-      b = e;
+      const d = $();
+      c = d;
     }
   }
 }

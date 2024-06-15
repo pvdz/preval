@@ -69,15 +69,12 @@ $(x);
 const tmpClusterSSA_x = $(`b`);
 if ($) {
   $(`c`);
-  if ($) {
-    while ($LOOP_UNROLL_10) {
-      if ($) {
-        $(`c`);
-      } else {
-        break;
-      }
+  while ($LOOP_UNROLL_10) {
+    if ($) {
+      $(`c`);
+    } else {
+      break;
     }
-  } else {
   }
 } else {
 }
@@ -94,14 +91,12 @@ $( a );
 const b = $( "b" );
 if ($) {
   $( "c" );
-  if ($) {
-    while ($LOOP_UNROLL_10) {
-      if ($) {
-        $( "c" );
-      }
-      else {
-        break;
-      }
+  while ($LOOP_UNROLL_10) {
+    if ($) {
+      $( "c" );
+    }
+    else {
+      break;
     }
   }
 }

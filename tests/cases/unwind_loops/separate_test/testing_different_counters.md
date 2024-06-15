@@ -58,10 +58,10 @@ while (true) {
 
 `````js filename=intro
 $(`yolo`);
-let counter1 = 1;
+let tmpClusterSSA_counter1 = 1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`yolo`);
-  counter1 = counter1 + 1;
+  tmpClusterSSA_counter1 = tmpClusterSSA_counter1 + 1;
 }
 throw `[preval] unreachable; infinite loop`;
 `````

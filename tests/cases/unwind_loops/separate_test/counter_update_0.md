@@ -63,13 +63,13 @@ $(0);
 $(0);
 $(0);
 $(0);
-let i = 0;
-let tmpIfTest = true;
+let tmpClusterSSA_i$2 = 0;
+let tmpClusterSSA_tmpIfTest$2 = true;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (tmpIfTest) {
-    $(i);
-    i = i + 0;
-    tmpIfTest = i < 10;
+  if (tmpClusterSSA_tmpIfTest$2) {
+    $(tmpClusterSSA_i$2);
+    tmpClusterSSA_i$2 = tmpClusterSSA_i$2 + 0;
+    tmpClusterSSA_tmpIfTest$2 = tmpClusterSSA_i$2 < 10;
   } else {
     break;
   }

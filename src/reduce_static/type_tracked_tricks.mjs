@@ -29,6 +29,7 @@ import {
 } from '../constants.mjs';
 import * as AST from '../ast.mjs';
 import {getRegexFromLiteralNode, isRegexLiteral, nodeHasNoObservableSideEffectIncStatements} from "../ast.mjs"
+import { LOOP_UNROLL_CONSTANT_COUNT_PREFIX, MAX_UNROLL_CONSTANT_NAME } from '../globals.mjs';
 
 export function typeTrackedTricks(fdata) {
   group('\n\n\nFinding type tracking based tricks\n');
@@ -73,14 +74,16 @@ function _typeTrackedTricks(fdata) {
         }
         break;
       }
-      case 'IfStatement':
-      case 'WhileStatement': {
-        // Other rules should pick up on primitive nodes in if/while tests.
+      case 'IfStatement': {
+        // Other rules should pick up on primitive nodes in if tests.
         // But what if we know the type just not the actual value? Often we do know the falsy value.
         // Unfortunately, most of the time that value is discarded. But still. It may not be :)
         if (node.test.type === 'Identifier') {
-          const testMeta = fdata.globallyUniqueNamingRegistry.get(node.test.name);
-          if (!testMeta.isImplicitGlobal) {
+          const testName = node.test.name;
+          const testMeta = fdata.globallyUniqueNamingRegistry.get(testName);
+          if (testMeta.isImplicitGlobal) {
+            vlog('- Test value in', node.type, 'is implicit global, bailing');
+          } else {
             const truthy = testMeta.typing.mustBeTruthy; // Only true when the binding can only have truthy values. Otherwise we must keep the test as is.
             const falsy =
               !truthy &&
@@ -105,7 +108,7 @@ function _typeTrackedTricks(fdata) {
               ++changes;
             } else if (truthy) {
               // Covered by tests/cases/excl/regex.md tests/cases/ifelse/harder/if_new.md
-              rule('An `if` test with a truthy value should be replaced with `false`');
+              rule('An `if` test with a falsy value should be replaced with `false`');
               example('if (0) {}', 'if (false) {}');
               before(node.test, parentNode);
 
@@ -114,7 +117,7 @@ function _typeTrackedTricks(fdata) {
 
               after(node.test, node);
               ++changes;
-            } else if (node.type !== 'WhileStatement' && (testMeta.isConstant || testMeta.isBuiltin) && testMeta.typing.mustBeType) {
+            } else if ((testMeta.isConstant || testMeta.isBuiltin) && testMeta.typing.mustBeType) {
               const ttm = testMeta.typing.mustBeType;
               vlog('Found an `if` testing constant `' + node.test.name + '` with mustBeType:', ttm);
               // Cases in this switch will inline the test value if they appear in either branch of an `if`
@@ -167,12 +170,19 @@ function _typeTrackedTricks(fdata) {
                       +read.node.$p.pid > +node.alternate.$p.pid && +read.node.$p.pid <= +node.alternate.$p.lastPid,
                       ')',
                     );
-                    source(read.blockBody[read.blockIndex]);
-                    if (+read.node.$p.pid > +node.consequent.$p.pid && +read.node.$p.pid <= +node.consequent.$p.lastPid) {
+
+                    if (
+                      read.parentNode.type === 'WhileStatement' &&
+                      (testName.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX) || testName === MAX_UNROLL_CONSTANT_NAME)
+                    ) {
+                      // Ignore. Do not replace while() tests. That risks infinite loops.
+                      vlog('- skipped. Not replacing while() tests with `true` here');
+                    }
+                    else if (+read.node.$p.pid > +node.consequent.$p.pid && +read.node.$p.pid <= +node.consequent.$p.lastPid) {
                       // Covered by tests/cases/type_tracked/if/base_bool_unknown_false.md
                       rule('When an `if` test is a boolean it must be `true` in the if branch');
                       example('const a = !f(); if (a) g(a); else h(a);', 'const a = !f(); if (a) g(true); else h(false);');
-                      before(read.node, node);
+                      before(read.blockBody[read.blockIndex]);
 
                       // This read should be contained somewhere inside the `if`. Possibly even nested in a func.
                       // In any case, the bool value was a constant so it must be `true` in the consequent branch.
@@ -180,13 +190,13 @@ function _typeTrackedTricks(fdata) {
                       if (read.parentIndex < 0) read.parentNode[read.parentProp] = finalNode;
                       else read.parentNode[read.parentProp][read.parentIndex] = finalNode;
 
-                      after(finalNode);
+                      before(read.blockBody[read.blockIndex]);
                       ++changes;
                     } else if (+read.node.$p.pid > +node.alternate.$p.pid && +read.node.$p.pid <= +node.alternate.$p.lastPid) {
                       // Covered by tests/cases/type_tracked/if/base_bool_unknown_false.md
                       rule('When an `if` test is a boolean it must be `false` in the else branch');
                       example('const a = !f(); if (a) g(a); else h(a);', 'const a = !f(); if (a) g(true); else h(false);');
-                      before(read.node, node);
+                      before(read.blockBody[read.blockIndex]);
 
                       // This read should be contained somewhere inside the `if`. Possibly even nested in a func.
                       // In any case, the bool value was a constant so it must be `false` in the alternate branch.
@@ -194,7 +204,7 @@ function _typeTrackedTricks(fdata) {
                       if (read.parentIndex < 0) read.parentNode[read.parentProp] = finalNode;
                       else read.parentNode[read.parentProp][read.parentIndex] = finalNode;
 
-                      after(finalNode, node);
+                      before(read.blockBody[read.blockIndex]);
                       ++changes;
                     }
                   });

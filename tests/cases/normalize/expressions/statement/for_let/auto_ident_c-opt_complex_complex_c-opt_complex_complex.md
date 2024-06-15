@@ -85,8 +85,6 @@ if (tmpIfTest) {
     xyz = tmpChainElementObject$1;
   }
 }
-$(xyz);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -120,8 +118,6 @@ else {
     c = j;
   }
 }
-$( c );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( c );
   $( 1 );

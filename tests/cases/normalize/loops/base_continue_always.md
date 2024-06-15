@@ -69,8 +69,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-let n = 1;
-$(1);
+let n = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   n = n + 1;
   $(n);
@@ -83,8 +82,7 @@ throw `[preval] unreachable; infinite loop`;
 With rename=true
 
 `````js filename=intro
-let a = 1;
-$( 1 );
+let a = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   a = a + 1;
   $( a );

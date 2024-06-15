@@ -57,8 +57,6 @@ $(a, x);
 $(1);
 $(2);
 const xyz = $(1);
-$(xyz);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -74,8 +72,6 @@ With rename=true
 $( 1 );
 $( 2 );
 const a = $( 1 );
-$( a );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( a );
   $( 1 );

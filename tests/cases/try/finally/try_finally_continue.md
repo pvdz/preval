@@ -82,7 +82,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } catch ($finalImplicit) {}
   $(2);
 }
-$(3);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -99,7 +99,7 @@ catch (a) {
   }
   $( 2 );
 }
-$( 3 );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

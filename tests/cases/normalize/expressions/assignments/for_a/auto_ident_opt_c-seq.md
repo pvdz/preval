@@ -64,7 +64,6 @@ if (tmpIfTest) {
 } else {
   tmpChainRootProp.x;
 }
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
@@ -85,7 +84,6 @@ if (c) {
 else {
   b.x;
 }
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }

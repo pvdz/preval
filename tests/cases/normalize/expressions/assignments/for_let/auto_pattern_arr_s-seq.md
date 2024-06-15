@@ -64,8 +64,6 @@ $(20);
 const tmpNestedAssignArrPatternRhs = [1, 2];
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 arrPatternSplat$1[0];
-$(tmpNestedAssignArrPatternRhs);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedAssignArrPatternRhs);
   $(1);
@@ -89,8 +87,6 @@ $( 20 );
 const c = [ 1, 2 ];
 const d = [ ... c ];
 d[ 0 ];
-$( c );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( c );
   $( 1 );

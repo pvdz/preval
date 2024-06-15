@@ -59,8 +59,6 @@ const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $(`c`);
 const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-$(tmpClusterSSA_a);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpClusterSSA_a);
   $(1);
@@ -77,8 +75,6 @@ const a = { c: 1 };
 const b = $( a );
 const c = $( "c" );
 const d = b[ c ];
-$( d );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( d );
   $( 1 );

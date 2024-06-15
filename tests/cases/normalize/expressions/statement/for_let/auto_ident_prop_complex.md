@@ -56,8 +56,6 @@ $(a, b);
 const b = { c: 1 };
 const tmpCompObj = $(b);
 const xyz = tmpCompObj.c;
-$(xyz);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -73,8 +71,6 @@ With rename=true
 const a = { c: 1 };
 const b = $( a );
 const c = b.c;
-$( c );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( c );
   $( 1 );

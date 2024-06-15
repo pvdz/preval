@@ -55,10 +55,8 @@ $(a, x);
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-const a = typeof tmpUnaryArg;
-$(a);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const a = typeof tmpUnaryArg;
   $(a);
   $(1);
 }
@@ -71,10 +69,8 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-const b = typeof a;
-$( b );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const b = typeof a;
   $( b );
   $( 1 );
 }

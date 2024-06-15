@@ -54,7 +54,6 @@ $(a, arg);
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
 delete tmpDeleteObj.y;
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
@@ -69,7 +68,6 @@ With rename=true
 const a = { y: 1 };
 const b = $( a );
 delete b.y;
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }

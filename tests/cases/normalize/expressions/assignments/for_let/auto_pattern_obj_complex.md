@@ -57,8 +57,6 @@ $(a);
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 tmpNestedAssignObjPatternRhs.a;
-$(tmpNestedAssignObjPatternRhs);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedAssignObjPatternRhs);
   $(1);
@@ -77,8 +75,6 @@ const a = {
 };
 const b = $( a );
 b.a;
-$( b );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( b );
   $( 1 );

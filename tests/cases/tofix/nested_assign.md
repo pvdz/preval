@@ -59,8 +59,8 @@ $(x);
 
 
 `````js filename=intro
-const x = $(10);
-while (true) {
+$(10);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let $tmpLoopUnrollCheck = true;
   $(20);
   const tmpIfTest = $(true);
@@ -81,7 +81,7 @@ while (true) {
   }
   $(30);
 }
-$(x);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -89,26 +89,26 @@ $(x);
 With rename=true
 
 `````js filename=intro
-const a = $( 10 );
-while (true) {
-  let b = true;
+$( 10 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let a = true;
   $( 20 );
-  const c = $( true );
-  if (c) {
-    b = false;
-  }
+  const b = $( true );
   if (b) {
+    a = false;
+  }
+  if (a) {
     while ($LOOP_UNROLL_10) {
       $( 20 );
-      const d = $( true );
-      if (d) {
+      const c = $( true );
+      if (c) {
         break;
       }
     }
   }
   $( 30 );
 }
-$( a );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

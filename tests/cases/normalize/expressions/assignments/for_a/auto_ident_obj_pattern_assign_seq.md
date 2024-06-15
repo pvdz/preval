@@ -64,7 +64,6 @@ $(1);
 $(2);
 $(3);
 $(4);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
@@ -80,7 +79,6 @@ $( 1 );
 $( 2 );
 $( 3 );
 $( 4 );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }

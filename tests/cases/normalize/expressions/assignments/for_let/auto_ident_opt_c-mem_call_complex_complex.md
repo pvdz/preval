@@ -88,8 +88,6 @@ if (tmpIfTest) {
   }
 }
 const xyz = a;
-$(xyz);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -123,8 +121,6 @@ else {
   }
 }
 const j = a;
-$( j );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( j );
   $( 1 );

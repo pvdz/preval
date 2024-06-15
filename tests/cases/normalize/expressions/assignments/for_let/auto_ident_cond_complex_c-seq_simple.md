@@ -61,14 +61,11 @@ let xyz = undefined;
 if (tmpIfTest) {
   const tmpClusterSSA_a = $(60);
   xyz = tmpClusterSSA_a;
-  $(tmpClusterSSA_a);
 } else {
   const tmpCalleeParam = $(100);
   const tmpClusterSSA_a$1 = $(tmpCalleeParam);
   xyz = tmpClusterSSA_a$1;
-  $(tmpClusterSSA_a$1);
 }
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -86,15 +83,12 @@ let b = undefined;
 if (a) {
   const c = $( 60 );
   b = c;
-  $( c );
 }
 else {
   const d = $( 100 );
   const e = $( d );
   b = e;
-  $( e );
 }
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( b );
   $( 1 );

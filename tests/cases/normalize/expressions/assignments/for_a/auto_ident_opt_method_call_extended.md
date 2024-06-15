@@ -64,10 +64,6 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
 $dotCall($, tmpObjLitVal$1, 1);
-$(1);
-$(1);
-$(1);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
@@ -81,10 +77,6 @@ With rename=true
 `````js filename=intro
 const a = { e: $ };
 $dotCall( $, a, 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }

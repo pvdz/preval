@@ -54,8 +54,6 @@ $(a);
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
 const xyz = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-$(xyz);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -75,8 +73,6 @@ const c = {
   y: 2,
   z: b,
 };
-$( c );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( c );
   $( 1 );

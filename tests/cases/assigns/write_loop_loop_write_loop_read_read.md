@@ -60,8 +60,8 @@ $(x);
 
 
 `````js filename=intro
-const x = $(10);
-while (true) {
+$(10);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let $tmpLoopUnrollCheck = true;
   let tmpClusterSSA_x = $(20);
   const tmpIfTest = $(true);
@@ -82,7 +82,7 @@ while (true) {
   }
   $(tmpClusterSSA_x);
 }
-$(x);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -90,26 +90,26 @@ $(x);
 With rename=true
 
 `````js filename=intro
-const a = $( 10 );
-while (true) {
-  let b = true;
-  let c = $( 20 );
-  const d = $( true );
-  if (d) {
-    b = false;
+$( 10 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let a = true;
+  let b = $( 20 );
+  const c = $( true );
+  if (c) {
+    a = false;
   }
-  if (b) {
+  if (a) {
     while ($LOOP_UNROLL_10) {
-      c = $( 20 );
-      const e = $( true );
-      if (e) {
+      b = $( 20 );
+      const d = $( true );
+      if (d) {
         break;
       }
     }
   }
-  $( c );
+  $( b );
 }
-$( a );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

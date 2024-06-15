@@ -56,8 +56,7 @@ $(a, b);
 
 
 `````js filename=intro
-$(1);
-const b = { c: 2 };
+const b = { c: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   b.c = 2;
   $(1);
@@ -70,8 +69,7 @@ throw `[preval] unreachable; infinite loop`;
 With rename=true
 
 `````js filename=intro
-$( 1 );
-const a = { c: 2 };
+const a = { c: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   a.c = 2;
   $( 1 );

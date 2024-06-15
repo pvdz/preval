@@ -61,8 +61,6 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 b.c = varInitAssignLhsComputedRhs;
-$(varInitAssignLhsComputedRhs);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(varInitAssignLhsComputedRhs);
   $(1);
@@ -83,8 +81,6 @@ const b = $( a );
 const c = $( "d" );
 const d = b[ c ];
 a.c = d;
-$( d );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( d );
   $( 1 );

@@ -64,14 +64,11 @@ let xyz = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
-  $(undefined);
 } else {
   const tmpCalleeParam$3 = $(1);
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
   xyz = tmpChainElementCall$1;
-  $(tmpChainElementCall$1);
 }
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -88,15 +85,13 @@ let a = undefined;
 const b = $( $ );
 const c = b == null;
 if (c) {
-  $( undefined );
+
 }
 else {
   const d = $( 1 );
   const e = $dotCall( b, $, d );
   a = e;
-  $( e );
 }
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( a );
   $( 1 );

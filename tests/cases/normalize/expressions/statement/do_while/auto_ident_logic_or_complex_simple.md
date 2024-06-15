@@ -61,13 +61,10 @@ $(a);
 
 
 `````js filename=intro
-$(100);
-const tmpCalleeParam = $(0);
-$(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpCalleeParam$1 = $(0);
-  $(tmpCalleeParam$1);
+  const tmpCalleeParam = $(0);
+  $(tmpCalleeParam);
 }
 throw `[preval] unreachable; infinite loop`;
 `````
@@ -77,13 +74,10 @@ throw `[preval] unreachable; infinite loop`;
 With rename=true
 
 `````js filename=intro
-$( 100 );
-const a = $( 0 );
-$( a );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const b = $( 0 );
-  $( b );
+  const a = $( 0 );
+  $( a );
 }
 throw "[preval] unreachable; infinite loop";
 `````

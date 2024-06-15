@@ -51,14 +51,12 @@ while (true) {
 
 
 `````js filename=intro
+let i = 0;
 $(10);
-let i = 1;
-const tmpClusterSSA_x = $(1, `set`);
-$(tmpClusterSSA_x, `loop`);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   i = i + 1;
-  const tmpClusterSSA_x$1 = $(i, `set`);
-  $(tmpClusterSSA_x$1, `loop`);
+  const tmpClusterSSA_x = $(i, `set`);
+  $(tmpClusterSSA_x, `loop`);
 }
 throw `[preval] unreachable; infinite loop`;
 `````
@@ -68,14 +66,12 @@ throw `[preval] unreachable; infinite loop`;
 With rename=true
 
 `````js filename=intro
+let a = 0;
 $( 10 );
-let a = 1;
-const b = $( 1, "set" );
-$( b, "loop" );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   a = a + 1;
-  const c = $( a, "set" );
-  $( c, "loop" );
+  const b = $( a, "set" );
+  $( b, "loop" );
 }
 throw "[preval] unreachable; infinite loop";
 `````

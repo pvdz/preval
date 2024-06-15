@@ -59,8 +59,6 @@ const b = { $: $ };
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
 const tmpClusterSSA_a = new tmpNewCallee(1);
-$(tmpClusterSSA_a);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpClusterSSA_a);
   $(1);
@@ -77,8 +75,6 @@ const a = { $: $ };
 const b = $( a );
 const c = b.$;
 const d = new c( 1 );
-$( d );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( d );
   $( 1 );

@@ -63,7 +63,6 @@ const tmpCalleeParam = [1, 2];
 const arrAssignPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat$1 = [...arrAssignPatternRhs];
 arrPatternSplat$1[0];
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
@@ -87,7 +86,6 @@ const c = [ 1, 2 ];
 const d = $( c );
 const e = [ ... d ];
 e[ 0 ];
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }

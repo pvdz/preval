@@ -51,7 +51,6 @@ $(a);
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 tmpBinBothLhs + tmpBinBothRhs;
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
@@ -66,7 +65,6 @@ With rename=true
 const a = $( 1 );
 const b = $( 2 );
 a + b;
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }

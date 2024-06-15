@@ -46,8 +46,7 @@ $(blob);
 
 
 `````js filename=intro
-$(1);
-const blob = { thing: `boing` };
+const blob = { thing: `woop` };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   blob.thing = `boing`;
   $(1);
@@ -60,8 +59,7 @@ throw `[preval] unreachable; infinite loop`;
 With rename=true
 
 `````js filename=intro
-$( 1 );
-const a = { thing: "boing" };
+const a = { thing: "woop" };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   a.thing = "boing";
   $( 1 );

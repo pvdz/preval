@@ -59,13 +59,10 @@ $(a);
 let xyz = undefined;
 const tmpIfTest = $ == null;
 if (tmpIfTest) {
-  $(undefined);
 } else {
   const tmpChainElementCall = $(1);
   xyz = tmpChainElementCall;
-  $(tmpChainElementCall);
 }
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -81,14 +78,12 @@ With rename=true
 let a = undefined;
 const b = $ == null;
 if (b) {
-  $( undefined );
+
 }
 else {
   const c = $( 1 );
   a = c;
-  $( c );
 }
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( a );
   $( 1 );

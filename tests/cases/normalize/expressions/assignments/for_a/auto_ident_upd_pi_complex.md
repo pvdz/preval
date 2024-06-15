@@ -62,7 +62,6 @@ const tmpNestedAssignObj = $(tmpCalleeParam);
 const tmpBinLhs = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
@@ -80,7 +79,6 @@ const c = $( b );
 const d = c.x;
 const e = d + 1;
 c.x = e;
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }

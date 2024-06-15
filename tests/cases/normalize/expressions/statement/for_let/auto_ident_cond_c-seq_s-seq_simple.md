@@ -59,13 +59,10 @@ $(a);
 let xyz = 60;
 const tmpIfTest = $(30);
 if (tmpIfTest) {
-  $(60);
 } else {
   const tmpCalleeParam = $(100);
   xyz = $(tmpCalleeParam);
-  $(xyz);
 }
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -81,14 +78,12 @@ With rename=true
 let a = 60;
 const b = $( 30 );
 if (b) {
-  $( 60 );
+
 }
 else {
   const c = $( 100 );
   a = $( c );
-  $( a );
 }
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( a );
   $( 1 );

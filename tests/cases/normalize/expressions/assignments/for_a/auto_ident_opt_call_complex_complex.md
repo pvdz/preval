@@ -65,7 +65,6 @@ if (tmpIfTest) {
   const tmpCalleeParam$3 = $(1);
   $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
 }
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
@@ -86,7 +85,6 @@ else {
   const c = $( 1 );
   $dotCall( a, $, c );
 }
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }

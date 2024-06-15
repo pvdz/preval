@@ -65,13 +65,10 @@ const b = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
-  $(undefined);
 } else {
   const tmpChainElementObject = tmpChainElementCall.x;
   xyz = tmpChainElementObject;
-  $(tmpChainElementObject);
 }
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -89,14 +86,12 @@ const b = { x: 1 };
 const c = $( b );
 const d = c == null;
 if (d) {
-  $( undefined );
+
 }
 else {
   const e = c.x;
   a = e;
-  $( e );
 }
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( a );
   $( 1 );

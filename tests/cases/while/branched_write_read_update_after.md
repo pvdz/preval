@@ -62,24 +62,16 @@ while (true) {
 
 
 `````js filename=intro
-const x = $(1);
-const tmpIfTest = x % 2;
-if (tmpIfTest) {
-  const tmpClusterSSA_x = x + 1;
-  $(tmpClusterSSA_x, `write`);
-} else {
-  $(x, `read`);
-}
-let tmpClusterSSA_x$2 = $(10);
+let x = $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest$1 = tmpClusterSSA_x$2 % 2;
-  if (tmpIfTest$1) {
-    const tmpClusterSSA_x$1 = tmpClusterSSA_x$2 + 1;
-    $(tmpClusterSSA_x$1, `write`);
+  const tmpIfTest = x % 2;
+  if (tmpIfTest) {
+    const tmpClusterSSA_x = x + 1;
+    $(tmpClusterSSA_x, `write`);
   } else {
-    $(tmpClusterSSA_x$2, `read`);
+    $(x, `read`);
   }
-  tmpClusterSSA_x$2 = $(10);
+  x = $(10);
 }
 throw `[preval] unreachable; infinite loop`;
 `````
@@ -89,26 +81,17 @@ throw `[preval] unreachable; infinite loop`;
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-const b = a % 2;
-if (b) {
-  const c = a + 1;
-  $( c, "write" );
-}
-else {
-  $( a, "read" );
-}
-let d = $( 10 );
+let a = $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const e = d % 2;
-  if (e) {
-    const f = d + 1;
-    $( f, "write" );
+  const b = a % 2;
+  if (b) {
+    const c = a + 1;
+    $( c, "write" );
   }
   else {
-    $( d, "read" );
+    $( a, "read" );
   }
-  d = $( 10 );
+  a = $( 10 );
 }
 throw "[preval] unreachable; infinite loop";
 `````

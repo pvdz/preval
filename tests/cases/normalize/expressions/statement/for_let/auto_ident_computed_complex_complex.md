@@ -58,8 +58,6 @@ const b = { c: 1 };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`c`);
 const xyz = tmpCompObj[tmpCompProp];
-$(xyz);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -76,8 +74,6 @@ const a = { c: 1 };
 const b = $( a );
 const c = $( "c" );
 const d = b[ c ];
-$( d );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( d );
   $( 1 );

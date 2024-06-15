@@ -61,8 +61,6 @@ $(2);
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
 const tmpClusterSSA_a = delete tmpDeleteObj.y;
-$(tmpClusterSSA_a);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpClusterSSA_a);
   $(1);
@@ -80,8 +78,6 @@ $( 2 );
 const a = { y: 1 };
 const b = $( a );
 const c = delete b.y;
-$( c );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( c );
   $( 1 );

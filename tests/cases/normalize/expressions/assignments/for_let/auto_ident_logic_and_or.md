@@ -73,14 +73,11 @@ if (a) {
 let xyz = undefined;
 if (a) {
   xyz = a;
-  $(xyz);
 } else {
   const tmpCalleeParam$3 = $(2);
   const tmpClusterSSA_a = $(tmpCalleeParam$3);
   xyz = tmpClusterSSA_a;
-  $(tmpClusterSSA_a);
 }
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -102,15 +99,12 @@ if (b) {
 let d = undefined;
 if (b) {
   d = b;
-  $( d );
 }
 else {
   const e = $( 2 );
   const f = $( e );
   d = f;
-  $( f );
 }
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( d );
   $( 1 );

@@ -78,21 +78,14 @@ $(x);
 
 
 `````js filename=intro
-const x = $(1);
-$(x);
-let tmpClusterSSA_x = $(2);
-if ($) {
-} else {
-  tmpClusterSSA_x = $(3);
-  $(tmpClusterSSA_x);
-}
+let x = $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(tmpClusterSSA_x);
-  tmpClusterSSA_x = $(2);
+  $(x);
+  x = $(2);
   if ($) {
   } else {
-    tmpClusterSSA_x = $(3);
-    $(tmpClusterSSA_x);
+    x = $(3);
+    $(x);
   }
 }
 throw `[preval] unreachable; infinite loop`;
@@ -103,25 +96,16 @@ throw `[preval] unreachable; infinite loop`;
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-$( a );
-let b = $( 2 );
-if ($) {
-
-}
-else {
-  b = $( 3 );
-  $( b );
-}
+let a = $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( b );
-  b = $( 2 );
+  $( a );
+  a = $( 2 );
   if ($) {
 
   }
   else {
-    b = $( 3 );
-    $( b );
+    a = $( 3 );
+    $( a );
   }
 }
 throw "[preval] unreachable; infinite loop";

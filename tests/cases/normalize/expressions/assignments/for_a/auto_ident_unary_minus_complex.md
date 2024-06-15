@@ -49,7 +49,6 @@ $(a);
 `````js filename=intro
 const tmpUnaryArg = $(100);
 -tmpUnaryArg;
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
@@ -63,7 +62,6 @@ With rename=true
 `````js filename=intro
 const a = $( 100 );
 -a;
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }

@@ -50,12 +50,9 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const xyz = !tmpUnaryArg;
-$(xyz);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const xyz$1 = !tmpUnaryArg;
-  $(xyz$1);
+  const xyz = !tmpUnaryArg;
+  $(xyz);
   $(1);
 }
 throw `[preval] unreachable; infinite loop`;
@@ -67,12 +64,9 @@ With rename=true
 
 `````js filename=intro
 const a = $( 100 );
-const b = !a;
-$( b );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const c = !a;
-  $( c );
+  const b = !a;
+  $( b );
   $( 1 );
 }
 throw "[preval] unreachable; infinite loop";

@@ -43,7 +43,6 @@ while (true) {
 
 
 `````js filename=intro
-$(2);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(2);
 }
@@ -55,7 +54,6 @@ throw `[preval] unreachable; infinite loop`;
 With rename=true
 
 `````js filename=intro
-$( 2 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 2 );
 }

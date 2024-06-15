@@ -50,8 +50,6 @@ $(a);
 
 `````js filename=intro
 const a = { x: 1, y: 2, z: 3 };
-$(a);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(a);
   $(1);
@@ -69,8 +67,6 @@ const a = {
   y: 2,
   z: 3,
 };
-$( a );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( a );
   $( 1 );

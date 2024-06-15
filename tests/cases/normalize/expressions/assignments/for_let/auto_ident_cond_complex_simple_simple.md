@@ -59,14 +59,11 @@ $(a);
 const tmpIfTest = $(1);
 let xyz = 2;
 if (tmpIfTest) {
-  $(2);
 } else {
   const tmpCalleeParam = $(100);
   const tmpClusterSSA_a = $(tmpCalleeParam);
   xyz = tmpClusterSSA_a;
-  $(tmpClusterSSA_a);
 }
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -82,15 +79,13 @@ With rename=true
 const a = $( 1 );
 let b = 2;
 if (a) {
-  $( 2 );
+
 }
 else {
   const c = $( 100 );
   const d = $( c );
   b = d;
-  $( d );
 }
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( b );
   $( 1 );

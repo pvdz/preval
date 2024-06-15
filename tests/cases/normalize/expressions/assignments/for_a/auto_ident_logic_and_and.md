@@ -72,7 +72,6 @@ if (a) {
   }
 } else {
 }
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
@@ -94,7 +93,6 @@ if (b) {
     $( e );
   }
 }
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }

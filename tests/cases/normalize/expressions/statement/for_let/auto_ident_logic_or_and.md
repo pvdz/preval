@@ -74,8 +74,6 @@ if (xyz) {
   } else {
   }
 }
-$(xyz);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -101,8 +99,6 @@ else {
     b = $( d );
   }
 }
-$( b );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( b );
   $( 1 );

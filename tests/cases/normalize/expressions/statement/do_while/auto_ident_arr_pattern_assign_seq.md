@@ -76,21 +76,16 @@ $(1);
 $(2);
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
-$(100);
-$(tmpArrElement);
-$(tmpArrElement$1);
-const tmpArrElement$2 = $(3);
-const tmpArrElement$4 = $(4);
-let tmpClusterSSA_x = tmpArrElement$2;
-let tmpClusterSSA_y$1 = tmpArrElement$4;
+let x = tmpArrElement;
+let tmpClusterSSA_y = tmpArrElement$1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  $(tmpClusterSSA_x);
-  $(tmpClusterSSA_y$1);
-  const tmpArrElement$3 = $(3);
-  const tmpArrElement$5 = $(4);
-  tmpClusterSSA_x = tmpArrElement$3;
-  tmpClusterSSA_y$1 = tmpArrElement$5;
+  $(x);
+  $(tmpClusterSSA_y);
+  const tmpArrElement$2 = $(3);
+  const tmpArrElement$4 = $(4);
+  x = tmpArrElement$2;
+  tmpClusterSSA_y = tmpArrElement$4;
 }
 throw `[preval] unreachable; infinite loop`;
 `````
@@ -105,21 +100,16 @@ $( 1 );
 $( 2 );
 const a = $( 3 );
 const b = $( 4 );
-$( 100 );
-$( a );
-$( b );
-const c = $( 3 );
-const d = $( 4 );
-let e = c;
-let f = d;
+let c = a;
+let d = b;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  $( e );
-  $( f );
-  const g = $( 3 );
-  const h = $( 4 );
-  e = g;
-  f = h;
+  $( c );
+  $( d );
+  const e = $( 3 );
+  const f = $( 4 );
+  c = e;
+  d = f;
 }
 throw "[preval] unreachable; infinite loop";
 `````

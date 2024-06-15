@@ -58,8 +58,6 @@ $(a);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 const xyz = new $(tmpCalleeParam, tmpCalleeParam$1);
-$(xyz);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -75,8 +73,6 @@ With rename=true
 const a = $( 1 );
 const b = $( 2 );
 const c = new $( a, b );
-$( c );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( c );
   $( 1 );

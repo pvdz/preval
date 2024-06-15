@@ -11,3 +11,7 @@
 // tests/cases/normalize/expressions/assignments/for_c/auto_ident_logic_||_simple_complex.md -> rename file to eliminate the pipes?
 // while unroll transform does a `if (x) yes=1 else yes=0 if (yes) { while ...} else {}`. it should store the while in the if-branch.
 // Redundant write: try { $(); } catch (e) { e = 1; $(e); e = 1; $(e); }
+// tests/cases/testers/base.md -> consider the while(true) transient and then detect that x is only true once. then we can move one branch outside
+// tests/cases/normalize/dce/return/decl_after_looped_infi.md -> when a branch exits the loop we could replace it with a break and move the branch to after the loop? but I guess only if there are no other breaks. maybe too edge casy
+// investigate while(true) loops and if there are cases where we could rotate statements in the body, then move one out before/after. the loop is wrap-around after all.
+// nested labels can be squashed when they have no tail

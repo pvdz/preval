@@ -65,15 +65,11 @@ $(p, q);
 
 `````js filename=intro
 const b = [10, 20];
-const arrAssignPatternRhs = $(b);
-const arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternSplat[0];
-arrPatternSplat[1];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const arrAssignPatternRhs$1 = $(b);
-  const arrPatternSplat$1 = [...arrAssignPatternRhs$1];
-  arrPatternSplat$1[0];
-  arrPatternSplat$1[1];
+  const arrAssignPatternRhs = $(b);
+  const arrPatternSplat = [...arrAssignPatternRhs];
+  arrPatternSplat[0];
+  arrPatternSplat[1];
 }
 throw `[preval] unreachable; infinite loop`;
 `````
@@ -84,15 +80,11 @@ With rename=true
 
 `````js filename=intro
 const a = [ 10, 20 ];
-const b = $( a );
-const c = [ ... b ];
-c[ 0 ];
-c[ 1 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const d = $( a );
-  const e = [ ... d ];
-  e[ 0 ];
-  e[ 1 ];
+  const b = $( a );
+  const c = [ ... b ];
+  c[ 0 ];
+  c[ 1 ];
 }
 throw "[preval] unreachable; infinite loop";
 `````

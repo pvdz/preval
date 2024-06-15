@@ -61,7 +61,6 @@ if (a) {
   $(tmpCalleeParam$1);
 } else {
 }
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
@@ -79,7 +78,6 @@ if (b) {
   const c = $( 2 );
   $( c );
 }
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }

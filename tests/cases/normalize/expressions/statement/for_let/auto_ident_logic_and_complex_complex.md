@@ -61,11 +61,8 @@ let xyz = $(tmpCalleeParam);
 if (xyz) {
   const tmpCalleeParam$1 = $(2);
   xyz = $(tmpCalleeParam$1);
-  $(xyz);
 } else {
-  $(xyz);
 }
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -83,12 +80,7 @@ let b = $( a );
 if (b) {
   const c = $( 2 );
   b = $( c );
-  $( b );
 }
-else {
-  $( b );
-}
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( b );
   $( 1 );

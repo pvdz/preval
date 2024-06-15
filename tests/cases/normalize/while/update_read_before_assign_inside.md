@@ -47,8 +47,7 @@ $(`unreachable`);
 
 
 `````js filename=intro
-$(true);
-let x = 2;
+let x = true;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(x);
   x = x + 1;
@@ -61,8 +60,7 @@ throw `[preval] unreachable; infinite loop`;
 With rename=true
 
 `````js filename=intro
-$( true );
-let a = 2;
+let a = true;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( a );
   a = a + 1;

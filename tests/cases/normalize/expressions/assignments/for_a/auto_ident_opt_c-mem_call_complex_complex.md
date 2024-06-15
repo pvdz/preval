@@ -82,7 +82,6 @@ if (tmpIfTest) {
     $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
   }
 }
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
@@ -112,7 +111,6 @@ else {
     $dotCall( e, b, g );
   }
 }
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }

@@ -53,7 +53,6 @@ $(a);
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpAssignObjPatternRhs = $(tmpCalleeParam);
 tmpAssignObjPatternRhs.a;
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
@@ -71,7 +70,6 @@ const a = {
 };
 const b = $( a );
 b.a;
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }

@@ -60,15 +60,9 @@ $(`woohoo`);
 
 
 `````js filename=intro
-const tmpIfTest = $(false);
-if (tmpIfTest) {
-  $(`uhoh`);
-} else {
-  $(`exit`);
-}
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest$1 = $(false);
-  if (tmpIfTest$1) {
+  const tmpIfTest = $(false);
+  if (tmpIfTest) {
     $(`uhoh`);
   } else {
     $(`exit`);
@@ -82,16 +76,9 @@ throw `[preval] unreachable; infinite loop`;
 With rename=true
 
 `````js filename=intro
-const a = $( false );
-if (a) {
-  $( "uhoh" );
-}
-else {
-  $( "exit" );
-}
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const b = $( false );
-  if (b) {
+  const a = $( false );
+  if (a) {
     $( "uhoh" );
   }
   else {

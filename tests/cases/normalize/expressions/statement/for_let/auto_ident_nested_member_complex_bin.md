@@ -77,8 +77,6 @@ const varInitAssignLhsComputedObj$1 = $(c);
 const varInitAssignLhsComputedProp$1 = $(`y`);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
-$(7);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(7);
   $(1);
@@ -99,8 +97,6 @@ const e = $( b );
 const f = $( "y" );
 e[f] = 7;
 c[d] = 7;
-$( 7 );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 7 );
   $( 1 );

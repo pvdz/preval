@@ -57,8 +57,6 @@ const xyz = function () {
   debugger;
   return undefined;
 };
-$(xyz);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -75,8 +73,6 @@ const a = function() {
   debugger;
   return undefined;
 };
-$( a );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( a );
   $( 1 );

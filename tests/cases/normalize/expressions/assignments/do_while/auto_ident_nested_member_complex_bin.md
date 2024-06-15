@@ -80,21 +80,14 @@ $(a, b, c, d, e);
 `````js filename=intro
 const b = { x: 1 };
 const c = { y: 2 };
-$(100);
-const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $(`x`);
-const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $(`y`);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpNestedAssignComMemberObj$1 = $(b);
-  const tmpNestedAssignComMemberProp$1 = $(`x`);
-  const varInitAssignLhsComputedObj$1 = $(c);
-  const varInitAssignLhsComputedProp$1 = $(`y`);
-  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
-  tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = 7;
+  const tmpNestedAssignComMemberObj = $(b);
+  const tmpNestedAssignComMemberProp = $(`x`);
+  const varInitAssignLhsComputedObj = $(c);
+  const varInitAssignLhsComputedProp = $(`y`);
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
 }
 throw `[preval] unreachable; infinite loop`;
 `````
@@ -106,21 +99,14 @@ With rename=true
 `````js filename=intro
 const a = { x: 1 };
 const b = { y: 2 };
-$( 100 );
-const c = $( a );
-const d = $( "x" );
-const e = $( b );
-const f = $( "y" );
-e[f] = 7;
-c[d] = 7;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const g = $( a );
-  const h = $( "x" );
-  const i = $( b );
-  const j = $( "y" );
-  i[j] = 7;
-  g[h] = 7;
+  const c = $( a );
+  const d = $( "x" );
+  const e = $( b );
+  const f = $( "y" );
+  e[f] = 7;
+  c[d] = 7;
 }
 throw "[preval] unreachable; infinite loop";
 `````

@@ -57,7 +57,6 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 arrPatternSplat[0];
 $(10);
 $(20);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
@@ -77,7 +76,6 @@ const b = [ ... a ];
 b[ 0 ];
 $( 10 );
 $( 20 );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }

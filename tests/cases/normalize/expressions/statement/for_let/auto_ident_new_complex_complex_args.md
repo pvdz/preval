@@ -59,8 +59,6 @@ const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 const xyz = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-$(xyz);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -77,8 +75,6 @@ const a = $( $ );
 const b = $( 1 );
 const c = $( 2 );
 const d = new a( b, c );
-$( d );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( d );
   $( 1 );

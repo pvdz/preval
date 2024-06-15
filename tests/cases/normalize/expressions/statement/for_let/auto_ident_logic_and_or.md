@@ -70,13 +70,10 @@ if (xyz) {
 } else {
 }
 if (xyz) {
-  $(xyz);
 } else {
   const tmpCalleeParam$3 = $(2);
   xyz = $(tmpCalleeParam$3);
-  $(xyz);
 }
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -96,14 +93,12 @@ if (b) {
   b = $( c );
 }
 if (b) {
-  $( b );
+
 }
 else {
   const d = $( 2 );
   b = $( d );
-  $( b );
 }
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( b );
   $( 1 );

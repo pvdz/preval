@@ -48,12 +48,9 @@ $(a);
 
 
 `````js filename=intro
-const xyz = /foo/;
-$(xyz);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const xyz$1 = /foo/;
-  $(xyz$1);
+  const xyz = /foo/;
+  $(xyz);
   $(1);
 }
 throw `[preval] unreachable; infinite loop`;
@@ -64,12 +61,9 @@ throw `[preval] unreachable; infinite loop`;
 With rename=true
 
 `````js filename=intro
-const a = /foo/;
-$( a );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const b = /foo/;
-  $( b );
+  const a = /foo/;
+  $( a );
   $( 1 );
 }
 throw "[preval] unreachable; infinite loop";

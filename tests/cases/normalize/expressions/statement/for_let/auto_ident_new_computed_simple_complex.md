@@ -59,8 +59,6 @@ const tmpCompProp = $(`\$`);
 const b = { $: $ };
 const tmpNewCallee = b[tmpCompProp];
 const xyz = new tmpNewCallee(1);
-$(xyz);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -77,8 +75,6 @@ const a = $( "$" );
 const b = { $: $ };
 const c = b[ a ];
 const d = new c( 1 );
-$( d );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( d );
   $( 1 );

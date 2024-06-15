@@ -58,8 +58,6 @@ $(a, b);
 const tmpAssignRhsCompProp = $(`c`);
 const b = { c: 1 };
 const a = b[tmpAssignRhsCompProp];
-$(a);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(a);
   $(1);
@@ -75,8 +73,6 @@ With rename=true
 const a = $( "c" );
 const b = { c: 1 };
 const c = b[ a ];
-$( c );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( c );
   $( 1 );

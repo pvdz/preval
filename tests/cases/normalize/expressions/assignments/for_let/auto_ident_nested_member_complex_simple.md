@@ -76,8 +76,6 @@ const varInitAssignLhsComputedObj = $(c);
 const varInitAssignLhsComputedProp = $(`y`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-$(3);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(3);
   $(1);
@@ -98,8 +96,6 @@ const e = $( b );
 const f = $( "y" );
 e[f] = 3;
 c[d] = 3;
-$( 3 );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 3 );
   $( 1 );

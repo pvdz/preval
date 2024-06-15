@@ -72,10 +72,6 @@ if (tmpIfTest$1) {
   const tmpObjLitVal$1 = { e: $ };
   $dotCall($, tmpObjLitVal$1, 1);
 }
-$(1);
-$(1);
-$(1);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
@@ -95,10 +91,6 @@ else {
   const b = { e: $ };
   $dotCall( $, b, 1 );
 }
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }

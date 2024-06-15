@@ -54,8 +54,6 @@ $(a);
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
 const xyz = [tmpArrElement, 2, tmpArrElement$3];
-$(xyz);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -71,8 +69,6 @@ With rename=true
 const a = $( 1 );
 const b = $( 3 );
 const c = [ a, 2, b ];
-$( c );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( c );
   $( 1 );

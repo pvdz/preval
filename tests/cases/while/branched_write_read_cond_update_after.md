@@ -71,28 +71,16 @@ while (true) {
 
 `````js filename=intro
 let x = $(1);
-const tmpIfTest = x % 2;
-if (tmpIfTest) {
-  x = x + 1;
-  $(x, `write`);
-} else {
-  $(x, `read`);
-}
-const tmpIfTest$1 = x % 3;
-if (tmpIfTest$1) {
-  x = $(10, `ten`);
-} else {
-}
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest$2 = x % 2;
-  if (tmpIfTest$2) {
+  const tmpIfTest = x % 2;
+  if (tmpIfTest) {
     x = x + 1;
     $(x, `write`);
   } else {
     $(x, `read`);
   }
-  const tmpIfTest$4 = x % 3;
-  if (tmpIfTest$4) {
+  const tmpIfTest$1 = x % 3;
+  if (tmpIfTest$1) {
     x = $(10, `ten`);
   } else {
   }
@@ -106,29 +94,17 @@ With rename=true
 
 `````js filename=intro
 let a = $( 1 );
-const b = a % 2;
-if (b) {
-  a = a + 1;
-  $( a, "write" );
-}
-else {
-  $( a, "read" );
-}
-const c = a % 3;
-if (c) {
-  a = $( 10, "ten" );
-}
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const d = a % 2;
-  if (d) {
+  const b = a % 2;
+  if (b) {
     a = a + 1;
     $( a, "write" );
   }
   else {
     $( a, "read" );
   }
-  const e = a % 3;
-  if (e) {
+  const c = a % 3;
+  if (c) {
     a = $( 10, "ten" );
   }
 }

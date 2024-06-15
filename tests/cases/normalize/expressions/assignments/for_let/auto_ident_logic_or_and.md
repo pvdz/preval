@@ -76,8 +76,6 @@ if (a) {
   }
 }
 const xyz = a;
-$(xyz);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -104,8 +102,6 @@ else {
   }
 }
 const e = b;
-$( e );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( e );
   $( 1 );

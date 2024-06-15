@@ -58,7 +58,6 @@ if (tmpIfTest) {
 } else {
   $(1);
 }
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
@@ -77,7 +76,6 @@ if (a) {
 else {
   $( 1 );
 }
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }

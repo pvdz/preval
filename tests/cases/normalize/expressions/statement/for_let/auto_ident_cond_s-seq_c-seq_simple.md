@@ -57,8 +57,6 @@ $(a);
 
 `````js filename=intro
 const tmpClusterSSA_xyz = $(60);
-$(tmpClusterSSA_xyz);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpClusterSSA_xyz);
   $(1);
@@ -72,8 +70,6 @@ With rename=true
 
 `````js filename=intro
 const a = $( 60 );
-$( a );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( a );
   $( 1 );

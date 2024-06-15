@@ -57,8 +57,6 @@ $(a, b);
 const b = { c: 1 };
 const tmpAssignRhsProp = $(b);
 const tmpClusterSSA_a = tmpAssignRhsProp.c;
-$(tmpClusterSSA_a);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpClusterSSA_a);
   $(1);
@@ -74,8 +72,6 @@ With rename=true
 const a = { c: 1 };
 const b = $( a );
 const c = b.c;
-$( c );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( c );
   $( 1 );

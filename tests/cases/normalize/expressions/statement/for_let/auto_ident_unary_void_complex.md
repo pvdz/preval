@@ -50,8 +50,6 @@ $(a);
 
 `````js filename=intro
 $(100);
-$(undefined);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(undefined);
   $(1);
@@ -65,8 +63,6 @@ With rename=true
 
 `````js filename=intro
 $( 100 );
-$( undefined );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( undefined );
   $( 1 );

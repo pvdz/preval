@@ -57,8 +57,6 @@ $(a, arg);
 const tmpDeleteCompProp = $(`y`);
 const arg = { y: 1 };
 const xyz = delete arg[tmpDeleteCompProp];
-$(xyz);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -74,8 +72,6 @@ With rename=true
 const a = $( "y" );
 const b = { y: 1 };
 const c = delete b[ a ];
-$( c );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( c );
   $( 1 );

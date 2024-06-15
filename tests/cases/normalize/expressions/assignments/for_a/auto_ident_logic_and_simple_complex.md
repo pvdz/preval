@@ -54,7 +54,6 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = $(1);
 $(tmpCalleeParam);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
@@ -68,7 +67,6 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 $( a );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }

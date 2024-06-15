@@ -77,23 +77,16 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpIfTest = $(false);
-if (tmpIfTest) {
-  $(`fail too`);
-  throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
-} else {
-  $(`fail`);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const tmpIfTest$1 = $(false);
-    if (tmpIfTest$1) {
-      $(`fail too`);
-      throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
-    } else {
-      $(`fail`);
-    }
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpIfTest = $(false);
+  if (tmpIfTest) {
+    $(`fail too`);
+    throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
+  } else {
+    $(`fail`);
   }
-  throw `[preval] unreachable; infinite loop`;
 }
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -101,25 +94,17 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = $( false );
-if (a) {
-  $( "fail too" );
-  throw "Preval: TDZ triggered for this assignment: x = $('fail too')";
-}
-else {
-  $( "fail" );
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const b = $( false );
-    if (b) {
-      $( "fail too" );
-      throw "Preval: TDZ triggered for this assignment: x = $('fail too')";
-    }
-    else {
-      $( "fail" );
-    }
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const a = $( false );
+  if (a) {
+    $( "fail too" );
+    throw "Preval: TDZ triggered for this assignment: x = $('fail too')";
   }
-  throw "[preval] unreachable; infinite loop";
+  else {
+    $( "fail" );
+  }
 }
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

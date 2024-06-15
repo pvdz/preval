@@ -60,8 +60,6 @@ $(2);
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
 const xyz = delete tmpDeleteObj.y;
-$(xyz);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -79,8 +77,6 @@ $( 2 );
 const a = { y: 1 };
 const b = $( a );
 const c = delete b.y;
-$( c );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( c );
   $( 1 );

@@ -67,7 +67,6 @@ if (tmpIfTest) {
   const tmpChainRootComputed = $(`x`);
   tmpChainElementCall[tmpChainRootComputed];
 }
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
@@ -89,7 +88,6 @@ else {
   const d = $( "x" );
   b[ d ];
 }
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }

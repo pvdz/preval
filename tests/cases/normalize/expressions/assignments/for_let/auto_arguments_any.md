@@ -49,11 +49,9 @@ $(a);
 
 
 `````js filename=intro
-const a = arguments;
-$(a);
-$(1);
+arguments;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(a);
+  $(arguments);
   $(1);
 }
 throw `[preval] unreachable; infinite loop`;
@@ -64,11 +62,9 @@ throw `[preval] unreachable; infinite loop`;
 With rename=true
 
 `````js filename=intro
-const a = arguments;
-$( a );
-$( 1 );
+arguments;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( a );
+  $( arguments );
   $( 1 );
 }
 throw "[preval] unreachable; infinite loop";

@@ -58,8 +58,6 @@ arrPatternSplat[0];
 $(10);
 $(20);
 const xyz = [1, 2];
-$(xyz);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -81,8 +79,6 @@ b[ 0 ];
 $( 10 );
 $( 20 );
 const c = [ 1, 2 ];
-$( c );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( c );
   $( 1 );

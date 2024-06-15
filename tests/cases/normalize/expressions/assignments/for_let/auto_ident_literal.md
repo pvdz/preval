@@ -49,8 +49,6 @@ $(a);
 
 
 `````js filename=intro
-$(`foo`);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`foo`);
   $(1);
@@ -63,8 +61,6 @@ throw `[preval] unreachable; infinite loop`;
 With rename=true
 
 `````js filename=intro
-$( "foo" );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( "foo" );
   $( 1 );

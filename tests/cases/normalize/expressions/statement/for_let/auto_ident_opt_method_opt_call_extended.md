@@ -71,20 +71,11 @@ $(a);
 let xyz = undefined;
 const tmpIfTest$1 = $ == null;
 if (tmpIfTest$1) {
-  $(undefined);
 } else {
   const tmpObjLitVal$1 = { e: $ };
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
   xyz = tmpChainElementCall;
-  $(tmpChainElementCall);
 }
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
-$(xyz);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -100,21 +91,13 @@ With rename=true
 let a = undefined;
 const b = $ == null;
 if (b) {
-  $( undefined );
+
 }
 else {
   const c = { e: $ };
   const d = $dotCall( $, c, 1 );
   a = d;
-  $( d );
 }
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
-$( a );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( a );
   $( 1 );

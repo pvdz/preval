@@ -58,8 +58,6 @@ $(a);
 const tmpCallCompProp = $(`\$`);
 const b = { $: $ };
 const a = b[tmpCallCompProp](1);
-$(a);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(a);
   $(1);
@@ -75,8 +73,6 @@ With rename=true
 const a = $( "$" );
 const b = { $: $ };
 const c = b[ a ]( 1 )};
-$( c );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( c );
   $( 1 );

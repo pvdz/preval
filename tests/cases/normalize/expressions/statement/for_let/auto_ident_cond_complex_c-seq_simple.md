@@ -60,13 +60,10 @@ let xyz = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   xyz = $(60);
-  $(xyz);
 } else {
   const tmpCalleeParam = $(100);
   xyz = $(tmpCalleeParam);
-  $(xyz);
 }
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -83,14 +80,11 @@ let a = undefined;
 const b = $( 1 );
 if (b) {
   a = $( 60 );
-  $( a );
 }
 else {
   const c = $( 100 );
   a = $( c );
-  $( a );
 }
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( a );
   $( 1 );

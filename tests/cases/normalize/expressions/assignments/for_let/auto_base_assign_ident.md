@@ -56,8 +56,6 @@ $(a, b);
 
 `````js filename=intro
 const tmpNestedComplexRhs = $(2);
-$(tmpNestedComplexRhs);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedComplexRhs);
   $(1);
@@ -71,8 +69,6 @@ With rename=true
 
 `````js filename=intro
 const a = $( 2 );
-$( a );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( a );
   $( 1 );

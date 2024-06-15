@@ -81,7 +81,6 @@ if (tmpIfTest) {
     tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
@@ -112,7 +111,6 @@ else {
     f[ h ];
   }
 }
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }

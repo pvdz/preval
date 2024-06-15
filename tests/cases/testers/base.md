@@ -57,9 +57,14 @@ while (true) {
 
 
 `````js filename=intro
-$(`first`);
+let x = true;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(`nexts`);
+  if (x) {
+    x = false;
+    $(`first`);
+  } else {
+    $(`nexts`);
+  }
 }
 throw `[preval] unreachable; infinite loop`;
 `````
@@ -69,9 +74,15 @@ throw `[preval] unreachable; infinite loop`;
 With rename=true
 
 `````js filename=intro
-$( "first" );
+let a = true;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( "nexts" );
+  if (a) {
+    a = false;
+    $( "first" );
+  }
+  else {
+    $( "nexts" );
+  }
 }
 throw "[preval] unreachable; infinite loop";
 `````

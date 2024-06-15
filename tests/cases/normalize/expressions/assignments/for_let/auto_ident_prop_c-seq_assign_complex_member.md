@@ -65,8 +65,6 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
-$(tmpNestedAssignPropRhs);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedAssignPropRhs);
   $(1);
@@ -88,8 +86,6 @@ const c = $( a );
 const d = $( "d" );
 const e = c[ d ];
 b.c = e;
-$( e );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( e );
   $( 1 );

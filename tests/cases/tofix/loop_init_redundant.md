@@ -51,12 +51,12 @@ $(a);
 
 
 `````js filename=intro
-const useless = new $(1);
+new $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   new $(1);
 }
-$(useless);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -64,12 +64,12 @@ $(useless);
 With rename=true
 
 `````js filename=intro
-const a = new $( 1 );
+new $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
   new $( 1 );
 }
-$( a );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

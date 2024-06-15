@@ -65,7 +65,7 @@ function _infiniteLoops(fdata) {
           const parentNode = path.nodes[path.nodes.length - 2];
           const parentProp = path.props[path.props.length - 1];
           const parentIndex = path.indexes[path.indexes.length - 1];
-          if (parentNode.type === 'BlockStatement' && parentProp === 'body' && parentNode.body[parentIndex + 1]?.type !== 'ThrowStatement') {
+          if ((parentNode.type === 'BlockStatement' || parentNode.type === 'Program') && parentProp === 'body' && parentNode.body[parentIndex + 1]?.type !== 'ThrowStatement') {
             queue.push({
               index: parentIndex,
               func: () => {

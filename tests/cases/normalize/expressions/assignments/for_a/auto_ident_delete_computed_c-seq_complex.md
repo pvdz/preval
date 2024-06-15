@@ -60,7 +60,6 @@ const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 delete tmpDeleteCompObj[tmpDeleteCompProp];
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
@@ -78,7 +77,6 @@ const a = { y: 1 };
 const b = $( a );
 const c = $( "y" );
 delete b[ c ];
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }

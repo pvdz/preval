@@ -56,7 +56,6 @@ const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $(`c`);
 tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
@@ -72,7 +71,6 @@ const a = { c: 1 };
 const b = $( a );
 const c = $( "c" );
 b[ c ];
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }

@@ -64,12 +64,9 @@ if (a) {
   const tmpCalleeParam$1 = $(2);
   const tmpClusterSSA_a = $(tmpCalleeParam$1);
   xyz = tmpClusterSSA_a;
-  $(tmpClusterSSA_a);
 } else {
   xyz = a;
-  $(a);
 }
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -89,13 +86,10 @@ if (b) {
   const d = $( 2 );
   const e = $( d );
   c = e;
-  $( e );
 }
 else {
   c = b;
-  $( b );
 }
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( c );
   $( 1 );

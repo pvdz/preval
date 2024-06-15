@@ -56,8 +56,6 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = b.$(1);
-$(a);
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(a);
   $(1);
@@ -72,8 +70,6 @@ With rename=true
 `````js filename=intro
 const a = { $: $ };
 const b = a.$( 1 );
-$( b );
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( b );
   $( 1 );

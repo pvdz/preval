@@ -57,12 +57,9 @@ $(a);
 const tmpCalleeParam = $(0);
 let xyz = $(tmpCalleeParam);
 if (xyz) {
-  $(xyz);
 } else {
   xyz = 2;
-  $(2);
 }
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -78,13 +75,11 @@ With rename=true
 const a = $( 0 );
 let b = $( a );
 if (b) {
-  $( b );
+
 }
 else {
   b = 2;
-  $( 2 );
 }
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( b );
   $( 1 );

@@ -2,25 +2,25 @@
 
 # locking_reverse.md
 
-> Tofix > Locking reverse
+> Function locks > Locking reverse
 >
 > A func that is being cleared after being called once is "locked". I guess.
 
-- In this case the function gets called before it is tested ...
+- In this case the function gets tested before it is called ...
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-function f() {
-  $('call me once');
-}
-function g() {
-  let x = f;
-  f();
+let f = function() {
+  $(`call me once`);
+};
+const g = function() {
   if (f) {
+    f();
     f = false;
+  } else {
   }
 }
 $(g());
@@ -35,12 +35,12 @@ let f = function () {
   debugger;
   $(`call me once`);
 };
-let g = function () {
+const g = function () {
   debugger;
-  let x = f;
-  f();
   if (f) {
+    f();
     f = false;
+  } else {
   }
 };
 $(g());
@@ -56,11 +56,10 @@ let f = function () {
   $(`call me once`);
   return undefined;
 };
-let g = function () {
+const g = function () {
   debugger;
-  let x = f;
-  f();
   if (f) {
+    f();
     f = false;
     return undefined;
   } else {
@@ -82,8 +81,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 let f = true;
 const g = function () {
   debugger;
-  $(`call me once`);
   if (f) {
+    $(`call me once`);
     f = false;
     return undefined;
   } else {
@@ -104,8 +103,8 @@ With rename=true
 let a = true;
 const b = function() {
   debugger;
-  $( "call me once" );
   if (a) {
+    $( "call me once" );
     a = false;
     return undefined;
   }
@@ -128,15 +127,11 @@ None
 Should call `$` with:
  - 1: 'call me once'
  - 2: undefined
- - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+ - 3: undefined
+ - eval returned: undefined
 
 Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: 'call me once'
- - 2: undefined
- - 3: 'call me once'
- - 4: undefined
- - eval returned: undefined
+Final output calls: Same

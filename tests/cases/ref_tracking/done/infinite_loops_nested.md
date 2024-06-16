@@ -1,8 +1,8 @@
 # Preval test case
 
-# infinite_loops.md
+# infinite_loops_nested.md
 
-> Tofix > Infinite loops
+> Ref tracking > Done > Infinite loops nested
 >
 > If a loop has no break, continue, throw, or return then it is an infinite loop... Is that relevant? DCE the tail, for example.
 

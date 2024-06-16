@@ -2,7 +2,7 @@
 
 # let_constants.md
 
-> Tofix > Let constants
+> Let aliases > Let constants
 >
 > Not sure but currently this is not minified further while it obviously could be
 

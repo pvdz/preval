@@ -109,18 +109,62 @@ function _functionLocks(fdata) {
       func: () => {
         rule('A function that is declared and only overwritten by falsy values and only used in ifs and calls can be separated');
         example('let f = function(){}; if (f) { f(); f = false; }', 'let f = true; const tmp = function(){}; if (f) { tmp(); f = false; }');
-        before(meta.writes.map((write) => write.blockBody[write.blockIndex]));
-        before(meta.reads.map((read) => read.blockBody[read.blockIndex]));
+        //before(meta.writes.map((write) => write.blockBody[write.blockIndex]));
+        //before(meta.reads.map((read) => read.blockBody[read.blockIndex]));
+
+        before(varWrite.blockBody[varWrite.blockIndex]);
 
         varWrite.parentNode.init = AST.tru();
         const tmpName = createFreshVar('tmpFuncLock', fdata);
         const finalNode = AST.variableDeclaration(tmpName, funcNode, 'const');
         varWrite.blockBody.splice(varWrite.blockIndex, 0, finalNode);
-        identCallReads.forEach((read) => (read.parentNode.callee = AST.identifier(tmpName)));
-        memberCallReads.forEach((read) => (read.parentNode.object = AST.identifier(tmpName)));
 
-        after(finalNode);
-        after(identCallReads.map((read) => read.blockBody[read.blockIndex]));
+        after(varWrite.blockBody[varWrite.blockIndex]);
+        after(varWrite.blockBody[varWrite.blockIndex + 1]);
+
+        identCallReads.forEach((read) => {
+          rule('Each call should use the tmp var and be made conditional');
+          before(read.blockBody[read.blockIndex]);
+
+          read.parentNode.callee = AST.identifier(tmpName);
+
+          const throwNode = AST.throwStatement(AST.primitive('Preval: cannot call a locked function (binding overwritten with non-func)'));
+          if (read.blockBody[read.blockIndex]?.type === 'ExpressionStatement') {
+            // `f();` or `x = f();`
+            read.blockBody[read.blockIndex] = AST.ifStatement(
+              name,
+              AST.blockStatement(read.blockBody[read.blockIndex]),
+              AST.blockStatement(throwNode)
+            );
+          } else {
+            read.blockBody[read.blockIndex] = AST.blockStatement(
+              AST.variableDeclaration(read.blockBody[read.blockIndex].declarations[0].id, AST.identifier('undefined'), 'let'),
+              AST.ifStatement(
+                name,
+                AST.blockStatement(AST.expressionStatement(AST.assignmentExpression(
+                  AST.identifier(read.blockBody[read.blockIndex].declarations[0].id.name),
+                  read.blockBody[read.blockIndex].declarations[0].init
+                  ))),
+                AST.blockStatement(throwNode)
+              )
+            );
+          }
+
+          after(read.blockBody[read.blockIndex]);
+
+        });
+        memberCallReads.forEach((read) => {
+          rule('Each member call should use the tmp var and be made conditional');
+          before(read.blockBody[read.blockIndex]);
+
+          read.parentNode.object = AST.identifier(tmpName);
+
+          after(read.blockBody[read.blockIndex]);
+        });
+
+
+        //after(finalNode);
+        //after(identCallReads.map((read) => read.blockBody[read.blockIndex]));
       },
     });
   });

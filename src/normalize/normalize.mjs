@@ -7623,37 +7623,37 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           after(body[i - 1], parentNode);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
-        }
-      } else if (
-        !pCbody.length &&
-        nCbody.length === 1 &&
-        // TODO: This limitation only exists because the simple clone algo is limited to some expressions
-        nCbody[0].type === 'ExpressionStatement' &&
-        nCbody[0].expression.type === 'CallExpression'
-      ) {
-        // When the first `if` has no else, the second `if` must still go for the else because nothing
-        // could have changed. If the second else has one statement, we can choose to inline that into
-        // the first else, and then to move the whole if to follow the consequent branch.
+        } else if (
+          !pCbody.length &&
+          nCbody.length === 1 &&
+          // TODO: This limitation only exists because the simple clone algo is limited to some expressions
+          nCbody[0].type === 'ExpressionStatement' &&
+          nCbody[0].expression.type === 'CallExpression'
+        ) {
+          // When the first `if` has no else, the second `if` must still go for the else because nothing
+          // could have changed. If the second else has one statement, we can choose to inline that into
+          // the first else, and then to move the whole if to follow the consequent branch.
 
-        rule('Back to back ifs, first if empty, second if one statement, should be inlined');
-        example('if (x) {} else f(); if (x) g(); else h();', 'if (x) { g(); } else { f(); if (x) g() else h(); }');
-        before(prev, parentNode);
-        before(node);
+          rule('Back to back ifs, first if empty, second if one statement, should be inlined');
+          example('if (x) {} else f(); if (x) g(); else h();', 'if (x) { g(); } else { f(); if (x) g() else h(); }');
+          before(prev, parentNode);
+          before(node);
 
-        pAbody.push(node);
-        pCbody.push(
-          AST.expressionStatement(
-            AST.callExpression(
-              AST.cloneSimple(nCbody[0].expression.callee),
-              nCbody[0].expression.arguments.map((anode) => AST.cloneSimple(anode)),
+          pAbody.push(node);
+          pCbody.push(
+            AST.expressionStatement(
+              AST.callExpression(
+                AST.cloneSimple(nCbody[0].expression.callee),
+                nCbody[0].expression.arguments.map((anode) => AST.cloneSimple(anode)),
+              ),
             ),
-          ),
-        );
-        body.splice(i, 1); // Drop the second if. It was moved.
+          );
+          body.splice(i, 1); // Drop the second if. It was moved.
 
-        after(body[i - 1], parentNode);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-        return true;
+          after(body[i - 1], parentNode);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
       }
     }
 

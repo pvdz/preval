@@ -69,20 +69,26 @@ while (true) {
 
 `````js filename=intro
 let counter = 0;
-let test = true;
 while (true) {
-  if (test) {
+  $(`yolo`);
+  const tmpClusterSSA_counter = counter + 1;
+  const tmpClusterSSA_test = tmpClusterSSA_counter < 10;
+  if (tmpClusterSSA_test) {
     $(`yolo`);
-    counter = counter + 1;
-    test = counter < 10;
-    while ($LOOP_UNROLL_10) {
-      if (test) {
+    counter = tmpClusterSSA_counter + 1;
+    let tmpClusterSSA_test$1 = counter < 10;
+    while ($LOOP_UNROLL_9) {
+      if (tmpClusterSSA_test$1) {
         $(`yolo`);
         counter = counter + 1;
-        test = counter < 10;
+        tmpClusterSSA_test$1 = counter < 10;
       } else {
         break;
       }
+    }
+    if (tmpClusterSSA_test$1) {
+    } else {
+      break;
     }
   } else {
     break;
@@ -96,21 +102,29 @@ With rename=true
 
 `````js filename=intro
 let a = 0;
-let b = true;
 while (true) {
-  if (b) {
+  $( "yolo" );
+  const b = a + 1;
+  const c = b < 10;
+  if (c) {
     $( "yolo" );
-    a = a + 1;
-    b = a < 10;
-    while ($LOOP_UNROLL_10) {
-      if (b) {
+    a = b + 1;
+    let d = a < 10;
+    while ($LOOP_UNROLL_9) {
+      if (d) {
         $( "yolo" );
         a = a + 1;
-        b = a < 10;
+        d = a < 10;
       }
       else {
         break;
       }
+    }
+    if (d) {
+
+    }
+    else {
+      break;
     }
   }
   else {

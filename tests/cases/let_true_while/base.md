@@ -63,16 +63,12 @@ const tmpNestedComplexRhs = y - 1;
 let tmpClusterSSA_y = tmpNestedComplexRhs;
 let tmpClusterSSA_x = tmpNestedComplexRhs;
 if (tmpNestedComplexRhs) {
-  $(tmpNestedComplexRhs);
-  const tmpNestedComplexRhs$1 = tmpNestedComplexRhs - 1;
-  tmpClusterSSA_y = tmpNestedComplexRhs$1;
-  tmpClusterSSA_x = tmpNestedComplexRhs$1;
-  while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_x) {
-      $(tmpClusterSSA_x);
-      const tmpNestedComplexRhs$2 = tmpClusterSSA_y - 1;
-      tmpClusterSSA_y = tmpNestedComplexRhs$2;
-      tmpClusterSSA_x = tmpNestedComplexRhs$2;
+  while ($LOOP_UNROLL_10) {
+    $(tmpClusterSSA_x);
+    const tmpNestedComplexRhs$1 = tmpClusterSSA_y - 1;
+    tmpClusterSSA_y = tmpNestedComplexRhs$1;
+    tmpClusterSSA_x = tmpNestedComplexRhs$1;
+    if (tmpNestedComplexRhs$1) {
     } else {
       break;
     }
@@ -93,16 +89,13 @@ const b = a - 1;
 let c = b;
 let d = b;
 if (b) {
-  $( b );
-  const e = b - 1;
-  c = e;
-  d = e;
-  while ($LOOP_UNROLL_9) {
-    if (d) {
-      $( d );
-      const f = c - 1;
-      c = f;
-      d = f;
+  while ($LOOP_UNROLL_10) {
+    $( d );
+    const e = c - 1;
+    c = e;
+    d = e;
+    if (e) {
+
     }
     else {
       break;

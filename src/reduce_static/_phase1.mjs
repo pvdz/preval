@@ -353,6 +353,14 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
             fdata.globallyUniqueLabelRegistry,
           );
           addLabelReference(fdata, node.label, parentNode.body, parentIndex);
+
+          //parentNode.$p.alwaysComplete = true;
+          parentNode.$p.alwaysBreak = true; // TODO: need to do this proper
+        } else {
+          //parentNode.$p.alwaysComplete = true;
+          parentNode.$p.alwaysBreak = true; // TODO: need to do this proper
+          //parentNode.$p.breakTargets ||= [];
+          //parentNode.$p.breakTargets.push(loopStack[loopStack.length - 1].$p.pid);
         }
 
         break;

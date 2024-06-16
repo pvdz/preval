@@ -14,7 +14,7 @@
 let s = $(10);
 let x = true;
 while (x) {
-  const nowAssignable$3 = parseExpression(lexerFlags$285, astProp$181);
+  $(1);
   s = s | 10; // This line can be moved outward since `s` can not be observed
   x = $(true);
 }
@@ -28,7 +28,7 @@ $(s);
 let s = $(10);
 let x = true;
 while (x) {
-  const nowAssignable$3 = parseExpression(lexerFlags$285, astProp$181);
+  $(1);
   s = s | 10;
   x = $(true);
 }
@@ -43,7 +43,7 @@ let s = $(10);
 let x = true;
 while (true) {
   if (x) {
-    const nowAssignable$3 = parseExpression(lexerFlags$285, astProp$181);
+    $(1);
     s = s | 10;
     x = $(true);
   } else {
@@ -58,18 +58,15 @@ $(s);
 
 `````js filename=intro
 const s = $(10);
-parseExpression(lexerFlags$285, astProp$181);
+$(1);
 let tmpClusterSSA_s = s | 10;
 const tmpClusterSSA_x = $(true);
 if (tmpClusterSSA_x) {
-  parseExpression(lexerFlags$285, astProp$181);
-  tmpClusterSSA_s = tmpClusterSSA_s | 10;
-  let tmpClusterSSA_x$1 = $(true);
-  while ($LOOP_UNROLL_9) {
+  while ($LOOP_UNROLL_10) {
+    $(1);
+    tmpClusterSSA_s = tmpClusterSSA_s | 10;
+    const tmpClusterSSA_x$1 = $(true);
     if (tmpClusterSSA_x$1) {
-      parseExpression(lexerFlags$285, astProp$181);
-      tmpClusterSSA_s = tmpClusterSSA_s | 10;
-      tmpClusterSSA_x$1 = $(true);
     } else {
       break;
     }
@@ -85,18 +82,16 @@ With rename=true
 
 `````js filename=intro
 const a = $( 10 );
-parseExpression( lexerFlags$285, astProp$181 );
+$( 1 );
 let b = a | 10;
 const c = $( true );
 if (c) {
-  parseExpression( lexerFlags$285, astProp$181 );
-  b = b | 10;
-  let d = $( true );
-  while ($LOOP_UNROLL_9) {
+  while ($LOOP_UNROLL_10) {
+    $( 1 );
+    b = b | 10;
+    const d = $( true );
     if (d) {
-      parseExpression( lexerFlags$285, astProp$181 );
-      b = b | 10;
-      d = $( true );
+
     }
     else {
       break;
@@ -108,15 +103,38 @@ $( b );
 
 ## Globals
 
-BAD@! Found 3 implicit global bindings:
-
-parseExpression, lexerFlags$285, astProp$181
+None
 
 ## Result
 
 Should call `$` with:
  - 1: 10
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 2: 1
+ - 3: true
+ - 4: 1
+ - 5: true
+ - 6: 1
+ - 7: true
+ - 8: 1
+ - 9: true
+ - 10: 1
+ - 11: true
+ - 12: 1
+ - 13: true
+ - 14: 1
+ - 15: true
+ - 16: 1
+ - 17: true
+ - 18: 1
+ - 19: true
+ - 20: 1
+ - 21: true
+ - 22: 1
+ - 23: true
+ - 24: 1
+ - 25: true
+ - 26: 1
+ - eval returned: ('<crash[ Loop aborted by Preval test runner (this simply curbs infinite loops in tests) ]>')
 
 Pre normalization calls: Same
 

@@ -70,22 +70,15 @@ if (test) {
   $(`third`);
 }
 if (tmp) {
-  const test$1 = $(`first`);
-  $(`second`);
-  if (test$1) {
-    tmp = false;
-  } else {
-    $(`third`);
-  }
-  while ($LOOP_UNROLL_9) {
+  while ($LOOP_UNROLL_10) {
+    const test$1 = $(`first`);
+    $(`second`);
+    if (test$1) {
+      tmp = false;
+    } else {
+      $(`third`);
+    }
     if (tmp) {
-      const test$2 = $(`first`);
-      $(`second`);
-      if (test$2) {
-        tmp = false;
-      } else {
-        $(`third`);
-      }
     } else {
       break;
     }
@@ -109,24 +102,17 @@ else {
   $( "third" );
 }
 if (a) {
-  const c = $( "first" );
-  $( "second" );
-  if (c) {
-    a = false;
-  }
-  else {
-    $( "third" );
-  }
-  while ($LOOP_UNROLL_9) {
+  while ($LOOP_UNROLL_10) {
+    const c = $( "first" );
+    $( "second" );
+    if (c) {
+      a = false;
+    }
+    else {
+      $( "third" );
+    }
     if (a) {
-      const d = $( "first" );
-      $( "second" );
-      if (d) {
-        a = false;
-      }
-      else {
-        $( "third" );
-      }
+
     }
     else {
       break;

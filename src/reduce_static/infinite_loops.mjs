@@ -20,7 +20,6 @@ import {
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { addLabelReference, createFreshLabelStatement } from '../labels.mjs';
 
 export function infiniteLoops(fdata) {
   group('\n\n\nFind loops that always loop and add a "throw unreachable" after them\n');

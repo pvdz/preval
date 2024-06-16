@@ -2,12 +2,22 @@
 
 # loop_body_fix.md
 
-> Tofix > Loop body fix
+> Fake do while > Loop body fix
 
 When there is a `x = true; while (true) if (x) { ... x = y; } else { break }` sort of structure then the body of the if-consequent
 can be promoted to the parent block because the outer if inside the while is essentially the while test.
 
 In this example the inner call and test update should be in the loop root
+
+let test = 9;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    if (test) {
+      $('inner');
+      test = test - 1;
+    } else {
+        break;
+    }
+}
 
 let test = 9;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -75,9 +85,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 let test = 9;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(`inner`);
+  test = test - 1;
   if (test) {
-    $(`inner`);
-    test = test - 1;
   } else {
     break;
   }
@@ -91,9 +101,10 @@ With rename=true
 `````js filename=intro
 let a = 9;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( "inner" );
+  a = a - 1;
   if (a) {
-    $( "inner" );
-    a = a - 1;
+
   }
   else {
     break;

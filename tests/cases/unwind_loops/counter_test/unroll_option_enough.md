@@ -70,11 +70,11 @@ $(`test 11`);
 $(`test 10`);
 let tmpClusterSSA_counter$2 = 9;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpStringConcatL$1 = $coerce(tmpClusterSSA_counter$2, `string`);
+  const tmpCalleeParam$1 = `test ${tmpStringConcatL$1}`;
+  $(tmpCalleeParam$1);
+  tmpClusterSSA_counter$2 = tmpClusterSSA_counter$2 - 1;
   if (tmpClusterSSA_counter$2) {
-    const tmpStringConcatL$1 = $coerce(tmpClusterSSA_counter$2, `string`);
-    const tmpCalleeParam$1 = `test ${tmpStringConcatL$1}`;
-    $(tmpCalleeParam$1);
-    tmpClusterSSA_counter$2 = tmpClusterSSA_counter$2 - 1;
   } else {
     break;
   }
@@ -99,11 +99,12 @@ $( "test 11" );
 $( "test 10" );
 let a = 9;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const b = $coerce( a, "string" );
+  const c = `test ${tmpStringConcatL$1}`;
+  $( c );
+  a = a - 1;
   if (a) {
-    const b = $coerce( a, "string" );
-    const c = `test ${tmpStringConcatL$1}`;
-    $( c );
-    a = a - 1;
+
   }
   else {
     break;

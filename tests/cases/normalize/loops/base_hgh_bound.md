@@ -79,12 +79,11 @@ $(8);
 $(9);
 $(10);
 let tmpClusterSSA_i$2 = 11;
-let tmpClusterSSA_tmpIfTest$2 = true;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (tmpClusterSSA_tmpIfTest$2) {
-    $(tmpClusterSSA_i$2);
-    tmpClusterSSA_i$2 = tmpClusterSSA_i$2 + 1;
-    tmpClusterSSA_tmpIfTest$2 = tmpClusterSSA_i$2 < 1000000000;
+  $(tmpClusterSSA_i$2);
+  tmpClusterSSA_i$2 = tmpClusterSSA_i$2 + 1;
+  const tmpClusterSSA_tmpIfTest$1 = tmpClusterSSA_i$2 < 1000000000;
+  if (tmpClusterSSA_tmpIfTest$1) {
   } else {
     break;
   }
@@ -109,12 +108,12 @@ $( 8 );
 $( 9 );
 $( 10 );
 let a = 11;
-let b = true;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( a );
+  a = a + 1;
+  const b = a < 1000000000;
   if (b) {
-    $( a );
-    a = a + 1;
-    b = a < 1000000000;
+
   }
   else {
     break;

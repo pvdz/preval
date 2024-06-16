@@ -62,13 +62,13 @@ while (true) {
 let counter = 0;
 let test = true;
 while (true) {
+  $(`yolo`);
+  counter = counter + 1;
+  const tmpCalleeParam = { a: 1 };
+  const tmpForOfRhs = $(tmpCalleeParam);
+  for (test of tmpForOfRhs) {
+  }
   if (test) {
-    $(`yolo`);
-    counter = counter + 1;
-    const tmpCalleeParam = { a: 1 };
-    const tmpForOfRhs = $(tmpCalleeParam);
-    for (test of tmpForOfRhs) {
-    }
   } else {
     break;
   }
@@ -83,14 +83,15 @@ With rename=true
 let a = 0;
 let b = true;
 while (true) {
-  if (b) {
-    $( "yolo" );
-    a = a + 1;
-    const c = { a: 1 };
-    const d = $( c );
-    for (b of d) {
+  $( "yolo" );
+  a = a + 1;
+  const c = { a: 1 };
+  const d = $( c );
+  for (b of d) {
 
-    }
+  }
+  if (b) {
+
   }
   else {
     break;

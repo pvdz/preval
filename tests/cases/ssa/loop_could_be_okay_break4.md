@@ -56,16 +56,12 @@ if ($) {
 } else {
 }
 if (tmpLoopRetCode) {
-  if ($) {
-    tmpLoopRetCode = false;
-  } else {
-  }
-  while ($LOOP_UNROLL_9) {
+  while ($LOOP_UNROLL_10) {
+    if ($) {
+      tmpLoopRetCode = false;
+    } else {
+    }
     if (tmpLoopRetCode) {
-      if ($) {
-        tmpLoopRetCode = false;
-      } else {
-      }
     } else {
       break;
     }
@@ -84,14 +80,12 @@ if ($) {
   a = false;
 }
 if (a) {
-  if ($) {
-    a = false;
-  }
-  while ($LOOP_UNROLL_9) {
+  while ($LOOP_UNROLL_10) {
+    if ($) {
+      a = false;
+    }
     if (a) {
-      if ($) {
-        a = false;
-      }
+
     }
     else {
       break;

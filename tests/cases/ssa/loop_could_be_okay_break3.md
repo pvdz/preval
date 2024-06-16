@@ -110,20 +110,14 @@ if ($) {
 } else {
 }
 if (tmpLoopRetCode) {
-  const tmpssa2_x$1 = $(2);
-  $(tmpssa2_x$1);
-  if ($) {
-    tmpLoopRetCode = false;
-  } else {
-  }
-  while ($LOOP_UNROLL_9) {
+  while ($LOOP_UNROLL_10) {
+    const tmpssa2_x$1 = $(2);
+    $(tmpssa2_x$1);
+    if ($) {
+      tmpLoopRetCode = false;
+    } else {
+    }
     if (tmpLoopRetCode) {
-      const tmpssa2_x$2 = $(2);
-      $(tmpssa2_x$2);
-      if ($) {
-        tmpLoopRetCode = false;
-      } else {
-      }
     } else {
       break;
     }
@@ -145,18 +139,14 @@ if ($) {
   a = false;
 }
 if (a) {
-  const c = $( 2 );
-  $( c );
-  if ($) {
-    a = false;
-  }
-  while ($LOOP_UNROLL_9) {
+  while ($LOOP_UNROLL_10) {
+    const c = $( 2 );
+    $( c );
+    if ($) {
+      a = false;
+    }
     if (a) {
-      const d = $( 2 );
-      $( d );
-      if ($) {
-        a = false;
-      }
+
     }
     else {
       break;

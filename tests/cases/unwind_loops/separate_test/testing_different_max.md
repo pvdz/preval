@@ -66,12 +66,11 @@ $(`yolo`);
 $(`yolo`);
 $(`yolo`);
 let tmpClusterSSA_counter$2 = 11;
-let tmpClusterSSA_test$2 = true;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (tmpClusterSSA_test$2) {
-    $(`yolo`);
-    tmpClusterSSA_counter$2 = tmpClusterSSA_counter$2 + 1;
-    tmpClusterSSA_test$2 = tmpClusterSSA_counter$2 < 20;
+  $(`yolo`);
+  tmpClusterSSA_counter$2 = tmpClusterSSA_counter$2 + 1;
+  const tmpClusterSSA_test$1 = tmpClusterSSA_counter$2 < 20;
+  if (tmpClusterSSA_test$1) {
   } else {
     break;
   }
@@ -95,12 +94,12 @@ $( "yolo" );
 $( "yolo" );
 $( "yolo" );
 let a = 11;
-let b = true;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( "yolo" );
+  a = a + 1;
+  const b = a < 20;
   if (b) {
-    $( "yolo" );
-    a = a + 1;
-    b = a < 20;
+
   }
   else {
     break;

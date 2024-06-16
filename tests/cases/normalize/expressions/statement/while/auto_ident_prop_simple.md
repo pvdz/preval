@@ -63,11 +63,10 @@ $(100);
 $(100);
 $(100);
 $(100);
-let tmpClusterSSA_tmpIfTest$2 = true;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (tmpClusterSSA_tmpIfTest$2) {
-    $(100);
-    tmpClusterSSA_tmpIfTest$2 = b.c;
+  $(100);
+  const tmpClusterSSA_tmpIfTest$1 = b.c;
+  if (tmpClusterSSA_tmpIfTest$1) {
   } else {
     break;
   }
@@ -96,11 +95,11 @@ $( 100 );
 $( 100 );
 $( 100 );
 $( 100 );
-let c = true;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 100 );
+  const c = a.c;
   if (c) {
-    $( 100 );
-    c = a.c;
+
   }
   else {
     break;

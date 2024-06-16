@@ -66,16 +66,12 @@ const z = y - 1;
 let tmpClusterSSA_y = z;
 let tmpClusterSSA_x = z;
 if (z) {
-  $(z);
-  const z$1 = z - 1;
-  tmpClusterSSA_y = z$1;
-  tmpClusterSSA_x = z$1;
-  while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_x) {
-      $(tmpClusterSSA_x);
-      const z$2 = tmpClusterSSA_y - 1;
-      tmpClusterSSA_y = z$2;
-      tmpClusterSSA_x = z$2;
+  while ($LOOP_UNROLL_10) {
+    $(tmpClusterSSA_x);
+    const z$1 = tmpClusterSSA_y - 1;
+    tmpClusterSSA_y = z$1;
+    tmpClusterSSA_x = z$1;
+    if (z$1) {
     } else {
       break;
     }
@@ -96,16 +92,13 @@ const b = a - 1;
 let c = b;
 let d = b;
 if (b) {
-  $( b );
-  const e = b - 1;
-  c = e;
-  d = e;
-  while ($LOOP_UNROLL_9) {
-    if (d) {
-      $( d );
-      const f = c - 1;
-      c = f;
-      d = f;
+  while ($LOOP_UNROLL_10) {
+    $( d );
+    const e = c - 1;
+    c = e;
+    d = e;
+    if (e) {
+
     }
     else {
       break;

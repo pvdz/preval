@@ -83,14 +83,11 @@ const f = function () {
   let tmpClusterSSA_s = s | 10;
   const tmpClusterSSA_x = $(true);
   if (tmpClusterSSA_x) {
-    parseExpression(lexerFlags$285, astProp$181);
-    tmpClusterSSA_s = tmpClusterSSA_s | 10;
-    let tmpClusterSSA_x$1 = $(true);
-    while ($LOOP_UNROLL_9) {
+    while ($LOOP_UNROLL_10) {
+      parseExpression(lexerFlags$285, astProp$181);
+      tmpClusterSSA_s = tmpClusterSSA_s | 10;
+      const tmpClusterSSA_x$1 = $(true);
       if (tmpClusterSSA_x$1) {
-        parseExpression(lexerFlags$285, astProp$181);
-        tmpClusterSSA_s = tmpClusterSSA_s | 10;
-        tmpClusterSSA_x$1 = $(true);
       } else {
         break;
       }
@@ -118,14 +115,12 @@ const a = function() {
   let c = b | 10;
   const d = $( true );
   if (d) {
-    parseExpression( lexerFlags$285, astProp$181 );
-    c = c | 10;
-    let e = $( true );
-    while ($LOOP_UNROLL_9) {
+    while ($LOOP_UNROLL_10) {
+      parseExpression( lexerFlags$285, astProp$181 );
+      c = c | 10;
+      const e = $( true );
       if (e) {
-        parseExpression( lexerFlags$285, astProp$181 );
-        c = c | 10;
-        e = $( true );
+
       }
       else {
         break;

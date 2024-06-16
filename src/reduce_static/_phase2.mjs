@@ -84,6 +84,7 @@ import {VERBOSE_TRACING} from "../constants.mjs";
 import {aliasIfIf} from "./alias_if_if.mjs";
 import { removeUnusedConstants } from './remove_unused_constants.mjs';
 import { writeOnly } from './write_only.mjs';
+import { fakeDoWhile } from './fake_do_while.mjs';
 
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
@@ -111,7 +112,7 @@ export function phase2(program, fdata, resolve, req, options) {
   vlog('Phase 2 options:', options);
   const r = _phase2(program, fdata, resolve, req, options);
   groupEnd();
-  return r;
+  return r; // phase1 (phase1/2 cycle), truthy (full cycle), or falsy (repeat)
 }
 function _phase2(program, fdata, resolve, req, options = {}) {
   // Initially we only care about bindings whose writes have one var decl and only assignments otherwise
@@ -268,6 +269,7 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     letAliasing(fdata) ||
     testingAlias(fdata) ||
     aliasIfIf(fdata) ||
+    fakeDoWhile(fdata) ||
     // This one should probably be lowest priority as it might blow up code...
     unrollLoopWithTrue(fdata, options.unrollTrueLimit)
 

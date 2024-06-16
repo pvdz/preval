@@ -7199,18 +7199,19 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             after(node);
             return true;
           }
-          else if (name === MAX_UNROLL_CONSTANT_NAME || name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX)) {
-            rule('The if test that is the special infinite loop `true` value can just be `true`');
-            example('if ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) f();', 'if (true) f();');
-            before(node);
-
-            node.test = AST.tru();
-
-            after(node);
-            return true;
-          }
         }
       }
+    }
+
+    if (node.test.type === 'Identifier' && (node.test.name === MAX_UNROLL_CONSTANT_NAME || node.test.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))) {
+      rule('The if test that is the special infinite loop `true` value can just be `true`');
+      example('if ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) f();', 'if (true) f();');
+      before(node);
+
+      node.test = AST.tru();
+
+      after(node);
+      return true;
     }
 
     if (node.consequent.type !== 'BlockStatement') {

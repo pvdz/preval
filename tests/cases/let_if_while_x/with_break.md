@@ -96,28 +96,25 @@ $(`before`);
 let wat = s | 10;
 const chk = $(true);
 if (chk) {
-  if ($LOOP_UNROLL_10) {
-    $(`inside`);
-    wat = wat | 10;
-    const chk$1 = $(true);
-    if (chk$1) {
-    } else {
-      count = false;
-    }
-    while ($LOOP_UNROLL_10) {
-      if (count) {
-        $(`inside`);
-        wat = wat | 10;
-        const chk$2 = $(true);
-        if (chk$2) {
-        } else {
-          count = false;
-        }
-      } else {
-        break;
-      }
-    }
+  $(`inside`);
+  wat = wat | 10;
+  const chk$1 = $(true);
+  if (chk$1) {
   } else {
+    count = false;
+  }
+  while ($LOOP_UNROLL_10) {
+    if (count) {
+      $(`inside`);
+      wat = wat | 10;
+      const chk$2 = $(true);
+      if (chk$2) {
+      } else {
+        count = false;
+      }
+    } else {
+      break;
+    }
   }
 } else {
 }
@@ -135,31 +132,29 @@ $( "before" );
 let c = a | 10;
 const d = $( true );
 if (d) {
-  if ($LOOP_UNROLL_10) {
-    $( "inside" );
-    c = c | 10;
-    const e = $( true );
-    if (e) {
+  $( "inside" );
+  c = c | 10;
+  const e = $( true );
+  if (e) {
 
-    }
-    else {
-      b = false;
-    }
-    while ($LOOP_UNROLL_10) {
-      if (b) {
-        $( "inside" );
-        c = c | 10;
-        const f = $( true );
-        if (f) {
+  }
+  else {
+    b = false;
+  }
+  while ($LOOP_UNROLL_10) {
+    if (b) {
+      $( "inside" );
+      c = c | 10;
+      const f = $( true );
+      if (f) {
 
-        }
-        else {
-          b = false;
-        }
       }
       else {
-        break;
+        b = false;
       }
+    }
+    else {
+      break;
     }
   }
 }

@@ -138,31 +138,28 @@ const three = $(3);
 calt[Y] = three;
 B[X] = three;
 if (three) {
-  if ($LOOP_UNROLL_10) {
-    $(100);
-    const B$1 = $(b);
-    const X$1 = $(`x`);
-    const C = $(c);
-    const Y$1 = $(`y`);
-    const T = $(3);
-    C[Y$1] = T;
-    B$1[X$1] = T;
-    if (T) {
-      while ($LOOP_UNROLL_10) {
-        $(100);
-        const B$2 = $(b);
-        const X$2 = $(`x`);
-        const C$1 = $(c);
-        const Y$2 = $(`y`);
-        const T$1 = $(3);
-        C$1[Y$2] = T$1;
-        B$2[X$2] = T$1;
-        if (T$1) {
-        } else {
-          break;
-        }
+  $(100);
+  const B$1 = $(b);
+  const X$1 = $(`x`);
+  const C = $(c);
+  const Y$1 = $(`y`);
+  const T = $(3);
+  C[Y$1] = T;
+  B$1[X$1] = T;
+  if (T) {
+    while ($LOOP_UNROLL_10) {
+      $(100);
+      const B$2 = $(b);
+      const X$2 = $(`x`);
+      const C$1 = $(c);
+      const Y$2 = $(`y`);
+      const T$1 = $(3);
+      C$1[Y$2] = T$1;
+      B$2[X$2] = T$1;
+      if (T$1) {
+      } else {
+        break;
       }
-    } else {
     }
   } else {
   }
@@ -191,31 +188,29 @@ const h = $( 3 );
 f[g] = h;
 d[e] = h;
 if (h) {
-  if ($LOOP_UNROLL_10) {
-    $( 100 );
-    const i = $( a );
-    const j = $( "x" );
-    const k = $( b );
-    const l = $( "y" );
-    const m = $( 3 );
-    k[l] = m;
-    i[j] = m;
-    if (m) {
-      while ($LOOP_UNROLL_10) {
-        $( 100 );
-        const n = $( a );
-        const o = $( "x" );
-        const p = $( b );
-        const q = $( "y" );
-        const r = $( 3 );
-        p[q] = r;
-        n[o] = r;
-        if (r) {
+  $( 100 );
+  const i = $( a );
+  const j = $( "x" );
+  const k = $( b );
+  const l = $( "y" );
+  const m = $( 3 );
+  k[l] = m;
+  i[j] = m;
+  if (m) {
+    while ($LOOP_UNROLL_10) {
+      $( 100 );
+      const n = $( a );
+      const o = $( "x" );
+      const p = $( b );
+      const q = $( "y" );
+      const r = $( 3 );
+      p[q] = r;
+      n[o] = r;
+      if (r) {
 
-        }
-        else {
-          break;
-        }
+      }
+      else {
+        break;
       }
     }
   }

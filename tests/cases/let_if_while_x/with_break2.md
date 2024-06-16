@@ -95,21 +95,18 @@ $(`before`);
 let wat = s | 10;
 const chk = $(true);
 if (chk) {
-  if ($LOOP_UNROLL_10) {
-    $(`inside`);
-    wat = wat | 10;
-    const tmpClusterSSA_chk = $(true);
-    if (tmpClusterSSA_chk) {
-      while ($LOOP_UNROLL_10) {
-        $(`inside`);
-        wat = wat | 10;
-        const tmpClusterSSA_chk$1 = $(true);
-        if (tmpClusterSSA_chk$1) {
-        } else {
-          break;
-        }
+  $(`inside`);
+  wat = wat | 10;
+  const tmpClusterSSA_chk = $(true);
+  if (tmpClusterSSA_chk) {
+    while ($LOOP_UNROLL_10) {
+      $(`inside`);
+      wat = wat | 10;
+      const tmpClusterSSA_chk$1 = $(true);
+      if (tmpClusterSSA_chk$1) {
+      } else {
+        break;
       }
-    } else {
     }
   } else {
   }
@@ -128,21 +125,19 @@ $( "before" );
 let b = a | 10;
 const c = $( true );
 if (c) {
-  if ($LOOP_UNROLL_10) {
-    $( "inside" );
-    b = b | 10;
-    const d = $( true );
-    if (d) {
-      while ($LOOP_UNROLL_10) {
-        $( "inside" );
-        b = b | 10;
-        const e = $( true );
-        if (e) {
+  $( "inside" );
+  b = b | 10;
+  const d = $( true );
+  if (d) {
+    while ($LOOP_UNROLL_10) {
+      $( "inside" );
+      b = b | 10;
+      const e = $( true );
+      if (e) {
 
-        }
-        else {
-          break;
-        }
+      }
+      else {
+        break;
       }
     }
   }

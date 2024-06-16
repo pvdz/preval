@@ -6,7 +6,7 @@
 >
 > A func that is being cleared after being called once is "locked". I guess.
 
-In this case the function gets called before it is tested ...
+- In this case the function gets called before it is tested ...
 
 #TODO
 

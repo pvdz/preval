@@ -6,7 +6,7 @@
 >
 > If a loop has no break, continue, throw, or return then it is an infinite loop... Is that relevant? DCE the tail, for example.
 
-(this one is not a reftest)
+Left todo: nested loop with only tail breaks
 
 ## Input
 
@@ -75,10 +75,9 @@ $(x); // <- DCE me
 {
   let x = 1;
   while (true) {
+    $(x); // Can still see 2 due to outer loop
     if ($) {
-      $(x); // Can still see 2 due to outer loop
     } else {
-      $(x);
       x = 2;
     }
   }

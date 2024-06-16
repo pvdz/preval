@@ -32,15 +32,16 @@ $(a);
 let a = { a: 999, b: 1000 };
 let tmpIfTest = 0;
 if (tmpIfTest) {
+  $(100);
 } else {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   tmpIfTest = tmpCallCallee(tmpCalleeParam);
-}
-if (tmpIfTest) {
-  $(100);
-} else {
-  $(200);
+  if (tmpIfTest) {
+    $(100);
+  } else {
+    $(200);
+  }
 }
 $(a);
 `````

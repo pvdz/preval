@@ -64,40 +64,258 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
-let a = $(tmpCalleeParam);
-if (a) {
-} else {
-  const tmpCalleeParam$1 = $(1);
-  a = $(tmpCalleeParam$1);
-  if (a) {
-    const tmpCalleeParam$3 = $(2);
-    a = $(tmpCalleeParam$3);
+let a = { a: 999, b: 1000 };
+loopStop: {
+  const tmpCalleeParam = $(0);
+  const tmpClusterSSA_a = $(tmpCalleeParam);
+  if (tmpClusterSSA_a) {
+    $(1);
   } else {
-  }
-}
-if (a) {
-  $(1);
-  while ($LOOP_UNROLL_10) {
-    const tmpCalleeParam$2 = $(0);
-    a = $(tmpCalleeParam$2);
+    const tmpCalleeParam$1 = $(1);
+    a = $(tmpCalleeParam$1);
     if (a) {
+      const tmpCalleeParam$3 = $(2);
+      a = $(tmpCalleeParam$3);
+      if (a) {
+        $(1);
+      } else {
+        break loopStop;
+      }
+    } else {
+      break loopStop;
+    }
+  }
+  loopStop$1: {
+    const tmpCalleeParam$2 = $(0);
+    const tmpClusterSSA_a$1 = $(tmpCalleeParam$2);
+    if (tmpClusterSSA_a$1) {
+      $(1);
     } else {
       const tmpCalleeParam$4 = $(1);
       a = $(tmpCalleeParam$4);
       if (a) {
         const tmpCalleeParam$6 = $(2);
         a = $(tmpCalleeParam$6);
+        if (a) {
+          $(1);
+        } else {
+          break loopStop$1;
+        }
       } else {
+        break loopStop$1;
       }
     }
-    if (a) {
-      $(1);
-    } else {
-      break;
+    loopStop$2: {
+      const tmpCalleeParam$5 = $(0);
+      const tmpClusterSSA_a$2 = $(tmpCalleeParam$5);
+      if (tmpClusterSSA_a$2) {
+        $(1);
+      } else {
+        const tmpCalleeParam$7 = $(1);
+        a = $(tmpCalleeParam$7);
+        if (a) {
+          const tmpCalleeParam$9 = $(2);
+          a = $(tmpCalleeParam$9);
+          if (a) {
+            $(1);
+          } else {
+            break loopStop$2;
+          }
+        } else {
+          break loopStop$2;
+        }
+      }
+      loopStop$3: {
+        const tmpCalleeParam$8 = $(0);
+        const tmpClusterSSA_a$3 = $(tmpCalleeParam$8);
+        if (tmpClusterSSA_a$3) {
+          $(1);
+        } else {
+          const tmpCalleeParam$10 = $(1);
+          a = $(tmpCalleeParam$10);
+          if (a) {
+            const tmpCalleeParam$12 = $(2);
+            a = $(tmpCalleeParam$12);
+            if (a) {
+              $(1);
+            } else {
+              break loopStop$3;
+            }
+          } else {
+            break loopStop$3;
+          }
+        }
+        loopStop$4: {
+          const tmpCalleeParam$11 = $(0);
+          const tmpClusterSSA_a$4 = $(tmpCalleeParam$11);
+          if (tmpClusterSSA_a$4) {
+            $(1);
+          } else {
+            const tmpCalleeParam$13 = $(1);
+            a = $(tmpCalleeParam$13);
+            if (a) {
+              const tmpCalleeParam$15 = $(2);
+              a = $(tmpCalleeParam$15);
+              if (a) {
+                $(1);
+              } else {
+                break loopStop$4;
+              }
+            } else {
+              break loopStop$4;
+            }
+          }
+          loopStop$5: {
+            const tmpCalleeParam$14 = $(0);
+            const tmpClusterSSA_a$5 = $(tmpCalleeParam$14);
+            if (tmpClusterSSA_a$5) {
+              $(1);
+            } else {
+              const tmpCalleeParam$16 = $(1);
+              a = $(tmpCalleeParam$16);
+              if (a) {
+                const tmpCalleeParam$18 = $(2);
+                a = $(tmpCalleeParam$18);
+                if (a) {
+                  $(1);
+                } else {
+                  break loopStop$5;
+                }
+              } else {
+                break loopStop$5;
+              }
+            }
+            loopStop$6: {
+              const tmpCalleeParam$17 = $(0);
+              const tmpClusterSSA_a$6 = $(tmpCalleeParam$17);
+              if (tmpClusterSSA_a$6) {
+                $(1);
+              } else {
+                const tmpCalleeParam$19 = $(1);
+                a = $(tmpCalleeParam$19);
+                if (a) {
+                  const tmpCalleeParam$21 = $(2);
+                  a = $(tmpCalleeParam$21);
+                  if (a) {
+                    $(1);
+                  } else {
+                    break loopStop$6;
+                  }
+                } else {
+                  break loopStop$6;
+                }
+              }
+              loopStop$7: {
+                const tmpCalleeParam$20 = $(0);
+                const tmpClusterSSA_a$7 = $(tmpCalleeParam$20);
+                if (tmpClusterSSA_a$7) {
+                  $(1);
+                } else {
+                  const tmpCalleeParam$22 = $(1);
+                  a = $(tmpCalleeParam$22);
+                  if (a) {
+                    const tmpCalleeParam$24 = $(2);
+                    a = $(tmpCalleeParam$24);
+                    if (a) {
+                      $(1);
+                    } else {
+                      break loopStop$7;
+                    }
+                  } else {
+                    break loopStop$7;
+                  }
+                }
+                loopStop$8: {
+                  const tmpCalleeParam$23 = $(0);
+                  const tmpClusterSSA_a$8 = $(tmpCalleeParam$23);
+                  if (tmpClusterSSA_a$8) {
+                    $(1);
+                  } else {
+                    const tmpCalleeParam$25 = $(1);
+                    a = $(tmpCalleeParam$25);
+                    if (a) {
+                      const tmpCalleeParam$27 = $(2);
+                      a = $(tmpCalleeParam$27);
+                      if (a) {
+                        $(1);
+                      } else {
+                        break loopStop$8;
+                      }
+                    } else {
+                      break loopStop$8;
+                    }
+                  }
+                  loopStop$9: {
+                    const tmpCalleeParam$26 = $(0);
+                    const tmpClusterSSA_a$9 = $(tmpCalleeParam$26);
+                    if (tmpClusterSSA_a$9) {
+                      $(1);
+                    } else {
+                      const tmpCalleeParam$28 = $(1);
+                      a = $(tmpCalleeParam$28);
+                      if (a) {
+                        const tmpCalleeParam$30 = $(2);
+                        a = $(tmpCalleeParam$30);
+                        if (a) {
+                          $(1);
+                        } else {
+                          break loopStop$9;
+                        }
+                      } else {
+                        break loopStop$9;
+                      }
+                    }
+                    loopStop$10: {
+                      const tmpCalleeParam$29 = $(0);
+                      const tmpClusterSSA_a$10 = $(tmpCalleeParam$29);
+                      if (tmpClusterSSA_a$10) {
+                        $(1);
+                      } else {
+                        const tmpCalleeParam$31 = $(1);
+                        a = $(tmpCalleeParam$31);
+                        if (a) {
+                          const tmpCalleeParam$33 = $(2);
+                          a = $(tmpCalleeParam$33);
+                          if (a) {
+                            $(1);
+                          } else {
+                            break loopStop$10;
+                          }
+                        } else {
+                          break loopStop$10;
+                        }
+                      }
+                      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+                        const tmpCalleeParam$32 = $(0);
+                        a = $(tmpCalleeParam$32);
+                        if (a) {
+                          $(1);
+                        } else {
+                          const tmpCalleeParam$34 = $(1);
+                          a = $(tmpCalleeParam$34);
+                          if (a) {
+                            const tmpCalleeParam$36 = $(2);
+                            a = $(tmpCalleeParam$36);
+                            if (a) {
+                              $(1);
+                            } else {
+                              break;
+                            }
+                          } else {
+                            break;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
-} else {
 }
 $(a);
 `````
@@ -107,44 +325,299 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = $( 0 );
-let b = $( a );
-if (b) {
-
-}
-else {
-  const c = $( 1 );
-  b = $( c );
-  if (b) {
-    const d = $( 2 );
-    b = $( d );
+let a = {
+  a: 999,
+  b: 1000,
+};
+loopStop: {
+  const b = $( 0 );
+  const c = $( b );
+  if (c) {
+    $( 1 );
   }
-}
-if (b) {
-  $( 1 );
-  while ($LOOP_UNROLL_10) {
-    const e = $( 0 );
-    b = $( e );
-    if (b) {
-
-    }
-    else {
-      const f = $( 1 );
-      b = $( f );
-      if (b) {
-        const g = $( 2 );
-        b = $( g );
+  else {
+    const d = $( 1 );
+    a = $( d );
+    if (a) {
+      const e = $( 2 );
+      a = $( e );
+      if (a) {
+        $( 1 );
+      }
+      else {
+        break loopStop;
       }
     }
-    if (b) {
+    else {
+      break loopStop;
+    }
+  }
+  loopStop$1:   {
+    const f = $( 0 );
+    const g = $( f );
+    if (g) {
       $( 1 );
     }
     else {
-      break;
+      const h = $( 1 );
+      a = $( h );
+      if (a) {
+        const i = $( 2 );
+        a = $( i );
+        if (a) {
+          $( 1 );
+        }
+        else {
+          break loopStop$1;
+        }
+      }
+      else {
+        break loopStop$1;
+      }
+    }
+    loopStop$2:     {
+      const j = $( 0 );
+      const k = $( j );
+      if (k) {
+        $( 1 );
+      }
+      else {
+        const l = $( 1 );
+        a = $( l );
+        if (a) {
+          const m = $( 2 );
+          a = $( m );
+          if (a) {
+            $( 1 );
+          }
+          else {
+            break loopStop$2;
+          }
+        }
+        else {
+          break loopStop$2;
+        }
+      }
+      loopStop$3:       {
+        const n = $( 0 );
+        const o = $( n );
+        if (o) {
+          $( 1 );
+        }
+        else {
+          const p = $( 1 );
+          a = $( p );
+          if (a) {
+            const q = $( 2 );
+            a = $( q );
+            if (a) {
+              $( 1 );
+            }
+            else {
+              break loopStop$3;
+            }
+          }
+          else {
+            break loopStop$3;
+          }
+        }
+        loopStop$4:         {
+          const r = $( 0 );
+          const s = $( r );
+          if (s) {
+            $( 1 );
+          }
+          else {
+            const t = $( 1 );
+            a = $( t );
+            if (a) {
+              const u = $( 2 );
+              a = $( u );
+              if (a) {
+                $( 1 );
+              }
+              else {
+                break loopStop$4;
+              }
+            }
+            else {
+              break loopStop$4;
+            }
+          }
+          loopStop$5:           {
+            const v = $( 0 );
+            const w = $( v );
+            if (w) {
+              $( 1 );
+            }
+            else {
+              const x = $( 1 );
+              a = $( x );
+              if (a) {
+                const y = $( 2 );
+                a = $( y );
+                if (a) {
+                  $( 1 );
+                }
+                else {
+                  break loopStop$5;
+                }
+              }
+              else {
+                break loopStop$5;
+              }
+            }
+            loopStop$6:             {
+              const z = $( 0 );
+              const 01 = $( z );
+              if (01) {
+                $( 1 );
+              }
+              else {
+                const 11 = $( 1 );
+                a = $( 11 );
+                if (a) {
+                  const 21 = $( 2 );
+                  a = $( 21 );
+                  if (a) {
+                    $( 1 );
+                  }
+                  else {
+                    break loopStop$6;
+                  }
+                }
+                else {
+                  break loopStop$6;
+                }
+              }
+              loopStop$7:               {
+                const 31 = $( 0 );
+                const 41 = $( 31 );
+                if (41) {
+                  $( 1 );
+                }
+                else {
+                  const 51 = $( 1 );
+                  a = $( 51 );
+                  if (a) {
+                    const 61 = $( 2 );
+                    a = $( 61 );
+                    if (a) {
+                      $( 1 );
+                    }
+                    else {
+                      break loopStop$7;
+                    }
+                  }
+                  else {
+                    break loopStop$7;
+                  }
+                }
+                loopStop$8:                 {
+                  const 71 = $( 0 );
+                  const 81 = $( 71 );
+                  if (81) {
+                    $( 1 );
+                  }
+                  else {
+                    const 91 = $( 1 );
+                    a = $( 91 );
+                    if (a) {
+                      const a1 = $( 2 );
+                      a = $( a1 );
+                      if (a) {
+                        $( 1 );
+                      }
+                      else {
+                        break loopStop$8;
+                      }
+                    }
+                    else {
+                      break loopStop$8;
+                    }
+                  }
+                  loopStop$9:                   {
+                    const b1 = $( 0 );
+                    const c1 = $( b1 );
+                    if (c1) {
+                      $( 1 );
+                    }
+                    else {
+                      const d1 = $( 1 );
+                      a = $( d1 );
+                      if (a) {
+                        const e1 = $( 2 );
+                        a = $( e1 );
+                        if (a) {
+                          $( 1 );
+                        }
+                        else {
+                          break loopStop$9;
+                        }
+                      }
+                      else {
+                        break loopStop$9;
+                      }
+                    }
+                    loopStop$10:                     {
+                      const f1 = $( 0 );
+                      const g1 = $( f1 );
+                      if (g1) {
+                        $( 1 );
+                      }
+                      else {
+                        const h1 = $( 1 );
+                        a = $( h1 );
+                        if (a) {
+                          const i1 = $( 2 );
+                          a = $( i1 );
+                          if (a) {
+                            $( 1 );
+                          }
+                          else {
+                            break loopStop$10;
+                          }
+                        }
+                        else {
+                          break loopStop$10;
+                        }
+                      }
+                      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+                        const j1 = $( 0 );
+                        a = $( j1 );
+                        if (a) {
+                          $( 1 );
+                        }
+                        else {
+                          const k1 = $( 1 );
+                          a = $( k1 );
+                          if (a) {
+                            const l1 = $( 2 );
+                            a = $( l1 );
+                            if (a) {
+                              $( 1 );
+                            }
+                            else {
+                              break;
+                            }
+                          }
+                          else {
+                            break;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
-$( b );
+$( a );
 `````
 
 ## Globals

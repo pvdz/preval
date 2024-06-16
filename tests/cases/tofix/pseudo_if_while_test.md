@@ -111,26 +111,15 @@ $(a);
 
 
 `````js filename=intro
-let chk = true;
 const x = $(1);
-let test = $(x);
+const test = $(x);
 if (test) {
   $(100);
-  test = true;
-} else {
-  chk = false;
-}
-if (chk) {
   while ($LOOP_UNROLL_10) {
-    if (test) {
-      const y = $(1);
-      const tmpClusterSSA_test = $(y);
-      if (tmpClusterSSA_test) {
-        $(100);
-        test = true;
-      } else {
-        break;
-      }
+    const y = $(1);
+    const tmpClusterSSA_test = $(y);
+    if (tmpClusterSSA_test) {
+      $(100);
     } else {
       break;
     }
@@ -146,39 +135,26 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = true;
-const b = $( 1 );
-let c = $( b );
-if (c) {
+const a = $( 1 );
+const b = $( a );
+if (b) {
   $( 100 );
-  c = true;
-}
-else {
-  a = false;
-}
-if (a) {
   while ($LOOP_UNROLL_10) {
-    if (c) {
-      const d = $( 1 );
-      const e = $( d );
-      if (e) {
-        $( 100 );
-        c = true;
-      }
-      else {
-        break;
-      }
+    const c = $( 1 );
+    const d = $( c );
+    if (d) {
+      $( 100 );
     }
     else {
       break;
     }
   }
 }
-const f = {
+const e = {
   a: 999,
   b: 1000,
 };
-$( f );
+$( e );
 `````
 
 ## Globals

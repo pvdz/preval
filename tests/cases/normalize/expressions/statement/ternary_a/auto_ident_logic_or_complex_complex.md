@@ -34,15 +34,16 @@ const tmpCallCallee = $;
 const tmpCalleeParam = $(0);
 let tmpIfTest = tmpCallCallee(tmpCalleeParam);
 if (tmpIfTest) {
+  $(100);
 } else {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(2);
   tmpIfTest = tmpCallCallee$1(tmpCalleeParam$1);
-}
-if (tmpIfTest) {
-  $(100);
-} else {
-  $(200);
+  if (tmpIfTest) {
+    $(100);
+  } else {
+    $(200);
+  }
 }
 $(a);
 `````
@@ -52,16 +53,17 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(0);
-let tmpIfTest = $(tmpCalleeParam);
-if (tmpIfTest) {
-} else {
-  const tmpCalleeParam$1 = $(2);
-  tmpIfTest = $(tmpCalleeParam$1);
-}
+const tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
   $(100);
 } else {
-  $(200);
+  const tmpCalleeParam$1 = $(2);
+  const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam$1);
+  if (tmpClusterSSA_tmpIfTest) {
+    $(100);
+  } else {
+    $(200);
+  }
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -73,25 +75,25 @@ With rename=true
 
 `````js filename=intro
 const a = $( 0 );
-let b = $( a );
-if (b) {
-
-}
-else {
-  const c = $( 2 );
-  b = $( c );
-}
+const b = $( a );
 if (b) {
   $( 100 );
 }
 else {
-  $( 200 );
+  const c = $( 2 );
+  const d = $( c );
+  if (d) {
+    $( 100 );
+  }
+  else {
+    $( 200 );
+  }
 }
-const d = {
+const e = {
   a: 999,
   b: 1000,
 };
-$( d );
+$( e );
 `````
 
 ## Globals

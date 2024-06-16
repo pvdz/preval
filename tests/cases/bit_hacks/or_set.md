@@ -50,14 +50,15 @@ if (test) {
 const a = x & 1;
 let test = a === 1;
 if (test) {
+  $(`yes`);
 } else {
   const b = x & 4;
   test = b === 4;
-}
-if (test) {
-  $(`yes`);
-} else {
-  $(`no 2`);
+  if (test) {
+    $(`yes`);
+  } else {
+    $(`no 2`);
+  }
 }
 `````
 

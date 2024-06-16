@@ -113,10 +113,7 @@ if ($) {
   const tmpssa2_x = $(2);
   $(tmpssa2_x);
   if ($) {
-    tmpLoopRetCode = false;
   } else {
-  }
-  if (tmpLoopRetCode) {
     while ($LOOP_UNROLL_10) {
       const tmpssa2_x$1 = $(2);
       $(tmpssa2_x$1);
@@ -129,7 +126,6 @@ if ($) {
         break;
       }
     }
-  } else {
   }
 } else {
 }
@@ -146,9 +142,9 @@ if ($) {
   const b = $( 2 );
   $( b );
   if ($) {
-    a = false;
+
   }
-  if (a) {
+  else {
     while ($LOOP_UNROLL_10) {
       const c = $( 2 );
       $( c );

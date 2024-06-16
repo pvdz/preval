@@ -59,16 +59,18 @@ let f = function () {
   debugger;
   let x = $(1);
   if ($) {
+    $(x);
+    return undefined;
   } else {
     x = $(2);
     $(x);
-  }
-  if ($) {
-    $(x);
-    return undefined;
-  } else {
-    $(`if`);
-    return undefined;
+    if ($) {
+      $(x);
+      return undefined;
+    } else {
+      $(`if`);
+      return undefined;
+    }
   }
 };
 if ($) {
@@ -82,16 +84,17 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  let x = $(1);
-  if ($) {
-  } else {
-    x = $(2);
-    $(x);
-  }
+  const x = $(1);
   if ($) {
     $(x);
   } else {
-    $(`if`);
+    const tmpClusterSSA_x = $(2);
+    $(tmpClusterSSA_x);
+    if ($) {
+      $(tmpClusterSSA_x);
+    } else {
+      $(`if`);
+    }
   }
 } else {
 }
@@ -103,19 +106,19 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  let a = $( 1 );
-  if ($) {
-
-  }
-  else {
-    a = $( 2 );
-    $( a );
-  }
+  const a = $( 1 );
   if ($) {
     $( a );
   }
   else {
-    $( "if" );
+    const b = $( 2 );
+    $( b );
+    if ($) {
+      $( b );
+    }
+    else {
+      $( "if" );
+    }
   }
 }
 `````

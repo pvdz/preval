@@ -94,10 +94,6 @@ let flag = true;
 $(`before`);
 const x = $(`what`);
 if (x) {
-} else {
-  flag = false;
-}
-if (flag) {
   $(`inner`, 0);
   let tmpClusterSSA_n = 1;
   while ($LOOP_UNROLL_10) {
@@ -128,12 +124,6 @@ let a = true;
 $( "before" );
 const b = $( "what" );
 if (b) {
-
-}
-else {
-  a = false;
-}
-if (a) {
   $( "inner", 0 );
   let c = 1;
   while ($LOOP_UNROLL_10) {

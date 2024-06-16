@@ -51,17 +51,17 @@ $(a);
 
 
 `````js filename=intro
+let tmpIfTest = true;
 const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
-  $(100);
 } else {
   const tmpCalleeParam = $(100);
-  const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam);
-  if (tmpClusterSSA_tmpIfTest) {
-    $(100);
-  } else {
-    $(200);
-  }
+  tmpIfTest = $(tmpCalleeParam);
+}
+if (tmpIfTest) {
+  $(100);
+} else {
+  $(200);
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -72,19 +72,20 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
+let a = true;
+const b = $( 1 );
+if (b) {
+
+}
+else {
+  const c = $( 100 );
+  a = $( c );
+}
 if (a) {
   $( 100 );
 }
 else {
-  const b = $( 100 );
-  const c = $( b );
-  if (c) {
-    $( 100 );
-  }
-  else {
-    $( 200 );
-  }
+  $( 200 );
 }
 const d = {
   a: 999,

@@ -25,5 +25,5 @@
 // tests/cases/while/const_test_true.md -> (but then not global) if a variable is not a closure and is tested twice in a row without writes in between then it must have the same boolean value. `if (x) { $(); if (x)` -> `if (x) $(); if (true)`. Trickier for globals I guess,
 // tests/cases/unwind_loops/separate_test/multi_loop_test_nested.md -> a counter that only increases can probably have its value inferred even if in a loop?
 // tests/cases/while/unobservable_ops_global.md -> `s |= 10` when `s` is not observable inside the loop nor escapes, is going to do the same thing no matter how often you do it
-// tests/cases/tofix/test_update_if.md -> when an `If` updates a binding that is the test of the next If in a trivial to check manner, merge them. `if ($) x = false; if (x) f(); else g()` -> `if ($) { f(); } else { g(); }`
 // do proper alwaysBreak and alwaysComplete analysis in phase1
+// tests/cases/let_if_while_x/with_break.md -> should be true: `if ($LOOP_UNROLL_10) {`

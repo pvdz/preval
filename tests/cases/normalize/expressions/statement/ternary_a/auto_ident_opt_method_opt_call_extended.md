@@ -64,17 +64,18 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
+let tmpIfTest = false;
 const tmpIfTest$3 = $ == null;
 if (tmpIfTest$3) {
-  $(100);
 } else {
   const tmpObjLitVal$1 = { e: $ };
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
-  if (tmpChainElementCall) {
-    $(100);
-  } else {
-    $(200);
-  }
+  tmpIfTest = tmpChainElementCall;
+}
+if (tmpIfTest) {
+  $(100);
+} else {
+  $(200);
 }
 $(a);
 `````
@@ -88,19 +89,21 @@ const a = {
   a: 999,
   b: 1000,
 };
-const b = $ == null;
+let b = false;
+const c = $ == null;
+if (c) {
+
+}
+else {
+  const d = { e: $ };
+  const e = $dotCall( $, d, 1 );
+  b = e;
+}
 if (b) {
   $( 100 );
 }
 else {
-  const c = { e: $ };
-  const d = $dotCall( $, c, 1 );
-  if (d) {
-    $( 100 );
-  }
-  else {
-    $( 200 );
-  }
+  $( 200 );
 }
 $( a );
 `````

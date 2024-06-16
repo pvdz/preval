@@ -73,27 +73,28 @@ let a = undefined;
 const b = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
+let tmpCalleeParam = undefined;
 if (tmpIfTest) {
-  $(undefined);
 } else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   a = tmpChainElementObject;
-  if (tmpChainElementObject) {
-    $(tmpChainElementObject);
+  tmpCalleeParam = tmpChainElementObject;
+}
+if (a) {
+  $(tmpCalleeParam);
+} else {
+  let tmpNestedComplexRhs = undefined;
+  const tmpChainElementCall$1 = $(b);
+  const tmpIfTest$1 = tmpChainElementCall$1 == null;
+  if (tmpIfTest$1) {
   } else {
-    let tmpNestedComplexRhs = undefined;
-    const tmpChainElementCall$1 = $(b);
-    const tmpIfTest$1 = tmpChainElementCall$1 == null;
-    if (tmpIfTest$1) {
-    } else {
-      const tmpChainRootComputed$1 = $(`x`);
-      const tmpChainElementObject$1 = tmpChainElementCall$1[tmpChainRootComputed$1];
-      tmpNestedComplexRhs = tmpChainElementObject$1;
-    }
-    a = tmpNestedComplexRhs;
-    $(tmpNestedComplexRhs);
+    const tmpChainRootComputed$1 = $(`x`);
+    const tmpChainElementObject$1 = tmpChainElementCall$1[tmpChainRootComputed$1];
+    tmpNestedComplexRhs = tmpChainElementObject$1;
   }
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 }
 $(a);
 `````
@@ -107,31 +108,33 @@ let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 const d = c == null;
+let e = undefined;
 if (d) {
-  $( undefined );
+
 }
 else {
-  const e = $( "x" );
-  const f = c[ e ];
-  a = f;
-  if (f) {
-    $( f );
+  const f = $( "x" );
+  const g = c[ f ];
+  a = g;
+  e = g;
+}
+if (a) {
+  $( e );
+}
+else {
+  let h = undefined;
+  const i = $( b );
+  const j = i == null;
+  if (j) {
+
   }
   else {
-    let g = undefined;
-    const h = $( b );
-    const i = h == null;
-    if (i) {
-
-    }
-    else {
-      const j = $( "x" );
-      const k = h[ j ];
-      g = k;
-    }
-    a = g;
-    $( g );
+    const k = $( "x" );
+    const l = i[ k ];
+    h = l;
   }
+  a = h;
+  $( h );
 }
 $( a );
 `````

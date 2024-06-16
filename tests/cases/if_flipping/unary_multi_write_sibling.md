@@ -75,14 +75,13 @@ if (y) {
 const a = $(1);
 const b = $(2);
 if (a) {
-  $(`else1`);
 } else {
   $(`if1`);
-  if (b) {
-    $(`else1`);
-  } else {
-    $(`if2`);
-  }
+}
+if (b) {
+  $(`else1`);
+} else {
+  $(`if2`);
 }
 `````
 
@@ -94,16 +93,16 @@ With rename=true
 const a = $( 1 );
 const b = $( 2 );
 if (a) {
-  $( "else1" );
+
 }
 else {
   $( "if1" );
-  if (b) {
-    $( "else1" );
-  }
-  else {
-    $( "if2" );
-  }
+}
+if (b) {
+  $( "else1" );
+}
+else {
+  $( "if2" );
 }
 `````
 

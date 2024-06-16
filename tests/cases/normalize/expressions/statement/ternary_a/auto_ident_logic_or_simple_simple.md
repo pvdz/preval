@@ -32,13 +32,14 @@ $(a);
 let a = { a: 999, b: 1000 };
 let tmpIfTest = 0;
 if (tmpIfTest) {
-} else {
-  tmpIfTest = 2;
-}
-if (tmpIfTest) {
   $(100);
 } else {
-  $(200);
+  tmpIfTest = 2;
+  if (tmpIfTest) {
+    $(100);
+  } else {
+    $(200);
+  }
 }
 $(a);
 `````

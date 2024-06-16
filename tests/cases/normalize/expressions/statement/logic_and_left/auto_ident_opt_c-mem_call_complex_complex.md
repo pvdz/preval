@@ -66,24 +66,24 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
+let tmpIfTest = false;
 const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
-  $(100);
 } else {
   const tmpChainRootComputed = $(`\$`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$3 = tmpChainElementObject == null;
   if (tmpIfTest$3) {
-    $(100);
   } else {
     const tmpCalleeParam$3 = $(1);
     const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
-    if (tmpChainElementCall$1) {
-      $(100);
-    } else {
-    }
+    tmpIfTest = tmpChainElementCall$1;
   }
+}
+if (tmpIfTest) {
+  $(100);
+} else {
 }
 $(a);
 `````
@@ -98,25 +98,27 @@ const b = {
   a: 999,
   b: 1000,
 };
-const c = $( a );
-const d = c == null;
-if (d) {
-  $( 100 );
+let c = false;
+const d = $( a );
+const e = d == null;
+if (e) {
+
 }
 else {
-  const e = $( "$" );
-  const f = c[ e ];
-  const g = f == null;
-  if (g) {
-    $( 100 );
+  const f = $( "$" );
+  const g = d[ f ];
+  const h = g == null;
+  if (h) {
+
   }
   else {
-    const h = $( 1 );
-    const i = $dotCall( f, c, h );
-    if (i) {
-      $( 100 );
-    }
+    const i = $( 1 );
+    const j = $dotCall( g, d, i );
+    c = j;
   }
+}
+if (c) {
+  $( 100 );
 }
 $( b );
 `````

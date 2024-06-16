@@ -51,16 +51,17 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
+let tmpIfTest = false;
 const tmpIfTest$1 = $ == null;
 if (tmpIfTest$1) {
-  $(100);
 } else {
   const tmpChainElementCall = $(1);
-  if (tmpChainElementCall) {
-    $(100);
-  } else {
-    $(200);
-  }
+  tmpIfTest = tmpChainElementCall;
+}
+if (tmpIfTest) {
+  $(100);
+} else {
+  $(200);
 }
 $(a);
 `````
@@ -74,18 +75,20 @@ const a = {
   a: 999,
   b: 1000,
 };
-const b = $ == null;
+let b = false;
+const c = $ == null;
+if (c) {
+
+}
+else {
+  const d = $( 1 );
+  b = d;
+}
 if (b) {
   $( 100 );
 }
 else {
-  const c = $( 1 );
-  if (c) {
-    $( 100 );
-  }
-  else {
-    $( 200 );
-  }
+  $( 200 );
 }
 $( a );
 `````

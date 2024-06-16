@@ -59,197 +59,32 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-loopStop: {
-  const tmpChainElementCall = $($);
-  const tmpIfTest$1 = tmpChainElementCall == null;
-  if (tmpIfTest$1) {
-    $(100);
-  } else {
-    const tmpCalleeParam$3 = $(1);
-    const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
-    a = tmpChainElementCall$1;
-    if (tmpChainElementCall$1) {
-      $(100);
-    } else {
-      break loopStop;
-    }
-  }
-  loopStop$1: {
+const tmpChainElementCall = $($);
+const tmpIfTest$1 = tmpChainElementCall == null;
+if (tmpIfTest$1) {
+} else {
+  const tmpCalleeParam$3 = $(1);
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
+  a = tmpChainElementCall$1;
+}
+if (a) {
+  $(100);
+  while ($LOOP_UNROLL_10) {
     const tmpChainElementCall$2 = $($);
     const tmpIfTest$2 = tmpChainElementCall$2 == null;
     if (tmpIfTest$2) {
-      $(100);
     } else {
       const tmpCalleeParam$1 = $(1);
       const tmpChainElementCall$4 = $dotCall(tmpChainElementCall$2, $, tmpCalleeParam$1);
       a = tmpChainElementCall$4;
-      if (tmpChainElementCall$4) {
-        $(100);
-      } else {
-        break loopStop$1;
-      }
     }
-    loopStop$2: {
-      const tmpChainElementCall$3 = $($);
-      const tmpIfTest$3 = tmpChainElementCall$3 == null;
-      if (tmpIfTest$3) {
-        $(100);
-      } else {
-        const tmpCalleeParam$2 = $(1);
-        const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, $, tmpCalleeParam$2);
-        a = tmpChainElementCall$5;
-        if (tmpChainElementCall$5) {
-          $(100);
-        } else {
-          break loopStop$2;
-        }
-      }
-      loopStop$3: {
-        const tmpChainElementCall$6 = $($);
-        const tmpIfTest$4 = tmpChainElementCall$6 == null;
-        if (tmpIfTest$4) {
-          $(100);
-        } else {
-          const tmpCalleeParam$4 = $(1);
-          const tmpChainElementCall$8 = $dotCall(tmpChainElementCall$6, $, tmpCalleeParam$4);
-          a = tmpChainElementCall$8;
-          if (tmpChainElementCall$8) {
-            $(100);
-          } else {
-            break loopStop$3;
-          }
-        }
-        loopStop$4: {
-          const tmpChainElementCall$7 = $($);
-          const tmpIfTest$5 = tmpChainElementCall$7 == null;
-          if (tmpIfTest$5) {
-            $(100);
-          } else {
-            const tmpCalleeParam$5 = $(1);
-            const tmpChainElementCall$9 = $dotCall(tmpChainElementCall$7, $, tmpCalleeParam$5);
-            a = tmpChainElementCall$9;
-            if (tmpChainElementCall$9) {
-              $(100);
-            } else {
-              break loopStop$4;
-            }
-          }
-          loopStop$5: {
-            const tmpChainElementCall$10 = $($);
-            const tmpIfTest$6 = tmpChainElementCall$10 == null;
-            if (tmpIfTest$6) {
-              $(100);
-            } else {
-              const tmpCalleeParam$6 = $(1);
-              const tmpChainElementCall$12 = $dotCall(tmpChainElementCall$10, $, tmpCalleeParam$6);
-              a = tmpChainElementCall$12;
-              if (tmpChainElementCall$12) {
-                $(100);
-              } else {
-                break loopStop$5;
-              }
-            }
-            loopStop$6: {
-              const tmpChainElementCall$11 = $($);
-              const tmpIfTest$7 = tmpChainElementCall$11 == null;
-              if (tmpIfTest$7) {
-                $(100);
-              } else {
-                const tmpCalleeParam$7 = $(1);
-                const tmpChainElementCall$13 = $dotCall(tmpChainElementCall$11, $, tmpCalleeParam$7);
-                a = tmpChainElementCall$13;
-                if (tmpChainElementCall$13) {
-                  $(100);
-                } else {
-                  break loopStop$6;
-                }
-              }
-              loopStop$7: {
-                const tmpChainElementCall$14 = $($);
-                const tmpIfTest$8 = tmpChainElementCall$14 == null;
-                if (tmpIfTest$8) {
-                  $(100);
-                } else {
-                  const tmpCalleeParam$8 = $(1);
-                  const tmpChainElementCall$16 = $dotCall(tmpChainElementCall$14, $, tmpCalleeParam$8);
-                  a = tmpChainElementCall$16;
-                  if (tmpChainElementCall$16) {
-                    $(100);
-                  } else {
-                    break loopStop$7;
-                  }
-                }
-                loopStop$8: {
-                  const tmpChainElementCall$15 = $($);
-                  const tmpIfTest$9 = tmpChainElementCall$15 == null;
-                  if (tmpIfTest$9) {
-                    $(100);
-                  } else {
-                    const tmpCalleeParam$9 = $(1);
-                    const tmpChainElementCall$17 = $dotCall(tmpChainElementCall$15, $, tmpCalleeParam$9);
-                    a = tmpChainElementCall$17;
-                    if (tmpChainElementCall$17) {
-                      $(100);
-                    } else {
-                      break loopStop$8;
-                    }
-                  }
-                  loopStop$9: {
-                    const tmpChainElementCall$18 = $($);
-                    const tmpIfTest$10 = tmpChainElementCall$18 == null;
-                    if (tmpIfTest$10) {
-                      $(100);
-                    } else {
-                      const tmpCalleeParam$10 = $(1);
-                      const tmpChainElementCall$20 = $dotCall(tmpChainElementCall$18, $, tmpCalleeParam$10);
-                      a = tmpChainElementCall$20;
-                      if (tmpChainElementCall$20) {
-                        $(100);
-                      } else {
-                        break loopStop$9;
-                      }
-                    }
-                    loopStop$10: {
-                      const tmpChainElementCall$19 = $($);
-                      const tmpIfTest$11 = tmpChainElementCall$19 == null;
-                      if (tmpIfTest$11) {
-                        $(100);
-                      } else {
-                        const tmpCalleeParam$11 = $(1);
-                        const tmpChainElementCall$21 = $dotCall(tmpChainElementCall$19, $, tmpCalleeParam$11);
-                        a = tmpChainElementCall$21;
-                        if (tmpChainElementCall$21) {
-                          $(100);
-                        } else {
-                          break loopStop$10;
-                        }
-                      }
-                      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-                        const tmpChainElementCall$22 = $($);
-                        const tmpIfTest$12 = tmpChainElementCall$22 == null;
-                        if (tmpIfTest$12) {
-                          $(100);
-                        } else {
-                          const tmpCalleeParam$12 = $(1);
-                          const tmpChainElementCall$24 = $dotCall(tmpChainElementCall$22, $, tmpCalleeParam$12);
-                          a = tmpChainElementCall$24;
-                          if (tmpChainElementCall$24) {
-                            $(100);
-                          } else {
-                            break;
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+    if (a) {
+      $(100);
+    } else {
+      break;
     }
   }
+} else {
 }
 $(a);
 `````
@@ -260,219 +95,34 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-loopStop: {
-  const b = $( $ );
-  const c = b == null;
-  if (c) {
-    $( 100 );
-  }
-  else {
-    const d = $( 1 );
-    const e = $dotCall( b, $, d );
-    a = e;
-    if (e) {
-      $( 100 );
-    }
-    else {
-      break loopStop;
-    }
-  }
-  loopStop$1:   {
+const b = $( $ );
+const c = b == null;
+if (c) {
+
+}
+else {
+  const d = $( 1 );
+  const e = $dotCall( b, $, d );
+  a = e;
+}
+if (a) {
+  $( 100 );
+  while ($LOOP_UNROLL_10) {
     const f = $( $ );
     const g = f == null;
     if (g) {
-      $( 100 );
+
     }
     else {
       const h = $( 1 );
       const i = $dotCall( f, $, h );
       a = i;
-      if (i) {
-        $( 100 );
-      }
-      else {
-        break loopStop$1;
-      }
     }
-    loopStop$2:     {
-      const j = $( $ );
-      const k = j == null;
-      if (k) {
-        $( 100 );
-      }
-      else {
-        const l = $( 1 );
-        const m = $dotCall( j, $, l );
-        a = m;
-        if (m) {
-          $( 100 );
-        }
-        else {
-          break loopStop$2;
-        }
-      }
-      loopStop$3:       {
-        const n = $( $ );
-        const o = n == null;
-        if (o) {
-          $( 100 );
-        }
-        else {
-          const p = $( 1 );
-          const q = $dotCall( n, $, p );
-          a = q;
-          if (q) {
-            $( 100 );
-          }
-          else {
-            break loopStop$3;
-          }
-        }
-        loopStop$4:         {
-          const r = $( $ );
-          const s = r == null;
-          if (s) {
-            $( 100 );
-          }
-          else {
-            const t = $( 1 );
-            const u = $dotCall( r, $, t );
-            a = u;
-            if (u) {
-              $( 100 );
-            }
-            else {
-              break loopStop$4;
-            }
-          }
-          loopStop$5:           {
-            const v = $( $ );
-            const w = v == null;
-            if (w) {
-              $( 100 );
-            }
-            else {
-              const x = $( 1 );
-              const y = $dotCall( v, $, x );
-              a = y;
-              if (y) {
-                $( 100 );
-              }
-              else {
-                break loopStop$5;
-              }
-            }
-            loopStop$6:             {
-              const z = $( $ );
-              const 01 = z == null;
-              if (01) {
-                $( 100 );
-              }
-              else {
-                const 11 = $( 1 );
-                const 21 = $dotCall( z, $, 11 );
-                a = 21;
-                if (21) {
-                  $( 100 );
-                }
-                else {
-                  break loopStop$6;
-                }
-              }
-              loopStop$7:               {
-                const 31 = $( $ );
-                const 41 = 31 == null;
-                if (41) {
-                  $( 100 );
-                }
-                else {
-                  const 51 = $( 1 );
-                  const 61 = $dotCall( 31, $, 51 );
-                  a = 61;
-                  if (61) {
-                    $( 100 );
-                  }
-                  else {
-                    break loopStop$7;
-                  }
-                }
-                loopStop$8:                 {
-                  const 71 = $( $ );
-                  const 81 = 71 == null;
-                  if (81) {
-                    $( 100 );
-                  }
-                  else {
-                    const 91 = $( 1 );
-                    const a1 = $dotCall( 71, $, 91 );
-                    a = a1;
-                    if (a1) {
-                      $( 100 );
-                    }
-                    else {
-                      break loopStop$8;
-                    }
-                  }
-                  loopStop$9:                   {
-                    const b1 = $( $ );
-                    const c1 = b1 == null;
-                    if (c1) {
-                      $( 100 );
-                    }
-                    else {
-                      const d1 = $( 1 );
-                      const e1 = $dotCall( b1, $, d1 );
-                      a = e1;
-                      if (e1) {
-                        $( 100 );
-                      }
-                      else {
-                        break loopStop$9;
-                      }
-                    }
-                    loopStop$10:                     {
-                      const f1 = $( $ );
-                      const g1 = f1 == null;
-                      if (g1) {
-                        $( 100 );
-                      }
-                      else {
-                        const h1 = $( 1 );
-                        const i1 = $dotCall( f1, $, h1 );
-                        a = i1;
-                        if (i1) {
-                          $( 100 );
-                        }
-                        else {
-                          break loopStop$10;
-                        }
-                      }
-                      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-                        const j1 = $( $ );
-                        const k1 = j1 == null;
-                        if (k1) {
-                          $( 100 );
-                        }
-                        else {
-                          const l1 = $( 1 );
-                          const m1 = $dotCall( j1, $, l1 );
-                          a = m1;
-                          if (m1) {
-                            $( 100 );
-                          }
-                          else {
-                            break;
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+    if (a) {
+      $( 100 );
+    }
+    else {
+      break;
     }
   }
 }

@@ -35,13 +35,14 @@ while (true) {
   const tmpCalleeParam = $(0);
   let tmpIfTest = tmpCallCallee(tmpCalleeParam);
   if (tmpIfTest) {
-  } else {
-    tmpIfTest = 2;
-  }
-  if (tmpIfTest) {
     $(100);
   } else {
-    break;
+    tmpIfTest = 2;
+    if (tmpIfTest) {
+      $(100);
+    } else {
+      break;
+    }
   }
 }
 $(a);
@@ -51,31 +52,12 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
-let tmpIfTest = $(tmpCalleeParam);
-if (tmpIfTest) {
-} else {
-  tmpIfTest = true;
-}
-if (tmpIfTest) {
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpCalleeParam = $(0);
+  $(tmpCalleeParam);
   $(100);
-  while ($LOOP_UNROLL_10) {
-    const tmpCalleeParam$1 = $(0);
-    let tmpIfTest$1 = $(tmpCalleeParam$1);
-    if (tmpIfTest$1) {
-    } else {
-      tmpIfTest$1 = true;
-    }
-    if (tmpIfTest$1) {
-      $(100);
-    } else {
-      break;
-    }
-  }
-} else {
 }
-const a = { a: 999, b: 1000 };
-$(a);
+throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -83,38 +65,12 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = $( 0 );
-let b = $( a );
-if (b) {
-
-}
-else {
-  b = true;
-}
-if (b) {
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const a = $( 0 );
+  $( a );
   $( 100 );
-  while ($LOOP_UNROLL_10) {
-    const c = $( 0 );
-    let d = $( c );
-    if (d) {
-
-    }
-    else {
-      d = true;
-    }
-    if (d) {
-      $( 100 );
-    }
-    else {
-      break;
-    }
-  }
 }
-const e = {
-  a: 999,
-  b: 1000,
-};
-$( e );
+throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

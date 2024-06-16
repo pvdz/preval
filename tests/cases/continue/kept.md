@@ -285,24 +285,18 @@ exit: {
   }
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let continued = false;
   const tmpIfTest$17 = $();
   if (tmpIfTest$17) {
     const tmpIfTest$19 = $();
     if (tmpIfTest$19) {
-    } else {
-      continued = true;
-    }
-  } else {
-    continued = true;
-  }
-  if (continued) {
-  } else {
-    const tmpIfTest$21 = $();
-    if (tmpIfTest$21) {
-      break;
+      const tmpIfTest$21 = $();
+      if (tmpIfTest$21) {
+        break;
+      } else {
+      }
     } else {
     }
+  } else {
   }
 }
 $continue();
@@ -365,27 +359,14 @@ exit: {
   }
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let k = false;
-  const l = $();
-  if (l) {
-    const m = $();
-    if (m) {
-
-    }
-    else {
-      k = true;
-    }
-  }
-  else {
-    k = true;
-  }
+  const k = $();
   if (k) {
-
-  }
-  else {
-    const n = $();
-    if (n) {
-      break;
+    const l = $();
+    if (l) {
+      const m = $();
+      if (m) {
+        break;
+      }
     }
   }
 }

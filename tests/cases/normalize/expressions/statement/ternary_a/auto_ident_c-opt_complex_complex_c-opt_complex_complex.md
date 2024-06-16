@@ -66,25 +66,25 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
+let tmpIfTest = false;
 const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
-  $(100);
 } else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$3 = tmpChainElementObject == null;
   if (tmpIfTest$3) {
-    $(100);
   } else {
     const tmpChainRootComputed$1 = $(`y`);
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-    if (tmpChainElementObject$1) {
-      $(100);
-    } else {
-      $(200);
-    }
+    tmpIfTest = tmpChainElementObject$1;
   }
+}
+if (tmpIfTest) {
+  $(100);
+} else {
+  $(200);
 }
 $(a);
 `````
@@ -100,28 +100,30 @@ const c = {
   a: 999,
   b: 1000,
 };
-const d = $( b );
-const e = d == null;
-if (e) {
+let d = false;
+const e = $( b );
+const f = e == null;
+if (f) {
+
+}
+else {
+  const g = $( "x" );
+  const h = e[ g ];
+  const i = h == null;
+  if (i) {
+
+  }
+  else {
+    const j = $( "y" );
+    const k = h[ j ];
+    d = k;
+  }
+}
+if (d) {
   $( 100 );
 }
 else {
-  const f = $( "x" );
-  const g = d[ f ];
-  const h = g == null;
-  if (h) {
-    $( 100 );
-  }
-  else {
-    const i = $( "y" );
-    const j = g[ i ];
-    if (j) {
-      $( 100 );
-    }
-    else {
-      $( 200 );
-    }
-  }
+  $( 200 );
 }
 $( c );
 `````

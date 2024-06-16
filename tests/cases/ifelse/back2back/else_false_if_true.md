@@ -43,13 +43,14 @@ if (x) {
 `````js filename=intro
 let x = $(false);
 if (x) {
+  $(x, `hit`);
 } else {
   $(x, `pass`);
   x = $(true);
-}
-if (x) {
-  $(x, `hit`);
-} else {
+  if (x) {
+    $(x, `hit`);
+  } else {
+  }
 }
 `````
 
@@ -57,15 +58,16 @@ if (x) {
 
 
 `````js filename=intro
-let x = $(false);
-if (x) {
-} else {
-  $(x, `pass`);
-  x = $(true);
-}
+const x = $(false);
 if (x) {
   $(x, `hit`);
 } else {
+  $(x, `pass`);
+  const tmpClusterSSA_x = $(true);
+  if (tmpClusterSSA_x) {
+    $(tmpClusterSSA_x, `hit`);
+  } else {
+  }
 }
 `````
 
@@ -74,16 +76,16 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-let a = $( false );
+const a = $( false );
 if (a) {
-
+  $( a, "hit" );
 }
 else {
   $( a, "pass" );
-  a = $( true );
-}
-if (a) {
-  $( a, "hit" );
+  const b = $( true );
+  if (b) {
+    $( b, "hit" );
+  }
 }
 `````
 

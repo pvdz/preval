@@ -82,27 +82,28 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
+const tmpObjLitVal$1 = { e: $ };
 const tmpIfTest$1 = $ == null;
+let tmpCalleeParam = undefined;
 if (tmpIfTest$1) {
-  $(undefined);
 } else {
-  const tmpObjLitVal$1 = { e: $ };
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
   a = tmpChainElementCall;
-  if (tmpChainElementCall) {
-    $(tmpChainElementCall);
+  tmpCalleeParam = tmpChainElementCall;
+}
+if (a) {
+  $(tmpCalleeParam);
+} else {
+  let tmpNestedComplexRhs = undefined;
+  const tmpChainElementObject$9 = tmpObjLitVal$1.e;
+  const tmpIfTest$5 = tmpChainElementObject$9 == null;
+  if (tmpIfTest$5) {
   } else {
-    let tmpNestedComplexRhs = undefined;
-    const tmpChainElementObject$9 = tmpObjLitVal$1.e;
-    const tmpIfTest$5 = tmpChainElementObject$9 == null;
-    if (tmpIfTest$5) {
-    } else {
-      const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, 1);
-      tmpNestedComplexRhs = tmpChainElementCall$1;
-    }
-    a = tmpNestedComplexRhs;
-    $(tmpNestedComplexRhs);
+    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, 1);
+    tmpNestedComplexRhs = tmpChainElementCall$1;
   }
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 }
 $(a);
 `````
@@ -113,31 +114,33 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-const b = $ == null;
-if (b) {
-  $( undefined );
+const b = { e: $ };
+const c = $ == null;
+let d = undefined;
+if (c) {
+
 }
 else {
-  const c = { e: $ };
-  const d = $dotCall( $, c, 1 );
-  a = d;
-  if (d) {
-    $( d );
+  const e = $dotCall( $, b, 1 );
+  a = e;
+  d = e;
+}
+if (a) {
+  $( d );
+}
+else {
+  let f = undefined;
+  const g = b.e;
+  const h = g == null;
+  if (h) {
+
   }
   else {
-    let e = undefined;
-    const f = c.e;
-    const g = f == null;
-    if (g) {
-
-    }
-    else {
-      const h = $dotCall( f, c, 1 );
-      e = h;
-    }
-    a = e;
-    $( e );
+    const i = $dotCall( g, b, 1 );
+    f = i;
   }
+  a = f;
+  $( f );
 }
 $( a );
 `````

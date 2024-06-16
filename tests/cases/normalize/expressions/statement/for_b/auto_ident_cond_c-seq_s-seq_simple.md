@@ -57,173 +57,30 @@ $(a);
 
 
 `````js filename=intro
-loopStop: {
-  const tmpIfTest$1 = $(30);
-  if (tmpIfTest$1) {
-    $(1);
-  } else {
-    const tmpCalleeParam = $(100);
-    const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam);
-    if (tmpClusterSSA_tmpIfTest) {
-      $(1);
-    } else {
-      break loopStop;
-    }
-  }
-  loopStop$1: {
+let tmpIfTest = true;
+const tmpIfTest$1 = $(30);
+if (tmpIfTest$1) {
+} else {
+  const tmpCalleeParam = $(100);
+  tmpIfTest = $(tmpCalleeParam);
+}
+if (tmpIfTest) {
+  $(1);
+  while ($LOOP_UNROLL_10) {
+    let tmpIfTest$2 = true;
     const tmpIfTest$4 = $(30);
     if (tmpIfTest$4) {
-      $(1);
     } else {
       const tmpCalleeParam$1 = $(100);
-      const tmpClusterSSA_tmpIfTest$2 = $(tmpCalleeParam$1);
-      if (tmpClusterSSA_tmpIfTest$2) {
-        $(1);
-      } else {
-        break loopStop$1;
-      }
+      tmpIfTest$2 = $(tmpCalleeParam$1);
     }
-    loopStop$2: {
-      const tmpIfTest$2 = $(30);
-      if (tmpIfTest$2) {
-        $(1);
-      } else {
-        const tmpCalleeParam$2 = $(100);
-        const tmpClusterSSA_tmpIfTest$1 = $(tmpCalleeParam$2);
-        if (tmpClusterSSA_tmpIfTest$1) {
-          $(1);
-        } else {
-          break loopStop$2;
-        }
-      }
-      loopStop$3: {
-        const tmpIfTest$3 = $(30);
-        if (tmpIfTest$3) {
-          $(1);
-        } else {
-          const tmpCalleeParam$3 = $(100);
-          const tmpClusterSSA_tmpIfTest$3 = $(tmpCalleeParam$3);
-          if (tmpClusterSSA_tmpIfTest$3) {
-            $(1);
-          } else {
-            break loopStop$3;
-          }
-        }
-        loopStop$4: {
-          const tmpIfTest$5 = $(30);
-          if (tmpIfTest$5) {
-            $(1);
-          } else {
-            const tmpCalleeParam$4 = $(100);
-            const tmpClusterSSA_tmpIfTest$4 = $(tmpCalleeParam$4);
-            if (tmpClusterSSA_tmpIfTest$4) {
-              $(1);
-            } else {
-              break loopStop$4;
-            }
-          }
-          loopStop$5: {
-            const tmpIfTest$6 = $(30);
-            if (tmpIfTest$6) {
-              $(1);
-            } else {
-              const tmpCalleeParam$5 = $(100);
-              const tmpClusterSSA_tmpIfTest$5 = $(tmpCalleeParam$5);
-              if (tmpClusterSSA_tmpIfTest$5) {
-                $(1);
-              } else {
-                break loopStop$5;
-              }
-            }
-            loopStop$6: {
-              const tmpIfTest$7 = $(30);
-              if (tmpIfTest$7) {
-                $(1);
-              } else {
-                const tmpCalleeParam$6 = $(100);
-                const tmpClusterSSA_tmpIfTest$6 = $(tmpCalleeParam$6);
-                if (tmpClusterSSA_tmpIfTest$6) {
-                  $(1);
-                } else {
-                  break loopStop$6;
-                }
-              }
-              loopStop$7: {
-                const tmpIfTest$8 = $(30);
-                if (tmpIfTest$8) {
-                  $(1);
-                } else {
-                  const tmpCalleeParam$7 = $(100);
-                  const tmpClusterSSA_tmpIfTest$7 = $(tmpCalleeParam$7);
-                  if (tmpClusterSSA_tmpIfTest$7) {
-                    $(1);
-                  } else {
-                    break loopStop$7;
-                  }
-                }
-                loopStop$8: {
-                  const tmpIfTest$9 = $(30);
-                  if (tmpIfTest$9) {
-                    $(1);
-                  } else {
-                    const tmpCalleeParam$8 = $(100);
-                    const tmpClusterSSA_tmpIfTest$8 = $(tmpCalleeParam$8);
-                    if (tmpClusterSSA_tmpIfTest$8) {
-                      $(1);
-                    } else {
-                      break loopStop$8;
-                    }
-                  }
-                  loopStop$9: {
-                    const tmpIfTest$10 = $(30);
-                    if (tmpIfTest$10) {
-                      $(1);
-                    } else {
-                      const tmpCalleeParam$9 = $(100);
-                      const tmpClusterSSA_tmpIfTest$9 = $(tmpCalleeParam$9);
-                      if (tmpClusterSSA_tmpIfTest$9) {
-                        $(1);
-                      } else {
-                        break loopStop$9;
-                      }
-                    }
-                    loopStop$10: {
-                      const tmpIfTest$11 = $(30);
-                      if (tmpIfTest$11) {
-                        $(1);
-                      } else {
-                        const tmpCalleeParam$10 = $(100);
-                        const tmpClusterSSA_tmpIfTest$10 = $(tmpCalleeParam$10);
-                        if (tmpClusterSSA_tmpIfTest$10) {
-                          $(1);
-                        } else {
-                          break loopStop$10;
-                        }
-                      }
-                      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-                        const tmpIfTest$12 = $(30);
-                        if (tmpIfTest$12) {
-                          $(1);
-                        } else {
-                          const tmpCalleeParam$11 = $(100);
-                          const tmpClusterSSA_tmpIfTest$11 = $(tmpCalleeParam$11);
-                          if (tmpClusterSSA_tmpIfTest$11) {
-                            $(1);
-                          } else {
-                            break;
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+    if (tmpIfTest$2) {
+      $(1);
+    } else {
+      break;
     }
   }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -234,203 +91,40 @@ $(a);
 With rename=true
 
 `````js filename=intro
-loopStop: {
-  const a = $( 30 );
-  if (a) {
-    $( 1 );
-  }
-  else {
-    const b = $( 100 );
-    const c = $( b );
-    if (c) {
-      $( 1 );
+let a = true;
+const b = $( 30 );
+if (b) {
+
+}
+else {
+  const c = $( 100 );
+  a = $( c );
+}
+if (a) {
+  $( 1 );
+  while ($LOOP_UNROLL_10) {
+    let d = true;
+    const e = $( 30 );
+    if (e) {
+
     }
     else {
-      break loopStop;
+      const f = $( 100 );
+      d = $( f );
     }
-  }
-  loopStop$1:   {
-    const d = $( 30 );
     if (d) {
       $( 1 );
     }
     else {
-      const e = $( 100 );
-      const f = $( e );
-      if (f) {
-        $( 1 );
-      }
-      else {
-        break loopStop$1;
-      }
-    }
-    loopStop$2:     {
-      const g = $( 30 );
-      if (g) {
-        $( 1 );
-      }
-      else {
-        const h = $( 100 );
-        const i = $( h );
-        if (i) {
-          $( 1 );
-        }
-        else {
-          break loopStop$2;
-        }
-      }
-      loopStop$3:       {
-        const j = $( 30 );
-        if (j) {
-          $( 1 );
-        }
-        else {
-          const k = $( 100 );
-          const l = $( k );
-          if (l) {
-            $( 1 );
-          }
-          else {
-            break loopStop$3;
-          }
-        }
-        loopStop$4:         {
-          const m = $( 30 );
-          if (m) {
-            $( 1 );
-          }
-          else {
-            const n = $( 100 );
-            const o = $( n );
-            if (o) {
-              $( 1 );
-            }
-            else {
-              break loopStop$4;
-            }
-          }
-          loopStop$5:           {
-            const p = $( 30 );
-            if (p) {
-              $( 1 );
-            }
-            else {
-              const q = $( 100 );
-              const r = $( q );
-              if (r) {
-                $( 1 );
-              }
-              else {
-                break loopStop$5;
-              }
-            }
-            loopStop$6:             {
-              const s = $( 30 );
-              if (s) {
-                $( 1 );
-              }
-              else {
-                const t = $( 100 );
-                const u = $( t );
-                if (u) {
-                  $( 1 );
-                }
-                else {
-                  break loopStop$6;
-                }
-              }
-              loopStop$7:               {
-                const v = $( 30 );
-                if (v) {
-                  $( 1 );
-                }
-                else {
-                  const w = $( 100 );
-                  const x = $( w );
-                  if (x) {
-                    $( 1 );
-                  }
-                  else {
-                    break loopStop$7;
-                  }
-                }
-                loopStop$8:                 {
-                  const y = $( 30 );
-                  if (y) {
-                    $( 1 );
-                  }
-                  else {
-                    const z = $( 100 );
-                    const 01 = $( z );
-                    if (01) {
-                      $( 1 );
-                    }
-                    else {
-                      break loopStop$8;
-                    }
-                  }
-                  loopStop$9:                   {
-                    const 11 = $( 30 );
-                    if (11) {
-                      $( 1 );
-                    }
-                    else {
-                      const 21 = $( 100 );
-                      const 31 = $( 21 );
-                      if (31) {
-                        $( 1 );
-                      }
-                      else {
-                        break loopStop$9;
-                      }
-                    }
-                    loopStop$10:                     {
-                      const 41 = $( 30 );
-                      if (41) {
-                        $( 1 );
-                      }
-                      else {
-                        const 51 = $( 100 );
-                        const 61 = $( 51 );
-                        if (61) {
-                          $( 1 );
-                        }
-                        else {
-                          break loopStop$10;
-                        }
-                      }
-                      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-                        const 71 = $( 30 );
-                        if (71) {
-                          $( 1 );
-                        }
-                        else {
-                          const 81 = $( 100 );
-                          const 91 = $( 81 );
-                          if (91) {
-                            $( 1 );
-                          }
-                          else {
-                            break;
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+      break;
     }
   }
 }
-const a1 = {
+const g = {
   a: 999,
   b: 1000,
 };
-$( a1 );
+$( g );
 `````
 
 ## Globals

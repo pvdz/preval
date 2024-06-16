@@ -57,17 +57,18 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
+let tmpIfTest = false;
 const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
-  $(100);
 } else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  if (tmpChainElementObject) {
-    $(100);
-  } else {
-  }
+  tmpIfTest = tmpChainElementObject;
+}
+if (tmpIfTest) {
+  $(100);
+} else {
 }
 $(a);
 `````
@@ -82,17 +83,19 @@ const b = {
   a: 999,
   b: 1000,
 };
-const c = $( a );
-const d = c == null;
-if (d) {
-  $( 100 );
+let c = false;
+const d = $( a );
+const e = d == null;
+if (e) {
+
 }
 else {
-  const e = $( "x" );
-  const f = c[ e ];
-  if (f) {
-    $( 100 );
-  }
+  const f = $( "x" );
+  const g = d[ f ];
+  c = g;
+}
+if (c) {
+  $( 100 );
 }
 $( b );
 `````

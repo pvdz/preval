@@ -38,13 +38,14 @@ else $(`fail`);
 const x = $(3);
 let tmpIfTest = x === 2;
 if (tmpIfTest) {
-} else {
-  tmpIfTest = x === 3;
-}
-if (tmpIfTest) {
   $(`pass`);
 } else {
-  $(`fail`);
+  tmpIfTest = x === 3;
+  if (tmpIfTest) {
+    $(`pass`);
+  } else {
+    $(`fail`);
+  }
 }
 `````
 
@@ -53,15 +54,16 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const x = $(3);
-let tmpIfTest = x === 2;
-if (tmpIfTest) {
-} else {
-  tmpIfTest = x === 3;
-}
+const tmpIfTest = x === 2;
 if (tmpIfTest) {
   $(`pass`);
 } else {
-  $(`fail`);
+  const tmpClusterSSA_tmpIfTest = x === 3;
+  if (tmpClusterSSA_tmpIfTest) {
+    $(`pass`);
+  } else {
+    $(`fail`);
+  }
 }
 `````
 
@@ -71,18 +73,18 @@ With rename=true
 
 `````js filename=intro
 const a = $( 3 );
-let b = a === 2;
-if (b) {
-
-}
-else {
-  b = a === 3;
-}
+const b = a === 2;
 if (b) {
   $( "pass" );
 }
 else {
-  $( "fail" );
+  const c = a === 3;
+  if (c) {
+    $( "pass" );
+  }
+  else {
+    $( "fail" );
+  }
 }
 `````
 

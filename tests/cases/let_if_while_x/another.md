@@ -129,7 +129,6 @@ $(a, b, c, 3);
 const b = { x: 1 };
 const c = { y: 2 };
 const a = { a: 999, b: 1000 };
-let loopTest = $LOOP_UNROLL_10;
 $(100);
 const B = $(b);
 const X = $(`x`);
@@ -139,21 +138,17 @@ const three = $(3);
 calt[Y] = three;
 B[X] = three;
 if (three) {
-} else {
-  loopTest = false;
-}
-if (loopTest) {
-  $(100);
-  const B$1 = $(b);
-  const X$1 = $(`x`);
-  const C = $(c);
-  const Y$1 = $(`y`);
-  const T = $(3);
-  C[Y$1] = T;
-  B$1[X$1] = T;
-  if (T) {
-    while ($LOOP_UNROLL_10) {
-      if (loopTest) {
+  if ($LOOP_UNROLL_10) {
+    $(100);
+    const B$1 = $(b);
+    const X$1 = $(`x`);
+    const C = $(c);
+    const Y$1 = $(`y`);
+    const T = $(3);
+    C[Y$1] = T;
+    B$1[X$1] = T;
+    if (T) {
+      while ($LOOP_UNROLL_10) {
         $(100);
         const B$2 = $(b);
         const X$2 = $(`x`);
@@ -166,9 +161,8 @@ if (loopTest) {
         } else {
           break;
         }
-      } else {
-        break;
       }
+    } else {
     }
   } else {
   }
@@ -188,50 +182,40 @@ const c = {
   a: 999,
   b: 1000,
 };
-let d = $LOOP_UNROLL_10;
 $( 100 );
-const e = $( a );
-const f = $( "x" );
-const g = $( b );
-const h = $( "y" );
-const i = $( 3 );
-g[h] = i;
-e[f] = i;
-if (i) {
-
-}
-else {
-  d = false;
-}
-if (d) {
-  $( 100 );
-  const j = $( a );
-  const k = $( "x" );
-  const l = $( b );
-  const m = $( "y" );
-  const n = $( 3 );
-  l[m] = n;
-  j[k] = n;
-  if (n) {
-    while ($LOOP_UNROLL_10) {
-      if (d) {
+const d = $( a );
+const e = $( "x" );
+const f = $( b );
+const g = $( "y" );
+const h = $( 3 );
+f[g] = h;
+d[e] = h;
+if (h) {
+  if ($LOOP_UNROLL_10) {
+    $( 100 );
+    const i = $( a );
+    const j = $( "x" );
+    const k = $( b );
+    const l = $( "y" );
+    const m = $( 3 );
+    k[l] = m;
+    i[j] = m;
+    if (m) {
+      while ($LOOP_UNROLL_10) {
         $( 100 );
-        const o = $( a );
-        const p = $( "x" );
-        const q = $( b );
-        const r = $( "y" );
-        const s = $( 3 );
-        q[r] = s;
-        o[p] = s;
-        if (s) {
+        const n = $( a );
+        const o = $( "x" );
+        const p = $( b );
+        const q = $( "y" );
+        const r = $( 3 );
+        p[q] = r;
+        n[o] = r;
+        if (r) {
 
         }
         else {
           break;
         }
-      }
-      else {
-        break;
       }
     }
   }

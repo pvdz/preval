@@ -66,25 +66,26 @@ $(a);
 let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
+let tmpCalleeParam = undefined;
 if (tmpIfTest) {
-  $(undefined);
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
   a = tmpChainElementCall$1;
-  if (tmpChainElementCall$1) {
-    $(tmpChainElementCall$1);
+  tmpCalleeParam = tmpChainElementCall$1;
+}
+if (a) {
+  $(tmpCalleeParam);
+} else {
+  let tmpNestedComplexRhs = undefined;
+  const tmpChainElementCall$3 = $($);
+  const tmpIfTest$1 = tmpChainElementCall$3 == null;
+  if (tmpIfTest$1) {
   } else {
-    let tmpNestedComplexRhs = undefined;
-    const tmpChainElementCall$3 = $($);
-    const tmpIfTest$1 = tmpChainElementCall$3 == null;
-    if (tmpIfTest$1) {
-    } else {
-      const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, $, 1);
-      tmpNestedComplexRhs = tmpChainElementCall$5;
-    }
-    a = tmpNestedComplexRhs;
-    $(tmpNestedComplexRhs);
+    const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, $, 1);
+    tmpNestedComplexRhs = tmpChainElementCall$5;
   }
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 }
 $(a);
 `````
@@ -97,29 +98,31 @@ With rename=true
 let a = undefined;
 const b = $( $ );
 const c = b == null;
+let d = undefined;
 if (c) {
-  $( undefined );
+
 }
 else {
-  const d = $dotCall( b, $, 1 );
-  a = d;
-  if (d) {
-    $( d );
+  const e = $dotCall( b, $, 1 );
+  a = e;
+  d = e;
+}
+if (a) {
+  $( d );
+}
+else {
+  let f = undefined;
+  const g = $( $ );
+  const h = g == null;
+  if (h) {
+
   }
   else {
-    let e = undefined;
-    const f = $( $ );
-    const g = f == null;
-    if (g) {
-
-    }
-    else {
-      const h = $dotCall( f, $, 1 );
-      e = h;
-    }
-    a = e;
-    $( e );
+    const i = $dotCall( g, $, 1 );
+    f = i;
   }
+  a = f;
+  $( f );
 }
 $( a );
 `````

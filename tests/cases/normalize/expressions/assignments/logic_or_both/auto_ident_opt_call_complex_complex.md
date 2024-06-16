@@ -74,27 +74,28 @@ $(a);
 let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
+let tmpCalleeParam = undefined;
 if (tmpIfTest) {
-  $(undefined);
 } else {
   const tmpCalleeParam$5 = $(1);
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$5);
   a = tmpChainElementCall$1;
-  if (tmpChainElementCall$1) {
-    $(tmpChainElementCall$1);
+  tmpCalleeParam = tmpChainElementCall$1;
+}
+if (a) {
+  $(tmpCalleeParam);
+} else {
+  let tmpNestedComplexRhs = undefined;
+  const tmpChainElementCall$3 = $($);
+  const tmpIfTest$1 = tmpChainElementCall$3 == null;
+  if (tmpIfTest$1) {
   } else {
-    let tmpNestedComplexRhs = undefined;
-    const tmpChainElementCall$3 = $($);
-    const tmpIfTest$1 = tmpChainElementCall$3 == null;
-    if (tmpIfTest$1) {
-    } else {
-      const tmpCalleeParam$11 = $(1);
-      const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, $, tmpCalleeParam$11);
-      tmpNestedComplexRhs = tmpChainElementCall$5;
-    }
-    a = tmpNestedComplexRhs;
-    $(tmpNestedComplexRhs);
+    const tmpCalleeParam$11 = $(1);
+    const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, $, tmpCalleeParam$11);
+    tmpNestedComplexRhs = tmpChainElementCall$5;
   }
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 }
 $(a);
 `````
@@ -107,31 +108,33 @@ With rename=true
 let a = undefined;
 const b = $( $ );
 const c = b == null;
+let d = undefined;
 if (c) {
-  $( undefined );
+
 }
 else {
-  const d = $( 1 );
-  const e = $dotCall( b, $, d );
-  a = e;
-  if (e) {
-    $( e );
+  const e = $( 1 );
+  const f = $dotCall( b, $, e );
+  a = f;
+  d = f;
+}
+if (a) {
+  $( d );
+}
+else {
+  let g = undefined;
+  const h = $( $ );
+  const i = h == null;
+  if (i) {
+
   }
   else {
-    let f = undefined;
-    const g = $( $ );
-    const h = g == null;
-    if (h) {
-
-    }
-    else {
-      const i = $( 1 );
-      const j = $dotCall( g, $, i );
-      f = j;
-    }
-    a = f;
-    $( f );
+    const j = $( 1 );
+    const k = $dotCall( h, $, j );
+    g = k;
   }
+  a = g;
+  $( g );
 }
 $( a );
 `````

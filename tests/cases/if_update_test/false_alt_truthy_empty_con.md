@@ -1,26 +1,22 @@
 # Preval test case
 
-# test_update_if.md
+# false_alt_truthy_empty_con.md
 
-> Tofix > Test update if
-
-We can trivially detect this case, and probably non-trivially detect more 
-cases like it.
-
-let x = true; if (y) x = false; if (x) z();
--> if (!y) z();
+> If update test > False alt truthy empty con
+>
+> Fold up back-to-back Ifs when the first mutate the tests of the second
 
 ## Input
 
 `````js filename=intro
-let x = true;
+let x = false;
 if ($) {
-  x = false;
-} else { // $(3) goes in here
+} else {
+  x = true;
 }
 if (x) {
-  $(3);
 } else {
+  $(3);
 }
 `````
 
@@ -28,14 +24,14 @@ if (x) {
 
 
 `````js filename=intro
-let x = true;
+let x = false;
 if ($) {
-  x = false;
 } else {
+  x = true;
 }
 if (x) {
-  $(3);
 } else {
+  $(3);
 }
 `````
 
@@ -43,14 +39,14 @@ if (x) {
 
 
 `````js filename=intro
-let x = true;
+let x = false;
 if ($) {
-  x = false;
 } else {
+  x = true;
 }
 if (x) {
-  $(3);
 } else {
+  $(3);
 }
 `````
 
@@ -58,12 +54,7 @@ if (x) {
 
 
 `````js filename=intro
-let x = true;
 if ($) {
-  x = false;
-} else {
-}
-if (x) {
   $(3);
 } else {
 }
@@ -74,11 +65,7 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-let a = true;
 if ($) {
-  a = false;
-}
-if (a) {
   $( 3 );
 }
 `````
@@ -90,6 +77,7 @@ None
 ## Result
 
 Should call `$` with:
+ - 1: 3
  - eval returned: undefined
 
 Pre normalization calls: Same

@@ -134,30 +134,31 @@ exit: {
 `````js filename=intro
 let fallthrough = false;
 const tmpBinBothRhs = $(1);
+let tmpIfTest$1 = true;
 const tmpIfTest = undefined === tmpBinBothRhs;
 if (tmpIfTest) {
   $(`A`);
   fallthrough = true;
 } else {
+  tmpIfTest$1 = fallthrough;
+  if (fallthrough) {
+  } else {
+    const tmpBinBothRhs$1 = $(2);
+    tmpIfTest$1 = undefined === tmpBinBothRhs$1;
+  }
 }
-if (fallthrough) {
+if (tmpIfTest$1) {
   $(`B`);
 } else {
-  const tmpBinBothRhs$1 = $(2);
-  const tmpClusterSSA_tmpIfTest$1 = undefined === tmpBinBothRhs$1;
-  if (tmpClusterSSA_tmpIfTest$1) {
-    $(`B`);
+  let tmpIfTest$3 = fallthrough;
+  if (fallthrough) {
   } else {
-    if (fallthrough) {
-      $(`C`);
-    } else {
-      const tmpBinBothRhs$3 = $(3);
-      const tmpClusterSSA_tmpIfTest$3 = undefined === tmpBinBothRhs$3;
-      if (tmpClusterSSA_tmpIfTest$3) {
-        $(`C`);
-      } else {
-      }
-    }
+    const tmpBinBothRhs$3 = $(3);
+    tmpIfTest$3 = undefined === tmpBinBothRhs$3;
+  }
+  if (tmpIfTest$3) {
+    $(`C`);
+  } else {
   }
 }
 `````
@@ -169,31 +170,36 @@ With rename=true
 `````js filename=intro
 let a = false;
 const b = $( 1 );
-const c = undefined === b;
-if (c) {
+let c = true;
+const d = undefined === b;
+if (d) {
   $( "A" );
   a = true;
 }
-if (a) {
+else {
+  c = a;
+  if (a) {
+
+  }
+  else {
+    const e = $( 2 );
+    c = undefined === e;
+  }
+}
+if (c) {
   $( "B" );
 }
 else {
-  const d = $( 2 );
-  const e = undefined === d;
-  if (e) {
-    $( "B" );
+  let f = a;
+  if (a) {
+
   }
   else {
-    if (a) {
-      $( "C" );
-    }
-    else {
-      const f = $( 3 );
-      const g = undefined === f;
-      if (g) {
-        $( "C" );
-      }
-    }
+    const g = $( 3 );
+    f = undefined === g;
+  }
+  if (f) {
+    $( "C" );
   }
 }
 `````

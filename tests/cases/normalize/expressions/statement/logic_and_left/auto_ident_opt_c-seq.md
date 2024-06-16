@@ -55,16 +55,17 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
+let tmpIfTest = false;
 const tmpChainRootProp = $(b);
 const tmpIfTest$1 = tmpChainRootProp == null;
 if (tmpIfTest$1) {
-  $(100);
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;
-  if (tmpChainElementObject) {
-    $(100);
-  } else {
-  }
+  tmpIfTest = tmpChainElementObject;
+}
+if (tmpIfTest) {
+  $(100);
+} else {
 }
 $(a);
 `````
@@ -79,16 +80,18 @@ const b = {
   a: 999,
   b: 1000,
 };
-const c = $( a );
-const d = c == null;
-if (d) {
-  $( 100 );
+let c = false;
+const d = $( a );
+const e = d == null;
+if (e) {
+
 }
 else {
-  const e = c.x;
-  if (e) {
-    $( 100 );
-  }
+  const f = d.x;
+  c = f;
+}
+if (c) {
+  $( 100 );
 }
 $( b );
 `````

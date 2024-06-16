@@ -47,14 +47,15 @@ if (x) {
 `````js filename=intro
 let x = $(false, `a`);
 if (x) {
+  $(x, `one`);
 } else {
   $(x, `pass`);
   x = $(false, `b`);
-}
-if (x) {
-  $(x, `one`);
-} else {
-  $(x, `two`);
+  if (x) {
+    $(x, `one`);
+  } else {
+    $(x, `two`);
+  }
 }
 `````
 
@@ -62,16 +63,17 @@ if (x) {
 
 
 `````js filename=intro
-let x = $(false, `a`);
-if (x) {
-} else {
-  $(x, `pass`);
-  x = $(false, `b`);
-}
+const x = $(false, `a`);
 if (x) {
   $(x, `one`);
 } else {
-  $(x, `two`);
+  $(x, `pass`);
+  const tmpClusterSSA_x = $(false, `b`);
+  if (tmpClusterSSA_x) {
+    $(tmpClusterSSA_x, `one`);
+  } else {
+    $(tmpClusterSSA_x, `two`);
+  }
 }
 `````
 
@@ -80,19 +82,19 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-let a = $( false, "a" );
-if (a) {
-
-}
-else {
-  $( a, "pass" );
-  a = $( false, "b" );
-}
+const a = $( false, "a" );
 if (a) {
   $( a, "one" );
 }
 else {
-  $( a, "two" );
+  $( a, "pass" );
+  const b = $( false, "b" );
+  if (b) {
+    $( b, "one" );
+  }
+  else {
+    $( b, "two" );
+  }
 }
 `````
 

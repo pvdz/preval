@@ -94,13 +94,9 @@ if ($tmpLoopUnrollCheck) {
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
 let tmpLoopRetCode = !$;
 if ($) {
-  $tmpLoopUnrollCheck = false;
 } else {
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
     if (tmpLoopRetCode) {
       if ($) {
@@ -111,7 +107,6 @@ if ($tmpLoopUnrollCheck) {
       break;
     }
   }
-} else {
 }
 `````
 
@@ -120,16 +115,15 @@ if ($tmpLoopUnrollCheck) {
 With rename=true
 
 `````js filename=intro
-let a = true;
-let b = !$;
+let a = !$;
 if ($) {
-  a = false;
+
 }
-if (a) {
+else {
   while ($LOOP_UNROLL_9) {
-    if (b) {
+    if (a) {
       if ($) {
-        b = false;
+        a = false;
       }
     }
     else {

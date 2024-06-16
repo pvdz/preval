@@ -65,11 +65,8 @@ let tmp = true;
 const test = $(`first`);
 $(`second`);
 if (test) {
-  tmp = false;
 } else {
   $(`third`);
-}
-if (tmp) {
   while ($LOOP_UNROLL_10) {
     const test$1 = $(`first`);
     $(`second`);
@@ -83,7 +80,6 @@ if (tmp) {
       break;
     }
   }
-} else {
 }
 `````
 
@@ -96,12 +92,10 @@ let a = true;
 const b = $( "first" );
 $( "second" );
 if (b) {
-  a = false;
+
 }
 else {
   $( "third" );
-}
-if (a) {
   while ($LOOP_UNROLL_10) {
     const c = $( "first" );
     $( "second" );

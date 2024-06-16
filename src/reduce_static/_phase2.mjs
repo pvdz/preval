@@ -85,6 +85,7 @@ import {aliasIfIf} from "./alias_if_if.mjs";
 import { removeUnusedConstants } from './remove_unused_constants.mjs';
 import { writeOnly } from './write_only.mjs';
 import { fakeDoWhile } from './fake_do_while.mjs';
+import { ifUpdateTest } from './if_update_test.mjs';
 
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
@@ -269,6 +270,7 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     letAliasing(fdata) ||
     testingAlias(fdata) ||
     aliasIfIf(fdata) ||
+    ifUpdateTest(fdata) ||
     fakeDoWhile(fdata) ||
     // This one should probably be lowest priority as it might blow up code...
     unrollLoopWithTrue(fdata, options.unrollTrueLimit)

@@ -91,21 +91,16 @@ $(tmpClusterSSA_s);
 
 `````js filename=intro
 const s = $(10);
-let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 parseExpression(lexerFlags$285, astProp$181);
 let tmpClusterSSA_s = s | 10;
 const tmpClusterSSA_x = $(true);
 if (tmpClusterSSA_x) {
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
-  parseExpression(lexerFlags$285, astProp$181);
-  tmpClusterSSA_s = tmpClusterSSA_s | 10;
-  const tmpClusterSSA_x$1 = $(true);
-  if (tmpClusterSSA_x$1) {
-    while ($LOOP_UNROLL_10) {
-      if ($tmpLoopUnrollCheck) {
+  if ($LOOP_UNROLL_10) {
+    parseExpression(lexerFlags$285, astProp$181);
+    tmpClusterSSA_s = tmpClusterSSA_s | 10;
+    const tmpClusterSSA_x$1 = $(true);
+    if (tmpClusterSSA_x$1) {
+      while ($LOOP_UNROLL_10) {
         parseExpression(lexerFlags$285, astProp$181);
         tmpClusterSSA_s = tmpClusterSSA_s | 10;
         const tmpClusterSSA_x$2 = $(true);
@@ -113,9 +108,8 @@ if ($tmpLoopUnrollCheck) {
         } else {
           break;
         }
-      } else {
-        break;
       }
+    } else {
     }
   } else {
   }
@@ -130,40 +124,30 @@ With rename=true
 
 `````js filename=intro
 const a = $( 10 );
-let b = $LOOP_UNROLL_10;
 parseExpression( lexerFlags$285, astProp$181 );
-let c = a | 10;
-const d = $( true );
-if (d) {
-
-}
-else {
-  b = false;
-}
-if (b) {
-  parseExpression( lexerFlags$285, astProp$181 );
-  c = c | 10;
-  const e = $( true );
-  if (e) {
-    while ($LOOP_UNROLL_10) {
-      if (b) {
+let b = a | 10;
+const c = $( true );
+if (c) {
+  if ($LOOP_UNROLL_10) {
+    parseExpression( lexerFlags$285, astProp$181 );
+    b = b | 10;
+    const d = $( true );
+    if (d) {
+      while ($LOOP_UNROLL_10) {
         parseExpression( lexerFlags$285, astProp$181 );
-        c = c | 10;
-        const f = $( true );
-        if (f) {
+        b = b | 10;
+        const e = $( true );
+        if (e) {
 
         }
         else {
           break;
         }
       }
-      else {
-        break;
-      }
     }
   }
 }
-$( c );
+$( b );
 `````
 
 ## Globals

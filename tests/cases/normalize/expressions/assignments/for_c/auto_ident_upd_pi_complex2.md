@@ -126,8 +126,7 @@ $(a, b);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-let $tmpLoopUnrollCheck = true;
+const tmpIfTest = $(1);
 const b = { x: 1 };
 if (tmpIfTest) {
   const tmpCalleeParam = $(b);
@@ -136,20 +135,16 @@ if (tmpIfTest) {
   const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
   tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
   a = tmpNestedPropCompoundComplexRhs;
-  tmpIfTest = $(1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       const tmpCalleeParam$1 = $(b);
       const tmpNestedAssignObj$1 = $(tmpCalleeParam$1);
       const tmpBinLhs$1 = tmpNestedAssignObj$1.x;
       const tmpNestedPropCompoundComplexRhs$1 = tmpBinLhs$1 + 1;
       tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
       a = tmpNestedPropCompoundComplexRhs$1;
-      tmpIfTest = $(1);
+      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -168,38 +163,32 @@ let a = {
   a: 999,
   b: 1000,
 };
-let b = $( 1 );
-let c = true;
-const d = { x: 1 };
+const b = $( 1 );
+const c = { x: 1 };
 if (b) {
+  const d = $( c );
   const e = $( d );
-  const f = $( e );
-  const g = f.x;
-  const h = g + 1;
-  f.x = h;
-  a = h;
-  b = $( 1 );
-}
-else {
-  c = false;
-}
-if (c) {
+  const f = e.x;
+  const g = f + 1;
+  e.x = g;
+  a = g;
+  let h = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (b) {
-      const i = $( d );
+    if (h) {
+      const i = $( c );
       const j = $( i );
       const k = j.x;
       const l = k + 1;
       j.x = l;
       a = l;
-      b = $( 1 );
+      h = $( 1 );
     }
     else {
       break;
     }
   }
 }
-$( a, d );
+$( a, c );
 `````
 
 ## Globals

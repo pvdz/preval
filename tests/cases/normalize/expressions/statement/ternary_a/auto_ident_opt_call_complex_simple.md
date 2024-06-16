@@ -51,17 +51,18 @@ $(a);
 
 
 `````js filename=intro
+let tmpIfTest = false;
 const tmpChainElementCall = $($);
 const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
-  $(100);
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
-  if (tmpChainElementCall$1) {
-    $(100);
-  } else {
-    $(200);
-  }
+  tmpIfTest = tmpChainElementCall$1;
+}
+if (tmpIfTest) {
+  $(100);
+} else {
+  $(200);
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -72,25 +73,27 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = $( $ );
-const b = a == null;
-if (b) {
+let a = false;
+const b = $( $ );
+const c = b == null;
+if (c) {
+
+}
+else {
+  const d = $dotCall( b, $, 1 );
+  a = d;
+}
+if (a) {
   $( 100 );
 }
 else {
-  const c = $dotCall( a, $, 1 );
-  if (c) {
-    $( 100 );
-  }
-  else {
-    $( 200 );
-  }
+  $( 200 );
 }
-const d = {
+const e = {
   a: 999,
   b: 1000,
 };
-$( d );
+$( e );
 `````
 
 ## Globals

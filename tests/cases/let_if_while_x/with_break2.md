@@ -62,7 +62,7 @@ $(wat);
 
 `````js filename=intro
 const s = $(10);
-let count = $LOOP_UNROLL_10;
+let count = true;
 $(`before`);
 let wat = s | 10;
 let chk = $(true);

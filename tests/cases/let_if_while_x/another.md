@@ -88,7 +88,7 @@ $(a, b, c, 3);
 const b = { x: 1 };
 const c = { y: 2 };
 const a = { a: 999, b: 1000 };
-let loopTest = $LOOP_UNROLL_10;
+let loopTest = true;
 $(100);
 const B = $(b);
 const X = $(`x`);

@@ -71,7 +71,11 @@ Should call `$` with:
  - 1: 
   {
     x:
-      '{"0":"\\"<$>\\"","1":"\\"<function>\\"","2":"\\"<function>\\"","3":"\\"<$spy>\\"","4":"\\"<function>\\"","5":"\\"<function>\\"","6":"\\"$LOOP_DONE_UNROLLING_ALWAYS_TRUE\\"","7":"[]","8":"\\"<function>\\"","9":"\\"<function>\\"","10":"\\"<function>\\"","11":"\\"<function>\\"","12":"\\"<function>\\"","13":"\\"<function>\\"","14":"\\"<function>\\"","15":"\\"<function>\\"","16":"\\"<function>\\"","17":"\\"<function>\\"","18":"{}","19":"\\"<function>\\"","20":"{}","21":"{}","22":"\\"<function>\\"","23":"{}","24":"\\"<function>\\"","25":"\\"<function>\\"","26":"\\"<function>\\"","27":"\\"<function>\\"","28":"\\"<function>\\"","29":"\\"<function>\\"","30":"\\"<function>\\"","31":"{}","32":"\\"<function>\\"","33":"\\"$LOOP_UNROLL_0\\"","34":"\\"$LOOP_UNROLL_1\\"","35":"\\"$LOOP_UNROLL_2\\"","36":"\\"$LOOP_UNROLL_3\\"","37":"\\"$LOOP_UNROLL_4\\"","38":"\\"$LOOP_UNROLL_5\\"","39":"\\"$LOOP_UNROLL_6\\"","40":"\\"$LOOP_UNROLL_7\\"","41":"\\"$LOOP_UNROLL_8\\"","42":"\\"$LOOP_UNROLL_9\\"","43":"\\"$LOOP_UNROLL_10\\""}',
+<<<<<<< Updated upstream
+      '{"0":"\\"<$>\\"","1":"\\"<function>\\"","2":"\\"<function>\\"","3":"\\"<$spy>\\"","4":"\\"<function>\\"","5":"\\"<function>\\"","6":"true","7":"[]","8":"\\"<function>\\"","9":"\\"<function>\\"","10":"\\"<function>\\"","11":"\\"<function>\\"","12":"\\"<function>\\"","13":"\\"<function>\\"","14":"\\"<function>\\"","15":"\\"<function>\\"","16":"\\"<function>\\"","17":"\\"<function>\\"","18":"{}","19":"\\"<function>\\"","20":"{}","21":"{}","22":"\\"<function>\\"","23":"{}","24":"\\"<function>\\"","25":"\\"<function>\\"","26":"\\"<function>\\"","27":"\\"<function>\\"","28":"\\"<function>\\"","29":"\\"<function>\\"","30":"\\"<function>\\"","31":"{}","32":"\\"<function>\\"","33":"\\"$LOOP_UNROLL_0\\"","34":"\\"$LOOP_UNROLL_1\\"","35":"\\"$LOOP_UNROLL_2\\"","36":"\\"$LOOP_UNROLL_3\\"","37":"\\"$LOOP_UNROLL_4\\"","38":"\\"$LOOP_UNROLL_5\\"","39":"\\"$LOOP_UNROLL_6\\"","40":"\\"$LOOP_UNROLL_7\\"","41":"\\"$LOOP_UNROLL_8\\"","42":"\\"$LOOP_UNROLL_9\\"","43":"\\"$LOOP_UNROLL_10\\""}',
+=======
+      '{"0":"\\"<$>\\"","1":"\\"<function>\\"","2":"\\"<function>\\"","3":"\\"<$spy>\\"","4":"\\"<function>\\"","5":"\\"<function>\\"","6":"true","7":"[]","8":"\\"<function>\\"","9":"\\"<function>\\"","10":"\\"<function>\\"","11":"\\"<function>\\"","12":"\\"<function>\\"","13":"\\"<function>\\"","14":"\\"<function>\\"","15":"\\"<function>\\"","16":"\\"<function>\\"","17":"\\"<function>\\"","18":"{}","19":"\\"<function>\\"","20":"{}","21":"{}","22":"\\"<function>\\"","23":"{}","24":"\\"<function>\\"","25":"\\"<function>\\"","26":"\\"<function>\\"","27":"\\"<function>\\"","28":"\\"<function>\\"","29":"\\"<function>\\"","30":"\\"<function>\\"","31":"{}","32":"\\"<function>\\"","33":"true","34":"true","35":"true","36":"true","37":"true","38":"true","39":"true","40":"true","41":"true","42":"true","43":"true"}',
+>>>>>>> Stashed changes
   },
 
  - 2: 
@@ -82,7 +86,7 @@ Should call `$` with:
     3: '"<$spy>"',
     4: '"<function>"',
     5: '"<function>"',
-    6: '"$LOOP_DONE_UNROLLING_ALWAYS_TRUE"',
+    6: 'true',
     7: '[]',
     8: '"<function>"',
     9: '"<function>"',
@@ -109,17 +113,17 @@ Should call `$` with:
     30: '"<function>"',
     31: '{}',
     32: '"<function>"',
-    33: '"$LOOP_UNROLL_0"',
-    34: '"$LOOP_UNROLL_1"',
-    35: '"$LOOP_UNROLL_2"',
-    36: '"$LOOP_UNROLL_3"',
-    37: '"$LOOP_UNROLL_4"',
-    38: '"$LOOP_UNROLL_5"',
-    39: '"$LOOP_UNROLL_6"',
-    40: '"$LOOP_UNROLL_7"',
-    41: '"$LOOP_UNROLL_8"',
-    42: '"$LOOP_UNROLL_9"',
-    43: '"$LOOP_UNROLL_10"',
+    33: 'true',
+    34: 'true',
+    35: 'true',
+    36: 'true',
+    37: 'true',
+    38: 'true',
+    39: 'true',
+    40: 'true',
+    41: 'true',
+    42: 'true',
+    43: 'true',
   },
 
  - eval returned: undefined

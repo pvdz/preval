@@ -62,7 +62,7 @@ $(tmpClusterSSA_s);
 
 `````js filename=intro
 const s = $(10);
-let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
+let $tmpLoopUnrollCheck = true;
 parseExpression(lexerFlags$285, astProp$181);
 let tmpClusterSSA_s = s | 10;
 let tmpClusterSSA_x = $(true);

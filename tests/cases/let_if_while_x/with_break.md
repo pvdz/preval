@@ -62,7 +62,7 @@ $(wat);
 
 `````js filename=intro
 const s = $(10);
-let count = $LOOP_UNROLL_10;
+let count = true;
 $(`before`);
 let wat = s | 10;
 let chk = $(true);
@@ -91,7 +91,7 @@ $(wat);
 
 `````js filename=intro
 const s = $(10);
-let count = $LOOP_UNROLL_10;
+let count = true;
 $(`before`);
 let wat = s | 10;
 const chk = $(true);
@@ -127,7 +127,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 10 );
-let b = $LOOP_UNROLL_10;
+let b = true;
 $( "before" );
 let c = a | 10;
 const d = $( true );

@@ -44,10 +44,9 @@ $(a);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
-const obj = {};
 $(100);
-obj[undefined];
+$ObjectPrototype.undefined;
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -56,13 +55,12 @@ $(a);
 With rename=true
 
 `````js filename=intro
+$( 100 );
+$ObjectPrototype.undefined;
 const a = {
   a: 999,
   b: 1000,
 };
-const b = {};
-$( 100 );
-b[ undefined ];
 $( a );
 `````
 

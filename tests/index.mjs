@@ -417,11 +417,11 @@ function runTestCase(
 
     const max = CONFIG.unrollTrue ?? mdOptions?.unrollTrue ?? 10;
     for (let i=0; i<=max; ++i) {
-      // $LOOP_UNROLL_1 $LOOP_UNROLL_2 $LOOP_UNROLL_3 etc. Alias as `true` for the eval, but not in preval cause it'll go infinite.
-      frameworkInjectedGlobals[`$LOOP_UNROLL_${i}`] = `$LOOP_UNROLL_${i}`; // Special symbols whose number suffix has semantic meaning
+      // $LOOP_UNROLL_1 $LOOP_UNROLL_2 $LOOP_UNROLL_3 etc. Alias as `true`
+      frameworkInjectedGlobals[`$LOOP_UNROLL_${i}`] = true;
     }
-    // $LOOP_DONE_UNROLLING_ALWAYS_TRUE. Alias as `true` for the eval, but not in preval cause it'll go infinite.
-    frameworkInjectedGlobals[`$LOOP_DONE_UNROLLING_ALWAYS_TRUE`] = `$LOOP_DONE_UNROLLING_ALWAYS_TRUE`; // "signals not to unroll any further, but to treat this as "true" anyways"
+    // $LOOP_DONE_UNROLLING_ALWAYS_TRUE. Alias as `true`
+    frameworkInjectedGlobals[`$LOOP_DONE_UNROLLING_ALWAYS_TRUE`] = true; // "signals not to unroll any further, but to treat this as "true" anyways"
 
     return frameworkInjectedGlobals;
   }

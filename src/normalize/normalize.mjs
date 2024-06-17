@@ -1325,6 +1325,21 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           // This should be the alias definition. Ignore it.
         }
 
+        if (
+          parentNode.type !== 'WhileStatement' &&
+          (node.name === MAX_UNROLL_CONSTANT_NAME || node.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+        ) {
+          rule('Any usage of the unroll constants that is not the while-test should become `true`');
+          example('x = $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = true');
+          before(body[i]);
+
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, AST.tru());
+          body.splice(i, 1, finalParent);
+
+          after(body[i]);
+          return true;
+        }
+
         return false;
       }
 
@@ -2894,6 +2909,21 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           }
         }
 
+        node.arguments.forEach((argNode,n) => {
+          if (
+            argNode?.type === 'Identifier' &&
+            (argNode.name === MAX_UNROLL_CONSTANT_NAME || argNode.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+          ) {
+            rule('A call arg that is the special infinite loop `true` value can just be `true`');
+            example('$($LOOP_DONE_UNROLLING_ALWAYS_TRUE)', '$(true);');
+            before(body[i]);
+
+            node.arguments[n] = AST.tru();
+
+            after(body[i]);
+            return true;
+          }
+        });
 
         // Assert normalized form
         ASSERT(
@@ -2989,6 +3019,22 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             }
           }
         }
+
+        node.arguments.forEach((argNode,n) => {
+          if (
+            argNode?.type === 'Identifier' &&
+            (argNode.name === MAX_UNROLL_CONSTANT_NAME || argNode.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+          ) {
+            rule('A call arg that is the special infinite loop `true` value can just be `true`');
+            example('$($LOOP_DONE_UNROLLING_ALWAYS_TRUE)', '$(true);');
+            before(body[i]);
+
+            node.arguments[n] = AST.tru();
+
+            after(body[i]);
+            return true;
+          }
+        });
 
         // Assert normalized form
         ASSERT(!AST.isComplexNode(callee), 'new callee should be simple node now');
@@ -3447,6 +3493,44 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           node.property = AST.identifier(str, true);
           after(node, parentNode);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+
+        if (node.computed && (
+          AST.isTrue(node.property) ||
+          AST.isFalse(node.property) ||
+          AST.isNull(node.property) ||
+          AST.isUndefined(node.property))
+        ) {
+          const v = AST.getPrimitiveValue(node.property);
+          const key = String(v);
+
+          rule('Computed property that true/false/null/undefined should be string key');
+          example('a[true]', 'a.true');
+          before(node, parentNode);
+
+          vlog('- key is "', key, '"');
+
+          node.computed = false;
+          node.property = AST.identifier(key, true);
+
+          after(node, parentNode);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+
+        if (
+          node.computed &&
+          node.property.type === 'Identifier' &&
+          (node.property.name === MAX_UNROLL_CONSTANT_NAME || node.property.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+        ) {
+          rule('Any usage of the unroll constants that is not a while-test should become `true`');
+          example('x = $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = true');
+          before(body[i]);
+
+          node.property = AST.tru();
+
+          after(body[i]);
           return true;
         }
 
@@ -4231,6 +4315,20 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           return true;
         }
 
+        if (
+          lhs.type === 'Identifier' &&
+          (lhs.name === MAX_UNROLL_CONSTANT_NAME || lhs.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+        ) {
+          rule('Any usage of the unroll constants that is not a while-test should become `true`');
+          example('x = $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = true');
+          before(body[i]);
+
+          body[i] = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, AST.tru());
+
+          after(body[i]);
+          return true;
+        }
+
         // No more special cases for the assignment form. Process the rhs as a generic expression.
         // Kind situations:
         // - statement: the assignment was a statement. This recursive call is fine.
@@ -4833,6 +4931,33 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             before(node, body[i]);
             return true;
           }
+        }
+
+        if (
+          node.left.type === 'Identifier' &&
+          (node.left.name === MAX_UNROLL_CONSTANT_NAME || node.left.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+        ) {
+          rule('Any usage of the unroll constants as lhs of binary expression should become `true`');
+          example('x = $LOOP_DONE_UNROLLING_ALWAYS_TRUE + 1;', 'x = true + 1');
+          before(body[i]);
+
+          node.left = AST.tru();
+
+          after(body[i]);
+          return true;
+        }
+        if (
+          node.right.type === 'Identifier' &&
+          (node.right.name === MAX_UNROLL_CONSTANT_NAME || node.right.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+        ) {
+          rule('Any usage of the unroll constants as rhs of binary expression should become `true`');
+          example('x = 1 + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = 1 + true');
+          before(body[i]);
+
+          node.right = AST.tru();
+
+          after(body[i]);
+          return true;
         }
 
         return false;
@@ -5480,6 +5605,20 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           return true;
         }
 
+        if (
+          node.argument.type === 'Identifier' &&
+          (node.argument.name === MAX_UNROLL_CONSTANT_NAME || node.argument.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+        ) {
+          rule('Any usage of the unroll constants as arg of a unary expression should become `true`');
+          example('x = + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = + true');
+          before(body[i]);
+
+          node.argument = AST.tru();
+
+          after(body[i]);
+          return true;
+        }
+
         return false;
       }
 
@@ -5501,6 +5640,20 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           after(newNodes);
           after(finalNode, finalParent);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+
+        if (
+          node.argument.type === 'Identifier' &&
+          (node.argument.name === MAX_UNROLL_CONSTANT_NAME || node.argument.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+        ) {
+          rule('Any usage of the unroll constants as arg of await should become `true`');
+          example('x = + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = + true');
+          before(body[i]);
+
+          node.argument = AST.tru();
+
+          after(body[i]);
           return true;
         }
 
@@ -5972,10 +6125,24 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
         // Since closures may affect binding values, we must simplify all nodes up to the last complex node
         let last = -1;
-        node.elements.forEach((enode, i) => {
+        node.elements.forEach((enode, n) => {
           if (enode) {
             if (enode.type === 'SpreadElement' ? AST.isComplexNode(enode.argument) : AST.isComplexNode(enode)) {
-              last = i;
+              last = n;
+            }
+
+            if (
+              enode.type === 'Identifier' &&
+              (enode.name === MAX_UNROLL_CONSTANT_NAME || enode.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+            ) {
+              rule('Any usage of the unroll constants as array literal should become `true`');
+              example('x = + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = + true');
+              before(body[i]);
+
+              node.elements[n] = AST.tru();
+
+              after(body[i]);
+              return true;
             }
           }
         });
@@ -6124,6 +6291,37 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                   known.add(pv);
                 }
               }
+            }
+
+            if (
+              pnode.computed &&
+              pnode.key.type === 'Identifier' &&
+              (pnode.key.name === MAX_UNROLL_CONSTANT_NAME || pnode.key.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+            ) {
+              rule('Any usage of the unroll constants as obj literal property value should become `true`');
+              example('x = + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = + true');
+              before(body[i]);
+
+              pnode.key = AST.tru();
+              // shorthand?
+
+              after(body[i]);
+              return true;
+            }
+
+            if (
+              pnode.value.type === 'Identifier' &&
+              (pnode.value.name === MAX_UNROLL_CONSTANT_NAME || pnode.value.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+            ) {
+              rule('Any usage of the unroll constants as obj literal property value should become `true`');
+              example('x = + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = + true');
+              before(body[i]);
+
+              pnode.value = AST.tru();
+              // shorthand?
+
+              after(body[i]);
+              return true;
             }
           }
         }
@@ -7203,7 +7401,10 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       }
     }
 
-    if (node.test.type === 'Identifier' && (node.test.name === MAX_UNROLL_CONSTANT_NAME || node.test.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))) {
+    if (
+      node.test.type === 'Identifier' &&
+      (node.test.name === MAX_UNROLL_CONSTANT_NAME || node.test.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+    ) {
       rule('The if test that is the special infinite loop `true` value can just be `true`');
       example('if ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) f();', 'if (true) f();');
       before(node);
@@ -8247,6 +8448,20 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       return true;
     }
 
+    if (
+      node.argument.type === 'Identifier' &&
+      (node.argument.name === MAX_UNROLL_CONSTANT_NAME || node.argument.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+    ) {
+      rule('Any usage of the unroll constants as return arg should become `true`');
+      example('return $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'return true');
+      before(body[i]);
+
+      node.argument = AST.tru();
+
+      after(body[i]);
+      return true;
+    }
+
     vlog(BLUE + 'Marking parent (' + parentNode.type + ') as returning early' + RESET);
     parentNode.$p.returnBreakThrow = 'return';
     if (body.length > i + 1) {
@@ -8292,6 +8507,20 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       if (dce(body, i, 'after throw')) {
         return true;
       }
+    }
+
+    if (
+      node.argument.type === 'Identifier' &&
+      (node.argument.name === MAX_UNROLL_CONSTANT_NAME || node.argument.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+    ) {
+      rule('Any usage of the unroll constants as throw arg should become `true`');
+      example('throw $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'throw true');
+      before(body[i]);
+
+      node.argument = AST.tru();
+
+      after(body[i]);
+      return true;
     }
 
     return false;
@@ -8675,6 +8904,16 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     ) {
       // false: returns true for simple unary as well
       vlog('- init is complex, transforming expression');
+      if (transformExpression('var', dnode.init, body, i, node, dnode.id, node.kind)) {
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        return true;
+      }
+    }
+
+    if (
+      dnode.init.type === 'Identifier' &&
+      (dnode.init.name === MAX_UNROLL_CONSTANT_NAME || dnode.init.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+    ) {
       if (transformExpression('var', dnode.init, body, i, node, dnode.id, node.kind)) {
         assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;

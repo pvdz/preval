@@ -69,19 +69,25 @@ f();
 
 
 `````js filename=intro
-$inlinedFunction: {
-  while (true) {
-    if (x) {
-      $(1);
-      if ($) {
-        $(2);
+if (x) {
+  $(1);
+  if ($) {
+    $(2);
+    while ($LOOP_UNROLL_10) {
+      if (x) {
+        $(1);
+        if ($) {
+          $(2);
+        } else {
+          break;
+        }
       } else {
-        break $inlinedFunction;
+        break;
       }
-    } else {
-      break;
     }
+  } else {
   }
+} else {
 }
 `````
 
@@ -90,19 +96,23 @@ $inlinedFunction: {
 With rename=true
 
 `````js filename=intro
-$inlinedFunction: {
-  while (true) {
-    if (x) {
-      $( 1 );
-      if ($) {
-        $( 2 );
+if (x) {
+  $( 1 );
+  if ($) {
+    $( 2 );
+    while ($LOOP_UNROLL_10) {
+      if (x) {
+        $( 1 );
+        if ($) {
+          $( 2 );
+        }
+        else {
+          break;
+        }
       }
       else {
-        break $inlinedFunction;
+        break;
       }
-    }
-    else {
-      break;
     }
   }
 }

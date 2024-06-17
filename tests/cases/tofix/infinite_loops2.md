@@ -110,13 +110,13 @@ $(x);
 `````js filename=intro
 let x = 1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  nestedLoop: {
     if ($) {
       $(x);
     } else {
       $(x);
       x = 2;
-      break;
+      break nestedLoop;
     }
   }
 }
@@ -129,13 +129,10 @@ $(x);
 `````js filename=intro
 let x = 1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    $(x);
-    if ($) {
-    } else {
-      x = 2;
-      break;
-    }
+  $(x);
+  if ($) {
+  } else {
+    x = 2;
   }
 }
 throw `[preval] unreachable; infinite loop`;
@@ -148,15 +145,12 @@ With rename=true
 `````js filename=intro
 let a = 1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    $( a );
-    if ($) {
+  $( a );
+  if ($) {
 
-    }
-    else {
-      a = 2;
-      break;
-    }
+  }
+  else {
+    a = 2;
   }
 }
 throw "[preval] unreachable; infinite loop";

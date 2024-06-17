@@ -555,20 +555,6 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
             }
           }
 
-          const labelStatementNode = labelStack[i];
-          const nearestLoopNode = loopStack[loopStack.length - 1];
-          // The label is redundant if the target label is the direct (with block) parent of a loop
-          // because even if it breaks without a label then code flow would still continue after the label
-          // Note: this is going to require the label to have a Block child. It will, eventually.
-          if (
-            nearestLoopNode &&
-            labelStatementNode.body.type === 'BlockStatement' &&
-            labelStatementNode.body.body[labelStatementNode.body.body.length - 1] === nearestLoopNode
-          ) {
-            node.$p.removeBreakLabel = true;
-          }
-
-
           const parentNode = path.nodes[path.nodes.length - 2];
           const parentProp = path.props[path.props.length - 1];
           const parentIndex = path.indexes[path.indexes.length - 1];

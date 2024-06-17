@@ -49,23 +49,21 @@ exit: while (x) {
 
 `````js filename=intro
 let x = $(2);
-exit: {
-  while (true) {
-    if (x) {
-      $(1);
-      const tmpIfTest = $(1);
-      if (tmpIfTest) {
-        x = $(3);
-      } else {
-      }
-      if (x) {
-        break exit;
-      } else {
-        x = $(4);
-      }
+while (true) {
+  if (x) {
+    $(1);
+    const tmpIfTest = $(1);
+    if (tmpIfTest) {
+      x = $(3);
     } else {
-      break;
     }
+    if (x) {
+      break;
+    } else {
+      x = $(4);
+    }
+  } else {
+    break;
   }
 }
 `````
@@ -75,24 +73,35 @@ exit: {
 
 `````js filename=intro
 let x = $(2);
-exit: {
-  while (true) {
-    if (x) {
-      $(1);
-      const tmpIfTest = $(1);
-      if (tmpIfTest) {
-        x = $(3);
+if (x) {
+  $(1);
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    x = $(3);
+  } else {
+  }
+  if (x) {
+  } else {
+    let tmpClusterSSA_x = $(4);
+    while ($LOOP_UNROLL_10) {
+      if (tmpClusterSSA_x) {
+        $(1);
+        const tmpIfTest$1 = $(1);
+        if (tmpIfTest$1) {
+          tmpClusterSSA_x = $(3);
+        } else {
+        }
+        if (tmpClusterSSA_x) {
+          break;
+        } else {
+          tmpClusterSSA_x = $(4);
+        }
       } else {
+        break;
       }
-      if (x) {
-        break exit;
-      } else {
-        x = $(4);
-      }
-    } else {
-      break;
     }
   }
+} else {
 }
 `````
 
@@ -102,23 +111,34 @@ With rename=true
 
 `````js filename=intro
 let a = $( 2 );
-exit: {
-  while (true) {
-    if (a) {
-      $( 1 );
-      const b = $( 1 );
-      if (b) {
-        a = $( 3 );
-      }
-      if (a) {
-        break exit;
+if (a) {
+  $( 1 );
+  const b = $( 1 );
+  if (b) {
+    a = $( 3 );
+  }
+  if (a) {
+
+  }
+  else {
+    let c = $( 4 );
+    while ($LOOP_UNROLL_10) {
+      if (c) {
+        $( 1 );
+        const d = $( 1 );
+        if (d) {
+          c = $( 3 );
+        }
+        if (c) {
+          break;
+        }
+        else {
+          c = $( 4 );
+        }
       }
       else {
-        a = $( 4 );
+        break;
       }
-    }
-    else {
-      break;
     }
   }
 }

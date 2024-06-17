@@ -10,6 +10,8 @@ We should be able to detect dead code like this.
 When no code path can reach some statement it should be considered dead.
 That's currently not the case.
 
+Also, the loop-label-loop-breaktolabel pattern can be simplified I think? TBD
+
 ## Input
 
 `````js filename=intro

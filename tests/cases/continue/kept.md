@@ -176,25 +176,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     }
   }
 }
-exit: {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    again: {
-      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-        const tmpIfTest$11 = $();
-        if (tmpIfTest$11) {
-          const tmpIfTest$13 = $();
-          if (tmpIfTest$13) {
-            break again;
-          } else {
-          }
-        } else {
-        }
-        const tmpIfTest$15 = $();
-        if (tmpIfTest$15) {
-          break exit;
-        } else {
-        }
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  nestedLoop: {
+    const tmpIfTest$11 = $();
+    if (tmpIfTest$11) {
+      const tmpIfTest$13 = $();
+      if (tmpIfTest$13) {
+        break nestedLoop;
+      } else {
       }
+    } else {
+    }
+    const tmpIfTest$15 = $();
+    if (tmpIfTest$15) {
+      break;
+    } else {
     }
   }
 }
@@ -264,23 +260,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     }
   }
 }
-exit: {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      const tmpIfTest$11 = $();
-      if (tmpIfTest$11) {
-        const tmpIfTest$13 = $();
-        if (tmpIfTest$13) {
-          break;
-        } else {
-        }
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  nestedLoop: {
+    const tmpIfTest$11 = $();
+    if (tmpIfTest$11) {
+      const tmpIfTest$13 = $();
+      if (tmpIfTest$13) {
+        break nestedLoop;
       } else {
       }
-      const tmpIfTest$15 = $();
-      if (tmpIfTest$15) {
-        break exit;
-      } else {
-      }
+    } else {
+    }
+    const tmpIfTest$15 = $();
+    if (tmpIfTest$15) {
+      break;
+    } else {
     }
   }
 }
@@ -341,20 +335,18 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     }
   }
 }
-exit: {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      const h = $();
-      if (h) {
-        const i = $();
-        if (i) {
-          break;
-        }
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  nestedLoop:   {
+    const h = $();
+    if (h) {
+      const i = $();
+      if (i) {
+        break nestedLoop;
       }
-      const j = $();
-      if (j) {
-        break exit;
-      }
+    }
+    const j = $();
+    if (j) {
+      break;
     }
   }
 }

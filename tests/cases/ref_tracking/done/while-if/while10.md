@@ -152,13 +152,13 @@ $(`end`, x);
 let x = 1;
 if ($) {
   while (true) {
-    while (true) {
+    nestedLoop: {
       if ($) {
         $(x);
       } else {
         $(x);
         x = 2;
-        break;
+        break nestedLoop;
       }
     }
   }
@@ -178,14 +178,6 @@ if ($) {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $(x);
     if ($) {
-      while ($LOOP_UNROLL_10) {
-        $(x);
-        if ($) {
-        } else {
-          x = 2;
-          break;
-        }
-      }
     } else {
       x = 2;
     }
@@ -207,16 +199,7 @@ if ($) {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $( a );
     if ($) {
-      while ($LOOP_UNROLL_10) {
-        $( a );
-        if ($) {
 
-        }
-        else {
-          a = 2;
-          break;
-        }
-      }
     }
     else {
       a = 2;

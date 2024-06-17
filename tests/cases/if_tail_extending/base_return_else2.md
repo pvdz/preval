@@ -149,18 +149,16 @@ if (x) {
   $(1);
   if ($) {
     $(2);
-    $inlinedFunction: {
-      while ($LOOP_UNROLL_10) {
-        if (x) {
-          $(1);
-          if ($) {
-            $(2);
-          } else {
-            break $inlinedFunction;
-          }
+    while ($LOOP_UNROLL_10) {
+      if (x) {
+        $(1);
+        if ($) {
+          $(2);
         } else {
           break;
         }
+      } else {
+        break;
       }
     }
   } else {
@@ -178,20 +176,18 @@ if (x) {
   $( 1 );
   if ($) {
     $( 2 );
-    $inlinedFunction:     {
-      while ($LOOP_UNROLL_10) {
-        if (x) {
-          $( 1 );
-          if ($) {
-            $( 2 );
-          }
-          else {
-            break $inlinedFunction;
-          }
+    while ($LOOP_UNROLL_10) {
+      if (x) {
+        $( 1 );
+        if ($) {
+          $( 2 );
         }
         else {
           break;
         }
+      }
+      else {
+        break;
       }
     }
   }

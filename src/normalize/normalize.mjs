@@ -484,7 +484,9 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
   const ast = fdata.tenkoOutput.ast;
   const funcStack = []; // [1] is always global (.ast)
   const thisStack = []; // Only for function expressions (no arrows or global, decls are eliminated)
-  const ifelseStack = [ast];
+  const ifelseStack = [ast]; // TODO: misnomer but I think we can delete this entirely...
+  const labelStack = [];
+  const loopStack = [null]; // Note: null indicates function boundary. Contains for-in, for-of, while, or null nodes.
   let inGlobal = true; // While walking, are we currently in global space or inside a function
 
   group('\n\n\n##################################\n## phaseNormalize  ::  ' + fname + '\n##################################\n\n\n');
@@ -999,7 +1001,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     if (parent.type === 'BlockStatement' && !node.$p.hasFuncDecl) {
       rule('Nested blocks should be smooshed');
       example('{ a(); { b(); } c(); }', '{ a(); b(); c(); }');
-      before(node, parent);
+      before(parent);
 
       body.splice(i, 1, ...node.body);
 
@@ -1062,17 +1064,34 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         return true;
       }
 
-      if (node.$p.removeBreakLabel) {
-        // Conditions have been verified in the prepare step.
-        // (I hope I'm not wrong about this one. It kind of feels like it's an unsafe transform but I can't think of an example)
-        rule('A labeled break inside a loop when the loop is the last element of the child of the label block, does not need the label');
+      // Find the parent label (syntactically required to exist)
+      let index = labelStack.length - 1;
+      while (index >= 0) {
+        if (labelStack[index].label.name === node.label.name) {
+          break;
+        }
+        index -= 1;
+        ASSERT(index >= 0, 'must find the label');
+      }
+
+      const labelStmt = labelStack[index];
+      // Now verify that the last statmenet of the loop body is a while
+      // Then verify that this while is the nearest loop for this break
+      // In that case we can go ahead with the next rule
+
+      if (
+        labelStmt.body.body.length &&
+        labelStmt.body.body[labelStmt.body.body.length - 1].type === 'WhileStatement' &&
+        labelStmt.body.body[labelStmt.body.body.length - 1] === loopStack[loopStack.length - 1]
+      ) {
+        rule('A labeled break inside a loop when the loop is the last element of the child of that label block, does not need the label');
         example('A: { while (true) break A; }', 'A: { while (true) break; }');
-        before(node, parent);
+        before(node, labelStatementParentNode);
 
         removeLabelReference(fdata, node.label);
         node.label = null;
 
-        after(node, parent);
+        after(node, labelStatementParentNode);
         return true;
       }
 
@@ -7174,7 +7193,9 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
     ASSERT(node.body.type === 'BlockStatement');
     ifelseStack.push(node);
+    loopStack.push(node);
     transformBlock(node.body, undefined, -1, node, false);
+    loopStack.pop();
     ifelseStack.pop();
 
     vlog(
@@ -7197,7 +7218,9 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     // Note: if this transform wants to mutate the parent body then the object handler method should be revisited
     const wasGlobal = inGlobal;
     inGlobal = false;
+    loopStack.push(null); // Mark function boundary
     const r = _transformFunctionExpression(wrapKind, node, body, i, parentNode);
+    loopStack.pop();
     inGlobal = wasGlobal;
     return r;
   }
@@ -8242,7 +8265,9 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     vlog('label has block, noop');
     ASSERT(node.body.type === 'BlockStatement');
     ifelseStack.push(node);
+    labelStack.push(node);
     const anyChange = transformBlock(node.body, undefined, -1, node, false, node);
+    labelStack.pop(node);
     ifelseStack.pop();
     vlog('Changes?', anyChange);
 
@@ -8976,7 +9001,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
     if (
       !AST.isTrue(node.test) &&
-      !(node.test.type === 'Identifier' && node.test.name.startsWith('$LOOP_')) // TODO: what happened to the UNROLL_PREFIX UNROLL_MAX constants etc?
+      !(node.test.type === 'Identifier' && (node.test.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX) || node.test.name === MAX_UNROLL_CONSTANT_NAME))
     ) {
       // We do this because it makes all reads that relate to the loop be inside the block.
       // There are heuristics that want to know whether a binding is used inside a loop and if
@@ -9015,7 +9040,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     //  const
     //}
 
-    // If a while body contains a `break` statement then the while can't loop. Note that we eliminated `continue`.
+    // If a while body doesn't contain a `break` statement then the while can't loop. Note that we eliminated `continue`.
     if (node.body.type === 'BlockStatement' && node.body.body.some(node => node.type === 'BreakStatement')) {
       rule('If a `while` body contains `break` statement in the root then it cannot loop');
       example('while(true) { f(); break; }', '{ f(); }');
@@ -9080,7 +9105,9 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
     ASSERT(node.body.type === 'BlockStatement');
     ifelseStack.push(node);
+    loopStack.push(node);
     transformBlock(node.body, undefined, -1, node, false);
+    loopStack.pop();
     ifelseStack.pop();
 
     // Undo some of the stuffs
@@ -9314,6 +9341,148 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         body[[i]] = AST.emptyStatement();
 
         after(body[[i]]);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        return true;
+      }
+
+      if (whileBody.length === 1 && whileBody[0].type === 'WhileStatement') {
+        // This is `while (true) { while (true) ... }`. This makes unlabeled breaks inside the loop effectively a continue.
+        // We can't just eliminate the outer while, but we can do this transform with label.
+        // The idea being that labels are slightly easier to reason about (spaghetti code notwithstanding) than loops.
+
+        rule('Directly nested while loops can be collapsed');
+        example('while (true) while (true) { f(); break; }', 'while (true) { A: { f(); break A; } }');
+        before(body[i]);
+
+        const while2 = whileBody[0];
+
+        // Find all unlabeled breaks and make them break to this label. If there aren't any unlabeled breaks then skip the label entirely.
+        const rootNode = while2;
+        /** @var {Array<{node, block, index}>} */
+        const breaks = [];
+        function _walker(node, before, nodeType, path) {
+          ASSERT(node, 'node should be truthy', node);
+          ASSERT(nodeType === node.type);
+          if (!before) return;
+
+          switch (nodeType) {
+            case 'WhileStatement': {
+              if (node === rootNode) break; // Ignore
+              return true; // Do not visit
+            }
+            case 'ForStatement':
+            case 'ForInStatement':
+            case 'ForOfStatement':
+            case 'FunctionExpression':
+            case 'ArrowFunctionExpression':
+            {
+              return true; // Do not traverse
+            }
+
+            case 'BreakStatement': {
+              if (node.label) {
+                // Ignore
+              } else {
+                const parentNode = path.nodes[path.nodes.length - 2];
+                const parentIndex = path.indexes[path.indexes.length - 1];
+                breaks.push({ node, block: parentNode.body, index: parentIndex });
+              }
+              break;
+            }
+          } // switch(key)
+        } // /walker
+        walk(_walker, rootNode, 'body');
+
+        if (breaks.length) {
+          vlog('Found unlabeled breaks. Compiling a fresh label');
+          const newLabelStatement = createFreshLabelStatement('nestedLoop', fdata, while2.body);
+          breaks.forEach((obj) => {
+            ASSERT(typeof obj === 'object' && obj && obj.node && obj.block && obj.index >= 0, 'fail?', obj);
+            const {node, block, index} = obj;
+            ASSERT(!node.label, 'you _are_ unlabeled, no?', obj);
+            node.label = AST.identifier(newLabelStatement.label.name);
+            addLabelReference(fdata, node.label, block, index);
+          });
+          while2.body = newLabelStatement;
+        } else {
+          vlog('Did not find unlabeled breaks. Just eliminating the outer loop');
+        }
+        body[i] = while2;
+
+        after(body[i]);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        return true;
+      }
+
+      if (
+        whileBody.length === 1 &&
+        whileBody[0].type === 'LabeledStatement' &&
+        whileBody[0].body.body.length === 1 &&
+        whileBody[0].body.body[0].type === 'WhileStatement'
+      ) {
+        // This is `while (true) { A: { while (true) { .. } } }`
+        // It's another form of nested loop that we can hopefully collapse
+        // We do also need to replace regular breaks and make them target this label to maintain semantics
+
+        rule('A while-label-while directly nested can collapse');
+        example('while (true) { A: { while (true) { f(); break A; } } }', 'while (true) A: { f(); break A; }');
+        before(body[i]);
+
+        const labelStmt = whileBody[0];
+        const while2 = labelStmt.body.body[0];
+        labelStmt.body = while2.body;
+
+        // Find all unlabeled breaks and make them break to this label. If there aren't any unlabeled breaks then skip the label entirely.
+        const rootNode = while2;
+        /** @var {Array<{node, block, index}>} */
+        const breaks = [];
+        function _walker(node, before, nodeType, path) {
+          ASSERT(node, 'node should be truthy', node);
+          ASSERT(nodeType === node.type);
+          if (!before) return;
+
+          switch (nodeType) {
+            case 'WhileStatement': {
+              if (node === rootNode) break; // Ignore
+              return true; // Do not visit
+            }
+            case 'ForStatement':
+            case 'ForInStatement':
+            case 'ForOfStatement':
+            case 'FunctionExpression':
+            case 'ArrowFunctionExpression':
+            {
+              return true; // Do not traverse
+            }
+
+            case 'BreakStatement': {
+              if (node.label) {
+                // Ignore
+              } else {
+                const parentNode = path.nodes[path.nodes.length - 2];
+                const parentIndex = path.indexes[path.indexes.length - 1];
+                breaks.push({ node, block: parentNode.body, index: parentIndex });
+              }
+              break;
+            }
+          } // switch(key)
+        } // /walker
+        walk(_walker, rootNode, 'body');
+
+        if (breaks.length) {
+          vlog('Found unlabeled breaks. Compiling a fresh label');
+          breaks.forEach((obj) => {
+            ASSERT(typeof obj === 'object' && obj && obj.node && obj.block && obj.index >= 0, 'fail?', obj);
+            const {node, block, index} = obj;
+            ASSERT(!node.label, 'you _are_ unlabeled, no?', obj);
+            node.label = AST.identifier(labelStmt.label.name);
+            addLabelReference(fdata, node.label, block, index);
+          });
+        } else {
+          vlog('Did not find unlabeled breaks. Just eliminating the outer loop');
+        }
+
+        after(body[i]);
         assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }

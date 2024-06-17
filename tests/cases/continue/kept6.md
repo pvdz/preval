@@ -1,60 +1,69 @@
 # Preval test case
 
-# loop_init_redundant.md
+# kept6.md
 
-> Tofix > Loop init redundant
+> Continue > Kept6
 >
-> The init to a should be replaced with undefined
+> Regression
+
+#TODO
 
 ## Input
 
 `````js filename=intro
-const useless = new $(1);
-let a = useless;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(100);
-  const tmpNestedComplexRhs$2 = new $(1);
-  a = tmpNestedComplexRhs$2;
+  again: {
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      const test = $(1);
+      if (test) {
+        break again;
+      } else {}
+    }
+  }
 }
-$(a);
+$(2);
 `````
 
 ## Pre Normal
 
 
 `````js filename=intro
-const useless = new $(1);
-let a = useless;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(100);
-  const tmpNestedComplexRhs$2 = new $(1);
-  a = tmpNestedComplexRhs$2;
+  again: {
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      const test = $(1);
+      if (test) {
+        break again;
+      } else {
+      }
+    }
+  }
 }
-$(a);
+$(2);
 `````
 
 ## Normalized
 
 
 `````js filename=intro
-const useless = new $(1);
-let a = useless;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(100);
-  const tmpNestedComplexRhs$2 = new $(1);
-  a = tmpNestedComplexRhs$2;
+  nestedLoop: {
+    const test = $(1);
+    if (test) {
+      break nestedLoop;
+    } else {
+    }
+  }
 }
-$(a);
+$(2);
 `````
 
 ## Output
 
 
 `````js filename=intro
-new $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(100);
-  new $(1);
+  $(1);
 }
 throw `[preval] unreachable; infinite loop`;
 `````
@@ -64,10 +73,8 @@ throw `[preval] unreachable; infinite loop`;
 With rename=true
 
 `````js filename=intro
-new $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( 100 );
-  new $( 1 );
+  $( 1 );
 }
 throw "[preval] unreachable; infinite loop";
 `````
@@ -80,31 +87,31 @@ None
 
 Should call `$` with:
  - 1: 1
- - 2: 100
+ - 2: 1
  - 3: 1
- - 4: 100
+ - 4: 1
  - 5: 1
- - 6: 100
+ - 6: 1
  - 7: 1
- - 8: 100
+ - 8: 1
  - 9: 1
- - 10: 100
+ - 10: 1
  - 11: 1
- - 12: 100
+ - 12: 1
  - 13: 1
- - 14: 100
+ - 14: 1
  - 15: 1
- - 16: 100
+ - 16: 1
  - 17: 1
- - 18: 100
+ - 18: 1
  - 19: 1
- - 20: 100
+ - 20: 1
  - 21: 1
- - 22: 100
+ - 22: 1
  - 23: 1
- - 24: 100
+ - 24: 1
  - 25: 1
- - 26: 100
+ - 26: 1
  - eval returned: ('<crash[ Loop aborted by Preval test runner (this simply curbs infinite loops in tests) ]>')
 
 Pre normalization calls: Same

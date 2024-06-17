@@ -110,15 +110,13 @@ let f = function () {
   const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$7) {
     $(`one`);
-    oops: {
-      let tmpIfTest$9 = $(1);
-      while (true) {
-        if (tmpIfTest$9) {
-          $(2);
-          break oops;
-        } else {
-          break;
-        }
+    let tmpIfTest$9 = $(1);
+    while (true) {
+      if (tmpIfTest$9) {
+        $(2);
+        break;
+      } else {
+        break;
       }
     }
   } else {

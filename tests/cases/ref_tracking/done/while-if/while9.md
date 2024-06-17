@@ -99,17 +99,17 @@ $(x); // unreachable
 `````filename=intro
 let x___4__ = 1;
 while (true) {
-  /*8*/ while (true) {
-    /*11*/ if ($) {
+  /*8*/ nestedLoop___10__: /*11*/ {
+    if ($) {
       /*14*/ $(x___18__);
     } /*19*/ else {
       $(x___23__);
       x___27__ = 2;
-      break;
+      break nestedLoop___29__;
     }
   }
 }
-$(x___32__);
+$(x___33__);
 `````
 
 Ref tracking result:
@@ -120,4 +120,4 @@ x:
   - r @18      | 4,27
   - r @23      | 4,27
   - w @27      | ########## | 18,23       | 4,27           | 27
-  - r @32      | none (unreachable?)
+  - r @33      | none (unreachable?)

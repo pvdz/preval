@@ -4,7 +4,7 @@
 
 > Labels > Continue > Labeled continue
 >
-> 
+>
 
 ## Input
 
@@ -55,17 +55,15 @@ $(x);
 `````js filename=intro
 let x = $(1);
 while (true) {
-  $continue: {
-    unlabeledBreak: {
+  unlabeledBreak: {
+    $(x);
+    x = $(2);
+    if ($) {
+      break unlabeledBreak;
+    } else {
+      x = $(3);
       $(x);
-      x = $(2);
-      if ($) {
-        break $continue;
-      } else {
-        x = $(3);
-        $(x);
-        break unlabeledBreak;
-      }
+      break unlabeledBreak;
     }
   }
 }

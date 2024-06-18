@@ -8342,6 +8342,50 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       }
     }
 
+    if (node.body.body.length === 1 && node.body.body[0].type === 'LabeledStatement') {
+      rule('A nested label where the parent label has no other children can be merged');
+      example('A: { B: { if (x) break A; else break B; } }', 'AB: { if (x) break AB; else break AB; }');
+      before(body[i]);
+
+      // Fold up and eliminate the outer label, keep the inner label. no need to rename it. that would just be for debugging
+      const exLabelName = node.label.name;
+      const newLabelName = node.body.body[0].label.name;
+
+      body[i] = node.body.body[0]; // Replace label with its child label
+
+      // Find all unlabeled breaks and make them break to this label. If there aren't any unlabeled breaks then skip the label entirely.
+      function _walker(node, before, nodeType, path) {
+        ASSERT(node, 'node should be truthy', node);
+        ASSERT(nodeType === node.type);
+        if (!before) return;
+
+        switch (nodeType) {
+          case 'FunctionExpression':
+          case 'ArrowFunctionExpression':
+          {
+            return true; // Do not traverse
+          }
+
+          case 'BreakStatement': {
+            if (node.label?.name === exLabelName) {
+              // This is a break we need to change
+              removeLabelReference(fdata, node.label);
+              node.label.name = newLabelName;
+              const parentNode = path.nodes[path.nodes.length - 2];
+              const parentIndex = path.indexes[path.indexes.length - 1];
+              addLabelReference(fdata, node.label, parentNode, parentIndex, false);
+            }
+            break;
+          }
+        } // switch(key)
+      } // /walker
+      walk(_walker, node, 'body');
+
+      after(body[i]);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      return true;
+    }
+
     return anyChange;
   }
 

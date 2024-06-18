@@ -6,8 +6,6 @@
 >
 > When the if-test is the arg to Boolean or bang then the value can be predicted
 
-#TODO
-
 ## Input
 
 `````js filename=intro

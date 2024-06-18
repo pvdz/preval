@@ -6,8 +6,6 @@
 >
 > Base case for the special `arguments.length` case
 
-#TODO
-
 ## Input
 
 `````js filename=intro

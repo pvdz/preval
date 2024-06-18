@@ -6,8 +6,6 @@
 >
 > A binding that is otherwise only used in a future function and a nested function of that function
 
-#TODO
-
 ## Input
 
 `````js filename=intro

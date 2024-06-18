@@ -6,8 +6,6 @@
 >
 > Do cases spy
 
-#TODO
-
 ## Input
 
 `````js filename=intro

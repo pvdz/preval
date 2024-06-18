@@ -6,8 +6,6 @@
 >
 > Two ors can be combined
 
-#TODO
-
 ## Input
 
 `````js filename=intro

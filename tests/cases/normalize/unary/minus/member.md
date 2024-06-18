@@ -6,8 +6,6 @@
 >
 > Negative builtins should be statically resolved where possible
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Dynamic property access with ident-like string. This one is not an ident.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

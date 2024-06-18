@@ -6,8 +6,6 @@
 >
 > This should not be hoisted because you can't refer to it anyways
 
-#TODO
-
 ## Input
 
 `````js filename=intro

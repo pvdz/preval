@@ -6,8 +6,6 @@
 >
 > A let that is conditionally initialized and then used in an init can be collapsed
 
-#TODO
-
 ## Input
 
 `````js filename=intro

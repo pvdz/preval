@@ -6,8 +6,6 @@
 >
 > This case has a ref following the decl in the same scope
 
-#TODO
-
 ## Input
 
 `````js filename=intro

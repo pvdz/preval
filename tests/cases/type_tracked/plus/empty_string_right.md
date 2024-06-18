@@ -6,8 +6,6 @@
 >
 > When appending an empty string to a value known to be a string, the operation is essentially a noop and can be dropped.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

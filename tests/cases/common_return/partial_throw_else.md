@@ -6,8 +6,6 @@
 >
 > When a function throws the return value should still be assumed to be whatever is actually returned.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

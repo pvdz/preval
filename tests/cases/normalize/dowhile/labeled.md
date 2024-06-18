@@ -10,8 +10,6 @@ A labeled continue requires the label to be a direct parent of a loop. So the do
 
 That's what this test is for.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

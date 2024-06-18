@@ -6,8 +6,6 @@
 >
 > Negative numbers should be treated as constants as well
 
-#TODO
-
 ## Input
 
 `````js filename=intro

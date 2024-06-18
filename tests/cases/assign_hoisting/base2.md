@@ -6,8 +6,6 @@
 >
 > Trying to move var decls that are functions down to move let decls closer to their real init.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

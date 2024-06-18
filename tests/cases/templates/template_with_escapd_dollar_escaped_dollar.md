@@ -6,8 +6,6 @@
 >
 > Make sure strings that contain `${` are properly converted to templates without breaking them
 
-#TODO
-
 ## Input
 
 `````js filename=intro

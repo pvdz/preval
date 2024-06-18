@@ -8,8 +8,6 @@
 
 More of a concept that should be possible to be folded. This is very close to actual code used in Preval :p
 
-#TODO
-
 ## Input
 
 `````js filename=intro

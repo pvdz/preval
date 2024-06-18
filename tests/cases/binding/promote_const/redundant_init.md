@@ -6,8 +6,6 @@
 >
 > Explicitly initializes a let, only to override it
 
-#TODO
-
 ## Input
 
 `````js filename=intro

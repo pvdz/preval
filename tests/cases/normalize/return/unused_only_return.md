@@ -6,8 +6,6 @@
 >
 > Unused return statements should be eliminated
 
-#TODO
-
 ## Input
 
 `````js filename=intro

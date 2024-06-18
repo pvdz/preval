@@ -6,8 +6,6 @@
 >
 > When back to back ifs test on the same constant, the ifs can be merged safely
 
-#TODO
-
 ## Input
 
 `````js filename=intro

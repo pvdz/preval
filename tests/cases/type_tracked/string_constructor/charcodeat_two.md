@@ -6,8 +6,6 @@
 >
 > Should try to inline the charCodeAt call 
 
-#TODO
-
 ## Input
 
 `````js filename=intro

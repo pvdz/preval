@@ -6,8 +6,6 @@
 >
 > What happens if there are future refs but they are in a sibling branch
 
-#TODO
-
 ## Input
 
 `````js filename=intro

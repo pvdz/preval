@@ -6,8 +6,6 @@
 >
 > The Boolean() constructor on a value we know to be bool is a noop
 
-#TODO
-
 ## Input
 
 `````js filename=intro

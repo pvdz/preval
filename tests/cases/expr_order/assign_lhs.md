@@ -8,8 +8,6 @@
 
 Must take into account that the simple node i will still change value if we move the complex node to appear before it.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

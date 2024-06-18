@@ -6,8 +6,6 @@
 >
 > When unknown values are conditionally known, we can at least inline them in that branch.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

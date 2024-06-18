@@ -12,8 +12,6 @@ Note that technically the code could be optimized because it could realize that 
 
 In fact, if a DCE'd var decl means it must be undefined, then inlining is the perfect solution for them.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

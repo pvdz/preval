@@ -6,8 +6,6 @@
 >
 > Property on undefined should cause the remainder to be DCE
 
-#TODO
-
 ## Input
 
 `````js filename=intro

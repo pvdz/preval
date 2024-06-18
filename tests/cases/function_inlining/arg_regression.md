@@ -6,8 +6,6 @@
 >
 > Chasing monsters
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Assignments of all kinds should be normalized in all circumstances
 
-#TODO
-
 ## Input
 
 `````js filename=intro

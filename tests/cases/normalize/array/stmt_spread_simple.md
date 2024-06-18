@@ -6,8 +6,6 @@
 >
 > Array statements should be eliminated
 
-#TODO
-
 ## Input
 
 `````js filename=intro

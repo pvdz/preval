@@ -6,8 +6,6 @@
 >
 > Negative number should be inlinable
 
-#TODO
-
 ## Input
 
 `````js filename=intro

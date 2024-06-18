@@ -6,8 +6,6 @@
 >
 > A nested loop with an unconditional early return
 
-#TODO
-
 ## Input
 
 `````js filename=intro

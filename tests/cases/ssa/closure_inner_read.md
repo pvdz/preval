@@ -6,8 +6,6 @@
 >
 > Can not SSA because there is a read inside an inner function that should reflect the state of x after the _last_ call to g(), even after any call of g() finishes
 
-#TODO
-
 ## Input
 
 `````js filename=intro

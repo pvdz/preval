@@ -6,8 +6,6 @@
 >
 > Functions should have at most one if-else and abstract others
 
-#TODO
-
 ## Input
 
 `````js filename=intro

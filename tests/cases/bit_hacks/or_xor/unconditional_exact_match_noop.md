@@ -8,8 +8,6 @@
 
 Must find the or-xor pattern before merging ors, I guess. Or handle those smartly.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

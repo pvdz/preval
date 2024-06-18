@@ -6,8 +6,6 @@
 >
 > Early read in loop can skirt TDZ when conditional
 
-#TODO
-
 ## Input
 
 `````js filename=intro

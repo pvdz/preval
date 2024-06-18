@@ -14,8 +14,6 @@ Zooming in on the `x = x + 1` case. This is the double assign case.
 
 This should be the proof of why this is dangerous. The `x + 1` expression could have observable side effects that change x.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

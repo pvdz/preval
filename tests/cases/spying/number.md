@@ -6,8 +6,6 @@
 >
 > Apply Number to a spy
 
-#TODO
-
 ## Input
 
 `````js filename=intro

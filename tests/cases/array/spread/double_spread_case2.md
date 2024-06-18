@@ -10,8 +10,6 @@ A double spread has the danger of the first case messing with indexes for the se
 
 The spreads must be resolved in a first step, back to front, and injections should happen in a second step, also back to front.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

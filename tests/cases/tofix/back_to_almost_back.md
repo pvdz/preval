@@ -6,8 +6,6 @@
 >
 > These are essentially back to back global checks. This can fold up to $(20)
 
-#TODO
-
 ## Input
 
 `````js filename=intro

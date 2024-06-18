@@ -6,8 +6,6 @@
 >
 > Extends should be a simple node
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Eliminate simple tautology
 
-#TODO
-
 ## Input
 
 `````js filename=intro

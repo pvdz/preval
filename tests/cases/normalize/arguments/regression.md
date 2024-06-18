@@ -6,8 +6,6 @@
 >
 > Regression that was leading to a crash due to arguments.length. The outer func was mandatory, as was the param default
 
-#TODO
-
 ## Input
 
 `````js filename=intro

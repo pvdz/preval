@@ -6,8 +6,6 @@
 >
 > Static expressions can be inlined under certain conditions
 
-#TODO
-
 ## Input
 
 `````js filename=intro

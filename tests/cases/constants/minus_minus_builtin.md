@@ -6,8 +6,6 @@
 >
 > Double negative is positive. These should be statically resolved for builtins.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

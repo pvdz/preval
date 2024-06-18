@@ -6,8 +6,6 @@
 >
 > Testing SSA algo which must be aware that updating a binding in a loop may still be read by the next iteration
 
-#TODO
-
 ## Input
 
 `````js filename=intro

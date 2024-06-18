@@ -6,8 +6,6 @@
 >
 > Breaking to labels may be funky for ref tracking
 
-#TODO
-
 ## Input
 
 `````js filename=intro

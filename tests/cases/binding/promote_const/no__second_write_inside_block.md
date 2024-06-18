@@ -12,8 +12,6 @@ All future reads must be on the same block level or nested inside of it for othe
 
 The x should not be made a constant
 
-#TODO
-
 ## Input
 
 `````js filename=intro

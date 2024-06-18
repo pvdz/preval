@@ -6,8 +6,6 @@
 >
 > A function returning the call to another function
 
-#TODO
-
 ## Input
 
 `````js filename=intro

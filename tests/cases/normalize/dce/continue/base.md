@@ -6,8 +6,6 @@
 >
 > Infinite loop just doing continue
 
-#TODO
-
 ## Input
 
 `````js filename=intro

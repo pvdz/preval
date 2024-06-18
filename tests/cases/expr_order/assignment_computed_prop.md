@@ -6,8 +6,6 @@
 >
 > The object is evaluated before the computed property
 
-#TODO
-
 ## Input
 
 `````js filename=intro

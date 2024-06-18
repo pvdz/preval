@@ -6,8 +6,6 @@
 >
 > When setting a binding to a value that we can already infer, we can forgo the assignment
 
-#TODO
-
 ## Input
 
 `````js filename=intro

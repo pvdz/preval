@@ -6,8 +6,6 @@
 >
 > Regex test should be inlined with the builtin symbol
 
-#TODO
-
 ## Input
 
 `````js filename=intro

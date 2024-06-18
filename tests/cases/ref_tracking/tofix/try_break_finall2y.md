@@ -6,8 +6,6 @@
 >
 > a break trapped by a finally still continues to the break target afterwards (the finally does override it if it would)
 
-#TODO
-
 ## Input
 
 `````js filename=intro

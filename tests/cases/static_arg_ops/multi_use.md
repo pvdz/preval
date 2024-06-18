@@ -6,8 +6,6 @@
 >
 > The case where the param is used multiple times
 
-#TODO
-
 ## Input
 
 `````js filename=intro

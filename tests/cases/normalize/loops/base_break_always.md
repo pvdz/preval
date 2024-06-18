@@ -6,8 +6,6 @@
 >
 > A loop with an unconditional early break
 
-#TODO
-
 ## Input
 
 `````js filename=intro

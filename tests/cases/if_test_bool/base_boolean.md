@@ -6,8 +6,6 @@
 >
 > A constant that is tested in an `if` must hold when inverted
 
-#TODO
-
 ## Input
 
 `````js filename=intro

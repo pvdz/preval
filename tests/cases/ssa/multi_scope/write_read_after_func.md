@@ -8,8 +8,6 @@
 
 In this case the let occurs after a func, immediately next to the usage
 
-#TODO
-
 ## Input
 
 `````js filename=intro

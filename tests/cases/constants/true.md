@@ -6,8 +6,6 @@
 >
 > A constant set to true should be eliminated
 
-#TODO
-
 ## Input
 
 `````js filename=intro

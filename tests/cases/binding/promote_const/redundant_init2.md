@@ -6,8 +6,6 @@
 >
 > Trying to figure out why the let x = undefined case is not being eliminated
 
-#TODO
-
 ## Input
 
 `````js filename=intro

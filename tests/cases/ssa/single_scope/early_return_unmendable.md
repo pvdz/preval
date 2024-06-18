@@ -8,8 +8,6 @@
 
 This is "unmendable" because the return structures can't all be given an explicit return
 
-#TODO
-
 ## Input
 
 `````js filename=intro

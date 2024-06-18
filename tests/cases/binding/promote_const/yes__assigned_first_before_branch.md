@@ -10,8 +10,6 @@ The var is first updated before any branching so we should be able to safely det
 
 This is the correct example of a hoisted var that is a constant.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

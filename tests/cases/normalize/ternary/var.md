@@ -6,8 +6,6 @@
 >
 > Example of rewriting a var decl with ternary as init
 
-#TODO
-
 ## Input
 
 `````js filename=intro

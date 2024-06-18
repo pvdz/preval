@@ -10,8 +10,6 @@ This was passing. Failing if x renames to A.
 
 Caused by a regression in let hoisting.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

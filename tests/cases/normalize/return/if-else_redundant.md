@@ -8,8 +8,6 @@
 
 This is regular DCE
 
-#TODO
-
 ## Input
 
 `````js filename=intro

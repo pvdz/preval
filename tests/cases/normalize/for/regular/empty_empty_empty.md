@@ -6,8 +6,6 @@
 >
 > Regular for-loop
 
-#TODO
-
 ## Input
 
 `````js filename=intro

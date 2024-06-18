@@ -6,8 +6,6 @@
 >
 > Class expression as a statement (possible as we can see here, not the same as a decl), should be dropped entirely.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -8,8 +8,6 @@
 
 Regression; x was ending up an implicit global
 
-#TODO
-
 ## Input
 
 `````js filename=intro

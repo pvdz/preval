@@ -6,8 +6,6 @@
 >
 > If we know all the values a binding can have then we can resolve certain ops...
 
-#TODO
-
 ## Input
 
 `````js filename=intro

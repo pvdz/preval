@@ -6,8 +6,6 @@
 >
 > The call should be inlined but the implicit globals should still crash at runtime
 
-#TODO
-
 ## Input
 
 `````js filename=intro

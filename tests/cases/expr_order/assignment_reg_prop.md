@@ -6,8 +6,6 @@
 >
 > Object evals before rhs
 
-#TODO
-
 ## Input
 
 `````js filename=intro

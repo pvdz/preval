@@ -6,8 +6,6 @@
 >
 > Duplicate var statements is legit but we should drop the duplicate version
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -10,8 +10,6 @@ This is "mendable" because the tail could be moved into the `else` block of the 
 
 Of course the algorithm should be able to detect this SSA even without that trick.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

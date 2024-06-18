@@ -9,8 +9,6 @@
 First step: assign `false` instead of the repeat expression
 Second step: eliminate the assignment since we know `x` is already `false` at that point
 
-#TODO
-
 ## Input
 
 `````js filename=intro

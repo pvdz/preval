@@ -6,8 +6,6 @@
 >
 > Block hoisting func decls
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Checking whether both bits are unset
 
-#TODO
-
 ## Input
 
 `````js filename=intro

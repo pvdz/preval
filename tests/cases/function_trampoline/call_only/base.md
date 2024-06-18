@@ -6,8 +6,6 @@
 >
 > Calls to a function that only call another function should immediately call that other function instead 
 
-#TODO
-
 ## Input
 
 `````js filename=intro

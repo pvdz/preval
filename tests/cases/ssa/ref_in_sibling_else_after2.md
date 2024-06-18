@@ -8,8 +8,6 @@
 
 Mirror test for back to back ifs. Feel free to ignore.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

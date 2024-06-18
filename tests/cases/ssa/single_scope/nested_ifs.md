@@ -6,8 +6,6 @@
 >
 > Bindings should find each other across ifs
 
-#TODO
-
 ## Input
 
 `````js filename=intro

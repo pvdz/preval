@@ -6,8 +6,6 @@
 >
 > Trying to punch a hole into the existing algo because I think it's broken
 
-#TODO
-
 ## Input
 
 `````js filename=intro

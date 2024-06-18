@@ -6,8 +6,6 @@
 >
 > Array.isArray does not care about the contents
 
-#TODO
-
 ## Input
 
 `````js filename=intro

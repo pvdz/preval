@@ -6,8 +6,6 @@
 >
 > If we know the type of a value without knowing the actual value, we can still resolve `typeof`
 
-#TODO
-
 ## Input
 
 `````js filename=intro

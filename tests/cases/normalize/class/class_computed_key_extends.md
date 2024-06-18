@@ -6,8 +6,6 @@
 >
 > Make sure the transform of computed key does not change something that can change the super class value
 
-#TODO
-
 ## Input
 
 `````js filename=intro

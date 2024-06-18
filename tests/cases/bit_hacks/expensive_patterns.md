@@ -42,8 +42,6 @@ if (bit) {
 
 But at the time of writing none of that was happening.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

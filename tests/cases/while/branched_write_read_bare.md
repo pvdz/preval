@@ -8,8 +8,6 @@
 
 (Technically this is an infinite loop that writes once since after that it only goes to the read branch)
 
-#TODO
-
 ## Input
 
 `````js filename=intro

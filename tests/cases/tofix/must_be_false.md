@@ -9,8 +9,6 @@
 > This needs ref tracking
 > From tests/cases/normalize/dce/break/decl_after.md
 
-#TODO
-
 ## Input
 
 `````js filename=intro

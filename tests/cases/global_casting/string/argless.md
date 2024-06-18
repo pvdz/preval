@@ -6,8 +6,6 @@
 >
 > Calling global constructors to cast when the call is redundant should be eliminated
 
-#TODO
-
 ## Input
 
 `````js filename=intro

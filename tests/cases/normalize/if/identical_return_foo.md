@@ -8,8 +8,6 @@
 
 This is an artifact that can happen during normalization
 
-#TODO
-
 ## Input
 
 `````js filename=intro

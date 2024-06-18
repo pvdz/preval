@@ -6,8 +6,6 @@
 >
 > We transform do-while to regular while
 
-#TODO
-
 ## Input
 
 `````js filename=intro

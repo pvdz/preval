@@ -18,8 +18,6 @@
 >   thing because if it throws it'll be squashed and if it doesn't throw
 >   then it still doesn't do antyhing.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

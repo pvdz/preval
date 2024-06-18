@@ -6,8 +6,6 @@
 >
 > Double negative is positive. On a number that should have no observable side effects.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

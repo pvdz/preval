@@ -8,8 +8,6 @@
 
 The algorithm was indiscriminately finding all references and bindings inside a function and cross referencing them. But it should be more aware of lexical binding boundaries inside the function as well.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

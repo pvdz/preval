@@ -6,8 +6,6 @@
 >
 > The init to a should be replaced with undefined
 
-#TODO
-
 ## Input
 
 `````js filename=intro

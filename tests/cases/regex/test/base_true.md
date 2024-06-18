@@ -6,8 +6,6 @@
 >
 > We can resolve regex.test if we know the regex and the arg
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > If we can resolve that `===` at call time and pass in a boolean for it ... then we can eliminate this whole function
 
-#TODO
-
 ## Input
 
 `````js filename=intro

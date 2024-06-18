@@ -6,8 +6,6 @@
 >
 > We shouldn't transform member expressions on group ending in a literal
 
-#TODO
-
 ## Input
 
 `````js filename=intro

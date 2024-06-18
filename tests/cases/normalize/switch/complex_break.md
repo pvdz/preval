@@ -6,8 +6,6 @@
 >
 > Breaks don't need to be toplevel to a case...
 
-#TODO
-
 ## Input
 
 `````js filename=intro

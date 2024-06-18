@@ -6,8 +6,6 @@
 >
 > The result of an AND as if test tells something about the value in each branch, even if we don't know the full value.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

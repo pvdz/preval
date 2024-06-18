@@ -8,8 +8,6 @@
 
 We won't be able to inline it.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

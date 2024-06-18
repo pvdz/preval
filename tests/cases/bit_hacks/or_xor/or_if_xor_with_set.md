@@ -6,8 +6,6 @@
 >
 > Checking whether a bit is set and then xorring it if that's the case is the same as anding with ~-1 without that one bit set at once
 
-#TODO
-
 ## Input
 
 `````js filename=intro

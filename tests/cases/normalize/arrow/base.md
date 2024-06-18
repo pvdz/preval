@@ -6,8 +6,6 @@
 >
 > Simple arrow case
 
-#TODO
-
 ## Input
 
 `````js filename=intro

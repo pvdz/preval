@@ -10,8 +10,6 @@ In this case the assignment used a param.
 
 The call has a spread after the param index which is fine.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

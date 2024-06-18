@@ -8,8 +8,6 @@
 
 In this case the array escapes so we bail.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

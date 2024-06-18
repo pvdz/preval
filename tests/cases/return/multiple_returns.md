@@ -6,8 +6,6 @@
 >
 > After normalization it's no longer implicit
 
-#TODO
-
 ## Input
 
 `````js filename=intro

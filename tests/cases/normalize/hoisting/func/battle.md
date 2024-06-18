@@ -6,8 +6,6 @@
 >
 > Who wins?
 
-#TODO
-
 ## Input
 
 `````js filename=intro

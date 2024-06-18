@@ -6,8 +6,6 @@
 >
 > Any statements that follow a return in the same parent should be eliminated.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

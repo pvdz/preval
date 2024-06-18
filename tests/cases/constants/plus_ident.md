@@ -6,8 +6,6 @@
 >
 > Positive idents that are not builtins should be treated as normal
 
-#TODO
-
 ## Input
 
 `````js filename=intro

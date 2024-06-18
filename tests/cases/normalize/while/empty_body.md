@@ -6,8 +6,6 @@
 >
 > A loop cannot be eliminated but can be normalized
 
-#TODO
-
 ## Input
 
 `````js filename=intro

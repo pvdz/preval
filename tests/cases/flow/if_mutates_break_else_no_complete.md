@@ -6,8 +6,6 @@
 >
 > The mechanism has to consider that the if didn't complete in both branches, but may only have mutated the binding after the label node (and of course inside the branch that breaks until it breaks). Point is that it shouldn't skip the `else` branch.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

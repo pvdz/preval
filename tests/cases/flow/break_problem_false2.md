@@ -6,8 +6,6 @@
 >
 > Must track all labeled breaks when checking if a binding is mutated
 
-#TODO
-
 ## Input
 
 `````js filename=intro

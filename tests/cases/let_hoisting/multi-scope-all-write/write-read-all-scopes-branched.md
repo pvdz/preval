@@ -6,8 +6,6 @@
 >
 > What if the first ref of a scope has a write but not all reads in that scope can reach it?
 
-#TODO
-
 ## Input
 
 `````js filename=intro

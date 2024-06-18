@@ -6,8 +6,6 @@
 >
 > Normalizing call args when they are not identifier or literal
 
-#TODO
-
 ## Input
 
 `````js filename=intro

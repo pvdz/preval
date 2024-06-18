@@ -6,8 +6,6 @@
 >
 > Getting the constructor from a known function, whatever it is, should yield `Function`
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > This is an example of a double bang that can be moved into a sequence
 
-#TODO
-
 ## Input
 
 `````js filename=intro

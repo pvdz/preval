@@ -10,8 +10,6 @@ The code frames should have a filename that matches the exact string that is use
 
 Also, defaults should work :p
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > While with just a break should be eliminated
 
-#TODO
-
 ## Input
 
 `````js filename=intro

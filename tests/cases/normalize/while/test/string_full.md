@@ -6,8 +6,6 @@
 >
 > Certain test values can be statically determined to be true or false
 
-#TODO
-
 ## Input
 
 `````js filename=intro

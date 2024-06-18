@@ -8,8 +8,6 @@
 
 Like coercion but the type is already there.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

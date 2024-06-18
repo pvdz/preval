@@ -6,8 +6,6 @@
 >
 > Conditional sequence with property
 
-#TODO
-
 ## Input
 
 `````js filename=intro

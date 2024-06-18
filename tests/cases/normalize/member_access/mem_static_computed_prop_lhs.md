@@ -6,8 +6,6 @@
 >
 > assigning to member expression where the lhs is a computed member expression with a static property
 
-#TODO
-
 ## Input
 
 `````js filename=intro

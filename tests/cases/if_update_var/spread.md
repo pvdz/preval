@@ -6,8 +6,6 @@
 >
 > If a variable is conditionally set and then used in a binding after the `if`/`else`, we may be able to hoist the binding inside those branches.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

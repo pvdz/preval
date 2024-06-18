@@ -6,8 +6,6 @@
 >
 > Calling a function with a literal should clone the function and try to inline the arg with that literal.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

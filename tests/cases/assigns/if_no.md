@@ -6,8 +6,6 @@
 >
 > One branch write
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > If a function returns a closure that is accessible from the caller, the closure should be outlined...
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > bloop
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Arrays without side-effects as statement can be eliminated
 
-#TODO
-
 ## Input
 
 `````js filename=intro

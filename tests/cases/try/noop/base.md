@@ -6,8 +6,6 @@
 >
 > Certain statements probably never benefit from running inside a try
 
-#TODO
-
 ## Input
 
 `````js filename=intro

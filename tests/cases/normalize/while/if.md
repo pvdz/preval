@@ -6,8 +6,6 @@
 >
 > Loop with complex body
 
-#TODO
-
 ## Input
 
 `````js filename=intro

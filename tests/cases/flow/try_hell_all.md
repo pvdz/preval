@@ -6,8 +6,6 @@
 >
 > This is why we don't properly analyze the try/catch/finally for mutation state. And this is just the tip of the ice berg. No thank you.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

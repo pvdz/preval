@@ -6,8 +6,6 @@
 >
 > If one branch returns early the remainder of the parent block should be inlined after the other branch.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

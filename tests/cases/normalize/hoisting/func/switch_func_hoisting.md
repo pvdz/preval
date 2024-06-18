@@ -6,8 +6,6 @@
 >
 > Func decl inside a switch block
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Can SSA because all reads in g happen after an unconditional assign
 
-#TODO
-
 ## Input
 
 `````js filename=intro

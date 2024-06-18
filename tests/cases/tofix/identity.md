@@ -9,8 +9,6 @@
 > The <= 0 check can also be inferred to be true.
 > What about NaN tho? (And document.all kinds of cases)
 
-#TODO
-
 ## Input
 
 `````js filename=intro

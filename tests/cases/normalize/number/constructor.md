@@ -6,8 +6,6 @@
 >
 > The .constructor property should resolve to Number
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Optional chaining fun
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Logical ops need to be normalized
 
-#TODO
-
 ## Input
 
 `````js filename=intro

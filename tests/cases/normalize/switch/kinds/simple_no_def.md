@@ -26,8 +26,6 @@ if (test === 0) {
 }
 ```
 
-#TODO
-
 ## Input
 
 `````js filename=intro

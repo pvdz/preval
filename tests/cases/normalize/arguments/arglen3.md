@@ -6,8 +6,6 @@
 >
 > This was causing a problem when arguments was passed on in a call.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

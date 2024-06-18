@@ -6,8 +6,6 @@
 >
 > Calling Number on arrays triggers coercion
 
-#TODO
-
 ## Input
 
 `````js filename=intro

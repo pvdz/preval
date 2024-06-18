@@ -6,8 +6,6 @@
 >
 > The and is subsumed by the eq
 
-#TODO
-
 ## Input
 
 `````js filename=intro

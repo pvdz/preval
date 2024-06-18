@@ -8,8 +8,6 @@
 
 This variant sets the closure to an unpredictable value to prevent optimization :p
 
-#TODO
-
 ## Input
 
 `````js filename=intro

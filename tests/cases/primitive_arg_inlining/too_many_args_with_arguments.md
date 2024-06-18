@@ -8,8 +8,6 @@
 
 In this case the excessive args can not be dropped because they might be reflected upon through `arguments`.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

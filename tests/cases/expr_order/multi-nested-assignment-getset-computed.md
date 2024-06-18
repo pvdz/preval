@@ -10,8 +10,6 @@ This test needs to compare the call args of $ to confirm the same input/output.
 
 It will test the order of calling an object, property, and rhs when assigning a complex value to a complex member expression with computed property.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

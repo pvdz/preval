@@ -35,8 +35,6 @@
 > In this particular example (and the pattern in question), `t` can be replaced by `c`, and it can ignore the self-assignments.
 
 
-#TODO
-
 ## Input
 
 `````js filename=intro

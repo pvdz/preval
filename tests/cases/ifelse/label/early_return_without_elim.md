@@ -6,8 +6,6 @@
 >
 > Early return in labeled if-else such that it won't just be eliminated through DCE
 
-#TODO
-
 ## Input
 
 `````js filename=intro

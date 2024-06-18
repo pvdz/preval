@@ -10,8 +10,6 @@ This should crash because `a?.` will pass
 
 And then `a.b.c` is an unconditional access of `c` on `undefined`.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

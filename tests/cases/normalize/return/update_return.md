@@ -6,8 +6,6 @@
 >
 > The branch updates the value that is finally returned. Does it combine them after inlining the return into the branches?
 
-#TODO
-
 ## Input
 
 `````js filename=intro

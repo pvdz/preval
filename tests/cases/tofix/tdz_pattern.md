@@ -11,8 +11,6 @@
 > This is why singleScopeTdz is still necessary but really what it means
 > is that we should update prepare to take these cases into account.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > The label is necessary here since an unqualified continue would implicitly target the inner loop.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

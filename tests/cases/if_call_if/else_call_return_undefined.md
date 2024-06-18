@@ -6,8 +6,6 @@
 >
 > Debugging
 
-#TODO
-
 ## Input
 
 `````js filename=intro

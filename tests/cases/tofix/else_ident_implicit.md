@@ -8,8 +8,6 @@
 
 The current bug is caused by moving the ident upward, causing the call to $ to appear before the implicit globals that don't exist.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

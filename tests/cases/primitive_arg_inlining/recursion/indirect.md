@@ -6,8 +6,6 @@
 >
 > Recursion problems
 
-#TODO
-
 ## Input
 
 `````js filename=intro

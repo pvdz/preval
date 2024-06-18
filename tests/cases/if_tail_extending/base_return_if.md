@@ -6,8 +6,6 @@
 >
 > Break should also flip
 
-#TODO
-
 ## Input
 
 `````js filename=intro

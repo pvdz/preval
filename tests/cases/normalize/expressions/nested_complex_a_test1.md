@@ -16,8 +16,6 @@ $(a).length = b;
 tmp = $(a); tmp.length = b;
 ```
 
-#TODO
-
 ## Input
 
 `````js filename=intro

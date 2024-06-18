@@ -6,8 +6,6 @@
 >
 > A single call func would not be inlined in global if it had an early return. But early throw should be fine.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

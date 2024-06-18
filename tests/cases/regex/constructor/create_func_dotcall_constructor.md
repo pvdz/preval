@@ -8,8 +8,6 @@
 
 The system knows `regex.constructor` maps to `RegExp` and should be able to deal with this
 
-#TODO
-
 ## Input
 
 `````js filename=intro

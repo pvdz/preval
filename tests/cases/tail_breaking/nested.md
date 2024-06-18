@@ -6,8 +6,6 @@
 >
 > A problem case with a nested label and a statement after the `if` that disappears 
 
-#TODO
-
 ## Input
 
 `````js filename=intro

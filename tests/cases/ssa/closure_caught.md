@@ -6,8 +6,6 @@
 >
 > Can SSA because while x is closed in h, we can determine that h does not "escape" and so there's no need to preserve access to x after g completes.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

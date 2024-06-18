@@ -6,8 +6,6 @@
 >
 > An `if` with first reads when entering but those get overwritten in both branches so it's no longer first read after the `if`
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > A function that does a simple thing may need to be inlined in trivial cases.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

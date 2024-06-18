@@ -6,8 +6,6 @@
 >
 > If the read of a value of a `let` binding can be determined then we should inline it.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

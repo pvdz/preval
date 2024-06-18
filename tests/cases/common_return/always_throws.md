@@ -10,8 +10,6 @@ In this case the function should propagate the fact that it always results in a 
 
 Call sites could, for example, be transformed into throws themselves. Or throw `undefined` or something obvious, like `throw "Preval: the previous call must throw"` or w/e.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

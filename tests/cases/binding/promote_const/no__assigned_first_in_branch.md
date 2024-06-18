@@ -8,8 +8,6 @@
 
 The var is first updated in a branch so we can't make it a constant.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

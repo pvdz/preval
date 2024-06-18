@@ -6,8 +6,6 @@
 >
 > Continue to outer loop
 
-#TODO
-
 ## Input
 
 `````js filename=intro

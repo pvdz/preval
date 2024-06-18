@@ -6,8 +6,6 @@
 >
 > The computed key of a class should be evaluated outside of the class body, before the class.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

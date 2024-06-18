@@ -6,8 +6,6 @@
 >
 > Rotate a number
 
-#TODO
-
 ## Input
 
 `````js filename=intro

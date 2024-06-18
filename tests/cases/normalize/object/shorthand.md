@@ -6,8 +6,6 @@
 >
 > Shorthand should normalize to a regular property
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Spreading a boolean results in an error
 
-#TODO
-
 ## Input
 
 `````js filename=intro

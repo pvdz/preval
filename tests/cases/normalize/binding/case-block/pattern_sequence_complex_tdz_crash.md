@@ -10,8 +10,6 @@ For now I guess we can't really support this TDZ case. We have to outline the bi
 
 Maybe in the future we can come up with a solution where with more analysis we can do better. Not sure how important that is. But it's not a priority.
 
-#TODO
-
 ## Options
 
 TDZ errors are not properly emulated so a n eval mismatch is expected

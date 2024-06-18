@@ -6,8 +6,6 @@
 >
 > Attempt to create a case where a simple function is folded while the call is into a var decl.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

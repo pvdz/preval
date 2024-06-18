@@ -6,8 +6,6 @@
 >
 > If we can statically resolve a property lookup, we should
 
-#TODO
-
 ## Input
 
 `````js filename=intro

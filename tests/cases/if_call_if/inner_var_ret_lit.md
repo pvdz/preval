@@ -8,8 +8,6 @@
 
 Trying to hit an edge case
 
-#TODO
-
 ## Input
 
 `````js filename=intro

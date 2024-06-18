@@ -6,8 +6,6 @@
 >
 > This is basically a bool check but can be generic
 
-#TODO
-
 ## Input
 
 `````js filename=intro

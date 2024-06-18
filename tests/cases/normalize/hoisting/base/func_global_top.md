@@ -6,8 +6,6 @@
 >
 > Function declarations in a block are not hoisted
 
-#TODO
-
 ## Input
 
 `````js filename=intro

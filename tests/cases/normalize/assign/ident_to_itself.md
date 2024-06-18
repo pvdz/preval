@@ -10,8 +10,6 @@ Since we don't consider idents to have observable side effects, this should be a
 
 Not very likely to happen in the wild, though it may be an artifact after some normalization / reduction.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

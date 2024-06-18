@@ -6,8 +6,6 @@
 >
 > A nested template should be merged down
 
-#TODO
-
 ## Input
 
 `````js filename=intro

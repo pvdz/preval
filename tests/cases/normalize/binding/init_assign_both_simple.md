@@ -6,8 +6,6 @@
 >
 > Should normalize assignment init to separate line
 
-#TODO
-
 ## Input
 
 `````js filename=intro

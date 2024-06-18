@@ -8,8 +8,6 @@
 
 The or-xor was broken for lets
 
-#TODO
-
 ## Input
 
 `````js filename=intro

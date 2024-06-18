@@ -6,8 +6,6 @@
 >
 > A test that is a constant only needs to be tested once
 
-#TODO
-
 ## Input
 
 `````js filename=intro

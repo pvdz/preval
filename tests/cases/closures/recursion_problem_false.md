@@ -12,8 +12,6 @@ In this particular case, the function is immediately called (triggering the SSA 
 
 I think we're saved by the fact that the read will be visited earlier than the var decl which correctly prevents this SSA case in the first place.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

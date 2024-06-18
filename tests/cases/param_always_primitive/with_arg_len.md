@@ -8,8 +8,6 @@
 
 In this case the param can also be eliminated. But that's not always possible, like with `arguments.length` (unless that is also replaced with the actual count).
 
-#TODO
-
 ## Input
 
 `````js filename=intro

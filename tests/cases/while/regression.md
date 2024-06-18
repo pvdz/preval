@@ -6,8 +6,6 @@
 >
 > Tracking a regression from Tenko
 
-#TODO
-
 ## Input
 
 `````js filename=intro

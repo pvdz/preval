@@ -7,8 +7,6 @@
 > If a binding only has !x in all writes, can't we instead apply ! to the
 > reads? And is that helpful?
 
-#TODO
-
 ## Input
 
 `````js filename=intro

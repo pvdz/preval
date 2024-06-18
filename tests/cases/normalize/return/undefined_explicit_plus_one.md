@@ -6,8 +6,6 @@
 >
 > Implicitly returning undefined as the last statement is not necessary
 
-#TODO
-
 ## Input
 
 `````js filename=intro

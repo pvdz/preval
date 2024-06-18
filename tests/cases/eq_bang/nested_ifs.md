@@ -6,8 +6,6 @@
 >
 > Trying to come up with an example where one change will impact another
 
-#TODO
-
 ## Input
 
 `````js filename=intro

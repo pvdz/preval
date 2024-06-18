@@ -10,8 +10,6 @@ In this case the array escapes so we bail.
 
 This particular case could be supported but it's probably not worth it.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

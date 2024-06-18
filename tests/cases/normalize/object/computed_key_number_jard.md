@@ -6,8 +6,6 @@
 >
 > Computed key that is a number value might as well not be computed but has to be converted properly
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Apply String to a spy
 
-#TODO
-
 ## Input
 
 `````js filename=intro

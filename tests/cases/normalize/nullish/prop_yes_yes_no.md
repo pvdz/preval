@@ -6,8 +6,6 @@
 >
 > Mix nullish with regular member expressions
 
-#TODO
-
 ## Input
 
 `````js filename=intro

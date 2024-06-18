@@ -8,8 +8,6 @@
 
 The break introduces branching which prevents any SSA in the first place.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

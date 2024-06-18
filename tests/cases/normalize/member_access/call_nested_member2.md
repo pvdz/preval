@@ -6,8 +6,6 @@
 >
 > Calling a nested object structure should cache one level but not break the context
 
-#TODO
-
 ## Input
 
 `````js filename=intro

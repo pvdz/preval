@@ -6,8 +6,6 @@
 >
 > Assignment that cannot be observed should be dropped
 
-#TODO
-
 ## Input
 
 `````js filename=intro

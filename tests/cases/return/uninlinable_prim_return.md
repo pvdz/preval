@@ -6,8 +6,6 @@
 >
 > A function call where it always returns a primitive does not need to trampoline the return value.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

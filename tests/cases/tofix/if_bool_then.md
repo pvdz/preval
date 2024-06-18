@@ -6,8 +6,6 @@
 >
 > Not sure why this doesn't work. Should become $(t); Source: cases/ret_bool_after_if/compare_return.md
 
-#TODO
-
 ## Input
 
 `````js filename=intro

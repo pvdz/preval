@@ -6,8 +6,6 @@
 >
 > Compound assignments should destructure to regular assignments
 
-#TODO
-
 ## Input
 
 `````js filename=intro

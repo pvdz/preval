@@ -20,8 +20,6 @@ So all the string parts are passed on as the first argument and any expressions 
 
 So if the receiving function does not have as many parameters as the tagged template decompiles into, then that is an opportunity to optimize.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

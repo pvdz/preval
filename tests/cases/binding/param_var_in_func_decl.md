@@ -6,8 +6,6 @@
 >
 > Param that also has a var in same scope. Prettier (minified) does this.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

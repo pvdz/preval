@@ -6,8 +6,6 @@
 >
 > Normalize switches
 
-#TODO
-
 ## Input
 
 `````js filename=intro

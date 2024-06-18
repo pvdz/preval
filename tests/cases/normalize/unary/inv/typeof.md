@@ -6,8 +6,6 @@
 >
 > Typeof always returns a non-empty string so inverting it is always `false`
 
-#TODO
-
 ## Input
 
 `````js filename=intro

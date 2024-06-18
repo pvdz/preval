@@ -6,8 +6,6 @@
 >
 > The throw may leave the binding mutated anyways
 
-#TODO
-
 ## Input
 
 `````js filename=intro

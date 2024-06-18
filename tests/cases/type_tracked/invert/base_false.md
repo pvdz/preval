@@ -6,8 +6,6 @@
 >
 > Inverting a value that we know is a falsy value must return true
 
-#TODO
-
 ## Input
 
 `````js filename=intro

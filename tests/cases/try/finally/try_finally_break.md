@@ -6,8 +6,6 @@
 >
 > Finally transform checks
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > The immediate access should be resolved because we can guarantee the value
 
-#TODO
-
 ## Input
 
 `````js filename=intro

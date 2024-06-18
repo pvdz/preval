@@ -8,8 +8,6 @@
 
 This should throw. There was a regression where `x.y` was read before `a.b` (but the evaluation order ought to read `a.b` first)
 
-#TODO
-
 ## Input
 
 `````js filename=intro

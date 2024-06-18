@@ -6,8 +6,6 @@
 >
 > Normalization of var decls should work the same everywhere they are
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -10,8 +10,6 @@ We may not be able to properly deal with the temporal order but we can certainly
 
 We do have to be careful about using x in the rhs.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

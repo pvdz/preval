@@ -8,8 +8,6 @@
 
 Oh right, that's a tool I still need to write. This led to an inifite loop, temporarily.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

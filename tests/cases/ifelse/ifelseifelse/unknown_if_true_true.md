@@ -6,8 +6,6 @@
 >
 > Common pattern of doing if-elseif-else after normalization. Will want to test all variations of known and unknown booleans, as well as which branch updates the condition.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

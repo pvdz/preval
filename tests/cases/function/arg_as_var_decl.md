@@ -10,8 +10,6 @@ This is more of an old pattern or an artifact or whatever.
 
 We can't eliminate the param name because that affects func.length, however we should be able to SSA the assignment.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

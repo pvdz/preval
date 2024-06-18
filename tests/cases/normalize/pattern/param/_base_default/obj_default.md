@@ -8,8 +8,6 @@
 
 Regression was causing infinite loop
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > If a branch contains a function that closes over an outside binding in the tail then that should keep working... 
 
-#TODO
-
 ## Input
 
 `````js filename=intro

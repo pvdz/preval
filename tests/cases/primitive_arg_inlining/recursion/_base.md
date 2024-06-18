@@ -6,8 +6,6 @@
 >
 > Recursion problems
 
-#TODO
-
 ## Options
 
 - cloneLimit=5

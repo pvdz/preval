@@ -6,8 +6,6 @@
 >
 > Expression statements can be eliminated if we have enough information
 
-#TODO
-
 ## Input
 
 `````js filename=intro

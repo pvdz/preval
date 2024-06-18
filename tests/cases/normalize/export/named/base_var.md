@@ -6,8 +6,6 @@
 >
 > Exporting declarations
 
-#TODO
-
 ## Input
 
 `````js filename=intro

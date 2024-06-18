@@ -8,8 +8,6 @@
 
 In this case the assignment used a param.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

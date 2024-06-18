@@ -6,8 +6,6 @@
 >
 > This case should make sure we don't accidentally set a var to a value it should not be having
 
-#TODO
-
 ## Input
 
 `````js filename=intro

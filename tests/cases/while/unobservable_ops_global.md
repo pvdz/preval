@@ -6,8 +6,6 @@
 >
 > A static operation that can not be observed inside the loop and is not depended on the loop count should be moved out.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

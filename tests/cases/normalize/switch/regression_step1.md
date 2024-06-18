@@ -18,8 +18,6 @@ switch ($(1)) {
 $(a, b);
 ```
 
-#TODO
-
 ## Input
 
 `````js filename=intro

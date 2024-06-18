@@ -6,8 +6,6 @@
 >
 > Nested ifs that check AND on same binding can be merged in some cases
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Trying to break the String([1,2,3]) trick
 
-#TODO
-
 ## Input
 
 `````js filename=intro

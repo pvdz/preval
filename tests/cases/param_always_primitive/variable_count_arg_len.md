@@ -8,8 +8,6 @@
 
 This case explicitly uses `arguments.length` and has variable arg counts
 
-#TODO
-
 ## Input
 
 `````js filename=intro

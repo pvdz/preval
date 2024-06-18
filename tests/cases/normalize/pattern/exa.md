@@ -6,8 +6,6 @@
 >
 > From https://gist.github.com/nicolo-ribaudo/f8ac7916f89450f2ead77d99855b2098 via https://twitter.com/NicoloRibaudo/status/1364918178095185920
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Check order of moving them up. We try to keep the order, even if it shouldn't matter.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

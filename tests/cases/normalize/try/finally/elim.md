@@ -8,8 +8,6 @@
 
 Narrator: no.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

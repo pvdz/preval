@@ -8,8 +8,6 @@
 
 The problem is that there may be a spy that may be affected by moving a var decl. So it's very non-trivial.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > The catch var is a special kinda binding
 
-#TODO
-
 ## Input
 
 `````js filename=intro

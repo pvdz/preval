@@ -6,8 +6,6 @@
 >
 > Testing string/template keys
 
-#TODO
-
 ## Input
 
 `````js filename=intro

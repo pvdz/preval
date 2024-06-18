@@ -6,8 +6,6 @@
 >
 > The read afterwards makes SSA not worth it
 
-#TODO
-
 ## Input
 
 `````js filename=intro

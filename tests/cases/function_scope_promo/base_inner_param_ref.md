@@ -6,8 +6,6 @@
 >
 > Functions that do not reference anything from the scope where they are defined should be moved to the first outer scope where they do reference a binding, or global. Whichever comes first.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

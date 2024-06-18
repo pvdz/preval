@@ -8,8 +8,6 @@
 
 In this case there is a func definition between the let and its first usage. It was blocking the SSA promotion.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

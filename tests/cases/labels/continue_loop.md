@@ -6,8 +6,6 @@
 >
 > Labels that are direct parents of loops should not become blocks because that might break labeled continue statements
 
-#TODO
-
 ## Input
 
 `````js filename=intro

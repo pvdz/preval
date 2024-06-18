@@ -6,8 +6,6 @@
 >
 > I'm not sure yet but I think we need to split this example such that the tail becomes its own function and both branches call into it.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

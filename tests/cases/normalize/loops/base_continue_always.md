@@ -6,8 +6,6 @@
 >
 > A loop with an unconditional early continue
 
-#TODO
-
 ## Input
 
 `````js filename=intro

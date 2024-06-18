@@ -6,8 +6,6 @@
 >
 > Computed member sets context so should be kept
 
-#TODO
-
 ## Input
 
 `````js filename=intro

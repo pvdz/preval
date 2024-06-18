@@ -8,8 +8,6 @@
 
 TDZ case
 
-#TODO
-
 ## Options
 
 TDZ errors are not properly emulated so a n eval mismatch is expected

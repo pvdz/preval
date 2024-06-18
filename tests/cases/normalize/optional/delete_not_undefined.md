@@ -6,8 +6,6 @@
 >
 > Delete on member expression is special casing. Works with optional chaining.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

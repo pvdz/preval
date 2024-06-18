@@ -8,8 +8,6 @@
 
 This should be handled by normalization even.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

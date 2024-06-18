@@ -6,8 +6,6 @@
 >
 > Negative Infinity should be treated as a constant as well
 
-#TODO
-
 ## Input
 
 `````js filename=intro

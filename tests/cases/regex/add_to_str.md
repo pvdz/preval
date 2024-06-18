@@ -6,8 +6,6 @@
 >
 > Regexes are objects and always get turned into a string
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Two xors back to back
 
-#TODO
-
 ## Input
 
 `````js filename=intro

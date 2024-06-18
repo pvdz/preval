@@ -6,8 +6,6 @@
 >
 > The simple switch is the one where every case ends explicitly, and only once, and where default is either the last case or omitted.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > We want to track the type of bindings when we can, and maybe even limit it to a particular set when feasible
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -8,8 +8,6 @@
 
 Bug was always looking at the first element of each branch, rather than the last.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

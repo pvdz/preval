@@ -6,8 +6,6 @@
 >
 > Getting the length of an array can be tricky, and sometimes be done
 
-#TODO
-
 ## Input
 
 `````js filename=intro

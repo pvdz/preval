@@ -16,8 +16,6 @@ else { }
 const z = s + y;
 ```
 
-#TODO
-
 ## Input
 
 `````js filename=intro

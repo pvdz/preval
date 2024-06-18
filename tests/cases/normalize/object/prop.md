@@ -6,8 +6,6 @@
 >
 > Property with sequence value
 
-#TODO
-
 ## Input
 
 `````js filename=intro

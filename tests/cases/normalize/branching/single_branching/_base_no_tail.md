@@ -6,8 +6,6 @@
 >
 > A function with one branch should not be split
 
-#TODO
-
 ## Input
 
 `````js filename=intro

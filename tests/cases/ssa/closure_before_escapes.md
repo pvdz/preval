@@ -8,8 +8,6 @@
 
 The closure prevents SSA if the function that contains it "escapes"
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Ternary (conditional expressions) should have their args be normalized. But they shouldn't be pulled out, obviously.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

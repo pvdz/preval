@@ -12,8 +12,6 @@ This bug would throw an assertion error "the previous ref should be reachable fr
 
 The problem of this bug was that a certain kind of scope tracking should have used a fresh state per reference but it was sharing them with others. This test case is forcing that situation because two objects were assigned in the same scope.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

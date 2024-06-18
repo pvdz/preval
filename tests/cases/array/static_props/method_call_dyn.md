@@ -8,8 +8,6 @@
 
 We have no idea whether anything is happening to the array so we must bail.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

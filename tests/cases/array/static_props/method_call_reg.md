@@ -8,8 +8,6 @@
 
 We could technically support this kind of thing in a subset of situations. But most of the time we'll just bail.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -8,8 +8,6 @@
 
 Bindings created in one case may be accessed by cases that follow it
 
-#TODO
-
 ## Input
 
 `````js filename=intro

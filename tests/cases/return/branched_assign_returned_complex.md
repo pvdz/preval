@@ -6,8 +6,6 @@
 >
 > What if a binding was assigned a value in two branches and then returned after the `if`?
 
-#TODO
-
 ## Input
 
 `````js filename=intro

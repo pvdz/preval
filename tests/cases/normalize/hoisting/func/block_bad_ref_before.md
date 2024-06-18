@@ -8,8 +8,6 @@
 
 It shouldn't hoist the function outside the block.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

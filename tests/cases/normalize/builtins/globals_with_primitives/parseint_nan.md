@@ -6,8 +6,6 @@
 >
 > Calling parseInt on a primitive should resolve
 
-#TODO
-
 ## Input
 
 `````js filename=intro

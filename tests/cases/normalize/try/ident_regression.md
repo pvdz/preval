@@ -10,8 +10,6 @@ Somehow the ident was recorded in the outer block as well as the try-block.
 
 This turned out to be a Tenko bug regarding try-scope tracking.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

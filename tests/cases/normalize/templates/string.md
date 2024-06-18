@@ -6,8 +6,6 @@
 >
 > A template that is just a string
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > The DCE after a continue should be fenced at the nearest loop, not beyond.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

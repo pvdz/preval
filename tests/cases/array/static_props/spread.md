@@ -8,8 +8,6 @@
 
 Spreads in an array may affect the size in uncontrollable ways. We should wait until spreads are resolved or consider the array unpredictable.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

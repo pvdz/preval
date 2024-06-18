@@ -6,8 +6,6 @@
 >
 > Sketching out a problem
 
-#TODO
-
 ## Input
 
 `````js filename=intro

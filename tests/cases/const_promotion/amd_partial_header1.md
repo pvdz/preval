@@ -20,8 +20,6 @@ Why is the test not promoted to a const?
   ['global', 'object'],
 */
 
-#TODO
-
 ## Input
 
 `````js filename=intro

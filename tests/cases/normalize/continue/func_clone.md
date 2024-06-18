@@ -6,8 +6,6 @@
 >
 > There was a problem when cloning functions
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > imafool
 
-#TODO
-
 ## Input
 
 `````js filename=intro

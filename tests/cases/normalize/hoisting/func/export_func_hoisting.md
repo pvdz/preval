@@ -6,8 +6,6 @@
 >
 > The result should be that the functions appear in lexicographical order
 
-#TODO
-
 ## Input
 
 `````js filename=intro

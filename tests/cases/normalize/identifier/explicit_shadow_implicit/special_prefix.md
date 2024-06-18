@@ -6,8 +6,6 @@
 >
 > Making sure a binding with my special prefix will still properly work
 
-#TODO
-
 ## Input
 
 `````js filename=intro

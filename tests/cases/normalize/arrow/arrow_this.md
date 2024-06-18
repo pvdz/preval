@@ -19,8 +19,6 @@ function f() {
 $(f.call({x: 100}));
 ```
 
-#TODO
-
 ## Input
 
 `````js filename=intro

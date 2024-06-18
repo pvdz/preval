@@ -6,8 +6,6 @@
 >
 > When both branches end with an update to the binding that is returned, return it immediately.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

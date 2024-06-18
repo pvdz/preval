@@ -6,8 +6,6 @@
 >
 > Lhs of assignment can have side effects too
 
-#TODO
-
 ## Input
 
 `````js filename=intro

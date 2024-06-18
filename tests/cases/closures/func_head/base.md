@@ -6,8 +6,6 @@
 >
 > The idea is that closures that appear in the tail of a function could also be updated as a return value, reducing the number of closures.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

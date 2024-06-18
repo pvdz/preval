@@ -10,8 +10,6 @@ We have to be careful not to leave `x` as being an implicit global.
 
 When eliminating dead code we can scan for any declarations and either mark all usages as invalid/dead, or hoist the decl above the return without breaking the TDZ error.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

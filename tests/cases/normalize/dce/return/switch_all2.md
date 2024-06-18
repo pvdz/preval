@@ -8,8 +8,6 @@
 
 This case uncovered a problem where fresh bindings up to the label would end up being params and local consts, causing a crash.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

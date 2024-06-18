@@ -6,8 +6,6 @@
 >
 > Array.isArray check
 
-#TODO
-
 ## Input
 
 `````js filename=intro

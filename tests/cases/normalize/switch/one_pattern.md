@@ -16,8 +16,6 @@ $(x);
 ```
 
 
-#TODO
-
 ## Input
 
 `````js filename=intro

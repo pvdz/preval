@@ -6,8 +6,6 @@
 >
 > Ident property access should not be changed
 
-#TODO
-
 ## Input
 
 `````js filename=intro

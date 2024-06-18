@@ -12,8 +12,6 @@ We do have to be careful about using x in the rhs.
 
 Zooming in on the `x = x + 1` case. This is the double assign case.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

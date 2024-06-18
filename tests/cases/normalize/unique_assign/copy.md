@@ -6,8 +6,6 @@
 >
 > The normalization step should make it so that each binding is only assigned to once. It should create fresh bindings for every mutation.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

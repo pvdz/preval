@@ -8,8 +8,6 @@
 
 Trying to make sure that `f` is not inlined since that would break context stuff.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

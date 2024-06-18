@@ -6,8 +6,6 @@
 >
 > If an assignment is a statement then a ternary should become an if-else
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Make sure the string key gets properly deserialized and serialized with strings vs templates
 
-#TODO
-
 ## Input
 
 `````js filename=intro

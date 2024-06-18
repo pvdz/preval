@@ -6,8 +6,6 @@
 >
 > Can not outline this `if` because the function has more statements.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

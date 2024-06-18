@@ -8,8 +8,6 @@
 
 This would be the reported output after one step. However, on its own it would work fine (so the problem must have been state in the AST).
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -39,8 +39,6 @@
 > that is a lot trickier since `this` would have to be resolved every step of
 > the way
 
-#TODO
-
 ## Input
 
 `````js filename=intro

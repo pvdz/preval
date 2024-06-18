@@ -6,8 +6,6 @@
 >
 > Not sure but currently this is not minified further while it obviously could be
 
-#TODO
-
 ## Input
 
 `````js filename=intro

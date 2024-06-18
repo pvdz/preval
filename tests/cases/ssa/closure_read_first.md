@@ -6,8 +6,6 @@
 >
 > Cannot SSA because a call to g() should affect the next call to g()
 
-#TODO
-
 ## Input
 
 `````js filename=intro

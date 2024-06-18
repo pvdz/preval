@@ -6,8 +6,6 @@
 >
 > Example of rewriting a return statement with ternary
 
-#TODO
-
 ## Input
 
 `````js filename=intro

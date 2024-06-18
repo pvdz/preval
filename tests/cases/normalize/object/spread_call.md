@@ -6,8 +6,6 @@
 >
 > Spread arg that is simple should not change
 
-#TODO
-
 ## Input
 
 `````js filename=intro

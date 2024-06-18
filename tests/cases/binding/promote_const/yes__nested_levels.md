@@ -10,8 +10,6 @@ All reads of x appear on the same level or nested from the only write (beyond th
 
 This means x be safely made into a constant.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

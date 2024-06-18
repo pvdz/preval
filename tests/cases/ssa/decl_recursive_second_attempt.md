@@ -6,8 +6,6 @@
 >
 > A recursive function that is then replaced with another value (why would you do this, I dunno)
 
-#TODO
-
 ## Input
 
 `````js filename=intro

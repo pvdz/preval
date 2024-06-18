@@ -6,8 +6,6 @@
 >
 > Scope of a switch block is shared between all cases so bindings need to be hoisted above it
 
-#TODO
-
 ## Input
 
 `````js filename=intro

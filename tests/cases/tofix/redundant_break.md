@@ -19,8 +19,6 @@
 > }
 > $(2);
 
-#TODO
-
 ## Input
 
 `````js filename=intro

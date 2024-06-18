@@ -6,8 +6,6 @@
 >
 > Exported var bindings are still hoisted
 
-#TODO
-
 ## Input
 
 `````js filename=intro

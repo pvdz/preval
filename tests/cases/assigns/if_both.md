@@ -6,8 +6,6 @@
 >
 > Both branches write
 
-#TODO
-
 ## Input
 
 `````js filename=intro

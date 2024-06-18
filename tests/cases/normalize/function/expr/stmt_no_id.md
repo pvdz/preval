@@ -6,8 +6,6 @@
 >
 > A function expression that is a statement should be dropped.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

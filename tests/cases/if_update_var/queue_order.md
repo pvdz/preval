@@ -6,8 +6,6 @@
 >
 > The queue order is relevant for the if-update-var tests. This test caught why.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

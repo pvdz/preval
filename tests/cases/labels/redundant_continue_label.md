@@ -6,8 +6,6 @@
 >
 > The label is redundant because the continue does not span more than one loop. So it may as well not have had the label.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

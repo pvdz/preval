@@ -6,8 +6,6 @@
 >
 > All reads are preceded by a write but one of them is in a branch after the write.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

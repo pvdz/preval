@@ -6,8 +6,6 @@
 >
 > A function that returns its param
 
-#TODO
-
 ## Input
 
 `````js filename=intro

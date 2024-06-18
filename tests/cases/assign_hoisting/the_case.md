@@ -6,8 +6,6 @@
 >
 > Abstraction of a real world pattern that I was trying to solve with this transform
 
-#TODO
-
 ## Input
 
 `````js filename=intro

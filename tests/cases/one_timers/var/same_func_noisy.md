@@ -6,8 +6,6 @@
 >
 > What happens when the algo has to inline a call into the same func? Index staleness check.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > The very last $(x) is missing in the else branch
 
-#TODO
-
 ## Input
 
 `````js filename=intro

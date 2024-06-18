@@ -6,8 +6,6 @@
 >
 > Class decls should become expressions
 
-#TODO
-
 ## Input
 
 `````js filename=intro

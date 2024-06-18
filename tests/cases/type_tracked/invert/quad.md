@@ -6,8 +6,6 @@
 >
 > A double bang should convert to a Boolean call because it's one statement vs two.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

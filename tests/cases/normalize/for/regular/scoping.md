@@ -6,8 +6,6 @@
 >
 > The var decl in a for-header has its own scope so our transform should not break that
 
-#TODO
-
 ## Input
 
 `````js filename=intro

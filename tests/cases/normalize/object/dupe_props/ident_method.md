@@ -6,8 +6,6 @@
 >
 > Duplicate properties are legal but useless. We should get rid of them.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

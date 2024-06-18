@@ -6,8 +6,6 @@
 >
 > Undo the "damage" done by dot call when we can detect it not to be necessary. We assert that $dotCall used to be a method call before so if the args are safe to inline, we can undo this step now. It was necessary for safe normalization purposes.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

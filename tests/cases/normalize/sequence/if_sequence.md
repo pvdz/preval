@@ -6,8 +6,6 @@
 >
 > Conditional sequence
 
-#TODO
-
 ## Input
 
 `````js filename=intro

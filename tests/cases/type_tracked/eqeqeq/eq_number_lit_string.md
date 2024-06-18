@@ -6,8 +6,6 @@
 >
 > If we know the type of a value without knowing the actual value, we can still resolve `===`
 
-#TODO
-
 ## Input
 
 `````js filename=intro

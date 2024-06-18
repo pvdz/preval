@@ -6,8 +6,6 @@
 >
 > This was a regression. It would throw in a let decl promotion step due to spread.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

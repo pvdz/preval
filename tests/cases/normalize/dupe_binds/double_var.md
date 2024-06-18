@@ -6,8 +6,6 @@
 >
 > Vars can be redeclared many times. Doesn't matter.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

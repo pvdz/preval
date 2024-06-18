@@ -6,8 +6,6 @@
 >
 > Typeof always returns a string
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -8,8 +8,6 @@
 
 Just debugging a missing ident
 
-#TODO
-
 ## Input
 
 `````js filename=intro

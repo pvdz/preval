@@ -8,8 +8,6 @@
 
 Making sure the closure outlining does not screw up with setters
 
-#TODO
-
 ## Input
 
 `````js filename=intro

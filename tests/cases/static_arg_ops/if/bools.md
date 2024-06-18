@@ -6,8 +6,6 @@
 >
 > Outline of the `if` test
 
-#TODO
-
 ## Input
 
 `````js filename=intro

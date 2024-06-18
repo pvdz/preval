@@ -6,8 +6,6 @@
 >
 > Assignments in loops won't easily be SSA'd
 
-#TODO
-
 ## Input
 
 `````js filename=intro

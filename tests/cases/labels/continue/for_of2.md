@@ -9,8 +9,6 @@
 > has its label nuked for being useless. That's why tests require double layer
 > loops as the input.)
 
-#TODO
-
 ## Input
 
 `````js filename=intro

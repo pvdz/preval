@@ -17,8 +17,6 @@ if (1 === $(1)) {
 }
 ```
 
-#TODO
-
 ## Input
 
 `````js filename=intro

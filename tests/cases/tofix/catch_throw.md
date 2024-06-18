@@ -15,8 +15,6 @@
 > Something to investigate: why is the first argument stuff eliminated in 
 > this func in react 18 source? the func escapes, the arg is relevant?
 
-#TODO
-
 ## Input
 
 `````js filename=intro

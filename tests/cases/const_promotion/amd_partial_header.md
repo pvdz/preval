@@ -18,8 +18,6 @@
   ['global', 'object'],
 */
 
-#TODO
-
 ## Input
 
 `````js filename=intro

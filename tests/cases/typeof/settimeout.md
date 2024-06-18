@@ -6,8 +6,6 @@
 >
 > Known builtins
 
-#TODO
-
 ## Input
 
 `````js filename=intro

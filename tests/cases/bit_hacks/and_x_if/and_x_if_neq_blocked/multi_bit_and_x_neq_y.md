@@ -6,8 +6,6 @@
 >
 > In some cases we can predict bitwise results or meta results
 
-#TODO
-
 ## Input
 
 `````js filename=intro

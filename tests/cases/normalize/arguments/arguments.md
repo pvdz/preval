@@ -6,8 +6,6 @@
 >
 > Arguments is a special global
 
-#TODO
-
 ## Input
 
 `````js filename=intro

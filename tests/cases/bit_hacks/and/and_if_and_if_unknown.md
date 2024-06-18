@@ -6,8 +6,6 @@
 >
 > Combine two checked ands
 
-#TODO
-
 ## Input
 
 `````js filename=intro

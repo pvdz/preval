@@ -6,8 +6,6 @@
 >
 > Make sure negative function calls are not considered a literal
 
-#TODO
-
 ## Input
 
 `````js filename=intro

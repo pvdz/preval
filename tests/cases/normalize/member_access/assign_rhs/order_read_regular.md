@@ -6,8 +6,6 @@
 >
 > Test evaluation order of member expression through getters and setters
 
-#TODO
-
 ## Input
 
 `````js filename=intro

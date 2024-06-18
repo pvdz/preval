@@ -6,8 +6,6 @@
 >
 > Certain values can be statically determined to trigger a runtime error when they're called
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Hoisted global statement should be eliminated
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > The else should also work
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -8,8 +8,6 @@
 
 I guess we have to keep it like this because coercing it to number may force-coerce something that doesn't need to be coerced.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

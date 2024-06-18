@@ -18,8 +18,6 @@ Then later this is causing the value to be set to undefined thanks to the "hoist
 
 Soooooo.... that's pretty meh.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

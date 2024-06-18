@@ -6,8 +6,6 @@
 >
 > A function that is guaranteed to return bools may be eligible for inverting
 
-#TODO
-
 ## Input
 
 `````js filename=intro

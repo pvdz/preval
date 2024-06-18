@@ -6,8 +6,6 @@
 >
 > This broke something at some point in time :)
 
-#TODO
-
 ## Input
 
 `````js filename=intro

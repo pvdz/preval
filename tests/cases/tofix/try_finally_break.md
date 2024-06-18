@@ -6,8 +6,6 @@
 >
 > Why is the non-looping loop not eliminated?
 
-#TODO
-
 ## Input
 
 `````js filename=intro

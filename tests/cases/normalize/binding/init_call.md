@@ -6,8 +6,6 @@
 >
 > Binding declaration with a simple call should not be outlined
 
-#TODO
-
 ## Input
 
 `````js filename=intro

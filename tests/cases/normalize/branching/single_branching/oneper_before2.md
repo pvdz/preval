@@ -6,8 +6,6 @@
 >
 > One branch per func?
 
-#TODO
-
 This is the example input
 
 The test is what that would roughly translate to for single branching functions

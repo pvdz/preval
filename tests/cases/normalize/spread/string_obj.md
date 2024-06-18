@@ -6,8 +6,6 @@
 >
 > Spread on number is an error
 
-#TODO
-
 ## Input
 
 `````js filename=intro

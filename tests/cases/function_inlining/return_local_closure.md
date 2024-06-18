@@ -6,8 +6,6 @@
 >
 > We should be able to inline certain functions
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Silly case that we hopefully never see but :shrug:
 
-#TODO
-
 ## Input
 
 `````js filename=intro

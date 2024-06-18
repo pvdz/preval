@@ -6,8 +6,6 @@
 >
 > Spreading an array into another array that is assigned to a binding
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Only valid spread literal is a string
 
-#TODO
-
 ## Input
 
 `````js filename=intro

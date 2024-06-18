@@ -6,8 +6,6 @@
 >
 > Empty label body checks
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > An array with primitives that is a computed property should be converted to a string
 
-#TODO
-
 ## Input
 
 `````js filename=intro

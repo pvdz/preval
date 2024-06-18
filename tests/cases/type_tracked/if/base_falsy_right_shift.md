@@ -8,8 +8,6 @@
 
 This is somewhat special insofar that the result can not be NaN and cannot be -0 so must be 0?
 
-#TODO
-
 ## Input
 
 `````js filename=intro

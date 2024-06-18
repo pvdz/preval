@@ -14,8 +14,6 @@ Since the function won't have access to the binding when placed at the top of gl
 
 The fix was to properly move functions outward one block at a time, rather than anywhere in the root of the scope.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

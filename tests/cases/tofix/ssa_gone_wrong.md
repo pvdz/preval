@@ -6,8 +6,6 @@
 >
 > Looks like ssa is going off the rails here
 
-#TODO
-
 ## Input
 
 `````js filename=intro

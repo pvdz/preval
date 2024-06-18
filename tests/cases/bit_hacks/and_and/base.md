@@ -6,8 +6,6 @@
 >
 > If a value is orred to two primitives, you can at least safely merge those primitive.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

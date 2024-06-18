@@ -6,8 +6,6 @@
 >
 > A ladder of statements
 
-#TODO
-
 ## Input
 
 `````js filename=intro

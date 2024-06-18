@@ -6,8 +6,6 @@
 >
 > Creating a function and calling it...
 
-#TODO
-
 ## Input
 
 `````js filename=intro

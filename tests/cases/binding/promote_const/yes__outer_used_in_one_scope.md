@@ -18,8 +18,6 @@ The var is assigned a literal so we can inline it.
 
 The x should be made a constant.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

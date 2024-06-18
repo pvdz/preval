@@ -8,8 +8,6 @@
 
 Figuring out why nested if-elses remained in the output.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

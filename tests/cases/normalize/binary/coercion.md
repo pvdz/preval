@@ -6,8 +6,6 @@
 >
 > Comparison ops trigger coercion mechanisms.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

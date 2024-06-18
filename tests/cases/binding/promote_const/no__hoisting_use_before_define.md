@@ -8,8 +8,6 @@
 
 The var is used in different scopes so not easy to change it to a constant.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

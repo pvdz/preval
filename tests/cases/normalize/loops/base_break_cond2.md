@@ -8,8 +8,6 @@
 
 At some point the final result was receiving undefined rather than 100 because the common return algo had a bug.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

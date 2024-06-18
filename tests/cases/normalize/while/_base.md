@@ -6,8 +6,6 @@
 >
 > A while is a while
 
-#TODO
-
 ## Input
 
 `````js filename=intro

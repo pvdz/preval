@@ -6,8 +6,6 @@
 >
 > Silly case but trying to catch something on a generic level; a double assign where the rhs contains multiple references.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

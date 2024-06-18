@@ -6,8 +6,6 @@
 >
 > Pump and dump
 
-#TODO
-
 ## Input
 
 `````js filename=intro

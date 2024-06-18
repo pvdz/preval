@@ -6,8 +6,6 @@
 >
 > Testing the inlining of objlit mutations
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -32,8 +32,6 @@ The output ought to be
 -------- a.foo = 4
 ```
 
-#TODO
-
 ## Input
 
 `````js filename=intro

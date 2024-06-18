@@ -6,8 +6,6 @@
 >
 > The unique naming system must properly handle property shorthands
 
-#TODO
-
 ## Input
 
 `````js filename=intro

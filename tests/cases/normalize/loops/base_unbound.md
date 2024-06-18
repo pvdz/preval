@@ -8,8 +8,6 @@
 
 This is the simple case with an infinite loop
 
-#TODO
-
 ## Input
 
 `````js filename=intro

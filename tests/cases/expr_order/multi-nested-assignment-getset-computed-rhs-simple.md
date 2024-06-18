@@ -10,8 +10,6 @@ This test needs to compare the call args of $ to confirm the same input/output.
 
 It will test whether any step can affect the value of `e` before it is used as the value to update all the properties.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

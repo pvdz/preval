@@ -6,8 +6,6 @@
 >
 > We could SSA a binding in a closure if the first ref is a write, not in a loop, and all subsequent refs can reach the first write.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Base case of this pattern
 
-#TODO
-
 ## Input
 
 `````js filename=intro

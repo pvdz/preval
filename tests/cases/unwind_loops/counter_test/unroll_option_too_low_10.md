@@ -6,8 +6,6 @@
 >
 > Should be able to raise the amount of loop unrolls
 
-#TODO
-
 ## Options
 
 - unroll=15

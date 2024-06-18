@@ -10,8 +10,6 @@ If we can detect that every read is invariantly preceded by a write then the ini
 
 This one tests a branch with one shared write and a read in both.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

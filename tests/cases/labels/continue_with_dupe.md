@@ -8,8 +8,6 @@
 
 The label of the continue should be updated because the duplicate labels will be renamed.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

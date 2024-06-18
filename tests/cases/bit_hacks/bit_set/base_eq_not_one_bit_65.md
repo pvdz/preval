@@ -8,8 +8,6 @@
 
 // The comparison is always false.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

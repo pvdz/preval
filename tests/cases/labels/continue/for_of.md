@@ -6,8 +6,6 @@
 >
 > What about for-of/in loops?
 
-#TODO
-
 ## Input
 
 `````js filename=intro

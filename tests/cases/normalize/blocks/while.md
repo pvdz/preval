@@ -6,8 +6,6 @@
 >
 > Add blocks to sub-statements
 
-#TODO
-
 ## Input
 
 `````js filename=intro

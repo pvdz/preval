@@ -6,8 +6,6 @@
 >
 > The `arguments` object is a valid default expression
 
-#TODO
-
 ## Input
 
 `````js filename=intro

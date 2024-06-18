@@ -6,8 +6,6 @@
 >
 > From the React header
 
-#TODO
-
 ## Input
 
 `````js filename=intro

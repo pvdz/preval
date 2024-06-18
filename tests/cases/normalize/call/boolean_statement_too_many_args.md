@@ -6,8 +6,6 @@
 >
 > A builtin with too many args that is a statement...
 
-#TODO
-
 ## Input
 
 `````js filename=intro

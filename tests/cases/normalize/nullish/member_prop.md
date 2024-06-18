@@ -6,8 +6,6 @@
 >
 > nullish chaining fun
 
-#TODO
-
 ## Input
 
 `````js filename=intro

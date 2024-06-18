@@ -8,8 +8,6 @@
 
 The problem was that an assignment was generated with its .right set to null (this involves the let without init in this example).
 
-#TODO
-
 ## Input
 
 `````js filename=intro

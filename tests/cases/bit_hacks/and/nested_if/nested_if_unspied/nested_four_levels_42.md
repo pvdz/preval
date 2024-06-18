@@ -10,8 +10,6 @@ Next level is wondering whether we want to do the 14-way options in a Set.
 
 Something like `new Set([2, 8, 10, 16, 18, 24, 26, 32, 34, 40, 42, 48, 50, 60]).has(n)`
 
-#TODO
-
 ## Input
 
 `````js filename=intro

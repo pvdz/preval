@@ -8,8 +8,6 @@
 
 Found in Tenko, inside _parseClassBody
 
-#TODO
-
 ## Input
 
 `````js filename=intro

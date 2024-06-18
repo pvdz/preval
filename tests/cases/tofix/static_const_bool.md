@@ -6,8 +6,6 @@
 >
 > A const that is only tested (treated as bool) and which we can proof not to change must have the same outcome when tested before
 
-#TODO
-
 ## Input
 
 `````js filename=intro

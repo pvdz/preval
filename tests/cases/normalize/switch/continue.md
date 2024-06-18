@@ -10,8 +10,6 @@ Need to make sure the `continue` statements in the input still jump to the corre
 
 If the loop already has a label, then that label ought to be used instead since labels cannot nest in this context.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

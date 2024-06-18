@@ -10,8 +10,6 @@ We could potentially detect the literal write and still support this kind of cas
 
 If so, we can still assume the arr.length, but we will have to do tracking to assert the actual value of each index.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

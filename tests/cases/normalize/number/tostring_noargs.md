@@ -6,8 +6,6 @@
 >
 > Reading the toString method from a number. We know what that is.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

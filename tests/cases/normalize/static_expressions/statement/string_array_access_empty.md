@@ -6,8 +6,6 @@
 >
 > The length property on a string literal can be determined at compile time
 
-#TODO
-
 ## Input
 
 `````js filename=intro

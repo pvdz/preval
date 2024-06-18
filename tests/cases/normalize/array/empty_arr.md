@@ -6,8 +6,6 @@
 >
 > Special path to leaving empty arrs at some point.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Param names can be written to
 
-#TODO
-
 ## Input
 
 `````js filename=intro

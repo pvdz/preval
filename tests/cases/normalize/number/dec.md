@@ -6,8 +6,6 @@
 >
 > Numbers should be printed as decimals. Because. Yes.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

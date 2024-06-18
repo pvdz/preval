@@ -6,8 +6,6 @@
 >
 > This case is a slight deviation from if-call-if because the inner if-test is not used in the outer `if`. Yet, the binding was explicitly updated before the call so we can do the same thing. This is a more generic generalization of the pattern because it's about predicting the truthfullness of the test, less about how.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

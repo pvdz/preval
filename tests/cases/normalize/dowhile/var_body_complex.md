@@ -6,8 +6,6 @@
 >
 > Regression specific to using this kind of init
 
-#TODO
-
 ## Input
 
 `````js filename=intro

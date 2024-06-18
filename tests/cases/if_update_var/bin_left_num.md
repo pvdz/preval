@@ -8,8 +8,6 @@
 
 The idea is that `x` will be replaced by `y` here.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

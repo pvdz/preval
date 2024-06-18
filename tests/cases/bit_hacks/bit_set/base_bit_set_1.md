@@ -6,8 +6,6 @@
 >
 > Specific pattern of checking if a bit is set
 
-#TODO
-
 ## Input
 
 `````js filename=intro

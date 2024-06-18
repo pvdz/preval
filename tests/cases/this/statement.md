@@ -6,8 +6,6 @@
 >
 > The `this` keyword as statement should be eliminated
 
-#TODO
-
 ## Input
 
 `````js filename=intro

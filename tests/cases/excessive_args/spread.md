@@ -6,8 +6,6 @@
 >
 > A spread can be eliminated if there is no param to receive it
 
-#TODO
-
 ## Input
 
 `````js filename=intro

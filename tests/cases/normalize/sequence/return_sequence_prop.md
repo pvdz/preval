@@ -6,8 +6,6 @@
 >
 > Returning a member express on a sequence
 
-#TODO
-
 ## Input
 
 `````js filename=intro

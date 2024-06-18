@@ -6,8 +6,6 @@
 >
 > A loop with a branch where a binding is updated in one side and read in another...
 
-#TODO
-
 ## Input
 
 `````js filename=intro

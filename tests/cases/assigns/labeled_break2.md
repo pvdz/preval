@@ -6,8 +6,6 @@
 >
 > Breaking twice
 
-#TODO
-
 ## Input
 
 `````js filename=intro

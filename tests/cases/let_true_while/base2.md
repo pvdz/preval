@@ -6,8 +6,6 @@
 >
 > A func that is being cleared after being called once is "locked". I guess.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Turning a var into a const. Or not.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

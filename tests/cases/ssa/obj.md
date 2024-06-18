@@ -6,8 +6,6 @@
 >
 > Object side effect checking was bugged
 
-#TODO
-
 ## Input
 
 `````js filename=intro

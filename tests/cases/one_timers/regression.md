@@ -6,8 +6,6 @@
 >
 > Some kind of regression
 
-#TODO
-
 ## Input
 
 `````js filename=intro

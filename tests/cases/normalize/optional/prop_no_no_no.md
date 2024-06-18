@@ -6,8 +6,6 @@
 >
 > Mix optional with regular member expressions
 
-#TODO
-
 ## Input
 
 `````js filename=intro

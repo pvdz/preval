@@ -8,8 +8,6 @@
 
 (This is the intermediate step without if-else branch reduction + regression shortening)
 
-#TODO
-
 ## Input
 
 `````js filename=intro

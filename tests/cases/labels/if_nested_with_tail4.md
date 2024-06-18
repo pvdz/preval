@@ -8,8 +8,6 @@
 
 Contrived example for breaking past one level of label inside a trivial if-else structure.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

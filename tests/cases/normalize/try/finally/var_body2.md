@@ -6,8 +6,6 @@
 >
 > Var as body of a do-while
 
-#TODO
-
 ## Input
 
 `````js filename=intro

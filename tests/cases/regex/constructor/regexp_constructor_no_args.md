@@ -6,8 +6,6 @@
 >
 > Edge case implemented to solve jsf*ck
 
-#TODO
-
 ## Input
 
 `````js filename=intro

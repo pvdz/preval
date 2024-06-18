@@ -8,8 +8,6 @@
 
 The values were not checked leading to a inconsistent crash
 
-#TODO
-
 ## Input
 
 `````js filename=intro

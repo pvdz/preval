@@ -6,8 +6,6 @@
 >
 > When a function uses a param in the first statement and it is only called then we may be able to outline the first statement
 
-#TODO
-
 ## Input
 
 `````js filename=intro

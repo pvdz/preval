@@ -10,8 +10,6 @@ In this case the assignment used a param.
 
 The call has a spread before the param index so we must bail.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

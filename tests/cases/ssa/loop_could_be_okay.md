@@ -9,8 +9,6 @@
 - there is a write before any read in the loop
 - there is no further read
 
-#TODO
-
 ## Input
 
 `````js filename=intro

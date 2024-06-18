@@ -8,8 +8,6 @@
 
 This is the case where there's a var with init and a var decl. The var is used in a conditional.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

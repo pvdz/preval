@@ -8,8 +8,6 @@
 
 Just wanted an eval test to cover this case to make sure
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -10,8 +10,6 @@ Should not hoist this because it's an anonymous default export.
 
 There's no point in hoisting it since you can't refer to this function.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

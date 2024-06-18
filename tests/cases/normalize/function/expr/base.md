@@ -6,8 +6,6 @@
 >
 > a func expr is slightly different from func expr
 
-#TODO
-
 ## Input
 
 `````js filename=intro

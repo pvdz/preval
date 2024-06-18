@@ -6,8 +6,6 @@
 >
 > We should eliminate the writes when we know they're redundant
 
-#TODO
-
 ## Input
 
 `````js filename=intro

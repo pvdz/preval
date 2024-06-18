@@ -6,8 +6,6 @@
 >
 > Return inlining
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Specific pattern of checking if a bit is set. In this case multiple bits are set.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

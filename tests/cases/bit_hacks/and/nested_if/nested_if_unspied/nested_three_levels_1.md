@@ -10,8 +10,6 @@ Next level is wondering whether we want to do the 7-way options in a Set.
 
 Something like `new Set([2, 8, 10, 32, 34, 40, 42]).has(n)`
 
-#TODO
-
 ## Input
 
 `````js filename=intro

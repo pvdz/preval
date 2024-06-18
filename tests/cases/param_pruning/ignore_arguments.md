@@ -6,8 +6,6 @@
 >
 > Unused parameters should be eliminated under certain conditions, but not always.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

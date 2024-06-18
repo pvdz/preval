@@ -6,8 +6,6 @@
 >
 > The func updates two closures, which complicates the transform.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

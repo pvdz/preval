@@ -6,9 +6,7 @@
 >
 > This is a simple test case as proof of concept
 
-##TODO
-
-### CRASH message substring
+#### CRASH message substring
 
 If you want to indicate that the test is expected to throw inside Preval then you can use this header to tell the test runner to be wanting an error containing that substring to be thrown.
 

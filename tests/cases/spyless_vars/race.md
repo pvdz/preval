@@ -8,8 +8,6 @@
 
 Multiple vars racing competing for the same place.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > The PST output is renaming a var to a global that was seen. It should not use `a`
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -8,8 +8,6 @@
 
 This case should cap the inlining at some point even if the loop doesn't go all the way to infinity
 
-#TODO
-
 ## Input
 
 `````js filename=intro

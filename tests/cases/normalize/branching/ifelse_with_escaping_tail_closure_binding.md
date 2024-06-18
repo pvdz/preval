@@ -10,8 +10,6 @@ The problem is that if-else normalization would slice the tail into its own func
 
 In this case the function "escapes"; it is passed on into a black hole. It still needs to do what it used to.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

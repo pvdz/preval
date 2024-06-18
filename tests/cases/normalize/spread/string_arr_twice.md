@@ -6,8 +6,6 @@
 >
 > Literal operations can be extrapolated and reduced
 
-#TODO
-
 ## Input
 
 `````js filename=intro

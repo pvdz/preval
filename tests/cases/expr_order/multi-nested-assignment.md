@@ -6,8 +6,6 @@
 >
 > Check whether transform is correct even with multiple nesting levels. The runtime expects to call abcde in that order.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

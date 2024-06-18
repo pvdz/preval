@@ -6,8 +6,6 @@
 >
 > Nested assignments should be split up
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Calling Number on arrays trigger spies
 
-#TODO
-
 ## Input
 
 `````js filename=intro

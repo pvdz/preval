@@ -6,8 +6,6 @@
 >
 > Breaks can't possibly throw
 
-#TODO
-
 ## Input
 
 `````js filename=intro

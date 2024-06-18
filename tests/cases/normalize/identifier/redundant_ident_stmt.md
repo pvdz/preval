@@ -10,8 +10,6 @@ The idea is to leave the expression statement with just the identifier to make s
 
 However, if the next statement will immediately use them anyways, this is unnecessary.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -8,8 +8,6 @@
 
 This would crash.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

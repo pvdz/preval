@@ -6,8 +6,6 @@
 >
 > Add blocks to sub-statements. Let's do this for cases as well, for now. Maybe that's a mistake :)
 
-#TODO
-
 ## Input
 
 `````js filename=intro

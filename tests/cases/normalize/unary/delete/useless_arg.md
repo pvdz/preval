@@ -6,8 +6,6 @@
 >
 > Delete on non-property is valid but useless
 
-#TODO
-
 ## Input
 
 `````js filename=intro

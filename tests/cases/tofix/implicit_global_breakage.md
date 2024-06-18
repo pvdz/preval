@@ -7,8 +7,6 @@
 > The implicit global breaks the code here but our transform
 > still allows it to read $(2) before doing so. That shouldn't happen.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

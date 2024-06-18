@@ -6,8 +6,6 @@
 >
 > Even if we don't know about the concrete value of a binding, sometimes the type is sufficient for optimization
 
-#TODO
-
 ## Input
 
 `````js filename=intro

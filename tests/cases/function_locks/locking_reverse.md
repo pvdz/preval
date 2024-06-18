@@ -8,8 +8,6 @@
 
 - In this case the function gets tested before it is called ...
 
-#TODO
-
 ## Input
 
 `````js filename=intro

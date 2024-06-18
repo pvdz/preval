@@ -6,8 +6,6 @@
 >
 > Trivial case
 
-#TODO
-
 ## Input
 
 `````js filename=intro

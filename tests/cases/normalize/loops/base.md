@@ -595,8 +595,6 @@ function f() {
 $(f());
 ```
 
-#TODO
-
 ## Input
 
 `````js filename=intro

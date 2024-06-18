@@ -8,8 +8,6 @@
 
 The system knows `func.constructor` maps to `Function` and should be able to deal with this
 
-#TODO
-
 ## Input
 
 `````js filename=intro

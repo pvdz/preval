@@ -6,8 +6,6 @@
 >
 > This is roughly what patterns dissolve into
 
-#TODO
-
 ## Input
 
 `````js filename=intro

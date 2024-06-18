@@ -6,8 +6,6 @@
 >
 > Binding declaration with a long init should be outlined
 
-#TODO
-
 ## Input
 
 `````js filename=intro

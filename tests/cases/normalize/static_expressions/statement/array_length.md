@@ -6,8 +6,6 @@
 >
 > The length property on an array literal can be determined at compile time
 
-#TODO
-
 ## Input
 
 `````js filename=intro

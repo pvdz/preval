@@ -6,8 +6,6 @@
 >
 > Spreading a string results in individual characters
 
-#TODO
-
 ## Input
 
 `````js filename=intro

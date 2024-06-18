@@ -6,8 +6,6 @@
 >
 > Base case for the special `arguments` builtin
 
-#TODO
-
 ## Input
 
 `````js filename=intro

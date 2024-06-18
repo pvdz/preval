@@ -8,8 +8,6 @@
 
 The DCE should not eliminate the function or the code will break. This one is simple, eh.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

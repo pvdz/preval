@@ -6,8 +6,6 @@
 >
 > An if-test that is the result of a bool conversion should use the arg directly
 
-#TODO
-
 ## Input
 
 `````js filename=intro

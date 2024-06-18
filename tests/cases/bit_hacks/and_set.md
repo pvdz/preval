@@ -6,8 +6,6 @@
 >
 > Checking whether both bits are set
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -10,8 +10,6 @@
 > Additionally, and separately, `if ($) {} else { x = y; $(); }` must throw
 > so we should be able to infer that.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

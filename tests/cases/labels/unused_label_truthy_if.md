@@ -6,8 +6,6 @@
 >
 > Labels should not throw
 
-#TODO
-
 ## Input
 
 `````js filename=intro

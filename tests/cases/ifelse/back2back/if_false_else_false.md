@@ -6,8 +6,6 @@
 >
 > Back to back if statements on same ident may be simplified
 
-#TODO
-
 ## Input
 
 `````js filename=intro

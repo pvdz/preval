@@ -10,8 +10,6 @@ The difficult case here is that the temporal differs from the lexical.
 
 Function `f` is defined at the start, updating `x`. But the first use of `x` happens before the declaration and before the update happens.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

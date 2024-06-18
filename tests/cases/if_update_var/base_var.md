@@ -6,8 +6,6 @@
 >
 > Real base that is not optimized away rn
 
-#TODO
-
 ## Input
 
 `````js filename=intro

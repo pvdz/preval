@@ -8,8 +8,6 @@
 
 Regression was not inlining a single used function
 
-#TODO
-
 ## Input
 
 `````js filename=intro

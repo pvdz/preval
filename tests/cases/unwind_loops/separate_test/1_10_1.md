@@ -6,8 +6,6 @@
 >
 > Unrolling loops
 
-#TODO
-
 ## Input
 
 `````js filename=intro

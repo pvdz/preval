@@ -6,8 +6,6 @@
 >
 > For-in must be normalized
 
-#TODO
-
 ## Input
 
 `````js filename=intro

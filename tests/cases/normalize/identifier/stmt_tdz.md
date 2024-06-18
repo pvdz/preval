@@ -6,8 +6,6 @@
 >
 > Known ident that will trigger tdz will still be eliminated, for now. Impossible to safely detect but we can improve some cases later.
 
-#TODO
-
 ## Options
 
 TDZ errors are not properly emulated so a n eval mismatch is expected

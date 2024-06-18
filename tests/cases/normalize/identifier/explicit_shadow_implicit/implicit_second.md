@@ -6,8 +6,6 @@
 >
 > Explicit binding that has the same name as an implicit global should be fine
 
-#TODO
-
 ## Input
 
 `````js filename=intro

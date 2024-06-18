@@ -6,8 +6,6 @@
 >
 > Actual early access case
 
-#TODO
-
 ## Input
 
 `````js filename=intro

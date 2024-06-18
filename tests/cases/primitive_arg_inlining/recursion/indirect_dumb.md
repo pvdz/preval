@@ -8,8 +8,6 @@
 
 This is an infinite loop. It should not throw Preval in an endless loop.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

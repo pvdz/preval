@@ -6,8 +6,6 @@
 >
 > Inverting a member expression is two things
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > If a variable is conditionally set and then used in a call after the `if`/`else`, we can hoist the call inside those branches.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

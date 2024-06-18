@@ -6,8 +6,6 @@
 >
 > Test various ways in which `this` can occur
 
-#TODO
-
 ## Input
 
 `````js filename=intro

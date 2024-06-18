@@ -6,8 +6,6 @@
 >
 > When an if checks whether a single bit is set and then returns a literal it should be replaced with that value
 
-#TODO
-
 ## Input
 
 `````js filename=intro

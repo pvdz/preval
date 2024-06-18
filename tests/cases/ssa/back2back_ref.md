@@ -6,8 +6,6 @@
 >
 > This may be an artifact through using ++x
 
-#TODO
-
 ## Input
 
 `````js filename=intro

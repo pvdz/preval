@@ -8,8 +8,6 @@
 
 In this case the excessive args can be dropped from the call expression. Their side-effects should still trigger.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

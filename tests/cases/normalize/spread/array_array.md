@@ -6,8 +6,6 @@
 >
 > Spreading an array literal can be resolved statically
 
-#TODO
-
 ## Input
 
 `````js filename=intro

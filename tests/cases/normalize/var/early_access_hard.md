@@ -10,8 +10,6 @@ The difficult case here is that the temporal differs from the lexical.
 
 Function `f` is declared at the end, appearing after the `var` statement in the source code. Should `x` be updated here? No, because `f` is hoisted.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

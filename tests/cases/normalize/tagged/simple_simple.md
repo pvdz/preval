@@ -6,8 +6,6 @@
 >
 > A tagged template that has complex elements should be normalized to only contain simple ones
 
-#TODO
-
 ## Input
 
 `````js filename=intro

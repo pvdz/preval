@@ -6,8 +6,6 @@
 >
 > Trying to come up with ssa problem cases regarding closures
 
-#TODO
-
 ## Input
 
 `````js filename=intro

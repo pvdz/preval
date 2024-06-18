@@ -6,8 +6,6 @@
 >
 > Testing binding mutation optimizations
 
-#TODO
-
 ## Input
 
 `````js filename=intro

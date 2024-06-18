@@ -6,8 +6,6 @@
 >
 > Calling parseFloat on a primitive should resolve
 
-#TODO
-
 ## Input
 
 `````js filename=intro

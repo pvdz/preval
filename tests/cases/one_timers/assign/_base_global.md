@@ -6,8 +6,6 @@
 >
 > Functions that are called once should be inlined when possible
 
-#TODO
-
 ## Input
 
 `````js filename=intro

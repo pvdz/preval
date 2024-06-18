@@ -6,8 +6,6 @@
 >
 > This case is where a decl is followed by a write with only statements that either have no observable side effects in them or a ref that is not in the same scope or one with an observable side effect before the first ref was found (since in that case there can not be closure access, whatever it is doing).
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > The inner assign should not be eliminated since the loop condition uses it
 
-#TODO
-
 ## Input
 
 `````js filename=intro

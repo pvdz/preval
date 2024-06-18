@@ -6,8 +6,6 @@
 >
 > Spread should be fine
 
-#TODO
-
 ## Input
 
 `````js filename=intro

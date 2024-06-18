@@ -6,8 +6,6 @@
 >
 > Second attempt at trying to proc cloning cache
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -8,8 +8,6 @@
 
 The computed value is not DCE but the actual usage should be removed because it doesn't matter what property attempts the access.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

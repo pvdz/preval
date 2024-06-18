@@ -8,8 +8,6 @@
 
 In this particular case the array could be initialized with the number immediately.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

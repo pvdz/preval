@@ -6,8 +6,6 @@
 >
 > This wasn't getting normalized...
 
-#TODO
-
 ## Input
 
 `````js filename=intro

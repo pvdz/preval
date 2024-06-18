@@ -6,8 +6,6 @@
 >
 > The label gets eliminated because DCE removes all usages of the label so it's removed
 
-#TODO
-
 ## Input
 
 `````js filename=intro

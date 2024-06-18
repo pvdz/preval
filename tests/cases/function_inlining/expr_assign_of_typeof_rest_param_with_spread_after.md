@@ -10,8 +10,6 @@ The assignment in g uses a rest param. There are some cases where we can still t
 
 In this case, the function is called with a spread after the rest param index so we should transform.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

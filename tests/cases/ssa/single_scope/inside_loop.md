@@ -6,8 +6,6 @@
 >
 > If the decl happens inside a loop the SSA should still be able to proceed
 
-#TODO
-
 ## Input
 
 `````js filename=intro

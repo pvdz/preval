@@ -6,8 +6,6 @@
 >
 > A trampoline is a function that just calls another function, and maybe returns its return value
 
-#TODO
-
 ## Input
 
 `````js filename=intro

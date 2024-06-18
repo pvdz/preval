@@ -6,8 +6,6 @@
 >
 > Exporting a value
 
-#TODO
-
 ## Input
 
 `````js filename=intro

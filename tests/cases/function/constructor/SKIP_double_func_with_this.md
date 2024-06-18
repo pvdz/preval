@@ -6,8 +6,6 @@
 >
 > This regression threw over using the `tmpThis` name twice
 
-#TODO
-
 ## Input
 
 `````js filename=intro

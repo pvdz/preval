@@ -6,8 +6,6 @@
 >
 > Basic expando stuff
 
-#TODO
-
 ## Input
 
 `````js filename=intro

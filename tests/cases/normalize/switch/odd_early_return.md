@@ -6,8 +6,6 @@
 >
 > Sorting out the branching stuff
 
-#TODO
-
 ## Input
 
 `````js filename=intro

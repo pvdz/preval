@@ -6,8 +6,6 @@
 >
 > Implicit global statement should not be eliminated
 
-#TODO
-
 ## Input
 
 `````js filename=intro

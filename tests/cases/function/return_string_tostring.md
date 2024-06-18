@@ -8,8 +8,6 @@
 
 The function is assumed to be pure (no observable side effects) but still not inlinable, although Date.now() is probably insufficient to stop this.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

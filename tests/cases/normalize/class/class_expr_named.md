@@ -6,8 +6,6 @@
 >
 > Class expression base
 
-#TODO
-
 ## Input
 
 `````js filename=intro

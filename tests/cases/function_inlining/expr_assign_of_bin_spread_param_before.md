@@ -10,8 +10,6 @@ In this case the assignment used a param and the call uses a spread.
 
 The param that was used in the assignment was not covered by the spread so we can fold it after all.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

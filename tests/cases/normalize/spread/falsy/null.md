@@ -6,8 +6,6 @@
 >
 > Spreading a falsy is an error unless it's a string, in that case it's a noop
 
-#TODO
-
 ## Input
 
 `````js filename=intro

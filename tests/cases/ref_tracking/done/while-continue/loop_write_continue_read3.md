@@ -6,8 +6,6 @@
 >
 > Ref tracking cases
 
-#TODO
-
 ## Options
 
 - refTest

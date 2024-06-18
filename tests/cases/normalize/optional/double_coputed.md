@@ -6,8 +6,6 @@
 >
 > Order of complex expressions in double optional computed property
 
-#TODO
-
 ## Input
 
 `````js filename=intro

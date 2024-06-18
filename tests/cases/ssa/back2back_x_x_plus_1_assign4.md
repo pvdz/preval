@@ -16,8 +16,6 @@ This should be the proof of why this is dangerous. The `x + 1` expression could 
 
 What happens if we do SSA it?
 
-#TODO
-
 ## Input
 
 `````js filename=intro

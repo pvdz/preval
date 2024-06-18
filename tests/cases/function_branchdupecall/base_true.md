@@ -6,8 +6,6 @@
 >
 > If a function ends with an if-else that calls the same function in the same way and returns it, then it should not have that as a branch.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

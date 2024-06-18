@@ -6,8 +6,6 @@
 >
 > Ensure context is passed on properly in various optional chaining cases
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Function expression ids should be eliminated
 
-#TODO
-
 ## Input
 
 `````js filename=intro

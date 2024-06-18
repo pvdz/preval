@@ -6,8 +6,6 @@
 >
 > Regression would trip in phase1 after botched transform
 
-#TODO
-
 ## Input
 
 `````js filename=intro

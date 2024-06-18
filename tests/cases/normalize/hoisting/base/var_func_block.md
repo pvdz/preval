@@ -6,8 +6,6 @@
 >
 > Hosting in a block should end up in the parent
 
-#TODO
-
 ## Input
 
 `````js filename=intro

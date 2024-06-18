@@ -6,8 +6,6 @@
 >
 > The if-call-if pattern is common and is probably a result from how we transform `||` and `&&`
 
-#TODO
-
 ## Input
 
 `````js filename=intro

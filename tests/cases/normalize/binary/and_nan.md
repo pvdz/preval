@@ -6,8 +6,6 @@
 >
 > Bitwise ops coerce their arg
 
-#TODO
-
 ## Input
 
 `````js filename=intro

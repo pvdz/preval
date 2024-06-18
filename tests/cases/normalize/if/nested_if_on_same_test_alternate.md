@@ -6,8 +6,6 @@
 >
 > A nested if testing the same binding can be collapsed
 
-#TODO
-
 ## Input
 
 `````js filename=intro

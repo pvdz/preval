@@ -6,8 +6,6 @@
 >
 > When the if-test must be a bool and the branches return true/false, the if can collapse.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

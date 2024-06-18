@@ -6,8 +6,6 @@
 >
 > Try to undo some of the damage that was necessary during loop normalizations
 
-#TODO
-
 ## Input
 
 `````js filename=intro

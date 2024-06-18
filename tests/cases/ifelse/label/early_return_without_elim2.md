@@ -8,8 +8,6 @@
 
 Regression; The function was inlined into global but the return statement was not scrubbed.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

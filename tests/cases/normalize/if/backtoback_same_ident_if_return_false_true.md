@@ -6,8 +6,6 @@
 >
 > Back to back if on same ident where first if has empty consequent and second if only has a return as consequent.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

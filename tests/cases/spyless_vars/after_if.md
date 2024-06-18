@@ -6,8 +6,6 @@
 >
 > A non-spying var decl in a single scope should be moved inside the thing that uses it
 
-#TODO
-
 ## Input
 
 `````js filename=intro

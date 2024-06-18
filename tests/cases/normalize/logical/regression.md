@@ -6,8 +6,6 @@
 >
 > This particular case was breaking
 
-#TODO
-
 ## Input
 
 `````js filename=intro

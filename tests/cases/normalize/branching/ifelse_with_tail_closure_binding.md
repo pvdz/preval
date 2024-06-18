@@ -8,8 +8,6 @@
 
 The problem is that if-else normalization would slice the tail into its own function. But if the tail contained a var decl that was also used in a closure (defined before the if) then the binding would not be accessible anymore, leading to a global variable. 
 
-#TODO
-
 ## Input
 
 `````js filename=intro

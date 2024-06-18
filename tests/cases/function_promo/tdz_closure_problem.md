@@ -8,8 +8,6 @@
 
 This kind of problem should have been skirted by having unique names in the first place...
 
-#TODO
-
 ## Input
 
 `````js filename=intro

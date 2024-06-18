@@ -8,8 +8,6 @@
 > In this case the outer function replaces itself with a closure for an array it creates.
 > But as long as the array is not mutated nor reference checked, the values should be safe to access.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

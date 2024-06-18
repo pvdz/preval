@@ -8,8 +8,6 @@
 
 This loop could be dropped because all branches return/break it.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

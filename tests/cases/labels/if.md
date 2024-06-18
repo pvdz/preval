@@ -6,8 +6,6 @@
 >
 > Make sure the labeled `if` doesn't screw up transforms
 
-#TODO
-
 ## Input
 
 `````js filename=intro

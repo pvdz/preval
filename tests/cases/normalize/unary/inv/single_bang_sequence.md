@@ -6,8 +6,6 @@
 >
 > This is an example of a single bang that can be moved into a sequence
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -10,8 +10,6 @@ The code frames should have a filename that matches the exact string that is use
 
 Their name should also be `'*default*'`, and we have no alternative transform available for this.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

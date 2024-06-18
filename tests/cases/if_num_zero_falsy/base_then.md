@@ -6,8 +6,6 @@
 >
 > If an unknown value known to be a number is checked against zero, it is a falsy check, which may make things simpler for us.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

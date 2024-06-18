@@ -6,8 +6,6 @@
 >
 > A regex is always truthy
 
-#TODO
-
 ## Input
 
 `````js filename=intro

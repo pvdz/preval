@@ -8,8 +8,6 @@
 
 At some point the block would be dropped but the function wouldn't be hoisted
 
-#TODO
-
 ## Input
 
 `````js filename=intro

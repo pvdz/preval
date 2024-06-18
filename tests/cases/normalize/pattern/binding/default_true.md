@@ -6,8 +6,6 @@
 >
 > Assignment pattern with default
 
-#TODO
-
 ## Input
 
 `````js filename=intro

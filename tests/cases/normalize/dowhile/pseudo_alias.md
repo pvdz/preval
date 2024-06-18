@@ -12,8 +12,6 @@ The point here is that doWhileFlag is an alias to the test value v but it is red
 
 After that, the constant y should also be up for elimination.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -8,8 +8,6 @@
 
 Confirming that SSA is applied when there's no prior closure.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

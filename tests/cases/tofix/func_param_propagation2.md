@@ -6,8 +6,6 @@
 >
 > If we would move that tail return trampo into both if-branches then it would remove the b...
 
-#TODO
-
 ## Input
 
 `````js filename=intro

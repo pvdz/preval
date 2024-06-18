@@ -8,8 +8,6 @@
 
 I think the call sites should throw unconditionally as well. So the result should have a single throw and the rest is DCE'd.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Cannot SSA because g(true) g(false) should not have the same value for x
 
-#TODO
-
 ## Input
 
 `````js filename=intro

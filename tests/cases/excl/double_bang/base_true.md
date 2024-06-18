@@ -6,8 +6,6 @@
 >
 > A double bang is really just a Boolean
 
-#TODO
-
 ## Input
 
 `````js filename=intro

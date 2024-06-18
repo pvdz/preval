@@ -6,8 +6,6 @@
 >
 > An unused func decl should be removed
 
-#TODO
-
 ## Input
 
 `````js filename=intro

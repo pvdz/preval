@@ -6,8 +6,6 @@
 >
 > Label generation was broken at some point and would generate identical label names, causing this to fail.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > The property be normalized
 
-#TODO
-
 ## Input
 
 `````js filename=intro

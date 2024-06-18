@@ -12,8 +12,6 @@ We do have to be careful about using x in the rhs.
 
 This version makes sure there's no closure of x before the decl.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

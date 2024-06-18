@@ -8,8 +8,6 @@
 
 Confirm the getter/setter is called the same number of times after normalization.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

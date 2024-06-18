@@ -6,8 +6,6 @@
 >
 > An assignment at the end of a function may be dead code
 
-#TODO
-
 ## Input
 
 `````js filename=intro

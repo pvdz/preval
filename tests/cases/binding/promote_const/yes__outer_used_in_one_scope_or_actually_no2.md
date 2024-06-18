@@ -8,8 +8,6 @@
 
 This shows why x cannot safely be SSA'd here...
 
-#TODO
-
 ## Input
 
 `````js filename=intro

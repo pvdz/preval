@@ -6,8 +6,6 @@
 >
 > When comparing a primitive to a value whose type is determined (but not the actual value) can in many cases still be resolved.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

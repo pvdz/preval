@@ -21,8 +21,6 @@ switch (x) {
 }
 ```
 
-#TODO
-
 ## Input
 
 `````js filename=intro

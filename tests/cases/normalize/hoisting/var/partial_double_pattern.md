@@ -6,8 +6,6 @@
 >
 > Silly case of a double var pattern binding
 
-#TODO
-
 ## Input
 
 `````js filename=intro

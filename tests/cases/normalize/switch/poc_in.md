@@ -32,8 +32,6 @@ exit: {
 }
 ```
 
-#TODO
-
 ## Input
 
 `````js filename=intro

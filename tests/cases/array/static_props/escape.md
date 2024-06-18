@@ -8,8 +8,6 @@
 
 Since anything can happen to an array when it escapes into a black hole, we must consider the array dirty.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

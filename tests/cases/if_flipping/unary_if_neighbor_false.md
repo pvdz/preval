@@ -6,8 +6,6 @@
 >
 > When the binding is used in multiple `if`s
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > The `new` operator should apply to a single identifier. A literal can also work though it would lead to a runtime error.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Example of where continue is not eliminated
 
-#TODO
-
 ## Input
 
 `````js filename=intro

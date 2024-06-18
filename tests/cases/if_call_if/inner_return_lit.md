@@ -6,8 +6,6 @@
 >
 > The inner returning a literal should be inlinable
 
-#TODO
-
 ## Input
 
 `````js filename=intro

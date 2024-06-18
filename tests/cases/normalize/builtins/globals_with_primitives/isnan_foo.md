@@ -6,8 +6,6 @@
 >
 > Calling isNaN on a value that is a NaN should invariantly return true
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -24,8 +24,6 @@ After which the `b` identifier is no longer a unique binding.
 
 This is easy to fix for the example but harder to fix for a generic clone.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

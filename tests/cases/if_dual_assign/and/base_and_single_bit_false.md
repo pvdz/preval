@@ -6,8 +6,6 @@
 >
 > A single bit AND means the result is one of two values and they are falsy and truthy so when it's the condition of an `if`, each branch knows the value.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

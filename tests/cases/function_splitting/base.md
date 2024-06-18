@@ -6,8 +6,6 @@
 >
 > A function that tests on a param and has two separate code paths based on that test might be splittable if we know all the args.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

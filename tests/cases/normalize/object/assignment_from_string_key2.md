@@ -6,8 +6,6 @@
 >
 > Should convert the key to a regular property
 
-#TODO
-
 ## Input
 
 `````js filename=intro

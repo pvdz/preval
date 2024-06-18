@@ -6,8 +6,6 @@
 >
 > When a value is ANDed and bitwise checked, the certain comparisons may be resolved even if you don't know the actual value.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

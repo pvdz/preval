@@ -8,8 +8,6 @@
 
 The loop should now be unrolled properly
 
-#TODO
-
 ## Options
 
 - unroll=30

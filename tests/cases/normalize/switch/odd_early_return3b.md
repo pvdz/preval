@@ -10,8 +10,6 @@ Regression was not inlining a single used function
 
 This function is in global.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

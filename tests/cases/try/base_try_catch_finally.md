@@ -6,8 +6,6 @@
 >
 > Try base cases
 
-#TODO
-
 ## Input
 
 `````js filename=intro

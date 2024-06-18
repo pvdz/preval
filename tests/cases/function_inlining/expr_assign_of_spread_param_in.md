@@ -10,8 +10,6 @@ In this case the assignment used a param and the call uses a spread that covers 
 
 We cannot inline this here because at static time we cannot guarantee the contents of the array (edge cases aside).
 
-#TODO
-
 ## Input
 
 `````js filename=intro

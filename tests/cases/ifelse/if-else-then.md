@@ -6,8 +6,6 @@
 >
 > This should be abstracted
 
-#TODO
-
 ## Input
 
 `````js filename=intro

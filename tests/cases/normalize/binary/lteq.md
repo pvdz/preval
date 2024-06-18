@@ -6,8 +6,6 @@
 >
 > Baseline binary expressions to cover ops
 
-#TODO
-
 ## Input
 
 `````js filename=intro

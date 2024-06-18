@@ -6,8 +6,6 @@
 >
 > Exporting a class
 
-#TODO
-
 ## Input
 
 `````js filename=intro

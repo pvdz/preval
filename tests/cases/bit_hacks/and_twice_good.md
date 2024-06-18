@@ -6,8 +6,6 @@
 >
 > Silly case that might happen in the IR
 
-#TODO
-
 ## Input
 
 `````js filename=intro

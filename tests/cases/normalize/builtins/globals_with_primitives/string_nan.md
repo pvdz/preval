@@ -6,8 +6,6 @@
 >
 > Calling String on a primitive should resolve
 
-#TODO
-
 ## Input
 
 `````js filename=intro

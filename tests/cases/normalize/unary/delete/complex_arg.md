@@ -6,8 +6,6 @@
 >
 > The complex arg should not lead to a syntax error
 
-#TODO
-
 ## Input
 
 `````js filename=intro

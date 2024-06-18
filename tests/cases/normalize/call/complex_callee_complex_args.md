@@ -6,8 +6,6 @@
 >
 > Calls should have simple idents
 
-#TODO
-
 ## Input
 
 `````js filename=intro

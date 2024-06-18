@@ -8,8 +8,6 @@
 
 In strict mode the funcdecl is a hoisted lexical binding, not a var binding.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

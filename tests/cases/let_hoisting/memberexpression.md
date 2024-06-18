@@ -6,8 +6,6 @@
 >
 > Member expression was causing problems
 
-#TODO
-
 ## Input
 
 `````js filename=intro

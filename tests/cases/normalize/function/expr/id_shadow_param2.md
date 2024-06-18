@@ -6,8 +6,6 @@
 >
 > Function recursion by referencing a function expr id
 
-#TODO
-
 ## Input
 
 `````js filename=intro

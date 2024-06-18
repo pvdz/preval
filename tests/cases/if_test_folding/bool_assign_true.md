@@ -6,8 +6,6 @@
 >
 > When the assignment in an `if` is a true/false in each branch, we can base it on the test.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

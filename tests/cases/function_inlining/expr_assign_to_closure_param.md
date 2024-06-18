@@ -8,8 +8,6 @@
 
 The parameter must be mapped to the arg when inlining g.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

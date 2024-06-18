@@ -6,8 +6,6 @@
 >
 > How do we normalize multiple func decls on the same level?
 
-#TODO
-
 ## Input
 
 `````js filename=intro

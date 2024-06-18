@@ -6,8 +6,6 @@
 >
 > Void is really just undefined
 
-#TODO
-
 ## Input
 
 `````js filename=intro

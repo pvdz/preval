@@ -10,8 +10,6 @@ Anonymous functions are exported as frozen bindings. There is no way to change t
 
 Their name should also be `'default'`, and we have no alternative transform available for this. We could use Object.defineProperty though.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

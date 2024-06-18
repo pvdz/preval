@@ -6,8 +6,6 @@
 >
 > When we can trivially detect an if to be using a flipped ident, use the ident instead
 
-#TODO
-
 ## Input
 
 `````js filename=intro

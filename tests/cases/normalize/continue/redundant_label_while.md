@@ -6,8 +6,6 @@
 >
 > If a labeled break does the same thing without the label then the label should be dropped
 
-#TODO
-
 ## Input
 
 `````js filename=intro

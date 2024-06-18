@@ -12,8 +12,6 @@ x === 2 || x === 3
 
 Decided not to go forward with this one. There's no real advantage here and the result seems worse. Plus it triggers spies.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

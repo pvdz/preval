@@ -6,8 +6,6 @@
 >
 > Empty string should make `?.` to return undefined. This should throw, not return undefined.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

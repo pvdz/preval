@@ -6,8 +6,6 @@
 >
 > The last read can't reach 1 at all. But we can't statically determine this. So it should at least reach 2, as well.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

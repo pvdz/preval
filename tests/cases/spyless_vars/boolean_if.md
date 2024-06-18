@@ -6,8 +6,6 @@
 >
 > Boolean the condition
 
-#TODO
-
 ## Input
 
 `````js filename=intro

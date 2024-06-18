@@ -7,8 +7,6 @@
 > Regression causing $(3) to transform before $(1)
 > The transform was pretty botched.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

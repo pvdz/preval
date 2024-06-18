@@ -8,8 +8,6 @@
 
 This should not do the trick.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

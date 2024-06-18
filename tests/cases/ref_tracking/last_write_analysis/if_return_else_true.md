@@ -6,8 +6,6 @@
 >
 > Last write analysis should pick up on the return and assume that the prior write can not be observed later.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

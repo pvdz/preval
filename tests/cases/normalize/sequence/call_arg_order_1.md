@@ -6,8 +6,6 @@
 >
 > In a call we can only trivially outline sequence expressions of the first arg. We can do the other ones but that requires temporary assignment of all non-ident/non-literals to ensure no side effects.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

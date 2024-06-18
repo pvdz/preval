@@ -8,8 +8,6 @@
 
 One fewer nesting
 
-#TODO
-
 ## Input
 
 `````js filename=intro

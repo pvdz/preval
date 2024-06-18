@@ -6,8 +6,6 @@
 >
 > Exported func decls are still hoisted
 
-#TODO
-
 ## Input
 
 `````js filename=intro

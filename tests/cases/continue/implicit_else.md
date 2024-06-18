@@ -5,8 +5,6 @@
 > Continue > Implicit else
 >
 
-#TODO
-
 ## Input
 
 `````js filename=intro

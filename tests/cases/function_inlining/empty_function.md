@@ -6,8 +6,6 @@
 >
 > A function that's empty should have all its calls inlined to `undefined`
 
-#TODO
-
 ## Input
 
 `````js filename=intro

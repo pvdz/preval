@@ -10,8 +10,6 @@ This shows why x cannot safely be SSA'd here...
 
 This one shadows the other to see what happens when the func doesn't close over x.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

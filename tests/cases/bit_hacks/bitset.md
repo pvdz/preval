@@ -6,8 +6,6 @@
 >
 > Testing if one specific bit is set
 
-#TODO
-
 ## Input
 
 `````js filename=intro

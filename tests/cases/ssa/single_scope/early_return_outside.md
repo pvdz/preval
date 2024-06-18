@@ -8,8 +8,6 @@
 
 This variant will have an early return but in a parent branch
 
-#TODO
-
 ## Input
 
 `````js filename=intro

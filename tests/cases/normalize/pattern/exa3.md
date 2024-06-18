@@ -6,8 +6,6 @@
 >
 > from gist
 
-#TODO
-
 ## Input
 
 `````js filename=intro

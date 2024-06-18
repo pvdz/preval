@@ -6,8 +6,6 @@
 >
 > The logical operators should normalize to concrete branching logic
 
-#TODO
-
 ## Input
 
 `````js filename=intro

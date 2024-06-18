@@ -8,8 +8,6 @@
 
 Can not promote x to a constant.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

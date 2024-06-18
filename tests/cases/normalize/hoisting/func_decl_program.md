@@ -6,8 +6,6 @@
 >
 > Function declaration in toplevel
 
-#TODO
-
 ## Input
 
 `````js filename=intro

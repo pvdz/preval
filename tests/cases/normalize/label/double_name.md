@@ -6,8 +6,6 @@
 >
 > Check the label renaming algo. The label names ought to be unique just like binding idents.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

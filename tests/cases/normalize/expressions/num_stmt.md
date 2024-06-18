@@ -6,8 +6,6 @@
 >
 > A statement that is a num coercion
 
-#TODO
-
 ## Input
 
 `````js filename=intro

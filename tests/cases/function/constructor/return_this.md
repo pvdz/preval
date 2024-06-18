@@ -6,8 +6,6 @@
 >
 > Special case return this
 
-#TODO
-
 ## Input
 
 `````js filename=intro

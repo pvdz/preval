@@ -54,8 +54,6 @@ while(fall === false) {
 }
 ```
 
-#TODO
-
 ## Input
 
 `````js filename=intro

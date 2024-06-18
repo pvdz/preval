@@ -10,8 +10,6 @@ This proofs that we can't get away with only tracking the lowest depth count + b
 
 The x should not be made a constant.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

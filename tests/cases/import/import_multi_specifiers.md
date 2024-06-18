@@ -6,8 +6,6 @@
 >
 > We want to normalize imports to have exactly one specifier
 
-#TODO
-
 ## Input
 
 `````js filename=intro

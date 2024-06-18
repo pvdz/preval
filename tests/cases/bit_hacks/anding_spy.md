@@ -6,8 +6,6 @@
 >
 > Two ands can be combined
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Primitive args that may need to be simplified
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -10,8 +10,6 @@ If we can detect that every read is invariantly preceded by a write then the ini
 
 This one has two occurrences in the same scope. The test makes sure we don't accidentally create two vars in the same scope.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

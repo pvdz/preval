@@ -8,8 +8,6 @@
 
 The single call was being inlined but that led to an implosion of the function.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

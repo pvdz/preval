@@ -6,8 +6,6 @@
 >
 > Optional property access on null/undefined should drop the remainder of the chain
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > If the try is empty then the catch can't trigger and we can safely eliminate it
 
-#TODO
-
 ## Input
 
 `````js filename=intro

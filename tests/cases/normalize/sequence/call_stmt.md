@@ -6,8 +6,6 @@
 >
 > Expression statement that is a call with callee that is a sequence
 
-#TODO
-
 ## Input
 
 `````js filename=intro

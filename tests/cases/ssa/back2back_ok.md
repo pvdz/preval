@@ -6,8 +6,6 @@
 >
 > Assignment of a func
 
-#TODO
-
 ## Input
 
 `````js filename=intro

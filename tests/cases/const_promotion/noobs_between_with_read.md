@@ -6,8 +6,6 @@
 >
 > A let decl with assignment later can be transformed if there are only statements in between with no observable side effects.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

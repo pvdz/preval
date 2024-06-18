@@ -8,8 +8,6 @@
 
 This caught a regression in the movement of spyless var
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Push a number to an array
 
-#TODO
-
 ## Input
 
 `````js filename=intro

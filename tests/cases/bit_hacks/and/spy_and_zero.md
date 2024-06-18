@@ -6,8 +6,6 @@
 >
 > And zero is always zero
 
-#TODO
-
 ## Input
 
 `````js filename=intro

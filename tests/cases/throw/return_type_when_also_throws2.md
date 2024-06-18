@@ -8,8 +8,6 @@
 
 The final result should not trampoline the call but outline the `1` directly.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > One branch per func?
 
-#TODO
-
 This is the example input
 
 ```js

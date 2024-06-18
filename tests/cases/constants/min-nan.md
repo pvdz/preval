@@ -6,8 +6,6 @@
 >
 > Copy one constant into another. Should fold them.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

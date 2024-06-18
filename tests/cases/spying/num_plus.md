@@ -6,8 +6,6 @@
 >
 > A spy in a plus
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Minimal test case for an infinite loop at some point. The problem was hoisting triggering "changes" when there weren't any.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

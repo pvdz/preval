@@ -6,8 +6,6 @@
 >
 > One of the fake loops; a loop that always throws is not a loop
 
-#TODO
-
 ## Input
 
 `````js filename=intro

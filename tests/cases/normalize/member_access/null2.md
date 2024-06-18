@@ -6,8 +6,6 @@
 >
 > Accessing a prop on null
 
-#TODO
-
 ## Input
 
 `````js filename=intro

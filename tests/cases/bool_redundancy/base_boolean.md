@@ -6,8 +6,6 @@
 >
 > Bool coercions that are only used in bool contexts can be dropped because they cannot be observed
 
-#TODO
-
 ## Input
 
 `````js filename=intro

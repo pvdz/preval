@@ -6,8 +6,6 @@
 >
 > Regression: computed property name of dollar was not inlined
 
-#TODO
-
 ## Input
 
 `````js filename=intro

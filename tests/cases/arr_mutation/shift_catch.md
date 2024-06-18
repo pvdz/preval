@@ -6,8 +6,6 @@
 >
 > Serializing an array with elided positions
 
-#TODO
-
 ## Input
 
 `````js filename=intro

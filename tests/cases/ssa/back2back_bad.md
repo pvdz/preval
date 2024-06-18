@@ -14,8 +14,6 @@ The closure is called before the second write and we can't (trivially) tell to w
 
 Now what happens if the function is called in the second assignment (when it needs to point to the old) and after that assignment (when it needs to point to the new)? Oops.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

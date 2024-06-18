@@ -7,8 +7,6 @@
 > Need to sanitize this example but if we know that a value is an object
 > then we can safely drop `?.` applied to it, in all its variations.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

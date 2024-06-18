@@ -6,8 +6,6 @@
 >
 > When the prop is an argument to `delet` it is not a read and we should skip
 
-#TODO
-
 ## Input
 
 `````js filename=intro

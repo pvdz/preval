@@ -18,8 +18,6 @@ We can't apply SSA to this with our current heuristics.
 
 We could clone the function with a before and after variation. But that feels like it would only solve a very niche case, not a general solution. And it would fail fast if we can't track the function in the first place. Like what happens when it's a class method, etc.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

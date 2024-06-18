@@ -6,8 +6,6 @@
 >
 > Just checking something
 
-#TODO
-
 ## Options
 
 - refTest

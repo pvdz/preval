@@ -8,8 +8,6 @@
 
 Relevant for intermediate artifacts.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

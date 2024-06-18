@@ -6,8 +6,6 @@
 >
 > Normalization of assignments should work the same everywhere they are
 
-#TODO
-
 ## Options
 
 Known TDZ problem

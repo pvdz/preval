@@ -6,8 +6,6 @@
 >
 > Trying to sketch the problem of access to a binding that was declared much later
 
-#TODO
-
 ## Input
 
 `````js filename=intro

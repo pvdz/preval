@@ -6,8 +6,6 @@
 >
 > Vars can be declared in a switch case
 
-#TODO
-
 ## Input
 
 `````js filename=intro

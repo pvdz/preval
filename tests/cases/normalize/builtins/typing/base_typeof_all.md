@@ -6,8 +6,6 @@
 >
 > A simple check for all the (supported) builtins and whether Preval's type inference properly picks up on their return value.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

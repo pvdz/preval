@@ -6,8 +6,6 @@
 >
 > Class with method default should be transformed properly
 
-#TODO
-
 ## Input
 
 `````js filename=intro

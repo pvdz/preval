@@ -10,8 +10,6 @@ Only relevant for the switch that returns or throws in all cases and has a defau
 
 In other case the statements following a switch may be visited so DCE would not apply to them.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

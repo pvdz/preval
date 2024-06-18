@@ -12,8 +12,6 @@ This means that a change to the value of the binding should be reflected by the 
 
 (Classes are defined as `let` bindings.)
 
-#TODO
-
 ## Input
 
 `````js filename=intro

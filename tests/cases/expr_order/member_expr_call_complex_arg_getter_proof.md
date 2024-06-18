@@ -10,8 +10,6 @@ This should throw. There was a regression where `a.b` was read before `x.y` (but
 
 This case proofs it with a getter.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

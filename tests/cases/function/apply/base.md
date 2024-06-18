@@ -6,8 +6,6 @@
 >
 > Function apply blabla
 
-#TODO
-
 ## Input
 
 `````js filename=intro

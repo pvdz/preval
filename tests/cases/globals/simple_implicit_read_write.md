@@ -6,8 +6,6 @@
 >
 > Writing to an implicit global
 
-#TODO
-
 ## Options
 
 Shrug

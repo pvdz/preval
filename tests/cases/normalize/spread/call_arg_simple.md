@@ -6,8 +6,6 @@
 >
 > Spread should normalize itself
 
-#TODO
-
 ## Input
 
 `````js filename=intro

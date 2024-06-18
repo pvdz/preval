@@ -6,8 +6,6 @@
 >
 > The preWriteReads from one if do not influence the a sibling if, only a parent
 
-#TODO
-
 ## Input
 
 `````js filename=intro

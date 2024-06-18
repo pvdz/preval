@@ -6,8 +6,6 @@
 >
 > A parameter that is used once in an assignment to another variable should be eliminated or whatever.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

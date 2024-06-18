@@ -6,8 +6,6 @@
 >
 > Classes can have semi's. They shouldn't matter.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

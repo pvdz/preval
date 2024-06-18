@@ -8,8 +8,6 @@
 
 This exception was specifically aimed towards an obfuscator
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -7,8 +7,6 @@
 > The first `else $(x)` in the output should be inlined.
 > Code should know that it's 20.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

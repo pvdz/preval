@@ -6,8 +6,6 @@
 >
 > A function with a spread param that we know will not receive any args should be an empty array
 
-#TODO
-
 ## Input
 
 `````js filename=intro

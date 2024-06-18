@@ -6,8 +6,6 @@
 >
 > Trying to create a test case with a variable that is unused but has a read for another variable.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

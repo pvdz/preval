@@ -10,8 +10,6 @@ If we can detect that every read is invariantly preceded by a write then the ini
 
 This one two branches each with a write and a read.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

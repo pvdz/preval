@@ -6,8 +6,6 @@
 >
 > Calling String on empty array
 
-#TODO
-
 ## Input
 
 `````js filename=intro

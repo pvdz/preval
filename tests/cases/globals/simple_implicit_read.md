@@ -6,8 +6,6 @@
 >
 > Reading from an implicit global
 
-#TODO
-
 ## Input
 
 `````js filename=intro

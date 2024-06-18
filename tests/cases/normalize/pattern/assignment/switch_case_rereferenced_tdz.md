@@ -10,8 +10,6 @@ However, the TDZ is still active so this should be an error.
 
 There might not be a possibility to retain this error after a transform without significant code duplication.
 
-#TODO
-
 ## Options
 
 TDZ errors are not properly emulated so a n eval mismatch is expected

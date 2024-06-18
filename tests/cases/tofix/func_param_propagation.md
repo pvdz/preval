@@ -13,8 +13,6 @@
 > where the first value is the string and the second value is the call
 > result. But that may be risky in that it may blow up the code size.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

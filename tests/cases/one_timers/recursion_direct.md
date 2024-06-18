@@ -6,8 +6,6 @@
 >
 > Ouroboros! This was triggering a problem in another test. Turns out to be caused by recursion.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

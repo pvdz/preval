@@ -19,8 +19,6 @@ function f() {
 $(f(1));
 ```
 
-#TODO
-
 ## Input
 
 `````js filename=intro

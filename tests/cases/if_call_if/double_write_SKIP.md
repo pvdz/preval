@@ -10,8 +10,6 @@
 
 Not implemented yet
 
-#TODO
-
 ## Input
 
 `````js filename=intro

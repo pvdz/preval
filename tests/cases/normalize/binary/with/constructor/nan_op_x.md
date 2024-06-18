@@ -6,8 +6,6 @@
 >
 > Deal with certain primitive with binary ops
 
-#TODO
-
 ## Input
 
 `````js filename=intro

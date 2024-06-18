@@ -6,8 +6,6 @@
 >
 > Templates should be able to resolve literals
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -8,8 +8,6 @@
 
 Note: `d` should be eliminated and inlined into the only call site, `c`
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > A function that gets called with implicit `this` returns `undefined` in module code
 
-#TODO
-
 ## Input
 
 `````js filename=intro

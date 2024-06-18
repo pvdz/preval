@@ -6,8 +6,6 @@
 >
 > Returning a static param mutation but also reading it so we can't just eliminate it
 
-#TODO
-
 ## Input
 
 `````js filename=intro

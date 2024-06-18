@@ -6,8 +6,6 @@
 >
 > The RHS of a for-of and for-in are scoped to the special for-header scope, not the scope that wraps the statement. As such, the `x` is tdz'd and it the `[x,y]` part should result in a runtime tdz error over accessing `x`.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

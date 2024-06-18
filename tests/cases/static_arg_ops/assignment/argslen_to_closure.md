@@ -6,8 +6,6 @@
 >
 > This was detected as closure to closure
 
-#TODO
-
 ## Input
 
 `````js filename=intro

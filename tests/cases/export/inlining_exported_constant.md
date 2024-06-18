@@ -6,8 +6,6 @@
 >
 > The constant is redundant but is exported. We need to properly handle that.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -12,8 +12,6 @@ We do have to be careful about using x in the rhs.
 
 Zooming in on the `x = x + x` case (double self reference).
 
-#TODO
-
 ## Input
 
 `````js filename=intro

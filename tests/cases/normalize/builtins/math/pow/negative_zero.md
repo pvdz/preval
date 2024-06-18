@@ -8,8 +8,6 @@
 
 This ought to return -0.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

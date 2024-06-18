@@ -6,8 +6,6 @@
 >
 > Bunch of try/catch/finally cases
 
-#TODO
-
 ## Input
 
 `````js filename=intro

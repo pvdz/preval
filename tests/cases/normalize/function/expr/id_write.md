@@ -8,8 +8,6 @@
 
 For this reason we must create a constant outside of the function and a local alias as let. The local alias should be eliminated if it has no writes.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

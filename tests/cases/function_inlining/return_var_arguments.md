@@ -8,8 +8,6 @@
 
 The constant should be eliminated anyways but that's a different matter.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

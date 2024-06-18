@@ -6,8 +6,6 @@
 >
 > Calling String on arrays trigger spies
 
-#TODO
-
 ## Input
 
 `````js filename=intro

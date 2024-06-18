@@ -31,8 +31,6 @@ The function could either be copied and explicitly extrapolated for that given i
 
 This makes sense for pure functions but less so when there are complicated arbitrary expressions in the function that we can't eliminate because we may end up with more code rather than less, which is counter productive.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

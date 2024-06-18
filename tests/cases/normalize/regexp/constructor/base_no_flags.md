@@ -6,8 +6,6 @@
 >
 > Creating a regexp through constructor is same as doing as literal
 
-#TODO
-
 ## Input
 
 `````js filename=intro

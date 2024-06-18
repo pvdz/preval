@@ -8,8 +8,6 @@
 
 It should be able to resolve this object case and revert the "$dotCall" case to a regular call.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

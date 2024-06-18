@@ -6,8 +6,6 @@
 >
 > Update expressions should be transformed to regular binary expression assignments
 
-#TODO
-
 ## Input
 
 `````js filename=intro

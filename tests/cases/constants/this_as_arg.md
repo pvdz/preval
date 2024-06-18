@@ -8,8 +8,6 @@
 
 Note: in strict mode this in global is gonna be bad.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

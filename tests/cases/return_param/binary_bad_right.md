@@ -6,8 +6,6 @@
 >
 > If a function returns a static mutation to a param value we can outline the param and drop it
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > In this case we could infer the value of the variable because it is inverted after having seen it checked.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

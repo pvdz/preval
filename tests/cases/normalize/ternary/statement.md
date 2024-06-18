@@ -6,8 +6,6 @@
 >
 > A statement that is a ternary should be an if-else
 
-#TODO
-
 ## Input
 
 `````js filename=intro

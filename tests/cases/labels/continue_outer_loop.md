@@ -6,8 +6,6 @@
 >
 > A continue may not reference its current loop
 
-#TODO
-
 ## Input
 
 `````js filename=intro

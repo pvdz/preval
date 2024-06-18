@@ -21,8 +21,6 @@ foo: {
 }
 ```
 
-#TODO
-
 ## Input
 
 `````js filename=intro

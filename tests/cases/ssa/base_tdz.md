@@ -8,8 +8,6 @@
 
 This is a tdz example we can detect safely
 
-#TODO
-
 ## Input
 
 `````js filename=intro

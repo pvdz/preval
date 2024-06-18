@@ -6,8 +6,6 @@
 >
 > This is a pseudo-switch
 
-#TODO
-
 ## Input
 
 `````js filename=intro

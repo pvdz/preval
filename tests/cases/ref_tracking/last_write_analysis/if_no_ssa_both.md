@@ -6,8 +6,6 @@
 >
 > Last write analysis tracks which reads can reach which writes. We test this through single scope SSA since that's directly depending on this analysis. These are the cases to attempt to cover all cross cases.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

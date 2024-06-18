@@ -6,8 +6,6 @@
 >
 > Common artifact for normalization is to put all idents in a temp constant to make sure they don't mutate.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

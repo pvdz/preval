@@ -6,8 +6,6 @@
 >
 > This case was being transformed incorrectly, with a sequence ending up as the lhs of an assignment (which is invalid).
 
-#TODO
-
 ## Input
 
 `````js filename=intro

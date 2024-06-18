@@ -10,8 +10,6 @@ Must find the or-xor pattern before merging ors, I guess. Or handle those smartl
 
 In this case the or should be left since there are more bits than used in the xor.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -12,8 +12,6 @@ The call is immediately returned so we can safely keep all the return statements
 
 If it weren't for that, it would be blocked from inlining because the func has an early return.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -8,8 +8,6 @@
 
 This was once how the original test case got normalized. I want to make sure this case gets statementified too.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

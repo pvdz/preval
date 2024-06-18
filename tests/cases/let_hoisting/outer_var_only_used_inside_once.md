@@ -8,8 +8,6 @@
 
 If we can detect that every read is invariantly preceded by a write then the initial value is irrelevant.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

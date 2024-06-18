@@ -6,8 +6,6 @@
 >
 > Hoisting a let even if it has a complex rhs
 
-#TODO
-
 ## Input
 
 `````js filename=intro

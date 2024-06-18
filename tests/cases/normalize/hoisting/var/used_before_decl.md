@@ -6,8 +6,6 @@
 >
 > Hoisting a var puts the var declaration at the top while actually invoking the initialization at the point of code. Normalization should fix this.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -10,8 +10,6 @@ The let hoisting was flipflopping, fighting which of the two lets to put on top.
 
 Clear sign of not having a stable normalization target ;)
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -8,8 +8,6 @@
 
 The second crash should be DCE'd regardless
 
-#TODO
-
 ## Input
 
 `````js filename=intro

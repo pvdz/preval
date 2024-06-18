@@ -6,8 +6,6 @@
 >
 > Returning a sequence
 
-#TODO
-
 ## Input
 
 `````js filename=intro

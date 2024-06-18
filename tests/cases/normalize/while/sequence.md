@@ -6,8 +6,6 @@
 >
 > Test should be normalized
 
-#TODO
-
 ## Input
 
 `````js filename=intro

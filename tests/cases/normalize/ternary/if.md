@@ -6,8 +6,6 @@
 >
 > Example of rewriting an if with ternary
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -10,8 +10,6 @@ This was causing a problem where a double nested block with break would not dete
 
 The problem was that block wasn't propagating the early return to its parent.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

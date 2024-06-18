@@ -6,8 +6,6 @@
 >
 > A binding that is updated in a function called in one branch that is not actually visited should not be a problem.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

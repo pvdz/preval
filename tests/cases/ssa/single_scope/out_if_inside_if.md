@@ -6,8 +6,6 @@
 >
 > This should be SSA'd
 
-#TODO
-
 ## Input
 
 `````js filename=intro

@@ -6,8 +6,6 @@
 >
 > Arguments can be spread but this should not be observable
 
-#TODO
-
 ## Input
 
 `````js filename=intro

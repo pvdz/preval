@@ -10,8 +10,6 @@ If all switch cases return, including a default, then the code after a switch is
 
 Simple case to check whether the switch transform doesn't prevent this.
 
-#TODO
-
 ## Input
 
 `````js filename=intro

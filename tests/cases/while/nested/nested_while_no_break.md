@@ -7,8 +7,6 @@
 > The inner break was a continue. But this pattern can be rewritten
 > to a single loop: `while (true) { X: { ... break X; } }`
 
-#TODO
-
 ## Input
 
 `````js filename=intro

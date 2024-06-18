@@ -10,8 +10,6 @@ Trying to make sure there's no optimization that messes up other usages of the c
 
 This is essentially a TDZ problem (that's the error that should be thrown here).
 
-#TODO
-
 ## Options
 
 TDZ errors are not properly emulated so an eval mismatch is expected

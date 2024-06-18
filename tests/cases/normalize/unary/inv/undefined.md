@@ -6,8 +6,6 @@
 >
 > Inverting literals should be statically resolved
 
-#TODO
-
 ## Input
 
 `````js filename=intro

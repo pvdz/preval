@@ -61,8 +61,6 @@ while (tmp || true) {
 
 And that would be fine and there's a good chance Preval can eliminate the overhead because it's "simple".
 
-#TODO
-
 ## Input
 
 `````js filename=intro

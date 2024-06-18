@@ -8,8 +8,6 @@
 
 Regression case
 
-#TODO at the time of writing the tmpBinaryRight var decl disappears
-
 ## Input
 
 `````js filename=intro

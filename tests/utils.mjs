@@ -48,7 +48,7 @@ export function fromMarkdownCase(md, fname, config) {
           .join(' > ') +
         '\n' +
         '>\n' +
-        '> (verbatim file)\n\n#TODO',
+        '> (verbatim file)',
       mdOptions: {},
       mdChunks: ['## Input\n\n`````js filename=intro\n' + md + '\n`````\n'],
       fin: {
@@ -73,8 +73,7 @@ export function fromMarkdownCase(md, fname, config) {
         '\n' +
         '>\n' +
         '> ' +
-        md.slice(3, md.indexOf('\n')) +
-        '\n\n#TODO',
+        md.slice(3, md.indexOf('\n')),
       mdOptions: {},
       mdChunks: ['## Input\n\n`````js filename=intro\n' + md.slice(md.indexOf('\n')).trim() + '\n`````\n'],
       fin: {

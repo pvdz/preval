@@ -6,7 +6,7 @@
 >
 > Testing simple pattern normalizations
 
-#TODO: arrow
+TODO: arrow
 
 ## Input
 

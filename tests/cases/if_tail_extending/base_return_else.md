@@ -11,6 +11,7 @@
 ## Input
 
 `````js filename=intro
+const x = $();
 function f() {
   while (x) {
     $(1);
@@ -39,6 +40,7 @@ let f = function () {
     $(2);
   }
 };
+const x = $();
 f();
 `````
 
@@ -62,6 +64,7 @@ let f = function () {
   }
   return undefined;
 };
+const x = $();
 f();
 `````
 
@@ -69,6 +72,7 @@ f();
 
 
 `````js filename=intro
+const x = $();
 if (x) {
   $(1);
   if ($) {
@@ -96,12 +100,13 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-if (x) {
+const a = $();
+if (a) {
   $( 1 );
   if ($) {
     $( 2 );
     while ($LOOP_UNROLL_10) {
-      if (x) {
+      if (a) {
         $( 1 );
         if ($) {
           $( 2 );
@@ -120,14 +125,13 @@ if (x) {
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-x
+None
 
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: 
+ - eval returned: undefined
 
 Pre normalization calls: Same
 

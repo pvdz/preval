@@ -4,7 +4,7 @@
 
 > Normalize > Branching > Ifelse closure inside branch
 >
-> If a branch contains a function that closes over an outside binding in the tail then that should keep working... 
+> If a branch contains a function that closes over an outside binding in the tail then that should keep working...
 
 ## Input
 

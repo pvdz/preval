@@ -4,7 +4,7 @@
 
 > Static arg ops > Assignment > Closure to closure2
 >
-> 
+>
 
 ## Input
 

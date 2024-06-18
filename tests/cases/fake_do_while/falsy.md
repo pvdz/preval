@@ -4,7 +4,7 @@
 
 > Fake do while > Falsy
 >
-> 
+>
 
 ## Input
 

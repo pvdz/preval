@@ -6,7 +6,7 @@
 >
 > Scope of a switch block is shared between all cases so bindings need to be hoisted above it
 
-However, the TDZ is still active so this should be an error. 
+However, the TDZ is still active so this should be an error.
 
 ## Options
 

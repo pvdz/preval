@@ -4,7 +4,7 @@
 
 > Function trampoline > Call only > Base
 >
-> Calls to a function that only call another function should immediately call that other function instead 
+> Calls to a function that only call another function should immediately call that other function instead
 
 ## Input
 

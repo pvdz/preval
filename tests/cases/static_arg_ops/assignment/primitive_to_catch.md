@@ -4,7 +4,7 @@
 
 > Static arg ops > Assignment > Primitive to catch
 >
-> 
+>
 
 ## Input
 

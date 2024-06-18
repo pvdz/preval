@@ -29,7 +29,6 @@ else { y = 'abcghi'; }
 const z = s + y;
 ```
 
-
 ## Input
 
 `````js filename=intro

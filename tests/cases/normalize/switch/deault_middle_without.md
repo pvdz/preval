@@ -40,8 +40,6 @@ exit: {
 }
 ```
 
-
-
 ## Input
 
 `````js filename=intro

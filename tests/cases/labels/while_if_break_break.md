@@ -4,7 +4,7 @@
 
 > Labels > While if break break
 >
-> 
+>
 
 ## Input
 

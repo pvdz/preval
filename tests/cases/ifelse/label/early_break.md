@@ -4,7 +4,7 @@
 
 > Ifelse > Label > Early break
 >
-> 
+>
 
 ## Input
 

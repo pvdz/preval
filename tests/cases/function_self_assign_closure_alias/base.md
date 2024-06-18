@@ -34,7 +34,6 @@
 > This way we can, ultimately, safely assert what `t` is doing without worrying about the self-assignment of calling a.
 > In this particular example (and the pattern in question), `t` can be replaced by `c`, and it can ignore the self-assignments.
 
-
 ## Input
 
 `````js filename=intro

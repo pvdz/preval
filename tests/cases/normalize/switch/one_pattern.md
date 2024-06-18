@@ -15,7 +15,6 @@ let x = arrPatternSplat[0];
 $(x);
 ```
 
-
 ## Input
 
 `````js filename=intro

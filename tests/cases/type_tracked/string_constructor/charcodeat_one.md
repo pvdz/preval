@@ -4,7 +4,7 @@
 
 > Type tracked > String constructor > Charcodeat one
 >
-> Should try to inline the charCodeAt call 
+> Should try to inline the charCodeAt call
 
 ## Input
 

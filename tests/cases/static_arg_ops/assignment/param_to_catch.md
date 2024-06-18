@@ -4,7 +4,7 @@
 
 > Static arg ops > Assignment > Param to catch
 >
-> 
+>
 
 ## Input
 

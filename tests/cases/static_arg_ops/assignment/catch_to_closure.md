@@ -4,7 +4,7 @@
 
 > Static arg ops > Assignment > Catch to closure
 >
-> 
+>
 
 ## Input
 

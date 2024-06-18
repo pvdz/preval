@@ -6,7 +6,6 @@
 >
 > This test should remind us that functions can be instantiated multiple times concurrently and that a single store for bindings will not suffice
 
-
 ## Input
 
 `````js filename=intro

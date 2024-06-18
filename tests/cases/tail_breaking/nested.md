@@ -4,7 +4,7 @@
 
 > Tail breaking > Nested
 >
-> A problem case with a nested label and a statement after the `if` that disappears 
+> A problem case with a nested label and a statement after the `if` that disappears
 
 ## Input
 

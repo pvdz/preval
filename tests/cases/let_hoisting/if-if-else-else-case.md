@@ -32,8 +32,7 @@ function f() {
 if ($) f();
 ```
 
-But it's 
-
+But it's
 
 ## Input
 

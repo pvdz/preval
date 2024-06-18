@@ -4,7 +4,7 @@
 
 > While > Nested > Loop label loop loop
 >
-> 
+>
 
 ## Input
 

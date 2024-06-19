@@ -55,13 +55,12 @@ const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-$(100);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(100);
   const tmpNewCallee$1 = $($);
   const tmpCalleeParam$2 = $(1);
   const tmpCalleeParam$4 = $(2);
   new tmpNewCallee$1(tmpCalleeParam$2, tmpCalleeParam$4);
-  $(100);
 }
 throw `[preval] unreachable; infinite loop`;
 `````
@@ -75,13 +74,12 @@ const a = $( $ );
 const b = $( 1 );
 const c = $( 2 );
 new a( b, c );
-$( 100 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 100 );
   const d = $( $ );
   const e = $( 1 );
   const f = $( 2 );
   new d( e, f );
-  $( 100 );
 }
 throw "[preval] unreachable; infinite loop";
 `````

@@ -26,3 +26,4 @@
 // do proper alwaysBreak and alwaysComplete analysis in phase1
 // tests/cases/unroll_loop_with_true/obj_prop_key.md -> pst goes off the rails for computed property
 // in normalization, the label step that eliminates function toplevel labels should not use globallyUniqueLabelRegistry because it may be stale. it should walk and search for all breaks that target this label.
+// why is the jsfck case crashing?

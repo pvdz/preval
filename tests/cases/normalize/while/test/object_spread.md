@@ -54,14 +54,13 @@ const tmpObjLitVal$1 = $(2);
 const tmpCalleeParam = { a: tmpObjLitVal, b: tmpObjLitVal$1 };
 const tmpObjSpread = $(tmpCalleeParam);
 ({ ...tmpObjSpread });
-$(`loop`);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(`loop`);
   const tmpObjLitVal$2 = $(1);
   const tmpObjLitVal$4 = $(2);
   const tmpCalleeParam$1 = { a: tmpObjLitVal$2, b: tmpObjLitVal$4 };
   const tmpObjSpread$1 = $(tmpCalleeParam$1);
   ({ ...tmpObjSpread$1 });
-  $(`loop`);
 }
 throw `[preval] unreachable; infinite loop`;
 `````
@@ -79,8 +78,8 @@ const c = {
 };
 const d = $( c );
 { ... d };
-$( "loop" );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( "loop" );
   const e = $( 1 );
   const f = $( 2 );
   const g = {
@@ -89,7 +88,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   };
   const h = $( g );
   { ... h };
-  $( "loop" );
 }
 throw "[preval] unreachable; infinite loop";
 `````

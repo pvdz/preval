@@ -1,0 +1,112 @@
+# Preval test case
+
+# infinite_decl_rex.md
+
+> While > Rotate > Infinite decl rex
+>
+> Rotating statements in an infinite loop
+
+Note: Because a regex is a stateful object, Preval won't eliminate it.
+      Preval should check if the last line before the loop serializes
+      to the same string as the last statement in the loop, and in that
+      case, rotate-merge them.
+      It should do this generically, even if that's gonna be tedious.
+
+## Input
+
+`````js filename=intro
+let x = /tmp/;
+while ($LOOP_UNROLL_10) {
+  $(x);
+  x = /tmp/;
+}
+$(x); // unreachable
+`````
+
+## Pre Normal
+
+
+`````js filename=intro
+let x = /tmp/;
+while ($LOOP_UNROLL_10) {
+  $(x);
+  x = /tmp/;
+}
+$(x);
+`````
+
+## Normalized
+
+
+`````js filename=intro
+let x = /tmp/;
+while ($LOOP_UNROLL_10) {
+  x = /tmp/;
+  $(x);
+}
+$(x);
+`````
+
+## Output
+
+
+`````js filename=intro
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpClusterSSA_x = /tmp/;
+  $(tmpClusterSSA_x);
+}
+throw `[preval] unreachable; infinite loop`;
+`````
+
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const a = /tmp/;
+  $( a );
+}
+throw "[preval] unreachable; infinite loop";
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: {}
+ - 2: {}
+ - 3: {}
+ - 4: {}
+ - 5: {}
+ - 6: {}
+ - 7: {}
+ - 8: {}
+ - 9: {}
+ - 10: {}
+ - 11: {}
+ - 12: {}
+ - 13: {}
+ - 14: {}
+ - 15: {}
+ - 16: {}
+ - 17: {}
+ - 18: {}
+ - 19: {}
+ - 20: {}
+ - 21: {}
+ - 22: {}
+ - 23: {}
+ - 24: {}
+ - 25: {}
+ - 26: {}
+ - eval returned: ('<crash[ Loop aborted by Preval test runner (this simply curbs infinite loops in tests) ]>')
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

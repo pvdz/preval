@@ -68,15 +68,14 @@ const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 let tmpClusterSSA_x = tmpObjLitVal;
 let tmpClusterSSA_y = tmpObjLitVal$1;
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(1);
   $(tmpClusterSSA_x);
   $(tmpClusterSSA_y);
   const tmpObjLitVal$2 = $(3);
   const tmpObjLitVal$4 = $(4);
   tmpClusterSSA_x = tmpObjLitVal$2;
   tmpClusterSSA_y = tmpObjLitVal$4;
-  $(1);
 }
 throw `[preval] unreachable; infinite loop`;
 `````
@@ -92,15 +91,14 @@ const a = $( 3 );
 const b = $( 4 );
 let c = a;
 let d = b;
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 1 );
   $( c );
   $( d );
   const e = $( 3 );
   const f = $( 4 );
   c = e;
   d = f;
-  $( 1 );
 }
 throw "[preval] unreachable; infinite loop";
 `````

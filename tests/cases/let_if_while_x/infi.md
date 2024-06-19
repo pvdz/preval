@@ -75,7 +75,6 @@ $(`before`);
 const tmpBinBothRhs = $(5);
 const x = 0 < tmpBinBothRhs;
 if (x) {
-  $(`again`);
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $(`again`);
   }
@@ -94,7 +93,6 @@ $( "before" );
 const a = $( 5 );
 const b = 0 < a;
 if (b) {
-  $( "again" );
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $( "again" );
   }

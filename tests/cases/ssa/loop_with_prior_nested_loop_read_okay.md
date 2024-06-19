@@ -48,10 +48,9 @@ let f = function () {
   debugger;
   while (true) {
     let x = $(1);
-    $(x);
     while (true) {
-      x = $(2);
       $(x);
+      x = $(2);
     }
   }
   return undefined;
@@ -67,11 +66,10 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const x = $(1);
-  $(x);
+  let x = $(1);
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const tmpClusterSSA_x = $(2);
-    $(tmpClusterSSA_x);
+    $(x);
+    x = $(2);
   }
   throw `[preval] unreachable; infinite loop`;
 } else {
@@ -84,11 +82,10 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  const a = $( 1 );
-  $( a );
+  let a = $( 1 );
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const b = $( 2 );
-    $( b );
+    $( a );
+    a = $( 2 );
   }
   throw "[preval] unreachable; infinite loop";
 }

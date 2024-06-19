@@ -60,9 +60,6 @@ $(a);
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 arrPatternSplat[0];
-$(100);
-$(10);
-$(20);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   $(10);
@@ -82,9 +79,6 @@ const a = {
 };
 const b = [ ... a ];
 b[ 0 ];
-$( 100 );
-$( 10 );
-$( 20 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
   $( 10 );

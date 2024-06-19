@@ -60,7 +60,6 @@ while (true) {
 `````js filename=intro
 const chk = $(true);
 if (chk) {
-  $(`inside`);
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $(`inside`);
   }
@@ -76,7 +75,6 @@ With rename=true
 `````js filename=intro
 const a = $( true );
 if (a) {
-  $( "inside" );
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $( "inside" );
   }

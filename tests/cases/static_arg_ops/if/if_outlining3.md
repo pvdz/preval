@@ -243,7 +243,6 @@ const siftUp_f = function ($$0, $$1, $$2) {
   heap$2[i$1] = node$2;
   const parentIndex$1 = i$1 > 0;
   if (parentIndex$1) {
-    $(123);
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       $(123);
     }
@@ -312,7 +311,6 @@ const l = function($$0,$$1,$$2 ) {
   w[y] = x;
   const z = y > 0;
   if (z) {
-    $( 123 );
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       $( 123 );
     }

@@ -55,12 +55,11 @@ const tmpCompProp = $(`\$`);
 const b = { $: $ };
 const tmpNewCallee = b[tmpCompProp];
 new tmpNewCallee(1);
-$(100);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(100);
   const tmpCompProp$1 = $(`\$`);
   const tmpNewCallee$1 = b[tmpCompProp$1];
   new tmpNewCallee$1(1);
-  $(100);
 }
 throw `[preval] unreachable; infinite loop`;
 `````
@@ -74,12 +73,11 @@ const a = $( "$" );
 const b = { $: $ };
 const c = b[ a ];
 new c( 1 );
-$( 100 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 100 );
   const d = $( "$" );
   const e = b[ d ];
   new e( 1 );
-  $( 100 );
 }
 throw "[preval] unreachable; infinite loop";
 `````

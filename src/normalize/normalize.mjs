@@ -8373,7 +8373,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
               node.label.name = newLabelName;
               const parentNode = path.nodes[path.nodes.length - 2];
               const parentIndex = path.indexes[path.indexes.length - 1];
-              addLabelReference(fdata, node.label, parentNode, parentIndex, false);
+              addLabelReference(fdata, node.label, parentNode.body, parentIndex, false);
             }
             break;
           }
@@ -9529,6 +9529,193 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         after(body[i]);
         assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
+      }
+
+      if (
+        whileBody.length === 1 &&
+        whileBody[0].type === 'LabeledStatement' &&
+        whileBody[0].body.body.length === 1 &&
+        whileBody[0].body.body[0].type === 'WhileStatement'
+      ) {
+        // This is `while (true) { A: { while (true) { .. } } }`
+        // It's another form of nested loop that we can hopefully collapse
+        // We do also need to replace regular breaks and make them target this label to maintain semantics
+
+        rule('A while-label-while directly nested can collapse');
+        example('while (true) { A: { while (true) { f(); break A; } } }', 'while (true) A: { f(); break A; }');
+        before(body[i]);
+
+        const labelStmt = whileBody[0];
+        const while2 = labelStmt.body.body[0];
+        labelStmt.body = while2.body;
+
+        // Find all unlabeled breaks and make them break to this label. If there aren't any unlabeled breaks then skip the label entirely.
+        const rootNode = while2;
+        /** @var {Array<{node, block, index}>} */
+        const breaks = [];
+        function _walker(node, before, nodeType, path) {
+          ASSERT(node, 'node should be truthy', node);
+          ASSERT(nodeType === node.type);
+          if (!before) return;
+
+          switch (nodeType) {
+            case 'WhileStatement': {
+              if (node === rootNode) break; // Ignore
+              return true; // Do not visit
+            }
+            case 'ForStatement':
+            case 'ForInStatement':
+            case 'ForOfStatement':
+            case 'FunctionExpression':
+            case 'ArrowFunctionExpression':
+            {
+              return true; // Do not traverse
+            }
+
+            case 'BreakStatement': {
+              if (node.label) {
+                // Ignore
+              } else {
+                const parentNode = path.nodes[path.nodes.length - 2];
+                const parentIndex = path.indexes[path.indexes.length - 1];
+                breaks.push({ node, block: parentNode.body, index: parentIndex });
+              }
+              break;
+            }
+          } // switch(key)
+        } // /walker
+        walk(_walker, rootNode, 'body');
+
+        if (breaks.length) {
+          vlog('Found unlabeled breaks. Compiling a fresh label');
+          breaks.forEach((obj) => {
+            ASSERT(typeof obj === 'object' && obj && obj.node && obj.block && obj.index >= 0, 'fail?', obj);
+            const {node, block, index} = obj;
+            ASSERT(!node.label, 'you _are_ unlabeled, no?', obj);
+            node.label = AST.identifier(labelStmt.label.name);
+            addLabelReference(fdata, node.label, block, index);
+          });
+        } else {
+          vlog('Did not find unlabeled breaks. Just eliminating the outer loop');
+        }
+
+        after(body[i]);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        return true;
+      }
+
+      if (i > 0 && whileBody.length > 0) {
+        // This is a while that is not the first statement in the parent and its child block is not empty
+        // Check for sub-statement-rotation cases
+
+        const stmtBeforeWhile = body[i - 1];
+        const lastOfWhile = whileBody[whileBody.length - 1];
+
+        if (
+          (stmtBeforeWhile.type === 'VariableDeclaration' || (stmtBeforeWhile.type === 'ExpressionStatement' && stmtBeforeWhile.expression.type === 'AssignmentExpression')) &&
+          lastOfWhile.type === 'ExpressionStatement' &&
+          lastOfWhile.expression.type === 'AssignmentExpression'
+        ) {
+          // A while preceded by var decl/assign and body ends with assign `let ? = ?; while(true) { ...; ? = ?; }` or `? = ?; while(true) { ...; ? = ?; }`
+          const lhsA = stmtBeforeWhile.type === 'VariableDeclaration' ? stmtBeforeWhile.declarations[0].id : stmtBeforeWhile.expression.left;
+          const lhsB = lastOfWhile.expression.left;
+
+          if (lhsA.type === 'Identifier' && lhsB.type === 'Identifier' && lhsA.name === lhsB.name) {
+            // This is the form `let x = <?>; while (true) { ...; x = <?>; }` or `x = <?>; while (true) { ...; x = <?>; }`. Now verify the rhs.
+
+            const rhsA = stmtBeforeWhile.type === 'VariableDeclaration' ? stmtBeforeWhile.declarations[0].init : stmtBeforeWhile.expression.right;
+            const rhsB = lastOfWhile.expression.right;
+
+            if (AST.isPrimitive(rhsA) && AST.isPrimitive(rhsB) && AST.getPrimitiveValue(rhsA) === AST.getPrimitiveValue(rhsB)) {
+              // `let x = 1; while (true) { ...; x = 1; }`
+              // `x = 1; while (true) { ...; x = 1; }`
+              //TODO
+            }
+            else if (AST.isRegexLiteral(rhsA) && AST.isRegexLiteral(rhsB) && AST.isSameRegexLiteral(rhsA, rhsB)) {
+              // Note: the example looks silly but another rule will detect the unobservable write and drop it (SSA, actually)
+              rule('A loop with a decl/assign before and matching assign of regex in tail position can rotate-merge');
+              example('let x = /xyz/g; while (true) { f(x); x = /xyz/g; }', 'let x = /xyz/g; while (true) { x = /xyz/g; f(x); }');
+              example('x = /xyz/g; while (true) { f(x); x = /xyz/g; }', '; while (true) { x = /xyz/g; f(x); }');
+              before(body[i - 1]);
+              before(body[i]);
+
+              if (stmtBeforeWhile.type !== 'VariableDeclaration') {
+                // Remove the assignment. The rotate assignment will do the identical thing.
+                body[i-1] = AST.emptyStatement();
+              }
+
+              // Rotate; last statement becomes first
+              whileBody.unshift(whileBody.pop());
+
+              after(body[i - 1]);
+              after(body[i]);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+            else if (
+              rhsA.type === 'CallExpression' &&
+              rhsB.type === 'CallExpression' &&
+              rhsA.callee.type === 'Identifier' && rhsB.callee.type === 'Identifier' &&
+              AST.isSameCallExpression(rhsA, rhsB) // Gets gnarly with argument checks, spread, etc
+            ) {
+              // Note: in this case we must eliminate the pre-loop call because that's observable
+              rule('A loop with a decl/assign before and matching assign of call in tail position can rotate-merge');
+              example('let x = f(); while (true) { g(x); x = f(); }', 'let x = undefined; while (true) { x = f(); g(x); }');
+              example('x = /xyz/g; while (true) { g(x); x = f(); }', '; while (true) { x = f(); g(x); }');
+              before(body[i - 1]);
+              before(body[i]);
+
+              // Must eliminate the initial call here
+              if (stmtBeforeWhile.type === 'VariableDeclaration') {
+                body[i-1].declarations[0].init = AST.identifier('undefined');
+              } else {
+                body[i-1] = AST.emptyStatement();
+              }
+
+              // Rotate; last statement becomes first
+              whileBody.unshift(whileBody.pop());
+
+              after(body[i - 1]);
+              after(body[i]);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+          }
+        }
+
+        // Same as above but for statement call expressions (somewhat common artifact left by unrolling)
+        if (
+          (stmtBeforeWhile.type === 'ExpressionStatement' && stmtBeforeWhile.expression.type === 'CallExpression') &&
+          lastOfWhile.type === 'ExpressionStatement' &&
+          lastOfWhile.expression.type === 'CallExpression'
+        ) {
+          // This is the form `?(?); while (true) { ...; ?(?); }`. Now verify the rhs.
+
+          const callA = stmtBeforeWhile.expression;
+          const callB = lastOfWhile.expression;
+
+          if (
+            callA.callee.type === 'Identifier' && callB.callee.type === 'Identifier' &&
+            AST.isSameCallExpression(callA, callB) // Gets gnarly with argument checks, spread, etc
+          ) {
+            // Note: in this case we must eliminate the pre-loop call because that's observable
+            rule('A loop with a call before and a matching call in tail position can rotate-merge');
+            example('f(); while (true) { g(); f(); }', '; while (true) { f(); g(); }');
+            before(body[i - 1]);
+            before(body[i]);
+
+            // Must eliminate the initial call here
+            body[i-1] = AST.emptyStatement();
+
+            // Rotate; last statement becomes first
+            whileBody.unshift(whileBody.pop());
+
+            after(body[i - 1]);
+            after(body[i]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+        }
       }
     }
 

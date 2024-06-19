@@ -55,11 +55,10 @@ $(tmpCalleeParam);
 $(100);
 const tmpCalleeParam$1 = $(0);
 $(tmpCalleeParam$1);
-$(100);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(100);
   const tmpCalleeParam$2 = $(0);
   $(tmpCalleeParam$2);
-  $(100);
 }
 throw `[preval] unreachable; infinite loop`;
 `````
@@ -74,11 +73,10 @@ $( a );
 $( 100 );
 const b = $( 0 );
 $( b );
-$( 100 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 100 );
   const c = $( 0 );
   $( c );
-  $( 100 );
 }
 throw "[preval] unreachable; infinite loop";
 `````

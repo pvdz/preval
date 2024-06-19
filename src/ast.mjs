@@ -176,6 +176,52 @@ export function callExpression(callee, args, optional = false) {
     $p: $p(),
   };
 }
+export function isSameCallExpression(nodeA, nodeB) {
+  if (nodeA === nodeB) return true;
+  ASSERT(nodeA.type === 'CallExpression' && nodeB.type === 'CallExpression', 'should receive call expressions', nodeA, nodeB);
+
+  if (nodeA.callee.type !== 'Identifier' || nodeB.callee.type !== 'Identifier') TODO // Currently only used for ident calls. Expand this func when necessary.
+
+  if (nodeA.callee.name !== nodeB.callee.name) return false;
+
+  if (nodeA.arguments.length !== nodeB.arguments.length) return false;
+
+  if (nodeA.arguments.length === 0) return true;
+
+  return nodeA.arguments.every((anodeA, i) => {
+    const anodeB = nodeB.arguments[i];
+
+    if (anodeA.type !== anodeB.type) return false;
+
+    if (anodeA.type === 'SpreadElement') {
+      ASSERT(!isComplexNode(anodeA.argument));
+      ASSERT(!isComplexNode(anodeB.argument));
+
+      if (isPrimitive(anodeA.argument)) {
+        return isPrimitive(anodeB.argument) && getPrimitiveValue(anodeA.argument) === getPrimitiveValue(anodeB.argument);
+      }
+      if (isPrimitive(anodeB.argument)) return false;
+
+      ASSERT(anodeA.argument.type === 'Identifier', 'in normalized code, spreads should be primitives or idents... right?');
+      ASSERT(anodeB.argument.type === 'Identifier', 'in normalized code, spreads should be primitives or idents... right?');
+
+      return anodeA.argument.name === anodeB.argument.name;
+    }
+
+    ASSERT(!isComplexNode(anodeA));
+    ASSERT(!isComplexNode(anodeB));
+
+    if (isPrimitive(anodeA)) {
+      return isPrimitive(anodeB) && getPrimitiveValue(anodeA) === getPrimitiveValue(anodeB);
+    }
+    if (isPrimitive(anodeB)) return false;
+
+    ASSERT(anodeA.type === 'Identifier', 'in normalized code, args should be primitives, spreads, or idents... right?');
+    ASSERT(anodeB.type === 'Identifier', 'in normalized code, args should be primitives, spreads, or idents... right?');
+
+    return anodeA.name === anodeB.name;
+  });
+}
 
 export function classExpression(id = null, superClass = null, body) {
   if (typeof id === 'string') id = identifier(id);
@@ -518,6 +564,10 @@ export function literal(value, yesnull = false) {
 
 export function isRegexLiteral(node) {
   return node.type === 'Literal' && Boolean(node.regex);
+}
+export function isSameRegexLiteral(nodeA, nodeB) {
+  ASSERT(nodeA.type === 'Literal' && nodeB.type === 'Literal' && nodeA.regex && nodeB.regex, 'expecting regex literal nodes', nodeA, nodeB);
+  return nodeA.regex.pattern === nodeB.regex.pattern && nodeA.regex.flags === nodeB.regex.flags;
 }
 export function getRegexFromLiteralNode(node) {
   ASSERT(isRegexLiteral(node), 'given node should be regex literal', node);

@@ -50,12 +50,11 @@ $(`after`);
 const tmpCalleeParam = [1, 2, 3];
 const tmpArrSpread = $(tmpCalleeParam);
 [...tmpArrSpread];
-$(`loop`);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(`loop`);
   const tmpCalleeParam$1 = [1, 2, 3];
   const tmpArrSpread$1 = $(tmpCalleeParam$1);
   [...tmpArrSpread$1];
-  $(`loop`);
 }
 throw `[preval] unreachable; infinite loop`;
 `````
@@ -68,12 +67,11 @@ With rename=true
 const a = [ 1, 2, 3 ];
 const b = $( a );
 [ ... b ];
-$( "loop" );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( "loop" );
   const c = [ 1, 2, 3 ];
   const d = $( c );
   [ ... d ];
-  $( "loop" );
 }
 throw "[preval] unreachable; infinite loop";
 `````

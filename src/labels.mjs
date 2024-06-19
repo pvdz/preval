@@ -53,18 +53,18 @@ export function createFreshLabelStatement(name, fdata, labelBody) {
   return labelStatementNode;
 }
 
-export function addLabelReference(fdata, labelNode, block, index, fromPrepareOrOncePhase = false) {
+export function addLabelReference(fdata, labelNode, blockArr, index, fromPrepareOrOncePhase = false) {
   ASSERT(labelNode?.type === 'Identifier', 'labels are idents');
-  ASSERT(fromPrepareOrOncePhase || Array.isArray(block), 'should receive the block body, not block statements', block);
+  ASSERT(fromPrepareOrOncePhase || Array.isArray(blockArr), 'should receive the block body, not block statements', blockArr);
   const usages = fdata.globallyUniqueLabelRegistry.get(labelNode.name).usages;
   for (const obj of usages) {
     if (obj.node === labelNode) {
-      obj.block = block;
+      obj.block = blockArr;
       obj.index = index;
       return;
     }
   }
-  usages.push({node: labelNode, block, index});
+  usages.push({node: labelNode, block: blockArr, index});
 }
 
 export function removeLabelReference(fdata, labelNode) {

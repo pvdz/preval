@@ -9083,6 +9083,17 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       return true;
     }
 
+    if (node.body.body.length === 0) {
+      rule('A while with empty body can be eliminated');
+      example('while(true) {}', ';');
+      before(body[i]);
+
+      body[i] = AST.emptyStatement();
+
+      after(body[i]);
+      return true;
+    }
+
     //if (AST.isComplexNode(node.test)) {
     //  const tmpName = createFreshVar('tmpWhileTest', fdata);
     //  const initTestNode = AST.variableDeclaration(tmpName, node.test, 'let');

@@ -1,12 +1,8 @@
 # Preval test case
 
-# infinite_loops2.md
+# infinite_loops.md
 
-> Tofix > Infinite loops2
->
-> If a loop has no break, continue, throw, or return then it is an infinite loop... Is that relevant? DCE the tail, for example.
-
-Left todo: nested loop with only tail breaks
+> While > Infinite loops
 
 ## Input
 

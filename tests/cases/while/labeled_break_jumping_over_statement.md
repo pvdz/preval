@@ -3,29 +3,28 @@
 # loop_dce.md
 
 > Tofix > Loop dce
-
-The call with "fail" is unreachable because the break jumps over it.
-We should detect unreachable statements and prune them.
-
-The loop-label-loop-breaktolabel pattern can be simplified I think? TBD
+>
+> The call with "fail" is unreachable because the break jumps over it.
 
 ## Input
 
 `````js filename=intro
 let x = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $continue: {
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+again: while (true) {
+  while (true) {
+    if ($) {
       $(x);
-      if ($) {
-      } else {
-        x = 2;
-        break $continue;
-      }
+    } else {
+      $(x);
+      x = 2;
+      continue again;
     }
-    $(`fail`, x);
   }
+  // the loop never breaks and the continue always skips over this. 
+  // if anything it's dead code and should be eliminated 
+  $('fail', x); // unreachable code
 }
+$(x);
 `````
 
 ## Pre Normal
@@ -33,19 +32,23 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 let x = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+again: while (true) {
   $continue: {
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      $(x);
-      if ($) {
-      } else {
-        x = 2;
-        break $continue;
+    {
+      while (true) {
+        if ($) {
+          $(x);
+        } else {
+          $(x);
+          x = 2;
+          break $continue;
+        }
       }
+      $(`fail`, x);
     }
-    $(`fail`, x);
   }
 }
+$(x);
 `````
 
 ## Normalized
@@ -53,12 +56,13 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 let x = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+while (true) {
   $continue: {
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      $(x);
+    while (true) {
       if ($) {
+        $(x);
       } else {
+        $(x);
         x = 2;
         break $continue;
       }
@@ -66,6 +70,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $(`fail`, x);
   }
 }
+$(x);
 `````
 
 ## Output
@@ -75,7 +80,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 let x = 1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $continue: {
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    while (true) {
       $(x);
       if ($) {
       } else {
@@ -97,7 +102,7 @@ With rename=true
 let a = 1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $continue:   {
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    while (true) {
       $( a );
       if ($) {
 

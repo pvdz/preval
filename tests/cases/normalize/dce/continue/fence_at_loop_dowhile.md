@@ -53,8 +53,8 @@ $(`after (not invoked)`);
 
 
 `````js filename=intro
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
     $(`loop`);
     while (true) {
@@ -66,7 +66,6 @@ while (true) {
       }
     }
     $(`infiloop, do not eliminate`);
-    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -78,8 +77,8 @@ $(`after (not invoked)`);
 
 
 `````js filename=intro
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
     $(`loop`);
     $(`loop`);
@@ -96,7 +95,6 @@ while (true) {
     } else {
     }
     $(`infiloop, do not eliminate`);
-    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -109,8 +107,8 @@ $(`after (not invoked)`);
 With rename=true
 
 `````js filename=intro
-let a = $( true );
 while (true) {
+  const a = $( true );
   if (a) {
     $( "loop" );
     $( "loop" );
@@ -128,7 +126,6 @@ while (true) {
       }
     }
     $( "infiloop, do not eliminate" );
-    a = $( true );
   }
   else {
     break;

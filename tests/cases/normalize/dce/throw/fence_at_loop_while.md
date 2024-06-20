@@ -52,12 +52,12 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  let tmpIfTest = $(true);
   while (true) {
+    const tmpIfTest = $(true);
     if (tmpIfTest) {
       $(`loop`);
-      let tmpIfTest$1 = $(true);
       while (true) {
+        const tmpIfTest$1 = $(true);
         if (tmpIfTest$1) {
           $(`loop`);
           const tmpThrowArg = $(7, `throw`);
@@ -67,7 +67,6 @@ let f = function () {
         }
       }
       $(`do not visit, do not eliminate`);
-      tmpIfTest = $(true);
     } else {
       break;
     }
@@ -94,18 +93,17 @@ if (tmpIfTest) {
     throw tmpThrowArg;
   } else {
     $(`do not visit, do not eliminate`);
-    let tmpClusterSSA_tmpIfTest = $(true);
     while ($LOOP_UNROLL_10) {
-      if (tmpClusterSSA_tmpIfTest) {
+      const tmpIfTest$2 = $(true);
+      if (tmpIfTest$2) {
         $(`loop`);
-        const tmpIfTest$2 = $(true);
-        if (tmpIfTest$2) {
+        const tmpIfTest$4 = $(true);
+        if (tmpIfTest$4) {
           $(`loop`);
           const tmpThrowArg$1 = $(7, `throw`);
           throw tmpThrowArg$1;
         } else {
           $(`do not visit, do not eliminate`);
-          tmpClusterSSA_tmpIfTest = $(true);
         }
       } else {
         break;
@@ -134,8 +132,8 @@ if (a) {
   }
   else {
     $( "do not visit, do not eliminate" );
-    let d = $( true );
     while ($LOOP_UNROLL_10) {
+      const d = $( true );
       if (d) {
         $( "loop" );
         const e = $( true );
@@ -146,7 +144,6 @@ if (a) {
         }
         else {
           $( "do not visit, do not eliminate" );
-          d = $( true );
         }
       }
       else {

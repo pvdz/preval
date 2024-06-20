@@ -54,11 +54,10 @@ $(a, b);
 `````js filename=intro
 let a = $(1);
 if (a) {
-  $(1);
   while ($LOOP_UNROLL_10) {
+    $(1);
     a = $(1);
     if (a) {
-      $(1);
     } else {
       break;
     }
@@ -75,11 +74,11 @@ With rename=true
 `````js filename=intro
 let a = $( 1 );
 if (a) {
-  $( 1 );
   while ($LOOP_UNROLL_10) {
+    $( 1 );
     a = $( 1 );
     if (a) {
-      $( 1 );
+
     }
     else {
       break;

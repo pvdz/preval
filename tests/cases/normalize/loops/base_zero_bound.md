@@ -45,12 +45,11 @@ $(r);
 let f = function () {
   debugger;
   let i = 0;
-  let tmpIfTest = i < 0;
   while (true) {
+    const tmpIfTest = i < 0;
     if (tmpIfTest) {
       $(i);
       i = i + 1;
-      tmpIfTest = i < 0;
     } else {
       break;
     }

@@ -60,12 +60,11 @@ $(100);
 $(100);
 $(100);
 $(100);
-$(100);
 const b = { c: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(100);
   a = b.c;
   if (a) {
-    $(100);
   } else {
     break;
   }
@@ -89,12 +88,12 @@ $( 100 );
 $( 100 );
 $( 100 );
 $( 100 );
-$( 100 );
 const b = { c: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 100 );
   a = b.c;
   if (a) {
-    $( 100 );
+
   }
   else {
     break;

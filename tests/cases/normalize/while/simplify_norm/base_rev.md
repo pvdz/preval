@@ -35,14 +35,11 @@ while (true) {
 
 
 `````js filename=intro
-const tmpUnaryArg = $();
-let tmpIfTest = !tmpUnaryArg;
 while (true) {
+  const tmpIfTest = $();
   if (tmpIfTest) {
-    const tmpUnaryArg$1 = $();
-    tmpIfTest = !tmpUnaryArg$1;
-  } else {
     break;
+  } else {
   }
 }
 `````
@@ -51,17 +48,14 @@ while (true) {
 
 
 `````js filename=intro
-const tmpUnaryArg = $();
-if (tmpUnaryArg) {
+const tmpIfTest = $();
+if (tmpIfTest) {
 } else {
-  const tmpUnaryArg$1 = $();
-  let tmpClusterSSA_tmpIfTest = tmpUnaryArg$1;
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    const tmpIfTest$1 = $();
+    if (tmpIfTest$1) {
       break;
     } else {
-      const tmpUnaryArg$2 = $();
-      tmpClusterSSA_tmpIfTest = tmpUnaryArg$2;
     }
   }
 }
@@ -77,15 +71,10 @@ if (a) {
 
 }
 else {
-  const b = $();
-  let c = b;
   while ($LOOP_UNROLL_10) {
-    if (c) {
+    const b = $();
+    if (b) {
       break;
-    }
-    else {
-      const d = $();
-      c = d;
     }
   }
 }

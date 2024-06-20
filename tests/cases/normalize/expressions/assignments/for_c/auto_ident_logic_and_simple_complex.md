@@ -32,8 +32,8 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
 while (true) {
+  const tmpIfTest = $(1);
   if (tmpIfTest) {
     a = 1;
     if (a) {
@@ -42,7 +42,6 @@ while (true) {
       a = tmpCallCallee(tmpCalleeParam);
     } else {
     }
-    tmpIfTest = $(1);
   } else {
     break;
   }
@@ -59,12 +58,11 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpCalleeParam = $(1);
   a = $(tmpCalleeParam);
-  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
       const tmpCalleeParam$1 = $(1);
       a = $(tmpCalleeParam$1);
-      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -87,12 +85,11 @@ const b = $( 1 );
 if (b) {
   const c = $( 1 );
   a = $( c );
-  let d = $( 1 );
   while ($LOOP_UNROLL_10) {
+    const d = $( 1 );
     if (d) {
       const e = $( 1 );
       a = $( e );
-      d = $( 1 );
     }
     else {
       break;

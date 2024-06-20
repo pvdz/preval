@@ -53,13 +53,12 @@ $(1);
 $(2);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  $(100);
   while ($LOOP_UNROLL_10) {
+    $(100);
     $(1);
     $(2);
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
-      $(100);
     } else {
       break;
     }
@@ -79,13 +78,13 @@ $( 1 );
 $( 2 );
 const a = $( 1 );
 if (a) {
-  $( 100 );
   while ($LOOP_UNROLL_10) {
+    $( 100 );
     $( 1 );
     $( 2 );
     const b = $( 1 );
     if (b) {
-      $( 100 );
+
     }
     else {
       break;

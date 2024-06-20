@@ -37,8 +37,8 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
 while (true) {
+  const tmpIfTest = $(1);
   if (tmpIfTest) {
     a = undefined;
     const tmpChainRootCall = $;
@@ -56,7 +56,6 @@ while (true) {
       }
     } else {
     }
-    tmpIfTest = $(1);
   } else {
     break;
   }
@@ -85,23 +84,22 @@ if (tmpIfTest) {
       tmpChainElementObject[tmpChainRootComputed$1];
     }
   }
-  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    const tmpIfTest$2 = $(1);
+    if (tmpIfTest$2) {
       const tmpChainElementCall$1 = $(b);
-      const tmpIfTest$2 = tmpChainElementCall$1 == null;
-      if (tmpIfTest$2) {
+      const tmpIfTest$4 = tmpChainElementCall$1 == null;
+      if (tmpIfTest$4) {
       } else {
         const tmpChainRootComputed$2 = $(`x`);
         const tmpChainElementObject$2 = tmpChainElementCall$1[tmpChainRootComputed$2];
-        const tmpIfTest$4 = tmpChainElementObject$2 == null;
-        if (tmpIfTest$4) {
+        const tmpIfTest$6 = tmpChainElementObject$2 == null;
+        if (tmpIfTest$6) {
         } else {
           const tmpChainRootComputed$4 = $(`y`);
           tmpChainElementObject$2[tmpChainRootComputed$4];
         }
       }
-      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -138,8 +136,8 @@ if (b) {
       g[ i ];
     }
   }
-  let j = $( 1 );
   while ($LOOP_UNROLL_10) {
+    const j = $( 1 );
     if (j) {
       const k = $( c );
       const l = k == null;
@@ -158,7 +156,6 @@ if (b) {
           n[ p ];
         }
       }
-      j = $( 1 );
     }
     else {
       break;

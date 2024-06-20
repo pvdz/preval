@@ -71,8 +71,8 @@ let error = function ($$0) {
   }
   args = new tmpNewCallee(tmpCalleeParam);
   key = 1;
-  let tmpIfTest$1 = key < len;
   while (true) {
+    const tmpIfTest$1 = key < len;
     if (tmpIfTest$1) {
       const tmpAssignComMemLhsObj = args;
       const tmpAssignComMemLhsProp = key - 1;
@@ -82,7 +82,6 @@ let error = function ($$0) {
       tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
       const tmpPostUpdArgIdent = key;
       key = key + 1;
-      tmpIfTest$1 = key < len;
     } else {
       break;
     }

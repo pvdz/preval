@@ -33,10 +33,9 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
 -tmpUnaryArg;
-let tmpIfTest = $(0);
 while (true) {
+  const tmpIfTest = $(0);
   if (tmpIfTest) {
-    tmpIfTest = $(0);
   } else {
     break;
   }
@@ -52,10 +51,9 @@ const tmpUnaryArg = $(100);
 -tmpUnaryArg;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
-  let tmpClusterSSA_tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      tmpClusterSSA_tmpIfTest = $(0);
+    const tmpIfTest$1 = $(0);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -75,10 +73,10 @@ const a = $( 100 );
 -a;
 const b = $( 0 );
 if (b) {
-  let c = $( 0 );
   while ($LOOP_UNROLL_10) {
+    const c = $( 0 );
     if (c) {
-      c = $( 0 );
+
     }
     else {
       break;

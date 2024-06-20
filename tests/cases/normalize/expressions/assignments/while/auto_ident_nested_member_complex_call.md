@@ -74,8 +74,8 @@ varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComp
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
 let tmpClusterSSA_a = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
-  $(100);
   while ($LOOP_UNROLL_10) {
+    $(100);
     const tmpNestedAssignComMemberObj$1 = $(b);
     const tmpNestedAssignComMemberProp$1 = $(`x`);
     const varInitAssignLhsComputedObj$1 = $(c);
@@ -85,7 +85,6 @@ if (varInitAssignLhsComputedRhs) {
     tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = varInitAssignLhsComputedRhs$1;
     tmpClusterSSA_a = varInitAssignLhsComputedRhs$1;
     if (varInitAssignLhsComputedRhs$1) {
-      $(100);
     } else {
       break;
     }
@@ -111,8 +110,8 @@ e[f] = g;
 c[d] = g;
 let h = g;
 if (g) {
-  $( 100 );
   while ($LOOP_UNROLL_10) {
+    $( 100 );
     const i = $( a );
     const j = $( "x" );
     const k = $( b );
@@ -122,7 +121,7 @@ if (g) {
     i[j] = m;
     h = m;
     if (m) {
-      $( 100 );
+
     }
     else {
       break;

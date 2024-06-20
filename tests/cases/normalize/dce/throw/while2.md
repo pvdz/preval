@@ -42,8 +42,8 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  let tmpIfTest = $(true);
   while (true) {
+    const tmpIfTest = $(true);
     if (tmpIfTest) {
       const tmpThrowArg = $(1, `throw`);
       throw tmpThrowArg;

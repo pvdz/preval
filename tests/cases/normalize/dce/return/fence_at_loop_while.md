@@ -52,12 +52,12 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  let tmpIfTest = $(true);
   while (true) {
+    const tmpIfTest = $(true);
     if (tmpIfTest) {
       $(`loop`);
-      let tmpIfTest$1 = $(true);
       while (true) {
+        const tmpIfTest$1 = $(true);
         if (tmpIfTest$1) {
           $(`loop`);
           const tmpReturnArg = $(100, `return`);
@@ -67,7 +67,6 @@ let f = function () {
         }
       }
       $(`do not visit, do not eliminate`);
-      tmpIfTest = $(true);
     } else {
       break;
     }
@@ -86,12 +85,12 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 let tmpCalleeParam = undefined;
 $inlinedFunction: {
-  let tmpIfTest = $(true);
   while (true) {
+    const tmpIfTest = $(true);
     if (tmpIfTest) {
       $(`loop`);
-      const tmpIfTest$1 = $(true);
       while (true) {
+        const tmpIfTest$1 = $(true);
         if (tmpIfTest$1) {
           $(`loop`);
           const tmpReturnArg = $(100, `return`);
@@ -102,7 +101,6 @@ $inlinedFunction: {
         }
       }
       $(`do not visit, do not eliminate`);
-      tmpIfTest = $(true);
     } else {
       break;
     }
@@ -119,12 +117,12 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 $inlinedFunction: {
-  let b = $( true );
   while (true) {
+    const b = $( true );
     if (b) {
       $( "loop" );
-      const c = $( true );
       while (true) {
+        const c = $( true );
         if (c) {
           $( "loop" );
           const d = $( 100, "return" );
@@ -136,7 +134,6 @@ $inlinedFunction: {
         }
       }
       $( "do not visit, do not eliminate" );
-      b = $( true );
     }
     else {
       break;

@@ -59,11 +59,10 @@ $(100);
 $(100);
 $(100);
 let b = 12;
-$(100);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(100);
   b = b + 1;
   if (b) {
-    $(100);
   } else {
     break;
   }
@@ -88,11 +87,11 @@ $( 100 );
 $( 100 );
 $( 100 );
 let a = 12;
-$( 100 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 100 );
   a = a + 1;
   if (a) {
-    $( 100 );
+
   }
   else {
     break;

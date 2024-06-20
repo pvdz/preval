@@ -51,11 +51,10 @@ $(a, arg);
 const arg = { y: 1 };
 let a = delete arg.y;
 if (a) {
-  $(100);
   while ($LOOP_UNROLL_10) {
+    $(100);
     a = delete arg.y;
     if (a) {
-      $(100);
     } else {
       break;
     }
@@ -73,11 +72,11 @@ With rename=true
 const a = { y: 1 };
 let b = delete a.y;
 if (b) {
-  $( 100 );
   while ($LOOP_UNROLL_10) {
+    $( 100 );
     b = delete a.y;
     if (b) {
-      $( 100 );
+
     }
     else {
       break;

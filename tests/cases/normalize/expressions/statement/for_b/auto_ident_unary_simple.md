@@ -36,11 +36,10 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-let tmpIfTest = typeof x;
 while (true) {
+  const tmpIfTest = typeof x;
   if (tmpIfTest) {
     $(1);
-    tmpIfTest = typeof x;
   } else {
     break;
   }

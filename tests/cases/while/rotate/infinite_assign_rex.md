@@ -47,7 +47,7 @@ $(x);
 
 
 `````js filename=intro
-let x = /tmp/;
+let x = undefined;
 while (true) {
   x = /tmp/;
   $(x);

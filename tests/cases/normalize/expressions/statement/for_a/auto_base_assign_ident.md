@@ -36,10 +36,9 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 b = $(2);
-let tmpIfTest = $(0);
 while (true) {
+  const tmpIfTest = $(0);
   if (tmpIfTest) {
-    tmpIfTest = $(0);
   } else {
     break;
   }
@@ -54,10 +53,9 @@ $(a, b);
 const b = $(2);
 const tmpIfTest = $(0);
 if (tmpIfTest) {
-  let tmpClusterSSA_tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      tmpClusterSSA_tmpIfTest = $(0);
+    const tmpIfTest$1 = $(0);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -76,10 +74,10 @@ With rename=true
 const a = $( 2 );
 const b = $( 0 );
 if (b) {
-  let c = $( 0 );
   while ($LOOP_UNROLL_10) {
+    const c = $( 0 );
     if (c) {
-      c = $( 0 );
+
     }
     else {
       break;

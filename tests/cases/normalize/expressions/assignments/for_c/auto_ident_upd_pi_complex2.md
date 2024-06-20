@@ -133,16 +133,15 @@ if (tmpIfTest) {
   const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
   tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
   a = tmpNestedPropCompoundComplexRhs;
-  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    const tmpClusterSSA_tmpIfTest$1 = $(1);
+    if (tmpClusterSSA_tmpIfTest$1) {
       const tmpCalleeParam$1 = $(b);
       const tmpNestedAssignObj$1 = $(tmpCalleeParam$1);
       const tmpBinLhs$1 = tmpNestedAssignObj$1.x;
       const tmpNestedPropCompoundComplexRhs$1 = tmpBinLhs$1 + 1;
       tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
       a = tmpNestedPropCompoundComplexRhs$1;
-      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -170,8 +169,8 @@ if (b) {
   const g = f + 1;
   e.x = g;
   a = g;
-  let h = $( 1 );
   while ($LOOP_UNROLL_10) {
+    const h = $( 1 );
     if (h) {
       const i = $( c );
       const j = $( i );
@@ -179,7 +178,6 @@ if (b) {
       const l = k + 1;
       j.x = l;
       a = l;
-      h = $( 1 );
     }
     else {
       break;

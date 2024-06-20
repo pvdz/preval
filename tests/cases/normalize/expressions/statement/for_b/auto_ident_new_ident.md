@@ -32,11 +32,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpIfTest = new $(1);
 while (true) {
+  const tmpIfTest = new $(1);
   if (tmpIfTest) {
     $(1);
-    tmpIfTest = new $(1);
   } else {
     break;
   }
@@ -48,8 +47,6 @@ $(a);
 
 
 `````js filename=intro
-new $(1);
-$(1);
 new $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
@@ -63,8 +60,6 @@ throw `[preval] unreachable; infinite loop`;
 With rename=true
 
 `````js filename=intro
-new $( 1 );
-$( 1 );
 new $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );

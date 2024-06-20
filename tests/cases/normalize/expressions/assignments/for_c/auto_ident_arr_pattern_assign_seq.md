@@ -39,8 +39,8 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
 while (true) {
+  const tmpIfTest = $(1);
   if (tmpIfTest) {
     $(x);
     $(y);
@@ -51,7 +51,6 @@ while (true) {
     x = arrPatternSplat[0];
     y = arrPatternSplat[1];
     a = tmpNestedAssignArrPatternRhs;
-    tmpIfTest = $(1);
   } else {
     break;
   }
@@ -73,16 +72,15 @@ if (tmpIfTest) {
   const tmpArrElement$1 = $(4);
   x = tmpArrElement;
   y = tmpArrElement$1;
-  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
       $(x);
       $(y);
       const tmpArrElement$2 = $(3);
       const tmpArrElement$4 = $(4);
       x = tmpArrElement$2;
       y = tmpArrElement$4;
-      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -108,8 +106,8 @@ if (c) {
   const e = $( 4 );
   a = d;
   b = e;
-  let f = $( 1 );
   while ($LOOP_UNROLL_10) {
+    const f = $( 1 );
     if (f) {
       $( a );
       $( b );
@@ -117,7 +115,6 @@ if (c) {
       const h = $( 4 );
       a = g;
       b = h;
-      f = $( 1 );
     }
     else {
       break;

@@ -34,12 +34,11 @@ $(a);
 
 `````js filename=intro
 let a = $(1);
-let tmpIfTest = a < 10;
 while (true) {
+  const tmpIfTest = a < 10;
   if (tmpIfTest) {
     a = a + 1;
     $(a);
-    tmpIfTest = a < 10;
   } else {
     break;
   }
@@ -55,13 +54,11 @@ let a = $(1);
 const tmpIfTest = a < 10;
 if (tmpIfTest) {
   a = a + 1;
-  $(a);
-  let tmpClusterSSA_tmpIfTest = a < 10;
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    $(a);
+    const tmpIfTest$1 = a < 10;
+    if (tmpIfTest$1) {
       a = a + 1;
-      $(a);
-      tmpClusterSSA_tmpIfTest = a < 10;
     } else {
       break;
     }
@@ -80,13 +77,11 @@ let a = $( 1 );
 const b = a < 10;
 if (b) {
   a = a + 1;
-  $( a );
-  let c = a < 10;
   while ($LOOP_UNROLL_10) {
+    $( a );
+    const c = a < 10;
     if (c) {
       a = a + 1;
-      $( a );
-      c = a < 10;
     }
     else {
       break;

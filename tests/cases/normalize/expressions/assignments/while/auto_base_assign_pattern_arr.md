@@ -61,8 +61,8 @@ const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 let tmpClusterSSA_b = arrPatternSplat[0];
 let tmpClusterSSA_a = tmpNestedAssignArrPatternRhs;
 if (tmpNestedAssignArrPatternRhs) {
-  $(100);
   while ($LOOP_UNROLL_10) {
+    $(100);
     const tmpArrElement$1 = $(2);
     const tmpCalleeParam$1 = [tmpArrElement$1];
     const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$1);
@@ -70,7 +70,6 @@ if (tmpNestedAssignArrPatternRhs) {
     tmpClusterSSA_b = arrPatternSplat$1[0];
     tmpClusterSSA_a = tmpNestedAssignArrPatternRhs$1;
     if (tmpNestedAssignArrPatternRhs$1) {
-      $(100);
     } else {
       break;
     }
@@ -92,8 +91,8 @@ const d = [ ... c ];
 let e = d[ 0 ];
 let f = c;
 if (c) {
-  $( 100 );
   while ($LOOP_UNROLL_10) {
+    $( 100 );
     const g = $( 2 );
     const h = [ g ];
     const i = $( h );
@@ -101,7 +100,7 @@ if (c) {
     e = j[ 0 ];
     f = i;
     if (i) {
-      $( 100 );
+
     }
     else {
       break;

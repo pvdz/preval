@@ -56,11 +56,10 @@ const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpIfTest = b.$(1);
 if (tmpIfTest) {
-  $(1);
   while ($LOOP_UNROLL_10) {
+    $(1);
     const tmpIfTest$1 = b.$(1);
     if (tmpIfTest$1) {
-      $(1);
     } else {
       break;
     }
@@ -82,11 +81,11 @@ const b = {
 };
 const c = a.$( 1 );
 if (c) {
-  $( 1 );
   while ($LOOP_UNROLL_10) {
+    $( 1 );
     const d = a.$( 1 );
     if (d) {
-      $( 1 );
+
     }
     else {
       break;

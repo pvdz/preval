@@ -57,12 +57,11 @@ const a = arrPatternSplat[0];
 const tmpCalleeParam = [1, 2];
 const tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
-  $(1);
   while ($LOOP_UNROLL_10) {
+    $(1);
     const tmpCalleeParam$1 = [1, 2];
     const tmpIfTest$1 = $(tmpCalleeParam$1);
     if (tmpIfTest$1) {
-      $(1);
     } else {
       break;
     }
@@ -86,12 +85,12 @@ const c = b[ 0 ];
 const d = [ 1, 2 ];
 const e = $( d );
 if (e) {
-  $( 1 );
   while ($LOOP_UNROLL_10) {
+    $( 1 );
     const f = [ 1, 2 ];
     const g = $( f );
     if (g) {
-      $( 1 );
+
     }
     else {
       break;

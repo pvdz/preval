@@ -36,15 +36,14 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
 while (true) {
+  const tmpIfTest = $(1);
   if (tmpIfTest) {
     $(1);
     $(2);
     const tmpDeleteCompObj = $(arg);
     const tmpDeleteCompProp = $(`y`);
     a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-    tmpIfTest = $(1);
   } else {
     break;
   }
@@ -65,15 +64,14 @@ if (tmpIfTest) {
   const tmpDeleteCompObj = $(arg);
   const tmpDeleteCompProp = $(`y`);
   delete tmpDeleteCompObj[tmpDeleteCompProp];
-  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
       $(1);
       $(2);
       const tmpDeleteCompObj$1 = $(arg);
       const tmpDeleteCompProp$1 = $(`y`);
       delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
-      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -100,15 +98,14 @@ if (c) {
   const d = $( a );
   const e = $( "y" );
   delete d[ e ];
-  let f = $( 1 );
   while ($LOOP_UNROLL_10) {
+    const f = $( 1 );
     if (f) {
       $( 1 );
       $( 2 );
       const g = $( a );
       const h = $( "y" );
       delete g[ h ];
-      f = $( 1 );
     }
     else {
       break;

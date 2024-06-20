@@ -36,12 +36,11 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
 while (true) {
+  const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpUnaryArg = $(x);
     a = typeof tmpUnaryArg;
-    tmpIfTest = $(1);
   } else {
     break;
   }
@@ -58,12 +57,11 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpUnaryArg = $(1);
   a = typeof tmpUnaryArg;
-  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
       const tmpUnaryArg$1 = $(1);
       a = typeof tmpUnaryArg$1;
-      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -86,12 +84,11 @@ const b = $( 1 );
 if (b) {
   const c = $( 1 );
   a = typeof c;
-  let d = $( 1 );
   while ($LOOP_UNROLL_10) {
+    const d = $( 1 );
     if (d) {
       const e = $( 1 );
       a = typeof e;
-      d = $( 1 );
     }
     else {
       break;

@@ -46,10 +46,9 @@ if (tmpIfTest) {
   const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
 } else {
 }
-let tmpIfTest$1 = $(0);
 while (true) {
+  const tmpIfTest$1 = $(0);
   if (tmpIfTest$1) {
-    tmpIfTest$1 = $(0);
   } else {
     break;
   }
@@ -66,10 +65,9 @@ const a = { a: 999, b: 1000 };
 $dotCall($, tmpObjLitVal$1, 1);
 const tmpIfTest$1 = $(0);
 if (tmpIfTest$1) {
-  let tmpClusterSSA_tmpIfTest$1 = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest$1) {
-      tmpClusterSSA_tmpIfTest$1 = $(0);
+    const tmpIfTest$2 = $(0);
+    if (tmpIfTest$2) {
     } else {
       break;
     }
@@ -92,10 +90,10 @@ const b = {
 $dotCall( $, a, 1 );
 const c = $( 0 );
 if (c) {
-  let d = $( 0 );
   while ($LOOP_UNROLL_10) {
+    const d = $( 0 );
     if (d) {
-      d = $( 0 );
+
     }
     else {
       break;

@@ -53,12 +53,11 @@ const b = { c: 1 };
 const tmpAssignRhsProp = $(b);
 let tmpClusterSSA_a = tmpAssignRhsProp.c;
 if (tmpClusterSSA_a) {
-  $(100);
   while ($LOOP_UNROLL_10) {
+    $(100);
     const tmpAssignRhsProp$1 = $(b);
     tmpClusterSSA_a = tmpAssignRhsProp$1.c;
     if (tmpClusterSSA_a) {
-      $(100);
     } else {
       break;
     }
@@ -77,12 +76,12 @@ const a = { c: 1 };
 const b = $( a );
 let c = b.c;
 if (c) {
-  $( 100 );
   while ($LOOP_UNROLL_10) {
+    $( 100 );
     const d = $( a );
     c = d.c;
     if (c) {
-      $( 100 );
+
     }
     else {
       break;

@@ -53,13 +53,12 @@ const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 const tmpIfTest = tmpBinBothLhs + tmpBinBothRhs;
 if (tmpIfTest) {
-  $(1);
   while ($LOOP_UNROLL_10) {
+    $(1);
     const tmpBinBothLhs$1 = $(1);
     const tmpBinBothRhs$1 = $(2);
     const tmpIfTest$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
     if (tmpIfTest$1) {
-      $(1);
     } else {
       break;
     }
@@ -79,13 +78,13 @@ const a = $( 1 );
 const b = $( 2 );
 const c = a + b;
 if (c) {
-  $( 1 );
   while ($LOOP_UNROLL_10) {
+    $( 1 );
     const d = $( 1 );
     const e = $( 2 );
     const f = d + e;
     if (f) {
-      $( 1 );
+
     }
     else {
       break;

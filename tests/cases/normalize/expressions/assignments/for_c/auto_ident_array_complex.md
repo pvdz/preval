@@ -32,14 +32,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
 while (true) {
+  const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpArrElement = $(1);
     const tmpArrElement$1 = 2;
     const tmpArrElement$3 = $(3);
     a = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
-    tmpIfTest = $(1);
   } else {
     break;
   }
@@ -57,13 +56,12 @@ if (tmpIfTest) {
   const tmpArrElement = $(1);
   const tmpArrElement$3 = $(3);
   a = [tmpArrElement, 2, tmpArrElement$3];
-  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
       const tmpArrElement$1 = $(1);
       const tmpArrElement$4 = $(3);
       a = [tmpArrElement$1, 2, tmpArrElement$4];
-      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -87,13 +85,12 @@ if (b) {
   const c = $( 1 );
   const d = $( 3 );
   a = [ c, 2, d ];
-  let e = $( 1 );
   while ($LOOP_UNROLL_10) {
+    const e = $( 1 );
     if (e) {
       const f = $( 1 );
       const g = $( 3 );
       a = [ f, 2, g ];
-      e = $( 1 );
     }
     else {
       break;

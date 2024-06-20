@@ -62,14 +62,13 @@ const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 let tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
 if (tmpNestedAssignObjPatternRhs) {
-  $(1);
   while ($LOOP_UNROLL_10) {
+    $(1);
     const tmpObjLitVal$1 = $(2);
     const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
     const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
     tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
     if (tmpNestedAssignObjPatternRhs$1) {
-      $(1);
     } else {
       break;
     }
@@ -90,14 +89,14 @@ const b = { b: a };
 const c = $( b );
 let d = c.b;
 if (c) {
-  $( 1 );
   while ($LOOP_UNROLL_10) {
+    $( 1 );
     const e = $( 2 );
     const f = { b: e };
     const g = $( f );
     d = g.b;
     if (g) {
-      $( 1 );
+
     }
     else {
       break;

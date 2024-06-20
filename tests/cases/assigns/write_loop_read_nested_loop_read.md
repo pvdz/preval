@@ -36,20 +36,18 @@ while ($(true)) {
 
 `````js filename=intro
 let x = $(1);
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
     $(x, `loop1`);
-    let tmpIfTest$1 = $(true);
     while (true) {
+      const tmpIfTest$1 = $(true);
       if (tmpIfTest$1) {
         $(x, `loop2`);
-        tmpIfTest$1 = $(true);
       } else {
         break;
       }
     }
-    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -61,25 +59,22 @@ while (true) {
 
 `````js filename=intro
 const x = $(1);
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
     $(x, `loop1`);
     const tmpIfTest$1 = $(true);
     if (tmpIfTest$1) {
-      $(x, `loop2`);
-      let tmpClusterSSA_tmpIfTest$1 = $(true);
       while ($LOOP_UNROLL_10) {
-        if (tmpClusterSSA_tmpIfTest$1) {
-          $(x, `loop2`);
-          tmpClusterSSA_tmpIfTest$1 = $(true);
+        $(x, `loop2`);
+        const tmpIfTest$2 = $(true);
+        if (tmpIfTest$2) {
         } else {
           break;
         }
       }
     } else {
     }
-    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -92,25 +87,23 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = $( true );
 while (true) {
+  const b = $( true );
   if (b) {
     $( a, "loop1" );
     const c = $( true );
     if (c) {
-      $( a, "loop2" );
-      let d = $( true );
       while ($LOOP_UNROLL_10) {
+        $( a, "loop2" );
+        const d = $( true );
         if (d) {
-          $( a, "loop2" );
-          d = $( true );
+
         }
         else {
           break;
         }
       }
     }
-    b = $( true );
   }
   else {
     break;

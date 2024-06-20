@@ -28,15 +28,12 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(100);
-let tmpIfTest = !tmpUnaryArg;
 while (true) {
+  const tmpIfTest = $(100);
   if (tmpIfTest) {
-    $(100);
-    const tmpUnaryArg$1 = $(100);
-    tmpIfTest = !tmpUnaryArg$1;
-  } else {
     break;
+  } else {
+    $(100);
   }
 }
 $(a);
@@ -46,19 +43,15 @@ $(a);
 
 
 `````js filename=intro
-const tmpUnaryArg = $(100);
-if (tmpUnaryArg) {
+const tmpIfTest = $(100);
+if (tmpIfTest) {
 } else {
-  $(100);
-  const tmpUnaryArg$1 = $(100);
-  let tmpClusterSSA_tmpIfTest = tmpUnaryArg$1;
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    $(100);
+    const tmpIfTest$1 = $(100);
+    if (tmpIfTest$1) {
       break;
     } else {
-      $(100);
-      const tmpUnaryArg$2 = $(100);
-      tmpClusterSSA_tmpIfTest = tmpUnaryArg$2;
     }
   }
 }
@@ -76,25 +69,19 @@ if (a) {
 
 }
 else {
-  $( 100 );
-  const b = $( 100 );
-  let c = b;
   while ($LOOP_UNROLL_10) {
-    if (c) {
+    $( 100 );
+    const b = $( 100 );
+    if (b) {
       break;
-    }
-    else {
-      $( 100 );
-      const d = $( 100 );
-      c = d;
     }
   }
 }
-const e = {
+const c = {
   a: 999,
   b: 1000,
 };
-$( e );
+$( c );
 `````
 
 ## Globals

@@ -68,8 +68,8 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  let tmpIfTest = $(true);
   while (true) {
+    const tmpIfTest = $(true);
     if (tmpIfTest) {
       $(`loop`);
       const tmpForInDeclRhs = { a: 1, b: 2 };
@@ -88,7 +88,6 @@ let f = function () {
         }
       }
       $(`after (not invoked but should not be eliminated)`);
-      tmpIfTest = $(true);
     } else {
       break;
     }
@@ -107,8 +106,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 let tmpCalleeParam = undefined;
 $inlinedFunction: {
-  let tmpIfTest = $(true);
   while (true) {
+    const tmpIfTest = $(true);
     if (tmpIfTest) {
       $(`loop`);
       let x = undefined;
@@ -129,7 +128,6 @@ $inlinedFunction: {
         }
       }
       $(`after (not invoked but should not be eliminated)`);
-      tmpIfTest = $(true);
     } else {
       break;
     }
@@ -146,8 +144,8 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 $inlinedFunction: {
-  let b = $( true );
   while (true) {
+    const b = $( true );
     if (b) {
       $( "loop" );
       let c = undefined;
@@ -172,7 +170,6 @@ $inlinedFunction: {
         }
       }
       $( "after (not invoked but should not be eliminated)" );
-      b = $( true );
     }
     else {
       break;

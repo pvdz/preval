@@ -38,8 +38,8 @@ for (let i=0; i<10; ++i) {
 
 `````js filename=intro
 let i = 0;
-let tmpIfTest = i < 10;
 while (true) {
+  const tmpIfTest = i < 10;
   if (tmpIfTest) {
     $(i);
     const tmpCallCallee = $;
@@ -49,7 +49,6 @@ while (true) {
     const tmpCalleeParam$1 = i + 2;
     tmpCallCallee$1(tmpCalleeParam$1);
     i = i + 1;
-    tmpIfTest = i < 10;
   } else {
     break;
   }

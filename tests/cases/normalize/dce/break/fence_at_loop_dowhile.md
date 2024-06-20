@@ -49,13 +49,12 @@ $(`after (not invoked)`);
 
 
 `````js filename=intro
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
     $(`loop`);
     $(`loop`);
     $(`infiloop, do not eliminate`);
-    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -69,16 +68,12 @@ $(`after (not invoked)`);
 `````js filename=intro
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  $(`loop`);
-  $(`loop`);
-  $(`infiloop, do not eliminate`);
-  let tmpClusterSSA_tmpIfTest = $(true);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      $(`loop`);
-      $(`loop`);
-      $(`infiloop, do not eliminate`);
-      tmpClusterSSA_tmpIfTest = $(true);
+    $(`loop`);
+    $(`loop`);
+    $(`infiloop, do not eliminate`);
+    const tmpIfTest$1 = $(true);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -95,16 +90,13 @@ With rename=true
 `````js filename=intro
 const a = $( true );
 if (a) {
-  $( "loop" );
-  $( "loop" );
-  $( "infiloop, do not eliminate" );
-  let b = $( true );
   while ($LOOP_UNROLL_10) {
+    $( "loop" );
+    $( "loop" );
+    $( "infiloop, do not eliminate" );
+    const b = $( true );
     if (b) {
-      $( "loop" );
-      $( "loop" );
-      $( "infiloop, do not eliminate" );
-      b = $( true );
+
     }
     else {
       break;

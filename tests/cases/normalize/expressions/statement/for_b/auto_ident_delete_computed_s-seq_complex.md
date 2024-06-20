@@ -62,14 +62,13 @@ $(2);
 const tmpDeleteCompProp = $(`y`);
 const tmpIfTest = delete arg[tmpDeleteCompProp];
 if (tmpIfTest) {
-  $(1);
   while ($LOOP_UNROLL_10) {
+    $(1);
     $(1);
     $(2);
     const tmpDeleteCompProp$1 = $(`y`);
     const tmpIfTest$1 = delete arg[tmpDeleteCompProp$1];
     if (tmpIfTest$1) {
-      $(1);
     } else {
       break;
     }
@@ -94,14 +93,14 @@ $( 2 );
 const c = $( "y" );
 const d = delete a[ c ];
 if (d) {
-  $( 1 );
   while ($LOOP_UNROLL_10) {
+    $( 1 );
     $( 1 );
     $( 2 );
     const e = $( "y" );
     const f = delete a[ e ];
     if (f) {
-      $( 1 );
+
     }
     else {
       break;

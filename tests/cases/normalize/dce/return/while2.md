@@ -42,8 +42,8 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  let tmpIfTest = $(true);
   while (true) {
+    const tmpIfTest = $(true);
     if (tmpIfTest) {
       const tmpReturnArg = $(1, `return`);
       return tmpReturnArg;
@@ -65,8 +65,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 let tmpCalleeParam = undefined;
 $inlinedFunction: {
-  const tmpIfTest = $(true);
   while (true) {
+    const tmpIfTest = $(true);
     if (tmpIfTest) {
       const tmpReturnArg = $(1, `return`);
       tmpCalleeParam = tmpReturnArg;
@@ -87,8 +87,8 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 $inlinedFunction: {
-  const b = $( true );
   while (true) {
+    const b = $( true );
     if (b) {
       const c = $( 1, "return" );
       a = c;

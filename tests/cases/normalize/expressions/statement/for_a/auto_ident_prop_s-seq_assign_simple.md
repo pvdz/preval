@@ -37,10 +37,9 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpAssignMemLhsObj = b;
 tmpAssignMemLhsObj.c = 2;
-let tmpIfTest = $(0);
 while (true) {
+  const tmpIfTest = $(0);
   if (tmpIfTest) {
-    tmpIfTest = $(0);
   } else {
     break;
   }
@@ -56,10 +55,9 @@ const b = { c: 2 };
 const a = { a: 999, b: 1000 };
 const tmpIfTest = $(0);
 if (tmpIfTest) {
-  let tmpClusterSSA_tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      tmpClusterSSA_tmpIfTest = $(0);
+    const tmpIfTest$1 = $(0);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -81,10 +79,10 @@ const b = {
 };
 const c = $( 0 );
 if (c) {
-  let d = $( 0 );
   while ($LOOP_UNROLL_10) {
+    const d = $( 0 );
     if (d) {
-      d = $( 0 );
+
     }
     else {
       break;

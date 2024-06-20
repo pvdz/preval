@@ -64,13 +64,12 @@ const tmpObjLitVal$1 = { e: $ };
 const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
 let tmpClusterSSA_a = tmpChainElementCall;
 if (tmpChainElementCall) {
-  $(100);
   while ($LOOP_UNROLL_10) {
+    $(100);
     const tmpChainElementObject$6 = tmpObjLitVal$1.e;
     const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$6, tmpObjLitVal$1, 1);
     tmpClusterSSA_a = tmpChainElementCall$1;
     if (tmpChainElementCall$1) {
-      $(100);
     } else {
       break;
     }
@@ -89,13 +88,13 @@ const a = { e: $ };
 const b = $dotCall( $, a, 1 );
 let c = b;
 if (b) {
-  $( 100 );
   while ($LOOP_UNROLL_10) {
+    $( 100 );
     const d = a.e;
     const e = $dotCall( d, a, 1 );
     c = e;
     if (e) {
-      $( 100 );
+
     }
     else {
       break;

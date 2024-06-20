@@ -55,13 +55,12 @@ $(2);
 
 `````js filename=intro
 $(0);
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
     $continue: {
       break;
     }
-    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -74,13 +73,12 @@ $(2);
 
 `````js filename=intro
 $(0);
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
     $continue: {
       break;
     }
-    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -94,13 +92,12 @@ With rename=true
 
 `````js filename=intro
 $( 0 );
-let a = $( true );
 while (true) {
+  const a = $( true );
   if (a) {
     $continue:     {
       break;
     }
-    a = $( true );
   }
   else {
     break;

@@ -50,11 +50,10 @@ $(a);
 `````js filename=intro
 const tmpIfTest = $(60);
 if (tmpIfTest) {
-  $(1);
   while ($LOOP_UNROLL_10) {
+    $(1);
     const tmpIfTest$1 = $(60);
     if (tmpIfTest$1) {
-      $(1);
     } else {
       break;
     }
@@ -72,11 +71,11 @@ With rename=true
 `````js filename=intro
 const a = $( 60 );
 if (a) {
-  $( 1 );
   while ($LOOP_UNROLL_10) {
+    $( 1 );
     const b = $( 60 );
     if (b) {
-      $( 1 );
+
     }
     else {
       break;

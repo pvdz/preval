@@ -58,14 +58,13 @@ const test = $(`first`);
 $(`second`);
 if (test) {
 } else {
-  $(`third`);
   while ($LOOP_UNROLL_10) {
+    $(`third`);
     const test$1 = $(`first`);
     $(`second`);
     if (test$1) {
       break;
     } else {
-      $(`third`);
     }
   }
 }
@@ -82,15 +81,12 @@ if (a) {
 
 }
 else {
-  $( "third" );
   while ($LOOP_UNROLL_10) {
+    $( "third" );
     const b = $( "first" );
     $( "second" );
     if (b) {
       break;
-    }
-    else {
-      $( "third" );
     }
   }
 }

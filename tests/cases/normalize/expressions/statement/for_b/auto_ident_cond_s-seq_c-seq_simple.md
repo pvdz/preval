@@ -57,11 +57,10 @@ $(a);
 `````js filename=intro
 const tmpClusterSSA_tmpIfTest = $(60);
 if (tmpClusterSSA_tmpIfTest) {
-  $(1);
   while ($LOOP_UNROLL_10) {
+    $(1);
     const tmpClusterSSA_tmpIfTest$1 = $(60);
     if (tmpClusterSSA_tmpIfTest$1) {
-      $(1);
     } else {
       break;
     }
@@ -79,11 +78,11 @@ With rename=true
 `````js filename=intro
 const a = $( 60 );
 if (a) {
-  $( 1 );
   while ($LOOP_UNROLL_10) {
+    $( 1 );
     const b = $( 60 );
     if (b) {
-      $( 1 );
+
     }
     else {
       break;

@@ -52,8 +52,8 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  let tmpIfTest = $(true);
   while (true) {
+    const tmpIfTest = $(true);
     if (tmpIfTest) {
       $(`loop`);
       const tmpForInDeclRhs = { a: 1, b: 2 };
@@ -64,7 +64,6 @@ let f = function () {
         return tmpReturnArg;
       }
       $(`fail`);
-      tmpIfTest = $(true);
     } else {
       break;
     }
@@ -83,8 +82,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 let tmpCalleeParam = undefined;
 $inlinedFunction: {
-  let tmpIfTest = $(true);
   while (true) {
+    const tmpIfTest = $(true);
     if (tmpIfTest) {
       $(`loop`);
       let x = undefined;
@@ -96,7 +95,6 @@ $inlinedFunction: {
         break $inlinedFunction;
       }
       $(`fail`);
-      tmpIfTest = $(true);
     } else {
       break;
     }
@@ -113,8 +111,8 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 $inlinedFunction: {
-  let b = $( true );
   while (true) {
+    const b = $( true );
     if (b) {
       $( "loop" );
       let c = undefined;
@@ -129,7 +127,6 @@ $inlinedFunction: {
         break $inlinedFunction;
       }
       $( "fail" );
-      b = $( true );
     }
     else {
       break;

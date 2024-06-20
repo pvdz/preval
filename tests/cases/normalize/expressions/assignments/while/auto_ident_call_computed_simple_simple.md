@@ -51,11 +51,10 @@ $(a);
 const b = { $: $ };
 let a = b.$(1);
 if (a) {
-  $(100);
   while ($LOOP_UNROLL_10) {
+    $(100);
     a = b.$(1);
     if (a) {
-      $(100);
     } else {
       break;
     }
@@ -73,11 +72,11 @@ With rename=true
 const a = { $: $ };
 let b = a.$( 1 );
 if (b) {
-  $( 100 );
   while ($LOOP_UNROLL_10) {
+    $( 100 );
     b = a.$( 1 );
     if (b) {
-      $( 100 );
+
     }
     else {
       break;

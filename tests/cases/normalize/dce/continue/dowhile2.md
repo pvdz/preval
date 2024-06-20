@@ -49,8 +49,8 @@ $(`after, wont eval due to infinite loop`);
 
 
 `````js filename=intro
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
     while (true) {
       $(`loop`);
@@ -61,7 +61,6 @@ while (true) {
       }
     }
     $(`keep, wont eval due to infinite loop`);
-    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -73,8 +72,8 @@ $(`after, wont eval due to infinite loop`);
 
 
 `````js filename=intro
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
     $(`loop`);
     const tmpIfTest$1 = $(true);
@@ -90,7 +89,6 @@ while (true) {
     } else {
     }
     $(`keep, wont eval due to infinite loop`);
-    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -103,8 +101,8 @@ $(`after, wont eval due to infinite loop`);
 With rename=true
 
 `````js filename=intro
-let a = $( true );
 while (true) {
+  const a = $( true );
   if (a) {
     $( "loop" );
     const b = $( true );
@@ -121,7 +119,6 @@ while (true) {
       }
     }
     $( "keep, wont eval due to infinite loop" );
-    a = $( true );
   }
   else {
     break;

@@ -9159,212 +9159,6 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     const whileBody = node.body.body;
 
     if (whileBody.length) {
-      const last = whileBody[whileBody.length - 1];
-
-      if (whileBody.length === 2 && last.type === 'IfStatement') {
-        // The if should already be normalized here
-
-        const first = whileBody[0];
-        if (
-          // Does the `while` test on `true`?
-          node.test.type === 'Literal' &&
-          node.test.value === true &&
-          // Is the first a var or assignment and is the if testing on this var/lhs?
-          last.test.type === 'Identifier' &&
-          (
-            (first.type === 'VariableDeclaration' && first.declarations[0].id.name === last.test.name) ||
-            (
-              first.type === 'ExpressionStatement' &&
-              first.expression.type === 'AssignmentExpression' &&
-              first.expression.left.type === 'Identifier' &&
-              first.expression.left.name === last.test.name
-            )
-          )
-        ) {
-          // This is a while with a var-decl or assign and an `if`. The `if` tests the ident declared by that decl, or assigned ot in the assign.
-          // Confirm that either branch is only a `break`, then simplify them
-
-          const whileTestName = last.test.name;
-          const whileTestExpr = first.type === 'VariableDeclaration' ? first.declarations[0].init : first.expression.right;
-          ASSERT(whileTestExpr);
-
-          if (last.consequent.body.length === 1 && last.consequent.body[0].type === 'BreakStatement' && !last.consequent.body[0].label) {
-            rule('A normalized while body with var-if-not-break pattern can be duped and simplified');
-            example(
-              'while (true) { const a = f(); if (a) { break; } else { x(); y(); }',
-              'let a = !f(); while (a) { x(); y(); a = !f(); }',
-            );
-            example('while (true) { a = f(); if (a) { break; } else { x(); y(); }', 'let a = !f(); while (a) { x(); y(); a = !f(); }');
-            before(node);
-
-            const fail = {};
-            const clonedWhileTestExpr = AST.deepCloneForFuncInlining(whileTestExpr, new Map(), fail);
-            ASSERT(
-              !fail.ed,
-              'this (currently) only fails for assignment to param names and funcs. this is normalized code and the init cannot be an assignment. it could be a function but thats a silly case since this is a while-test.',
-              whileTestExpr,
-            );
-
-            // Move the var/assign node to appear before the if.
-            // We can't change order so we wrap it in a block so we can replace the whole `while`
-            // We asserted the while not to be labeled so this should be safe.
-            const newBlock = AST.blockStatement(first, node);
-            // Move the var/assign node to appear before the if. Must do so without changing body index order so wrap in a block.
-            body.splice(i, 1, newBlock);
-            // Clear its old position.
-            whileBody[0] = AST.emptyStatement();
-            if (first.type === 'VariableDeclaration') {
-              // It should be a const but either way, make sure it's a let
-              first.kind = 'let';
-              // Wrap the init in an excl.
-              first.declarations[0].init = AST.unaryExpression('!', whileTestExpr);
-            } else {
-              // Wrap the rhs in an excl.
-              first.expression.right = AST.unaryExpression('!', whileTestExpr);
-            }
-            // Replace the `if` with the branch that was not just the `break`. Keep its block.
-            ASSERT(whileBody[1] === last);
-            whileBody[1] = last.alternate;
-            // At the end of branch block that replaces the if, assign the clone to the var id, which is now a let
-            last.alternate.body.push(
-              AST.expressionStatement(AST.assignmentExpression(whileTestName, AST.unaryExpression('!', clonedWhileTestExpr), '=')),
-            );
-            // Update the while test with the var id
-            node.test = AST.identifier(whileTestName);
-
-            after(newBlock);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
-            return true;
-          }
-
-          if (last.alternate.body.length === 1 && last.alternate.body[0].type === 'BreakStatement' && !last.alternate.body[0].label) {
-            // Difference to above is that we don't wrap the while-test-expr in an invert expr
-            rule('A normalized while body with var-if-else-break pattern can be duped and simplified');
-            example('while (true) { const a = f(); if (a) { x(); y(); } else { break; }', 'let a = f(); while (a) { x(); y(); a = f(); }');
-            before(node);
-
-            const fail = {};
-            const clonedWhileTestExpr = AST.deepCloneForFuncInlining(whileTestExpr, new Map(), fail);
-            ASSERT(
-              !fail.ed,
-              'this (currently) only fails for assignment to param names and funcs. this is normalized code and the init cannot be an assignment. it could be a function but thats a silly case since this is a while-test.',
-              whileTestExpr,
-            );
-
-            // Move the var node to appear before the if.
-            // We can't change order so we wrap it in a block so we can replace the whole `while`
-            // We asserted the while not to be labeled so this should be safe.
-            let newBlock = AST.blockStatement(first, node);
-            // Move the var node to appear before the if. Must do so without changing body index order so wrap in a block.
-            body.splice(i, 1, newBlock);
-            // Make it `let` (if it wasn't already, but it should be const).
-            first.kind = 'let';
-            // Clear its old position.
-            whileBody[0] = AST.emptyStatement();
-            // Replace the `if` with the branch that was not just the `break`. Keep its block.
-            whileBody[1] = last.consequent;
-            // At the end of branch block that replaces the if, assign the clone to the var id, which is now a let
-            last.consequent.body.push(AST.expressionStatement(AST.assignmentExpression(whileTestName, clonedWhileTestExpr), '='));
-            // Update the while test with the var id
-            node.test = AST.identifier(whileTestName);
-
-            after(newBlock);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
-            return true;
-          }
-        }
-
-        if (
-          // Is the while testing the same ident as the if inside it?
-          node.test.type === 'Identifier' &&
-          last.test.type === 'Identifier' &&
-          last.test.name === node.test.name &&
-          // Is the first statement an assignment to this same name?
-          first.type === 'ExpressionStatement' &&
-          first.expression.type === 'AssignmentExpression' &&
-          first.expression.left.type === 'Identifier' &&
-          first.expression.left.name === node.test.name
-        ) {
-          // This is `while (x) { x = y; if (x) f(); else break }`. Confirm that the while has exactly two children and that
-          // one branch of the `if` inside of it (already verified) is only a break statement.
-
-          const whileTestName = first.expression.left.name;
-          const whileTestExpr = first.expression.right;
-
-          if (last.consequent.body.length === 1 && last.consequent.body[0].type === 'BreakStatement' && !last.consequent.body[0].label) {
-            rule('A normalized while body with assign-if-not-break pattern can be duped and simplified');
-            example('while (a) { a = f(); if (a) { break; } else { x(); y(); }', 'a = !f(); while (a) { x(); y(); a = !f(); }');
-            before(node);
-
-            const fail = {};
-            const clonedWhileTestExpr = AST.deepCloneForFuncInlining(whileTestExpr, new Map(), fail);
-            ASSERT(
-              !fail.ed,
-              'this (currently) only fails for assignment to param names and funcs. this is normalized code and the rhs cannot be an assignment too. it could be a function but thats a silly case since this is a while-test.',
-              whileTestExpr,
-            );
-
-            // Move the assign node to appear before the if.
-            // We can't change order so we wrap it in a block so we can replace the whole `while`
-            // We asserted the while not to be labeled so this should be safe.
-            const newBlock = AST.blockStatement(first, node);
-            // Move the assign stmt node to appear before the if
-            body.splice(i, 1, newBlock);
-            // Clear its old position.
-            whileBody[0] = AST.emptyStatement();
-            // Wrap the rhs in an excl
-            first.declarations[0].init = AST.unaryExpression('!', whileTestExpr);
-            // Replace the `if` with the branch that was not just the `break`. Keep its block.
-            ASSERT(whileBody[1] === last);
-            whileBody[1] = last.alternate;
-            // At the end of branch block that replaces the if, assign the clone to the assign lhs
-            last.alternate.body.push(
-              AST.expressionStatement(AST.assignmentExpression(whileTestName, AST.unaryExpression('!', clonedWhileTestExpr), '=')),
-            );
-            // Update the while test with the var id
-            node.test = AST.identifier(whileTestName);
-
-            after(newBlock);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
-            return true;
-          }
-
-          if (last.alternate.body.length === 1 && last.alternate.body[0].type === 'BreakStatement' && !last.alternate.body[0].label) {
-            rule('A normalized while body with assign-if-break pattern can be duped and simplified');
-            example('while (a) { a = f(); if (a) { break; } else { x(); y(); }', 'a = f(); while (a) { x(); y(); a = f(); }');
-            before(node);
-
-            const fail = {};
-            const clonedWhileTestExpr = AST.deepCloneForFuncInlining(whileTestExpr, new Map(), fail);
-            ASSERT(
-              !fail.ed,
-              'this (currently) only fails for assignment to param names and funcs. this is normalized code and the rhs cannot be an assignment too. it could be a function but thats a silly case since this is a while-test.',
-              whileTestExpr,
-            );
-
-            // Move the assign node to appear before the if.
-            // We can't change order so we wrap it in a block so we can replace the whole `while`
-            // We asserted the while not to be labeled so this should be safe.
-            const newBlock = AST.blockStatement(first, node);
-            // Move the assign stmt node to appear before the if
-            body.splice(i, 1, newBlock);
-            // Clear its old position.
-            whileBody[0] = AST.emptyStatement();
-            // Replace the `if` with the branch that was not just the `break`. Keep its block.
-            ASSERT(whileBody[1] === last);
-            whileBody[1] = last.consequent;
-            // At the end of branch block that replaces the if, assign the clone to the assign lhs
-            last.consequent.body.push(AST.expressionStatement(AST.assignmentExpression(whileTestName, clonedWhileTestExpr, '=')));
-            // Update the while test with the var id
-            node.test = AST.identifier(whileTestName);
-
-            after(newBlock);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
-            return true;
-          }
-        }
-      }
-
       if (whileBody.length === 1 && whileBody[0].type === 'BreakStatement') {
         const brk = whileBody[0];
         if (brk.label) {
@@ -9611,19 +9405,29 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         const stmtBeforeWhile = body[i - 1];
         const lastOfWhile = whileBody[whileBody.length - 1];
 
-        if (
-          (stmtBeforeWhile.type === 'VariableDeclaration' || (stmtBeforeWhile.type === 'ExpressionStatement' && stmtBeforeWhile.expression.type === 'AssignmentExpression')) &&
-          lastOfWhile.type === 'ExpressionStatement' &&
-          lastOfWhile.expression.type === 'AssignmentExpression'
-        ) {
+        const toMatchKind1 =
+          stmtBeforeWhile.type === 'VariableDeclaration' ? 'var' :
+          stmtBeforeWhile.type !== 'ExpressionStatement' ? 'none' :
+          stmtBeforeWhile.expression.type === 'AssignmentExpression' ? 'assign' :
+          stmtBeforeWhile.expression.type === 'CallExpression' ? 'call' :
+          'none';
+
+        const toMatchKind2 =
+          //lastOfWhile.type === 'VariableDeclaration' ? 'var' : // irrelevant to us (and very unlikely)
+          lastOfWhile.type !== 'ExpressionStatement' ? 'none' :
+          lastOfWhile.expression.type === 'AssignmentExpression' ? 'assign' :
+          lastOfWhile.expression.type === 'CallExpression' ? 'call' :
+          'none';
+
+        if ((toMatchKind1 === 'assign' || toMatchKind1 === 'var') && toMatchKind2 === 'assign') {
           // A while preceded by var decl/assign and body ends with assign `let ? = ?; while(true) { ...; ? = ?; }` or `? = ?; while(true) { ...; ? = ?; }`
-          const lhsA = stmtBeforeWhile.type === 'VariableDeclaration' ? stmtBeforeWhile.declarations[0].id : stmtBeforeWhile.expression.left;
+          const lhsA = toMatchKind1 === 'var' ? stmtBeforeWhile.declarations[0].id : stmtBeforeWhile.expression.left;
           const lhsB = lastOfWhile.expression.left;
 
           if (lhsA.type === 'Identifier' && lhsB.type === 'Identifier' && lhsA.name === lhsB.name) {
             // This is the form `let x = <?>; while (true) { ...; x = <?>; }` or `x = <?>; while (true) { ...; x = <?>; }`. Now verify the rhs.
 
-            const rhsA = stmtBeforeWhile.type === 'VariableDeclaration' ? stmtBeforeWhile.declarations[0].init : stmtBeforeWhile.expression.right;
+            const rhsA = toMatchKind1 === 'var' ? stmtBeforeWhile.declarations[0].init : stmtBeforeWhile.expression.right;
             const rhsB = lastOfWhile.expression.right;
 
             if (AST.isPrimitive(rhsA) && AST.isPrimitive(rhsB) && AST.getPrimitiveValue(rhsA) === AST.getPrimitiveValue(rhsB)) {
@@ -9639,7 +9443,9 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
               before(body[i - 1]);
               before(body[i]);
 
-              if (stmtBeforeWhile.type !== 'VariableDeclaration') {
+              if (toMatchKind1 === 'var') {
+                body[i-1].declarations[0].init = AST.identifier('undefined');
+              } else {
                 // Remove the assignment. The rotate assignment will do the identical thing.
                 body[i-1] = AST.emptyStatement();
               }
@@ -9666,7 +9472,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
               before(body[i]);
 
               // Must eliminate the initial call here
-              if (stmtBeforeWhile.type === 'VariableDeclaration') {
+              if (toMatchKind1 === 'var') {
                 body[i-1].declarations[0].init = AST.identifier('undefined');
               } else {
                 body[i-1] = AST.emptyStatement();
@@ -9684,11 +9490,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         }
 
         // Same as above but for statement call expressions (somewhat common artifact left by unrolling)
-        if (
-          (stmtBeforeWhile.type === 'ExpressionStatement' && stmtBeforeWhile.expression.type === 'CallExpression') &&
-          lastOfWhile.type === 'ExpressionStatement' &&
-          lastOfWhile.expression.type === 'CallExpression'
-        ) {
+        if (toMatchKind1 === 'call' && toMatchKind2 === 'call') {
           // This is the form `?(?); while (true) { ...; ?(?); }`. Now verify the rhs.
 
           const callA = stmtBeforeWhile.expression;
@@ -9714,6 +9516,152 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             after(body[i]);
             assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
+          }
+        }
+
+        if (toMatchKind1 !== 'none' && lastOfWhile.type === 'IfStatement') {
+          const ifStmt = lastOfWhile;
+          let lastIfOtherBreaks;
+          let fromBranch;
+          if (AST.blockEndsWith(ifStmt.consequent, 'BreakStatement') && ifStmt.alternate.body.length) {
+            lastIfOtherBreaks = ifStmt.alternate.body[ifStmt.alternate.body.length - 1];
+            fromBranch = false;
+          } else if (AST.blockEndsWith(ifStmt.alternate, 'BreakStatement')) {
+            lastIfOtherBreaks = ifStmt.consequent.body[ifStmt.consequent.body.length - 1];
+            fromBranch = true;
+          }
+          if (lastIfOtherBreaks) {
+            // This must be either of these:
+            // - `?; while (true) { ...; if (x) { ...; break; } else { ...l <?> } }`
+            // - `?; while (true) { ...; if (x) { ...; <?> } else { ...; break; } }`
+            // It doesn't matter much for us which. We now must verify that the non-breaking branch ends the same as the statement before
+
+            const toMatchKind3 =
+              //lastOfWhile.type === 'VariableDeclaration' ? 'var' : // irrelevant to us (and very unlikely)
+              lastIfOtherBreaks.type !== 'ExpressionStatement' ? 'none' :
+              lastIfOtherBreaks.expression.type === 'AssignmentExpression' ? 'assign' :
+              lastIfOtherBreaks.expression.type === 'CallExpression' ? 'call' :
+              'none';
+
+            if (toMatchKind1 === 'call' && toMatchKind3 === 'call') {
+              // This is, with some form of function call $():
+              // - `$(); while (true) { if (x) { f(); $(); } else { g(); break; } }`
+              // - `$(); while (true) { if (x) { g(); break; } else { f(); $(); } }`
+              if (
+                AST.isSameCallExpression(stmtBeforeWhile.expression, lastIfOtherBreaks.expression)
+              ) {
+                // The func calls should be identical. We can rotate this.
+
+                // Nice and succinct desc:
+                rule('When a func call before a while is equal to a func call that is the last statement of the tail If inside the While with the other branch breaking, then we can rotate');
+                example('f(); while (true) { if (x) { g(); f(); } else { h(); break; } }', '; while (true) { f(); if (x) { g(); ; } else { h(); break; } }');
+                before(body[i - 1]);
+                before(body[i]);
+
+                body[i - 1] = AST.emptyStatement();
+
+                if (fromBranch) {
+                  node.body.body.unshift(ifStmt.consequent.body.pop());
+                } else {
+                  node.body.body.unshift(ifStmt.alternate.body.pop());
+                }
+
+                after(body[i - 1]);
+                after(body[i]);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
+            }
+
+            if ((toMatchKind1 === 'var' || toMatchKind1 === 'assign') && toMatchKind3 === 'assign') {
+              // A while preceded by var decl/assign and body ends with assign `let ? = ?; while(true) { ...; ? = ?; }` or `? = ?; while(true) { ...; ? = ?; }`
+              const lhsA = toMatchKind1 === 'var' ? stmtBeforeWhile.declarations[0].id : stmtBeforeWhile.expression.left;
+              const lhsB = lastIfOtherBreaks.expression.left;
+
+              if (lhsA.type === 'Identifier' && lhsB.type === 'Identifier' && lhsA.name === lhsB.name) {
+                // This is the form `let x = <?>; while (true) { ...; x = <?>; }` or `x = <?>; while (true) { ...; x = <?>; }`. Now verify the rhs.
+
+                const rhsA = toMatchKind1 === 'var' ? stmtBeforeWhile.declarations[0].init : stmtBeforeWhile.expression.right;
+                const rhsB = lastIfOtherBreaks.expression.right;
+
+                if (AST.isPrimitive(rhsA) && AST.isPrimitive(rhsB) && AST.getPrimitiveValue(rhsA) === AST.getPrimitiveValue(rhsB)) {
+                  // This is one of these, or with if/else swapped:
+                  // `let x = 1; while (true) { if ($) { ...; break; } else { ...; x = 1; } }`
+                  // `x = 1; while (true) { if ($) { ...; break; } else { ...; x = 1; } }`
+                  //TODO
+                }
+                else if (AST.isRegexLiteral(rhsA) && AST.isRegexLiteral(rhsB) && AST.isSameRegexLiteral(rhsA, rhsB)) {
+                  rule('A loop with a decl/assign before and matching assign of regex in tail position of a tail-If in the While can rotate-merge');
+                  example(
+                    'let x = /xyz/g; while (true) { if ($) { f(x); break; } else { g(x); x = /xyz/g; } }',
+                    '; while (true) { x = /xyz/g; if ($) { f(x); break; } else { g(x); } }'
+                  );
+                  example(
+                    'x = /xyz/g; while (true) { if ($) { f(x); break; } else { g(x); x = /xyz/g; } }',
+                    '; while (true) { x = /xyz/g; if ($) { f(x); break; } else { g(x); } }'
+                  );
+                  before(body[i - 1]);
+                  before(body[i]);
+
+                  if (toMatchKind1 === 'var') {
+                    body[i-1].declarations[0].init = AST.identifier('undefined');
+                  } else {
+                    // Remove the assignment. The rotate assignment will do the identical thing.
+                    body[i-1] = AST.emptyStatement();
+                  }
+
+                  // Rotate; last statement of If becomes first of While
+                  if (fromBranch) {
+                    node.body.body.unshift(ifStmt.consequent.body.pop());
+                  } else {
+                    node.body.body.unshift(ifStmt.alternate.body.pop());
+                  }
+
+                  after(body[i - 1]);
+                  after(body[i]);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+                else if (
+                  rhsA.type === 'CallExpression' &&
+                  rhsB.type === 'CallExpression' &&
+                  rhsA.callee.type === 'Identifier' && rhsB.callee.type === 'Identifier' &&
+                  AST.isSameCallExpression(rhsA, rhsB) // Gets gnarly with argument checks, spread, etc
+                ) {
+                  // Note: in this case we must eliminate the pre-loop call because that's observable
+                  rule('A loop with a decl/assign before and matching assign of call in tail position can rotate-merge');
+                  example(
+                    'let x = f(); while (true) { if ($) { h(x); break; } else { g(x); x = f(); } }',
+                    'let x = undefined; while (true) { x = f(); if ($) { h(x); break; } else { g(x); } }'
+                  );
+                  example(
+                    'x = f(); while (true) { if ($) { h(x); break; } else { g(x); x = f(); } }',
+                    '; while (true) { x = f(); if ($) { h(x); break; } else { g(x); } }'
+                  );
+                  before(body[i - 1]);
+                  before(body[i]);
+
+                  // Must eliminate the initial call here
+                  if (toMatchKind1 === 'var') {
+                    body[i-1].declarations[0].init = AST.identifier('undefined');
+                  } else {
+                    body[i-1] = AST.emptyStatement();
+                  }
+
+                  // Rotate; last statement of If becomes first of While
+                  if (fromBranch) {
+                    node.body.body.unshift(ifStmt.consequent.body.pop());
+                  } else {
+                    node.body.body.unshift(ifStmt.alternate.body.pop());
+                  }
+
+                  after(body[i - 1]);
+                  after(body[i]);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+              }
+            }
           }
         }
       }

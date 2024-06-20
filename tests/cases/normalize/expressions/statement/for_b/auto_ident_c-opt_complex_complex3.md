@@ -99,8 +99,8 @@ if (same) {
   maybegx = gx;
 }
 if (maybegx) {
-  $(1);
   while ($LOOP_UNROLL_10) {
+    $(1);
     let maybegx$1 = false;
     const g$1 = $(b);
     const same$1 = g$1 == null;
@@ -111,7 +111,6 @@ if (maybegx) {
       maybegx$1 = gx$1;
     }
     if (maybegx$1) {
-      $(1);
     } else {
       break;
     }
@@ -143,8 +142,8 @@ else {
   c = g;
 }
 if (c) {
-  $( 1 );
   while ($LOOP_UNROLL_10) {
+    $( 1 );
     let h = false;
     const i = $( b );
     const j = i == null;
@@ -157,7 +156,7 @@ if (c) {
       h = l;
     }
     if (h) {
-      $( 1 );
+
     }
     else {
       break;

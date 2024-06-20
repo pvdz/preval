@@ -36,10 +36,9 @@ let a = arrPatternSplat[0];
 const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
 tmpCallCallee(tmpCalleeParam);
-let tmpIfTest = $(0);
 while (true) {
+  const tmpIfTest = $(0);
   if (tmpIfTest) {
-    tmpIfTest = $(0);
   } else {
     break;
   }
@@ -58,10 +57,9 @@ const tmpCalleeParam = [1, 2];
 $(tmpCalleeParam);
 const tmpIfTest = $(0);
 if (tmpIfTest) {
-  let tmpClusterSSA_tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      tmpClusterSSA_tmpIfTest = $(0);
+    const tmpIfTest$1 = $(0);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -86,10 +84,10 @@ const d = [ 1, 2 ];
 $( d );
 const e = $( 0 );
 if (e) {
-  let f = $( 0 );
   while ($LOOP_UNROLL_10) {
+    const f = $( 0 );
     if (f) {
-      f = $( 0 );
+
     }
     else {
       break;

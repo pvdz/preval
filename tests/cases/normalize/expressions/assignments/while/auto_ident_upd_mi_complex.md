@@ -62,8 +62,8 @@ const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
 let tmpClusterSSA_a = tmpNestedPropCompoundComplexRhs;
 if (tmpNestedPropCompoundComplexRhs) {
-  $(100);
   while ($LOOP_UNROLL_10) {
+    $(100);
     const tmpCalleeParam$1 = $(b);
     const tmpNestedAssignObj$1 = $(tmpCalleeParam$1);
     const tmpBinLhs$1 = tmpNestedAssignObj$1.x;
@@ -71,7 +71,6 @@ if (tmpNestedPropCompoundComplexRhs) {
     tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
     tmpClusterSSA_a = tmpNestedPropCompoundComplexRhs$1;
     if (tmpNestedPropCompoundComplexRhs$1) {
-      $(100);
     } else {
       break;
     }
@@ -94,8 +93,8 @@ const e = d - 1;
 c.x = e;
 let f = e;
 if (e) {
-  $( 100 );
   while ($LOOP_UNROLL_10) {
+    $( 100 );
     const g = $( a );
     const h = $( g );
     const i = h.x;
@@ -103,7 +102,7 @@ if (e) {
     h.x = j;
     f = j;
     if (j) {
-      $( 100 );
+
     }
     else {
       break;

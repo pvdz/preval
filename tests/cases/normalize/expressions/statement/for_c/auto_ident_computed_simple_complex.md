@@ -36,13 +36,12 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
 while (true) {
+  const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpCompObj = b;
     const tmpCompProp = $(`c`);
     tmpCompObj[tmpCompProp];
-    tmpIfTest = $(1);
   } else {
     break;
   }
@@ -60,12 +59,11 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpCompProp = $(`c`);
   b[tmpCompProp];
-  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
       const tmpCompProp$1 = $(`c`);
       b[tmpCompProp$1];
-      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -89,12 +87,11 @@ const c = $( 1 );
 if (c) {
   const d = $( "c" );
   a[ d ];
-  let e = $( 1 );
   while ($LOOP_UNROLL_10) {
+    const e = $( 1 );
     if (e) {
       const f = $( "c" );
       a[ f ];
-      e = $( 1 );
     }
     else {
       break;

@@ -47,10 +47,9 @@ if (tmpIfTest) {
   }
 } else {
 }
-let tmpIfTest$3 = $(0);
 while (true) {
+  const tmpIfTest$3 = $(0);
   if (tmpIfTest$3) {
-    tmpIfTest$3 = $(0);
   } else {
     break;
   }
@@ -64,10 +63,9 @@ $(a);
 `````js filename=intro
 const tmpIfTest$3 = $(0);
 if (tmpIfTest$3) {
-  let tmpClusterSSA_tmpIfTest$3 = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest$3) {
-      tmpClusterSSA_tmpIfTest$3 = $(0);
+    const tmpIfTest$2 = $(0);
+    if (tmpIfTest$2) {
     } else {
       break;
     }
@@ -85,10 +83,10 @@ With rename=true
 `````js filename=intro
 const a = $( 0 );
 if (a) {
-  let b = $( 0 );
   while ($LOOP_UNROLL_10) {
+    const b = $( 0 );
     if (b) {
-      b = $( 0 );
+
     }
     else {
       break;

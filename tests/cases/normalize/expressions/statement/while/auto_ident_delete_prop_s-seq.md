@@ -56,13 +56,12 @@ $(1);
 $(2);
 const tmpIfTest = delete arg.y;
 if (tmpIfTest) {
-  $(100);
   while ($LOOP_UNROLL_10) {
+    $(100);
     $(1);
     $(2);
     const tmpIfTest$1 = delete arg.y;
     if (tmpIfTest$1) {
-      $(100);
     } else {
       break;
     }
@@ -86,13 +85,13 @@ $( 1 );
 $( 2 );
 const c = delete a.y;
 if (c) {
-  $( 100 );
   while ($LOOP_UNROLL_10) {
+    $( 100 );
     $( 1 );
     $( 2 );
     const d = delete a.y;
     if (d) {
-      $( 100 );
+
     }
     else {
       break;

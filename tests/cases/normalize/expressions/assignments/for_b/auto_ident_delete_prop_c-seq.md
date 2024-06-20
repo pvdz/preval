@@ -61,14 +61,13 @@ const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
 let tmpClusterSSA_a = delete tmpDeleteObj.y;
 if (tmpClusterSSA_a) {
-  $(1);
   while ($LOOP_UNROLL_10) {
+    $(1);
     $(1);
     $(2);
     const tmpDeleteObj$1 = $(arg);
     tmpClusterSSA_a = delete tmpDeleteObj$1.y;
     if (tmpClusterSSA_a) {
-      $(1);
     } else {
       break;
     }
@@ -89,14 +88,14 @@ const a = { y: 1 };
 const b = $( a );
 let c = delete b.y;
 if (c) {
-  $( 1 );
   while ($LOOP_UNROLL_10) {
+    $( 1 );
     $( 1 );
     $( 2 );
     const d = $( a );
     c = delete d.y;
     if (c) {
-      $( 1 );
+
     }
     else {
       break;

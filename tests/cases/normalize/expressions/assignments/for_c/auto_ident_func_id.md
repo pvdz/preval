@@ -34,15 +34,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
 while (true) {
+  const tmpIfTest = $(1);
   if (tmpIfTest) {
     const f = function () {
       debugger;
       return undefined;
     };
     a = f;
-    tmpIfTest = $(1);
   } else {
     break;
   }
@@ -55,15 +54,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
 while (true) {
+  const tmpIfTest = $(1);
   if (tmpIfTest) {
     const f = function () {
       debugger;
       return undefined;
     };
     a = f;
-    tmpIfTest = $(1);
   } else {
     break;
   }
@@ -80,15 +78,14 @@ let a = {
   a: 999,
   b: 1000,
 };
-let b = $( 1 );
 while (true) {
+  const b = $( 1 );
   if (b) {
     const c = function() {
       debugger;
       return undefined;
     };
     a = c;
-    b = $( 1 );
   }
   else {
     break;

@@ -48,10 +48,9 @@ $(`after`);
 `````js filename=intro
 const x = $(true);
 if (x) {
-  $(`body`);
   while ($LOOP_UNROLL_10) {
+    $(`body`);
     if (x) {
-      $(`body`);
     } else {
       break;
     }
@@ -68,10 +67,10 @@ With rename=true
 `````js filename=intro
 const a = $( true );
 if (a) {
-  $( "body" );
   while ($LOOP_UNROLL_10) {
+    $( "body" );
     if (a) {
-      $( "body" );
+
     }
     else {
       break;

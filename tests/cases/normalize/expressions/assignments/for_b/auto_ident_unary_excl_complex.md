@@ -53,12 +53,11 @@ const tmpUnaryArg = $(100);
 let a = !tmpUnaryArg;
 if (tmpUnaryArg) {
 } else {
-  $(1);
   while ($LOOP_UNROLL_10) {
+    $(1);
     const tmpUnaryArg$1 = $(100);
     a = !tmpUnaryArg$1;
     if (a) {
-      $(1);
     } else {
       break;
     }
@@ -78,12 +77,12 @@ if (a) {
 
 }
 else {
-  $( 1 );
   while ($LOOP_UNROLL_10) {
+    $( 1 );
     const c = $( 100 );
     b = !c;
     if (b) {
-      $( 1 );
+
     }
     else {
       break;

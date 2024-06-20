@@ -66,10 +66,9 @@ const x = $(`a`);
 $(x);
 const tmpClusterSSA_x = $(`b`);
 if ($) {
-  $(`c`);
   while ($LOOP_UNROLL_10) {
+    $(`c`);
     if ($) {
-      $(`c`);
     } else {
       break;
     }
@@ -88,10 +87,10 @@ const a = $( "a" );
 $( a );
 const b = $( "b" );
 if ($) {
-  $( "c" );
   while ($LOOP_UNROLL_10) {
+    $( "c" );
     if ($) {
-      $( "c" );
+
     }
     else {
       break;

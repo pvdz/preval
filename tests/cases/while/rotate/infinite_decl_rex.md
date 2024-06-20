@@ -39,7 +39,7 @@ $(x);
 
 
 `````js filename=intro
-let x = /tmp/;
+let x = undefined;
 while ($LOOP_UNROLL_10) {
   x = /tmp/;
   $(x);

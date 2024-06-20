@@ -69,8 +69,8 @@ tmpSwitchBreak: {
   const tmpIfTest = tmpSwitchDisc === 0;
   if (tmpIfTest) {
     $(`one`);
-    let tmpIfTest$1 = $(1);
     while (true) {
+      const tmpIfTest$1 = $(1);
       if (tmpIfTest$1) {
         $(2);
         break;

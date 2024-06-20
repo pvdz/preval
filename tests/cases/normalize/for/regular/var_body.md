@@ -29,11 +29,10 @@ let x = undefined;
 
 `````js filename=intro
 let x = undefined;
-let tmpIfTest = $(false);
 while (true) {
+  const tmpIfTest = $(false);
   if (tmpIfTest) {
     x = 0;
-    tmpIfTest = $(false);
   } else {
     break;
   }
@@ -46,10 +45,9 @@ while (true) {
 `````js filename=intro
 const tmpIfTest = $(false);
 if (tmpIfTest) {
-  let tmpClusterSSA_tmpIfTest = $(false);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      tmpClusterSSA_tmpIfTest = $(false);
+    const tmpIfTest$1 = $(false);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -65,10 +63,10 @@ With rename=true
 `````js filename=intro
 const a = $( false );
 if (a) {
-  let b = $( false );
   while ($LOOP_UNROLL_10) {
+    const b = $( false );
     if (b) {
-      b = $( false );
+
     }
     else {
       break;

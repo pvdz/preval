@@ -64,12 +64,11 @@ $(1);
 $(1);
 $(1);
 $(1);
-$(1);
 const b = { c: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(1);
   a = b.c;
   if (a) {
-    $(1);
   } else {
     break;
   }
@@ -93,12 +92,12 @@ $( 1 );
 $( 1 );
 $( 1 );
 $( 1 );
-$( 1 );
 const b = { c: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 1 );
   a = b.c;
   if (a) {
-    $( 1 );
+
   }
   else {
     break;

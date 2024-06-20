@@ -35,10 +35,9 @@ while (true) {
 
 
 `````js filename=intro
-let tmpIfTest = $(`yes`);
 while (true) {
+  const tmpIfTest = $(`yes`);
   if (tmpIfTest) {
-    tmpIfTest = $(`yes`);
   } else {
     break;
   }
@@ -51,10 +50,9 @@ while (true) {
 `````js filename=intro
 const tmpIfTest = $(`yes`);
 if (tmpIfTest) {
-  let tmpClusterSSA_tmpIfTest = $(`yes`);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      tmpClusterSSA_tmpIfTest = $(`yes`);
+    const tmpIfTest$1 = $(`yes`);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -70,10 +68,10 @@ With rename=true
 `````js filename=intro
 const a = $( "yes" );
 if (a) {
-  let b = $( "yes" );
   while ($LOOP_UNROLL_10) {
+    const b = $( "yes" );
     if (b) {
-      b = $( "yes" );
+
     }
     else {
       break;

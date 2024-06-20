@@ -51,12 +51,11 @@ $(a);
 const tmpCallComplexCallee = $($);
 const tmpIfTest = tmpCallComplexCallee(1);
 if (tmpIfTest) {
-  $(1);
   while ($LOOP_UNROLL_10) {
+    $(1);
     const tmpCallComplexCallee$1 = $($);
     const tmpIfTest$1 = tmpCallComplexCallee$1(1);
     if (tmpIfTest$1) {
-      $(1);
     } else {
       break;
     }
@@ -75,12 +74,12 @@ With rename=true
 const a = $( $ );
 const b = a( 1 );
 if (b) {
-  $( 1 );
   while ($LOOP_UNROLL_10) {
+    $( 1 );
     const c = $( $ );
     const d = c( 1 );
     if (d) {
-      $( 1 );
+
     }
     else {
       break;

@@ -57,14 +57,13 @@ $(20);
 const tmpCalleeParam = [1, 2];
 const tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
-  $(100);
   while ($LOOP_UNROLL_10) {
+    $(100);
     $(10);
     $(20);
     const tmpCalleeParam$1 = [1, 2];
     const tmpIfTest$1 = $(tmpCalleeParam$1);
     if (tmpIfTest$1) {
-      $(100);
     } else {
       break;
     }
@@ -90,14 +89,14 @@ $( 20 );
 const d = [ 1, 2 ];
 const e = $( d );
 if (e) {
-  $( 100 );
   while ($LOOP_UNROLL_10) {
+    $( 100 );
     $( 10 );
     $( 20 );
     const f = [ 1, 2 ];
     const g = $( f );
     if (g) {
-      $( 100 );
+
     }
     else {
       break;

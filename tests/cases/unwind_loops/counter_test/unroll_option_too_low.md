@@ -56,7 +56,7 @@ while (true) {
 
 
 `````js filename=intro
-let tmpClusterSSA_counter$2 = 8;
+let tmpClusterSSA_counter$2 = 9;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   tmpClusterSSA_counter$2 = tmpClusterSSA_counter$2 - 1;
   if (tmpClusterSSA_counter$2) {
@@ -71,7 +71,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 With rename=true
 
 `````js filename=intro
-let a = 8;
+let a = 9;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   a = a - 1;
   if (a) {

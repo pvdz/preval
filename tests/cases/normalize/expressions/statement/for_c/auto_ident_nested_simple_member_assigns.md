@@ -39,8 +39,8 @@ $(a, b, c);
 let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
 while (true) {
+  const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpAssignMemLhsObj = b;
     const varInitAssignLhsComputedRhs$7 = c;
@@ -55,7 +55,6 @@ while (true) {
     b.x = varInitAssignLhsComputedRhs;
     const tmpAssignMemRhs = varInitAssignLhsComputedRhs;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    tmpIfTest = $(1);
   } else {
     break;
   }
@@ -77,16 +76,15 @@ if (tmpIfTest) {
   b.x = 3;
   b.x = 3;
   b.x = 3;
-  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
       b.x = 3;
       b.x = 3;
       b.x = 3;
       b.x = 3;
       b.x = 3;
       b.x = 3;
-      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -114,8 +112,8 @@ if (c) {
   a.x = 3;
   a.x = 3;
   a.x = 3;
-  let d = $( 1 );
   while ($LOOP_UNROLL_10) {
+    const d = $( 1 );
     if (d) {
       a.x = 3;
       a.x = 3;
@@ -123,7 +121,6 @@ if (c) {
       a.x = 3;
       a.x = 3;
       a.x = 3;
-      d = $( 1 );
     }
     else {
       break;

@@ -62,8 +62,8 @@ const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
-  $(100);
   while ($LOOP_UNROLL_10) {
+    $(100);
     const varInitAssignLhsComputedObj$1 = $(b);
     const varInitAssignLhsComputedProp$1 = $(`c`);
     const tmpCompObj$1 = $(b);
@@ -71,7 +71,6 @@ if (varInitAssignLhsComputedRhs) {
     const varInitAssignLhsComputedRhs$1 = tmpCompObj$1[tmpCompProp$1];
     varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
     if (varInitAssignLhsComputedRhs$1) {
-      $(100);
     } else {
       break;
     }
@@ -101,8 +100,8 @@ const f = $( "d" );
 const g = e[ f ];
 c[d] = g;
 if (g) {
-  $( 100 );
   while ($LOOP_UNROLL_10) {
+    $( 100 );
     const h = $( a );
     const i = $( "c" );
     const j = $( a );
@@ -110,7 +109,7 @@ if (g) {
     const l = j[ k ];
     h[i] = l;
     if (l) {
-      $( 100 );
+
     }
     else {
       break;

@@ -40,10 +40,9 @@ if (tmpIfTest) {
   const tmpCalleeParam$1 = $(2);
   tmpCallCallee$1(tmpCalleeParam$1);
 }
-let tmpIfTest$1 = $(0);
 while (true) {
+  const tmpIfTest$1 = $(0);
   if (tmpIfTest$1) {
-    tmpIfTest$1 = $(0);
   } else {
     break;
   }
@@ -64,10 +63,9 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = $(0);
 if (tmpIfTest$1) {
-  let tmpClusterSSA_tmpIfTest$1 = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest$1) {
-      tmpClusterSSA_tmpIfTest$1 = $(0);
+    const tmpIfTest$2 = $(0);
+    if (tmpIfTest$2) {
     } else {
       break;
     }
@@ -94,10 +92,10 @@ else {
 }
 const d = $( 0 );
 if (d) {
-  let e = $( 0 );
   while ($LOOP_UNROLL_10) {
+    const e = $( 0 );
     if (e) {
-      e = $( 0 );
+
     }
     else {
       break;

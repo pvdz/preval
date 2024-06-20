@@ -33,13 +33,12 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-let tmpIfTest = $(1);
 while (true) {
+  const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpCallCallee = $;
     const tmpCalleeParam = { a: 1, b: 2 };
     tmpCallCallee(tmpCalleeParam);
-    tmpIfTest = $(1);
   } else {
     break;
   }
@@ -55,12 +54,11 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpCalleeParam = { a: 1, b: 2 };
   $(tmpCalleeParam);
-  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
       const tmpCalleeParam$1 = { a: 1, b: 2 };
       $(tmpCalleeParam$1);
-      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -82,15 +80,14 @@ if (a) {
     b: 2,
   };
   $( b );
-  let c = $( 1 );
   while ($LOOP_UNROLL_10) {
+    const c = $( 1 );
     if (c) {
       const d = {
         a: 1,
         b: 2,
       };
       $( d );
-      c = $( 1 );
     }
     else {
       break;

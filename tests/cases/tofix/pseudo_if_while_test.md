@@ -114,12 +114,11 @@ $(a);
 const x = $(1);
 const test = $(x);
 if (test) {
-  $(100);
   while ($LOOP_UNROLL_10) {
+    $(100);
     const y = $(1);
     const tmpClusterSSA_test = $(y);
     if (tmpClusterSSA_test) {
-      $(100);
     } else {
       break;
     }
@@ -138,12 +137,12 @@ With rename=true
 const a = $( 1 );
 const b = $( a );
 if (b) {
-  $( 100 );
   while ($LOOP_UNROLL_10) {
+    $( 100 );
     const c = $( 1 );
     const d = $( c );
     if (d) {
-      $( 100 );
+
     }
     else {
       break;

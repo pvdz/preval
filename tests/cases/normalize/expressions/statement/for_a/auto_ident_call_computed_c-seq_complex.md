@@ -38,10 +38,9 @@ let a = { a: 999, b: 1000 };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $(`\$`);
 tmpCallCompObj[tmpCallCompProp](1);
-let tmpIfTest = $(0);
 while (true) {
+  const tmpIfTest = $(0);
   if (tmpIfTest) {
-    tmpIfTest = $(0);
   } else {
     break;
   }
@@ -60,10 +59,9 @@ const tmpCallCompProp = $(`\$`);
 tmpCallCompObj[tmpCallCompProp](1);
 const tmpIfTest = $(0);
 if (tmpIfTest) {
-  let tmpClusterSSA_tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      tmpClusterSSA_tmpIfTest = $(0);
+    const tmpIfTest$1 = $(0);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -88,10 +86,10 @@ const d = $( "$" );
 c[ d ]( 1 )};
 const e = $( 0 );
 if (e) {
-  let f = $( 0 );
   while ($LOOP_UNROLL_10) {
+    const f = $( 0 );
     if (f) {
-      f = $( 0 );
+
     }
     else {
       break;

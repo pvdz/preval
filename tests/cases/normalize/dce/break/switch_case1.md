@@ -40,8 +40,8 @@ $(`after, do not evaluate (infinite loop)`);
 
 
 `````js filename=intro
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
     tmpSwitchBreak: {
       const tmpSwitchDisc = $(1, `disc`);
@@ -54,7 +54,6 @@ while (true) {
       }
     }
     $(`keep`);
-    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -68,16 +67,12 @@ $(`after, do not evaluate (infinite loop)`);
 `````js filename=intro
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  $(1, `disc`);
-  $(1, `case`);
-  $(`keep`);
-  let tmpClusterSSA_tmpIfTest = $(true);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      $(1, `disc`);
-      $(1, `case`);
-      $(`keep`);
-      tmpClusterSSA_tmpIfTest = $(true);
+    $(1, `disc`);
+    $(1, `case`);
+    $(`keep`);
+    const tmpIfTest$1 = $(true);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -94,16 +89,13 @@ With rename=true
 `````js filename=intro
 const a = $( true );
 if (a) {
-  $( 1, "disc" );
-  $( 1, "case" );
-  $( "keep" );
-  let b = $( true );
   while ($LOOP_UNROLL_10) {
+    $( 1, "disc" );
+    $( 1, "case" );
+    $( "keep" );
+    const b = $( true );
     if (b) {
-      $( 1, "disc" );
-      $( 1, "case" );
-      $( "keep" );
-      b = $( true );
+
     }
     else {
       break;

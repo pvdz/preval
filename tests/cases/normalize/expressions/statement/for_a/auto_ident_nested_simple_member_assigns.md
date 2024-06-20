@@ -51,10 +51,9 @@ const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 b.x = varInitAssignLhsComputedRhs;
 const tmpAssignMemRhs = varInitAssignLhsComputedRhs;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-let tmpIfTest = $(0);
 while (true) {
+  const tmpIfTest = $(0);
   if (tmpIfTest) {
-    tmpIfTest = $(0);
   } else {
     break;
   }
@@ -70,10 +69,9 @@ const b = { x: 3 };
 const a = { a: 999, b: 1000 };
 const tmpIfTest = $(0);
 if (tmpIfTest) {
-  let tmpClusterSSA_tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      tmpClusterSSA_tmpIfTest = $(0);
+    const tmpIfTest$1 = $(0);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -95,10 +93,10 @@ const b = {
 };
 const c = $( 0 );
 if (c) {
-  let d = $( 0 );
   while ($LOOP_UNROLL_10) {
+    const d = $( 0 );
     if (d) {
-      d = $( 0 );
+
     }
     else {
       break;

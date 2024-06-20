@@ -58,8 +58,8 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  let tmpIfTest = $(true);
   while (true) {
+    const tmpIfTest = $(true);
     if (tmpIfTest) {
       $(`loop`);
       while (true) {
@@ -68,7 +68,6 @@ let f = function () {
         throw tmpThrowArg;
       }
       $(`do not visit, do not eliminate`);
-      tmpIfTest = $(true);
     } else {
       break;
     }

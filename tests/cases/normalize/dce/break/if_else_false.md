@@ -33,8 +33,8 @@ $(`after`);
 
 
 `````js filename=intro
-let tmpIfTest = $(false);
 while (true) {
+  const tmpIfTest = $(false);
   if (tmpIfTest) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {

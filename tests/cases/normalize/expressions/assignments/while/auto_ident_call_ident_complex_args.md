@@ -55,13 +55,12 @@ const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 let a = $(tmpCalleeParam, tmpCalleeParam$1);
 if (a) {
-  $(100);
   while ($LOOP_UNROLL_10) {
+    $(100);
     const tmpCalleeParam$2 = $(1);
     const tmpCalleeParam$4 = $(2);
     a = $(tmpCalleeParam$2, tmpCalleeParam$4);
     if (a) {
-      $(100);
     } else {
       break;
     }
@@ -80,13 +79,13 @@ const a = $( 1 );
 const b = $( 2 );
 let c = $( a, b );
 if (c) {
-  $( 100 );
   while ($LOOP_UNROLL_10) {
+    $( 100 );
     const d = $( 1 );
     const e = $( 2 );
     c = $( d, e );
     if (c) {
-      $( 100 );
+
     }
     else {
       break;

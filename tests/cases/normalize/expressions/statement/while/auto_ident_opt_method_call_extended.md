@@ -63,12 +63,11 @@ const tmpObjLitVal$1 = { e: $ };
 const a = { a: 999, b: 1000 };
 const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
 if (tmpChainElementCall) {
-  $(100);
   while ($LOOP_UNROLL_10) {
+    $(100);
     const tmpChainElementObject$6 = tmpObjLitVal$1.e;
     const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$6, tmpObjLitVal$1, 1);
     if (tmpChainElementCall$1) {
-      $(100);
     } else {
       break;
     }
@@ -90,12 +89,12 @@ const b = {
 };
 const c = $dotCall( $, a, 1 );
 if (c) {
-  $( 100 );
   while ($LOOP_UNROLL_10) {
+    $( 100 );
     const d = a.e;
     const e = $dotCall( d, a, 1 );
     if (e) {
-      $( 100 );
+
     }
     else {
       break;

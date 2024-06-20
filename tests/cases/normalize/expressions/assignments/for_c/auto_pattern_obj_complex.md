@@ -33,14 +33,13 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-let tmpIfTest = $(1);
 while (true) {
+  const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpCallCallee = $;
     const tmpCalleeParam = { a: 1, b: 2 };
     const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
     a = tmpAssignObjPatternRhs.a;
-    tmpIfTest = $(1);
   } else {
     break;
   }
@@ -57,13 +56,12 @@ if (tmpIfTest) {
   const tmpCalleeParam = { a: 1, b: 2 };
   const tmpAssignObjPatternRhs = $(tmpCalleeParam);
   tmpAssignObjPatternRhs.a;
-  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
       const tmpCalleeParam$1 = { a: 1, b: 2 };
       const tmpAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
       tmpAssignObjPatternRhs$1.a;
-      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -86,8 +84,8 @@ if (a) {
   };
   const c = $( b );
   c.a;
-  let d = $( 1 );
   while ($LOOP_UNROLL_10) {
+    const d = $( 1 );
     if (d) {
       const e = {
         a: 1,
@@ -95,7 +93,6 @@ if (a) {
       };
       const f = $( e );
       f.a;
-      d = $( 1 );
     }
     else {
       break;

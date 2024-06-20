@@ -32,11 +32,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
 while (true) {
+  const tmpIfTest = $(1);
   if (tmpIfTest) {
     a = new $(1);
-    tmpIfTest = $(1);
   } else {
     break;
   }
@@ -52,11 +51,10 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   a = new $(1);
-  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
       a = new $(1);
-      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -78,11 +76,10 @@ let a = {
 const b = $( 1 );
 if (b) {
   a = new $( 1 );
-  let c = $( 1 );
   while ($LOOP_UNROLL_10) {
+    const c = $( 1 );
     if (c) {
       a = new $( 1 );
-      c = $( 1 );
     }
     else {
       break;

@@ -36,8 +36,8 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
 while (true) {
+  const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpCallCallee = $;
     const tmpCalleeParam = $(b);
@@ -46,7 +46,6 @@ while (true) {
     const tmpAssignMemLhsObj = tmpPostUpdArgObj;
     const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    tmpIfTest = $(1);
   } else {
     break;
   }
@@ -67,15 +66,14 @@ if (tmpIfTest) {
   const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
   const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
   tmpPostUpdArgObj.x = tmpAssignMemRhs;
-  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
       const tmpCalleeParam$1 = $(b);
       const tmpPostUpdArgObj$1 = $(tmpCalleeParam$1);
       const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
       const tmpAssignMemRhs$1 = tmpPostUpdArgVal$1 + 1;
       tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
-      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -102,15 +100,14 @@ if (c) {
   const f = e.x;
   const g = f + 1;
   e.x = g;
-  let h = $( 1 );
   while ($LOOP_UNROLL_10) {
+    const h = $( 1 );
     if (h) {
       const i = $( a );
       const j = $( i );
       const k = j.x;
       const l = k + 1;
       j.x = l;
-      h = $( 1 );
     }
     else {
       break;

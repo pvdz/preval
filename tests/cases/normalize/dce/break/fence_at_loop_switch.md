@@ -60,8 +60,8 @@ $(`after (not invoked)`);
 
 
 `````js filename=intro
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
     $(`loop`);
     tmpSwitchBreak: {
@@ -78,7 +78,6 @@ while (true) {
       }
     }
     $(`infiloop, do not eliminate`);
-    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -101,21 +100,19 @@ if (tmpIfTest) {
   } else {
     $(`do not visit, default`);
   }
-  $(`infiloop, do not eliminate`);
-  let tmpClusterSSA_tmpIfTest = $(true);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    $(`infiloop, do not eliminate`);
+    const tmpIfTest$2 = $(true);
+    if (tmpIfTest$2) {
       $(`loop`);
       const tmpSwitchDisc$1 = $(true, `dis`);
       const tmpBinBothRhs$1 = $(true, `case`);
-      const tmpIfTest$2 = tmpSwitchDisc$1 === tmpBinBothRhs$1;
-      if (tmpIfTest$2) {
+      const tmpIfTest$4 = tmpSwitchDisc$1 === tmpBinBothRhs$1;
+      if (tmpIfTest$4) {
         $(`case`);
       } else {
         $(`do not visit, default`);
       }
-      $(`infiloop, do not eliminate`);
-      tmpClusterSSA_tmpIfTest = $(true);
     } else {
       break;
     }
@@ -142,9 +139,9 @@ if (a) {
   else {
     $( "do not visit, default" );
   }
-  $( "infiloop, do not eliminate" );
-  let e = $( true );
   while ($LOOP_UNROLL_10) {
+    $( "infiloop, do not eliminate" );
+    const e = $( true );
     if (e) {
       $( "loop" );
       const f = $( true, "dis" );
@@ -156,8 +153,6 @@ if (a) {
       else {
         $( "do not visit, default" );
       }
-      $( "infiloop, do not eliminate" );
-      e = $( true );
     }
     else {
       break;

@@ -45,12 +45,11 @@ $(r);
 let f = function () {
   debugger;
   let i = 0;
-  let tmpIfTest = i < 1000000000;
   while (true) {
+    const tmpIfTest = i < 1000000000;
     if (tmpIfTest) {
       $(i);
       i = i + 1;
-      tmpIfTest = i < 1000000000;
     } else {
       break;
     }
@@ -78,10 +77,10 @@ $(9);
 $(10);
 let tmpClusterSSA_i$2 = 11;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(tmpClusterSSA_i$2);
-  tmpClusterSSA_i$2 = tmpClusterSSA_i$2 + 1;
-  const tmpClusterSSA_tmpIfTest$1 = tmpClusterSSA_i$2 < 1000000000;
-  if (tmpClusterSSA_tmpIfTest$1) {
+  const tmpIfTest$1 = tmpClusterSSA_i$2 < 1000000000;
+  if (tmpIfTest$1) {
+    $(tmpClusterSSA_i$2);
+    tmpClusterSSA_i$2 = tmpClusterSSA_i$2 + 1;
   } else {
     break;
   }
@@ -107,11 +106,10 @@ $( 9 );
 $( 10 );
 let a = 11;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( a );
-  a = a + 1;
   const b = a < 1000000000;
   if (b) {
-
+    $( a );
+    a = a + 1;
   }
   else {
     break;

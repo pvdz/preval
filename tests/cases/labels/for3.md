@@ -42,8 +42,8 @@ $(2);
 
 `````js filename=intro
 $(0);
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
     $continue: {
       const tmpIfTest$1 = $();
@@ -53,7 +53,6 @@ while (true) {
         break $continue;
       }
     }
-    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -71,14 +70,13 @@ if (tmpIfTest) {
   const tmpIfTest$1 = $();
   if (tmpIfTest$1) {
   } else {
-    let tmpClusterSSA_tmpIfTest = $(true);
     while ($LOOP_UNROLL_10) {
-      if (tmpClusterSSA_tmpIfTest) {
-        const tmpIfTest$2 = $();
-        if (tmpIfTest$2) {
+      const tmpIfTest$2 = $(true);
+      if (tmpIfTest$2) {
+        const tmpIfTest$4 = $();
+        if (tmpIfTest$4) {
           break;
         } else {
-          tmpClusterSSA_tmpIfTest = $(true);
         }
       } else {
         break;
@@ -103,15 +101,12 @@ if (a) {
 
   }
   else {
-    let c = $( true );
     while ($LOOP_UNROLL_10) {
+      const c = $( true );
       if (c) {
         const d = $();
         if (d) {
           break;
-        }
-        else {
-          c = $( true );
         }
       }
       else {

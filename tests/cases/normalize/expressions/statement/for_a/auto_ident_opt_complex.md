@@ -42,10 +42,9 @@ if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
 } else {
 }
-let tmpIfTest$1 = $(0);
 while (true) {
+  const tmpIfTest$1 = $(0);
   if (tmpIfTest$1) {
-    tmpIfTest$1 = $(0);
   } else {
     break;
   }
@@ -67,10 +66,9 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = $(0);
 if (tmpIfTest$1) {
-  let tmpClusterSSA_tmpIfTest$1 = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest$1) {
-      tmpClusterSSA_tmpIfTest$1 = $(0);
+    const tmpIfTest$2 = $(0);
+    if (tmpIfTest$2) {
     } else {
       break;
     }
@@ -100,10 +98,10 @@ else {
 }
 const e = $( 0 );
 if (e) {
-  let f = $( 0 );
   while ($LOOP_UNROLL_10) {
+    const f = $( 0 );
     if (f) {
-      f = $( 0 );
+
     }
     else {
       break;

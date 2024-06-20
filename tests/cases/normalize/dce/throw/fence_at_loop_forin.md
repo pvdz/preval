@@ -52,8 +52,8 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  let tmpIfTest = $(true);
   while (true) {
+    const tmpIfTest = $(true);
     if (tmpIfTest) {
       $(`loop`);
       const tmpForInDeclRhs = { a: 1, b: 2 };
@@ -64,7 +64,6 @@ let f = function () {
         throw tmpThrowArg;
       }
       $(`fail`);
-      tmpIfTest = $(true);
     } else {
       break;
     }
@@ -81,8 +80,8 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
     $(`loop`);
     let x = undefined;
@@ -93,7 +92,6 @@ while (true) {
       throw tmpThrowArg;
     }
     $(`fail`);
-    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -107,8 +105,8 @@ $(undefined);
 With rename=true
 
 `````js filename=intro
-let a = $( true );
 while (true) {
+  const a = $( true );
   if (a) {
     $( "loop" );
     let b = undefined;
@@ -122,7 +120,6 @@ while (true) {
       throw d;
     }
     $( "fail" );
-    a = $( true );
   }
   else {
     break;

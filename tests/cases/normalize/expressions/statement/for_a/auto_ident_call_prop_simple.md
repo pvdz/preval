@@ -36,10 +36,9 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 b.$(1);
-let tmpIfTest = $(0);
 while (true) {
+  const tmpIfTest = $(0);
   if (tmpIfTest) {
-    tmpIfTest = $(0);
   } else {
     break;
   }
@@ -56,10 +55,9 @@ const a = { a: 999, b: 1000 };
 b.$(1);
 const tmpIfTest = $(0);
 if (tmpIfTest) {
-  let tmpClusterSSA_tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      tmpClusterSSA_tmpIfTest = $(0);
+    const tmpIfTest$1 = $(0);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -82,10 +80,10 @@ const b = {
 a.$( 1 );
 const c = $( 0 );
 if (c) {
-  let d = $( 0 );
   while ($LOOP_UNROLL_10) {
+    const d = $( 0 );
     if (d) {
-      d = $( 0 );
+
     }
     else {
       break;

@@ -44,8 +44,8 @@ $(`after, do not evaluate (infinite loop)`);
 
 
 `````js filename=intro
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
     $continue: {
       const tmpSwitchDisc = $(1, `disc`);
@@ -58,7 +58,6 @@ while (true) {
         $(`keep`);
       }
     }
-    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -79,17 +78,16 @@ if (tmpIfTest) {
   } else {
     $(`keep`);
   }
-  let tmpClusterSSA_tmpIfTest = $(true);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    const tmpIfTest$2 = $(true);
+    if (tmpIfTest$2) {
       const tmpSwitchDisc$1 = $(1, `disc`);
       const tmpBinBothRhs$1 = $(1, `case`);
-      const tmpIfTest$2 = tmpSwitchDisc$1 === tmpBinBothRhs$1;
-      if (tmpIfTest$2) {
+      const tmpIfTest$4 = tmpSwitchDisc$1 === tmpBinBothRhs$1;
+      if (tmpIfTest$4) {
       } else {
         $(`keep`);
       }
-      tmpClusterSSA_tmpIfTest = $(true);
     } else {
       break;
     }
@@ -115,8 +113,8 @@ if (a) {
   else {
     $( "keep" );
   }
-  let e = $( true );
   while ($LOOP_UNROLL_10) {
+    const e = $( true );
     if (e) {
       const f = $( 1, "disc" );
       const g = $( 1, "case" );
@@ -127,7 +125,6 @@ if (a) {
       else {
         $( "keep" );
       }
-      e = $( true );
     }
     else {
       break;

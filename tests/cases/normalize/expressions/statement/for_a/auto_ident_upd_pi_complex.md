@@ -42,10 +42,9 @@ const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
 const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
 const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
 tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
-let tmpIfTest = $(0);
 while (true) {
+  const tmpIfTest = $(0);
   if (tmpIfTest) {
-    tmpIfTest = $(0);
   } else {
     break;
   }
@@ -66,10 +65,9 @@ const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
-  let tmpClusterSSA_tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      tmpClusterSSA_tmpIfTest = $(0);
+    const tmpIfTest$1 = $(0);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -96,10 +94,10 @@ const f = e + 1;
 d.x = f;
 const g = $( 0 );
 if (g) {
-  let h = $( 0 );
   while ($LOOP_UNROLL_10) {
+    const h = $( 0 );
     if (h) {
-      h = $( 0 );
+
     }
     else {
       break;

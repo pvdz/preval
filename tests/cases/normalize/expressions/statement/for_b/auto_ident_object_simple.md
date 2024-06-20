@@ -32,11 +32,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpIfTest = { x: 1, y: 2, z: 3 };
 while (true) {
+  const tmpIfTest = { x: 1, y: 2, z: 3 };
   if (tmpIfTest) {
     $(1);
-    tmpIfTest = { x: 1, y: 2, z: 3 };
   } else {
     break;
   }

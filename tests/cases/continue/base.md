@@ -145,11 +145,10 @@ const $continue = function () {
 };
 const tmpIfTest$1 = $(false);
 if (tmpIfTest$1) {
-  $(`uhoh`);
   while ($LOOP_UNROLL_10) {
+    $(`uhoh`);
     const tmpIfTest$2 = $(false);
     if (tmpIfTest$2) {
-      $(`uhoh`);
     } else {
       $(`exit`);
       break;
@@ -183,11 +182,11 @@ const a = function() {
 };
 const c = $( false );
 if (c) {
-  $( "uhoh" );
   while ($LOOP_UNROLL_10) {
+    $( "uhoh" );
     const d = $( false );
     if (d) {
-      $( "uhoh" );
+
     }
     else {
       $( "exit" );

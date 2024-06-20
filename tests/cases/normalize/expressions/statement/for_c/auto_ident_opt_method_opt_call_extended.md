@@ -38,8 +38,8 @@ const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 let b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
 while (true) {
+  const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpChainRootProp = b;
     const tmpIfTest$1 = tmpChainRootProp != null;
@@ -54,7 +54,6 @@ while (true) {
       }
     } else {
     }
-    tmpIfTest = $(1);
   } else {
     break;
   }
@@ -74,16 +73,15 @@ if (tmpIfTest) {
   } else {
     $dotCall($, tmpObjLitVal$1, 1);
   }
-  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
       const tmpChainElementObject$6 = tmpObjLitVal$1.e;
-      const tmpIfTest$1 = tmpChainElementObject$6 == null;
-      if (tmpIfTest$1) {
+      const tmpIfTest$4 = tmpChainElementObject$6 == null;
+      if (tmpIfTest$4) {
       } else {
         $dotCall(tmpChainElementObject$6, tmpObjLitVal$1, 1);
       }
-      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -109,8 +107,8 @@ if (a) {
   else {
     $dotCall( $, b, 1 );
   }
-  let d = $( 1 );
   while ($LOOP_UNROLL_10) {
+    const d = $( 1 );
     if (d) {
       const e = b.e;
       const f = e == null;
@@ -120,7 +118,6 @@ if (a) {
       else {
         $dotCall( e, b, 1 );
       }
-      d = $( 1 );
     }
     else {
       break;

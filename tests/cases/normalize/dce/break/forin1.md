@@ -37,8 +37,8 @@ $(`after`);
 
 
 `````js filename=intro
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
     const tmpForInDeclRhs = { a: 1, b: 2 };
     let x = undefined;
@@ -46,7 +46,6 @@ while (true) {
       break;
     }
     $(`keep`);
-    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -58,8 +57,8 @@ $(`after`);
 
 
 `````js filename=intro
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
     let x = undefined;
     const tmpForInDeclRhs = { a: 1, b: 2 };
@@ -67,7 +66,6 @@ while (true) {
       break;
     }
     $(`keep`);
-    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -80,8 +78,8 @@ $(`after`);
 With rename=true
 
 `````js filename=intro
-let a = $( true );
 while (true) {
+  const a = $( true );
   if (a) {
     let b = undefined;
     const c = {
@@ -92,7 +90,6 @@ while (true) {
       break;
     }
     $( "keep" );
-    a = $( true );
   }
   else {
     break;

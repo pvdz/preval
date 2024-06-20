@@ -27,11 +27,10 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
     x = $(10);
-    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -46,12 +45,10 @@ $(x);
 let x = undefined;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  x = $(10);
-  let tmpClusterSSA_tmpIfTest = $(true);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      x = $(10);
-      tmpClusterSSA_tmpIfTest = $(true);
+    x = $(10);
+    const tmpIfTest$1 = $(true);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -69,12 +66,11 @@ With rename=true
 let a = undefined;
 const b = $( true );
 if (b) {
-  a = $( 10 );
-  let c = $( true );
   while ($LOOP_UNROLL_10) {
+    a = $( 10 );
+    const c = $( true );
     if (c) {
-      a = $( 10 );
-      c = $( true );
+
     }
     else {
       break;

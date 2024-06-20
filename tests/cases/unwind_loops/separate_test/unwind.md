@@ -59,12 +59,11 @@ for (let i=0; i<5; ++i) {
 
 `````js filename=intro
 let i = 0;
-let tmpIfTest = i < 5;
 while (true) {
+  const tmpIfTest = i < 5;
   if (tmpIfTest) {
     $(i);
     i = i + 1;
-    tmpIfTest = i < 5;
   } else {
     break;
   }

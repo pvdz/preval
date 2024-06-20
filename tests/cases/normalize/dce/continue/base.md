@@ -29,10 +29,9 @@ $(`after, wont eval due to infinite loop`);
 
 
 `````js filename=intro
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
-    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -46,10 +45,9 @@ $(`after, wont eval due to infinite loop`);
 `````js filename=intro
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  let tmpClusterSSA_tmpIfTest = $(true);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      tmpClusterSSA_tmpIfTest = $(true);
+    const tmpIfTest$1 = $(true);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -66,10 +64,10 @@ With rename=true
 `````js filename=intro
 const a = $( true );
 if (a) {
-  let b = $( true );
   while ($LOOP_UNROLL_10) {
+    const b = $( true );
     if (b) {
-      b = $( true );
+
     }
     else {
       break;

@@ -59,8 +59,8 @@ if (tmpIfTest$1) {
   tmpIfTest = $(tmpCalleeParam);
 }
 if (tmpIfTest) {
-  $(100);
   while ($LOOP_UNROLL_10) {
+    $(100);
     let tmpIfTest$2 = true;
     const tmpIfTest$4 = $(1);
     if (tmpIfTest$4) {
@@ -69,7 +69,6 @@ if (tmpIfTest) {
       tmpIfTest$2 = $(tmpCalleeParam$1);
     }
     if (tmpIfTest$2) {
-      $(100);
     } else {
       break;
     }
@@ -95,8 +94,8 @@ else {
   a = $( c );
 }
 if (a) {
-  $( 100 );
   while ($LOOP_UNROLL_10) {
+    $( 100 );
     let d = true;
     const e = $( 1 );
     if (e) {
@@ -107,7 +106,7 @@ if (a) {
       d = $( f );
     }
     if (d) {
-      $( 100 );
+
     }
     else {
       break;

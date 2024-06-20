@@ -108,11 +108,10 @@ $(`woohoo`);
 `````js filename=intro
 const tmpIfTest = $(false);
 if (tmpIfTest) {
-  $(`uhoh`);
   while ($LOOP_UNROLL_10) {
+    $(`uhoh`);
     const tmpIfTest$1 = $(false);
     if (tmpIfTest$1) {
-      $(`uhoh`);
     } else {
       $(`exit`);
       break;
@@ -124,11 +123,10 @@ if (tmpIfTest) {
 $(`woohoo`);
 const tmpIfTest$3 = $(false);
 if (tmpIfTest$3) {
-  $(`uhoh`);
   while ($LOOP_UNROLL_10) {
+    $(`uhoh`);
     const tmpIfTest$2 = $(false);
     if (tmpIfTest$2) {
-      $(`uhoh`);
     } else {
       $(`exit`);
       break;
@@ -147,11 +145,11 @@ With rename=true
 `````js filename=intro
 const a = $( false );
 if (a) {
-  $( "uhoh" );
   while ($LOOP_UNROLL_10) {
+    $( "uhoh" );
     const b = $( false );
     if (b) {
-      $( "uhoh" );
+
     }
     else {
       $( "exit" );
@@ -165,11 +163,11 @@ else {
 $( "woohoo" );
 const c = $( false );
 if (c) {
-  $( "uhoh" );
   while ($LOOP_UNROLL_10) {
+    $( "uhoh" );
     const d = $( false );
     if (d) {
-      $( "uhoh" );
+
     }
     else {
       $( "exit" );

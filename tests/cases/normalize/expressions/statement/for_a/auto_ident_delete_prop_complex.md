@@ -37,10 +37,9 @@ let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpDeleteObj = $(arg);
 delete tmpDeleteObj.y;
-let tmpIfTest = $(0);
 while (true) {
+  const tmpIfTest = $(0);
   if (tmpIfTest) {
-    tmpIfTest = $(0);
   } else {
     break;
   }
@@ -58,10 +57,9 @@ const tmpDeleteObj = $(arg);
 delete tmpDeleteObj.y;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
-  let tmpClusterSSA_tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      tmpClusterSSA_tmpIfTest = $(0);
+    const tmpIfTest$1 = $(0);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -85,10 +83,10 @@ const c = $( a );
 delete c.y;
 const d = $( 0 );
 if (d) {
-  let e = $( 0 );
   while ($LOOP_UNROLL_10) {
+    const e = $( 0 );
     if (e) {
-      e = $( 0 );
+
     }
     else {
       break;

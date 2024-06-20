@@ -65,15 +65,14 @@ const tmpBinLhs = varInitAssignLhsComputedObj.x;
 const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
-  $(1);
   while ($LOOP_UNROLL_10) {
+    $(1);
     const tmpCalleeParam$1 = $(b);
     const varInitAssignLhsComputedObj$1 = $(tmpCalleeParam$1);
     const tmpBinLhs$1 = varInitAssignLhsComputedObj$1.x;
     const varInitAssignLhsComputedRhs$1 = tmpBinLhs$1 + 1;
     varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
     if (varInitAssignLhsComputedRhs$1) {
-      $(1);
     } else {
       break;
     }
@@ -99,15 +98,15 @@ const e = d.x;
 const f = e + 1;
 d.x = f;
 if (f) {
-  $( 1 );
   while ($LOOP_UNROLL_10) {
+    $( 1 );
     const g = $( a );
     const h = $( g );
     const i = h.x;
     const j = i + 1;
     h.x = j;
     if (j) {
-      $( 1 );
+
     }
     else {
       break;

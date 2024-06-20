@@ -32,8 +32,8 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
 while (true) {
+  const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpChainRootCall = $;
     const tmpIfTest$1 = tmpChainRootCall != null;
@@ -41,7 +41,6 @@ while (true) {
       const tmpChainElementCall = tmpChainRootCall(1);
     } else {
     }
-    tmpIfTest = $(1);
   } else {
     break;
   }
@@ -60,15 +59,14 @@ if (tmpIfTest) {
   } else {
     $(1);
   }
-  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      const tmpIfTest$2 = $ == null;
-      if (tmpIfTest$2) {
+    const tmpIfTest$2 = $(1);
+    if (tmpIfTest$2) {
+      const tmpIfTest$4 = $ == null;
+      if (tmpIfTest$4) {
       } else {
         $(1);
       }
-      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -93,8 +91,8 @@ if (a) {
   else {
     $( 1 );
   }
-  let c = $( 1 );
   while ($LOOP_UNROLL_10) {
+    const c = $( 1 );
     if (c) {
       const d = $ == null;
       if (d) {
@@ -103,7 +101,6 @@ if (a) {
       else {
         $( 1 );
       }
-      c = $( 1 );
     }
     else {
       break;

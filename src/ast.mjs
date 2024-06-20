@@ -155,6 +155,11 @@ export function blockStatement(...body) {
   };
 }
 
+export function blockEndsWith(node, nodeName) {
+  const len = node.body.length;
+  return len && node.body[len - 1].type === nodeName;
+}
+
 export function breakStatement(label = null) {
   if (typeof label === 'string') label = identifier(label);
 
@@ -180,9 +185,20 @@ export function isSameCallExpression(nodeA, nodeB) {
   if (nodeA === nodeB) return true;
   ASSERT(nodeA.type === 'CallExpression' && nodeB.type === 'CallExpression', 'should receive call expressions', nodeA, nodeB);
 
-  if (nodeA.callee.type !== 'Identifier' || nodeB.callee.type !== 'Identifier') TODO // Currently only used for ident calls. Expand this func when necessary.
+  if (nodeA.callee.type !== nodeB.callee.type) return false;
 
-  if (nodeA.callee.name !== nodeB.callee.name) return false;
+  if (nodeA.callee.type === 'Identifier') {
+    if (nodeA.callee.name !== nodeB.callee.name) return false;
+  }
+  else if (nodeA.callee.type === 'MemberExpression') {
+    if (!isSameSimpleMemberExpression(nodeA.callee, nodeB.callee)) return false;
+  }
+  else {
+    // Currently only used for ident calls. Expand this func when necessary.
+    console.log(nodeA);
+    console.log(nodeB);
+    TODO
+  }
 
   if (nodeA.arguments.length !== nodeB.arguments.length) return false;
 
@@ -613,6 +629,33 @@ export function memberExpression(object, property, computed = false, optional = 
     property,
     $p: $p(),
   };
+}
+
+export function isSameSimpleMemberExpression(nodeA, nodeB) {
+  // Assumes normalized code... so member object must be simple, computed property an ident
+  ASSERT(!isComplexNode(nodeA.object) && !isComplexNode(nodeB.object), 'object should be simple');
+  ASSERT(!nodeA.optional && !nodeB.optional, 'optional chaining is not normalized');
+  ASSERT(!nodeA.computed || nodeA.property.type === 'Identifier', 'simple member expression computed prop should be ident');
+  ASSERT(!nodeB.computed || nodeB.property.type === 'Identifier', 'simple member expression computed prop should be ident');
+
+  if (nodeA === nodeB) return true;
+
+  if (!(
+    nodeA.computed === nodeB.computed &&
+    nodeA.object.type === nodeB.object.type &&
+    nodeA.property.type === nodeB.property.type
+  )) return false;
+
+  if (isPrimitive(nodeA.object)) {
+    if (!isPrimitive(nodeB.object)) return false;
+    if (getPrimitiveValue(nodeA.object) !== getPrimitiveValue(nodeB.object)) return false;
+  } else {
+    ASSERT(nodeA.object.type === 'Identifier');
+    if (nodeA.object.name !== nodeB.object.name) return false;
+  }
+
+  ASSERT(nodeA.property.type === 'Identifier', 'prop should be identifier now, computed or not');
+  return nodeA.property.name === nodeB.property.name;
 }
 
 export function newExpression(callee, args) {

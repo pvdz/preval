@@ -53,12 +53,11 @@ const b = { $: $ };
 const tmpCallObj = $(b);
 let tmpClusterSSA_a = tmpCallObj.$(1);
 if (tmpClusterSSA_a) {
-  $(100);
   while ($LOOP_UNROLL_10) {
+    $(100);
     const tmpCallObj$1 = $(b);
     tmpClusterSSA_a = tmpCallObj$1.$(1);
     if (tmpClusterSSA_a) {
-      $(100);
     } else {
       break;
     }
@@ -77,12 +76,12 @@ const a = { $: $ };
 const b = $( a );
 let c = b.$( 1 );
 if (c) {
-  $( 100 );
   while ($LOOP_UNROLL_10) {
+    $( 100 );
     const d = $( a );
     c = d.$( 1 );
     if (c) {
-      $( 100 );
+
     }
     else {
       break;

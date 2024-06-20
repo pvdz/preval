@@ -55,13 +55,12 @@ const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $(`c`);
 let tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 if (tmpClusterSSA_a) {
-  $(100);
   while ($LOOP_UNROLL_10) {
+    $(100);
     const tmpAssignRhsCompObj$1 = $(b);
     const tmpAssignRhsCompProp$1 = $(`c`);
     tmpClusterSSA_a = tmpAssignRhsCompObj$1[tmpAssignRhsCompProp$1];
     if (tmpClusterSSA_a) {
-      $(100);
     } else {
       break;
     }
@@ -81,13 +80,13 @@ const b = $( a );
 const c = $( "c" );
 let d = b[ c ];
 if (d) {
-  $( 100 );
   while ($LOOP_UNROLL_10) {
+    $( 100 );
     const e = $( a );
     const f = $( "c" );
     d = e[ f ];
     if (d) {
-      $( 100 );
+
     }
     else {
       break;

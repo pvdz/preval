@@ -61,14 +61,13 @@ $(2);
 const tmpDeleteObj = $(arg);
 const tmpIfTest = delete tmpDeleteObj.y;
 if (tmpIfTest) {
-  $(1);
   while ($LOOP_UNROLL_10) {
+    $(1);
     $(1);
     $(2);
     const tmpDeleteObj$1 = $(arg);
     const tmpIfTest$1 = delete tmpDeleteObj$1.y;
     if (tmpIfTest$1) {
-      $(1);
     } else {
       break;
     }
@@ -93,14 +92,14 @@ $( 2 );
 const c = $( a );
 const d = delete c.y;
 if (d) {
-  $( 1 );
   while ($LOOP_UNROLL_10) {
+    $( 1 );
     $( 1 );
     $( 2 );
     const e = $( a );
     const f = delete e.y;
     if (f) {
-      $( 1 );
+
     }
     else {
       break;

@@ -33,12 +33,11 @@ const max = $(10);
 `````js filename=intro
 const max = $(10);
 let i = 0;
-let tmpIfTest = i < 10;
 while (true) {
+  const tmpIfTest = i < 10;
   if (tmpIfTest) {
     $(i);
     i = i + Infinity;
-    tmpIfTest = i < 10;
   } else {
     break;
   }

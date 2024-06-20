@@ -30,11 +30,10 @@ while ($(true)) {
 
 `````js filename=intro
 let x = $(10);
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
     $(x, `loop`);
-    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -48,12 +47,10 @@ while (true) {
 const x = $(10);
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  $(x, `loop`);
-  let tmpClusterSSA_tmpIfTest = $(true);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      $(x, `loop`);
-      tmpClusterSSA_tmpIfTest = $(true);
+    $(x, `loop`);
+    const tmpIfTest$1 = $(true);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -70,12 +67,11 @@ With rename=true
 const a = $( 10 );
 const b = $( true );
 if (b) {
-  $( a, "loop" );
-  let c = $( true );
   while ($LOOP_UNROLL_10) {
+    $( a, "loop" );
+    const c = $( true );
     if (c) {
-      $( a, "loop" );
-      c = $( true );
+
     }
     else {
       break;

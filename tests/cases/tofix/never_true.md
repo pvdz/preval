@@ -78,13 +78,12 @@ $(`oops`);
 $(`yolo`);
 let tmpClusterSSA_test$2 = false;
 let tmpClusterSSA_counter$2 = 11;
-$(`oops`);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(`oops`);
   if (tmpClusterSSA_test$2) {
     $(`yolo`);
     tmpClusterSSA_test$2 = tmpClusterSSA_counter$2 < 10;
     tmpClusterSSA_counter$2 = tmpClusterSSA_counter$2 + 1;
-    $(`oops`);
   } else {
     break;
   }
@@ -119,13 +118,12 @@ $( "oops" );
 $( "yolo" );
 let a = false;
 let b = 11;
-$( "oops" );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( "oops" );
   if (a) {
     $( "yolo" );
     a = b < 10;
     b = b + 1;
-    $( "oops" );
   }
   else {
     break;

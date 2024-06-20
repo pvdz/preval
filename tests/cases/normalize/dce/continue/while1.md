@@ -41,19 +41,17 @@ $(`after, do not evaluate (infinite loop)`);
 
 
 `````js filename=intro
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
-    let tmpIfTest$1 = $(true);
     while (true) {
+      const tmpIfTest$1 = $(true);
       if (tmpIfTest$1) {
-        tmpIfTest$1 = $(true);
       } else {
         break;
       }
     }
     $(`keep`);
-    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -65,15 +63,14 @@ $(`after, do not evaluate (infinite loop)`);
 
 
 `````js filename=intro
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
     const tmpIfTest$1 = $(true);
     if (tmpIfTest$1) {
-      let tmpClusterSSA_tmpIfTest$1 = $(true);
       while ($LOOP_UNROLL_10) {
-        if (tmpClusterSSA_tmpIfTest$1) {
-          tmpClusterSSA_tmpIfTest$1 = $(true);
+        const tmpIfTest$2 = $(true);
+        if (tmpIfTest$2) {
         } else {
           break;
         }
@@ -81,7 +78,6 @@ while (true) {
     } else {
     }
     $(`keep`);
-    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -94,15 +90,15 @@ $(`after, do not evaluate (infinite loop)`);
 With rename=true
 
 `````js filename=intro
-let a = $( true );
 while (true) {
+  const a = $( true );
   if (a) {
     const b = $( true );
     if (b) {
-      let c = $( true );
       while ($LOOP_UNROLL_10) {
+        const c = $( true );
         if (c) {
-          c = $( true );
+
         }
         else {
           break;
@@ -110,7 +106,6 @@ while (true) {
       }
     }
     $( "keep" );
-    a = $( true );
   }
   else {
     break;

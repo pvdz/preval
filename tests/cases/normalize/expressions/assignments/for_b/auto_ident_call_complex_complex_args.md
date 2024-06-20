@@ -60,14 +60,13 @@ const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 let a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 if (a) {
-  $(1);
   while ($LOOP_UNROLL_10) {
+    $(1);
     const tmpCallCallee$1 = $($);
     const tmpCalleeParam$2 = $(1);
     const tmpCalleeParam$4 = $(2);
     a = tmpCallCallee$1(tmpCalleeParam$2, tmpCalleeParam$4);
     if (a) {
-      $(1);
     } else {
       break;
     }
@@ -87,14 +86,14 @@ const b = $( 1 );
 const c = $( 2 );
 let d = a( b, c );
 if (d) {
-  $( 1 );
   while ($LOOP_UNROLL_10) {
+    $( 1 );
     const e = $( $ );
     const f = $( 1 );
     const g = $( 2 );
     d = e( f, g );
     if (d) {
-      $( 1 );
+
     }
     else {
       break;

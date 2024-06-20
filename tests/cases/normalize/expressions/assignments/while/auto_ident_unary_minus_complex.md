@@ -48,12 +48,11 @@ $(a);
 const tmpUnaryArg = $(100);
 let a = -tmpUnaryArg;
 if (a) {
-  $(100);
   while ($LOOP_UNROLL_10) {
+    $(100);
     const tmpUnaryArg$1 = $(100);
     a = -tmpUnaryArg$1;
     if (a) {
-      $(100);
     } else {
       break;
     }
@@ -71,12 +70,12 @@ With rename=true
 const a = $( 100 );
 let b = -a;
 if (b) {
-  $( 100 );
   while ($LOOP_UNROLL_10) {
+    $( 100 );
     const c = $( 100 );
     b = -c;
     if (b) {
-      $( 100 );
+
     }
     else {
       break;

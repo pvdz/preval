@@ -57,8 +57,9 @@ $(x, `last`);
 
 
 `````js filename=intro
-let y = $(true);
+let y = undefined;
 while (true) {
+  y = $(true);
   if (y) {
     $(y, `before`);
     let x$1 = undefined;
@@ -67,7 +68,6 @@ while (true) {
       $(x$1, y);
     }
     $(x$1, y, `after`);
-    y = $(true);
   } else {
     break;
   }
@@ -79,17 +79,16 @@ $(x, `last`);
 
 
 `````js filename=intro
-let y = $(true);
 while (true) {
-  if (y) {
-    $(y, `before`);
+  const tmpClusterSSA_y = $(true);
+  if (tmpClusterSSA_y) {
+    $(tmpClusterSSA_y, `before`);
     let x$1 = undefined;
     const obj = { a: 1, b: 2 };
     for (x$1 in obj) {
-      $(x$1, y);
+      $(x$1, tmpClusterSSA_y);
     }
-    $(x$1, y, `after`);
-    y = $(true);
+    $(x$1, tmpClusterSSA_y, `after`);
   } else {
     break;
   }
@@ -102,8 +101,8 @@ $(x, `last`);
 With rename=true
 
 `````js filename=intro
-let a = $( true );
 while (true) {
+  const a = $( true );
   if (a) {
     $( a, "before" );
     let b = undefined;
@@ -115,7 +114,6 @@ while (true) {
       $( b, a );
     }
     $( b, a, "after" );
-    a = $( true );
   }
   else {
     break;

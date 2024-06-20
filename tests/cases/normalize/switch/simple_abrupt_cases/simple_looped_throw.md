@@ -100,8 +100,8 @@ tmpSwitchBreak: {
   const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$7) {
     $(`one`);
-    let tmpIfTest$9 = $(1);
     while (true) {
+      const tmpIfTest$9 = $(1);
       if (tmpIfTest$9) {
         $(2);
         throw `exit`;

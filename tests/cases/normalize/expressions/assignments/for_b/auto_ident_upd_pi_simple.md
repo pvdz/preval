@@ -67,13 +67,12 @@ $(1);
 $(1);
 let b = 12;
 let a = 12;
-$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(1);
   const tmpNestedComplexRhs$1 = b + 1;
   b = tmpNestedComplexRhs$1;
   a = tmpNestedComplexRhs$1;
   if (tmpNestedComplexRhs$1) {
-    $(1);
   } else {
     break;
   }
@@ -98,13 +97,13 @@ $( 1 );
 $( 1 );
 let a = 12;
 let b = 12;
-$( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 1 );
   const c = a + 1;
   a = c;
   b = c;
   if (c) {
-    $( 1 );
+
   }
   else {
     break;

@@ -55,13 +55,12 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`c`);
 const tmpIfTest = tmpCompObj[tmpCompProp];
 if (tmpIfTest) {
-  $(100);
   while ($LOOP_UNROLL_10) {
+    $(100);
     const tmpCompObj$1 = $(b);
     const tmpCompProp$1 = $(`c`);
     const tmpIfTest$1 = tmpCompObj$1[tmpCompProp$1];
     if (tmpIfTest$1) {
-      $(100);
     } else {
       break;
     }
@@ -85,13 +84,13 @@ const c = $( a );
 const d = $( "c" );
 const e = c[ d ];
 if (e) {
-  $( 100 );
   while ($LOOP_UNROLL_10) {
+    $( 100 );
     const f = $( a );
     const g = $( "c" );
     const h = f[ g ];
     if (h) {
-      $( 100 );
+
     }
     else {
       break;

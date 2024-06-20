@@ -53,16 +53,13 @@ while (true) {
 `````js filename=intro
 let x = 10;
 while (true) {
-  const tmpUnaryArg = $(x);
-  let t = !tmpUnaryArg;
   while (true) {
+    const t = $(x);
     if (t) {
+      break;
+    } else {
       x = 20;
       $(x);
-      const tmpUnaryArg$1 = $(x);
-      t = !tmpUnaryArg$1;
-    } else {
-      break;
     }
   }
   $(x);
@@ -75,20 +72,16 @@ while (true) {
 `````js filename=intro
 let x = 10;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpUnaryArg = $(x);
-  if (tmpUnaryArg) {
+  const t = $(x);
+  if (t) {
   } else {
     x = 20;
-    $(20);
-    const tmpUnaryArg$1 = $(x);
-    let tmpClusterSSA_t = tmpUnaryArg$1;
     while ($LOOP_UNROLL_10) {
-      if (tmpClusterSSA_t) {
+      $(20);
+      const t$1 = $(x);
+      if (t$1) {
         break;
       } else {
-        $(20);
-        const tmpUnaryArg$2 = $(x);
-        tmpClusterSSA_t = tmpUnaryArg$2;
       }
     }
   }
@@ -110,17 +103,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   }
   else {
     a = 20;
-    $( 20 );
-    const c = $( a );
-    let d = c;
     while ($LOOP_UNROLL_10) {
-      if (d) {
+      $( 20 );
+      const c = $( a );
+      if (c) {
         break;
-      }
-      else {
-        $( 20 );
-        const e = $( a );
-        d = e;
       }
     }
   }

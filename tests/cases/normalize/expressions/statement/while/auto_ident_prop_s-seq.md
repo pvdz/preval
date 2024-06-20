@@ -60,11 +60,10 @@ $(100);
 $(100);
 $(100);
 $(100);
-$(100);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(100);
   const tmpIfTest$1 = b.c;
   if (tmpIfTest$1) {
-    $(100);
   } else {
     break;
   }
@@ -92,11 +91,11 @@ $( 100 );
 $( 100 );
 $( 100 );
 $( 100 );
-$( 100 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 100 );
   const c = a.c;
   if (c) {
-    $( 100 );
+
   }
   else {
     break;

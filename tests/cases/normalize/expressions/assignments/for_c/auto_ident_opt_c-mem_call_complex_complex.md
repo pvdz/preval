@@ -36,8 +36,8 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
 while (true) {
+  const tmpIfTest = $(1);
   if (tmpIfTest) {
     a = undefined;
     const tmpChainRootCall = $;
@@ -58,7 +58,6 @@ while (true) {
       }
     } else {
     }
-    tmpIfTest = $(1);
   } else {
     break;
   }
@@ -86,23 +85,22 @@ if (tmpIfTest) {
       $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
     }
   }
-  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    const tmpIfTest$2 = $(1);
+    if (tmpIfTest$2) {
       const tmpChainElementCall$2 = $(b);
-      const tmpIfTest$2 = tmpChainElementCall$2 == null;
-      if (tmpIfTest$2) {
+      const tmpIfTest$4 = tmpChainElementCall$2 == null;
+      if (tmpIfTest$4) {
       } else {
         const tmpChainRootComputed$1 = $(`\$`);
         const tmpChainElementObject$1 = tmpChainElementCall$2[tmpChainRootComputed$1];
-        const tmpIfTest$4 = tmpChainElementObject$1 == null;
-        if (tmpIfTest$4) {
+        const tmpIfTest$6 = tmpChainElementObject$1 == null;
+        if (tmpIfTest$6) {
         } else {
           const tmpCalleeParam$1 = $(1);
           $dotCall(tmpChainElementObject$1, tmpChainElementCall$2, tmpCalleeParam$1);
         }
       }
-      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -138,8 +136,8 @@ if (a) {
       $dotCall( f, c, h );
     }
   }
-  let i = $( 1 );
   while ($LOOP_UNROLL_10) {
+    const i = $( 1 );
     if (i) {
       const j = $( b );
       const k = j == null;
@@ -158,7 +156,6 @@ if (a) {
           $dotCall( m, j, o );
         }
       }
-      i = $( 1 );
     }
     else {
       break;

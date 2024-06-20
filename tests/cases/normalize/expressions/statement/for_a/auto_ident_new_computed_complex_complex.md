@@ -39,10 +39,9 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`\$`);
 const tmpNewCallee = tmpCompObj[tmpCompProp];
 new tmpNewCallee(1);
-let tmpIfTest = $(0);
 while (true) {
+  const tmpIfTest = $(0);
   if (tmpIfTest) {
-    tmpIfTest = $(0);
   } else {
     break;
   }
@@ -62,10 +61,9 @@ const tmpNewCallee = tmpCompObj[tmpCompProp];
 new tmpNewCallee(1);
 const tmpIfTest = $(0);
 if (tmpIfTest) {
-  let tmpClusterSSA_tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      tmpClusterSSA_tmpIfTest = $(0);
+    const tmpIfTest$1 = $(0);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -91,10 +89,10 @@ const e = c[ d ];
 new e( 1 );
 const f = $( 0 );
 if (f) {
-  let g = $( 0 );
   while ($LOOP_UNROLL_10) {
+    const g = $( 0 );
     if (g) {
-      g = $( 0 );
+
     }
     else {
       break;

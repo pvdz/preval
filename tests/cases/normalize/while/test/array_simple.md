@@ -29,11 +29,10 @@ $(`after`);
 
 
 `````js filename=intro
-let tmpIfTest = [1, 2, 3];
 while (true) {
+  const tmpIfTest = [1, 2, 3];
   if (tmpIfTest) {
     $(`loop`);
-    tmpIfTest = [1, 2, 3];
   } else {
     break;
   }

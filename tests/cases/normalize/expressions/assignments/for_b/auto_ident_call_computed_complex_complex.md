@@ -59,13 +59,12 @@ const tmpCallCompObj = $(b);
 const tmpCallCompProp = $(`\$`);
 let tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
 if (tmpClusterSSA_a) {
-  $(1);
   while ($LOOP_UNROLL_10) {
+    $(1);
     const tmpCallCompObj$1 = $(b);
     const tmpCallCompProp$1 = $(`\$`);
     tmpClusterSSA_a = tmpCallCompObj$1[tmpCallCompProp$1](1);
     if (tmpClusterSSA_a) {
-      $(1);
     } else {
       break;
     }
@@ -85,13 +84,13 @@ const b = $( a );
 const c = $( "$" );
 let d = b[ c ]( 1 )};
 if (d) {
-  $( 1 );
   while ($LOOP_UNROLL_10) {
+    $( 1 );
     const e = $( a );
     const f = $( "$" );
     d = e[ f ]( 1 )};
     if (d) {
-      $( 1 );
+
     }
     else {
       break;

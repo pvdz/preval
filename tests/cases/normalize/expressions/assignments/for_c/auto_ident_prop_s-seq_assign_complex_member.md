@@ -36,8 +36,8 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
 while (true) {
+  const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpNestedAssignObj = b;
     const tmpCompObj = $(b);
@@ -46,7 +46,6 @@ while (true) {
     const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
     tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
     a = tmpNestedPropAssignRhs;
-    tmpIfTest = $(1);
   } else {
     break;
   }
@@ -66,14 +65,13 @@ if (tmpIfTest) {
   const tmpCompProp = $(`d`);
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   b.c = tmpNestedAssignPropRhs;
-  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
       const tmpCompObj$1 = $(b);
       const tmpCompProp$1 = $(`d`);
       const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
       b.c = tmpNestedAssignPropRhs$1;
-      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -102,14 +100,13 @@ if (c) {
   const e = $( "d" );
   const f = d[ e ];
   a.c = f;
-  let g = $( 1 );
   while ($LOOP_UNROLL_10) {
+    const g = $( 1 );
     if (g) {
       const h = $( a );
       const i = $( "d" );
       const j = h[ i ];
       a.c = j;
-      g = $( 1 );
     }
     else {
       break;

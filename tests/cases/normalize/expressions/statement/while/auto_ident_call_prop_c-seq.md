@@ -53,12 +53,11 @@ const a = { a: 999, b: 1000 };
 const tmpCallObj = $(b);
 const tmpIfTest = tmpCallObj.$(1);
 if (tmpIfTest) {
-  $(100);
   while ($LOOP_UNROLL_10) {
+    $(100);
     const tmpCallObj$1 = $(b);
     const tmpIfTest$1 = tmpCallObj$1.$(1);
     if (tmpIfTest$1) {
-      $(100);
     } else {
       break;
     }
@@ -81,12 +80,12 @@ const b = {
 const c = $( a );
 const d = c.$( 1 );
 if (d) {
-  $( 100 );
   while ($LOOP_UNROLL_10) {
+    $( 100 );
     const e = $( a );
     const f = e.$( 1 );
     if (f) {
-      $( 100 );
+
     }
     else {
       break;

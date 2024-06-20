@@ -42,8 +42,8 @@ let b = { x: 1 };
 let c = { y: 2 };
 let d = 3;
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
 while (true) {
+  const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpAssignComMemLhsObj = $(b);
     const tmpAssignComMemLhsProp = $(`x`);
@@ -55,7 +55,6 @@ while (true) {
     varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
     const tmpAssignComputedRhs = varInitAssignLhsComputedRhs;
     tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-    tmpIfTest = $(1);
   } else {
     break;
   }
@@ -78,16 +77,15 @@ if (tmpIfTest) {
   const varInitAssignLhsComputedProp = $(`y`);
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
-  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
       const tmpAssignComMemLhsObj$1 = $(b);
       const tmpAssignComMemLhsProp$1 = $(`x`);
       const varInitAssignLhsComputedObj$1 = $(c);
       const varInitAssignLhsComputedProp$1 = $(`y`);
       varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
       tmpAssignComMemLhsObj$1[tmpAssignComMemLhsProp$1] = 3;
-      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -116,8 +114,8 @@ if (d) {
   const h = $( "y" );
   g[h] = 3;
   e[f] = 3;
-  let i = $( 1 );
   while ($LOOP_UNROLL_10) {
+    const i = $( 1 );
     if (i) {
       const j = $( a );
       const k = $( "x" );
@@ -125,7 +123,6 @@ if (d) {
       const m = $( "y" );
       l[m] = 3;
       j[k] = 3;
-      i = $( 1 );
     }
     else {
       break;

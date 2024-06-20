@@ -52,12 +52,11 @@ $(cTmp);
 `````js filename=intro
 let cTmp = $(1);
 let n = 1;
-$(3);
 while ($LOOP_UNROLL_10) {
+  $(3);
   n = n + 1;
   const tmpIfTest$1 = n < 2;
   if (tmpIfTest$1) {
-    $(3);
   } else {
     cTmp = `pass`;
     break;

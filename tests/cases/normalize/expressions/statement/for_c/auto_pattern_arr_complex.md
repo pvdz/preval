@@ -34,13 +34,12 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-let tmpIfTest = $(1);
 while (true) {
+  const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpCallCallee = $;
     const tmpCalleeParam = [1, 2];
     tmpCallCallee(tmpCalleeParam);
-    tmpIfTest = $(1);
   } else {
     break;
   }
@@ -59,12 +58,11 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpCalleeParam = [1, 2];
   $(tmpCalleeParam);
-  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
       const tmpCalleeParam$1 = [1, 2];
       $(tmpCalleeParam$1);
-      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -89,12 +87,11 @@ const d = $( 1 );
 if (d) {
   const e = [ 1, 2 ];
   $( e );
-  let f = $( 1 );
   while ($LOOP_UNROLL_10) {
+    const f = $( 1 );
     if (f) {
       const g = [ 1, 2 ];
       $( g );
-      f = $( 1 );
     }
     else {
       break;

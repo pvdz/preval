@@ -36,11 +36,10 @@ $(a, arg);
 `````js filename=intro
 let arg = 1;
 let a = { a: 999, b: 1000 };
-let tmpIfTest = typeof arg;
 while (true) {
+  const tmpIfTest = typeof arg;
   if (tmpIfTest) {
     $(1);
-    tmpIfTest = typeof arg;
   } else {
     break;
   }

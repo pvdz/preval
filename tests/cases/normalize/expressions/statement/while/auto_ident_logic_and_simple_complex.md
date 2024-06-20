@@ -28,15 +28,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpIfTest = 1;
 while (true) {
+  let tmpIfTest = 1;
   if (tmpIfTest) {
     const tmpCallCallee = $;
     const tmpCalleeParam = $(1);
     tmpIfTest = tmpCallCallee(tmpCalleeParam);
     if (tmpIfTest) {
       $(100);
-      tmpIfTest = 1;
     } else {
       break;
     }
@@ -52,14 +51,13 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam);
-if (tmpClusterSSA_tmpIfTest) {
-  $(100);
+const tmpIfTest = $(tmpCalleeParam);
+if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
+    $(100);
     const tmpCalleeParam$1 = $(1);
-    const tmpClusterSSA_tmpIfTest$1 = $(tmpCalleeParam$1);
-    if (tmpClusterSSA_tmpIfTest$1) {
-      $(100);
+    const tmpIfTest$1 = $(tmpCalleeParam$1);
+    if (tmpIfTest$1) {
     } else {
       break;
     }
@@ -78,12 +76,12 @@ With rename=true
 const a = $( 1 );
 const b = $( a );
 if (b) {
-  $( 100 );
   while ($LOOP_UNROLL_10) {
+    $( 100 );
     const c = $( 1 );
     const d = $( c );
     if (d) {
-      $( 100 );
+
     }
     else {
       break;

@@ -34,10 +34,9 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = $(0);
 const tmpIfTest = tmpCallCallee(tmpCalleeParam);
-let tmpIfTest$1 = $(0);
 while (true) {
+  const tmpIfTest$1 = $(0);
   if (tmpIfTest$1) {
-    tmpIfTest$1 = $(0);
   } else {
     break;
   }
@@ -53,10 +52,9 @@ const tmpCalleeParam = $(0);
 $(tmpCalleeParam);
 const tmpIfTest$1 = $(0);
 if (tmpIfTest$1) {
-  let tmpClusterSSA_tmpIfTest$1 = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest$1) {
-      tmpClusterSSA_tmpIfTest$1 = $(0);
+    const tmpIfTest$2 = $(0);
+    if (tmpIfTest$2) {
     } else {
       break;
     }
@@ -76,10 +74,10 @@ const a = $( 0 );
 $( a );
 const b = $( 0 );
 if (b) {
-  let c = $( 0 );
   while ($LOOP_UNROLL_10) {
+    const c = $( 0 );
     if (c) {
-      c = $( 0 );
+
     }
     else {
       break;

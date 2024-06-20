@@ -38,10 +38,9 @@ if (tmpIfTest) {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, 1);
 } else {
 }
-let tmpIfTest$1 = $(0);
 while (true) {
+  const tmpIfTest$1 = $(0);
   if (tmpIfTest$1) {
-    tmpIfTest$1 = $(0);
   } else {
     break;
   }
@@ -61,10 +60,9 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = $(0);
 if (tmpIfTest$1) {
-  let tmpClusterSSA_tmpIfTest$1 = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest$1) {
-      tmpClusterSSA_tmpIfTest$1 = $(0);
+    const tmpIfTest$2 = $(0);
+    if (tmpIfTest$2) {
     } else {
       break;
     }
@@ -90,10 +88,10 @@ else {
 }
 const c = $( 0 );
 if (c) {
-  let d = $( 0 );
   while ($LOOP_UNROLL_10) {
+    const d = $( 0 );
     if (d) {
-      d = $( 0 );
+
     }
     else {
       break;

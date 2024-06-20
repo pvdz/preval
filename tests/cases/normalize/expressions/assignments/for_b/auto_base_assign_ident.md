@@ -58,13 +58,12 @@ const tmpNestedComplexRhs = $(2);
 let b = tmpNestedComplexRhs;
 let a = tmpNestedComplexRhs;
 if (tmpNestedComplexRhs) {
-  $(1);
   while ($LOOP_UNROLL_10) {
+    $(1);
     const tmpNestedComplexRhs$1 = $(2);
     b = tmpNestedComplexRhs$1;
     a = tmpNestedComplexRhs$1;
     if (tmpNestedComplexRhs$1) {
-      $(1);
     } else {
       break;
     }
@@ -83,13 +82,13 @@ const a = $( 2 );
 let b = a;
 let c = a;
 if (a) {
-  $( 1 );
   while ($LOOP_UNROLL_10) {
+    $( 1 );
     const d = $( 2 );
     b = d;
     c = d;
     if (d) {
-      $( 1 );
+
     }
     else {
       break;

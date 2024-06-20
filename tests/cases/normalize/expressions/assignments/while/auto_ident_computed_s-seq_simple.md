@@ -54,12 +54,11 @@ const tmpAssignRhsCompProp = $(`c`);
 const b = { c: 1 };
 let a = b[tmpAssignRhsCompProp];
 if (a) {
-  $(100);
   while ($LOOP_UNROLL_10) {
+    $(100);
     const tmpAssignRhsCompProp$1 = $(`c`);
     a = b[tmpAssignRhsCompProp$1];
     if (a) {
-      $(100);
     } else {
       break;
     }
@@ -78,12 +77,12 @@ const a = $( "c" );
 const b = { c: 1 };
 let c = b[ a ];
 if (c) {
-  $( 100 );
   while ($LOOP_UNROLL_10) {
+    $( 100 );
     const d = $( "c" );
     c = b[ d ];
     if (c) {
-      $( 100 );
+
     }
     else {
       break;

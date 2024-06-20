@@ -38,8 +38,8 @@ $(`after`);
 
 
 `````js filename=intro
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
     const tmpIfTest$1 = $(false);
     if (tmpIfTest$1) {
@@ -47,7 +47,7 @@ while (true) {
       throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
     } else {
       break;
-      let x = 0;
+      let x = $(`fail`);
     }
   } else {
     break;

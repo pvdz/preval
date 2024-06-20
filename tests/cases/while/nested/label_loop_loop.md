@@ -51,16 +51,13 @@ $(x);
 `````js filename=intro
 let x = 10;
 while (true) {
-  const tmpUnaryArg = $(x);
-  let tmpIfTest = !tmpUnaryArg;
-  while (true) {
+  nestedLoop: {
+    const tmpIfTest = $(x);
     if (tmpIfTest) {
+      break nestedLoop;
+    } else {
       x = 20;
       $(x);
-      const tmpUnaryArg$1 = $(x);
-      tmpIfTest = !tmpUnaryArg$1;
-    } else {
-      break;
     }
   }
 }
@@ -73,22 +70,11 @@ $(x);
 `````js filename=intro
 let x = 10;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpUnaryArg = $(x);
-  if (tmpUnaryArg) {
+  const tmpIfTest = $(x);
+  if (tmpIfTest) {
   } else {
     x = 20;
     $(20);
-    const tmpUnaryArg$1 = $(x);
-    let tmpClusterSSA_tmpIfTest = tmpUnaryArg$1;
-    while ($LOOP_UNROLL_10) {
-      if (tmpClusterSSA_tmpIfTest) {
-        break;
-      } else {
-        $(20);
-        const tmpUnaryArg$2 = $(x);
-        tmpClusterSSA_tmpIfTest = tmpUnaryArg$2;
-      }
-    }
   }
 }
 throw `[preval] unreachable; infinite loop`;
@@ -108,18 +94,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   else {
     a = 20;
     $( 20 );
-    const c = $( a );
-    let d = c;
-    while ($LOOP_UNROLL_10) {
-      if (d) {
-        break;
-      }
-      else {
-        $( 20 );
-        const e = $( a );
-        d = e;
-      }
-    }
   }
 }
 throw "[preval] unreachable; infinite loop";

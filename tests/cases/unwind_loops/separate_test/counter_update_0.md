@@ -33,12 +33,11 @@ const max = $(10);
 `````js filename=intro
 const max = $(10);
 let i = 0;
-let tmpIfTest = i < 10;
 while (true) {
+  const tmpIfTest = i < 10;
   if (tmpIfTest) {
     $(i);
     i = i + 0;
-    tmpIfTest = i < 10;
   } else {
     break;
   }
@@ -63,10 +62,10 @@ $(0);
 $(0);
 let tmpClusterSSA_i$2 = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(tmpClusterSSA_i$2);
-  tmpClusterSSA_i$2 = tmpClusterSSA_i$2 + 0;
-  const tmpClusterSSA_tmpIfTest$1 = tmpClusterSSA_i$2 < 10;
-  if (tmpClusterSSA_tmpIfTest$1) {
+  const tmpIfTest$1 = tmpClusterSSA_i$2 < 10;
+  if (tmpIfTest$1) {
+    $(tmpClusterSSA_i$2);
+    tmpClusterSSA_i$2 = tmpClusterSSA_i$2 + 0;
   } else {
     break;
   }
@@ -92,11 +91,10 @@ $( 0 );
 $( 0 );
 let a = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( a );
-  a = a + 0;
   const b = a < 10;
   if (b) {
-
+    $( a );
+    a = a + 0;
   }
   else {
     break;

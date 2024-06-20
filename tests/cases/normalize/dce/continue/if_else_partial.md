@@ -41,8 +41,8 @@ $(`after, wont eval due to infinite loop`);
 
 
 `````js filename=intro
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
     $continue: {
       const tmpIfTest$1 = $(1);
@@ -52,7 +52,6 @@ while (true) {
         $(`keep, do not eval`);
       }
     }
-    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -71,15 +70,14 @@ if (tmpIfTest) {
   } else {
     $(`keep, do not eval`);
   }
-  let tmpClusterSSA_tmpIfTest = $(true);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      const tmpIfTest$2 = $(1);
-      if (tmpIfTest$2) {
+    const tmpIfTest$2 = $(true);
+    if (tmpIfTest$2) {
+      const tmpIfTest$4 = $(1);
+      if (tmpIfTest$4) {
       } else {
         $(`keep, do not eval`);
       }
-      tmpClusterSSA_tmpIfTest = $(true);
     } else {
       break;
     }
@@ -103,8 +101,8 @@ if (a) {
   else {
     $( "keep, do not eval" );
   }
-  let c = $( true );
   while ($LOOP_UNROLL_10) {
+    const c = $( true );
     if (c) {
       const d = $( 1 );
       if (d) {
@@ -113,7 +111,6 @@ if (a) {
       else {
         $( "keep, do not eval" );
       }
-      c = $( true );
     }
     else {
       break;

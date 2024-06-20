@@ -65,15 +65,14 @@ const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 b.c = tmpNestedAssignPropRhs;
 let tmpClusterSSA_a = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
-  $(1);
   while ($LOOP_UNROLL_10) {
+    $(1);
     const tmpCompObj$1 = $(b);
     const tmpCompProp$1 = $(`d`);
     const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
     b.c = tmpNestedAssignPropRhs$1;
     tmpClusterSSA_a = tmpNestedAssignPropRhs$1;
     if (tmpNestedAssignPropRhs$1) {
-      $(1);
     } else {
       break;
     }
@@ -98,15 +97,15 @@ const d = b[ c ];
 a.c = d;
 let e = d;
 if (d) {
-  $( 1 );
   while ($LOOP_UNROLL_10) {
+    $( 1 );
     const f = $( a );
     const g = $( "d" );
     const h = f[ g ];
     a.c = h;
     e = h;
     if (h) {
-      $( 1 );
+
     }
     else {
       break;

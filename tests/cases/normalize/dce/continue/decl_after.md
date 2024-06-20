@@ -42,8 +42,8 @@ $(`after, wont eval due to infinite loop`);
 
 
 `````js filename=intro
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
     $continue: {
       const tmpIfTest$1 = $(false);
@@ -55,7 +55,6 @@ while (true) {
         let x = $(`fail`);
       }
     }
-    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -74,15 +73,14 @@ if (tmpIfTest) {
     $(`fail too`);
     throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
   } else {
-    let tmpClusterSSA_tmpIfTest = $(true);
     while ($LOOP_UNROLL_10) {
-      if (tmpClusterSSA_tmpIfTest) {
-        const tmpIfTest$2 = $(false);
-        if (tmpIfTest$2) {
+      const tmpIfTest$2 = $(true);
+      if (tmpIfTest$2) {
+        const tmpIfTest$4 = $(false);
+        if (tmpIfTest$4) {
           $(`fail too`);
           throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
         } else {
-          tmpClusterSSA_tmpIfTest = $(true);
         }
       } else {
         break;
@@ -107,16 +105,13 @@ if (a) {
     throw "Preval: TDZ triggered for this assignment: x = $('fail too')";
   }
   else {
-    let c = $( true );
     while ($LOOP_UNROLL_10) {
+      const c = $( true );
       if (c) {
         const d = $( false );
         if (d) {
           $( "fail too" );
           throw "Preval: TDZ triggered for this assignment: x = $('fail too')";
-        }
-        else {
-          c = $( true );
         }
       }
       else {

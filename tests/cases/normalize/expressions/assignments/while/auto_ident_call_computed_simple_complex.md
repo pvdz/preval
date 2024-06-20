@@ -54,12 +54,11 @@ const tmpCallCompProp = $(`\$`);
 const b = { $: $ };
 let a = b[tmpCallCompProp](1);
 if (a) {
-  $(100);
   while ($LOOP_UNROLL_10) {
+    $(100);
     const tmpCallCompProp$1 = $(`\$`);
     a = b[tmpCallCompProp$1](1);
     if (a) {
-      $(100);
     } else {
       break;
     }
@@ -78,12 +77,12 @@ const a = $( "$" );
 const b = { $: $ };
 let c = b[ a ]( 1 )};
 if (c) {
-  $( 100 );
   while ($LOOP_UNROLL_10) {
+    $( 100 );
     const d = $( "$" );
     c = b[ d ]( 1 )};
     if (c) {
-      $( 100 );
+
     }
     else {
       break;

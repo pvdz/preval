@@ -46,10 +46,9 @@ if (tmpIfTest) {
   }
 } else {
 }
-let tmpIfTest$1 = $(0);
 while (true) {
+  const tmpIfTest$1 = $(0);
   if (tmpIfTest$1) {
-    tmpIfTest$1 = $(0);
   } else {
     break;
   }
@@ -75,10 +74,9 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = $(0);
 if (tmpIfTest$1) {
-  let tmpClusterSSA_tmpIfTest$1 = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest$1) {
-      tmpClusterSSA_tmpIfTest$1 = $(0);
+    const tmpIfTest$2 = $(0);
+    if (tmpIfTest$2) {
     } else {
       break;
     }
@@ -106,10 +104,10 @@ if (b) {
 }
 const f = $( 0 );
 if (f) {
-  let g = $( 0 );
   while ($LOOP_UNROLL_10) {
+    const g = $( 0 );
     if (g) {
-      g = $( 0 );
+
     }
     else {
       break;

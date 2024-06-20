@@ -108,8 +108,8 @@ let f = function () {
   const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$7) {
     $(`one`);
-    let tmpIfTest$9 = $(1);
     while (true) {
+      const tmpIfTest$9 = $(1);
       if (tmpIfTest$9) {
         $(2);
         return undefined;
@@ -180,8 +180,8 @@ $inlinedFunction: {
   const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$7) {
     $(`one`);
-    const tmpIfTest$9 = $(1);
     while (true) {
+      const tmpIfTest$9 = $(1);
       if (tmpIfTest$9) {
         $(2);
         break $inlinedFunction;
@@ -244,8 +244,8 @@ $inlinedFunction: {
   const g = b <= 0;
   if (g) {
     $( "one" );
-    const h = $( 1 );
     while (true) {
+      const h = $( 1 );
       if (h) {
         $( 2 );
         break $inlinedFunction;

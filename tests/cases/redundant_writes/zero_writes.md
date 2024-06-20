@@ -57,8 +57,9 @@ $(y, `last`);
 
 
 `````js filename=intro
-let y = $(true);
+let y = undefined;
 while (true) {
+  y = $(true);
   if (y) {
     $(y, `before`);
     let x = undefined;
@@ -67,7 +68,6 @@ while (true) {
       $(x, y);
     }
     $(x, y, `after`);
-    y = $(true);
   } else {
     break;
   }
@@ -79,8 +79,9 @@ $(y, `last`);
 
 
 `````js filename=intro
-let y = $(true);
+let y = undefined;
 while (true) {
+  y = $(true);
   if (y) {
     $(y, `before`);
     let x = undefined;
@@ -89,7 +90,6 @@ while (true) {
       $(x, y);
     }
     $(x, y, `after`);
-    y = $(true);
   } else {
     break;
   }
@@ -102,8 +102,9 @@ $(y, `last`);
 With rename=true
 
 `````js filename=intro
-let a = $( true );
+let a = undefined;
 while (true) {
+  a = $( true );
   if (a) {
     $( a, "before" );
     let b = undefined;
@@ -115,7 +116,6 @@ while (true) {
       $( b, a );
     }
     $( b, a, "after" );
-    a = $( true );
   }
   else {
     break;

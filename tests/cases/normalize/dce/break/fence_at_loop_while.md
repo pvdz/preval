@@ -43,12 +43,12 @@ $(`after (not invoked)`);
 
 
 `````js filename=intro
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
     $(`loop`);
-    let tmpIfTest$1 = $(true);
     while (true) {
+      const tmpIfTest$1 = $(true);
       if (tmpIfTest$1) {
         $(`loop`);
         break;
@@ -57,7 +57,6 @@ while (true) {
       }
     }
     $(`infiloop, do not eliminate`);
-    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -77,18 +76,16 @@ if (tmpIfTest) {
     $(`loop`);
   } else {
   }
-  $(`infiloop, do not eliminate`);
-  let tmpClusterSSA_tmpIfTest = $(true);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    $(`infiloop, do not eliminate`);
+    const tmpIfTest$2 = $(true);
+    if (tmpIfTest$2) {
       $(`loop`);
-      const tmpIfTest$2 = $(true);
-      if (tmpIfTest$2) {
+      const tmpIfTest$4 = $(true);
+      if (tmpIfTest$4) {
         $(`loop`);
       } else {
       }
-      $(`infiloop, do not eliminate`);
-      tmpClusterSSA_tmpIfTest = $(true);
     } else {
       break;
     }
@@ -110,17 +107,15 @@ if (a) {
   if (b) {
     $( "loop" );
   }
-  $( "infiloop, do not eliminate" );
-  let c = $( true );
   while ($LOOP_UNROLL_10) {
+    $( "infiloop, do not eliminate" );
+    const c = $( true );
     if (c) {
       $( "loop" );
       const d = $( true );
       if (d) {
         $( "loop" );
       }
-      $( "infiloop, do not eliminate" );
-      c = $( true );
     }
     else {
       break;

@@ -42,11 +42,10 @@ $(`finished`);
 
 `````js filename=intro
 let counter = 5;
-counter = counter - 1;
 while (true) {
+  counter = counter - 1;
   if (counter) {
     $(`x`);
-    counter = counter - 1;
   } else {
     break;
   }

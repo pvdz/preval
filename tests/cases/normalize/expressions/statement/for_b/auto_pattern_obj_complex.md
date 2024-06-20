@@ -53,12 +53,11 @@ $(a);
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
-  $(1);
   while ($LOOP_UNROLL_10) {
+    $(1);
     const tmpCalleeParam$1 = { a: 1, b: 2 };
     const tmpIfTest$1 = $(tmpCalleeParam$1);
     if (tmpIfTest$1) {
-      $(1);
     } else {
       break;
     }
@@ -79,15 +78,15 @@ const a = {
 };
 const b = $( a );
 if (b) {
-  $( 1 );
   while ($LOOP_UNROLL_10) {
+    $( 1 );
     const c = {
       a: 1,
       b: 2,
     };
     const d = $( c );
     if (d) {
-      $( 1 );
+
     }
     else {
       break;

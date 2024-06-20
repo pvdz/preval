@@ -28,11 +28,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpIfTest = [];
 while (true) {
+  const tmpIfTest = [];
   if (tmpIfTest) {
     $(100);
-    tmpIfTest = [];
   } else {
     break;
   }

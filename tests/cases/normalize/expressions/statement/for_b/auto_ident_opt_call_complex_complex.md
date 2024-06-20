@@ -69,8 +69,8 @@ if (tmpIfTest$1) {
   tmpIfTest = tmpChainElementCall$1;
 }
 if (tmpIfTest) {
-  $(1);
   while ($LOOP_UNROLL_10) {
+    $(1);
     let tmpIfTest$2 = false;
     const tmpChainElementCall$2 = $($);
     const tmpIfTest$4 = tmpChainElementCall$2 == null;
@@ -81,7 +81,6 @@ if (tmpIfTest) {
       tmpIfTest$2 = tmpChainElementCall$4;
     }
     if (tmpIfTest$2) {
-      $(1);
     } else {
       break;
     }
@@ -109,8 +108,8 @@ else {
   a = e;
 }
 if (a) {
-  $( 1 );
   while ($LOOP_UNROLL_10) {
+    $( 1 );
     let f = false;
     const g = $( $ );
     const h = g == null;
@@ -123,7 +122,7 @@ if (a) {
       f = j;
     }
     if (f) {
-      $( 1 );
+
     }
     else {
       break;

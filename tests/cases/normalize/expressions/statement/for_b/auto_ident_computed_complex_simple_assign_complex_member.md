@@ -64,15 +64,14 @@ const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
-  $(1);
   while ($LOOP_UNROLL_10) {
+    $(1);
     const varInitAssignLhsComputedObj$1 = $(b);
     const tmpCompObj$1 = $(b);
     const tmpCompProp$1 = $(`d`);
     const varInitAssignLhsComputedRhs$1 = tmpCompObj$1[tmpCompProp$1];
     varInitAssignLhsComputedObj$1.c = varInitAssignLhsComputedRhs$1;
     if (varInitAssignLhsComputedRhs$1) {
-      $(1);
     } else {
       break;
     }
@@ -101,15 +100,15 @@ const e = $( "d" );
 const f = d[ e ];
 c.c = f;
 if (f) {
-  $( 1 );
   while ($LOOP_UNROLL_10) {
+    $( 1 );
     const g = $( a );
     const h = $( a );
     const i = $( "d" );
     const j = h[ i ];
     g.c = j;
     if (j) {
-      $( 1 );
+
     }
     else {
       break;

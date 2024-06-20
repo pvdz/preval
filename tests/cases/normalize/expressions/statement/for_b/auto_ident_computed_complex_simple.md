@@ -57,12 +57,11 @@ const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpIfTest = tmpCompObj.c;
 if (tmpIfTest) {
-  $(1);
   while ($LOOP_UNROLL_10) {
+    $(1);
     const tmpCompObj$1 = $(b);
     const tmpIfTest$1 = tmpCompObj$1.c;
     if (tmpIfTest$1) {
-      $(1);
     } else {
       break;
     }
@@ -85,12 +84,12 @@ const b = {
 const c = $( a );
 const d = c.c;
 if (d) {
-  $( 1 );
   while ($LOOP_UNROLL_10) {
+    $( 1 );
     const e = $( a );
     const f = e.c;
     if (f) {
-      $( 1 );
+
     }
     else {
       break;

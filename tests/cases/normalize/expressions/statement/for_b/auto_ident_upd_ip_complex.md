@@ -66,15 +66,14 @@ const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
 if (tmpPostUpdArgVal) {
-  $(1);
   while ($LOOP_UNROLL_10) {
+    $(1);
     const tmpCalleeParam$1 = $(b);
     const tmpPostUpdArgObj$1 = $(tmpCalleeParam$1);
     const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
     const tmpAssignMemRhs$1 = tmpPostUpdArgVal$1 + 1;
     tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
     if (tmpPostUpdArgVal$1) {
-      $(1);
     } else {
       break;
     }
@@ -100,15 +99,15 @@ const e = d.x;
 const f = e + 1;
 d.x = f;
 if (e) {
-  $( 1 );
   while ($LOOP_UNROLL_10) {
+    $( 1 );
     const g = $( a );
     const h = $( g );
     const i = h.x;
     const j = i + 1;
     h.x = j;
     if (i) {
-      $( 1 );
+
     }
     else {
       break;

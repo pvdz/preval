@@ -58,12 +58,11 @@ const a = { a: 999, b: 1000 };
 const tmpCompProp = $(`c`);
 const tmpIfTest = b[tmpCompProp];
 if (tmpIfTest) {
-  $(1);
   while ($LOOP_UNROLL_10) {
+    $(1);
     const tmpCompProp$1 = $(`c`);
     const tmpIfTest$1 = b[tmpCompProp$1];
     if (tmpIfTest$1) {
-      $(1);
     } else {
       break;
     }
@@ -86,12 +85,12 @@ const b = {
 const c = $( "c" );
 const d = a[ c ];
 if (d) {
-  $( 1 );
   while ($LOOP_UNROLL_10) {
+    $( 1 );
     const e = $( "c" );
     const f = a[ e ];
     if (f) {
-      $( 1 );
+
     }
     else {
       break;

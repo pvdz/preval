@@ -50,8 +50,8 @@ $(`after, do not evaluate (infinite loop)`);
 
 
 `````js filename=intro
-let tmpIfTest = $(true);
 while (true) {
+  const tmpIfTest = $(true);
   if (tmpIfTest) {
     $continue: {
       const tmpSwitchDisc = $(1, `disc`);
@@ -65,7 +65,6 @@ while (true) {
         break $continue;
       }
     }
-    tmpIfTest = $(true);
   } else {
     break;
   }
@@ -86,17 +85,16 @@ if (tmpIfTest) {
     $(`keep, do not eval`);
   } else {
   }
-  let tmpClusterSSA_tmpIfTest = $(true);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    const tmpIfTest$2 = $(true);
+    if (tmpIfTest$2) {
       const tmpSwitchDisc$1 = $(1, `disc`);
       const tmpBinBothRhs$1 = $(0);
-      const tmpIfTest$2 = tmpSwitchDisc$1 === tmpBinBothRhs$1;
-      if (tmpIfTest$2) {
+      const tmpIfTest$4 = tmpSwitchDisc$1 === tmpBinBothRhs$1;
+      if (tmpIfTest$4) {
         $(`keep, do not eval`);
       } else {
       }
-      tmpClusterSSA_tmpIfTest = $(true);
     } else {
       break;
     }
@@ -119,8 +117,8 @@ if (a) {
   if (d) {
     $( "keep, do not eval" );
   }
-  let e = $( true );
   while ($LOOP_UNROLL_10) {
+    const e = $( true );
     if (e) {
       const f = $( 1, "disc" );
       const g = $( 0 );
@@ -128,7 +126,6 @@ if (a) {
       if (h) {
         $( "keep, do not eval" );
       }
-      e = $( true );
     }
     else {
       break;

@@ -60,12 +60,11 @@ $(100);
 $(100);
 $(100);
 $(100);
-$(100);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(100);
   const tmpPostUpdArgIdent$1 = b;
   b = b + 1;
   if (tmpPostUpdArgIdent$1) {
-    $(100);
   } else {
     break;
   }
@@ -90,12 +89,12 @@ $( 100 );
 $( 100 );
 $( 100 );
 $( 100 );
-$( 100 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 100 );
   const b = a;
   a = a + 1;
   if (b) {
-    $( 100 );
+
   }
   else {
     break;

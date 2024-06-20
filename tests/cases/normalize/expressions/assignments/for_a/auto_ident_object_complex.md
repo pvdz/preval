@@ -40,7 +40,6 @@ a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$3 };
 while (true) {
   $(1);
 }
-$(a);
 `````
 
 ## Output
@@ -52,7 +51,6 @@ $(3);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -65,7 +63,6 @@ $( 3 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

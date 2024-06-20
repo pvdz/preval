@@ -36,7 +36,6 @@ $(`after`);
 while (true) {
   $(`loop`);
 }
-$(`after`);
 `````
 
 ## Output
@@ -46,7 +45,6 @@ $(`after`);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`loop`);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -57,7 +55,6 @@ With rename=true
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( "loop" );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

@@ -46,7 +46,6 @@ while (true) {
     }
   } catch (e___28__) /*29*/ {}
 }
-$(x___33__);
 `````
 
 Ref tracking result:
@@ -57,4 +56,3 @@ x:
   - r @9       | 4
   - r @21      | 4,25
   - w @25      | ########## | 21          | 4,25           | 25
-  - r @33      | none (unreachable?)

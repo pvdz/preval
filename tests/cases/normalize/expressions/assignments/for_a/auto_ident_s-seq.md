@@ -43,7 +43,6 @@ a = x;
 while (true) {
   $(1);
 }
-$(a, x);
 `````
 
 ## Output
@@ -55,7 +54,6 @@ $(2);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -68,7 +66,6 @@ $( 2 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

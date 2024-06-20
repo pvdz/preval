@@ -47,7 +47,6 @@ a = tmpNestedAssignArrPatternRhs;
 while (true) {
   $(1);
 }
-$(a, b);
 `````
 
 ## Output
@@ -62,7 +61,6 @@ arrPatternSplat[0];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -78,7 +76,6 @@ d[ 0 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

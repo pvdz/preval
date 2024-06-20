@@ -47,7 +47,6 @@ a = tmpNestedPropCompoundComplexRhs;
 while (true) {
   $(1);
 }
-$(a, b);
 `````
 
 ## Output
@@ -63,7 +62,6 @@ tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -80,7 +78,6 @@ c.x = e;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

@@ -32,7 +32,6 @@ $(1);
 while (true) {
   throw `repeat after me`;
 }
-$(1);
 `````
 
 ## Output

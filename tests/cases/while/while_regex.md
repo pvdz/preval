@@ -49,7 +49,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const x$1 = /foo/;
   $(x$1);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -63,7 +62,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const b = /foo/;
   $( b );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

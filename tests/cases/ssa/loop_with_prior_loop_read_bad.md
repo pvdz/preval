@@ -67,7 +67,6 @@ if ($) {
     x = $(2);
     $(x);
   }
-  throw `[preval] unreachable; infinite loop`;
 } else {
 }
 `````
@@ -84,7 +83,6 @@ if ($) {
     a = $( 2 );
     $( a );
   }
-  throw "[preval] unreachable; infinite loop";
 }
 `````
 

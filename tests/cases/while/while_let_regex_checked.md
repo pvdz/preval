@@ -82,7 +82,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   tmpClusterSSA_x = /foo/;
   tmpClusterSSA_x.foo = `object`;
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -101,7 +100,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   c = /foo/;
   c.foo = "object";
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

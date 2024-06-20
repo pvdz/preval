@@ -56,7 +56,6 @@ while (true) {
   } /*55*/ else {
   }
 }
-$(x___59__);
 `````
 
 Ref tracking result:
@@ -68,7 +67,6 @@ x:
   - r @26      | 4,48
   - r @44      | 4,48
   - w @48      | ########## | 26,44       | 4,48           | 48
-  - r @59      | none (unreachable?)
 
 $implicitThrow:
   - w @15          | ########## | 51          | none           | 33

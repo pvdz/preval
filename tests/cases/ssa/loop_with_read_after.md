@@ -47,7 +47,6 @@ let f = function () {
     x = $(2);
     $(x);
   }
-  $(x);
   return undefined;
 };
 if ($) {
@@ -66,7 +65,6 @@ if ($) {
     const tmpClusterSSA_x = $(2);
     $(tmpClusterSSA_x);
   }
-  throw `[preval] unreachable; infinite loop`;
 } else {
 }
 `````
@@ -82,7 +80,6 @@ if ($) {
     const a = $( 2 );
     $( a );
   }
-  throw "[preval] unreachable; infinite loop";
 }
 `````
 

@@ -38,7 +38,6 @@ a = -tmpUnaryArg;
 while (true) {
   $(1);
 }
-$(a);
 `````
 
 ## Output
@@ -50,7 +49,6 @@ const tmpUnaryArg = $(100);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -63,7 +61,6 @@ const a = $( 100 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

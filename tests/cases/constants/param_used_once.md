@@ -3869,7 +3869,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
       }
     }
   }
-  throw `[preval] unreachable; infinite loop`;
+  return undefined;
 };
 $(TP$cloneX2$cloneX1);
 `````
@@ -4785,7 +4785,7 @@ const d = function($$0,$$1,$$2,$$3,$$4 ) {
       }
     }
   }
-  throw "[preval] unreachable; infinite loop";
+  return undefined;
 };
 $( d );
 `````

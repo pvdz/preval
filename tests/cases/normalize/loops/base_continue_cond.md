@@ -62,8 +62,7 @@ let f = function () {
       }
     }
   }
-  $(`afterwards`);
-  return 100;
+  return undefined;
 };
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
@@ -79,7 +78,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   n = n + 1;
   $(n);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -92,7 +90,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   a = a + 1;
   $( a );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

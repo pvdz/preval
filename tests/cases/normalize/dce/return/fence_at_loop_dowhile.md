@@ -67,7 +67,6 @@ let f = function () {
         const tmpReturnArg = $(100, `return`);
         return tmpReturnArg;
       }
-      $(`do not visit, do not eliminate`);
     } else {
       break;
     }

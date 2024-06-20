@@ -37,29 +37,23 @@ $(x); // unreachable
 `````filename=intro
 let x___4__ = 1;
 while (true) {
-  /*8*/ $continue___10__: /*11*/ {
-    while (true) {
-      /*14*/ if ($) {
-        /*17*/ $(x___21__);
-      } /*22*/ else {
-        $(x___26__);
-        x___30__ = 2;
-        break $continue___32__;
-      }
+  /*8*/ nestedLoop___10__: /*11*/ {
+    if ($) {
+      /*14*/ $(x___18__);
+    } /*19*/ else {
+      $(x___23__);
+      x___27__ = 2;
+      break nestedLoop___29__;
     }
-    $(x___36__);
   }
 }
-$(x___40__);
 `````
 
 Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 21,26,36    | none           | 30
-  - r @21      | 4,30
-  - r @26      | 4,30
-  - w @30      | ########## | 21,26,36    | 4,30           | 30
-  - r @36      | 4,30
-  - r @40      | none (unreachable?)
+  - w @4       | ########## | 18,23       | none           | 27
+  - r @18      | 4,27
+  - r @23      | 4,27
+  - w @27      | ########## | 18,23       | 4,27           | 27

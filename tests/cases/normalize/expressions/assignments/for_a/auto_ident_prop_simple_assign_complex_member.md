@@ -46,7 +46,6 @@ a = tmpNestedPropAssignRhs;
 while (true) {
   $(1);
 }
-$(a, b);
 `````
 
 ## Output
@@ -61,7 +60,6 @@ b.c = tmpNestedAssignPropRhs;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -80,7 +78,6 @@ a.c = d;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

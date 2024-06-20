@@ -1,8 +1,8 @@
 # Preval test case
 
-# loop_dce.md
+# labeled_break_jumping_over_statement.md
 
-> Tofix > Loop dce
+> While > Labeled break jumping over statement
 >
 > The call with "fail" is unreachable because the break jumps over it.
 
@@ -57,20 +57,16 @@ $(x);
 `````js filename=intro
 let x = 1;
 while (true) {
-  $continue: {
-    while (true) {
-      if ($) {
-        $(x);
-      } else {
-        $(x);
-        x = 2;
-        break $continue;
-      }
+  nestedLoop: {
+    if ($) {
+      $(x);
+    } else {
+      $(x);
+      x = 2;
+      break nestedLoop;
     }
-    $(`fail`, x);
   }
 }
-$(x);
 `````
 
 ## Output
@@ -79,19 +75,12 @@ $(x);
 `````js filename=intro
 let x = 1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $continue: {
-    while (true) {
-      $(x);
-      if ($) {
-      } else {
-        x = 2;
-        break $continue;
-      }
-    }
-    $(`fail`, x);
+  $(x);
+  if ($) {
+  } else {
+    x = 2;
   }
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -101,21 +90,14 @@ With rename=true
 `````js filename=intro
 let a = 1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $continue:   {
-    while (true) {
-      $( a );
-      if ($) {
+  $( a );
+  if ($) {
 
-      }
-      else {
-        a = 2;
-        break $continue;
-      }
-    }
-    $( "fail", a );
+  }
+  else {
+    a = 2;
   }
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

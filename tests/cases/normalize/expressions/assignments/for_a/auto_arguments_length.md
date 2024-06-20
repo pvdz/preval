@@ -37,18 +37,15 @@ a = arguments;
 while (true) {
   $(1);
 }
-$(a);
 `````
 
 ## Output
 
 
 `````js filename=intro
-arguments;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -56,18 +53,14 @@ throw `[preval] unreachable; infinite loop`;
 With rename=true
 
 `````js filename=intro
-arguments;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-arguments
+None
 
 ## Result
 

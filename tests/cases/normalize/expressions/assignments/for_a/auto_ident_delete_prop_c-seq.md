@@ -44,7 +44,6 @@ a = delete tmpDeleteObj.y;
 while (true) {
   $(1);
 }
-$(a, arg);
 `````
 
 ## Output
@@ -59,7 +58,6 @@ delete tmpDeleteObj.y;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -75,7 +73,6 @@ delete b.y;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

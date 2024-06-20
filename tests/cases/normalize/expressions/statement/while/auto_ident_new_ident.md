@@ -48,7 +48,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   new $(1);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -61,7 +60,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
   new $( 1 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

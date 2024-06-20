@@ -57,7 +57,6 @@ if (tmpIfTest) {
 while (true) {
   $(1);
 }
-$(a);
 `````
 
 ## Output
@@ -73,7 +72,6 @@ if (tmpIfTest$1) {
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -92,7 +90,6 @@ else {
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

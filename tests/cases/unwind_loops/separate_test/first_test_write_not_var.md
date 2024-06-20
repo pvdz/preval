@@ -60,11 +60,6 @@ let test = counter < 10;
 while (true) {
   throw `Preval: TDZ triggered for this read: while (test) {`;
 }
-while (true) {
-  throw `Preval: TDZ triggered for this read: while (test) {`;
-}
-let counter = 0;
-let test = counter < 10;
 `````
 
 ## Output

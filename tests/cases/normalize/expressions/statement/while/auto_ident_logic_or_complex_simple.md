@@ -55,7 +55,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpCalleeParam);
   $(100);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -68,7 +67,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( a );
   $( 100 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

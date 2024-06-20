@@ -47,7 +47,6 @@ while (true) {
   $(xyz);
   $(1);
 }
-$(a);
 `````
 
 ## Output
@@ -62,7 +61,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpClusterSSA_a);
   $(1);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -78,7 +76,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( d );
   $( 1 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

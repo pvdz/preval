@@ -56,7 +56,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpClusterSSA_x = $(i, `set`);
   $(tmpClusterSSA_x, `loop`);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -71,7 +70,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const b = $( a, "set" );
   $( b, "loop" );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

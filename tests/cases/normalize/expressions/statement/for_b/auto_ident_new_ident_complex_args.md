@@ -63,7 +63,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpCalleeParam$4 = $(2);
   new $(tmpCalleeParam$2, tmpCalleeParam$4);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -80,7 +79,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const d = $( 2 );
   new $( c, d );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

@@ -71,7 +71,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   arrPatternSplat[0];
   arrPatternSplat[1];
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -86,7 +85,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   c[ 0 ];
   c[ 1 ];
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

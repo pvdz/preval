@@ -81,7 +81,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
   $(1);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -100,7 +99,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   c[d] = 7;
   $( 1 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

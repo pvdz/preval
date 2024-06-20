@@ -72,7 +72,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
   $(100);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -91,7 +90,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   c[d] = 3;
   $( 100 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

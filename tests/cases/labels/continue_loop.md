@@ -44,7 +44,6 @@ while (true) {
   $(1);
   fail = true;
 }
-$(2);
 `````
 
 ## Output
@@ -54,7 +53,6 @@ $(2);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -65,7 +63,6 @@ With rename=true
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

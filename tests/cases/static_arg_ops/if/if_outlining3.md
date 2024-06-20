@@ -246,7 +246,7 @@ const siftUp_f = function ($$0, $$1, $$2) {
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       $(123);
     }
-    throw `[preval] unreachable; infinite loop`;
+    return undefined;
   } else {
     return undefined;
   }
@@ -314,7 +314,7 @@ const l = function($$0,$$1,$$2 ) {
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       $( 123 );
     }
-    throw "[preval] unreachable; infinite loop";
+    return undefined;
   }
   else {
     return undefined;

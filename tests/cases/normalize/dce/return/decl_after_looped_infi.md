@@ -86,7 +86,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
   }
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -101,7 +100,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     throw "Preval: TDZ triggered for this assignment: x = $('fail too')";
   }
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

@@ -63,7 +63,6 @@ if (chk) {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $(`inside`);
   }
-  throw `[preval] unreachable; infinite loop`;
 } else {
 }
 `````
@@ -78,7 +77,6 @@ if (a) {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $( "inside" );
   }
-  throw "[preval] unreachable; infinite loop";
 }
 `````
 

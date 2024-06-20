@@ -45,7 +45,6 @@ while (true) {
     x___33__ = 3;
   }
 }
-$(x___37__);
 `````
 
 Ref tracking result:
@@ -58,4 +57,3 @@ x:
   - r @22      | 16
   - r @29      | 16
   - w @33      | ########## | not read    | 16             | 16
-  - r @37      | none (unreachable?)

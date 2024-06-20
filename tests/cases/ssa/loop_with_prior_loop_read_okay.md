@@ -92,7 +92,6 @@ if ($) {
     const tmpClusterSSA_x = $(2);
     $(tmpClusterSSA_x);
   }
-  throw `[preval] unreachable; infinite loop`;
 } else {
 }
 `````
@@ -120,7 +119,6 @@ if ($) {
     const b = $( 2 );
     $( b );
   }
-  throw "[preval] unreachable; infinite loop";
 }
 `````
 

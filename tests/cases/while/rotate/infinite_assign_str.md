@@ -56,18 +56,18 @@ while (true) {
     x = `foo`;
   }
 }
-$(x);
 `````
 
 ## Output
 
 
 `````js filename=intro
-$(`xyz`);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(`foo`);
+  $(`xyz`);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    $(`foo`);
+  }
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -75,11 +75,12 @@ throw `[preval] unreachable; infinite loop`;
 With rename=true
 
 `````js filename=intro
-$( "xyz" );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( "foo" );
+  $( "xyz" );
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    $( "foo" );
+  }
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

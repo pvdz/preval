@@ -112,7 +112,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -142,7 +141,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   d[e] = 3;
   b[c] = 3;
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

@@ -67,7 +67,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   }
   $(2);
 }
-$(3);
 `````
 
 ## Output
@@ -80,7 +79,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } catch ($finalImplicit) {}
   $(2);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -97,7 +95,6 @@ catch (a) {
   }
   $( 2 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

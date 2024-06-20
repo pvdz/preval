@@ -52,18 +52,15 @@ a: {
 
 
 `````js filename=intro
-b: {
-  while (true) {
-    const tmpIfTest = $(0);
-    if (tmpIfTest) {
-      $(1);
-      break b;
-    } else {
-      $(2);
-      break b;
-    }
+while (true) {
+  const tmpIfTest = $(0);
+  if (tmpIfTest) {
+    $(1);
+    break;
+  } else {
+    $(2);
+    break;
   }
-  $(3);
 }
 `````
 
@@ -71,18 +68,11 @@ b: {
 
 
 `````js filename=intro
-b: {
-  while (true) {
-    const tmpIfTest = $(0);
-    if (tmpIfTest) {
-      $(1);
-      break b;
-    } else {
-      $(2);
-      break b;
-    }
-  }
-  $(3);
+const tmpIfTest = $(0);
+if (tmpIfTest) {
+  $(1);
+} else {
+  $(2);
 }
 `````
 
@@ -91,19 +81,12 @@ b: {
 With rename=true
 
 `````js filename=intro
-b: {
-  while (true) {
-    const a = $( 0 );
-    if (a) {
-      $( 1 );
-      break b;
-    }
-    else {
-      $( 2 );
-      break b;
-    }
-  }
-  $( 3 );
+const a = $( 0 );
+if (a) {
+  $( 1 );
+}
+else {
+  $( 2 );
 }
 `````
 

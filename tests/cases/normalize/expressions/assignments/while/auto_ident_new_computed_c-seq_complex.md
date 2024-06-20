@@ -63,7 +63,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpNewCallee$1 = tmpCompObj$1[tmpCompProp$1];
   new tmpNewCallee$1(1);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -83,7 +82,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const g = e[ f ];
   new g( 1 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

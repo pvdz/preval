@@ -31,7 +31,6 @@ while (true) {
   /*8*/ x___12__ = 2;
   $(x___16__);
 }
-$(x___20__);
 `````
 
 Ref tracking result:
@@ -41,4 +40,3 @@ x:
   - w @4       | ########## | not read    | none           | 12
   - w @12      | ########## | 16          | 4,12           | 12
   - r @16      | 12
-  - r @20      | none (unreachable?)

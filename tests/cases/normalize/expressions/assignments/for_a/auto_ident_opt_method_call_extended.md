@@ -53,7 +53,6 @@ if (tmpIfTest) {
 while (true) {
   $(1);
 }
-$(a);
 `````
 
 ## Output
@@ -65,7 +64,6 @@ $dotCall($, tmpObjLitVal$1, 1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -78,7 +76,6 @@ $dotCall( $, a, 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

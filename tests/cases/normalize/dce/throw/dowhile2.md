@@ -50,7 +50,6 @@ let f = function () {
     const tmpThrowArg = $(1, `return`);
     throw tmpThrowArg;
   }
-  $(`keep, do not eval`);
   return undefined;
 };
 const tmpCallCallee = $;

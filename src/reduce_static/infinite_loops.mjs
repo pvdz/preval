@@ -65,21 +65,16 @@ function _infiniteLoops(fdata) {
           const parentProp = path.props[path.props.length - 1];
           const parentIndex = path.indexes[path.indexes.length - 1];
           if ((parentNode.type === 'BlockStatement' || parentNode.type === 'Program') && parentProp === 'body' && parentNode.body[parentIndex + 1]?.type !== 'ThrowStatement') {
-            queue.push({
-              index: parentIndex,
-              func: () => {
-                rule('A loop that never stops should get a throw after it');
-                example('while (true) { f(); } g();', 'while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) { f(); } throw "unreachable"; g();');
-                before(parentNode);
 
-                parentNode.body.splice(parentIndex + 1, 0, AST.throwStatement(AST.primitive('[preval] unreachable; infinite loop')));
-                // Prevent unrolling the loop: I think there's no real point as it can't ever eliminate or prevent the loop itself..
-                node.test = AST.identifier('$LOOP_DONE_UNROLLING_ALWAYS_TRUE');
+            rule('An infinite loop should never be urolled');
+            rule('while (true) {}', 'while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {}');
+            before(node);
 
-                after(parentNode);
-              }
-            });
-            ++changed;
+            node.test = AST.identifier('$LOOP_DONE_UNROLLING_ALWAYS_TRUE');
+
+            after(node);
+            // I don't think this really changes much so it doesn't require a loop restart...? a rare case indeed
+            //++changed;
           }
         }
 

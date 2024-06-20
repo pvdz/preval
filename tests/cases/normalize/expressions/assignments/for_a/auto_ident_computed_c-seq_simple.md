@@ -43,7 +43,6 @@ a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 while (true) {
   $(1);
 }
-$(a, b);
 `````
 
 ## Output
@@ -57,7 +56,6 @@ tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -72,7 +70,6 @@ b[ c ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

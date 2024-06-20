@@ -6,7 +6,8 @@
 >
 > Regression
 
-This is a minimal test case that somehow uncovered that the label store was not properly set in phase1 (only in prepare).
+This is a minimal test case that somehow uncovered that the label store
+was not properly set in phase1 (only in prepare).
 
 ## Input
 
@@ -60,7 +61,6 @@ const f = function ($$0) {
     } else {
     }
   }
-  x + 0;
   return undefined;
 };
 f();
@@ -71,10 +71,15 @@ f();
 
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  s;
-}
-throw `[preval] unreachable; infinite loop`;
+const f = function () {
+  debugger;
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    s;
+  }
+  return undefined;
+};
+f();
+f();
 `````
 
 ## PST Output
@@ -82,10 +87,15 @@ throw `[preval] unreachable; infinite loop`;
 With rename=true
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  s;
-}
-throw "[preval] unreachable; infinite loop";
+const a = function() {
+  debugger;
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    s;
+  }
+  return undefined;
+};
+a();
+a();
 `````
 
 ## Globals

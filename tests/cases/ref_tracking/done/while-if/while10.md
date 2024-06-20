@@ -162,7 +162,6 @@ if ($) {
       }
     }
   }
-  $(`after while`, x);
 } else {
   $(`oh`);
 }
@@ -182,11 +181,10 @@ if ($) {
       x = 2;
     }
   }
-  throw `[preval] unreachable; infinite loop`;
 } else {
   $(`oh`);
-  $(`end`, x);
 }
+$(`end`, x);
 `````
 
 ## PST Output
@@ -205,12 +203,11 @@ if ($) {
       a = 2;
     }
   }
-  throw "[preval] unreachable; infinite loop";
 }
 else {
   $( "oh" );
-  $( "end", a );
 }
+$( "end", a );
 `````
 
 ## Globals

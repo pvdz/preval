@@ -84,7 +84,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   tmpClusterSSA_x = tmpObjLitVal$2;
   tmpClusterSSA_y = tmpObjLitVal$4;
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -108,7 +107,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   c = e;
   d = f;
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

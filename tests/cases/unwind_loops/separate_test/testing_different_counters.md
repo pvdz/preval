@@ -61,7 +61,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`yolo`);
   tmpClusterSSA_counter1 = tmpClusterSSA_counter1 + 1;
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -75,7 +74,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( "yolo" );
   a = a + 1;
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

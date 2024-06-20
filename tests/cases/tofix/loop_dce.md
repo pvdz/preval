@@ -54,16 +54,13 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 let x = 1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $continue: {
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      $(x);
-      if ($) {
-      } else {
-        x = 2;
-        break $continue;
-      }
+  nestedLoop: {
+    $(x);
+    if ($) {
+    } else {
+      x = 2;
+      break nestedLoop;
     }
-    $(`fail`, x);
   }
 }
 `````
@@ -74,19 +71,12 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 let x = 1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $continue: {
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      $(x);
-      if ($) {
-      } else {
-        x = 2;
-        break $continue;
-      }
-    }
-    $(`fail`, x);
+  $(x);
+  if ($) {
+  } else {
+    x = 2;
   }
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -96,21 +86,14 @@ With rename=true
 `````js filename=intro
 let a = 1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $continue:   {
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      $( a );
-      if ($) {
+  $( a );
+  if ($) {
 
-      }
-      else {
-        a = 2;
-        break $continue;
-      }
-    }
-    $( "fail", a );
+  }
+  else {
+    a = 2;
   }
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

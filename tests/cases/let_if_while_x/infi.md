@@ -78,10 +78,9 @@ if (x) {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $(`again`);
   }
-  throw `[preval] unreachable; infinite loop`;
 } else {
-  $(`after`);
 }
+$(`after`);
 `````
 
 ## PST Output
@@ -96,11 +95,8 @@ if (b) {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $( "again" );
   }
-  throw "[preval] unreachable; infinite loop";
 }
-else {
-  $( "after" );
-}
+$( "after" );
 `````
 
 ## Globals

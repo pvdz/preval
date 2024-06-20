@@ -43,7 +43,6 @@ a = arrPatternSplat$1[0];
 while (true) {
   $(1);
 }
-$(a);
 `````
 
 ## Output
@@ -58,7 +57,6 @@ $(20);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -77,7 +75,6 @@ $( 20 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

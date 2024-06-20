@@ -67,7 +67,6 @@ let f = function () {
         const tmpThrowArg = $(7, `throw`);
         throw tmpThrowArg;
       }
-      $(`do not visit, do not eliminate`);
     } else {
       break;
     }

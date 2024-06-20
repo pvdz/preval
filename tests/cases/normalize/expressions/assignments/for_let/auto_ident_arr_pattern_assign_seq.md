@@ -55,7 +55,6 @@ while (true) {
   $(xyz);
   $(1);
 }
-$(a, x, y);
 `````
 
 ## Output
@@ -74,7 +73,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedAssignArrPatternRhs);
   $(1);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -94,7 +92,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( c );
   $( 1 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

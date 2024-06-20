@@ -51,9 +51,7 @@ while (true) {
     }
     x___41__ = 4;
   }
-  x___45__ = 5;
 }
-$(x___49__);
 `````
 
 Ref tracking result:
@@ -61,11 +59,9 @@ Ref tracking result:
                 | reads      | read by     | overWrites     | overwritten by
 x:
   - w @4       | ########## | not read    | none           | 20,36,41
-  - w @20      | ########## | not read    | 4,45           | 36,41
-  - w @36      | ########## | not read    | 4,20,41,45     | 41
-  - w @41      | ########## | not read    | 4,20,36,41,45  | 36,41
-  - w @45      | ########## | not read    | 45             | 20,36,41,45
-  - r @49      | none (unreachable?)
+  - w @20      | ########## | not read    | 4              | 36,41
+  - w @36      | ########## | not read    | 4,20,41        | 41
+  - w @41      | ########## | not read    | 4,20,36,41     | 36,41
 
 tmpIfTest:
   - w @11      | ########## | 15          | none           | none

@@ -53,17 +53,14 @@ let x = { a: 0, b: 1 };
 const tmpForInDeclRhs = x;
 let y = undefined;
 for (y in tmpForInDeclRhs) {
-  $continue: {
-    while (true) {
-      $(`a`);
-      const tmpIfTest = $(true);
-      if (tmpIfTest) {
-        break $continue;
-      } else {
-        $(`fail`);
-      }
+  while (true) {
+    $(`a`);
+    const tmpIfTest = $(true);
+    if (tmpIfTest) {
+      break;
+    } else {
+      $(`fail`);
     }
-    $(`b`);
   }
 }
 $(`c`);
@@ -76,17 +73,19 @@ $(`c`);
 let y = undefined;
 const x = { a: 0, b: 1 };
 for (y in x) {
-  $continue: {
-    while (true) {
+  $(`a`);
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+  } else {
+    while ($LOOP_UNROLL_10) {
+      $(`fail`);
       $(`a`);
-      const tmpIfTest = $(true);
-      if (tmpIfTest) {
-        break $continue;
+      const tmpIfTest$1 = $(true);
+      if (tmpIfTest$1) {
+        break;
       } else {
-        $(`fail`);
       }
     }
-    $(`b`);
   }
 }
 $(`c`);
@@ -103,18 +102,20 @@ const b = {
   b: 1,
 };
 for (a in b) {
-  $continue:   {
-    while (true) {
+  $( "a" );
+  const c = $( true );
+  if (c) {
+
+  }
+  else {
+    while ($LOOP_UNROLL_10) {
+      $( "fail" );
       $( "a" );
-      const c = $( true );
-      if (c) {
-        break $continue;
-      }
-      else {
-        $( "fail" );
+      const d = $( true );
+      if (d) {
+        break;
       }
     }
-    $( "b" );
   }
 }
 $( "c" );

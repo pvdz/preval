@@ -36,7 +36,6 @@ let a = { a: 999, b: 1000 };
 while (true) {
   $(100);
 }
-$(a);
 `````
 
 ## Output
@@ -46,7 +45,6 @@ $(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -57,7 +55,6 @@ With rename=true
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

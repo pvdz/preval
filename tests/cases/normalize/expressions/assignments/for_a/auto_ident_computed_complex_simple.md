@@ -42,7 +42,6 @@ a = tmpAssignRhsProp.c;
 while (true) {
   $(1);
 }
-$(a, b);
 `````
 
 ## Output
@@ -55,7 +54,6 @@ tmpAssignRhsProp.c;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -69,7 +67,6 @@ b.c;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

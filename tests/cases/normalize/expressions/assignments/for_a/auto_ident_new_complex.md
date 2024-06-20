@@ -38,7 +38,6 @@ a = new tmpNewCallee(1);
 while (true) {
   $(1);
 }
-$(a);
 `````
 
 ## Output
@@ -50,7 +49,6 @@ new tmpNewCallee(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -63,7 +61,6 @@ new a( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

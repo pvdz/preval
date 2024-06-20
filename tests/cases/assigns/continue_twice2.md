@@ -62,21 +62,16 @@
 `````js filename=intro
 let x = 10;
 while (true) {
-  $continue: {
-    while (true) {
-      const tmpIfTest = $(x);
-      if (tmpIfTest) {
-        break $continue;
-      } else {
-        x = 20;
-        $(x);
-      }
+  nestedLoop: {
+    const tmpIfTest = $(x);
+    if (tmpIfTest) {
+      break nestedLoop;
+    } else {
+      x = 20;
+      $(x);
     }
-    $(x);
-    x = 40;
   }
 }
-$(x);
 `````
 
 ## Output
@@ -85,21 +80,13 @@ $(x);
 `````js filename=intro
 let x = 10;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $continue: {
-    while (true) {
-      const tmpIfTest = $(x);
-      if (tmpIfTest) {
-        break $continue;
-      } else {
-        x = 20;
-        $(20);
-      }
-    }
-    $(x);
-    x = 40;
+  const tmpIfTest = $(x);
+  if (tmpIfTest) {
+  } else {
+    x = 20;
+    $(20);
   }
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -109,22 +96,15 @@ With rename=true
 `````js filename=intro
 let a = 10;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $continue:   {
-    while (true) {
-      const b = $( a );
-      if (b) {
-        break $continue;
-      }
-      else {
-        a = 20;
-        $( 20 );
-      }
-    }
-    $( a );
-    a = 40;
+  const b = $( a );
+  if (b) {
+
+  }
+  else {
+    a = 20;
+    $( 20 );
   }
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

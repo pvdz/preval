@@ -787,7 +787,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
   function anyBlock(block, funcNode = null, labelStatementParentNode = null) {
     // program, body of a function, actual block statement, switch case body, try/catch body (finallys are eliminated)
-    group('anyBlock');
+    vgroup('anyBlock');
     const body = block.body;
 
     let somethingChanged = false;
@@ -800,8 +800,8 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       }
     }
 
-    groupEnd();
-    log('/anyBlock', somethingChanged);
+    vgroupEnd();
+    vlog('/anyBlock', somethingChanged);
     return somethingChanged;
   }
 
@@ -1096,6 +1096,10 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       }
 
       addLabelReference(fdata, node.label, body, i);
+    } else {
+      // An unlabeled break is the only way for a while(true) to continue to the next statement
+      // If there is none then the next statement is guaranteed dead and we can DCE it.
+      loopStack[loopStack.length - 1].$p.hasUnlabeledBreak = true;
     }
 
     if (body.length > i + 1) {
@@ -7194,6 +7198,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     ASSERT(node.body.type === 'BlockStatement');
     ifelseStack.push(node);
     loopStack.push(node);
+    node.$p.hasUnlabeledBreak = false;
     transformBlock(node.body, undefined, -1, node, false);
     loopStack.pop();
     ifelseStack.pop();
@@ -9150,6 +9155,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     ASSERT(node.body.type === 'BlockStatement');
     ifelseStack.push(node);
     loopStack.push(node);
+    node.$p.hasUnlabeledBreak = false;
     transformBlock(node.body, undefined, -1, node, false);
     loopStack.pop();
     ifelseStack.pop();
@@ -9667,15 +9673,31 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       }
     }
 
-    vlog(
-      BLUE + 'while;returnBreakThrow?' + RESET,
-      node.body.$p.returnBreakThrow ? 'yes; ' + node.body.$p.returnBreakThrow : 'no',
-    );
-    if (node.body.$p.returnBreakThrow) {
-      vlog(
-        'The body of this loop may always return but it may never be executed so we cannot safely DCE the sibling statements that follow it, nor mark the parent as such',
-      );
+    if (!node.$p.hasUnlabeledBreak && i < body.length - 1) {
+      const next = body[i+1];
+      if (next?.type !== 'ReturnStatement') {
+        vlog('This loop has no unlabeled breaks so code flow can not continue to the next statement. The rest of the parent block is unreachable.');
+        rule('A while with no unlabeled break means the next sibling statements can not be reached and must be dropped');
+        example('while (true) { f(); } g();', 'while (true) { f(); }');
+        before(body);
+
+        body.length = i+1;
+
+        after(body);
+        return true;
+      } else if (next && (next.argument?.type !== 'Identifier' || next.argument.name !== 'undefined')) {
+        // In the end, I prefer a `return undefined` over a `throw <data>` so let's aim for that.
+        rule('If the statement after an infinite loop is a return then it must return undefined');
+        example('function f(){ while (true) {} return foo; }', 'function f(){ while (true) {} return undefined; }');
+        before(next);
+
+        next.argument = AST.identifier('undefined');
+
+        after(next);
+        return true;
+      }
     }
+
 
     return false;
   }

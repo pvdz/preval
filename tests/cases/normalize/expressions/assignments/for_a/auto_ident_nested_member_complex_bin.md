@@ -59,7 +59,6 @@ a = tmpNestedPropAssignRhs;
 while (true) {
   $(1);
 }
-$(a, b, c, d, e);
 `````
 
 ## Output
@@ -77,7 +76,6 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -96,7 +94,6 @@ c[d] = 7;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

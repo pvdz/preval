@@ -59,7 +59,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   x = /foo/;
   x.foo = `object`;
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -75,7 +74,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   a = /foo/;
   a.foo = "object";
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

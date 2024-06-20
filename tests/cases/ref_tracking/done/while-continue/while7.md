@@ -43,7 +43,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___7__) {
     }
   }
 }
-$(x___33__);
 `````
 
 Ref tracking result:
@@ -54,4 +53,3 @@ x:
   - r @18      | 4,29
   - r @25      | 4,29
   - w @29      | ########## | 18,25       | 4,29           | 29
-  - r @33      | none (unreachable?)

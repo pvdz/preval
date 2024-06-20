@@ -46,7 +46,6 @@ a = tmpNestedAssignObjPatternRhs;
 while (true) {
   $(1);
 }
-$(a, b);
 `````
 
 ## Output
@@ -60,7 +59,6 @@ tmpNestedAssignObjPatternRhs.b;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -75,7 +73,6 @@ c.b;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

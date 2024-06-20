@@ -66,12 +66,13 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  let x = $(1);
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    $(x);
-    x = $(2);
+    let x = $(1);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      $(x);
+      x = $(2);
+    }
   }
-  throw `[preval] unreachable; infinite loop`;
 } else {
 }
 `````
@@ -82,12 +83,13 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  let a = $( 1 );
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    $( a );
-    a = $( 2 );
+    let a = $( 1 );
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      $( a );
+      a = $( 2 );
+    }
   }
-  throw "[preval] unreachable; infinite loop";
 }
 `````
 

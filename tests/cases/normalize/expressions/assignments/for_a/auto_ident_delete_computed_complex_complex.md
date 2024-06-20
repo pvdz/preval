@@ -43,7 +43,6 @@ a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 while (true) {
   $(1);
 }
-$(a, arg);
 `````
 
 ## Output
@@ -57,7 +56,6 @@ delete tmpDeleteCompObj[tmpDeleteCompProp];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -72,7 +70,6 @@ delete b[ c ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

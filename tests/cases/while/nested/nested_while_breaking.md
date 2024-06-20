@@ -53,7 +53,6 @@ while (true) {
     }
   }
 }
-$(3);
 `````
 
 ## Output
@@ -65,7 +64,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(2);
   $(true);
 }
-throw `[preval] unreachable; infinite loop`;
 `````
 
 ## PST Output
@@ -78,7 +76,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 2 );
   $( true );
 }
-throw "[preval] unreachable; infinite loop";
 `````
 
 ## Globals

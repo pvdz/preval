@@ -34,8 +34,9 @@ function _coercials(fdata) {
     ASSERT(read.parentNode.type === 'CallExpression', 'when else does $coerce appear??', read.parentNode);
     ASSERT(read.parentProp === 'callee', 'should always be called', read.parentNode);
 
-    const argNode = read.parentNode['arguments'][0];
-    const kind = AST.getPrimitiveValue(read.parentNode['arguments'][1]);
+    const argNode = read.parentNode.arguments[0];
+    // We control $coerce and know the second arg is a primitive
+    const kind = AST.getPrimitiveValue(read.parentNode.arguments[1]);
 
     if (AST.isPrimitive(argNode)) {
       vlog('Arg is already a primitive. Drop it now');
@@ -99,12 +100,16 @@ function _coercials(fdata) {
     }
 
     const argMeta = fdata.globallyUniqueNamingRegistry.get(argName);
+
+    if (argMeta.isImplicitGlobal) return;
+    // Seems to me like there are more conditions but ...
+
     const at = argMeta.typing.mustBeType;
     // Note: null and undefined are actual values. Let normalize clean those up.
 
     if (at === 'string' && (kind === 'string' || kind === 'plustr')) {
       const argWrite = argMeta.writes.find((write) => write.kind === 'var');
-      ASSERT(argWrite, 'right?');
+      ASSERT(argWrite, 'right?', argMeta, argNode);
 
       rule('Coercing a string to a string is a noop');
       example('const x = `a${b}c`; const b = $coerce(x, "string");', 'const x = `a${b}c`; const b = x;');

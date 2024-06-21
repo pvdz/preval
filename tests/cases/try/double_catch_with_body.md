@@ -96,7 +96,7 @@ catch (a) {
   try {
     $( "inner" );
   }
-catch (b) {
+  catch (b) {
     $( "outer" );
   }
 }

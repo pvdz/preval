@@ -328,7 +328,7 @@ loopStop: {
       }
     }
   }
-  loopStop$1:   {
+  loopStop$1: {
     $( 100 );
     const g = $( 0 );
     const h = $( g );
@@ -352,7 +352,7 @@ loopStop: {
         }
       }
     }
-    loopStop$2:     {
+    loopStop$2: {
       $( 100 );
       const m = $( 0 );
       const n = $( m );
@@ -376,7 +376,7 @@ loopStop: {
           }
         }
       }
-      loopStop$3:       {
+      loopStop$3: {
         $( 100 );
         const s = $( 0 );
         const t = $( s );
@@ -400,7 +400,7 @@ loopStop: {
             }
           }
         }
-        loopStop$4:         {
+        loopStop$4: {
           $( 100 );
           const y = $( 0 );
           const z = $( y );
@@ -424,7 +424,7 @@ loopStop: {
               }
             }
           }
-          loopStop$5:           {
+          loopStop$5: {
             $( 100 );
             const 41 = $( 0 );
             const 51 = $( 41 );
@@ -448,7 +448,7 @@ loopStop: {
                 }
               }
             }
-            loopStop$6:             {
+            loopStop$6: {
               $( 100 );
               const a1 = $( 0 );
               const b1 = $( a1 );
@@ -472,7 +472,7 @@ loopStop: {
                   }
                 }
               }
-              loopStop$7:               {
+              loopStop$7: {
                 $( 100 );
                 const g1 = $( 0 );
                 const h1 = $( g1 );
@@ -496,7 +496,7 @@ loopStop: {
                     }
                   }
                 }
-                loopStop$8:                 {
+                loopStop$8: {
                   $( 100 );
                   const m1 = $( 0 );
                   const n1 = $( m1 );
@@ -520,7 +520,7 @@ loopStop: {
                       }
                     }
                   }
-                  loopStop$9:                   {
+                  loopStop$9: {
                     $( 100 );
                     const s1 = $( 0 );
                     const t1 = $( s1 );
@@ -544,7 +544,7 @@ loopStop: {
                         }
                       }
                     }
-                    loopStop$10:                     {
+                    loopStop$10: {
                       $( 100 );
                       const y1 = $( 0 );
                       const z1 = $( y1 );

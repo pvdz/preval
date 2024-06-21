@@ -118,7 +118,7 @@ function _printStatement(indent, config, node) {
     case 'LabelStatement': {
       // There exists language exceptions around the label being a
       // direct parent of a loop so we must support that case.
-      return `${node.label}: ${printStatement(indent, config, node.body)}`;
+      return `${node.label}: ${_printStatement(indent, config, node.body)}`;
     }
     case 'LetStatement': {
       return `let ${printRef(indent, config, node.id)} = ${printExpression(indent, config, node.init)};`;
@@ -134,8 +134,8 @@ function _printStatement(indent, config, node) {
     }
     case 'TryStatement': {
       const a = `try ${printBlock(indent, config, node.body)}`;
-      const b = node.trap ? `\ncatch (${printRef(indent, config, node.id)}) ${printBlock(indent, config, node.trap)}` : '';
-      const c = node.final ? `\nfinally ${printBlock(indent, config, node.final)}` : '';
+      const b = node.trap ? `\n${indent}catch (${printRef(indent, config, node.id)}) ${printBlock(indent, config, node.trap)}` : '';
+      const c = node.final ? `\n${indent}finally ${printBlock(indent, config, node.final)}` : '';
       return `${a}${b}${c}`;
     }
     case 'WhileStatement': {

@@ -240,10 +240,10 @@ loopStop: {
       $( "third" );
     }
   }
-catch (b) {
+  catch (b) {
     $( "error", b );
   }
-  loopStop$1:   {
+  loopStop$1: {
     try {
       const c = $( "first" );
       $( "second" );
@@ -254,10 +254,10 @@ catch (b) {
         $( "third" );
       }
     }
-catch (d) {
+    catch (d) {
       $( "error", d );
     }
-    loopStop$2:     {
+    loopStop$2: {
       try {
         const e = $( "first" );
         $( "second" );
@@ -268,10 +268,10 @@ catch (d) {
           $( "third" );
         }
       }
-catch (f) {
+      catch (f) {
         $( "error", f );
       }
-      loopStop$3:       {
+      loopStop$3: {
         try {
           const g = $( "first" );
           $( "second" );
@@ -282,10 +282,10 @@ catch (f) {
             $( "third" );
           }
         }
-catch (h) {
+        catch (h) {
           $( "error", h );
         }
-        loopStop$4:         {
+        loopStop$4: {
           try {
             const i = $( "first" );
             $( "second" );
@@ -296,10 +296,10 @@ catch (h) {
               $( "third" );
             }
           }
-catch (j) {
+          catch (j) {
             $( "error", j );
           }
-          loopStop$5:           {
+          loopStop$5: {
             try {
               const k = $( "first" );
               $( "second" );
@@ -310,10 +310,10 @@ catch (j) {
                 $( "third" );
               }
             }
-catch (l) {
+            catch (l) {
               $( "error", l );
             }
-            loopStop$6:             {
+            loopStop$6: {
               try {
                 const m = $( "first" );
                 $( "second" );
@@ -324,10 +324,10 @@ catch (l) {
                   $( "third" );
                 }
               }
-catch (n) {
+              catch (n) {
                 $( "error", n );
               }
-              loopStop$7:               {
+              loopStop$7: {
                 try {
                   const o = $( "first" );
                   $( "second" );
@@ -338,10 +338,10 @@ catch (n) {
                     $( "third" );
                   }
                 }
-catch (p) {
+                catch (p) {
                   $( "error", p );
                 }
-                loopStop$8:                 {
+                loopStop$8: {
                   try {
                     const q = $( "first" );
                     $( "second" );
@@ -352,10 +352,10 @@ catch (p) {
                       $( "third" );
                     }
                   }
-catch (r) {
+                  catch (r) {
                     $( "error", r );
                   }
-                  loopStop$9:                   {
+                  loopStop$9: {
                     try {
                       const s = $( "first" );
                       $( "second" );
@@ -366,10 +366,10 @@ catch (r) {
                         $( "third" );
                       }
                     }
-catch (t) {
+                    catch (t) {
                       $( "error", t );
                     }
-                    loopStop$10:                     {
+                    loopStop$10: {
                       try {
                         const u = $( "first" );
                         $( "second" );
@@ -380,7 +380,7 @@ catch (t) {
                           $( "third" );
                         }
                       }
-catch (v) {
+                      catch (v) {
                         $( "error", v );
                       }
                       while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -394,7 +394,7 @@ catch (v) {
                             $( "third" );
                           }
                         }
-catch (x) {
+                        catch (x) {
                           $( "error", x );
                         }
                       }

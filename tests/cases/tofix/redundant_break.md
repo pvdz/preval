@@ -95,7 +95,7 @@ $( 0 );
 while (true) {
   const a = $( true );
   if (a) {
-    $continue:     {
+    $continue: {
       break;
     }
   }

@@ -4129,7 +4129,7 @@ const d = function($$0,$$1,$$2,$$3,$$4 ) {
   let f3 = undefined;
   let 75 = i;
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    $continue:     {
+    $continue: {
       const 85 = typeof 75;
       const 95 = "number" == 85;
       if (95) {

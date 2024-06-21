@@ -124,7 +124,7 @@ With rename=true
 const a = function() {
   debugger;
   let b = 10;
-  $inlinedFunction:   {
+  $inlinedFunction: {
     const c = $( 1 );
     if (c) {
       const d = $( 1 );

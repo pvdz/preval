@@ -134,7 +134,7 @@ const a = function() {
   debugger;
   c$53;
   let b = 10;
-  $inlinedFunction:   {
+  $inlinedFunction: {
     const c = $( 1 );
     if (c) {
       const d = $( 1 );

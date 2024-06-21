@@ -104,7 +104,7 @@ const a = function() {
   try {
     $( "then" );
   }
-catch (b) {
+  catch (b) {
 
   }
   return undefined;
@@ -114,7 +114,7 @@ const c = function() {
   try {
     $( "else" );
   }
-catch (d) {
+  catch (d) {
 
   }
   return undefined;

@@ -107,7 +107,7 @@ try {
     $();
     throw "testing";
   }
-catch (a) {
+  catch (a) {
     $( "ok" );
   }
 }

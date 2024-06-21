@@ -319,7 +319,7 @@ const a = function() {
   }
 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $continue:   {
+  $continue: {
     const e = $();
     if (e) {
       const f = $();
@@ -334,7 +334,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   }
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  nestedLoop:   {
+  nestedLoop: {
     const h = $();
     if (h) {
       const i = $();

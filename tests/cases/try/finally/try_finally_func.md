@@ -177,7 +177,7 @@ const a = function() {
       d = 100;
     }
   }
-catch (f) {
+  catch (f) {
     $( b );
     throw f;
   }

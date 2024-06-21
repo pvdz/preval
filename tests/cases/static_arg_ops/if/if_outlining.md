@@ -271,7 +271,7 @@ const a = function($$0,$$1 ) {
   const f = b.length;
   const g = f > 0;
   b.push( d );
-  $inlinedFunction:   {
+  $inlinedFunction: {
     if (g) {
       const h = f - 1;
       const i = h >>> 1;

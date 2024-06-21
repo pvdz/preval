@@ -211,7 +211,7 @@ $finally$3: {
     try {
       $( 1 );
     }
-catch (e) {
+    catch (e) {
       $( 2 );
       b = true;
       d = e;
@@ -219,7 +219,7 @@ catch (e) {
     }
     $( 2 );
   }
-catch (f) {
+  catch (f) {
     a = true;
     c = f;
   }

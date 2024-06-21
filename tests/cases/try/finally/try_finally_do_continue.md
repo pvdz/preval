@@ -96,7 +96,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     $( 1 );
   }
-catch (a) {
+  catch (a) {
 
   }
   $( 2 );

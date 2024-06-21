@@ -98,7 +98,7 @@ for (a of b) {
   try {
     $( a, 1 );
   }
-catch (c) {
+  catch (c) {
 
   }
   $( 2 );

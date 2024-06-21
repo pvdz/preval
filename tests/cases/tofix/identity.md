@@ -103,7 +103,7 @@ if (a) {
   try {
     $( x, 1 );
   }
-catch (b) {
+  catch (b) {
 
   }
   $( 2 );

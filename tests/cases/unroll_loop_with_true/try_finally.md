@@ -176,7 +176,7 @@ else {
         $( "third" );
       }
     }
-catch (f) {
+    catch (f) {
       $( "finally" );
       throw f;
     }

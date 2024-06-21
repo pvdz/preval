@@ -95,7 +95,7 @@ With rename=true
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  nestedLoop:   {
+  nestedLoop: {
     const a = $();
     if (a) {
       const b = $();

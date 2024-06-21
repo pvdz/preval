@@ -114,7 +114,7 @@ $inlinedFunction: {
       throw "too";
     }
   }
-catch (b) {
+  catch (b) {
     $( "caught" );
   }
   $( a );

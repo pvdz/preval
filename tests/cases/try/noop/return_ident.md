@@ -72,7 +72,7 @@ $inlinedFunction: {
   try {
     break $inlinedFunction;
   }
-catch (b) {
+  catch (b) {
 
   }
   a = undefined;

@@ -126,7 +126,7 @@ const a = function($$0 ) {
   try {
     f = b();
   }
-catch (g) {
+  catch (g) {
     d = true;
     e = g;
   }

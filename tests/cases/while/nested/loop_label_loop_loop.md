@@ -106,7 +106,7 @@ With rename=true
 `````js filename=intro
 let a = 10;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  foo:   {
+  foo: {
     const b = $( a );
     if (b) {
       while (true) {

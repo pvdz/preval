@@ -344,7 +344,7 @@ const a = function() {
       }
     }
   }
-catch (g) {
+  catch (g) {
     $( b );
     throw g;
   }
@@ -388,7 +388,7 @@ catch (g) {
               }
             }
           }
-catch (m) {
+          catch (m) {
             $( b );
             throw m;
           }

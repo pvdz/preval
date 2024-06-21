@@ -505,7 +505,7 @@ export function createReadRef(obj) {
     blockIndexes, // Indexes per each element of blockChain and blockBodies
     ifChain,
     funcChain,
-    innerLoop,
+    innerLoop, // number, pid of the top of the loop stack, or 0 if thats program/function
     innerIf,
     innerElse,
     innerTry,

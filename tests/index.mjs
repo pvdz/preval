@@ -384,6 +384,17 @@ function runTestCase(
       return func.call(obj, ...args);
     }
 
+    // We may need to have this alias the actual funcs... not sure if thats worth it
+    function $console_log(...args) { $('called console.log:', ...args); }
+    function $console_warn(...args) { $('called console.warn:', ...args); }
+    function $console_error(...args) { $('called console.error:', ...args); }
+    function $console_dir(...args) { $('called console.dir:', ...args); }
+    function $console_debug(...args) { $('called console.debug:', ...args); }
+    function $console_time(...args) { $('called console.time:', ...args); }
+    function $console_timeEnd(...args) { $('called console.timeEnd:', ...args); }
+    function $console_group(...args) { $('called console.group:', ...args); }
+    function $console_groupEnd(...args) { $('called console.groupEnd:', ...args); }
+
     function $coerce(x, to) {
       return coerce(x, to);
     }
@@ -396,6 +407,15 @@ function runTestCase(
       '$': $,
       'objPatternRest': objPatternRest,
       '$dotCall': $dotCall,
+      '$console_log': $console_log,
+      '$console_warn': $console_warn,
+      '$console_error': $console_error,
+      '$console_dir': $console_dir,
+      '$console_debug': $console_debug,
+      '$console_time': $console_time,
+      '$console_timeEnd': $console_timeEnd,
+      '$console_group': $console_group,
+      '$console_groupEnd': $console_groupEnd,
       '$spy': $spy,
       '$coerce': $coerce,
       '$throwTDZError': $throwTDZError,

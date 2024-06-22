@@ -14,7 +14,6 @@ export const MAX_UNROLL_TRUE_COUNT = 1000;
 const globalNames = new Map([
   ['clearInterval', 'function'],
   ['clearTimeout', 'function'],
-  ['console', 'function'],
   ['parseInt', 'function'],
   ['parseFloat', 'function'],
   ['setInterval', 'function'],
@@ -44,6 +43,17 @@ const globalNames = new Map([
   ['Worker', 'undefined'], // for the react build
   ['Node', 'undefined'], // for the react build
   ['global', 'object'], // for the react build
+  ['console', 'object'],
+  // Note: these need to be added in the dotCall reverse transform
+  ['$console_log', 'function'], // console.log support
+  ['$console_warn', 'function'], // console.warn support
+  ['$console_error', 'function'], // console.error support
+  ['$console_dir', 'function'], // console.dir support
+  ['$console_debug', 'function'], // console.debug support
+  ['$console_time', 'function'], // console.time support
+  ['$console_timeEnd', 'function'], // console.timeEnd support
+  ['$console_group', 'function'], // console.group support
+  ['$console_groupEnd', 'function'], // console.groupEnd support
 
   // browser
   ['window', 'undefined'], // for the react build

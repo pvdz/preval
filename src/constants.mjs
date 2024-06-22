@@ -58,6 +58,13 @@ export const BUILTIN_NUMBER_METHODS_SYMBOLS = Object.values(BUILTIN_NUMBER_METHO
 export const BUILTIN_OBJECT_PROTOTYPE = '$ObjectPrototype';
 export const BUILTIN_REGEXP_PROTOTYPE = '$RegExpPrototype';
 export const BUILTIN_REGEXP_METHOD_LOOKUP = {
+  exec: '$RegExp_exec',
+  match: '$RegExp_match',
+  matchAll: '$RegExp_matchAll',
+  replace: '$RegExp_replace',
+  replaceAll: '$RegExp_replaceAll',
+  search: '$RegExp_search',
+  split: '$RegExp_split',
   test: '$RegExp_test',
 };
 export const BUILTIN_REGEXP_METHOD_LOOKUP_REV = Object.keys(BUILTIN_REGEXP_METHOD_LOOKUP).reduce((obj, key) => { obj[BUILTIN_REGEXP_METHOD_LOOKUP[key]] = key; return obj; }, {})

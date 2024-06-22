@@ -152,6 +152,44 @@ function _dotCall(fdata) {
         break;
       }
     }
+
+    if (funcArg.type === 'Identifier' && context.type === 'Identifier' && context.name === 'console') {
+      ASSERT(fdata.globallyUniqueNamingRegistry.get(context.name).isBuiltin, 'should not find other `console` refs than the built-in');
+
+      const method = {
+        $console_log: 'log',
+        $console_warn: 'warn',
+        $console_error: 'error',
+        $console_dir: 'dir',
+        $console_debug: 'debug',
+        $console_time: 'time',
+        $console_timeEnd: 'timeEnd',
+        $console_group: 'group',
+        $console_groupEnd: 'groupEnd',
+      }[funcArg.name];
+
+      if (method) {
+        rule('restore certain method calls to console');
+        example('$dotCall($console_log, console, a, b, c);', 'console.log(a, b, c)');
+        before(read.blockBody[read.blockIndex]);
+
+        const newNode = AST.callExpression(
+          AST.memberExpression(
+            AST.identifier('console'),
+            AST.identifier(method),
+          ),
+          read.parentNode.arguments.slice(2), // First is the func, second is the context, remainder are the args
+          false
+        );
+
+        if (read.grandIndex < 0) read.grandNode[read.grandProp] = newNode;
+        else read.grandNode[read.grandProp][read.grandIndex] = newNode;
+
+        after(read.blockBody[read.blockIndex]);
+        ++changed;
+        return;
+      }
+    }
   });
 
   if (changed) {

@@ -32,7 +32,7 @@ import {
   source,
   after,
   findBodyOffsetExpensive,
-  findBodyOffsetExpensiveMaybe,
+  findBodyOffsetExpensiveMaybe, riskyRule,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { BUILTIN_FUNC_CALL_NAME } from '../constants.mjs';
@@ -3552,6 +3552,47 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           before(body[i]);
 
           node.property = AST.tru();
+
+          after(body[i]);
+          return true;
+        }
+
+        if (
+          !node.computed &&
+          node.object.type === 'Identifier' &&
+          node.object.name === 'console' &&
+          ['log', 'warn', 'error', 'dir', 'debug', 'time', 'timeEnd', 'group', 'groupEnd'].includes(node.property.name) &&
+          (parentNode.type !== 'CallExpression' || parentNode.callee !== node) &&
+          parentNode.type !== 'NewExpression' // umm, I guess.
+        ) {
+          // Some built-in support for the pseudo standard console stuff
+          const meta = fdata.globallyUniqueNamingRegistry.get('console');
+          ASSERT(!meta.isImplicitGlobal, 'its a builtin yah?', meta);
+          ASSERT(meta.isBuiltin, 'local bindings would be renamed', meta);
+
+          // This transform is still risky because in nodejs the `console` object is shared across modules and is mutable
+          // As such, it's not uncommon for these methods to be stubbed out or sunk somewhere else.
+
+          riskyRule('Certain console methods that are not called should get aliased');
+          example('const log = console.log; log("foo");', 'const log = $console_log; log("foo");');
+          before(body[i]);
+
+          const prop = node.property.name;
+          const finalNode = AST.identifier(
+            prop === 'log' ? '$console_log' :
+            prop === 'warn' ? '$console_warn' :
+            prop === 'error' ? '$console_error' :
+            prop === 'dir' ? '$console_dir' :
+            prop === 'debug' ? '$console_debug' :
+            prop === 'time' ? '$console_time' :
+            prop === 'timeEnd' ? '$console_timeEnd' :
+            prop === 'group' ? '$console_group' :
+            prop === 'groupEnd' ? '$console_groupEnd' :
+            TODO
+          );
+
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body.splice(i, 1, finalParent);
 
           after(body[i]);
           return true;

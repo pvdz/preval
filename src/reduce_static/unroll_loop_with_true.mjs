@@ -63,6 +63,9 @@ function _unrollLoopWithTrue(fdata, unrollTrueLimit) {
 }
 
 function processAttempt(fdata, unrollTrueLimit) {
+  if (!(unrollTrueLimit > 0)) {
+    log('The unroll limit is not greater than zero, bailing', unrollTrueLimit);
+  }
   let updated = 0;
 
   // We're looking for `while` whose test condition is `true`
@@ -151,6 +154,8 @@ function processAttempt(fdata, unrollTrueLimit) {
 
     // This should be fine. First clone the while body
 
+    vlog('Going try to unroll this loop, attempting to clone loop body first...');
+
     const fail = {};
     const clone = deepCloneForFuncInlining(whileNode.body, new Map, fail);
     if (fail.ed) {
@@ -158,12 +163,16 @@ function processAttempt(fdata, unrollTrueLimit) {
       return;
     }
 
+    vlog('Clone successful. Now replacing unlabeled breaks that target this loop.');
+
     // Next do preliminary work on the clone to replace the break/continue
 
-    const tmpName = createFreshVar('$tmpLoopUnrollCheck', fdata);
-    const labelStatementNode = createFreshLabelStatement('loopStop', fdata, clone);
+    const labelStatementNode = createFreshLabelStatement('loopStop', fdata, AST.blockStatement(
+      clone,
+      whileNode,
+    ));
 
-    const condCount = AST.isTrue(whileNode.test) ? unrollTrueLimit : parseInt(whileNode.test.name.slice('$LOOP_UNROLL_'.length), 10) - 1;
+    const condCount = AST.isTrue(whileNode.test) ? unrollTrueLimit - 1 : parseInt(whileNode.test.name.slice('$LOOP_UNROLL_'.length), 10) - 1;
     const condIdent = condCount > 0 ? '$LOOP_UNROLL_' + condCount : ('$LOOP_DONE_UNROLLING_ALWAYS_TRUE');
 
     const walker = function replacer(node, beforeWalk, nodeType, path) {
@@ -176,44 +185,43 @@ function processAttempt(fdata, unrollTrueLimit) {
         const parentProp = path.props[path.props.length - 1];
         const parentIndex = path.indexes[path.indexes.length - 1];
 
+        // Note: we ignore nested loops here so don't worry about checking the break target
+
+        rule('While unrolling, cloned unlabeled breaks that were targeting the while scope should get a label and disable the loop var');
+        example('while (true) { break; }', 'while (true) { unrollCheck = false; break loopStop; }');
+        before(parentNode[parentProp][parentIndex]);
+
         // Break is already asserted to not have a label
         const newNode = AST.blockStatement([
-          AST.expressionStatement(AST.assignmentExpression(tmpName, AST.fals(), '=')),
           AST.breakStatement(labelStatementNode.label.name),
         ])
 
         if (parentIndex < 0) parentNode[parentProp] = newNode;
         else parentNode[parentProp][parentIndex] = newNode;
+
+        after(newNode);
       }
     };
     walk(walker, clone, 'BlockStatement');
 
-    rule('while(true) with any one break or only simple breaks should be unrolled');
+    vlog('And finally insert the cloned body and wrap the whole thing in a label');
 
+    rule('while(true) with any one break or only simple breaks should be unrolled');
     example(
       'while (true) { if ($()) break; }',
       //'{ let tmp = $LOOP_COUNTER_1000; stop: { if ($()) { tmp = false; break stop; } } while (tmp) { if ($()) break; }'
       //'{ let tmp = true; stop: if ($()) { tmp = false; break stop; } if (tmp) { while ($LOOP_COUNTER_999) { if ($()) break; } }'
-      '{ if ($()) { } else { while ($LOOP_COUNTER_999) { if ($()) break; } }'
+      'loopStop: { if ($()) { break loopStop; } else { while ($LOOP_COUNTER_999) { if ($()) break loopStop; } }'
     );
-
 
     before(whileNode, parentNode);
 
-    vlog(whileNode.test)
-    vlog('Counter:', condCount, ', ident:', condIdent, ', tmpName:', tmpName, ', whileNode.test.name:', whileNode.test.name);
+    vlog('Counter:', condCount, ', ident:', condIdent, ', whileNode.test.name:', whileNode.test.type, whileNode.test.name);
 
-    labelStatementNode.body.body.push(blockBody[blockIndex]);
-    blockBody[blockIndex].test = AST.identifier(condIdent);
+    whileNode.test = AST.identifier(condIdent);
+    blockBody[blockIndex] = labelStatementNode;
 
-    const newNodes = AST.blockStatement([
-      AST.variableDeclaration(tmpName, AST.tru(), 'let'),
-      labelStatementNode,
-    ]);
-
-    blockBody[blockIndex] = newNodes;
-
-    after(newNodes, parentNode);
+    after(labelStatementNode, parentNode);
 
     ++updated;
   }

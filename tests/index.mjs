@@ -279,7 +279,7 @@ function runTestCase(
         maxPass: CONFIG.maxPass ?? mdOptions?.maxPass,
         refTest: isRefTest,
         unrollLimit: CONFIG.unroll ?? mdOptions?.unroll ?? 10,
-        unrollTrueLimit: CONFIG.unrollTrue ?? mdOptions?.unrollTrue ?? 10,
+        unrollTrueLimit: CONFIG.unrollTrue ?? mdOptions?.unrollTrue ?? 11,
         onAfterFirstParse(preFdata) {
           // No action applied. I dont think we need to do anything here
         },

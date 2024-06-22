@@ -57,7 +57,7 @@ With rename=true
 `````js filename=intro
 const a = async function() {
   debugger;
-  (await ($);
+  (await ($));
   return undefined;
 };
 a();

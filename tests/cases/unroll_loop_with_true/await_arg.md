@@ -61,7 +61,7 @@ With rename=true
 `````js filename=intro
 const a = async function() {
   debugger;
-  const b = (await (true);
+  const b = (await (true));
   $( b );
   return undefined;
 };

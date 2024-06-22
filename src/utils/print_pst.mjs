@@ -240,7 +240,7 @@ function printExpression(indent, config, node) {
       return `[ ${node.elements.map(e => e === null ? ',' : `${printSimpleOrSpread(indent, config, e)}`).join(', ')} ]`;
     }
     case 'AwaitExpression': {
-      return `(await (${printSimple(indent, config, node.arg)})`;
+      return `(await (${printSimple(indent, config, node.arg)}))`;
     }
     case 'BinaryExpression': {
       return `${printSimple(indent, config, node.left)} ${node.op} ${printSimple(indent, config, node.right)}`;

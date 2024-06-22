@@ -60,7 +60,7 @@ With rename=true
 const a = async function() {
   debugger;
   const b = $();
-  (await (b);
+  (await (b));
   return undefined;
 };
 a();

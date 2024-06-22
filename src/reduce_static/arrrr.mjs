@@ -6,6 +6,7 @@
 // - length lookup
 //   - for `let`: `let arr = [1, 2, 3]; f(arr.length); arr = {};`
 //   - for `const`: `const arr = [1, 2, 3]; const f = function(n){ return arr.length; }; f(arr.length); f(2);`
+// - consts with array literal init that only have property reads must be safe to inline
 
 import {
   ASSERT,
@@ -29,7 +30,7 @@ import * as AST from '../ast.mjs';
 import { mayBindingMutateBetweenRefs } from '../bindings.mjs';
 
 export function arrrrrr(fdata) {
-  group('\n\n\nChecking for array stuffs');
+  group('\n\n\nChecking for arrrrrrray stuffs');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _arrrrrr(fdata);
   groupEnd();
@@ -84,6 +85,92 @@ function processAttempt(fdata, queue) {
     let failed = false;
     let sawMutatedOnce = false;
 
+    if (meta.writes.length === 1) {
+      // This is a const with an array literal as init.
+      // There are no further writes but there may be mutations through methods.
+      // First check if this is only property reads...
+      if (meta.reads.every(read => {
+        return (
+          read.parentNode.type === 'MemberExpression' &&
+          read.parentProp === 'object' &&
+          (read.grandNode.type === 'VariableDeclarator' || read.grandNode.type === 'AssignmentExpression' || read.grandNode.type === 'ExpressionStatement')
+        );
+      })) {
+        vlog('All reads of this array constant are member accesses. Try to resolve the primitives');
+        if (arrNode.elements.some(node => !node || AST.isPrimitive(node))) {
+          vgroup('At least one element is a primitive that we can inline, or elided (which is undefined). Search for certain reads now.');
+
+          // TODO: what about `for (x of y[Symbol.iterator])` sort of stuff? Not resolving to primitive I guess?
+
+          meta.reads.forEach((read, ei) => {
+            vgroup('- read', ei, ', @', +read.node.$p.pid);
+            if (read.parentNode.computed) {
+              if (AST.isPrimitive(read.parentNode.property)) {
+                const val = AST.getPrimitiveValue(read.parentNode.property);
+                vlog('Accessing primitive value', val, 'on the array, a', typeof val);
+                if (typeof val === 'number') {
+                  const anode = arrNode.elements[val];
+                  if (!anode || AST.isPrimitive(anode)) {
+                    vlog('And the accessed value is also a primitive, so we can inline it!');
+
+                    rule('An array that has only property reads can inline reads when they only concern primitives');
+                    example('const arr = [1,2,3]; $(arr[1]);', 'const arr = [1,2,3]; $(2);');
+                    before(read.blockBody[read.blockIndex]);
+
+                    const newNode = AST.primitive(anode ? AST.getPrimitiveValue(anode) : undefined)
+
+                    if (read.grandIndex < 0) read.grandNode[read.grandProp] = newNode;
+                    else read.grandNode[read.grandProp][read.grandIndex] = newNode;
+
+                    after(read.blockBody[read.blockIndex]);
+                    updated += 1;
+                  } else {
+                    vlog('The accessed value is not a primitive, so we bail for now');
+                  }
+                } else {
+                  vlog('This is not a number so we must abort, for now');
+                }
+              } else {
+                vlog('Dynamic property is not a primitive so we cannot resolve it reliably');
+              }
+            } else {
+              // Just check the property name and resolve it against a plain array (or array prototype, most likely .length)
+
+              switch (read.parentNode.property.name) {
+                case 'length':
+                  rule('Accessing .length on an array when this is a constant and only has props read, can be lined');
+                  example('const arr = [1, 2, 3, 4]; $(arr.length);', 'const arr [1, 2, 3, 4]; $(4);');
+                  before(read.blockBody[read.blockIndex]);
+
+                  const newNode = AST.primitive(arrNode.elements.length);
+
+                  if (read.grandIndex < 0) read.grandNode[read.grandProp] = newNode;
+                  else read.grandNode[read.grandProp][read.grandIndex] = newNode;
+
+                  after(read.blockBody[read.blockIndex]);
+                  updated += 1;
+                  break;
+                default:
+                  // arr[true] or whatever. ignore it for now. we may support more cases here but whatever.
+              }
+
+            }
+            vgroupEnd();
+          });
+          vgroupEnd();
+
+          if (updated) {
+            return;
+          }
+          vlog('None of the reads qualified for inlining');
+        } else {
+          vlog('None of the elements of the array are primitives. Other values are unsafe (we can improve this later). Bailing for now.');
+        }
+      } else {
+        vlog('At least one read of this array is not a regular property read, bailing');
+      }
+    }
+
     const write = meta.writes[0];
 
     // Find all reads and confirm that they are member expressions which are reads, not writes
@@ -119,7 +206,7 @@ function processAttempt(fdata, queue) {
         // Edge case. Solve the jsf*ck case `[][[]]` -> `undefined`
         // Note: `({"":"pass"}[[]])` -> `"pass"` (not undefined)
         // Note: `({0:"pass"}[[0]])` -> `"pass"` (not undefined)
-        if (read.parentProp === 'property' && read.parentNode.computed && arrNode.elements.every((enode) => AST.isPrimitive(enode))) {
+        if (read.parentProp === 'property' && read.parentNode.computed && arrNode.elements.every((enode) => !enode || AST.isPrimitive(enode))) {
           if (arrNode.elements.length === 0) {
             rule('The empty array literal that is used as a computed property name is the empty string');
             example('x[[]]', 'x[""]');
@@ -129,7 +216,7 @@ function processAttempt(fdata, queue) {
           }
           before(read.node, read.blockBody[read.blockIndex]);
 
-          read.parentNode.property = AST.primitive(String(arrNode.elements.map((enode) => AST.getPrimitiveValue(enode))));
+          read.parentNode.property = AST.primitive(String(arrNode.elements.map((enode) => enode ? AST.getPrimitiveValue(enode) : AST.identifier('undefined'))));
 
           after(read.parentNode.property, read.blockBody[read.blockIndex]);
           ++updated;
@@ -229,7 +316,13 @@ function processAttempt(fdata, queue) {
                 // The read.node will be the object of a member expression. We want to replace the member expression.
                 // If the index was OOB it must be undefined because this is is a regular array.
                 const finalNode =
-                  mem.property.value < arrLen ? AST.cloneSimple(arrNode.elements[mem.property.value]) : AST.identifier('undefined');
+                  mem.property.value < arrLen
+                  ? (
+                    arrNode.elements[mem.property.value]
+                    ? AST.cloneSimple(arrNode.elements[mem.property.value])
+                    : AST.identifier('undefined')
+                  )
+                  : AST.identifier('undefined');
                 if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
                 else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
 

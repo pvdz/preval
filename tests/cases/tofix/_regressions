@@ -30,3 +30,5 @@
 // why is the jsfck case crashing?
 // is while-rotating sound when the body breaks more than once?
 // infinite loop tests are set to $LOOP_DONE_UNROLLING_ALWAYS_TRUE in reduce_static/infinite_loops.mjs but we should find a way in normalize instead
+// tests/cases/array/static_props/escape.md should not inline the length there
+// tests/cases/array/read_only/computed_prop.md -> we should be able to resolve array props until it escapes. especially when its not a closure.

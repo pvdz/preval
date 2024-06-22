@@ -8655,12 +8655,21 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       return true;
     }
 
+    // Can we move unthrowable statements to before the try?
     if (
       node.block.body.length > 0 &&
-      node.block.body[0].type === 'BreakStatement'
+      (
+        node.block.body[0].type === 'BreakStatement' || // break cant trigger catch
+        (node.block.body[0].type === 'ReturnStatement' && AST.isPrimitive(node.block.body[0].argument)) // return of primitive can't trigger catch
+      )
     ) {
-      rule('A break statement can not throw so it does not need to be inside a try');
-      example('A: { try { break A; } catch {} }', 'A: { break A; try {} catch {} }');
+      if (node.block.body[0].type === 'BreakStatement') {
+        rule('A break statement can not throw so it does not need to be inside a try');
+        example('A: { try { break A; } catch {} }', 'A: { break A; try {} catch {} }');
+      } else {
+        rule('A return statement with primitive argument can not throw so it does not need to be inside a try');
+        example('A: { try { return undefined; } catch {} }', 'A: { return undefined; try {} catch {} }');
+      }
       before(body[i]);
 
       body.splice(i, 0, node.block.body.shift());

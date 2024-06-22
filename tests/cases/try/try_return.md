@@ -1,20 +1,23 @@
 # Preval test case
 
-# base.md
+# try_return.md
 
-> Try > Noop > Base
+> Try > Try return
 >
-> Certain statements probably never benefit from running inside a try
+>
 
 ## Input
 
 `````js filename=intro
 function f() {
   try {
-    return 100;
-  } catch {}
+    return NaN;
+  } catch {
+    $('unreachable');
+  }
+  $('also unreachable');
 }
-$(f());
+$('end', f);
 `````
 
 ## Pre Normal
@@ -24,10 +27,13 @@ $(f());
 let f = function () {
   debugger;
   try {
-    return 100;
-  } catch (e) {}
+    return NaN;
+  } catch (e) {
+    $(`unreachable`);
+  }
+  $(`also unreachable`);
 };
-$(f());
+$(`end`, f);
 `````
 
 ## Normalized
@@ -36,18 +42,20 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  return 100;
+  return NaN;
 };
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(`end`, f);
 `````
 
 ## Output
 
 
 `````js filename=intro
-$(100);
+const f = function () {
+  debugger;
+  return NaN;
+};
+$(`end`, f);
 `````
 
 ## PST Output
@@ -55,7 +63,11 @@ $(100);
 With rename=true
 
 `````js filename=intro
-$( 100 );
+const a = function() {
+  debugger;
+  return NaN;
+};
+$( "end", a );
 `````
 
 ## Globals
@@ -65,7 +77,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 100
+ - 1: 'end', '<function>'
  - eval returned: undefined
 
 Pre normalization calls: Same

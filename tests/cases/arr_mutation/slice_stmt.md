@@ -24,8 +24,7 @@ const arrAssignPatternRhs = [``, 4, 5];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
-x = arrPatternSplat$1.slice(0);
-$(x);
+arrPatternSplat$1.slice(0);
 `````
 
 ## Normalized
@@ -36,16 +35,14 @@ const arrAssignPatternRhs = [``, 4, 5];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
-x = arrPatternSplat$1.slice(0);
-$(x);
+arrPatternSplat$1.slice(0);
 `````
 
 ## Output
 
 
 `````js filename=intro
-x = [];
-$(x);
+
 `````
 
 ## PST Output
@@ -53,20 +50,17 @@ $(x);
 With rename=true
 
 `````js filename=intro
-x = [];
-$( x );
+
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-x
+None
 
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - eval returned: undefined
 
 Pre normalization calls: Same
 

@@ -4,7 +4,7 @@
 
 > Arr mutation > Slice assign
 >
-> 
+>
 
 ## Input
 

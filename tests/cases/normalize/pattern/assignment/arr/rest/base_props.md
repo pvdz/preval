@@ -37,8 +37,7 @@ $(x);
 
 `````js filename=intro
 a = 1;
-const arrPatternSplat = [1, 2, 3];
-x = arrPatternSplat.slice(1);
+x = [2, 3];
 $(x);
 `````
 
@@ -48,8 +47,7 @@ With rename=true
 
 `````js filename=intro
 a = 1;
-const a = [ 1, 2, 3 ];
-x = a.slice( 1 );
+x = [ 2, 3 ];
 $( x );
 `````
 

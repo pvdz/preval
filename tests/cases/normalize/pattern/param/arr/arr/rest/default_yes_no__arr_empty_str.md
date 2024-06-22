@@ -61,8 +61,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const arrPatternSplat$1 = [];
-const x = arrPatternSplat$1.slice(0);
+const x = [];
 $(x);
 `````
 
@@ -72,8 +71,7 @@ With rename=true
 
 `````js filename=intro
 const a = [];
-const b = a.slice( 0 );
-$( b );
+$( a );
 `````
 
 ## Globals

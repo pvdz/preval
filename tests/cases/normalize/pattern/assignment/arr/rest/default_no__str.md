@@ -35,8 +35,7 @@ $(x);
 
 
 `````js filename=intro
-const arrPatternSplat = [`a`, `b`, `c`];
-x = arrPatternSplat.slice(0);
+x = [`a`, `b`, `c`];
 $(x);
 `````
 
@@ -45,8 +44,7 @@ $(x);
 With rename=true
 
 `````js filename=intro
-const a = [ "a", "b", "c" ];
-x = a.slice( 0 );
+x = [ "a", "b", "c" ];
 $( x );
 `````
 

@@ -35,8 +35,7 @@ $(x);
 
 
 `````js filename=intro
-const arrPatternSplat = [undefined, undefined, undefined, 1];
-x = arrPatternSplat.slice(0);
+x = [undefined, undefined, undefined, 1];
 $(x);
 `````
 
@@ -45,8 +44,7 @@ $(x);
 With rename=true
 
 `````js filename=intro
-const a = [ undefined, undefined, undefined, 1 ];
-x = a.slice( 0 );
+x = [ undefined, undefined, undefined, 1 ];
 $( x );
 `````
 

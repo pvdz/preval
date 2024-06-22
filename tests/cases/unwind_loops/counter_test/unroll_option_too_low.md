@@ -57,9 +57,12 @@ while (true) {
 
 `````js filename=intro
 let tmpClusterSSA_counter$2 = 9;
+const arr = [`c`, `a`, `b`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  tmpClusterSSA_counter$2 = tmpClusterSSA_counter$2 - 1;
   if (tmpClusterSSA_counter$2) {
+    const e$1 = arr.shift();
+    arr.push(e$1);
+    tmpClusterSSA_counter$2 = tmpClusterSSA_counter$2 - 1;
   } else {
     break;
   }
@@ -72,10 +75,12 @@ With rename=true
 
 `````js filename=intro
 let a = 9;
+const b = [ "c", "a", "b" ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  a = a - 1;
   if (a) {
-
+    const c = b.shift();
+    b.push( c );
+    a = a - 1;
   }
   else {
     break;

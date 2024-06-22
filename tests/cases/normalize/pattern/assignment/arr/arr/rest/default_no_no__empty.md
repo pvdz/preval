@@ -41,8 +41,7 @@ $(x);
 
 
 `````js filename=intro
-const arrPatternSplat$1 = [];
-const tmpClusterSSA_x = arrPatternSplat$1.slice(0);
+const tmpClusterSSA_x = [];
 $(tmpClusterSSA_x);
 `````
 
@@ -52,8 +51,7 @@ With rename=true
 
 `````js filename=intro
 const a = [];
-const b = a.slice( 0 );
-$( b );
+$( a );
 `````
 
 ## Globals

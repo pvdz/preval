@@ -45,8 +45,8 @@ function _arr_mutation(fdata) {
 
   if (queue.length) {
     // By index, high to low. This way it should not be possible to cause reference problems by changing index
-    queue.sort(({ index: a }, { index: b }) => (a < b ? 1 : a > b ? -1 : 0));
-    queue.forEach(({ index, func }) => func());
+    queue.sort(({ index: a }, { index: b }) => b-a);
+    queue.forEach(({ func }) => func());
   }
 
   log('');
@@ -71,21 +71,19 @@ function processAttempt(fdata, queue) {
   const ast = fdata.tenkoOutput.ast;
   let nodes = 0;
   let counter = 0;
-  let time = Date.now();
-  let sum = 0;
+  let start = Date.now();
   let backing = 0;
   walk(walker, ast, 'ast');
-  log('- Analyzed', counter, 'arrays out of', nodes, 'nodes, spent', Date.now() - time, 'ms, and for arrays', sum);
+  log('- Analyzed', counter, 'arrays out of', nodes, 'nodes, spent', Date.now() - start, 'ms');
 
   function walker(arrayLiteralNode, beforeWalk, nodeType, path) {
     if (beforeWalk) return;
     ++nodes;
     if (arrayLiteralNode.type !== 'ArrayExpression') return;
     ++counter;
-    let start = Date.now();
-    const r = _walker(arrayLiteralNode, beforeWalk, nodeType, path);
-    sum += Date.now() - start;
-    return r;
+    vgroup('- Array @', +arrayLiteralNode.$p.pid);
+    _walker(arrayLiteralNode, beforeWalk, nodeType, path);
+    vgroupEnd();
   }
   function _walker(arrayLiteralNode, beforeWalk, nodeType, path) {
 
@@ -107,57 +105,96 @@ function processAttempt(fdata, queue) {
 
     const arrayName = parentNode.id.name;
     const arrayMeta = fdata.globallyUniqueNamingRegistry.get(arrayName);
-    let orderIndex = arrayMeta.rwOrder.findIndex(n => n.node === parentNode.id);
-    const write = arrayMeta.rwOrder[orderIndex];
-    ASSERT(write.action === 'write', 'the var decl was a write, this check should be kind of silly');
-
-    if (arrayMeta.writes.length === 1) {
-      // Verify that the binding doesn't escape.
-      // In this case, that means all usages must be reading a property on the object
-      // Computed keys don't matter here. We ignore proto mutations and proxies.
-      // Assuming we handle getters and setters, we shouldn't need to care much here.
-      if (!arrayMeta.reads.some(read => {
-        if (read.parentNode.type !== 'MemberExpression' || read.parentProp !== 'object') {
-          vlog('bail: at least one read escaped as it was not a member', read.parentNode.type)
-          return true;
-        }
-        if (read.grandNode.type === 'UnaryExpression' && read.grandProp.op === 'delete') {
-          vlog('bail: at least one read deleted a property');
-          return true;
-        }
-        if (read.grandNode.type === 'AssignmentExpression' && read.grandProp.op === 'left') {
-          vlog('bail: at least one usage updated a property');
-          return true;
-        }
-      })) {
-        vlog('all reads are simple prop reads, process any read that can reach the write');
-
-        // All reads should be safe to resolve now
-        arrayMeta.reads.forEach((read, i) => {
-          // Only okay for the reads that can reach the write
-          if (!read.reachesWrites.size) {
-            return vlog('bail: read could not reach write');
-          }
-          vgroup('- read', i);
-          const r = haveRead(arrayName, arrayLiteralNode, arrayMeta, write, read);
-          vgroupEnd();
-          return r;
-        });
-
-        return;
-      } else {
-        // Otherwise fallback to back-to-back checks
-        vlog('falling back')
-      }
+    if (arrayMeta.writes.length !== 1) {
+      // I dunno what this case might be but
+      vlog('Bailing. Somehow this constant does not have exactly one write');
+      return;
     }
+    const orderIndex = arrayMeta.rwOrder.findIndex(n => n.node === parentNode.id);
+    const write = arrayMeta.writes[0];
+    ASSERT(write.action === 'write', 'the var decl was a write, this check should be kind of silly');
+    ASSERT(write.parentNode.init === arrayLiteralNode, 'sanity and model consistency check');
+
+    // We have an array that is the init of a var decl.
+    // Verify that the binding doesn't escape.
+
+    // We first verify that the array is only used as the object in a member expression
+    // We also have to double check that this member expression is never the arg of `delete`
+    // Then there are a few paths
+    // - member expression is only used in var inits or assignments (or expr statements, where it's dead code)
+    //   - simplest case. no mutations possible.
+    // - member expression is also seen as the callee of a call expression
+    //   - array may mutate. only inline reads with the same loop and func parent as the var decl
+
+    // In this case, that means all usages must be reading a property on the object
+    // Computed keys don't matter here. We ignore proto mutations and proxies.
+    // Assuming we handle getters and setters, we shouldn't need to care much here.
+    // Method calls can mutate the array though. And in a loop, that means the loop changes.
+
+    const allSimple = arrayMeta.reads.every(read => {
+      if (read.parentNode.type !== 'MemberExpression' || read.parentProp !== 'object') {
+        vlog('bail: at least one read escaped as it was not a member', read.parentNode.type)
+        return false;
+      }
+
+      // The delete check is subsumed by next context check
+      //if (read.grandNode.type === 'UnaryExpression' && read.grandNode.op === 'delete') {
+      //  vlog('bail: at least one read deleted a property');
+      //  return false;
+      //}
+
+      if (
+        (read.grandNode.type === 'ExpressionStatement') ||
+        (read.grandNode.type === 'AssignmentExpression' && read.grandNode.right === read.node) ||
+        (read.grandNode.type === 'VariableDeclaration' && read.grandNode.declarations[0].init !== read.node)
+      ) {
+        return true; // Continue searching
+      }
+
+      //if (
+      //  read.grandNode.type === 'CallExpression' &&
+      //  read.grandNode.callee === read.parentNode &&
+      //  read.innerLoop === write.innerLoop &&
+      //  read.pfuncNode === write.pfuncNode
+      //) {
+      //  // method call on the array in same loop and func
+      //  someCall = true;
+      //  return true; // Continue searching
+      //}
+      //
+      //vlog('Found an unsupported ref used in a:', read.grandNode, '.', read.grandProp, '>', read.parentNode, '.', read.parentProp, '. Bailing for now.')
+      //escapes = true;
+      //return false; // Unknown reference case. Maybe we can support it but for now we bail.
+    });
+
+    if (allSimple) {
+      vlog('all reads are simple prop reads, process any read that can reach the write');
+
+      // All reads should be safe to resolve now
+      arrayMeta.reads.forEach((read, i) => {
+        // Only okay for the reads that can reach the write
+        if (!read.reachesWrites.size) {
+          return vlog('bail: read could not reach write');
+        }
+        vgroup('- read', i);
+        const r = haveRead(arrayName, arrayLiteralNode, arrayMeta, write, read);
+        vgroupEnd();
+        return r;
+      });
+
+      return;
+    }
+
+    vlog('Not all reads were simple property reads so we must fallback to less efficient back2back checks');
 
     // Keep searching until you find a rw that is in the same func. Must appear after the binding.
     // Then verify if that's a read in same loop/catch that can reach this without side effects
-    let nextRead = arrayMeta.rwOrder[orderIndex + 1];
+    let rwIndex = orderIndex;
+    let nextRead = arrayMeta.rwOrder[rwIndex + 1];
     while (nextRead && nextRead.pfuncNode !== write.pfuncNode) {
       //console.log('- read/write not in same function scope, trying next rw', nextRead.pfuncNode.$p.pid, write.pfuncNode.$p.pid)
-      ++orderIndex;
-      nextRead = arrayMeta.rwOrder[orderIndex + 1];
+      ++rwIndex;
+      nextRead = arrayMeta.rwOrder[rwIndex + 1];
     }
     if (!nextRead) return vlog('bail: there is no next read in same scope');
     if (nextRead?.action !== 'read') return vlog('bail: next ref in same scope is a write'); // Okay, next reference to this binding is not a read so we don't care
@@ -172,10 +209,13 @@ function processAttempt(fdata, queue) {
     }
     if (nextRead.innerIf !== write.innerIf) {
       // Can't guarantee the write if one ref is inside an if-block while the other is not in the same if-block
+      // Consider `const arr = [1,2]; A: { if ($) break A; else arr.push('fail'); } $(arr);`
+      // -> This would end as `const arr = [1,2,'fail']; A: { ...} $arr)` which is invalid for the `if`-case.
       return vlog('- read/write not in same if', nextRead.innerIf, write.innerIf);
     }
     if (nextRead.innerElse !== write.innerElse) {
       // Can't guarantee the write if one ref is inside an else-block while the other is not in the same else-block
+      // (See if-case for example)
       return vlog('- read/write not in same else', nextRead.innerElse, write.innerElse);
     }
     if (nextRead.innerCatch !== write.innerCatch) {
@@ -672,6 +712,65 @@ function processAttempt(fdata, queue) {
                     vlog('- bail: Read .unshift but did not call it');
                     // TODO: replace it with $Array_unshift
                     return;
+                  }
+                  break;
+                }
+                case 'slice': {
+                  if (
+                    nextRead.grandNode.type === 'CallExpression' &&
+                    // we only need up to the first two arguments. The rest is not relevant to the call
+                    (nextRead.grandNode.arguments.length === 0 || AST.isPrimitive(nextRead.grandNode.arguments[0])) &&
+                    (nextRead.grandNode.arguments.length === 1 || AST.isPrimitive(nextRead.grandNode.arguments[1])) &&
+                    // Idents are tricky because their refs may have changed between the original array literal and this slice
+                    arrayLiteralNode.elements.every(enode => !enode || AST.isPrimitive(enode))
+                  ) {
+                    // Doing an array.slice on an array literal is predictable
+
+                    rule('Array slice on a binding known to be an array literal containing primitives can be copied');
+                    example('const arr = [1, 2, undefined, "foo"]; f(); $(arr.slice(0));', 'const arr = [1, 2, undefined, "foo"]; f(); $([1, 2, undefined, "foo"]);');
+                    example('const arr = [1, 2, undefined, "foo"]; f(); x = $([1, 2, undefined, "foo"]);');
+                    example('const arr = [1, 2, undefined, "foo"]; f(); const x = $([1, 2, undefined, "foo"]);');
+                    before(nextRead.blockBody[nextRead.blockIndex]);
+
+                    const clone = AST.arrayExpression(
+                      arrayLiteralNode.elements
+                      .slice(
+                        nextRead.grandNode.arguments[0] ? AST.getPrimitiveValue(nextRead.grandNode.arguments[0]) : undefined,
+                        nextRead.grandNode.arguments[1] ? AST.getPrimitiveValue(nextRead.grandNode.arguments[1]) : undefined
+                      )
+                      .map(e => e && AST.cloneSimple(e)));
+
+                    if (
+                      nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration' &&
+                      nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode
+                    ) {
+                      // ex: tests/cases/arr_mutation/slice_const.md
+                      nextRead.blockBody[nextRead.blockIndex].declarations[0].init = clone;
+                    }
+                    else if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
+                      if (
+                        nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression' &&
+                        nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode
+                      ) {
+                        // ex: tests/cases/arr_mutation/slice_assign.md
+                        nextRead.blockBody[nextRead.blockIndex].expression.right = clone;
+                      }
+                      else if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
+                        // ex: tests/cases/arr_mutation/slice_stmt.md
+                        nextRead.blockBody[nextRead.blockIndex].expression = clone;
+                      }
+                      else {
+                        ASSERT(false, 'What expr case is this?', nextRead)
+                      }
+                    } else {
+                      ASSERT(false, 'What case is this?', nextRead)
+                    }
+
+                    after(nextRead.blockBody[nextRead.blockIndex]);
+                    ++updated;
+                    return true;
+
+                    // Should be one of three cases
                   }
                 }
               }

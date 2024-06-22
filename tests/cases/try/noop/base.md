@@ -50,14 +50,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-let tmpCalleeParam = 100;
-$inlinedFunction: {
-  try {
-    break $inlinedFunction;
-  } catch (e) {}
-  tmpCalleeParam = undefined;
-}
-$(tmpCalleeParam);
+$(100);
 `````
 
 ## PST Output
@@ -65,17 +58,7 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-let a = 100;
-$inlinedFunction: {
-  try {
-    break $inlinedFunction;
-  }
-  catch (b) {
-
-  }
-  a = undefined;
-}
-$( a );
+$( 100 );
 `````
 
 ## Globals

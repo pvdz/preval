@@ -38,12 +38,6 @@ $(x);
 
 `````js filename=intro
 let x = 1;
-$inlinedFunction: {
-  try {
-    break $inlinedFunction;
-  } catch (e) {}
-  x = 2;
-}
 $(x);
 `````
 
@@ -51,14 +45,7 @@ $(x);
 
 
 `````js filename=intro
-let x = 1;
-$inlinedFunction: {
-  try {
-    break $inlinedFunction;
-  } catch (e) {}
-  x = 2;
-}
-$(x);
+$(1);
 `````
 
 ## PST Output
@@ -66,17 +53,7 @@ $(x);
 With rename=true
 
 `````js filename=intro
-let a = 1;
-$inlinedFunction: {
-  try {
-    break $inlinedFunction;
-  }
-  catch (b) {
-
-  }
-  a = 2;
-}
-$( a );
+$( 1 );
 `````
 
 ## Globals

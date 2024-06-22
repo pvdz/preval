@@ -8655,6 +8655,23 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       return true;
     }
 
+    if (
+      node.block.body.length > 0 &&
+      node.block.body[0].type === 'BreakStatement'
+    ) {
+      rule('A break statement can not throw so it does not need to be inside a try');
+      example('A: { try { break A; } catch {} }', 'A: { break A; try {} catch {} }');
+      before(body[i]);
+
+      body.splice(i, 0, node.block.body.shift());
+
+      after(body[i]);
+      after(body[i + 1]);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      return true;
+    }
+
+
     return false;
   }
 

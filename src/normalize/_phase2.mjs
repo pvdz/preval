@@ -31,7 +31,6 @@ import { inlineArgLen } from '../reduce_static/inline_arguments_length.mjs';
 import { inlineIdenticalParam } from '../reduce_static/inline_identical_param.mjs';
 import { returnClosure } from '../reduce_static/return_closure.mjs';
 import { returnArg } from '../reduce_static/return_arg.mjs';
-import { constWhileTest } from '../reduce_static/const_while_test.mjs';
 import { typeTrackedTricks } from '../reduce_static/type_tracked_tricks.mjs';
 import { arrSpreads } from '../reduce_static/arr_spread.mjs';
 import { conditionalTyping } from '../reduce_static/conditional_typing.mjs';
@@ -229,7 +228,6 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     inlineIdenticalParam(fdata) ||
     returnClosure(fdata) ||
     returnArg(fdata) ||
-    constWhileTest(fdata) ||
     typeTrackedTricks(fdata) ||
     arrSpreads(fdata) ||
     conditionalTyping(fdata) ||

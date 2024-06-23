@@ -78,8 +78,8 @@ exit: {
 
 
 `````js filename=intro
-let x = $(2);
 exit: {
+  let x = $(2);
   while (true) {
     if (x) {
       while (true) {
@@ -107,8 +107,8 @@ exit: {
 With rename=true
 
 `````js filename=intro
-let a = $( 2 );
 exit: {
+  let a = $( 2 );
   while (true) {
     if (a) {
       while (true) {

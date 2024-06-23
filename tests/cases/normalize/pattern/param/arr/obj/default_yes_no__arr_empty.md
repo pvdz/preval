@@ -69,12 +69,12 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpClusterSSA_arrPatternStep = $(`pass`);
-let tmpClusterSSA_objPatternCrashTest = tmpClusterSSA_arrPatternStep === undefined;
-if (tmpClusterSSA_objPatternCrashTest) {
+let objPatternCrashTest = tmpClusterSSA_arrPatternStep === undefined;
+if (objPatternCrashTest) {
 } else {
-  tmpClusterSSA_objPatternCrashTest = tmpClusterSSA_arrPatternStep === null;
+  objPatternCrashTest = tmpClusterSSA_arrPatternStep === null;
 }
-if (tmpClusterSSA_objPatternCrashTest) {
+if (objPatternCrashTest) {
   tmpClusterSSA_arrPatternStep.cannotDestructureThis;
 } else {
 }

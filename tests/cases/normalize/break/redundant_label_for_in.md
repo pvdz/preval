@@ -72,8 +72,8 @@ exit: {
 
 
 `````js filename=intro
-let x = $(2);
 exit: {
+  let x = $(2);
   const tmpCalleeParam = { a: 1, b: 2 };
   const tmpForInDeclRhs = $(tmpCalleeParam);
   let key = undefined;
@@ -98,8 +98,8 @@ exit: {
 With rename=true
 
 `````js filename=intro
-let a = $( 2 );
 exit: {
+  let a = $( 2 );
   const b = {
     a: 1,
     b: 2,

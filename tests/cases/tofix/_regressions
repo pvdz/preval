@@ -33,4 +33,5 @@
 // infinite loop tests are set to $LOOP_DONE_UNROLLING_ALWAYS_TRUE in reduce_static/infinite_loops.mjs but we should find a way in normalize instead
 // tests/cases/array/static_props/escape.md should not inline the length there
 // tests/cases/array/read_only/computed_prop.md -> we should be able to resolve array props until it escapes. especially when its not a closure.
-// tests/cases/normalize/expressions/statement/while/auto_ident_logic_or_or.md -> if a var declared above a label that doesnt escape is only used inside that label then it can be moved inside too
+// tests/cases/normalize/expressions/statement/while/auto_ident_logic_or_or.md -> if a var declared above a label that doesnt escape is only used inside that label then it can be moved inside too, same rule as in the end of transformLabeledStatement but it needs to be phase2 due to scope tracking
+// tests/cases/continue/double.md -> has double label output

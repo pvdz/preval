@@ -110,8 +110,8 @@ const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
-const tmpClusterSSA_tmpIfTest = tmpChainElementCall === tmpSwitchValue;
-if (tmpClusterSSA_tmpIfTest) {
+const tmpIfTest = tmpChainElementCall === tmpSwitchValue;
+if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
   const tmpIfTest$3 = 2 === tmpSwitchValue;

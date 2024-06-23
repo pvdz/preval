@@ -107,8 +107,8 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpClusterSSA_tmpIfTest = 100 === tmpSwitchValue;
-if (tmpClusterSSA_tmpIfTest) {
+const tmpIfTest = 100 === tmpSwitchValue;
+if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
   const tmpIfTest$3 = 2 === tmpSwitchValue;

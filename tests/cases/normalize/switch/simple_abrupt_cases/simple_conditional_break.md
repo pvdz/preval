@@ -133,10 +133,10 @@ tmpSwitchBreak: {
 
 
 `````js filename=intro
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 4;
-const tmpIfTest = 0 === tmpSwitchValue;
 tmpSwitchBreak: {
+  const tmpSwitchValue = $(1);
+  let tmpSwitchCaseToStart = 4;
+  const tmpIfTest = 0 === tmpSwitchValue;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   } else {
@@ -189,10 +189,10 @@ tmpSwitchBreak: {
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-let b = 4;
-const c = 0 === a;
 tmpSwitchBreak: {
+  const a = $( 1 );
+  let b = 4;
+  const c = 0 === a;
   if (c) {
     b = 0;
   }

@@ -14,42 +14,36 @@
   if ($) {
     let A = `jhayon.vercel.app`;
     let B = `jhayon.vercel.app`;
-    let tmpClusterSSA__0x2c65c8$1 = 1;
-    const tmpClusterSSA__0x15f773 = $('x');
-    while ($LOOP_UNROLL_500) {
-      const tmpIfTest$8 = tmpClusterSSA__0x2c65c8$1 < 1;
-        A = tmpClusterSSA__0x15f773.length;
-        const tmpBinBothLhs$30 = A[0];
-        const tmpIfTest$10 = tmpBinBothLhs$30 === `.`;
-        if (tmpIfTest$10) {
+    let one = 1;
+    const ex = $('x');
+    while ($LOOP_UNROLL_5) {
+      const test = one < 1;
+        A = ex.length;
+        const first = A[0];
+        const isdot = first === `.`;
+        if (isdot) {
           B = A.slice(1);
         } else {
           B = A;
         }
-        const tmpBinBothLhs$32 = tmpClusterSSA__0x26b289.length;
-        const tmpBinBothRhs$32 = B.length;
-        tmpClusterSSA__0x30c47e = tmpBinBothLhs$32 - tmpBinBothRhs$32;
-        tmpClusterSSA__0x2a669d = tmpClusterSSA__0x26b289.indexOf(B, tmpClusterSSA__0x30c47e);
-        tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d !== (-1);
+        const tmpClusterSSA__0x26b289 = $('abc');
+        const len = tmpClusterSSA__0x26b289.length;
+        const len2 = B.length;
+        const tmpClusterSSA__0x30c47e = len - len2;
+        const tmpClusterSSA__0x2a669d = tmpClusterSSA__0x26b289.indexOf(B, tmpClusterSSA__0x30c47e);
+        const tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d !== (-1);
         if (tmpClusterSSA__0x5dc746) {
-          tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
+          const tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
           if (tmpClusterSSA__0x5dc746) {
             const tmpBinBothLhs$34 = tmpClusterSSA__0x26b289.length;
             const tmpBinBothRhs$34 = A.length;
-            let tmpIfTest$12 = tmpBinBothLhs$34 === tmpBinBothRhs$34;
-            if (tmpIfTest$12) {
-
-            } else {
-              const tmpBinLhs$23 = A.indexOf(`.`);
-              tmpIfTest$12 = tmpBinLhs$23 === 0;
-            }
           } else {
 
           }
         } else {
 
         }
-        tmpClusterSSA__0x2c65c8$1 = tmpClusterSSA__0x2c65c8$1 + 1;
+        one = one + 1;
         break;
     }
   } else {
@@ -65,39 +59,34 @@
   if ($) {
     let A = `jhayon.vercel.app`;
     let B = `jhayon.vercel.app`;
-    let tmpClusterSSA__0x2c65c8$1 = 1;
-    const tmpClusterSSA__0x15f773 = $(`x`);
-    while ($LOOP_UNROLL_500) {
-      const tmpIfTest$8 = tmpClusterSSA__0x2c65c8$1 < 1;
-      A = tmpClusterSSA__0x15f773.length;
-      const tmpBinBothLhs$30 = A[0];
-      const tmpIfTest$10 = tmpBinBothLhs$30 === `.`;
-      if (tmpIfTest$10) {
+    let one = 1;
+    const ex = $(`x`);
+    while ($LOOP_UNROLL_5) {
+      const test = one < 1;
+      A = ex.length;
+      const first = A[0];
+      const isdot = first === `.`;
+      if (isdot) {
         B = A.slice(1);
       } else {
         B = A;
       }
-      const tmpBinBothLhs$32 = tmpClusterSSA__0x26b289.length;
-      const tmpBinBothRhs$32 = B.length;
-      tmpClusterSSA__0x30c47e = tmpBinBothLhs$32 - tmpBinBothRhs$32;
-      tmpClusterSSA__0x2a669d = tmpClusterSSA__0x26b289.indexOf(B, tmpClusterSSA__0x30c47e);
-      tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d !== -1;
+      const tmpClusterSSA__0x26b289 = $(`abc`);
+      const len = tmpClusterSSA__0x26b289.length;
+      const len2 = B.length;
+      const tmpClusterSSA__0x30c47e = len - len2;
+      const tmpClusterSSA__0x2a669d = tmpClusterSSA__0x26b289.indexOf(B, tmpClusterSSA__0x30c47e);
+      const tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d !== -1;
       if (tmpClusterSSA__0x5dc746) {
-        tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
-        if (tmpClusterSSA__0x5dc746) {
+        const tmpClusterSSA__0x5dc746$1 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
+        if (tmpClusterSSA__0x5dc746$1) {
           const tmpBinBothLhs$34 = tmpClusterSSA__0x26b289.length;
           const tmpBinBothRhs$34 = A.length;
-          let tmpIfTest$12 = tmpBinBothLhs$34 === tmpBinBothRhs$34;
-          if (tmpIfTest$12) {
-          } else {
-            const tmpBinLhs$23 = A.indexOf(`.`);
-            tmpIfTest$12 = tmpBinLhs$23 === 0;
-          }
         } else {
         }
       } else {
       }
-      tmpClusterSSA__0x2c65c8$1 = tmpClusterSSA__0x2c65c8$1 + 1;
+      one = one + 1;
       break;
     }
   } else {
@@ -112,38 +101,33 @@
 if ($) {
   let A = `jhayon.vercel.app`;
   let B = `jhayon.vercel.app`;
-  let tmpClusterSSA__0x2c65c8$1 = 1;
-  const tmpClusterSSA__0x15f773 = $(`x`);
-  const tmpIfTest$8 = tmpClusterSSA__0x2c65c8$1 < 1;
-  A = tmpClusterSSA__0x15f773.length;
-  const tmpBinBothLhs$30 = A[0];
-  const tmpIfTest$10 = tmpBinBothLhs$30 === `.`;
-  if (tmpIfTest$10) {
+  let one = 1;
+  const ex = $(`x`);
+  const test = one < 1;
+  A = ex.length;
+  const first = A[0];
+  const isdot = first === `.`;
+  if (isdot) {
     B = A.slice(1);
   } else {
     B = A;
   }
-  const tmpBinBothLhs$32 = tmpClusterSSA__0x26b289.length;
-  const tmpBinBothRhs$32 = B.length;
-  tmpClusterSSA__0x30c47e = tmpBinBothLhs$32 - tmpBinBothRhs$32;
-  tmpClusterSSA__0x2a669d = tmpClusterSSA__0x26b289.indexOf(B, tmpClusterSSA__0x30c47e);
-  tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d !== -1;
+  const tmpClusterSSA__0x26b289 = $(`abc`);
+  const len = tmpClusterSSA__0x26b289.length;
+  const len2 = B.length;
+  const tmpClusterSSA__0x30c47e = len - len2;
+  const tmpClusterSSA__0x2a669d = tmpClusterSSA__0x26b289.indexOf(B, tmpClusterSSA__0x30c47e);
+  const tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d !== -1;
   if (tmpClusterSSA__0x5dc746) {
-    tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
-    if (tmpClusterSSA__0x5dc746) {
+    const tmpClusterSSA__0x5dc746$1 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
+    if (tmpClusterSSA__0x5dc746$1) {
       const tmpBinBothLhs$34 = tmpClusterSSA__0x26b289.length;
       const tmpBinBothRhs$34 = A.length;
-      let tmpIfTest$12 = tmpBinBothLhs$34 === tmpBinBothRhs$34;
-      if (tmpIfTest$12) {
-      } else {
-        const tmpBinLhs$23 = A.indexOf(`.`);
-        tmpIfTest$12 = tmpBinLhs$23 === 0;
-      }
     } else {
     }
   } else {
   }
-  tmpClusterSSA__0x2c65c8$1 = tmpClusterSSA__0x2c65c8$1 + 1;
+  one = one + 1;
 } else {
 }
 `````
@@ -154,33 +138,29 @@ if ($) {
 `````js filename=intro
 if ($) {
   let B = `jhayon.vercel.app`;
-  const tmpClusterSSA__0x15f773 = $(`x`);
-  const A = tmpClusterSSA__0x15f773.length;
-  const tmpBinBothLhs$30 = A[0];
-  const tmpIfTest$10 = tmpBinBothLhs$30 === `.`;
-  if (tmpIfTest$10) {
+  const ex = $(`x`);
+  const A = ex.length;
+  const first = A[0];
+  const isdot = first === `.`;
+  if (isdot) {
     B = A.slice(1);
   } else {
     B = A;
   }
-  const tmpBinBothLhs$32 = tmpClusterSSA__0x26b289.length;
-  const tmpBinBothRhs$32 = B.length;
-  tmpClusterSSA__0x30c47e = tmpBinBothLhs$32 - tmpBinBothRhs$32;
-  tmpClusterSSA__0x2a669d = tmpClusterSSA__0x26b289.indexOf(B, tmpClusterSSA__0x30c47e);
-  tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d !== -1;
+  const tmpClusterSSA__0x26b289 = $(`abc`);
+  const len = tmpClusterSSA__0x26b289.length;
+  const len2 = B.length;
+  const tmpClusterSSA__0x30c47e = len - len2;
+  const tmpClusterSSA__0x2a669d = tmpClusterSSA__0x26b289.indexOf(B, tmpClusterSSA__0x30c47e);
+  const tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d === -1;
   if (tmpClusterSSA__0x5dc746) {
-    tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
-    if (tmpClusterSSA__0x5dc746) {
-      const tmpBinBothLhs$34 = tmpClusterSSA__0x26b289.length;
-      const tmpBinBothRhs$34 = A.length;
-      const tmpIfTest$12 = tmpBinBothLhs$34 === tmpBinBothRhs$34;
-      if (tmpIfTest$12) {
-      } else {
-        A.indexOf(`.`);
-      }
+  } else {
+    const tmpClusterSSA__0x5dc746$1 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
+    if (tmpClusterSSA__0x5dc746$1) {
+      tmpClusterSSA__0x26b289.length;
+      A.length;
     } else {
     }
-  } else {
   }
 } else {
 }
@@ -203,23 +183,20 @@ if ($) {
   else {
     a = c;
   }
-  const f = tmpClusterSSA__0x26b289.length;
-  const g = a.length;
-  tmpClusterSSA__0x30c47e = f - g;
-  tmpClusterSSA__0x2a669d = tmpClusterSSA__0x26b289.indexOf( a, tmpClusterSSA__0x30c47e );
-  tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d !== -1;
-  if (tmpClusterSSA__0x5dc746) {
-    tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
-    if (tmpClusterSSA__0x5dc746) {
-      const h = tmpClusterSSA__0x26b289.length;
-      const i = c.length;
-      const j = h === i;
-      if (j) {
+  const f = $( "abc" );
+  const g = f.length;
+  const h = a.length;
+  const i = g - h;
+  const j = f.indexOf( a, i );
+  const k = j === -1;
+  if (k) {
 
-      }
-      else {
-        c.indexOf( "." );
-      }
+  }
+  else {
+    const l = j === i;
+    if (l) {
+      f.length;
+      c.length;
     }
   }
 }
@@ -227,15 +204,14 @@ if ($) {
 
 ## Globals
 
-BAD@! Found 4 implicit global bindings:
-
-tmpClusterSSA__0x26b289, tmpClusterSSA__0x30c47e, tmpClusterSSA__0x2a669d, tmpClusterSSA__0x5dc746
+None
 
 ## Result
 
 Should call `$` with:
  - 1: 'x'
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 2: 'abc'
+ - eval returned: undefined
 
 Pre normalization calls: Same
 

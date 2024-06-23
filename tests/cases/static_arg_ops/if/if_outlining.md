@@ -195,9 +195,9 @@ const push = function ($$0, $$1) {
   const heap = $$0;
   const node = $$1;
   debugger;
-  const index$1 = heap.length;
-  const tmpSaooB$1 = index$1 > 0;
   $inlinedFunction: {
+    const index$1 = heap.length;
+    const tmpSaooB$1 = index$1 > 0;
     heap.push(node);
     if (tmpSaooB$1) {
       const tmpBinLhs$261 = index$1 - 1;
@@ -248,9 +248,9 @@ const a = function($$0,$$1 ) {
   const b = c;
   const d = e;
   debugger;
-  const f = b.length;
-  const g = f > 0;
   $inlinedFunction: {
+    const f = b.length;
+    const g = f > 0;
     b.push( d );
     if (g) {
       const h = f - 1;

@@ -105,9 +105,9 @@ $(a, x, y, z);
 
 
 `````js filename=intro
-const z = [10, 20, 30];
 const tmpSwitchValue = $(`a`);
 const tmpBinLhs = $(`a`);
+const z = [10, 20, 30];
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   const arrPatternSplat = [...z];
@@ -124,18 +124,18 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = [ 10, 20, 30 ];
+const a = $( "a" );
 const b = $( "a" );
-const c = $( "a" );
-const d = c === b;
+const c = [ 10, 20, 30 ];
+const d = b === a;
 if (d) {
-  const e = [ ... a ];
+  const e = [ ... c ];
   const f = e[ 0 ];
   const g = e[ 1 ];
-  $( 1, f, g, a );
+  $( 1, f, g, c );
 }
 else {
-  $( 1, 1, 2, a );
+  $( 1, 1, 2, c );
 }
 `````
 

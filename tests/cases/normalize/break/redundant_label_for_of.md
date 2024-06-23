@@ -74,8 +74,8 @@ exit: {
 
 
 `````js filename=intro
-let x = $(2);
 exit: {
+  let x = $(2);
   const tmpCalleeParam$1 = [`a`, `b`];
   const tmpCalleeParam = new Set(tmpCalleeParam$1);
   const tmpForOfDeclRhs = $(tmpCalleeParam);
@@ -101,8 +101,8 @@ exit: {
 With rename=true
 
 `````js filename=intro
-let a = $( 2 );
 exit: {
+  let a = $( 2 );
   const b = [ "a", "b" ];
   const c = new Set( b );
   const d = $( c );

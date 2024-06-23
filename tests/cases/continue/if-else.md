@@ -110,8 +110,8 @@ const tmpIfTest = $(false);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(`uhoh`);
-    const tmpIfTest$1 = $(false);
-    if (tmpIfTest$1) {
+    const tmpIfTest$2 = $(false);
+    if (tmpIfTest$2) {
     } else {
       $(`exit`);
       break;
@@ -121,12 +121,12 @@ if (tmpIfTest) {
   $(`exit`);
 }
 $(`woohoo`);
-const tmpIfTest$3 = $(false);
-if (tmpIfTest$3) {
+const tmpIfTest$1 = $(false);
+if (tmpIfTest$1) {
   while ($LOOP_UNROLL_10) {
     $(`uhoh`);
-    const tmpIfTest$2 = $(false);
-    if (tmpIfTest$2) {
+    const tmpIfTest$4 = $(false);
+    if (tmpIfTest$4) {
     } else {
       $(`exit`);
       break;

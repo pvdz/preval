@@ -68,16 +68,16 @@ if (tmpIfTest$1) {
 } else {
 }
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$3 = 2 === tmpSwitchValue;
-  if (tmpIfTest$3) {
-    tmpSwitchCaseToStart = 2;
-  } else {
-  }
-}
 tmpSwitchBreak: {
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+    const tmpIfTest$3 = 2 === tmpSwitchValue;
+    if (tmpIfTest$3) {
+      tmpSwitchCaseToStart = 2;
+    } else {
+    }
+  }
   const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$5) {
     break tmpSwitchBreak;
@@ -101,7 +101,6 @@ $(a);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpClusterSSA_tmpIfTest = 1 === tmpSwitchValue;
@@ -124,6 +123,7 @@ if (tmpIfTest$5) {
   }
   $(`fail2`);
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -132,34 +132,34 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-let c = 1;
-const d = 1 === b;
-if (d) {
-  c = 0;
+const a = $( 1 );
+let b = 1;
+const c = 1 === a;
+if (c) {
+  b = 0;
 }
 else {
-  const e = 2 === b;
-  if (e) {
-    c = 2;
+  const d = 2 === a;
+  if (d) {
+    b = 2;
   }
 }
-const f = c <= 0;
-if (f) {
+const e = b <= 0;
+if (e) {
 
 }
 else {
-  const g = c <= 1;
-  if (g) {
+  const f = b <= 1;
+  if (f) {
     $( "fail1" );
   }
   $( "fail2" );
 }
-$( a );
+const g = {
+  a: 999,
+  b: 1000,
+};
+$( g );
 `````
 
 ## Globals

@@ -67,8 +67,8 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  $(100);
   label1: {
+    $(100);
     const tmpIfTest = $(0);
     if (tmpIfTest) {
       label2: {

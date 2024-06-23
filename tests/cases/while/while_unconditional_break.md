@@ -63,8 +63,8 @@ $(x);
 
 `````js filename=intro
 let x = 1;
-$(x);
 $finally: {
+  $(x);
   try {
     $(x);
     x = 2;

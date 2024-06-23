@@ -43,8 +43,8 @@ tmpSwitchBreak: {
 
 
 `````js filename=intro
-f();
 tmpSwitchBreak: {
+  f();
   let f$1 = function () {
     debugger;
     $(`pass`);

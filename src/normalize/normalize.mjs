@@ -8432,6 +8432,36 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       return true;
     }
 
+    if (
+      i > 0 &&
+      // I'm not sure if we couldn't just exclude var statements instead. What else might we not want to include here?
+      [
+        'ExpressionStatement',
+        'IfStatement',
+        'WhileStatement',
+        'TryStatement',
+        'BreakStatement',
+        'ReturnStatement',
+        'ThrowStatement',
+        'ForInStatement',
+        'ForOfStatement',
+        'LabeledStatement',
+      ].includes(body[i-1].type)
+    ) {
+      rule('A label should wrap as much as possible so when preceded by an expression or certain statements it should wrap around it');
+      example('f(); A: { ... }', '; A: { f(); ... }');
+      example('while (true) f(); A: { ... }', '; A: { while (true) f(); ... }');
+      before(body[i-1]);
+      before(body[i]);
+
+      node.body.body.unshift(body[i-1]);
+      body[i-1] = AST.emptyStatement();
+
+      after(body[i-1]);
+      after(body[i]);
+      return true;
+    }
+
     return anyChange;
   }
 

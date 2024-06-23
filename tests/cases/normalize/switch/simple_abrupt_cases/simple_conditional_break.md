@@ -74,26 +74,26 @@ switch ($(1)) {
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 4;
 const tmpIfTest = 0 === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$1 = 1 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 1;
+tmpSwitchBreak: {
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
   } else {
-    const tmpIfTest$3 = 2 === tmpSwitchValue;
-    if (tmpIfTest$3) {
-      tmpSwitchCaseToStart = 2;
+    const tmpIfTest$1 = 1 === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 1;
     } else {
-      const tmpIfTest$5 = 3 === tmpSwitchValue;
-      if (tmpIfTest$5) {
-        tmpSwitchCaseToStart = 3;
+      const tmpIfTest$3 = 2 === tmpSwitchValue;
+      if (tmpIfTest$3) {
+        tmpSwitchCaseToStart = 2;
       } else {
+        const tmpIfTest$5 = 3 === tmpSwitchValue;
+        if (tmpIfTest$5) {
+          tmpSwitchCaseToStart = 3;
+        } else {
+        }
       }
     }
   }
-}
-tmpSwitchBreak: {
   const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$7) {
     $(`one`);
@@ -136,26 +136,26 @@ tmpSwitchBreak: {
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 4;
 const tmpIfTest = 0 === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$1 = 1 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 1;
+tmpSwitchBreak: {
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
   } else {
-    const tmpIfTest$3 = 2 === tmpSwitchValue;
-    if (tmpIfTest$3) {
-      tmpSwitchCaseToStart = 2;
+    const tmpIfTest$1 = 1 === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 1;
     } else {
-      const tmpIfTest$5 = 3 === tmpSwitchValue;
-      if (tmpIfTest$5) {
-        tmpSwitchCaseToStart = 3;
+      const tmpIfTest$3 = 2 === tmpSwitchValue;
+      if (tmpIfTest$3) {
+        tmpSwitchCaseToStart = 2;
       } else {
+        const tmpIfTest$5 = 3 === tmpSwitchValue;
+        if (tmpIfTest$5) {
+          tmpSwitchCaseToStart = 3;
+        } else {
+        }
       }
     }
   }
-}
-tmpSwitchBreak: {
   const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$7) {
     $(`one`);
@@ -192,28 +192,28 @@ With rename=true
 const a = $( 1 );
 let b = 4;
 const c = 0 === a;
-if (c) {
-  b = 0;
-}
-else {
-  const d = 1 === a;
-  if (d) {
-    b = 1;
+tmpSwitchBreak: {
+  if (c) {
+    b = 0;
   }
   else {
-    const e = 2 === a;
-    if (e) {
-      b = 2;
+    const d = 1 === a;
+    if (d) {
+      b = 1;
     }
     else {
-      const f = 3 === a;
-      if (f) {
-        b = 3;
+      const e = 2 === a;
+      if (e) {
+        b = 2;
+      }
+      else {
+        const f = 3 === a;
+        if (f) {
+          b = 3;
+        }
       }
     }
   }
-}
-tmpSwitchBreak: {
   const g = b <= 0;
   if (g) {
     $( "one" );

@@ -63,16 +63,16 @@ switch (1) {
 const tmpSwitchValue = 1;
 let tmpSwitchCaseToStart = 2;
 const tmpIfTest = 1 === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$1 = 4 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 1;
-  } else {
-  }
-}
 tmpSwitchBreak: {
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+    const tmpIfTest$1 = 4 === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 1;
+    } else {
+    }
+  }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
     $(3);

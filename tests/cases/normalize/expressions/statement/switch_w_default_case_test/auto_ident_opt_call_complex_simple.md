@@ -64,16 +64,16 @@ if (tmpIfTest$1) {
 } else {
 }
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$3 = 2 === tmpSwitchValue;
-  if (tmpIfTest$3) {
-    tmpSwitchCaseToStart = 2;
-  } else {
-  }
-}
 tmpSwitchBreak: {
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+    const tmpIfTest$3 = 2 === tmpSwitchValue;
+    if (tmpIfTest$3) {
+      tmpSwitchCaseToStart = 2;
+    } else {
+    }
+  }
   const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$5) {
     break tmpSwitchBreak;

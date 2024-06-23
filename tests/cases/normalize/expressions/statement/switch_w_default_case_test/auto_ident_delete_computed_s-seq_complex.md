@@ -64,16 +64,16 @@ const tmpDeleteCompObj = arg;
 const tmpDeleteCompProp = $(`y`);
 const tmpBinLhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$1 = 2 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 2;
-  } else {
-  }
-}
 tmpSwitchBreak: {
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+    const tmpIfTest$1 = 2 === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 2;
+    } else {
+    }
+  }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
     break tmpSwitchBreak;

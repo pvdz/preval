@@ -63,8 +63,8 @@ $(`after (not invoked)`);
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    $(`loop`);
     tmpSwitchBreak: {
+      $(`loop`);
       const tmpSwitchDisc = $(true, `dis`);
       const tmpBinBothLhs = tmpSwitchDisc;
       const tmpBinBothRhs = $(true, `case`);

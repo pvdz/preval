@@ -5,6 +5,7 @@
 // tests/cases/normalize/dce/throw/fence_at_loop_dowhile.md -> regression?
 // tests/cases/normalize/expressions/assignments/do_while/auto_ident_upd_ip_simple.md -> should detect that `a` is invariably overwritten in the loop. maybe a ref tracking bug (perhaps it considers while(true) an optional branch)
 // tests/cases/unwind_loops/counter_test/unroll_option_too_low.md used to be able to eliminate the array entirely
+// tests/cases/ssa/back2back_x_x_plus_1_assign42.md -> was able to SSA the x but somehow this stopped working after label extending.
 
 // TODO:
 
@@ -32,3 +33,4 @@
 // infinite loop tests are set to $LOOP_DONE_UNROLLING_ALWAYS_TRUE in reduce_static/infinite_loops.mjs but we should find a way in normalize instead
 // tests/cases/array/static_props/escape.md should not inline the length there
 // tests/cases/array/read_only/computed_prop.md -> we should be able to resolve array props until it escapes. especially when its not a closure.
+// tests/cases/normalize/expressions/statement/while/auto_ident_logic_or_or.md -> if a var declared above a label that doesnt escape is only used inside that label then it can be moved inside too

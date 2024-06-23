@@ -41,8 +41,8 @@ $(x);         // x=3 (loop can only break after x=3)
 
 `````filename=intro
 let x___4__ = 1;
-$(x___9__);
-$finally___11__: /*12*/ {
+$finally___7__: /*8*/ {
+  $(x___12__);
   try /*14*/ {
     $(x___18__);
     x___22__ = 2;
@@ -58,8 +58,8 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 9,18,31     | none           | 22,35
-  - r @9       | 4
+  - w @4       | ########## | 12,18,31    | none           | 22,35
+  - r @12      | 4
   - r @18      | 4
   - w @22      | ########## | 31          | 4              | 35
   - r @31      | 4,22

@@ -94,16 +94,16 @@ while (true) {
       $(1);
       let tmpSwitchCaseToStart = 1;
       const tmpIfTest = true;
-      if (tmpIfTest) {
-        tmpSwitchCaseToStart = 0;
-      } else {
-        const tmpIfTest$1 = false;
-        if (tmpIfTest$1) {
-          tmpSwitchCaseToStart = 2;
-        } else {
-        }
-      }
       tmpSwitchBreak: {
+        if (tmpIfTest) {
+          tmpSwitchCaseToStart = 0;
+        } else {
+          const tmpIfTest$1 = false;
+          if (tmpIfTest$1) {
+            tmpSwitchCaseToStart = 2;
+          } else {
+          }
+        }
         const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
         if (tmpIfTest$2) {
           run = false;

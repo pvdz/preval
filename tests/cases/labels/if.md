@@ -36,8 +36,8 @@ $(2);
 
 `````js filename=intro
 let x = $(100);
-$(0);
 foo: {
+  $(0);
   if (x) {
     $(1);
     break foo;

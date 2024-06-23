@@ -47,8 +47,8 @@
 
 `````filename=intro
 let x___4__ = 1;
-$(x___9__);
-A___11__: /*12*/ {
+A___7__: /*8*/ {
+  $(x___12__);
   while (true) {
     /*15*/ let $implicitThrow___18__ = false;
     let $finalStep___22__ = false;
@@ -86,8 +86,8 @@ Ref tracking result:
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 9,36,61,82,90 | none           | 40,71,86
-  - r @9       | 4
+  - w @4       | ########## | 12,36,61,82,90 | none           | 40,71,86
+  - r @12      | 4
   - r @36      | 4
   - w @40      | ########## | 61,90       | 4              | 71
   - r @61      | 4,40

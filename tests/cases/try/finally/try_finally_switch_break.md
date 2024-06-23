@@ -69,11 +69,11 @@ $(3);
 const tmpSwitchValue = $;
 let tmpSwitchCaseToStart = 1;
 const tmpIfTest = $ === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
 tmpSwitchBreak: {
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+  }
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
     let $implicitThrow = false;

@@ -76,26 +76,26 @@ ok: {
   const tmpSwitchValue = $(1);
   let tmpSwitchCaseToStart = 4;
   const tmpIfTest = 0 === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-    const tmpIfTest$1 = 1 === tmpSwitchValue;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 1;
+  tmpSwitchBreak: {
+    if (tmpIfTest) {
+      tmpSwitchCaseToStart = 0;
     } else {
-      const tmpIfTest$3 = 2 === tmpSwitchValue;
-      if (tmpIfTest$3) {
-        tmpSwitchCaseToStart = 2;
+      const tmpIfTest$1 = 1 === tmpSwitchValue;
+      if (tmpIfTest$1) {
+        tmpSwitchCaseToStart = 1;
       } else {
-        const tmpIfTest$5 = 3 === tmpSwitchValue;
-        if (tmpIfTest$5) {
-          tmpSwitchCaseToStart = 3;
+        const tmpIfTest$3 = 2 === tmpSwitchValue;
+        if (tmpIfTest$3) {
+          tmpSwitchCaseToStart = 2;
         } else {
+          const tmpIfTest$5 = 3 === tmpSwitchValue;
+          if (tmpIfTest$5) {
+            tmpSwitchCaseToStart = 3;
+          } else {
+          }
         }
       }
     }
-  }
-  tmpSwitchBreak: {
     const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$7) {
       $(`one`);

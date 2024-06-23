@@ -61,8 +61,8 @@ try {
 let $implicitThrow = false;
 let $finalCatchArg = undefined;
 try {
-  $(1);
   A: {
+    $(1);
     $(2);
     const tmpIfTest = $(3);
     if (tmpIfTest) {

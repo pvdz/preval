@@ -85,23 +85,23 @@ const tmpSwitchValue = x;
 let tmpSwitchCaseToStart = 3;
 const tmpBinLhs = $(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpBinLhs$1 = $(2);
-  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 1;
+tmpSwitchBreak: {
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
   } else {
-    const tmpBinLhs$3 = $(3);
-    const tmpIfTest$3 = tmpBinLhs$3 === tmpSwitchValue;
-    if (tmpIfTest$3) {
-      tmpSwitchCaseToStart = 2;
+    const tmpBinLhs$1 = $(2);
+    const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 1;
     } else {
+      const tmpBinLhs$3 = $(3);
+      const tmpIfTest$3 = tmpBinLhs$3 === tmpSwitchValue;
+      if (tmpIfTest$3) {
+        tmpSwitchCaseToStart = 2;
+      } else {
+      }
     }
   }
-}
-tmpSwitchBreak: {
   const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$5) {
     $(`A`);

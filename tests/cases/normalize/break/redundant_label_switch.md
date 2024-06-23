@@ -74,21 +74,21 @@ exit: {
   const tmpSwitchValue = $(100);
   let tmpSwitchCaseToStart = 3;
   const tmpIfTest = 1 === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-    const tmpIfTest$1 = 2 === tmpSwitchValue;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 1;
+  tmpSwitchBreak: {
+    if (tmpIfTest) {
+      tmpSwitchCaseToStart = 0;
     } else {
-      const tmpIfTest$3 = 100 === tmpSwitchValue;
-      if (tmpIfTest$3) {
-        tmpSwitchCaseToStart = 2;
+      const tmpIfTest$1 = 2 === tmpSwitchValue;
+      if (tmpIfTest$1) {
+        tmpSwitchCaseToStart = 1;
       } else {
+        const tmpIfTest$3 = 100 === tmpSwitchValue;
+        if (tmpIfTest$3) {
+          tmpSwitchCaseToStart = 2;
+        } else {
+        }
       }
     }
-  }
-  tmpSwitchBreak: {
     const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$5) {
       $(1);

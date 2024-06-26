@@ -173,3 +173,13 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: Same
+
+Inverse input result (there was at least one mismatch even though actual test evalled equal):
+ - 1: 0
+ - 2: 'one'
+ - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Output inverse calls: BAD!!
+ - 1: 0
+ - 2: 'one'
+ - eval returned: undefined

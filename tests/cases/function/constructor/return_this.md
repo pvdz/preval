@@ -79,7 +79,7 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: BAD?!
+Normalized calls: BAD!?
  - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Final output calls: BAD!!

@@ -89,7 +89,7 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: BAD?!
+Normalized calls: BAD!?
  - 1: 0
  - eval returned: undefined
 

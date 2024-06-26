@@ -449,8 +449,15 @@ function runTestCase(
 
   if (withOutput && !lastError && !isRefTest) console.log('Evaluating outcomes now for:', CONFIG.targetFile);
 
-  const evalled = { $in: [], $pre: [], $norm: [], $out: [] };
-  function evaluate(desc, fdata, stack) {
+  // Test the input verbatim against pre-normal, normal, and output transforms.
+  // Then also test while inverting bools and 0/1 inside $() calls, to try and catch a subset of untested logic branches/loops
+  const evalled = { $in: [], $pre: [], $norm: [], $out: [], $in_inv: [], $pre_inv: [], $norm_inv: [], $out_inv: [] };
+  function evaluate_inv(desc, fdata, stack) {
+    return evaluate(desc, fdata, stack, true);
+  }
+  function evaluate(desc, fdata, stack, inverse) {
+    // `inverse` means $(true) becomes $(false), $(false) becomes $(true), $(1) becomes $(0), and $(0) becomes $(1).
+    //           Attempts to catch "the reverse logic" or break otherwise infinite loops for some cases.
     if (!fdata) return stack.slice(0);
 
     try {
@@ -533,14 +540,22 @@ function runTestCase(
 
         //.replace(/function(?: [\w$]*)?\(\) ?\{/g, 'function() {');
       }
-      function $(...a) {
+      function $(...dollarArgs) {
         if (stack.length > (before ? 25 : 10000)) throw new Error('Loop aborted by Preval test runner (this simply curbs infinite loops in tests)');
 
-        const tmp = a[0];
+        let tmp = dollarArgs[0];
+        if (inverse) {
+          // Attempt to get the inverse of a test case or to break loops that would otherwise be infinite
+          if (tmp === 0) tmp = 1;
+          else if (tmp === 1) tmp = 0;
+          else if (tmp === false) tmp = true;
+          else if (tmp === true) tmp = false;
+          dollarArgs[0] = tmp;
+        }
 
         stack.push(
           '[' +
-            a
+            dollarArgs
               .map(safeCloneString)
               .join(', ')
               // We normalize to return undefined so empty functions should get that too
@@ -638,12 +653,14 @@ function runTestCase(
   }
   const SKIPPED = '"<skipped by option>"';
   evalled.$in = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalInput || isRefTest ? [SKIPPED] : evaluate('input', fin, evalled.$in);
+  evalled.$in_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalInput || isRefTest ? [SKIPPED] : evaluate_inv('input', fin, evalled.$in_inv);
   evalled.$pre = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalPre || isRefTest ? [SKIPPED] : evaluate('pre normalization', fin, evalled.$pre);
-  evalled.$norm =
-    lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalNormalized || isRefTest ? [SKIPPED] : evaluate('normalized', output?.normalized, evalled.$norm);
+  evalled.$pre_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalPre || isRefTest ? [SKIPPED] : evaluate_inv('pre normalization', fin, evalled.$pre_inv);
+  evalled.$norm = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalNormalized || isRefTest ? [SKIPPED] : evaluate('normalized', output?.normalized, evalled.$norm);
+  evalled.$norm_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalNormalized || isRefTest ? [SKIPPED] : evaluate_inv('normalized', output?.normalized, evalled.$norm_inv);
   if (!CONFIG.onlyNormalized) {
-    evalled.$out =
-      lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalOutput || isRefTest ? [SKIPPED] : evaluate('output', output?.files, evalled.$out);
+    evalled.$out = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalOutput || isRefTest ? [SKIPPED] : evaluate('output', output?.files, evalled.$out);
+    evalled.$out_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalOutput || isRefTest ? [SKIPPED] : evaluate_inv('output', output?.files, evalled.$out_inv);
   }
 
   if (lastError && !isExpectingAnError) console.log('\n\nPreval crashed hard on test/file, skipped evals:', CONFIG.targetFile);

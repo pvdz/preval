@@ -85,7 +85,7 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: BAD?!
+Normalized calls: BAD!?
  - 1: { 'function() {\ndebugger;\nreturn undefined;\n}': '10' }
  - 2: '<function>'
  - eval returned: undefined

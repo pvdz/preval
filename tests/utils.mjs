@@ -215,16 +215,29 @@ export function toEvaluationResult(evalled, implicitGlobals, skipFinal) {
       .join('\n');
   }
 
-  const printOutput = printStack(evalled.$in);
+  const inputOutput = printStack(evalled.$in);
   const preOutput = printStack(evalled.$pre);
   const normalizedOutput = printStack(evalled.$norm);
-  const finalOutput = printStack(evalled.$out);
+  const outputOutput = printStack(evalled.$out);
 
-  const preEvalResult = printOutput === preOutput ? ' Same' : ' BAD%!\n' + printOutput;
-  const normalizedEvalResult = preOutput === normalizedOutput ? ' Same' : ' BAD?!\n' + normalizedOutput;
+  const preEvalResult = inputOutput === preOutput ? ' Same' : ' BAD!%\n' + inputOutput;
+  const normalizedEvalResult = inputOutput === normalizedOutput ? ' Same' : ' BAD!?\n' + normalizedOutput;
   const finalEvalResult = skipFinal
     ? ''
-    : 'Final output calls:' + (printOutput === finalOutput ? ' Same\n' : ' BAD!!\n' + finalOutput + '\n');
+    : 'Final output calls:' + (inputOutput === outputOutput ? ' Same\n' : ' BAD!!\n' + outputOutput + '\n');
+  const hasError = !(inputOutput === preOutput && inputOutput === normalizedOutput && (skipFinal || inputOutput === outputOutput));
+
+  // Only show this when the transforms mismatch the input. Otherwise ignore.
+  const input_invOutput = printStack(evalled.$in_inv);
+  const pre_invOutput = printStack(evalled.$pre_inv);
+  const normalized_invOutput = printStack(evalled.$norm_inv);
+  const output_invOutput = printStack(evalled.$out_inv);
+
+  const preEvalResult_inv = input_invOutput !== pre_invOutput ? '\n\nPre normalization inverse calls: BAD!%\n' + inputOutput : '';
+  const normalizedEvalResult_inv = input_invOutput !== normalized_invOutput ? '\n\nNormalization inverse calls: BAD!?\n' + normalizedOutput : '';
+  const finalEvalResult_inv = skipFinal
+    ? ''
+    : (input_invOutput !== output_invOutput ? '\n\nOutput inverse calls: BAD!!\n' + output_invOutput + '\n'  : '');
 
   return (
     '\n\n## Globals\n\n' +
@@ -233,7 +246,7 @@ export function toEvaluationResult(evalled, implicitGlobals, skipFinal) {
       : 'None') +
     '\n\n## Result\n\n' +
     'Should call `$` with:\n' +
-    printOutput +
+    inputOutput +
     '\n\n' +
     'Pre normalization calls:' +
     preEvalResult +
@@ -242,6 +255,13 @@ export function toEvaluationResult(evalled, implicitGlobals, skipFinal) {
     normalizedEvalResult +
     '\n\n' +
     finalEvalResult +
+    (!hasError && (preEvalResult_inv || normalizedEvalResult_inv || finalEvalResult_inv) ?
+      '\nInverse input result (there was at least one mismatch even though actual test evalled equal):\n' +
+      input_invOutput
+    : '') +
+    (!hasError ? preEvalResult_inv : '') +
+    (!hasError ? normalizedEvalResult_inv : '') +
+    (!hasError ? finalEvalResult_inv : '') +
     ''
   );
 }

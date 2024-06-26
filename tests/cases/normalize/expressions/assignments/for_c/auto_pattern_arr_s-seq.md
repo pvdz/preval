@@ -55,14 +55,17 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
-const a = arrPatternSplat[0];
+let a = arrPatternSplat[0];
 const tmpIfTest = $(1);
 if (tmpIfTest) {
+  $(10);
+  $(20);
+  a = 1;
   while ($LOOP_UNROLL_10) {
-    $(10);
-    $(20);
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
+      $(10);
+      $(20);
     } else {
       break;
     }
@@ -82,15 +85,17 @@ const a = {
   b: 1000,
 };
 const b = [ ... a ];
-const c = b[ 0 ];
+let c = b[ 0 ];
 const d = $( 1 );
 if (d) {
+  $( 10 );
+  $( 20 );
+  c = 1;
   while ($LOOP_UNROLL_10) {
-    $( 10 );
-    $( 20 );
     const e = $( 1 );
     if (e) {
-
+      $( 10 );
+      $( 20 );
     }
     else {
       break;

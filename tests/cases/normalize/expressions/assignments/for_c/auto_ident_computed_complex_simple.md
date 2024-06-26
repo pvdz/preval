@@ -52,17 +52,17 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 1 };
-const a = { a: 999, b: 1000 };
+let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
+const b = { c: 1 };
 if (tmpIfTest) {
   const tmpAssignRhsProp = $(b);
-  tmpAssignRhsProp.c;
+  a = tmpAssignRhsProp.c;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
       const tmpAssignRhsProp$1 = $(b);
-      tmpAssignRhsProp$1.c;
+      a = tmpAssignRhsProp$1.c;
     } else {
       break;
     }
@@ -77,27 +77,27 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-const a = { c: 1 };
-const b = {
+let a = {
   a: 999,
   b: 1000,
 };
-const c = $( 1 );
-if (c) {
-  const d = $( a );
-  d.c;
+const b = $( 1 );
+const c = { c: 1 };
+if (b) {
+  const d = $( c );
+  a = d.c;
   while ($LOOP_UNROLL_10) {
     const e = $( 1 );
     if (e) {
-      const f = $( a );
-      f.c;
+      const f = $( c );
+      a = f.c;
     }
     else {
       break;
     }
   }
 }
-$( b, a );
+$( a, c );
 `````
 
 ## Globals

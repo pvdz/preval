@@ -67,8 +67,10 @@ $(a);
 
 
 `````js filename=intro
+let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
+  a = undefined;
   const tmpObjLitVal$1 = { e: $ };
   const tmpIfTest$3 = $ == null;
   if (tmpIfTest$3) {
@@ -90,7 +92,6 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -99,26 +100,31 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-if (a) {
-  const b = { e: $ };
-  const c = $ == null;
-  if (c) {
+let a = {
+  a: 999,
+  b: 1000,
+};
+const b = $( 1 );
+if (b) {
+  a = undefined;
+  const c = { e: $ };
+  const d = $ == null;
+  if (d) {
 
   }
   else {
-    $dotCall( $, b, 1 );
+    $dotCall( $, c, 1 );
   }
   while ($LOOP_UNROLL_10) {
-    const d = $( 1 );
-    if (d) {
-      const e = b.e;
-      const f = e == null;
-      if (f) {
+    const e = $( 1 );
+    if (e) {
+      const f = c.e;
+      const g = f == null;
+      if (g) {
 
       }
       else {
-        $dotCall( e, b, 1 );
+        $dotCall( f, c, 1 );
       }
     }
     else {
@@ -126,11 +132,7 @@ if (a) {
     }
   }
 }
-const g = {
-  a: 999,
-  b: 1000,
-};
-$( g );
+$( a );
 `````
 
 ## Globals

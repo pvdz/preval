@@ -57,7 +57,7 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
-const a = arrPatternSplat[0];
+let a = arrPatternSplat[0];
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   $(10);
@@ -65,7 +65,7 @@ if (tmpIfTest) {
   const tmpCalleeParam = [1, 2];
   const arrAssignPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat$1 = [...arrAssignPatternRhs];
-  arrPatternSplat$1[0];
+  a = arrPatternSplat$1[0];
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
@@ -74,7 +74,7 @@ if (tmpIfTest) {
       const tmpCalleeParam$1 = [1, 2];
       const arrAssignPatternRhs$1 = $(tmpCalleeParam$1);
       const arrPatternSplat$2 = [...arrAssignPatternRhs$1];
-      arrPatternSplat$2[0];
+      a = arrPatternSplat$2[0];
     } else {
       break;
     }
@@ -94,7 +94,7 @@ const a = {
   b: 1000,
 };
 const b = [ ... a ];
-const c = b[ 0 ];
+let c = b[ 0 ];
 const d = $( 1 );
 if (d) {
   $( 10 );
@@ -102,7 +102,7 @@ if (d) {
   const e = [ 1, 2 ];
   const f = $( e );
   const g = [ ... f ];
-  g[ 0 ];
+  c = g[ 0 ];
   while ($LOOP_UNROLL_10) {
     const h = $( 1 );
     if (h) {
@@ -111,7 +111,7 @@ if (d) {
       const i = [ 1, 2 ];
       const j = $( i );
       const k = [ ... j ];
-      k[ 0 ];
+      c = k[ 0 ];
     }
     else {
       break;

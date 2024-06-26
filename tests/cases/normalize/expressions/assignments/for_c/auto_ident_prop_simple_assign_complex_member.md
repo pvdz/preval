@@ -56,14 +56,15 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 10, d: 20 };
-const a = { a: 999, b: 1000 };
+let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
+const b = { c: 10, d: 20 };
 if (tmpIfTest) {
   const tmpCompObj = $(b);
   const tmpCompProp = $(`d`);
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   b.c = tmpNestedAssignPropRhs;
+  a = tmpNestedAssignPropRhs;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
@@ -71,6 +72,7 @@ if (tmpIfTest) {
       const tmpCompProp$1 = $(`d`);
       const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
       b.c = tmpNestedAssignPropRhs$1;
+      a = tmpNestedAssignPropRhs$1;
     } else {
       break;
     }
@@ -85,34 +87,36 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-const a = {
-  c: 10,
-  d: 20,
-};
-const b = {
+let a = {
   a: 999,
   b: 1000,
 };
-const c = $( 1 );
-if (c) {
-  const d = $( a );
+const b = $( 1 );
+const c = {
+  c: 10,
+  d: 20,
+};
+if (b) {
+  const d = $( c );
   const e = $( "d" );
   const f = d[ e ];
-  a.c = f;
+  c.c = f;
+  a = f;
   while ($LOOP_UNROLL_10) {
     const g = $( 1 );
     if (g) {
-      const h = $( a );
+      const h = $( c );
       const i = $( "d" );
       const j = h[ i ];
-      a.c = j;
+      c.c = j;
+      a = j;
     }
     else {
       break;
     }
   }
 }
-$( b, a );
+$( a, c );
 `````
 
 ## Globals

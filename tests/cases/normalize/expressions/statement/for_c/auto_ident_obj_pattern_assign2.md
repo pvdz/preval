@@ -82,18 +82,21 @@ $(a, x, y);
 
 `````js filename=intro
 let x = 1;
+let y = 2;
 const z = $(3);
 const test = $(z);
 if (test) {
   const p = $(3);
   $(4);
   x = p;
+  y = z;
   while ($LOOP_UNROLL_10) {
     const test$1 = $(0);
     if (test$1) {
       const p$1 = $(3);
       $(4);
       x = p$1;
+      y = 0;
     } else {
       break;
     }
@@ -101,7 +104,7 @@ if (test) {
 } else {
 }
 const a = { a: 999, b: 1000 };
-$(a, x, 2);
+$(a, x, y);
 `````
 
 ## PST Output
@@ -110,29 +113,32 @@ With rename=true
 
 `````js filename=intro
 let a = 1;
-const b = $( 3 );
-const c = $( b );
-if (c) {
-  const d = $( 3 );
+let b = 2;
+const c = $( 3 );
+const d = $( c );
+if (d) {
+  const e = $( 3 );
   $( 4 );
-  a = d;
+  a = e;
+  b = c;
   while ($LOOP_UNROLL_10) {
-    const e = $( 0 );
-    if (e) {
-      const f = $( 3 );
+    const f = $( 0 );
+    if (f) {
+      const g = $( 3 );
       $( 4 );
-      a = f;
+      a = g;
+      b = 0;
     }
     else {
       break;
     }
   }
 }
-const g = {
+const h = {
   a: 999,
   b: 1000,
 };
-$( g, a, 2 );
+$( h, a, b );
 `````
 
 ## Globals
@@ -154,11 +160,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: 3
- - 2: 3
- - 3: 3
- - 4: 4
- - 5: 0
- - 6: { a: '999', b: '1000' }, 3, 2
- - eval returned: undefined
+Final output calls: Same

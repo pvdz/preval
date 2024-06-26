@@ -58,15 +58,16 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { x: 1 };
-const a = { a: 999, b: 1000 };
+let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
+const b = { x: 1 };
 if (tmpIfTest) {
   const tmpCalleeParam = $(b);
   const tmpPostUpdArgObj = $(tmpCalleeParam);
   const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
   const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
   tmpPostUpdArgObj.x = tmpAssignMemRhs;
+  a = tmpPostUpdArgVal;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
@@ -75,6 +76,7 @@ if (tmpIfTest) {
       const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
       const tmpAssignMemRhs$1 = tmpPostUpdArgVal$1 + 1;
       tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
+      a = tmpPostUpdArgVal$1;
     } else {
       break;
     }
@@ -89,33 +91,35 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = {
+let a = {
   a: 999,
   b: 1000,
 };
-const c = $( 1 );
-if (c) {
-  const d = $( a );
+const b = $( 1 );
+const c = { x: 1 };
+if (b) {
+  const d = $( c );
   const e = $( d );
   const f = e.x;
   const g = f + 1;
   e.x = g;
+  a = f;
   while ($LOOP_UNROLL_10) {
     const h = $( 1 );
     if (h) {
-      const i = $( a );
+      const i = $( c );
       const j = $( i );
       const k = j.x;
       const l = k + 1;
       j.x = l;
+      a = k;
     }
     else {
       break;
     }
   }
 }
-$( b, a );
+$( a, c );
 `````
 
 ## Globals

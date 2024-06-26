@@ -68,8 +68,10 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
+let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
+  a = undefined;
   const b = { x: tmpObjLitVal };
   const tmpChainElementCall = $(b);
   const tmpIfTest$1 = tmpChainElementCall == null;
@@ -106,7 +108,6 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -116,44 +117,49 @@ With rename=true
 
 `````js filename=intro
 const a = { y: 1 };
-const b = $( 1 );
-if (b) {
-  const c = { x: a };
-  const d = $( c );
-  const e = d == null;
-  if (e) {
+let b = {
+  a: 999,
+  b: 1000,
+};
+const c = $( 1 );
+if (c) {
+  b = undefined;
+  const d = { x: a };
+  const e = $( d );
+  const f = e == null;
+  if (f) {
 
   }
   else {
-    const f = $( "x" );
-    const g = d[ f ];
-    const h = g == null;
-    if (h) {
+    const g = $( "x" );
+    const h = e[ g ];
+    const i = h == null;
+    if (i) {
 
     }
     else {
-      const i = $( "y" );
-      g[ i ];
+      const j = $( "y" );
+      h[ j ];
     }
   }
   while ($LOOP_UNROLL_10) {
-    const j = $( 1 );
-    if (j) {
-      const k = $( c );
-      const l = k == null;
-      if (l) {
+    const k = $( 1 );
+    if (k) {
+      const l = $( d );
+      const m = l == null;
+      if (m) {
 
       }
       else {
-        const m = $( "x" );
-        const n = k[ m ];
-        const o = n == null;
-        if (o) {
+        const n = $( "x" );
+        const o = l[ n ];
+        const p = o == null;
+        if (p) {
 
         }
         else {
-          const p = $( "y" );
-          n[ p ];
+          const q = $( "y" );
+          o[ q ];
         }
       }
     }
@@ -162,11 +168,7 @@ if (b) {
     }
   }
 }
-const q = {
-  a: 999,
-  b: 1000,
-};
-$( q );
+$( b );
 `````
 
 ## Globals

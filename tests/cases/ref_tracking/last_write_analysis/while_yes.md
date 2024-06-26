@@ -15,8 +15,8 @@ $(x);
 // Can not SSA this because the loop writes to it, too
 x = $('b');
 while (true) {
-  if ($) {
-    x = $('c');
+  if (x) {
+    x = $(0);
   } else {
     break;  
   }
@@ -32,8 +32,8 @@ let x = $(`a`);
 $(x);
 x = $(`b`);
 while (true) {
-  if ($) {
-    x = $(`c`);
+  if (x) {
+    x = $(0);
   } else {
     break;
   }
@@ -49,8 +49,8 @@ let x = $(`a`);
 $(x);
 x = $(`b`);
 while (true) {
-  if ($) {
-    x = $(`c`);
+  if (x) {
+    x = $(0);
   } else {
     break;
   }
@@ -64,11 +64,11 @@ $(x);
 `````js filename=intro
 const x = $(`a`);
 $(x);
-const tmpClusterSSA_x = $(`b`);
-if ($) {
+let tmpClusterSSA_x = $(`b`);
+if (tmpClusterSSA_x) {
   while ($LOOP_UNROLL_10) {
-    $(`c`);
-    if ($) {
+    tmpClusterSSA_x = $(0);
+    if (tmpClusterSSA_x) {
     } else {
       break;
     }
@@ -85,11 +85,11 @@ With rename=true
 `````js filename=intro
 const a = $( "a" );
 $( a );
-const b = $( "b" );
-if ($) {
+let b = $( "b" );
+if (b) {
   while ($LOOP_UNROLL_10) {
-    $( "c" );
-    if ($) {
+    b = $( 0 );
+    if (b) {
 
     }
     else {
@@ -110,30 +110,9 @@ Should call `$` with:
  - 1: 'a'
  - 2: 'a'
  - 3: 'b'
- - 4: 'c'
- - 5: 'c'
- - 6: 'c'
- - 7: 'c'
- - 8: 'c'
- - 9: 'c'
- - 10: 'c'
- - 11: 'c'
- - 12: 'c'
- - 13: 'c'
- - 14: 'c'
- - 15: 'c'
- - 16: 'c'
- - 17: 'c'
- - 18: 'c'
- - 19: 'c'
- - 20: 'c'
- - 21: 'c'
- - 22: 'c'
- - 23: 'c'
- - 24: 'c'
- - 25: 'c'
- - 26: 'c'
- - eval returned: ('<crash[ Loop aborted by Preval test runner (this simply curbs infinite loops in tests) ]>')
+ - 4: 0
+ - 5: 0
+ - eval returned: undefined
 
 Pre normalization calls: Same
 

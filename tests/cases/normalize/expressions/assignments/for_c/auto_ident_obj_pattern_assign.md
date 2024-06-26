@@ -60,25 +60,32 @@ $(a, x, y);
 
 `````js filename=intro
 let x = 1;
+let y = 2;
+let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpObjLitVal = $(3);
-  $(4);
+  const tmpObjLitVal$1 = $(4);
   x = tmpObjLitVal;
+  y = tmpObjLitVal$1;
+  const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+  a = tmpNestedAssignObjPatternRhs;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
       const tmpObjLitVal$2 = $(3);
-      $(4);
+      const tmpObjLitVal$4 = $(4);
       x = tmpObjLitVal$2;
+      y = tmpObjLitVal$4;
+      const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$2, y: tmpObjLitVal$4 };
+      a = tmpNestedAssignObjPatternRhs$1;
     } else {
       break;
     }
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
-$(a, x, 2);
+$(a, x, y);
 `````
 
 ## PST Output
@@ -87,28 +94,41 @@ With rename=true
 
 `````js filename=intro
 let a = 1;
-const b = $( 1 );
-if (b) {
-  const c = $( 3 );
-  $( 4 );
-  a = c;
+let b = 2;
+let c = {
+  a: 999,
+  b: 1000,
+};
+const d = $( 1 );
+if (d) {
+  const e = $( 3 );
+  const f = $( 4 );
+  a = e;
+  b = f;
+  const g = {
+    x: e,
+    y: f,
+  };
+  c = g;
   while ($LOOP_UNROLL_10) {
-    const d = $( 1 );
-    if (d) {
-      const e = $( 3 );
-      $( 4 );
-      a = e;
+    const h = $( 1 );
+    if (h) {
+      const i = $( 3 );
+      const j = $( 4 );
+      a = i;
+      b = j;
+      const k = {
+        x: i,
+        y: j,
+      };
+      c = k;
     }
     else {
       break;
     }
   }
 }
-const f = {
-  a: 999,
-  b: 1000,
-};
-$( f, a, 2 );
+$( c, a, b );
 `````
 
 ## Globals

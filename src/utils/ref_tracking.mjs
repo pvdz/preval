@@ -132,7 +132,7 @@ export function openRefsOnBeforeIf(node, parentBlock) {
 }
 
 export function openRefsOnAfterIf(node, parentBlock, walkerPath, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, catchStack) {
-  if (REF_TRACK_TRACING) console.group('RTT: IF:after');
+  if (REF_TRACK_TRACING) console.group('RTT: IF:after @', +node.$p.pid);
 
   const trebloTrue = node.consequent.$p.treblo;
   const trebloFalse = node.alternate.$p.treblo;
@@ -218,6 +218,8 @@ export function openRefsOnBeforeLoop(kind /*: loop | in | of */, node, parentBlo
 export function openRefsOnAfterLoop(kind /* loop | in | of */, node, parentBlock, walkerPath, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack) {
   if (REF_TRACK_TRACING) console.group('RTT: LOOP:after,', kind, 'after @', +node.$p.pid);
 
+  if (REF_TRACK_TRACING) console.log('Current exitWrite status of loop body:', debugStringMapOfSetOfReadOrWrites(node.body.$p.treblo.exitWrites));
+
   /** @var {Treblo} */
   const treblo = node.body.$p.treblo;
 
@@ -249,47 +251,65 @@ export function openRefsOnAfterLoop(kind /* loop | in | of */, node, parentBlock
   // Do this first because it also updates the overwritten of nodes that break to or through this node, which is necessary info to process any that break to here.
 
   const pendingLoop = treblo.pendingLoop;
-  if (REF_TRACK_TRACING) console.group('TTR: Loop Queue has', pendingLoop.length, `blocks that jump to repeat the loop (from ${pendingLoop.map(({pid, dst}) => `@${pid}->@${dst.$p.pid}`)}). Processing`, parentDefined.size, 'bindings that were known in the parent.');
-  parentDefined.forEach(name => {
-    if (REF_TRACK_TRACING) console.log(`TTR: - \`${name}\`: Loop body has ${treblo.entryReads.get(name)?.size??0} entryReads and ${treblo.entryWrites.get(name)?.size??0} entryWrites`);
-
-    pendingLoop.forEach(({pid, exitWrites}) => {
-      if (REF_TRACK_TRACING) console.group('TTR: pendingLoop[n]');
-
-      const set = exitWrites.get(name);
-      if (REF_TRACK_TRACING) console.log('TTR:   - from @', pid, 'has', set?.size ?? 0, 'exitWrites');
+  if (REF_TRACK_TRACING) console.group('TTR: pendingLoop has', pendingLoop.length, `blocks that jump to repeat the loop (from ${pendingLoop.map(({pid, dst}) => `@${pid}->@${dst.$p.pid}`)}). Processing`, parentDefined.size, 'bindings that were known in the parent.');
+  parentDefined.forEach(bindingNameBeforeLoop => {
+    if (REF_TRACK_TRACING) console.group(`TTR: - \`${bindingNameBeforeLoop}\`: Loop body has ${treblo.entryReads.get(bindingNameBeforeLoop)?.size??0} entryReads and ${treblo.entryWrites.get(bindingNameBeforeLoop)?.size??0} entryWrites, now for each pendingLoop for this var:`);
+    pendingLoop.forEach(({pid, exitWrites}, i) => {
+      const set = exitWrites.get(bindingNameBeforeLoop);
+      if (REF_TRACK_TRACING) console.group(`TTR: pendingLoop[${i}], from @`, pid, ', connect reads and writes and processing', node.$p.trebra.pendingLoopWriteChecks.length, 'pendingLoopWriteChecks');
 
       // Connect exitWrites of the source node to entryReads and entryWrites of the loop body
+
+      if (REF_TRACK_TRACING) {
+        if (set?.size) {
+          console.log(`pendingLoop[${i}] has these exitWrites:`, debugStringListOfReadOrWrites(set || []));
+          if (treblo.entryReads.get(bindingNameBeforeLoop)?.size) {
+            console.log('- entryReads to connect to:', debugStringListOfReadOrWrites(treblo.entryReads.get(bindingNameBeforeLoop)));
+          } else {
+            console.log('- entryReads to connect to: <none>');
+          }
+          if (treblo.entryWrites.get(bindingNameBeforeLoop)?.size) {
+            console.log('- entryWrites to connect to:', debugStringListOfReadOrWrites(treblo.entryWrites.get(bindingNameBeforeLoop)));
+          } else {
+            console.log('- entryWrites to connect to: <none>');
+          }
+        } else {
+          console.log('Pending no exitWrites');
+        }
+        console.log(`TTR: there are`, node.$p.trebra.pendingLoopWriteChecks.length, `pendingLoopWriteChecks;`);
+      }
+
       set?.forEach(write => {
-        treblo.entryReads.get(name)?.forEach(read => {
-          if (REF_TRACK_TRACING) console.log('TTR: Loop entryRead @', +read.node.$p.pid, 'can read the last write to the binding @', +write.node.$p.pid);
+        treblo.entryReads.get(bindingNameBeforeLoop)?.forEach(read => {
           write.reachedByReads.add(read);
           read.reachesWrites.add(write);
         });
-        treblo.entryWrites.get(name)?.forEach(write2 => {
-          if (REF_TRACK_TRACING) console.log('TTR: Loop entryWrite @', +write2.node.$p.pid, 'can overwrite the last write to the binding @', +write.node.$p.pid);
+        treblo.entryWrites.get(bindingNameBeforeLoop)?.forEach(write2 => {
           write.reachedByWrites.add(write2);
           write2.reachesWrites.add(write);
         });
-        if (REF_TRACK_TRACING) console.group(`TTR: pendingLoopWriteChecks; Adding the ${treblo.overwritten.size} overwritten names of the loop end to the ${node.$p.trebra.pendingLoopWriteChecks.length} queued blocks`);
-        node.$p.trebra.pendingLoopWriteChecks.forEach(({ srcPid, exitWrites, mutatedRefs }) => {
-          if (mutatedRefs.has(name)) {
-            if (REF_TRACK_TRACING) console.log(`TTR: - NOT adding write @$`, +write.node.$p.pid, `for "${name}" to exitWrites of srcBlock @${srcPid} because it was already overwritten so the current exitWrite(s) should be the correct one`);
+        if (REF_TRACK_TRACING) console.group();
+        node.$p.trebra.pendingLoopWriteChecks.forEach(({ srcPid, exitWrites, mutatedRefs }, i) => {
+          if (REF_TRACK_TRACING) console.group(`TTR: pendingLoopWriteChecks[${bindingNameBeforeLoop}][${i}][write@${write.node.$p.pid}]; from @${srcPid}, mutatedRefs: ${Array.from(mutatedRefs).join(',')||'<none>'}`);
+          // Note: this mutatedRefs is a live _reference_ to srcBlock.$p.treblo.pendingNext[].mutatedBetweenSrcAndDst
+          if (mutatedRefs.has(bindingNameBeforeLoop)) {
+            if (REF_TRACK_TRACING) console.log(`TTR: - from @`, srcPid, `NOT adding write @$`, +write.node.$p.pid, `for "${bindingNameBeforeLoop}" to exitWrites of srcBlock @`, srcPid, `because it was already overwritten so the current exitWrite(s) should be the correct one`);
           } else {
-            if (REF_TRACK_TRACING) console.log(`TTR: - Adding write @`, +write.node.$p.pid, `for "${name}" to exitWrites of srcBlock @${srcPid} (because of loop)`);
-            upsertGetSet(exitWrites, name, write)
+            if (REF_TRACK_TRACING) console.log(`TTR: - from @`, srcPid, `Adding write @`, +write.node.$p.pid, `for "${bindingNameBeforeLoop}" to exitWrites of srcBlock @`, srcPid, `(because of loop)`);
+            upsertGetSet(exitWrites, bindingNameBeforeLoop, write)
+            if (treblo.overwritten.has(bindingNameBeforeLoop)) {
+              if (REF_TRACK_TRACING) console.log(`TTR: - Marking "${bindingNameBeforeLoop}" as (always) overwritten in queued continuation from block @${srcPid} because it was such at end of loop body`);
+              mutatedRefs.add(bindingNameBeforeLoop);
+            }
           }
-          treblo.overwritten.forEach(name => {
-            // Note: this mutatedRefs is a live _reference_ to the srcBlock.$p.treblo.pendingNext[].mutatedBetweenSrcAndDst
-            if (REF_TRACK_TRACING) console.log(`TTR: - Marking "${name}" as overwritten in queued continuation from block @${srcPid}`);
-            mutatedRefs.add(name);
-          });
+          if (REF_TRACK_TRACING) console.groupEnd();
         });
         if (REF_TRACK_TRACING) console.groupEnd(); // pendingLoopWriteChecks
       });
 
       if (REF_TRACK_TRACING) console.groupEnd(); // pendingLoop iteration
     });
+    if (REF_TRACK_TRACING) console.groupEnd();
   });
   if (REF_TRACK_TRACING) console.groupEnd();
 
@@ -694,7 +714,7 @@ function findAndQueueContinuationBlock(fromBlockTreblo, fromBlockPid, wasAbruptT
 
   // If code doesn't abrupt then it can't go through a trap and we can skip this search
   if (wasAbruptType) {
-    if (REF_TRACK_TRACING) console.group(`TTR: Queuing overwrites mutations in loops. Abrupt type=${wasAbruptType}.`);
+    if (REF_TRACK_TRACING) console.group(`TTR: Queuing pendingLoopWriteChecks. Abrupt type=${wasAbruptType}.`);
     scheduleWrittensAtLoops(topIndex, wasAbruptType, fromBlockTreblo, srcBlockMutatedBetweenSrcAndDst, fromBlockPid, continuationBlock, nodes);
     if (REF_TRACK_TRACING) console.groupEnd(); // loop
   } else if (nodes[topIndex].type === 'BlockStatement' && nodes[topIndex-1].type === 'TryStatement' && walkerPath.props[walkerPath.props.length - 1] === 'block') {
@@ -705,7 +725,7 @@ function findAndQueueContinuationBlock(fromBlockTreblo, fromBlockPid, wasAbruptT
 
   if (continuationBlock) {
     if (loops) {
-      if (REF_TRACK_TRACING) console.log('TTR: scheduling looping from node @', fromBlockPid, 'in continuationBlock ("looping") @', +continuationBlock.$p.pid, ', with overwritten:', Array.from(fromBlockTreblo.overwritten));
+      if (REF_TRACK_TRACING) console.log('TTR: scheduling looping from node @', fromBlockPid, 'in continuationBlock ("looping") @', +continuationBlock.$p.pid, ', with overwritten:', Array.from(fromBlockTreblo.overwritten), ', and srcBlockMutatedBetweenSrcAndDst:', srcBlockMutatedBetweenSrcAndDst);
       continuationBlock.$p.treblo.pendingLoop.push({
         pid: fromBlockPid,
         entryReads: fromBlockTreblo.entryReads,
@@ -715,7 +735,7 @@ function findAndQueueContinuationBlock(fromBlockTreblo, fromBlockPid, wasAbruptT
         mutatedBetweenSrcAndDst: srcBlockMutatedBetweenSrcAndDst
       });
     } else {
-      if (REF_TRACK_TRACING) console.log('TTR: scheduling from node @', fromBlockPid, 'in continuationBlock (not "looping") @', +continuationBlock.$p.pid, ', with overwritten:', Array.from(fromBlockTreblo.overwritten));
+      if (REF_TRACK_TRACING) console.log('TTR: scheduling from node @', fromBlockPid, 'in continuationBlock (not "looping") @', +continuationBlock.$p.pid, ', with overwritten:', Array.from(fromBlockTreblo.overwritten), ', and srcBlockMutatedBetweenSrcAndDst:', srcBlockMutatedBetweenSrcAndDst);
       continuationBlock.$p.treblo.pendingNext.push({
         pid: fromBlockPid,
         dst: continuationBlock,
@@ -826,12 +846,17 @@ function findSimpleContinuationBlock(wasAbruptType, wasAbruptLabel, walkerPath, 
  * The `nodes` is from the walker. srcBlockMutatedBetweenSrcAndDst is by reference.
  */
 function scheduleWrittensAtLoops(topIndex, wasAbruptType, fromBlockTreblo, srcBlockMutatedBetweenSrcAndDst, fromBlockPid, continuationBlock, nodes) {
-  if (REF_TRACK_TRACING) console.log(`TTR: scheduleWrittensAtLoops(${wasAbruptType}), continuationBlock: ${continuationBlock ? `@${continuationBlock.$p.pid}` : '(none)'}`);
+  if (REF_TRACK_TRACING) console.log(`TTR: scheduleWrittensAtLoops(${wasAbruptType}), continuationBlock: ${continuationBlock ? `@${continuationBlock.$p.pid}` : '(none)'}, updating overwrittens with all ancestors`);
 
   let index = topIndex;
   while (continuationBlock ? nodes[index] !== continuationBlock : (nodes[index].type !== 'FunctionDeclaration' && nodes[index].type !== 'FunctionExpression' && nodes[index].type !== 'Program')) {
     const currentIndexNode = nodes[index];
-    if (REF_TRACK_TRACING) console.group(`TTR: depth: ${index}, type=${currentIndexNode.type}, @${currentIndexNode.$p.pid}`);
+    if (REF_TRACK_TRACING) console.group(`TTR: depth: ${index}, type=${currentIndexNode.type}, @${currentIndexNode.$p.pid}, overwritten state: ${Array.from(currentIndexNode.$p.treblo?.overwritten??[]).join(',')||'<none>'}`);
+
+    currentIndexNode.$p.treblo?.overwritten.forEach(name => {
+      if (REF_TRACK_TRACING) console.log(`Adding "${name}" to all pendingLoopWriteChecks.mutatedRefs being queued right now`);
+      srcBlockMutatedBetweenSrcAndDst.add(name);
+    });
 
     if (currentIndexNode.type === 'WhileStatement' || currentIndexNode.type === 'ForInStatement' || currentIndexNode.type === 'ForOfStatement') {
       if (index === topIndex && currentIndexNode.body === continuationBlock) {
@@ -840,7 +865,8 @@ function scheduleWrittensAtLoops(topIndex, wasAbruptType, fromBlockTreblo, srcBl
         break;
       }
 
-      if (REF_TRACK_TRACING) console.log('TTR: Scheduling srcBlock @', fromBlockPid, 'in the pendingLoopWriteChecks of loop @', +currentIndexNode.$p.pid, 'to update for any continuation that loops');
+      if (REF_TRACK_TRACING) console.log('TTR: Scheduling srcBlock @', +fromBlockPid, 'in the pendingLoopWriteChecks of loop @', +currentIndexNode.$p.pid, 'to update for any continuation that loops');
+      if (REF_TRACK_TRACING) console.log('TTR: exitWrites just scheduled:', debugStringMapOfSetOfReadOrWrites(fromBlockTreblo.exitWrites), ', with overwrites (mutatedRefs):', Array.from(srcBlockMutatedBetweenSrcAndDst).join(',') || '<none>', fromBlockTreblo.overwritten);
       currentIndexNode.$p.trebra.pendingLoopWriteChecks.push({
         abruptReason: wasAbruptType,
         srcPid: +fromBlockPid,
@@ -854,7 +880,7 @@ function scheduleWrittensAtLoops(topIndex, wasAbruptType, fromBlockTreblo, srcBl
     --index;
     ASSERT(index >= 0, 'continuation block must be in the current list of parent nodes, or if there was none then a nearest function/program must be found');
   }
-  if (REF_TRACK_TRACING) console.log(`TTR: final depth: ${index}, type=${nodes[index].type}, @${nodes[index].$p.pid}`);
+  if (REF_TRACK_TRACING) console.log(`TTR: final depth: ${index}, type=${nodes[index].type}, @${nodes[index].$p.pid}, final srcBlockMutatedBetweenSrcAndDst:`, srcBlockMutatedBetweenSrcAndDst);
 }
 
 /**
@@ -900,7 +926,6 @@ function propagateEntryReadWrites(pid, treblo, parentEntryReads, parentEntryWrit
 }
 
 function propagateExitWrites(pendingNext, parentDefined, parentExitWrites, parentOverwritten, parentBlockPid) {
-  if (REF_TRACK_TRACING) console.group(`RTT: process the ${pendingNext.length} pendingNext of the parent Block`);
   if (pendingNext.length === 0) {
     // Nothing to do here. All branches are scheduled to complete elsewhere.
     // What if a loop breaks to the parent? or throws? or returns? Then it wouldn't be scheduled in this pendingNext list, right? So, whatever..?
@@ -908,17 +933,23 @@ function propagateExitWrites(pendingNext, parentDefined, parentExitWrites, paren
     // TODO: if a loop body does not contain a natural break then the code after it is dead code unless the loop is not the child of a block...
     // TODO: rest is dead code, apply DCE?
 
+    if (REF_TRACK_TRACING) console.group(`RTT: There are no pendingNext in the parent Block, clearing parentExitWrites`);
     parentExitWrites.clear();
 
   } else {
-    if (REF_TRACK_TRACING) console.log(`RTT: merging or replacing the exitWrites from ${pendingNext.length} pendingNext sets into the parent @`, parentBlockPid);
-    parentDefined.forEach(name => {
+    if (REF_TRACK_TRACING) console.group(`RTT: process the ${pendingNext.length} pendingNext of the parent Block (from ${pendingNext.map(({pid}) => `@${pid}`).join(',')}). For each defined var, merging or replacing their exitWrites into the parent @`, parentBlockPid);
+    parentDefined.forEach((name) => {
+      if (REF_TRACK_TRACING) console.group(`RTT: pendingNext[${name}]`);
       // Note: the .overwritten should be  equal to the .mutatedBetweenSrcAndDst for the If/Else case...
       // Note: above names are added when _any_ next node overwrites it. Here we want to know if they _all_ do it.
       // If the loop is (probably) infinite then always replace parent exitWrites with what happens in the loop
       // TODO: probably should consider the rest dead code...
       const replace = pendingNext.every(({ mutatedBetweenSrcAndDst }) => mutatedBetweenSrcAndDst.has(name));
-      if (REF_TRACK_TRACING) console.log('RTT: -', name, ': overwritten?', pendingNext.map(({ mutatedBetweenSrcAndDst }) => mutatedBetweenSrcAndDst.has(name)), ' so final verdict:', replace ? 'replace' : 'merge', 'with', pendingNext.map(({exitWrites}) => exitWrites.get(name)?.size??0), 'exitWrites with', parentExitWrites.get(name)?.size??0, 'parent exitWrites');
+      if (REF_TRACK_TRACING) {
+        console.log('RTT: -', name, ': overwritten in all pendings (', pendingNext.map(({ mutatedBetweenSrcAndDst }) => mutatedBetweenSrcAndDst.has(name)), ')? final verdict:', replace ? 'replace' : 'merge', pendingNext.map(({exitWrites}) => exitWrites.get(name)?.size??0), 'exitWrites with', parentExitWrites.get(name)?.size??0, 'parent exitWrites');
+        console.log('RTT:   - parentExitWrites before:', debugStringMapOfSetOfReadOrWrites(parentExitWrites));
+        pendingNext.forEach(({exitWrites}, i) => console.log(`RTT:   - \`${name}\`: pending[${i}] exitWrites:`, debugStringMapOfSetOfReadOrWrites(exitWrites)));
+      }
       if (replace) {
         // Since the binding was overwritten at least once in _all_ code paths leading here,
         // the initial exitWrites from the parent can not be observed and we can drop them.
@@ -931,6 +962,7 @@ function propagateExitWrites(pendingNext, parentDefined, parentExitWrites, paren
           //ASSERT(exitWrites?.size > 0, 'all paths had this overwritten so it should exist and have writes');
           exitWrites.get(name)?.forEach(write => set.add(write));
         });
+        ASSERT(typeof name === 'string' && name !== '0', 'names are strings not numbers');
         parentExitWrites.set(name, set);
         // Mark the name as overwritten in this code path too
         parentOverwritten.add(name);
@@ -942,12 +974,14 @@ function propagateExitWrites(pendingNext, parentDefined, parentExitWrites, paren
           exitWrites.get(name)?.forEach(write => set.add(write));
         });
         if (set.size) { // There may not be any writes
+          ASSERT(typeof name === 'string' && name !== '0', 'names are strings not numbers');
           parentExitWrites.set(name, set);
         }
         // Note: parent exitWrites may still be visible. We can't mark it overwritten in the parent.
       }
 
-      if (REF_TRACK_TRACING) console.log('RTT:   - parentExitWrites:', debugStringMapOfSetOfReadOrWrites(parentExitWrites));
+      if (REF_TRACK_TRACING) console.log('RTT:   - parentExitWrites after:', debugStringMapOfSetOfReadOrWrites(parentExitWrites));
+      if (REF_TRACK_TRACING) console.groupEnd();
     });
 
     // Remove processed nodes from queue

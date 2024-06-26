@@ -14,15 +14,15 @@
 ## Input
 
 `````js filename=intro
-let x = 1; // unobservable
+let x = 1;    // unobservable
 while (true) {
-  x = 2; // unobservable
+  x = 2;      // unobservable
   while (true) {
-    x = 3; // Does not overwrite itself
+    x = 3;    // Does not overwrite itself
     if ($) break;
-    x = 4;
+    x = 4;    // unobservable
   }
-  $(x); // x=3 4
+  $(x);       // x=3
 }
 `````
 
@@ -51,7 +51,7 @@ Ref tracking result:
                | reads      | read by     | overWrites     | overwritten by
 x:
   - w @4       | ########## | not read    | none           | 12
-  - w @12      | ########## | not read    | 4,19,28        | 19
+  - w @12      | ########## | not read    | 4,19           | 19
   - w @19      | ########## | 32          | 12,28          | 12,28
-  - w @28      | ########## | 32          | 19             | 12,19
-  - r @32      | 19,28
+  - w @28      | ########## | not read    | 19             | 19
+  - r @32      | 19

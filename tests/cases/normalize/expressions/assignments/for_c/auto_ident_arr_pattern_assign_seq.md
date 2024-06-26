@@ -64,14 +64,18 @@ $(a, x, y);
 `````js filename=intro
 let x = 1;
 let y = 2;
+let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   $(1);
   $(2);
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);
-  x = tmpArrElement;
-  y = tmpArrElement$1;
+  const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+  x = arrPatternSplat[0];
+  y = arrPatternSplat[1];
+  a = tmpNestedAssignArrPatternRhs;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
@@ -79,15 +83,17 @@ if (tmpIfTest) {
       $(y);
       const tmpArrElement$2 = $(3);
       const tmpArrElement$4 = $(4);
-      x = tmpArrElement$2;
-      y = tmpArrElement$4;
+      const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$2, tmpArrElement$4];
+      const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
+      x = arrPatternSplat$1[0];
+      y = arrPatternSplat$1[1];
+      a = tmpNestedAssignArrPatternRhs$1;
     } else {
       break;
     }
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
 $(a, x, y);
 `````
 
@@ -98,34 +104,40 @@ With rename=true
 `````js filename=intro
 let a = 1;
 let b = 2;
-const c = $( 1 );
-if (c) {
+let c = {
+  a: 999,
+  b: 1000,
+};
+const d = $( 1 );
+if (d) {
   $( 1 );
   $( 2 );
-  const d = $( 3 );
-  const e = $( 4 );
-  a = d;
-  b = e;
+  const e = $( 3 );
+  const f = $( 4 );
+  const g = [ e, f ];
+  const h = [ ... g ];
+  a = h[ 0 ];
+  b = h[ 1 ];
+  c = g;
   while ($LOOP_UNROLL_10) {
-    const f = $( 1 );
-    if (f) {
+    const i = $( 1 );
+    if (i) {
       $( a );
       $( b );
-      const g = $( 3 );
-      const h = $( 4 );
-      a = g;
-      b = h;
+      const j = $( 3 );
+      const k = $( 4 );
+      const l = [ j, k ];
+      const m = [ ... l ];
+      a = m[ 0 ];
+      b = m[ 1 ];
+      c = l;
     }
     else {
       break;
     }
   }
 }
-const i = {
-  a: 999,
-  b: 1000,
-};
-$( i, a, b );
+$( c, a, b );
 `````
 
 ## Globals

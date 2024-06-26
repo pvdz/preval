@@ -57,12 +57,14 @@ $(a, b);
 
 `````js filename=intro
 let b = {};
+let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpObjLitVal = $(2);
   const tmpCalleeParam = { b: tmpObjLitVal };
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
   b = tmpNestedAssignObjPatternRhs.b;
+  a = tmpNestedAssignObjPatternRhs;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
@@ -70,13 +72,13 @@ if (tmpIfTest) {
       const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
       const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
       b = tmpNestedAssignObjPatternRhs$1.b;
+      a = tmpNestedAssignObjPatternRhs$1;
     } else {
       break;
     }
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -86,30 +88,32 @@ With rename=true
 
 `````js filename=intro
 let a = {};
-const b = $( 1 );
-if (b) {
-  const c = $( 2 );
-  const d = { b: c };
-  const e = $( d );
-  a = e.b;
+let b = {
+  a: 999,
+  b: 1000,
+};
+const c = $( 1 );
+if (c) {
+  const d = $( 2 );
+  const e = { b: d };
+  const f = $( e );
+  a = f.b;
+  b = f;
   while ($LOOP_UNROLL_10) {
-    const f = $( 1 );
-    if (f) {
-      const g = $( 2 );
-      const h = { b: g };
-      const i = $( h );
-      a = i.b;
+    const g = $( 1 );
+    if (g) {
+      const h = $( 2 );
+      const i = { b: h };
+      const j = $( i );
+      a = j.b;
+      b = j;
     }
     else {
       break;
     }
   }
 }
-const j = {
-  a: 999,
-  b: 1000,
-};
-$( j, a );
+$( b, a );
 `````
 
 ## Globals

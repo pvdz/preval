@@ -76,7 +76,7 @@ Ref tracking result:
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 12,80       | none           | 16
+  - w @4       | ########## | 12          | none           | 16
   - r @12      | 4
   - w @16      | ########## | 37,54,64    | 4              | 41,58,68
   - r @37      | 16
@@ -85,7 +85,7 @@ x:
   - w @58      | ########## | not read    | 16,41          | none
   - r @64      | 16,41
   - w @68      | ########## | 80          | 16,41          | none
-  - r @80      | 4,68
+  - r @80      | 68
 
 $implicitThrow:
   - w @19          | ########## | 70          | none           | none

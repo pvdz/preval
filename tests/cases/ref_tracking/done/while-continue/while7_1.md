@@ -16,15 +16,15 @@
 let x = 1;
 while (true) {
   if ($) {
-    $(x); // x=1 2
+    $(x);     // x=1 2
     continue;
   } else {
-    $(x); // x=1 2
+    $(x);     // x=1 2
     x = 2;
   }
   if ($()) break;
 }
-$(x); // x=1 2
+$(x);         // x=2 (it has to go through x=2 if it is to reach the break)
 `````
 
 ## Output
@@ -56,11 +56,11 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 18,25,43    | none           | 29
+  - w @4       | ########## | 18,25       | none           | 29
   - r @18      | 4,29
   - r @25      | 4,29
   - w @29      | ########## | 18,25,43    | 4,29           | 29
-  - r @43      | 4,29
+  - r @43      | 29
 
 tmpIfTest:
   - w @32      | ########## | 36          | none           | none

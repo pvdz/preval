@@ -37,7 +37,8 @@
     $(x);       // x=3 (NOT 1 2)
     x = 4;
   }
-  $(x);         // x=2 4 (NOT 3). Note that a throw could convert to break.
+                // The finally transform would also force ref tracking to consider 1 possible here.
+  $(x);         // x=1 2 4 (NOT 3). Note that a throw could convert to break.
 }
 `````
 
@@ -86,14 +87,14 @@ Ref tracking result:
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 12,36,61,82,90 | none           | 40,71,86
+  - w @4       | ########## | 12,36,61,90 | none           | 40,71
   - r @12      | 4
   - r @36      | 4
   - w @40      | ########## | 61,90       | 4              | 71
   - r @61      | 4,40
   - w @71      | ########## | 82          | 4,40           | 86
-  - r @82      | 4,71
-  - w @86      | ########## | 90          | 4,71           | none
+  - r @82      | 71
+  - w @86      | ########## | 90          | 71             | none
   - r @90      | 4,40,86
 
 $implicitThrow:

@@ -60,17 +60,20 @@ $(a, x, y);
 
 `````js filename=intro
 let x = 1;
+let y = 2;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpArrElement = $(3);
-  $(4);
+  const tmpArrElement$1 = $(4);
   x = tmpArrElement;
+  y = tmpArrElement$1;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
       const tmpArrElement$2 = $(3);
-      $(4);
+      const tmpArrElement$4 = $(4);
       x = tmpArrElement$2;
+      y = tmpArrElement$4;
     } else {
       break;
     }
@@ -78,7 +81,7 @@ if (tmpIfTest) {
 } else {
 }
 const a = { a: 999, b: 1000 };
-$(a, x, 2);
+$(a, x, y);
 `````
 
 ## PST Output
@@ -87,28 +90,31 @@ With rename=true
 
 `````js filename=intro
 let a = 1;
-const b = $( 1 );
-if (b) {
-  const c = $( 3 );
-  $( 4 );
-  a = c;
+let b = 2;
+const c = $( 1 );
+if (c) {
+  const d = $( 3 );
+  const e = $( 4 );
+  a = d;
+  b = e;
   while ($LOOP_UNROLL_10) {
-    const d = $( 1 );
-    if (d) {
-      const e = $( 3 );
-      $( 4 );
-      a = e;
+    const f = $( 1 );
+    if (f) {
+      const g = $( 3 );
+      const h = $( 4 );
+      a = g;
+      b = h;
     }
     else {
       break;
     }
   }
 }
-const f = {
+const i = {
   a: 999,
   b: 1000,
 };
-$( f, a, 2 );
+$( i, a, b );
 `````
 
 ## Globals

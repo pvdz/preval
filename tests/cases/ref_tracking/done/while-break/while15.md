@@ -23,7 +23,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     } else {
       x = 4;  // reachable, unobservable, overwrites x=1 3
     }
-    x = 3;    // overwrites x=4 (not 1, not 3)
+    x = 3;    // overwrites x=4 (not 1, not 3), unobserved
   }
 }
 $(x);         // x=5

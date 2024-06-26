@@ -68,7 +68,7 @@ $(a, b, c, d);
 `````js filename=intro
 const b = { x: 1 };
 const c = { y: 2 };
-const a = { a: 999, b: 1000 };
+let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpNestedAssignComMemberObj = $(b);
@@ -78,6 +78,7 @@ if (tmpIfTest) {
   const varInitAssignLhsComputedRhs = $(3);
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
+  a = varInitAssignLhsComputedRhs;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
@@ -88,6 +89,7 @@ if (tmpIfTest) {
       const varInitAssignLhsComputedRhs$1 = $(3);
       varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
       tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = varInitAssignLhsComputedRhs$1;
+      a = varInitAssignLhsComputedRhs$1;
     } else {
       break;
     }
@@ -104,7 +106,7 @@ With rename=true
 `````js filename=intro
 const a = { x: 1 };
 const b = { y: 2 };
-const c = {
+let c = {
   a: 999,
   b: 1000,
 };
@@ -117,6 +119,7 @@ if (d) {
   const i = $( 3 );
   g[h] = i;
   e[f] = i;
+  c = i;
   while ($LOOP_UNROLL_10) {
     const j = $( 1 );
     if (j) {
@@ -127,6 +130,7 @@ if (d) {
       const o = $( 3 );
       m[n] = o;
       k[l] = o;
+      c = o;
     }
     else {
       break;

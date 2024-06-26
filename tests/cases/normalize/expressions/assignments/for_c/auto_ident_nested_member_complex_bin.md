@@ -71,7 +71,7 @@ $(a, b, c, d, e);
 `````js filename=intro
 const b = { x: 1 };
 const c = { y: 2 };
-const a = { a: 999, b: 1000 };
+let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpNestedAssignComMemberObj = $(b);
@@ -80,6 +80,7 @@ if (tmpIfTest) {
   const varInitAssignLhsComputedProp = $(`y`);
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
+  a = 7;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
@@ -105,7 +106,7 @@ With rename=true
 `````js filename=intro
 const a = { x: 1 };
 const b = { y: 2 };
-const c = {
+let c = {
   a: 999,
   b: 1000,
 };
@@ -117,6 +118,7 @@ if (d) {
   const h = $( "y" );
   g[h] = 7;
   e[f] = 7;
+  c = 7;
   while ($LOOP_UNROLL_10) {
     const i = $( 1 );
     if (i) {

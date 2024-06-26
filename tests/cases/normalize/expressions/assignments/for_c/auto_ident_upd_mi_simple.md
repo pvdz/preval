@@ -55,21 +55,23 @@ $(a, b);
 
 `````js filename=intro
 let b = 1;
+let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   b = 0;
+  a = 0;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
       const tmpNestedComplexRhs$1 = b - 1;
       b = tmpNestedComplexRhs$1;
+      a = tmpNestedComplexRhs$1;
     } else {
       break;
     }
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -79,25 +81,27 @@ With rename=true
 
 `````js filename=intro
 let a = 1;
-const b = $( 1 );
-if (b) {
+let b = {
+  a: 999,
+  b: 1000,
+};
+const c = $( 1 );
+if (c) {
   a = 0;
+  b = 0;
   while ($LOOP_UNROLL_10) {
-    const c = $( 1 );
-    if (c) {
-      const d = a - 1;
-      a = d;
+    const d = $( 1 );
+    if (d) {
+      const e = a - 1;
+      a = e;
+      b = e;
     }
     else {
       break;
     }
   }
 }
-const e = {
-  a: 999,
-  b: 1000,
-};
-$( e, a );
+$( b, a );
 `````
 
 ## Globals

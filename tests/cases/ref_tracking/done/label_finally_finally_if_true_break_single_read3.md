@@ -64,12 +64,12 @@ Ref tracking result:
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 64          | none           | 12
+  - w @4       | ########## | not read    | none           | 12
   - w @12      | ########## | not read    | 4              | 33,46,52
   - w @33      | ########## | not read    | 12             | 46,52
   - w @46      | ########## | not read    | 12,33          | none
   - w @52      | ########## | 64          | 12,33          | none
-  - r @64      | 4,52
+  - r @64      | 52
 
 $implicitThrow:
   - w @15          | ########## | 54          | none           | none

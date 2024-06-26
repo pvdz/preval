@@ -85,9 +85,9 @@ $(a, b, c);
 
 
 `````js filename=intro
-const b = { x: 1 };
-const a = { a: 999, b: 1000 };
+let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
+const b = { x: 1 };
 if (tmpIfTest) {
   const tmpNestedAssignComMemberObj = $(b);
   const tmpNestedAssignComMemberProp = $(`x`);
@@ -107,6 +107,7 @@ if (tmpIfTest) {
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
+  a = 3;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
@@ -142,24 +143,24 @@ $(a, b, 3);
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = {
+let a = {
   a: 999,
   b: 1000,
 };
-const c = $( 1 );
-if (c) {
-  const d = $( a );
+const b = $( 1 );
+const c = { x: 1 };
+if (b) {
+  const d = $( c );
   const e = $( "x" );
-  const f = $( a );
+  const f = $( c );
   const g = $( "x" );
-  const h = $( a );
+  const h = $( c );
   const i = $( "x" );
-  const j = $( a );
+  const j = $( c );
   const k = $( "x" );
-  const l = $( a );
+  const l = $( c );
   const m = $( "x" );
-  const n = $( a );
+  const n = $( c );
   const o = $( "x" );
   n[o] = 3;
   l[m] = 3;
@@ -167,20 +168,21 @@ if (c) {
   h[i] = 3;
   f[g] = 3;
   d[e] = 3;
+  a = 3;
   while ($LOOP_UNROLL_10) {
     const p = $( 1 );
     if (p) {
-      const q = $( a );
+      const q = $( c );
       const r = $( "x" );
-      const s = $( a );
+      const s = $( c );
       const t = $( "x" );
-      const u = $( a );
+      const u = $( c );
       const v = $( "x" );
-      const w = $( a );
+      const w = $( c );
       const x = $( "x" );
-      const y = $( a );
+      const y = $( c );
       const z = $( "x" );
-      const 01 = $( a );
+      const 01 = $( c );
       const 11 = $( "x" );
       01[11] = 3;
       y[z] = 3;
@@ -194,7 +196,7 @@ if (c) {
     }
   }
 }
-$( b, a, 3 );
+$( a, c, 3 );
 `````
 
 ## Globals

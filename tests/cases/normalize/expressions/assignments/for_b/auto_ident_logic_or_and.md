@@ -275,8 +275,8 @@ loopStop$2: {
   }
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpCalleeParam$32 = $(0);
-    a = $(tmpCalleeParam$32);
-    if (a) {
+    const tmpClusterSSA_a$11 = $(tmpCalleeParam$32);
+    if (tmpClusterSSA_a$11) {
       $(1);
     } else {
       const tmpCalleeParam$34 = $(1);
@@ -552,16 +552,16 @@ loopStop$2: {
   }
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const j1 = $( 0 );
-    a = $( j1 );
-    if (a) {
+    const k1 = $( j1 );
+    if (k1) {
       $( 1 );
     }
     else {
-      const k1 = $( 1 );
-      a = $( k1 );
+      const l1 = $( 1 );
+      a = $( l1 );
       if (a) {
-        const l1 = $( 2 );
-        a = $( l1 );
+        const m1 = $( 2 );
+        a = $( m1 );
         if (a) {
           $( 1 );
         }

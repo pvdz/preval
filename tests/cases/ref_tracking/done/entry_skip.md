@@ -3,11 +3,6 @@
 # entry_skip.md
 
 > Ref tracking > Done > Entry skip
->
-> If a code path has an abrupt completion, how do we treat entryReads and
-> entryWrites? Are we skipping them in some cases?
-> The entry* should be propagated immediately when scheduling the continuation
-> Or maybe just of blocks when traversal exits them (so not queue driven)
 
 ## Options
 
@@ -19,13 +14,13 @@
 {
   let x = 1;
   A: {
-    x = 2; // should be marked as read by two reads, not one
+    x = 2;
     if ($) {
       $(x); // x=2
       break A;
     }
   }
-  $(x); // x=1 2
+  $(x); // x=2
 }
 `````
 
@@ -50,7 +45,7 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 26          | none           | 12
+  - w @4       | ########## | not read    | none           | 12
   - w @12      | ########## | 19,26       | 4              | none
   - r @19      | 12
-  - r @26      | 4,12
+  - r @26      | 12

@@ -6,47 +6,44 @@
 >
 > The very last $(x) is missing in the else branch
 
+todo:
+- the first "20,30" case can inline x=20 in the else branch in the output (it doesn't at the time of writing)
+
+## Options
+
 ## Input
 
 `````js filename=intro
-{
-  let x = 20;
-  {
-    $(x); // 20
-    if ($(1)) {
-      $(x); // 20
-      x = 30; // overwrites the 20
-    }
-    $(x); // 20, 30
-    if ($(2)) {
-      $(x); // 20, 30
-      x = 40; // overwrites the 20 and 30
-    }
-    $(x); // 20, 30, 40
-  }
+let x = 20;
+$(x); // 20
+if ($(1)) {
+  $(x); // 20
+  x = 30; // overwrites the 20
 }
+$(x); // 20, 30
+if ($(2)) {
+  $(x); // 20, 30
+  x = 40; // overwrites the 20 and 30
+}
+$(x); // 20, 30, 40
 `````
 
 ## Pre Normal
 
 
 `````js filename=intro
-{
-  let x = 20;
-  {
-    $(x);
-    if ($(1)) {
-      $(x);
-      x = 30;
-    }
-    $(x);
-    if ($(2)) {
-      $(x);
-      x = 40;
-    }
-    $(x);
-  }
+let x = 20;
+$(x);
+if ($(1)) {
+  $(x);
+  x = 30;
 }
+$(x);
+if ($(2)) {
+  $(x);
+  x = 40;
+}
+$(x);
 `````
 
 ## Normalized

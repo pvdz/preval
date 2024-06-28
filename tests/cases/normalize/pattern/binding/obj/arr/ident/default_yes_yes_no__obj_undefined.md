@@ -53,8 +53,8 @@ $(`bad`);
 
 `````js filename=intro
 const tmpCalleeParam = [`pass2`];
-const tmpClusterSSA_objPatternAfterDefault = $(tmpCalleeParam);
-const arrPatternSplat = [...tmpClusterSSA_objPatternAfterDefault];
+const objPatternAfterDefault = $(tmpCalleeParam);
+const arrPatternSplat = [...objPatternAfterDefault];
 arrPatternSplat[0];
 $(`bad`);
 `````

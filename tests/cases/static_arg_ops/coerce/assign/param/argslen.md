@@ -66,8 +66,7 @@ const f = function () {
   debugger;
   $(1);
   $(2);
-  const tmpPrevalAliasArgumentsLen = 1;
-  $(tmpPrevalAliasArgumentsLen);
+  $(1);
   return undefined;
 };
 f();
@@ -84,8 +83,7 @@ const a = function() {
   debugger;
   $( 1 );
   $( 2 );
-  const b = 1;
-  $( b );
+  $( 1 );
   return undefined;
 };
 a();

@@ -74,8 +74,8 @@ tmpCallCallee$5(tmpCalleeParam$9);
 `````js filename=intro
 const tmpArrElement = { a: `pass2` };
 const tmpCalleeParam = [tmpArrElement];
-const tmpClusterSSA_bindingPatternArrRoot = $(tmpCalleeParam);
-const arrPatternSplat = [...tmpClusterSSA_bindingPatternArrRoot];
+const bindingPatternArrRoot = $(tmpCalleeParam);
+const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep = undefined;
 const tmpIfTest$1 = arrPatternBeforeDefault === undefined;

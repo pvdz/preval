@@ -55,14 +55,12 @@ $(x);
 
 
 `````js filename=intro
-let x = 1;
+$(1);
 if ($) {
-  $(1);
-  x = 2;
+  $(2);
 } else {
-  $(x);
+  $(1);
 }
-$(x);
 `````
 
 ## PST Output
@@ -70,15 +68,13 @@ $(x);
 With rename=true
 
 `````js filename=intro
-let a = 1;
+$( 1 );
 if ($) {
-  $( 1 );
-  a = 2;
+  $( 2 );
 }
 else {
-  $( a );
+  $( 1 );
 }
-$( a );
 `````
 
 ## Globals

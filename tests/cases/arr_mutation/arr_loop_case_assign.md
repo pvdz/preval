@@ -99,9 +99,9 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-$(1);
 const arr = [`two`, `three`, `four`, `five`, `one`];
 loopStop$1: {
+  $(1);
   try {
     const tmpCalleeParam = [`two`, `three`, `four`, `five`, `one`];
     $(tmpCalleeParam);
@@ -320,9 +320,9 @@ $(tmpCalleeParam$1);
 With rename=true
 
 `````js filename=intro
-$( 1 );
 const a = [ "two", "three", "four", "five", "one" ];
 loopStop$1: {
+  $( 1 );
   try {
     const b = [ "two", "three", "four", "five", "one" ];
     $( b );

@@ -80,15 +80,10 @@ tmpSwitchBreak: {
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpIfTest$1 = true;
 const tmpIfTest = 1 === tmpSwitchValue;
 if (tmpIfTest) {
-  tmpIfTest$1 = false;
-} else {
-}
-if (tmpIfTest$1) {
-} else {
   $(`f`);
+} else {
 }
 `````
 
@@ -98,15 +93,8 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = true;
-const c = 1 === a;
-if (c) {
-  b = false;
-}
+const b = 1 === a;
 if (b) {
-
-}
-else {
   $( "f" );
 }
 `````

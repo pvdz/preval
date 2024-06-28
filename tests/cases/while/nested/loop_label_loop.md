@@ -78,7 +78,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     x = 20;
     while ($LOOP_UNROLL_10) {
       $(20);
-      const t$1 = $(x);
+      const t$1 = $(20);
       if (t$1) {
         break;
       } else {
@@ -104,7 +104,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     a = 20;
     while ($LOOP_UNROLL_10) {
       $( 20 );
-      const c = $( a );
+      const c = $( 20 );
       if (c) {
         break;
       }

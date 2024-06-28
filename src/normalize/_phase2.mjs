@@ -86,6 +86,7 @@ import { writeOnly } from '../reduce_static/write_only.mjs';
 import { fakeDoWhile } from '../reduce_static/fake_do_while.mjs';
 import { ifUpdateTest } from '../reduce_static/if_update_test.mjs';
 import { labelScoping } from '../reduce_static/label_scoping.mjs';
+import { refTracked } from '../reduce_static/ref_tracked.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
@@ -190,6 +191,8 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     coercials(fdata) ||
     resolveBoundValueSet(fdata) ||
     removeUnusedConstants(fdata) ||
+    // Do early because it's likely to catch common cases
+    refTracked(fdata) ||
     // Do early because it can be expensive with many writes
     arr_mutation(fdata) ||
     findThrowers(fdata) ||

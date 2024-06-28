@@ -56,8 +56,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpPrevalAliasArgumentsLen = 0;
-$(tmpPrevalAliasArgumentsLen);
+$(0);
 `````
 
 ## PST Output
@@ -65,8 +64,7 @@ $(tmpPrevalAliasArgumentsLen);
 With rename=true
 
 `````js filename=intro
-const a = 0;
-$( a );
+$( 0 );
 `````
 
 ## Globals

@@ -75,12 +75,12 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpCalleeParam = [`fail2`];
-const tmpClusterSSA_bindingPatternArrRoot = $(tmpCalleeParam);
-const arrPatternSplat = [...tmpClusterSSA_bindingPatternArrRoot];
+const bindingPatternArrRoot = $(tmpCalleeParam);
+const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep = undefined;
-const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
 let objPatternCrashTest = false;
+const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   arrPatternStep = $(`pass`);
   objPatternCrashTest = arrPatternStep === undefined;
@@ -108,22 +108,22 @@ const b = $( a );
 const c = [ ... b ];
 const d = c[ 0 ];
 let e = undefined;
-const f = d === undefined;
-let g = false;
-if (f) {
+let f = false;
+const g = d === undefined;
+if (g) {
   e = $( "pass" );
-  g = e === undefined;
+  f = e === undefined;
 }
 else {
   e = d;
 }
-if (g) {
+if (f) {
 
 }
 else {
-  g = e === null;
+  f = e === null;
 }
-if (g) {
+if (f) {
   e.cannotDestructureThis;
 }
 $( "ok" );

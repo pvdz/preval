@@ -93,9 +93,9 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-$(1);
 const arr = [`two`, `three`, `four`, `five`, `one`];
-loopStop$1: {
+loopStop: {
+  $(1);
   try {
     const tmpCalleeParam = [`two`, `three`, `four`, `five`, `one`];
     $(tmpCalleeParam);
@@ -108,7 +108,7 @@ loopStop$1: {
     const tmpBinLhs$1 = arr[2];
     const test$1 = tmpBinLhs$1 === 820304;
     if (test$1) {
-      break loopStop$1;
+      break loopStop;
     } else {
       const next$1 = arr.shift();
       arr.push(next$1);
@@ -124,7 +124,7 @@ loopStop$1: {
     const tmpBinLhs$2 = arr[2];
     const test$2 = tmpBinLhs$2 === 820304;
     if (test$2) {
-      break loopStop$1;
+      break loopStop;
     } else {
       const next$2 = arr.shift();
       arr.push(next$2);
@@ -140,7 +140,7 @@ loopStop$1: {
     const tmpBinLhs$3 = arr[2];
     const test$3 = tmpBinLhs$3 === 820304;
     if (test$3) {
-      break loopStop$1;
+      break loopStop;
     } else {
       const next$3 = arr.shift();
       arr.push(next$3);
@@ -156,7 +156,7 @@ loopStop$1: {
     const tmpBinLhs$4 = arr[2];
     const test$4 = tmpBinLhs$4 === 820304;
     if (test$4) {
-      break loopStop$1;
+      break loopStop;
     } else {
       const next$4 = arr.shift();
       arr.push(next$4);
@@ -172,7 +172,7 @@ loopStop$1: {
     const tmpBinLhs$5 = arr[2];
     const test$5 = tmpBinLhs$5 === 820304;
     if (test$5) {
-      break loopStop$1;
+      break loopStop;
     } else {
       const next$5 = arr.shift();
       arr.push(next$5);
@@ -188,7 +188,7 @@ loopStop$1: {
     const tmpBinLhs$6 = arr[2];
     const test$6 = tmpBinLhs$6 === 820304;
     if (test$6) {
-      break loopStop$1;
+      break loopStop;
     } else {
       const next$6 = arr.shift();
       arr.push(next$6);
@@ -204,7 +204,7 @@ loopStop$1: {
     const tmpBinLhs$7 = arr[2];
     const test$7 = tmpBinLhs$7 === 820304;
     if (test$7) {
-      break loopStop$1;
+      break loopStop;
     } else {
       const next$7 = arr.shift();
       arr.push(next$7);
@@ -220,7 +220,7 @@ loopStop$1: {
     const tmpBinLhs$8 = arr[2];
     const test$8 = tmpBinLhs$8 === 820304;
     if (test$8) {
-      break loopStop$1;
+      break loopStop;
     } else {
       const next$8 = arr.shift();
       arr.push(next$8);
@@ -236,7 +236,7 @@ loopStop$1: {
     const tmpBinLhs$9 = arr[2];
     const test$9 = tmpBinLhs$9 === 820304;
     if (test$9) {
-      break loopStop$1;
+      break loopStop;
     } else {
       const next$9 = arr.shift();
       arr.push(next$9);
@@ -252,7 +252,7 @@ loopStop$1: {
     const tmpBinLhs$10 = arr[2];
     const test$10 = tmpBinLhs$10 === 820304;
     if (test$10) {
-      break loopStop$1;
+      break loopStop;
     } else {
       const next$10 = arr.shift();
       arr.push(next$10);
@@ -291,9 +291,9 @@ $(tmpCalleeParam$1);
 With rename=true
 
 `````js filename=intro
-$( 1 );
 const a = [ "two", "three", "four", "five", "one" ];
-loopStop$1: {
+loopStop: {
+  $( 1 );
   try {
     const b = [ "two", "three", "four", "five", "one" ];
     $( b );
@@ -307,7 +307,7 @@ loopStop$1: {
     const e = a[ 2 ];
     const f = e === 820304;
     if (f) {
-      break loopStop$1;
+      break loopStop;
     }
     else {
       const g = a.shift();
@@ -325,7 +325,7 @@ loopStop$1: {
     const k = a[ 2 ];
     const l = k === 820304;
     if (l) {
-      break loopStop$1;
+      break loopStop;
     }
     else {
       const m = a.shift();
@@ -343,7 +343,7 @@ loopStop$1: {
     const q = a[ 2 ];
     const r = q === 820304;
     if (r) {
-      break loopStop$1;
+      break loopStop;
     }
     else {
       const s = a.shift();
@@ -361,7 +361,7 @@ loopStop$1: {
     const w = a[ 2 ];
     const x = w === 820304;
     if (x) {
-      break loopStop$1;
+      break loopStop;
     }
     else {
       const y = a.shift();
@@ -379,7 +379,7 @@ loopStop$1: {
     const 21 = a[ 2 ];
     const 31 = 21 === 820304;
     if (31) {
-      break loopStop$1;
+      break loopStop;
     }
     else {
       const 41 = a.shift();
@@ -397,7 +397,7 @@ loopStop$1: {
     const 81 = a[ 2 ];
     const 91 = 81 === 820304;
     if (91) {
-      break loopStop$1;
+      break loopStop;
     }
     else {
       const a1 = a.shift();
@@ -415,7 +415,7 @@ loopStop$1: {
     const e1 = a[ 2 ];
     const f1 = e1 === 820304;
     if (f1) {
-      break loopStop$1;
+      break loopStop;
     }
     else {
       const g1 = a.shift();
@@ -433,7 +433,7 @@ loopStop$1: {
     const k1 = a[ 2 ];
     const l1 = k1 === 820304;
     if (l1) {
-      break loopStop$1;
+      break loopStop;
     }
     else {
       const m1 = a.shift();
@@ -451,7 +451,7 @@ loopStop$1: {
     const q1 = a[ 2 ];
     const r1 = q1 === 820304;
     if (r1) {
-      break loopStop$1;
+      break loopStop;
     }
     else {
       const s1 = a.shift();
@@ -469,7 +469,7 @@ loopStop$1: {
     const w1 = a[ 2 ];
     const x1 = w1 === 820304;
     if (x1) {
-      break loopStop$1;
+      break loopStop;
     }
     else {
       const y1 = a.shift();

@@ -78,8 +78,8 @@ tmpCallCallee$3(tmpCalleeParam$3);
 `````js filename=intro
 const tmpArrElement = { x: `pass3` };
 const tmpCalleeParam = [tmpArrElement];
-const tmpClusterSSA_bindingPatternArrRoot = $(tmpCalleeParam);
-const arrPatternSplat = [...tmpClusterSSA_bindingPatternArrRoot];
+const bindingPatternArrRoot = $(tmpCalleeParam);
+const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep = undefined;
 const tmpIfTest$1 = arrPatternBeforeDefault === undefined;

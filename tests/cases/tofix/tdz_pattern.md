@@ -76,8 +76,7 @@ tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 `````js filename=intro
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  propTDZ;
-  $(propTDZ);
+  throw `Preval: This statement contained a read that reached no writes: tmpCalleeParam = propTDZ;`;
 } else {
 }
 `````
@@ -89,16 +88,13 @@ With rename=true
 `````js filename=intro
 const a = $( true );
 if (a) {
-  propTDZ;
-  $( propTDZ );
+  throw "Preval: This statement contained a read that reached no writes: tmpCalleeParam = propTDZ;";
 }
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-propTDZ
+None
 
 ## Result
 
@@ -114,4 +110,4 @@ Normalized calls: BAD!?
 
 Final output calls: BAD!!
  - 1: true
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - eval returned: ('<crash[ Preval: This statement contained a read that reached no writes: tmpCalleeParam = propTDZ; ]>')

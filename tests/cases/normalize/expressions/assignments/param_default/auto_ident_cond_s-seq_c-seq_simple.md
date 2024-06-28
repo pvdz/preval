@@ -67,9 +67,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_tmpNestedComplexRhs = $(60);
+const tmpNestedComplexRhs = $(60);
 $(undefined);
-$(tmpClusterSSA_tmpNestedComplexRhs);
+$(tmpNestedComplexRhs);
 `````
 
 ## PST Output

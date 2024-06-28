@@ -67,9 +67,9 @@ tmpCallCallee$3(tmpCalleeParam$7);
 
 `````js filename=intro
 const tmpCalleeParam = { a: `pass` };
-const tmpClusterSSA_arrPatternStep = $(tmpCalleeParam);
+const arrPatternStep = $(tmpCalleeParam);
 const tmpCalleeParam$3 = [];
-const x = objPatternRest(tmpClusterSSA_arrPatternStep, tmpCalleeParam$3, undefined);
+const x = objPatternRest(arrPatternStep, tmpCalleeParam$3, undefined);
 $(x);
 `````
 

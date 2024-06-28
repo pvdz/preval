@@ -184,7 +184,7 @@ if ($) {
 } else {
   $(`oh`);
 }
-$(`end`, x);
+$(`end`, 1);
 `````
 
 ## PST Output
@@ -207,7 +207,7 @@ if ($) {
 else {
   $( "oh" );
 }
-$( "end", a );
+$( "end", 1 );
 `````
 
 ## Globals

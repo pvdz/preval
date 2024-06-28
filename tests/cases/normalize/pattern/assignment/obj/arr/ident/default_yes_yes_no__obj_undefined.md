@@ -52,8 +52,8 @@ $(`bad`);
 
 `````js filename=intro
 const tmpCalleeParam = [`pass2`];
-const tmpClusterSSA_objPatternAfterDefault = $(tmpCalleeParam);
-const arrPatternSplat = [...tmpClusterSSA_objPatternAfterDefault];
+const objPatternAfterDefault = $(tmpCalleeParam);
+const arrPatternSplat = [...objPatternAfterDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {

@@ -66,9 +66,9 @@ tmpCallCallee$3(tmpCalleeParam$7);
 
 `````js filename=intro
 const tmpCalleeParam = { a: `pass` };
-const tmpClusterSSA_objPatternAfterDefault = $(tmpCalleeParam);
+const objPatternAfterDefault = $(tmpCalleeParam);
 const tmpCalleeParam$3 = [];
-const y = objPatternRest(tmpClusterSSA_objPatternAfterDefault, tmpCalleeParam$3, undefined);
+const y = objPatternRest(objPatternAfterDefault, tmpCalleeParam$3, undefined);
 $(y);
 `````
 

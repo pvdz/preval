@@ -53,14 +53,14 @@ $(`ok`);
 
 `````js filename=intro
 const tmpCalleeParam = { x: `pass` };
-const tmpClusterSSA_objPatternAfterDefault = $(tmpCalleeParam);
-let objPatternCrashTest = tmpClusterSSA_objPatternAfterDefault === undefined;
-if (objPatternCrashTest) {
+const objPatternAfterDefault = $(tmpCalleeParam);
+let tmpClusterSSA_objPatternCrashTest = objPatternAfterDefault === undefined;
+if (tmpClusterSSA_objPatternCrashTest) {
 } else {
-  objPatternCrashTest = tmpClusterSSA_objPatternAfterDefault === null;
+  tmpClusterSSA_objPatternCrashTest = objPatternAfterDefault === null;
 }
-if (objPatternCrashTest) {
-  tmpClusterSSA_objPatternAfterDefault.cannotDestructureThis;
+if (tmpClusterSSA_objPatternCrashTest) {
+  objPatternAfterDefault.cannotDestructureThis;
 } else {
 }
 $(`ok`);

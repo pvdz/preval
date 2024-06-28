@@ -62,14 +62,14 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const tmpClusterSSA_b = { c: 10, d: 20 };
-const tmpNestedAssignComMemberObj = $(tmpClusterSSA_b);
+const b = { c: 10, d: 20 };
+const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`c`);
-const tmpCompObj = $(tmpClusterSSA_b);
+const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-$(tmpNestedAssignPropRhs, tmpClusterSSA_b);
+$(tmpNestedAssignPropRhs, b);
 `````
 
 ## PST Output

@@ -94,7 +94,7 @@ if (tmpIfTest) {
   tmpClusterSSA_x = tmpReturnArg$1;
   $(tmpReturnArg$1, `x-global`);
 } else {
-  $(tmpClusterSSA_x, `x-global`);
+  $(undefined, `x-global`);
 }
 const tmpCalleeParam$3 = $(tmpClusterSSA_x, `closure-return`);
 $(tmpCalleeParam$3, `closure-global2`);
@@ -116,7 +116,7 @@ if (d) {
   $( e, "x-global" );
 }
 else {
-  $( c, "x-global" );
+  $( undefined, "x-global" );
 }
 const f = $( c, "closure-return" );
 $( f, "closure-global2" );

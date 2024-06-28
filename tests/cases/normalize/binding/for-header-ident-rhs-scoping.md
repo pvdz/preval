@@ -49,7 +49,7 @@ for (x$1 in tmpForInDeclRhs) {
 
 
 `````js filename=intro
-throw `Preval: Cannot access \`x\$1\` before initialization`;
+throw `Preval: This statement contained a read that reached no writes: const tmpForInDeclRhs = [x\$1];`;
 `````
 
 ## PST Output
@@ -57,7 +57,7 @@ throw `Preval: Cannot access \`x\$1\` before initialization`;
 With rename=true
 
 `````js filename=intro
-throw "Preval: Cannot access `x$1` before initialization";
+throw "Preval: This statement contained a read that reached no writes: const tmpForInDeclRhs = [x$1];";
 `````
 
 ## Globals
@@ -73,4 +73,5 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: ('<crash[ Preval: This statement contained a read that reached no writes: const tmpForInDeclRhs = [x$1]; ]>')

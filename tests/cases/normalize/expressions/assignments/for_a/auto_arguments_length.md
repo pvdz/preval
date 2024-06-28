@@ -43,6 +43,7 @@ while (true) {
 
 
 `````js filename=intro
+arguments;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
@@ -53,6 +54,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 With rename=true
 
 `````js filename=intro
+arguments;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
@@ -60,7 +62,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+arguments
 
 ## Result
 

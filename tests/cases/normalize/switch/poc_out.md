@@ -138,12 +138,8 @@ if (tmpIfTest) {
   $(`A`);
   fallthrough = true;
 } else {
-  tmpIfTest$1 = fallthrough;
-  if (fallthrough) {
-  } else {
-    const tmpBinBothRhs$1 = $(2);
-    tmpIfTest$1 = undefined === tmpBinBothRhs$1;
-  }
+  const tmpBinBothRhs$1 = $(2);
+  tmpIfTest$1 = undefined === tmpBinBothRhs$1;
 }
 if (tmpIfTest$1) {
   $(`B`);
@@ -175,14 +171,8 @@ if (d) {
   a = true;
 }
 else {
-  c = a;
-  if (a) {
-
-  }
-  else {
-    const e = $( 2 );
-    c = undefined === e;
-  }
+  const e = $( 2 );
+  c = undefined === e;
 }
 if (c) {
   $( "B" );

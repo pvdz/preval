@@ -36,3 +36,4 @@
 // tests/cases/normalize/expressions/statement/while/auto_ident_logic_or_or.md -> if a var declared above a label that doesnt escape is only used inside that label then it can be moved inside too, same rule as in the end of transformLabeledStatement but it needs to be phase2 due to scope tracking
 // tests/cases/continue/double.md -> has double label output
 // tests/cases/normalize/switch/simple_abrupt_cases/simple_unconditional_break.md -> implicit global case
+// tests/cases/normalize/expressions/assignments/for_b/auto_ident_nested_simple_member_assigns.md -> collapse object prop assignments when we know its a literal (we assume builtins are sound)

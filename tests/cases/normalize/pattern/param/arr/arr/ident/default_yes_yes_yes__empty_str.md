@@ -77,8 +77,8 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 `````js filename=intro
 const tmpCalleeParam$1 = [`pass2`];
-const tmpClusterSSA_arrPatternStep = $(tmpCalleeParam$1);
-const arrPatternSplat$1 = [...tmpClusterSSA_arrPatternStep];
+const arrPatternStep = $(tmpCalleeParam$1);
+const arrPatternSplat$1 = [...arrPatternStep];
 const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
 const tmpIfTest$3 = arrPatternBeforeDefault$1 === undefined;
 if (tmpIfTest$3) {

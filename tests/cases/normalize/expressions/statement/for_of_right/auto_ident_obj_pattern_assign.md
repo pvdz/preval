@@ -58,9 +58,14 @@ $(a, x, y);
 
 
 `````js filename=intro
-$(3);
-$(4);
-throw `Preval: Cannot access \`x\$1\` before initialization`;
+const a = { a: 999, b: 1000 };
+const tmpObjLitVal = $(3);
+const tmpObjLitVal$1 = $(4);
+const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+let x$1 = undefined;
+for (x$1 of tmpNestedAssignObjPatternRhs) {
+}
+$(a, 1, tmpObjLitVal$1);
 `````
 
 ## PST Output
@@ -68,9 +73,21 @@ throw `Preval: Cannot access \`x\$1\` before initialization`;
 With rename=true
 
 `````js filename=intro
-$( 3 );
-$( 4 );
-throw "Preval: Cannot access `x$1` before initialization";
+const a = {
+  a: 999,
+  b: 1000,
+};
+const b = $( 3 );
+const c = $( 4 );
+const d = {
+  x: b,
+  y: c,
+};
+let e = undefined;
+for (e of d) {
+
+}
+$( a, 1, c );
 `````
 
 ## Globals

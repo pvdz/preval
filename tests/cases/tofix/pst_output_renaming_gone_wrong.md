@@ -78,12 +78,11 @@ $(x);
 let x = 20;
 $(a);
 const tmpIfTest = $(1);
+$(20);
 if (tmpIfTest) {
-  $(20);
   x = 30;
   $(30);
 } else {
-  $(x);
 }
 const tmpIfTest$1 = $(2);
 $(x);
@@ -101,13 +100,10 @@ With rename=true
 let a = 20;
 $( a );
 const b = $( 1 );
+$( 20 );
 if (b) {
-  $( 20 );
   a = 30;
   $( 30 );
-}
-else {
-  $( a );
 }
 const c = $( 2 );
 $( a );

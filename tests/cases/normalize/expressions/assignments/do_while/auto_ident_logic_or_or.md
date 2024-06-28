@@ -89,12 +89,12 @@ loopStop$2: {
   }
   $(100);
   const tmpCalleeParam$2 = $(0);
-  const tmpClusterSSA_a$3 = $(tmpCalleeParam$2);
-  if (tmpClusterSSA_a$3) {
+  const tmpClusterSSA_a$2 = $(tmpCalleeParam$2);
+  if (tmpClusterSSA_a$2) {
   } else {
     const tmpCalleeParam$4 = $(1);
-    const tmpClusterSSA_a$5 = $(tmpCalleeParam$4);
-    if (tmpClusterSSA_a$5) {
+    const tmpClusterSSA_a$4 = $(tmpCalleeParam$4);
+    if (tmpClusterSSA_a$4) {
     } else {
       const tmpCalleeParam$6 = $(2);
       a = $(tmpCalleeParam$6);
@@ -106,12 +106,12 @@ loopStop$2: {
   }
   $(100);
   const tmpCalleeParam$5 = $(0);
-  const tmpClusterSSA_a$2 = $(tmpCalleeParam$5);
-  if (tmpClusterSSA_a$2) {
+  const tmpClusterSSA_a$3 = $(tmpCalleeParam$5);
+  if (tmpClusterSSA_a$3) {
   } else {
     const tmpCalleeParam$7 = $(1);
-    const tmpClusterSSA_a$4 = $(tmpCalleeParam$7);
-    if (tmpClusterSSA_a$4) {
+    const tmpClusterSSA_a$5 = $(tmpCalleeParam$7);
+    if (tmpClusterSSA_a$5) {
     } else {
       const tmpCalleeParam$9 = $(2);
       a = $(tmpCalleeParam$9);

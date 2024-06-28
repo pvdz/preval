@@ -84,7 +84,7 @@ let x = `fail`;
 if ($) {
   x = `pass`;
 } else {
-  $(x);
+  $(`fail`);
 }
 $(x);
 `````
@@ -99,7 +99,7 @@ if ($) {
   a = "pass";
 }
 else {
-  $( a );
+  $( "fail" );
 }
 $( a );
 `````

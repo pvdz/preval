@@ -48,8 +48,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_tmpCompObj = $(60);
-tmpClusterSSA_tmpCompObj.a;
+const tmpCompObj = $(60);
+tmpCompObj.a;
 const a = { a: 999, b: 1000 };
 $(a);
 `````

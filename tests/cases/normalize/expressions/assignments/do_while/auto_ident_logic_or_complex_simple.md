@@ -63,13 +63,10 @@ $(a);
 $(100);
 const tmpCalleeParam = $(0);
 $(tmpCalleeParam);
-$(100);
-const tmpCalleeParam$1 = $(0);
-$(tmpCalleeParam$1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpCalleeParam$2 = $(0);
-  $(tmpCalleeParam$2);
+  const tmpCalleeParam$1 = $(0);
+  $(tmpCalleeParam$1);
 }
 `````
 
@@ -81,13 +78,10 @@ With rename=true
 $( 100 );
 const a = $( 0 );
 $( a );
-$( 100 );
-const b = $( 0 );
-$( b );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const c = $( 0 );
-  $( c );
+  const b = $( 0 );
+  $( b );
 }
 `````
 

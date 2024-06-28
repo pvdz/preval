@@ -52,7 +52,7 @@ let x = undefined;
 if ($) {
   x = $(3);
 } else {
-  $(x);
+  $(undefined);
 }
 $(x);
 `````
@@ -67,7 +67,7 @@ if ($) {
   a = $( 3 );
 }
 else {
-  $( a );
+  $( undefined );
 }
 $( a );
 `````

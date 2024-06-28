@@ -73,9 +73,9 @@ const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_x$1 = arrPatternSplat[0];
-const tmpClusterSSA_y$1 = arrPatternSplat[1];
-$(tmpNestedAssignArrPatternRhs, tmpClusterSSA_x$1, tmpClusterSSA_y$1);
+const tmpClusterSSA_x = arrPatternSplat[0];
+const tmpClusterSSA_y = arrPatternSplat[1];
+$(tmpNestedAssignArrPatternRhs, tmpClusterSSA_x, tmpClusterSSA_y);
 `````
 
 ## PST Output

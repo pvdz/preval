@@ -80,14 +80,14 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 `````js filename=intro
 const tmpCalleeParam$1 = { x: `pass` };
-const tmpClusterSSA_objPatternAfterDefault = $(tmpCalleeParam$1);
-let tmpClusterSSA_objPatternCrashTest = tmpClusterSSA_objPatternAfterDefault === undefined;
+const objPatternAfterDefault = $(tmpCalleeParam$1);
+let tmpClusterSSA_objPatternCrashTest = objPatternAfterDefault === undefined;
 if (tmpClusterSSA_objPatternCrashTest) {
 } else {
-  tmpClusterSSA_objPatternCrashTest = tmpClusterSSA_objPatternAfterDefault === null;
+  tmpClusterSSA_objPatternCrashTest = objPatternAfterDefault === null;
 }
 if (tmpClusterSSA_objPatternCrashTest) {
-  tmpClusterSSA_objPatternAfterDefault.cannotDestructureThis;
+  objPatternAfterDefault.cannotDestructureThis;
 } else {
 }
 $(`ok`);

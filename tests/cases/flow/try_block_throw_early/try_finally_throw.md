@@ -112,7 +112,7 @@ try {
   throw $finalImplicit;
 }
 $(`still throws`);
-$(x);
+$(`fail`);
 throw `yes`;
 `````
 
@@ -132,7 +132,7 @@ catch (b) {
   throw b;
 }
 $( "still throws" );
-$( a );
+$( "fail" );
 throw "yes";
 `````
 

@@ -12,7 +12,7 @@
 switch ($(1)) {
   case 0:
     $('one');
-    if(x) {
+    if(x) { // implicit global that we should retain
       break;
     }
     break;

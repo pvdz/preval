@@ -62,12 +62,10 @@ $(x);
 
 
 `````js filename=intro
-let x = $(`50`);
+$(`50`);
 const f = function ($$0) {
   const c = $$0;
   debugger;
-  const tmpPrevalAliasArgumentsLen = 1;
-  x = tmpPrevalAliasArgumentsLen;
   $(1);
   $(2);
   $(c);
@@ -75,7 +73,7 @@ const f = function ($$0) {
 };
 f(3);
 f(4);
-$(x);
+$(1);
 `````
 
 ## PST Output
@@ -83,20 +81,18 @@ $(x);
 With rename=true
 
 `````js filename=intro
-let a = $( "50" );
-const b = function($$0 ) {
-  const c = d;
+$( "50" );
+const a = function($$0 ) {
+  const b = c;
   debugger;
-  const e = 1;
-  a = e;
   $( 1 );
   $( 2 );
-  $( c );
+  $( b );
   return undefined;
 };
-b( 3 );
-b( 4 );
-$( a );
+a( 3 );
+a( 4 );
+$( 1 );
 `````
 
 ## Globals

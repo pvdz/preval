@@ -59,9 +59,17 @@ $(a, x, y);
 
 
 `````js filename=intro
-$(3);
-$(4);
-throw `Preval: Cannot access \`x\$1\` before initialization`;
+const a = { a: 999, b: 1000 };
+const tmpArrElement = $(3);
+const tmpArrElement$1 = $(4);
+const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+arrPatternSplat[0];
+const tmpClusterSSA_y = arrPatternSplat[1];
+let x$1 = undefined;
+for (x$1 in tmpNestedAssignArrPatternRhs) {
+}
+$(a, 1, tmpClusterSSA_y);
 `````
 
 ## PST Output
@@ -69,9 +77,21 @@ throw `Preval: Cannot access \`x\$1\` before initialization`;
 With rename=true
 
 `````js filename=intro
-$( 3 );
-$( 4 );
-throw "Preval: Cannot access `x$1` before initialization";
+const a = {
+  a: 999,
+  b: 1000,
+};
+const b = $( 3 );
+const c = $( 4 );
+const d = [ b, c ];
+const e = [ ... d ];
+e[ 0 ];
+const f = e[ 1 ];
+let g = undefined;
+for (g in d) {
+
+}
+$( a, 1, f );
 `````
 
 ## Globals

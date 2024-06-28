@@ -68,15 +68,15 @@ $(a, b, c);
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b = { x: 3 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
   $(1);
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
 }
 `````
 
@@ -85,15 +85,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
+const a = { x: 3 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  a.x = 3;
-  a.x = 3;
-  a.x = 3;
-  a.x = 3;
-  a.x = 3;
-  a.x = 3;
   $( 1 );
+  a.x = 3;
+  a.x = 3;
+  a.x = 3;
+  a.x = 3;
+  a.x = 3;
+  a.x = 3;
 }
 `````
 

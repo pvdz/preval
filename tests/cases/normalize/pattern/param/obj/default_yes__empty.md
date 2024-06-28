@@ -63,14 +63,14 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpClusterSSA_bindingPatternObjRoot = $(`pass`);
-let objPatternCrashTest = tmpClusterSSA_bindingPatternObjRoot === undefined;
+const bindingPatternObjRoot = $(`pass`);
+let objPatternCrashTest = bindingPatternObjRoot === undefined;
 if (objPatternCrashTest) {
 } else {
-  objPatternCrashTest = tmpClusterSSA_bindingPatternObjRoot === null;
+  objPatternCrashTest = bindingPatternObjRoot === null;
 }
 if (objPatternCrashTest) {
-  tmpClusterSSA_bindingPatternObjRoot.cannotDestructureThis;
+  bindingPatternObjRoot.cannotDestructureThis;
 } else {
 }
 $(`ok`);

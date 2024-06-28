@@ -74,8 +74,7 @@ const f = function ($$0, $$1) {
   const c = $$1;
   debugger;
   if ($) {
-    const tmpPrevalAliasArgumentsLen = 3;
-    $(a, 2, c, tmpPrevalAliasArgumentsLen, `hopefully b is a literal afterwards`);
+    $(a, 2, c, 3, `hopefully b is a literal afterwards`);
     return undefined;
   } else {
     return undefined;
@@ -97,8 +96,7 @@ const a = function($$0,$$1 ) {
   const d = e;
   debugger;
   if ($) {
-    const f = 3;
-    $( b, 2, d, f, "hopefully b is a literal afterwards" );
+    $( b, 2, d, 3, "hopefully b is a literal afterwards" );
     return undefined;
   }
   else {

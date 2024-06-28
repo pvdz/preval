@@ -62,8 +62,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpCalleeParam = [`fail`];
-const tmpClusterSSA_objPatternAfterDefault = $(tmpCalleeParam);
-[...tmpClusterSSA_objPatternAfterDefault];
+const objPatternAfterDefault = $(tmpCalleeParam);
+[...objPatternAfterDefault];
 $(`ok`);
 `````
 

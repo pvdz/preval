@@ -67,22 +67,23 @@ f(2);
 
 
 `````js filename=intro
-let f = undefined;
 if ($) {
   const a = $();
-  let b = $();
-  f = function () {
+  $();
+  let b = a;
+  const tmpClusterSSA_f = function () {
     debugger;
-    b = a;
     $(a);
     $(b);
     return undefined;
   };
-  f(1);
+  tmpClusterSSA_f();
+  b = a;
+  tmpClusterSSA_f();
 } else {
-  f(1);
+  undefined();
+  throw `[Preval]: Call expression with illegal callee must crash before this line `;
 }
-f(2);
 `````
 
 ## PST Output
@@ -90,23 +91,24 @@ f(2);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
 if ($) {
-  const b = $();
-  let c = $();
-  a = function() {
+  const a = $();
+  $();
+  let b = a;
+  const c = function() {
     debugger;
-    c = b;
+    $( a );
     $( b );
-    $( c );
     return undefined;
   };
-  a( 1 );
+  c();
+  b = a;
+  c();
 }
 else {
-  a( 1 );
+  undefined.undefined();
+  throw "[Preval]: Call expression with illegal callee must crash before this line ";
 }
-a( 2 );
 `````
 
 ## Globals

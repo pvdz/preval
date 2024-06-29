@@ -814,7 +814,6 @@ export function phaseNormalOnce(fdata) {
           const tryNodeStack = [];
           const labelNodeStack = [];
 
-          let keywordsFound = 0;
           // {keyword: string, actionName: string, argName: string, labelName: string}
           const keywords = [
             // Implicit throw must go first otherwise logic may be incorrect
@@ -912,7 +911,6 @@ export function phaseNormalOnce(fdata) {
 
               case 'ReturnStatement:after': {
                 parentNode.$p.newAbrupt = true;
-                keywordsFound += 1;
                 const arg = createFreshVar('$finalArg', fdata);
                 const actionName = createFreshVar('$finalStep', fdata);
                 keywords.push({keyword: 'return', actionName, argName: arg});
@@ -934,7 +932,6 @@ export function phaseNormalOnce(fdata) {
                   // catch throws too, we don't care. And if the catch throws we'll handle it.
                 } else {
                   before(node, parentNode);
-                  keywordsFound += 1;
                   const arg = createFreshVar('$finalArg', fdata);
                   const actionName = createFreshVar('$finalStep', fdata);
                   keywords.push({keyword: 'throw', actionName, argName: arg});

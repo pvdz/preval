@@ -2,12 +2,9 @@
 
 # missing_expr.md
 
-> Tofix > Missing expr
+> If tail extending > Missing expr
 >
-> The very last $(x) is missing in the else branch
-
-todo:
-- the first "20,30" case can inline x=20 in the else branch in the output (it doesn't at the time of writing)
+> The $(x) calls get shuffled around and the output looks odd compared to input
 
 ## Options
 

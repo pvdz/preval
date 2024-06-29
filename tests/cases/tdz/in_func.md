@@ -1,8 +1,8 @@
 # Preval test case
 
-# infinitely_testing_ident.md
+# in_func.md
 
-> Tofix > Infinitely testing ident
+> Tdz > In func
 >
 > A loop that just tests for an ident to trigger tdz is not a loop
 
@@ -41,9 +41,7 @@ f();
 `````js filename=intro
 const f = function () {
   debugger;
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    s;
-  }
+  s;
   return undefined;
 };
 f();
@@ -54,15 +52,7 @@ f();
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    s;
-  }
-  return undefined;
-};
-f();
-f();
+s;
 `````
 
 ## PST Output
@@ -70,15 +60,7 @@ f();
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    s;
-  }
-  return undefined;
-};
-a();
-a();
+s;
 `````
 
 ## Globals

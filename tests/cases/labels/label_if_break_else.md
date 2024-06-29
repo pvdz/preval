@@ -2,11 +2,14 @@
 
 # label_if_break_else.md
 
-> Tofix > Label if break else
+> Labels > Label if break else
 >
 > The break is redundant. Detect that it's a tail statement
 > and that the continuation is always the label.
 > (Need to find a test case where this is not compiled away)
+> 
+> Note: this was an earlier iteration of the finally elimination
+>       and the `break` wasn't eliminated.
 
 ## Input
 

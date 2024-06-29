@@ -9512,7 +9512,23 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         return true;
       }
 
-      if (i > 0 && whileBody.length > 0) {
+      if (
+        whileBody[0].type === 'ExpressionStatement' &&
+        whileBody[0].expression.type === 'Identifier'
+      ) {
+        rule('An expression statement that is an identifier at the start of a loop can move outside of that loop');
+        example('while (true) { tdz; }', 'tdz; while (true) {}');
+        before(node);
+
+        body.splice(i, 0, whileBody.shift());
+
+        after(body[i]);
+        after(body[i+1]);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        return true;
+      }
+
+      if (i > 0) {
         // This is a while that is not the first statement in the parent and its child block is not empty
         // Check for sub-statement-rotation cases
 

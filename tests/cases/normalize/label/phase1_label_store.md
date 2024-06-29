@@ -71,15 +71,7 @@ f();
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    s;
-  }
-  return undefined;
-};
-f();
-f();
+s;
 `````
 
 ## PST Output
@@ -87,15 +79,7 @@ f();
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    s;
-  }
-  return undefined;
-};
-a();
-a();
+s;
 `````
 
 ## Globals

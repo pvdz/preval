@@ -37,3 +37,4 @@
 // tests/cases/continue/double.md -> has double label output
 // tests/cases/normalize/switch/simple_abrupt_cases/simple_unconditional_break.md -> implicit global case
 // tests/cases/normalize/expressions/assignments/for_b/auto_ident_nested_simple_member_assigns.md -> collapse object prop assignments when we know its a literal (we assume builtins are sound)
+// AST.isNumber -> AST.isNumberLiteral AST.isNumberValue

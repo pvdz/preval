@@ -2,9 +2,10 @@
 
 # react_crash.md
 
-> Tofix > React crash
+> Builtins cases > React crash
 >
->
+> At some point this snippet crashed.
+> Now it's just a case of Array being left behind.
 
 ## Input
 
@@ -16,9 +17,10 @@ function error(format) {
   for (; key < len; key++) {
     args[key - 1] = arguments[key];
   }
+  return args;
 }
 
-error();
+$(error());
 `````
 
 ## Pre Normal
@@ -44,8 +46,9 @@ let error = function ($$0) {
       key++;
     }
   }
+  return args;
 };
-error();
+$(error());
 `````
 
 ## Normalized
@@ -86,16 +89,19 @@ let error = function ($$0) {
       break;
     }
   }
-  return undefined;
+  return args;
 };
-error();
+const tmpCallCallee = $;
+const tmpCalleeParam$1 = error();
+tmpCallCallee(tmpCalleeParam$1);
 `````
 
 ## Output
 
 
 `````js filename=intro
-new Array(0);
+const tmpClusterSSA_args = [];
+$(tmpClusterSSA_args);
 `````
 
 ## PST Output
@@ -103,7 +109,8 @@ new Array(0);
 With rename=true
 
 `````js filename=intro
-new Array( 0 );
+const a = [];
+$( a );
 `````
 
 ## Globals
@@ -113,6 +120,7 @@ None
 ## Result
 
 Should call `$` with:
+ - 1: []
  - eval returned: undefined
 
 Pre normalization calls: Same

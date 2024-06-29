@@ -73,5 +73,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: ('<crash[ Preval: This statement contained a read that reached no writes: const tmpForInDeclRhs = [x$1]; ]>')
+Final output calls: Same

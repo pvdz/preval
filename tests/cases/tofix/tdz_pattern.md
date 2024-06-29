@@ -108,6 +108,4 @@ Normalized calls: BAD!?
  - 1: true
  - eval returned: ('<crash[ <ref> is not defined ]>')
 
-Final output calls: BAD!!
- - 1: true
- - eval returned: ('<crash[ Preval: This statement contained a read that reached no writes: tmpCalleeParam = propTDZ; ]>')
+Final output calls: Same

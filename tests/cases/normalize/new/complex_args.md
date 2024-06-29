@@ -40,7 +40,7 @@ tmpCallCallee(tmpCalleeParam);
 const tmpCalleeParam$3 = $();
 const tmpCompObj = Array.prototype;
 const tmpCalleeParam$5 = tmpCompObj.length;
-const tmpCalleeParam = new Array(10, tmpCalleeParam$3, tmpCalleeParam$5);
+const tmpCalleeParam = [10, tmpCalleeParam$3, tmpCalleeParam$5];
 $(tmpCalleeParam);
 `````
 
@@ -52,7 +52,7 @@ With rename=true
 const a = $();
 const b = Array.prototype;
 const c = b.length;
-const d = new Array( 10, a, c );
+const d = [ 10, a, c ];
 $( d );
 `````
 

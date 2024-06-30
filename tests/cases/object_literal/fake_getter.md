@@ -1,12 +1,12 @@
 # Preval test case
 
-# getter.md
+# fake_getter.md
 
-> Tofix > Getter
+> Object literal > Fake getter
 >
 > When decomposing compound assignments to properties we must make sure to retain observable runtime semantics. Consider: "what if the property is a getter?"
 
-regression; output is wrong. the prop mutation should be a factor when checking if the binding escapes
+regression; output was wrong. the prop mutation should be a factor when checking if the binding escapes
 
 ## Input
 

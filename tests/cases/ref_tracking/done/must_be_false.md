@@ -2,7 +2,7 @@
 
 # must_be_false.md
 
-> Tofix > Must be false
+> Ref tracking > Done > Must be false
 >
 > New rule
 > In this example, `t` always ends up as `false` by the time it's evaluated so it can be eliminated and replaced by `false`.

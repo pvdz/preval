@@ -2,7 +2,7 @@
 
 # implicit_global_crash.md
 
-> Tofix > Implicit global crash
+> Tdz > Implicit global crash
 >
 > The call should be inlined but the implicit globals should still crash at runtime
 

@@ -176,10 +176,10 @@ Final output calls: Same
 
 Inverse input result (there was at least one mismatch even though actual test evalled equal):
  - 1: 0
- - 2: 'one'
+ - 2: ''
  - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Output inverse calls: BAD!!
  - 1: 0
- - 2: 'one'
+ - 2: ''
  - eval returned: undefined

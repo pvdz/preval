@@ -550,6 +550,9 @@ function runTestCase(
           else if (tmp === 1) tmp = 0;
           else if (tmp === false) tmp = true;
           else if (tmp === true) tmp = false;
+          else if (tmp === undefined) tmp = true;
+          else if (tmp === '') tmp = 'true';
+          else if (typeof tmp === 'string') tmp = '';
           dollarArgs[0] = tmp;
         }
 

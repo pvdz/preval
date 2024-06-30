@@ -45,7 +45,8 @@ tmpCallCallee(tmpCalleeParam);
 const tmpAssignComMemLhsProp = $(2);
 const arr = [1, 2, 3];
 arr[tmpAssignComMemLhsProp] = 10;
-$(3);
+const tmpCalleeParam = arr.length;
+$(tmpCalleeParam);
 `````
 
 ## PST Output
@@ -56,7 +57,8 @@ With rename=true
 const a = $( 2 );
 const b = [ 1, 2, 3 ];
 b[a] = 10;
-$( 3 );
+const c = b.length;
+$( c );
 `````
 
 ## Globals

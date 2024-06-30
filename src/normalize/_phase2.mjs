@@ -88,6 +88,7 @@ import { ifUpdateTest } from '../reduce_static/if_update_test.mjs';
 import { labelScoping } from '../reduce_static/label_scoping.mjs';
 import { refTracked } from '../reduce_static/ref_tracked.mjs';
 import { builtinCases } from '../reduce_static/builtin_cases.mjs';
+import { arrayReads } from '../reduce_static/array_reads.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
@@ -262,6 +263,7 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     ifFalsySpread(fdata) ||
     tailBreaking(fdata) ||
     infiniteLoops(fdata) || // Make sure to do this before loop unrolling
+    arrayReads(fdata) ||
     staticArgOpOutlining(fdata) ||
     functionLocks(fdata) ||
     readOnce(fdata) ||

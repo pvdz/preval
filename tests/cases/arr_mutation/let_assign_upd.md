@@ -65,20 +65,14 @@ $(arr);
 
 `````js filename=intro
 let arr = [0];
-const tmpAssignComputedObj = arr;
-const tmpBinLhs = arr[0];
-const tmpAssignComputedRhs = tmpBinLhs + 1;
-tmpAssignComputedObj[0] = tmpAssignComputedRhs;
+arr[0] = 1;
 $(arr);
 const tmpBinLhs$1 = arr[0];
 const tmpIfTest = tmpBinLhs$1 < 10;
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     arr = [0];
-    const tmpAssignComputedObj$1 = arr;
-    const tmpBinLhs$2 = arr[0];
-    const tmpAssignComputedRhs$1 = tmpBinLhs$2 + 1;
-    tmpAssignComputedObj$1[0] = tmpAssignComputedRhs$1;
+    arr[0] = 1;
     $(arr);
     const tmpBinLhs$4 = arr[0];
     const tmpIfTest$1 = tmpBinLhs$4 < 10;
@@ -98,24 +92,18 @@ With rename=true
 
 `````js filename=intro
 let a = [ 0 ];
-const b = a;
-const c = a[ 0 ];
-const d = c + 1;
-b[0] = d;
+a[0] = 1;
 $( a );
-const e = a[ 0 ];
-const f = e < 10;
-if (f) {
+const b = a[ 0 ];
+const c = b < 10;
+if (c) {
   while ($LOOP_UNROLL_10) {
     a = [ 0 ];
-    const g = a;
-    const h = a[ 0 ];
-    const i = h + 1;
-    g[0] = i;
+    a[0] = 1;
     $( a );
-    const j = a[ 0 ];
-    const k = j < 10;
-    if (k) {
+    const d = a[ 0 ];
+    const e = d < 10;
+    if (e) {
 
     }
     else {

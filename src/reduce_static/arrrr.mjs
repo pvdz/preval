@@ -87,13 +87,13 @@ function processAttempt(fdata, queue) {
 
     if (meta.writes.length === 1) {
       // This is a const with an array literal as init.
-      // There are no further writes but there may be mutations through methods.
+      // There are no further writes but there may be mutations through methods and property assignments.
       // First check if this is only property reads...
       if (meta.reads.every(read => {
         return (
           read.parentNode.type === 'MemberExpression' &&
           read.parentProp === 'object' &&
-          (read.grandNode.type === 'VariableDeclarator' || read.grandNode.type === 'AssignmentExpression' || read.grandNode.type === 'ExpressionStatement')
+          (read.grandNode.type === 'VariableDeclarator' || (read.grandNode.type === 'AssignmentExpression' && read.grandProp === 'right') || read.grandNode.type === 'ExpressionStatement')
         );
       })) {
         vlog('All reads of this array constant are member accesses. Try to resolve the primitives');
@@ -105,7 +105,10 @@ function processAttempt(fdata, queue) {
           meta.reads.forEach((read, ei) => {
             vgroup('- read', ei, ', @', +read.node.$p.pid);
             if (read.parentNode.computed) {
-              if (AST.isPrimitive(read.parentNode.property)) {
+              if (read.grandNode.type === 'AssignmentExpression') {
+                vlog('This is a write to the property, bailing');
+              }
+              else if (AST.isPrimitive(read.parentNode.property)) {
                 const val = AST.getPrimitiveValue(read.parentNode.property);
                 vlog('Accessing primitive value', val, 'on the array, a', typeof val);
                 if (typeof val === 'number') {
@@ -200,7 +203,12 @@ function processAttempt(fdata, queue) {
         '<read>',
       );
 
-      if (read.parentNode.type === 'MemberExpression') {
+      if (read.parentNode.type === 'MemberExpression' && read.grandNode.type === 'AssignmentExpression' && read.grandProp !== 'right') {
+        vlog('At least one read was part of a property write, array mutates, bailing');
+        sawMutatedOnce = true;
+        return;
+      }
+      else if (read.parentNode.type === 'MemberExpression') {
         const mem = read.parentNode;
 
         // Edge case. Solve the jsf*ck case `[][[]]` -> `undefined`
@@ -377,7 +385,8 @@ function processAttempt(fdata, queue) {
             vlog('This was a property access that was not called. Should not be able to mutate the array.');
           }
         }
-      } else if (read.parentNode.type === 'CallExpression') {
+      }
+      else if (read.parentNode.type === 'CallExpression') {
         if (read.parentProp !== 'arguments') {
           vlog('Calling an array? Okay good luck');
           failed = true;
@@ -471,7 +480,8 @@ function processAttempt(fdata, queue) {
             return;
           }
         }
-      } else if (read.parentNode.type === 'UnaryExpression') {
+      }
+      else if (read.parentNode.type === 'UnaryExpression') {
         const op = read.parentNode.operator;
         switch (op) {
           case '+':
@@ -522,7 +532,8 @@ function processAttempt(fdata, queue) {
             return;
           }
         }
-      } else if (read.parentNode.type === 'BinaryExpression') {
+      }
+      else if (read.parentNode.type === 'BinaryExpression') {
         const op = read.parentNode.operator;
         switch (op) {
           case '+': {
@@ -583,7 +594,8 @@ function processAttempt(fdata, queue) {
             break;
           }
         }
-      } else {
+      }
+      else {
         vlog('This read is not a property access and so we consider the array to escape. We can not trust its contents to be immutable.');
         failed = true;
         return;
@@ -592,6 +604,10 @@ function processAttempt(fdata, queue) {
 
     if (meta.tainted) {
       // Something was mutated. We already logged out for this.
+      return;
+    }
+    if (sawMutatedOnce) {
+      // At least one write mutates the array. We should have logged for this.
       return;
     }
     if (failed) {
@@ -655,13 +671,13 @@ function processAttempt(fdata, queue) {
       ) {
         rule('Reading a index property of an immutable array can be resolved');
         example('const arr = [1, 2, 3]; $(arr[1]);', 'const arr = [1, 2, 3]; $(2);');
-        before(read.parentNode, read.blockBody[read.blockIndex]);
+        before(read.blockBody[read.blockIndex]);
 
         const finalNode = AST.cloneSimple(arrNode.elements[read.parentNode.property.value]);
         if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
         else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
 
-        after(read.parentNode, read.blockBody[read.blockIndex]);
+        after(read.blockBody[read.blockIndex]);
         ++updated;
         vgroupEnd();
         return;

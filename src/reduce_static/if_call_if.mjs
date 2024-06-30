@@ -1,5 +1,6 @@
-// Attempt to tackle the common problem left by a logical or; if statement and either branch calls a function that
-// starts with another if statement with the same condition.
+// Attempt to tackle the common problem left behind by a logical OR:
+// An If statement and either branch calls a function that starts with another If statement with the same condition.
+//
 // ```
 // let x = condition();
 // const f = function(){

@@ -1,6 +1,9 @@
 // Find back-to-back ifs on the same constant condition and merge their branches
-// `const x; if (x) a(); else b(); if (x) c(); else d();`
-// -> `const x; if (x) { a(); c(); } else { b(); d(); }`
+// (Invariant: the truthfulness of a constant binding cannot change)
+//
+//          const x = $(); if (x) a(); else b(); if (x) c(); else d();
+// ->
+//          const x = $(); if (x) { a(); c(); } else { b(); d(); }
 
 import {
   ASSERT,

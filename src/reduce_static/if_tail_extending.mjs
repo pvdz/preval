@@ -1,4 +1,9 @@
 // When one branch of an `if` statement returns early, the tail code should be moved into the other branch.
+//
+//      if (x) { break; } else { f(); } g();
+// ->
+//
+//      if (x) { break; } else { f(); g(); }
 
 import walk from '../../lib/walk.mjs';
 import {
@@ -27,8 +32,6 @@ export function ifTailExtending(fdata) {
 }
 function _ifTailExtending(fdata) {
   const ast = fdata.tenkoOutput.ast;
-
-  let tailed = 0;
 
   const queue = [];
 

@@ -61,17 +61,8 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  if (x) {
-    return false;
-  } else {
-    return true;
-  }
-};
-f();
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpBool$1 = !x;
+$(tmpBool$1);
 `````
 
 ## PST Output
@@ -79,18 +70,8 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  if (x) {
-    return false;
-  }
-  else {
-    return true;
-  }
-};
-a();
-const b = a();
-$( b );
+const a = !x;
+$( a );
 `````
 
 ## Globals

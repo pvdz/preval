@@ -61,11 +61,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const x = $(100);
 const tmpIfTest = x <= 100;
-if (tmpIfTest) {
-  $(true);
-} else {
-  $(false);
-}
+$(tmpIfTest);
 `````
 
 ## PST Output
@@ -75,12 +71,7 @@ With rename=true
 `````js filename=intro
 const a = $( 100 );
 const b = a <= 100;
-if (b) {
-  $( true );
-}
-else {
-  $( false );
-}
+$( b );
 `````
 
 ## Globals

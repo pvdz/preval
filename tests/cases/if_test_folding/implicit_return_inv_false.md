@@ -61,16 +61,8 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  if (x) {
-    return true;
-  } else {
-    return false;
-  }
-};
-f();
-const tmpCalleeParam = f();
+x;
+const tmpCalleeParam = Boolean(x);
 $(tmpCalleeParam);
 `````
 
@@ -79,18 +71,9 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  if (x) {
-    return true;
-  }
-  else {
-    return false;
-  }
-};
-a();
-const b = a();
-$( b );
+x;
+const a = Boolean( x );
+$( a );
 `````
 
 ## Globals

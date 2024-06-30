@@ -1,6 +1,8 @@
 // Find `if` statements where each branch starts with the same-ish node
-// `if (x) a = y; else a = y;`
-// -> `a = y; if (x) ...`
+//
+//        if (x) a = y; else a = y;
+// ->
+//        a = y; if (x) ; else ;`
 
 import walk from '../../lib/walk.mjs';
 import {

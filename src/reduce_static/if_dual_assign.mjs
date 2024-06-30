@@ -1,6 +1,8 @@
 // Find ifs that check a value that we know to be one of two values, and they are a falsy and truthy value
-// `const x = a === b; if (x) { f(x); } else { return x; }`
-// -> `const x = a === b; if (x) { f(true); } else { return false; }`
+//
+//        const x = a === b; if (x) { f(x); } else { return x; }
+// ->
+//        const x = a === b; if (x) { f(true); } else { return false; }
 
 import {
   ASSERT,

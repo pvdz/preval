@@ -89,6 +89,7 @@ import { labelScoping } from '../reduce_static/label_scoping.mjs';
 import { refTracked } from '../reduce_static/ref_tracked.mjs';
 import { builtinCases } from '../reduce_static/builtin_cases.mjs';
 import { arrayReads } from '../reduce_static/array_reads.mjs';
+import { ifTestMerging } from '../reduce_static/if_test_merging.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
@@ -255,6 +256,7 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     eqBang(fdata) ||
     orOr(fdata) ||
     andAnd(fdata) ||
+    ifTestMerging(fdata) ||
     branchConstantInlining(fdata) ||
     boolTrampolines(fdata) ||
     restParams(fdata) ||

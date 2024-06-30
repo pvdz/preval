@@ -1,5 +1,8 @@
 // Search for `if` statements where both branches basically reflect the test result
-// `if (x) return true; else return false;`
+//
+//        if (x) return true; else return false;
+// ->
+//        return x;
 
 import walk from '../../lib/walk.mjs';
 import {

@@ -1,6 +1,8 @@
 // Find `if` tests that are identifier and whose value is inverted inside either branch
-// `if (x) y = !x'
-// -> 'if (x) y = false;`
+//
+//      if (x) y = !x;
+// ->
+//      if (x) y = false;
 
 import walk from '../../lib/walk.mjs';
 import {

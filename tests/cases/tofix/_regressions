@@ -38,3 +38,6 @@
 // tests/cases/normalize/switch/simple_abrupt_cases/simple_unconditional_break.md -> implicit global case
 // tests/cases/normalize/expressions/assignments/for_b/auto_ident_nested_simple_member_assigns.md -> collapse object prop assignments when we know its a literal (we assume builtins are sound)
 // AST.isNumber -> AST.isNumberLiteral AST.isNumberValue
+// reduce_static/if_reduce_up.mjs -> need to inject a TDZ check before the hoist (maybe rename the rule too? if-hoisting or something? maybe)
+// verify whether $p.isPrimitive is correct to be set in phase1 (but probably?)
+// Support object literals in isSameExpressionExceptBool too

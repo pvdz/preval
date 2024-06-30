@@ -1,5 +1,8 @@
 // Find the pattern of updating a binding at the end of both branches of an `if` statement, followed by a call using that binding.
-// `if (a) x = 1; else x = 2; f(x)` -> `if (a) f(1); else f(2);`
+//
+//        if (a) x = 1; else x = 2; f(x)
+// ->
+//        if (a) f(1); else f(2);
 
 import walk from '../../lib/walk.mjs';
 import {

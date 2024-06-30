@@ -1,4 +1,8 @@
 // Find `if` statements where we can trivially detect the test to be `!` inverted, and invert them.
+//
+//      const x = !y; if (x) f(); else g();
+// ->
+//      const x = !y; if (y) g(); else f();
 
 import walk from '../../lib/walk.mjs';
 import {

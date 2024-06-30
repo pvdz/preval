@@ -63,11 +63,8 @@ const x = a === 67636;
 if (x) {
   $(true);
 } else {
-  if ($) {
-    $(true);
-  } else {
-    $(false);
-  }
+  const tmpBool = Boolean($);
+  $(tmpBool);
 }
 `````
 
@@ -82,12 +79,8 @@ if (b) {
   $( true );
 }
 else {
-  if ($) {
-    $( true );
-  }
-  else {
-    $( false );
-  }
+  const c = Boolean( $ );
+  $( c );
 }
 `````
 

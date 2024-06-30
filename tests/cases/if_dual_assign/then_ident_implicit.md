@@ -69,13 +69,8 @@ $(x, `end`);
 
 `````js filename=intro
 const a = b === c;
-if (a) {
-  $(true, `middle`);
-  $(true, `end`);
-} else {
-  $(false, `middle`);
-  $(false, `end`);
-}
+$(a, `middle`);
+$(a, `end`);
 `````
 
 ## PST Output
@@ -84,14 +79,8 @@ With rename=true
 
 `````js filename=intro
 const a = b === c;
-if (a) {
-  $( true, "middle" );
-  $( true, "end" );
-}
-else {
-  $( false, "middle" );
-  $( false, "end" );
-}
+$( a, "middle" );
+$( a, "end" );
 `````
 
 ## Globals

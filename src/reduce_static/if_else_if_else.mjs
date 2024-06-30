@@ -1,4 +1,5 @@
-// Attempts to catch all variations of a common pattern of normalized code that I've dubbed "ifelseifelse" (even though it's a bit more than that):
+// Attempts to catch all variations of a common pattern of normalized code that
+// I've dubbed "ifelseifelse" (even though it's a bit more than that):
 //```
 // let condition = true;
 // const f = function() {

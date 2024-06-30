@@ -75,13 +75,8 @@ $(x, `end`);
 const b = $(`x`, `one`);
 const c = $(`y`, `one`);
 const a = b === c;
-if (a) {
-  $(true, `middle`);
-  $(true, `end`);
-} else {
-  $(false, `middle`);
-  $(false, `end`);
-}
+$(a, `middle`);
+$(a, `end`);
 `````
 
 ## PST Output
@@ -92,14 +87,8 @@ With rename=true
 const a = $( "x", "one" );
 const b = $( "y", "one" );
 const c = a === b;
-if (c) {
-  $( true, "middle" );
-  $( true, "end" );
-}
-else {
-  $( false, "middle" );
-  $( false, "end" );
-}
+$( c, "middle" );
+$( c, "end" );
 `````
 
 ## Globals

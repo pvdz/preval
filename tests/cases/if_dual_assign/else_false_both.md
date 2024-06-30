@@ -76,11 +76,7 @@ const b = $(`x`, `one`);
 const c = $(`x`, `one`);
 $(false, `middle`);
 const a = b === c;
-if (a) {
-  $(true, `end`);
-} else {
-  $(false, `end`);
-}
+$(a, `end`);
 `````
 
 ## PST Output
@@ -92,12 +88,7 @@ const a = $( "x", "one" );
 const b = $( "x", "one" );
 $( false, "middle" );
 const c = a === b;
-if (c) {
-  $( true, "end" );
-}
-else {
-  $( false, "end" );
-}
+$( c, "end" );
 `````
 
 ## Globals

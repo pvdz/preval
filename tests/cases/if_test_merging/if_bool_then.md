@@ -4,7 +4,8 @@
 
 > Tofix > If bool then
 >
-> Not sure why this doesn't work. Should become $(t); Source: cases/ret_bool_after_if/compare_return.md
+> The $(true) and $(false) Should become $(t)
+> Source: cases/ret_bool_after_if/compare_return.md
 
 ## Input
 
@@ -50,11 +51,7 @@ if (t) {
 `````js filename=intro
 const x = $(100);
 const t = x <= 100;
-if (t) {
-  $(true);
-} else {
-  $(false);
-}
+$(t);
 `````
 
 ## PST Output
@@ -64,12 +61,7 @@ With rename=true
 `````js filename=intro
 const a = $( 100 );
 const b = a <= 100;
-if (b) {
-  $( true );
-}
-else {
-  $( false );
-}
+$( b );
 `````
 
 ## Globals

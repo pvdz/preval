@@ -1,7 +1,10 @@
 // Find spreads on if-tests in the `else` branch
-// `const x = f(); if (x) {} else { g(...x); }`
-// -> `const x = f(); if (x) {} else { if (typeof x === 'string') g(); else throw error; }`
-// -> `const x = f(); if (x) {} else { if (x === '') g(); else throw error; }`
+//
+//          const x = f(); if (x) {} else { g(...x); }
+// ->
+//          const x = f(); if (x) {} else { if (typeof x === 'string') g(); else throw error; }
+// ->
+//          const x = f(); if (x) {} else { if (x === '') g(); else throw error; }
 
 import {
   ASSERT,

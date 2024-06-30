@@ -1,9 +1,9 @@
 // Find `if` tests that are mutated in one If and then tested in the next If
 // Base case:
 //
-//    `let x = true; if (y) x = false; if (x) z();`
+//    let x = true; if (y) x = false; if (x) z();
 // ->
-//    `if (y) {} else z();`
+//    if (y) {} else z();
 //
 // This is low hanging fruit and we can probably improve and generalize on that a bit further
 

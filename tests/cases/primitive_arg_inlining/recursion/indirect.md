@@ -84,20 +84,20 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const g = function ($$0) {
-  const tmpOutlinedParam = $$0;
+const h = function ($$0) {
+  const n$3 = $$0;
   debugger;
-  const tmpBinLhs = $(tmpOutlinedParam);
+  const tmpBinLhs = $(n$3);
   const tmpIfTest = tmpBinLhs > 1000;
   if (tmpIfTest) {
-    return tmpOutlinedParam;
+    return n$3;
   } else {
-    const tmpSaooB$1 = tmpOutlinedParam + 1;
-    const tmpReturnArg$3 = g(tmpSaooB$1);
+    const tmpSaooB$1 = n$3 + 1;
+    const tmpReturnArg$3 = h(tmpSaooB$1);
     return tmpReturnArg$3;
   }
 };
-const tmpCalleeParam$1 = g(1);
+const tmpCalleeParam$1 = h(1);
 $(tmpCalleeParam$1);
 `````
 

@@ -13,11 +13,11 @@
 function f(x) {
   let y = 100;
   try {
-    y = $;
+    y = FAIL;
   } catch {}
   return y;
 }
-$(f(x));
+$(f(KEEP_ME));
 `````
 
 ## Pre Normal
@@ -25,15 +25,15 @@ $(f(x));
 
 `````js filename=intro
 let f = function ($$0) {
-  let x$1 = $$0;
+  let x = $$0;
   debugger;
   let y = 100;
   try {
-    y = $;
+    y = FAIL;
   } catch (e) {}
   return y;
 };
-$(f(x));
+$(f(KEEP_ME));
 `````
 
 ## Normalized
@@ -41,16 +41,16 @@ $(f(x));
 
 `````js filename=intro
 let f = function ($$0) {
-  let x$1 = $$0;
+  let x = $$0;
   debugger;
   let y = 100;
   try {
-    y = $;
+    y = FAIL;
   } catch (e) {}
   return y;
 };
 const tmpCallCallee = $;
-const tmpCalleeParam = f(x);
+const tmpCalleeParam = f(KEEP_ME);
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -58,7 +58,12 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-$($);
+KEEP_ME;
+let y = 100;
+try {
+  y = FAIL;
+} catch (e) {}
+$(y);
 `````
 
 ## PST Output
@@ -66,12 +71,22 @@ $($);
 With rename=true
 
 `````js filename=intro
-$( $ );
+KEEP_ME;
+let a = 100;
+try {
+  a = FAIL;
+}
+catch (b) {
+
+}
+$( a );
 `````
 
 ## Globals
 
-None
+BAD@! Found 2 implicit global bindings:
+
+KEEP_ME, FAIL
 
 ## Result
 
@@ -82,6 +97,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: '<$>'
- - eval returned: undefined
+Final output calls: Same

@@ -2,7 +2,7 @@
 
 # if_bool_then.md
 
-> Tofix > If bool then
+> If test merging > If bool then
 >
 > The $(true) and $(false) Should become $(t)
 > Source: cases/ret_bool_after_if/compare_return.md

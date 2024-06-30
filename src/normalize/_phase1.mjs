@@ -922,6 +922,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
           const funcNode = funcStack[funcStack.length - 1];
           const funcHeaderParamNode = funcNode.params[node.index];
+          ASSERT(funcHeaderParamNode, 'funcHeaderParamNode should be at', node.index, funcNode.params.length);
           ASSERT(funcHeaderParamNode.name === node.name, 'the usage of a Param should map back to the decl', node, funcHeaderParamNode);
 
           // Point from func header node to its var decl ref

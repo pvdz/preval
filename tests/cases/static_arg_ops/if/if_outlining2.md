@@ -222,17 +222,17 @@ const push = function ($$0, $$1) {
   const tmpSaooB$1 = index$1 > 0;
   $dlr_$$0.push($dlr_$$1);
   if (tmpSaooB$1) {
-    const tmpSaooB$6 = index$1 - 1;
-    const tmpSaooB$9 = tmpSaooB$6 >>> 1;
-    siftUp_t($dlr_$$0, $dlr_$$1, index$1, tmpSaooB$9);
-    const tmpSaooB$4 = index$1 - 1;
-    const tmpSaooB$7 = tmpSaooB$4 >>> 1;
-    siftUp_t($dlr_$$0, $dlr_$$1, index$1, tmpSaooB$7);
-    const tmpSaooB$2 = index$1 - 1;
-    const tmpSaooB$5 = tmpSaooB$2 >>> 1;
-    siftUp_t($dlr_$$0, $dlr_$$1, index$1, tmpSaooB$5);
     const tmpSaooB = index$1 - 1;
-    const tmpSaooB$3 = tmpSaooB >>> 1;
+    const tmpSaooB$9 = tmpSaooB >>> 1;
+    siftUp_t($dlr_$$0, $dlr_$$1, index$1, tmpSaooB$9);
+    const tmpSaooB$2 = index$1 - 1;
+    const tmpSaooB$7 = tmpSaooB$2 >>> 1;
+    siftUp_t($dlr_$$0, $dlr_$$1, index$1, tmpSaooB$7);
+    const tmpSaooB$4 = index$1 - 1;
+    const tmpSaooB$5 = tmpSaooB$4 >>> 1;
+    siftUp_t($dlr_$$0, $dlr_$$1, index$1, tmpSaooB$5);
+    const tmpSaooB$6 = index$1 - 1;
+    const tmpSaooB$3 = tmpSaooB$6 >>> 1;
     siftUp_t($dlr_$$0, $dlr_$$1, index$1, tmpSaooB$3);
     return undefined;
   } else {

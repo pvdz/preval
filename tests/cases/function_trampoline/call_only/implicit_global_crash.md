@@ -53,7 +53,9 @@ f(implicitGlobalShouldCrash, a, b, c);
 
 
 `````js filename=intro
+implicitGlobalShouldCrash;
 $(`inline me`);
+implicitGlobalShouldCrash;
 $(`inline me`);
 `````
 
@@ -62,13 +64,17 @@ $(`inline me`);
 With rename=true
 
 `````js filename=intro
+implicitGlobalShouldCrash;
 $( "inline me" );
+implicitGlobalShouldCrash;
 $( "inline me" );
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+implicitGlobalShouldCrash
 
 ## Result
 
@@ -79,7 +85,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: 'inline me'
- - 2: 'inline me'
- - eval returned: undefined
+Final output calls: Same

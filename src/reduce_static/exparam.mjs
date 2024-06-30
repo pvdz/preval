@@ -1,4 +1,8 @@
 // Detect excessive params that we can safely drop
+//
+//          function f(a, b, c) { g(a, b); } f(1, 2, 3)
+// ->
+//          function f(a, b) { g(a, b); } f(1, 2)
 
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
@@ -10,6 +14,10 @@ export function pruneExcessiveParams(fdata) {
   return r;
 }
 function _pruneExcessiveParams(fdata) {
+  const queue = [];
+  let deletedParams = 0;
+  let deletedArgs = 0;
+
   const indexDeleteQueue = []; // Array<array, index-to-delete>. Should be in ascending source-code order.
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isImplicitGlobal) return;
@@ -71,6 +79,7 @@ function _pruneExcessiveParams(fdata) {
       //   - We cannot do this if the func accesses `arguments` (it does not)
       const params = funcNode.params;
       ASSERT(params);
+      let argsPrefixed = false; // Only do this once. We do it to preserve TDZ logic.
       params.some((pnode, pi) => {
         vlog(
           '    - checking param',
@@ -109,67 +118,91 @@ function _pruneExcessiveParams(fdata) {
             '` is unused and all usages of the function are calls. Now queueing this index to be dropped from all call args.',
         );
 
-        indexDeleteQueue.push([params, pi, funcNode]);
+        ++deletedParams;
+        queue.push({
+          pi,
+          index: +funcNode.$p.pid,
+          func: () => {
+            vgroup('Eliminating param', pi);
+            rule('When a trailing parameter is not used or observed it can be removed from the function');
+            example('function f(a, b, c) { g(a, b); } f(1, 2, 3)', 'function f(a, b) { g(a, b); } f(1, 2, 3)');
+            before(funcNode);
 
+            vlog('Eliminating param index', pi, ', have', funcNode.params.length, 'params');
+            funcNode.params.splice(pi, 1);
+            for (let i=pi; i<funcNode.params.length; ++i) {
+              const was = funcNode.params[i].name;
+              vlog('- Renaming later param', was, 'to', '$$' + i);
+              funcNode.params[i].name = '$$' + i;
+
+              let index = 0;
+              while (funcNode.body.body[index].type !== 'DebuggerStatement') {
+                const node = funcNode.body.body[index];
+                vlog('  - Found:', node.declarations?.[0].init.name, ', looking for', was)
+                if (node.type === 'VariableDeclaration' && node.declarations[0].init.name === was) {
+                  vlog('    - Renaming', node.declarations[0].init.name, 'to', '$$' + i);
+                  node.declarations[0].init.name = '$$' + i;
+                  break;
+                }
+                ++index;
+              }
+            }
+
+            after(funcNode);
+            vgroupEnd();
+          }
+        });
+
+        // Should the args for all calls be prefixed or was that already done this cycle?
+        const prefixNow = !argsPrefixed;
+        argsPrefixed = true;
         // We asserted above that all these nodes are calls
-        vlog('      - Walking the param reads');
         meta.reads.forEach((read) => {
-          vlog('      - dropping call arg from read');
-          const callNode = read.parentNode;
-          // Since we're normalized, all args should already be simple nodes. We should be
-          // able to drop them without the need to outline them first. Does ruin the meta registry.
-          // Queue the deletion. By unwinding the queue in reverse order we won't screw up
-          // indexing. It should not be possible to queue deletion for the same param/arg twice.
-          indexDeleteQueue.push([callNode['arguments'], pi]);
-          //if (restAt < 0) {
-          //  if (callNode['arguments'].length > funcNode.params.length) {
-          //    callNode['arguments'].length = funcNode.params.length;
-          //  } else if (callNode['arguments'].length < funcNode.params.length) {
-          //    // Append `undefined` for each missing element. I think?
-          //    // TODO
-          //  }
-          //}
+          ++deletedArgs;
+          queue.push({
+            pi,
+            index: read.blockIndex,
+            func: () => {
+              vgroup('Eliminating call arg', pi);
+              rule('When dropping unused params from a function, calls to that function should remove the parameter too');
+              example('function f(a, b, c) { g(a, b); } f(1, 2, 3)', 'function f(a, b) { g(a, b); } { 1; 2; 3; } f(1, 2)');
+              before(read.blockBody[read.blockIndex]);
+
+              const callNode = read.parentNode;
+
+              if (prefixNow) {
+                // Inject them as a set of ident-statements (or whatever) and
+                // wrap them in a block so I don't have to spread the list
+                const prefixNodes =
+                  callNode.arguments
+                  .filter(anode => !AST.isPrimitive(anode))
+                  .map(anode => AST.expressionStatement(AST.cloneSimple(anode.type === 'SpreadElement' ? anode.argument : anode)));
+                vlog('Also injecting call args as statements (to preserve TDZ)');
+                read.blockBody.splice(
+                  read.blockIndex, 0,
+                  // Not a fan of this. Many args could kind of blow this up. Although in real programs that shouldn't cause a problem here.
+                  // In faked input code, maybe... Problems for another time?
+                  ...prefixNodes
+                );
+              }
+
+              callNode.arguments.splice(pi, 1);
+
+              after(read.blockBody.slice(read.blockIndex, read.blockIndex + callNode.arguments.length + 1));
+              vgroupEnd();
+            }
+          })
         });
       });
     }
   });
 
-  // Delete the unused params/args now. The index queue should be unwound in reverse order. Doesn't matter otherwise.
-  if (indexDeleteQueue.length) {
-    vlog('Dropping', indexDeleteQueue.length, 'params and args');
-    indexDeleteQueue.reverse().forEach(([arr, index, funcNode]) => {
-      // Note: if arr is the arguments array then there may not be as many arguments to cover the param so it may be undefined
-      if (index < arr.length) {
-        const isParam = arr[index].type === 'Param';
-        arr.splice(index, 1);
-        if (isParam) {
-          vlog('- Have to update the name of all following parameters and their ref');
-          for (let i = index; i < arr.length; ++i) {
-            arr[i].name = '$$' + i;
-            arr[i].index = i;
-            if (arr[i].$p.paramVarDeclRef) {
-              arr[i].$p.paramVarDeclRef.node.name = '$$' + i;
-              arr[i].$p.paramVarDeclRef.node.index = i;
-            }
-          }
+  if (queue.length) {
+    queue.sort(({ pi: a, index: A }, { pi: b, index: B }) => b-a || B-A);
+    queue.forEach(({ func }) => func());
 
-          // Cleanup empty statements due to param elimination in the header.
-          // This preserves the property that the DebuggerStatement can be found at max params+2 elements from the start.
-          const body = funcNode.body.body;
-          for (let i = 0; i < body.length; ++i) {
-            const n = body[i];
-            if (n.type === 'EmptyStatement') {
-              body.splice(i, 1);
-              --i;
-            } else if (n.type === 'DebugerStatement') {
-              break;
-            }
-          }
-        }
-      }
-    });
-    log('Deleted params:', indexDeleteQueue.length, '. Restarting phase1');
-    return 'phase1';
+    log('Deleted params:', deletedParams, ', deleted args:', deletedArgs, '. Restarting phase1');
+    return true
   }
 
   log('Deleted params: 0.');

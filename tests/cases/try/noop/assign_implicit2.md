@@ -57,6 +57,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
+x;
 $($);
 `````
 
@@ -65,12 +66,15 @@ $($);
 With rename=true
 
 `````js filename=intro
+x;
 $( $ );
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+x
 
 ## Result
 
@@ -81,6 +85,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: '<$>'
- - eval returned: undefined
+Final output calls: Same

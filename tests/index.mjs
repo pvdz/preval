@@ -247,6 +247,8 @@ function runTestCase(
     if (CONFIG.verbose === false && CONFIG.targetFile) console.log('\nNow running Preval without output...\n');
     else if (withOutput) console.log('\n--- Actual call now ---\n');
 
+    let lastWrite = 0;
+
     output = preval({
       entryPointFile: 'intro',
       stdio: CONFIG.verbose === true || (CONFIG.verbose === undefined && withOutput) ? undefined : () => {}, // handler receives all console calls, first arg is handler string. cant prevent the overhead but does suppress the output
@@ -307,14 +309,18 @@ function runTestCase(
         onPassEnd(outCode, passes, fi, options) {
           if (options.logPasses) {
             const f = path.join(options.logDir, 'preval.pass' + String(passes).padStart(4, '0') + '.f' + fi + '.result.log.js');
-            console.log('--log: Logging current result to disk:', f, '(', outCode.length, 'bytes)');
+            const now = Date.now();
+            console.log('--log: Logging current result to disk:', f, '(', outCode.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '');
+            lastWrite = now;
             fs.writeFileSync(f, '// Resulting output after one pass [' + fname + ']\n' + outCode);
           }
         },
         onFinal(outCode, passes, fi, options) {
           if (options.logPasses) {
             const f = path.join(options.logDir, 'preval.pass' + String(passes).padStart(4, '0') + '.f' + fi + '.result.final.log.js');
-            console.log('--log: Logging final result after',passes,' passes to disk:', f, '(', outCode.length, 'bytes)');
+            const now = Date.now();
+            console.log('--log: Logging final result after',passes,' passes to disk:', f, '(', outCode.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '');
+            lastWrite = now;
             fs.writeFileSync(f, '// Resulting output after one pass [' + fname + ']\n' + outCode);
           }
         },
@@ -355,8 +361,6 @@ function runTestCase(
       lastError = e;
     }
   }
-
-  // TODO: hoe kunnen we tests/cases/templates/nested_multi.md weer lijmen?
 
   function createGlobalPrevalSymbols(stack, $, $spy) {
 

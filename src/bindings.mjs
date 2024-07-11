@@ -11,7 +11,7 @@ import {
   BUILTIN_REGEXP_PROTOTYPE,
   BUILTIN_STRING_PROTOTYPE,
 } from './constants.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, source } from './utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, source, fmat, tmat } from './utils.mjs';
 import globals, {MAX_UNROLL_TRUE_COUNT} from './globals.mjs';
 import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
 import * as AST from './ast.mjs';
@@ -351,6 +351,8 @@ export function generateUniqueGlobalName(name, fdata, assumeDoubleDollar = false
     if (/^\$\$\d/.test(name)) {
       return generateUniqueGlobalName('$dlr_' + name, fdata);
     }
+
+    if (/^\$\$\d+$/.test(name)) console.log('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast, true), true) + '\n--------------\n');
     ASSERT(!/^\$\$\d+$/.test(name), 'param placeholders should not reach this place');
     // TODO: assert this is the normal_once step and make sure it never happens elsewhere
     return generateUniqueGlobalName('tmp' + name.slice(2), fdata);
@@ -385,7 +387,8 @@ export function registerGlobalIdent(
   { isExport = false, isImplicitGlobal = false, isBuiltin = false, ...rest } = {},
 ) {
 
-  ASSERT(!/^\$\$\d+$/.test(name), 'param placeholders should not reach this place', name);
+  if (/^\$\$\d+$/.test(name)) console.log('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast, true), true) + '\n--------------\n');
+  ASSERT(!/^\$\$\d+$/.test(name), 'param placeholders should not reach this place either', name);
   ASSERT(Object.keys(rest).length === 0, 'invalid args', rest);
 
   const meta = fdata.globallyUniqueNamingRegistry.get(name);
@@ -977,8 +980,9 @@ export function getCleanTypingObject() {
     orredWith: undefined, // number. If set, this meta is the result of a bitwise OR expression with this literal and an unknown value
     xorredWith: undefined, // number. If set, this meta is the result of a bitwise XOR expression with this literal and an unknown value
 
+    worstCaseTypes: undefined, // Set<mustBeType>. Sometimes we can narrow the type to a handful of things but not further, common case is `+` result; string or number, but nothing else
     worstCaseValueSet: undefined, // undefined | Set<primitives>. If set, this is the bound set of possible (primitive) values for this binding. If undefined, the set can not be bound explicitly or contains non-primitives.
-    mustBePrimitive: undefined, // TODO: ehhh... dunno :) only used for builtins I think
+    mustBePrimitive: undefined, // When we don't know the actual type but we know it must be a primitive. Used to determine if something might spy curing coercion
     primitiveValue: undefined, // TODO: merge with mustBeValue
   };
 }
@@ -1000,7 +1004,7 @@ export function getUnknownTypingObject(toInit) {
     xorredWith: false,
 
     worstCaseValueSet: toInit ? new Set() : false,
-    mustBePrimitive: false, // TODO: ehhh... dunno :) only used for builtins I think
+    mustBePrimitive: false,
     primitiveValue: undefined, // (irrelevant) TODO: merge with mustBeValue
   };
 }
@@ -1018,6 +1022,7 @@ export function createTypingObject({
   orredWith = false,
   xorredWith = false,
 
+  worstCaseTypes = false,
   worstCaseValueSet = false,
   mustBePrimitive = false,
   primitiveValue = false,
@@ -1038,6 +1043,7 @@ export function createTypingObject({
     orredWith,
     xorredWith,
 
+    worstCaseTypes,
     worstCaseValueSet,
     mustBePrimitive,
     primitiveValue,
@@ -1760,8 +1766,9 @@ export function mergeTyping(from, into) {
       anded,
       orredWith,
       xorredWith,
+      worstCaseTypes,
       worstCaseValueSet,
-      mustBePrimitive, // TODO: remove
+      mustBePrimitive,
       primitiveValue, // TODO: remove
       ...unknown
     } = from;
@@ -1779,8 +1786,9 @@ export function mergeTyping(from, into) {
       anded,
       orredWith,
       xorredWith,
+      worstCaseTypes,
       worstCaseValueSet,
-      mustBePrimitive, // TODO: remove
+      mustBePrimitive,
       primitiveValue, // TODO: remove
       ...unknown
     } = into;
@@ -1931,6 +1939,13 @@ export function mergeTyping(from, into) {
     into.xorredWith,
   );
 
+  if (from.worstCaseTypes === undefined || into.worstCaseTypes === undefined) {
+    // Noop. Worst case it's any type.
+  } else {
+    // Merge. Worst case the type is the intersection of the two
+    from.worstCaseTypes.forEach(typeName => into.worstCaseTypes.add(typeName));
+  }
+
   if (from.worstCaseValueSet === undefined || into.worstCaseValueSet === false) {
     // Noop. Either the input was undetermined or the result was already known not to be certainly anded.
   } else if (into.worstCaseValueSet === undefined) {
@@ -1954,6 +1969,9 @@ export function mergeTyping(from, into) {
     'typing.worstCaseValueSet is a Set of primitives or undefined or false',
     into.worstCaseValueSet,
   );
+
+  // If from is not a primitive (or unknown) then into can not be either. Otherwise it's whatever into was.
+  if (!from.mustBePrimitive) into.mustBePrimitive = from.mustBePrimitive;
 }
 
 export function resolveNodeAgainstParams(node, callNode, funcNode) {

@@ -245,8 +245,9 @@ function _refTracked(fdata) {
     // By index, high to low. This way it should not be possible to cause reference problems by changing index
     queue.sort(({ index: a }, { index: b }) => (a < b ? 1 : a > b ? -1 : 0));
     queue.forEach(({ func }) => func());
-
-    log('Ref-tracking tricks applied:', queue.length, '. Restarting from phase1 to fix up read/write registry.');
+  }
+  if (changed) {
+    log('Ref-tracking tricks applied:', changed, '. Restarting from phase1 to fix up read/write registry.');
     return 'phase1';
   }
 

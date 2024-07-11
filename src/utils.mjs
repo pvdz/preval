@@ -152,7 +152,7 @@ export function riskyRule(desc, ...rest) {
 
 export function example(from, to, condition) {
   if (VERBOSE_TRACING) {
-    if (!condition || condition()) {
+    if (!condition || typeof condition !== 'function' || condition()) {
       log(PURPLE + '--' + RESET + ' `' + from + '` ' + PURPLE + '-->' + RESET + ' `' + to + '`');
     }
   }

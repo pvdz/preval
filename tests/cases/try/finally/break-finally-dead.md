@@ -2,7 +2,7 @@
 
 # break-finally-dead.md
 
-> Tofix > Break-finally-dead
+> Try > Finally > Break-finally-dead
 > The try/finally always breaks or throws so subsequent statements are never visited
 > The try node should handle that generically, just like the if-else (and infinite loops, later)
 

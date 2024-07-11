@@ -102,14 +102,14 @@ rule(`You have to listen to me`);
 
 `````js filename=intro
 const rule = function ($$0) {
-  const desc = $$0;
+  const tmpOutlinedParam = $$0;
   debugger;
-  const e = `purpleRule:reset "${desc}"`;
+  const e = `${tmpOutlinedParam}"`;
   $(e);
   return undefined;
 };
-rule(`I want it my way`);
-rule(`You have to listen to me`);
+rule(`purpleRule:reset "I want it my way`);
+rule(`purpleRule:reset "You have to listen to me`);
 `````
 
 ## PST Output
@@ -120,12 +120,12 @@ With rename=true
 const a = function($$0 ) {
   const b = c;
   debugger;
-  const d = `purpleRule:reset "${desc}"`;
+  const d = `${tmpOutlinedParam}"`;
   $( d );
   return undefined;
 };
-a( "I want it my way" );
-a( "You have to listen to me" );
+a( "purpleRule:reset \"I want it my way" );
+a( "purpleRule:reset \"You have to listen to me" );
 `````
 
 ## Globals

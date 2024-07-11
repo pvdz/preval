@@ -75,7 +75,7 @@ const a = class   {
 }
 };
 const c = new a();
-const d = c[ "very stringy" ]()};
+const d = c[ "very stringy" ]();
 $( d );
 `````
 

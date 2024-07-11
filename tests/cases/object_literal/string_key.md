@@ -81,7 +81,7 @@ const b = {
     return c;
   },,
 };
-const d = b[ "Hey, me too!" ]()};
+const d = b[ "Hey, me too!" ]();
 $( b, d );
 `````
 

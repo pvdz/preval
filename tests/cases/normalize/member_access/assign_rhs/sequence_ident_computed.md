@@ -50,8 +50,8 @@ $(c);
 `````js filename=intro
 $(1);
 const tmpAssignRhsCompProp = $(`length`);
-const x = `foo`[tmpAssignRhsCompProp];
-$(x);
+const tmpClusterSSA_x = `foo`[tmpAssignRhsCompProp];
+$(tmpClusterSSA_x);
 $(1);
 `````
 

@@ -59,7 +59,7 @@ With rename=true
 const a = { b: $ };
 const b = $( a );
 const c = $( "b" );
-b[ c ]( 1 )};
+b[ c ]( 1 );
 `````
 
 ## Globals

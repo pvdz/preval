@@ -2,7 +2,7 @@
 
 # alt_ssa.md
 
-> Tofix > Alt ssa
+> Ssa > Alt ssa
 >
 > Not sure but if a=2 is mimicked with a local const then the next 
 > two reads can point to it and we can trivially inline them. Big deal?

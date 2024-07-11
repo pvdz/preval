@@ -23,11 +23,11 @@ function _inlineSimpleFuncCalls(fdata) {
     const funcNode = meta.constValueRef.node;
     if (funcNode.type !== 'FunctionExpression') return;
     if (funcNode.async) {
-      console.log('TODO: inline async functions safely (because await)');
+      //console.log('TODO: inline async functions safely (because await)');
       return;
     }
     if (funcNode.generator) {
-      console.log('TODO: inline generator functions safely (because yield)');
+      //console.log('TODO: inline generator functions safely (because yield)');
       return;
     }
 

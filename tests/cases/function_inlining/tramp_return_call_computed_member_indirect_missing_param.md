@@ -83,7 +83,7 @@ With rename=true
 
 `````js filename=intro
 $( "toString" );
-const a = String[ undefined ]()};
+const a = String[ undefined ]();
 $( a );
 `````
 

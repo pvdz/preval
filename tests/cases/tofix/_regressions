@@ -6,6 +6,7 @@
 // tests/cases/normalize/expressions/assignments/do_while/auto_ident_upd_ip_simple.md -> should detect that `a` is invariably overwritten in the loop. maybe a ref tracking bug (perhaps it considers while(true) an optional branch)
 // tests/cases/unwind_loops/counter_test/unroll_option_too_low.md used to be able to eliminate the array entirely
 // tests/cases/ssa/back2back_x_x_plus_1_assign42.md -> was able to SSA the x but somehow this stopped working after label extending.
+// Apparently tests/cases/templates/nested_multi.md broke a long time ago
 
 // TODO:
 
@@ -41,3 +42,5 @@
 // reduce_static/if_reduce_up.mjs -> need to inject a TDZ check before the hoist (maybe rename the rule too? if-hoisting or something? maybe)
 // verify whether $p.isPrimitive is correct to be set in phase1 (but probably?)
 // Support object literals in isSameExpressionExceptBool too
+// Support async and generator functions in inlineSimpleFuncCalls / reduce_static/simple_funcs.mjs
+// tests/cases/function/pure_function_inlining.md -> Take it the last step and outline the tail end of the string too so the function can be eliminated

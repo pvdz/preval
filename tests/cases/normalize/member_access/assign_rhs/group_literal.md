@@ -39,8 +39,8 @@ $(x);
 
 `````js filename=intro
 $(1);
-const x = (2).foo;
-$(x);
+const tmpClusterSSA_x = (2).foo;
+$(tmpClusterSSA_x);
 `````
 
 ## PST Output

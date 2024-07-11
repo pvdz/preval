@@ -246,7 +246,7 @@ function printExpression(indent, config, node) {
       return `${printSimple(indent, config, node.left)} ${node.op} ${printSimple(indent, config, node.right)}`;
     }
     case 'CallComputedMethodExpression': {
-      return `${printRef(indent, config, node.callee)}[ ${printSimple(indent, config, node.method)} ]${callArgs(indent, config, node)}}`
+      return `${printRef(indent, config, node.callee)}[ ${printSimple(indent, config, node.method)} ]${callArgs(indent, config, node)}`
     }
     case 'CallRefExpression': {
       return `${printRef(indent, config, node.callee)}${callArgs(indent, config, node)}`

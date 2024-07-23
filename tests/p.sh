@@ -40,6 +40,7 @@ PARAM_IMPTHIS_VALUE=''
 PARAM_RANDOMIZED=''
 PARAM_REFTEST=''
 PARAM_REF_TRACING=''
+PARAM_RISKY=''
 
 BOLD="\e[;1;1m";
 BOLD_RED="\e[1;31m";
@@ -73,7 +74,7 @@ Preval CLI Toolkit help:
  u               Run all test files and just write output
  U               Run all test files and force write output (ignores ASSERT failures)
  m               Run all tests and ask for update one-by-one
- fast            Omit many of the expression variation tests (ignores about 18k auto generated tests)
+ fast            Omit many of the expression variation tests (ignores about 18k auto generated tests). Use -fast for the inverse.
 
  --log           Automatically write normalization and result outputs to a log file after every pass
  --logto <path>  Folder to dump log files to. Implies --log.
@@ -93,6 +94,8 @@ Preval CLI Toolkit help:
  --refTest       Special mode to test ref tracking. Output will be different, dumping ref tracking state after first phase1 pass.
  --ref-tracing   Print ref tracking trace logs
  --ref           Alias for --no-trace --ref-tracing :shrug:
+ --risky         Enable risky rules. These rules cut a few corners but should be okay in most scenarios. Enabled by default.
+ --no-risky      Disable risky rules. These rules cut a few corners but should be okay in most scenarios. Enabled by default.
  -C              Do not print colors
  -n              Only show normalized output
  -t <count>      Run tests in this many threads (default=1; no threads)
@@ -208,6 +211,12 @@ Preval CLI Toolkit help:
       PARAM_NO_TRACE='--no-trace'
       PARAM_REF_TRACING='--refTracing'
       ;;
+    --risky)
+      PARAM_RISKY='--risky'
+      ;;
+    --no-risky)
+      PARAM_RISKY='--no-risky'
+      ;;
     -C)
       shift
       PARAM_NO_COLOR="-C"
@@ -259,7 +268,7 @@ set -x
 case "${ACTION}" in
 
     *)
-      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}" -t "${PARAM_THREADS}" "${PARAM_LOG}" "${PARAM_LOGTO}" "${PARAM_MAXPASS}" "${PARAM_MAXPASS_COUNT}" "${PARAM_CLONELIMIT}" "${PARAM_CLONELIMIT_COUNT}" "${PARAM_TRIM_DOLLAR}" "${PARAM_ONLY_OUTPUT}" "${PARAM_TRACE}" "${PARAM_NO_TRACE}" "${PARAM_SILENT}" "${PARAM_SKIP_EVAL}" "${PARAM_UNROLL}" "${PARAM_UNROLL_VALUE}" "${PARAM_UNROLL_TRUE}" "${PARAM_UNROLL_TRUE_VALUE}" "${PARAM_IMPTHIS}" "${PARAM_IMPTHIS_VALUE}" "${PARAM_RANDOMIZED}" "${PARAM_REFTEST}" "${PARAM_REF_TRACING}"
+      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}" -t "${PARAM_THREADS}" "${PARAM_LOG}" "${PARAM_LOGTO}" "${PARAM_MAXPASS}" "${PARAM_MAXPASS_COUNT}" "${PARAM_CLONELIMIT}" "${PARAM_CLONELIMIT_COUNT}" "${PARAM_TRIM_DOLLAR}" "${PARAM_ONLY_OUTPUT}" "${PARAM_TRACE}" "${PARAM_NO_TRACE}" "${PARAM_SILENT}" "${PARAM_SKIP_EVAL}" "${PARAM_UNROLL}" "${PARAM_UNROLL_VALUE}" "${PARAM_UNROLL_TRUE}" "${PARAM_UNROLL_TRUE_VALUE}" "${PARAM_IMPTHIS}" "${PARAM_IMPTHIS_VALUE}" "${PARAM_RANDOMIZED}" "${PARAM_REFTEST}" "${PARAM_REF_TRACING}" "${PARAM_RISKY}"
     ;;
 esac
 set +x

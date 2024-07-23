@@ -274,6 +274,7 @@ function runTestCase(
       },
       stopAfterNormalize: !!CONFIG.onlyNormalized,
       options: {
+        risky: CONFIG.riskyRules,
         cloneLimit: CONFIG.cloneLimit ?? mdOptions?.cloneLimit ?? 10,
         implicitThisIdent: CONFIG.implicitThisIdent ?? mdOptions?.implicitThis ?? 'undefined',
         logPasses: CONFIG.logPasses,

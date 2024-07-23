@@ -16,7 +16,7 @@ import {
   before,
   source,
   after,
-  findBodyOffset, riskyRule,
+  findBodyOffset, riskyRule, useRiskyRules,
 } from '../utils.mjs';
 import {
   BUILTIN_ARRAY_METHOD_LOOKUP,
@@ -82,7 +82,7 @@ function _propertyLookups(fdata) {
         const prop = node.property.name;
         if (BUILTIN_ARRAY_METHODS_SUPPORTED.includes(prop)) {
           // Add to the list here: Array#filter, Array#flat, Array#concat, Array#push, Array#pop, Array#shift, Array#unshift
-          if (true) {
+          if (useRiskyRules()) {
             // jsf*ck specific support
             // This is Function#flat ...
             riskyRule('Fetching but not calling a method from Array.prototype should do this explicitly');
@@ -99,7 +99,7 @@ function _propertyLookups(fdata) {
             return;
           }
         } else if (prop === 'constructor') {
-          if (true) {
+          if (useRiskyRules()) {
             // jsf*ck specific support
             // This is Function ...
             riskyRule('Fetching the `constructor` prop from an array should return `Array`');
@@ -120,7 +120,7 @@ function _propertyLookups(fdata) {
         ASSERT(node.property.type === 'Identifier');
         const prop = node.property.name;
         if (BUILTIN_FUNCTION_METHODS_SUPPORTED.includes(prop)) {
-          if (true) {
+          if (useRiskyRules()) {
             // jsf*ck specific support
             // This is Function#flat ...
             riskyRule('Fetching but not calling a method from Function.prototype should do this explicitly');
@@ -137,7 +137,7 @@ function _propertyLookups(fdata) {
             return;
           }
         } else if (prop === 'constructor') {
-          if (true) {
+          if (useRiskyRules()) {
             // jsf*ck specific support
             // This is Function ...
             riskyRule('Fetching the `constructor` prop from a function should return `Function`');
@@ -158,7 +158,7 @@ function _propertyLookups(fdata) {
         ASSERT(node.property.type === 'Identifier');
         const prop = node.property.name;
         if (prop === 'constructor') {
-          if (true) {
+          if (useRiskyRules()) {
             // jsf*ck specific support
             // This is Number ...
             riskyRule('Fetching the `constructor` prop from a boolean should return `Boolean`');
@@ -179,7 +179,7 @@ function _propertyLookups(fdata) {
         ASSERT(node.property.type === 'Identifier');
         const prop = node.property.name;
         if (BUILTIN_NUMBER_METHODS_SUPPORTED.includes(prop)) {
-          if (true) {
+          if (useRiskyRules()) {
             // jsf*ck specific support
             // This is Function#flat ...
             riskyRule('Fetching but not calling a method from Function.prototype should do this explicitly');
@@ -196,7 +196,7 @@ function _propertyLookups(fdata) {
             return;
           }
         } else if (prop === 'constructor') {
-          if (true) {
+          if (useRiskyRules()) {
             // jsf*ck specific support
             // This is Number ...
             riskyRule('Fetching the `constructor` prop from a number should return `Number`');
@@ -218,7 +218,7 @@ function _propertyLookups(fdata) {
         const prop = node.property.name;
         if (BUILTIN_STRING_METHODS_SUPPORTED.includes(prop)) {
           // Add to the list here: String#toString
-          if (true) {
+          if (useRiskyRules()) {
             // jsf*ck specific support
             // This is String#toString ...
             riskyRule('Fetching but not calling a method from String.prototype should do this explicitly');
@@ -235,7 +235,7 @@ function _propertyLookups(fdata) {
             return;
           }
         } else if (prop === 'constructor') {
-          if (true) {
+          if (useRiskyRules()) {
             // jsf*ck specific support
             // This is String ...
             riskyRule('Fetching the `constructor` prop from a string should return `String`');
@@ -257,7 +257,7 @@ function _propertyLookups(fdata) {
         const prop = node.property.name;
         if (BUILTIN_REGEXP_METHODS_SUPPORTED.includes(prop)) {
           // Add to the list here: String#toString
-          if (true) {
+          if (useRiskyRules()) {
             // jsf*ck specific support
             // This is String#toString ...
             riskyRule('Fetching but not calling a method from String.prototype should do this explicitly');
@@ -274,7 +274,7 @@ function _propertyLookups(fdata) {
             return;
           }
         } else if (prop === 'constructor') {
-          if (true) {
+          if (useRiskyRules()) {
             // jsf*ck specific support
             // This is RegExp ...
             riskyRule('Fetching the `constructor` prop from a function should return `Function`');
@@ -297,7 +297,7 @@ function _propertyLookups(fdata) {
         // Technically expandos could cause observable side effects for accessing them. But aren't you just really trying at that point?
 
         if (!isPrimitive && !node.computed) {
-          if (KNOWN_IMPLICIT_GLOBALS.includes(node.object.name)) {
+          if (useRiskyRules() && KNOWN_IMPLICIT_GLOBALS.includes(node.object.name)) {
             vlog(`    - ${node.object.name} is a known global`);
 
             const knownAlias = BUILTIN_PROTO_TO_LOOKUP[node.object.name]?.[node.property.name];

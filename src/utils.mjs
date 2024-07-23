@@ -5,6 +5,24 @@ import walk from '../lib/walk.mjs';
 
 import { VERBOSE_TRACING, setVerboseTracing, YELLOW, ORANGE_DIM, PURPLE, RESET, DIM, ORANGE } from './constants.mjs';
 
+/**
+ * Allow the use of risky rules? These are rules that are not completely sound but should be okay in normal environments.
+ * This includes TDZ related rules. On by default. Disabling this may lead to suboptimal results.
+ *
+ * - Will remove identifier statements even if they might trigger TDZ/implicitGlobal errors (normalize.mjs). Will not try to verify (because that's inherently unsound anyway or too limiting to be useful)
+ * - Assume `console` is a global built-in exposed by the env.
+ * - Bunch of JSF*CK specific rules that assume default state of built-ins, which is not tracked (property_lookup.mjs).
+ *
+ * @type {boolean}
+ */
+export let ALLOW_RISKY_RULES = false;
+export function setRiskyRules(bool) {
+  ALLOW_RISKY_RULES = bool;
+}
+export function useRiskyRules() {
+  return !!ALLOW_RISKY_RULES;
+}
+
 export let REF_TRACK_TRACING = false;
 export function setRefTracing(bool) {
   REF_TRACK_TRACING = bool;

@@ -23,6 +23,7 @@ export function parseTestArgs() {
     randomizedOrder: false,
     refTest: undefined, // Dump special ref tracking debug output / test formatting, instead of normal test cases?
     refTracing: false, // Print ref tracking trace logs
+    riskyRules: true, // Enable risky rules. May not be 100% sound but should be ok in most cases and lead to much better results.
     skipEval: false, // Do not run the eval checks afterwards
     targetFile: undefined,
     threadIndex: 0, // ... and this will be that thread
@@ -156,6 +157,16 @@ export function parseTestArgs() {
 
       case '--refTracing': {
         config.refTracing = true;
+        break;
+      }
+
+      case '--risky': {
+        config.riskyRules = true; // default
+        break;
+      }
+
+      case '--no-risky': {
+        config.riskyRules = false;
         break;
       }
 

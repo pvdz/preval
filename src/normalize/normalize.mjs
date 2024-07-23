@@ -32,7 +32,7 @@ import {
   source,
   after,
   findBodyOffsetExpensive,
-  findBodyOffsetExpensiveMaybe, riskyRule,
+  findBodyOffsetExpensiveMaybe, riskyRule, useRiskyRules,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { BUILTIN_FUNC_CALL_NAME } from '../constants.mjs';
@@ -3558,6 +3558,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         }
 
         if (
+          useRiskyRules() &&
           !node.computed &&
           node.object.type === 'Identifier' &&
           node.object.name === 'console' &&

@@ -70,10 +70,10 @@ const b = {
 };
 const c = $( a );
 const d = $( "$" );
-const e = c[ d ]( 1 )};
+const e = c[ d ]( 1 );
 const f = $( a );
 const g = $( "$" );
-const h = f[ g ]( 1 )};
+const h = f[ g ]( 1 );
 e + h;
 $( b );
 `````

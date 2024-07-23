@@ -51,8 +51,8 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const obj = {};
-const tmpClusterSSA_tmpCompProp = $(60);
-obj[tmpClusterSSA_tmpCompProp];
+const tmpCompProp = $(60);
+obj[tmpCompProp];
 $(a);
 `````
 

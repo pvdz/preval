@@ -89,7 +89,7 @@ const d = b === c;
 if (d) {
   const e = $( "$" );
   const f = { $: $ };
-  f[ e ]( 1 )};
+  f[ e ]( 1 );
 }
 $( a );
 `````

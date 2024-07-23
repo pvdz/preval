@@ -84,7 +84,7 @@ if (b) {
 else {
   const d = $( "$" );
   const e = { $: $ };
-  const f = e[ d ]( 1 )};
+  const f = e[ d ]( 1 );
   a = f;
   $( f );
 }

@@ -66,7 +66,7 @@ With rename=true
 `````js filename=intro
 const a = { $: $ };
 const b = $( "$" );
-const c = a[ b ]( 1 )};
+const c = a[ b ]( 1 );
 const d = $coerce( c, "string" );
 const e = `before  ${tmpBinBothRhs}  after`;
 $( e );

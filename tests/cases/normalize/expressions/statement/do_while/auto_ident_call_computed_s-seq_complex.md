@@ -91,12 +91,12 @@ const b = {
 };
 $( 100 );
 const c = $( "$" );
-const d = a[ c ]( 1 )};
+const d = a[ c ]( 1 );
 if (d) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
     const e = $( "$" );
-    const f = a[ e ]( 1 )};
+    const f = a[ e ]( 1 );
     if (f) {
 
     }

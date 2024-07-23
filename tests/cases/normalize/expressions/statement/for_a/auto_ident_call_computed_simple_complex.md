@@ -81,7 +81,7 @@ const b = {
   b: 1000,
 };
 const c = $( "$" );
-a[ c ]( 1 )};
+a[ c ]( 1 );
 const d = $( 0 );
 if (d) {
   while ($LOOP_UNROLL_10) {

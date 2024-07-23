@@ -79,7 +79,7 @@ let e = undefined;
 for (e in d) {
   const f = $( a );
   const g = $( "$" );
-  const h = f[ g ]( 1 )};
+  const h = f[ g ]( 1 );
   h.x = e;
 }
 $( b );

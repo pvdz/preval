@@ -47,8 +47,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_xyz = $(60);
-$(tmpClusterSSA_xyz);
+const xyz = $(60);
+$(xyz);
 const a = { a: 999, b: 1000 };
 $(a);
 `````

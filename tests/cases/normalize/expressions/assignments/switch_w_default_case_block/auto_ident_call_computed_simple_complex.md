@@ -152,7 +152,7 @@ const g = c <= 0;
 if (g) {
   const h = $( "$" );
   const i = { $: $ };
-  a = i[ h ]( 1 )};
+  a = i[ h ]( 1 );
 }
 const j = c <= 1;
 if (j) {

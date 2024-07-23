@@ -82,7 +82,7 @@ if (b) {
   const c = { $: $ };
   const d = $( c );
   const e = $( "$" );
-  const f = d[ e ]( 1 )};
+  const f = d[ e ]( 1 );
   a = f;
   $( f );
 }

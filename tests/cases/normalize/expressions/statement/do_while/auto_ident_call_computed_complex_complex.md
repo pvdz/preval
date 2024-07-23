@@ -94,13 +94,13 @@ const b = {
 $( 100 );
 const c = $( a );
 const d = $( "$" );
-const e = c[ d ]( 1 )};
+const e = c[ d ]( 1 );
 if (e) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
     const f = $( a );
     const g = $( "$" );
-    const h = f[ g ]( 1 )};
+    const h = f[ g ]( 1 );
     if (h) {
 
     }

@@ -46,10 +46,10 @@ $(a);
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
 let x = undefined;
-const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-for (x in a) {
+const tmpClusterSSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+for (x in tmpClusterSSA_a) {
 }
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

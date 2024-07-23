@@ -63,7 +63,7 @@ x();
 
 
 `````js filename=intro
-throw `Preval: Cannot access \`x\$1\` before initialization`;
+throw `Preval: This statement contained a read that reached no writes: x\$1;`;
 `````
 
 ## PST Output
@@ -71,7 +71,7 @@ throw `Preval: Cannot access \`x\$1\` before initialization`;
 With rename=true
 
 `````js filename=intro
-throw "Preval: Cannot access `x$1` before initialization";
+throw "Preval: This statement contained a read that reached no writes: x$1;";
 `````
 
 ## Globals

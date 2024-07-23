@@ -78,7 +78,7 @@ With rename=true
 const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
-let d = b[ c ]( 1 )};
+let d = b[ c ]( 1 );
 const e = d;
 if (d) {
   $( e );
@@ -86,7 +86,7 @@ if (d) {
 else {
   const f = $( a );
   const g = $( "$" );
-  const h = f[ g ]( 1 )};
+  const h = f[ g ]( 1 );
   d = h;
   $( h );
 }

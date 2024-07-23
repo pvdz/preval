@@ -66,7 +66,7 @@ With rename=true
 const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
-b[ c ]( 1 )};
+b[ c ]( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }

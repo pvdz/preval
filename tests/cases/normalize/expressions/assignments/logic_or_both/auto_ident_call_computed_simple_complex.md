@@ -75,14 +75,14 @@ With rename=true
 `````js filename=intro
 const a = $( "$" );
 const b = { $: $ };
-let c = b[ a ]( 1 )};
+let c = b[ a ]( 1 );
 const d = c;
 if (c) {
   $( d );
 }
 else {
   const e = $( "$" );
-  const f = b[ e ]( 1 )};
+  const f = b[ e ]( 1 );
   c = f;
   $( f );
 }

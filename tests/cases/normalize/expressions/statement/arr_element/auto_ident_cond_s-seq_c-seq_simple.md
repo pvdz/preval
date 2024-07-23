@@ -55,9 +55,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_tmpBinBothLhs = $(60);
-const tmpClusterSSA_tmpBinBothRhs = $(60);
-tmpClusterSSA_tmpBinBothLhs + tmpClusterSSA_tmpBinBothRhs;
+const tmpBinBothLhs = $(60);
+const tmpBinBothRhs = $(60);
+tmpBinBothLhs + tmpBinBothRhs;
 const a = { a: 999, b: 1000 };
 $(a);
 `````

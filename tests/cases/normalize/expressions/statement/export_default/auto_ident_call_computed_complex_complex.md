@@ -65,7 +65,7 @@ const b = {
 };
 const c = $( a );
 const d = $( "$" );
-const e = c[ d ]( 1 )};
+const e = c[ d ]( 1 );
 export { e as default };
 $( b );
 `````

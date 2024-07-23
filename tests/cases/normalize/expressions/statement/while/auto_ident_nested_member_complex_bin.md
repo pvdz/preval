@@ -66,14 +66,20 @@ $(a, b, c, d, e);
 `````js filename=intro
 const b = { x: 1 };
 const c = { y: 2 };
+const varInitAssignLhsComputedObj = $(b);
+const varInitAssignLhsComputedProp = $(`x`);
+const varInitAssignLhsComputedObj$1 = $(c);
+const varInitAssignLhsComputedProp$1 = $(`y`);
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedProp = $(`x`);
-  const varInitAssignLhsComputedObj$1 = $(c);
-  const varInitAssignLhsComputedProp$1 = $(`y`);
-  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
   $(100);
+  const varInitAssignLhsComputedObj$2 = $(b);
+  const varInitAssignLhsComputedProp$2 = $(`x`);
+  const varInitAssignLhsComputedObj$4 = $(c);
+  const varInitAssignLhsComputedProp$4 = $(`y`);
+  varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = 7;
+  varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = 7;
 }
 `````
 
@@ -84,14 +90,20 @@ With rename=true
 `````js filename=intro
 const a = { x: 1 };
 const b = { y: 2 };
+const c = $( a );
+const d = $( "x" );
+const e = $( b );
+const f = $( "y" );
+e[f] = 7;
+c[d] = 7;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const c = $( a );
-  const d = $( "x" );
-  const e = $( b );
-  const f = $( "y" );
-  e[f] = 7;
-  c[d] = 7;
   $( 100 );
+  const g = $( a );
+  const h = $( "x" );
+  const i = $( b );
+  const j = $( "y" );
+  i[j] = 7;
+  g[h] = 7;
 }
 `````
 

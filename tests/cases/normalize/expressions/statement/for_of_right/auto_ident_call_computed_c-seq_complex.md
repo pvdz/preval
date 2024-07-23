@@ -68,7 +68,7 @@ const b = {
 };
 const c = $( a );
 const d = $( "$" );
-const e = c[ d ]( 1 )};
+const e = c[ d ]( 1 );
 let f = undefined;
 for (f of e) {
 

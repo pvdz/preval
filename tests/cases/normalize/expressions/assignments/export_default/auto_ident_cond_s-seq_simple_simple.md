@@ -46,10 +46,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_a = $(2);
-const tmpAnonDefaultExport = tmpClusterSSA_a;
+const a = $(2);
+const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 ## PST Output

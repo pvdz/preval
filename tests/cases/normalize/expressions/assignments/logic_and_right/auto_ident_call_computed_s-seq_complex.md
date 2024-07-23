@@ -77,7 +77,7 @@ const b = $( 100 );
 if (b) {
   const c = $( "$" );
   const d = { $: $ };
-  const e = d[ c ]( 1 )};
+  const e = d[ c ]( 1 );
   a = e;
   $( e );
 }

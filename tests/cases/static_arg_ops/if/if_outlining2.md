@@ -9,10 +9,7 @@
 ## Input
 
 `````js filename=intro
-const push = function($$0, $$1) {
-  const heap = $$0;
-  const node$1 = $$1;
-  debugger;
+const push = function(heap, node$1) {
   const index$1 = heap.length;
   const tmpSaooB$1 = index$1 > 0;
   heap.push(node$1);
@@ -22,12 +19,7 @@ const push = function($$0, $$1) {
   siftUp(heap, node$1, index$1, tmpSaooB$1);
   return undefined;
 };
-const siftUp = function($$0, $$1, $$2, $$3) {
-  const heap$5 = $$0;
-  const node$3 = $$1;
-  const i$13 = $$2;
-  const tmpOutlinedParam = $$3;
-  debugger;
+const siftUp = function(heap$5, node$3, i$13, tmpOutlinedParam) {
   if (tmpOutlinedParam) {
     const tmpBinLhs$261 = i$13 - 1;
     const tmpClusterSSA_parentIndex = tmpBinLhs$261 >>> 1;
@@ -75,11 +67,9 @@ $(push);
 
 `````js filename=intro
 const push = function ($$0, $$1) {
-  let $dlr_$$0 = $$0;
-  let $dlr_$$1 = $$1;
+  let heap = $$0;
+  let node$1 = $$1;
   debugger;
-  const heap = $dlr_$$0;
-  const node$1 = $dlr_$$1;
   const index$1 = heap.length;
   const tmpSaooB$1 = index$1 > 0;
   heap.push(node$1);
@@ -90,15 +80,11 @@ const push = function ($$0, $$1) {
   return undefined;
 };
 const siftUp = function ($$0, $$1, $$2, $$3) {
-  let $dlr_$$2 = $$0;
-  let $dlr_$$4 = $$1;
-  let $dlr_$$6 = $$2;
-  let $dlr_$$3 = $$3;
+  let heap$5 = $$0;
+  let node$3 = $$1;
+  let i$13 = $$2;
+  let tmpOutlinedParam = $$3;
   debugger;
-  const heap$5 = $dlr_$$2;
-  const node$3 = $dlr_$$4;
-  const i$13 = $dlr_$$6;
-  const tmpOutlinedParam = $dlr_$$3;
   if (tmpOutlinedParam) {
     const tmpBinLhs$261 = i$13 - 1;
     const tmpClusterSSA_parentIndex = tmpBinLhs$261 >>> 1;
@@ -145,11 +131,9 @@ $(push);
 
 `````js filename=intro
 const push = function ($$0, $$1) {
-  let $dlr_$$0 = $$0;
-  let $dlr_$$1 = $$1;
+  let heap = $$0;
+  let node$1 = $$1;
   debugger;
-  const heap = $dlr_$$0;
-  const node$1 = $dlr_$$1;
   const index$1 = heap.length;
   const tmpSaooB$1 = index$1 > 0;
   heap.push(node$1);
@@ -160,15 +144,11 @@ const push = function ($$0, $$1) {
   return undefined;
 };
 const siftUp = function ($$0, $$1, $$2, $$3) {
-  let $dlr_$$2 = $$0;
-  let $dlr_$$4 = $$1;
-  let $dlr_$$6 = $$2;
-  let $dlr_$$3 = $$3;
+  let heap$5 = $$0;
+  let node$3 = $$1;
+  let i$13 = $$2;
+  let tmpOutlinedParam = $$3;
   debugger;
-  const heap$5 = $dlr_$$2;
-  const node$3 = $dlr_$$4;
-  const i$13 = $dlr_$$6;
-  const tmpOutlinedParam = $dlr_$$3;
   if (tmpOutlinedParam) {
     const tmpBinLhs$261 = i$13 - 1;
     const tmpClusterSSA_parentIndex = tmpBinLhs$261 >>> 1;
@@ -215,54 +195,54 @@ $(push);
 
 `````js filename=intro
 const push = function ($$0, $$1) {
-  const $dlr_$$0 = $$0;
-  const $dlr_$$1 = $$1;
+  const heap = $$0;
+  const node$1 = $$1;
   debugger;
-  const index$1 = $dlr_$$0.length;
+  const index$1 = heap.length;
   const tmpSaooB$1 = index$1 > 0;
-  $dlr_$$0.push($dlr_$$1);
+  heap.push(node$1);
   if (tmpSaooB$1) {
     const tmpSaooB = index$1 - 1;
     const tmpSaooB$9 = tmpSaooB >>> 1;
-    siftUp_t($dlr_$$0, $dlr_$$1, index$1, tmpSaooB$9);
+    siftUp_t(heap, node$1, index$1, tmpSaooB$9);
     const tmpSaooB$2 = index$1 - 1;
     const tmpSaooB$7 = tmpSaooB$2 >>> 1;
-    siftUp_t($dlr_$$0, $dlr_$$1, index$1, tmpSaooB$7);
+    siftUp_t(heap, node$1, index$1, tmpSaooB$7);
     const tmpSaooB$4 = index$1 - 1;
     const tmpSaooB$5 = tmpSaooB$4 >>> 1;
-    siftUp_t($dlr_$$0, $dlr_$$1, index$1, tmpSaooB$5);
+    siftUp_t(heap, node$1, index$1, tmpSaooB$5);
     const tmpSaooB$6 = index$1 - 1;
     const tmpSaooB$3 = tmpSaooB$6 >>> 1;
-    siftUp_t($dlr_$$0, $dlr_$$1, index$1, tmpSaooB$3);
+    siftUp_t(heap, node$1, index$1, tmpSaooB$3);
     return undefined;
   } else {
     return undefined;
   }
 };
 const siftUp_t = function ($$0, $$1, $$2, $$3) {
-  const $dlr_$$2 = $$0;
-  const $dlr_$$4 = $$1;
-  const $dlr_$$6 = $$2;
+  const heap$5 = $$0;
+  const node$3 = $$1;
+  const i$13 = $$2;
   const tmpOutlinedParam$1 = $$3;
   debugger;
-  const tmpClusterSSA_parent = $dlr_$$2[tmpOutlinedParam$1];
-  const tmpBinLhs$263 = compare(tmpClusterSSA_parent, $dlr_$$4);
+  const tmpClusterSSA_parent = heap$5[tmpOutlinedParam$1];
+  const tmpBinLhs$263 = compare(tmpClusterSSA_parent, node$3);
   const tmpIfTest$369 = tmpBinLhs$263 > 0;
   if (tmpIfTest$369) {
-    $dlr_$$2[tmpOutlinedParam$1] = $dlr_$$4;
-    $dlr_$$2[$dlr_$$6] = tmpClusterSSA_parent;
+    heap$5[tmpOutlinedParam$1] = node$3;
+    heap$5[i$13] = tmpClusterSSA_parent;
     let tmpClusterSSA_index$3 = tmpOutlinedParam$1;
     let tmpClusterSSA_tmpIfTest$367 = tmpOutlinedParam$1 > 0;
     while ($LOOP_UNROLL_100) {
       if (tmpClusterSSA_tmpIfTest$367) {
         const tmpBinLhs$1 = tmpClusterSSA_index$3 - 1;
         const tmpClusterSSA_parentIndex$1 = tmpBinLhs$1 >>> 1;
-        const tmpClusterSSA_parent$1 = $dlr_$$2[tmpClusterSSA_parentIndex$1];
-        const tmpBinLhs$3 = compare(tmpClusterSSA_parent$1, $dlr_$$4);
+        const tmpClusterSSA_parent$1 = heap$5[tmpClusterSSA_parentIndex$1];
+        const tmpBinLhs$3 = compare(tmpClusterSSA_parent$1, node$3);
         const tmpIfTest$2 = tmpBinLhs$3 > 0;
         if (tmpIfTest$2) {
-          $dlr_$$2[tmpClusterSSA_parentIndex$1] = $dlr_$$4;
-          $dlr_$$2[tmpClusterSSA_index$3] = tmpClusterSSA_parent$1;
+          heap$5[tmpClusterSSA_parentIndex$1] = node$3;
+          heap$5[tmpClusterSSA_index$3] = tmpClusterSSA_parent$1;
           tmpClusterSSA_index$3 = tmpClusterSSA_parentIndex$1;
           tmpClusterSSA_tmpIfTest$367 = tmpClusterSSA_parentIndex$1 > 0;
         } else {

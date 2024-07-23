@@ -121,7 +121,7 @@ const a = { $: $ };
 const b = $( 1 );
 let c = 1;
 const d = $( "$" );
-const e = a[ d ]( 1 )};
+const e = a[ d ]( 1 );
 const f = e === b;
 if (f) {
   c = 0;

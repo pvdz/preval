@@ -86,12 +86,12 @@ const b = $( 1 );
 if (b) {
   const c = $( "$" );
   const d = { $: $ };
-  a = d[ c ]( 1 )};
+  a = d[ c ]( 1 );
   while ($LOOP_UNROLL_10) {
     const e = $( 1 );
     if (e) {
       const f = $( "$" );
-      a = d[ f ]( 1 )};
+      a = d[ f ]( 1 );
     }
     else {
       break;

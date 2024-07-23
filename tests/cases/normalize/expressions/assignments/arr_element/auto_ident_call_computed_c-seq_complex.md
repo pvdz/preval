@@ -70,10 +70,10 @@ With rename=true
 const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
-const d = b[ c ]( 1 )};
+const d = b[ c ]( 1 );
 const e = $( a );
 const f = $( "$" );
-const g = e[ f ]( 1 )};
+const g = e[ f ]( 1 );
 const h = d + g;
 $( h );
 $( g );

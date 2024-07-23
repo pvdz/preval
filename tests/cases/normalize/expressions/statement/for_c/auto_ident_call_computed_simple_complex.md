@@ -82,12 +82,12 @@ const a = $( 1 );
 if (a) {
   const b = $( "$" );
   const c = { $: $ };
-  c[ b ]( 1 )};
+  c[ b ]( 1 );
   while ($LOOP_UNROLL_10) {
     const d = $( 1 );
     if (d) {
       const e = $( "$" );
-      c[ e ]( 1 )};
+      c[ e ]( 1 );
     }
     else {
       break;

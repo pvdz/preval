@@ -91,8 +91,8 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpClusterSSA_a = $(2);
-const tmpIfTest = tmpClusterSSA_a === tmpSwitchValue;
+const a = $(2);
+const tmpIfTest = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -108,7 +108,7 @@ if (tmpIfTest$7) {
 } else {
 }
 $(`fail2`);
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 ## PST Output

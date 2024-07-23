@@ -80,7 +80,7 @@ if (b) {
 else {
   const c = $( "$" );
   const d = { $: $ };
-  const e = d[ c ]( 1 )};
+  const e = d[ c ]( 1 );
   a = e;
   $( e );
 }

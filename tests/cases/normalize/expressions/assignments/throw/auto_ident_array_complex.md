@@ -42,8 +42,8 @@ throw tmpThrowArg;
 `````js filename=intro
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const a = [tmpArrElement, 2, tmpArrElement$3];
-throw a;
+const tmpClusterSSA_a = [tmpArrElement, 2, tmpArrElement$3];
+throw tmpClusterSSA_a;
 `````
 
 ## PST Output

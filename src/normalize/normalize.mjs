@@ -1241,20 +1241,26 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           // The `arguments` reference is special as it implies func params can not be changed. Something to improve later.
           const meta = node.name !== 'arguments' && fdata.globallyUniqueNamingRegistry.get(node.name);
           ASSERT(node.name === 'arguments' || meta, 'all names should have a meta now', node.name, node)
-          if (node.name === 'arguments' || !meta.isImplicitGlobal) {
-            // `arguments` in global is an implicit binding. We can safely drop other occurrences.
-            if (node.name !== 'arguments' || funcStack.length > 1) {
-              // TODO: make this configurable. It can hide TDZ errors.
-              rule('A statement can not just be an identifier');
-              example('x;', ';');
-              before(node, parentNode);
+          if (node.name === 'arguments' && funcStack.length === 1) {
+            // `arguments` in global is an implicit binding that ought to throw (we can't proof it doesn't)
+            vlog('Skipping `arguments` in global space');
+          }
+          else if (meta.isBuiltin || (useRiskyRules() && !meta.isImplicitGlobal)) {
+            // We can't do this safely because implicit globals would throw and this eliminates them.
+            // Restrictions:
+            // - Eliminating local bindings that are closures is unsafe because (worst case) we can't proof TDZ. -> enableRiskyRules()
+            // - Eliminating implicit globals is unsafe because we can't proof they won't throw -> enableRiskyRules()
+            // Note: it's not risky for built-ins and non-closured bindings (something we could improve on)
 
-              body[i] = AST.emptyStatement();
+            riskyRule('A statement can not just be an identifier');
+            example('x;', ';');
+            before(node, parentNode);
 
-              after(body[i]);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
+            body[i] = AST.emptyStatement();
+
+            after(body[i]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
           } else {
             vlog(
               'Expression statement that is only an identifier that is an implicit global. Checking if it happens to be used in the next statement',

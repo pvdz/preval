@@ -46,9 +46,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_a = $(60);
-$(...tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const a = $(60);
+$(...a);
+$(a);
 `````
 
 ## PST Output

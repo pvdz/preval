@@ -156,7 +156,7 @@ if (g) {
   const h = { $: $ };
   const i = $( h );
   const j = $( "$" );
-  i[ j ]( 1 )};
+  i[ j ]( 1 );
 }
 else {
   const k = c <= 1;

@@ -55,12 +55,12 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_tmpIfTest = $(60);
-if (tmpClusterSSA_tmpIfTest) {
+const tmpIfTest = $(60);
+if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(1);
-    const tmpClusterSSA_tmpIfTest$1 = $(60);
-    if (tmpClusterSSA_tmpIfTest$1) {
+    const tmpIfTest$1 = $(60);
+    if (tmpIfTest$1) {
     } else {
       break;
     }

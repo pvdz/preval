@@ -82,7 +82,7 @@ const b = {
   b: 1000,
 };
 const c = $( "$" );
-a[ c ]( 1 )};
+a[ c ]( 1 );
 $( undefined );
 $( b );
 `````

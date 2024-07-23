@@ -68,7 +68,7 @@ const a = $( 1 );
 if (a) {
   const b = $( "$" );
   const c = { $: $ };
-  c[ b ]( 1 )};
+  c[ b ]( 1 );
 }
 else {
   $( 200 );

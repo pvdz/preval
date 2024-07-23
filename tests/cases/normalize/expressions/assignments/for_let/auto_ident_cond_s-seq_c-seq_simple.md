@@ -53,9 +53,9 @@ while (true) {
 
 
 `````js filename=intro
-const tmpClusterSSA_a = $(60);
+const a = $(60);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(tmpClusterSSA_a);
+  $(a);
   $(1);
 }
 `````

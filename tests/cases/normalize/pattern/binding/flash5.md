@@ -63,7 +63,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 
 
 `````js filename=intro
-throw `Preval: Cannot access \`propTDZ\` before initialization`;
+throw `Preval: This statement contained a read that reached no writes: propTDZ;`;
 `````
 
 ## PST Output
@@ -71,7 +71,7 @@ throw `Preval: Cannot access \`propTDZ\` before initialization`;
 With rename=true
 
 `````js filename=intro
-throw "Preval: Cannot access `propTDZ` before initialization";
+throw "Preval: This statement contained a read that reached no writes: propTDZ;";
 `````
 
 ## Globals

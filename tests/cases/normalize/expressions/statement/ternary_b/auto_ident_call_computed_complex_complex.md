@@ -70,7 +70,7 @@ if (a) {
   const b = { $: $ };
   const c = $( b );
   const d = $( "$" );
-  c[ d ]( 1 )};
+  c[ d ]( 1 );
 }
 else {
   $( 200 );

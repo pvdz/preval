@@ -83,7 +83,7 @@ const b = {
 };
 const c = $( a );
 const d = $( "$" );
-c[ d ]( 1 )};
+c[ d ]( 1 );
 const e = $( 0 );
 if (e) {
   while ($LOOP_UNROLL_10) {

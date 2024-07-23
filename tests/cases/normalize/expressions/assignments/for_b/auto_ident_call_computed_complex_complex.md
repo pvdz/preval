@@ -82,13 +82,13 @@ With rename=true
 const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
-let d = b[ c ]( 1 )};
+let d = b[ c ]( 1 );
 if (d) {
   while ($LOOP_UNROLL_10) {
     $( 1 );
     const e = $( a );
     const f = $( "$" );
-    d = e[ f ]( 1 )};
+    d = e[ f ]( 1 );
     if (d) {
 
     }

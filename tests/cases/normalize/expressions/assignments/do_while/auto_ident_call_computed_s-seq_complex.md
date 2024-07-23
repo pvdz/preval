@@ -87,12 +87,12 @@ With rename=true
 $( 100 );
 const a = $( "$" );
 const b = { $: $ };
-let c = b[ a ]( 1 )};
+let c = b[ a ]( 1 );
 if (c) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
     const d = $( "$" );
-    c = b[ d ]( 1 )};
+    c = b[ d ]( 1 );
     if (c) {
 
     }

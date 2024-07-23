@@ -44,3 +44,4 @@
 // Support object literals in isSameExpressionExceptBool too
 // Support async and generator functions in inlineSimpleFuncCalls / reduce_static/simple_funcs.mjs
 // tests/cases/function/pure_function_inlining.md -> Take it the last step and outline the tail end of the string too so the function can be eliminated
+// tests/cases/normalize/expressions/assignments/for_b/auto_ident_upd_pi_simple.md -> We were able to eliminate the objlit because we knew it was unobserved.

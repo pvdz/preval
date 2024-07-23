@@ -47,10 +47,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_a = $(2);
+const a = $(2);
 const tmpCalleeParam = [`before `, ` after`];
-$(tmpCalleeParam, tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+$(tmpCalleeParam, a);
+$(a);
 `````
 
 ## PST Output

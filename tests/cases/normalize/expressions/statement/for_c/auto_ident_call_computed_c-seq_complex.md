@@ -85,13 +85,13 @@ if (a) {
   const b = { $: $ };
   const c = $( b );
   const d = $( "$" );
-  c[ d ]( 1 )};
+  c[ d ]( 1 );
   while ($LOOP_UNROLL_10) {
     const e = $( 1 );
     if (e) {
       const f = $( b );
       const g = $( "$" );
-      f[ g ]( 1 )};
+      f[ g ]( 1 );
     }
     else {
       break;

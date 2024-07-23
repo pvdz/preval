@@ -89,13 +89,13 @@ if (b) {
   const c = { $: $ };
   const d = $( c );
   const e = $( "$" );
-  a = d[ e ]( 1 )};
+  a = d[ e ]( 1 );
   while ($LOOP_UNROLL_10) {
     const f = $( 1 );
     if (f) {
       const g = $( c );
       const h = $( "$" );
-      a = g[ h ]( 1 )};
+      a = g[ h ]( 1 );
     }
     else {
       break;

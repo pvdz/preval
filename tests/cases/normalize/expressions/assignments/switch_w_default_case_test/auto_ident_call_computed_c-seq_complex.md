@@ -123,7 +123,7 @@ const b = $( 1 );
 let c = 1;
 const d = $( a );
 const e = $( "$" );
-const f = d[ e ]( 1 )};
+const f = d[ e ]( 1 );
 const g = f === b;
 if (g) {
   c = 0;

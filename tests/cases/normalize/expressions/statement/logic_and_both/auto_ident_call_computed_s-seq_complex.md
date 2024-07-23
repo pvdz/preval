@@ -71,10 +71,10 @@ const b = {
   b: 1000,
 };
 const c = $( "$" );
-const d = a[ c ]( 1 )};
+const d = a[ c ]( 1 );
 if (d) {
   const e = $( "$" );
-  a[ e ]( 1 )};
+  a[ e ]( 1 );
 }
 $( b );
 `````

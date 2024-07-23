@@ -58,13 +58,13 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpCalleeParam = $(0);
-const tmpClusterSSA_a = $(tmpCalleeParam);
-if (tmpClusterSSA_a) {
-  $(tmpClusterSSA_a);
+const a = $(tmpCalleeParam);
+if (a) {
+  $(a);
 } else {
   const tmpCalleeParam$1 = $(2);
-  const tmpClusterSSA_a$1 = $(tmpCalleeParam$1);
-  $(tmpClusterSSA_a$1);
+  const tmpClusterSSA_a = $(tmpCalleeParam$1);
+  $(tmpClusterSSA_a);
 }
 `````
 

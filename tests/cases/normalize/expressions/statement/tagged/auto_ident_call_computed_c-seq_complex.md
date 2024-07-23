@@ -68,7 +68,7 @@ const b = {
 const c = [ "before ", " after" ];
 const d = $( a );
 const e = $( "$" );
-const f = d[ e ]( 1 )};
+const f = d[ e ]( 1 );
 $( c, f );
 $( b );
 `````

@@ -48,11 +48,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_a = $(60);
+const a = $(60);
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam = tmpClusterSSA_a + tmpBinBothRhs;
+const tmpCalleeParam = a + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 ## PST Output

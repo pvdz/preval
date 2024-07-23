@@ -66,7 +66,7 @@ const a = $( 100 );
 if (a) {
   const b = $( "$" );
   const c = { $: $ };
-  c[ b ]( 1 )};
+  c[ b ]( 1 );
 }
 const d = {
   a: 999,

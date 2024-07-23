@@ -55,9 +55,9 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
-  const tmpClusterSSA_tmpNestedComplexRhs = $(60);
-  a = tmpClusterSSA_tmpNestedComplexRhs;
-  $(tmpClusterSSA_tmpNestedComplexRhs);
+  const tmpNestedComplexRhs = $(60);
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
 }

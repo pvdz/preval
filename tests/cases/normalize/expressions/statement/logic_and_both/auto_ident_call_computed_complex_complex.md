@@ -74,11 +74,11 @@ const b = {
 };
 const c = $( a );
 const d = $( "$" );
-const e = c[ d ]( 1 )};
+const e = c[ d ]( 1 );
 if (e) {
   const f = $( a );
   const g = $( "$" );
-  f[ g ]( 1 )};
+  f[ g ]( 1 );
 }
 $( b );
 `````

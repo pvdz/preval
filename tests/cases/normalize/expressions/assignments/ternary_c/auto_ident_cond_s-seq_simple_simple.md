@@ -60,9 +60,9 @@ if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  const tmpClusterSSA_tmpNestedComplexRhs = $(2);
-  a = tmpClusterSSA_tmpNestedComplexRhs;
-  $(tmpClusterSSA_tmpNestedComplexRhs);
+  const tmpNestedComplexRhs = $(2);
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 }
 $(a);
 `````

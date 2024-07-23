@@ -154,7 +154,7 @@ const g = c <= 0;
 if (g) {
   const h = $( "$" );
   const i = { $: $ };
-  i[ h ]( 1 )};
+  i[ h ]( 1 );
 }
 else {
   const j = c <= 1;

@@ -1,7 +1,23 @@
 // Inline constants where values permit it
 
 import { ARG_THIS_ALIAS_PREFIX } from '../constants.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
+import {
+  ASSERT,
+  log,
+  group,
+  groupEnd,
+  vlog,
+  vgroup,
+  vgroupEnd,
+  tmat,
+  fmat,
+  rule,
+  example,
+  before,
+  source,
+  after,
+  riskyRule, useRiskyRules,
+} from '../utils.mjs';
 import * as AST from '../ast.mjs';
 
 export function inlineConstants(fdata) {
@@ -111,14 +127,19 @@ function _inlineConstants(fdata) {
         const read = reads[i];
         if (read.parentNode.type === 'ExportSpecifier') {
           vlog('Not inlining export');
+        } else if (!useRiskyRules() && read.parentNode.type === 'ExpressionStatement') {
+          // This is unsafe because we can't guarantee an ident won't trigger a TDZ/implicitGlobal throw
+          vlog('Not inlining ident that is expression statement because riskyRules = false');
         } else {
           queue.push({
             pid: +read.node.$p.pid,
             func: () => {
-              rule('Read of constant with literal value should be replaced with that value');
+              riskyRule('Read of constant with literal value should be replaced with that value');
               example('const x = 100; f(x);', 'const x = 100; f(100);');
 
+              vlog('Write:');
               before(write.blockBody[write.blockIndex]);
+              vlog('Read:');
               before(read.blockBody[read.blockIndex]);
 
               // (We know rhs is the init of the var decl of the current meta whose reads we're inlining)
@@ -128,7 +149,7 @@ function _inlineConstants(fdata) {
               read.blockBody.splice(read.blockIndex, 0, AST.expressionStatement(read.node));
 
               after(read.blockBody[read.blockIndex]);
-              after(read.blockBody[read.blockIndex + 1], read.blockBody);
+              after(read.blockBody[read.blockIndex + 1]);
             }
           })
 
@@ -154,6 +175,10 @@ function _inlineConstants(fdata) {
         vlog('Rhs is not a builtin or constant, bailing');
         return;
       }
+      if (assigneeMeta.isImplicitGlobal) {
+        vlog('Rhs is implicit global, bailing');
+        return;
+      }
 
       if (meta.reads.length === 0) {
         vlog('Binding has no reads. Bailing to prevent infinite loop. Other rules should clean this if possible');
@@ -165,10 +190,14 @@ function _inlineConstants(fdata) {
       for (let i = 0; i < reads.length; ++i) {
         const read = reads[i];
         //const { parentNode, parentProp, parentIndex, grandNode, grandProp, grandIndex } = read;
-        const blockBody = read.blockBody[read.blockIndex];
-
-        if (blockBody.type === 'ExportNamedDeclaration') {
+        const stmt = read.blockBody[read.blockIndex];
+        if (stmt.type === 'ExportNamedDeclaration') {
           vlog('Skipping export ident');
+        } else if (!useRiskyRules() && stmt.type === 'ExpressionStatement') {
+          // Skip. Otherwise it might run into an infinite loop.
+          // This can be eliminated if we can eliminate the var decl entirely
+          // but otherwise we must keep it to preserve TDZ. Further inlining is not useful.
+          vlog('Skipping ident that is expression statement');
         } else {
           queue.push({
             pid: +read.node.$p.pid,

@@ -77,19 +77,14 @@ f();
 
 
 `````js filename=intro
-$inlinedFunction: {
-  let x = `fail`;
+if ($) {
+} else {
   try {
-    if ($) {
-      break $inlinedFunction;
-    } else {
-      x = `pass`;
-      throw `too`;
-    }
+    throw `too`;
   } catch (e) {
     $(`caught`);
   }
-  $(x);
+  $(`pass`);
 }
 `````
 
@@ -98,21 +93,17 @@ $inlinedFunction: {
 With rename=true
 
 `````js filename=intro
-$inlinedFunction: {
-  let a = "fail";
+if ($) {
+
+}
+else {
   try {
-    if ($) {
-      break $inlinedFunction;
-    }
-    else {
-      a = "pass";
-      throw "too";
-    }
+    throw "too";
   }
-  catch (b) {
+  catch (a) {
     $( "caught" );
   }
-  $( a );
+  $( "pass" );
 }
 `````
 

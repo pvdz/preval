@@ -90,6 +90,7 @@ import { refTracked } from '../reduce_static/ref_tracked.mjs';
 import { builtinCases } from '../reduce_static/builtin_cases.mjs';
 import { arrayReads } from '../reduce_static/array_reads.mjs';
 import { ifTestMerging } from '../reduce_static/if_test_merging.mjs';
+import { tryEscaping } from '../reduce_static/try_escaping.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
@@ -246,6 +247,7 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     stringFusing(fdata) ||
     andCases(fdata) ||
     globalCasting(fdata) ||
+    tryEscaping(fdata) ||
     binExprStmt(fdata) ||
     propertyLookups(fdata) ||
     letIfElse(fdata) ||

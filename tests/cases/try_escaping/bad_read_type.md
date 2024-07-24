@@ -1,0 +1,129 @@
+# Preval test case
+
+# bad_read_type.md
+
+> Try escaping > Bad read type
+>
+> The arr is left in a loop and .reverse() is called, to prevent elimination
+> The .reverse() cannot change the array element type and the rule knows this.
+
+## Input
+
+`````js filename=intro
+const arr = [1, 2, 3];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  try {
+    $(new arr);
+    arr.reverse();
+  } catch {
+    $('fail');
+  }
+}
+`````
+
+## Pre Normal
+
+
+`````js filename=intro
+const arr = [1, 2, 3];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  try {
+    $(new arr());
+    arr.reverse();
+  } catch (e) {
+    $(`fail`);
+  }
+}
+`````
+
+## Normalized
+
+
+`````js filename=intro
+const arr = [1, 2, 3];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  try {
+    const tmpCallCallee = $;
+    const tmpCalleeParam = new arr();
+    tmpCallCallee(tmpCalleeParam);
+    arr.reverse();
+  } catch (e) {
+    $(`fail`);
+  }
+}
+`````
+
+## Output
+
+
+`````js filename=intro
+const arr = [1, 2, 3];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  try {
+    const tmpCalleeParam = new arr();
+    $(tmpCalleeParam);
+    arr.reverse();
+  } catch (e) {
+    $(`fail`);
+  }
+}
+`````
+
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [ 1, 2, 3 ];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  try {
+    const b = new a();
+    $( b );
+    a.reverse();
+  }
+  catch (c) {
+    $( "fail" );
+  }
+}
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: 'fail'
+ - 2: 'fail'
+ - 3: 'fail'
+ - 4: 'fail'
+ - 5: 'fail'
+ - 6: 'fail'
+ - 7: 'fail'
+ - 8: 'fail'
+ - 9: 'fail'
+ - 10: 'fail'
+ - 11: 'fail'
+ - 12: 'fail'
+ - 13: 'fail'
+ - 14: 'fail'
+ - 15: 'fail'
+ - 16: 'fail'
+ - 17: 'fail'
+ - 18: 'fail'
+ - 19: 'fail'
+ - 20: 'fail'
+ - 21: 'fail'
+ - 22: 'fail'
+ - 23: 'fail'
+ - 24: 'fail'
+ - 25: 'fail'
+ - 26: 'fail'
+ - eval returned: ('<crash[ Loop aborted by Preval test runner (this simply curbs infinite loops in tests) ]>')
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -45,3 +45,4 @@
 // Support async and generator functions in inlineSimpleFuncCalls / reduce_static/simple_funcs.mjs
 // tests/cases/function/pure_function_inlining.md -> Take it the last step and outline the tail end of the string too so the function can be eliminated
 // tests/cases/normalize/expressions/assignments/for_b/auto_ident_upd_pi_simple.md -> We were able to eliminate the objlit because we knew it was unobserved.
+// properly do the $p.alwaysComplete family of props because it's in a a semi-implementated state right now

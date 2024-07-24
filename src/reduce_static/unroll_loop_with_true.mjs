@@ -154,74 +154,77 @@ function processAttempt(fdata, unrollTrueLimit) {
 
     // This should be fine. First clone the while body
 
-    vlog('Going try to unroll this loop, attempting to clone loop body first...');
+    vlog('Going try to unroll this loop 10x');
 
-    const fail = {};
-    const clone = deepCloneForFuncInlining(whileNode.body, new Map, fail);
-    if (fail.ed) {
-      vlog('  - bail: body cloning failed', fail);
-      return;
-    }
+    // In theory we can do this multiple times. In practice it makes certain heavy cases much worse. To be further investigated.
+    for (let i=0; i<1; ++i) {
+      if (whileNode.test.name === '$LOOP_DONE_UNROLLING_ALWAYS_TRUE') break;
 
-    vlog('Clone successful. Now replacing unlabeled breaks that target this loop.');
+      vlog('Attempting to clone loop body...')
 
-    // Next do preliminary work on the clone to replace the break/continue
-
-    const labelStatementNode = createFreshLabelStatement('loopStop', fdata, AST.blockStatement(
-      clone,
-      whileNode,
-    ));
-
-    const condCount = AST.isTrue(whileNode.test) ? unrollTrueLimit - 1 : parseInt(whileNode.test.name.slice('$LOOP_UNROLL_'.length), 10) - 1;
-    const condIdent = condCount > 0 ? '$LOOP_UNROLL_' + condCount : ('$LOOP_DONE_UNROLLING_ALWAYS_TRUE');
-
-    const walker = function replacer(node, beforeWalk, nodeType, path) {
-      if (beforeWalk) {
+      const fail = {};
+      const clone = deepCloneForFuncInlining(whileNode.body, new Map, fail);
+      if (fail.ed) {
+        vlog('  - bail: body cloning failed', fail);
         return;
       }
 
-      if (node.type === 'BreakStatement') {
-        const parentNode = path.nodes[path.nodes.length - 2];
-        const parentProp = path.props[path.props.length - 1];
-        const parentIndex = path.indexes[path.indexes.length - 1];
+      vlog('Clone successful. Now replacing unlabeled breaks that target this loop.');
 
-        // Note: we ignore nested loops here so don't worry about checking the break target
+      // Next do preliminary work on the clone to replace the break/continue
 
-        rule('While unrolling, cloned unlabeled breaks that were targeting the while scope should get a label and disable the loop var');
-        example('while (true) { break; }', 'while (true) { unrollCheck = false; break loopStop; }');
-        before(parentNode[parentProp][parentIndex]);
+      const labelStatementNode = createFreshLabelStatement('loopStop', fdata, AST.blockStatement(clone, blockBody[blockIndex]));
 
-        // Break is already asserted to not have a label
-        const newNode = AST.blockStatement([
-          AST.breakStatement(labelStatementNode.label.name),
-        ])
+      const condCount = AST.isTrue(whileNode.test) ? unrollTrueLimit - 1 : parseInt(whileNode.test.name.slice('$LOOP_UNROLL_'.length), 10) - 1;
+      const condIdent = condCount > 0 ? '$LOOP_UNROLL_' + condCount : ('$LOOP_DONE_UNROLLING_ALWAYS_TRUE');
 
-        if (parentIndex < 0) parentNode[parentProp] = newNode;
-        else parentNode[parentProp][parentIndex] = newNode;
+      const walker = function replacer(node, beforeWalk, nodeType, path) {
+        if (beforeWalk) {
+          return;
+        }
 
-        after(newNode);
-      }
-    };
-    walk(walker, clone, 'BlockStatement');
+        if (node.type === 'BreakStatement') {
+          const parentNode = path.nodes[path.nodes.length - 2];
+          const parentProp = path.props[path.props.length - 1];
+          const parentIndex = path.indexes[path.indexes.length - 1];
 
-    vlog('And finally insert the cloned body and wrap the whole thing in a label');
+          // Note: we ignore nested loops here so don't worry about checking the break target
 
-    rule('while(true) with any one break or only simple breaks should be unrolled');
-    example(
-      'while (true) { if ($()) break; }',
-      //'{ let tmp = $LOOP_COUNTER_1000; stop: { if ($()) { tmp = false; break stop; } } while (tmp) { if ($()) break; }'
-      //'{ let tmp = true; stop: if ($()) { tmp = false; break stop; } if (tmp) { while ($LOOP_COUNTER_999) { if ($()) break; } }'
-      'loopStop: { if ($()) { break loopStop; } else { while ($LOOP_COUNTER_999) { if ($()) break loopStop; } }'
-    );
+          rule('While unrolling, cloned unlabeled breaks that were targeting the while scope should get a label and disable the loop var');
+          example('while (true) { break; }', 'while (true) { unrollCheck = false; break loopStop; }');
+          before(parentNode[parentProp][parentIndex]);
 
-    before(whileNode, parentNode);
+          // Break is already asserted to not have a label
+          const newNode = AST.blockStatement([
+            AST.breakStatement(labelStatementNode.label.name),
+          ])
 
-    vlog('Counter:', condCount, ', ident:', condIdent, ', whileNode.test.name:', whileNode.test.type, whileNode.test.name);
+          if (parentIndex < 0) parentNode[parentProp] = newNode;
+          else parentNode[parentProp][parentIndex] = newNode;
 
-    whileNode.test = AST.identifier(condIdent);
-    blockBody[blockIndex] = labelStatementNode;
+          after(newNode);
+        }
+      };
+      walk(walker, clone, 'BlockStatement');
 
-    after(labelStatementNode, parentNode);
+      vlog('And finally insert the cloned body and wrap the whole thing in a label');
+
+      rule('while(true) with any one break or only simple breaks should be unrolled');
+      example(
+        'while (true) { if ($()) break; }',
+        //'{ let tmp = $LOOP_COUNTER_1000; stop: { if ($()) { tmp = false; break stop; } } while (tmp) { if ($()) break; }'
+        //'{ let tmp = true; stop: if ($()) { tmp = false; break stop; } if (tmp) { while ($LOOP_COUNTER_999) { if ($()) break; } }'
+        'loopStop: { if ($()) { break loopStop; } else { while ($LOOP_COUNTER_999) { if ($()) break loopStop; } }'
+      );
+
+      before(whileNode, parentNode);
+
+      vlog('Counter:', condCount, ', ident:', condIdent, ', whileNode.test.name:', whileNode.test.type, whileNode.test.name);
+      whileNode.test = AST.identifier(condIdent);
+      blockBody[blockIndex] = labelStatementNode;
+
+      after(labelStatementNode, parentNode);
+    }
 
     ++updated;
   }

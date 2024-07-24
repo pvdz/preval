@@ -81,6 +81,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
     // First normalize the code. Then serialize that AST. Then parse it again (because scope tracking).
     // Scope tracking by parser not looking so hot now, eh.
     const inputCode = req(nextFname);
+    if (typeof inputCode !== 'string') throw new Error('Input code was not a string. Check your input .');
 
     if (verboseTracing === undefined && inputCode.length > 10 * 1024) setVerboseTracing(false); // Only care about this for tests or debugging. Limit serialization for larger payloads for the sake of speed.
     const preFdata = parseCode(inputCode, nextFname);

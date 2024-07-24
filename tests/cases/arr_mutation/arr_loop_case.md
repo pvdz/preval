@@ -95,8 +95,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 $(1);
 const arr = [`two`, `three`, `four`, `five`, `one`];
+const tmpCalleeParam = [`two`, `three`, `four`, `five`, `one`];
 try {
-  const tmpCalleeParam = [`two`, `three`, `four`, `five`, `one`];
   $(tmpCalleeParam);
 } catch (e) {
   const v = arr.shift();
@@ -109,8 +109,8 @@ if (test$1) {
 } else {
   const next$1 = arr.shift();
   arr.push(next$1);
+  const tmpCalleeParam$2 = arr.slice(0);
   try {
-    const tmpCalleeParam$2 = arr.slice(0);
     $(tmpCalleeParam$2);
   } catch (e$1) {
     const v$1 = arr.shift();
@@ -125,8 +125,8 @@ if (test$1) {
     } else {
       const next$2 = arr.shift();
       arr.push(next$2);
+      const tmpCalleeParam$3 = arr.slice(0);
       try {
-        const tmpCalleeParam$3 = arr.slice(0);
         $(tmpCalleeParam$3);
       } catch (e$2) {
         const v$2 = arr.shift();
@@ -146,8 +146,8 @@ With rename=true
 `````js filename=intro
 $( 1 );
 const a = [ "two", "three", "four", "five", "one" ];
+const b = [ "two", "three", "four", "five", "one" ];
 try {
-  const b = [ "two", "three", "four", "five", "one" ];
   $( b );
 }
 catch (c) {
@@ -163,8 +163,8 @@ if (f) {
 else {
   const g = a.shift();
   a.push( g );
+  const h = a.slice( 0 );
   try {
-    const h = a.slice( 0 );
     $( h );
   }
   catch (i) {
@@ -181,8 +181,8 @@ else {
     else {
       const m = a.shift();
       a.push( m );
+      const n = a.slice( 0 );
       try {
-        const n = a.slice( 0 );
         $( n );
       }
       catch (o) {

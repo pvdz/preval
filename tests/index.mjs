@@ -294,7 +294,7 @@ function runTestCase(
             console.log('--log: Logging one-time-normalized state to disk for', nextFname);
             const f = path.join(options.logDir, 'preval.a.f' + queueFileCounter + '.onetime.normalized.log.js');
             console.log('-', f, '(', preCode.length, 'bytes) ->', nextFname);
-            fs.writeFileSync(f, '// Normalized output after one pass [' + nextFname + ']\n' + preCode);
+            fs.writeFileSync(f, '// Normalized output after one pass [' + nextFname + ']\n// Command: ' + process.argv.join(' ') + '\n' + preCode);
           }
         },
         onFirstPassEnd(contents, allFileNames, options) {
@@ -303,7 +303,7 @@ function runTestCase(
             allFileNames.forEach((fname, i) => {
               const f = path.join(options.logDir, 'preval.b.f' + i + '.firstpass.normalized.log.js');
               console.log('-', f, '(', contents.normalized[fname].length, 'bytes) ->', fname);
-              fs.writeFileSync(f, '// Normalized output after one pass [' + fname + ']\n' + contents.normalized[fname]);
+              fs.writeFileSync(f, '// Normalized output after one pass [' + fname + ']\n// Command: ' + process.argv.join(' ') + '\n' + contents.normalized[fname]);
             });
           }
         },
@@ -313,7 +313,7 @@ function runTestCase(
             const now = Date.now();
             console.log('--log: Logging current result to disk:', f, '(', outCode.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '');
             lastWrite = now;
-            fs.writeFileSync(f, '// Resulting output after one pass [' + fname + ']\n' + outCode);
+            fs.writeFileSync(f, '// Resulting output after one pass [' + fname + ']\n// Command: ' + process.argv.join(' ') + '\n' + outCode);
           }
         },
         onFinal(outCode, passes, fi, options) {
@@ -322,7 +322,7 @@ function runTestCase(
             const now = Date.now();
             console.log('--log: Logging final result after',passes,' passes to disk:', f, '(', outCode.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '');
             lastWrite = now;
-            fs.writeFileSync(f, '// Resulting output after one pass [' + fname + ']\n' + outCode);
+            fs.writeFileSync(f, '// Resulting output after one pass [' + fname + ']\n// Command: ' + process.argv.join(' ') + '\n' + outCode);
           }
         },
         onError(kind, error, ast, options) {

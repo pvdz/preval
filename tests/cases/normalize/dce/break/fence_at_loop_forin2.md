@@ -1,0 +1,163 @@
+# Preval test case
+
+# fence_at_loop_forin2.md
+
+> Normalize > Dce > Break > Fence at loop forin2
+>
+> The DCE after a continue should be fenced at the nearest loop, not beyond.
+
+## Input
+
+`````js filename=intro
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    $(`loop`);
+    const tmpForInDeclRhs = { a: 1, b: 2 };
+    let x = undefined;
+    for (x in tmpForInDeclRhs) {
+      $(`loop`, x);
+      break;
+    }
+    $(`infiloop, do not eliminate`);
+  } else {
+    break;
+  }
+}
+$(`after (not invoked)`);
+
+`````
+
+## Pre Normal
+
+
+`````js filename=intro
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    $(`loop`);
+    const tmpForInDeclRhs = { a: 1, b: 2 };
+    let x = undefined;
+    for (x in tmpForInDeclRhs) {
+      $(`loop`, x);
+      break;
+    }
+    $(`infiloop, do not eliminate`);
+  } else {
+    break;
+  }
+}
+$(`after (not invoked)`);
+`````
+
+## Normalized
+
+
+`````js filename=intro
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    $(`loop`);
+    const tmpForInDeclRhs = { a: 1, b: 2 };
+    let x = undefined;
+    for (x in tmpForInDeclRhs) {
+      $(`loop`, x);
+      break;
+    }
+    $(`infiloop, do not eliminate`);
+  } else {
+    break;
+  }
+}
+$(`after (not invoked)`);
+`````
+
+## Output
+
+
+`````js filename=intro
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    $(`loop`);
+    let x = undefined;
+    const tmpForInDeclRhs = { a: 1, b: 2 };
+    for (x in tmpForInDeclRhs) {
+      $(`loop`, x);
+      break;
+    }
+    $(`infiloop, do not eliminate`);
+  } else {
+    break;
+  }
+}
+$(`after (not invoked)`);
+`````
+
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+while (true) {
+  const a = $( true );
+  if (a) {
+    $( "loop" );
+    let b = undefined;
+    const c = {
+      a: 1,
+      b: 2,
+    };
+    for (b in c) {
+      $( "loop", b );
+      break;
+    }
+    $( "infiloop, do not eliminate" );
+  }
+  else {
+    break;
+  }
+}
+$( "after (not invoked)" );
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: true
+ - 2: 'loop'
+ - 3: 'loop', 'a'
+ - 4: 'infiloop, do not eliminate'
+ - 5: true
+ - 6: 'loop'
+ - 7: 'loop', 'a'
+ - 8: 'infiloop, do not eliminate'
+ - 9: true
+ - 10: 'loop'
+ - 11: 'loop', 'a'
+ - 12: 'infiloop, do not eliminate'
+ - 13: true
+ - 14: 'loop'
+ - 15: 'loop', 'a'
+ - 16: 'infiloop, do not eliminate'
+ - 17: true
+ - 18: 'loop'
+ - 19: 'loop', 'a'
+ - 20: 'infiloop, do not eliminate'
+ - 21: true
+ - 22: 'loop'
+ - 23: 'loop', 'a'
+ - 24: 'infiloop, do not eliminate'
+ - 25: true
+ - 26: 'loop'
+ - eval returned: ('<crash[ Loop aborted by Preval test runner (this simply curbs infinite loops in tests) ]>')
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

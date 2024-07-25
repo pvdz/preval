@@ -19,9 +19,9 @@ function f() {
       $('fail');
     }
   
-    $('fail');
+    $('unreachable');
   }
-  $('after (not invoked but should not be eliminated)');
+  $('after (unreachable)');
 }
 $(f());
 `````
@@ -39,9 +39,9 @@ let f = function () {
       throw $(7, `throw`);
       $(`fail`);
     }
-    $(`fail`);
+    $(`unreachable`);
   }
-  $(`after (not invoked but should not be eliminated)`);
+  $(`after (unreachable)`);
 };
 $(f());
 `````
@@ -63,12 +63,12 @@ let f = function () {
         const tmpThrowArg = $(7, `throw`);
         throw tmpThrowArg;
       }
-      $(`fail`);
+      $(`unreachable`);
     } else {
       break;
     }
   }
-  $(`after (not invoked but should not be eliminated)`);
+  $(`after (unreachable)`);
   return undefined;
 };
 const tmpCallCallee = $;
@@ -80,24 +80,21 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(`loop`);
-    let x = undefined;
-    const tmpForInDeclRhs = { a: 1, b: 2 };
-    for (x in tmpForInDeclRhs) {
-      $(`loop`, x);
-      const tmpThrowArg = $(7, `throw`);
-      throw tmpThrowArg;
-    }
-    $(`fail`);
-  } else {
-    break;
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  $(`loop`);
+  let x = undefined;
+  const tmpForInDeclRhs = { a: 1, b: 2 };
+  for (x in tmpForInDeclRhs) {
+    $(`loop`, x);
+    const tmpThrowArg = $(7, `throw`);
+    throw tmpThrowArg;
   }
+  $(`unreachable`);
+} else {
+  $(`after (unreachable)`);
+  $(undefined);
 }
-$(`after (not invoked but should not be eliminated)`);
-$(undefined);
 `````
 
 ## PST Output
@@ -105,28 +102,25 @@ $(undefined);
 With rename=true
 
 `````js filename=intro
-while (true) {
-  const a = $( true );
-  if (a) {
-    $( "loop" );
-    let b = undefined;
-    const c = {
-      a: 1,
-      b: 2,
-    };
-    for (b in c) {
-      $( "loop", b );
-      const d = $( 7, "throw" );
-      throw d;
-    }
-    $( "fail" );
+const a = $( true );
+if (a) {
+  $( "loop" );
+  let b = undefined;
+  const c = {
+    a: 1,
+    b: 2,
+  };
+  for (b in c) {
+    $( "loop", b );
+    const d = $( 7, "throw" );
+    throw d;
   }
-  else {
-    break;
-  }
+  $( "unreachable" );
 }
-$( "after (not invoked but should not be eliminated)" );
-$( undefined );
+else {
+  $( "after (unreachable)" );
+  $( undefined );
+}
 `````
 
 ## Globals

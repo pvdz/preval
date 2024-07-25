@@ -104,32 +104,29 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(`loop`);
-    let x = undefined;
-    const tmpForInDeclRhs = { a: 1, b: 2 };
-    for (x in tmpForInDeclRhs) {
-      $(`loop`, x);
-      const tmpIfTest$1 = $(1, `if`);
-      if (tmpIfTest$1) {
-        $(`pass`);
-        const tmpThrowArg = $(7, `throw`);
-        throw tmpThrowArg;
-      } else {
-        $(`do not visit`);
-        const tmpThrowArg$1 = $(8, `throw`);
-        throw tmpThrowArg$1;
-      }
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  $(`loop`);
+  let x = undefined;
+  const tmpForInDeclRhs = { a: 1, b: 2 };
+  for (x in tmpForInDeclRhs) {
+    $(`loop`, x);
+    const tmpIfTest$1 = $(1, `if`);
+    if (tmpIfTest$1) {
+      $(`pass`);
+      const tmpThrowArg = $(7, `throw`);
+      throw tmpThrowArg;
+    } else {
+      $(`do not visit`);
+      const tmpThrowArg$1 = $(8, `throw`);
+      throw tmpThrowArg$1;
     }
-    $(`after (not invoked but should not be eliminated)`);
-  } else {
-    break;
   }
+  $(`after (not invoked but should not be eliminated)`);
+} else {
+  $(`after (not invoked)`);
+  $(undefined);
 }
-$(`after (not invoked)`);
-$(undefined);
 `````
 
 ## PST Output
@@ -137,37 +134,34 @@ $(undefined);
 With rename=true
 
 `````js filename=intro
-while (true) {
-  const a = $( true );
-  if (a) {
-    $( "loop" );
-    let b = undefined;
-    const c = {
-      a: 1,
-      b: 2,
-    };
-    for (b in c) {
-      $( "loop", b );
-      const d = $( 1, "if" );
-      if (d) {
-        $( "pass" );
-        const e = $( 7, "throw" );
-        throw e;
-      }
-      else {
-        $( "do not visit" );
-        const f = $( 8, "throw" );
-        throw f;
-      }
+const a = $( true );
+if (a) {
+  $( "loop" );
+  let b = undefined;
+  const c = {
+    a: 1,
+    b: 2,
+  };
+  for (b in c) {
+    $( "loop", b );
+    const d = $( 1, "if" );
+    if (d) {
+      $( "pass" );
+      const e = $( 7, "throw" );
+      throw e;
     }
-    $( "after (not invoked but should not be eliminated)" );
+    else {
+      $( "do not visit" );
+      const f = $( 8, "throw" );
+      throw f;
+    }
   }
-  else {
-    break;
-  }
+  $( "after (not invoked but should not be eliminated)" );
 }
-$( "after (not invoked)" );
-$( undefined );
+else {
+  $( "after (not invoked)" );
+  $( undefined );
+}
 `````
 
 ## Globals

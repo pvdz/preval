@@ -54,8 +54,6 @@ function _findThrowers(fdata) {
       return;
     }
 
-    ASSERT(funcNode.$p.alwaysThrow, 'if not returning, then throwing, right? in normalized code?', funcNode);
-
     vlog('- this function always throws and never returns. All calls should be followed by an empty throw.');
 
     meta.reads.forEach((read, ri) => {

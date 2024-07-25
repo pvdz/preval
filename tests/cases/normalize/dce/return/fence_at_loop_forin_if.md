@@ -106,33 +106,30 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 let tmpCalleeParam = undefined;
 $inlinedFunction: {
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      $(`loop`);
-      let x = undefined;
-      const tmpForInDeclRhs = { a: 1, b: 2 };
-      for (x in tmpForInDeclRhs) {
-        $(`loop`, x);
-        const tmpIfTest$1 = $(1, `if`);
-        if (tmpIfTest$1) {
-          $(`pass`);
-          const tmpReturnArg = $(100, `return`);
-          tmpCalleeParam = tmpReturnArg;
-          break $inlinedFunction;
-        } else {
-          $(`do not visit`);
-          const tmpReturnArg$1 = $(101, `return`);
-          tmpCalleeParam = tmpReturnArg$1;
-          break $inlinedFunction;
-        }
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    $(`loop`);
+    let x = undefined;
+    const tmpForInDeclRhs = { a: 1, b: 2 };
+    for (x in tmpForInDeclRhs) {
+      $(`loop`, x);
+      const tmpIfTest$1 = $(1, `if`);
+      if (tmpIfTest$1) {
+        $(`pass`);
+        const tmpReturnArg = $(100, `return`);
+        tmpCalleeParam = tmpReturnArg;
+        break $inlinedFunction;
+      } else {
+        $(`do not visit`);
+        const tmpReturnArg$1 = $(101, `return`);
+        tmpCalleeParam = tmpReturnArg$1;
+        break $inlinedFunction;
       }
-      $(`after (not invoked but should not be eliminated)`);
-    } else {
-      break;
     }
+    $(`after (not invoked but should not be eliminated)`);
+  } else {
+    $(`after (not invoked)`);
   }
-  $(`after (not invoked)`);
 }
 $(tmpCalleeParam);
 `````
@@ -144,38 +141,35 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 $inlinedFunction: {
-  while (true) {
-    const b = $( true );
-    if (b) {
-      $( "loop" );
-      let c = undefined;
-      const d = {
-        a: 1,
-        b: 2,
-      };
-      for (c in d) {
-        $( "loop", c );
-        const e = $( 1, "if" );
-        if (e) {
-          $( "pass" );
-          const f = $( 100, "return" );
-          a = f;
-          break $inlinedFunction;
-        }
-        else {
-          $( "do not visit" );
-          const g = $( 101, "return" );
-          a = g;
-          break $inlinedFunction;
-        }
+  const b = $( true );
+  if (b) {
+    $( "loop" );
+    let c = undefined;
+    const d = {
+      a: 1,
+      b: 2,
+    };
+    for (c in d) {
+      $( "loop", c );
+      const e = $( 1, "if" );
+      if (e) {
+        $( "pass" );
+        const f = $( 100, "return" );
+        a = f;
+        break $inlinedFunction;
       }
-      $( "after (not invoked but should not be eliminated)" );
+      else {
+        $( "do not visit" );
+        const g = $( 101, "return" );
+        a = g;
+        break $inlinedFunction;
+      }
     }
-    else {
-      break;
-    }
+    $( "after (not invoked but should not be eliminated)" );
   }
-  $( "after (not invoked)" );
+  else {
+    $( "after (not invoked)" );
+  }
 }
 $( a );
 `````

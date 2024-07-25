@@ -231,12 +231,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
         openRefsOnAfterProgram(node);
 
-        if (node.$p.earlyComplete) {
-          vlog('Global contained at least one early completion');
-        } else {
-          vlog('Global does not complete early');
-        }
-        if (node.$p.alwaysComplete) {
+        if (node.$p.alwaysCompletes?.size) {
           vlog('Global always completes explicitly, never implicitly');
         } else {
           vlog('Global may complete implicitly');
@@ -265,8 +260,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         openRefsOnBeforeBlock(node, parentNode, parentProp, pathNodes[pathNodes.length - 3], blockStack[blockStack.length - 2], globallyUniqueNamingRegistry);
 
         if (tryNodeStack.length) {
-          if (tryNodeStack[tryNodeStack.length - 1].block === node) trapStack.push(node.$p.pid);
-          else catchStack.push(node.$p.pid);
+          if (tryNodeStack[tryNodeStack.length - 1].block === node) trapStack.push(+node.$p.pid);
+          else catchStack.push(+node.$p.pid);
           //vlog('Checked for try:', tryNodeStack.map(n => n.$p.pid), trapStack, catchStack);
         }
         blockBodies.push(node.body);
@@ -305,25 +300,35 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           //vlog('Checked for try:', tryNodeStack.map(n => n.$p.pid), trapStack, catchStack);
         }
 
-        // A block has no early / explicit completion if it contains no statements
-        node.body.forEach((cnode) => {
-          if (cnode.$p.earlyComplete) {
-            vlog('The block contained at least one early completion');
-            node.$p.earlyComplete = true;
-            if (cnode.$p.earlyReturn) node.$p.earlyReturn = true;
-            if (cnode.$p.earlyThrow) node.$p.earlyThrow = true;
-          }
+        // A block has no early / explicit completion if it contains no statements that complete in itself or its descendants
+        let blockHasCompletable = false;
+        const anyBranchCompletesExplicit = node.body.every((cnode) => {
           // The last node may be an explicit completion while not an early completion. May be both (nested block with early return).
           // Do not propagate the explicit returns from functions, unless it always throws.
-          if (cnode.type === 'FunctionExpression') {
-            // Ignore completion for this node. It does not affect control flow directly (until called).
-          } else if (cnode.$p.alwaysComplete) {
-            vlog('The block contained at least one explicit completion');
-            node.$p.alwaysComplete = true;
-            node.$p.alwaysReturn = cnode.$p.alwaysReturn;
-            node.$p.alwaysThrow = cnode.$p.alwaysThrow;
+          if ([
+            'IfStatement',
+            'WhileStatement', 'ForInStatement', 'ForOfStatement',
+            'LabeledStatement',
+            'TryStatement',
+            'BlockStatement',
+            'ReturnStatement', 'ThrowStatement', 'BreakStatement'
+          ].includes(cnode.type)) {
+            // These are the nodes that can propagate their completion status to this Block
+            // If they all alwaysCompletes then so does the Block. Otherwise, the block may implicitly
+            // continue in the next statement of the parent (recursively).
+            blockHasCompletable = true; // We must track this separately
+            return cnode.$p.alwaysCompletes?.size > 0;
           }
+
+          // Note: ignore function expressions. consider them to be at the end anyways.
+          return true; // Irrelevant, although we need to find at least one breaking statement too
         });
+        if (blockHasCompletable && anyBranchCompletesExplicit) {
+          // The block alwaysComplets too. Merge all the sets together.
+          if (!node.$p.alwaysCompletes) node.$p.alwaysCompletes = new Set;
+          // Since we already checked it above, we can simply loop over all statements and copy what we do find.
+          node.body.forEach(cnode => cnode.$p.alwaysCompletes?.forEach(pid => node.$p.alwaysCompletes.add(pid)));
+        }
 
         if (parentNode.type === 'IfStatement') {
           ifIds.pop();
@@ -352,15 +357,11 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
             node,
             fdata.globallyUniqueLabelRegistry,
           );
-          addLabelReference(fdata, node.label, parentNode.body, parentIndex);
+          const targetLabelPid = addLabelReference(fdata, node.label, parentNode.body, parentIndex);
 
-          //parentNode.$p.alwaysComplete = true;
-          parentNode.$p.alwaysBreak = true; // TODO: need to do this proper
+          node.$p.alwaysCompletes = new Set([targetLabelPid]); // parent block will consume this
         } else {
-          //parentNode.$p.alwaysComplete = true;
-          parentNode.$p.alwaysBreak = true; // TODO: need to do this proper
-          //parentNode.$p.breakTargets ||= [];
-          //parentNode.$p.breakTargets.push(loopStack[loopStack.length - 1].$p.pid);
+          node.$p.alwaysCompletes = new Set([+loopStack[loopStack.length - 1].$p.pid]); // parent block will consume this
         }
 
         break;
@@ -415,6 +416,19 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         const parentBlock = blockStack[blockStack.length - 1];
         openRefsOnAfterLoop('in', node, parentBlock, path, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack);
 
+        if (node.body.$p.alwaysCompletes?.size) {
+          const forPid = +node.$p.pid;
+          if (node.body.$p.alwaysCompletes.has(forPid)) {
+            // No need to propagate. At least one completion was the break for this loop so
+            // code is able to continue with the next statement after the loop.
+          } else {
+            if (!node.$p.alwaysCompletes) node.$p.alwaysCompletes = new Set;
+            node.body.$p.alwaysCompletes.forEach(pid => {
+              if (pid !== forPid) node.$p.alwaysCompletes.add(pid)
+            });
+          }
+        }
+
         // Pop after the callback because it needs to find the current loop
         loopStack.pop();
         break;
@@ -431,6 +445,19 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       case 'ForOfStatement:after': {
         const parentBlock = blockStack[blockStack.length - 1];
         openRefsOnAfterLoop('of', node, parentBlock, path, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack);
+
+        if (node.body.$p.alwaysCompletes?.size) {
+          const forPid = +node.$p.pid;
+          if (node.body.$p.alwaysCompletes.has(forPid)) {
+            // No need to propagate. At least one completion was the break for this loop so
+            // code is able to continue with the next statement after the loop.
+          } else {
+            if (!node.$p.alwaysCompletes) node.$p.alwaysCompletes = new Set;
+            node.body.$p.alwaysCompletes.forEach(pid => {
+              if (pid !== forPid) node.$p.alwaysCompletes.add(pid)
+            });
+          }
+        }
 
         // Pop after the callback because it needs to find the current loop
         loopStack.pop();
@@ -506,23 +533,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           meta.isImplicitGlobal = false;
         }
 
-        if (node.body.$p.earlyComplete) {
-          vlog('Function contained at least one early completion');
-          node.$p.earlyComplete = node.body.$p.earlyComplete;
-          node.$p.earlyReturn = node.body.$p.earlyReturn;
-          node.$p.earlyThrow = node.body.$p.earlyThrow;
-        } else {
-          vlog('Function does not complete early');
-        }
-        if (node.body.$p.alwaysComplete) {
-          vlog('Function always completes explicitly');
-          node.$p.alwaysComplete = true;
-          node.$p.alwaysReturn = node.body.$p.alwaysReturn;
-          node.$p.alwaysThrow = node.body.$p.alwaysThrow;
-        } else {
-          vlog('Function may complete implicitly');
-          ASSERT(false, 'Function may complete implicitly but it shouldnt');
-        }
         break;
       }
 
@@ -812,17 +822,10 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         const parentBlock = blockStack[blockStack.length - 1];
         openRefsOnAfterIf(node, parentBlock, path, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, blockStack, catchStack);
 
-        if (node.consequent.$p.earlyComplete || node.alternate.$p.earlyComplete) {
-          vlog('At least one branch had an early completion');
-          node.$p.earlyComplete = true;
-          node.$p.earlyReturn = node.consequent.$p.earlyReturn || node.alternate.$p.earlyReturn;
-          node.$p.earlyThrow = node.consequent.$p.earlyThrow || node.alternate.$p.earlyThrow;
-        }
-        if (node.consequent.$p.alwaysComplete && node.alternate.$p.alwaysComplete) {
-          vlog('Both branches complete explicitly');
-          node.$p.alwaysComplete = true;
-          node.$p.alwaysReturn = node.consequent.$p.alwaysReturn && node.alternate.$p.alwaysReturn;
-          node.$p.alwaysThrow = node.consequent.$p.alwaysThrow && node.alternate.$p.alwaysThrow;
+        if (node.consequent.$p.alwaysCompletes?.size && node.alternate.$p.alwaysCompletes?.size) {
+          if (!node.$p.alwaysCompletes) node.$p.alwaysCompletes = new Set;
+          node.consequent.$p.alwaysCompletes.forEach(pid => node.$p.alwaysCompletes.add(pid));
+          node.alternate.$p.alwaysCompletes.forEach(pid => node.$p.alwaysCompletes.add(pid));
         }
 
         break;
@@ -889,21 +892,22 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         break;
       }
       case 'LabeledStatement:after': {
-        if (node.body.$p.earlyComplete) {
-          vlog('Label block/loop contained at least one early completion');
-          node.$p.earlyComplete = true;
-          node.$p.earlyReturn = node.body.$p.earlyReturn;
-          node.$p.earlyThrow = node.body.$p.earlyThrow;
-        }
-        if (node.body.$p.alwaysComplete) {
-          vlog('Label body completes explicitly');
-          node.$p.alwaysComplete = true;
-          node.$p.alwaysReturn = node.body.$p.alwaysReturn;
-          node.$p.alwaysThrow = node.body.$p.alwaysThrow;
-        }
-
         const parentBlock = blockStack[blockStack.length - 1];
         openRefsOnAfterLabel(node, parentBlock, path, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, catchStack);
+
+        if (node.body.$p.alwaysCompletes?.size) {
+          const labelPid = +node.$p.pid;
+          if (node.body.$p.alwaysCompletes.has(labelPid)) {
+            // No need to propagate. At least one completion was a break to this label so
+            // code is able to continue with the next statement after the label.
+          } else {
+            if (!node.$p.alwaysCompletes) node.$p.alwaysCompletes = new Set;
+            node.body.$p.alwaysCompletes.forEach(pid => {
+              if (pid !== labelPid) node.$p.alwaysCompletes.add(pid)
+            });
+          }
+        }
+
         break;
       }
 
@@ -947,11 +951,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
         funcNode.$p.returnNodes.push(node);
 
-        parentNode.$p.alwaysComplete = true;
-        parentNode.$p.alwaysReturn = true;
-        funcNode.$p.alwaysComplete = true;
-        funcNode.$p.alwaysReturn = true;
-        markEarlyCompletion(node, funcNode, true, parentNode);
+        node.$p.alwaysCompletes = new Set([+funcNode.$p.pid]); // parent block will consume this
 
         openRefsOnBeforeReturn(blockStack, node);
 
@@ -968,13 +968,16 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           } else if (a.type !== 'Identifier' || a.name !== b.name) {
             funcNode.$p.commonReturn = null;
           }
-        } else if (!AST.isPrimitive(b)) {
+        }
+        else if (!AST.isPrimitive(b)) {
           vlog('the arg is not a primitive so setting commonReturn to null');
           funcNode.$p.commonReturn = null; // No longer use this
-        } else if (a === undefined) {
+        }
+        else if (a === undefined) {
           vlog('commonReturn was not set so setting it now');
           funcNode.$p.commonReturn = AST.cloneSimple(node.argument);
-        } else if (a.type === b.type) {
+        }
+        else if (a.type === b.type) {
           ASSERT(a.type !== 'Identifier', 'very redundant. hopefully');
           if (b.type === 'Literal') {
             if (a.value !== b.value || a.raw !== b.raw) {
@@ -1018,7 +1021,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
               ASSERT(false, 'what primitive is this?', bb);
             }
           }
-        } else {
+        }
+        else {
           vlog('- There are at least two different node types being returned. Setting commonMark to null');
           funcNode.$p.commonReturn = null; // No longer use this
         }
@@ -1028,7 +1032,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
         break;
       }
-
       case 'ReturnStatement:after': {
         openRefsOnAfterReturn(blockStack, node);
         break;
@@ -1052,24 +1055,17 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
 
       case 'ThrowStatement:before': {
-        // (similar logic to ReturnStatement)
+        // Note: throws can be caught. We have to find the nearest Try or Function boundary, whichever is closer (lowest pid delta)
         const funcNode = funcStack[funcStack.length - 1];
-        parentNode.$p.alwaysComplete = true;
-        parentNode.$p.alwaysThrow = true;
-        funcNode.$p.alwaysComplete = true;
-        funcNode.$p.alwaysThrow = true;
-        markEarlyCompletion(node, funcNode, false, parentNode);
-        node.$p.alwaysComplete = true;
-        node.$p.alwaysThrow = true;
-        // TODO: unless wrapped in a try/catch. Which we don't really track right now.
-        if (funcNode.type === 'FunctionExpression') {
-          funcNode.$p.throwsExplicitly = true;
-        }
+        const tryNode = tryNodeStack[tryNodeStack.length - 1];
+        // Note: Neither node has to exist in which case nearest is still undefined
+        const nearest = !tryNode ? funcNode : !funcNode ? tryNode : (+tryNode.$p.pid < +funcNode.$p.pid ? tryNode : funcNode);
+
+        node.$p.alwaysCompletes = new Set([+nearest.$p.pid]); // parent block will consume this
 
         openRefsOnBeforeThrow(blockStack, node);
         break;
       }
-
       case 'ThrowStatement:after': {
         openRefsOnAfterThrow(blockStack, node);
         break;
@@ -1095,18 +1091,23 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           meta.isCatchVar = true;
         }
 
-        if (node.block.$p.earlyComplete || node.handler?.body.$p.earlyComplete) {
-          vlog('At least one block of the try has an early completion');
-          node.$p.earlyComplete = true;
-          node.$p.earlyReturn = node.block.$p.earlyReturn || node.handler?.body.$p.earlyReturn;
-          node.$p.earlyThrow = node.block.$p.earlyThrow || node.handler?.body.$p.earlyThrow;
+        // Completion is slightly more complicated here
+        // - Remove any throws that target this Try
+        // - The Try only alwaysCompletes when both the Try Block and Catch do it
+        // - In that case the Try gets an union of those sets
+
+        const tryPid = +node.$p.pid;
+        if (node.block.$p.alwaysCompletes?.size && node.handler.body.$p.alwaysCompletes?.size) {
+          // Note: an explicit throw does not prevent propagation because the Catch must
+          // alwaysCompletes too, regardless. Otherwise the statement(s) that follows the
+          // Try might still be visited.
+          if (!node.$p.alwaysCompletes) node.$p.alwaysCompletes = new Set;
+          node.block.$p.alwaysCompletes.forEach(pid => {
+            if (pid !== tryPid) node.$p.alwaysCompletes.add(pid)
+          });
+          node.handler.body.$p.alwaysCompletes.forEach(pid => node.$p.alwaysCompletes.add(pid));
         }
-        if (node.block.$p.alwaysComplete && node.handler?.body.$p.alwaysComplete) {
-          vlog('All blocks of the try complete explicitly');
-          node.$p.alwaysComplete = true;
-          node.$p.alwaysReturn = node.block.$p.alwaysReturn && node.handler?.body.$p.alwaysReturn;
-          node.$p.alwaysThrow = node.block.$p.alwaysThrow && node.handler?.body.$p.alwaysThrow;
-        }
+
         tryNodeStack.pop();
         break;
       }
@@ -1171,6 +1172,19 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       case 'WhileStatement:after': {
         const parentBlock = blockStack[blockStack.length - 1];
         openRefsOnAfterLoop('while', node, parentBlock, path, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack);
+
+        if (node.body.$p.alwaysCompletes?.size) {
+          const whilePid = +node.$p.pid;
+          if (node.body.$p.alwaysCompletes.has(whilePid)) {
+            // No need to propagate. At least one completion was the break for this loop so
+            // code is able to continue with the next statement after the loop.
+          } else {
+            if (!node.$p.alwaysCompletes) node.$p.alwaysCompletes = new Set;
+            node.body.$p.alwaysCompletes.forEach(pid => {
+              if (pid !== whilePid) node.$p.alwaysCompletes.add(pid)
+            });
+          }
+        }
 
         // Pop after the callback because it needs to find the current loop
         loopStack.pop();
@@ -1243,96 +1257,4 @@ function reachAtString(set, what) {
     return `0 ${what}`;
   }
   return `${set.size} ${what} (@ ${Array.from(set).map(r => r.node.$p.pid).join(',')})`;
-}
-
-function isTailNode(completionNode, tailNode) {
-  ASSERT(completionNode);
-  ASSERT(tailNode, 'tailNode must exist', tailNode);
-  // In this context, a tail node is the last node of a function, or the last node of an `if` that is the last
-  // node of a function or the last node of an if that is the last node of a function, repeating.
-  if (completionNode === tailNode) return true;
-  if (tailNode.type === 'IfStatement') {
-    return (
-      (tailNode.consequent.body.length === 0
-        ? false
-        : isTailNode(completionNode, tailNode.consequent.body[tailNode.consequent.body.length - 1])) ||
-      (tailNode.alternate.body.length === 0
-        ? false
-        : isTailNode(completionNode, tailNode.alternate.body[tailNode.alternate.body.length - 1]))
-    );
-  }
-  if (
-    // Loops
-    tailNode.type === 'WhileStatement' ||
-    tailNode.type === 'ForInStatement' ||
-    tailNode.type === 'ForOfStatement'
-  ) {
-    return tailNode.body.body.length === 0 ? false : isTailNode(completionNode, tailNode.body.body[tailNode.body.body.length - 1]);
-  }
-  if (
-    // Try catch. Trickier because we have to consider the best and worst case.
-    tailNode.type === 'TryStatement'
-  ) {
-    // Note: finally was eliminated so the Try must have a Catch
-    // We should try to be conservative and only consider early completions if the completion node
-    // is at the end of the try or catch block. At that point, I don't think it's relevant which block.
-    // Hopefully this isn't a footgun and false positives don't blow up in my face. Eh foot. Eh ... you know.
-    return (
-      (tailNode.block.body.length === 0 ? false : isTailNode(completionNode, tailNode.block.body[tailNode.block.body.length - 1])) ||
-      (!tailNode.handler || tailNode.handler.body.body.length === 0
-        ? false
-        : isTailNode(completionNode, tailNode.handler.body.body[tailNode.handler.body.body.length - 1]))
-    );
-  }
-  if (tailNode.type === 'LabeledStatement') {
-    // Note: body must be either a block or a loop. We generate labels as part of the switch transform and it can also occur in the wild
-    if (tailNode.body.type === 'BlockStatement') {
-      return tailNode.body.body.length === 0 ? false : isTailNode(completionNode, tailNode.body.body[tailNode.body.body.length - 1]);
-    }
-
-    ASSERT(
-      tailNode.body.type === 'WhileStatement' || tailNode.body.type === 'ForInStatement' || tailNode.body.type === 'ForOfStatement',
-      'normalized labels can only have blocks and loops as body',
-    );
-    ASSERT(
-      completionNode !== tailNode.body,
-      'completion node should be a completion and labels can only have blocks and loops as body in normalized code',
-    );
-
-    return false;
-  }
-
-  if (tailNode.type === 'BlockStatement') {
-    ASSERT(false, 'This would be a nested block. I dont think this should happen in normalized code.');
-  }
-
-  return false;
-}
-function markEarlyCompletion(completionNode, funcNode, isReturn, parentNode) {
-  // And early completion is a return/throw/break that is not the last statement of a function.
-  // If the completion is the last statement of a branch then the other branch must not complete or not be last. Recursively.
-
-  // From the end of the function. Check if the statement is the return, in that case bail because this is not early.
-  // If the last statement is not `if`, then consider the completion early since DCE would have removed it otherwise.
-  // If the last statement is an `if` then check if the return is the last statement of either branch. If not, check
-  // if either branch ends with an if. Repeat exhaustively. If the completion was not the last statement of any `if`
-  // in a tail position, then consider it an early completion.
-
-  const body = funcNode.type === 'Program' ? funcNode.body : funcNode.body.body;
-  ASSERT(body.length, 'the function containing this statement should have at least one statement eh');
-  ASSERT(body[body.length - 1], 'body has no holes amirite', funcNode);
-  if (isTailNode(completionNode, body[body.length - 1])) {
-    vlog('markEarlyCompletion(); Completion node was found to be in a tail position of the function. Not an early return.');
-    return;
-  }
-  vlog('markEarlyCompletion(); This was an early completion.');
-
-  parentNode.$p.earlyComplete = true;
-  if (completionNode.type === 'ReturnStatement') parentNode.$p.earlyReturn = true;
-  else if (completionNode.type === 'ThrowStatement') parentNode.$p.earlyThrow = true;
-
-  // TODO: this should automatically propagate to the function. We should add an assertion instead of this so we can verify that the values properly propagate through all statements.
-  funcNode.$p.earlyComplete = true;
-  if (completionNode.type === 'ReturnStatement') funcNode.$p.earlyReturn = true;
-  else if (completionNode.type === 'ThrowStatement') funcNode.$p.earlyThrow = true;
 }

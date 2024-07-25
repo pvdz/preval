@@ -56,7 +56,8 @@ export function createFreshLabelStatement(name, fdata, labelBody) {
 export function addLabelReference(fdata, labelNode, blockArr, index, fromPrepareOrOncePhase = false) {
   ASSERT(labelNode?.type === 'Identifier', 'labels are idents');
   ASSERT(fromPrepareOrOncePhase || Array.isArray(blockArr), 'should receive the block body, not block statements', blockArr);
-  const usages = fdata.globallyUniqueLabelRegistry.get(labelNode.name).usages;
+  const meta = fdata.globallyUniqueLabelRegistry.get(labelNode.name);
+  const usages = meta.usages;
   for (const obj of usages) {
     if (obj.node === labelNode) {
       obj.block = blockArr;
@@ -65,6 +66,7 @@ export function addLabelReference(fdata, labelNode, blockArr, index, fromPrepare
     }
   }
   usages.push({node: labelNode, block: blockArr, index});
+  return +meta.node.$p.pid;
 }
 
 export function removeLabelReference(fdata, labelNode) {

@@ -16,12 +16,12 @@ function f() {
     for (let x of [1, 2]) {
       $('loop', x);
       return $(100, 'return');
-      $('fail');
+      $('unreachable1');
     }
   
-    $('do not visit, do not eliminate');
+    $('unreachable2');
   }
-  $('after (not invoked)');
+  $('unreachable3');
 }
 $(f());
 `````
@@ -37,11 +37,11 @@ let f = function () {
     for (let x of [1, 2]) {
       $(`loop`, x);
       return $(100, `return`);
-      $(`fail`);
+      $(`unreachable1`);
     }
-    $(`do not visit, do not eliminate`);
+    $(`unreachable2`);
   }
-  $(`after (not invoked)`);
+  $(`unreachable3`);
 };
 $(f());
 `````
@@ -63,12 +63,12 @@ let f = function () {
         const tmpReturnArg = $(100, `return`);
         return tmpReturnArg;
       }
-      $(`do not visit, do not eliminate`);
+      $(`unreachable2`);
     } else {
       break;
     }
   }
-  $(`after (not invoked)`);
+  $(`unreachable3`);
   return undefined;
 };
 const tmpCallCallee = $;
@@ -82,24 +82,21 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 let tmpCalleeParam = undefined;
 $inlinedFunction: {
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      $(`loop`);
-      let x = undefined;
-      const tmpForOfDeclRhs = [1, 2];
-      for (x of tmpForOfDeclRhs) {
-        $(`loop`, x);
-        const tmpReturnArg = $(100, `return`);
-        tmpCalleeParam = tmpReturnArg;
-        break $inlinedFunction;
-      }
-      $(`do not visit, do not eliminate`);
-    } else {
-      break;
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    $(`loop`);
+    let x = undefined;
+    const tmpForOfDeclRhs = [1, 2];
+    for (x of tmpForOfDeclRhs) {
+      $(`loop`, x);
+      const tmpReturnArg = $(100, `return`);
+      tmpCalleeParam = tmpReturnArg;
+      break $inlinedFunction;
     }
+    $(`unreachable2`);
+  } else {
+    $(`unreachable3`);
   }
-  $(`after (not invoked)`);
 }
 $(tmpCalleeParam);
 `````
@@ -111,25 +108,22 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 $inlinedFunction: {
-  while (true) {
-    const b = $( true );
-    if (b) {
-      $( "loop" );
-      let c = undefined;
-      const d = [ 1, 2 ];
-      for (c of d) {
-        $( "loop", c );
-        const e = $( 100, "return" );
-        a = e;
-        break $inlinedFunction;
-      }
-      $( "do not visit, do not eliminate" );
+  const b = $( true );
+  if (b) {
+    $( "loop" );
+    let c = undefined;
+    const d = [ 1, 2 ];
+    for (c of d) {
+      $( "loop", c );
+      const e = $( 100, "return" );
+      a = e;
+      break $inlinedFunction;
     }
-    else {
-      break;
-    }
+    $( "unreachable2" );
   }
-  $( "after (not invoked)" );
+  else {
+    $( "unreachable3" );
+  }
 }
 $( a );
 `````

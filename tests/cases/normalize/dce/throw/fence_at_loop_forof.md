@@ -80,24 +80,21 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(`loop`);
-    let x = undefined;
-    const tmpForOfDeclRhs = [1, 2];
-    for (x of tmpForOfDeclRhs) {
-      $(`loop`, x);
-      const tmpThrowArg = $(7, `throw`);
-      throw tmpThrowArg;
-    }
-    $(`do not visit, do not eliminate`);
-  } else {
-    break;
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  $(`loop`);
+  let x = undefined;
+  const tmpForOfDeclRhs = [1, 2];
+  for (x of tmpForOfDeclRhs) {
+    $(`loop`, x);
+    const tmpThrowArg = $(7, `throw`);
+    throw tmpThrowArg;
   }
+  $(`do not visit, do not eliminate`);
+} else {
+  $(`after (not invoked)`);
+  $(undefined);
 }
-$(`after (not invoked)`);
-$(undefined);
 `````
 
 ## PST Output
@@ -105,25 +102,22 @@ $(undefined);
 With rename=true
 
 `````js filename=intro
-while (true) {
-  const a = $( true );
-  if (a) {
-    $( "loop" );
-    let b = undefined;
-    const c = [ 1, 2 ];
-    for (b of c) {
-      $( "loop", b );
-      const d = $( 7, "throw" );
-      throw d;
-    }
-    $( "do not visit, do not eliminate" );
+const a = $( true );
+if (a) {
+  $( "loop" );
+  let b = undefined;
+  const c = [ 1, 2 ];
+  for (b of c) {
+    $( "loop", b );
+    const d = $( 7, "throw" );
+    throw d;
   }
-  else {
-    break;
-  }
+  $( "do not visit, do not eliminate" );
 }
-$( "after (not invoked)" );
-$( undefined );
+else {
+  $( "after (not invoked)" );
+  $( undefined );
+}
 `````
 
 ## Globals

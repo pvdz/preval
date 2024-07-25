@@ -84,19 +84,13 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 let tmpCalleeParam = undefined;
-$inlinedFunction: {
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      $(`loop`);
-      $(`loop`);
-      const tmpReturnArg = $(100, `return`);
-      tmpCalleeParam = tmpReturnArg;
-      break $inlinedFunction;
-    } else {
-      break;
-    }
-  }
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  $(`loop`);
+  $(`loop`);
+  const tmpReturnArg = $(100, `return`);
+  tmpCalleeParam = tmpReturnArg;
+} else {
   $(`after (not invoked)`);
 }
 $(tmpCalleeParam);
@@ -108,20 +102,14 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-$inlinedFunction: {
-  while (true) {
-    const b = $( true );
-    if (b) {
-      $( "loop" );
-      $( "loop" );
-      const c = $( 100, "return" );
-      a = c;
-      break $inlinedFunction;
-    }
-    else {
-      break;
-    }
-  }
+const b = $( true );
+if (b) {
+  $( "loop" );
+  $( "loop" );
+  const c = $( 100, "return" );
+  a = c;
+}
+else {
   $( "after (not invoked)" );
 }
 $( a );

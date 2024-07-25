@@ -61,16 +61,7 @@ $(2);
 
 `````js filename=intro
 $(0);
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $continue: {
-      break;
-    }
-  } else {
-    break;
-  }
-}
+$(true);
 $(2);
 `````
 
@@ -80,17 +71,7 @@ With rename=true
 
 `````js filename=intro
 $( 0 );
-while (true) {
-  const a = $( true );
-  if (a) {
-    $continue: {
-      break;
-    }
-  }
-  else {
-    break;
-  }
-}
+$( true );
 $( 2 );
 `````
 

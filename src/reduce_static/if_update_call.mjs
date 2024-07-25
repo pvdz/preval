@@ -42,7 +42,7 @@ function _ifUpdateCall(fdata) {
     if (beforeWalk) return;
     if (node.type !== 'IfStatement') return;
 
-    if (!node.$p.alwaysComplete) {
+    if (!node.$p.alwaysCompletes?.size) {
       const lastIf = node.consequent.body[node.consequent.body.length - 1];
       const lastElse = node.alternate.body[node.alternate.body.length - 1];
 

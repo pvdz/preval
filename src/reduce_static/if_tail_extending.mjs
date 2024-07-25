@@ -40,9 +40,9 @@ function _ifTailExtending(fdata) {
   function _walker(node, beforeWalk, nodeType, path) {
     if (beforeWalk) return;
     if (node.type !== 'IfStatement') return;
-    // If one branch always complets while the other doesn't then the tail can be moved into the branch that does not always complete.
-    // Note that technically we should already eliminate the tail during DCE when both branches are alwaysComplete :shrug:
-    if (!!node.consequent.$p.alwaysComplete !== !!node.alternate.$p.alwaysComplete) {
+    // If one branch always completes while the other doesn't then the tail can be moved into the branch that does not always complete.
+    // Note that technically we should already eliminate the tail during DCE when both branches are alwaysCompletes :shrug:
+    if (!!node.consequent.$p.alwaysCompletes?.size !== !!node.alternate.$p.alwaysCompletes?.size) {
       const parentNode = path.nodes[path.nodes.length - 2];
       const parentProp = path.props[path.props.length - 1];
       const parentIndex = path.indexes[path.indexes.length - 1];
@@ -107,14 +107,14 @@ function _ifTailExtending(fdata) {
           after(body.slice(index));
         }
       } else {
-        vlog('Next if:', node.$p.pid, ', completes early:', node.consequent.$p.alwaysComplete, ':', node.alternate.$p.alwaysComplete);
+        vlog('Next if:', node.$p.pid, ', completes early:', node.consequent.$p.alwaysCompletes?.size, ':', node.alternate.$p.alwaysCompletes?.size);
 
         rule('If either `if` branch has an early complete, move the tail into the other branch');
         example('if (x) { return; } else { f(); } g();', 'if (x) { return; } else { f(); g(); }');
         before(body.slice(index));
 
         // Move all statements that follow the `if` in the same block as the `if` into the branch that does not complete early
-        if (node.consequent.$p.alwaysComplete) {
+        if (node.consequent.$p.alwaysCompletes?.size) {
           node.alternate.body.push(...body.slice(index + 1));
         } else {
           node.consequent.body.push(...body.slice(index + 1));

@@ -20,6 +20,7 @@ import {
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
+import { createFreshLabelStatement } from '../labels.mjs';
 
 export function infiniteLoops(fdata) {
   group('\n\n\nFind loops that always loop and add a "throw unreachable" after them\n');
@@ -55,19 +56,19 @@ function _infiniteLoops(fdata) {
       }
       case 'ForInStatement:after':
       case 'ForOfStatement:after': {
-        loopStack.pop(node);
+        loopStack.pop();
         break;
       }
       case 'WhileStatement:after': {
-        loopStack.pop(node);
+        loopStack.pop();
         if (node.$p.fakeLoopStuff.length === 0) {
           const parentNode = path.nodes[path.nodes.length - 2];
           const parentProp = path.props[path.props.length - 1];
           const parentIndex = path.indexes[path.indexes.length - 1];
           if ((parentNode.type === 'BlockStatement' || parentNode.type === 'Program') && parentProp === 'body' && parentNode.body[parentIndex + 1]?.type !== 'ThrowStatement') {
 
-            rule('An infinite loop should never be urolled');
-            rule('while (true) {}', 'while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {}');
+            rule('An infinite loop should never be unrolled');
+            example('while (true) {}', 'while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {}');
             before(node);
 
             node.test = AST.identifier('$LOOP_DONE_UNROLLING_ALWAYS_TRUE');
@@ -78,24 +79,49 @@ function _infiniteLoops(fdata) {
           }
         }
 
-        if (node.body.$p.alwaysComplete) {
+        if (node.body.$p.alwaysCompletes?.size) {
           // This loop always breaks, returns, or throws.
           // That means it can never loop. That means we can eliminate the while and replace it with its body...
 
           rule('A loop that never loops can be replaced with its body');
-          example('while (true) { f(); throw x; }', '{ f(); throw x; }');
+          example('while (true) { f(); break; }', 'A: { f(); break A; }');
           before(node);
+
+          // We have to deal with the unlabeled breaks that target this loop and
+          // change them to labeled breaks. The while is replaced with a label
+          // such that breaks remain. This is necessary to preserve TDZ dead code
+          // for otherwise the code gets revived when removing a preceding break.
+          // Other rules would need to eliminate the breaks safely.
+
+          const wrapper = node.body;
+          const newLabelNode = createFreshLabelStatement('fakeLoop', fdata, wrapper);
+          const newLabelIdentNode = newLabelNode.label;
+
+          let haveBreaks = false;
+          walk(confirmWalk, node.body, 'ast');
+          function confirmWalk(node, beforeWalk, nodeType, path) {
+            if (['ForOfStatement', 'ForInStatement', 'WhileStatement', 'FunctionExpression'].includes(nodeType)) {
+              // Don't visit nested loops or functions
+              return true;
+            }
+            if (!beforeWalk && node.type === 'BreakStatement' && node.label === null) {
+              node.label = AST.identifier(newLabelIdentNode.name);
+              haveBreaks = true;
+            }
+          }
 
           const parentNode = path.nodes[path.nodes.length - 2];
           const parentProp = path.props[path.props.length - 1];
           const parentIndex = path.indexes[path.indexes.length - 1];
 
-          parentNode[parentProp][parentIndex] = node.body;
-          queue.push({index: parentIndex, func: () => {
-            parentNode[parentProp].splice(parentIndex, 1, ...node.body.body);
-          }});
+          // Not sure the queue is still necessary as all statements retain their body now (they didn't before)
 
-          after(parentNode[parentProp][parentIndex]);
+          //parentNode[parentProp][parentIndex] = node.body;
+          //queue.push({index: parentIndex, func: () => {
+            parentNode.body[parentIndex] = newLabelNode;
+          //}});
+
+          after(parentNode.body[parentIndex]);
           ++changed;
         }
         break;

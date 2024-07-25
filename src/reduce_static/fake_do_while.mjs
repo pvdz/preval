@@ -83,8 +83,8 @@ function _fakeDoWhile(fdata) {
         if (prev.type !== 'VariableDeclaration' || prev.declarations[0].id.name !== testName) return; // Prev statement not a let of the test
 
         if (AST.isTruthy(prev.declarations[0].init)) {
-          if (!ifStmt.alternate.$p.alwaysComplete && !ifStmt.alternate.$p.alwaysBreak) {
-            vlog('- Pattern matches but alternate branch does not always complete, bailing', ifStmt.$p.alwaysComplete, ifStmt.consequent.$p.alwaysComplete, ifStmt.alternate.$p.alwaysComplete, ifStmt.consequent.$p, ifStmt.alternate.$p);
+          if (!ifStmt.alternate.$p.alwaysCompletes?.size) {
+            vlog('- The pattern matches but alternate branch does not always complete, bailing', ifStmt.$p.alwaysCompletes, ifStmt.consequent.$p.alwaysCompletes, ifStmt.alternate.$p.alwaysCompletes, ifStmt.consequent.$p, ifStmt.alternate.$p);
             break;
           }
 
@@ -105,8 +105,8 @@ function _fakeDoWhile(fdata) {
           after(parentNode[parentProp][parentIndex]);
           ++changed;
         } else if (AST.isFalsy(prev.declarations[0].init)) {
-          if (!ifStmt.consequent.$p.alwaysComplete && !ifStmt.consequent.$p.alwaysBreak) {
-            vlog('- Pattern matches but consequent branch does not always complete, bailing', ifStmt.$p.alwaysComplete, ifStmt.consequent.$p.alwaysComplete, ifStmt.alternate.$p.alwaysComplete, ifStmt.consequent.$p, ifStmt.alternate.$p);
+          if (!ifStmt.consequent.$p.alwaysCompletes?.size) {
+            vlog('- The pattern matches but consequent branch does not always complete, bailing', ifStmt.$p.alwaysCompletes, ifStmt.consequent.$p.alwaysCompletes, ifStmt.alternate.$p.alwaysCompletes, ifStmt.consequent.$p, ifStmt.alternate.$p);
             break;
           }
 

@@ -89,18 +89,15 @@ $inlinedFunction: {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
       $(`loop`);
-      while (true) {
-        const tmpIfTest$1 = $(true);
-        if (tmpIfTest$1) {
-          $(`loop`);
-          const tmpReturnArg = $(100, `return`);
-          tmpCalleeParam = tmpReturnArg;
-          break $inlinedFunction;
-        } else {
-          break;
-        }
+      const tmpIfTest$1 = $(true);
+      if (tmpIfTest$1) {
+        $(`loop`);
+        const tmpReturnArg = $(100, `return`);
+        tmpCalleeParam = tmpReturnArg;
+        break $inlinedFunction;
+      } else {
+        $(`do not visit, do not eliminate`);
       }
-      $(`do not visit, do not eliminate`);
     } else {
       break;
     }
@@ -121,19 +118,16 @@ $inlinedFunction: {
     const b = $( true );
     if (b) {
       $( "loop" );
-      while (true) {
-        const c = $( true );
-        if (c) {
-          $( "loop" );
-          const d = $( 100, "return" );
-          a = d;
-          break $inlinedFunction;
-        }
-        else {
-          break;
-        }
+      const c = $( true );
+      if (c) {
+        $( "loop" );
+        const d = $( 100, "return" );
+        a = d;
+        break $inlinedFunction;
       }
-      $( "do not visit, do not eliminate" );
+      else {
+        $( "do not visit, do not eliminate" );
+      }
     }
     else {
       break;

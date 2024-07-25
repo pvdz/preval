@@ -202,7 +202,7 @@ function _tryEscaping(fdata) {
       if (
         firstNode.type === 'IfStatement' &&
         node.block.body.length > 1 &&
-        !firstNode.consequent.$p.alwaysComplete // If true, guaranteed to do one of return/throw/break
+        !firstNode.consequent.$p.alwaysCompletes?.size // If true, guaranteed to do one of return/throw/break
       ) {
         vlog('If is not only node of Try and consequent does not always-complete so cannot lift it safely');
         return 'no';
@@ -226,7 +226,7 @@ function _tryEscaping(fdata) {
       if (
         firstNode.type === 'IfStatement' &&
         node.block.body.length > 1 &&
-        !firstNode.alternate.$p.alwaysComplete // If true, guaranteed to do one of return/throw/break
+        !firstNode.alternate.$p.alwaysCompletes?.size // If true, guaranteed to do one of return/throw/break
       ) {
         vlog('If is not only node of Try and alternate does not always-complete so cannot lift it safely');
         return 'no';

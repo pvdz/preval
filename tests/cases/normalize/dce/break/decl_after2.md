@@ -1,8 +1,8 @@
 # Preval test case
 
-# decl_after.md
+# decl_after2.md
 
-> Normalize > Dce > Break > Decl after
+> Normalize > Dce > Break > Decl after2
 >
 > Can we DCE without worrying about things?
 
@@ -13,23 +13,42 @@ When eliminating dead code we can scan for any declarations and either mark all 
 ## Input
 
 `````js filename=intro
-while ($(true)) {
-  if ($(false)) x = $('fail too');
-  break;
-  
-  let x = $('fail (dead code)');
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    const tmpIfTest$1 = $(false);
+    if (tmpIfTest$1) {
+      $(`fail too`);
+      throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
+    } else {
+      break;
+      $(`fail (dead code)`);
+    }
+  } else {
+    break;
+  }
 }
-$('after');
+$(`after`);
 `````
 
 ## Pre Normal
 
 
 `````js filename=intro
-while ($(true)) {
-  if ($(false)) $(`fail too`), $throwTDZError(`Preval: TDZ triggered for this assignment: x = \$('fail too')`);
-  break;
-  let x = $(`fail (dead code)`);
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    const tmpIfTest$1 = $(false);
+    if (tmpIfTest$1) {
+      $(`fail too`);
+      throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
+    } else {
+      break;
+      $(`fail (dead code)`);
+    }
+  } else {
+    break;
+  }
 }
 $(`after`);
 `````
@@ -47,7 +66,6 @@ while (true) {
       throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
     } else {
       break;
-      let x = $(`fail (dead code)`);
     }
   } else {
     break;

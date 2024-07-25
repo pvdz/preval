@@ -82,24 +82,21 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 let tmpCalleeParam = undefined;
 $inlinedFunction: {
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      $(`loop`);
-      let x = undefined;
-      const tmpForInDeclRhs = { a: 1, b: 2 };
-      for (x in tmpForInDeclRhs) {
-        $(`loop`, x);
-        const tmpReturnArg = $(100, `return`);
-        tmpCalleeParam = tmpReturnArg;
-        break $inlinedFunction;
-      }
-      $(`fail`);
-    } else {
-      break;
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    $(`loop`);
+    let x = undefined;
+    const tmpForInDeclRhs = { a: 1, b: 2 };
+    for (x in tmpForInDeclRhs) {
+      $(`loop`, x);
+      const tmpReturnArg = $(100, `return`);
+      tmpCalleeParam = tmpReturnArg;
+      break $inlinedFunction;
     }
+    $(`fail`);
+  } else {
+    $(`after (not invoked but should not be eliminated)`);
   }
-  $(`after (not invoked but should not be eliminated)`);
 }
 $(tmpCalleeParam);
 `````
@@ -111,28 +108,25 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 $inlinedFunction: {
-  while (true) {
-    const b = $( true );
-    if (b) {
-      $( "loop" );
-      let c = undefined;
-      const d = {
-        a: 1,
-        b: 2,
-      };
-      for (c in d) {
-        $( "loop", c );
-        const e = $( 100, "return" );
-        a = e;
-        break $inlinedFunction;
-      }
-      $( "fail" );
+  const b = $( true );
+  if (b) {
+    $( "loop" );
+    let c = undefined;
+    const d = {
+      a: 1,
+      b: 2,
+    };
+    for (c in d) {
+      $( "loop", c );
+      const e = $( 100, "return" );
+      a = e;
+      break $inlinedFunction;
     }
-    else {
-      break;
-    }
+    $( "fail" );
   }
-  $( "after (not invoked but should not be eliminated)" );
+  else {
+    $( "after (not invoked but should not be eliminated)" );
+  }
 }
 $( a );
 `````

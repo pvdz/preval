@@ -180,14 +180,11 @@ $inlinedFunction: {
   const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$7) {
     $(`one`);
-    while (true) {
-      const tmpIfTest$9 = $(1);
-      if (tmpIfTest$9) {
-        $(2);
-        break $inlinedFunction;
-      } else {
-        break;
-      }
+    const tmpIfTest$9 = $(1);
+    if (tmpIfTest$9) {
+      $(2);
+      break $inlinedFunction;
+    } else {
     }
   } else {
   }
@@ -244,15 +241,10 @@ $inlinedFunction: {
   const g = b <= 0;
   if (g) {
     $( "one" );
-    while (true) {
-      const h = $( 1 );
-      if (h) {
-        $( 2 );
-        break $inlinedFunction;
-      }
-      else {
-        break;
-      }
+    const h = $( 1 );
+    if (h) {
+      $( 2 );
+      break $inlinedFunction;
     }
   }
   const i = b <= 1;

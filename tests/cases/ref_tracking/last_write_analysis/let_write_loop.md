@@ -61,8 +61,8 @@ $(simplifyMe);
 
 
 `````js filename=intro
-const useless = new $(1);
-let simplifyMe = useless;
+new $(1);
+let simplifyMe = 1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   const tmp = $(1);
@@ -80,17 +80,17 @@ $(simplifyMe);
 With rename=true
 
 `````js filename=intro
-const a = new $( 1 );
-let b = a;
+new $( 1 );
+let a = 1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const c = $( 1 );
-  b = c;
-  if (c) {
+  const b = $( 1 );
+  a = b;
+  if (b) {
     break;
   }
 }
-$( b );
+$( a );
 `````
 
 ## Globals

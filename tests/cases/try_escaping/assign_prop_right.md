@@ -77,7 +77,8 @@ $(a);
 
 
 `````js filename=intro
-let a = $(1);
+$(1);
+let a = 1;
 const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   a = arr[286];
@@ -99,7 +100,8 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = $( 1 );
+$( 1 );
+let a = 1;
 const b = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k" ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   a = b[ 286 ];

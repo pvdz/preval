@@ -7,6 +7,7 @@
 // tests/cases/unwind_loops/counter_test/unroll_option_too_low.md used to be able to eliminate the array entirely
 // tests/cases/ssa/back2back_x_x_plus_1_assign42.md -> was able to SSA the x but somehow this stopped working after label extending.
 // Apparently tests/cases/templates/nested_multi.md broke a long time ago
+// tests/cases/import/import_default_named_class.md -> ref tracking: exported let/const decls should get the same treatment as escaping closures (read any write)
 
 // TODO:
 
@@ -44,4 +45,4 @@
 // Support async and generator functions in inlineSimpleFuncCalls / reduce_static/simple_funcs.mjs
 // tests/cases/function/pure_function_inlining.md -> Take it the last step and outline the tail end of the string too so the function can be eliminated
 // tests/cases/normalize/expressions/assignments/for_b/auto_ident_upd_pi_simple.md -> We were able to eliminate the objlit because we knew it was unobserved.
-// tests/cases/normalize/dce/return/fence_at_loop_forof.md -> the for is always breaking so the next statement is dead (the unreachables are left behind at the time of writing)
+// tests/cases/import/import_default_named_class.md -> why is x an implicit global?

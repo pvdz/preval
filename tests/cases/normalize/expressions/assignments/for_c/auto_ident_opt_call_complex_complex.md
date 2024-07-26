@@ -73,12 +73,12 @@ if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$2 = $(1);
     if (tmpIfTest$2) {
-      const tmpChainElementCall$2 = $($);
-      const tmpIfTest$4 = tmpChainElementCall$2 == null;
+      const tmpChainElementCall$1 = $($);
+      const tmpIfTest$4 = tmpChainElementCall$1 == null;
       if (tmpIfTest$4) {
       } else {
         const tmpCalleeParam$1 = $(1);
-        $dotCall(tmpChainElementCall$2, $, tmpCalleeParam$1);
+        $dotCall(tmpChainElementCall$1, $, tmpCalleeParam$1);
       }
     } else {
       break;

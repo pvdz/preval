@@ -17,7 +17,7 @@ if (x) {
 } else {
   $(`Preval: Cannot write to const binding \`a\``);
 }
-$(x)
+$(x);
 `````
 
 ## Pre Normal
@@ -55,13 +55,13 @@ $(x);
 
 `````js filename=intro
 const a = $(67636);
-const x = a === 67636;
+let x = a !== 67636;
 if (x) {
-  $(`Preval: Cannot write to const binding \`a\``);
-  $(false);
+  x = true;
 } else {
-  throw `Preval: Cannot write to const binding \`a\``;
+  $(`Preval: Cannot write to const binding \`a\``);
 }
+$(x);
 `````
 
 ## PST Output
@@ -70,14 +70,14 @@ With rename=true
 
 `````js filename=intro
 const a = $( 67636 );
-const b = a === 67636;
+let b = a !== 67636;
 if (b) {
-  $( "Preval: Cannot write to const binding `a`" );
-  $( false );
+  b = true;
 }
 else {
-  throw "Preval: Cannot write to const binding `a`";
+  $( "Preval: Cannot write to const binding `a`" );
 }
+$( b );
 `````
 
 ## Globals

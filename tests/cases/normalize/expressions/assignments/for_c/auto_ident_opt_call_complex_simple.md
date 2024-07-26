@@ -68,11 +68,11 @@ if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$2 = $(1);
     if (tmpIfTest$2) {
-      const tmpChainElementCall$2 = $($);
-      const tmpIfTest$4 = tmpChainElementCall$2 == null;
+      const tmpChainElementCall$1 = $($);
+      const tmpIfTest$4 = tmpChainElementCall$1 == null;
       if (tmpIfTest$4) {
       } else {
-        $dotCall(tmpChainElementCall$2, $, 1);
+        $dotCall(tmpChainElementCall$1, $, 1);
       }
     } else {
       break;

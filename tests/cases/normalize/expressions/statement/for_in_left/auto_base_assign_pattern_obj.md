@@ -53,7 +53,7 @@ $(a, b);
 
 
 `````js filename=intro
-let b = {};
+let b = 1;
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
@@ -73,7 +73,7 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-let a = {};
+let a = 1;
 const b = {
   a: 999,
   b: 1000,

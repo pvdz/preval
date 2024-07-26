@@ -55,7 +55,8 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
+arrPatternSplat[0];
+let a = 1;
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
 let tmpForOfLhsNode = undefined;
@@ -81,7 +82,8 @@ const a = {
   b: 1000,
 };
 const b = [ ... a ];
-let c = b[ 0 ];
+b[ 0 ];
+let c = 1;
 const d = { x: 1 };
 const e = $( d );
 let f = undefined;

@@ -66,7 +66,6 @@ if ($) {
   const tmpClusterSSA_cTmp = $($);
   $(tmpClusterSSA_cTmp);
 } else {
-  c;
   $(c);
 }
 `````
@@ -83,7 +82,6 @@ if ($) {
   $( a );
 }
 else {
-  c;
   $( c );
 }
 `````

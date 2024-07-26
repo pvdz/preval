@@ -48,6 +48,53 @@ function _refTracked(fdata) {
   });
 
   function processBinding(meta, name) {
+    if (!meta.reads.length) {
+      meta.writes.forEach(write => {
+        if (write.parentNode.type === 'VariableDeclarator') {
+          if (meta.writes.every(write => write.kind === 'assign' || write.kind === 'var')) {
+            queue.push({
+              index: write.blockIndex,
+              func: () => {
+                // Covered by tests/cases/arguments/arg_spread_stmt2.md
+                rule('A binding with only writes can be eliminated; var decl');
+                example('let x = 1; x = 2; x = 3;', '1; 2; 3;');
+                before(write.blockBody[write.blockIndex]);
+
+                if (write.parentNode.init.type === 'Param' || write.parentNode.init.type === 'FunctionExpression') {
+                  write.blockBody[write.blockIndex] = AST.emptyStatement();
+                } else {
+                  write.blockBody[write.blockIndex] = AST.expressionStatement(write.parentNode.init);
+                }
+
+                after(write.blockBody[write.blockIndex]);
+              }
+            });
+            ++changed;
+            return;
+          } else {
+            // keep; binding used in for-in/of or something
+          }
+        } else if (write.kind === 'assign') {
+          queue.push({
+            index: write.blockIndex,
+            func: () => {
+              // Covered by tests/cases/arr_mutation/loop_access_of_const.md
+              rule('A binding with only writes can be eliminated; var decl');
+              example('let x = 1; x = 2; x = 3;', '1; 2; 3;');
+              before(write.blockBody[write.blockIndex]);
+
+              write.blockBody[write.blockIndex] = AST.expressionStatement(write.parentNode.right);
+
+              after(write.blockBody[write.blockIndex]);
+            }
+          });
+          ++changed;
+          return;
+        }
+      });
+      return;
+    }
+
     meta.rwOrder.forEach((ref => {
       if (ref.kind === 'read') {
         const read = ref;
@@ -120,58 +167,13 @@ function _refTracked(fdata) {
           }
         }
       }
-      else if (!meta.reads.length) {
-        meta.writes.forEach(write => {
-          if (write.parentNode.type === 'VariableDeclarator') {
-            if (meta.writes.every(write => write.kind === 'assign' || write.kind === 'var')) {
-              queue.push({
-                index: write.blockIndex,
-                func: () => {
-                  // Covered by tests/cases/arguments/arg_spread_stmt2.md
-                  rule('A binding with only writes can be eliminated; var decl');
-                  example('let x = 1; x = 2; x = 3;', '1; 2; 3;');
-                  before(write.blockBody[write.blockIndex]);
-
-                  if (write.parentNode.init.type === 'Param' || write.parentNode.init.type === 'FunctionExpression') {
-                    write.blockBody[write.blockIndex] = AST.emptyStatement();
-                  } else {
-                    write.blockBody[write.blockIndex] = AST.expressionStatement(write.parentNode.init);
-                  }
-
-                  after(write.blockBody[write.blockIndex]);
-                }
-              });
-              ++changed;
-              return;
-            } else {
-              // keep; binding used in for-in/of or something
-            }
-          } else if (write.kind === 'assign') {
-            queue.push({
-              index: write.blockIndex,
-              func: () => {
-                // Covered by tests/cases/arr_mutation/loop_access_of_const.md
-                rule('A binding with only writes can be eliminated; var decl');
-                example('let x = 1; x = 2; x = 3;', '1; 2; 3;');
-                before(write.blockBody[write.blockIndex]);
-
-                write.blockBody[write.blockIndex] = AST.expressionStatement(write.parentNode.right);
-
-                after(write.blockBody[write.blockIndex]);
-              }
-            });
-            ++changed;
-            return;
-          }
-        })
-      }
-      else if (ref.kind === 'write') {
+      else if (ref.kind === 'assign' || ref.kind === 'var') {
         const write = ref;
         ASSERT(write.reachedByReads, 'ref tracking should create this');
         ASSERT(write.reachedByWrites, 'ref tracking should create this');
 
         if (write.reachedByReads.size === 0) {
-          if (write.parentNode.type === 'AssignmentExpression') {
+          if (ref.kind === 'assign') {
             // TODO: this works fine for complex nodes too but in that case tainting other binding caches (rhs or lhs) is a risk. Not for primitives.
             //if (AST.isPrimitive(write.parentNode.right)) {
               queue.push({
@@ -181,15 +183,18 @@ function _refTracked(fdata) {
                   example('let x = 1; x = 2; x = 3;', 'let x = 1; x; 2; x = 3;');
                   before(write.blockBody[write.blockIndex]);
 
-                  write.blockBody.splice(
-                    write.blockIndex, 1,
-                    AST.expressionStatement(write.parentNode.left),
-                    AST.expressionStatement(write.parentNode.right)
-                  );
-
-                  after(write.blockBody[write.blockIndex]);
-                  after(write.blockBody[write.blockIndex + 1]);
-                  todo
+                  if (AST.isPrimitive(write.parentNode.right) || write.parentNode.right.type === 'Param') {
+                    write.blockBody[write.blockIndex] = AST.expressionStatement(write.parentNode.left);
+                    after(write.blockBody[write.blockIndex]);
+                  } else {
+                    write.blockBody.splice(
+                      write.blockIndex, 1,
+                      AST.expressionStatement(write.parentNode.left),
+                      AST.expressionStatement(write.parentNode.right)
+                    );
+                    after(write.blockBody[write.blockIndex]);
+                    after(write.blockBody[write.blockIndex + 1]);
+                  }
                 }
               });
               ++changed;
@@ -198,34 +203,37 @@ function _refTracked(fdata) {
             //  vlog('RHS is not a primitive:', write.parentNode.right.type);
             //}
           }
-          else if (write.parentNode.type === 'VariableDeclarator') {
+          else if (ref.kind === 'var') {
             // TODO: same if it's a builtin or other "predictable" value. But maybe another rule would already do this anyways?
-            // Ignore undefined because that's our base case
-            //if (AST.isPrimitive(write.parentNode.init) && !AST.isUndefined(write.parentNode.init)) {
+            // Ignore primitives to prevent infinite transform loop with the "conditionally initliazed lets" rule.
+            // There is room for improvement here; in particular deduping large strings.
+            if (!AST.isPrimitive(write.parentNode.init)) {
               queue.push({
                 index: write.blockIndex,
                 func: () => {
                   rule('A write that is not reached by any read can be eliminated');
-                  example('let x = 1; x = 2;', 'let x = undefined; 1; x = 2;');
+                  example('let x = {}; x = 2;', 'let x = 1; 1; x = 2;');
                   before(write.blockBody[write.blockIndex]);
 
-                  write.blockBody.splice(
-                    write.blockIndex, 1,
-                    AST.expressionStatement(write.parentNode.id),
-                    AST.expressionStatement(write.parentNode.init)
-                  );
+                  if (write.parentNode.init.type !== 'Param') {
+                    write.blockBody.splice(write.blockIndex, 0, AST.expressionStatement(write.parentNode.init));
+                  }
+                  // Use something that is truthy. The value can't be falsy because that would have to be a primitive
+                  // and those won't get here. Using a truthy value causes some tricks to still succeed like
+                  // `let x = {}; ... x = function(){}; if (x) ...` where x is only assigned truthys.
+                  // If the value is not a primitive then we should probably check the typing stuff too.
+                  write.parentNode.init = AST.primitive(1);
 
                   after(write.blockBody[write.blockIndex]);
                   after(write.blockBody[write.blockIndex + 1]);
-                  todo
                 }
               });
 
               ++changed;
               return;
-            //} else {
-            //  vlog('Init is not a primitive:', write.parentNode.init.type);
-            //}
+            } else {
+              vlog('Init is not a primitive:', write.parentNode.init.type);
+            }
           }
           else {
             // for-x/for-in ?
@@ -236,8 +244,7 @@ function _refTracked(fdata) {
           return;
         }
       }
-    }))
-
+    }));
 
   }
 

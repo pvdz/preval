@@ -49,7 +49,7 @@ $(a);
 
 
 `````js filename=intro
-let a = 999;
+let a = 1;
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
 let tmpForOfLhsNode = undefined;
@@ -67,7 +67,7 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = 999;
+let a = 1;
 const b = { x: 1 };
 const c = $( b );
 let d = undefined;

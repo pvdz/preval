@@ -63,7 +63,7 @@ $(a);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let a = 1;
 const tmpIfTest = $(1);
 let tmpCalleeParam = undefined;
 if (tmpIfTest) {
@@ -96,10 +96,7 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
+let a = 1;
 const b = $( 1 );
 let c = undefined;
 if (b) {

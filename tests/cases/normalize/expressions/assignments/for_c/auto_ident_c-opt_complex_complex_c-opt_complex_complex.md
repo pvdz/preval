@@ -94,12 +94,12 @@ if (tmpIfTest) {
       if (tmpIfTest$4) {
       } else {
         const tmpChainRootComputed$2 = $(`x`);
-        const tmpChainElementObject$2 = tmpChainElementCall$1[tmpChainRootComputed$2];
-        const tmpIfTest$6 = tmpChainElementObject$2 == null;
+        const tmpChainElementObject$1 = tmpChainElementCall$1[tmpChainRootComputed$2];
+        const tmpIfTest$6 = tmpChainElementObject$1 == null;
         if (tmpIfTest$6) {
         } else {
           const tmpChainRootComputed$4 = $(`y`);
-          tmpChainElementObject$2[tmpChainRootComputed$4];
+          tmpChainElementObject$1[tmpChainRootComputed$4];
         }
       }
     } else {

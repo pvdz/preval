@@ -61,9 +61,8 @@ $(x);
 `````
 
 `````js filename=x
-let X = class {};
+const X = class {};
 export { X };
-X = 10;
 `````
 
 ## PST Output
@@ -71,19 +70,17 @@ X = 10;
 With rename=true
 
 `````js filename=intro
-let a = class   {
+const a = class   {
 
 };
 export { a as X };
-a = 10;
 `````
 
 `````js filename=x
-let a = class   {
+const a = class   {
 
 };
 export { a as X };
-a = 10;
 `````
 
 ## Globals

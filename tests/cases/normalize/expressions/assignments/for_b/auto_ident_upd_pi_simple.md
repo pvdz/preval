@@ -55,7 +55,7 @@ $(a, b);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let a = 1;
 $(1);
 $(1);
 $(1);
@@ -85,10 +85,7 @@ $(a, tmpClusterSSA_b$2);
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
+let a = 1;
 $( 1 );
 $( 1 );
 $( 1 );

@@ -65,7 +65,7 @@ $(a, b, c, d);
 `````js filename=intro
 const b = { x: 1 };
 const c = { y: 2 };
-let a = { a: 999, b: 1000 };
+let a = 1;
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
 let tmpForOfLhsNode = undefined;
@@ -90,10 +90,7 @@ With rename=true
 `````js filename=intro
 const a = { x: 1 };
 const b = { y: 2 };
-let c = {
-  a: 999,
-  b: 1000,
-};
+let c = 1;
 const d = { x: 1 };
 const e = $( d );
 let f = undefined;

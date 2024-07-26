@@ -16,10 +16,10 @@ function f() {
     for (let x of [1, 2]) {
       $('loop', x);
       return $(100, 'return');
-      $('unreachable1');
+      $('unreachable');
     }
   
-    $('unreachable2');
+    $('unreachable2 (but keep because the for body may not be visited...)');
   }
   $('unreachable3');
 }
@@ -37,9 +37,9 @@ let f = function () {
     for (let x of [1, 2]) {
       $(`loop`, x);
       return $(100, `return`);
-      $(`unreachable1`);
+      $(`unreachable`);
     }
-    $(`unreachable2`);
+    $(`unreachable2 (but keep because the for body may not be visited...)`);
   }
   $(`unreachable3`);
 };
@@ -63,7 +63,7 @@ let f = function () {
         const tmpReturnArg = $(100, `return`);
         return tmpReturnArg;
       }
-      $(`unreachable2`);
+      $(`unreachable2 (but keep because the for body may not be visited...)`);
     } else {
       break;
     }
@@ -93,7 +93,7 @@ $inlinedFunction: {
       tmpCalleeParam = tmpReturnArg;
       break $inlinedFunction;
     }
-    $(`unreachable2`);
+    $(`unreachable2 (but keep because the for body may not be visited...)`);
   } else {
     $(`unreachable3`);
   }
@@ -119,7 +119,7 @@ $inlinedFunction: {
       a = e;
       break $inlinedFunction;
     }
-    $( "unreachable2" );
+    $( "unreachable2 (but keep because the for body may not be visited...)" );
   }
   else {
     $( "unreachable3" );

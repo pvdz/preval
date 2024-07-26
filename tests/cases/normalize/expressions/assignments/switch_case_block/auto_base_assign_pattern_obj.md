@@ -64,7 +64,6 @@ $(a, b);
 
 
 `````js filename=intro
-const b = {};
 const a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
@@ -76,6 +75,7 @@ if (tmpIfTest) {
   const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
   $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
 } else {
+  const b = {};
   $(a, b);
 }
 `````
@@ -85,23 +85,23 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = {};
-const b = {
+const a = {
   a: 999,
   b: 1000,
 };
+const b = $( 1 );
 const c = $( 1 );
-const d = $( 1 );
-const e = c === d;
-if (e) {
-  const f = $( 2 );
-  const g = { b: f };
-  const h = $( g );
-  const i = h.b;
-  $( h, i );
+const d = b === c;
+if (d) {
+  const e = $( 2 );
+  const f = { b: e };
+  const g = $( f );
+  const h = g.b;
+  $( g, h );
 }
 else {
-  $( b, a );
+  const i = {};
+  $( a, i );
 }
 `````
 

@@ -22,7 +22,17 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-for (let x in (a = $(b)[$(`c`)]));
+{
+  let tmpForInGen = $forIn((a = $(b)[$(`c`)]));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+    }
+  }
+}
 $(a, b);
 `````
 
@@ -32,12 +42,20 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forIn;
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $(`c`);
 a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-let tmpForInDeclRhs = a;
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+let tmpCalleeParam = a;
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
 }
 $(a, b);
 `````
@@ -50,8 +68,15 @@ const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $(`c`);
 const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-let x = undefined;
-for (x in tmpClusterSSA_a) {
+const tmpForInGen = $forIn(tmpClusterSSA_a);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
 $(tmpClusterSSA_a, b);
 `````
@@ -65,9 +90,16 @@ const a = { c: 1 };
 const b = $( a );
 const c = $( "c" );
 const d = b[ c ];
-let e = undefined;
-for (e in d) {
-
+const e = $forIn( d );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const f = e.next();
+  const g = f.done;
+  if (g) {
+    break;
+  }
+  else {
+    f.value;
+  }
 }
 $( d, a );
 `````

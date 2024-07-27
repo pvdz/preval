@@ -22,7 +22,17 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-for (let x in (a = (1, 2, b)[$(`c`)] = $(b)[$(`d`)]));
+{
+  let tmpForInGen = $forIn((a = (1, 2, b)[$(`c`)] = $(b)[$(`d`)]));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+    }
+  }
+}
 $(a, b);
 `````
 
@@ -32,6 +42,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forIn;
 const tmpNestedAssignComMemberObj = b;
 const tmpNestedAssignComMemberProp = $(`c`);
 const tmpCompObj = $(b);
@@ -40,9 +51,16 @@ const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
-let tmpForInDeclRhs = a;
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+let tmpCalleeParam = a;
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
 }
 $(a, b);
 `````
@@ -57,8 +75,15 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-let x = undefined;
-for (x in tmpNestedAssignPropRhs) {
+const tmpForInGen = $forIn(tmpNestedAssignPropRhs);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
 $(tmpNestedAssignPropRhs, b);
 `````
@@ -77,9 +102,16 @@ const c = $( b );
 const d = $( "d" );
 const e = c[ d ];
 b[a] = e;
-let f = undefined;
-for (f in e) {
-
+const f = $forIn( e );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const g = f.next();
+  const h = g.done;
+  if (h) {
+    break;
+  }
+  else {
+    g.value;
+  }
 }
 $( e, b );
 `````

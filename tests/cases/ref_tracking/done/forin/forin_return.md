@@ -34,47 +34,61 @@ $(f());
 let f___4__ = function () {
   debugger;
   const obj___10__ = { a___13__: 10, b___16__: 20 };
-  const tmpForInDeclRhs___20__ = obj___21__;
-  let x___24__ = undefined___25__;
-  for (x___27__ in tmpForInDeclRhs___28__) /*29*/ {
-    const tmpReturnArg___32__ = $(1, `return`);
-    return tmpReturnArg___40__;
+  let tmpForInGen___20__ = $forIn___22__(obj___23__);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___25__) {
+    /*26*/ let tmpForInNext___29__ = tmpForInGen___32__.next___33__();
+    const tmpIfTest___36__ = tmpForInNext___38__.done___39__;
+    if (tmpIfTest___41__) {
+      /*42*/ break;
+    } /*44*/ else {
+      const x___47__ = tmpForInNext___49__.value___50__;
+      const tmpReturnArg___53__ = $(1, `return`);
+      return tmpReturnArg___61__;
+    }
   }
   $(`keep, do not eval`);
-  return undefined___47__;
+  return undefined___68__;
 };
-const tmpCallCallee___50__ = $;
-const tmpCalleeParam___54__ = f___56__();
-tmpCallCallee___59__(tmpCalleeParam___60__);
+const tmpCallCallee___71__ = $;
+const tmpCalleeParam___75__ = f___77__();
+tmpCallCallee___80__(tmpCalleeParam___81__);
 `````
 
 Ref tracking result:
 
-                    | reads      | read by     | overWrites     | overwritten by
+                   | reads      | read by     | overWrites     | overwritten by
 f:
-  - w @4       | ########## | 56          | none           | none
-  - r @56      | 4
+  - w @4       | ########## | 77          | none           | none
+  - r @77      | 4
 
 obj:
-  - w @10      | ########## | 21          | none           | none
-  - r @21      | 10
+  - w @10      | ########## | 23          | none           | none
+  - r @23      | 10
 
-tmpForInDeclRhs:
-  - w @20           | ########## | 28          | none           | none
-  - r @28           | 20
+tmpForInGen:
+  - w @20       | ########## | 32          | none           | none
+  - r @32       | 20
+
+tmpForInNext:
+  - w @29        | ########## | 38,49       | none           | none
+  - r @38        | 29
+  - r @49        | 29
+
+tmpIfTest:
+  - w @36        | ########## | 41          | none           | none
+  - r @41        | 36
 
 x:
-  - w @24           | ########## | not read    | none           | 27
-  - w @27           | ########## | not read    | 24             | none
+  - w @47        | ########## | not read    | none           | none
 
 tmpReturnArg:
-  - w @32           | ########## | 40          | none           | none
-  - r @40           | 32
+  - w @53        | ########## | 61          | none           | none
+  - r @61        | 53
 
 tmpCallCallee:
-  - w @50           | ########## | 59          | none           | none
-  - r @59           | 50
+  - w @71         | ########## | 80          | none           | none
+  - r @80         | 71
 
 tmpCalleeParam:
-  - w @54           | ########## | 60          | none           | none
-  - r @60           | 54
+  - w @75          | ########## | 81          | none           | none
+  - r @81          | 75

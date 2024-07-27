@@ -22,7 +22,17 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-for ((a = { b: b } = $({ b: $(2) })).x of $({ x: 1 }));
+{
+  let tmpForOfGen = $forOf($({ x: 1 }));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      (a = { b: b } = $({ b: $(2) })).x = tmpForOfNext.value;
+    }
+  }
+}
 $(a, b);
 `````
 
@@ -32,19 +42,28 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam = { x: 1 };
-const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
-let tmpForOfLhsNode = undefined;
-for (tmpForOfLhsNode of tmpForOfRhs) {
-  const tmpCallCallee$1 = $;
-  const tmpObjLitVal = $(2);
-  const tmpCalleeParam$1 = { b: tmpObjLitVal };
-  const tmpNestedAssignObjPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
-  b = tmpNestedAssignObjPatternRhs.b;
-  a = tmpNestedAssignObjPatternRhs;
-  let tmpAssignMemLhsObj = a;
-  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
+const tmpCallCallee = $forOf;
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpCallCallee$3 = $;
+    const tmpObjLitVal = $(2);
+    const tmpCalleeParam$3 = { b: tmpObjLitVal };
+    const tmpNestedAssignObjPatternRhs = tmpCallCallee$3(tmpCalleeParam$3);
+    b = tmpNestedAssignObjPatternRhs.b;
+    a = tmpNestedAssignObjPatternRhs;
+    let tmpAssignMemLhsObj = a;
+    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+    const tmpAssignMemRhs = tmpForOfNext.value;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+  }
 }
 $(a, b);
 `````
@@ -53,18 +72,25 @@ $(a, b);
 
 
 `````js filename=intro
-let b = 1;
-let a = 1;
-const tmpCalleeParam = { x: 1 };
-const tmpForOfRhs = $(tmpCalleeParam);
-let tmpForOfLhsNode = undefined;
-for (tmpForOfLhsNode of tmpForOfRhs) {
-  const tmpObjLitVal = $(2);
-  const tmpCalleeParam$1 = { b: tmpObjLitVal };
-  const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
-  b = tmpNestedAssignObjPatternRhs.b;
-  a = tmpNestedAssignObjPatternRhs;
-  tmpNestedAssignObjPatternRhs.x = tmpForOfLhsNode;
+let b = {};
+let a = { a: 999, b: 1000 };
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = $(tmpCalleeParam$1);
+const tmpForOfGen = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpObjLitVal = $(2);
+    const tmpCalleeParam$3 = { b: tmpObjLitVal };
+    const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$3);
+    b = tmpNestedAssignObjPatternRhs.b;
+    a = tmpNestedAssignObjPatternRhs;
+    const tmpAssignMemRhs = tmpForOfNext.value;
+    tmpNestedAssignObjPatternRhs.x = tmpAssignMemRhs;
+  }
 }
 $(a, b);
 `````
@@ -74,18 +100,29 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-let a = 1;
-let b = 1;
+let a = {};
+let b = {
+  a: 999,
+  b: 1000,
+};
 const c = { x: 1 };
 const d = $( c );
-let e = undefined;
-for (e of d) {
-  const f = $( 2 );
-  const g = { b: f };
-  const h = $( g );
-  a = h.b;
-  b = h;
-  h.x = e;
+const e = $forOf( d );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const f = e.next();
+  const g = f.done;
+  if (g) {
+    break;
+  }
+  else {
+    const h = $( 2 );
+    const i = { b: h };
+    const j = $( i );
+    a = j.b;
+    b = j;
+    const k = f.value;
+    j.x = k;
+  }
 }
 $( b, a );
 `````

@@ -19,7 +19,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for (let x in (a = $(1) + $(2)));
+{
+  let tmpForInGen = $forIn((a = $(1) + $(2)));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -28,12 +38,20 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forIn;
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 a = tmpBinBothLhs + tmpBinBothRhs;
-let tmpForInDeclRhs = a;
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+let tmpCalleeParam = a;
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -44,11 +62,18 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const a = tmpBinBothLhs + tmpBinBothRhs;
-let x = undefined;
-for (x in a) {
+const tmpClusterSSA_a = tmpBinBothLhs + tmpBinBothRhs;
+const tmpForInGen = $forIn(tmpClusterSSA_a);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output
@@ -59,9 +84,16 @@ With rename=true
 const a = $( 1 );
 const b = $( 2 );
 const c = a + b;
-let d = undefined;
-for (d in c) {
-
+const d = $forIn( c );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const e = d.next();
+  const f = e.done;
+  if (f) {
+    break;
+  }
+  else {
+    e.value;
+  }
 }
 $( c );
 `````

@@ -22,7 +22,17 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-for (let x$1 in typeof x$1);
+{
+  let tmpForInGen = $forIn(typeof x$1);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x$1 = tmpForInNext.value;
+    }
+  }
+}
 $(a, x);
 `````
 
@@ -32,9 +42,17 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-const tmpForInDeclRhs = typeof x$1;
-let x$1 = undefined;
-for (x$1 in tmpForInDeclRhs) {
+const tmpCallCallee = $forIn;
+const tmpCalleeParam = typeof x$1;
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x$2 = tmpForInNext.value;
+  }
 }
 $(a, x);
 `````
@@ -43,7 +61,19 @@ $(a, x);
 
 
 `````js filename=intro
-throw `Preval: This statement contained a read that reached no writes: const tmpForInDeclRhs = typeof x\$1;`;
+const a = { a: 999, b: 1000 };
+const tmpCalleeParam = typeof x$1;
+const tmpForInGen = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+$(a, 1);
 `````
 
 ## PST Output
@@ -51,12 +81,30 @@ throw `Preval: This statement contained a read that reached no writes: const tmp
 With rename=true
 
 `````js filename=intro
-throw "Preval: This statement contained a read that reached no writes: const tmpForInDeclRhs = typeof x$1;";
+const a = {
+  a: 999,
+  b: 1000,
+};
+const b = typeof x$1;
+const c = $forIn( b );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const d = c.next();
+  const e = d.done;
+  if (e) {
+    break;
+  }
+  else {
+    d.value;
+  }
+}
+$( a, 1 );
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+x$1
 
 ## Result
 
@@ -65,6 +113,10 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: Same
+Normalized calls: BAD!?
+ - 1: { a: '999', b: '1000' }, 1
+ - eval returned: undefined
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: { a: '999', b: '1000' }, 1
+ - eval returned: undefined

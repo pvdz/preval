@@ -22,7 +22,17 @@ $(a);
 `````js filename=intro
 let b = { x: { y: 1 } };
 let a = { a: 999, b: 1000 };
-for (let x of b?.x?.y);
+{
+  let tmpForOfGen = $forOf(b?.x?.y);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x = tmpForOfNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -33,7 +43,8 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-let tmpForOfDeclRhs = undefined;
+const tmpCallCallee = $forOf;
+let tmpCalleeParam = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
@@ -41,13 +52,20 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpChainElementObject != null;
   if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
-    tmpForOfDeclRhs = tmpChainElementObject$1;
+    tmpCalleeParam = tmpChainElementObject$1;
   } else {
   }
 } else {
 }
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest$3 = tmpForOfNext.done;
+  if (tmpIfTest$3) {
+    break;
+  } else {
+    let x = tmpForOfNext.value;
+  }
 }
 $(a);
 `````
@@ -56,8 +74,15 @@ $(a);
 
 
 `````js filename=intro
-let x = undefined;
-for (x of 1) {
+const tmpClusterSSA_tmpForOfGen = $forOf(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpClusterSSA_tmpForOfGen.next();
+  const tmpIfTest$3 = tmpForOfNext.done;
+  if (tmpIfTest$3) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -68,15 +93,22 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-for (a of 1) {
-
+const a = $forOf( 1 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const b = a.next();
+  const c = b.done;
+  if (c) {
+    break;
+  }
+  else {
+    b.value;
+  }
 }
-const b = {
+const d = {
   a: 999,
   b: 1000,
 };
-$( b );
+$( d );
 `````
 
 ## Globals

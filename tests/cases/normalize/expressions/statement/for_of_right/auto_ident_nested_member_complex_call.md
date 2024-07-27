@@ -26,7 +26,17 @@ let b = { x: 1 },
   c = { y: 2 },
   d = 3;
 let a = { a: 999, b: 1000 };
-for (let x of ($(b)[$(`x`)] = $(c)[$(`y`)] = $(d)));
+{
+  let tmpForOfGen = $forOf(($(b)[$(`x`)] = $(c)[$(`y`)] = $(d)));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x = tmpForOfNext.value;
+    }
+  }
+}
 $(a, b, c, d);
 `````
 
@@ -38,6 +48,7 @@ let b = { x: 1 };
 let c = { y: 2 };
 let d = 3;
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forOf;
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $(`x`);
 const varInitAssignLhsComputedObj$1 = $(c);
@@ -46,9 +57,16 @@ const varInitAssignLhsComputedRhs$1 = $(d);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpForOfDeclRhs = varInitAssignLhsComputedRhs;
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+const tmpCalleeParam = varInitAssignLhsComputedRhs;
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForOfNext.value;
+  }
 }
 $(a, b, c, d);
 `````
@@ -67,8 +85,15 @@ const varInitAssignLhsComputedProp$1 = $(`y`);
 const varInitAssignLhsComputedRhs$1 = $(3);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
-let x = undefined;
-for (x of varInitAssignLhsComputedRhs$1) {
+const tmpForOfGen = $forOf(varInitAssignLhsComputedRhs$1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
 }
 $(a, b, c, 3);
 `````
@@ -91,9 +116,16 @@ const g = $( "y" );
 const h = $( 3 );
 f[g] = h;
 d[e] = h;
-let i = undefined;
-for (i of h) {
-
+const i = $forOf( h );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const j = i.next();
+  const k = j.done;
+  if (k) {
+    break;
+  }
+  else {
+    j.value;
+  }
 }
 $( c, a, b, 3 );
 `````

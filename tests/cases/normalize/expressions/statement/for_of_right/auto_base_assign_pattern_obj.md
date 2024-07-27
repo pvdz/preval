@@ -22,7 +22,17 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-for (let x of ({ b: b } = $({ b: $(2) })));
+{
+  let tmpForOfGen = $forOf(({ b: b } = $({ b: $(2) })));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x = tmpForOfNext.value;
+    }
+  }
+}
 $(a, b);
 `````
 
@@ -32,15 +42,23 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-let tmpForOfDeclRhs = undefined;
-const tmpCallCallee = $;
+const tmpCallCallee = $forOf;
+let tmpCalleeParam = undefined;
+const tmpCallCallee$1 = $;
 const tmpObjLitVal = $(2);
-const tmpCalleeParam = { b: tmpObjLitVal };
-const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam$1 = { b: tmpObjLitVal };
+const tmpNestedAssignObjPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
 b = tmpNestedAssignObjPatternRhs.b;
-tmpForOfDeclRhs = tmpNestedAssignObjPatternRhs;
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+tmpCalleeParam = tmpNestedAssignObjPatternRhs;
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForOfNext.value;
+  }
 }
 $(a, b);
 `````
@@ -51,11 +69,18 @@ $(a, b);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(2);
-const tmpCalleeParam = { b: tmpObjLitVal };
-const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
+const tmpCalleeParam$1 = { b: tmpObjLitVal };
+const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
 const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
-let x = undefined;
-for (x of tmpNestedAssignObjPatternRhs) {
+const tmpForOfGen = $forOf(tmpNestedAssignObjPatternRhs);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
 }
 $(a, tmpClusterSSA_b);
 `````
@@ -73,9 +98,16 @@ const b = $( 2 );
 const c = { b: b };
 const d = $( c );
 const e = d.b;
-let f = undefined;
-for (f of d) {
-
+const f = $forOf( d );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const g = f.next();
+  const h = g.done;
+  if (h) {
+    break;
+  }
+  else {
+    g.value;
+  }
 }
 $( a, e );
 `````

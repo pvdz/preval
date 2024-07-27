@@ -29,10 +29,21 @@ $('after (not invoked)');
 `````js filename=intro
 while ($(true)) {
   $(`loop`);
-  for (let x of [1, 2]) {
-    $(`loop`, x);
-    break;
-    $(`fail`);
+  {
+    let tmpForOfGen = $forOf([1, 2]);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      let tmpForOfNext = tmpForOfGen.next();
+      if (tmpForOfNext.done) {
+        break;
+      } else {
+        let x = tmpForOfNext.value;
+        {
+          $(`loop`, x);
+          break;
+          $(`fail`);
+        }
+      }
+    }
   }
   $(`infiloop, do not eliminate`);
 }
@@ -47,11 +58,19 @@ while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     $(`loop`);
-    const tmpForOfDeclRhs = [1, 2];
-    let x = undefined;
-    for (x of tmpForOfDeclRhs) {
-      $(`loop`, x);
-      break;
+    const tmpCallCallee = $forOf;
+    const tmpCalleeParam = [1, 2];
+    let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      let tmpForOfNext = tmpForOfGen.next();
+      const tmpIfTest$1 = tmpForOfNext.done;
+      if (tmpIfTest$1) {
+        break;
+      } else {
+        let x = tmpForOfNext.value;
+        $(`loop`, x);
+        break;
+      }
     }
     $(`infiloop, do not eliminate`);
   } else {
@@ -65,20 +84,37 @@ $(`after (not invoked)`);
 
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(`loop`);
-    let x = undefined;
-    const tmpForOfDeclRhs = [1, 2];
-    for (x of tmpForOfDeclRhs) {
-      $(`loop`, x);
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  $(`loop`);
+  const tmpCalleeParam = [1, 2];
+  const tmpForOfGen = $forOf(tmpCalleeParam);
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest$1 = tmpForOfNext.done;
+  if (tmpIfTest$1) {
+  } else {
+    const x = tmpForOfNext.value;
+    $(`loop`, x);
+  }
+  while ($LOOP_UNROLL_10) {
+    $(`infiloop, do not eliminate`);
+    const tmpIfTest$2 = $(true);
+    if (tmpIfTest$2) {
+      $(`loop`);
+      const tmpCalleeParam$1 = [1, 2];
+      const tmpForOfGen$1 = $forOf(tmpCalleeParam$1);
+      const tmpForOfNext$1 = tmpForOfGen$1.next();
+      const tmpIfTest$4 = tmpForOfNext$1.done;
+      if (tmpIfTest$4) {
+      } else {
+        const x$1 = tmpForOfNext$1.value;
+        $(`loop`, x$1);
+      }
+    } else {
       break;
     }
-    $(`infiloop, do not eliminate`);
-  } else {
-    break;
   }
+} else {
 }
 $(`after (not invoked)`);
 `````
@@ -88,20 +124,40 @@ $(`after (not invoked)`);
 With rename=true
 
 `````js filename=intro
-while (true) {
-  const a = $( true );
-  if (a) {
-    $( "loop" );
-    let b = undefined;
-    const c = [ 1, 2 ];
-    for (b of c) {
-      $( "loop", b );
-      break;
-    }
-    $( "infiloop, do not eliminate" );
+const a = $( true );
+if (a) {
+  $( "loop" );
+  const b = [ 1, 2 ];
+  const c = $forOf( b );
+  const d = c.next();
+  const e = d.done;
+  if (e) {
+
   }
   else {
-    break;
+    const f = d.value;
+    $( "loop", f );
+  }
+  while ($LOOP_UNROLL_10) {
+    $( "infiloop, do not eliminate" );
+    const g = $( true );
+    if (g) {
+      $( "loop" );
+      const h = [ 1, 2 ];
+      const i = $forOf( h );
+      const j = i.next();
+      const k = j.done;
+      if (k) {
+
+      }
+      else {
+        const l = j.value;
+        $( "loop", l );
+      }
+    }
+    else {
+      break;
+    }
   }
 }
 $( "after (not invoked)" );

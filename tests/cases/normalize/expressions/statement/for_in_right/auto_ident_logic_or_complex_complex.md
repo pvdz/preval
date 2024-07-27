@@ -19,7 +19,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for (let x in $($(0)) || $($(2)));
+{
+  let tmpForInGen = $forIn($($(0)) || $($(2)));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -28,17 +38,25 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam = $(0);
-let tmpForInDeclRhs = tmpCallCallee(tmpCalleeParam);
-if (tmpForInDeclRhs) {
+const tmpCallCallee = $forIn;
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = $(0);
+let tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+if (tmpCalleeParam) {
 } else {
-  const tmpCallCallee$1 = $;
-  const tmpCalleeParam$1 = $(2);
-  tmpForInDeclRhs = tmpCallCallee$1(tmpCalleeParam$1);
+  const tmpCallCallee$3 = $;
+  const tmpCalleeParam$3 = $(2);
+  tmpCalleeParam = tmpCallCallee$3(tmpCalleeParam$3);
 }
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -47,15 +65,24 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
-let tmpForInDeclRhs = $(tmpCalleeParam);
-if (tmpForInDeclRhs) {
+const tmpCalleeParam$1 = $(0);
+const tmpCalleeParam = $(tmpCalleeParam$1);
+let tmpForInGen = undefined;
+if (tmpCalleeParam) {
+  tmpForInGen = $forIn(tmpCalleeParam);
 } else {
-  const tmpCalleeParam$1 = $(2);
-  tmpForInDeclRhs = $(tmpCalleeParam$1);
+  const tmpCalleeParam$3 = $(2);
+  const tmpClusterSSA_tmpCalleeParam = $(tmpCalleeParam$3);
+  tmpForInGen = $forIn(tmpClusterSSA_tmpCalleeParam);
 }
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -67,23 +94,31 @@ With rename=true
 
 `````js filename=intro
 const a = $( 0 );
-let b = $( a );
+const b = $( a );
+let c = undefined;
 if (b) {
-
+  c = $forIn( b );
 }
 else {
-  const c = $( 2 );
-  b = $( c );
+  const d = $( 2 );
+  const e = $( d );
+  c = $forIn( e );
 }
-let d = undefined;
-for (d in b) {
-
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const f = c.next();
+  const g = f.done;
+  if (g) {
+    break;
+  }
+  else {
+    f.value;
+  }
 }
-const e = {
+const h = {
   a: 999,
   b: 1000,
 };
-$( e );
+$( h );
 `````
 
 ## Globals

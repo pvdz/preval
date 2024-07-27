@@ -22,7 +22,17 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-for (let x in b?.[`x`]);
+{
+  let tmpForInGen = $forIn(b?.[`x`]);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -32,17 +42,25 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-let tmpForInDeclRhs = undefined;
+const tmpCallCallee = $forIn;
+let tmpCalleeParam = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainRootComputed = `x`;
   const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
-  tmpForInDeclRhs = tmpChainElementObject;
+  tmpCalleeParam = tmpChainElementObject;
 } else {
 }
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest$1 = tmpForInNext.done;
+  if (tmpIfTest$1) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -51,8 +69,15 @@ $(a);
 
 
 `````js filename=intro
-let x = undefined;
-for (x in 1) {
+const tmpClusterSSA_tmpForInGen = $forIn(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpClusterSSA_tmpForInGen.next();
+  const tmpIfTest$1 = tmpForInNext.done;
+  if (tmpIfTest$1) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -63,15 +88,22 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-for (a in 1) {
-
+const a = $forIn( 1 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const b = a.next();
+  const c = b.done;
+  if (c) {
+    break;
+  }
+  else {
+    b.value;
+  }
 }
-const b = {
+const d = {
   a: 999,
   b: 1000,
 };
-$( b );
+$( d );
 `````
 
 ## Globals

@@ -26,7 +26,17 @@ let b = { x: 1 },
   c = { y: 2 },
   d = 3;
 let a = { a: 999, b: 1000 };
-for ((a = $(b)[$(`x`)] = $(c)[$(`y`)] = d).x in $({ x: 1 }));
+{
+  let tmpForInGen = $forIn($({ x: 1 }));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      (a = $(b)[$(`x`)] = $(c)[$(`y`)] = d).x = tmpForInNext.value;
+    }
+  }
+}
 $(a, b, c, d);
 `````
 
@@ -38,23 +48,32 @@ let b = { x: 1 };
 let c = { y: 2 };
 let d = 3;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam = { x: 1 };
-const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
-let tmpForInLhsNode = undefined;
-for (tmpForInLhsNode in tmpForInRhs) {
-  const tmpNestedAssignComMemberObj = $(b);
-  const tmpNestedAssignComMemberProp = $(`x`);
-  const varInitAssignLhsComputedObj = $(c);
-  const varInitAssignLhsComputedProp = $(`y`);
-  const varInitAssignLhsComputedRhs = d;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-  a = tmpNestedPropAssignRhs;
-  let tmpAssignMemLhsObj = a;
-  tmpAssignMemLhsObj.x = tmpForInLhsNode;
+const tmpCallCallee = $forIn;
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpNestedAssignComMemberObj = $(b);
+    const tmpNestedAssignComMemberProp = $(`x`);
+    const varInitAssignLhsComputedObj = $(c);
+    const varInitAssignLhsComputedProp = $(`y`);
+    const varInitAssignLhsComputedRhs = d;
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+    const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
+    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+    a = tmpNestedPropAssignRhs;
+    let tmpAssignMemLhsObj = a;
+    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+    const tmpAssignMemRhs = tmpForInNext.value;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+  }
 }
 $(a, b, c, d);
 `````
@@ -65,19 +84,28 @@ $(a, b, c, d);
 `````js filename=intro
 const b = { x: 1 };
 const c = { y: 2 };
-const tmpCalleeParam = { x: 1 };
-const tmpForInRhs = $(tmpCalleeParam);
-let tmpForInLhsNode = undefined;
-for (tmpForInLhsNode in tmpForInRhs) {
-  const tmpNestedAssignComMemberObj = $(b);
-  const tmpNestedAssignComMemberProp = $(`x`);
-  const varInitAssignLhsComputedObj = $(c);
-  const varInitAssignLhsComputedProp = $(`y`);
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-  (3).x = tmpForInLhsNode;
+let a = { a: 999, b: 1000 };
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = $(tmpCalleeParam$1);
+const tmpForInGen = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpNestedAssignComMemberObj = $(b);
+    const tmpNestedAssignComMemberProp = $(`x`);
+    const varInitAssignLhsComputedObj = $(c);
+    const varInitAssignLhsComputedProp = $(`y`);
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
+    a = 3;
+    const tmpAssignMemRhs = tmpForInNext.value;
+    (3).x = tmpAssignMemRhs;
+  }
 }
-$(3, b, c, 3);
+$(a, b, c, 3);
 `````
 
 ## PST Output
@@ -87,19 +115,32 @@ With rename=true
 `````js filename=intro
 const a = { x: 1 };
 const b = { y: 2 };
-const c = { x: 1 };
-const d = $( c );
-let e = undefined;
-for (e in d) {
-  const f = $( a );
-  const g = $( "x" );
-  const h = $( b );
-  const i = $( "y" );
-  h[i] = 3;
-  f[g] = 3;
-  3.x = e;
+let c = {
+  a: 999,
+  b: 1000,
+};
+const d = { x: 1 };
+const e = $( d );
+const f = $forIn( e );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const g = f.next();
+  const h = g.done;
+  if (h) {
+    break;
+  }
+  else {
+    const i = $( a );
+    const j = $( "x" );
+    const k = $( b );
+    const l = $( "y" );
+    k[l] = 3;
+    i[j] = 3;
+    c = 3;
+    const m = g.value;
+    3.x = m;
+  }
 }
-$( 3, a, b, 3 );
+$( c, a, b, 3 );
 `````
 
 ## Globals

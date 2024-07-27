@@ -22,7 +22,17 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-for (let x in (a = delete $(arg)[$(`y`)]));
+{
+  let tmpForInGen = $forIn((a = delete $(arg)[$(`y`)]));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+    }
+  }
+}
 $(a, arg);
 `````
 
@@ -32,12 +42,20 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forIn;
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-let tmpForInDeclRhs = a;
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+let tmpCalleeParam = a;
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
 }
 $(a, arg);
 `````
@@ -50,8 +68,15 @@ const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-let x = undefined;
-for (x in tmpClusterSSA_a) {
+const tmpForInGen = $forIn(tmpClusterSSA_a);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
 $(tmpClusterSSA_a, arg);
 `````
@@ -65,9 +90,16 @@ const a = { y: 1 };
 const b = $( a );
 const c = $( "y" );
 const d = delete b[ c ];
-let e = undefined;
-for (e in d) {
-
+const e = $forIn( d );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const f = e.next();
+  const g = f.done;
+  if (g) {
+    break;
+  }
+  else {
+    f.value;
+  }
 }
 $( d, a );
 `````

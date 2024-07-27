@@ -22,7 +22,17 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-for (new ($(1)[2])(3).x in b);
+{
+  let tmpForInGen = $forIn(b);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      new ($(1)[2])(3).x = tmpForInNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -32,12 +42,20 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-let tmpForInLhsNode = undefined;
-for (tmpForInLhsNode in b) {
-  const tmpCompObj = $(1);
-  const tmpNewCallee = tmpCompObj[2];
-  const tmpAssignMemLhsObj = new tmpNewCallee(3);
-  tmpAssignMemLhsObj.x = tmpForInLhsNode;
+let tmpForInGen = $forIn(b);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpCompObj = $(1);
+    const tmpNewCallee = tmpCompObj[2];
+    const tmpAssignMemLhsObj = new tmpNewCallee(3);
+    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+    const tmpAssignMemRhs = tmpForInNext.value;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+  }
 }
 $(a);
 `````
@@ -48,12 +66,19 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-let tmpForInLhsNode = undefined;
-for (tmpForInLhsNode in b) {
-  const tmpCompObj = $(1);
-  const tmpNewCallee = tmpCompObj[2];
-  const tmpAssignMemLhsObj = new tmpNewCallee(3);
-  tmpAssignMemLhsObj.x = tmpForInLhsNode;
+const tmpForInGen = $forIn(b);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpCompObj = $(1);
+    const tmpNewCallee = tmpCompObj[2];
+    const tmpAssignMemLhsObj = new tmpNewCallee(3);
+    const tmpAssignMemRhs = tmpForInNext.value;
+    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  }
 }
 $(a);
 `````
@@ -68,12 +93,20 @@ const b = {
   a: 999,
   b: 1000,
 };
-let c = undefined;
-for (c in a) {
-  const d = $( 1 );
-  const e = d[ 2 ];
-  const f = new e( 3 );
-  f.x = c;
+const c = $forIn( a );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const d = c.next();
+  const e = d.done;
+  if (e) {
+    break;
+  }
+  else {
+    const f = $( 1 );
+    const g = f[ 2 ];
+    const h = new g( 3 );
+    const i = d.value;
+    h.x = i;
+  }
 }
 $( b );
 `````

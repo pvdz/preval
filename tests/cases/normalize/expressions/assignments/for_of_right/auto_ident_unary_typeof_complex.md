@@ -22,7 +22,17 @@ $(a, arg);
 `````js filename=intro
 let arg = 1;
 let a = { a: 999, b: 1000 };
-for (let x of (a = typeof $(arg)));
+{
+  let tmpForOfGen = $forOf((a = typeof $(arg)));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x = tmpForOfNext.value;
+    }
+  }
+}
 $(a, arg);
 `````
 
@@ -32,11 +42,19 @@ $(a, arg);
 `````js filename=intro
 let arg = 1;
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forOf;
 const tmpUnaryArg = $(arg);
 a = typeof tmpUnaryArg;
-let tmpForOfDeclRhs = a;
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+let tmpCalleeParam = a;
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForOfNext.value;
+  }
 }
 $(a, arg);
 `````
@@ -46,11 +64,18 @@ $(a, arg);
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-let x = undefined;
-const a = typeof tmpUnaryArg;
-for (x of a) {
+const tmpClusterSSA_a = typeof tmpUnaryArg;
+const tmpForOfGen = $forOf(tmpClusterSSA_a);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
 }
-$(a, 1);
+$(tmpClusterSSA_a, 1);
 `````
 
 ## PST Output
@@ -59,12 +84,19 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = undefined;
-const c = typeof a;
-for (b of c) {
-
+const b = typeof a;
+const c = $forOf( b );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const d = c.next();
+  const e = d.done;
+  if (e) {
+    break;
+  }
+  else {
+    d.value;
+  }
 }
-$( c, 1 );
+$( b, 1 );
 `````
 
 ## Globals

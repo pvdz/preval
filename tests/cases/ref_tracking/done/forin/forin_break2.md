@@ -22,9 +22,20 @@ $();
 
 `````js filename=intro
 const wat = { a: 1, b: 2 };
-for (const x in wat) {
-  $(x);
-  break;
+{
+  let tmpForInGen = $forIn(wat);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      const x = tmpForInNext.value;
+      {
+        $(x);
+        break;
+      }
+    }
+  }
 }
 $();
 `````
@@ -34,11 +45,17 @@ $();
 
 `````js filename=intro
 const wat = { a: 1, b: 2 };
-const tmpForInDeclRhs = wat;
-let x = undefined;
-for (x in tmpForInDeclRhs) {
-  $(x);
-  break;
+let tmpForInGen = $forIn(wat);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const x = tmpForInNext.value;
+    $(x);
+    break;
+  }
 }
 $();
 `````
@@ -47,11 +64,14 @@ $();
 
 
 `````js filename=intro
-let x = undefined;
 const wat = { a: 1, b: 2 };
-for (x in wat) {
+const tmpForInGen = $forIn(wat);
+const tmpForInNext = tmpForInGen.next();
+const tmpIfTest = tmpForInNext.done;
+if (tmpIfTest) {
+} else {
+  const x = tmpForInNext.value;
   $(x);
-  break;
 }
 $();
 `````
@@ -61,14 +81,19 @@ $();
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = {
+const a = {
   a: 1,
   b: 2,
 };
-for (a in b) {
-  $( a );
-  break;
+const b = $forIn( a );
+const c = b.next();
+const d = c.done;
+if (d) {
+
+}
+else {
+  const e = c.value;
+  $( e );
 }
 $();
 `````

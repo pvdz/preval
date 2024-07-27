@@ -19,7 +19,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for (let x in (a = (10, 20, 30) ? $(2) : $($(100))));
+{
+  let tmpForInGen = $forIn((a = (10, 20, 30) ? $(2) : $($(100))));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -28,17 +38,25 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forIn;
 const tmpIfTest = 30;
 if (tmpIfTest) {
   a = $(2);
 } else {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(100);
-  a = tmpCallCallee(tmpCalleeParam);
+  const tmpCallCallee$1 = $;
+  const tmpCalleeParam$1 = $(100);
+  a = tmpCallCallee$1(tmpCalleeParam$1);
 }
-let tmpForInDeclRhs = a;
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+let tmpCalleeParam = a;
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest$1 = tmpForInNext.done;
+  if (tmpIfTest$1) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -48,8 +66,15 @@ $(a);
 
 `````js filename=intro
 const a = $(2);
-let x = undefined;
-for (x in a) {
+const tmpForInGen = $forIn(a);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest$1 = tmpForInNext.done;
+  if (tmpIfTest$1) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -60,9 +85,16 @@ With rename=true
 
 `````js filename=intro
 const a = $( 2 );
-let b = undefined;
-for (b in a) {
-
+const b = $forIn( a );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const c = b.next();
+  const d = c.done;
+  if (d) {
+    break;
+  }
+  else {
+    c.value;
+  }
 }
 $( a );
 `````

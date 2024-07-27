@@ -19,7 +19,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for (let x of $(1) + $(2));
+{
+  let tmpForOfGen = $forOf($(1) + $(2));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x = tmpForOfNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -28,11 +38,19 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forOf;
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const tmpForOfDeclRhs = tmpBinBothLhs + tmpBinBothRhs;
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForOfNext.value;
+  }
 }
 $(a);
 `````
@@ -43,9 +61,16 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const tmpForOfDeclRhs = tmpBinBothLhs + tmpBinBothRhs;
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const tmpForOfGen = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -59,15 +84,22 @@ With rename=true
 const a = $( 1 );
 const b = $( 2 );
 const c = a + b;
-let d = undefined;
-for (d of c) {
-
+const d = $forOf( c );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const e = d.next();
+  const f = e.done;
+  if (f) {
+    break;
+  }
+  else {
+    e.value;
+  }
 }
-const e = {
+const g = {
   a: 999,
   b: 1000,
 };
-$( e );
+$( g );
 `````
 
 ## Globals

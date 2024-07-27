@@ -22,7 +22,17 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-for (let x in (1, 2, $(b))?.x);
+{
+  let tmpForInGen = $forIn((1, 2, $(b))?.x);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -32,16 +42,24 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-let tmpForInDeclRhs = undefined;
+const tmpCallCallee = $forIn;
+let tmpCalleeParam = undefined;
 const tmpChainRootProp = $(b);
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
-  tmpForInDeclRhs = tmpChainElementObject;
+  tmpCalleeParam = tmpChainElementObject;
 } else {
 }
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest$1 = tmpForInNext.done;
+  if (tmpIfTest$1) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -52,16 +70,23 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-let tmpForInDeclRhs = undefined;
 const tmpChainRootProp = $(b);
 const tmpIfTest = tmpChainRootProp == null;
+let tmpForInGen = undefined;
 if (tmpIfTest) {
+  tmpForInGen = $forIn(undefined);
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;
-  tmpForInDeclRhs = tmpChainElementObject;
+  tmpForInGen = $forIn(tmpChainElementObject);
 }
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest$1 = tmpForInNext.done;
+  if (tmpIfTest$1) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -76,19 +101,25 @@ const b = {
   a: 999,
   b: 1000,
 };
-let c = undefined;
-const d = $( a );
-const e = d == null;
-if (e) {
-
+const c = $( a );
+const d = c == null;
+let e = undefined;
+if (d) {
+  e = $forIn( undefined );
 }
 else {
-  const f = d.x;
-  c = f;
+  const f = c.x;
+  e = $forIn( f );
 }
-let g = undefined;
-for (g in c) {
-
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const g = e.next();
+  const h = g.done;
+  if (h) {
+    break;
+  }
+  else {
+    g.value;
+  }
 }
 $( b );
 `````

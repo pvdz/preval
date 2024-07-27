@@ -22,7 +22,17 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-for (let x of (a = { b: b } = $({ b: $(2) })));
+{
+  let tmpForOfGen = $forOf((a = { b: b } = $({ b: $(2) })));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x = tmpForOfNext.value;
+    }
+  }
+}
 $(a, b);
 `````
 
@@ -32,15 +42,23 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
+const tmpCallCallee = $forOf;
+const tmpCallCallee$1 = $;
 const tmpObjLitVal = $(2);
-const tmpCalleeParam = { b: tmpObjLitVal };
-const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam$1 = { b: tmpObjLitVal };
+const tmpNestedAssignObjPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
 b = tmpNestedAssignObjPatternRhs.b;
 a = tmpNestedAssignObjPatternRhs;
-let tmpForOfDeclRhs = a;
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+let tmpCalleeParam = a;
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForOfNext.value;
+  }
 }
 $(a, b);
 `````
@@ -50,11 +68,18 @@ $(a, b);
 
 `````js filename=intro
 const tmpObjLitVal = $(2);
-const tmpCalleeParam = { b: tmpObjLitVal };
-const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
+const tmpCalleeParam$1 = { b: tmpObjLitVal };
+const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
 const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
-let x = undefined;
-for (x of tmpNestedAssignObjPatternRhs) {
+const tmpForOfGen = $forOf(tmpNestedAssignObjPatternRhs);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
 }
 $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
 `````
@@ -68,9 +93,16 @@ const a = $( 2 );
 const b = { b: a };
 const c = $( b );
 const d = c.b;
-let e = undefined;
-for (e of c) {
-
+const e = $forOf( c );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const f = e.next();
+  const g = f.done;
+  if (g) {
+    break;
+  }
+  else {
+    f.value;
+  }
 }
 $( c, d );
 `````

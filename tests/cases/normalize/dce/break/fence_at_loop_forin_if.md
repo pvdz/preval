@@ -37,18 +37,29 @@ $('after (not invoked)');
 `````js filename=intro
 while ($(true)) {
   $(`loop`);
-  for (let x in { a: 1, b: 2 }) {
-    $(`loop`, x);
-    if ($(1)) {
-      $(`pass`);
-      break;
-      $(`fail`);
-    } else {
-      $(`do not visit`);
-      break;
-      $(`fail`);
+  {
+    let tmpForInGen = $forIn({ a: 1, b: 2 });
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      let tmpForInNext = tmpForInGen.next();
+      if (tmpForInNext.done) {
+        break;
+      } else {
+        let x = tmpForInNext.value;
+        {
+          $(`loop`, x);
+          if ($(1)) {
+            $(`pass`);
+            break;
+            $(`fail`);
+          } else {
+            $(`do not visit`);
+            break;
+            $(`fail`);
+          }
+          $(`fail -> DCE`);
+        }
+      }
     }
-    $(`fail -> DCE`);
   }
   $(`infiloop, do not eliminate`);
 }
@@ -63,17 +74,25 @@ while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     $(`loop`);
-    const tmpForInDeclRhs = { a: 1, b: 2 };
-    let x = undefined;
-    for (x in tmpForInDeclRhs) {
-      $(`loop`, x);
-      const tmpIfTest$1 = $(1);
+    const tmpCallCallee = $forIn;
+    const tmpCalleeParam = { a: 1, b: 2 };
+    let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      let tmpForInNext = tmpForInGen.next();
+      const tmpIfTest$1 = tmpForInNext.done;
       if (tmpIfTest$1) {
-        $(`pass`);
         break;
       } else {
-        $(`do not visit`);
-        break;
+        let x = tmpForInNext.value;
+        $(`loop`, x);
+        const tmpIfTest$3 = $(1);
+        if (tmpIfTest$3) {
+          $(`pass`);
+          break;
+        } else {
+          $(`do not visit`);
+          break;
+        }
       }
     }
     $(`infiloop, do not eliminate`);
@@ -88,27 +107,49 @@ $(`after (not invoked)`);
 
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(`loop`);
-    let x = undefined;
-    const tmpForInDeclRhs = { a: 1, b: 2 };
-    for (x in tmpForInDeclRhs) {
-      $(`loop`, x);
-      const tmpIfTest$1 = $(1);
-      if (tmpIfTest$1) {
-        $(`pass`);
-        break;
-      } else {
-        $(`do not visit`);
-        break;
-      }
-    }
-    $(`infiloop, do not eliminate`);
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  $(`loop`);
+  const tmpCalleeParam = { a: 1, b: 2 };
+  const tmpForInGen = $forIn(tmpCalleeParam);
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest$1 = tmpForInNext.done;
+  if (tmpIfTest$1) {
   } else {
-    break;
+    const x = tmpForInNext.value;
+    $(`loop`, x);
+    const tmpIfTest$3 = $(1);
+    if (tmpIfTest$3) {
+      $(`pass`);
+    } else {
+      $(`do not visit`);
+    }
   }
+  while ($LOOP_UNROLL_10) {
+    $(`infiloop, do not eliminate`);
+    const tmpIfTest$2 = $(true);
+    if (tmpIfTest$2) {
+      $(`loop`);
+      const tmpCalleeParam$1 = { a: 1, b: 2 };
+      const tmpForInGen$1 = $forIn(tmpCalleeParam$1);
+      const tmpForInNext$1 = tmpForInGen$1.next();
+      const tmpIfTest$4 = tmpForInNext$1.done;
+      if (tmpIfTest$4) {
+      } else {
+        const x$1 = tmpForInNext$1.value;
+        $(`loop`, x$1);
+        const tmpIfTest$6 = $(1);
+        if (tmpIfTest$6) {
+          $(`pass`);
+        } else {
+          $(`do not visit`);
+        }
+      }
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(`after (not invoked)`);
 `````
@@ -118,31 +159,60 @@ $(`after (not invoked)`);
 With rename=true
 
 `````js filename=intro
-while (true) {
-  const a = $( true );
-  if (a) {
-    $( "loop" );
-    let b = undefined;
-    const c = {
-      a: 1,
-      b: 2,
-    };
-    for (b in c) {
-      $( "loop", b );
-      const d = $( 1 );
-      if (d) {
-        $( "pass" );
-        break;
-      }
-      else {
-        $( "do not visit" );
-        break;
-      }
-    }
-    $( "infiloop, do not eliminate" );
+const a = $( true );
+if (a) {
+  $( "loop" );
+  const b = {
+    a: 1,
+    b: 2,
+  };
+  const c = $forIn( b );
+  const d = c.next();
+  const e = d.done;
+  if (e) {
+
   }
   else {
-    break;
+    const f = d.value;
+    $( "loop", f );
+    const g = $( 1 );
+    if (g) {
+      $( "pass" );
+    }
+    else {
+      $( "do not visit" );
+    }
+  }
+  while ($LOOP_UNROLL_10) {
+    $( "infiloop, do not eliminate" );
+    const h = $( true );
+    if (h) {
+      $( "loop" );
+      const i = {
+        a: 1,
+        b: 2,
+      };
+      const j = $forIn( i );
+      const k = j.next();
+      const l = k.done;
+      if (l) {
+
+      }
+      else {
+        const m = k.value;
+        $( "loop", m );
+        const n = $( 1 );
+        if (n) {
+          $( "pass" );
+        }
+        else {
+          $( "do not visit" );
+        }
+      }
+    }
+    else {
+      break;
+    }
   }
 }
 $( "after (not invoked)" );

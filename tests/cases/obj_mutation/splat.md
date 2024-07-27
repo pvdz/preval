@@ -22,9 +22,20 @@ $(blob);
 
 `````js filename=intro
 const blob = { thing: `woop` };
-for (const a in blob) {
-  const b = a;
-  $(b);
+{
+  let tmpForInGen = $forIn(blob);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      const a = tmpForInNext.value;
+      {
+        const b = a;
+        $(b);
+      }
+    }
+  }
 }
 $(blob);
 `````
@@ -34,11 +45,17 @@ $(blob);
 
 `````js filename=intro
 const blob = { thing: `woop` };
-const tmpForInDeclRhs = blob;
-let a = undefined;
-for (a in tmpForInDeclRhs) {
-  const b = a;
-  $(b);
+let tmpForInGen = $forIn(blob);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const a = tmpForInNext.value;
+    const b = a;
+    $(b);
+  }
 }
 $(blob);
 `````
@@ -47,10 +64,17 @@ $(blob);
 
 
 `````js filename=intro
-let a = undefined;
 const blob = { thing: `woop` };
-for (a in blob) {
-  $(a);
+const tmpForInGen = $forIn(blob);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const a = tmpForInNext.value;
+    $(a);
+  }
 }
 $(blob);
 `````
@@ -60,12 +84,20 @@ $(blob);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { thing: "woop" };
-for (a in b) {
-  $( a );
+const a = { thing: "woop" };
+const b = $forIn( a );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const c = b.next();
+  const d = c.done;
+  if (d) {
+    break;
+  }
+  else {
+    const e = c.value;
+    $( e );
+  }
 }
-$( b );
+$( a );
 `````
 
 ## Globals

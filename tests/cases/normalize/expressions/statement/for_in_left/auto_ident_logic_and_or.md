@@ -19,7 +19,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for ((($($(1)) && $($(1))) || $($(2))).x in $({ x: 1 }));
+{
+  let tmpForInGen = $forIn($({ x: 1 }));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      (($($(1)) && $($(1))) || $($(2))).x = tmpForInNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -28,27 +38,36 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam = { x: 1 };
-const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
-let tmpForInLhsNode = undefined;
-for (tmpForInLhsNode in tmpForInRhs) {
-  const tmpCallCallee$1 = $;
-  const tmpCalleeParam$1 = $(1);
-  let tmpAssignMemLhsObj = tmpCallCallee$1(tmpCalleeParam$1);
-  if (tmpAssignMemLhsObj) {
+const tmpCallCallee = $forIn;
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
     const tmpCallCallee$3 = $;
     const tmpCalleeParam$3 = $(1);
-    tmpAssignMemLhsObj = tmpCallCallee$3(tmpCalleeParam$3);
-  } else {
+    let tmpAssignMemLhsObj = tmpCallCallee$3(tmpCalleeParam$3);
+    if (tmpAssignMemLhsObj) {
+      const tmpCallCallee$5 = $;
+      const tmpCalleeParam$5 = $(1);
+      tmpAssignMemLhsObj = tmpCallCallee$5(tmpCalleeParam$5);
+    } else {
+    }
+    if (tmpAssignMemLhsObj) {
+    } else {
+      const tmpCallCallee$7 = $;
+      const tmpCalleeParam$7 = $(2);
+      tmpAssignMemLhsObj = tmpCallCallee$7(tmpCalleeParam$7);
+    }
+    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+    const tmpAssignMemRhs = tmpForInNext.value;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   }
-  if (tmpAssignMemLhsObj) {
-  } else {
-    const tmpCallCallee$5 = $;
-    const tmpCalleeParam$5 = $(2);
-    tmpAssignMemLhsObj = tmpCallCallee$5(tmpCalleeParam$5);
-  }
-  tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 $(a);
 `````
@@ -58,23 +77,33 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = { x: 1 };
-const tmpForInRhs = $(tmpCalleeParam);
-let tmpForInLhsNode = undefined;
-for (tmpForInLhsNode in tmpForInRhs) {
-  const tmpCalleeParam$1 = $(1);
-  let tmpAssignMemLhsObj = $(tmpCalleeParam$1);
-  if (tmpAssignMemLhsObj) {
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = $(tmpCalleeParam$1);
+const tmpForInGen = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
     const tmpCalleeParam$3 = $(1);
-    tmpAssignMemLhsObj = $(tmpCalleeParam$3);
-  } else {
+    let tmpAssignMemLhsObj = $(tmpCalleeParam$3);
+    if (tmpAssignMemLhsObj) {
+      const tmpCalleeParam$5 = $(1);
+      tmpAssignMemLhsObj = $(tmpCalleeParam$5);
+    } else {
+    }
+    let tmpAssignMemLhsObj$1 = undefined;
+    if (tmpAssignMemLhsObj) {
+      tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+    } else {
+      const tmpCalleeParam$7 = $(2);
+      const tmpClusterSSA_tmpAssignMemLhsObj = $(tmpCalleeParam$7);
+      tmpAssignMemLhsObj$1 = tmpClusterSSA_tmpAssignMemLhsObj;
+    }
+    const tmpAssignMemRhs = tmpForInNext.value;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   }
-  if (tmpAssignMemLhsObj) {
-  } else {
-    const tmpCalleeParam$5 = $(2);
-    tmpAssignMemLhsObj = $(tmpCalleeParam$5);
-  }
-  tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 $(a);
 `````
@@ -90,22 +119,32 @@ const a = {
 };
 const b = { x: 1 };
 const c = $( b );
-let d = undefined;
-for (d in c) {
-  const e = $( 1 );
-  let f = $( e );
+const d = $forIn( c );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const e = d.next();
+  const f = e.done;
   if (f) {
-    const g = $( 1 );
-    f = $( g );
-  }
-  if (f) {
-
+    break;
   }
   else {
-    const h = $( 2 );
-    f = $( h );
+    const g = $( 1 );
+    let h = $( g );
+    if (h) {
+      const i = $( 1 );
+      h = $( i );
+    }
+    let j = undefined;
+    if (h) {
+      j = h;
+    }
+    else {
+      const k = $( 2 );
+      const l = $( k );
+      j = l;
+    }
+    const m = e.value;
+    j.x = m;
   }
-  f.x = d;
 }
 $( a );
 `````

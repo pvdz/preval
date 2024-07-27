@@ -22,7 +22,17 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-for (let x in new $($(1), $(2)));
+{
+  let tmpForInGen = $forIn(new $($(1), $(2)));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -32,12 +42,20 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forIn;
 const tmpNewCallee = $;
-const tmpCalleeParam = $(1);
-const tmpCalleeParam$1 = $(2);
-const tmpForInDeclRhs = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+const tmpCalleeParam$1 = $(1);
+const tmpCalleeParam$3 = $(2);
+const tmpCalleeParam = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -46,11 +64,18 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-const tmpCalleeParam$1 = $(2);
-const tmpForInDeclRhs = new $(tmpCalleeParam, tmpCalleeParam$1);
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+const tmpCalleeParam$1 = $(1);
+const tmpCalleeParam$3 = $(2);
+const tmpCalleeParam = new $(tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpForInGen = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -64,15 +89,22 @@ With rename=true
 const a = $( 1 );
 const b = $( 2 );
 const c = new $( a, b );
-let d = undefined;
-for (d in c) {
-
+const d = $forIn( c );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const e = d.next();
+  const f = e.done;
+  if (f) {
+    break;
+  }
+  else {
+    e.value;
+  }
 }
-const e = {
+const g = {
   a: 999,
   b: 1000,
 };
-$( e );
+$( g );
 `````
 
 ## Globals

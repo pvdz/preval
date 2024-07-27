@@ -19,7 +19,17 @@ $(a);
 
 `````js filename=intro
 let [a] = { a: 999, b: 1000 };
-for (let x of ([a] = $([1, 2])));
+{
+  let tmpForOfGen = $forOf(([a] = $([1, 2])));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x = tmpForOfNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -30,15 +40,23 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-let tmpForOfDeclRhs = undefined;
-const tmpCallCallee = $;
-const tmpCalleeParam = [1, 2];
-const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee = $forOf;
+let tmpCalleeParam = undefined;
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = [1, 2];
+const tmpNestedAssignArrPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 a = arrPatternSplat$1[0];
-tmpForOfDeclRhs = tmpNestedAssignArrPatternRhs;
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+tmpCalleeParam = tmpNestedAssignArrPatternRhs;
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForOfNext.value;
+  }
 }
 $(a);
 `````
@@ -50,12 +68,19 @@ $(a);
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 arrPatternSplat[0];
-const tmpCalleeParam = [1, 2];
-const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
+const tmpCalleeParam$1 = [1, 2];
+const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_a = arrPatternSplat$1[0];
-let x = undefined;
-for (x of tmpNestedAssignArrPatternRhs) {
+const tmpForOfGen = $forOf(tmpNestedAssignArrPatternRhs);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
 }
 $(tmpClusterSSA_a);
 `````
@@ -75,9 +100,16 @@ const c = [ 1, 2 ];
 const d = $( c );
 const e = [ ... d ];
 const f = e[ 0 ];
-let g = undefined;
-for (g of d) {
-
+const g = $forOf( d );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const h = g.next();
+  const i = h.done;
+  if (i) {
+    break;
+  }
+  else {
+    h.value;
+  }
 }
 $( f );
 `````

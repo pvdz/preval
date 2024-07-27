@@ -22,12 +22,9 @@ function verifyPstNode(node) {
     case 'CallComputedMethodExpression': return verifyExpression(node);
     case 'ClassExpression': return verifyExpression(node);
     case 'ConstStatement': return verifyStatement(node);
-    case 'ContinueStatement': return verifyStatement(node);
     case 'DebuggerStatement': return verifyStatement(node);
     case 'ExportNamed': return verifyStatement(node);
     case 'ExpressionStatement': return verifyStatement(node);
-    case 'ForInStatement': return verifyStatement(node);
-    case 'ForOfStatement': return verifyStatement(node);
     case 'FunctionExpression': return verifyFunction(node);
     case 'Getter': return verifyMethodLike(node);
     case 'IfStatement': return verifyStatement(node);
@@ -90,10 +87,6 @@ function verifyStatement(node) {
       if (node.label) expect(typeof node.label, 'string', node);
       break;
     }
-    case 'ContinueStatement': {
-      if (node.label) expect(typeof node.label, 'string', node);
-      break;
-    }
     case 'ConstStatement': {
       verifyRef(node.id);
       verifyExpression(node.init);
@@ -114,18 +107,6 @@ function verifyStatement(node) {
     }
     case 'ExpressionStatement': {
       verifyExpression(node.expression);
-      break;
-    }
-    case 'ForInStatement': {
-      verifySimple(node.left);
-      verifySimple(node.right);
-      verifyBlock(node.body);
-      break;
-    }
-    case 'ForOfStatement': {
-      verifySimple(node.left);
-      verifySimple(node.right);
-      verifyBlock(node.body);
       break;
     }
     case 'IfStatement': {

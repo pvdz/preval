@@ -29,15 +29,26 @@ exit: for (const key in $({a: 1, b: 2})) {
 
 `````js filename=intro
 let x = $(2);
-exit: for (const key in $({ a: 1, b: 2 })) {
-  $(`key:`, key);
-  if ($(1)) {
-    x = $(3);
-  }
-  if (x) {
-    break exit;
-  } else {
-    x = $(4);
+exit: {
+  let tmpForInGen = $forIn($({ a: 1, b: 2 }));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      const key = tmpForInNext.value;
+      {
+        $(`key:`, key);
+        if ($(1)) {
+          x = $(3);
+        }
+        if (x) {
+          break exit;
+        } else {
+          x = $(4);
+        }
+      }
+    }
   }
 }
 `````
@@ -47,20 +58,26 @@ exit: for (const key in $({ a: 1, b: 2 })) {
 
 `````js filename=intro
 let x = $(2);
-exit: {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = { a: 1, b: 2 };
-  const tmpForInDeclRhs = tmpCallCallee(tmpCalleeParam);
-  let key = undefined;
-  for (key in tmpForInDeclRhs) {
+const tmpCallCallee = $forIn;
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = { a: 1, b: 2 };
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const key = tmpForInNext.value;
     $(`key:`, key);
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
       x = $(3);
     } else {
     }
     if (x) {
-      break exit;
+      break;
     } else {
       x = $(4);
     }
@@ -72,20 +89,25 @@ exit: {
 
 
 `````js filename=intro
-exit: {
-  let x = $(2);
-  const tmpCalleeParam = { a: 1, b: 2 };
-  const tmpForInDeclRhs = $(tmpCalleeParam);
-  let key = undefined;
-  for (key in tmpForInDeclRhs) {
+let x = $(2);
+const tmpCalleeParam$1 = { a: 1, b: 2 };
+const tmpCalleeParam = $(tmpCalleeParam$1);
+const tmpForInGen = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const key = tmpForInNext.value;
     $(`key:`, key);
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
       x = $(3);
     } else {
     }
     if (x) {
-      break exit;
+      break;
     } else {
       x = $(4);
     }
@@ -98,22 +120,28 @@ exit: {
 With rename=true
 
 `````js filename=intro
-exit: {
-  let a = $( 2 );
-  const b = {
-    a: 1,
-    b: 2,
-  };
-  const c = $( b );
-  let d = undefined;
-  for (d in c) {
-    $( "key:", d );
-    const e = $( 1 );
-    if (e) {
+let a = $( 2 );
+const b = {
+  a: 1,
+  b: 2,
+};
+const c = $( b );
+const d = $forIn( c );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const e = d.next();
+  const f = e.done;
+  if (f) {
+    break;
+  }
+  else {
+    const g = e.value;
+    $( "key:", g );
+    const h = $( 1 );
+    if (h) {
       a = $( 3 );
     }
     if (a) {
-      break exit;
+      break;
     }
     else {
       a = $( 4 );

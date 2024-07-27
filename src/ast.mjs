@@ -358,7 +358,8 @@ export function fals() {
   return literal(false);
 }
 
-export function forInStatement(left, right, body) {
+export function forInStatement(left, right, body, notNormal) {
+  ASSERT(notNormal, 'must pass this flag because forIn is not created for normalized code');
   if (typeof left === 'string') left = identifier(left);
   if (typeof right === 'string') right = identifier(right);
   if (typeof body === 'string') body = identifier(body);
@@ -372,7 +373,8 @@ export function forInStatement(left, right, body) {
   };
 }
 
-export function forOfStatement(left, right, body, async = false) {
+export function forOfStatement(left, right, body, notNormal, async = false) {
+  ASSERT(notNormal, 'must pass this flag because forOf is not created for normalized code');
   if (typeof left === 'string') left = identifier(left);
   if (typeof right === 'string') right = identifier(right);
   if (typeof body === 'string') body = identifier(body);
@@ -1455,14 +1457,6 @@ export function nodeHasNoObservableSideEffectIncStatements(node, noDelete) {
     return true;
   }
 
-  if (node.type === 'ForInStatement') {
-    return node.body.body.every((cnode) => nodeHasNoObservableSideEffectIncStatements(cnode, noDelete));
-  }
-
-  if (node.type === 'ForOfStatement') {
-    return node.body.body.every((cnode) => nodeHasNoObservableSideEffectIncStatements(cnode, noDelete));
-  }
-
   if (node.type === 'TryStatement') {
     return (
       node.block.body.every((cnode) => nodeHasNoObservableSideEffectIncStatements(cnode, noDelete)) &&
@@ -1946,20 +1940,6 @@ export function deepCloneForFuncInlining(node, paramArgMapper, fail) {
     case 'WhileStatement': {
       return whileStatement(
         deepCloneForFuncInlining(node.test, paramArgMapper, fail),
-        deepCloneForFuncInlining(node.body, paramArgMapper, fail),
-      );
-    }
-    case 'ForInStatement': {
-      return forInStatement(
-        deepCloneForFuncInlining(node.left, paramArgMapper, fail),
-        deepCloneForFuncInlining(node.right, paramArgMapper, fail),
-        deepCloneForFuncInlining(node.body, paramArgMapper, fail),
-      );
-    }
-    case 'ForOfStatement': {
-      return forOfStatement(
-        deepCloneForFuncInlining(node.left, paramArgMapper, fail),
-        deepCloneForFuncInlining(node.right, paramArgMapper, fail),
         deepCloneForFuncInlining(node.body, paramArgMapper, fail),
       );
     }
@@ -2567,7 +2547,7 @@ export function isSameFlatStatementExceptBool(nodeA, nodeB, collect) {
 
     default:
       ASSERT(!['EmptyStatement', 'BlockStatement'].includes(nodeA.type), 'should not have certain statements in normalized code', nodeA.type);
-      ASSERT(['IfStatement', 'WhileStatement', 'ForInStatement', 'ForOfStatement', 'TryStatement', 'LabeledStatement', 'DebuggerStatement'].includes(nodeA.type), 'what statement is this missing?', nodeA.type);
+      ASSERT(['IfStatement', 'WhileStatement', 'TryStatement', 'LabeledStatement', 'DebuggerStatement'].includes(nodeA.type), 'what statement is this missing?', nodeA.type);
       return false;
   }
 }

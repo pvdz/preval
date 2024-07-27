@@ -63,7 +63,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
   const blockBodies = []; // Stack of blocks. Arrays of statements that is block.body or program.body
   const blockIndexes = []; // Stack of block indexes to match blockIds
   const ifIds = []; // Stack of `if` pids, negative for the `else` branch, zeroes for function boundaries. Used by SSA.
-  const loopStack = []; // Stack of loop nodes (while, for-in, for-of). `null` means function (or program).
+  const loopStack = []; // Stack of loop nodes. `null` means function (or program).
   const ifStack = [0];
   const elseStack = [0];
   const tryNodeStack = []; // Stack of try nodes (not pid) (try/catch)
@@ -265,7 +265,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           //vlog('Checked for try:', tryNodeStack.map(n => n.$p.pid), trapStack, catchStack);
         }
         blockBodies.push(node.body);
-        if (['WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(parentNode.type)) {
+        if (parentNode.type === 'WhileStatement') {
           blockIds.push(-node.$p.pid); // Mark a loop
         } else {
           blockIds.push(+node.$p.pid);
@@ -307,7 +307,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           // Do not propagate the explicit returns from functions, unless it always throws.
           if ([
             'IfStatement',
-            'WhileStatement', 'ForInStatement', 'ForOfStatement',
+            'WhileStatement',
             'LabeledStatement',
             'TryStatement',
             'BlockStatement',
@@ -401,66 +401,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         // Must be the only one and must be our header/body divider
         ASSERT(parentIndex >= 0);
         funcStack[funcStack.length - 1].$p.bodyOffset = parentIndex + 1;
-        break;
-      }
-
-      case 'ForInStatement:before': {
-        const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnBeforeLoop('in', node, parentBlock);
-
-        funcStack[funcStack.length - 1].$p.hasBranch = true;
-        loopStack.push(node);
-        break;
-      }
-      case 'ForInStatement:after': {
-        const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnAfterLoop('in', node, parentBlock, path, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack);
-
-        if (node.body.$p.alwaysCompletes?.size) {
-          const forPid = +node.$p.pid;
-          if (node.body.$p.alwaysCompletes.has(forPid)) {
-            // No need to propagate. At least one completion was the break for this loop so
-            // code is able to continue with the next statement after the loop.
-          } else {
-            if (!node.$p.alwaysCompletes) node.$p.alwaysCompletes = new Set;
-            node.body.$p.alwaysCompletes.forEach(pid => {
-              if (pid !== forPid) node.$p.alwaysCompletes.add(pid)
-            });
-          }
-        }
-
-        // Pop after the callback because it needs to find the current loop
-        loopStack.pop();
-        break;
-      }
-
-      case 'ForOfStatement:before': {
-        const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnBeforeLoop('of', node, parentBlock);
-
-        funcStack[funcStack.length - 1].$p.hasBranch = true;
-        loopStack.push(node);
-        break;
-      }
-      case 'ForOfStatement:after': {
-        const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnAfterLoop('of', node, parentBlock, path, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack);
-
-        if (node.body.$p.alwaysCompletes?.size) {
-          const forPid = +node.$p.pid;
-          if (node.body.$p.alwaysCompletes.has(forPid)) {
-            // No need to propagate. At least one completion was the break for this loop so
-            // code is able to continue with the next statement after the loop.
-          } else {
-            if (!node.$p.alwaysCompletes) node.$p.alwaysCompletes = new Set;
-            node.body.$p.alwaysCompletes.forEach(pid => {
-              if (pid !== forPid) node.$p.alwaysCompletes.add(pid)
-            });
-          }
-        }
-
-        // Pop after the callback because it needs to find the current loop
-        loopStack.pop();
         break;
       }
 
@@ -767,14 +707,10 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
             if (write.kind === 'var' || write.kind === 'assign') {
               vlog('Skipping typing till after the parent var/assign handler');
             } else {
-              // `for` lhs? not sure what else, currently. since we dont do catch clause yet and normalize everything else.
+              // exports? not sure what else, currently. since we dont do catch clause yet and normalize everything else.
               ASSERT(
-                parentNode.type === 'ForInStatement' ||
-                  parentNode.type === 'ForOfStatement' ||
-                  parentNode.type === 'ImportSpecifier' ||
-                  parentNode.type === 'CatchClause' ||
-                  parentNode.type === 'ClassExpression', // meh. i'm allowing it for now.
-                'assign is var, assign, import, catch, or for ... right?',
+                parentNode.type === 'ImportSpecifier' || parentNode.type === 'CatchClause' || parentNode.type === 'ClassExpression', // meh. i'm allowing it for now.
+                'assign is var, assign, import/export, or catch ... right?',
                 parentNode.type,
               );
               vlog('Clearing types because the write was not a var or an assignment expression...', parentNode.type);

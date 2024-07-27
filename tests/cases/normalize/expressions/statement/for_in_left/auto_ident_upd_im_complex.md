@@ -22,7 +22,17 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-for (($($(b)).x--).x in $({ x: 1 }));
+{
+  let tmpForInGen = $forIn($({ x: 1 }));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      ($($(b)).x--).x = tmpForInNext.value;
+    }
+  }
+}
 $(a, b);
 `````
 
@@ -32,20 +42,29 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam = { x: 1 };
-const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
-let tmpForInLhsNode = undefined;
-for (tmpForInLhsNode in tmpForInRhs) {
-  const tmpCallCallee$1 = $;
-  const tmpCalleeParam$1 = $(b);
-  const tmpPostUpdArgObj = tmpCallCallee$1(tmpCalleeParam$1);
-  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-  const tmpAssignMemLhsObj$1 = tmpPostUpdArgObj;
-  const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
-  tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
-  const tmpAssignMemLhsObj = tmpPostUpdArgVal;
-  tmpAssignMemLhsObj.x = tmpForInLhsNode;
+const tmpCallCallee = $forIn;
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpCallCallee$3 = $;
+    const tmpCalleeParam$3 = $(b);
+    const tmpPostUpdArgObj = tmpCallCallee$3(tmpCalleeParam$3);
+    const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+    const tmpAssignMemLhsObj$1 = tmpPostUpdArgObj;
+    const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+    const tmpAssignMemLhsObj = tmpPostUpdArgVal;
+    const tmpAssignMemLhsObj$3 = tmpAssignMemLhsObj;
+    const tmpAssignMemRhs$1 = tmpForInNext.value;
+    tmpAssignMemLhsObj$3.x = tmpAssignMemRhs$1;
+  }
 }
 $(a, b);
 `````
@@ -56,16 +75,23 @@ $(a, b);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = { x: 1 };
-const tmpForInRhs = $(tmpCalleeParam);
-let tmpForInLhsNode = undefined;
-for (tmpForInLhsNode in tmpForInRhs) {
-  const tmpCalleeParam$1 = $(b);
-  const tmpPostUpdArgObj = $(tmpCalleeParam$1);
-  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-  const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
-  tmpPostUpdArgObj.x = tmpAssignMemRhs;
-  tmpPostUpdArgVal.x = tmpForInLhsNode;
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = $(tmpCalleeParam$1);
+const tmpForInGen = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpCalleeParam$3 = $(b);
+    const tmpPostUpdArgObj = $(tmpCalleeParam$3);
+    const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+    const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
+    tmpPostUpdArgObj.x = tmpAssignMemRhs;
+    const tmpAssignMemRhs$1 = tmpForInNext.value;
+    tmpPostUpdArgVal.x = tmpAssignMemRhs$1;
+  }
 }
 $(a, b);
 `````
@@ -82,14 +108,22 @@ const b = {
 };
 const c = { x: 1 };
 const d = $( c );
-let e = undefined;
-for (e in d) {
-  const f = $( a );
-  const g = $( f );
-  const h = g.x;
-  const i = h - 1;
-  g.x = i;
-  h.x = e;
+const e = $forIn( d );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const f = e.next();
+  const g = f.done;
+  if (g) {
+    break;
+  }
+  else {
+    const h = $( a );
+    const i = $( h );
+    const j = i.x;
+    const k = j - 1;
+    i.x = k;
+    const l = f.value;
+    j.x = l;
+  }
 }
 $( b, a );
 `````

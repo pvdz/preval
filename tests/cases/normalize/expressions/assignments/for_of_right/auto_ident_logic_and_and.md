@@ -19,7 +19,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for (let x of (a = $($(1)) && $($(1)) && $($(2))));
+{
+  let tmpForOfGen = $forOf((a = $($(1)) && $($(1)) && $($(2))));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x = tmpForOfNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -28,24 +38,32 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam = $(1);
-a = tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee = $forOf;
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = $(1);
+a = tmpCallCallee$1(tmpCalleeParam$1);
 if (a) {
-  const tmpCallCallee$1 = $;
-  const tmpCalleeParam$1 = $(1);
-  a = tmpCallCallee$1(tmpCalleeParam$1);
+  const tmpCallCallee$3 = $;
+  const tmpCalleeParam$3 = $(1);
+  a = tmpCallCallee$3(tmpCalleeParam$3);
   if (a) {
-    const tmpCallCallee$3 = $;
-    const tmpCalleeParam$3 = $(2);
-    a = tmpCallCallee$3(tmpCalleeParam$3);
+    const tmpCallCallee$5 = $;
+    const tmpCalleeParam$5 = $(2);
+    a = tmpCallCallee$5(tmpCalleeParam$5);
   } else {
   }
 } else {
 }
-let tmpForOfDeclRhs = a;
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+let tmpCalleeParam = a;
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForOfNext.value;
+  }
 }
 $(a);
 `````
@@ -54,20 +72,27 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-let a = $(tmpCalleeParam);
+const tmpCalleeParam$1 = $(1);
+let a = $(tmpCalleeParam$1);
 if (a) {
-  const tmpCalleeParam$1 = $(1);
-  a = $(tmpCalleeParam$1);
+  const tmpCalleeParam$3 = $(1);
+  a = $(tmpCalleeParam$3);
   if (a) {
-    const tmpCalleeParam$3 = $(2);
-    a = $(tmpCalleeParam$3);
+    const tmpCalleeParam$5 = $(2);
+    a = $(tmpCalleeParam$5);
   } else {
   }
 } else {
 }
-let x = undefined;
-for (x of a) {
+const tmpForOfGen = $forOf(a);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
 }
 $(a);
 `````
@@ -87,9 +112,16 @@ if (b) {
     b = $( d );
   }
 }
-let e = undefined;
-for (e of b) {
-
+const e = $forOf( b );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const f = e.next();
+  const g = f.done;
+  if (g) {
+    break;
+  }
+  else {
+    f.value;
+  }
 }
 $( b );
 `````

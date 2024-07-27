@@ -20,7 +20,18 @@ $(x);
 `````js filename=intro
 let x = undefined;
 $(x);
-for ([x] of [[100]]) $(x, `for`);
+{
+  let tmpForOfGen = $forOf([[100]]);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      [x] = tmpForOfNext.value;
+      $(x, `for`);
+    }
+  }
+}
 $(x);
 `````
 
@@ -30,14 +41,21 @@ $(x);
 `````js filename=intro
 let x = undefined;
 $(x);
+const tmpCallCallee = $forOf;
 const tmpArrElement = [100];
-const tmpForOfRhs = [tmpArrElement];
-let tmpForOfLhsNode = undefined;
-for (tmpForOfLhsNode of tmpForOfRhs) {
-  const arrAssignPatternRhs = tmpForOfLhsNode;
-  const arrPatternSplat = [...arrAssignPatternRhs];
-  x = arrPatternSplat[0];
-  $(x, `for`);
+const tmpCalleeParam = [tmpArrElement];
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const arrAssignPatternRhs = tmpForOfNext.value;
+    const arrPatternSplat = [...arrAssignPatternRhs];
+    x = arrPatternSplat[0];
+    $(x, `for`);
+  }
 }
 $(x);
 `````
@@ -49,12 +67,19 @@ $(x);
 let x = undefined;
 $(undefined);
 const tmpArrElement = [100];
-const tmpForOfRhs = [tmpArrElement];
-let tmpForOfLhsNode = undefined;
-for (tmpForOfLhsNode of tmpForOfRhs) {
-  const arrPatternSplat = [...tmpForOfLhsNode];
-  x = arrPatternSplat[0];
-  $(x, `for`);
+const tmpCalleeParam = [tmpArrElement];
+const tmpForOfGen = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const arrAssignPatternRhs = tmpForOfNext.value;
+    const arrPatternSplat = [...arrAssignPatternRhs];
+    x = arrPatternSplat[0];
+    $(x, `for`);
+  }
 }
 $(x);
 `````
@@ -68,11 +93,19 @@ let a = undefined;
 $( undefined );
 const b = [ 100 ];
 const c = [ b ];
-let d = undefined;
-for (d of c) {
-  const e = [ ... d ];
-  a = e[ 0 ];
-  $( a, "for" );
+const d = $forOf( c );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const e = d.next();
+  const f = e.done;
+  if (f) {
+    break;
+  }
+  else {
+    const g = e.value;
+    const h = [ ... g ];
+    a = h[ 0 ];
+    $( a, "for" );
+  }
 }
 $( a );
 `````

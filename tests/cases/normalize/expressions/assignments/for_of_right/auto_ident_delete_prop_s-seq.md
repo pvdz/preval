@@ -22,7 +22,17 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-for (let x of (a = delete ($(1), $(2), arg).y));
+{
+  let tmpForOfGen = $forOf((a = delete ($(1), $(2), arg).y));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x = tmpForOfNext.value;
+    }
+  }
+}
 $(a, arg);
 `````
 
@@ -32,13 +42,21 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forOf;
 $(1);
 $(2);
 const tmpDeleteObj = arg;
 a = delete tmpDeleteObj.y;
-let tmpForOfDeclRhs = a;
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+let tmpCalleeParam = a;
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForOfNext.value;
+  }
 }
 $(a, arg);
 `````
@@ -51,8 +69,15 @@ $(1);
 $(2);
 const arg = { y: 1 };
 const a = delete arg.y;
-let x = undefined;
-for (x of a) {
+const tmpForOfGen = $forOf(a);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
 }
 $(a, arg);
 `````
@@ -66,9 +91,16 @@ $( 1 );
 $( 2 );
 const a = { y: 1 };
 const b = delete a.y;
-let c = undefined;
-for (c of b) {
-
+const c = $forOf( b );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const d = c.next();
+  const e = d.done;
+  if (e) {
+    break;
+  }
+  else {
+    d.value;
+  }
 }
 $( b, a );
 `````

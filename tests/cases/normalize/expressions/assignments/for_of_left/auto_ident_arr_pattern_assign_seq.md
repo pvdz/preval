@@ -24,7 +24,17 @@ $(a, x, y);
 let x = 1,
   y = 2;
 let a = { a: 999, b: 1000 };
-for ((a = [x, y] = ($(x), $(y), [$(3), $(4)])).x of $({ x: 1 }));
+{
+  let tmpForOfGen = $forOf($({ x: 1 }));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      (a = [x, y] = ($(x), $(y), [$(3), $(4)])).x = tmpForOfNext.value;
+    }
+  }
+}
 $(a, x, y);
 `````
 
@@ -35,22 +45,31 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam = { x: 1 };
-const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
-let tmpForOfLhsNode = undefined;
-for (tmpForOfLhsNode of tmpForOfRhs) {
-  $(x);
-  $(y);
-  const tmpArrElement = $(3);
-  const tmpArrElement$1 = $(4);
-  const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
-  a = tmpNestedAssignArrPatternRhs;
-  let tmpAssignMemLhsObj = a;
-  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
+const tmpCallCallee = $forOf;
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    $(x);
+    $(y);
+    const tmpArrElement = $(3);
+    const tmpArrElement$1 = $(4);
+    const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+    x = arrPatternSplat[0];
+    y = arrPatternSplat[1];
+    a = tmpNestedAssignArrPatternRhs;
+    let tmpAssignMemLhsObj = a;
+    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+    const tmpAssignMemRhs = tmpForOfNext.value;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+  }
 }
 $(a, x, y);
 `````
@@ -61,21 +80,28 @@ $(a, x, y);
 `````js filename=intro
 let x = 1;
 let y = 2;
-let a = 1;
-const tmpCalleeParam = { x: 1 };
-const tmpForOfRhs = $(tmpCalleeParam);
-let tmpForOfLhsNode = undefined;
-for (tmpForOfLhsNode of tmpForOfRhs) {
-  $(x);
-  $(y);
-  const tmpArrElement = $(3);
-  const tmpArrElement$1 = $(4);
-  const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
-  a = tmpNestedAssignArrPatternRhs;
-  tmpNestedAssignArrPatternRhs.x = tmpForOfLhsNode;
+let a = { a: 999, b: 1000 };
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = $(tmpCalleeParam$1);
+const tmpForOfGen = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    $(x);
+    $(y);
+    const tmpArrElement = $(3);
+    const tmpArrElement$1 = $(4);
+    const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+    x = arrPatternSplat[0];
+    y = arrPatternSplat[1];
+    a = tmpNestedAssignArrPatternRhs;
+    const tmpAssignMemRhs = tmpForOfNext.value;
+    tmpNestedAssignArrPatternRhs.x = tmpAssignMemRhs;
+  }
 }
 $(a, x, y);
 `````
@@ -87,21 +113,32 @@ With rename=true
 `````js filename=intro
 let a = 1;
 let b = 2;
-let c = 1;
+let c = {
+  a: 999,
+  b: 1000,
+};
 const d = { x: 1 };
 const e = $( d );
-let f = undefined;
-for (f of e) {
-  $( a );
-  $( b );
-  const g = $( 3 );
-  const h = $( 4 );
-  const i = [ g, h ];
-  const j = [ ... i ];
-  a = j[ 0 ];
-  b = j[ 1 ];
-  c = i;
-  i.x = f;
+const f = $forOf( e );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const g = f.next();
+  const h = g.done;
+  if (h) {
+    break;
+  }
+  else {
+    $( a );
+    $( b );
+    const i = $( 3 );
+    const j = $( 4 );
+    const k = [ i, j ];
+    const l = [ ... k ];
+    a = l[ 0 ];
+    b = l[ 1 ];
+    c = k;
+    const m = g.value;
+    k.x = m;
+  }
 }
 $( c, a, b );
 `````

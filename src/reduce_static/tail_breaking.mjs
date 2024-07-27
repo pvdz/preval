@@ -69,7 +69,7 @@ function _tailBreaking(fdata) {
       const next = path.nodes[n];
       vlog('Next:', next.type, ', index:', currentIndex, 'len:', next.body?.length);
 
-      if (['WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(next.type)) {
+      if (next.type === 'WhileStatement') {
         vlog('- Found a loop node. This means the break can not be eliminated.');
         return;
       }

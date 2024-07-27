@@ -19,7 +19,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for (let x in { x: $(1), y: 2, z: $(3) });
+{
+  let tmpForInGen = $forIn({ x: $(1), y: 2, z: $(3) });
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -28,12 +38,20 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forIn;
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$1 = 2;
 const tmpObjLitVal$3 = $(3);
-const tmpForInDeclRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$3 };
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+const tmpCalleeParam = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$3 };
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -45,9 +63,16 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
-const tmpForInDeclRhs = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+const tmpCalleeParam = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+const tmpForInGen = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -68,9 +93,16 @@ const d = {
   y: 2,
   z: c,
 };
-let e = undefined;
-for (e in d) {
-
+const e = $forIn( d );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const f = e.next();
+  const g = f.done;
+  if (g) {
+    break;
+  }
+  else {
+    f.value;
+  }
 }
 $( a );
 `````

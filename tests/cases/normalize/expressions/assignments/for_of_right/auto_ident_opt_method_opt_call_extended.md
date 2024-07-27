@@ -22,7 +22,17 @@ $(a);
 `````js filename=intro
 let b = { c: { d: { e: $ } } };
 let a = { a: 999, b: 1000 };
-for (let x of (a = b?.c.d.e?.(1)));
+{
+  let tmpForOfGen = $forOf((a = b?.c.d.e?.(1)));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x = tmpForOfNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -34,6 +44,7 @@ const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 let b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forOf;
 a = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
@@ -49,9 +60,16 @@ if (tmpIfTest) {
   }
 } else {
 }
-let tmpForOfDeclRhs = a;
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+let tmpCalleeParam = a;
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest$3 = tmpForOfNext.done;
+  if (tmpIfTest$3) {
+    break;
+  } else {
+    let x = tmpForOfNext.value;
+  }
 }
 $(a);
 `````
@@ -61,15 +79,24 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
+let tmpForOfGen = undefined;
 const tmpIfTest$1 = $ == null;
 if (tmpIfTest$1) {
+  tmpForOfGen = $forOf(undefined);
 } else {
   const tmpObjLitVal$1 = { e: $ };
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
   a = tmpChainElementCall;
+  tmpForOfGen = $forOf(tmpChainElementCall);
 }
-let x = undefined;
-for (x of a) {
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest$3 = tmpForOfNext.done;
+  if (tmpIfTest$3) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
 }
 $(a);
 `````
@@ -80,18 +107,26 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-const b = $ == null;
-if (b) {
-
+let b = undefined;
+const c = $ == null;
+if (c) {
+  b = $forOf( undefined );
 }
 else {
-  const c = { e: $ };
-  const d = $dotCall( $, c, 1 );
-  a = d;
+  const d = { e: $ };
+  const e = $dotCall( $, d, 1 );
+  a = e;
+  b = $forOf( e );
 }
-let e = undefined;
-for (e of a) {
-
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const f = b.next();
+  const g = f.done;
+  if (g) {
+    break;
+  }
+  else {
+    f.value;
+  }
 }
 $( a );
 `````

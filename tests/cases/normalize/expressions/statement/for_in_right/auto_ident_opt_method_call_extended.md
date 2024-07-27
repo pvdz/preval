@@ -22,7 +22,17 @@ $(a);
 `````js filename=intro
 let b = { c: { d: { e: $ } } };
 let a = { a: 999, b: 1000 };
-for (let x in b?.c.d.e(1));
+{
+  let tmpForInGen = $forIn(b?.c.d.e(1));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -34,7 +44,8 @@ const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 let b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-let tmpForInDeclRhs = undefined;
+const tmpCallCallee = $forIn;
+let tmpCalleeParam = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
@@ -42,11 +53,18 @@ if (tmpIfTest) {
   const tmpChainElementObject$1 = tmpChainElementObject.d;
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
   const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-  tmpForInDeclRhs = tmpChainElementCall;
+  tmpCalleeParam = tmpChainElementCall;
 } else {
 }
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest$1 = tmpForInNext.done;
+  if (tmpIfTest$1) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -58,8 +76,15 @@ $(a);
 const tmpObjLitVal$1 = { e: $ };
 const a = { a: 999, b: 1000 };
 const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
-let x = undefined;
-for (x in tmpChainElementCall) {
+const tmpClusterSSA_tmpForInGen = $forIn(tmpChainElementCall);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpClusterSSA_tmpForInGen.next();
+  const tmpIfTest$1 = tmpForInNext.done;
+  if (tmpIfTest$1) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -75,9 +100,16 @@ const b = {
   b: 1000,
 };
 const c = $dotCall( $, a, 1 );
-let d = undefined;
-for (d in c) {
-
+const d = $forIn( c );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const e = d.next();
+  const f = e.done;
+  if (f) {
+    break;
+  }
+  else {
+    e.value;
+  }
 }
 $( b );
 `````

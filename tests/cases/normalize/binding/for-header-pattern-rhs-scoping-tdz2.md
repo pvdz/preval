@@ -35,11 +35,22 @@ for (lhs in rhs) {
 const rhs = [$throwTDZError(`Preval: TDZ triggered for this read: [firstElement]`)];
 let lhs = undefined;
 let firstElement = undefined;
-for (lhs in rhs) {
-  const pattern = lhs;
-  const patternSplat = [...pattern];
-  let firstElementSSA = patternSplat[0];
-  $(firstElementSSA);
+{
+  let tmpForInGen = $forIn(rhs);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      lhs = tmpForInNext.value;
+      {
+        const pattern = lhs;
+        const patternSplat = [...pattern];
+        let firstElementSSA = patternSplat[0];
+        $(firstElementSSA);
+      }
+    }
+  }
 }
 `````
 

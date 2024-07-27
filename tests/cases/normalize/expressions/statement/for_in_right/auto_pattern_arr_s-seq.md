@@ -19,7 +19,17 @@ $(a);
 
 `````js filename=intro
 let [a] = { a: 999, b: 1000 };
-for (let x in ($(10), $(20), [1, 2]));
+{
+  let tmpForInGen = $forIn(($(10), $(20), [1, 2]));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -30,11 +40,19 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
+const tmpCallCallee = $forIn;
 $(10);
 $(20);
-const tmpForInDeclRhs = [1, 2];
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+const tmpCalleeParam = [1, 2];
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -48,9 +66,16 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
 $(10);
 $(20);
-const tmpForInDeclRhs = [1, 2];
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+const tmpCalleeParam = [1, 2];
+const tmpForInGen = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -69,9 +94,16 @@ const c = b[ 0 ];
 $( 10 );
 $( 20 );
 const d = [ 1, 2 ];
-let e = undefined;
-for (e in d) {
-
+const e = $forIn( d );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const f = e.next();
+  const g = f.done;
+  if (g) {
+    break;
+  }
+  else {
+    f.value;
+  }
 }
 $( c );
 `````

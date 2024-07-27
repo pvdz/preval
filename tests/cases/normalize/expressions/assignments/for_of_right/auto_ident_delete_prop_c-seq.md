@@ -22,7 +22,17 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-for (let x of (a = delete ($(1), $(2), $(arg)).y));
+{
+  let tmpForOfGen = $forOf((a = delete ($(1), $(2), $(arg)).y));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x = tmpForOfNext.value;
+    }
+  }
+}
 $(a, arg);
 `````
 
@@ -32,13 +42,21 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forOf;
 $(1);
 $(2);
 const tmpDeleteObj = $(arg);
 a = delete tmpDeleteObj.y;
-let tmpForOfDeclRhs = a;
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+let tmpCalleeParam = a;
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForOfNext.value;
+  }
 }
 $(a, arg);
 `````
@@ -52,8 +70,15 @@ $(2);
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
 const tmpClusterSSA_a = delete tmpDeleteObj.y;
-let x = undefined;
-for (x of tmpClusterSSA_a) {
+const tmpForOfGen = $forOf(tmpClusterSSA_a);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
 }
 $(tmpClusterSSA_a, arg);
 `````
@@ -68,9 +93,16 @@ $( 2 );
 const a = { y: 1 };
 const b = $( a );
 const c = delete b.y;
-let d = undefined;
-for (d of c) {
-
+const d = $forOf( c );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const e = d.next();
+  const f = e.done;
+  if (f) {
+    break;
+  }
+  else {
+    e.value;
+  }
 }
 $( c, a );
 `````

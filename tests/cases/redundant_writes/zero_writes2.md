@@ -36,11 +36,22 @@ while (true) {
     $(y, `before`);
     let x$1 = undefined;
     const obj = { a: 1, b: 2 };
-    for (x$1 in obj) {
-      $continue: {
-        {
-          $(x$1, y);
-          break $continue;
+    {
+      let tmpForInGen = $forIn(obj);
+      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+        let tmpForInNext = tmpForInGen.next();
+        if (tmpForInNext.done) {
+          break;
+        } else {
+          x$1 = tmpForInNext.value;
+          {
+            $continue: {
+              {
+                $(x$1, y);
+                break $continue;
+              }
+            }
+          }
         }
       }
     }
@@ -64,8 +75,16 @@ while (true) {
     $(y, `before`);
     let x$1 = undefined;
     const obj = { a: 1, b: 2 };
-    for (x$1 in obj) {
-      $(x$1, y);
+    let tmpForInGen = $forIn(obj);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      let tmpForInNext = tmpForInGen.next();
+      const tmpIfTest = tmpForInNext.done;
+      if (tmpIfTest) {
+        break;
+      } else {
+        x$1 = tmpForInNext.value;
+        $(x$1, y);
+      }
     }
     $(x$1, y, `after`);
   } else {
@@ -85,8 +104,16 @@ while (true) {
     $(tmpClusterSSA_y, `before`);
     let x$1 = undefined;
     const obj = { a: 1, b: 2 };
-    for (x$1 in obj) {
-      $(x$1, tmpClusterSSA_y);
+    const tmpForInGen = $forIn(obj);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      const tmpForInNext = tmpForInGen.next();
+      const tmpIfTest = tmpForInNext.done;
+      if (tmpIfTest) {
+        break;
+      } else {
+        x$1 = tmpForInNext.value;
+        $(x$1, tmpClusterSSA_y);
+      }
     }
     $(x$1, tmpClusterSSA_y, `after`);
   } else {
@@ -110,8 +137,17 @@ while (true) {
       a: 1,
       b: 2,
     };
-    for (b in c) {
-      $( b, a );
+    const d = $forIn( c );
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      const e = d.next();
+      const f = e.done;
+      if (f) {
+        break;
+      }
+      else {
+        b = e.value;
+        $( b, a );
+      }
     }
     $( b, a, "after" );
   }

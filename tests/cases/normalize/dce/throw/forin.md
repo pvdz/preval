@@ -26,9 +26,20 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  for (let x in { a: 1, b: 2 }) {
-    throw $(1, `throw`);
-    $(`fail`);
+  {
+    let tmpForInGen = $forIn({ a: 1, b: 2 });
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      let tmpForInNext = tmpForInGen.next();
+      if (tmpForInNext.done) {
+        break;
+      } else {
+        let x = tmpForInNext.value;
+        {
+          throw $(1, `throw`);
+          $(`fail`);
+        }
+      }
+    }
   }
 };
 $(f());
@@ -40,30 +51,42 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpForInDeclRhs = { a: 1, b: 2 };
-  let x = undefined;
-  for (x in tmpForInDeclRhs) {
-    const tmpThrowArg = $(1, `throw`);
-    throw tmpThrowArg;
+  const tmpCallCallee = $forIn;
+  const tmpCalleeParam = { a: 1, b: 2 };
+  let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    const tmpIfTest = tmpForInNext.done;
+    if (tmpIfTest) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+      const tmpThrowArg = $(1, `throw`);
+      throw tmpThrowArg;
+    }
   }
   return undefined;
 };
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 
 `````js filename=intro
-let x = undefined;
-const tmpForInDeclRhs = { a: 1, b: 2 };
-for (x in tmpForInDeclRhs) {
+const tmpCalleeParam = { a: 1, b: 2 };
+const tmpForInGen = $forIn(tmpCalleeParam);
+const tmpForInNext = tmpForInGen.next();
+const tmpIfTest = tmpForInNext.done;
+if (tmpIfTest) {
+  $(undefined);
+} else {
+  tmpForInNext.value;
   const tmpThrowArg = $(1, `throw`);
   throw tmpThrowArg;
 }
-$(undefined);
 `````
 
 ## PST Output
@@ -71,16 +94,21 @@ $(undefined);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = {
+const a = {
   a: 1,
   b: 2,
 };
-for (a in b) {
-  const c = $( 1, "throw" );
-  throw c;
+const b = $forIn( a );
+const c = b.next();
+const d = c.done;
+if (d) {
+  $( undefined );
 }
-$( undefined );
+else {
+  c.value;
+  const e = $( 1, "throw" );
+  throw e;
+}
 `````
 
 ## Globals

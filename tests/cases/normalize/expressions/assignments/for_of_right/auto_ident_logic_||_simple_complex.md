@@ -19,7 +19,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for (let x of (a = 0 || $($(1))));
+{
+  let tmpForOfGen = $forOf((a = 0 || $($(1))));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x = tmpForOfNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -28,16 +38,24 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forOf;
 a = 0;
 if (a) {
 } else {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(1);
-  a = tmpCallCallee(tmpCalleeParam);
+  const tmpCallCallee$1 = $;
+  const tmpCalleeParam$1 = $(1);
+  a = tmpCallCallee$1(tmpCalleeParam$1);
 }
-let tmpForOfDeclRhs = a;
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+let tmpCalleeParam = a;
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForOfNext.value;
+  }
 }
 $(a);
 `````
@@ -46,10 +64,17 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-const a = $(tmpCalleeParam);
-let x = undefined;
-for (x of a) {
+const tmpCalleeParam$1 = $(1);
+const a = $(tmpCalleeParam$1);
+const tmpForOfGen = $forOf(a);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
 }
 $(a);
 `````
@@ -61,9 +86,16 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = $( a );
-let c = undefined;
-for (c of b) {
-
+const c = $forOf( b );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const d = c.next();
+  const e = d.done;
+  if (e) {
+    break;
+  }
+  else {
+    d.value;
+  }
 }
 $( b );
 `````

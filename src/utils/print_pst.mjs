@@ -31,8 +31,6 @@ function printPstNode(node, indent, config) {
     case 'DebuggerStatement': return printStatement(indent, config, node);
     case 'ExportNamed': return printStatement(indent, config, node);
     case 'ExpressionStatement': return printStatement(indent, config, node);
-    case 'ForInStatement': return printStatement(indent, config, node);
-    case 'ForOfStatement': return printStatement(indent, config, node);
     case 'FunctionExpression': return printExpression(indent, config, node);
     case 'Getter': return printObjectMethod(indent, config, node);
     case 'Ref': return printExpression(indent, config, node);
@@ -102,12 +100,6 @@ function _printStatement(indent, config, node) {
     }
     case 'ExpressionStatement': {
       return `${printExpression(indent, config, node.expression)};`;
-    }
-    case 'ForInStatement': {
-      return `for (${printRef(indent, config, node.left)} in ${printSimple(indent, config, node.right)}) ${printBlock(indent, config, node.body)}`;
-    }
-    case 'ForOfStatement': {
-      return `for (${printRef(indent, config, node.left)} of ${printSimple(indent, config, node.right)}) ${printBlock(indent, config, node.body)}`;
     }
     case 'IfStatement': {
       return `if (${printSimple(indent, config, node.test)}) ${printBlock(indent, config, node.yes)}${node.no && node.no.body.length > 0 ? `\n${indent}else ${printBlock(indent, config, node.no)}` : ''}`;

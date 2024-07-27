@@ -30,7 +30,17 @@ $(a, x, y);
 let x = 1,
   y = 2;
 let a = { a: 999, b: 1000 };
-for (let x$1 of ([x$1, y] = [$(3), $(4)]));
+{
+  let tmpForOfGen = $forOf(([x$1, y] = [$(3), $(4)]));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x$1 = tmpForOfNext.value;
+    }
+  }
+}
 $(a, x, y);
 `````
 
@@ -41,16 +51,24 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-let tmpForOfDeclRhs = undefined;
+const tmpCallCallee = $forOf;
+let tmpCalleeParam = undefined;
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x$1 = arrPatternSplat[0];
 y = arrPatternSplat[1];
-tmpForOfDeclRhs = tmpNestedAssignArrPatternRhs;
-let x$1 = undefined;
-for (x$1 of tmpForOfDeclRhs) {
+tmpCalleeParam = tmpNestedAssignArrPatternRhs;
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x$2 = tmpForOfNext.value;
+  }
 }
 $(a, x, y);
 `````
@@ -64,10 +82,17 @@ const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-arrPatternSplat[0];
+x$1 = arrPatternSplat[0];
 const tmpClusterSSA_y = arrPatternSplat[1];
-let x$1 = undefined;
-for (x$1 of tmpNestedAssignArrPatternRhs) {
+const tmpForOfGen = $forOf(tmpNestedAssignArrPatternRhs);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
 }
 $(a, 1, tmpClusterSSA_y);
 `````
@@ -85,18 +110,27 @@ const b = $( 3 );
 const c = $( 4 );
 const d = [ b, c ];
 const e = [ ... d ];
-e[ 0 ];
+x$1 = e[ 0 ];
 const f = e[ 1 ];
-let g = undefined;
-for (g of d) {
-
+const g = $forOf( d );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const h = g.next();
+  const i = h.done;
+  if (i) {
+    break;
+  }
+  else {
+    h.value;
+  }
 }
 $( a, 1, f );
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+x$1
 
 ## Result
 

@@ -22,7 +22,17 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-for ((1, 2, b)[$(`c`)].x of $({ x: 1 }));
+{
+  let tmpForOfGen = $forOf($({ x: 1 }));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      (1, 2, b)[$(`c`)].x = tmpForOfNext.value;
+    }
+  }
+}
 $(a, b);
 `````
 
@@ -32,15 +42,24 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam = { x: 1 };
-const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
-let tmpForOfLhsNode = undefined;
-for (tmpForOfLhsNode of tmpForOfRhs) {
-  const tmpCompObj = b;
-  const tmpCompProp = $(`c`);
-  const tmpAssignMemLhsObj = tmpCompObj[tmpCompProp];
-  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
+const tmpCallCallee = $forOf;
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpCompObj = b;
+    const tmpCompProp = $(`c`);
+    const tmpAssignMemLhsObj = tmpCompObj[tmpCompProp];
+    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+    const tmpAssignMemRhs = tmpForOfNext.value;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+  }
 }
 $(a, b);
 `````
@@ -51,13 +70,20 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = { x: 1 };
-const tmpForOfRhs = $(tmpCalleeParam);
-let tmpForOfLhsNode = undefined;
-for (tmpForOfLhsNode of tmpForOfRhs) {
-  const tmpCompProp = $(`c`);
-  const tmpAssignMemLhsObj = b[tmpCompProp];
-  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = $(tmpCalleeParam$1);
+const tmpForOfGen = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpCompProp = $(`c`);
+    const tmpAssignMemLhsObj = b[tmpCompProp];
+    const tmpAssignMemRhs = tmpForOfNext.value;
+    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  }
 }
 $(a, b);
 `````
@@ -74,11 +100,19 @@ const b = {
 };
 const c = { x: 1 };
 const d = $( c );
-let e = undefined;
-for (e of d) {
-  const f = $( "c" );
-  const g = a[ f ];
-  g.x = e;
+const e = $forOf( d );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const f = e.next();
+  const g = f.done;
+  if (g) {
+    break;
+  }
+  else {
+    const h = $( "c" );
+    const i = a[ h ];
+    const j = f.value;
+    i.x = j;
+  }
 }
 $( b, a );
 `````

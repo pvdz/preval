@@ -61,7 +61,7 @@ function _redundantWrites(fdata) {
       Array.from(varWrite.reachedByWrites).some((shadowWrite) => {
         vlog('-', shadowWrite.action + ':' + shadowWrite.kind, shadowWrite.parentNode.right.type);
         if (shadowWrite.kind !== 'assign') {
-          // for-in, for-of, catch, etc
+          // export, catch, etc
           // We were looking for the x=1 in `let x=$(); if (a) x=1; else x=2` case, which must be an assignment
           return;
         }

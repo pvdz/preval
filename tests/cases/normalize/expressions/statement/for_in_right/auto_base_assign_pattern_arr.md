@@ -22,7 +22,17 @@ $(a, b);
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
-for (let x in ([b] = $([$(2)])));
+{
+  let tmpForInGen = $forIn(([b] = $([$(2)])));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+    }
+  }
+}
 $(a, b);
 `````
 
@@ -32,16 +42,24 @@ $(a, b);
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
-let tmpForInDeclRhs = undefined;
-const tmpCallCallee = $;
+const tmpCallCallee = $forIn;
+let tmpCalleeParam = undefined;
+const tmpCallCallee$1 = $;
 const tmpArrElement = $(2);
-const tmpCalleeParam = [tmpArrElement];
-const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam$1 = [tmpArrElement];
+const tmpNestedAssignArrPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
-tmpForInDeclRhs = tmpNestedAssignArrPatternRhs;
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+tmpCalleeParam = tmpNestedAssignArrPatternRhs;
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
 }
 $(a, b);
 `````
@@ -52,12 +70,19 @@ $(a, b);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpArrElement = $(2);
-const tmpCalleeParam = [tmpArrElement];
-const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
+const tmpCalleeParam$1 = [tmpArrElement];
+const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_b = arrPatternSplat[0];
-let x = undefined;
-for (x in tmpNestedAssignArrPatternRhs) {
+const tmpForInGen = $forIn(tmpNestedAssignArrPatternRhs);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
 $(a, tmpClusterSSA_b);
 `````
@@ -76,9 +101,16 @@ const c = [ b ];
 const d = $( c );
 const e = [ ... d ];
 const f = e[ 0 ];
-let g = undefined;
-for (g in d) {
-
+const g = $forIn( d );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const h = g.next();
+  const i = h.done;
+  if (i) {
+    break;
+  }
+  else {
+    h.value;
+  }
 }
 $( a, f );
 `````

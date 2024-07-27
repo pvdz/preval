@@ -26,11 +26,22 @@ $('after, wont eval due to infinite loop');
 
 `````js filename=intro
 while ($(true)) {
-  for (let x in { a: 1, b: 2 }) {
-    $continue: {
-      {
-        break $continue;
-        $(`fail`);
+  {
+    let tmpForInGen = $forIn({ a: 1, b: 2 });
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      let tmpForInNext = tmpForInGen.next();
+      if (tmpForInNext.done) {
+        break;
+      } else {
+        let x = tmpForInNext.value;
+        {
+          $continue: {
+            {
+              break $continue;
+              $(`fail`);
+            }
+          }
+        }
       }
     }
   }
@@ -46,9 +57,17 @@ $(`after, wont eval due to infinite loop`);
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    const tmpForInDeclRhs = { a: 1, b: 2 };
-    let x = undefined;
-    for (x in tmpForInDeclRhs) {
+    const tmpCallCallee = $forIn;
+    const tmpCalleeParam = { a: 1, b: 2 };
+    let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      let tmpForInNext = tmpForInGen.next();
+      const tmpIfTest$1 = tmpForInNext.done;
+      if (tmpIfTest$1) {
+        break;
+      } else {
+        let x = tmpForInNext.value;
+      }
     }
     $(`keep`);
   } else {
@@ -65,9 +84,16 @@ $(`after, wont eval due to infinite loop`);
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    let x = undefined;
-    const tmpForInDeclRhs = { a: 1, b: 2 };
-    for (x in tmpForInDeclRhs) {
+    const tmpCalleeParam = { a: 1, b: 2 };
+    const tmpForInGen = $forIn(tmpCalleeParam);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      const tmpForInNext = tmpForInGen.next();
+      const tmpIfTest$1 = tmpForInNext.done;
+      if (tmpIfTest$1) {
+        break;
+      } else {
+        tmpForInNext.value;
+      }
     }
     $(`keep`);
   } else {
@@ -85,13 +111,20 @@ With rename=true
 while (true) {
   const a = $( true );
   if (a) {
-    let b = undefined;
-    const c = {
+    const b = {
       a: 1,
       b: 2,
     };
-    for (b in c) {
-
+    const c = $forIn( b );
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      const d = c.next();
+      const e = d.done;
+      if (e) {
+        break;
+      }
+      else {
+        d.value;
+      }
     }
     $( "keep" );
   }

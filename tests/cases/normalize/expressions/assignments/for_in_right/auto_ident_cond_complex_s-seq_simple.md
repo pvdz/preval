@@ -19,7 +19,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for (let x in (a = $(1) ? (40, 50, 60) : $($(100))));
+{
+  let tmpForInGen = $forIn((a = $(1) ? (40, 50, 60) : $($(100))));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -28,17 +38,25 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forIn;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   a = 60;
 } else {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(100);
-  a = tmpCallCallee(tmpCalleeParam);
+  const tmpCallCallee$1 = $;
+  const tmpCalleeParam$1 = $(100);
+  a = tmpCallCallee$1(tmpCalleeParam$1);
 }
-let tmpForInDeclRhs = a;
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+let tmpCalleeParam = a;
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest$1 = tmpForInNext.done;
+  if (tmpIfTest$1) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -49,13 +67,22 @@ $(a);
 `````js filename=intro
 let a = 60;
 const tmpIfTest = $(1);
+let tmpForInGen = undefined;
 if (tmpIfTest) {
+  tmpForInGen = $forIn(60);
 } else {
-  const tmpCalleeParam = $(100);
-  a = $(tmpCalleeParam);
+  const tmpCalleeParam$1 = $(100);
+  a = $(tmpCalleeParam$1);
+  tmpForInGen = $forIn(a);
 }
-let x = undefined;
-for (x in a) {
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest$1 = tmpForInNext.done;
+  if (tmpIfTest$1) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -67,16 +94,24 @@ With rename=true
 `````js filename=intro
 let a = 60;
 const b = $( 1 );
+let c = undefined;
 if (b) {
-
+  c = $forIn( 60 );
 }
 else {
-  const c = $( 100 );
-  a = $( c );
+  const d = $( 100 );
+  a = $( d );
+  c = $forIn( a );
 }
-let d = undefined;
-for (d in a) {
-
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const e = c.next();
+  const f = e.done;
+  if (f) {
+    break;
+  }
+  else {
+    e.value;
+  }
 }
 $( a );
 `````

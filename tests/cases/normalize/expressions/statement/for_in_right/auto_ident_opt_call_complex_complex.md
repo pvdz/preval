@@ -19,7 +19,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for (let x in $($)?.($(1)));
+{
+  let tmpForInGen = $forIn($($)?.($(1)));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -28,21 +38,29 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpForInDeclRhs = undefined;
+const tmpCallCallee = $forIn;
+let tmpCalleeParam = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall($);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
-  const tmpCallCallee = $dotCall;
-  const tmpCalleeParam = tmpChainElementCall;
-  const tmpCalleeParam$1 = tmpChainRootCall;
-  const tmpCalleeParam$3 = $(1);
-  const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
-  tmpForInDeclRhs = tmpChainElementCall$1;
+  const tmpCallCallee$1 = $dotCall;
+  const tmpCalleeParam$1 = tmpChainElementCall;
+  const tmpCalleeParam$3 = tmpChainRootCall;
+  const tmpCalleeParam$5 = $(1);
+  const tmpChainElementCall$1 = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
+  tmpCalleeParam = tmpChainElementCall$1;
 } else {
 }
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest$1 = tmpForInNext.done;
+  if (tmpIfTest$1) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -51,17 +69,24 @@ $(a);
 
 
 `````js filename=intro
-let tmpForInDeclRhs = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
+let tmpForInGen = undefined;
 if (tmpIfTest) {
+  tmpForInGen = $forIn(undefined);
 } else {
-  const tmpCalleeParam$3 = $(1);
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
-  tmpForInDeclRhs = tmpChainElementCall$1;
+  const tmpCalleeParam$5 = $(1);
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$5);
+  tmpForInGen = $forIn(tmpChainElementCall$1);
 }
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest$1 = tmpForInNext.done;
+  if (tmpIfTest$1) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -72,26 +97,32 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( $ );
-const c = b == null;
-if (c) {
-
+const a = $( $ );
+const b = a == null;
+let c = undefined;
+if (b) {
+  c = $forIn( undefined );
 }
 else {
   const d = $( 1 );
-  const e = $dotCall( b, $, d );
-  a = e;
+  const e = $dotCall( a, $, d );
+  c = $forIn( e );
 }
-let f = undefined;
-for (f in a) {
-
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const f = c.next();
+  const g = f.done;
+  if (g) {
+    break;
+  }
+  else {
+    f.value;
+  }
 }
-const g = {
+const h = {
   a: 999,
   b: 1000,
 };
-$( g );
+$( h );
 `````
 
 ## Globals

@@ -1,11 +1,11 @@
 // Built-in symbol names and their `typeof` result
 
 import {
-  BUILTIN_ARRAY_METHODS_SYMBOLS, BUILTIN_BOOLEAN_METHODS_SYMBOLS,
+  BUILTIN_ARRAY_METHODS_SYMBOLS, BUILTIN_BOOLEAN_METHODS_SYMBOLS, BUILTIN_FOR_IN_CALL_NAME, BUILTIN_FOR_OF_CALL_NAME,
   BUILTIN_FUNCTION_METHODS_SYMBOLS,
   BUILTIN_NUMBER_METHODS_SYMBOLS,
-  BUILTIN_REGEXP_METHODS_SYMBOLS, BUILTIN_STRING_METHODS_SYMBOLS
-} from "./constants.mjs"
+  BUILTIN_REGEXP_METHODS_SYMBOLS, BUILTIN_STRING_METHODS_SYMBOLS,
+} from './constants.mjs';
 
 // We have to set a max of unrolling infinite loops because we have to predefine their global constant value here.
 // It's fine to up but would have to be upped in code. Can't pass this as an argument. Well. Not without changing smoe logic around first.
@@ -66,6 +66,8 @@ const globalNames = new Map([
   ['objPatternRest', 'function'], // Should we tell Preval this is a function?
   ['$dotCall', 'function'], // Should we tell Preval this is a function?
   ['$coerce', '$coerce'], // dito
+  [BUILTIN_FOR_IN_CALL_NAME, BUILTIN_FOR_IN_CALL_NAME],
+  [BUILTIN_FOR_OF_CALL_NAME, BUILTIN_FOR_OF_CALL_NAME],
 
   // Preval special aliases for builtins
   ['$ArrayPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],

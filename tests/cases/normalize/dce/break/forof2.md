@@ -26,9 +26,20 @@ $('after');
 
 `````js filename=intro
 while ($(true)) {
-  for (let x in { a: 1, b: 2 }) {
-    break;
-    $(`fail`);
+  {
+    let tmpForInGen = $forIn({ a: 1, b: 2 });
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      let tmpForInNext = tmpForInGen.next();
+      if (tmpForInNext.done) {
+        break;
+      } else {
+        let x = tmpForInNext.value;
+        {
+          break;
+          $(`fail`);
+        }
+      }
+    }
   }
   $(`keep`);
 }
@@ -42,10 +53,18 @@ $(`after`);
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    const tmpForInDeclRhs = { a: 1, b: 2 };
-    let x = undefined;
-    for (x in tmpForInDeclRhs) {
-      break;
+    const tmpCallCallee = $forIn;
+    const tmpCalleeParam = { a: 1, b: 2 };
+    let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      let tmpForInNext = tmpForInGen.next();
+      const tmpIfTest$1 = tmpForInNext.done;
+      if (tmpIfTest$1) {
+        break;
+      } else {
+        let x = tmpForInNext.value;
+        break;
+      }
     }
     $(`keep`);
   } else {
@@ -59,18 +78,33 @@ $(`after`);
 
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    let x = undefined;
-    const tmpForInDeclRhs = { a: 1, b: 2 };
-    for (x in tmpForInDeclRhs) {
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  const tmpCalleeParam = { a: 1, b: 2 };
+  const tmpForInGen = $forIn(tmpCalleeParam);
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest$1 = tmpForInNext.done;
+  if (tmpIfTest$1) {
+  } else {
+    tmpForInNext.value;
+  }
+  while ($LOOP_UNROLL_10) {
+    $(`keep`);
+    const tmpIfTest$2 = $(true);
+    if (tmpIfTest$2) {
+      const tmpCalleeParam$1 = { a: 1, b: 2 };
+      const tmpForInGen$1 = $forIn(tmpCalleeParam$1);
+      const tmpForInNext$1 = tmpForInGen$1.next();
+      const tmpIfTest$4 = tmpForInNext$1.done;
+      if (tmpIfTest$4) {
+      } else {
+        tmpForInNext$1.value;
+      }
+    } else {
       break;
     }
-    $(`keep`);
-  } else {
-    break;
   }
+} else {
 }
 $(`after`);
 `````
@@ -80,21 +114,42 @@ $(`after`);
 With rename=true
 
 `````js filename=intro
-while (true) {
-  const a = $( true );
-  if (a) {
-    let b = undefined;
-    const c = {
-      a: 1,
-      b: 2,
-    };
-    for (b in c) {
-      break;
-    }
-    $( "keep" );
+const a = $( true );
+if (a) {
+  const b = {
+    a: 1,
+    b: 2,
+  };
+  const c = $forIn( b );
+  const d = c.next();
+  const e = d.done;
+  if (e) {
+
   }
   else {
-    break;
+    d.value;
+  }
+  while ($LOOP_UNROLL_10) {
+    $( "keep" );
+    const f = $( true );
+    if (f) {
+      const g = {
+        a: 1,
+        b: 2,
+      };
+      const h = $forIn( g );
+      const i = h.next();
+      const j = i.done;
+      if (j) {
+
+      }
+      else {
+        i.value;
+      }
+    }
+    else {
+      break;
+    }
   }
 }
 $( "after" );

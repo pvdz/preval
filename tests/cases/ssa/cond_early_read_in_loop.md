@@ -26,14 +26,25 @@ for (lhs in rhs) {
 
 `````js filename=intro
 let lhs = undefined;
-for (lhs in rhs) {
-  if ($) {
-    const rhs$1 = [$throwTDZError(`Preval: TDZ triggered for this read: [firstElement]`)];
-    $(rhs$1);
-  } else {
-    $(`init`);
+{
+  let tmpForInGen = $forIn(rhs);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      lhs = tmpForInNext.value;
+      {
+        if ($) {
+          const rhs$1 = [$throwTDZError(`Preval: TDZ triggered for this read: [firstElement]`)];
+          $(rhs$1);
+        } else {
+          $(`init`);
+        }
+        let firstElement = undefined;
+      }
+    }
   }
-  let firstElement = undefined;
 }
 `````
 
@@ -42,13 +53,21 @@ for (lhs in rhs) {
 
 `````js filename=intro
 let lhs = undefined;
-for (lhs in rhs) {
-  if ($) {
-    throw `Preval: TDZ triggered for this read: [firstElement]`;
-    const rhs$1 = 0;
+let tmpForInGen = $forIn(rhs);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
   } else {
-    $(`init`);
-    let firstElement = undefined;
+    lhs = tmpForInNext.value;
+    if ($) {
+      throw `Preval: TDZ triggered for this read: [firstElement]`;
+      const rhs$1 = 0;
+    } else {
+      $(`init`);
+      let firstElement = undefined;
+    }
   }
 }
 `````
@@ -57,12 +76,19 @@ for (lhs in rhs) {
 
 
 `````js filename=intro
-let lhs = undefined;
-for (lhs in rhs) {
-  if ($) {
-    throw `Preval: TDZ triggered for this read: [firstElement]`;
+const tmpForInGen = $forIn(rhs);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
   } else {
-    $(`init`);
+    tmpForInNext.value;
+    if ($) {
+      throw `Preval: TDZ triggered for this read: [firstElement]`;
+    } else {
+      $(`init`);
+    }
   }
 }
 `````
@@ -72,13 +98,21 @@ for (lhs in rhs) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-for (a in rhs) {
-  if ($) {
-    throw "Preval: TDZ triggered for this read: [firstElement]";
+const a = $forIn( rhs );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const b = a.next();
+  const c = b.done;
+  if (c) {
+    break;
   }
   else {
-    $( "init" );
+    b.value;
+    if ($) {
+      throw "Preval: TDZ triggered for this read: [firstElement]";
+    }
+    else {
+      $( "init" );
+    }
   }
 }
 `````

@@ -28,17 +28,28 @@ $('c');
 
 `````js filename=intro
 let x = { a: 0, b: 1 };
-A: for (const y of x) {
-  $continue: {
-    {
-      while (true) {
-        $(`a`);
-        if ($(true)) {
-          break $continue;
+A: {
+  let tmpForOfGen = $forOf(x);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      const y = tmpForOfNext.value;
+      {
+        $continue: {
+          {
+            while (true) {
+              $(`a`);
+              if ($(true)) {
+                break $continue;
+              }
+              $(`fail`);
+            }
+            $(`b`);
+          }
         }
-        $(`fail`);
       }
-      $(`b`);
     }
   }
 }
@@ -50,16 +61,22 @@ $(`c`);
 
 `````js filename=intro
 let x = { a: 0, b: 1 };
-const tmpForOfDeclRhs = x;
-let y = undefined;
-for (y of tmpForOfDeclRhs) {
-  while (true) {
-    $(`a`);
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      break;
-    } else {
-      $(`fail`);
+let tmpForOfGen = $forOf(x);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const y = tmpForOfNext.value;
+    while (true) {
+      $(`a`);
+      const tmpIfTest$1 = $(true);
+      if (tmpIfTest$1) {
+        break;
+      } else {
+        $(`fail`);
+      }
     }
   }
 }
@@ -70,20 +87,27 @@ $(`c`);
 
 
 `````js filename=intro
-let y = undefined;
 const x = { a: 0, b: 1 };
-for (y of x) {
-  $(`a`);
-  const tmpIfTest = $(true);
+const tmpForOfGen = $forOf(x);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {
+    break;
   } else {
-    while ($LOOP_UNROLL_10) {
-      $(`fail`);
-      $(`a`);
-      const tmpIfTest$1 = $(true);
-      if (tmpIfTest$1) {
-        break;
-      } else {
+    tmpForOfNext.value;
+    $(`a`);
+    const tmpIfTest$1 = $(true);
+    if (tmpIfTest$1) {
+    } else {
+      while ($LOOP_UNROLL_10) {
+        $(`fail`);
+        $(`a`);
+        const tmpIfTest$2 = $(true);
+        if (tmpIfTest$2) {
+          break;
+        } else {
+        }
       }
     }
   }
@@ -96,24 +120,32 @@ $(`c`);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = {
+const a = {
   a: 0,
   b: 1,
 };
-for (a of b) {
-  $( "a" );
-  const c = $( true );
-  if (c) {
-
+const b = $forOf( a );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const c = b.next();
+  const d = c.done;
+  if (d) {
+    break;
   }
   else {
-    while ($LOOP_UNROLL_10) {
-      $( "fail" );
-      $( "a" );
-      const d = $( true );
-      if (d) {
-        break;
+    c.value;
+    $( "a" );
+    const e = $( true );
+    if (e) {
+
+    }
+    else {
+      while ($LOOP_UNROLL_10) {
+        $( "fail" );
+        $( "a" );
+        const f = $( true );
+        if (f) {
+          break;
+        }
       }
     }
   }

@@ -22,7 +22,17 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-for (let x$1 of (a = typeof x$1));
+{
+  let tmpForOfGen = $forOf((a = typeof x$1));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x$1 = tmpForOfNext.value;
+    }
+  }
+}
 $(a, x);
 `````
 
@@ -32,10 +42,18 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forOf;
 a = typeof x$1;
-let tmpForOfDeclRhs = a;
-let x$1 = undefined;
-for (x$1 of tmpForOfDeclRhs) {
+let tmpCalleeParam = a;
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x$2 = tmpForOfNext.value;
+  }
 }
 $(a, x);
 `````
@@ -44,7 +62,18 @@ $(a, x);
 
 
 `````js filename=intro
-throw `Preval: This statement contained a read that reached no writes: a = typeof x\$1;`;
+const tmpClusterSSA_a = typeof x$1;
+const tmpForOfGen = $forOf(tmpClusterSSA_a);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
+}
+$(tmpClusterSSA_a, 1);
 `````
 
 ## PST Output
@@ -52,12 +81,26 @@ throw `Preval: This statement contained a read that reached no writes: a = typeo
 With rename=true
 
 `````js filename=intro
-throw "Preval: This statement contained a read that reached no writes: a = typeof x$1;";
+const a = typeof x$1;
+const b = $forOf( a );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const c = b.next();
+  const d = c.done;
+  if (d) {
+    break;
+  }
+  else {
+    c.value;
+  }
+}
+$( a, 1 );
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+x$1
 
 ## Result
 
@@ -66,6 +109,10 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: Same
+Normalized calls: BAD!?
+ - 1: 'undefined', 1
+ - eval returned: undefined
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 'undefined', 1
+ - eval returned: undefined

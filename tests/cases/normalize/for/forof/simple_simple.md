@@ -20,7 +20,18 @@ for (a of b) $(a);
 `````js filename=intro
 let a;
 let b = { x: 1, y: 2 };
-for (a of b) $(a);
+{
+  let tmpForOfGen = $forOf(b);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      a = tmpForOfNext.value;
+      $(a);
+    }
+  }
+}
 `````
 
 ## Normalized
@@ -29,8 +40,16 @@ for (a of b) $(a);
 `````js filename=intro
 let a = undefined;
 let b = { x: 1, y: 2 };
-for (a of b) {
-  $(a);
+let tmpForOfGen = $forOf(b);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    a = tmpForOfNext.value;
+    $(a);
+  }
 }
 `````
 
@@ -38,10 +57,17 @@ for (a of b) {
 
 
 `````js filename=intro
-let a = undefined;
 const b = { x: 1, y: 2 };
-for (a of b) {
-  $(a);
+const tmpForOfGen = $forOf(b);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpClusterSSA_a = tmpForOfNext.value;
+    $(tmpClusterSSA_a);
+  }
 }
 `````
 
@@ -50,13 +76,21 @@ for (a of b) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = {
+const a = {
   x: 1,
   y: 2,
 };
-for (a of b) {
-  $( a );
+const b = $forOf( a );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const c = b.next();
+  const d = c.done;
+  if (d) {
+    break;
+  }
+  else {
+    const e = c.value;
+    $( e );
+  }
 }
 `````
 

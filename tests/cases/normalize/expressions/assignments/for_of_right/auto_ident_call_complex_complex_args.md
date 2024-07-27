@@ -22,7 +22,17 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-for (let x of (a = $($)($(1), $(2))));
+{
+  let tmpForOfGen = $forOf((a = $($)($(1), $(2))));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x = tmpForOfNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -32,13 +42,21 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $($);
-const tmpCalleeParam = $(1);
-const tmpCalleeParam$1 = $(2);
-a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-let tmpForOfDeclRhs = a;
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+const tmpCallCallee = $forOf;
+const tmpCallCallee$1 = $($);
+const tmpCalleeParam$1 = $(1);
+const tmpCalleeParam$3 = $(2);
+a = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
+let tmpCalleeParam = a;
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForOfNext.value;
+  }
 }
 $(a);
 `````
@@ -47,14 +65,21 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const tmpCalleeParam = $(1);
-const tmpCalleeParam$1 = $(2);
-const a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-let x = undefined;
-for (x of a) {
+const tmpCallCallee$1 = $($);
+const tmpCalleeParam$1 = $(1);
+const tmpCalleeParam$3 = $(2);
+const tmpClusterSSA_a = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpForOfGen = $forOf(tmpClusterSSA_a);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
 }
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output
@@ -66,9 +91,16 @@ const a = $( $ );
 const b = $( 1 );
 const c = $( 2 );
 const d = a( b, c );
-let e = undefined;
-for (e of d) {
-
+const e = $forOf( d );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const f = e.next();
+  const g = f.done;
+  if (g) {
+    break;
+  }
+  else {
+    f.value;
+  }
 }
 $( d );
 `````

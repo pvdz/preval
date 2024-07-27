@@ -155,24 +155,6 @@ export function expressionStatement(expression) {
   };
 }
 
-export function forInStatement(left, right, body) {
-  return {
-    type: 'ForInStatement',
-    left, // Ident
-    right, // Simple
-    body, // Block
-  };
-}
-
-export function forOfStatement(left, right, body) {
-  return {
-    type: 'ForOfStatement',
-    left, // Ident
-    right, // Simple
-    body, // Block
-  };
-}
-
 export function functionExpression(name, isAsync, isGenerator, params, body) {
   ASSERT(params.every(p => p.type === 'Param'), 'params be params?', params);
   return {

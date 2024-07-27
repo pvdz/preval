@@ -26,7 +26,17 @@ $(a, b, c);
 let b = { x: 1 },
   c = 3;
 let a = { a: 999, b: 1000 };
-for (($(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = c).x of $({ x: 1 }));
+{
+  let tmpForOfGen = $forOf($({ x: 1 }));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      ($(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = c).x = tmpForOfNext.value;
+    }
+  }
+}
 $(a, b, c);
 `````
 
@@ -37,37 +47,46 @@ $(a, b, c);
 let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam = { x: 1 };
-const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
-let tmpForOfLhsNode = undefined;
-for (tmpForOfLhsNode of tmpForOfRhs) {
-  const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedProp = $(`x`);
-  const varInitAssignLhsComputedObj$1 = $(b);
-  const varInitAssignLhsComputedProp$1 = $(`x`);
-  const varInitAssignLhsComputedObj$3 = $(b);
-  const varInitAssignLhsComputedProp$3 = $(`x`);
-  const varInitAssignLhsComputedObj$5 = $(b);
-  const varInitAssignLhsComputedProp$5 = $(`x`);
-  const varInitAssignLhsComputedObj$7 = $(b);
-  const varInitAssignLhsComputedProp$7 = $(`x`);
-  const varInitAssignLhsComputedObj$9 = $(b);
-  const varInitAssignLhsComputedProp$9 = $(`x`);
-  const varInitAssignLhsComputedRhs$9 = c;
-  varInitAssignLhsComputedObj$9[varInitAssignLhsComputedProp$9] = varInitAssignLhsComputedRhs$9;
-  const varInitAssignLhsComputedRhs$7 = varInitAssignLhsComputedRhs$9;
-  varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = varInitAssignLhsComputedRhs$7;
-  const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
-  varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = varInitAssignLhsComputedRhs$5;
-  const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
-  varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
-  const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
-  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  const tmpAssignMemLhsObj = varInitAssignLhsComputedRhs;
-  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
+const tmpCallCallee = $forOf;
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const varInitAssignLhsComputedObj = $(b);
+    const varInitAssignLhsComputedProp = $(`x`);
+    const varInitAssignLhsComputedObj$1 = $(b);
+    const varInitAssignLhsComputedProp$1 = $(`x`);
+    const varInitAssignLhsComputedObj$3 = $(b);
+    const varInitAssignLhsComputedProp$3 = $(`x`);
+    const varInitAssignLhsComputedObj$5 = $(b);
+    const varInitAssignLhsComputedProp$5 = $(`x`);
+    const varInitAssignLhsComputedObj$7 = $(b);
+    const varInitAssignLhsComputedProp$7 = $(`x`);
+    const varInitAssignLhsComputedObj$9 = $(b);
+    const varInitAssignLhsComputedProp$9 = $(`x`);
+    const varInitAssignLhsComputedRhs$9 = c;
+    varInitAssignLhsComputedObj$9[varInitAssignLhsComputedProp$9] = varInitAssignLhsComputedRhs$9;
+    const varInitAssignLhsComputedRhs$7 = varInitAssignLhsComputedRhs$9;
+    varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = varInitAssignLhsComputedRhs$7;
+    const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
+    varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = varInitAssignLhsComputedRhs$5;
+    const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
+    varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
+    const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
+    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+    const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+    const tmpAssignMemLhsObj = varInitAssignLhsComputedRhs;
+    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+    const tmpAssignMemRhs = tmpForOfNext.value;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+  }
 }
 $(a, b, c);
 `````
@@ -78,29 +97,36 @@ $(a, b, c);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = { x: 1 };
-const tmpForOfRhs = $(tmpCalleeParam);
-let tmpForOfLhsNode = undefined;
-for (tmpForOfLhsNode of tmpForOfRhs) {
-  const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedProp = $(`x`);
-  const varInitAssignLhsComputedObj$1 = $(b);
-  const varInitAssignLhsComputedProp$1 = $(`x`);
-  const varInitAssignLhsComputedObj$3 = $(b);
-  const varInitAssignLhsComputedProp$3 = $(`x`);
-  const varInitAssignLhsComputedObj$5 = $(b);
-  const varInitAssignLhsComputedProp$5 = $(`x`);
-  const varInitAssignLhsComputedObj$7 = $(b);
-  const varInitAssignLhsComputedProp$7 = $(`x`);
-  const varInitAssignLhsComputedObj$9 = $(b);
-  const varInitAssignLhsComputedProp$9 = $(`x`);
-  varInitAssignLhsComputedObj$9[varInitAssignLhsComputedProp$9] = 3;
-  varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = 3;
-  varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
-  varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
-  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-  (3).x = tmpForOfLhsNode;
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = $(tmpCalleeParam$1);
+const tmpForOfGen = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const varInitAssignLhsComputedObj = $(b);
+    const varInitAssignLhsComputedProp = $(`x`);
+    const varInitAssignLhsComputedObj$1 = $(b);
+    const varInitAssignLhsComputedProp$1 = $(`x`);
+    const varInitAssignLhsComputedObj$3 = $(b);
+    const varInitAssignLhsComputedProp$3 = $(`x`);
+    const varInitAssignLhsComputedObj$5 = $(b);
+    const varInitAssignLhsComputedProp$5 = $(`x`);
+    const varInitAssignLhsComputedObj$7 = $(b);
+    const varInitAssignLhsComputedProp$7 = $(`x`);
+    const varInitAssignLhsComputedObj$9 = $(b);
+    const varInitAssignLhsComputedProp$9 = $(`x`);
+    varInitAssignLhsComputedObj$9[varInitAssignLhsComputedProp$9] = 3;
+    varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = 3;
+    varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
+    varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
+    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+    const tmpAssignMemRhs = tmpForOfNext.value;
+    (3).x = tmpAssignMemRhs;
+  }
 }
 $(a, b, 3);
 `````
@@ -117,27 +143,35 @@ const b = {
 };
 const c = { x: 1 };
 const d = $( c );
-let e = undefined;
-for (e of d) {
-  const f = $( a );
-  const g = $( "x" );
-  const h = $( a );
-  const i = $( "x" );
-  const j = $( a );
-  const k = $( "x" );
-  const l = $( a );
-  const m = $( "x" );
-  const n = $( a );
-  const o = $( "x" );
-  const p = $( a );
-  const q = $( "x" );
-  p[q] = 3;
-  n[o] = 3;
-  l[m] = 3;
-  j[k] = 3;
-  h[i] = 3;
-  f[g] = 3;
-  3.x = e;
+const e = $forOf( d );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const f = e.next();
+  const g = f.done;
+  if (g) {
+    break;
+  }
+  else {
+    const h = $( a );
+    const i = $( "x" );
+    const j = $( a );
+    const k = $( "x" );
+    const l = $( a );
+    const m = $( "x" );
+    const n = $( a );
+    const o = $( "x" );
+    const p = $( a );
+    const q = $( "x" );
+    const r = $( a );
+    const s = $( "x" );
+    r[s] = 3;
+    p[q] = 3;
+    n[o] = 3;
+    l[m] = 3;
+    j[k] = 3;
+    h[i] = 3;
+    const t = f.value;
+    3.x = t;
+  }
 }
 $( b, a, 3 );
 `````

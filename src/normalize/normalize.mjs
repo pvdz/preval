@@ -112,7 +112,6 @@ import { addLabelReference, createFreshLabelStatement, removeLabelReference } fr
   - Logical expressions with `??` are transformed away entirely, end up as ternaries
   - Logical expressions with `&&` or `||` are decompiled to `if-else` statements where possible
   - Decompose compound assignments (x+=y -> x=x+y)
-  - for-in and for-of lhs expressions are normalized to an identifier
   - For headers with var decl are normalized to not contain the var decl
   - While headers are normalized
   - Switches are transformed to if-else with labeled break
@@ -295,7 +294,6 @@ need to make pids numbers
   - object without explicit getters/setters should not be treated as such even for computed access -> tests/cases/normalize/expressions/assignments/computed_prop_prop/auto_ident_opt_method_call_extended.md
   - all (?) exports should be moved all the way to the back to allow other patterns to be recognized, prolly same for imports -> tests/cases/normalize/expressions/assignments/export_default/auto_ident_opt_method_call_simple.md
   - for-x in a non-string primitive -> tests/cases/normalize/expressions/assignments/for_in_right/auto_ident_c-opt_simple_simple.md
-  - for-in on a known object could invoke a few tricks where the set of keys can be statically determined? can it be a regular loop or smth? unrolled?
   - if a function does not access `this`, drop calls to it that try to set it ($dotCall, call, apply, bind)
   - when a value is determined to be a primitive, a call should just trigger an error... -> tests/cases/normalize/expressions/assignments/label/auto_ident_opt_method_opt_call_extended.md
   - a constant that is only assigned to another variable at the end of a branch should be collapsed -> tests/cases/normalize/expressions/assignments/logic_and_both/auto_ident_opt_method_opt_call_extended.md
@@ -486,7 +484,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
   const thisStack = []; // Only for function expressions (no arrows or global, decls are eliminated)
   const ifelseStack = [ast]; // TODO: misnomer but I think we can delete this entirely...
   const labelStack = [];
-  const loopStack = [null]; // Note: null indicates function boundary. Contains for-in, for-of, while, or null nodes.
+  const loopStack = [null]; // Note: null indicates function boundary. Contains while or null nodes.
   let inGlobal = true; // While walking, are we currently in global space or inside a function
 
   group('\n\n\n##################################\n## phaseNormalize  ::  ' + fname + '\n##################################\n\n\n');
@@ -831,10 +829,6 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         return transformExportNamedDeclaration(node, body, i, parent);
       case 'ExpressionStatement':
         return transformExpression('statement', node.expression, body, i, node);
-      case 'ForInStatement':
-        return transformForxStatement(node, body, i, true);
-      case 'ForOfStatement':
-        return transformForxStatement(node, body, i, false);
       case 'IfStatement':
         return transformIfStatement(node, body, i, parent);
       case 'ImportDeclaration':
@@ -864,23 +858,25 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       // These should not appear. Either because they're not allowed (with), or because they're internal nodes
       case 'CatchClause':
       case 'ClassBody':
-      case 'ContinueStatement': // Eliminated
       case 'Directive':
       case 'ExportSpecifier':
       case 'ImportDefaultSpecifier':
       case 'ImportNamespaceSpecifier':
       case 'ImportSpecifier':
-      case 'SwitchCase':
       case 'VariableDeclarator':
       case 'WithStatement':
         throw ASSERT(false, 'these should not be visited', node, node.type);
       // These should already be normalized away
-      case 'FunctionDeclaration':
       case 'ClassDeclaration':
+      case 'ContinueStatement':
       case 'DoWhileStatement':
       case 'ExportDefaultDeclaration':
+      case 'ForInStatement':
+      case 'ForOfStatement':
       case 'ForStatement':
+      case 'FunctionDeclaration':
       case 'SwitchStatement':
+      case 'SwitchCase':
         throw ASSERT(false, 'this node type should have been eliminated in the norm_once step');
     }
 
@@ -7014,259 +7010,6 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     return false;
   }
 
-  function transformForxStatement(node, body, i, forin) {
-    // https://pvdz.ee/weblog/439
-    // The rhs is evaluated first. Then the lhs. The rhs is scoped to the for-header first, if that starts with a a decl.
-    // Pattern bindings complicate the transform because I want to retain the TDZ errors if the original code contains them.
-
-    // TODO: are we happier with for-in/of normalized to `for (a in b)` or `for (let a in b)`? Either is possible.
-
-    // Basically;
-    // - if the lhs is not a decl, outline the rhs and inline the lhs if either is complex
-    // - if the lhs is a decl with identifier, outline the rhs, then the decl without init, inline the assignment
-    // - if the lhs is a binding decl then find all the bindings defined, outline them, move the original decl to assignment pattern inline
-
-    if (node.left.type === 'VariableDeclaration') {
-      // `for (let x in y)`
-      const vardecl = node.left;
-      const varid = vardecl.declarations[0].id;
-
-      ASSERT(
-        vardecl.declarations.length === 1,
-        'language requires this to have exactly one binding. maybe annexb rules allow more, I forgot. in that case revisit here.',
-      );
-      ASSERT(
-        vardecl.declarations[0].init === null,
-        'the for header var decl shouldnt have an init (there is an edge case but if you are hitting that one you are just trying to hit it so kudos to you)',
-      );
-
-      if (varid.type === 'Identifier') {
-        if (forin) {
-          rule('Left side of for-in must not be var decl; ident case');
-          example('for (let x in y) z()', '{ let tmp = y; let x; for (x in tmp) { z(); } }');
-          example('for (let x in x);', '{ let tmp = x; let x; for (x in tmp); }');
-        } else {
-          rule('Left side of for-of must not be var decl; ident case');
-          example('for (let x of y) z()', '{ let tmp = y; let x; for (x of tmp) { z(); } }');
-          example('for (let x of x);', '{ let tmp = x; let x; for (x of tmp2); }');
-        }
-        before(node);
-
-        const tmpNameRhs = createFreshVar(forin ? 'tmpForInDeclRhs' : 'tmpForOfDeclRhs', fdata);
-        const lhsName = varid.name;
-        const newNode = AST.blockStatement(
-          AST.variableDeclaration(tmpNameRhs, node.right, 'const'),
-          // Note: putting the bindings inside the wrapper block will allow the rhs to refer to the correct binding, not an outer one (and probably crash)
-          // Note: this could be simplified if we were to traverse the whole rhs and assert that none of the bindings in the lhs were referenced ...
-          AST.variableDeclaration(AST.identifier(varid.name), undefined, 'let'),
-          forin ? AST.forInStatement(lhsName, tmpNameRhs, node.body) : AST.forOfStatement(lhsName, tmpNameRhs, node.body),
-        );
-
-        body[i] = newNode;
-
-        after(newNode);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-        return true;
-      }
-
-      // pattern
-      if (forin) {
-        rule('Left side of for-in must not be var decl');
-        if (varid.type === 'ArrayPattern') {
-          example('for (let [x] in y) z()', '{ let tmp = y; let x; let tmp2; for (tmp2 in tmp) { [x] = tmp2; z(); } }');
-          example('for (let [x] in x);', '{ let tmp = x; let x; for ([x] in tmp2); }');
-        } else {
-          example('for (let {x} in y) z()', '{ let tmp = y; let x; let tmp2; for (tmp2 in tmp) { {x} = tmp2; z(); } }');
-          example('for (let {x} in x);', '{ let tmp = x; let x; for ({x} in tmp2); }');
-        }
-      } else {
-        rule('Left side of for-of must not be var decl');
-        if (varid.type === 'ArrayPattern') {
-          example('for (let [x] of y) z()', '{ let tmp = y; let x; let tmp2; for (tmp2 of tmp) { [x] = tmp2; z(); } }');
-          example('for (let {x} of x);', '{ let tmp = x; let x; for ({x} of tmp2); }');
-        } else {
-          example('for (let {x} of y) z()', '{ let tmp = y; let x; let tmp2; for (tmp2 of tmp) { {x} = tmp2; z(); } }');
-          example('for (let [x] of x);', '{ let tmp = x; let x; for ([x] of tmp2); }');
-        }
-      }
-      before(node);
-
-      ASSERT(vardecl.declarations.length === 1, 'for header var decls can only have one binding');
-      ASSERT(
-        vardecl.declarations[0].init === null,
-        'the for header var decl shouldnt have an init (there is an edge case but if you are hitting that one you are just trying to hit it so good job)',
-      );
-
-      const tmpNameRhs = createFreshVar(forin ? 'tmpForInPatDeclRhs' : 'tmpForOfPatDeclRhs', fdata);
-      const tmpNameLhs = createFreshVar(forin ? 'tmpForInPatDeclLhs' : 'tmpForOfPatDeclLhs', fdata);
-      const boundNames = findBoundNamesInVarDeclaration(node.left);
-      vlog('- Pattern bound these names:', boundNames);
-      const newNode = AST.blockStatement(
-        AST.variableDeclaration(tmpNameRhs, node.right, 'const'),
-        AST.variableDeclaration(tmpNameLhs),
-        // Note: putting the bindings inside the wrapper block will allow the rhs to refer to the correct binding, not an outer one (and probably crash)
-        AST.variableDeclarationFromDeclaration(
-          boundNames.map((name) => AST.variableDeclarator(name, undefined, vardecl.kind === 'const' ? 'let' : vardecl.kind)),
-        ),
-        forin
-          ? AST.forInStatement(
-              tmpNameLhs,
-              tmpNameRhs,
-              AST.blockStatement(
-                AST.expressionStatement(AST.assignmentExpression(varid, tmpNameLhs)), // x = tmp2, or [x] = tmp2, or {x} = tmp2
-                node.body,
-              ),
-            )
-          : AST.forOfStatement(
-              tmpNameLhs,
-              tmpNameRhs,
-              AST.blockStatement(
-                AST.expressionStatement(AST.assignmentExpression(varid, tmpNameLhs)), // x = tmp2, or [x] = tmp2, or {x} = tmp2
-                node.body,
-              ),
-            ),
-      );
-      body[i] = newNode;
-
-      after(newNode);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
-    }
-
-    if (AST.isComplexNode(node.right)) {
-      if (forin) {
-        rule('Right side of `for-in` without decl must be simple');
-        example('for (x in y());', '{ let tmp = y(); for (x in tmp); }');
-      } else {
-        rule('Right side of `for-of` without decl must be simple');
-        example('for (x of y());', '{ let tmp = y(); for (x of tmp); }');
-      }
-      before(node);
-
-      const tmpName = createFreshVar(forin ? 'tmpForInRhs' : 'tmpForOfRhs', fdata);
-      const newNode = AST.variableDeclaration(tmpName, node.right, 'const');
-      body.splice(i, 0, newNode);
-      node.right = AST.identifier(tmpName);
-
-      body[i] = newNode;
-
-      after(newNode);
-      after(node);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
-    }
-
-    // TODO: do we need this?
-    if (thisStack.length && node.right.type === 'Identifier' && node.right.name === 'arguments') {
-      rule('Return value of `arguments` should be aliased'); // And silly.
-      example('while (arguments) {}', 'while (tmpPrevalArgumentsAliasA) {}');
-      before(node);
-
-      node.right = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);
-
-      after(node);
-      return true;
-    }
-
-    // The lhs must be a pattern, an ident, or a member expression. We want it to be an ident.
-    ASSERT(
-      ['Identifier', 'MemberExpression', 'ArrayPattern', 'ObjectPattern'].includes(node.left.type),
-      'are there other kinds of nodes that appear here?',
-      node,
-    );
-
-    if (node.left.type !== 'Identifier') {
-      // Move to inside assignment and let other transforms deal with complexity
-      if (forin) {
-        rule('Left side of for-in must be simple');
-        example(
-          'for (x().prop in y) z()',
-          '{ let tmp; for (tmp of y) { x().prop = tmp; z(); } }',
-          () => node.left.type === 'MemberExpression' && !node.left.computed,
-        );
-        example(
-          'for (x()[prop] in y) z()',
-          '{ let tmp; for (tmp of y) { x()[prop] = tmp; z(); } }',
-          () => node.left.type === 'MemberExpression' && node.left.computed,
-        );
-        example('for ([x] in y) z()', '{ let tmp; for (tmp of y) { [x] = tmp; z(); } }', () => node.left.type === 'ArrayPattern');
-        example('for ({x} in y) z()', '{ let tmp; for (tmp of y) { {x} = tmp; z(); } }', () => node.left.type === 'ObjectPattern');
-      } else {
-        rule('Left side of for-of must be simple');
-        example(
-          'for (x().prop of y) z()',
-          '{ let tmp; for (tmp of y) { x().prop = tmp; z(); } }',
-          () => node.left.type === 'MemberExpression' && !node.left.computed,
-        );
-        example(
-          'for (x()[prop] of y) z()',
-          '{ let tmp; for (tmp of y) { x()[prop] = tmp; z(); } }',
-          () => node.left.type === 'MemberExpression' && node.left.computed,
-        );
-        example('for ([x] of y) z()', '{ let tmp; for (tmp of y) { [x] = tmp; z(); } }', () => node.left.type === 'ArrayPattern');
-        example('for ({x} of y) z()', '{ let tmp; for (tmp of y) { {x} = tmp; z(); } }', () => node.left.type === 'ObjectPattern');
-      }
-      before(node);
-
-      const tmpName = createFreshVar(forin ? 'tmpForInLhsNode' : 'tmpForOfLhsNode', fdata);
-      const newNode = AST.blockStatement(
-        AST.variableDeclaration(tmpName),
-        forin
-          ? AST.forInStatement(
-              tmpName,
-              node.right,
-              AST.blockStatement(AST.expressionStatement(AST.assignmentExpression(node.left, tmpName)), node.body),
-            )
-          : AST.forOfStatement(
-              tmpName,
-              node.right,
-              AST.blockStatement(AST.expressionStatement(AST.assignmentExpression(node.left, tmpName)), node.body),
-            ),
-      );
-
-      body[i] = newNode;
-
-      after(newNode);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
-    }
-
-    if (node.body.type !== 'BlockStatement') {
-      rule('For-in sub-statement must be block');
-      example('for (x in y) z', 'for (x in y) { z }');
-      before(node);
-
-      node.body = AST.blockStatement(node.body);
-
-      after(node);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
-    }
-
-    ASSERT(node.body.type === 'BlockStatement');
-    ifelseStack.push(node);
-    loopStack.push(node);
-    node.$p.hasUnlabeledBreak = false;
-    transformBlock(node.body, undefined, -1, node, false);
-    loopStack.pop();
-    ifelseStack.pop();
-
-    vlog(
-      BLUE + 'forx;returnBreakThrow?' + RESET,
-      node.body.$p.returnBreakThrow ? 'yes; ' + node.body.$p.returnBreakThrow : 'no',
-    );
-    if (node.body.$p.returnBreakThrow) {
-      vlog(
-        'The body of this loop may always return but it may never be executed so we cannot safely DCE the sibling statements that follow it, nor mark the parent as such',
-      );
-    }
-
-    // TODO: there is a possibility to eliminate this loop if it has an empty body but there are still two
-    //       side effects to check for; value of for-lhs after the loop and throwing over invalid for-rhs values.
-
-    return false;
-  }
-
   function transformFunctionExpression(wrapKind, node, body, i, parentNode) {
     // Note: if this transform wants to mutate the parent body then the object handler method should be revisited
     const wasGlobal = inGlobal;
@@ -8450,8 +8193,6 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         'BreakStatement',
         'ReturnStatement',
         'ThrowStatement',
-        'ForInStatement',
-        'ForOfStatement',
         'LabeledStatement',
       ].includes(body[i-1].type)
     ) {
@@ -9225,8 +8966,6 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             return true; // Do not visit
           }
           case 'ForStatement':
-          case 'ForInStatement':
-          case 'ForOfStatement':
           case 'FunctionExpression':
           case 'ArrowFunctionExpression':
           {
@@ -9329,9 +9068,9 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
               if (node === rootNode) break; // Ignore
               return true; // Do not visit
             }
-            case 'ForStatement':
-            case 'ForInStatement':
-            case 'ForOfStatement':
+            case 'ForStatement': throw ASSERT(false);
+            case 'ForInStatement': throw ASSERT(false);
+            case 'ForOfStatement': throw ASSERT(false);
             case 'FunctionExpression':
             case 'ArrowFunctionExpression':
             {
@@ -9405,9 +9144,9 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
               if (node === rootNode) break; // Ignore
               return true; // Do not visit
             }
-            case 'ForStatement':
-            case 'ForInStatement':
-            case 'ForOfStatement':
+            case 'ForStatement': throw ASSERT(false);
+            case 'ForInStatement': throw ASSERT(false);
+            case 'ForOfStatement': throw ASSERT(false);
             case 'FunctionExpression':
             case 'ArrowFunctionExpression':
             {
@@ -9478,9 +9217,9 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
               if (node === rootNode) break; // Ignore
               return true; // Do not visit
             }
-            case 'ForStatement':
-            case 'ForInStatement':
-            case 'ForOfStatement':
+            case 'ForStatement': throw ASSERT(false);
+            case 'ForInStatement': throw ASSERT(false);
+            case 'ForOfStatement': throw ASSERT(false);
             case 'FunctionExpression':
             case 'ArrowFunctionExpression':
             {

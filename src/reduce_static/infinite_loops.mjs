@@ -47,16 +47,9 @@ function _infiniteLoops(fdata) {
     // If the loop does not loop and there is no try or continue, remove the loop and if the break has no label also the break
 
     switch (nodeType + ':' + (beforeWalk ? 'before' : 'after')) {
-      case 'ForInStatement:before':
-      case 'ForOfStatement:before':
       case 'WhileStatement:before': {
         loopStack.push(node);
         node.$p.fakeLoopStuff = [];
-        break;
-      }
-      case 'ForInStatement:after':
-      case 'ForOfStatement:after': {
-        loopStack.pop();
         break;
       }
       case 'WhileStatement:after': {
@@ -100,7 +93,7 @@ function _infiniteLoops(fdata) {
           let haveBreaks = false;
           walk(confirmWalk, node.body, 'ast');
           function confirmWalk(node, beforeWalk, nodeType, path) {
-            if (['ForOfStatement', 'ForInStatement', 'WhileStatement', 'FunctionExpression'].includes(nodeType)) {
+            if (['WhileStatement', 'FunctionExpression'].includes(nodeType)) {
               // Don't visit nested loops or functions
               return true;
             }

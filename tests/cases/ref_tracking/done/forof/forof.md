@@ -21,8 +21,19 @@ $('keep, do not eval');
 
 
 `````js filename=intro
-for (let x of [10, 20]) {
-  $(`fail`);
+{
+  let tmpForOfGen = $forOf([10, 20]);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x = tmpForOfNext.value;
+      {
+        $(`fail`);
+      }
+    }
+  }
 }
 $(`keep, do not eval`);
 `````
@@ -31,10 +42,18 @@ $(`keep, do not eval`);
 
 
 `````js filename=intro
-const tmpForOfDeclRhs = [10, 20];
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
-  $(`fail`);
+const tmpCallCallee = $forOf;
+const tmpCalleeParam = [10, 20];
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForOfNext.value;
+    $(`fail`);
+  }
 }
 $(`keep, do not eval`);
 `````
@@ -43,10 +62,17 @@ $(`keep, do not eval`);
 
 
 `````js filename=intro
-let x = undefined;
-const tmpForOfDeclRhs = [10, 20];
-for (x of tmpForOfDeclRhs) {
-  $(`fail`);
+const tmpCalleeParam = [10, 20];
+const tmpForOfGen = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+    $(`fail`);
+  }
 }
 $(`keep, do not eval`);
 `````
@@ -56,10 +82,18 @@ $(`keep, do not eval`);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = [ 10, 20 ];
-for (a of b) {
-  $( "fail" );
+const a = [ 10, 20 ];
+const b = $forOf( a );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const c = b.next();
+  const d = c.done;
+  if (d) {
+    break;
+  }
+  else {
+    c.value;
+    $( "fail" );
+  }
 }
 $( "keep, do not eval" );
 `````

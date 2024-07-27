@@ -22,7 +22,17 @@ $(a);
 `````js filename=intro
 let b = { x: { y: 1 } };
 let a = { a: 999, b: 1000 };
-for (let x in (a = $(b)?.[$(`x`)]?.[$(`y`)]));
+{
+  let tmpForInGen = $forIn((a = $(b)?.[$(`x`)]?.[$(`y`)]));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -33,6 +43,7 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forIn;
 a = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(b);
@@ -49,9 +60,16 @@ if (tmpIfTest) {
   }
 } else {
 }
-let tmpForInDeclRhs = a;
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+let tmpCalleeParam = a;
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest$3 = tmpForInNext.done;
+  if (tmpIfTest$3) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -77,8 +95,15 @@ if (tmpIfTest) {
     a = tmpChainElementObject$1;
   }
 }
-let x = undefined;
-for (x in a) {
+const tmpForInGen = $forIn(a);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest$3 = tmpForInNext.done;
+  if (tmpIfTest$3) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -109,9 +134,16 @@ else {
     c = j;
   }
 }
-let k = undefined;
-for (k in c) {
-
+const k = $forIn( c );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const l = k.next();
+  const m = l.done;
+  if (m) {
+    break;
+  }
+  else {
+    l.value;
+  }
 }
 $( c );
 `````

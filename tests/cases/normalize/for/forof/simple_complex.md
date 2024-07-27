@@ -18,7 +18,18 @@ for (a of $({x: 1, y: 2})) $(a);
 
 `````js filename=intro
 let a;
-for (a of $({ x: 1, y: 2 })) $(a);
+{
+  let tmpForOfGen = $forOf($({ x: 1, y: 2 }));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      a = tmpForOfNext.value;
+      $(a);
+    }
+  }
+}
 `````
 
 ## Normalized
@@ -26,11 +37,20 @@ for (a of $({ x: 1, y: 2 })) $(a);
 
 `````js filename=intro
 let a = undefined;
-const tmpCallCallee = $;
-const tmpCalleeParam = { x: 1, y: 2 };
-const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
-for (a of tmpForOfRhs) {
-  $(a);
+const tmpCallCallee = $forOf;
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = { x: 1, y: 2 };
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    a = tmpForOfNext.value;
+    $(a);
+  }
 }
 `````
 
@@ -38,11 +58,18 @@ for (a of tmpForOfRhs) {
 
 
 `````js filename=intro
-let a = undefined;
-const tmpCalleeParam = { x: 1, y: 2 };
-const tmpForOfRhs = $(tmpCalleeParam);
-for (a of tmpForOfRhs) {
-  $(a);
+const tmpCalleeParam$1 = { x: 1, y: 2 };
+const tmpCalleeParam = $(tmpCalleeParam$1);
+const tmpForOfGen = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpClusterSSA_a = tmpForOfNext.value;
+    $(tmpClusterSSA_a);
+  }
 }
 `````
 
@@ -51,14 +78,22 @@ for (a of tmpForOfRhs) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = {
+const a = {
   x: 1,
   y: 2,
 };
-const c = $( b );
-for (a of c) {
-  $( a );
+const b = $( a );
+const c = $forOf( b );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const d = c.next();
+  const e = d.done;
+  if (e) {
+    break;
+  }
+  else {
+    const f = d.value;
+    $( f );
+  }
 }
 `````
 

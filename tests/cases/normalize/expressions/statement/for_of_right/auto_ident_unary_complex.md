@@ -22,7 +22,17 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-for (let x$1 of typeof $(x$1));
+{
+  let tmpForOfGen = $forOf(typeof $(x$1));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x$1 = tmpForOfNext.value;
+    }
+  }
+}
 $(a, x);
 `````
 
@@ -32,10 +42,18 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forOf;
 const tmpUnaryArg = $(x$1);
-const tmpForOfDeclRhs = typeof tmpUnaryArg;
-let x$1 = undefined;
-for (x$1 of tmpForOfDeclRhs) {
+const tmpCalleeParam = typeof tmpUnaryArg;
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x$2 = tmpForOfNext.value;
+  }
 }
 $(a, x);
 `````
@@ -44,7 +62,20 @@ $(a, x);
 
 
 `````js filename=intro
-throw `Preval: This statement contained a read that reached no writes: const tmpUnaryArg = \$(x\$1);`;
+const a = { a: 999, b: 1000 };
+const tmpUnaryArg = $(x$1);
+const tmpCalleeParam = typeof tmpUnaryArg;
+const tmpForOfGen = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
+}
+$(a, 1);
 `````
 
 ## PST Output
@@ -52,12 +83,31 @@ throw `Preval: This statement contained a read that reached no writes: const tmp
 With rename=true
 
 `````js filename=intro
-throw "Preval: This statement contained a read that reached no writes: const tmpUnaryArg = $(x$1);";
+const a = {
+  a: 999,
+  b: 1000,
+};
+const b = $( x$1 );
+const c = typeof b;
+const d = $forOf( c );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const e = d.next();
+  const f = e.done;
+  if (f) {
+    break;
+  }
+  else {
+    e.value;
+  }
+}
+$( a, 1 );
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+x$1
 
 ## Result
 
@@ -66,6 +116,8 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: Same
+Normalized calls: BAD!?
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: ('<crash[ <ref> is not defined ]>')

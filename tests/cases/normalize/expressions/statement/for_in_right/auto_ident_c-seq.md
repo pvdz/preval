@@ -22,7 +22,17 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-for (let x$1 in ($(1), $(2), $(x$1)));
+{
+  let tmpForInGen = $forIn(($(1), $(2), $(x$1)));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x$1 = tmpForInNext.value;
+    }
+  }
+}
 $(a, x);
 `````
 
@@ -32,11 +42,19 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forIn;
 $(1);
 $(2);
-const tmpForInDeclRhs = $(x$1);
-let x$1 = undefined;
-for (x$1 in tmpForInDeclRhs) {
+const tmpCalleeParam = $(x$1);
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x$2 = tmpForInNext.value;
+  }
 }
 $(a, x);
 `````
@@ -47,7 +65,19 @@ $(a, x);
 `````js filename=intro
 $(1);
 $(2);
-throw `Preval: This statement contained a read that reached no writes: const tmpForInDeclRhs = \$(x\$1);`;
+const tmpCalleeParam = $(x$1);
+const tmpForInGen = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+const a = { a: 999, b: 1000 };
+$(a, 1);
 `````
 
 ## PST Output
@@ -57,12 +87,30 @@ With rename=true
 `````js filename=intro
 $( 1 );
 $( 2 );
-throw "Preval: This statement contained a read that reached no writes: const tmpForInDeclRhs = $(x$1);";
+const a = $( x$1 );
+const b = $forIn( a );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const c = b.next();
+  const d = c.done;
+  if (d) {
+    break;
+  }
+  else {
+    c.value;
+  }
+}
+const e = {
+  a: 999,
+  b: 1000,
+};
+$( e, 1 );
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+x$1
 
 ## Result
 
@@ -73,6 +121,12 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: Same
+Normalized calls: BAD!?
+ - 1: 1
+ - 2: 2
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 1
+ - 2: 2
+ - eval returned: ('<crash[ <ref> is not defined ]>')

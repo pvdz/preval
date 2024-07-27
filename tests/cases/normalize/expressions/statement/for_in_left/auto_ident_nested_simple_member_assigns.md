@@ -24,7 +24,17 @@ $(a, b, c);
 let b = { x: 1 },
   c = 3;
 let a = { a: 999, b: 1000 };
-for ((b.x = b.x = b.x = b.x = b.x = b.x = c).x in $({ x: 1 }));
+{
+  let tmpForInGen = $forIn($({ x: 1 }));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      (b.x = b.x = b.x = b.x = b.x = b.x = c).x = tmpForInNext.value;
+    }
+  }
+}
 $(a, b, c);
 `````
 
@@ -35,25 +45,34 @@ $(a, b, c);
 let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam = { x: 1 };
-const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
-let tmpForInLhsNode = undefined;
-for (tmpForInLhsNode in tmpForInRhs) {
-  const varInitAssignLhsComputedRhs$9 = c;
-  b.x = varInitAssignLhsComputedRhs$9;
-  const varInitAssignLhsComputedRhs$7 = varInitAssignLhsComputedRhs$9;
-  b.x = varInitAssignLhsComputedRhs$7;
-  const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
-  b.x = varInitAssignLhsComputedRhs$5;
-  const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
-  b.x = varInitAssignLhsComputedRhs$3;
-  const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
-  b.x = varInitAssignLhsComputedRhs$1;
-  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-  b.x = varInitAssignLhsComputedRhs;
-  const tmpAssignMemLhsObj = varInitAssignLhsComputedRhs;
-  tmpAssignMemLhsObj.x = tmpForInLhsNode;
+const tmpCallCallee = $forIn;
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const varInitAssignLhsComputedRhs$9 = c;
+    b.x = varInitAssignLhsComputedRhs$9;
+    const varInitAssignLhsComputedRhs$7 = varInitAssignLhsComputedRhs$9;
+    b.x = varInitAssignLhsComputedRhs$7;
+    const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
+    b.x = varInitAssignLhsComputedRhs$5;
+    const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
+    b.x = varInitAssignLhsComputedRhs$3;
+    const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
+    b.x = varInitAssignLhsComputedRhs$1;
+    const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+    b.x = varInitAssignLhsComputedRhs;
+    const tmpAssignMemLhsObj = varInitAssignLhsComputedRhs;
+    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+    const tmpAssignMemRhs = tmpForInNext.value;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+  }
 }
 $(a, b, c);
 `````
@@ -64,17 +83,24 @@ $(a, b, c);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = { x: 1 };
-const tmpForInRhs = $(tmpCalleeParam);
-let tmpForInLhsNode = undefined;
-for (tmpForInLhsNode in tmpForInRhs) {
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  (3).x = tmpForInLhsNode;
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = $(tmpCalleeParam$1);
+const tmpForInGen = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    b.x = 3;
+    b.x = 3;
+    b.x = 3;
+    b.x = 3;
+    b.x = 3;
+    b.x = 3;
+    const tmpAssignMemRhs = tmpForInNext.value;
+    (3).x = tmpAssignMemRhs;
+  }
 }
 $(a, b, 3);
 `````
@@ -91,15 +117,23 @@ const b = {
 };
 const c = { x: 1 };
 const d = $( c );
-let e = undefined;
-for (e in d) {
-  a.x = 3;
-  a.x = 3;
-  a.x = 3;
-  a.x = 3;
-  a.x = 3;
-  a.x = 3;
-  3.x = e;
+const e = $forIn( d );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const f = e.next();
+  const g = f.done;
+  if (g) {
+    break;
+  }
+  else {
+    a.x = 3;
+    a.x = 3;
+    a.x = 3;
+    a.x = 3;
+    a.x = 3;
+    a.x = 3;
+    const h = f.value;
+    3.x = h;
+  }
 }
 $( b, a, 3 );
 `````

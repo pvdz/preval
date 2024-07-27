@@ -72,7 +72,7 @@ function _refTracked(fdata) {
             ++changed;
             return;
           } else {
-            // keep; binding used in for-in/of or something
+            // keep; binding used in export or something?
           }
         } else if (write.kind === 'assign') {
           queue.push({
@@ -161,8 +161,7 @@ function _refTracked(fdata) {
             }
           }
           else {
-            // for-x/for-in ?
-            ASSERT(write.parentNode.type === 'ForInStatement' || write.parentNode.type === 'ForOfStatement', 'what else might cause this?', write.parentNode.type);
+            ASSERT(false, 'what else might cause this?', write.parentNode.type);
             return;
           }
         }
@@ -236,8 +235,7 @@ function _refTracked(fdata) {
             }
           }
           else {
-            // for-x/for-in ?
-            ASSERT(write.parentNode.type === 'ForInStatement' || write.parentNode.type === 'ForOfStatement', 'what else might cause this?', write.parentNode.type);
+            ASSERT(false, 'what else might cause this?', write.parentNode.type);
             return;
           }
 

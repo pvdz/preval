@@ -19,7 +19,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for (let x in $($(1)) && 2);
+{
+  let tmpForInGen = $forIn($($(1)) && 2);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -28,15 +38,23 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam = $(1);
-let tmpForInDeclRhs = tmpCallCallee(tmpCalleeParam);
-if (tmpForInDeclRhs) {
-  tmpForInDeclRhs = 2;
+const tmpCallCallee = $forIn;
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = $(1);
+let tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+if (tmpCalleeParam) {
+  tmpCalleeParam = 2;
 } else {
 }
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -45,14 +63,22 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-let tmpForInDeclRhs = $(tmpCalleeParam);
-if (tmpForInDeclRhs) {
-  tmpForInDeclRhs = 2;
+const tmpCalleeParam$1 = $(1);
+const tmpCalleeParam = $(tmpCalleeParam$1);
+let tmpForInGen = undefined;
+if (tmpCalleeParam) {
+  tmpForInGen = $forIn(2);
 } else {
+  tmpForInGen = $forIn(tmpCalleeParam);
 }
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -64,19 +90,29 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = $( a );
-if (b) {
-  b = 2;
-}
+const b = $( a );
 let c = undefined;
-for (c in b) {
-
+if (b) {
+  c = $forIn( 2 );
 }
-const d = {
+else {
+  c = $forIn( b );
+}
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const d = c.next();
+  const e = d.done;
+  if (e) {
+    break;
+  }
+  else {
+    d.value;
+  }
+}
+const f = {
   a: 999,
   b: 1000,
 };
-$( d );
+$( f );
 `````
 
 ## Globals

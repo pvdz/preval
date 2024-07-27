@@ -19,7 +19,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for (let x in $?.(1));
+{
+  let tmpForInGen = $forIn($?.(1));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -28,16 +38,24 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpForInDeclRhs = undefined;
+const tmpCallCallee = $forIn;
+let tmpCalleeParam = undefined;
 const tmpChainRootCall = $;
 const tmpIfTest = tmpChainRootCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall = tmpChainRootCall(1);
-  tmpForInDeclRhs = tmpChainElementCall;
+  tmpCalleeParam = tmpChainElementCall;
 } else {
 }
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest$1 = tmpForInNext.done;
+  if (tmpIfTest$1) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -47,15 +65,22 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpForInDeclRhs = undefined;
 const tmpIfTest = $ == null;
+let tmpForInGen = undefined;
 if (tmpIfTest) {
+  tmpForInGen = $forIn(undefined);
 } else {
   const tmpChainElementCall = $(1);
-  tmpForInDeclRhs = tmpChainElementCall;
+  tmpForInGen = $forIn(tmpChainElementCall);
 }
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest$1 = tmpForInNext.done;
+  if (tmpIfTest$1) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -69,18 +94,24 @@ const a = {
   a: 999,
   b: 1000,
 };
-let b = undefined;
-const c = $ == null;
-if (c) {
-
+const b = $ == null;
+let c = undefined;
+if (b) {
+  c = $forIn( undefined );
 }
 else {
   const d = $( 1 );
-  b = d;
+  c = $forIn( d );
 }
-let e = undefined;
-for (e in b) {
-
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const e = c.next();
+  const f = e.done;
+  if (f) {
+    break;
+  }
+  else {
+    e.value;
+  }
 }
 $( a );
 `````

@@ -43,7 +43,11 @@ import {
   BUILTIN_REGEXP_METHODS_SUPPORTED,
   BUILTIN_NUMBER_METHODS_SUPPORTED,
   BUILTIN_REGEXP_METHOD_LOOKUP,
-  BUILTIN_NUMBER_METHOD_LOOKUP, BUILTIN_BOOLEAN_PROTOTYPE, BUILTIN_BOOLEAN_METHODS_SUPPORTED, BUILTIN_BOOLEAN_METHOD_LOOKUP,
+  BUILTIN_NUMBER_METHOD_LOOKUP,
+  BUILTIN_BOOLEAN_PROTOTYPE,
+  BUILTIN_BOOLEAN_METHODS_SUPPORTED,
+  BUILTIN_BOOLEAN_METHOD_LOOKUP,
+  BUILTIN_FOR_OF_CALL_NAME, BUILTIN_FOR_IN_CALL_NAME, BUILTIN_FUNC_CALL_NAME, BUILTIN_REST_HANDLER_NAME,
 } from '../src/constants.mjs';
 import { coerce, log, setRefTracing, vlog } from '../src/utils.mjs';
 import { getTestFileNames, PROJECT_ROOT_DIR } from './cases.mjs';
@@ -404,14 +408,26 @@ function runTestCase(
       return coerce(x, to);
     }
 
+    function * $forIn(obj) {
+      for (const key in obj) {
+        yield key;
+      }
+    }
+
+    function * $forOf(obj) {
+      for (const item of obj) {
+        yield item;
+      }
+    }
+
     function $throwTDZError(desc) {
       throw new Error('Cannot access \'<ref>\' before initialization');
     }
 
     const frameworkInjectedGlobals = {
       '$': $,
-      'objPatternRest': objPatternRest,
-      '$dotCall': $dotCall,
+      [BUILTIN_REST_HANDLER_NAME]: objPatternRest,
+      [BUILTIN_FUNC_CALL_NAME]: $dotCall,
       '$console_log': $console_log,
       '$console_warn': $console_warn,
       '$console_error': $console_error,
@@ -423,6 +439,8 @@ function runTestCase(
       '$console_groupEnd': $console_groupEnd,
       '$spy': $spy,
       '$coerce': $coerce,
+      [BUILTIN_FOR_IN_CALL_NAME]: $forIn,
+      [BUILTIN_FOR_OF_CALL_NAME]: $forOf,
       '$throwTDZError': $throwTDZError,
       '$LOOP_DONE_UNROLLING_ALWAYS_TRUE': true, // TODO: this would need to be configurable and then this value is update
       [BUILTIN_ARRAY_PROTOTYPE]: Array.prototype,

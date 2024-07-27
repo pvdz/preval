@@ -22,7 +22,17 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-for (let x of delete ($(1), $(2), $(arg))[$(`y`)]);
+{
+  let tmpForOfGen = $forOf(delete ($(1), $(2), $(arg))[$(`y`)]);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x = tmpForOfNext.value;
+    }
+  }
+}
 $(a, arg);
 `````
 
@@ -32,13 +42,21 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forOf;
 $(1);
 $(2);
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-const tmpForOfDeclRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+const tmpCalleeParam = delete tmpDeleteCompObj[tmpDeleteCompProp];
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForOfNext.value;
+  }
 }
 $(a, arg);
 `````
@@ -53,9 +71,16 @@ $(1);
 $(2);
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-const tmpForOfDeclRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+const tmpCalleeParam = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpForOfGen = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
 }
 $(a, arg);
 `````
@@ -75,9 +100,16 @@ $( 2 );
 const c = $( a );
 const d = $( "y" );
 const e = delete c[ d ];
-let f = undefined;
-for (f of e) {
-
+const f = $forOf( e );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const g = f.next();
+  const h = g.done;
+  if (h) {
+    break;
+  }
+  else {
+    g.value;
+  }
 }
 $( b, a );
 `````

@@ -19,7 +19,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for (let x of 1 && $($(1)));
+{
+  let tmpForOfGen = $forOf(1 && $($(1)));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x = tmpForOfNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -28,15 +38,23 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpForOfDeclRhs = 1;
-if (tmpForOfDeclRhs) {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(1);
-  tmpForOfDeclRhs = tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee = $forOf;
+let tmpCalleeParam = 1;
+if (tmpCalleeParam) {
+  const tmpCallCallee$1 = $;
+  const tmpCalleeParam$1 = $(1);
+  tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
 } else {
 }
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForOfNext.value;
+  }
 }
 $(a);
 `````
@@ -45,10 +63,17 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-const tmpForOfDeclRhs = $(tmpCalleeParam);
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+const tmpCalleeParam$1 = $(1);
+const tmpCalleeParam = $(tmpCalleeParam$1);
+const tmpForOfGen = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -61,15 +86,22 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = $( a );
-let c = undefined;
-for (c of b) {
-
+const c = $forOf( b );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const d = c.next();
+  const e = d.done;
+  if (e) {
+    break;
+  }
+  else {
+    d.value;
+  }
 }
-const d = {
+const f = {
   a: 999,
   b: 1000,
 };
-$( d );
+$( f );
 `````
 
 ## Globals

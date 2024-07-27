@@ -24,7 +24,17 @@ $(a, b, c);
 let b = { x: 1 },
   c = 3;
 let a = { a: 999, b: 1000 };
-for ((a = b.x = b.x = b.x = b.x = b.x = b.x = c).x of $({ x: 1 }));
+{
+  let tmpForOfGen = $forOf($({ x: 1 }));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      (a = b.x = b.x = b.x = b.x = b.x = b.x = c).x = tmpForOfNext.value;
+    }
+  }
+}
 $(a, b, c);
 `````
 
@@ -35,27 +45,36 @@ $(a, b, c);
 let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam = { x: 1 };
-const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
-let tmpForOfLhsNode = undefined;
-for (tmpForOfLhsNode of tmpForOfRhs) {
-  const varInitAssignLhsComputedRhs$7 = c;
-  b.x = varInitAssignLhsComputedRhs$7;
-  const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
-  b.x = varInitAssignLhsComputedRhs$5;
-  const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
-  b.x = varInitAssignLhsComputedRhs$3;
-  const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
-  b.x = varInitAssignLhsComputedRhs$1;
-  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-  b.x = varInitAssignLhsComputedRhs;
-  const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  b.x = tmpNestedPropAssignRhs;
-  a = tmpNestedPropAssignRhs;
-  let tmpAssignMemLhsObj = a;
-  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
+const tmpCallCallee = $forOf;
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const varInitAssignLhsComputedRhs$7 = c;
+    b.x = varInitAssignLhsComputedRhs$7;
+    const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
+    b.x = varInitAssignLhsComputedRhs$5;
+    const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
+    b.x = varInitAssignLhsComputedRhs$3;
+    const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
+    b.x = varInitAssignLhsComputedRhs$1;
+    const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+    b.x = varInitAssignLhsComputedRhs;
+    const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
+    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+    b.x = tmpNestedPropAssignRhs;
+    a = tmpNestedPropAssignRhs;
+    let tmpAssignMemLhsObj = a;
+    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+    const tmpAssignMemRhs = tmpForOfNext.value;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+  }
 }
 $(a, b, c);
 `````
@@ -65,19 +84,28 @@ $(a, b, c);
 
 `````js filename=intro
 const b = { x: 1 };
-const tmpCalleeParam = { x: 1 };
-const tmpForOfRhs = $(tmpCalleeParam);
-let tmpForOfLhsNode = undefined;
-for (tmpForOfLhsNode of tmpForOfRhs) {
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  (3).x = tmpForOfLhsNode;
+let a = { a: 999, b: 1000 };
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = $(tmpCalleeParam$1);
+const tmpForOfGen = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    b.x = 3;
+    b.x = 3;
+    b.x = 3;
+    b.x = 3;
+    b.x = 3;
+    b.x = 3;
+    a = 3;
+    const tmpAssignMemRhs = tmpForOfNext.value;
+    (3).x = tmpAssignMemRhs;
+  }
 }
-$(3, b, 3);
+$(a, b, 3);
 `````
 
 ## PST Output
@@ -86,19 +114,32 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = { x: 1 };
-const c = $( b );
-let d = undefined;
-for (d of c) {
-  a.x = 3;
-  a.x = 3;
-  a.x = 3;
-  a.x = 3;
-  a.x = 3;
-  a.x = 3;
-  3.x = d;
+let b = {
+  a: 999,
+  b: 1000,
+};
+const c = { x: 1 };
+const d = $( c );
+const e = $forOf( d );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const f = e.next();
+  const g = f.done;
+  if (g) {
+    break;
+  }
+  else {
+    a.x = 3;
+    a.x = 3;
+    a.x = 3;
+    a.x = 3;
+    a.x = 3;
+    a.x = 3;
+    b = 3;
+    const h = f.value;
+    3.x = h;
+  }
 }
-$( 3, a, 3 );
+$( b, a, 3 );
 `````
 
 ## Globals

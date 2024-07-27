@@ -19,7 +19,17 @@ $(a);
 
 `````js filename=intro
 let { a: a } = { a: 999, b: 1000 };
-for ($({ a: 1, b: 2 }).x in $({ x: 1 }));
+{
+  let tmpForInGen = $forIn($({ x: 1 }));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      $({ a: 1, b: 2 }).x = tmpForInNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -29,15 +39,24 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-const tmpCallCallee = $;
-const tmpCalleeParam = { x: 1 };
-const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
-let tmpForInLhsNode = undefined;
-for (tmpForInLhsNode in tmpForInRhs) {
-  const tmpCallCallee$1 = $;
-  const tmpCalleeParam$1 = { a: 1, b: 2 };
-  const tmpAssignMemLhsObj = tmpCallCallee$1(tmpCalleeParam$1);
-  tmpAssignMemLhsObj.x = tmpForInLhsNode;
+const tmpCallCallee = $forIn;
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpCallCallee$3 = $;
+    const tmpCalleeParam$3 = { a: 1, b: 2 };
+    const tmpAssignMemLhsObj = tmpCallCallee$3(tmpCalleeParam$3);
+    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+    const tmpAssignMemRhs = tmpForInNext.value;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+  }
 }
 $(a);
 `````
@@ -46,13 +65,20 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = { x: 1 };
-const tmpForInRhs = $(tmpCalleeParam);
-let tmpForInLhsNode = undefined;
-for (tmpForInLhsNode in tmpForInRhs) {
-  const tmpCalleeParam$1 = { a: 1, b: 2 };
-  const tmpAssignMemLhsObj = $(tmpCalleeParam$1);
-  tmpAssignMemLhsObj.x = tmpForInLhsNode;
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = $(tmpCalleeParam$1);
+const tmpForInGen = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpCalleeParam$3 = { a: 1, b: 2 };
+    const tmpAssignMemLhsObj = $(tmpCalleeParam$3);
+    const tmpAssignMemRhs = tmpForInNext.value;
+    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  }
 }
 $(999);
 `````
@@ -64,14 +90,22 @@ With rename=true
 `````js filename=intro
 const a = { x: 1 };
 const b = $( a );
-let c = undefined;
-for (c in b) {
-  const d = {
-    a: 1,
-    b: 2,
-  };
-  const e = $( d );
-  e.x = c;
+const c = $forIn( b );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const d = c.next();
+  const e = d.done;
+  if (e) {
+    break;
+  }
+  else {
+    const f = {
+      a: 1,
+      b: 2,
+    };
+    const g = $( f );
+    const h = d.value;
+    g.x = h;
+  }
 }
 $( 999 );
 `````

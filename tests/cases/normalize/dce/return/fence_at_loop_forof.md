@@ -34,10 +34,21 @@ let f = function () {
   debugger;
   while ($(true)) {
     $(`loop`);
-    for (let x of [1, 2]) {
-      $(`loop`, x);
-      return $(100, `return`);
-      $(`unreachable`);
+    {
+      let tmpForOfGen = $forOf([1, 2]);
+      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+        let tmpForOfNext = tmpForOfGen.next();
+        if (tmpForOfNext.done) {
+          break;
+        } else {
+          let x = tmpForOfNext.value;
+          {
+            $(`loop`, x);
+            return $(100, `return`);
+            $(`unreachable`);
+          }
+        }
+      }
     }
     $(`unreachable2 (but keep because the for body may not be visited...)`);
   }
@@ -56,12 +67,20 @@ let f = function () {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
       $(`loop`);
-      const tmpForOfDeclRhs = [1, 2];
-      let x = undefined;
-      for (x of tmpForOfDeclRhs) {
-        $(`loop`, x);
-        const tmpReturnArg = $(100, `return`);
-        return tmpReturnArg;
+      const tmpCallCallee = $forOf;
+      const tmpCalleeParam = [1, 2];
+      let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+        let tmpForOfNext = tmpForOfGen.next();
+        const tmpIfTest$1 = tmpForOfNext.done;
+        if (tmpIfTest$1) {
+          break;
+        } else {
+          let x = tmpForOfNext.value;
+          $(`loop`, x);
+          const tmpReturnArg = $(100, `return`);
+          return tmpReturnArg;
+        }
       }
       $(`unreachable2 (but keep because the for body may not be visited...)`);
     } else {
@@ -71,34 +90,41 @@ let f = function () {
   $(`unreachable3`);
   return undefined;
 };
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
+let tmpCalleeParam$1 = undefined;
 $inlinedFunction: {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(`loop`);
-    let x = undefined;
-    const tmpForOfDeclRhs = [1, 2];
-    for (x of tmpForOfDeclRhs) {
-      $(`loop`, x);
-      const tmpReturnArg = $(100, `return`);
-      tmpCalleeParam = tmpReturnArg;
-      break $inlinedFunction;
+  while (true) {
+    const tmpIfTest = $(true);
+    if (tmpIfTest) {
+      $(`loop`);
+      const tmpCalleeParam = [1, 2];
+      const tmpForOfGen = $forOf(tmpCalleeParam);
+      const tmpForOfNext = tmpForOfGen.next();
+      const tmpIfTest$1 = tmpForOfNext.done;
+      if (tmpIfTest$1) {
+        $(`unreachable2 (but keep because the for body may not be visited...)`);
+      } else {
+        const x = tmpForOfNext.value;
+        $(`loop`, x);
+        const tmpReturnArg = $(100, `return`);
+        tmpCalleeParam$1 = tmpReturnArg;
+        break $inlinedFunction;
+      }
+    } else {
+      break;
     }
-    $(`unreachable2 (but keep because the for body may not be visited...)`);
-  } else {
-    $(`unreachable3`);
   }
+  $(`unreachable3`);
 }
-$(tmpCalleeParam);
+$(tmpCalleeParam$1);
 `````
 
 ## PST Output
@@ -108,22 +134,30 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 $inlinedFunction: {
-  const b = $( true );
-  if (b) {
-    $( "loop" );
-    let c = undefined;
-    const d = [ 1, 2 ];
-    for (c of d) {
-      $( "loop", c );
-      const e = $( 100, "return" );
-      a = e;
-      break $inlinedFunction;
+  while (true) {
+    const b = $( true );
+    if (b) {
+      $( "loop" );
+      const c = [ 1, 2 ];
+      const d = $forOf( c );
+      const e = d.next();
+      const f = e.done;
+      if (f) {
+        $( "unreachable2 (but keep because the for body may not be visited...)" );
+      }
+      else {
+        const g = e.value;
+        $( "loop", g );
+        const h = $( 100, "return" );
+        a = h;
+        break $inlinedFunction;
+      }
     }
-    $( "unreachable2 (but keep because the for body may not be visited...)" );
+    else {
+      break;
+    }
   }
-  else {
-    $( "unreachable3" );
-  }
+  $( "unreachable3" );
 }
 $( a );
 `````

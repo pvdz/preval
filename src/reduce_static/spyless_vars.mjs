@@ -233,7 +233,7 @@ function process(fdata, meta, name, queue, dupes) {
           vlog('Ref was inside if-header. Put node before it');
           break;
         }
-      } else if (nextNode.type === 'WhileStatement' || nextNode.type === 'ForInStatement' || nextNode.type === 'ForOfStatement') {
+      } else if (nextNode.type === 'WhileStatement') {
         // Technically also goes for regular expressions?
         if (['FunctionExpression', 'ClassExpression', 'ObjectExpression', 'ArrayExpression'].includes(init.type)) {
           vlog('Can not move an object type into a loop. It ends here');

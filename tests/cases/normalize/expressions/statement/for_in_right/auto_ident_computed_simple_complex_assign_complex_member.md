@@ -22,7 +22,17 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-for (let x in (b[$(`c`)] = $(b)[$(`d`)]));
+{
+  let tmpForInGen = $forIn((b[$(`c`)] = $(b)[$(`d`)]));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+    }
+  }
+}
 $(a, b);
 `````
 
@@ -32,15 +42,23 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forIn;
 const varInitAssignLhsComputedObj = b;
 const varInitAssignLhsComputedProp = $(`c`);
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpForInDeclRhs = varInitAssignLhsComputedRhs;
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+const tmpCalleeParam = varInitAssignLhsComputedRhs;
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
 }
 $(a, b);
 `````
@@ -56,8 +74,15 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-let x = undefined;
-for (x in varInitAssignLhsComputedRhs) {
+const tmpForInGen = $forIn(varInitAssignLhsComputedRhs);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
 $(a, b);
 `````
@@ -80,9 +105,16 @@ const d = $( a );
 const e = $( "d" );
 const f = d[ e ];
 a[c] = f;
-let g = undefined;
-for (g in f) {
-
+const g = $forIn( f );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const h = g.next();
+  const i = h.done;
+  if (i) {
+    break;
+  }
+  else {
+    h.value;
+  }
 }
 $( b, a );
 `````

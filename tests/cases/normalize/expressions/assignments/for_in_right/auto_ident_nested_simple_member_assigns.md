@@ -24,7 +24,17 @@ $(a, b, c);
 let b = { x: 1 },
   c = 3;
 let a = { a: 999, b: 1000 };
-for (let x in (a = b.x = b.x = b.x = b.x = b.x = b.x = c));
+{
+  let tmpForInGen = $forIn((a = b.x = b.x = b.x = b.x = b.x = b.x = c));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+    }
+  }
+}
 $(a, b, c);
 `````
 
@@ -35,6 +45,7 @@ $(a, b, c);
 let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forIn;
 const varInitAssignLhsComputedRhs$7 = c;
 b.x = varInitAssignLhsComputedRhs$7;
 const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
@@ -49,9 +60,16 @@ const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 b.x = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
-let tmpForInDeclRhs = a;
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+let tmpCalleeParam = a;
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
 }
 $(a, b, c);
 `````
@@ -60,8 +78,15 @@ $(a, b, c);
 
 
 `````js filename=intro
-let x = undefined;
-for (x in 3) {
+const tmpForInGen = $forIn(3);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
 const b = { x: 3 };
 $(3, b, 3);
@@ -72,12 +97,19 @@ $(3, b, 3);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-for (a in 3) {
-
+const a = $forIn( 3 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const b = a.next();
+  const c = b.done;
+  if (c) {
+    break;
+  }
+  else {
+    b.value;
+  }
 }
-const b = { x: 3 };
-$( 3, b, 3 );
+const d = { x: 3 };
+$( 3, d, 3 );
 `````
 
 ## Globals

@@ -24,10 +24,21 @@ for (test of $({a: 1})) {
 `````js filename=intro
 let counter = 0;
 let test = counter < 10;
-for (test of $({ a: 1 })) {
-  $(`yolo`);
-  counter = counter + 1;
-  test = counter < 10;
+{
+  let tmpForOfGen = $forOf($({ a: 1 }));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      test = tmpForOfNext.value;
+      {
+        $(`yolo`);
+        counter = counter + 1;
+        test = counter < 10;
+      }
+    }
+  }
 }
 `````
 
@@ -37,13 +48,22 @@ for (test of $({ a: 1 })) {
 `````js filename=intro
 let counter = 0;
 let test = counter < 10;
-const tmpCallCallee = $;
-const tmpCalleeParam = { a: 1 };
-const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
-for (test of tmpForOfRhs) {
-  $(`yolo`);
-  counter = counter + 1;
-  test = counter < 10;
+const tmpCallCallee = $forOf;
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = { a: 1 };
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    test = tmpForOfNext.value;
+    $(`yolo`);
+    counter = counter + 1;
+    test = counter < 10;
+  }
 }
 `````
 
@@ -52,12 +72,19 @@ for (test of tmpForOfRhs) {
 
 `````js filename=intro
 let counter = 0;
-let test = true;
-const tmpCalleeParam = { a: 1 };
-const tmpForOfRhs = $(tmpCalleeParam);
-for (test of tmpForOfRhs) {
-  $(`yolo`);
-  counter = counter + 1;
+const tmpCalleeParam$1 = { a: 1 };
+const tmpCalleeParam = $(tmpCalleeParam$1);
+const tmpForOfGen = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+    $(`yolo`);
+    counter = counter + 1;
+  }
 }
 `````
 
@@ -67,12 +94,20 @@ With rename=true
 
 `````js filename=intro
 let a = 0;
-let b = true;
-const c = { a: 1 };
-const d = $( c );
-for (b of d) {
-  $( "yolo" );
-  a = a + 1;
+const b = { a: 1 };
+const c = $( b );
+const d = $forOf( c );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const e = d.next();
+  const f = e.done;
+  if (f) {
+    break;
+  }
+  else {
+    e.value;
+    $( "yolo" );
+    a = a + 1;
+  }
 }
 `````
 

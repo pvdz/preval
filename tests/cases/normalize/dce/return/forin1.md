@@ -26,8 +26,19 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  for (let x in { a: 1, b: 2 }) {
-    return $(1, `return`);
+  {
+    let tmpForInGen = $forIn({ a: 1, b: 2 });
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      let tmpForInNext = tmpForInGen.next();
+      if (tmpForInNext.done) {
+        break;
+      } else {
+        let x = tmpForInNext.value;
+        {
+          return $(1, `return`);
+        }
+      }
+    }
   }
   $(`keep, do not eval`);
 };
@@ -40,37 +51,45 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpForInDeclRhs = { a: 1, b: 2 };
-  let x = undefined;
-  for (x in tmpForInDeclRhs) {
-    const tmpReturnArg = $(1, `return`);
-    return tmpReturnArg;
+  const tmpCallCallee = $forIn;
+  const tmpCalleeParam = { a: 1, b: 2 };
+  let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    const tmpIfTest = tmpForInNext.done;
+    if (tmpIfTest) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+      const tmpReturnArg = $(1, `return`);
+      return tmpReturnArg;
+    }
   }
   $(`keep, do not eval`);
   return undefined;
 };
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
-$inlinedFunction: {
-  let x = undefined;
-  const tmpForInDeclRhs = { a: 1, b: 2 };
-  for (x in tmpForInDeclRhs) {
-    const tmpReturnArg = $(1, `return`);
-    tmpCalleeParam = tmpReturnArg;
-    break $inlinedFunction;
-  }
+let tmpCalleeParam$1 = undefined;
+const tmpCalleeParam = { a: 1, b: 2 };
+const tmpForInGen = $forIn(tmpCalleeParam);
+const tmpForInNext = tmpForInGen.next();
+const tmpIfTest = tmpForInNext.done;
+if (tmpIfTest) {
   $(`keep, do not eval`);
-  tmpCalleeParam = undefined;
+} else {
+  tmpForInNext.value;
+  const tmpReturnArg = $(1, `return`);
+  tmpCalleeParam$1 = tmpReturnArg;
 }
-$(tmpCalleeParam);
+$(tmpCalleeParam$1);
 `````
 
 ## PST Output
@@ -79,19 +98,20 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-$inlinedFunction: {
-  let b = undefined;
-  const c = {
-    a: 1,
-    b: 2,
-  };
-  for (b in c) {
-    const d = $( 1, "return" );
-    a = d;
-    break $inlinedFunction;
-  }
+const b = {
+  a: 1,
+  b: 2,
+};
+const c = $forIn( b );
+const d = c.next();
+const e = d.done;
+if (e) {
   $( "keep, do not eval" );
-  a = undefined;
+}
+else {
+  d.value;
+  const f = $( 1, "return" );
+  a = f;
 }
 $( a );
 `````

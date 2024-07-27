@@ -486,7 +486,7 @@ function _inlineOneTimeFunctions(fdata) {
       //      return;
       //    }
       //
-      //    if (['WhileStatement', 'ForInStatement', 'ForOfStatement', 'BlockStatement', 'LabeledStatement'].includes(last.type)) {
+      //    if (['WhileStatement', 'BlockStatement', 'LabeledStatement'].includes(last.type)) {
       //      inlineTail(last.body);
       //      return;
       //    }
@@ -507,8 +507,6 @@ function _inlineOneTimeFunctions(fdata) {
       //      'IfStatement',
       //      'ReturnStatement',
       //      'WhileStatement',
-      //      'ForInStatement',
-      //      'ForOfStatement',
       //      'BlockStatement',
       //      'LabeledStatement',
       //      'TryStatement',

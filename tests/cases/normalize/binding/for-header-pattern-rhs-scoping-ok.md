@@ -23,9 +23,20 @@ for (let [x] in [y]) {
 `````js filename=intro
 let x = 1;
 let y = {};
-for (let [x$1] in [y]) {
-  let y$1 = 2;
-  $(x$1);
+{
+  let tmpForInGen = $forIn([y]);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let [x$1] = tmpForInNext.value;
+      {
+        let y$1 = 2;
+        $(x$1);
+      }
+    }
+  }
 }
 `````
 
@@ -35,15 +46,21 @@ for (let [x$1] in [y]) {
 `````js filename=intro
 let x = 1;
 let y = {};
-const tmpForInPatDeclRhs = [y];
-let tmpForInPatDeclLhs = undefined;
-let x$1 = undefined;
-for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
-  const arrAssignPatternRhs = tmpForInPatDeclLhs;
-  const arrPatternSplat = [...arrAssignPatternRhs];
-  x$1 = arrPatternSplat[0];
-  let y$1 = 2;
-  $(x$1);
+const tmpCallCallee = $forIn;
+const tmpCalleeParam = [y];
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let bindingPatternArrRoot = tmpForInNext.value;
+    let arrPatternSplat = [...bindingPatternArrRoot];
+    let x$1 = arrPatternSplat[0];
+    let y$1 = 2;
+    $(x$1);
+  }
 }
 `````
 
@@ -52,12 +69,19 @@ for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
 
 `````js filename=intro
 const y = {};
-const tmpForInPatDeclRhs = [y];
-let tmpForInPatDeclLhs = undefined;
-for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
-  const arrPatternSplat = [...tmpForInPatDeclLhs];
-  const tmpClusterSSA_x$1 = arrPatternSplat[0];
-  $(tmpClusterSSA_x$1);
+const tmpCalleeParam = [y];
+const tmpForInGen = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const bindingPatternArrRoot = tmpForInNext.value;
+    const arrPatternSplat = [...bindingPatternArrRoot];
+    const x$1 = arrPatternSplat[0];
+    $(x$1);
+  }
 }
 `````
 
@@ -68,11 +92,19 @@ With rename=true
 `````js filename=intro
 const a = {};
 const b = [ a ];
-let c = undefined;
-for (c in b) {
-  const d = [ ... c ];
-  const e = d[ 0 ];
-  $( e );
+const c = $forIn( b );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const d = c.next();
+  const e = d.done;
+  if (e) {
+    break;
+  }
+  else {
+    const f = d.value;
+    const g = [ ... f ];
+    const h = g[ 0 ];
+    $( h );
+  }
 }
 `````
 

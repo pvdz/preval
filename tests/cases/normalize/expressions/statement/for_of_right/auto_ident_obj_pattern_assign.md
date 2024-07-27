@@ -30,7 +30,17 @@ $(a, x, y);
 let x = 1,
   y = 2;
 let a = { a: 999, b: 1000 };
-for (let x$1 of ({ x: x$1, y: y } = { x: $(3), y: $(4) }));
+{
+  let tmpForOfGen = $forOf(({ x: x$1, y: y } = { x: $(3), y: $(4) }));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x$1 = tmpForOfNext.value;
+    }
+  }
+}
 $(a, x, y);
 `````
 
@@ -41,15 +51,23 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-let tmpForOfDeclRhs = undefined;
+const tmpCallCallee = $forOf;
+let tmpCalleeParam = undefined;
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 x$1 = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
-tmpForOfDeclRhs = tmpNestedAssignObjPatternRhs;
-let x$1 = undefined;
-for (x$1 of tmpForOfDeclRhs) {
+tmpCalleeParam = tmpNestedAssignObjPatternRhs;
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x$2 = tmpForOfNext.value;
+  }
 }
 $(a, x, y);
 `````
@@ -62,8 +80,16 @@ const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-let x$1 = undefined;
-for (x$1 of tmpNestedAssignObjPatternRhs) {
+x$1 = tmpObjLitVal;
+const tmpForOfGen = $forOf(tmpNestedAssignObjPatternRhs);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
 }
 $(a, 1, tmpObjLitVal$1);
 `````
@@ -83,16 +109,26 @@ const d = {
   x: b,
   y: c,
 };
-let e = undefined;
-for (e of d) {
-
+x$1 = b;
+const e = $forOf( d );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const f = e.next();
+  const g = f.done;
+  if (g) {
+    break;
+  }
+  else {
+    f.value;
+  }
 }
 $( a, 1, c );
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+x$1
 
 ## Result
 

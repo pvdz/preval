@@ -130,7 +130,7 @@ function processAttempt(fdata, unrollTrueLimit) {
       }
 
       // Don't unroll nested loops. That just risks too much code growth
-      if (['ForOfStatement', 'ForInStatement', 'WhileStatement'].includes(node.type)) {
+      if (node.type === 'WhileStatement') {
         ok = false;
         vlog('  - bail: body contained another loop and we will deal with that another day, or never');
         return true; // Do not enter

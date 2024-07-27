@@ -16,20 +16,37 @@ for (let {x} of {a: 1, b: 2}) $(x);
 
 
 `````js filename=intro
-for (let { x: x } of { a: 1, b: 2 }) $(x);
+{
+  let tmpForOfGen = $forOf({ a: 1, b: 2 });
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let { x: x } = tmpForOfNext.value;
+      $(x);
+    }
+  }
+}
 `````
 
 ## Normalized
 
 
 `````js filename=intro
-const tmpForOfPatDeclRhs = { a: 1, b: 2 };
-let tmpForOfPatDeclLhs = undefined;
-let x = undefined;
-for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
-  const tmpAssignObjPatternRhs = tmpForOfPatDeclLhs;
-  x = tmpAssignObjPatternRhs.x;
-  $(x);
+const tmpCallCallee = $forOf;
+const tmpCalleeParam = { a: 1, b: 2 };
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let bindingPatternObjRoot = tmpForOfNext.value;
+    let x = bindingPatternObjRoot.x;
+    $(x);
+  }
 }
 `````
 
@@ -37,11 +54,18 @@ for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
 
 
 `````js filename=intro
-let tmpForOfPatDeclLhs = undefined;
-const tmpForOfPatDeclRhs = { a: 1, b: 2 };
-for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
-  const tmpClusterSSA_x = tmpForOfPatDeclLhs.x;
-  $(tmpClusterSSA_x);
+const tmpCalleeParam = { a: 1, b: 2 };
+const tmpForOfGen = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const bindingPatternObjRoot = tmpForOfNext.value;
+    const x = bindingPatternObjRoot.x;
+    $(x);
+  }
 }
 `````
 
@@ -50,14 +74,22 @@ for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = {
+const a = {
   a: 1,
   b: 2,
 };
-for (a of b) {
-  const c = a.x;
-  $( c );
+const b = $forOf( a );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const c = b.next();
+  const d = c.done;
+  if (d) {
+    break;
+  }
+  else {
+    const e = c.value;
+    const f = e.x;
+    $( f );
+  }
 }
 `````
 

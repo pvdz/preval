@@ -19,7 +19,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for (let x of (10, 20, $(30)) ? (40, 50, 60) : $($(100)));
+{
+  let tmpForOfGen = $forOf((10, 20, $(30)) ? (40, 50, 60) : $($(100)));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x = tmpForOfNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -28,17 +38,25 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpForOfDeclRhs = undefined;
+const tmpCallCallee = $forOf;
+let tmpCalleeParam = undefined;
 const tmpIfTest = $(30);
 if (tmpIfTest) {
-  tmpForOfDeclRhs = 60;
+  tmpCalleeParam = 60;
 } else {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(100);
-  tmpForOfDeclRhs = tmpCallCallee(tmpCalleeParam);
+  const tmpCallCallee$1 = $;
+  const tmpCalleeParam$1 = $(100);
+  tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
 }
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest$1 = tmpForOfNext.done;
+  if (tmpIfTest$1) {
+    break;
+  } else {
+    let x = tmpForOfNext.value;
+  }
 }
 $(a);
 `````
@@ -47,15 +65,23 @@ $(a);
 
 
 `````js filename=intro
-let tmpForOfDeclRhs = 60;
 const tmpIfTest = $(30);
+let tmpForOfGen = undefined;
 if (tmpIfTest) {
+  tmpForOfGen = $forOf(60);
 } else {
-  const tmpCalleeParam = $(100);
-  tmpForOfDeclRhs = $(tmpCalleeParam);
+  const tmpCalleeParam$1 = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(tmpCalleeParam$1);
+  tmpForOfGen = $forOf(tmpClusterSSA_tmpCalleeParam);
 }
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest$1 = tmpForOfNext.done;
+  if (tmpIfTest$1) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -66,24 +92,31 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = 60;
-const b = $( 30 );
-if (b) {
-
+const a = $( 30 );
+let b = undefined;
+if (a) {
+  b = $forOf( 60 );
 }
 else {
   const c = $( 100 );
-  a = $( c );
+  const d = $( c );
+  b = $forOf( d );
 }
-let d = undefined;
-for (d of a) {
-
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const e = b.next();
+  const f = e.done;
+  if (f) {
+    break;
+  }
+  else {
+    e.value;
+  }
 }
-const e = {
+const g = {
   a: 999,
   b: 1000,
 };
-$( e );
+$( g );
 `````
 
 ## Globals

@@ -29,17 +29,28 @@ exit: for (const key of $(new Set(['a', 'b']))) {
 
 `````js filename=intro
 let x = $(2);
-exit: for (const key of $(new Set([`a`, `b`]))) {
-  $continue: {
-    {
-      $(`key:`, key);
-      if ($(1)) {
-        x = $(3);
-      }
-      if (x) {
-        break $continue;
-      } else {
-        x = $(4);
+exit: {
+  let tmpForOfGen = $forOf($(new Set([`a`, `b`])));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      const key = tmpForOfNext.value;
+      {
+        $continue: {
+          {
+            $(`key:`, key);
+            if ($(1)) {
+              x = $(3);
+            }
+            if (x) {
+              break $continue;
+            } else {
+              x = $(4);
+            }
+          }
+        }
       }
     }
   }
@@ -51,24 +62,32 @@ exit: for (const key of $(new Set([`a`, `b`]))) {
 
 `````js filename=intro
 let x = $(2);
-const tmpCallCallee = $;
+const tmpCallCallee = $forOf;
+const tmpCallCallee$1 = $;
 const tmpNewCallee = Set;
-const tmpCalleeParam$1 = [`a`, `b`];
-const tmpCalleeParam = new tmpNewCallee(tmpCalleeParam$1);
-const tmpForOfDeclRhs = tmpCallCallee(tmpCalleeParam);
-let key = undefined;
-for (key of tmpForOfDeclRhs) {
-  $continue: {
-    $(`key:`, key);
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      x = $(3);
-    } else {
-    }
-    if (x) {
-      break $continue;
-    } else {
-      x = $(4);
+const tmpCalleeParam$3 = [`a`, `b`];
+const tmpCalleeParam$1 = new tmpNewCallee(tmpCalleeParam$3);
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const key = tmpForOfNext.value;
+    $continue: {
+      $(`key:`, key);
+      const tmpIfTest$1 = $(1);
+      if (tmpIfTest$1) {
+        x = $(3);
+      } else {
+      }
+      if (x) {
+        break $continue;
+      } else {
+        x = $(4);
+      }
     }
   }
 }
@@ -79,20 +98,27 @@ for (key of tmpForOfDeclRhs) {
 
 `````js filename=intro
 let x = $(2);
-const tmpCalleeParam$1 = [`a`, `b`];
-const tmpCalleeParam = new Set(tmpCalleeParam$1);
-const tmpForOfDeclRhs = $(tmpCalleeParam);
-let key = undefined;
-for (key of tmpForOfDeclRhs) {
-  $(`key:`, key);
-  const tmpIfTest = $(1);
+const tmpCalleeParam$3 = [`a`, `b`];
+const tmpCalleeParam$1 = new Set(tmpCalleeParam$3);
+const tmpCalleeParam = $(tmpCalleeParam$1);
+const tmpForOfGen = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {
-    x = $(3);
+    break;
   } else {
-  }
-  if (x) {
-  } else {
-    x = $(4);
+    const key = tmpForOfNext.value;
+    $(`key:`, key);
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
+      x = $(3);
+    } else {
+    }
+    if (x) {
+    } else {
+      x = $(4);
+    }
   }
 }
 `````
@@ -106,18 +132,26 @@ let a = $( 2 );
 const b = [ "a", "b" ];
 const c = new Set( b );
 const d = $( c );
-let e = undefined;
-for (e of d) {
-  $( "key:", e );
-  const f = $( 1 );
-  if (f) {
-    a = $( 3 );
-  }
-  if (a) {
-
+const e = $forOf( d );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const f = e.next();
+  const g = f.done;
+  if (g) {
+    break;
   }
   else {
-    a = $( 4 );
+    const h = f.value;
+    $( "key:", h );
+    const i = $( 1 );
+    if (i) {
+      a = $( 3 );
+    }
+    if (a) {
+
+    }
+    else {
+      a = $( 4 );
+    }
   }
 }
 `````

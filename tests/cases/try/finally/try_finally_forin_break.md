@@ -24,24 +24,35 @@ $(3);
 
 
 `````js filename=intro
-for (const x in { a: 1 }) {
-  {
-    let $implicitThrow = false;
-    let $finalCatchArg = undefined;
-    $finally: {
-      try {
-        $(x, 1);
-      } catch ($finalImplicit) {
-        $implicitThrow = true;
-        $finalCatchArg = $finalImplicit;
-      }
-    }
-    {
-      $(2);
+{
+  let tmpForInGen = $forIn({ a: 1 });
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
       break;
-    }
-    if ($implicitThrow) throw $finalCatchArg;
-    else {
+    } else {
+      const x = tmpForInNext.value;
+      {
+        {
+          let $implicitThrow = false;
+          let $finalCatchArg = undefined;
+          $finally: {
+            try {
+              $(x, 1);
+            } catch ($finalImplicit) {
+              $implicitThrow = true;
+              $finalCatchArg = $finalImplicit;
+            }
+          }
+          {
+            $(2);
+            break;
+          }
+          if ($implicitThrow) throw $finalCatchArg;
+          else {
+          }
+        }
+      }
     }
   }
 }
@@ -52,19 +63,27 @@ $(3);
 
 
 `````js filename=intro
-const tmpForInDeclRhs = { a: 1 };
-let x = undefined;
-for (x in tmpForInDeclRhs) {
-  let $implicitThrow = false;
-  let $finalCatchArg = undefined;
-  try {
-    $(x, 1);
-  } catch ($finalImplicit) {
-    $implicitThrow = true;
-    $finalCatchArg = $finalImplicit;
+const tmpCallCallee = $forIn;
+const tmpCalleeParam = { a: 1 };
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const x = tmpForInNext.value;
+    let $implicitThrow = false;
+    let $finalCatchArg = undefined;
+    try {
+      $(x, 1);
+    } catch ($finalImplicit) {
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
+    }
+    $(2);
+    break;
   }
-  $(2);
-  break;
 }
 $(3);
 `````
@@ -73,14 +92,21 @@ $(3);
 
 
 `````js filename=intro
-let x = undefined;
-const tmpForInDeclRhs = { a: 1 };
-for (x in tmpForInDeclRhs) {
-  try {
-    $(x, 1);
-  } catch ($finalImplicit) {}
-  $(2);
-  break;
+const tmpCalleeParam = { a: 1 };
+const tmpForInGen = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const x = tmpForInNext.value;
+    try {
+      $(x, 1);
+    } catch ($finalImplicit) {}
+    $(2);
+    break;
+  }
 }
 $(3);
 `````
@@ -90,17 +116,25 @@ $(3);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { a: 1 };
-for (a in b) {
-  try {
-    $( a, 1 );
+const a = { a: 1 };
+const b = $forIn( a );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const c = b.next();
+  const d = c.done;
+  if (d) {
+    break;
   }
-  catch (c) {
+  else {
+    const e = c.value;
+    try {
+      $( e, 1 );
+    }
+    catch (f) {
 
+    }
+    $( 2 );
+    break;
   }
-  $( 2 );
-  break;
 }
 $( 3 );
 `````

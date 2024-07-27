@@ -17,7 +17,18 @@ for(const n in {a: 1, b: 2}) var x = n;
 
 `````js filename=intro
 let x = undefined;
-for (const n in { a: 1, b: 2 }) x = n;
+{
+  let tmpForInGen = $forIn({ a: 1, b: 2 });
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      const n = tmpForInNext.value;
+      x = n;
+    }
+  }
+}
 `````
 
 ## Normalized
@@ -25,10 +36,18 @@ for (const n in { a: 1, b: 2 }) x = n;
 
 `````js filename=intro
 let x = undefined;
-const tmpForInDeclRhs = { a: 1, b: 2 };
-let n = undefined;
-for (n in tmpForInDeclRhs) {
-  x = n;
+const tmpCallCallee = $forIn;
+const tmpCalleeParam = { a: 1, b: 2 };
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const n = tmpForInNext.value;
+    x = n;
+  }
 }
 `````
 
@@ -36,9 +55,16 @@ for (n in tmpForInDeclRhs) {
 
 
 `````js filename=intro
-let n = undefined;
-const tmpForInDeclRhs = { a: 1, b: 2 };
-for (n in tmpForInDeclRhs) {
+const tmpCalleeParam = { a: 1, b: 2 };
+const tmpForInGen = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
 `````
 
@@ -47,13 +73,20 @@ for (n in tmpForInDeclRhs) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = {
+const a = {
   a: 1,
   b: 2,
 };
-for (a in b) {
-
+const b = $forIn( a );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const c = b.next();
+  const d = c.done;
+  if (d) {
+    break;
+  }
+  else {
+    c.value;
+  }
 }
 `````
 

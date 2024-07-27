@@ -19,7 +19,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for (let x of (a = $($(1)) && $($(2))));
+{
+  let tmpForOfGen = $forOf((a = $($(1)) && $($(2))));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x = tmpForOfNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -28,18 +38,26 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam = $(1);
-a = tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee = $forOf;
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = $(1);
+a = tmpCallCallee$1(tmpCalleeParam$1);
 if (a) {
-  const tmpCallCallee$1 = $;
-  const tmpCalleeParam$1 = $(2);
-  a = tmpCallCallee$1(tmpCalleeParam$1);
+  const tmpCallCallee$3 = $;
+  const tmpCalleeParam$3 = $(2);
+  a = tmpCallCallee$3(tmpCalleeParam$3);
 } else {
 }
-let tmpForOfDeclRhs = a;
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+let tmpCalleeParam = a;
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForOfNext.value;
+  }
 }
 $(a);
 `````
@@ -48,15 +66,24 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-let a = $(tmpCalleeParam);
+const tmpCalleeParam$1 = $(1);
+let a = $(tmpCalleeParam$1);
+let tmpForOfGen = undefined;
 if (a) {
-  const tmpCalleeParam$1 = $(2);
-  a = $(tmpCalleeParam$1);
+  const tmpCalleeParam$3 = $(2);
+  a = $(tmpCalleeParam$3);
+  tmpForOfGen = $forOf(a);
 } else {
+  tmpForOfGen = $forOf(a);
 }
-let x = undefined;
-for (x of a) {
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
 }
 $(a);
 `````
@@ -68,13 +95,24 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 let b = $( a );
+let c = undefined;
 if (b) {
-  const c = $( 2 );
-  b = $( c );
+  const d = $( 2 );
+  b = $( d );
+  c = $forOf( b );
 }
-let d = undefined;
-for (d of b) {
-
+else {
+  c = $forOf( b );
+}
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const e = c.next();
+  const f = e.done;
+  if (f) {
+    break;
+  }
+  else {
+    e.value;
+  }
 }
 $( b );
 `````

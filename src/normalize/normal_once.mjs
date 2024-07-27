@@ -37,6 +37,7 @@ import {
 } from '../bindings.mjs';
 import { addLabelReference, createFreshLabelStatement, updateGlobalLabelStatementRef } from '../labels.mjs';
 import { cloneSortOfSimple, isSortOfSimpleNode, normalizeFunction, transformFunctionParams } from '../ast.mjs';
+import { MAX_UNROLL_CONSTANT_NAME } from '../globals.mjs';
 
 export function phaseNormalOnce(fdata) {
   const ast = fdata.tenkoOutput.ast;
@@ -1151,6 +1152,122 @@ export function phaseNormalOnce(fdata) {
       }
       case 'ForInStatement:after': {
         loopStack.pop();
+
+        // Note: code is NOT normalized so patterns and all kinds of LHS's are possible here and we must carefully outline them.
+        // Note: this transform is pretty much identical to the for-in. Changes here probably apply there as well (!)
+
+        // Warning:
+        // Consider `for (let x in x) ...`
+        //   This pre-transform will cause the header-rhs read of `x` to be in a
+        //   different scope than the header-lhs that declares it. While the vars are
+        //   renamed properly, this still changes the semantic from a TDZ error to an
+        //   unknown implicit global error (and potentially refers to the wrong value
+        //   in case a global with the same name does exist! Although Preval should
+        //   at least prevent that case due to unique naming and avoiding globals).
+        //   (Not even sure what the transform would look like to preserve that proper)
+
+        if (node.left.type === 'VariableDeclaration') {
+          // for (var x in y)
+          // for (let x in y)
+          // for (const x in y)
+
+          rule('The for-in loop must be a while');
+          example(
+            'for (const x in y) f(y);',
+            'const forInGen = $forIn(y); while (true) { const next = forInGen.next(); if (next.done) { break; } else { const x = next.value(); { f(x); } } }'
+          );
+          before(node);
+
+          const genName = createFreshVar('tmpForInGen', fdata);
+          const valName = createFreshVar('tmpForInNext', fdata);
+
+          // Minor trickery; if the lhs was a var decl then we must update the init, otherwise dump it in the lhs of an assignment
+          // The lhs is evaluated before the rhs so any side effects should trigger before the generator is generated. But only once (!)
+          node.left.declarations[0].init = AST.memberExpression(AST.identifier(valName), AST.identifier('value'));
+
+          const newNode = AST.blockStatement(
+            // const forInGen = $forIn(x)
+            AST.variableDeclaration(genName, AST.callExpression(AST.identifier('$forIn'), [node.right])),
+            // while (true) {}
+            // (It probably doesn't make sense for for-in/of loops to get unrolled because there's no base case right now, maybe later tho, but that's probably handled differently?)
+            AST.whileStatement(AST.identifier(MAX_UNROLL_CONSTANT_NAME), AST.blockStatement(
+              // const next = forInGen.next();
+              AST.variableDeclaration(valName, AST.callExpression(AST.memberExpression(AST.identifier(genName), AST.identifier('next'), false), [])),
+              // if (x.done)
+              AST.ifStatement(AST.memberExpression(AST.identifier(valName), AST.identifier('done'), false),
+                AST.blockStatement(
+                  AST.breakStatement(),
+                ),
+                AST.blockStatement(
+                  // <lhs> = valName;
+                  // <for body Block>
+                  node.left,
+                  node.body
+                ),
+              ),
+            ))
+          );
+
+          if (parentIndex < 0) parentNode[parentProp] = newNode;
+          else parentNode[parentProp][parentIndex] = newNode;
+
+          assertNoDupeNodes(newNode, 'body', true);
+          after(newNode);
+          break;
+        }
+
+        // for (x in y)
+        // for (x.prop in y)
+        // for (x[prop] in y)
+        // for ((f(),x).prop in y)
+
+        // Even in the last (exotic) case, the whole lhs is evaluated every time before each loop, after calling .next() on the generator
+
+
+        rule('The for-in loop must be a while');
+        example(
+          'for (x in y) f(y);',
+          'const forInGen = $forIn(y); while (true) { const next = forInGen.next(); if (next.done) { break; } else { x = next.value(); { f(x); } } }'
+        );
+        example(
+          'for ([x] in y) f(y);',
+          'const forInGen = $forIn(y); while (true) { const next = forInGen.next(); if (next.done) { break; } else { [x] = next.value(); { f(x); } } }'
+        );
+        before(node);
+
+        const genName = createFreshVar('tmpForInGen', fdata);
+        const valName = createFreshVar('tmpForInNext', fdata);
+
+        // If prop is computed, it is not evaluated until the loop and also after the iterator is called each loop, so we
+        // should be able to simply do something like `x[f()] = g().value` and maintain code execution order
+        const newNode = AST.blockStatement(
+          // const forInGen = $forIn(x)
+          AST.variableDeclaration(genName, AST.callExpression(AST.identifier('$forIn'), [node.right])),
+          // while (true) {}
+          // (It probably doesn't make sense for for-in/of loops to get unrolled because there's no base case right now, maybe later tho, but that's probably handled differently?)
+          AST.whileStatement(AST.identifier(MAX_UNROLL_CONSTANT_NAME), AST.blockStatement(
+            // const next = forInGen.next();
+            AST.variableDeclaration(valName, AST.callExpression(AST.memberExpression(AST.identifier(genName), AST.identifier('next'), false), [])),
+            // if (x.done)
+            AST.ifStatement(AST.memberExpression(AST.identifier(valName), AST.identifier('done'), false),
+              AST.blockStatement(
+                AST.breakStatement(),
+              ),
+              AST.blockStatement(
+                // x.prop = valName;
+                // <for body Block>
+                AST.expressionStatement(AST.assignmentExpression(node.left, AST.memberExpression(AST.identifier(valName), AST.identifier('value')))),
+                node.body
+              ),
+            ),
+          ))
+        );
+
+        if (parentIndex < 0) parentNode[parentProp] = newNode;
+        else parentNode[parentProp][parentIndex] = newNode;
+
+        assertNoDupeNodes(newNode, 'body', true);
+        after(newNode);
         break;
       }
       case 'ForOfStatement:before': {
@@ -1162,6 +1279,122 @@ export function phaseNormalOnce(fdata) {
       }
       case 'ForOfStatement:after': {
         loopStack.pop();
+
+        // Note: code is NOT normalized so patterns and all kinds of LHS's are possible here and we must carefully outline them.
+        // Note: this transform is pretty much identical to the for-in. Changes here probably apply there as well (!)
+
+        // Warning:
+        // Consider `for (let x of x) ...`
+        //   This pre-transform will cause the header-rhs read of `x` to be in a
+        //   different scope than the header-lhs that declares it. While the vars are
+        //   renamed properly, this still changes the semantic from a TDZ error to an
+        //   unknown implicit global error (and potentially refers to the wrong value
+        //   in case a global with the same name does exist! Although Preval should
+        //   at least prevent that case due to unique naming and avoiding globals).
+        //   (Not even sure what the transform would look like to preserve that proper)
+
+        if (node.left.type === 'VariableDeclaration') {
+          // for (var x of y)
+          // for (let x of y)
+          // for (const x of y)
+
+          rule('The for-of loop must be a while');
+          example(
+            'for (const x of y) f(y);',
+            'const forOfGen = $forOf(y); while (true) { const next = forOfGen.next(); if (next.done) { break; } else { const x = next.value(); { f(x); } } }'
+          );
+          before(node);
+
+
+          const genName = createFreshVar('tmpForOfGen', fdata);
+          const valName = createFreshVar('tmpForOfNext', fdata);
+
+          // Minor trickery; if the lhs was a var decl then we must update the init, otherwise dump it in the lhs of an assignment
+          // The lhs is evaluated before the rhs so any side effects should trigger before the generator is generated. But only once (!)
+          node.left.declarations[0].init = AST.memberExpression(AST.identifier(valName), AST.identifier('value'));
+
+          const newNode = AST.blockStatement(
+            // const forOfGen = $forOf(x)
+            AST.variableDeclaration(genName, AST.callExpression(AST.identifier('$forOf'), [node.right])),
+            // while (true) {}
+            // (It probably doesn't make sense for for-in/of loops to get unrolled because there's no base case right now, maybe later tho, but that's probably handled differently?)
+            AST.whileStatement(AST.identifier(MAX_UNROLL_CONSTANT_NAME), AST.blockStatement(
+              // const next = forOfGen.next();
+              AST.variableDeclaration(valName, AST.callExpression(AST.memberExpression(AST.identifier(genName), AST.identifier('next'), false), [])),
+              // if (x.done)
+              AST.ifStatement(AST.memberExpression(AST.identifier(valName), AST.identifier('done'), false),
+                AST.blockStatement(
+                  AST.breakStatement(),
+                ),
+                AST.blockStatement(
+                  // <lhs> = valName;
+                  // <for body Block>
+                  node.left,
+                  node.body
+                ),
+              ),
+            ))
+          );
+
+          if (parentIndex < 0) parentNode[parentProp] = newNode;
+          else parentNode[parentProp][parentIndex] = newNode;
+
+          assertNoDupeNodes(newNode, 'body', true);
+          after(newNode);
+          break;
+        }
+
+        // for (x of y)
+        // for (x.prop of y)
+        // for (x[prop] of y)
+        // for ((f(),x).prop of y)
+
+        // Even in the last (exotic) case, the whole lhs is evaluated every time before each loop, after calling .next() on the generator
+
+        rule('The for-of loop must be a while');
+        example(
+          'for (x of y) f(y);',
+          'const forOfGen = $forOf(y); while (true) { const next = forOfGen.next(); if (next.done) { break; } else { x = next.value(); { f(x); } } }'
+        );
+        example(
+          'for ([x] of y) f(y);',
+          'const forOfGen = $forOf(y); while (true) { const next = forOfGen.next(); if (next.done) { break; } else { [x] = next.value(); { f(x); } } }'
+        );
+        before(node);
+
+        const genName = createFreshVar('tmpForOfGen', fdata);
+        const valName = createFreshVar('tmpForOfNext', fdata);
+
+        // If prop is computed, it is not evaluated until the loop and also after the iterator is called each loop, so we
+        // should be able to simply do something like `x[f()] = g().value` and maintain code execution order
+        const newNode = AST.blockStatement(
+          // const forOfGen = $forOf(x)
+          AST.variableDeclaration(genName, AST.callExpression(AST.identifier('$forOf'), [node.right])),
+          // while (true) {}
+          // (It probably doesn't make sense for for-of/of loops to get unrolled because there's no base case right now, maybe later tho, but that's probably handled differently?)
+          AST.whileStatement(AST.identifier(MAX_UNROLL_CONSTANT_NAME), AST.blockStatement(
+            // const next = forOfGen.next();
+            AST.variableDeclaration(valName, AST.callExpression(AST.memberExpression(AST.identifier(genName), AST.identifier('next'), false), [])),
+            // if (x.done)
+            AST.ifStatement(AST.memberExpression(AST.identifier(valName), AST.identifier('done'), false),
+              AST.blockStatement(
+                AST.breakStatement(),
+              ),
+              AST.blockStatement(
+                // x.prop = valName;
+                // <for body Block>
+                AST.expressionStatement(AST.assignmentExpression(node.left, AST.memberExpression(AST.identifier(valName), AST.identifier('value')))),
+                node.body
+              ),
+            ),
+          ))
+        );
+
+        if (parentIndex < 0) parentNode[parentProp] = newNode;
+        else parentNode[parentProp][parentIndex] = newNode;
+
+        assertNoDupeNodes(newNode, 'body', true);
+        after(newNode);
         break;
       }
       case 'WhileStatement:before': {

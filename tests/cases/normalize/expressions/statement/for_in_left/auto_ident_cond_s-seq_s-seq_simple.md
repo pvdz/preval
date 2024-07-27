@@ -19,7 +19,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for (((10, 20, 30) ? (40, 50, 60) : $($(100))).x in $({ x: 1 }));
+{
+  let tmpForInGen = $forIn($({ x: 1 }));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      ((10, 20, 30) ? (40, 50, 60) : $($(100))).x = tmpForInNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -28,21 +38,30 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam = { x: 1 };
-const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
-let tmpForInLhsNode = undefined;
-for (tmpForInLhsNode in tmpForInRhs) {
-  let tmpAssignMemLhsObj = undefined;
-  const tmpIfTest = 30;
+const tmpCallCallee = $forIn;
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {
-    tmpAssignMemLhsObj = 60;
+    break;
   } else {
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = $(100);
-    tmpAssignMemLhsObj = tmpCallCallee$1(tmpCalleeParam$1);
+    let tmpAssignMemLhsObj = undefined;
+    const tmpIfTest$1 = 30;
+    if (tmpIfTest$1) {
+      tmpAssignMemLhsObj = 60;
+    } else {
+      const tmpCallCallee$3 = $;
+      const tmpCalleeParam$3 = $(100);
+      tmpAssignMemLhsObj = tmpCallCallee$3(tmpCalleeParam$3);
+    }
+    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+    const tmpAssignMemRhs = tmpForInNext.value;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   }
-  tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 $(a);
 `````
@@ -52,11 +71,18 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = { x: 1 };
-const tmpForInRhs = $(tmpCalleeParam);
-let tmpForInLhsNode = undefined;
-for (tmpForInLhsNode in tmpForInRhs) {
-  (60).x = tmpForInLhsNode;
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = $(tmpCalleeParam$1);
+const tmpForInGen = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpAssignMemRhs = tmpForInNext.value;
+    (60).x = tmpAssignMemRhs;
+  }
 }
 $(a);
 `````
@@ -72,9 +98,17 @@ const a = {
 };
 const b = { x: 1 };
 const c = $( b );
-let d = undefined;
-for (d in c) {
-  60.x = d;
+const d = $forIn( c );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const e = d.next();
+  const f = e.done;
+  if (f) {
+    break;
+  }
+  else {
+    const g = e.value;
+    60.x = g;
+  }
 }
 $( a );
 `````

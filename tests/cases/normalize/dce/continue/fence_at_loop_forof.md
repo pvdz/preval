@@ -29,12 +29,23 @@ $('after (not invoked)');
 `````js filename=intro
 while ($(true)) {
   $(`loop`);
-  for (let x of [1, 2]) {
-    $continue: {
-      {
-        $(`loop`, x);
-        break $continue;
-        $(`fail`);
+  {
+    let tmpForOfGen = $forOf([1, 2]);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      let tmpForOfNext = tmpForOfGen.next();
+      if (tmpForOfNext.done) {
+        break;
+      } else {
+        let x = tmpForOfNext.value;
+        {
+          $continue: {
+            {
+              $(`loop`, x);
+              break $continue;
+              $(`fail`);
+            }
+          }
+        }
       }
     }
   }
@@ -51,10 +62,18 @@ while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     $(`loop`);
-    const tmpForOfDeclRhs = [1, 2];
-    let x = undefined;
-    for (x of tmpForOfDeclRhs) {
-      $(`loop`, x);
+    const tmpCallCallee = $forOf;
+    const tmpCalleeParam = [1, 2];
+    let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      let tmpForOfNext = tmpForOfGen.next();
+      const tmpIfTest$1 = tmpForOfNext.done;
+      if (tmpIfTest$1) {
+        break;
+      } else {
+        let x = tmpForOfNext.value;
+        $(`loop`, x);
+      }
     }
     $(`infiloop, do not eliminate`);
   } else {
@@ -72,10 +91,17 @@ while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     $(`loop`);
-    let x = undefined;
-    const tmpForOfDeclRhs = [1, 2];
-    for (x of tmpForOfDeclRhs) {
-      $(`loop`, x);
+    const tmpCalleeParam = [1, 2];
+    const tmpForOfGen = $forOf(tmpCalleeParam);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      const tmpForOfNext = tmpForOfGen.next();
+      const tmpIfTest$1 = tmpForOfNext.done;
+      if (tmpIfTest$1) {
+        break;
+      } else {
+        const x = tmpForOfNext.value;
+        $(`loop`, x);
+      }
     }
     $(`infiloop, do not eliminate`);
   } else {
@@ -94,10 +120,18 @@ while (true) {
   const a = $( true );
   if (a) {
     $( "loop" );
-    let b = undefined;
-    const c = [ 1, 2 ];
-    for (b of c) {
-      $( "loop", b );
+    const b = [ 1, 2 ];
+    const c = $forOf( b );
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      const d = c.next();
+      const e = d.done;
+      if (e) {
+        break;
+      }
+      else {
+        const f = d.value;
+        $( "loop", f );
+      }
     }
     $( "infiloop, do not eliminate" );
   }

@@ -21,8 +21,19 @@ $('keep, do not eval');
 
 
 `````js filename=intro
-for (let x in { a: 10, b: 20 }) {
-  $(`fail`);
+{
+  let tmpForInGen = $forIn({ a: 10, b: 20 });
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+      {
+        $(`fail`);
+      }
+    }
+  }
 }
 $(`keep, do not eval`);
 `````
@@ -31,10 +42,18 @@ $(`keep, do not eval`);
 
 
 `````js filename=intro
-const tmpForInDeclRhs = { a: 10, b: 20 };
-let x = undefined;
-for (x in tmpForInDeclRhs) {
-  $(`fail`);
+const tmpCallCallee = $forIn;
+const tmpCalleeParam = { a: 10, b: 20 };
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+    $(`fail`);
+  }
 }
 $(`keep, do not eval`);
 `````
@@ -43,10 +62,17 @@ $(`keep, do not eval`);
 
 
 `````js filename=intro
-let x = undefined;
-const tmpForInDeclRhs = { a: 10, b: 20 };
-for (x in tmpForInDeclRhs) {
-  $(`fail`);
+const tmpCalleeParam = { a: 10, b: 20 };
+const tmpForInGen = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+    $(`fail`);
+  }
 }
 $(`keep, do not eval`);
 `````
@@ -56,13 +82,21 @@ $(`keep, do not eval`);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = {
+const a = {
   a: 10,
   b: 20,
 };
-for (a in b) {
-  $( "fail" );
+const b = $forIn( a );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const c = b.next();
+  const d = c.done;
+  if (d) {
+    break;
+  }
+  else {
+    c.value;
+    $( "fail" );
+  }
 }
 $( "keep, do not eval" );
 `````

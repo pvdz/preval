@@ -25,7 +25,18 @@ let f = function () {
   debugger;
   let x = undefined;
   $(x);
-  for (x of [100]) $(x, `for`);
+  {
+    let tmpForOfGen = $forOf([100]);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      let tmpForOfNext = tmpForOfGen.next();
+      if (tmpForOfNext.done) {
+        break;
+      } else {
+        x = tmpForOfNext.value;
+        $(x, `for`);
+      }
+    }
+  }
   $(x);
 };
 f();
@@ -39,9 +50,18 @@ let f = function () {
   debugger;
   let x = undefined;
   $(x);
-  const tmpForOfRhs = [100];
-  for (x of tmpForOfRhs) {
-    $(x, `for`);
+  const tmpCallCallee = $forOf;
+  const tmpCalleeParam = [100];
+  let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    const tmpIfTest = tmpForOfNext.done;
+    if (tmpIfTest) {
+      break;
+    } else {
+      x = tmpForOfNext.value;
+      $(x, `for`);
+    }
   }
   $(x);
   return undefined;
@@ -55,9 +75,17 @@ f();
 `````js filename=intro
 let x = undefined;
 $(undefined);
-const tmpForOfRhs = [100];
-for (x of tmpForOfRhs) {
-  $(x, `for`);
+const tmpCalleeParam = [100];
+const tmpForOfGen = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    x = tmpForOfNext.value;
+    $(x, `for`);
+  }
 }
 $(x);
 `````
@@ -70,8 +98,17 @@ With rename=true
 let a = undefined;
 $( undefined );
 const b = [ 100 ];
-for (a of b) {
-  $( a, "for" );
+const c = $forOf( b );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const d = c.next();
+  const e = d.done;
+  if (e) {
+    break;
+  }
+  else {
+    a = d.value;
+    $( a, "for" );
+  }
 }
 $( a );
 `````

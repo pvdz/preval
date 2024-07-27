@@ -19,7 +19,17 @@ $(a);
 
 `````js filename=intro
 let [a] = { a: 999, b: 1000 };
-for (let x in ($(10), $(20), $([1, 2])));
+{
+  let tmpForInGen = $forIn(($(10), $(20), $([1, 2])));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -30,13 +40,21 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
+const tmpCallCallee = $forIn;
 $(10);
 $(20);
-const tmpCallCallee = $;
-const tmpCalleeParam = [1, 2];
-const tmpForInDeclRhs = tmpCallCallee(tmpCalleeParam);
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = [1, 2];
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -50,10 +68,17 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
 $(10);
 $(20);
-const tmpCalleeParam = [1, 2];
-const tmpForInDeclRhs = $(tmpCalleeParam);
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+const tmpCalleeParam$1 = [1, 2];
+const tmpCalleeParam = $(tmpCalleeParam$1);
+const tmpForInGen = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -73,9 +98,16 @@ $( 10 );
 $( 20 );
 const d = [ 1, 2 ];
 const e = $( d );
-let f = undefined;
-for (f in e) {
-
+const f = $forIn( e );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const g = f.next();
+  const h = g.done;
+  if (h) {
+    break;
+  }
+  else {
+    g.value;
+  }
 }
 $( c );
 `````

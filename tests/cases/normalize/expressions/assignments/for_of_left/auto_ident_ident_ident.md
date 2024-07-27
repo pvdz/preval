@@ -24,7 +24,17 @@ $(a, b, c);
 let b = 1,
   c = 2;
 let a = { a: 999, b: 1000 };
-for ((a = b = 2).x of $({ x: 1 }));
+{
+  let tmpForOfGen = $forOf($({ x: 1 }));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      (a = b = 2).x = tmpForOfNext.value;
+    }
+  }
+}
 $(a, b, c);
 `````
 
@@ -35,15 +45,24 @@ $(a, b, c);
 let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam = { x: 1 };
-const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
-let tmpForOfLhsNode = undefined;
-for (tmpForOfLhsNode of tmpForOfRhs) {
-  b = 2;
-  a = 2;
-  let tmpAssignMemLhsObj = a;
-  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
+const tmpCallCallee = $forOf;
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    b = 2;
+    a = 2;
+    let tmpAssignMemLhsObj = a;
+    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+    const tmpAssignMemRhs = tmpForOfNext.value;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+  }
 }
 $(a, b, c);
 `````
@@ -52,13 +71,24 @@ $(a, b, c);
 
 
 `````js filename=intro
-const tmpCalleeParam = { x: 1 };
-const tmpForOfRhs = $(tmpCalleeParam);
-let tmpForOfLhsNode = undefined;
-for (tmpForOfLhsNode of tmpForOfRhs) {
-  (2).x = tmpForOfLhsNode;
+let b = 1;
+let a = { a: 999, b: 1000 };
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = $(tmpCalleeParam$1);
+const tmpForOfGen = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    b = 2;
+    a = 2;
+    const tmpAssignMemRhs = tmpForOfNext.value;
+    (2).x = tmpAssignMemRhs;
+  }
 }
-$(2, 2, 2);
+$(a, b, 2);
 `````
 
 ## PST Output
@@ -66,13 +96,28 @@ $(2, 2, 2);
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = $( a );
-let c = undefined;
-for (c of b) {
-  2.x = c;
+let a = 1;
+let b = {
+  a: 999,
+  b: 1000,
+};
+const c = { x: 1 };
+const d = $( c );
+const e = $forOf( d );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const f = e.next();
+  const g = f.done;
+  if (g) {
+    break;
+  }
+  else {
+    a = 2;
+    b = 2;
+    const h = f.value;
+    2.x = h;
+  }
 }
-$( 2, 2, 2 );
+$( b, a, 2 );
 `````
 
 ## Globals

@@ -20,7 +20,18 @@ for ($(a)[$('foo')] in $(b)) $(a);
 `````js filename=intro
 let a = {};
 let b = { x: 1, y: 2 };
-for ($(a)[$(`foo`)] in $(b)) $(a);
+{
+  let tmpForInGen = $forIn($(b));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      $(a)[$(`foo`)] = tmpForInNext.value;
+      $(a);
+    }
+  }
+}
 `````
 
 ## Normalized
@@ -29,13 +40,23 @@ for ($(a)[$(`foo`)] in $(b)) $(a);
 `````js filename=intro
 let a = {};
 let b = { x: 1, y: 2 };
-const tmpForInRhs = $(b);
-let tmpForInLhsNode = undefined;
-for (tmpForInLhsNode in tmpForInRhs) {
-  const tmpAssignComMemLhsObj = $(a);
-  const tmpAssignComMemLhsProp = $(`foo`);
-  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpForInLhsNode;
-  $(a);
+const tmpCallCallee = $forIn;
+const tmpCalleeParam = $(b);
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpAssignComMemLhsObj = $(a);
+    const tmpAssignComMemLhsProp = $(`foo`);
+    const tmpAssignComputedObj = tmpAssignComMemLhsObj;
+    const tmpAssignComputedProp = tmpAssignComMemLhsProp;
+    const tmpAssignComputedRhs = tmpForInNext.value;
+    tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+    $(a);
+  }
 }
 `````
 
@@ -45,13 +66,20 @@ for (tmpForInLhsNode in tmpForInRhs) {
 `````js filename=intro
 const a = {};
 const b = { x: 1, y: 2 };
-const tmpForInRhs = $(b);
-let tmpForInLhsNode = undefined;
-for (tmpForInLhsNode in tmpForInRhs) {
-  const tmpAssignComMemLhsObj = $(a);
-  const tmpAssignComMemLhsProp = $(`foo`);
-  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpForInLhsNode;
-  $(a);
+const tmpCalleeParam = $(b);
+const tmpForInGen = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpAssignComMemLhsObj = $(a);
+    const tmpAssignComMemLhsProp = $(`foo`);
+    const tmpAssignComputedRhs = tmpForInNext.value;
+    tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+    $(a);
+  }
 }
 `````
 
@@ -66,12 +94,20 @@ const b = {
   y: 2,
 };
 const c = $( b );
-let d = undefined;
-for (d in c) {
-  const e = $( a );
-  const f = $( "foo" );
-  e[f] = d;
-  $( a );
+const d = $forIn( c );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const e = d.next();
+  const f = e.done;
+  if (f) {
+    break;
+  }
+  else {
+    const g = $( a );
+    const h = $( "foo" );
+    const i = e.value;
+    g[h] = i;
+    $( a );
+  }
 }
 `````
 

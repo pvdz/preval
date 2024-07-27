@@ -22,7 +22,17 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-for (let x of b);
+{
+  let tmpForOfGen = $forOf(b);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x = tmpForOfNext.value;
+    }
+  }
+}
 $(a, b);
 `````
 
@@ -32,9 +42,15 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-const tmpForOfDeclRhs = b;
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+let tmpForOfGen = $forOf(b);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForOfNext.value;
+  }
 }
 $(a, b);
 `````
@@ -43,8 +59,15 @@ $(a, b);
 
 
 `````js filename=intro
-let x = undefined;
-for (x of 1) {
+const tmpForOfGen = $forOf(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
 }
 const a = { a: 999, b: 1000 };
 $(a, 1);
@@ -55,15 +78,22 @@ $(a, 1);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-for (a of 1) {
-
+const a = $forOf( 1 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const b = a.next();
+  const c = b.done;
+  if (c) {
+    break;
+  }
+  else {
+    b.value;
+  }
 }
-const b = {
+const d = {
   a: 999,
   b: 1000,
 };
-$( b, 1 );
+$( d, 1 );
 `````
 
 ## Globals

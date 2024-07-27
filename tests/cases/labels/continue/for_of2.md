@@ -27,12 +27,23 @@ $('c');
 
 `````js filename=intro
 let x = { a: 0, b: 1 };
-A: for (const y of x) {
-  $continue: {
-    {
-      $(`a`);
-      if ($(true)) {
-        break $continue;
+A: {
+  let tmpForOfGen = $forOf(x);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      const y = tmpForOfNext.value;
+      {
+        $continue: {
+          {
+            $(`a`);
+            if ($(true)) {
+              break $continue;
+            }
+          }
+        }
       }
     }
   }
@@ -45,15 +56,21 @@ $(`c`);
 
 `````js filename=intro
 let x = { a: 0, b: 1 };
-const tmpForOfDeclRhs = x;
-let y = undefined;
-for (y of tmpForOfDeclRhs) {
-  $continue: {
-    $(`a`);
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      break $continue;
-    } else {
+let tmpForOfGen = $forOf(x);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const y = tmpForOfNext.value;
+    $continue: {
+      $(`a`);
+      const tmpIfTest$1 = $(true);
+      if (tmpIfTest$1) {
+        break $continue;
+      } else {
+      }
     }
   }
 }
@@ -64,11 +81,18 @@ $(`c`);
 
 
 `````js filename=intro
-let y = undefined;
 const x = { a: 0, b: 1 };
-for (y of x) {
-  $(`a`);
-  $(true);
+const tmpForOfGen = $forOf(x);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+    $(`a`);
+    $(true);
+  }
 }
 $(`c`);
 `````
@@ -78,14 +102,22 @@ $(`c`);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = {
+const a = {
   a: 0,
   b: 1,
 };
-for (a of b) {
-  $( "a" );
-  $( true );
+const b = $forOf( a );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const c = b.next();
+  const d = c.done;
+  if (d) {
+    break;
+  }
+  else {
+    c.value;
+    $( "a" );
+    $( true );
+  }
 }
 $( "c" );
 `````

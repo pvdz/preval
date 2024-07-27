@@ -30,7 +30,17 @@ $(a, x, y);
 let x = 1,
   y = 2;
 let a = { a: 999, b: 1000 };
-for (let x$1 in (a = { x: x$1, y: y } = { x: $(3), y: $(4) }));
+{
+  let tmpForInGen = $forIn((a = { x: x$1, y: y } = { x: $(3), y: $(4) }));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x$1 = tmpForInNext.value;
+    }
+  }
+}
 $(a, x, y);
 `````
 
@@ -41,15 +51,23 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forIn;
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 x$1 = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
 a = tmpNestedAssignObjPatternRhs;
-let tmpForInDeclRhs = a;
-let x$1 = undefined;
-for (x$1 in tmpForInDeclRhs) {
+let tmpCalleeParam = a;
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x$2 = tmpForInNext.value;
+  }
 }
 $(a, x, y);
 `````
@@ -60,9 +78,17 @@ $(a, x, y);
 `````js filename=intro
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
-let x$1 = undefined;
+x$1 = tmpObjLitVal;
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-for (x$1 in tmpNestedAssignObjPatternRhs) {
+const tmpForInGen = $forIn(tmpNestedAssignObjPatternRhs);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
 $(tmpNestedAssignObjPatternRhs, 1, tmpObjLitVal$1);
 `````
@@ -74,20 +100,30 @@ With rename=true
 `````js filename=intro
 const a = $( 3 );
 const b = $( 4 );
-let c = undefined;
-const d = {
+x$1 = a;
+const c = {
   x: a,
   y: b,
 };
-for (c in d) {
-
+const d = $forIn( c );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const e = d.next();
+  const f = e.done;
+  if (f) {
+    break;
+  }
+  else {
+    e.value;
+  }
 }
-$( d, 1, b );
+$( c, 1, b );
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+x$1
 
 ## Result
 

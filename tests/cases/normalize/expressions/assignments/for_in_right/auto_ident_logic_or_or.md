@@ -19,7 +19,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for (let x in (a = $($(0)) || $($(1)) || $($(2))));
+{
+  let tmpForInGen = $forIn((a = $($(0)) || $($(1)) || $($(2))));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -28,24 +38,32 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam = $(0);
-a = tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee = $forIn;
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = $(0);
+a = tmpCallCallee$1(tmpCalleeParam$1);
 if (a) {
 } else {
-  const tmpCallCallee$1 = $;
-  const tmpCalleeParam$1 = $(1);
-  a = tmpCallCallee$1(tmpCalleeParam$1);
+  const tmpCallCallee$3 = $;
+  const tmpCalleeParam$3 = $(1);
+  a = tmpCallCallee$3(tmpCalleeParam$3);
   if (a) {
   } else {
-    const tmpCallCallee$3 = $;
-    const tmpCalleeParam$3 = $(2);
-    a = tmpCallCallee$3(tmpCalleeParam$3);
+    const tmpCallCallee$5 = $;
+    const tmpCalleeParam$5 = $(2);
+    a = tmpCallCallee$5(tmpCalleeParam$5);
   }
 }
-let tmpForInDeclRhs = a;
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+let tmpCalleeParam = a;
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -54,20 +72,27 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
-let a = $(tmpCalleeParam);
+const tmpCalleeParam$1 = $(0);
+let a = $(tmpCalleeParam$1);
 if (a) {
 } else {
-  const tmpCalleeParam$1 = $(1);
-  a = $(tmpCalleeParam$1);
+  const tmpCalleeParam$3 = $(1);
+  a = $(tmpCalleeParam$3);
   if (a) {
   } else {
-    const tmpCalleeParam$3 = $(2);
-    a = $(tmpCalleeParam$3);
+    const tmpCalleeParam$5 = $(2);
+    a = $(tmpCalleeParam$5);
   }
 }
-let x = undefined;
-for (x in a) {
+const tmpForInGen = $forIn(a);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -93,9 +118,16 @@ else {
     b = $( d );
   }
 }
-let e = undefined;
-for (e in b) {
-
+const e = $forIn( b );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const f = e.next();
+  const g = f.done;
+  if (g) {
+    break;
+  }
+  else {
+    f.value;
+  }
 }
 $( b );
 `````

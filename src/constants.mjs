@@ -19,6 +19,8 @@ export const IMPLICIT_GLOBAL_PREFIX = '$prevalImplicit$';
 
 export const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
 export const BUILTIN_FUNC_CALL_NAME = '$dotCall'; // syntactic clue that this was an actual method call before, not arbitrary .call method
+export const BUILTIN_FOR_IN_CALL_NAME = '$forIn';
+export const BUILTIN_FOR_OF_CALL_NAME = '$forOf';
 
 export const BUILTIN_ARRAY_PROTOTYPE = '$ArrayPrototype';
 export const BUILTIN_ARRAY_METHOD_LOOKUP = {

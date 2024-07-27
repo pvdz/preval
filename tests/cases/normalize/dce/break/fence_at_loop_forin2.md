@@ -38,9 +38,20 @@ while (true) {
     $(`loop`);
     const tmpForInDeclRhs = { a: 1, b: 2 };
     let x = undefined;
-    for (x in tmpForInDeclRhs) {
-      $(`loop`, x);
-      break;
+    {
+      let tmpForInGen = $forIn(tmpForInDeclRhs);
+      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+        let tmpForInNext = tmpForInGen.next();
+        if (tmpForInNext.done) {
+          break;
+        } else {
+          x = tmpForInNext.value;
+          {
+            $(`loop`, x);
+            break;
+          }
+        }
+      }
     }
     $(`infiloop, do not eliminate`);
   } else {
@@ -60,9 +71,17 @@ while (true) {
     $(`loop`);
     const tmpForInDeclRhs = { a: 1, b: 2 };
     let x = undefined;
-    for (x in tmpForInDeclRhs) {
-      $(`loop`, x);
-      break;
+    let tmpForInGen = $forIn(tmpForInDeclRhs);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      let tmpForInNext = tmpForInGen.next();
+      const tmpIfTest$1 = tmpForInNext.done;
+      if (tmpIfTest$1) {
+        break;
+      } else {
+        x = tmpForInNext.value;
+        $(`loop`, x);
+        break;
+      }
     }
     $(`infiloop, do not eliminate`);
   } else {
@@ -76,20 +95,37 @@ $(`after (not invoked)`);
 
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(`loop`);
-    let x = undefined;
-    const tmpForInDeclRhs = { a: 1, b: 2 };
-    for (x in tmpForInDeclRhs) {
-      $(`loop`, x);
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  $(`loop`);
+  const tmpForInDeclRhs = { a: 1, b: 2 };
+  const tmpForInGen = $forIn(tmpForInDeclRhs);
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest$1 = tmpForInNext.done;
+  if (tmpIfTest$1) {
+  } else {
+    const tmpClusterSSA_x = tmpForInNext.value;
+    $(`loop`, tmpClusterSSA_x);
+  }
+  while ($LOOP_UNROLL_10) {
+    $(`infiloop, do not eliminate`);
+    const tmpIfTest$2 = $(true);
+    if (tmpIfTest$2) {
+      $(`loop`);
+      const tmpForInDeclRhs$1 = { a: 1, b: 2 };
+      const tmpForInGen$1 = $forIn(tmpForInDeclRhs$1);
+      const tmpForInNext$1 = tmpForInGen$1.next();
+      const tmpIfTest$4 = tmpForInNext$1.done;
+      if (tmpIfTest$4) {
+      } else {
+        const tmpClusterSSA_x$1 = tmpForInNext$1.value;
+        $(`loop`, tmpClusterSSA_x$1);
+      }
+    } else {
       break;
     }
-    $(`infiloop, do not eliminate`);
-  } else {
-    break;
   }
+} else {
 }
 $(`after (not invoked)`);
 `````
@@ -99,23 +135,46 @@ $(`after (not invoked)`);
 With rename=true
 
 `````js filename=intro
-while (true) {
-  const a = $( true );
-  if (a) {
-    $( "loop" );
-    let b = undefined;
-    const c = {
-      a: 1,
-      b: 2,
-    };
-    for (b in c) {
-      $( "loop", b );
-      break;
-    }
-    $( "infiloop, do not eliminate" );
+const a = $( true );
+if (a) {
+  $( "loop" );
+  const b = {
+    a: 1,
+    b: 2,
+  };
+  const c = $forIn( b );
+  const d = c.next();
+  const e = d.done;
+  if (e) {
+
   }
   else {
-    break;
+    const f = d.value;
+    $( "loop", f );
+  }
+  while ($LOOP_UNROLL_10) {
+    $( "infiloop, do not eliminate" );
+    const g = $( true );
+    if (g) {
+      $( "loop" );
+      const h = {
+        a: 1,
+        b: 2,
+      };
+      const i = $forIn( h );
+      const j = i.next();
+      const k = j.done;
+      if (k) {
+
+      }
+      else {
+        const l = j.value;
+        $( "loop", l );
+      }
+    }
+    else {
+      break;
+    }
   }
 }
 $( "after (not invoked)" );

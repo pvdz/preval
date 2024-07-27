@@ -1,17 +1,10 @@
 // TOFIX regressions:
 
-// tests/cases/normalize/loops/base_return_cond.md -> used to be able to output a series of completely resolved $() with the second params resolved to numbers
 // tests/cases/normalize/nullish/global_nested_assign.md -> used to be able to inline the obj.prop assign and end with `{ b: 15 }` (same tests/cases/normalize/nullish/func_nested_assign.md)
-// tests/cases/normalize/dce/throw/fence_at_loop_dowhile.md -> regression?
-// tests/cases/normalize/expressions/assignments/do_while/auto_ident_upd_ip_simple.md -> should detect that `a` is invariably overwritten in the loop. maybe a ref tracking bug (perhaps it considers while(true) an optional branch)
-// tests/cases/unwind_loops/counter_test/unroll_option_too_low.md used to be able to eliminate the array entirely
-// tests/cases/ssa/back2back_x_x_plus_1_assign42.md -> was able to SSA the x but somehow this stopped working after label extending.
-// Apparently tests/cases/templates/nested_multi.md broke a long time ago
 // tests/cases/import/import_default_named_class.md -> ref tracking: exported let/const decls should get the same treatment as escaping closures (read any write)
 
 // TODO:
 
-// tests/cases/normalize/branching/single_branching/_base_nested_else_no_tail.md -> find a way to consolidate?
 // tests/cases/normalize/expressions/assignments/for_of_left/auto_ident_logic_and_and.md -> add test that prints a when it does not enter the for-loop body. (this was a fix that used to be broken)
 // tests/cases/normalize/expressions/assignments/for_c/auto_ident_logic_||_simple_complex.md -> rename file to eliminate the pipes?
 // while unroll transform does a `if (x) yes=1 else yes=0 if (yes) { while ...} else {}`. it should store the while in the if-branch.
@@ -46,3 +39,6 @@
 // tests/cases/function/pure_function_inlining.md -> Take it the last step and outline the tail end of the string too so the function can be eliminated
 // tests/cases/normalize/expressions/assignments/for_b/auto_ident_upd_pi_simple.md -> We were able to eliminate the objlit because we knew it was unobserved.
 // tests/cases/import/import_default_named_class.md -> why is x an implicit global?
+// Detect $forOf loops and unroll them when we know the values to be iterated over. Will need to replace calls to gen.next() with some kind of symbol to "remember" the index pointer of the generator. Much harder to do for-in keys unfortunately.
+// Maybe try to unroll $forIn under risky rules? The order may not be guaranteed but that also means we can do whatever we want with that order as long as it is consistent.
+// Apply type analysis for our $forIn and $forOf symbols

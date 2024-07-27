@@ -19,7 +19,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for (let x of $($(0)) || $($(1)) || $($(2)));
+{
+  let tmpForOfGen = $forOf($($(0)) || $($(1)) || $($(2)));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x = tmpForOfNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -28,23 +38,31 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam = $(0);
-let tmpForOfDeclRhs = tmpCallCallee(tmpCalleeParam);
-if (tmpForOfDeclRhs) {
+const tmpCallCallee = $forOf;
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = $(0);
+let tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+if (tmpCalleeParam) {
 } else {
-  const tmpCallCallee$1 = $;
-  const tmpCalleeParam$1 = $(1);
-  tmpForOfDeclRhs = tmpCallCallee$1(tmpCalleeParam$1);
-  if (tmpForOfDeclRhs) {
+  const tmpCallCallee$3 = $;
+  const tmpCalleeParam$3 = $(1);
+  tmpCalleeParam = tmpCallCallee$3(tmpCalleeParam$3);
+  if (tmpCalleeParam) {
   } else {
-    const tmpCallCallee$3 = $;
-    const tmpCalleeParam$3 = $(2);
-    tmpForOfDeclRhs = tmpCallCallee$3(tmpCalleeParam$3);
+    const tmpCallCallee$5 = $;
+    const tmpCalleeParam$5 = $(2);
+    tmpCalleeParam = tmpCallCallee$5(tmpCalleeParam$5);
   }
 }
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForOfNext.value;
+  }
 }
 $(a);
 `````
@@ -53,20 +71,27 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
-let tmpForOfDeclRhs = $(tmpCalleeParam);
-if (tmpForOfDeclRhs) {
+const tmpCalleeParam$1 = $(0);
+let tmpCalleeParam = $(tmpCalleeParam$1);
+if (tmpCalleeParam) {
 } else {
-  const tmpCalleeParam$1 = $(1);
-  tmpForOfDeclRhs = $(tmpCalleeParam$1);
-  if (tmpForOfDeclRhs) {
+  const tmpCalleeParam$3 = $(1);
+  tmpCalleeParam = $(tmpCalleeParam$3);
+  if (tmpCalleeParam) {
   } else {
-    const tmpCalleeParam$3 = $(2);
-    tmpForOfDeclRhs = $(tmpCalleeParam$3);
+    const tmpCalleeParam$5 = $(2);
+    tmpCalleeParam = $(tmpCalleeParam$5);
   }
 }
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+const tmpForOfGen = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -93,15 +118,22 @@ else {
     b = $( d );
   }
 }
-let e = undefined;
-for (e of b) {
-
+const e = $forOf( b );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const f = e.next();
+  const g = f.done;
+  if (g) {
+    break;
+  }
+  else {
+    f.value;
+  }
 }
-const f = {
+const h = {
   a: 999,
   b: 1000,
 };
-$( f );
+$( h );
 `````
 
 ## Globals

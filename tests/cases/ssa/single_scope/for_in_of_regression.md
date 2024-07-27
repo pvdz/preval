@@ -28,9 +28,20 @@ $(undefined);
 let x = undefined;
 const list = [100];
 let arr = undefined;
-for (arr of list) {
-  x = arr;
-  $(x, `for`);
+{
+  let tmpForOfGen = $forOf(list);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      arr = tmpForOfNext.value;
+      {
+        x = arr;
+        $(x, `for`);
+      }
+    }
+  }
 }
 $(x);
 `````
@@ -43,9 +54,17 @@ $(undefined);
 let x = undefined;
 const list = [100];
 let arr = undefined;
-for (arr of list) {
-  x = arr;
-  $(x, `for`);
+let tmpForOfGen = $forOf(list);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    arr = tmpForOfNext.value;
+    x = arr;
+    $(x, `for`);
+  }
 }
 $(x);
 `````
@@ -56,11 +75,18 @@ $(x);
 `````js filename=intro
 $(undefined);
 let x = undefined;
-let arr = undefined;
 const list = [100];
-for (arr of list) {
-  x = arr;
-  $(x, `for`);
+const tmpForOfGen = $forOf(list);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpClusterSSA_arr = tmpForOfNext.value;
+    x = tmpClusterSSA_arr;
+    $(tmpClusterSSA_arr, `for`);
+  }
 }
 $(x);
 `````
@@ -72,11 +98,19 @@ With rename=true
 `````js filename=intro
 $( undefined );
 let a = undefined;
-let b = undefined;
-const c = [ 100 ];
-for (b of c) {
-  a = b;
-  $( a, "for" );
+const b = [ 100 ];
+const c = $forOf( b );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const d = c.next();
+  const e = d.done;
+  if (e) {
+    break;
+  }
+  else {
+    const f = d.value;
+    a = f;
+    $( f, "for" );
+  }
 }
 $( a );
 `````

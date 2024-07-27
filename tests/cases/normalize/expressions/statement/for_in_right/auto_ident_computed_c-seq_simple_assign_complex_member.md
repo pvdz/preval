@@ -22,7 +22,17 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-for (let x in ((1, 2, $(b))[$(`c`)] = $(b)[$(`d`)]));
+{
+  let tmpForInGen = $forIn(((1, 2, $(b))[$(`c`)] = $(b)[$(`d`)]));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+    }
+  }
+}
 $(a, b);
 `````
 
@@ -32,15 +42,23 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forIn;
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $(`c`);
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpForInDeclRhs = varInitAssignLhsComputedRhs;
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+const tmpCalleeParam = varInitAssignLhsComputedRhs;
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
 }
 $(a, b);
 `````
@@ -57,8 +75,15 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-let x = undefined;
-for (x in varInitAssignLhsComputedRhs) {
+const tmpForInGen = $forIn(varInitAssignLhsComputedRhs);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
 $(a, b);
 `````
@@ -82,9 +107,16 @@ const e = $( a );
 const f = $( "d" );
 const g = e[ f ];
 c[d] = g;
-let h = undefined;
-for (h in g) {
-
+const h = $forIn( g );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const i = h.next();
+  const j = i.done;
+  if (j) {
+    break;
+  }
+  else {
+    i.value;
+  }
 }
 $( b, a );
 `````

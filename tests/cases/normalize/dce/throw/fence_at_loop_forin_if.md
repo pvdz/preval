@@ -42,18 +42,29 @@ let f = function () {
   debugger;
   while ($(true)) {
     $(`loop`);
-    for (let x in { a: 1, b: 2 }) {
-      $(`loop`, x);
-      if ($(1, `if`)) {
-        $(`pass`);
-        throw $(7, `throw`);
-        $(`fail`);
-      } else {
-        $(`do not visit`);
-        throw $(8, `throw`);
-        $(`fail`);
+    {
+      let tmpForInGen = $forIn({ a: 1, b: 2 });
+      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+        let tmpForInNext = tmpForInGen.next();
+        if (tmpForInNext.done) {
+          break;
+        } else {
+          let x = tmpForInNext.value;
+          {
+            $(`loop`, x);
+            if ($(1, `if`)) {
+              $(`pass`);
+              throw $(7, `throw`);
+              $(`fail`);
+            } else {
+              $(`do not visit`);
+              throw $(8, `throw`);
+              $(`fail`);
+            }
+            $(`fail -> DCE`);
+          }
+        }
       }
-      $(`fail -> DCE`);
     }
     $(`after (not invoked but should not be eliminated)`);
   }
@@ -72,19 +83,27 @@ let f = function () {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
       $(`loop`);
-      const tmpForInDeclRhs = { a: 1, b: 2 };
-      let x = undefined;
-      for (x in tmpForInDeclRhs) {
-        $(`loop`, x);
-        const tmpIfTest$1 = $(1, `if`);
+      const tmpCallCallee = $forIn;
+      const tmpCalleeParam = { a: 1, b: 2 };
+      let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+        let tmpForInNext = tmpForInGen.next();
+        const tmpIfTest$1 = tmpForInNext.done;
         if (tmpIfTest$1) {
-          $(`pass`);
-          const tmpThrowArg = $(7, `throw`);
-          throw tmpThrowArg;
+          break;
         } else {
-          $(`do not visit`);
-          const tmpThrowArg$1 = $(8, `throw`);
-          throw tmpThrowArg$1;
+          let x = tmpForInNext.value;
+          $(`loop`, x);
+          const tmpIfTest$3 = $(1, `if`);
+          if (tmpIfTest$3) {
+            $(`pass`);
+            const tmpThrowArg = $(7, `throw`);
+            throw tmpThrowArg;
+          } else {
+            $(`do not visit`);
+            const tmpThrowArg$1 = $(8, `throw`);
+            throw tmpThrowArg$1;
+          }
         }
       }
       $(`after (not invoked but should not be eliminated)`);
@@ -95,9 +114,9 @@ let f = function () {
   $(`after (not invoked)`);
   return undefined;
 };
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
@@ -107,12 +126,45 @@ tmpCallCallee(tmpCalleeParam);
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   $(`loop`);
-  let x = undefined;
-  const tmpForInDeclRhs = { a: 1, b: 2 };
-  for (x in tmpForInDeclRhs) {
+  const tmpCalleeParam = { a: 1, b: 2 };
+  const tmpForInGen = $forIn(tmpCalleeParam);
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest$1 = tmpForInNext.done;
+  if (tmpIfTest$1) {
+    $(`after (not invoked but should not be eliminated)`);
+    while ($LOOP_UNROLL_10) {
+      const tmpIfTest$2 = $(true);
+      if (tmpIfTest$2) {
+        $(`loop`);
+        const tmpCalleeParam$1 = { a: 1, b: 2 };
+        const tmpForInGen$1 = $forIn(tmpCalleeParam$1);
+        const tmpForInNext$1 = tmpForInGen$1.next();
+        const tmpIfTest$4 = tmpForInNext$1.done;
+        if (tmpIfTest$4) {
+          $(`after (not invoked but should not be eliminated)`);
+        } else {
+          const x$1 = tmpForInNext$1.value;
+          $(`loop`, x$1);
+          const tmpIfTest$6 = $(1, `if`);
+          if (tmpIfTest$6) {
+            $(`pass`);
+            const tmpThrowArg$2 = $(7, `throw`);
+            throw tmpThrowArg$2;
+          } else {
+            $(`do not visit`);
+            const tmpThrowArg$4 = $(8, `throw`);
+            throw tmpThrowArg$4;
+          }
+        }
+      } else {
+        break;
+      }
+    }
+  } else {
+    const x = tmpForInNext.value;
     $(`loop`, x);
-    const tmpIfTest$1 = $(1, `if`);
-    if (tmpIfTest$1) {
+    const tmpIfTest$3 = $(1, `if`);
+    if (tmpIfTest$3) {
       $(`pass`);
       const tmpThrowArg = $(7, `throw`);
       throw tmpThrowArg;
@@ -122,11 +174,10 @@ if (tmpIfTest) {
       throw tmpThrowArg$1;
     }
   }
-  $(`after (not invoked but should not be eliminated)`);
 } else {
-  $(`after (not invoked)`);
-  $(undefined);
 }
+$(`after (not invoked)`);
+$(undefined);
 `````
 
 ## PST Output
@@ -137,31 +188,68 @@ With rename=true
 const a = $( true );
 if (a) {
   $( "loop" );
-  let b = undefined;
-  const c = {
+  const b = {
     a: 1,
     b: 2,
   };
-  for (b in c) {
-    $( "loop", b );
-    const d = $( 1, "if" );
-    if (d) {
+  const c = $forIn( b );
+  const d = c.next();
+  const e = d.done;
+  if (e) {
+    $( "after (not invoked but should not be eliminated)" );
+    while ($LOOP_UNROLL_10) {
+      const f = $( true );
+      if (f) {
+        $( "loop" );
+        const g = {
+          a: 1,
+          b: 2,
+        };
+        const h = $forIn( g );
+        const i = h.next();
+        const j = i.done;
+        if (j) {
+          $( "after (not invoked but should not be eliminated)" );
+        }
+        else {
+          const k = i.value;
+          $( "loop", k );
+          const l = $( 1, "if" );
+          if (l) {
+            $( "pass" );
+            const m = $( 7, "throw" );
+            throw m;
+          }
+          else {
+            $( "do not visit" );
+            const n = $( 8, "throw" );
+            throw n;
+          }
+        }
+      }
+      else {
+        break;
+      }
+    }
+  }
+  else {
+    const o = d.value;
+    $( "loop", o );
+    const p = $( 1, "if" );
+    if (p) {
       $( "pass" );
-      const e = $( 7, "throw" );
-      throw e;
+      const q = $( 7, "throw" );
+      throw q;
     }
     else {
       $( "do not visit" );
-      const f = $( 8, "throw" );
-      throw f;
+      const r = $( 8, "throw" );
+      throw r;
     }
   }
-  $( "after (not invoked but should not be eliminated)" );
 }
-else {
-  $( "after (not invoked)" );
-  $( undefined );
-}
+$( "after (not invoked)" );
+$( undefined );
 `````
 
 ## Globals

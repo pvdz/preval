@@ -21,9 +21,20 @@ for (const a in arr) {
 
 `````js filename=intro
 const arr = [1, 2, 3];
-for (const a in arr) {
-  const b = a;
-  $(b);
+{
+  let tmpForInGen = $forIn(arr);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      const a = tmpForInNext.value;
+      {
+        const b = a;
+        $(b);
+      }
+    }
+  }
 }
 `````
 
@@ -32,11 +43,17 @@ for (const a in arr) {
 
 `````js filename=intro
 const arr = [1, 2, 3];
-const tmpForInDeclRhs = arr;
-let a = undefined;
-for (a in tmpForInDeclRhs) {
-  const b = a;
-  $(b);
+let tmpForInGen = $forIn(arr);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const a = tmpForInNext.value;
+    const b = a;
+    $(b);
+  }
 }
 `````
 
@@ -44,10 +61,17 @@ for (a in tmpForInDeclRhs) {
 
 
 `````js filename=intro
-let a = undefined;
 const arr = [1, 2, 3];
-for (a in arr) {
-  $(a);
+const tmpForInGen = $forIn(arr);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const a = tmpForInNext.value;
+    $(a);
+  }
 }
 `````
 
@@ -56,10 +80,18 @@ for (a in arr) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = [ 1, 2, 3 ];
-for (a in b) {
-  $( a );
+const a = [ 1, 2, 3 ];
+const b = $forIn( a );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const c = b.next();
+  const d = c.done;
+  if (d) {
+    break;
+  }
+  else {
+    const e = c.value;
+    $( e );
+  }
 }
 `````
 

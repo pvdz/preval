@@ -79,6 +79,8 @@ Should call `$` with:
   '<$spy>',
   '<function>',
   '<function>',
+  '<function>',
+  '<function>',
   true,
   [],
   '<function>',

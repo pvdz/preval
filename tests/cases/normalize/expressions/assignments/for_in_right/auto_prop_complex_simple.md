@@ -20,7 +20,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for (let x in (a = { b: $(1) }));
+{
+  let tmpForInGen = $forIn((a = { b: $(1) }));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+    }
+  }
+}
 $(a).b = 2;
 $(a);
 `````
@@ -30,11 +40,19 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forIn;
 const tmpObjLitVal = $(1);
 a = { b: tmpObjLitVal };
-let tmpForInDeclRhs = a;
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+let tmpCalleeParam = a;
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
 }
 const tmpAssignMemLhsObj = $(a);
 tmpAssignMemLhsObj.b = 2;
@@ -46,13 +64,20 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-let x = undefined;
-const a = { b: tmpObjLitVal };
-for (x in a) {
+const tmpClusterSSA_a = { b: tmpObjLitVal };
+const tmpForInGen = $forIn(tmpClusterSSA_a);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
-const tmpAssignMemLhsObj = $(a);
+const tmpAssignMemLhsObj = $(tmpClusterSSA_a);
 tmpAssignMemLhsObj.b = 2;
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output
@@ -61,14 +86,21 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = undefined;
-const c = { b: a };
-for (b in c) {
-
+const b = { b: a };
+const c = $forIn( b );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const d = c.next();
+  const e = d.done;
+  if (e) {
+    break;
+  }
+  else {
+    d.value;
+  }
 }
-const d = $( c );
-d.b = 2;
-$( c );
+const f = $( b );
+f.b = 2;
+$( b );
 `````
 
 ## Globals

@@ -24,7 +24,17 @@ $(a, b, c);
 let b = { x: 1 },
   c = 3;
 let a = { a: 999, b: 1000 };
-for (let x of (b.x = b.x = b.x = b.x = b.x = b.x = c));
+{
+  let tmpForOfGen = $forOf((b.x = b.x = b.x = b.x = b.x = b.x = c));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x = tmpForOfNext.value;
+    }
+  }
+}
 $(a, b, c);
 `````
 
@@ -35,6 +45,7 @@ $(a, b, c);
 let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forOf;
 const varInitAssignLhsComputedRhs$9 = c;
 b.x = varInitAssignLhsComputedRhs$9;
 const varInitAssignLhsComputedRhs$7 = varInitAssignLhsComputedRhs$9;
@@ -47,9 +58,16 @@ const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
 b.x = varInitAssignLhsComputedRhs$1;
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 b.x = varInitAssignLhsComputedRhs;
-const tmpForOfDeclRhs = varInitAssignLhsComputedRhs;
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+const tmpCalleeParam = varInitAssignLhsComputedRhs;
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForOfNext.value;
+  }
 }
 $(a, b, c);
 `````
@@ -60,8 +78,15 @@ $(a, b, c);
 `````js filename=intro
 const b = { x: 3 };
 const a = { a: 999, b: 1000 };
-let x = undefined;
-for (x of 3) {
+const tmpForOfGen = $forOf(3);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
 }
 $(a, b, 3);
 `````
@@ -76,9 +101,16 @@ const b = {
   a: 999,
   b: 1000,
 };
-let c = undefined;
-for (c of 3) {
-
+const c = $forOf( 3 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const d = c.next();
+  const e = d.done;
+  if (e) {
+    break;
+  }
+  else {
+    d.value;
+  }
 }
 $( b, a, 3 );
 `````

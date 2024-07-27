@@ -156,10 +156,12 @@ function convert(node) {
       return PST.expressionStatement(convert(node.expression));
     }
     case 'ForInStatement': {
-      return PST.forInStatement(PST.ref(node.left.name), convert(node.right), convert(node.body));
+      REJECT
+      break;
     }
     case 'ForOfStatement': {
-      return PST.forOfStatement(PST.ref(node.left.name), convert(node.right), convert(node.body));
+      REJECT
+      break;
     }
     case 'ForStatement': {
       REJECT

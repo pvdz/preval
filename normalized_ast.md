@@ -15,8 +15,6 @@ Statement >
     EmptyStatement
     ExportNamedDeclaration (?)
     ExpressionStatement
-    ForInStatement
-    ForOfStatement
     IfStatement
     ImportDeclaration (?)
     LabelStatement
@@ -52,20 +50,12 @@ EmptyStatemnt >
 ExportNamedDeclaration >
     ? TODO
 
-ForInStatement >
-    name: Ident
-    right: Simple
-
-ForOfStatement >
-    name: Ident
-    right: Simple
-
 IdentStatement >
     name: string
 
 LabelStatement >
     label: string
-    body: Block, While
+    body: Block
 
 ReturnStatement >
     expression: SimpleExpression
@@ -90,15 +80,18 @@ WhileStatement >
     test: SimpleExpression
     body: BlockStatement
 
+DebuggerStatement >
+    -
+
 ExpressionStatement >
     Expression
     AssignIdentExpression
     AssignPropExpression
 
 
+
 Expression >
     SimpleExpression
-    OtherExpression
     CallIdentExpression
     CallMethodExpression
     CallComputedMethodExpression
@@ -110,17 +103,23 @@ Expression >
     BinaryExpression
     ArrayLiteral
     ObjectLiteral
-    JS
+    ThisExpression
+    Param
 
 SimpleExpression >
     Identifier
     Primitive
+    TemplateExpression
 
 Primitive >
-    type: number, true, false, undefined, null, NaN, Infinity
+    type: number, true, false, undefined, null, NaN, Infinity, string
+
+TemplateExpression >
+    strings: string[]
+    idents: Identifier[]
 
 AssignIdentExpression >
-    name: Identifier,
+    name: Identifier
     value: Expression
 
 AssignPropExpression >
@@ -163,6 +162,10 @@ FunctionExpression >
     generator: boolean
     body: BlockStatement (? or separate program and function blocks?)
 
+Param >
+    index: number
+    name: string
+
 MemberExpression >
     object: SimpleExpression
     prop: string
@@ -191,10 +194,8 @@ SpreadElement >
 ObjectLiteral >
     props: (Prop, PropComputed, PropSpread)[]
 
-property >
-    name: Ident
-    value: SimpleExpression
-    isComputed: boolean
+ThisExpression >
+    -
 
 method >
     name: Ident
@@ -209,9 +210,6 @@ PropComputed >
 
 PropSpread >
     arg: SimpleExpression
-
-JS >
-    ast: <normal AST>
 
 ClassExpression >
     name?: Identifier

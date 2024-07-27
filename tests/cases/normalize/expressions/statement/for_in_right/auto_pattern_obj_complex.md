@@ -19,7 +19,17 @@ $(a);
 
 `````js filename=intro
 let { a: a } = { a: 999, b: 1000 };
-for (let x in $({ a: 1, b: 2 }));
+{
+  let tmpForInGen = $forIn($({ a: 1, b: 2 }));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let x = tmpForInNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -29,11 +39,19 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-const tmpCallCallee = $;
-const tmpCalleeParam = { a: 1, b: 2 };
-const tmpForInDeclRhs = tmpCallCallee(tmpCalleeParam);
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+const tmpCallCallee = $forIn;
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = { a: 1, b: 2 };
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForInNext.value;
+  }
 }
 $(a);
 `````
@@ -42,10 +60,17 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = { a: 1, b: 2 };
-const tmpForInDeclRhs = $(tmpCalleeParam);
-let x = undefined;
-for (x in tmpForInDeclRhs) {
+const tmpCalleeParam$1 = { a: 1, b: 2 };
+const tmpCalleeParam = $(tmpCalleeParam$1);
+const tmpForInGen = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
 }
 $(999);
 `````
@@ -60,9 +85,16 @@ const a = {
   b: 2,
 };
 const b = $( a );
-let c = undefined;
-for (c in b) {
-
+const c = $forIn( b );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const d = c.next();
+  const e = d.done;
+  if (e) {
+    break;
+  }
+  else {
+    d.value;
+  }
 }
 $( 999 );
 `````

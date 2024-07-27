@@ -20,7 +20,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for (let x of (a = { b: $(1) }));
+{
+  let tmpForOfGen = $forOf((a = { b: $(1) }));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      let x = tmpForOfNext.value;
+    }
+  }
+}
 $(a)[$(`b`)] = 2;
 $(a);
 `````
@@ -30,11 +40,19 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
+const tmpCallCallee = $forOf;
 const tmpObjLitVal = $(1);
 a = { b: tmpObjLitVal };
-let tmpForOfDeclRhs = a;
-let x = undefined;
-for (x of tmpForOfDeclRhs) {
+let tmpCalleeParam = a;
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let x = tmpForOfNext.value;
+  }
 }
 const tmpAssignComMemLhsObj = $(a);
 const tmpAssignComMemLhsProp = $(`b`);
@@ -47,14 +65,21 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-let x = undefined;
-const a = { b: tmpObjLitVal };
-for (x of a) {
+const tmpClusterSSA_a = { b: tmpObjLitVal };
+const tmpForOfGen = $forOf(tmpClusterSSA_a);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
 }
-const tmpAssignComMemLhsObj = $(a);
+const tmpAssignComMemLhsObj = $(tmpClusterSSA_a);
 const tmpAssignComMemLhsProp = $(`b`);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output
@@ -63,15 +88,22 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = undefined;
-const c = { b: a };
-for (b of c) {
-
+const b = { b: a };
+const c = $forOf( b );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const d = c.next();
+  const e = d.done;
+  if (e) {
+    break;
+  }
+  else {
+    d.value;
+  }
 }
-const d = $( c );
-const e = $( "b" );
-d[e] = 2;
-$( c );
+const f = $( b );
+const g = $( "b" );
+f[g] = 2;
+$( b );
 `````
 
 ## Globals

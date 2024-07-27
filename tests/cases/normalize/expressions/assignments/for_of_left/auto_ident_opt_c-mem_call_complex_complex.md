@@ -22,7 +22,17 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-for ((a = $(b)?.[$(`\$`)]?.($(1))).x of $({ x: 1 }));
+{
+  let tmpForOfGen = $forOf($({ x: 1 }));
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForOfNext = tmpForOfGen.next();
+    if (tmpForOfNext.done) {
+      break;
+    } else {
+      (a = $(b)?.[$(`\$`)]?.($(1))).x = tmpForOfNext.value;
+    }
+  }
+}
 $(a);
 `````
 
@@ -32,32 +42,41 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam = { x: 1 };
-const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
-let tmpForOfLhsNode = undefined;
-for (tmpForOfLhsNode of tmpForOfRhs) {
-  a = undefined;
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall(b);
-  const tmpIfTest = tmpChainElementCall != null;
+const tmpCallCallee = $forOf;
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {
-    const tmpChainRootComputed = $(`\$`);
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$1 = tmpChainElementObject != null;
+    break;
+  } else {
+    a = undefined;
+    const tmpChainRootCall = $;
+    const tmpChainElementCall = tmpChainRootCall(b);
+    const tmpIfTest$1 = tmpChainElementCall != null;
     if (tmpIfTest$1) {
-      const tmpCallCallee$1 = $dotCall;
-      const tmpCalleeParam$1 = tmpChainElementObject;
-      const tmpCalleeParam$3 = tmpChainElementCall;
-      const tmpCalleeParam$5 = $(1);
-      const tmpChainElementCall$1 = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
-      a = tmpChainElementCall$1;
+      const tmpChainRootComputed = $(`\$`);
+      const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+      const tmpIfTest$3 = tmpChainElementObject != null;
+      if (tmpIfTest$3) {
+        const tmpCallCallee$3 = $dotCall;
+        const tmpCalleeParam$3 = tmpChainElementObject;
+        const tmpCalleeParam$5 = tmpChainElementCall;
+        const tmpCalleeParam$7 = $(1);
+        const tmpChainElementCall$1 = tmpCallCallee$3(tmpCalleeParam$3, tmpCalleeParam$5, tmpCalleeParam$7);
+        a = tmpChainElementCall$1;
+      } else {
+      }
     } else {
     }
-  } else {
+    let tmpAssignMemLhsObj = a;
+    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+    const tmpAssignMemRhs = tmpForOfNext.value;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   }
-  let tmpAssignMemLhsObj = a;
-  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
 $(a);
 `````
@@ -67,26 +86,35 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-let a = undefined;
-const tmpCalleeParam = { x: 1 };
-const tmpForOfRhs = $(tmpCalleeParam);
-let tmpForOfLhsNode = undefined;
-for (tmpForOfLhsNode of tmpForOfRhs) {
-  const tmpChainElementCall = $(b);
-  const tmpIfTest = tmpChainElementCall == null;
+let a = { a: 999, b: 1000 };
+const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam = $(tmpCalleeParam$1);
+const tmpForOfGen = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext = tmpForOfGen.next();
+  const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {
+    break;
   } else {
-    const tmpChainRootComputed = $(`\$`);
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$1 = tmpChainElementObject == null;
+    a = undefined;
+    const tmpChainElementCall = $(b);
+    const tmpIfTest$1 = tmpChainElementCall == null;
     if (tmpIfTest$1) {
     } else {
-      const tmpCalleeParam$5 = $(1);
-      const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$5);
-      a = tmpChainElementCall$1;
+      const tmpChainRootComputed = $(`\$`);
+      const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+      const tmpIfTest$3 = tmpChainElementObject == null;
+      if (tmpIfTest$3) {
+      } else {
+        const tmpCalleeParam$7 = $(1);
+        const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$7);
+        a = tmpChainElementCall$1;
+      }
     }
+    const tmpAssignMemLhsObj = a;
+    const tmpAssignMemRhs = tmpForOfNext.value;
+    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   }
-  a.x = tmpForOfLhsNode;
 }
 $(a);
 `````
@@ -97,30 +125,43 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-let b = undefined;
+let b = {
+  a: 999,
+  b: 1000,
+};
 const c = { x: 1 };
 const d = $( c );
-let e = undefined;
-for (e of d) {
-  const f = $( a );
-  const g = f == null;
+const e = $forOf( d );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const f = e.next();
+  const g = f.done;
   if (g) {
-
+    break;
   }
   else {
-    const h = $( "$" );
-    const i = f[ h ];
-    const j = i == null;
-    if (j) {
+    b = undefined;
+    const h = $( a );
+    const i = h == null;
+    if (i) {
 
     }
     else {
-      const k = $( 1 );
-      const l = $dotCall( i, f, k );
-      b = l;
+      const j = $( "$" );
+      const k = h[ j ];
+      const l = k == null;
+      if (l) {
+
+      }
+      else {
+        const m = $( 1 );
+        const n = $dotCall( k, h, m );
+        b = n;
+      }
     }
+    const o = b;
+    const p = f.value;
+    o.x = p;
   }
-  b.x = e;
 }
 $( b );
 `````

@@ -29,27 +29,41 @@ $('after');
 
 `````filename=intro
 const arr___4__ = [10, 20];
-const tmpForOfDeclRhs___10__ = arr___11__;
-let x___14__ = undefined___15__;
-for (x___17__ of tmpForOfDeclRhs___18__) /*19*/ {
-  $(x___23__);
-  break;
+let tmpForOfGen___10__ = $forOf___12__(arr___13__);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___15__) {
+  /*16*/ let tmpForOfNext___19__ = tmpForOfGen___22__.next___23__();
+  const tmpIfTest___26__ = tmpForOfNext___28__.done___29__;
+  if (tmpIfTest___31__) {
+    /*32*/ break;
+  } /*34*/ else {
+    const x___37__ = tmpForOfNext___39__.value___40__;
+    $(x___44__);
+    break;
+  }
 }
 $(`after`);
 `````
 
 Ref tracking result:
 
-                    | reads      | read by     | overWrites     | overwritten by
+                 | reads      | read by     | overWrites     | overwritten by
 arr:
-  - w @4       | ########## | 11          | none           | none
-  - r @11      | 4
+  - w @4       | ########## | 13          | none           | none
+  - r @13      | 4
 
-tmpForOfDeclRhs:
-  - w @10           | ########## | 18          | none           | none
-  - r @18           | 10
+tmpForOfGen:
+  - w @10       | ########## | 22          | none           | none
+  - r @22       | 10
+
+tmpForOfNext:
+  - w @19        | ########## | 28,39       | none           | none
+  - r @28        | 19
+  - r @39        | 19
+
+tmpIfTest:
+  - w @26        | ########## | 31          | none           | none
+  - r @31        | 26
 
 x:
-  - w @14           | ########## | not read    | none           | 17
-  - w @17           | ########## | 23          | 14             | none
-  - r @23           | 17
+  - w @37        | ########## | 44          | none           | none
+  - r @44        | 37

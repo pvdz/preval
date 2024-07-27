@@ -36,11 +36,22 @@ while (true) {
     $(y, `before`);
     let x = undefined;
     const obj = { a: 1, b: 2 };
-    for (x in obj) {
-      $continue: {
-        {
-          $(x, y);
-          break $continue;
+    {
+      let tmpForInGen = $forIn(obj);
+      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+        let tmpForInNext = tmpForInGen.next();
+        if (tmpForInNext.done) {
+          break;
+        } else {
+          x = tmpForInNext.value;
+          {
+            $continue: {
+              {
+                $(x, y);
+                break $continue;
+              }
+            }
+          }
         }
       }
     }
@@ -64,8 +75,16 @@ while (true) {
     $(y, `before`);
     let x = undefined;
     const obj = { a: 1, b: 2 };
-    for (x in obj) {
-      $(x, y);
+    let tmpForInGen = $forIn(obj);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      let tmpForInNext = tmpForInGen.next();
+      const tmpIfTest = tmpForInNext.done;
+      if (tmpIfTest) {
+        break;
+      } else {
+        x = tmpForInNext.value;
+        $(x, y);
+      }
     }
     $(x, y, `after`);
   } else {
@@ -86,8 +105,16 @@ while (true) {
     $(y, `before`);
     let x = undefined;
     const obj = { a: 1, b: 2 };
-    for (x in obj) {
-      $(x, y);
+    const tmpForInGen = $forIn(obj);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      const tmpForInNext = tmpForInGen.next();
+      const tmpIfTest = tmpForInNext.done;
+      if (tmpIfTest) {
+        break;
+      } else {
+        x = tmpForInNext.value;
+        $(x, y);
+      }
     }
     $(x, y, `after`);
   } else {
@@ -112,8 +139,17 @@ while (true) {
       a: 1,
       b: 2,
     };
-    for (b in c) {
-      $( b, a );
+    const d = $forIn( c );
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      const e = d.next();
+      const f = e.done;
+      if (f) {
+        break;
+      }
+      else {
+        b = e.value;
+        $( b, a );
+      }
     }
     $( b, a, "after" );
   }

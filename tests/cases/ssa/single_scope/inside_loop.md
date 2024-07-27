@@ -24,12 +24,23 @@ for (let styleName$5 in {x:100}) {
 
 
 `````js filename=intro
-for (let styleName$5 in { x: 100 }) {
-  let checkme = $(1);
-  if (checkme) {
-    checkme = $(2);
-    if (checkme) {
-      $(3);
+{
+  let tmpForInGen = $forIn({ x: 100 });
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    let tmpForInNext = tmpForInGen.next();
+    if (tmpForInNext.done) {
+      break;
+    } else {
+      let styleName$5 = tmpForInNext.value;
+      {
+        let checkme = $(1);
+        if (checkme) {
+          checkme = $(2);
+          if (checkme) {
+            $(3);
+          }
+        }
+      }
     }
   }
 }
@@ -39,17 +50,25 @@ for (let styleName$5 in { x: 100 }) {
 
 
 `````js filename=intro
-const tmpForInDeclRhs = { x: 100 };
-let styleName$5 = undefined;
-for (styleName$5 in tmpForInDeclRhs) {
-  let checkme = $(1);
-  if (checkme) {
-    checkme = $(2);
+const tmpCallCallee = $forIn;
+const tmpCalleeParam = { x: 100 };
+let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let styleName$5 = tmpForInNext.value;
+    let checkme = $(1);
     if (checkme) {
-      $(3);
+      checkme = $(2);
+      if (checkme) {
+        $(3);
+      } else {
+      }
     } else {
     }
-  } else {
   }
 }
 `````
@@ -58,17 +77,24 @@ for (styleName$5 in tmpForInDeclRhs) {
 
 
 `````js filename=intro
-let styleName$5 = undefined;
-const tmpForInDeclRhs = { x: 100 };
-for (styleName$5 in tmpForInDeclRhs) {
-  const checkme = $(1);
-  if (checkme) {
-    const tmpClusterSSA_checkme = $(2);
-    if (tmpClusterSSA_checkme) {
-      $(3);
+const tmpCalleeParam = { x: 100 };
+const tmpForInGen = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext = tmpForInGen.next();
+  const tmpIfTest = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+    const checkme = $(1);
+    if (checkme) {
+      const tmpClusterSSA_checkme = $(2);
+      if (tmpClusterSSA_checkme) {
+        $(3);
+      } else {
+      }
     } else {
     }
-  } else {
   }
 }
 `````
@@ -78,14 +104,22 @@ for (styleName$5 in tmpForInDeclRhs) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { x: 100 };
-for (a in b) {
-  const c = $( 1 );
-  if (c) {
-    const d = $( 2 );
-    if (d) {
-      $( 3 );
+const a = { x: 100 };
+const b = $forIn( a );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const c = b.next();
+  const d = c.done;
+  if (d) {
+    break;
+  }
+  else {
+    c.value;
+    const e = $( 1 );
+    if (e) {
+      const f = $( 2 );
+      if (f) {
+        $( 3 );
+      }
     }
   }
 }

@@ -14,12 +14,13 @@
 
 `````js filename=intro
 const arr = [`a`,`b`,`c`,];
-let counter = 20;
+let counter = 10;
 while (counter) {
   const e = arr.shift();
   arr.push(e);
   counter = counter - 1;
 }
+$(arr[0]);
 `````
 
 ## Pre Normal
@@ -27,12 +28,13 @@ while (counter) {
 
 `````js filename=intro
 const arr = [`a`, `b`, `c`];
-let counter = 20;
+let counter = 10;
 while (counter) {
   const e = arr.shift();
   arr.push(e);
   counter = counter - 1;
 }
+$(arr[0]);
 `````
 
 ## Normalized
@@ -40,7 +42,7 @@ while (counter) {
 
 `````js filename=intro
 const arr = [`a`, `b`, `c`];
-let counter = 20;
+let counter = 10;
 while (true) {
   if (counter) {
     const e = arr.shift();
@@ -50,23 +52,16 @@ while (true) {
     break;
   }
 }
+const tmpCallCallee = $;
+const tmpCalleeParam = arr[0];
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 
 `````js filename=intro
-let tmpClusterSSA_counter$2 = 9;
-const arr = [`c`, `a`, `b`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (tmpClusterSSA_counter$2) {
-    const e$1 = arr.shift();
-    arr.push(e$1);
-    tmpClusterSSA_counter$2 = tmpClusterSSA_counter$2 - 1;
-  } else {
-    break;
-  }
-}
+$(`b`);
 `````
 
 ## PST Output
@@ -74,18 +69,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 With rename=true
 
 `````js filename=intro
-let a = 9;
-const b = [ "c", "a", "b" ];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (a) {
-    const c = b.shift();
-    b.push( c );
-    a = a - 1;
-  }
-  else {
-    break;
-  }
-}
+$( "b" );
 `````
 
 ## Globals
@@ -95,6 +79,7 @@ None
 ## Result
 
 Should call `$` with:
+ - 1: 'b'
  - eval returned: undefined
 
 Pre normalization calls: Same

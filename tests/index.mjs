@@ -508,6 +508,10 @@ function runTestCase(
         }
 
         if (a && typeof a === 'object') {
+          if (a.$preval_isArguments) {
+            return '"<Global Arguments>"';
+          }
+
           if (spies.has(a)) {
             return '"<spy[' + a.id + ']>"';
           }
@@ -602,8 +606,9 @@ function runTestCase(
       const returns = new Function( // window. eval()
         // Globals to inject
         ...Object.keys(frameworkInjectedGlobals),
-        // test code to execute/eval
-        '"use strict"; ' + fdata.intro,
+        // Test code to execute/eval
+        // Patch "global" arguments so we can detect it (it's the arguments of the Function we generate here) because they blow up test case results.
+        '"use strict"; arguments.$preval_isArguments = true; ' + fdata.intro,
       )(
         // The values of the injected globals
         ...Object.values(frameworkInjectedGlobals),

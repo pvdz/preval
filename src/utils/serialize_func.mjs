@@ -18,7 +18,7 @@ import {
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { phase0 } from '../normalize/_phase0.mjs';
+import { phase0 } from '../normalize/phase0.mjs';
 import { uniqify_idents } from './uniqify_idents.mjs';
 import { parseCode } from '../normalize/parse.mjs';
 import { prepareNormalization } from '../normalize/prepare.mjs';

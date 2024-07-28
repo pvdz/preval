@@ -1,0 +1,838 @@
+<!doctype html>
+<html>
+<head>
+  <title>Preval repl - 2020-2024 - Peter van der Zee</title>
+  <meta charset="utf-8">
+  <style>
+      .code {
+          font-family: monospace;
+          font-size: 12px;
+      }
+      .token.ident { color: black; }
+      .token.keyword { color: blue; }
+      .token.number { color: blue; }
+      .token.string { color: green; }
+      .token.regex { color: #947030; }
+      .token.punc { color: black; }
+      .token.hover { background-color: orange; color: black; }
+  </style>
+  <style>
+      html,
+      body {
+        height: 100%;
+        background-color: #FFF;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+
+      div {
+        box-sizing: border-box;
+      }
+
+      .wrapper {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        border: 1px solid black;
+        overflow: auto;
+      }
+
+      .half {
+        flex: 0 1 100%;
+        min-height: 100%;
+        max-width: 50%;
+        flex-wrap: wrap;
+        display: flex;
+      }
+
+      .quarter { display: flex; flex-direction: column; width: 50%; height: 50%; max-width: 100%; min-width: 100%; }
+      .quarter-head { background-color: #eee; border: 1px solid black; box-sizing: border-box; padding: 5px; min-height: 30px; font-size: 14px; font-family: Verdana; }
+      .quarter-body { flex-grow: 1; overflow: auto; }
+
+      .top { margin: 5px; }
+
+      .lints {
+        display: block;
+        box-sizing: border-box;
+        padding: 5px;
+        border: 1px solid black;
+        font-family: monospace;
+      }
+      .lint-div {
+
+      }
+      .lint-loc {
+        padding: 0 5px;
+        width: 70px;
+        cursor: pointer;
+        color: blue;
+      }
+      .lint-loc:hover {
+        color: red;
+      }
+      .lint-hide {
+          color: blue;
+          cursor: pointer;
+      }
+      .lint-hide:hover {
+          color: red;
+      }
+      .lint-msg {
+        /*cursor: pointer;*/
+        /*color: blue;*/
+      }
+      .lint-msg:hover {
+        /*color: red;*/
+      }
+
+      @keyframes fadein {
+          from {
+              opacity: 1;
+          }
+          to {
+              opacity: 0;
+          }
+      }
+
+      .bubble {
+          pointer-events: none;
+          border: 3px solid blue;
+          border-radius: 25px;
+          width: 50px;
+          height: 50px;
+          position: absolute;
+
+          line-height: 12px;
+          font-size: 12px;
+          font-family: monospace;
+
+          animation: fadein 3s ease-in-out;
+          animation-iteration-count: 1;
+          animation-fill-mode: forwards; /* leave state as last keyframe. this must appear _after_ the animation line because `animation` is a shorthand which also overwrites `animation-fill-mode` :facepalm: */
+      }
+
+
+      .mode_selector {
+        position: relative;
+        border: 1px solid white;
+        height: 42px;
+      }
+      .mode_selector:hover {
+        border: 1px solid black;
+      }
+      .mode_selector.true {
+        background-color: #bceebd;
+      }
+      .mode_selector.false {
+        background-color: #ffbdb5;
+      }
+      .mode_selector > input {
+        position: absolute;
+        top: 18px;
+        left: 5px;
+        height: 14px;
+      }
+      .mode_selector > label {
+        height: 40px;
+        margin: 0 2px;
+        padding: 0 3px;
+        display: inline-block;
+      }
+
+      .editor-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        border: 1px solid black;
+        overflow: auto;
+      }
+
+      .gutter {
+        flex: 0 0 50px;
+        display: block;
+        text-align: right;
+        padding: 2px;
+        padding-right: 5px;
+        background-color: #f5f5f5;
+        border: 1px solid black;
+        border-width: 0px 2px;
+        border-left: 0;
+        color: #888;
+        box-sizing: border-box;
+        line-height: 12px;
+        font-size: 12px;
+        font-family: monospace;
+        white-space: pre;
+      }
+      .gutter .oops {
+          color: white;
+          background-color: tomato;
+          cursor: help;
+      }
+      .gutter .oops:hover {
+          background-color: black;
+      }
+      .editor-bit {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+      .editor {
+        outline: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        margin: 0;
+        padding: 4px;
+        border: 0;
+        line-height: 12px;
+        font-size: 12px;
+        font-family: monospace;
+        box-sizing: border-box;
+      }
+      .tab {
+        border: 1px solid black;
+        margin: 2px;
+        padding: 2px 6px;
+        /*position: relative;*/
+        /*top: -4px;*/
+        height: 18px;
+        cursor: pointer;
+      }
+      .tab:hover {
+        border: 1px solid red;
+      }
+      .tab.active {
+        border: 1px solid yellow;
+      }
+  </style>
+</head>
+<body>
+  <div class="top">
+    Preval REPL &mdash;
+    2020 ~ 2024 &mdash;
+    &copy;&nbsp;<a href="https://pvdz.ee">Peter van der Zee</a>&nbsp;&mdash;&nbsp;
+    <a href="https://github.com/pvdz/preval">Github</a>
+  </div>
+
+  <div class="wrapper">
+    <div class="half">
+      <div class="quarter">
+        <div class="quarter-head">
+          <b>Files</b>
+          <div id="$tabs" style="margin-left: 5px; display: inline-block;">
+            <select>
+              <option>foo</option>
+            </select>
+            <span class="tab">+</span>
+            <span class="tab">-</span>
+          </div>
+        </div>
+
+        <div class="editor-wrapper quarter-body">
+          <div id="$gutter" class="gutter" style="text-align: right; white-space: pre; overflow: hidden;"><div></div></div>
+          <div class="editor-bit">
+            <pre id="$print" class="code editor" style="overflow: hidden;"></pre>
+            <textarea
+              id="$input"
+              placeholder="enter code here"
+              class="input editor"
+              style="color: transparent; caret-color: black;"
+              autofocus
+              wrap="off"
+              nowrap="true"
+              spellcheck="false"
+              autocapitalize="none"
+              autocomplete="off"
+              autocorrect="off"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="quarter">
+        <div class="quarter-head">Console</div>
+        <textarea id="$console" placeholder="unused" class="quarter-body"></textarea>
+      </div>
+    </div>
+    <div class="half">
+      <div class="quarter">
+        <div id="$lintheader" class="quarter-head">Normalized (step 1)</div>
+        <div id="$normalized" class="quarter-body lints" style="white-space: pre;">
+            Output shows here after successful run
+        </div>
+      </div>
+
+      <div class="quarter">
+        <div class="quarter-head">Result</div>
+        <textarea id="$output" placeholder="result goes here" class="box br quarter-body"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" id="$startupCode">
+    window.global = {};
+    // import * as Tenko from '../node_modules/tenko/build/tenko.prod.mjs'; // works but github pages wont install npm packages first...
+    import * as Tenko from './lib/tenko.prod.mjs'
+    import {TenkoError} from './error_tenko.mjs';
+    import {preval, helpers} from './index.mjs';
+    //import * as lint from '../src/lint.mjs';
+    //import {tidToString} from '../src/tools.mjs';
+
+    //import {generateCases} from '../tests/cases/index_web.mjs';
+
+    console.log('main:', preval);
+    $input.value = `
+      const abc = $;
+      function f() {
+        if (abc) {
+          let x = $(undefined);
+          // This assign should be SSA but all the refs in the rhs must keep the same name
+          x = [1, x, 2, x, 3, x, 4, x];
+          abc(x);
+          // This bit prevents other optimizations from eliminating the above entirely immediately
+          const g = function(){
+            // In the final output, this "if" can be dropped because it will be tested already and is a constant
+            if (abc) abc(x);
+          };
+          g();
+        }
+      }
+      if (abc) f();
+    `.trim();
+
+    let currentMapper = undefined; // mapper[fromFile][toFile] -> normalizedFile
+    let currentFile = 'index';
+    let currentFiles = {index: ''};
+    let currentLints = [];
+    let filteredLints = new Set;
+    let currentStore;
+
+    let init = true; // only startup or new tab
+    let debounced = 0;
+    let prevDigest = '';
+
+    function updateWithProcessingDebounced(value) {
+      const newDigest = JSON.stringify({...currentFiles, [currentFile]: value});
+      if (currentFile + '::' + newDigest === prevDigest) return;
+
+      // Update the UI. Loses syntax coloring but at least shows the feedback...
+      $print.style.backgroundColor = 'transparent';
+      $print.innerHTML = value.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '<br><br>';
+      $gutter.innerHTML = new Array(value.split(/\n/g).length).fill(0).map((_,i)=>'<span id="gut' + (i+1) + '">'+(i+1)+'</span>').join('\n') + '\n\n';
+      $input.style.color = 'black';
+      $input.value = value;
+
+      clearTimeout(debounced);
+      debounced = setTimeout(() => {
+        updateWithProcessingImmediately(value, newDigest);
+        $input.style.color = 'transparent';
+      }, 250);
+    }
+
+    function updateWithProcessingImmediately(value, newDigest) {
+      const nextDigest = currentFile + '::' + newDigest;
+      if (prevDigest === nextDigest) return;
+
+      prevDigest = nextDigest;
+
+      if (currentFiles[currentFile] !== value || init) {
+        currentFiles[currentFile] = value;
+        // TODO: skip processing if we only switched files without content change ...
+
+        if (init) {
+          init = false;
+          console.log('-'.repeat(100)); // This makes it so that the page load stuff doesn't get auto-cleared
+        } else {
+          console.clear();
+        }
+        $console.value = '';
+
+        console.log('Running now...');
+
+        const io = [];
+
+        let indent = 0;
+        try {
+          currentStore = preval({ // Always from index (!), not the currently opened file.
+            entryPointFile: 'foo',
+            stdio(type, ...args) {
+              if (typeof exportedCase !== 'undefined') return; // TMI: do not collect or show it.
+              if (type === 'G') ++indent;
+              if (type === 'F') {
+                --indent;
+                if (indent < 0) {
+                  if (args[0] !== true) {
+                    console.warn('There was an indent underflow. That indicates a group/groupEnd mismatch');
+                  }
+                  indent = 0;
+                }
+                return; // groupEnd does not print anything
+              }
+              if (indent < 0) {
+                console.warn('There was an indent underflow. That indicates a group/groupEnd mismatch');
+              }
+              io.push(' '.repeat(Math.max(0, indent * 2)) + args.join(', '));
+            },
+            onParse(filename, tenkoOutput) {
+              console.log('web.onParse');
+              if (filename === currentFile) printCodeAfterParse(tenkoOutput, value);
+            },
+            resolve(filename, fromFilename) {
+              console.log('web.resolve: returning fixed value...');
+              return 'web_input.mjs';
+
+              //if (currentMapper && currentMapper[fromFilename] && currentMapper[fromFilename][filename]) {
+              //  return currentMapper[fromFilename][filename];
+              //}
+              //return filename;
+            },
+            req(filename, fromFilename) {
+              console.log('web.req: returning textarea value...');
+              return $input.value;
+
+
+              //// console.log('req:', filename, 'from', fromFilename, ', has?', !!currentFiles[filename]);
+              //// console.log(currentFiles)
+              //if (currentFiles[filename]) {
+              //  return currentFiles[filename];
+              //}
+              //console.warn('Imprting', filename, 'but this file was not known... returning the empty string for it');
+              //return '';
+            },
+            options: {
+              onAfterFirstParse() {
+                console.log('web.onAfterFirstParse: After first parse...');
+              },
+              onPassEnd() {
+                console.log('web.onPassEnd: Pass end!');
+              },
+              onFinal() {
+                console.log('web.onFinal()');
+              }
+            }
+          });
+
+          $output.value = helpers.fmat(currentStore.files['web_input.mjs'], true);
+        } catch (e) {
+          $normalized.innerHTML = '(crashed)\n > ' + e.message + '\n' + e.stack;
+          $print.style.color = 'black';
+          if (e instanceof TenkoError) {
+            console.error('Tenko found a Syntax', e.message);
+            $print.style.backgroundColor = 'transparent';
+            $output.value = e.message.split('\n')[0];
+            $print.style.backgroundColor = '#fdf2f2';
+          } else {
+            $print.style.backgroundColor = 'red';
+            $output.value = e.message.split('\n')[0];
+            $print.style.backgroundColor = '#fde9e9';
+          }
+
+          $print.innerHTML = value.replace(/&/g, '&amp;').replace(/</g, '&lt;')+'<br><br>';
+          return;
+        } finally {
+          console.log('store:', currentStore);
+          $console.value = io.join('\n').replace(/\x1b\[.*?m/g, '');
+        }
+
+        // Only one-time stuff next. Finally call the general value-only-update function
+
+        $normalized.innerHTML = helpers.fmat(
+          currentStore.normalized['web_input.mjs'],
+          true
+        );
+
+        //const lints = currentLints = currentStore.linter.getMessages();
+        //
+        //updateLints();
+        //
+        //$print.style.color = undefined;
+        //if (lints.length === 0) {
+        //  $print.style.backgroundColor = '#f5ffeb';
+        //  $output.value = 'No problems detected';
+        //} else {
+        //  $print.style.backgroundColor = '#ffdcb5';
+        //  $output.value = 'Preval finished but found lint issues';
+        //}
+      }
+
+      // Generic file loader
+      //switchParsedFile(currentFile);
+    }
+
+    function updateLints() {
+      const lints = currentLints;
+
+      const allTypes = new Set;
+      lints.forEach(({type}) => allTypes.add(type));
+
+      $lintheader.innerHTML = `Issues (${currentLints.length}x). Filter toggle:
+        <select id="$lintfilter">
+          ${[...allTypes].map(s => '<option value="' + s + '">' + (filteredLints.has(s) ? '[x] ' : '[v] ') + s + '</option>').join('')}
+        </select>
+      `;
+
+      let last = '';
+      let prevDigest = '';
+      $normalized.innerHTML = lints
+        .sort(({loc: {filename: fn1, column: col1, line: line1}}, {loc: {filename: fn2, column: col2, line: line2}}) => fn1 < fn2 ? -1 : fn1 > fn2 ? 1 : ((line1 - line2) || (col1 - col2)))
+        .map((msg, i) => {
+          if (filteredLints.has(msg.type)) return '';
+          let header = '';
+          if (last !== msg.loc.filename) {
+            last = msg.loc.filename;
+            header = `<hr><div>${last}</div><hr>\n`;
+          }
+
+          const argString = msg.args.length ? ' [' + msg.args.join(', ').replace(/&/g, '&amp;').replace(/</g, '&lt;') + ']' : '';
+          const digest = msg.loc.filename + ':' + msg.loc.line + ':' + msg.loc.column + ' = ' + msg.type + argString;
+          if (digest === prevDigest) return ''; // prevent identical repeated warnings for same line
+          prevDigest = digest;
+
+          let body = filteredLints.has(msg.type) ? '' : `
+            <div class="lint-div">
+              <span class="lint-loc" title="${msg.loc.filename}" data-i="${i}">${msg.loc.line}:${msg.loc.column}</span>
+              [<span class="lint-hide" title="hide this type" data-type="${msg.type}">x</span>]
+              <span class="lint-msg" title="${lint.codes.get(msg.type).message}">${msg.type}</span>
+              <span class="lint-arg">${argString}</span>
+            </div>
+          `;
+          return `${header}${body}`;
+        })
+        .join('')
+        || 'No problems found! :D';
+
+      return lints;
+    }
+
+    $lintheader.onclick = e => {
+      if (e.target !== $lintfilter) return;
+
+      const type = $lintfilter.children[$lintfilter.selectedIndex].value;
+      console.log('Type being toggled:', type, $lintfilter.children[$lintfilter.selectedIndex])
+      if (filteredLints.has(type)) filteredLints.delete(type);
+      else filteredLints.add(type);
+
+      updateLints();
+    };
+
+    function printCodeAfterParse(fileState, defaultValue) {
+      if (!fileState) {
+        $print.innerHTML = defaultValue.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '<br><br>';
+        return;
+      }
+
+      const tokens = fileState.tokens;
+      const wrapped = tokens.map((token, i) => {
+        const str = token.str.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+        const type = Tenko.toktypeToString(token.type);
+        if (type.startsWith('IDENT')) return '<span id="t'+i+'" title="hello, world" class="token ident">' + str + '</span>';
+        if (type.startsWith('ID')) return '<span id="t'+i+'" class="token keyword">' + str + '</span>';
+        if (type.startsWith('NUMBER')) return '<span id="t'+i+'" class="token number">' + str + '</span>';
+        if (type.startsWith('STRING')) return '<span id="t'+i+'" class="token string">' + str + '</span>';
+        if (type.startsWith('REGEX')) return '<span id="t'+i+'" class="token regex">' + str + '</span>';
+        if (type.startsWith('PUNC')) return '<span id="t'+i+'" class="token punc">' + str + '</span>';
+        return str;
+      });
+
+      $print.innerHTML = wrapped.join('') + '<br><br>';
+    }
+
+    function switchParsedFile(filename) {
+      currentFile = filename;
+
+      $tabs.innerHTML =
+        '<select id="$file">' +
+        [...Object.keys(currentFiles)].map(fn => '<option' + (fn === currentFile ? ' selected' : '') + '>' + fn + '</option>') +
+        '</select>' +
+        ['+', '-'].map(key => {
+          return '<span class="tab">' + key + '</span>';
+        }).join('\n') +
+        (
+          typeof exportedCase === 'undefined' ?
+            '<span class="tab" style="color: grey; cursor: help;" title="Run `node bin/preval.mjs -e foo.js` and if that succeeds, after a refresh, you can load the results with this button"><s>nodejs</s></span>' :
+            '<span class="tab" title="Load the results of `bin/preval.mjs` by pressing this button">nodejs</span>'
+        ) +
+        '<span class="tab">reset</span>'
+      '';
+
+      updateValueOnly();
+    }
+
+    function updateValueOnly() {
+      $input.value = currentFiles[currentFile];
+      printCodeAfterParse(currentStore.fileData.get(currentFile), currentFiles[currentFile]);
+      const map = new Map;
+      currentLints.forEach(lint => {
+        if (lint.loc.filename === currentFile) {
+          let arr = map.get(lint.loc.line);
+          if (!arr) {
+            arr = [];
+            map.set(lint.loc.line, arr);
+          }
+          arr.push(lint.loc.column + ':' + lint.type);
+        }
+      });
+      $gutter.innerHTML = new Array(currentFiles[currentFile].split(/\n/g).length).fill(0).map((_,i)=>{
+        const arr = map.get(i+1);
+        if (arr) return `<div id="gut${i+1}" class="oops" title="${arr.join('\n')}">${i+1}</div>`;
+        return `<div id="gut${i+1}">${i+1}</div>`;
+      }).join('') + '\n\n';
+    }
+
+    $input.oninput = _ => updateWithProcessingDebounced($input.value);
+    $input.addEventListener('scroll', e => {
+      $print.scrollLeft = $input.scrollLeft;
+      $print.scrollTop = $input.scrollTop;
+      $gutter.scrollTop = $input.scrollTop;
+    }, {passive: true});
+
+    //$normalized.onclick = e => {
+    //  console.log(e.target);
+    //  if (e.target.classList.contains('lint-loc')) {
+    //    const LINE_HEIGHT = 12;
+    //    const CHAR_WIDTH = 8;
+    //
+    //    console.log('n:', e.target.getAttribute('data-i'))
+    //    console.log('obj:', currentLints[e.target.getAttribute('data-i')]);
+    //    const loc = currentLints[e.target.getAttribute('data-i')].loc;
+    //    switchParsedFile(loc.filename);
+    //
+    //    $gutter.scrollTop = $input.scrollTop = $print.scrollTop = ((loc.line - 4) * LINE_HEIGHT);
+    //
+    //    // Create circle that fades out
+    //    const bubble = document.createElement('div');
+    //    bubble.className = 'bubble';
+    //    bubble.style = "top: " + (loc.line * LINE_HEIGHT - 25) + 'px; left: ' + (loc.column - 2) + 'ch; width: 10ch';
+    //    $print.appendChild(bubble);
+    //  }
+    //  if (e.target.classList.contains('lint-hide')) {
+    //    const type = e.target.getAttribute('data-type');
+    //    console.log('Type being hidden:', type);
+    //    filteredLints.add(type);
+    //
+    //    updateLints();
+    //  }
+    //};
+
+    $tabs.onclick = e => {
+      if (e.target.className !== 'tab') return;
+      const file = e.target.innerHTML;
+      if (file === '-') {
+        if (currentFile === 'index') {
+          alert('You cannot delete "index" because it is the entry point');
+        } else if (confirm('Are you sure you want to delete this "file"? Cannot be undone!')) {
+          delete currentFiles[currentFile];
+          currentFile = 'index';
+        }
+      } else if (file === '+') {
+        const filename = prompt('Enter name of file', './a');
+        if (!filename) return;
+        if (currentFiles[filename]) return;
+        const defaultValue = '// Start typing here... this file is not parsed until it is imported from another file (!)';
+        currentFiles[filename] = defaultValue;
+        currentFile = filename;
+      } else if (file === 'nodejs') {
+        // Load the test case, if present
+        if (typeof exportedCase === 'undefined') return alert('Test case not loaded so it may not have been generated. It should be located in preval/bin/result/exported_case.js and if that does not exist try to run `node bin/preval.js` to generate one');
+        console.log('Now loading case generated through bin/preval.mjs');
+        console.log('-->', exportedCase);
+        currentMapper = exportedCase.mapper;
+        currentFiles = {...exportedCase.files};
+
+        updateWithProcessingDebounced(currentFiles.index);
+      } else if (file === 'reset') {
+        currentMapper = undefined; // mapper[fromFile][toFile] -> normalizedFile
+        currentFile = 'index';
+        currentFiles = {index: ''};
+        currentLints = [];
+        filteredLints = new Set;
+        currentStore;
+      } else {
+        return;
+      }
+
+      init = true;
+      switchParsedFile(currentFile);
+      updateWithProcessingDebounced($input.value)
+    };
+
+    $tabs.onchange = e => {
+      // Only do this for the file select dropdown
+      if (e.target !== $file) return;
+
+      const file = $file.children[$file.selectedIndex].value;
+      switchParsedFile(file);
+    };
+
+    let last;
+    let lastx = -1;
+    let lasty = -1;
+    let lastt = 0;
+    $input.onpointermove = e => {
+      const store = currentStore;
+      lastx = e.x;
+      lasty = e.y;
+      if (!store) return;
+      if (lastt) return;
+
+      // Debounce this a bit. Mouseover can fire with high frequency and we don't need that for this purpose.
+      lastt = setTimeout(() => {
+        lastt = 0;
+        $input.style.pointerEvents = 'none'; // hit test under the input textarea
+        const el = document.elementFromPoint(lastx, lasty);
+        $input.style.pointerEvents = 'auto';
+        if (last && last !== el) last.classList.remove('hover');
+        if (last !== el) {
+          if (el !== $print) {
+            el.classList.add('hover');
+            if (el.classList.contains('token')) {
+              const id = el.id;
+              if (!store.fileData.get(currentFile)) return console.log('File not imported so not parsed so cannot highlight');
+              const token = store.fileData.get(currentFile).tenkoOutput.tokens[el.id.slice(1)];
+              let str = JSON.stringify(token);
+              if (token.tlog) {
+                str += '\n\n' + token.tlog.map((stuff, i) => {
+                  const {wat, ...args} = stuff;
+                  switch (wat) {
+                    case '#binop': {
+                      const { left, right, ...unused } = args;
+                      if (JSON.stringify(unused) !== '{}') console.log('too many args:', unused),fixme;
+
+                      return '\n# ' + i + ': ' + wat +
+                        '\n  - Left :\n' + tidToString(left, store, false, 4) +
+                        '\n  - Right:\n' + tidToString(right, store, false, 4) +
+                        '\n';
+                    }
+
+                    case '#call':
+                    case '#new': {
+                      const { locFrom, inputArgTids, finalArgTids, paramTidDesc, contextTid, spreadAt, returnValue, ...unused } = args;
+                      // if (returnValue === undefined) console.log('returnValue:', stuff), fixme; // all return exits should add the value to this log but if the model crashed before this could be updated then it'll still be undefined
+                      if (JSON.stringify(unused) !== '{}') console.log('too many args:', unused),fixme;
+
+                      const inputArgStr = (inputArgTids.length ? inputArgTids.map(tid => '    ' + (spreadAt === i ? '...Array<' : '') + tidToString(tid, store) + (spreadAt === i ? '>' : '') + '\n').join('') : '');
+                      const finalArgStr = (finalArgTids.map && finalArgTids.length ? finalArgTids.map(tid => '    ' + tidToString(tid, store) +'\n').join('') : '    []\n');
+
+                      return '\n# ' + i + ': ' + wat + '\n' +
+                        '\n  From: ' + locFrom.filename + ':' + locFrom.line + ':' + locFrom.column +
+                        '\n  Input Args (' + inputArgTids.length + 'x):\n' + inputArgStr +
+                        (inputArgStr === finalArgStr ? '' : ('\n  Final Args (' + finalArgTids.length + 'x):' + finalArgStr)) +
+                        '\n  Param Bindings:\n    ' + (paramTidDesc || '<unknown>') +
+                        '\n  Context:\n    ' + tidToString(contextTid, store, false, 4) +
+                        '\n  Returns:\n    ' + (returnValue ? tidToString(returnValue, store, false, 4) : '<unknown>') +
+                        '\n';
+                    }
+
+                    case '#ident': {
+                      const {tid, ...unused} = args;
+                      if (JSON.stringify(unused) !== '{}') console.log('too many args:', unused),fixme;
+
+                      return '\n# ' + i + ': ' + wat +
+                        '\n  Found type:\n    ' + tidToString(tid, store, false, 4) +
+                        '\n';
+                    }
+
+                    case '#init': {
+                      const { tid, name, ...unused } = args;
+                      if (JSON.stringify(unused) !== '{}') console.log('too many args:', unused),fixme;
+
+                      return '\n# ' + i + ': ' + wat +
+                        '\n  - Initialized binding `' + name + '` to :\n    ' + tidToString(tid, store, false, 4) +
+                        '\n';
+
+                    }
+
+                    case '#invoke': {
+                      const {desc, locCall, locFunc, calleeTid, argCount, callArgs, contextTid, returned, ...unused}  = args;
+                      if (JSON.stringify(unused) !== '{}') console.log('too many args:', unused),fixme;
+
+                      return '\n# ' + i + ': called' +
+                        // '\n - At: ' + locCall.filename + ':' + locCall.line + ':' + locCall.column +
+                        '\n - Function:\n' + tidToString(calleeTid, store) +
+                        '\n   - Defined: ' + locFunc.filename + ':' + locFunc.line + ':' + locFunc.column +
+                        '\n - Args (' + argCount + 'x):' + (callArgs.length ? callArgs.map(tid => '\n    ' + tidToString(tid, store, false, 6)).join('') : '\n    []') +
+                        '\n - Context:\n    ' + tidToString(contextTid, store, false, 4) +
+                        '\n - Returned:\n    ' + tidToString(returned, store, false, 4) +
+                        '\n';
+                    }
+
+                    case '#prop': {
+                      const {tid, ...unused} = args;
+                      if (JSON.stringify(unused) !== '{}') console.log('too many args:', unused),fixme;
+
+                      return '\n# ' + i + ': ' + wat +
+                        '\n  Found property value type: ' + tidToString(tid, store) +
+                        '\n';
+                    }
+
+                    case '#set': {
+                      const { objTid, name, valueTid, ...unused } = args;
+                      if (JSON.stringify(unused) !== '{}') console.log('too many args:', unused),fixme;
+
+                      return '\n# ' + i + ': ' + wat +
+                        '\n  - Prop name  : `' + name + '`' +
+                        '\n  - Object     : ' + tidToString(objTid, store) +
+                        '\n  - Value      : ' + tidToString(valueTid, store) +
+                        '\n';
+                    }
+
+                    default: console.log(wat); foxme
+                  }
+                }).join('\n');
+              }
+
+              $output.value = str;
+            } else {
+              $output.value = el.id;
+            }
+          }
+          last = el;
+        }
+      }, 30); // Arbitrary delay, as long as it feels snappy
+    }
+
+    setTimeout(() => {
+      //console.log('Generating all test cases');
+      //const cases = generateCases(); // Map
+      //const tests = [...cases.values()];
+      //let i = Math.floor(Math.random() * tests.length);
+      //// i = 910
+      //console.log('Setting to a random case:', i);
+      //let value = `
+      //
+      //`.trim();
+      //if (value) {
+      //  currentFiles = {index: value};
+      //  currentFile = 'index';
+      //  updateWithProcessingDebounced(value);
+      //} else {
+      //  let test = tests[i];//typeof exportedCase === 'undefined' ? tests[i] : exportedCase;
+      //  console.log('test:', test)
+      //  currentMapper = test.mapper;
+      //  currentFiles = {...test.files};
+      //
+      //  updateWithProcessingDebounced(currentFiles.index);
+      //}
+
+
+        updateWithProcessingDebounced($input.value);
+    }, 10);
+
+  </script>
+</body>
+</html>

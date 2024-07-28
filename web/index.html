@@ -235,6 +235,7 @@
     <div class="half">
       <div class="quarter">
         <div class="quarter-head">
+          <!--
           <b>Files</b>
           <div id="$tabs" style="margin-left: 5px; display: inline-block;">
             <select>
@@ -243,6 +244,8 @@
             <span class="tab">+</span>
             <span class="tab">-</span>
           </div>
+          -->
+          <b>Input</b> <small>(Plain JS only)</small>
         </div>
 
         <div class="editor-wrapper quarter-body">
@@ -602,20 +605,20 @@
     function switchParsedFile(filename) {
       currentFile = filename;
 
-      $tabs.innerHTML =
-        '<select id="$file">' +
-        [...Object.keys(currentFiles)].map(fn => '<option' + (fn === currentFile ? ' selected' : '') + '>' + fn + '</option>') +
-        '</select>' +
-        ['+', '-'].map(key => {
-          return '<span class="tab">' + key + '</span>';
-        }).join('\n') +
-        (
-          typeof exportedCase === 'undefined' ?
-            '<span class="tab" style="color: grey; cursor: help;" title="Run `node bin/preval.mjs -e foo.js` and if that succeeds, after a refresh, you can load the results with this button"><s>nodejs</s></span>' :
-            '<span class="tab" title="Load the results of `bin/preval.mjs` by pressing this button">nodejs</span>'
-        ) +
-        '<span class="tab">reset</span>'
-      '';
+      //$tabs.innerHTML =
+      //  '<select id="$file">' +
+      //  [...Object.keys(currentFiles)].map(fn => '<option' + (fn === currentFile ? ' selected' : '') + '>' + fn + '</option>') +
+      //  '</select>' +
+      //  ['+', '-'].map(key => {
+      //    return '<span class="tab">' + key + '</span>';
+      //  }).join('\n') +
+      //  (
+      //    typeof exportedCase === 'undefined' ?
+      //      '<span class="tab" style="color: grey; cursor: help;" title="Run `node bin/preval.mjs -e foo.js` and if that succeeds, after a refresh, you can load the results with this button"><s>nodejs</s></span>' :
+      //      '<span class="tab" title="Load the results of `bin/preval.mjs` by pressing this button">nodejs</span>'
+      //  ) +
+      //  '<span class="tab">reset</span>'
+      //'';
 
       updateValueOnly();
     }
@@ -676,55 +679,55 @@
     //  }
     //};
 
-    $tabs.onclick = e => {
-      if (e.target.className !== 'tab') return;
-      const file = e.target.innerHTML;
-      if (file === '-') {
-        if (currentFile === 'index') {
-          alert('You cannot delete "index" because it is the entry point');
-        } else if (confirm('Are you sure you want to delete this "file"? Cannot be undone!')) {
-          delete currentFiles[currentFile];
-          currentFile = 'index';
-        }
-      } else if (file === '+') {
-        const filename = prompt('Enter name of file', './a');
-        if (!filename) return;
-        if (currentFiles[filename]) return;
-        const defaultValue = '// Start typing here... this file is not parsed until it is imported from another file (!)';
-        currentFiles[filename] = defaultValue;
-        currentFile = filename;
-      } else if (file === 'nodejs') {
-        // Load the test case, if present
-        if (typeof exportedCase === 'undefined') return alert('Test case not loaded so it may not have been generated. It should be located in preval/bin/result/exported_case.js and if that does not exist try to run `node bin/preval.js` to generate one');
-        console.log('Now loading case generated through bin/preval.mjs');
-        console.log('-->', exportedCase);
-        currentMapper = exportedCase.mapper;
-        currentFiles = {...exportedCase.files};
+    //$tabs.onclick = e => {
+    //  if (e.target.className !== 'tab') return;
+    //  const file = e.target.innerHTML;
+    //  if (file === '-') {
+    //    if (currentFile === 'index') {
+    //      alert('You cannot delete "index" because it is the entry point');
+    //    } else if (confirm('Are you sure you want to delete this "file"? Cannot be undone!')) {
+    //      delete currentFiles[currentFile];
+    //      currentFile = 'index';
+    //    }
+    //  } else if (file === '+') {
+    //    const filename = prompt('Enter name of file', './a');
+    //    if (!filename) return;
+    //    if (currentFiles[filename]) return;
+    //    const defaultValue = '// Start typing here... this file is not parsed until it is imported from another file (!)';
+    //    currentFiles[filename] = defaultValue;
+    //    currentFile = filename;
+    //  } else if (file === 'nodejs') {
+    //    // Load the test case, if present
+    //    if (typeof exportedCase === 'undefined') return alert('Test case not loaded so it may not have been generated. It should be located in preval/bin/result/exported_case.js and if that does not exist try to run `node bin/preval.js` to generate one');
+    //    console.log('Now loading case generated through bin/preval.mjs');
+    //    console.log('-->', exportedCase);
+    //    currentMapper = exportedCase.mapper;
+    //    currentFiles = {...exportedCase.files};
+    //
+    //    updateWithProcessingDebounced(currentFiles.index);
+    //  } else if (file === 'reset') {
+    //    currentMapper = undefined; // mapper[fromFile][toFile] -> normalizedFile
+    //    currentFile = 'index';
+    //    currentFiles = {index: ''};
+    //    currentLints = [];
+    //    filteredLints = new Set;
+    //    currentStore;
+    //  } else {
+    //    return;
+    //  }
+    //
+    //  init = true;
+    //  switchParsedFile(currentFile);
+    //  updateWithProcessingDebounced($input.value)
+    //};
 
-        updateWithProcessingDebounced(currentFiles.index);
-      } else if (file === 'reset') {
-        currentMapper = undefined; // mapper[fromFile][toFile] -> normalizedFile
-        currentFile = 'index';
-        currentFiles = {index: ''};
-        currentLints = [];
-        filteredLints = new Set;
-        currentStore;
-      } else {
-        return;
-      }
-
-      init = true;
-      switchParsedFile(currentFile);
-      updateWithProcessingDebounced($input.value)
-    };
-
-    $tabs.onchange = e => {
-      // Only do this for the file select dropdown
-      if (e.target !== $file) return;
-
-      const file = $file.children[$file.selectedIndex].value;
-      switchParsedFile(file);
-    };
+    //$tabs.onchange = e => {
+    //  // Only do this for the file select dropdown
+    //  if (e.target !== $file) return;
+    //
+    //  const file = $file.children[$file.selectedIndex].value;
+    //  switchParsedFile(file);
+    //};
 
     let last;
     let lastx = -1;

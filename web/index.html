@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <title>Preval repl</title>
+  <title>Preval repl -- by Peter van der Zee</title>
   <meta charset="utf-8">
 <!--  <script src="../bin/result/exported_case.js"></script>-->
   <style>
@@ -56,7 +56,7 @@
       .quarter-head { background-color: #eee; border: 1px solid black; box-sizing: border-box; padding: 5px; min-height: 30px; font-size: 14px; font-family: Verdana; }
       .quarter-body { flex-grow: 1; overflow: auto; }
 
-      .top { margin: 5px; }
+      .top { margin: 5px; font-family: Verdana }
 
       .lints {
         display: block;
@@ -224,10 +224,11 @@
 </head>
 <body>
   <div class="top">
-    Preval REPL &mdash;
-    2020 &mdash;
+    <b>Preval</b> REPL &mdash;
+    2020 ~ 2024 &mdash;
     &copy;&nbsp;<a href="https://pvdz.ee">Peter van der Zee</a>&nbsp;&mdash;&nbsp;
     <a href="https://github.com/pvdz/preval">Github</a>
+    &nbsp;&nbsp; <small>(<i>This is a static analysis tool that will reduce standard JS code to a minimal subset of JS and tries to optimize it using only transforms</i>)</small>
   </div>
 
   <div class="wrapper">
@@ -266,21 +267,41 @@
       </div>
 
       <div class="quarter">
-        <div class="quarter-head">Console</div>
-        <textarea id="$console" placeholder="unused" class="quarter-body"></textarea>
+        <div class="quarter-head">Console <small>(Full trace output of Preval)</small></div>
+        <textarea
+          id="$console"
+          placeholder="unused"
+          class="quarter-body"
+          wrap="off"
+          nowrap="true"
+          spellcheck="false"
+          autocapitalize="none"
+          autocomplete="off"
+          autocorrect="off"
+        ></textarea>
       </div>
     </div>
     <div class="half">
       <div class="quarter">
-        <div id="$lintheader" class="quarter-head">Normalized (step 1)</div>
+        <div id="$lintheader" class="quarter-head">Normalized <small>(shows normalized output after first pass but before more complicated heuristics)</small></div>
         <div id="$normalized" class="quarter-body lints" style="white-space: pre;">
             Output shows here after successful run
         </div>
       </div>
 
       <div class="quarter">
-        <div class="quarter-head">Result</div>
-        <textarea id="$output" placeholder="result goes here" class="box br quarter-body"></textarea>
+        <div class="quarter-head">Result <small>(When successful, this should show the final output of Preval)</small></div>
+        <textarea
+          id="$output"
+          placeholder="result goes here"
+          class="box br quarter-body"
+          wrap="off"
+          nowrap="true"
+          spellcheck="false"
+          autocapitalize="none"
+          autocomplete="off"
+          autocorrect="off"
+        ></textarea>
       </div>
     </div>
   </div>
@@ -298,22 +319,47 @@
 
     console.log('main:', preval);
     $input.value = `
-      const abc = $;
-      function f() {
-        if (abc) {
-          let x = $(undefined);
-          // This assign should be SSA but all the refs in the rhs must keep the same name
-          x = [1, x, 2, x, 3, x, 4, x];
-          abc(x);
-          // This bit prevents other optimizations from eliminating the above entirely immediately
-          const g = function(){
-            // In the final output, this "if" can be dropped because it will be tested already and is a constant
-            if (abc) abc(x);
-          };
-          g();
-        }
+// Enter input code here. (Uses Tenko to parse and Preval to process, all in the browser)
+
+{ $('Inline a function:');
+  const abc = $;
+  function f() {
+    if (abc) {
+      let x = $(undefined);
+      // This assign should be SSA but all the refs in the rhs must keep the same name
+      x = [1, x, 2, x, 3, x, 4, x];
+      abc(x);
+      // This bit prevents other optimizations from eliminating the above entirely immediately
+      const g = function(){
+        // In the final output, this "if" can be dropped because it will be tested already and is a constant
+        if (abc) abc(x);
+      };
+      g();
+    }
+  }
+  if (abc) f();
+}
+
+{ $('Rotate an array:');
+  const arr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'];
+  while (true) {
+    $(arr[0]);
+    try {
+      const a = arr[0];
+      if (a === 'e') {
+        break;
+      } else {
+        const M = arr.shift();
+        arr.push(M);
       }
-      if (abc) f();
+    } catch (P) {
+      const N = arr.shift();
+      arr.push(N);
+    }
+  }
+  $(arr.slice(0));
+}
+
     `.trim();
 
     let currentMapper = undefined; // mapper[fromFile][toFile] -> normalizedFile
@@ -447,7 +493,7 @@
           return;
         } finally {
           console.log('store:', currentStore);
-          $console.value = io.join('\n').replace(/\x1b\[.*?m/g, '');
+          $console.value = 'Full trace of Preval:\n\n' + io.join('\n').replace(/\x1b\[.*?m/g, '');
         }
 
         // Only one-time stuff next. Finally call the general value-only-update function

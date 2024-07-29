@@ -1,14 +1,15 @@
 A normalized ast would be a nested set of statements, a sort of subset of the regular JS ast.
 It would be target JS as an output language even though the ast does not match that specifically.
+You could consider this the IR of Preval, although the output is valid JS (just like how asm.js used to do it).
 
-Program >
-    body: Block
+BlockStatement
+    list: Statement[]
 
 Statement >
     AssignmentIdentStatement
     AssignmentPropStatement
     AssignmentComputedPropStatement
-    BlockStatement
+    BlockStatement                                       // mmmm
     BreakStatement
     CallStatement
     ConstStatement
@@ -25,24 +26,31 @@ Statement >
     WhileStatement
 
 AssignmentIdentStatement >
-    left: identifier
+    left: string
     right: Expression
 
 AssignmentPropStatement >
-    obj: SimpleExpression
+    obj: string
     prop: string
     right: Expression
 
 AssignmentComputedPropStatement >
-    obj: SimpleExpression
-    prop: SimpleExpression
+    obj: string
+    prop: string
     right: Expression
 
 BlockStatement >
     body: Statement[]
 
 BreakStatement >
-    label?: string
+    label?: string                                      // maybe default to empty string rather than null, for that monomorphic yadadada typing
+
+ConstStatement >
+    id: string
+    init: Expression
+
+DebuggerStatement >
+    -                                                   // we (ab)use this as a special kind of header boundary for functions. shouldn't appear otherwise.
 
 EmptyStatemnt >
     -
@@ -50,12 +58,19 @@ EmptyStatemnt >
 ExportNamedDeclaration >
     ? TODO
 
+ExpressionStatement
+    expr: Expression
+
 IdentStatement >
     name: string
 
 LabelStatement >
     label: string
-    body: Block
+    body: BlockStatement
+
+LetStatement >
+    id: string
+    init: Expression
 
 ReturnStatement >
     expression: SimpleExpression
@@ -65,106 +80,82 @@ ThrowStatement >
 
 TryStatement >
     body: BlockStatement
-    id: Identifier
+    id: string
     trap: BlockStatement
-
-ConstStatement >
-    id: Identifier,
-    init: Expression
-
-LetStatement >
-    id: Identifier
-    init: Expression
 
 WhileStatement >
     test: SimpleExpression
     body: BlockStatement
 
-DebuggerStatement >
-    -
-
-ExpressionStatement >
-    Expression
-    AssignIdentExpression
-    AssignPropExpression
-
-
-
 Expression >
-    SimpleExpression
+    ComplexExpression                       // Multi token values or expressions with nested (simple) expressions
+    SimpleExpression                        // Primitives and identifiers
+
+ComplexExpression >
+    ArrayLiteral
+    AwaitExpression
+    BinaryExpression
+    CallComputedMethodExpression
     CallIdentExpression
     CallMethodExpression
-    CallComputedMethodExpression
-    AwaitExpression
-    YieldExpression
     MemberExpression
     MemberComputedExpression
-    UnaryExpression
-    BinaryExpression
-    ArrayLiteral
     ObjectLiteral
-    ThisExpression
-    Param
+    Param                                   // This one is kind of special, maybe this makes them "simple" anyways?
+    ThisExpression                          // Should only appear in function header where it gets aliased... if referenced at all
+    UnaryExpression
+    YieldExpression
 
 SimpleExpression >
     Identifier
     Primitive
     TemplateExpression
 
-Primitive >
-    type: number, true, false, undefined, null, NaN, Infinity, string
+ArrayLiteral >
+    elements: ArrayLiteralPart[]            // (elements may have holes, those are null in the AST/PST)
 
-TemplateExpression >
-    strings: string[]
-    idents: Identifier[]
-
-AssignIdentExpression >
-    name: Identifier
-    value: Expression
-
-AssignPropExpression >
-    obj: SimpleExpression
-    prop: string
-    value: SimpleExpression
-
-AssignComputedPropExpression >
-    obj: SimpleExpression
-    prop: SimpleExpression
-    value: SimpleExpression
-
-Identifier >
-    name: string but not Primitive.type
-
-CallIdentExpression >
-    callee: SimpleExpression
-    args: Array<SimpleExpression>
-
-CallMethodExpression >
-    calleeObject: SimpleExpression
-    calleeProp: string
-    args: Array<SimpleExpression>
-
-CallComputedMethodExpression >
-    calleeObject: SimpleExpression
-    calleeProp: SimpleExpression
-    args: Array<SimpleExpression>
+ArrayLiteralPart >
+    null                                    // hole/elided
+    SimpleExpression
+    SpreadElement
 
 AwaitExpression >
     arg: SimpleExpression
 
-YieldExpression >
-    arg: SimpleExpression
+BinaryExpression >
+    op: string                              // + - % ^ etc
+    left: SimpleExpression
+    right: SimpleExpression
+
+CallArg >
+    SimpleExpression
+    SpreadElement
+
+CallIdentExpression >
+    callee: string
+    args: CallArg[]
+
+CallMethodExpression >
+    object: SimpleExpression
+    prop: string
+    args: CallArg[]
+
+CallComputedMethodExpression >
+    object: SimpleExpression
+    prop: SimpleExpression                  // ident would be slightly simpler but then we wouldn't want to force an extra var for invalid ident names like "delete"
+    args: CallArg[]
+
+ClassExpression >
+    name: string | null                     // or should this be empty string for none?
+    extends: SimpleExpression | null
+    body: ClassBody
 
 FunctionExpression >
-    name?: Identifier
+    name?: string                           // or should this be empty string for none?
     params: Param[]
     async: boolean
     generator: boolean
-    body: BlockStatement (? or separate program and function blocks?)
-
-Param >
-    index: number
-    name: string
+    body: BlockStatement
 
 MemberExpression >
     object: SimpleExpression
@@ -174,49 +165,56 @@ MemberComputedExpression >
     object: SimpleExpression
     prop: SimpleExpression
 
-UnaryExpression >
-    op: ~ ! + - typeof delete (void?)
-    prop: SimpleExpression
-        if op=delete then prop can be a MemberExpression
-
-BinaryExpression >
-    op: + - % ^ etc
-    left: SimpleExpression
-    right: SimpleExpression
-
-ArrayLiteral >
-    // (elements may have holes, those are null in the AST/PST)
-    elements: (null, SimpleExpression, SpreadElement)[]
-
-SpreadElement >
-    arg: SimpleExpression
-
 ObjectLiteral >
-    props: (Prop, PropComputed, PropSpread)[]
+    props: (Identifier | PropComputed | PropSpread | PropMethod)[]
 
-ThisExpression >
-    -
+Param >
+    index: number
+    name: string
 
-method >
-    name: Ident
-    isComputed: boolean
-    isAsync: boolean
-    isGenerator: boolean // is this even possible?
-    func: FunctionExpression
+Primitive >
+    type: number, true, false, undefined, null, NaN, Infinity, string
+
+Prop >
+    name: string
+    value: SimpleExpression
 
 PropComputed >
     name: SimpleExpression
     value: SimpleExpression
 
+PropMethod >
+    name: Ident
+    isComputed: boolean
+    isAsync: boolean
+    isGenerator: boolean                    // is this even possible?
+    func: FunctionExpression
+
 PropSpread >
     arg: SimpleExpression
-
-ClassExpression >
-    name?: Identifier
-    extends?: SimpleExpression
-    body: ClassBody
 
 RegexLiteral >
     full
     pattern
     flags
+
+SpreadElement >
+    arg: SimpleExpression                   // or is this always an ident and so this can be a string?
+
+ThisExpression >
+    -                                       // only appears in header of functions to alias the value
+
+UnaryExpression >
+    op: string                              // ~ ! + - typeof delete.  not sure if we simply eliminate + and remove - from a "unary"
+    prop: SimpleExpression
+    if op=delete then prop can be a MemberExpression, do we create a DeleteExpression instead?
+
+YieldExpression >
+    arg: SimpleExpression
+
+TemplateExpression >
+    strings: string[]                       // Maybe we'll turn every string into a template string (even without dynamic components)
+    idents: string[]
+
+Identifier >
+    name: string

@@ -90,3 +90,25 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: Same
+
+Inverse input result (there was at least one mismatch even though actual test evalled equal):
+ - 1: { b: '"<$>"' }
+ - 2: ''
+ - 3: 0
+ - 4: 2
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Normalization inverse calls: BAD!?
+ - 1: { b: '"<$>"' }
+ - 2: 'b'
+ - 3: 1
+ - 4: 2
+ - 5: 1, 2
+ - eval returned: undefined
+
+Output inverse calls: BAD!!
+ - 1: { b: '"<$>"' }
+ - 2: ''
+ - 3: 0
+ - 4: 2
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')

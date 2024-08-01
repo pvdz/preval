@@ -117,7 +117,7 @@ None
 Should call `$` with:
  - 1: { x: '1' }
  - 2: 100
- - eval returned: ("<crash[ Cannot set property 'x' of undefined ]>")
+ - eval returned: ("<crash[ Cannot set properties of undefined (setting 'x') ]>")
 
 Pre normalization calls: Same
 

@@ -190,14 +190,27 @@ None
 Should call `$` with:
  - 1: 'a'
  - 2: 'b'
+ - 3: 'c'
+ - 4: 'd'
+ - 5: 'a', 'b', { d: '"c"', e: '"d"' }
+ - eval returned: undefined
+
+Pre normalization calls: Same
+
+Normalized calls: BAD!?
+ - 1: 'a'
+ - 2: 'b'
  - 3: 'b'
  - 4: 'c'
  - 5: 'd'
  - 6: 'a', 'b', { d: '"c"', e: '"d"' }
  - eval returned: undefined
 
-Pre normalization calls: Same
-
-Normalized calls: Same
-
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 'a'
+ - 2: 'b'
+ - 3: 'b'
+ - 4: 'c'
+ - 5: 'd'
+ - 6: 'a', 'b', { d: '"c"', e: '"d"' }
+ - eval returned: undefined

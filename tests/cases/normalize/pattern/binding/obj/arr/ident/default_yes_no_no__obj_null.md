@@ -65,10 +65,12 @@ None
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Pre normalization calls: Same
 
-Normalized calls: Same
+Normalized calls: BAD!?
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')

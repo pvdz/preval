@@ -656,12 +656,13 @@ function runTestCase(
         .replace(/.*Preval: Attempting to spread primitive that is not an empty string.*/,  '<ref> is not function/iterable')
         .replace(/Preval: cannot call a locked function \(binding overwritten with non-func\)/, '<ref> is not function/iterable')
         .replace(/function ?\(\) ?\{/g, 'function() {')
-        .replace(/Cannot read property .*? of .*/g, 'Cannot read property <ref> of <ref2>')
+        .replace(/Cannot read propert.*? of .*/g, 'Cannot read property <ref> of <ref2>')
         .replace(/(?:Preval: )?Cannot access ['`][\w$]+['`] before initialization/, "Cannot access '<ref>' before initialization")
         .replace(/Preval: This statement contained a read that reached no writes.*/, "Cannot access '<ref>' before initialization")
         .replace(/Preval: TDZ triggered for.*/, "Cannot access '<ref>' before initialization")
         .replace(/Preval: Cannot write to const binding .*/, 'Assignment to constant variable.')
         .replace(/Preval: Attempting to spread primitive that is not an empty string.*/, 'Found non-callable @@iterator')
+        .replace(/Spread syntax requires.*/, '<ref> is not function/iterable')
 
         // All arrows are transformed to function expressions
         .replace(/\(\) => \{\}/g, 'function() {}')

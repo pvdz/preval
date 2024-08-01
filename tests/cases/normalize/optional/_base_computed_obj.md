@@ -60,7 +60,7 @@ $(tmpChainElementObject);
 With rename=true
 
 `````js filename=intro
-const a = { 10[ 20 ]: 20 };
+const a = { [ 10 ]: 20 };
 const b = a[ 10 ];
 $( b );
 `````

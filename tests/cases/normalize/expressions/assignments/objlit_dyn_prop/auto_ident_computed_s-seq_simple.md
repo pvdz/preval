@@ -63,7 +63,7 @@ With rename=true
 const a = { c: 1 };
 const b = $( "c" );
 const c = a[ b ];
-const d = { c[ 10 ]: 10 };
+const d = { [ c ]: 10 };
 $( d );
 $( c, a );
 `````

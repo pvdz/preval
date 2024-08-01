@@ -60,7 +60,7 @@ With rename=true
 
 `````js filename=intro
 const a = { c: 2 };
-const b = { 2[ 10 ]: 10 };
+const b = { [ 2 ]: 10 };
 $( b );
 $( 2, a );
 `````

@@ -68,7 +68,7 @@ $( 1 );
 $( 2 );
 const b = $( a );
 const c = delete b.y;
-const d = { c[ 10 ]: 10 };
+const d = { [ c ]: 10 };
 $( d );
 $( c, a );
 `````

@@ -76,7 +76,7 @@ const c = [ a, b ];
 const d = [ ... c ];
 const e = d[ 0 ];
 const f = d[ 1 ];
-const g = { c[ 10 ]: 10 };
+const g = { [ c ]: 10 };
 $( g );
 $( c, e, f );
 `````

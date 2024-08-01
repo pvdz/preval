@@ -2,12 +2,11 @@
 
 # index_props.md
 
-> Tofix > Index props
+> Object literal > Index props
 >
 > Spread on number is an error
 
-the index props should resolve to numbers, at least, not strings. i think.
-does it matter? its cleaner as numbers. if there's no semantic difference, we should try to do that
+Normalize non-ident keys to be computed.
 
 ## Input
 
@@ -51,11 +50,11 @@ With rename=true
 
 `````js filename=intro
 const a = {
-  "0"[ "w" ]: "w",
-  "1"[ "o" ]: "o",
-  "2"[ "r" ]: "r",
-  "3"[ "l" ]: "l",
-  "4"[ "d" ]: "d",
+  [ "0" ]: "w",
+  [ "1" ]: "o",
+  [ "2" ]: "r",
+  [ "3" ]: "l",
+  [ "4" ]: "d",
 };
 $( a );
 `````

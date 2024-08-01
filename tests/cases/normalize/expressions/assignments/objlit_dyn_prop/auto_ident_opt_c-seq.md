@@ -82,7 +82,7 @@ else {
   const e = c.x;
   b = e;
 }
-const f = { b[ 10 ]: 10 };
+const f = { [ b ]: 10 };
 $( f );
 $( b );
 `````

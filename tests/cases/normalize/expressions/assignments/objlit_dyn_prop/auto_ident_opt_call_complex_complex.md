@@ -83,7 +83,7 @@ else {
   const e = $dotCall( b, $, d );
   a = e;
 }
-const f = { a[ 10 ]: 10 };
+const f = { [ a ]: 10 };
 $( f );
 $( a );
 `````

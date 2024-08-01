@@ -90,7 +90,7 @@ else {
   const d = $( 2 );
   b = $( d );
 }
-const e = { b[ 10 ]: 10 };
+const e = { [ b ]: 10 };
 $( e );
 $( b );
 `````

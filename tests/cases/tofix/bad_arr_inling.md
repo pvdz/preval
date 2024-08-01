@@ -79,7 +79,7 @@ With rename=true
 
 `````js filename=intro
 const a = [ 1, 2, 3 ];
-const b = { "1,2,3"[ "pass" ]: "pass" };
+const b = { [ "1,2,3" ]: "pass" };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     const c = b[ "1,2,3" ];

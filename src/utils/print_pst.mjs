@@ -336,7 +336,7 @@ function printSetter(indent, config, node) {
 
 function printProperty(indent, config, node) {
   if (node.isComputed) {
-    return `${printSimple(indent, config, node.key)}[ ${printSimple(indent, config, node.value)} ]: ${printSimple(indent, config, node.value)}`;
+    return `[ ${printSimple(indent, config, node.key)} ]: ${printSimple(indent, config, node.value)}`;
   } else {
     return `${node.key}: ${printSimple(indent, config, node.value)}`;
   }

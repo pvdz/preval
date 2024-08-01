@@ -72,7 +72,7 @@ const a = function() {
   debugger;
   return undefined;
 };
-const b = { a[ 10 ]: 10 };
+const b = { [ a ]: 10 };
 $( b );
 $( a );
 `````

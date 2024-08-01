@@ -86,7 +86,7 @@ else {
   const f = c[ e ];
   b = f;
 }
-const g = { b[ 10 ]: 10 };
+const g = { [ b ]: 10 };
 $( g );
 $( b );
 `````

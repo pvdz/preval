@@ -79,7 +79,7 @@ const d = $( a );
 const e = $( "d" );
 const f = d[ e ];
 b[c] = f;
-const g = { f[ 10 ]: 10 };
+const g = { [ f ]: 10 };
 $( g );
 $( f, a );
 `````

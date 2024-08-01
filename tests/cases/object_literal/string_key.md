@@ -74,7 +74,7 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = {
-  "hello, world!"[ a ]: a,
+  [ "hello, world!" ]: a,
   [ "hey, me too!" ](  ) {
     debugger;
     const c = $( 2 );

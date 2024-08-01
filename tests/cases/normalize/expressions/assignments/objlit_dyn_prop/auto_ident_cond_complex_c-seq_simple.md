@@ -75,7 +75,7 @@ else {
   const c = $( 100 );
   a = $( c );
 }
-const d = { a[ 10 ]: 10 };
+const d = { [ a ]: 10 };
 $( d );
 $( a );
 `````

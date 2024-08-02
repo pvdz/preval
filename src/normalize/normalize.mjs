@@ -2912,6 +2912,45 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           return true;
         }
 
+        if (node.callee.type === 'Identifier' && node.callee.name === BUILTIN_FUNC_CALL_NAME) {
+          // This is $dotCall()
+          // Lowest hanging fruit: `const x = a.b; $dotCall(x, a, 1, 2); -> a.b(1, 2)
+          // Check previous statement. If it is a const binding to the first arg of the $dotCall
+          // and it is a member expression where the object equals the second $dotCall arg... simplify!
+
+          if (
+            i > 0 &&
+            body[i-1].type === 'VariableDeclaration' &&
+            body[i-1].kind === 'const' &&
+            node.arguments.length &&
+            node.arguments[0].type === 'Identifier' &&
+            body[i-1].declarations[0].id.name === node.arguments[0].name &&
+            // `const a = ???; $dotCall(a, b, c)` where a is defined in the previous statement. check context
+            body[i-1].declarations[0].init.type === 'MemberExpression' &&
+            !body[i-1].declarations[0].init.computed &&
+            body[i-1].declarations[0].init.object.type === 'Identifier' &&
+            node.arguments[1].type === 'Identifier' &&
+            body[i-1].declarations[0].init.object.name === node.arguments[1].name
+            // `const a = b.?; $dotCall(a, b, c)` where a is defined in the previous statement. we should be good now
+          ) {
+            // (We must support method calls, anyways. This makes some things easier.)
+            rule('If the first $dotCall arg is found to be declared by a simple member expression then recombine it');
+            example('const a = b.c; $dotCall(a, b, 1, 2);', 'b.c(1, 2);')
+            before(body[i-1])
+            before(body[i]);
+
+            node.callee = body[i-1].declarations[0].init;
+            node.arguments.shift(); // Remove the function being called (that is the callee now)
+            node.arguments.shift(); // Remove the context arg
+            body[i-1] = AST.emptyStatement();
+
+            before(body[i-1])
+            before(body[i]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+        }
+
         if (
           AST.isPrimitive(node.callee) ||
           node.callee.type === 'TemplateLiteral' || // Any template literal is a string and is uncallable

@@ -53,8 +53,7 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementObject = tmpChainRootProp.c;
     const tmpChainElementObject$1 = tmpChainElementObject.d;
-    const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-    const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
+    const tmpChainElementCall = tmpChainElementObject$1.e(1);
   } else {
   }
 } else {
@@ -72,7 +71,7 @@ const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpObjLitVal$1 = { e: $ };
-  $dotCall($, tmpObjLitVal$1, 1);
+  tmpObjLitVal$1.e(1);
 } else {
 }
 $(a);
@@ -92,7 +91,7 @@ const c = $( 1 );
 const d = b === c;
 if (d) {
   const e = { e: $ };
-  $dotCall( $, e, 1 );
+  e.e( 1 );
 }
 $( a );
 `````

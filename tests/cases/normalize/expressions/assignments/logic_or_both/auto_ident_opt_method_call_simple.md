@@ -37,8 +37,7 @@ a = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
+  const tmpChainElementCall = tmpChainRootProp.c(1);
   a = tmpChainElementCall;
 } else {
 }
@@ -49,8 +48,7 @@ if (tmpCalleeParam) {
   const tmpChainRootProp$1 = b;
   const tmpIfTest$1 = tmpChainRootProp$1 != null;
   if (tmpIfTest$1) {
-    const tmpChainElementObject$1 = tmpChainRootProp$1.c;
-    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, tmpChainRootProp$1, 1);
+    const tmpChainElementCall$1 = tmpChainRootProp$1.c(1);
     tmpNestedComplexRhs = tmpChainElementCall$1;
   } else {
   }
@@ -66,13 +64,12 @@ $(a);
 
 `````js filename=intro
 const b = { c: $ };
-const tmpChainElementCall = $dotCall($, b, 1);
+const tmpChainElementCall = b.c(1);
 let tmpClusterSSA_a = tmpChainElementCall;
 if (tmpChainElementCall) {
   $(tmpChainElementCall);
 } else {
-  const tmpChainElementObject$1 = b.c;
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, b, 1);
+  const tmpChainElementCall$1 = b.c(1);
   tmpClusterSSA_a = tmpChainElementCall$1;
   $(tmpChainElementCall$1);
 }
@@ -85,16 +82,15 @@ With rename=true
 
 `````js filename=intro
 const a = { c: $ };
-const b = $dotCall( $, a, 1 );
+const b = a.c( 1 );
 let c = b;
 if (b) {
   $( b );
 }
 else {
-  const d = a.c;
-  const e = $dotCall( d, a, 1 );
-  c = e;
-  $( e );
+  const d = a.c( 1 );
+  c = d;
+  $( d );
 }
 $( c );
 `````

@@ -41,8 +41,7 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementObject = tmpChainRootProp.c;
     const tmpChainElementObject$1 = tmpChainElementObject.d;
-    const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-    const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
+    const tmpChainElementCall = tmpChainElementObject$1.e(1);
   } else {
   }
 } else {
@@ -58,7 +57,7 @@ $(a);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpObjLitVal$1 = { e: $ };
-  $dotCall($, tmpObjLitVal$1, 1);
+  tmpObjLitVal$1.e(1);
 } else {
   $(200);
 }
@@ -74,7 +73,7 @@ With rename=true
 const a = $( 1 );
 if (a) {
   const b = { e: $ };
-  $dotCall( $, b, 1 );
+  b.e( 1 );
 }
 else {
   $( 200 );

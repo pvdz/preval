@@ -62,8 +62,7 @@ let tmpBinLhs = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest$1 = tmpChainRootProp != null;
 if (tmpIfTest$1) {
-  const tmpChainElementObject = tmpChainRootProp.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
+  const tmpChainElementCall = tmpChainRootProp.c(1);
   tmpBinLhs = tmpChainElementCall;
 } else {
 }
@@ -105,7 +104,7 @@ const b = { c: $ };
 const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpChainElementCall = $dotCall($, b, 1);
+const tmpChainElementCall = b.c(1);
 const tmpIfTest = tmpChainElementCall === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -141,7 +140,7 @@ const b = {
 };
 const c = $( 1 );
 let d = 1;
-const e = $dotCall( $, a, 1 );
+const e = a.c( 1 );
 const f = e === c;
 if (f) {
   d = 0;

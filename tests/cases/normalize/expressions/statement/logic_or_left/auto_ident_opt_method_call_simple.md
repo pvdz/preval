@@ -36,8 +36,7 @@ let tmpIfTest = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest$1 = tmpChainRootProp != null;
 if (tmpIfTest$1) {
-  const tmpChainElementObject = tmpChainRootProp.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
+  const tmpChainElementCall = tmpChainRootProp.c(1);
   tmpIfTest = tmpChainElementCall;
 } else {
 }
@@ -54,7 +53,7 @@ $(a);
 `````js filename=intro
 const b = { c: $ };
 const a = { a: 999, b: 1000 };
-const tmpChainElementCall = $dotCall($, b, 1);
+const tmpChainElementCall = b.c(1);
 if (tmpChainElementCall) {
 } else {
   $(100);
@@ -72,7 +71,7 @@ const b = {
   a: 999,
   b: 1000,
 };
-const c = $dotCall( $, a, 1 );
+const c = a.c( 1 );
 if (c) {
 
 }

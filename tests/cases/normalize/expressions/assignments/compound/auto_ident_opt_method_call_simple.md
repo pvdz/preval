@@ -38,8 +38,7 @@ let tmpBinBothRhs = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
+  const tmpChainElementCall = tmpChainRootProp.c(1);
   tmpBinBothRhs = tmpChainElementCall;
 } else {
 }
@@ -53,9 +52,9 @@ $(a);
 
 
 `````js filename=intro
-const b = { c: $ };
 const a = { a: 999, b: 1000 };
-const tmpChainElementCall = $dotCall($, b, 1);
+const b = { c: $ };
+const tmpChainElementCall = b.c(1);
 const tmpClusterSSA_a$1 = a * tmpChainElementCall;
 $(tmpClusterSSA_a$1);
 $(tmpClusterSSA_a$1);
@@ -66,13 +65,13 @@ $(tmpClusterSSA_a$1);
 With rename=true
 
 `````js filename=intro
-const a = { c: $ };
-const b = {
+const a = {
   a: 999,
   b: 1000,
 };
-const c = $dotCall( $, a, 1 );
-const d = b * c;
+const b = { c: $ };
+const c = b.c( 1 );
+const d = a * c;
 $( d );
 $( d );
 `````

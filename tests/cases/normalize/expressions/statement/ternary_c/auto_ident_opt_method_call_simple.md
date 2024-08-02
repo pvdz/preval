@@ -39,8 +39,7 @@ if (tmpIfTest) {
   const tmpChainRootProp = b;
   const tmpIfTest$1 = tmpChainRootProp != null;
   if (tmpIfTest$1) {
-    const tmpChainElementObject = tmpChainRootProp.c;
-    const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
+    const tmpChainElementCall = tmpChainRootProp.c(1);
   } else {
   }
 }
@@ -56,7 +55,7 @@ if (tmpIfTest) {
   $(100);
 } else {
   const b = { c: $ };
-  $dotCall($, b, 1);
+  b.c(1);
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -73,7 +72,7 @@ if (a) {
 }
 else {
   const b = { c: $ };
-  $dotCall( $, b, 1 );
+  b.c( 1 );
 }
 const c = {
   a: 999,

@@ -37,8 +37,7 @@ if (tmpIfTest) {
   const tmpChainRootProp = b;
   const tmpIfTest$1 = tmpChainRootProp != null;
   if (tmpIfTest$1) {
-    const tmpChainElementObject = tmpChainRootProp.c;
-    const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
+    const tmpChainElementCall = tmpChainRootProp.c(1);
   } else {
   }
 } else {
@@ -54,7 +53,7 @@ $(a);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const b = { c: $ };
-  $dotCall($, b, 1);
+  b.c(1);
 } else {
   $(200);
 }
@@ -70,7 +69,7 @@ With rename=true
 const a = $( 1 );
 if (a) {
   const b = { c: $ };
-  $dotCall( $, b, 1 );
+  b.c( 1 );
 }
 else {
   $( 200 );

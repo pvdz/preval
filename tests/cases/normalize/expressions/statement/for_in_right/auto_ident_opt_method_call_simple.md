@@ -47,8 +47,7 @@ let tmpCalleeParam = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
+  const tmpChainElementCall = tmpChainRootProp.c(1);
   tmpCalleeParam = tmpChainElementCall;
 } else {
 }
@@ -71,7 +70,7 @@ $(a);
 `````js filename=intro
 const b = { c: $ };
 const a = { a: 999, b: 1000 };
-const tmpChainElementCall = $dotCall($, b, 1);
+const tmpChainElementCall = b.c(1);
 const tmpClusterSSA_tmpForInGen = $forIn(tmpChainElementCall);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext = tmpClusterSSA_tmpForInGen.next();
@@ -95,7 +94,7 @@ const b = {
   a: 999,
   b: 1000,
 };
-const c = $dotCall( $, a, 1 );
+const c = a.c( 1 );
 const d = $forIn( c );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const e = d.next();

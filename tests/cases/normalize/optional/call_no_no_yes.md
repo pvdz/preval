@@ -81,8 +81,7 @@ const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootCall = a;
 const tmpChainElementCall = tmpChainRootCall();
-const tmpChainElementObject = tmpChainElementCall.b;
-const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall);
+const tmpChainElementCall$1 = tmpChainElementCall.b();
 const tmpChainElementObject$1 = tmpChainElementCall$1.c;
 const tmpIfTest = tmpChainElementObject$1 != null;
 if (tmpIfTest) {
@@ -116,8 +115,7 @@ const a$1 = {
     return a$1;
   },
 };
-const tmpChainElementObject = a$1.b;
-const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, a$1);
+const tmpChainElementCall$1 = a$1.b();
 const tmpChainElementObject$1 = tmpChainElementCall$1.c;
 const tmpIfTest = tmpChainElementObject$1 == null;
 if (tmpIfTest) {
@@ -152,17 +150,16 @@ const a = {
     return a;
   },
 };
-const b = a.b;
-const c = $dotCall( b, a );
-const d = c.c;
-const e = d == null;
-if (e) {
+const b = a.b();
+const c = b.c;
+const d = c == null;
+if (d) {
   $( undefined );
 }
 else {
-  const f = $dotCall( d, c );
-  const g = f.d;
-  $( g );
+  const e = $dotCall( c, b );
+  const f = e.d;
+  $( f );
 }
 `````
 

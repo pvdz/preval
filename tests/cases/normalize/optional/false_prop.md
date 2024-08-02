@@ -28,8 +28,7 @@ let tmpCalleeParam = undefined;
 const tmpChainRootProp = false;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.toString;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp);
+  const tmpChainElementCall = tmpChainRootProp.toString();
   tmpCalleeParam = tmpChainElementCall;
 } else {
 }

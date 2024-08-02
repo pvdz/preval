@@ -36,8 +36,7 @@ while (true) {
   const tmpChainRootProp = x;
   const tmpIfTest$1 = tmpChainRootProp != null;
   if (tmpIfTest$1) {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, x);
+    const tmpChainElementCall = tmpChainRootProp.x(x);
     tmpIfTest = tmpChainElementCall;
   } else {
   }
@@ -58,8 +57,7 @@ const tmpChainRootProp = tmpClusterSSA_x;
 const tmpIfTest$1 = tmpChainRootProp == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, tmpClusterSSA_x);
+  const tmpChainElementCall = tmpChainRootProp.x(tmpClusterSSA_x);
   tmpIfTest = tmpChainElementCall;
 }
 if (tmpIfTest) {
@@ -71,8 +69,7 @@ if (tmpIfTest) {
     const tmpIfTest$4 = tmpChainRootProp$1 == null;
     if (tmpIfTest$4) {
     } else {
-      const tmpChainElementObject$1 = tmpChainRootProp$1.x;
-      const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, tmpChainRootProp$1, tmpClusterSSA_x);
+      const tmpChainElementCall$1 = tmpChainRootProp$1.x(tmpClusterSSA_x);
       tmpIfTest$2 = tmpChainElementCall$1;
     }
     if (tmpIfTest$2) {
@@ -97,26 +94,24 @@ if (d) {
 
 }
 else {
-  const e = c.x;
-  const f = $dotCall( e, c, a );
-  b = f;
+  const e = c.x( a );
+  b = e;
 }
 if (b) {
   while ($LOOP_UNROLL_10) {
     a ** 0;
     a = NaN.x;
-    let g = false;
-    const h = a;
-    const i = h == null;
-    if (i) {
+    let f = false;
+    const g = a;
+    const h = g == null;
+    if (h) {
 
     }
     else {
-      const j = h.x;
-      const k = $dotCall( j, h, a );
-      g = k;
+      const i = g.x( a );
+      f = i;
     }
-    if (g) {
+    if (f) {
 
     }
     else {

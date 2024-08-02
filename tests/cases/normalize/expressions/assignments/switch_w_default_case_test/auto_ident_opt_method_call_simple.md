@@ -60,8 +60,7 @@ a = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest$1 = tmpChainRootProp != null;
 if (tmpIfTest$1) {
-  const tmpChainElementObject = tmpChainRootProp.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
+  const tmpChainElementCall = tmpChainRootProp.c(1);
   a = tmpChainElementCall;
 } else {
 }
@@ -97,7 +96,7 @@ $(a);
 const b = { c: $ };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpChainElementCall = $dotCall($, b, 1);
+const tmpChainElementCall = b.c(1);
 const tmpIfTest = tmpChainElementCall === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -125,7 +124,7 @@ With rename=true
 const a = { c: $ };
 const b = $( 1 );
 let c = 1;
-const d = $dotCall( $, a, 1 );
+const d = a.c( 1 );
 const e = d === b;
 if (e) {
   c = 0;

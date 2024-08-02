@@ -79,8 +79,7 @@ if (tmpIfTest$3) {
   if (tmpIfTest$5) {
     const tmpChainElementObject = tmpChainRootProp.c;
     const tmpChainElementObject$1 = tmpChainElementObject.d;
-    const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-    const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
+    const tmpChainElementCall = tmpChainElementObject$1.e(1);
     a = tmpChainElementCall;
   } else {
   }
@@ -120,7 +119,7 @@ if (tmpIfTest) {
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   const tmpObjLitVal$1 = { e: $ };
-  const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
+  const tmpChainElementCall = tmpObjLitVal$1.e(1);
   a = tmpChainElementCall;
 } else {
 }
@@ -158,7 +157,7 @@ else {
 const g = c <= 0;
 if (g) {
   const h = { e: $ };
-  const i = $dotCall( $, h, 1 );
+  const i = h.e( 1 );
   a = i;
 }
 const j = c <= 1;

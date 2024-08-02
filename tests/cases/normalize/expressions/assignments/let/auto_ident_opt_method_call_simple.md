@@ -38,8 +38,7 @@ a = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
+  const tmpChainElementCall = tmpChainRootProp.c(1);
   a = tmpChainElementCall;
 } else {
 }
@@ -53,7 +52,7 @@ $(a);
 
 `````js filename=intro
 const b = { c: $ };
-const tmpChainElementCall = $dotCall($, b, 1);
+const tmpChainElementCall = b.c(1);
 $(tmpChainElementCall);
 $(tmpChainElementCall);
 `````
@@ -64,7 +63,7 @@ With rename=true
 
 `````js filename=intro
 const a = { c: $ };
-const b = $dotCall( $, a, 1 );
+const b = a.c( 1 );
 $( b );
 $( b );
 `````

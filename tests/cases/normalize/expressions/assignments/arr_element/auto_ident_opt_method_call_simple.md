@@ -37,8 +37,7 @@ a = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
+  const tmpChainElementCall = tmpChainRootProp.c(1);
   a = tmpChainElementCall;
 } else {
 }
@@ -47,8 +46,7 @@ a = undefined;
 const tmpChainRootProp$1 = b;
 const tmpIfTest$1 = tmpChainRootProp$1 != null;
 if (tmpIfTest$1) {
-  const tmpChainElementObject$1 = tmpChainRootProp$1.c;
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, tmpChainRootProp$1, 1);
+  const tmpChainElementCall$1 = tmpChainRootProp$1.c(1);
   a = tmpChainElementCall$1;
 } else {
 }
@@ -63,9 +61,8 @@ $(a);
 
 `````js filename=intro
 const b = { c: $ };
-const tmpChainElementCall = $dotCall($, b, 1);
-const tmpChainElementObject$1 = b.c;
-const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, b, 1);
+const tmpChainElementCall = b.c(1);
+const tmpChainElementCall$1 = b.c(1);
 const tmpCalleeParam = tmpChainElementCall + tmpChainElementCall$1;
 $(tmpCalleeParam);
 $(tmpChainElementCall$1);
@@ -77,12 +74,11 @@ With rename=true
 
 `````js filename=intro
 const a = { c: $ };
-const b = $dotCall( $, a, 1 );
-const c = a.c;
-const d = $dotCall( c, a, 1 );
-const e = b + d;
-$( e );
+const b = a.c( 1 );
+const c = a.c( 1 );
+const d = b + c;
 $( d );
+$( c );
 `````
 
 ## Globals

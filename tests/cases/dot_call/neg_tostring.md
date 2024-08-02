@@ -30,8 +30,7 @@ $(x);
 
 `````js filename=intro
 const num = -500;
-const tmpCallVal = num.toString;
-const x = $dotCall(tmpCallVal, num);
+const x = num.toString();
 $(x);
 `````
 

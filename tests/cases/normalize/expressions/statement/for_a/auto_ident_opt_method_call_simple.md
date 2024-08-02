@@ -38,8 +38,7 @@ let a = { a: 999, b: 1000 };
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
+  const tmpChainElementCall = tmpChainRootProp.c(1);
 } else {
 }
 while (true) {
@@ -58,7 +57,7 @@ $(a);
 `````js filename=intro
 const b = { c: $ };
 const a = { a: 999, b: 1000 };
-$dotCall($, b, 1);
+b.c(1);
 const tmpIfTest$1 = $(0);
 if (tmpIfTest$1) {
   while ($LOOP_UNROLL_10) {
@@ -83,7 +82,7 @@ const b = {
   a: 999,
   b: 1000,
 };
-$dotCall( $, a, 1 );
+a.c( 1 );
 const c = $( 0 );
 if (c) {
   while ($LOOP_UNROLL_10) {

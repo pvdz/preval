@@ -30,8 +30,7 @@ $(x);
 
 `````js filename=intro
 const rex = /foo/;
-const tmpCallVal = rex.test;
-const x = $dotCall(tmpCallVal, rex);
+const x = rex.test();
 $(x);
 `````
 

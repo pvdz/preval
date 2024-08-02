@@ -31,8 +31,7 @@ const tmpChainRootProp = a;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.b;
-  const tmpChainElementObject$1 = tmpChainElementObject.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject$1, tmpChainElementObject, 1);
+  const tmpChainElementCall = tmpChainElementObject.c(1);
 } else {
 }
 `````
@@ -42,7 +41,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpObjLitVal = { c: $ };
-$dotCall($, tmpObjLitVal, 1);
+tmpObjLitVal.c(1);
 `````
 
 ## PST Output
@@ -51,7 +50,7 @@ With rename=true
 
 `````js filename=intro
 const a = { c: $ };
-$dotCall( $, a, 1 );
+a.c( 1 );
 `````
 
 ## Globals

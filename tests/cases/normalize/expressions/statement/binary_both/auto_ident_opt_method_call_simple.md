@@ -36,8 +36,7 @@ let tmpBinBothLhs = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
+  const tmpChainElementCall = tmpChainRootProp.c(1);
   tmpBinBothLhs = tmpChainElementCall;
 } else {
 }
@@ -45,8 +44,7 @@ let tmpBinBothRhs = undefined;
 const tmpChainRootProp$1 = b;
 const tmpIfTest$1 = tmpChainRootProp$1 != null;
 if (tmpIfTest$1) {
-  const tmpChainElementObject$1 = tmpChainRootProp$1.c;
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, tmpChainRootProp$1, 1);
+  const tmpChainElementCall$1 = tmpChainRootProp$1.c(1);
   tmpBinBothRhs = tmpChainElementCall$1;
 } else {
 }
@@ -60,9 +58,8 @@ $(a);
 `````js filename=intro
 const b = { c: $ };
 const a = { a: 999, b: 1000 };
-const tmpChainElementCall = $dotCall($, b, 1);
-const tmpChainElementObject$1 = b.c;
-const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, b, 1);
+const tmpChainElementCall = b.c(1);
+const tmpChainElementCall$1 = b.c(1);
 tmpChainElementCall + tmpChainElementCall$1;
 $(a);
 `````
@@ -77,10 +74,9 @@ const b = {
   a: 999,
   b: 1000,
 };
-const c = $dotCall( $, a, 1 );
-const d = a.c;
-const e = $dotCall( d, a, 1 );
-c + e;
+const c = a.c( 1 );
+const d = a.c( 1 );
+c + d;
 $( b );
 `````
 

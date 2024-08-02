@@ -42,8 +42,7 @@ while (true) {
     const tmpChainRootProp = b;
     const tmpIfTest$1 = tmpChainRootProp != null;
     if (tmpIfTest$1) {
-      const tmpChainElementObject = tmpChainRootProp.c;
-      const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
+      const tmpChainElementCall = tmpChainRootProp.c(1);
     } else {
     }
   } else {
@@ -60,12 +59,10 @@ $(a);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const b = { c: $ };
-  $dotCall($, b, 1);
   while ($LOOP_UNROLL_10) {
+    b.c(1);
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
-      const tmpChainElementObject$1 = b.c;
-      $dotCall(tmpChainElementObject$1, b, 1);
     } else {
       break;
     }
@@ -84,23 +81,22 @@ With rename=true
 const a = $( 1 );
 if (a) {
   const b = { c: $ };
-  $dotCall( $, b, 1 );
   while ($LOOP_UNROLL_10) {
+    b.c( 1 );
     const c = $( 1 );
     if (c) {
-      const d = b.c;
-      $dotCall( d, b, 1 );
+
     }
     else {
       break;
     }
   }
 }
-const e = {
+const d = {
   a: 999,
   b: 1000,
 };
-$( e );
+$( d );
 `````
 
 ## Globals

@@ -38,8 +38,7 @@ let tmpCalleeParam$1 = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
+  const tmpChainElementCall = tmpChainRootProp.c(1);
   tmpCalleeParam$1 = tmpChainElementCall;
 } else {
 }
@@ -54,7 +53,7 @@ $(a);
 const b = { c: $ };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = [`before `, ` after`];
-const tmpChainElementCall = $dotCall($, b, 1);
+const tmpChainElementCall = b.c(1);
 $(tmpCalleeParam, tmpChainElementCall);
 $(a);
 `````
@@ -70,7 +69,7 @@ const b = {
   b: 1000,
 };
 const c = [ "before ", " after" ];
-const d = $dotCall( $, a, 1 );
+const d = a.c( 1 );
 $( c, d );
 $( b );
 `````

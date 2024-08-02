@@ -34,8 +34,7 @@ const tmpChainElementCall = tmpChainRootCall(a);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.b;
-  const tmpChainElementObject$1 = tmpChainElementObject.c;
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, tmpChainElementObject, 100);
+  const tmpChainElementCall$1 = tmpChainElementObject.c(100);
   tmpCalleeParam = tmpChainElementCall$1;
 } else {
 }
@@ -54,8 +53,7 @@ if (tmpIfTest) {
   $(undefined);
 } else {
   const tmpChainElementObject = tmpChainElementCall.b;
-  const tmpChainElementObject$1 = tmpChainElementObject.c;
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, tmpChainElementObject, 100);
+  const tmpChainElementCall$1 = tmpChainElementObject.c(100);
   $(tmpChainElementCall$1);
 }
 `````
@@ -74,9 +72,8 @@ if (d) {
 }
 else {
   const e = c.b;
-  const f = e.c;
-  const g = $dotCall( f, e, 100 );
-  $( g );
+  const f = e.c( 100 );
+  $( f );
 }
 `````
 
@@ -92,10 +89,6 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: BAD!?
- - 1: { b: '{}' }
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: { b: '{}' }
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+Final output calls: Same

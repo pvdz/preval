@@ -48,8 +48,7 @@ let f = function ($$0) {
     if (tmpIfTest$1) {
       const tmpChainElementObject = tmpChainRootProp.c;
       const tmpChainElementObject$1 = tmpChainElementObject.d;
-      const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-      const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
+      const tmpChainElementCall = tmpChainElementObject$1.e(1);
       p = tmpChainElementCall;
       return undefined;
     } else {
@@ -76,7 +75,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
 const a = { a: 999, b: 1000 };
-$dotCall($, tmpObjLitVal$1, 1);
+tmpObjLitVal$1.e(1);
 $(undefined);
 $(a);
 `````
@@ -91,7 +90,7 @@ const b = {
   a: 999,
   b: 1000,
 };
-$dotCall( $, a, 1 );
+a.e( 1 );
 $( undefined );
 $( b );
 `````

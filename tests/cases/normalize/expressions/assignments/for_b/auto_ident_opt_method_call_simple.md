@@ -41,8 +41,7 @@ while (true) {
   const tmpChainRootProp = b;
   const tmpIfTest$1 = tmpChainRootProp != null;
   if (tmpIfTest$1) {
-    const tmpChainElementObject = tmpChainRootProp.c;
-    const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
+    const tmpChainElementCall = tmpChainRootProp.c(1);
     a = tmpChainElementCall;
   } else {
   }
@@ -61,13 +60,12 @@ $(a);
 
 `````js filename=intro
 const b = { c: $ };
-const tmpChainElementCall = $dotCall($, b, 1);
+const tmpChainElementCall = b.c(1);
 let tmpClusterSSA_a = tmpChainElementCall;
 if (tmpChainElementCall) {
   while ($LOOP_UNROLL_10) {
     $(1);
-    const tmpChainElementObject$1 = b.c;
-    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, b, 1);
+    const tmpChainElementCall$1 = b.c(1);
     tmpClusterSSA_a = tmpChainElementCall$1;
     if (tmpChainElementCall$1) {
     } else {
@@ -85,15 +83,14 @@ With rename=true
 
 `````js filename=intro
 const a = { c: $ };
-const b = $dotCall( $, a, 1 );
+const b = a.c( 1 );
 let c = b;
 if (b) {
   while ($LOOP_UNROLL_10) {
     $( 1 );
-    const d = a.c;
-    const e = $dotCall( d, a, 1 );
-    c = e;
-    if (e) {
+    const d = a.c( 1 );
+    c = d;
+    if (d) {
 
     }
     else {

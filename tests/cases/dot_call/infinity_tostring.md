@@ -30,8 +30,7 @@ $(x);
 
 `````js filename=intro
 const inf = Infinity;
-const tmpCallVal = inf.toString;
-const x = $dotCall(tmpCallVal, inf);
+const x = inf.toString();
 $(x);
 `````
 

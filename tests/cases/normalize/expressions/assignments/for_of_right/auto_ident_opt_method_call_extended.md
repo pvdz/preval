@@ -51,8 +51,7 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
+  const tmpChainElementCall = tmpChainElementObject$1.e(1);
   a = tmpChainElementCall;
 } else {
 }
@@ -75,7 +74,7 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
-const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
+const tmpChainElementCall = tmpObjLitVal$1.e(1);
 const tmpForOfGen = $forOf(tmpChainElementCall);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext = tmpForOfGen.next();
@@ -95,7 +94,7 @@ With rename=true
 
 `````js filename=intro
 const a = { e: $ };
-const b = $dotCall( $, a, 1 );
+const b = a.e( 1 );
 const c = $forOf( b );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const d = c.next();

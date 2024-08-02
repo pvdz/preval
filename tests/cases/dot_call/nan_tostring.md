@@ -30,8 +30,7 @@ $(x);
 
 `````js filename=intro
 const naN = NaN;
-const tmpCallVal = naN.toString;
-const x = $dotCall(tmpCallVal, naN);
+const x = naN.toString();
 $(x);
 `````
 

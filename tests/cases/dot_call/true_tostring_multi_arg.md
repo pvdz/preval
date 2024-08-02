@@ -30,8 +30,7 @@ $(x);
 
 `````js filename=intro
 const bool = true;
-const tmpCallVal = bool.toString;
-const x = $dotCall(tmpCallVal, bool, $, unknown);
+const x = bool.toString($, unknown);
 $(x);
 `````
 

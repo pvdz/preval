@@ -45,8 +45,7 @@ let tmpSwitchDisc = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
+  const tmpChainElementCall = tmpChainRootProp.c(1);
   tmpSwitchDisc = tmpChainElementCall;
 } else {
 }
@@ -60,7 +59,7 @@ $(a);
 `````js filename=intro
 const b = { c: $ };
 const a = { a: 999, b: 1000 };
-$dotCall($, b, 1);
+b.c(1);
 $(100);
 $(a);
 `````
@@ -75,7 +74,7 @@ const b = {
   a: 999,
   b: 1000,
 };
-$dotCall( $, a, 1 );
+a.c( 1 );
 $( 100 );
 $( b );
 `````

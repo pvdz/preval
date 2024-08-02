@@ -49,8 +49,7 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
+  const tmpChainElementCall = tmpChainElementObject$1.e(1);
 } else {
 }
 $(a);
@@ -63,7 +62,7 @@ $(a);
 const tmpObjLitVal$1 = { e: $ };
 const a = { a: 999, b: 1000 };
 $(1);
-$dotCall($, tmpObjLitVal$1, 1);
+tmpObjLitVal$1.e(1);
 $(a);
 `````
 
@@ -78,7 +77,7 @@ const b = {
   b: 1000,
 };
 $( 1 );
-$dotCall( $, a, 1 );
+a.e( 1 );
 $( b );
 `````
 

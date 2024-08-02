@@ -83,10 +83,8 @@ const tmpChainRootCall = a;
 const tmpIfTest = tmpChainRootCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall = tmpChainRootCall();
-  const tmpChainElementObject = tmpChainElementCall.b;
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall);
-  const tmpChainElementObject$1 = tmpChainElementCall$1.c;
-  const tmpChainElementCall$3 = $dotCall(tmpChainElementObject$1, tmpChainElementCall$1);
+  const tmpChainElementCall$1 = tmpChainElementCall.b();
+  const tmpChainElementCall$3 = tmpChainElementCall$1.c();
   const tmpChainElementObject$3 = tmpChainElementCall$3.d;
   tmpCalleeParam = tmpChainElementObject$3;
 } else {
@@ -116,10 +114,8 @@ const a$1 = {
     return a$1;
   },
 };
-const tmpChainElementObject = a$1.b;
-const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, a$1);
-const tmpChainElementObject$1 = tmpChainElementCall$1.c;
-const tmpChainElementCall$3 = $dotCall(tmpChainElementObject$1, tmpChainElementCall$1);
+const tmpChainElementCall$1 = a$1.b();
+const tmpChainElementCall$3 = tmpChainElementCall$1.c();
 const tmpChainElementObject$3 = tmpChainElementCall$3.d;
 $(tmpChainElementObject$3);
 `````
@@ -147,12 +143,10 @@ const a = {
     return a;
   },
 };
-const b = a.b;
-const c = $dotCall( b, a );
-const d = c.c;
-const e = $dotCall( d, c );
-const f = e.d;
-$( f );
+const b = a.b();
+const c = b.c();
+const d = c.d;
+$( d );
 `````
 
 ## Globals

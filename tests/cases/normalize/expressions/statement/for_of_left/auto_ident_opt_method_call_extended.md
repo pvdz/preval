@@ -61,8 +61,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     if (tmpIfTest$1) {
       const tmpChainElementObject = tmpChainRootProp.c;
       const tmpChainElementObject$1 = tmpChainElementObject.d;
-      const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-      const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
+      const tmpChainElementCall = tmpChainElementObject$1.e(1);
       tmpAssignMemLhsObj = tmpChainElementCall;
     } else {
     }
@@ -89,8 +88,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const tmpChainElementObject$3 = tmpObjLitVal$1.e;
-    const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpObjLitVal$1, 1);
+    const tmpChainElementCall = tmpObjLitVal$1.e(1);
     const tmpAssignMemRhs = tmpForOfNext.value;
     tmpChainElementCall.x = tmpAssignMemRhs;
   }
@@ -118,10 +116,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
   else {
-    const h = a.e;
-    const i = $dotCall( h, a, 1 );
-    const j = f.value;
-    i.x = j;
+    const h = a.e( 1 );
+    const i = f.value;
+    h.x = i;
   }
 }
 $( b );

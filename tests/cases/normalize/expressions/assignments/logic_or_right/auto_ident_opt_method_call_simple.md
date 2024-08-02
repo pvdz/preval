@@ -40,8 +40,7 @@ if (tmpCalleeParam) {
   const tmpChainRootProp = b;
   const tmpIfTest = tmpChainRootProp != null;
   if (tmpIfTest) {
-    const tmpChainElementObject = tmpChainRootProp.c;
-    const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
+    const tmpChainElementCall = tmpChainRootProp.c(1);
     tmpNestedComplexRhs = tmpChainElementCall;
   } else {
   }
@@ -62,7 +61,7 @@ if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {
   const b = { c: $ };
-  const tmpChainElementCall = $dotCall($, b, 1);
+  const tmpChainElementCall = b.c(1);
   a = tmpChainElementCall;
   $(tmpChainElementCall);
 }
@@ -84,7 +83,7 @@ if (b) {
 }
 else {
   const c = { c: $ };
-  const d = $dotCall( $, c, 1 );
+  const d = c.c( 1 );
   a = d;
   $( d );
 }

@@ -41,8 +41,7 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
+  const tmpChainElementCall = tmpChainElementObject$1.e(1);
   a = tmpChainElementCall;
 } else {
 }
@@ -60,7 +59,7 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
-const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
+const tmpChainElementCall = tmpObjLitVal$1.e(1);
 if (tmpChainElementCall) {
   const tmpClusterSSA_tmpCalleeParam = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
@@ -76,7 +75,7 @@ With rename=true
 
 `````js filename=intro
 const a = { e: $ };
-const b = $dotCall( $, a, 1 );
+const b = a.e( 1 );
 if (b) {
   const c = $( 100 );
   $( c );

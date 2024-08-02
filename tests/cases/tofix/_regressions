@@ -42,3 +42,4 @@
 // Detect $forOf loops and unroll them when we know the values to be iterated over. Will need to replace calls to gen.next() with some kind of symbol to "remember" the index pointer of the generator. Much harder to do for-in keys unfortunately.
 // Maybe try to unroll $forIn under risky rules? The order may not be guaranteed but that also means we can do whatever we want with that order as long as it is consistent.
 // Apply type analysis for our $forIn and $forOf symbols
+// Consider whether tests/cases/regex/dotcall/simple.md should be allowed to inline the regex as the callee or smth

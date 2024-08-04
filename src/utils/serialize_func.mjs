@@ -159,7 +159,9 @@ export function createNormalizedFunctionFromString(funcString, bodyString, clone
   log('createNormalizedFunctionFromString: Size of function string:', funcString.length);
 
   const preFdata = parseCode(funcString, '');
-  prepareNormalization(preFdata, /*resolve*/ undefined, /*req*/ undefined, true); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+  // I want a phase1 because I want the scope tracking set up for normalizing bindings
+  // Skip the uuid reset otherwise we get duplicate pids
+  prepareNormalization(preFdata, /*resolve*/ undefined, /*req*/ undefined, true, {skipUidReset: true});
   source(preFdata.tenkoOutput.ast);
   preFdata.globallyUniqueNamingRegistry = fdata.globallyUniqueNamingRegistry;
   phaseNormalOnce(preFdata);

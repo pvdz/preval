@@ -3,7 +3,7 @@
 import walk from '../../lib/walk.mjs';
 
 import * as AST from '../ast.mjs';
-import { RED, BLUE, RESET } from '../constants.mjs';
+import { RED, BLUE, RESET, DIM } from '../constants.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd } from '../utils.mjs';
 import { $p } from '../$p.mjs';
 import { getIdentUsageKind, findUniqueNameForBindingIdent, preprocessScopeNode } from '../bindings.mjs';
@@ -30,7 +30,7 @@ export function uniqify_idents(funcAst, fdata) {
       node.$p = $p();
     }
 
-    vgroup(BLUE + nodeType + ':' + (before ? 'before' : 'after'), RESET);
+    vgroup(BLUE + nodeType + ':' + (before ? 'before' : 'after'), `:; ${DIM}@${node.$p.pid}${RESET}`);
 
     const key = nodeType + ':' + (before ? 'before' : 'after');
 

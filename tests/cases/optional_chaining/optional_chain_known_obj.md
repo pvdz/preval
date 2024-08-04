@@ -2,7 +2,7 @@
 
 # optional_chain_known_obj.md
 
-> Tofix > Optional chain known obj
+> Optional chaining > Optional chain known obj
 >
 > Need to sanitize this example but if we know that a value is an object
 > then we can safely drop `?.` applied to it, in all its variations.

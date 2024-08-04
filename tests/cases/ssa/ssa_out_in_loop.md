@@ -154,13 +154,13 @@ if ($) {
 if ($) {
   let B = `jhayon.vercel.app`;
   const tmpClusterSSA__0x15f773 = $(`x`);
-  const A = tmpClusterSSA__0x15f773.length;
-  const tmpBinBothLhs$30 = A[0];
+  const tmpClusterSSA_A = tmpClusterSSA__0x15f773.length;
+  const tmpBinBothLhs$30 = tmpClusterSSA_A[0];
   const tmpIfTest$10 = tmpBinBothLhs$30 === `.`;
   if (tmpIfTest$10) {
-    B = A.slice(1);
+    B = tmpClusterSSA_A.slice(1);
   } else {
-    B = A;
+    B = tmpClusterSSA_A;
   }
   const tmpBinBothLhs$32 = tmpClusterSSA__0x26b289.length;
   const tmpBinBothRhs$32 = B.length;
@@ -171,11 +171,11 @@ if ($) {
     tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
     if (tmpClusterSSA__0x5dc746) {
       const tmpBinBothLhs$34 = tmpClusterSSA__0x26b289.length;
-      const tmpBinBothRhs$34 = A.length;
+      const tmpBinBothRhs$34 = tmpClusterSSA_A.length;
       const tmpIfTest$12 = tmpBinBothLhs$34 === tmpBinBothRhs$34;
       if (tmpIfTest$12) {
       } else {
-        A.indexOf(`.`);
+        tmpClusterSSA_A.indexOf(`.`);
       }
     } else {
     }

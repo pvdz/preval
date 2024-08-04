@@ -19,7 +19,7 @@ import {
   source,
   after,
   findBodyOffset,
-  tmat,
+  tmat, assertNoDupeNodes,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
@@ -40,7 +40,7 @@ function _refTracked(fdata) {
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
-    if (!meta.singleScoped) return;
+    if (!meta.singleScoped) return; // Ref tracking only works for vars that appear in one (func) scope. No closures.
 
     vgroup('- `' + name);
     processBinding(meta, name);
@@ -49,9 +49,12 @@ function _refTracked(fdata) {
 
   function processBinding(meta, name) {
     if (!meta.reads.length) {
+      vgroup('  This binding has no reads and', meta.writes.length,'writes. We should try to eliminate the writes;', meta.writes.map(write => write.kind));
       meta.writes.forEach(write => {
+        vlog('- write', write.kind, write.parentNode.type);
         if (write.parentNode.type === 'VariableDeclarator') {
           if (meta.writes.every(write => write.kind === 'assign' || write.kind === 'var')) {
+            vlog('  - queued');
             queue.push({
               index: write.blockIndex,
               func: () => {
@@ -60,21 +63,26 @@ function _refTracked(fdata) {
                 example('let x = 1; x = 2; x = 3;', '1; 2; 3;');
                 before(write.blockBody[write.blockIndex]);
 
-                if (write.parentNode.init.type === 'Param' || write.parentNode.init.type === 'FunctionExpression') {
+                const expr = write.parentNode.init;
+                if (expr.type === 'Param' || expr.type === 'FunctionExpression' || AST.isPrimitive(expr)) {
                   write.blockBody[write.blockIndex] = AST.emptyStatement();
                 } else {
-                  write.blockBody[write.blockIndex] = AST.expressionStatement(write.parentNode.init);
+                  write.blockBody[write.blockIndex] = AST.expressionStatement(expr);
                 }
 
                 after(write.blockBody[write.blockIndex]);
+                assertNoDupeNodes(AST.blockStatement(write.blockBody), 'body', true);
               }
             });
             ++changed;
             return;
           } else {
             // keep; binding used in export or something?
+            vlog('  - not queued because there was a non-var non-assign write');
           }
-        } else if (write.kind === 'assign') {
+        }
+        else if (write.kind === 'assign') {
+          vlog('  - queued');
           queue.push({
             index: write.blockIndex,
             func: () => {
@@ -83,15 +91,25 @@ function _refTracked(fdata) {
               example('let x = 1; x = 2; x = 3;', '1; 2; 3;');
               before(write.blockBody[write.blockIndex]);
 
-              write.blockBody[write.blockIndex] = AST.expressionStatement(write.parentNode.right);
+              const expr = write.parentNode.right;
+              if (expr.type === 'Param' || expr.type === 'FunctionExpression' || AST.isPrimitive(expr)) {
+                write.blockBody[write.blockIndex] = AST.emptyStatement();
+              } else {
+                write.blockBody[write.blockIndex] = AST.expressionStatement(expr);
+              }
 
               after(write.blockBody[write.blockIndex]);
+              assertNoDupeNodes(AST.blockStatement(write.blockBody), 'body', true);
             }
           });
           ++changed;
           return;
         }
+        else {
+          vlog('  - not queued because kind =', write.kind);
+        }
       });
+      vgroupEnd();
       return;
     }
 
@@ -115,6 +133,7 @@ function _refTracked(fdata) {
               AST.throwStatement(AST.primitive(`Preval: This statement contained a read that reached no writes: ${stringArgTrunced}`));
 
             after(read.blockBody[read.blockIndex]);
+            assertNoDupeNodes(AST.blockStatement(read.blockBody), 'body', true);
             ++changed;
             return;
           }
@@ -136,6 +155,7 @@ function _refTracked(fdata) {
 
               after(read.blockBody[read.blockIndex]);
               ++changed;
+              assertNoDupeNodes(AST.blockStatement(read.blockBody), 'body', true);
               return;
             } else {
               vlog('RHS is not a primitive:', write.parentNode.right.type);
@@ -155,6 +175,7 @@ function _refTracked(fdata) {
 
               after(read.blockBody[read.blockIndex]);
               ++changed;
+              assertNoDupeNodes(AST.blockStatement(read.blockBody), 'body', true);
               return;
             } else {
               vlog('Init is not a primitive:', write.parentNode.init.type);
@@ -178,7 +199,7 @@ function _refTracked(fdata) {
               queue.push({
                 index: write.blockIndex,
                 func: () => {
-                  rule('A write that is not reached by any read can be eliminated');
+                  rule('A write that is not reached by any read can be eliminated; assign');
                   example('let x = 1; x = 2; x = 3;', 'let x = 1; x; 2; x = 3;');
                   before(write.blockBody[write.blockIndex]);
 
@@ -193,6 +214,7 @@ function _refTracked(fdata) {
                     );
                     after(write.blockBody[write.blockIndex]);
                     after(write.blockBody[write.blockIndex + 1]);
+                    assertNoDupeNodes(AST.blockStatement(write.blockBody), 'body', true);
                   }
                 }
               });
@@ -210,7 +232,7 @@ function _refTracked(fdata) {
               queue.push({
                 index: write.blockIndex,
                 func: () => {
-                  rule('A write that is not reached by any read can be eliminated');
+                  rule('A write that is not reached by any read can be eliminated; var');
                   example('let x = {}; x = 2;', 'let x = 1; 1; x = 2;');
                   before(write.blockBody[write.blockIndex]);
 
@@ -225,6 +247,7 @@ function _refTracked(fdata) {
 
                   after(write.blockBody[write.blockIndex]);
                   after(write.blockBody[write.blockIndex + 1]);
+                  assertNoDupeNodes(AST.blockStatement(write.blockBody), 'body', true);
                 }
               });
 

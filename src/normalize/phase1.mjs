@@ -1,7 +1,20 @@
 import walk from '../../lib/walk.mjs';
 
 import { VERBOSE_TRACING, RED, BLUE, DIM, RESET } from '../constants.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, REF_TRACK_TRACING } from '../utils.mjs';
+import {
+  ASSERT,
+  log,
+  group,
+  groupEnd,
+  vlog,
+  vgroup,
+  vgroupEnd,
+  tmat,
+  fmat,
+  source,
+  REF_TRACK_TRACING,
+  assertNoDupeNodes,
+} from '../utils.mjs';
 import { $p, resetUid, getUid } from '../$p.mjs';
 import * as AST from '../ast.mjs';
 import {
@@ -135,6 +148,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
   if (REF_TRACK_TRACING) console.groupEnd();
   vlog('End of phase1\n');
 
+  assertNoDupeNodes(ast, 'body');
+
   function _walker(node, before, nodeType, path) {
     ASSERT(node, 'node should be truthy', node);
     ASSERT(nodeType === node.type);
@@ -163,7 +178,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       fdata.flatNodeMap.set(node.$p.pid, node);
     }
 
-    vgroup(BLUE + nodeType + ':' + (before ? 'before' : 'after'), RESET, DIM, node.$p.pid, RESET);
+    vgroup(BLUE + nodeType + ':' + (before ? 'before' : 'after'), `:: ${DIM}@${node.$p.pid}${RESET}`);
 
     const key = nodeType + ':' + (before ? 'before' : 'after');
 
@@ -414,11 +429,13 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         node.$p.readsArgumentsLen = false;
         node.$p.readsArgumentsLenAt = -1;
 
-        if (parentNode.type === 'ExpressionStatement') {
-          vlog('Do not traverse function expression statement. I am not going to care about the contents.');
-          vgroupEnd();
-          return true;
-        }
+        // While we do not care about the contents of function statements, we do need to
+        // traverse it to reset pids and prevent dupe pid issues.
+        //if (parentNode.type === 'ExpressionStatement') {
+        //  vlog('Do not traverse function expression statement. I am not going to care about the contents.');
+        //  vgroupEnd();
+        //  return true;
+        //}
 
         blockIds.push(0); // Inject a zero to mark function boundaries
         ifIds.push(0);
@@ -432,7 +449,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         }
 
         ASSERT(
-          ['VariableDeclarator', 'AssignmentExpression', 'Property', 'MethodDefinition'].includes(parentNode.type),
+          ['VariableDeclarator', 'AssignmentExpression', 'Property', 'MethodDefinition', 'ExpressionStatement'].includes(parentNode.type),
           'normalized code should not other cases, right?',
           parentNode,
         );

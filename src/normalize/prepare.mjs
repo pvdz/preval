@@ -28,8 +28,14 @@ import { addLabelReference, createUniqueGlobalLabel, registerGlobalLabel } from 
 // It runs twice; once for actual input code and once on normalized code.
 
 export function prepareNormalization(fdata, resolve, req, oncePass, options = {}) {
+  ASSERT(arguments.length > prepareNormalization.length - 1, 'invalid prepareNormalization arg count');
   const ast = fdata.tenkoOutput.ast;
   const fname = fdata.fname;
+
+  {
+    const {skipUidReset, unrollTrueLimit, ...rest} = options;
+    ASSERT(Object.keys(rest).length === 0, 'not expecting these options', rest);
+  }
 
   const funcStack = [];
   const lexScopeStack = [];
@@ -65,7 +71,9 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
     '\n\n\n##################################\n## prepare normalization  ::  ' + fdata.fname + '\n##################################\n\n\n',
   );
 
-  resetUid();
+  if (!options.skipUidReset) {
+    resetUid();
+  }
 
   walk(_walker, ast, 'ast');
   function _walker(node, beforeWalk, nodeType, path) {

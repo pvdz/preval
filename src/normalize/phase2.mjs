@@ -1,4 +1,4 @@
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, before } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, before, assertNoDupeNodes } from '../utils.mjs';
 import { mergeTyping } from '../bindings.mjs';
 import { pruneEmptyFunctions } from '../reduce_static/empty_func.mjs';
 import { pruneTrampolineFunctions } from '../reduce_static/trampoline.mjs';
@@ -115,9 +115,15 @@ export function phase2(program, fdata, resolve, req, options) {
   group('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
   if (VERBOSE_TRACING) vlog('\nCurrent state (before phase2)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
   vlog('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
+
+  assertNoDupeNodes(ast, 'body');
+
   vlog('Phase 2 options:', options);
   const r = _phase2(program, fdata, resolve, req, options);
   groupEnd();
+
+  assertNoDupeNodes(fdata.tenkoOutput.ast, 'body');
+
   return r; // phase1 (phase1/2 cycle), truthy (full cycle), or falsy (repeat)
 }
 function _phase2(program, fdata, resolve, req, options = {}) {
@@ -284,6 +290,7 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     ifUpdateTest(fdata) ||
     fakeDoWhile(fdata) ||
     // This one should probably be lowest priority as it might blow up code...
+    // And we must run a normalization step if _anything_ changed since in phase2, even if it was non-blocking
     unrollLoopWithTrue(fdata, options.unrollTrueLimit)
 
 

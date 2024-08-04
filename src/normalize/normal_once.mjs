@@ -10,7 +10,15 @@
 
 import walk from '../../lib/walk.mjs';
 
-import { BLUE, RESET, THIS_ALIAS_BASE_NAME, ARGUMENTS_ALIAS_BASE_NAME, ARGLENGTH_ALIAS_BASE_NAME, VERBOSE_TRACING } from '../constants.mjs';
+import {
+  BLUE,
+  RESET,
+  THIS_ALIAS_BASE_NAME,
+  ARGUMENTS_ALIAS_BASE_NAME,
+  ARGLENGTH_ALIAS_BASE_NAME,
+  VERBOSE_TRACING,
+  DIM,
+} from '../constants.mjs';
 import {
   ASSERT,
   log,
@@ -165,7 +173,7 @@ export function phaseNormalOnce(fdata) {
     const parentProp = path.props[path.props.length - 1];
     const parentIndex = path.indexes[path.indexes.length - 1];
 
-    vgroup(BLUE + nodeType + ':' + (beforeNode ? 'before' : 'after'), RESET);
+    vgroup(BLUE + nodeType + ':' + (beforeNode ? 'before' : 'after'), `;; ${DIM}@${node.$p.pid}${RESET}`);
 
     const key = nodeType + ':' + (beforeNode ? 'before' : 'after');
     switch (key) {

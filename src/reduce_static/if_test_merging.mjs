@@ -106,7 +106,7 @@ function _ifTestMerging(fdata) {
 
   if (changed) {
     log('If bool test statements merged:', changed, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'ifTestMerging', changes: changed, next: 'phase1'};
   }
 
   log('If bool test statements merged: 0.');

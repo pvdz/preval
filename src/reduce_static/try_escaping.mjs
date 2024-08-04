@@ -258,10 +258,10 @@ function _tryEscaping(fdata) {
   if (changed) {
     if (restart) {
       log('Tries escaped:', changed, '. Restarting from phase0 because we hoisted break/return');
-      return true;
+      return {what: 'tryEscaping', changes: changed, next: 'normal'};
     } else {
       log('Tries escaped:', changed, '. Restarting from phase1');
-      return 'phase1';
+      return {what: 'tryEscaping', changes: changed, next: 'phase1'};
     }
   }
 

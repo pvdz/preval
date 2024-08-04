@@ -50,7 +50,7 @@ function _conditionalTyping(fdata) {
 
   if (changed) {
     log('Conditional types resolved:', changed, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'conditionalTyping', changes: changed, next: 'phase1'};
   }
 
   log('Conditional types resolved: 0.');

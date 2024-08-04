@@ -157,7 +157,7 @@ function _ifMerging(fdata) {
     queue.forEach(({ index, func }) => func());
 
     log('Ifs merged:', queue.length, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'ifMerging', changes: queue.length, next: 'phase1'};
   }
 
   log('Ifs merged: 0.');

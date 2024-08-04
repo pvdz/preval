@@ -49,7 +49,7 @@ function _objlitPropAccess(fdata) {
     vgroupEnd();
 
     log('Assignments promoted:', updated + queue.length, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'objlitPropAccess', changes: updated + queue.length, next: 'phase1'};
   }
   log('Assignments promoted: 0.');
 }

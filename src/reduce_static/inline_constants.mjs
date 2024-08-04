@@ -58,15 +58,15 @@ function _inlineConstants(fdata) {
     queue.forEach(({func}) => func());
 
     log('Constants folded:', changes, '. Lets promoted to const:', promoted, ', restarting from normalize to cleanup');
-    return true; // normalize
+    return {what: 'inlineConstants', changes: changes, next: 'normal'};
   }
   if (changes) {
     log('Constants folded:', changes, '. Lets promoted to const:', promoted, ', restarting from normalize to cleanup');
-    return true; // normalize
+    return {what: 'inlineConstants', changes: changes, next: 'normal'};
   }
   if (promoted) {
     log('Constants folded: 0. Lets promoted to const:', promoted, '. Restarting from phase1.');
-    return 'phase1';
+    return {what: 'inlineConstants', changes: promoted, next: 'phase1'};
   }
   log('Constants folded:', changes, '. Lets promoted to const:', promoted, '. No action taken.');
 

@@ -11,11 +11,10 @@ export function removeUnusedConstants(fdata) {
 
   if (changes) {
     log('Unused constants eliminated:', changes, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'removeUnusedConstants', changes: changes, next: 'normal'};
   }
 
   log('Unused constants eliminated:', changes, '.');
-  return false;
 }
 function _inlineConstants(fdata) {
   let changes = 0;

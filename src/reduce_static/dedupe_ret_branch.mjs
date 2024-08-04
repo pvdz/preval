@@ -194,7 +194,7 @@ function _dedupeBranchedReturns(fdata) {
 
   if (deduped) {
     log('Deduped branching trampolines:', deduped, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'dedupeBranchedReturns', changes: deduped, next: 'phase1'};
   }
 
   log('Deduped branching trampolines: 0.');

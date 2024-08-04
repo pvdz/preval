@@ -54,7 +54,7 @@ function _letHoisting(fdata) {
   log('');
   if (updated) {
     log('Var decls moved up:', updated, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'letHoisting', changes: updated, next: 'phase1'};
   }
   log('Var decls moved up: 0.');
 }

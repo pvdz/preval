@@ -333,7 +333,7 @@ function _ifUpdateCall(fdata) {
     vgroupEnd();
 
     log('If-update-calls hoisted:', queue.length, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'ifUpdateCall', changes: queue.length, next: 'phase1'};
   }
 
   log('If-update-calls hoisted: 0.');

@@ -131,7 +131,7 @@ function _fakeDoWhile(fdata) {
 
   if (changed) {
     log('Fake do-while loops found:', changed, '. Restarting from normalization');
-    return true; // or is phase1 sufficient?
+    return {what: 'fakeDoWhile', changes: changed, next: 'normal'}; // or is phase1 sufficient?
   }
 
   log('Fake loops dropped: 0.');

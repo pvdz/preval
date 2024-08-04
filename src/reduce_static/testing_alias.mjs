@@ -126,7 +126,7 @@ function _testingAlias(fdata) {
     queue.forEach(({ index, func }) => func());
 
     log('Testing aliases inlnied:', queue.length, '. Restarting from phase1 to fix up read/write registry.');
-    return 'phase1';
+    return {what: 'testingAlias', changes: queue.length, next: 'phase1'};
   }
 
   log('Testing aliases inlnied: 0.');

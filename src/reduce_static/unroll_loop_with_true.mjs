@@ -57,7 +57,7 @@ function _unrollLoopWithTrue(fdata, unrollTrueLimit) {
   log('');
   if (updated) {
     log('True loops unrolled:', updated, '. Restarting from phase1 to fix up read/write registry');
-    return 'restart';
+    return {what: 'unrollLoopWithTrue', changes: updated, next: 'normal'};
   }
   log('True loops unrolled: 0.');
 }

@@ -249,9 +249,8 @@ function _pruneEmptyFunctions(fdata) {
     });
 
     log('\nDeleted calls:', toDelete.length + toReplaceAt.length + toReplaceWith.length, '. Restarting from phase1.');
-    return 'phase1';
+    return {what: 'pruneEmptyFunctions', changes: toDelete.length + toReplaceAt.length + toReplaceWith.length, next: 'phase1'};
   }
 
   log('Deleted calls: 0.');
-  return false;
 }

@@ -52,7 +52,7 @@ function _constAssigns(fdata) {
 
   if (found) {
     log('Found const write errors:', found, '. Restarting from from normalization to eliminate dead code.');
-    return true; // Need to potentially eliminate dead code (!)
+    return {what: 'constAssigns', changes: found, next: 'normal'}; // Need to potentially eliminate dead code (!)
   }
 
   log('Found const write errors:: 0.');

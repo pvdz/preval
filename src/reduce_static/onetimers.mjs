@@ -544,7 +544,7 @@ function _inlineOneTimeFunctions(fdata) {
     );
 
     log('Single calls inlined:', actuallyInlined, '. Restarting from phase1 to fix up read/write registry');
-    return true; // re-normalize
+    return {what: 'inlineOneTimeFunctions', changes: actuallyInlined, next: 'normal'};
   }
   log('Single calls inlined: 0.');
 }

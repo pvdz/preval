@@ -18,7 +18,6 @@ function _pruneExcessiveParams(fdata) {
   let deletedParams = 0;
   let deletedArgs = 0;
 
-  const indexDeleteQueue = []; // Array<array, index-to-delete>. Should be in ascending source-code order.
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
@@ -201,8 +200,8 @@ function _pruneExcessiveParams(fdata) {
     queue.sort(({ pi: a, index: A }, { pi: b, index: B }) => b-a || B-A);
     queue.forEach(({ func }) => func());
 
-    log('Deleted params:', deletedParams, ', deleted args:', deletedArgs, '. Restarting phase1');
-    return true
+    log('Deleted params:', deletedParams, ', deleted args:', deletedArgs, '. Restarting from normalization');
+    return {what: 'pruneExcessiveParams', changes: deletedParams, next: 'normal'};
   }
 
   log('Deleted params: 0.');

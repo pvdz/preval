@@ -289,7 +289,7 @@ function _multiScopeSSA(fdata) {
 
   if (multiScopeSSA) {
     log('Multi scope assignments SSAd:', multiScopeSSA, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'multiScopeSSA', changes: multiScopeSSA, next: 'phase1'};
   }
 
   log('Multi scope assignments SSAd: 0.');

@@ -115,7 +115,7 @@ function _inlineCommonReturns(fdata) {
     });
 
     log('Return values inlined:', queue.length, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'inlineCommonReturns', changes: queue.length, next: 'phase1'};
   }
   log('Return values inlined: 0.');
 }

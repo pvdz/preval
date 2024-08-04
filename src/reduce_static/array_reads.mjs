@@ -234,7 +234,7 @@ function _arrayReads(fdata) {
 
   if (changes) {
     log('Properties resolved:', changes, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'arrayReads', changes: changes, next: 'phase1'};
   }
 
   log('Properties resolved: 0.');

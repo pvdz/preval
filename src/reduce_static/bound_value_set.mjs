@@ -121,7 +121,7 @@ function _resolveBoundValueSet(fdata) {
     //queue.forEach(({ index, func }) => func());
 
     log('Bound value sets resolved:', changed, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'resolveBoundValueSet', changes: changed, next: 'phase1'};
   }
 
   log('Bound value sets resolved: 0.');

@@ -42,7 +42,7 @@ function _inlineSimpleFuncCalls(fdata) {
     queue.forEach(([pid, f]) => f());
 
     log('Inlined function calls:', queue.length, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'inlineSimpleFuncCalls', changes: queue.length, next: 'phase1'};
   }
 
   log('Inlined function calls: 0.');

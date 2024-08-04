@@ -17,17 +17,27 @@ export function phase3(program, fdata, resolve, req, options) {
   groupEnd();
 
   // For phase1 it should have unique nodes/pids
-  if (r === 'phase1') assertNoDupeNodes(fdata.tenkoOutput.ast, 'body');
-  return r; // phase1 (phase1/2/3 cycle), truthy (full cycle), or falsy (repeat)
+  if (r?.next === 'phase1') assertNoDupeNodes(fdata.tenkoOutput.ast, 'body');
+  return r;
 }
 
 function _phase3(program, fdata, resolve, req, options = {}) {
 
-  return (
+  const action = (
     // This one should probably be lowest priority as it might blow up code...
     // And we must run a normalization step if _anything_ changed since in phase2, even if it was non-blocking
     unrollLoopWithTrue(fdata, options.unrollTrueLimit)
-
-
   );
+
+  ASSERT(action === undefined || (action && typeof action === 'object'), 'plugins must return an object or undefined', action);
+  if (!action) {
+    vlog('Phase 3 applied no rules, no changes. Finish?');
+    return;
+  }
+
+  ASSERT(typeof action.what === 'string');
+  ASSERT(typeof action.changes === 'number' && action.changes > 0);
+  ASSERT(action.next === 'phase1' || action.next === 'normal', 'next should be phase1 or normal', action.next);
+
+  return action;
 }

@@ -138,7 +138,7 @@ function _ifTestBool(fdata) {
 
   if (changed) {
     log('If tests inverted:', changed, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'ifTestBool', changes: changed, next: 'phase1'};
   }
 
   log('If tests inverted: 0.');

@@ -34,6 +34,9 @@ import {VERBOSE_TRACING} from "../constants.mjs"
 // - Unary negative/positive should look at argument
 
 export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLimit = 0) {
+  // Very invasive and expands the code. needs more work before we can put it in production.
+  TODO
+
   group(
     '\n\n\n##################################\n## phase primitive arg inlining  ::  ' +
       fdata.fname +

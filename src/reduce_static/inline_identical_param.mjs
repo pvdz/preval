@@ -39,7 +39,7 @@ function _inlineIdenticalParam(fdata) {
   log('');
   if (updated) {
     log('Params replaced:', updated, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'inlineIdenticalParam', changes: updated, next: 'phase1'};
   }
   log('Params replaced: 0.');
 }

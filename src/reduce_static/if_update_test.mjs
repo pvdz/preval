@@ -168,7 +168,7 @@ function _ifUpdateTest(fdata) {
     queue.forEach(({ func }) => func());
 
     log('Ifs folded after if-mutate-test-if-test:', changed, '. Restarting from normalize');
-    return true;
+    return {what: 'ifUpdateTest', changes: changed, next: 'normal'};
   }
 
   log('Ifs folded after if-mutate-test-if-test: 0.');

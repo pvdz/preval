@@ -150,7 +150,7 @@ function _readOnce(fdata) {
     queue.forEach(({ index, func }) => func());
 
     log('Self destructing bindings split:', queue.length, '. Restarting from phase1 to fix up read/write registry.');
-    return 'phase1';
+    return {what: 'readOnce', changes: queue.length, next: 'phase1'};
   }
 
   log('Self destructing bindings split: 0.');

@@ -108,7 +108,7 @@ function _ifFalsySpread(fdata) {
     queue.forEach(({ index, func }) => func());
 
     log('Falsy spreads fixed:', queue.length, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'ifFalsySpread', changes: queue.length, next: 'phase1'};
   }
 
   log('Falsy spreads fixed: 0.');

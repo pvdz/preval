@@ -47,7 +47,7 @@ function _spylessVars(fdata) {
 
     if (changed) {
       log('Var decls moved:', changed, '. Restarting from phase1 to fix up read/write registry');
-      return 'phase1';
+      return {what: 'spylessVars', changes: changed, next: 'phase1'};
     }
   }
   log('Var decls moved: 0.');

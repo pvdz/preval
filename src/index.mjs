@@ -259,7 +259,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
             changed = phase3(program, fdata, resolve, req, {});
             options?.onAfterPhase(3, passes, phaseLoop, fdata, changed, options);
           }
-        } while (changed === 'phase1');
+        } while (changed?.next === 'phase1');
 
         mod.fdata = fdata;
         mod.reports.push(...fdata.reports)

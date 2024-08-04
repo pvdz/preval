@@ -169,7 +169,7 @@ function _andIfAndIf(fdata) {
     queue.forEach(({ index, func }) => func());
 
     log('And-Ifs melted:', queue.length, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'andIfAndIf', changes: queue.length, next: 'phase1'};
   }
 
   log('And-Ifs melted: 0.');

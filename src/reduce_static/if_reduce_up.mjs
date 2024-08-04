@@ -117,7 +117,7 @@ function _ifReduceUp(fdata) {
     queue.forEach(({ func }) => func());
 
     log('Branch starts lifted:', queue.length, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'ifReduceUp', changes: queue.length, next: 'phase1'};
   }
 
   log('Branch starts lifted: 0.');

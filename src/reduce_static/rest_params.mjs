@@ -104,7 +104,7 @@ function _restParams(fdata) {
 
   if (changed) {
     log('Rest params changed:', changed, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'restParams', changes: changed, next: 'phase1'};
   }
 
   log('Rest params changed: 0');

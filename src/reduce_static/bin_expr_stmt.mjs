@@ -174,7 +174,7 @@ function _binExprStmt(fdata) {
 
   if (changed) {
     log('Binaries binned:', changed, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'binExprStmt', changes: changed, next: 'phase1'};
   }
 
   log('Binaries binned: 0.');

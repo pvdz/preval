@@ -54,7 +54,7 @@ function _assignHoisting(fdata) {
   log('');
   if (updated) {
     log('If-call-if patterns changed:', updated, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'ifCallIf', changes: updated, next: 'phase1'};
   }
   log('If-call-if patterns changed: 0.');
 }

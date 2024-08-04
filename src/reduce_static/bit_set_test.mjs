@@ -143,7 +143,7 @@ function _bitSetTests(fdata) {
 
   if (found) {
     log('Found bit tests:', found, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'bitSetTests', changes: found, next: 'phase1'};
   }
 
   log('Found bit tests:: 0.');

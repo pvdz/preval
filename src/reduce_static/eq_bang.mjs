@@ -118,7 +118,7 @@ function _eqBang(fdata) {
 
   if (changed) {
     log('Bangs eliminated:', changed, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'eqBang', changes: changed, next: 'phase1'};
   }
 
   log('Bangs eliminated: 0.');

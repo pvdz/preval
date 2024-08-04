@@ -46,7 +46,7 @@ function _stringFusing(fdata, nodeType, path) {
 
   if (changed) {
     log('Strings fused together:', changed, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'stringFusing', changes: changed, next: 'phase1'};
   }
 
   log('Strings fused together: 0.');

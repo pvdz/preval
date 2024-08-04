@@ -1652,7 +1652,7 @@ function _typeTrackedTricks(fdata) {
     queue.forEach(({ index, func }) => func());
 
     log('Type tracked tricks applied:', changes, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'typeTrackedTricks', changes: changes, next: 'phase1'};
   }
 
   log('Type tracked tricks applied: 0.');

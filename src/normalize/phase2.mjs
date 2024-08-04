@@ -122,9 +122,9 @@ export function phase2(program, fdata, resolve, req, options) {
   groupEnd();
 
   // For phase1 it should have unique nodes/pids
-  if (r === 'phase1') assertNoDupeNodes(fdata.tenkoOutput.ast, 'body');
+  if (r?.next === 'phase1') assertNoDupeNodes(fdata.tenkoOutput.ast, 'body');
 
-  return r; // phase1 (phase1/2 cycle), truthy (full cycle), or falsy (repeat)
+  return r;
 }
 function _phase2(program, fdata, resolve, req, options = {}) {
   // Initially we only care about bindings whose writes have one var decl and only assignments otherwise
@@ -197,7 +197,7 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     });
   });
 
-  return (
+  const action = (
     coercials(fdata) ||
     resolveBoundValueSet(fdata) ||
     removeUnusedConstants(fdata) ||
@@ -295,5 +295,15 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     //phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit) ||
   );
 
-  // The read/write data should still be in tact at this point
+  ASSERT(action === undefined || (action && typeof action === 'object'), 'plugins must return an object or undefined', action);
+  if (!action) {
+    vlog('Phase 2 applied no rules, no changes');
+    return;
+  }
+
+  ASSERT(typeof action.what === 'string');
+  ASSERT(typeof action.changes === 'number' && action.changes > 0);
+  ASSERT(action.next === 'phase1' || action.next === 'normal', 'next should be phase1 or normal', action.next);
+
+  return action;
 }

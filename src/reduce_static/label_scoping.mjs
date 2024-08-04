@@ -63,7 +63,7 @@ function _labelScoping(fdata) {
 
   if (changes) {
     log('Var decls wrapped by label:', changes, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'labelScoping', changes: changes, next: 'phase1'};
   }
 
   log('Var decls wrapped by label: 0.');

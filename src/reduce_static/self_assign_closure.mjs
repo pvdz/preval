@@ -51,7 +51,7 @@ function _selfAssignClosure(fdata) {
   log('');
   if (updated) {
     log('Self-assign-closures promoted:', updated, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'selfAssignClosure', changes: updated, next: 'phase1'};
   }
   log('Self-assign-closures promoted: 0.');
 }

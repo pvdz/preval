@@ -169,7 +169,7 @@ function _orXor(fdata) {
     queue.forEach(({ index, func }) => func());
 
     log('Found orxors:', queue.length, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'orXor', changes: queue.length, next: 'phase1'};
   }
 
   log('Found orxors: 0.');

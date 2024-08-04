@@ -36,7 +36,7 @@ function _assignHoisting(fdata) {
   log('');
   if (updated) {
     log('Assignments promoted:', updated, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'assignHoisting', changes: updated, next: 'phase1'};
   }
   log('Assignments promoted: 0.');
 }

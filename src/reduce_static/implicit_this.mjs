@@ -106,7 +106,7 @@ function _implicitThis(fdata, implicitThisValue) {
   }
   if (changes) {
     log('Implicit `this`es replaced:', changes, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'implicitThis', changes: changes, next: 'phase1'};
   }
 
   log('Implicit `this`es replaced:', 0, '.');

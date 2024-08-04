@@ -65,7 +65,7 @@ function _writeOnly(fdata) {
     queue.forEach(({func}) => func());
 
     log('Write only bindings eliminated:', changes, '. Restarting from phase1');
-    return true; // normalize
+    return {what: 'writeOnly', changes: changes, next: 'normal'};
   }
   log('Write only bindings eliminated:', changes);
 }

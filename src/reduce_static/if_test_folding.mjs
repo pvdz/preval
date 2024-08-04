@@ -188,7 +188,7 @@ function _ifTestFolding(fdata) {
     vgroupEnd();
 
     log('Extended branches:', queue.length, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'ifTestFolding', changes: queue.length, next: 'phase1'};
   }
 
   log('Extended branches: 0.');

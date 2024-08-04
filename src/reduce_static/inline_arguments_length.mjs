@@ -35,7 +35,7 @@ function _inlineArgLen(fdata) {
   log('');
   if (updated) {
     log('`arguments.length` cases inlined:', updated, '. Restarting from normalization to fix up caches');
-    return true;
+    return {what: 'inlineArgLen', changes: updated, next: 'normal'};
   }
   log('`arguments.length` cases inlined: 0.');
 }

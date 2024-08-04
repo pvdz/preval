@@ -152,7 +152,7 @@ function _returnArg(fdata) {
     });
 
     log('Args outlined:', queue.length, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'returnArg', changes: queue.length, next: 'phase1'};
   }
 
   log('Args outlined: 0');

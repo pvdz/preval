@@ -276,7 +276,7 @@ function _refTracked(fdata) {
   }
   if (changed) {
     log('Ref-tracking tricks applied:', changed, '. Restarting from phase1 to fix up read/write registry.');
-    return 'phase1';
+    return {what: 'refTracked', changes: changed, next: 'phase1'};
   }
 
   log('Ref-tracking tricks applied: 0.');

@@ -170,7 +170,7 @@ function _infiniteLoops(fdata) {
     vgroupEnd();
 
     log('Infinite loops found:', changed, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'infiniteLoops', changes: changed, next: 'phase1'};
   }
 
   log('Fake loops dropped: 0.');

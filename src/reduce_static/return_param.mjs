@@ -335,7 +335,7 @@ function _returnsParam(fdata) {
     vgroupEnd();
 
     log('Changed return values:', queue.length, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'returnsParam', changes: queue.length, next: 'phase1'};
   }
 
   log('Changed return values: 0');

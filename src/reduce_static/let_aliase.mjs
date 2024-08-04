@@ -153,7 +153,7 @@ function _letAliasing(fdata) {
 
   if (changed) {
     log('Lets aliased:', changed, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'letAliasing', changes: changed, next: 'phase1'};
   }
 
   log('Lets aliased: 0.');

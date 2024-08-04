@@ -194,7 +194,7 @@ function _dotCall(fdata) {
 
   if (changed) {
     log('dotCalls replaced:', changed, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'dotCall', changes: changed, next: 'phase1'};
   }
 
   log('dotCalls replaced: 0.');

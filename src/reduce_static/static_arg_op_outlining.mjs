@@ -1265,8 +1265,8 @@ function _staticArgOpOutlining(fdata) {
 
     vgroupEnd();
 
-    log('Static arg ops outlined:', changes, '. Restarting from phase1 to fix up read/write registry\n');
-    return true
+    log('Static arg ops outlined:', changes, '. Restarting from normalization\n');
+    return {what: 'staticArgOpOutlining', changes: changes, next: 'normal'};
   }
   log('Static arg ops outlined: 0.\n');
 }

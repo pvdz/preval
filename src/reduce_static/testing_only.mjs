@@ -120,7 +120,7 @@ function _testing_only(fdata) {
     queue.forEach(({ index, func }) => func());
 
     log('Functions unlocked:', queue.length, '. Restarting from phase1 to fix up read/write registry.');
-    return 'phase1';
+    return {what: 'testing_only', changes: queue.length, next: 'phase1'};
   }
 
   log('Functions unlocked: 0.');

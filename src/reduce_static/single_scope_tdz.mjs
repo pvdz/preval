@@ -117,7 +117,7 @@ function _singleScopeTdz(fdata) {
 
   if (foundTdz) {
     log('Found TDZ errors:', foundTdz, '. Restarting from from normalization to eliminate dead code.');
-    return true; // Need to potentially eliminate dead code (!)
+    return {what: 'singleScopeSSA', changes: foundTdz, next: 'normal'}; // Need to potentially eliminate dead code (!)
   }
 
   log('Found TDZ errors:: 0.');

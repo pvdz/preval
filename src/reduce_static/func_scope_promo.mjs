@@ -81,8 +81,7 @@ function _funcScopePromo(fdata) {
     //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
 
     log('Promoted functions:', queue.length, '. Restarting from phase1 to fix up read/write registry');
-
-    return 'phase1';
+    return {what: 'funcScopePromo', changes: queue.length, next: 'phase1'};
   }
   log('Promoted functions: 0.');
 }

@@ -52,11 +52,11 @@ function _arr_mutation(fdata) {
   log('');
   if (addedSequence) {
     log('Array accesses changed:', updated, '. At least one change requires a restart to normalize');
-    return 'restart';
+    return {what: 'arr_mutation', changes: updated, next: 'normal'};
   }
   if (updated) {
     log('Array accesses changed:', updated, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'arr_mutation', changes: updated, next: 'phase1'};
   }
   log('Array accesses changed: 0.');
 }

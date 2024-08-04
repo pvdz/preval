@@ -237,7 +237,7 @@ function _ifDualAssign(fdata) {
     queue.forEach(({ index, func }) => func());
 
     log('Bit checking ifs replaced:', changed, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'ifDualAssign', changes: changed, next: 'phase1'};
   }
 
   log('Bit checking ifs replaced: 0');

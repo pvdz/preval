@@ -59,7 +59,7 @@ function _aliasedGlobals(fdata) {
 
   if (dropped) {
     log('Inlined global aliases:', dropped, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'aliasedGlobals', changes: dropped, next: 'phase1'};
   }
 
   log('Inlined global aliases: 0.');

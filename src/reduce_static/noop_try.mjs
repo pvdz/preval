@@ -150,7 +150,7 @@ function _noopTry(fdata) {
     });
 
     log('Try statements updated:', queue.length, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'noopTry', changes: queue.length, next: 'phase1'};
   }
 
   log('Try statements updated:', 0, '.');

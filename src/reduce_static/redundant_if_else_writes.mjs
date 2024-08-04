@@ -193,7 +193,7 @@ function _redundantWrites(fdata) {
     });
 
     log('Redundant writes eliminated:', changes, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'redundantWrites', changes: changes, next: 'phase1'};
   }
 
   log('Redundant writes eliminated: 0.');

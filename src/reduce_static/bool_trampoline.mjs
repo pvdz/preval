@@ -283,7 +283,7 @@ function _boolTrampolines(fdata) {
     queue.forEach(({ index, func }) => func());
 
     log('Trampolines inlined:', queue.length, '. Restarting from phase1 to fix up read/write registry.');
-    return 'phase1';
+    return {what: 'boolTrampolines', changes: queue.length, next: 'phase1'};
   }
 
   log('Trampolines inlined: 0.');

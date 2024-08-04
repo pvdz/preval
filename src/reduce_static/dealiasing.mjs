@@ -113,7 +113,7 @@ function _dealiasing(fdata) {
 
   if (dropped) {
     log('Dropped aliases:', dropped, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'dealiasing', changes: dropped, next: 'phase1'};
   }
 
   log('Dropped aliases: 0.');

@@ -95,7 +95,7 @@ function _branchConstantInlining(fdata) {
 
   if (changed) {
     log('Branch constants inlined:', changed, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'branchConstantInlining', changes: changed, next: 'phase1'};
   }
 
   log('Branch constants inlined: 0.');

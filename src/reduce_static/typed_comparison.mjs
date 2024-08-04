@@ -162,7 +162,7 @@ function _typedComparison(fdata) {
 
   if (changed) {
     log('Typed comparisons resolved:', changed, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'typedComparison', changes: changed, next: 'phase1'};
   }
 
   log('Typed comparisons resolved: 0.');

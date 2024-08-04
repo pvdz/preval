@@ -152,7 +152,7 @@ function _staticLets(fdata) {
 
   if (changed) {
     log('staticLets patterns captured:', changed, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'staticLets', changes: changed, next: 'phase1'};
   }
   log('staticLets patterns captured: 0');
 }

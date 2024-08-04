@@ -78,7 +78,7 @@ function _dropUnusedReturns(fdata) {
 
   if (changed) {
     log('Changed return values:', changed, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'dropUnusedReturns', changes: changed, next: 'phase1'};
   }
   log('Changed return values: 0');
 }

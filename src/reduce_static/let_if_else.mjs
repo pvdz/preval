@@ -92,7 +92,7 @@ function _letIfElse(fdata) {
 
   if (queue.length > 0) {
     log('Let-if-else changed:', queue.length, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'letIfElse', changes: queue.length, next: 'phase1'};
   }
   log('Let-if-else changed: 0.');
 }

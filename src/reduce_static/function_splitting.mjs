@@ -278,7 +278,7 @@ function _funcionSplitting(fdata) {
     queue.forEach(({ index, func }) => func());
 
     log('Functions unlocked:', queue.length, '. Restarting from phase1 to fix up read/write registry.');
-    return 'phase1';
+    return {what: 'functionSplitting', changes: queue.length, next: 'phase1'};
   }
 
   log('Functions unlocked: 0.');

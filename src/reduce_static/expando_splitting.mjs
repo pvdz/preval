@@ -129,9 +129,8 @@ function _expandoSplitting(fdata) {
     fdata.tenkoOutput.ast.body.unshift(...vars);
 
     log('Expandos isolated:', changes, '. Restarting from phase1 to fix up read/write registry.');
-    return 'phase1';
+    return {what: 'expandoSplitting', changes: changes, next: 'phase1'};
   }
 
   log('Expandos isolated: 0.');
-  return false;
 }

@@ -20,11 +20,10 @@ function _builtinCases(fdata) {
 
   if (changes) {
     log('Built-ins transformed:', changes, '. Restarting from phase1 to fix up read/write registry.');
-    return 'phase1';
+    return {what: 'builtinCases', changes: changes, next: 'phase1'};
   }
 
   log('Built-ins transformed: 0.');
-  return false;
 }
 
 function processArray(fdata) {

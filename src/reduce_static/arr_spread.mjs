@@ -174,7 +174,7 @@ function _arrSpreads(fdata) {
     queueInjects.forEach(({ pid, func }) => func(pid));
 
     log('Arr-in-arr spreads inlined:', queueInlines.length, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'arrSpreads', changes: queueInlines.length, next: 'phase1'};
   }
 
   log('Arr-in-arr spreads inlined:', 0, '.');

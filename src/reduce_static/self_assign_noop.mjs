@@ -47,7 +47,7 @@ function _selfAssignNoop(fdata) {
   log('');
   if (updated) {
     log('Self-assign-noop promoted:', updated, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'selfAssignNoop', changes: updated, next: 'phase1'};
   }
   log('Self-assign-noop promoted: 0.');
 }

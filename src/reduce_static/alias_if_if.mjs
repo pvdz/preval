@@ -145,9 +145,8 @@ function _aliasIfIf(fdata) {
     queue.forEach(({ index, func }) => func());
 
     log('Alias-if-ifs merged:', queue.length, '. Restarting from phase1 to fix up read/write registry.');
-    return 'phase1';
+    return {what: 'aliasIfIf', changes: queue.length, next: 'phase1'};
   }
 
   log('Alias-if-ifs merged: 0.');
-  return false;
 }

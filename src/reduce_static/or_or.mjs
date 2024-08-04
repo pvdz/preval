@@ -118,7 +118,7 @@ function _orOr(fdata) {
 
   if (changed) {
     log('Ors melted:', changed, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'orOr', changes: changed, next: 'phase1'};
   }
 
   log('Ors melted: 0.');

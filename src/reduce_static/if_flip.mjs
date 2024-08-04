@@ -349,7 +349,7 @@ function _ifFlipping(fdata) {
 
   if (changed) {
     log('Flipped ifs:', changed, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'ifFlipping', changes: changed, next: 'phase1'};
   }
 
   log('Flipped ifs: 0.');

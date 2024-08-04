@@ -480,7 +480,7 @@ function _pruneTrampolineFunctions(fdata) {
     groupEnd();
 
     log('Trampolines inlined:', toReplaceWith.length + toOutlineCall.length, ', restarting phase1');
-    return 'phase1';
+    return {what: 'pruneTrampolineFunctions', changes: toReplaceWith.length + toOutlineCall.length, next: 'phase1'};
   }
 
   log('Trampolines inlined: 0.');

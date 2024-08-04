@@ -277,7 +277,7 @@ function _coercials(fdata) {
 
   if (changes) {
     log('IsPrimitives eliminated:', changes, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'coercials', changes: changes, next: 'phase1'};
   }
   log('IsPrimitives eliminated: 0.');
 }

@@ -118,7 +118,7 @@ function _andAnd(fdata) {
 
   if (changed) {
     log('Ands melted:', changed, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'andAnd', changes: changed, next: 'phase1'};
   }
 
   log('Ands melted: 0.');

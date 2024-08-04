@@ -108,7 +108,7 @@ function _tailBreaking(fdata) {
 
   if (changed) {
     log('Breaks and continues eliminated:', changed, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'tailBreaking', changes: changed, next: 'phase1'};
   }
 
   log('Breaks and continues eliminated: 0.');

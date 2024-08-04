@@ -207,7 +207,7 @@ function _ifelseifelse(fdata) {
 
   if (changed) {
     log('IfElseIfElse patterns captured:', changed, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'ifelseifelse', changes: changed, next: 'phase1'};
   }
   log('IfElseIfElse patterns captured: 0');
 }

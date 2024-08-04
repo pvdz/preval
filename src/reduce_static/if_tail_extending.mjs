@@ -128,7 +128,7 @@ function _ifTailExtending(fdata) {
 
     if (queue.length) {
       log('Extended branches:', queue.length, '. Restarting from phase1');
-      return 'phase1';
+      return {what: 'ifTailExtending', changes: queue.length, next: 'phase1'};
     }
   }
 

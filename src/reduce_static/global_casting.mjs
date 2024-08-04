@@ -48,11 +48,10 @@ function _globalCasting(fdata) {
     queue.forEach(({ func }) => func());
 
     log('Global casters eliminated:', queue.length, '. Restarting from phase1');
-    return 'phase1';
+    return {what: 'globalCasting', changes: queue.length, next: 'phase1'};
   }
 
   log('Global casters eliminated: 0.');
-  return false;
 }
 function process(fdata, meta, name, queue) {
   meta.reads.forEach((read, ri) => {

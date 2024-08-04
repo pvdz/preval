@@ -52,7 +52,7 @@ function _arrrrrr(fdata) {
   log('');
   if (updated) {
     log('Array accesses changed:', updated, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'arrrrrr', changes: updated, next: 'phase1'};
   }
   log('Array accesses changed: 0.');
 }

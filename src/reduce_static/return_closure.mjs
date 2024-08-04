@@ -130,7 +130,7 @@ function _returnClosure(fdata) {
     });
 
     log('Closures outlined:', queue.length, '. Restarting from phase1 to fix up read/write registry');
-    return 'phase1';
+    return {what: 'returnClosure', changes: queue.length, next: 'phase1'};
   }
 
   log('Closures outlined: 0');

@@ -49,7 +49,7 @@ import {
   BUILTIN_BOOLEAN_METHOD_LOOKUP,
   BUILTIN_FOR_OF_CALL_NAME, BUILTIN_FOR_IN_CALL_NAME, BUILTIN_FUNC_CALL_NAME, BUILTIN_REST_HANDLER_NAME,
 } from '../src/constants.mjs';
-import { coerce, log, setRefTracing, vlog } from '../src/utils.mjs';
+import { coerce, log, setRefTracing, tmat, vlog } from '../src/utils.mjs';
 import { getTestFileNames, PROJECT_ROOT_DIR } from './cases.mjs';
 import { parseTestArgs } from './process-env.mjs';
 // Note: worker_threads are node 10.15. I'd make them optional if import syntax allowed this, but I'm not gonna taint the whole test suite with async for the sake of it.
@@ -299,6 +299,16 @@ function runTestCase(
             const f = path.join(options.logDir, 'preval.a.f' + queueFileCounter + '.onetime.normalized.log.js');
             console.log('-', f, '(', preCode.length, 'bytes) ->', nextFname);
             fs.writeFileSync(f, '// Normalized output after one pass [' + nextFname + ']\n// Command: ' + process.argv.join(' ') + '\n' + preCode);
+          }
+        },
+        onAfterNormalize(fdata, passes, fi, options) {
+          if (options.logPasses) {
+            const code = tmat(fdata.tenkoOutput.ast, true);
+            const f = path.join(options.logDir, 'preval.pass' + String(passes).padStart(4, '0') + '.f' + fi + '.normalized.log.js');
+            const now = Date.now();
+            console.log('--log: Logging normalized output to disk:', f, '(', code.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '');
+            lastWrite = now;
+            fs.writeFileSync(f, `// Normalized output after pass ${passes} [` + fname + ']\n// Command: ' + process.argv.join(' ') + '\n' + code);
           }
         },
         onFirstPassEnd(contents, allFileNames, options) {

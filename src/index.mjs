@@ -110,6 +110,8 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
     contents.pre[nextFname] = mod.preCode;
     contents.special[nextFname] = mod.specialCode;
 
+    options.onAfterNormalize?.(fdata, 0, queueFileCounter, options, contents);
+
     // Inject the discovered imports to the queue so they'll be processed too, if they haven't been found before
     // The imports have one entry per symbol:fname pair so get the unique file names first
     const uniqueFiles = new Set(fdata.imports.values());
@@ -261,7 +263,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           throw e;
         }
 
-        options.onPassEnd?.(outCode, passes, fi, options);
+        options.onPassEnd?.(outCode, passes, fi, options, contents);
 
         changed = outCode !== inputCode;
         if (changed && (!maxPasses || passes < maxPasses) && !options.refTest) {
@@ -276,6 +278,8 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           const fdata = parseCode(inputCode, fname);
           prepareNormalization(fdata, resolve, req, false, {unrollTrueLimit: options.unrollTrueLimit}); // I want a phase1 because I want the scope tracking set up for normalizing bindings
           phaseNormalize(fdata, fname, { allowEval: options.allowEval });
+
+          options.onAfterNormalize?.(fdata, passes + 1, fi, options, contents);
 
           inputCode = tmat(fdata.tenkoOutput.ast, true);
 

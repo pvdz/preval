@@ -355,13 +355,19 @@ function runTestCase(
         },
         onAfterPhase(phaseIndex, passIndex, phaseLoopIndex, fdata, changed, options) {
           // After each phase (0=normalize), generally 1 is not interesting to print since that's just scanning
+          // Changed is either falsy, or {action: string (name of plugin), changes: number, next: phase1 | normal}
           if (options.logPhases) {
             const f = path.join(options.logDir, `preval.pass.${passIndex}.loop.${phaseLoopIndex}.phase${phaseIndex}.log.js`);
             const code = tmat(fdata.tenkoOutput.ast, true);
             const now = Date.now();
-            console.log(`--log: Logging state of pass ${passIndex}, loop ${phaseLoopIndex}, ${phaseIndex ? `phase ${phaseIndex}` : 'normal '} to disk:`, f, '(', code.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '');
+            console.log(`--log: Logging state of pass ${passIndex}, loop ${phaseLoopIndex}, ${phaseIndex ? `phase ${phaseIndex}` : 'normal '} to disk:`, f, '(', code.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase 2/3: changed by ${changed.what}` : '');
             lastWrite = now;
-            fs.writeFileSync(f, `// Resulting output at pass ${passIndex}, loop ${phaseLoopIndex}, phase ${phaseIndex} [${fname}]\n// Command: ` + process.argv.join(' ') + '\n' + code);
+            fs.writeFileSync(f,
+              `// Resulting output at pass ${passIndex}, loop ${phaseLoopIndex}, phase ${phaseIndex} [${fname}]\n` +
+              `// Command: ${process.argv.join(' ')}\n` +
+              `// Last phase2/3 plugin result: ${changed ? JSON.stringify(changed) : '(none)'}\n` +
+              code
+            );
           }
         }
       },

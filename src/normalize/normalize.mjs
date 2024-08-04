@@ -488,6 +488,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
   let inGlobal = true; // While walking, are we currently in global space or inside a function
 
   group('\n\n\n##################################\n## phaseNormalize  ::  ' + fname + '\n##################################\n\n\n');
+  assertNoDupeNodes(ast, 'body');
 
   let passes = 0;
   do {
@@ -1892,7 +1893,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                   if (args.every((anode) => AST.isPrimitive(anode))) {
                     // TODO: we could try to find the original point of this call and replace the arg but I'm sure there are plenty of cases where this is not feasible (like conditionals etc)
                     vlog('This call to `Function` has primitive args so we should be able to resolve it...');
-                    rule('Call to `Function` with primitive args can be resolved (although there is no guarantee it will work)');
+                    riskyRule('Call to `Function` with primitive args can be resolved (although there is no guarantee it will work)');
                     example('const x = Function("return 10;"', 'const x = function(){ return 10; };');
                     before(node, body[i]);
 
@@ -6159,7 +6160,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             } else if (n.argument.type === 'ArrayExpression') {
               rule('Array spread on another array should be unlined');
               example('[...[1, 2 ,3]]', '[1, 2, 3]');
-              before(n, node);
+              before(node);
 
               node.elements.splice(j, 1, ...n.argument.elements);
 
@@ -6177,6 +6178,45 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         if (wrapKind === 'statement') {
           // Consider an array statements that only has simple spreads to be okay
           // For normalization purposes, we want one array with spread per statement
+
+          let moved = 0;
+          let dropped = 0;
+          let n = 0;
+          for (const el of node.elements) {
+            if (!el || AST.isPrimitive(el)) {
+              rule('Array statements with elided elements can drop the elided elements');
+              example('[a, , b, 1];', '[a, b, 1];');
+              before(body[i+moved]);
+
+              node.elements.splice(n, 1);
+
+              after(body[i+moved]);
+              dropped += 1;
+            }
+            else if (el.type !== 'SpreadElement') {
+              rule('Array statements with identifiers should move idents to be statements');
+              example('[a, b, 1, c];', 'c; [a, b, 1];');
+              before(body[i+moved]);
+
+              body.splice(i+moved, 0, AST.expressionStatement(el));
+              node.elements.splice(n, 1);
+
+              after(body[i+moved]);
+              after(body[i+moved + 1]);
+              moved += 1;
+            }
+
+            n += 1;
+          }
+          if (moved + dropped) {
+            vlog('Dropped', dropped,' and moved', moved, 'elements');
+            if (moved) {
+              after(body.slice(i, i + moved + 1));
+            }
+            // Restart
+            return true;
+          }
+
           if (
             node.elements.length === 1 &&
             node.elements[0] &&
@@ -6185,6 +6225,17 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           ) {
             vlog('This is an array with only a spread with simple arg. Base case that we keep as is.');
             return false;
+          }
+
+          if (node.elements.length === 0) {
+            rule('Array literal statement with no elements can be dropped');
+            example('[];', ';');
+            before(body[i]);
+
+            body[i] = AST.emptyStatement();
+
+            after(body[i]);
+            return true;
           }
 
           rule('Array statements are only allowed if they have exactly one spread with a simple arg');
@@ -6224,7 +6275,6 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           after(newNodes, parentNode);
           after(newNodes);
           after(parentNode);
-          vlog('okayyyyy');
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
@@ -7159,6 +7209,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       node.body.body.push(AST.returnStatement('undefined'));
 
       after(node);
+      assertNoDupeNodes(node.body, 'body');
       return true;
     }
 
@@ -7313,8 +7364,6 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       return true;
     }
 
-    assertNoDupeNodes(AST.blockStatement(body), 'body', true);
-
     ASSERT(node.consequent.type === 'BlockStatement');
     ifelseStack.push(node);
     transformBlock(node.consequent, undefined, -1, node, false);
@@ -7338,7 +7387,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         node.consequent.body.splice(0, 1, ...inner.consequent.body);
 
         after(node);
-        assertNoDupeNodes(AST.blockStatement(body), 'body', true);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
     } else if (node.alternate.body[0]?.type === 'IfStatement') {
@@ -7353,7 +7402,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         node.alternate.body.splice(0, 1, ...inner.alternate.body);
 
         after(node);
-        assertNoDupeNodes(AST.blockStatement(body), 'body', true);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
     }
@@ -8863,7 +8912,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       // false: returns true for simple unary as well
       vlog('- init is complex, transforming expression');
       if (transformExpression('var', dnode.init, body, i, node, dnode.id, node.kind)) {
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        assertNoDupeNodes(AST.blockStatement(body), 'body', undefined, dnode);
         return true;
       }
     }
@@ -9608,6 +9657,365 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     }
 
 
+    // Perf hack: this targets a specific obfuscation pattern. Preval can do this with loop unrolling but it's terribly slow.
+    // This only works against a rather specific sort of obfuscation transform. But for that one, it's very efficient :)
+    // First we need to verify the pattern; a loop that ends in an If where one branch breaks and the other "pumps" (arr.push(arr.shift))
+    // Next we need to verify that the thing being pumped is in fact an array literal, declared immediately before the loop, and
+    // that nothing may have mutated it before entering the loop. Next we need to verify all other statements inside the loop:
+    // - only consts
+    // - only refers to the loop or to variables declared in the loop as well (we may relax this rule to some degree)
+    // - all operations are predictable in nature and we can resolve them without using eval
+    // The array also needs to conform:
+    // - the array reference is only pumped or accessed with a num literal property (inside the loop)
+    // - the array literal only contains primitives
+    // (This set of restrictions is easily defeated but that's not very relevant)
+
+    // Note: while parent must have at least two statements for this to match
+    const last = whileBody.length > 1 && whileBody[whileBody.length - 1];
+    const arrRefKind = last?.type === 'IfStatement' && (isPumpBreak(last.consequent, last.alternate) || isPumpBreak(last.alternate, last.consequent));
+    if (arrRefKind) {
+
+      const {ref: arrName, kind: pumpKind} = arrRefKind;
+
+      let finished = false;
+      // We have a loop that ends with a pump-breaking (on arrName) If. Go time!
+      // Confirm whether arrName is an array literal, invariably created and untouched before the loop
+      // TODO: search further than one statement and in parent nodes (like across labels etc)
+
+      function safeToSkip(node) {
+        return node.type === 'VariableDeclaration' && ['ArrayExpression'].includes(node.declarations[0].init.type);
+      }
+      function isTargetArray(node) {
+        return (
+          node?.type === 'VariableDeclaration' &&
+          node.declarations[0].id.name === arrName &&
+          node.declarations[0].init.type === 'ArrayExpression'
+        );
+      }
+
+      let changed = false;
+
+      // Try to find target array, skip noop declarations on same level
+      let prev = false;
+      let index = i;
+      while (--index >= 0) {
+        const now = body[index];
+        if (isTargetArray(now)) {
+          prev = now;
+          break;
+        }
+        if (!safeToSkip(now)) {
+          break;
+        }
+      }
+
+      let n = 0;
+      vgroup('Have a loop that pumps', arrName, 'with', pumpKind, '..., a prev stmt:', prev?.type, 'declaring', prev?.declarations?.[0].id.name, 'with init', prev?.declarations?.[0].init.type);
+
+      // Note: `null` means a gap, which returns `undefined`, so that's not blocking us here. Spreads do block us.
+      if (prev?.type !== 'VariableDeclaration') {
+        vlog('Unable to find array literal, no decl, bailing');
+      }
+      else if (prev.declarations[0].id.name !== arrName) {
+        vlog('Unable to find array literal, decl is not var, bailing');
+      }
+      else if (prev.declarations[0].id.name !== arrName) {
+        vlog('Unable to find array literal, var is not an array, bailing');
+      }
+      // Note: `null` means a gap, which returns `undefined`, so that's not blocking us here. Spreads do block us.
+      else if (!prev.declarations[0].init.elements.every(enode => !enode || AST.isPrimitive(enode))) {
+        vlog('Array literal is not only primitives, bailing');
+      }
+      else {
+        const arrNode = prev.declarations[0].init;
+        vlog('Pump loop has primitive array @', +arrNode.$p.pid);
+        //console.log('arrNode vooraf:', arrName, arrNode.elements.length, arrNode.elements.map(e => AST.getPrimitiveValue(e)));
+        // Okay, prev creates an array and it only contains primitives
+        // Now we must verify the other statements in the loop. Each must be easy to reason about and stay "local".
+        const localNames = new Map; // Remember names that were declared so we can easily verify that they were created inside the loop
+        if (
+          whileBody.slice(0, -1).every(stmt => {
+            vlog('-', stmt.type, stmt.declarations?.[0].id.name, '=', stmt.declarations?.[0].init.type);
+            if (stmt.type !== 'VariableDeclaration') return false; // Probably can include some other things; TODO
+            localNames.set(stmt.declarations[0].id.name, undefined);
+            const expr = stmt.declarations[0].init;
+            // The expr can be one of: array property access, binary expression, unary expression, calling parseInt
+            if (expr.type === 'MemberExpression') {
+              // Is this `arr[123]` ? Ignore anything else for now.
+              return expr.object.type === 'Identifier' && expr.object.name === arrName && expr.computed && AST.isNumber(expr.property);
+            }
+            if (expr.type === 'BinaryExpression') {
+              // I don't think it really matters what the operator is as long as the operands are local values or primitives none of them can spy/fail
+              return (
+                ((expr.left.type === 'Identifier' && localNames.has(expr.left.name)) || AST.isPrimitive(expr.left)) &&
+                ((expr.right.type === 'Identifier' && localNames.has(expr.right.name)) || AST.isPrimitive(expr.right))
+              );
+            }
+            if (expr.type === 'UnaryExpression') {
+              // In particular, exclude `delete` here. The rest should be fine as long as the arg is local or primitive
+              return ['typeof', '-', '+', '~', '!'].includes(expr.operator) && (expr.argument.type === 'Identifier' && localNames.has(expr.argument.name)) || AST.isPrimitive(expr.argument);
+            }
+            if (expr.type === 'CallExpression') {
+              // Only allow known functions here to be called and only with local or primitive arguments
+              // TODO: expand list of known function names to allow
+              return (
+                expr.callee.type === 'Identifier' && ['parseInt', 'parseFloat'].includes(expr.callee.name) &&
+                expr.arguments.every(arg => (arg.type === 'Identifier' && localNames.has(arg.name)) || AST.isPrimitive(arg))
+              ) ;
+            }
+
+            // TODO: what else can/should we support here?
+            return false;
+          }) &&
+          // Assert that the final If-test uses a variable that was declared inside the loop as well
+          last.test.type === 'Identifier' &&
+          localNames.has(last.test.name)
+        ) {
+          // While body conforms too. This should be the pattern! The crowd goes wiiiiild!
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+
+          // Compile a list of operations that we can apply here and now without using eval
+          // Note that the vars stored in `localNames` are defined in order so we don't have
+          // to worry about the initial value being read before being declared. Even when looping.
+
+          const steps = whileBody.map(stmt => {
+            if (stmt.type === 'VariableDeclaration') {
+              const lhs = stmt.declarations[0].id.name;
+              const expr = stmt.declarations[0].init;
+              if (expr.type === 'MemberExpression') {
+                // Is this `arr[123]` ? Ignore anything else for now.
+                return {action: 'arr', lhs, index: AST.getPrimitiveValue(expr.property)};
+              }
+              if (expr.type === 'BinaryExpression') {
+                // I don't think it really matters what the operator is as long as the operands are local values or primitives none of them can spy/fail
+                return {action: 'bin', lhs, a: expr.left, op: expr.operator, b: expr.right};
+              }
+              if (expr.type === 'UnaryExpression') {
+                return {action: 'una', lhs, arg: expr.argument, op: expr.operator};
+              }
+              if (expr.type === 'CallExpression') {
+                return {action: 'call', lhs, func: expr.callee.name, args: expr.arguments};
+              }
+              ASSERT(false, 'FIXME', expr);
+            }
+            else if (stmt.type === 'IfStatement') {
+              ASSERT(stmt === last, 'no other ifs, right?');
+              if (last.consequent.body.length === 1) {
+                return {action: 'ifnotpump', test: last.test.name, kind: pumpKind};
+              } else {
+                return {action: 'ifpump', test: last.test.name, kind: last.consequent.body[0].declarations[0].init.callee.property.name};
+              }
+            }
+            else {
+              ASSERT(false, 'FIXME?', stmt);
+            }
+          });
+
+          vlog('Run mini interpreter on', steps.length, 'steps and pump the array');
+
+          // TODO: somehow don't do this over and over again... and make the loop counter configurable
+          for (n=0; n<500; ++n) {
+            steps.forEach(step => {
+              if (step.action === 'arr') {
+                localNames.set(step.lhs, arrNode.elements[step.index] ? AST.getPrimitiveValue(arrNode.elements[step.index]) : undefined);
+              }
+              else if (step.action === 'bin') {
+                const a = AST.isPrimitive(step.a) ? AST.getPrimitiveValue(step.a) : localNames.get(step.a.name);
+                const b = AST.isPrimitive(step.b) ? AST.getPrimitiveValue(step.b) : localNames.get(step.b.name);
+                if (step.op === '+') {
+                  localNames.set(step.lhs, a + b);
+                } else if (step.op === '-') {
+                  localNames.set(step.lhs, a - b);
+                } else if (step.op === '/') {
+                  localNames.set(step.lhs, a / b);
+                } else if (step.op === '*') {
+                  localNames.set(step.lhs, a * b);
+                } else if (step.op === '%') {
+                  localNames.set(step.lhs, a % b);
+                } else if (step.op === '&') {
+                  localNames.set(step.lhs, a & b);
+                } else if (step.op === '|') {
+                  localNames.set(step.lhs, a | b);
+                } else if (step.op === '^') {
+                  localNames.set(step.lhs, a ^ b);
+                } else if (step.op === '===') {
+                  localNames.set(step.lhs, a === b);
+                } else if (step.op === '!==') {
+                  localNames.set(step.lhs, a !== b);
+                } else if (step.op === '==') {
+                  localNames.set(step.lhs, a == b);
+                } else if (step.op === '!=') {
+                  localNames.set(step.lhs, a != b);
+                } else if (step.op === '<=') {
+                  localNames.set(step.lhs, a <= b);
+                } else if (step.op === '>=') {
+                  localNames.set(step.lhs, a >= b);
+                } else if (step.op === '<') {
+                  localNames.set(step.lhs, a < b);
+                } else if (step.op === '>') {
+                  localNames.set(step.lhs, a > b);
+                } else {
+                  ASSERT(false, 'add me, op=', step.op);
+                }
+              }
+              else if (step.action === 'una') {
+                const arg = AST.isPrimitive(step.arg) ? AST.getPrimitiveValue(step.arg) : localNames.get(step.arg.name);
+                if (step.op === '+') {
+                  localNames.set(step.lhs, +arg);
+                } else if (step.op === '-') {
+                  localNames.set(step.lhs, -arg);
+                } else if (step.op === '~') {
+                  localNames.set(step.lhs, ~arg);
+                } else if (step.op === '!') {
+                  localNames.set(step.lhs, !arg);
+                } else if (step.op === 'typeof') {
+                  localNames.set(step.lhs, typeof arg);
+                } else {
+                  ASSERT(false, 'add me, op=', step.op);
+                }
+              }
+              else if (step.action === 'call') {
+                if (step.func === 'parseInt') {
+                  localNames.set(step.lhs, parseInt(...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
+                } else if (step.func === 'parseInt') {
+                  localNames.set(step.lhs, parseFloat(...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
+                } else {
+                  ASSERT(false, 'add me, op=', step.op);
+                }
+              }
+              else if (step.action === 'ifpump') {
+                if (localNames.get(step.test)) {
+                  vlog('  ifpump');
+                  if (step.kind === 'pop') {
+                    arrNode.elements.unshift(arrNode.elements.pop());
+                  }
+                  else if (step.kind === 'shift') {
+                    arrNode.elements.push(arrNode.elements.shift());
+                  }
+                  else {
+                    ASSERT(false, 'wat', step);
+                  }
+                }
+                else {
+                  vlog('  ifend');
+                  finished = true;
+                }
+              }
+              else if (step.action === 'ifnotpump') {
+                if (localNames.get(step.test)) {
+                  vlog('  ifnotend');
+                  finished = true;
+                }
+                else {
+                  vlog('  ifnotpump');
+                  if (step.kind === 'pop') {
+                    arrNode.elements.unshift(arrNode.elements.pop());
+                  }
+                  else if (step.kind === 'shift') {
+                    arrNode.elements.push(arrNode.elements.shift());
+                  }
+                  else {
+                    ASSERT(false, 'wat', step);
+                  }
+                }
+              }
+              else {
+                ASSERT(false, 'you forgot something', step.action);
+              }
+            });
+            if (finished) break;
+          }
+
+          changed = true;
+        }
+      }
+      vgroupEnd(); // pumping loop
+
+      if (changed) {
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
+      }
+
+      if (finished) {
+        body[i] = AST.emptyStatement();
+        return true;
+      }
+    }
+
     return false;
   }
+}
+
+function isPumpBreak(a, b) {
+  // Given two branch Blocks of an If, determine whether they match.
+  // Return the supposed array ref and pump kind (shift/pop)
+
+  // This is `if (test) { break; } else { const x = y.pop(); z.unshift(x); }`
+  if (
+    a.body.length === 1 &&
+    a.body[0].type === 'BreakStatement' &&
+    isPumpBlock(b)
+  ) {
+    const kind = b.body[0].declarations[0].init.callee.property.name;
+    ASSERT(kind === 'pop' || kind === 'shift', 'plain pump kind should be one or the other...', kind, b.body[0]);
+    return {
+      ref: b.body[0].declarations[0].init.callee.object.name,
+      kind,
+    };
+  }
+
+  // This is `if (test) { break; } else { try { const x = y.pop(); z.unshift(x); } catch { const x = y.pop(); z.unshift(x); } }`
+  if (
+    a.body.length === 1 &&
+    a.body[0].type === 'BreakStatement' &&
+    b.body.length === 1 &&
+    b.body[0].type === 'TryStatement' &&
+    isPumpBlock(b.body[0].block) && isPumpBlock(b.body[0].handler.body)
+  ) {
+    const kind = b.body[0].block.body[0].declarations[0].init.callee.property.name;
+    ASSERT(kind === 'pop' || kind === 'shift', 'try pump kind should be one or the other...', b.body[0].block.body[0]);
+    return {
+      ref: b.body[0].block.body[0].declarations[0].init.callee.object.name,
+      kind,
+    };
+  }
+}
+
+function isPumpBlock(node) {
+  if (!node.body) console.log('wtf', node)
+  return (
+    node.body.length === 2 &&
+    node.body[0].type === 'VariableDeclaration' &&
+    node.body[1].type === 'ExpressionStatement' &&
+    isPump(node.body[0].declarations[0].init, node.body[1].expression, node.body[0].declarations[0].id)
+  );
+}
+
+function isPump(a, b, c) {
+  // Note: we're trying to confirm the pump pattern: `const c = a.shift(); b.push(c);`
+  if (!(
+    a.type === 'CallExpression' &&
+    b.type === 'CallExpression' &&
+    //c.type === 'Identifier' && // assumed
+    // Confirm whether a and b are a member expression with the same object
+    a.callee.type === 'MemberExpression' &&
+    b.callee.type === 'MemberExpression' &&
+    a.callee.object.type === 'Identifier' &&
+    b.callee.object.type === 'Identifier' &&
+    a.callee.object.name === b.callee.object.name &&
+    !a.callee.computed &&
+    !b.callee.computed &&
+    // Confirm whether b uses c as an arg and no other args. Args to a are irrelevant.
+    b.arguments.length === 1 &&
+    b.arguments[0].type === 'Identifier' &&
+    b.arguments[0].name === c.name
+  )) {
+    return false;
+  }
+
+  // a and b are call expressions on a non-computed member expression and the object of each refers to the same variable
+  // b will push/unshift c, assuming that's the method being called here, which is what we confirm next
+
+  if (a.callee.property.name === 'shift' && b.callee.property.name === 'push') return true;
+  if (a.callee.property.name === 'pop' && b.callee.property.name === 'unshift') return true;
+  return false;
 }

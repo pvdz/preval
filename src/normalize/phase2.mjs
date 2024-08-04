@@ -122,7 +122,8 @@ export function phase2(program, fdata, resolve, req, options) {
   const r = _phase2(program, fdata, resolve, req, options);
   groupEnd();
 
-  assertNoDupeNodes(fdata.tenkoOutput.ast, 'body');
+  // For phase1 it should have unique nodes/pids
+  if (r === 'phase1') assertNoDupeNodes(fdata.tenkoOutput.ast, 'body');
 
   return r; // phase1 (phase1/2 cycle), truthy (full cycle), or falsy (repeat)
 }

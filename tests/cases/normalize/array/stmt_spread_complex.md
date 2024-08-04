@@ -9,24 +9,24 @@
 ## Input
 
 `````js filename=intro
-[...[$(10), 20], $(2), ...$([30, 40])];
+[...[$(1), 2], $(3), ...$([4, 5])];
 `````
 
 ## Pre Normal
 
 
 `````js filename=intro
-[...[$(10), 20], $(2), ...$([30, 40])];
+[...[$(1), 2], $(3), ...$([4, 5])];
 `````
 
 ## Normalized
 
 
 `````js filename=intro
-$(10);
-$(2);
+$(1);
+$(3);
 const tmpCallCallee = $;
-const tmpCalleeParam = [30, 40];
+const tmpCalleeParam = [4, 5];
 const tmpArrElToSpread = tmpCallCallee(tmpCalleeParam);
 [...tmpArrElToSpread];
 `````
@@ -35,9 +35,9 @@ const tmpArrElToSpread = tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-$(10);
-$(2);
-const tmpCalleeParam = [30, 40];
+$(1);
+$(3);
+const tmpCalleeParam = [4, 5];
 const tmpArrElToSpread = $(tmpCalleeParam);
 [...tmpArrElToSpread];
 `````
@@ -47,9 +47,9 @@ const tmpArrElToSpread = $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-$( 10 );
-$( 2 );
-const a = [ 30, 40 ];
+$( 1 );
+$( 3 );
+const a = [ 4, 5 ];
 const b = $( a );
 [ ... b ];
 `````
@@ -61,9 +61,9 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 10
- - 2: 2
- - 3: [30, 40]
+ - 1: 1
+ - 2: 3
+ - 3: [4, 5]
  - eval returned: undefined
 
 Pre normalization calls: Same

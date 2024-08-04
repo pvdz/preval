@@ -15,6 +15,7 @@ export function parseTestArgs() {
     fastTest: false,
     fileVerbatim: false,
     logPasses: false,
+    logPhases: false,
     implicitThisIdent: undefined,
     noTrace: undefined, // Force set VERBOSE_TRACING=false regardless of input size? If undefined, defaults to verbose.
     maxPass: undefined,
@@ -107,15 +108,22 @@ export function parseTestArgs() {
       }
 
       case '--log': {
-        config.logPasses = true;
+        config.logPhases = true;
         config.logDir = '';
         config.skipEval = true;
         break;
       }
 
       case '--logto': {
-        config.logPasses = true;
+        config.logPhases = true;
         config.logDir = argv.shift();
+        config.skipEval = true;
+        break;
+      }
+
+      case '--log-passes': {
+        config.logPasses = true;
+        config.logDir = '';
         config.skipEval = true;
         break;
       }

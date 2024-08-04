@@ -9,6 +9,7 @@ import { prepareNormalization } from './normalize/prepare.mjs';
 import { phase0 } from './normalize/phase0.mjs';
 import { phase1 } from './normalize/phase1.mjs';
 import { phase2 } from './normalize/phase2.mjs';
+import { phase3 } from './normalize/phase3.mjs';
 
 export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve, req, stopAfterNormalize, refTracing, options = {} }) {
   if (stdio) setStdio(stdio, verbose);
@@ -17,7 +18,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
   setRiskyRules(!!(options.risky ?? true));
 
   {
-    const { logDir, logPasses, maxPass, cloneLimit, allowEval, unrollLimit, implicitThisIdent, unrollTrueLimit, refTest, risky, ...rest } = options;
+    const { logDir, logPasses, logPhases, maxPass, cloneLimit, allowEval, unrollLimit, implicitThisIdent, unrollTrueLimit, refTest, risky, ...rest } = options;
     if (JSON.stringify(rest) !== '{}') throw new Error(`Preval: Unsupported options received: ${JSON.stringify(rest)}`);
   }
 
@@ -232,14 +233,18 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
         ++passes;
         const fdata = phase0(inputCode, fname);
         let firstAfterParse = true;
+        let phaseLoop = 0;
+        options?.onAfterPhase(0, passes, phaseLoop, fdata, false, options);
         do {
+          phaseLoop += 1;
           // Slow; serialize and parse to verify each cycle
           //parseCode(tmat(fdata.tenkoOutput.ast, true), fname);
 
-          //console.log(tmat(fdata.tenkoOutput.ast, true));
           ++phase1s;
           phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, !firstAfterParse && options.refTest); // I want a phase1 because I want the scope tracking set up for normalizing bindings
           contents.lastPhase1Ast = fdata.tenkoOutput.ast;
+
+          options?.onAfterPhase(1, passes, phaseLoop, fdata, false, options);
 
           if (options.refTest) {
             // Test runner only cares about the first pass up to here
@@ -249,6 +254,11 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           firstAfterParse = false;
 
           changed = phase2(program, fdata, resolve, req, {unrollLimit: options.unrollLimit, implicitThisIdent: options.implicitThisIdent, unrollTrueLimit: options.unrollTrueLimit});
+          options?.onAfterPhase(2, passes, phaseLoop, fdata, changed, options);
+          if (!changed) {
+            changed = phase3(program, fdata, resolve, req, {});
+            options?.onAfterPhase(3, passes, phaseLoop, fdata, changed, options);
+          }
         } while (changed === 'phase1');
 
         mod.fdata = fdata;

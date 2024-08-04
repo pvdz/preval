@@ -179,7 +179,7 @@ testCases.forEach((tc, i) => runTestCase({ ...tc, withOutput: testCases.length =
 
 if (isMainThread) {
   if (CONFIG.fileVerbatim) {
-    if (CONFIG.logPasses) {
+    if (CONFIG.logPasses || CONFIG.logPhases) {
       console.log('Finished. See output files.');
     } else {
       console.log('Finished');
@@ -282,6 +282,7 @@ function runTestCase(
         cloneLimit: CONFIG.cloneLimit ?? mdOptions?.cloneLimit ?? 10,
         implicitThisIdent: CONFIG.implicitThisIdent ?? mdOptions?.implicitThis ?? 'undefined',
         logPasses: CONFIG.logPasses,
+        logPhases: CONFIG.logPhases,
         logDir: CONFIG.logDir,
         maxPass: CONFIG.maxPass ?? mdOptions?.maxPass,
         refTest: isRefTest,
@@ -295,7 +296,7 @@ function runTestCase(
           // It then did a first one-time normalization pass to remove anything that we should
           // never see again, like `var`, patterns, param defaults, etc.
           if (options.logPasses) {
-            console.log('--log: Logging one-time-normalized state to disk for', nextFname);
+            console.log('--log-passes: Logging one-time-normalized state to disk for', nextFname);
             const f = path.join(options.logDir, 'preval.a.f' + queueFileCounter + '.onetime.normalized.log.js');
             console.log('-', f, '(', preCode.length, 'bytes) ->', nextFname);
             fs.writeFileSync(f, '// Normalized output after one pass [' + nextFname + ']\n// Command: ' + process.argv.join(' ') + '\n' + preCode);
@@ -306,14 +307,14 @@ function runTestCase(
             const code = tmat(fdata.tenkoOutput.ast, true);
             const f = path.join(options.logDir, 'preval.pass' + String(passes).padStart(4, '0') + '.f' + fi + '.normalized.log.js');
             const now = Date.now();
-            console.log('--log: Logging normalized output to disk:', f, '(', code.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '');
+            console.log('--log-passes: Logging normalized output to disk:', f, '(', code.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '');
             lastWrite = now;
             fs.writeFileSync(f, `// Normalized output after pass ${passes} [` + fname + ']\n// Command: ' + process.argv.join(' ') + '\n' + code);
           }
         },
         onFirstPassEnd(contents, allFileNames, options) {
           if (options.logPasses) {
-            console.log('--log: Logging first normalized state to disk...');
+            console.log('--log-passes: Logging first normalized state to disk...');
             allFileNames.forEach((fname, i) => {
               const f = path.join(options.logDir, 'preval.b.f' + i + '.firstpass.normalized.log.js');
               console.log('-', f, '(', contents.normalized[fname].length, 'bytes) ->', fname);
@@ -325,7 +326,7 @@ function runTestCase(
           if (options.logPasses) {
             const f = path.join(options.logDir, 'preval.pass' + String(passes).padStart(4, '0') + '.f' + fi + '.result.log.js');
             const now = Date.now();
-            console.log('--log: Logging current result to disk:', f, '(', outCode.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '');
+            console.log('--log-passes: Logging current result to disk:', f, '(', outCode.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '');
             lastWrite = now;
             fs.writeFileSync(f, '// Resulting output after one pass [' + fname + ']\n// Command: ' + process.argv.join(' ') + '\n' + outCode);
           }
@@ -334,7 +335,7 @@ function runTestCase(
           if (options.logPasses) {
             const f = path.join(options.logDir, 'preval.pass' + String(passes).padStart(4, '0') + '.f' + fi + '.result.final.log.js');
             const now = Date.now();
-            console.log('--log: Logging final result after',passes,' passes to disk:', f, '(', outCode.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '');
+            console.log('--log-passes: Logging final result after',passes,' passes to disk:', f, '(', outCode.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '');
             lastWrite = now;
             fs.writeFileSync(f, '// Resulting output after one pass [' + fname + ']\n// Command: ' + process.argv.join(' ') + '\n' + outCode);
           }
@@ -342,7 +343,7 @@ function runTestCase(
         onError(kind, error, ast, options) {
           if (options.logPasses) {
             const f = path.join(options.logDir, 'preval.error.log.js');
-            console.log('--log: Logging error to disk:', f);
+            console.log('--log-passes: Logging error to disk:', f);
             let json;
             try {
               json = JSON.stringify(ast, null, 2);
@@ -350,6 +351,17 @@ function runTestCase(
               json = '// JSON.stringify had an error: ' + e.message;
             }
             fs.writeFileSync(f, '// Error when trying to print: ' + error.message + '\n' + error.stack + '\n\nAST:\n' + json);
+          }
+        },
+        onAfterPhase(phaseIndex, passIndex, phaseLoopIndex, fdata, changed, options) {
+          // After each phase (0=normalize), generally 1 is not interesting to print since that's just scanning
+          if (options.logPhases) {
+            const f = path.join(options.logDir, `preval.pass.${passIndex}.loop.${phaseLoopIndex}.phase${phaseIndex}.log.js`);
+            const code = tmat(fdata.tenkoOutput.ast, true);
+            const now = Date.now();
+            console.log(`--log: Logging state of pass ${passIndex}, loop ${phaseLoopIndex}, ${phaseIndex ? `phase ${phaseIndex}` : 'normal '} to disk:`, f, '(', code.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '');
+            lastWrite = now;
+            fs.writeFileSync(f, `// Resulting output at pass ${passIndex}, loop ${phaseLoopIndex}, phase ${phaseIndex} [${fname}]\n// Command: ` + process.argv.join(' ') + '\n' + code);
           }
         }
       },
@@ -769,11 +781,11 @@ function runTestCase(
       ++snap;
 
       if (CONFIG.fileVerbatim) {
-        if (CONFIG.logPasses) {
+        if (CONFIG.logPasses || CONFIG.logPhases) {
           console.log('Not updating input file with result. See written logs.');
         } else {
           console.log('Not writing result. Dumping now...');
-          if (!CONFIG.logPasses) console.log('Use `--log` or `--logto` to dump intermediate logs');
+          if (!CONFIG.logPasses && !CONFIG.logPhases) console.log('Use `--log` or `--logto` or --log-passes to dump intermediate logs');
           console.log('-----------------------');
           console.log(md2);
           console.log('-----------------------');

@@ -76,8 +76,9 @@ Preval CLI Toolkit help:
  m               Run all tests and ask for update one-by-one
  fast            Omit many of the expression variation tests (ignores about 18k auto generated tests). Use -fast for the inverse.
 
- --log           Automatically write normalization and result outputs to a log file after every pass
- --logto <path>  Folder to dump log files to. Implies --log.
+ --log           Automatically write code after every phase executed to a log file. Defaults to .
+ --logto <path>  Folder to dump log files to. Implies --log. Defaults to .
+ --log-passes    Log per pass instead of after every individual phase. Less noisy.
  --max-pass <n>  Stop processing after n passes.
  --clone-limit n How often can a function be cloned before it's considered recursion?
  --node-bin=path Use this node binary to run stuff
@@ -149,6 +150,9 @@ Preval CLI Toolkit help:
       PARAM_LOG='--logto'
       shift
       PARAM_LOGTO=$1
+      ;;
+    --log-passes)
+      PARAM_LOG='--log-passes'
       ;;
     --max-pass)
       PARAM_MAXPASS="--max-pass"

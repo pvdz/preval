@@ -289,7 +289,7 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
         .join(' > '),
   );
 
-  const mdInput = CONFIG.logPasses ? '<trimmed, see logs>' : mdChunks.join('\n\n').trim();
+  const mdInput = (CONFIG.logPasses || CONFIG.logPhases) ? '<trimmed, see logs>' : mdChunks.join('\n\n').trim();
 
   // Drop the symbols that preval defines from the list of implicit globals
   leGlobalSymbols.forEach(name => output.implicitGlobals.delete(name));
@@ -297,7 +297,7 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
   const wasRefTest = CONFIG.refTest || mdOptions?.refTest;
 
   let mdBody =
-    (CONFIG.logPasses ? '<trimmed, see logs>' : (
+    ((CONFIG.logPasses || CONFIG.logPhases) ? '<trimmed, see logs>' : (
       (wasRefTest || CONFIG.onlyOutput ? '' : toPreResult(output.pre)) +
       (wasRefTest || CONFIG.onlyOutput ? '' : toNormalizedResult(output.normalized)) +
       (!wasRefTest ? '' : (

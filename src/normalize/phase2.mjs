@@ -1,4 +1,5 @@
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, before, assertNoDupeNodes } from '../utils.mjs';
+import {VERBOSE_TRACING} from '../constants.mjs';
 import { mergeTyping } from '../bindings.mjs';
 import { pruneEmptyFunctions } from '../reduce_static/empty_func.mjs';
 import { pruneTrampolineFunctions } from '../reduce_static/trampoline.mjs';
@@ -74,12 +75,10 @@ import { implicitThis } from '../reduce_static/implicit_this.mjs';
 import { expandoSplitting } from '../reduce_static/expando_splitting.mjs';
 import { selfAssignClosure } from '../reduce_static/self_assign_closure.mjs';
 import { selfAssignNoop } from '../reduce_static/self_assign_noop.mjs';
-import { unrollLoopWithTrue } from '../reduce_static/unroll_loop_with_true.mjs';
 import {letAliasing} from '../reduce_static/let_aliase.mjs';
 import {aliasedGlobals} from '../reduce_static/aliasing_globals.mjs';
 import {dotCall} from '../reduce_static/dotcall.mjs';
 import {testingAlias} from '../reduce_static/testing_alias.mjs';
-import {VERBOSE_TRACING} from '../constants.mjs';
 import {aliasIfIf} from '../reduce_static/alias_if_if.mjs';
 import { removeUnusedConstants } from '../reduce_static/remove_unused_constants.mjs';
 import { writeOnly } from '../reduce_static/write_only.mjs';
@@ -289,10 +288,7 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     testingAlias(fdata) ||
     aliasIfIf(fdata) ||
     ifUpdateTest(fdata) ||
-    fakeDoWhile(fdata) ||
-    // This one should probably be lowest priority as it might blow up code...
-    // And we must run a normalization step if _anything_ changed since in phase2, even if it was non-blocking
-    unrollLoopWithTrue(fdata, options.unrollTrueLimit)
+    fakeDoWhile(fdata)
 
 
     //// This one is very invasive and expands the code. Needs more work.

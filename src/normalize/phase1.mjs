@@ -587,27 +587,26 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
           // This is normalized code so there must be a block parent for any read ref
           // Find the nearest block/program node
+          // TODO: use blockStack ?
           let blockNode;
           let blockIndex;
-          if (kind === 'read' || kind === 'write') {
-            // Find the nearest block/program node. Start with the parent, not grandParent (!)
-            let pathIndex = pathNodes.length - 1;
-            do {
-              blockNode = pathNodes[pathIndex];
-              vlog('  - block step;', blockNode.type, blockNode.$p.pid);
-              if (blockNode.type === 'BlockStatement' || blockNode.type === 'Program') {
-                blockIndex = pathIndexes[pathIndex + 1];
-                ASSERT(
-                  blockIndex >= 0,
-                  'block index should be set right',
-                  pathNodes.map((n) => n.type),
-                  pathIndexes,
-                );
-                break;
-              }
-              --pathIndex;
-            } while (true);
-          }
+          // Find the nearest block/program node. Start with the parent, not grandParent (!)
+          let pathIndex = pathNodes.length - 1;
+          do {
+            blockNode = pathNodes[pathIndex];
+            vlog('  - block step;', blockNode.type, blockNode.$p.pid);
+            if (blockNode.type === 'BlockStatement' || blockNode.type === 'Program') {
+              blockIndex = pathIndexes[pathIndex + 1];
+              ASSERT(
+                blockIndex >= 0,
+                'block index should be set right',
+                pathNodes.map((n) => n.type),
+                pathIndexes,
+              );
+              break;
+            }
+            --pathIndex;
+          } while (true);
 
           const innerLoop = +(loopStack[loopStack.length - 1]?.$p.pid ?? 0);
           const innerIf = ifStack[ifStack.length - 1];

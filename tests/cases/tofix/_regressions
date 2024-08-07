@@ -2,6 +2,7 @@
 
 // tests/cases/normalize/nullish/global_nested_assign.md -> used to be able to inline the obj.prop assign and end with `{ b: 15 }` (same tests/cases/normalize/nullish/func_nested_assign.md)
 // tests/cases/import/import_default_named_class.md -> ref tracking: exported let/const decls should get the same treatment as escaping closures (read any write)
+// tests/cases/bit_hacks/if_return_bit/base_16.md -> regressed when restoring options to phase3, so must be loop unroll related? before it would end with $(b)
 
 // TODO:
 
@@ -43,3 +44,4 @@
 // Maybe try to unroll $forIn under risky rules? The order may not be guaranteed but that also means we can do whatever we want with that order as long as it is consistent.
 // Apply type analysis for our $forIn and $forOf symbols
 // Consider whether tests/cases/regex/dotcall/simple.md should be allowed to inline the regex as the callee or smth
+// tests/cases/type_tracked/if/base_undefined.md -> why does that leave a label?

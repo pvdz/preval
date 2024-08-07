@@ -58,8 +58,8 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const y = $(10);
-$(y);
+const tmpCalleeParam = $(10);
+$(tmpCalleeParam);
 `````
 
 ## PST Output

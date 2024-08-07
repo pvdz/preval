@@ -59,8 +59,8 @@ $(q);
 
 
 `````js filename=intro
-const r = $(undefined);
-$(r);
+const q = $(undefined);
+$(q);
 `````
 
 ## PST Output

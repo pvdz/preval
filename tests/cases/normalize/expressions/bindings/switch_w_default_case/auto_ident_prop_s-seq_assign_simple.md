@@ -94,8 +94,8 @@ if (tmpIfTest$7) {
 
 
 `````js filename=intro
-const tmpClusterSSA_b = { c: 2 };
-$(2, tmpClusterSSA_b);
+const b = { c: 2 };
+$(2, b);
 $(`fail1`);
 $(`fail2`);
 `````

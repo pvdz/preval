@@ -62,8 +62,8 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const tmpClusterSSA_b = { x: 1 };
-const tmpChainRootProp = $(tmpClusterSSA_b);
+const b = { x: 1 };
+const tmpChainRootProp = $(b);
 const tmpIfTest$1 = tmpChainRootProp == null;
 if (tmpIfTest$1) {
   $(undefined);

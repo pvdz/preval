@@ -89,8 +89,8 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const tmpClusterSSA_a = [tmpArrElement, 2, tmpArrElement$3];
-const tmpIfTest = tmpClusterSSA_a === tmpSwitchValue;
+const a = [tmpArrElement, 2, tmpArrElement$3];
+const tmpIfTest = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -106,7 +106,7 @@ if (tmpIfTest$5) {
 } else {
 }
 $(`fail2`);
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 ## PST Output

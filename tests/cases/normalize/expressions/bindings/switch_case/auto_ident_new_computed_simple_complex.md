@@ -59,8 +59,8 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpCompProp = $(`\$`);
-const tmpClusterSSA_b = { $: $ };
-const tmpNewCallee = tmpClusterSSA_b[tmpCompProp];
+const b = { $: $ };
+const tmpNewCallee = b[tmpCompProp];
 const tmpClusterSSA_a = new tmpNewCallee(1);
 $(tmpClusterSSA_a);
 `````

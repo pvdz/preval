@@ -64,8 +64,8 @@ $(a);
 const tmpIfTest$3 = $(0);
 if (tmpIfTest$3) {
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$2 = $(0);
-    if (tmpIfTest$2) {
+    const tmpIfTest$1 = $(0);
+    if (tmpIfTest$1) {
     } else {
       break;
     }

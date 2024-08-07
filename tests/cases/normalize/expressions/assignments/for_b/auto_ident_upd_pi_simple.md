@@ -66,18 +66,18 @@ $(1);
 $(1);
 $(1);
 $(1);
-let tmpClusterSSA_b$2 = 12;
+let b = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
-  const tmpNestedComplexRhs$1 = tmpClusterSSA_b$2 + 1;
-  tmpClusterSSA_b$2 = tmpNestedComplexRhs$1;
+  const tmpNestedComplexRhs$1 = b + 1;
+  b = tmpNestedComplexRhs$1;
   a = tmpNestedComplexRhs$1;
   if (tmpNestedComplexRhs$1) {
   } else {
     break;
   }
 }
-$(a, tmpClusterSSA_b$2);
+$(a, b);
 `````
 
 ## PST Output

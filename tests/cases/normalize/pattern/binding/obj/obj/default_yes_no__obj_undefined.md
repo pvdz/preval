@@ -54,12 +54,12 @@ $(`ok`);
 `````js filename=intro
 const tmpCalleeParam = { x: `pass` };
 const objPatternAfterDefault = $(tmpCalleeParam);
-let tmpClusterSSA_objPatternCrashTest = objPatternAfterDefault === undefined;
-if (tmpClusterSSA_objPatternCrashTest) {
+let objPatternCrashTest = objPatternAfterDefault === undefined;
+if (objPatternCrashTest) {
 } else {
-  tmpClusterSSA_objPatternCrashTest = objPatternAfterDefault === null;
+  objPatternCrashTest = objPatternAfterDefault === null;
 }
-if (tmpClusterSSA_objPatternCrashTest) {
+if (objPatternCrashTest) {
   objPatternAfterDefault.cannotDestructureThis;
 } else {
 }

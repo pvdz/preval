@@ -56,10 +56,10 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const tmpClusterSSA_b = { c: 1 };
-const tmpAssignRhsProp = $(tmpClusterSSA_b);
+const b = { c: 1 };
+const tmpAssignRhsProp = $(b);
 const tmpClusterSSA_a = tmpAssignRhsProp.c;
-$(tmpClusterSSA_a, tmpClusterSSA_b);
+$(tmpClusterSSA_a, b);
 `````
 
 ## PST Output

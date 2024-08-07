@@ -85,12 +85,12 @@ if (test$2) {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpPostUpdArgIdent$1 = tmpClusterSSA_i$2;
     tmpClusterSSA_i$2 = tmpClusterSSA_i$2 - 1;
-    const tmpIfTest$2 = tmpPostUpdArgIdent$1 > 0;
-    if (tmpIfTest$2) {
+    const tmpIfTest$1 = tmpPostUpdArgIdent$1 > 0;
+    if (tmpIfTest$1) {
     } else {
-      const test$3 = $(`first`);
+      const test$1 = $(`first`);
       $(`second`);
-      if (test$3) {
+      if (test$1) {
         break;
       } else {
         $(`third`);

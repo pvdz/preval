@@ -108,9 +108,9 @@ if (tmpIfTest$11) {
 
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
-const tmpClusterSSA_b = { x: tmpObjLitVal };
+const b = { x: tmpObjLitVal };
 let tmpClusterSSA_a = undefined;
-const tmpChainElementCall = $(tmpClusterSSA_b);
+const tmpChainElementCall = $(b);
 const tmpIfTest$5 = tmpChainElementCall == null;
 if (tmpIfTest$5) {
 } else {

@@ -256,7 +256,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           changed = phase2(program, fdata, resolve, req, {unrollLimit: options.unrollLimit, implicitThisIdent: options.implicitThisIdent, unrollTrueLimit: options.unrollTrueLimit});
           options?.onAfterPhase(2, passes, phaseLoop, fdata, changed, options);
           if (!changed) {
-            changed = phase3(program, fdata, resolve, req, {});
+            changed = phase3(program, fdata, resolve, req, {unrollLimit: options.unrollLimit, implicitThisIdent: options.implicitThisIdent, unrollTrueLimit: options.unrollTrueLimit});
             options?.onAfterPhase(3, passes, phaseLoop, fdata, changed, options);
           }
         } while (changed?.next === 'phase1');

@@ -51,8 +51,8 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const x$1 = $ObjectPrototype.x;
-$(x$1);
+const x = $ObjectPrototype.x;
+$(x);
 `````
 
 ## PST Output

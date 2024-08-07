@@ -54,15 +54,12 @@ $(a);
 
 
 `````js filename=intro
-const tmpCompProp = $(`\$`);
 const b = { $: $ };
-const tmpNewCallee = b[tmpCompProp];
-new tmpNewCallee(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpCompProp = $(`\$`);
+  const tmpNewCallee = b[tmpCompProp];
+  new tmpNewCallee(1);
   $(1);
-  const tmpCompProp$1 = $(`\$`);
-  const tmpNewCallee$1 = b[tmpCompProp$1];
-  new tmpNewCallee$1(1);
 }
 `````
 
@@ -71,15 +68,12 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 With rename=true
 
 `````js filename=intro
-const a = $( "$" );
-const b = { $: $ };
-const c = b[ a ];
-new c( 1 );
+const a = { $: $ };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const b = $( "$" );
+  const c = a[ b ];
+  new c( 1 );
   $( 1 );
-  const d = $( "$" );
-  const e = b[ d ];
-  new e( 1 );
 }
 `````
 

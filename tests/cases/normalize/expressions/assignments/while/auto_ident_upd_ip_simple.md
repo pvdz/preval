@@ -50,18 +50,18 @@ $(a, b);
 
 
 `````js filename=intro
-let a = 11;
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
 let b = 12;
+let a = 1;
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   const tmpPostUpdArgIdent$1 = b;
@@ -80,7 +80,8 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-let a = 11;
+let a = 12;
+let b = 1;
 $( 100 );
 $( 100 );
 $( 100 );
@@ -91,12 +92,11 @@ $( 100 );
 $( 100 );
 $( 100 );
 $( 100 );
-let b = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const c = b;
-  b = b + 1;
-  a = c;
+  const c = a;
+  a = a + 1;
+  b = c;
   if (c) {
 
   }
@@ -104,7 +104,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
 }
-$( a, b );
+$( b, a );
 `````
 
 ## Globals

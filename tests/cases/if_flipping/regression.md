@@ -141,6 +141,7 @@ if (tmpIfTest$45) {
 `````js filename=intro
 if (tmpIfTest$45) {
   tmpCalleeParam$127;
+  tmpSSA__0x2d5594;
   tmpReturnArg$39(e, d);
   getParameterByName();
   unknown(297);
@@ -158,6 +159,7 @@ With rename=true
 `````js filename=intro
 if (tmpIfTest$45) {
   tmpCalleeParam$127;
+  tmpSSA__0x2d5594;
   tmpReturnArg$39( e, d );
   getParameterByName();
   unknown( 297 );
@@ -169,9 +171,9 @@ if (tmpIfTest$45) {
 
 ## Globals
 
-BAD@! Found 10 implicit global bindings:
+BAD@! Found 11 implicit global bindings:
 
-tmpIfTest$45, tmpCalleeParam$127, tmpReturnArg$39, e, d, getParameterByName, unknown, alsoUnknown, a, b
+tmpIfTest$45, tmpCalleeParam$127, tmpSSA__0x2d5594, tmpReturnArg$39, e, d, getParameterByName, unknown, alsoUnknown, a, b
 
 ## Result
 

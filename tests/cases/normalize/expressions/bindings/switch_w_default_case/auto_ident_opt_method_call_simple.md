@@ -98,8 +98,8 @@ if (tmpIfTest$9) {
 
 
 `````js filename=intro
-const tmpClusterSSA_b = { c: $ };
-const tmpChainElementCall = tmpClusterSSA_b.c(1);
+const b = { c: $ };
+const tmpChainElementCall = b.c(1);
 $(tmpChainElementCall);
 $(`fail1`);
 $(`fail2`);

@@ -41,11 +41,11 @@ $(a);
 
 
 `````js filename=intro
-const a = /foo/;
 const tmpBinBothRhs = $(100);
 const tmpStringConcatL = $coerce(tmpBinBothRhs, `plustr`);
 const tmpCalleeParam = `/foo/${tmpStringConcatL}`;
 $(tmpCalleeParam);
+const a = /foo/;
 $(a);
 `````
 
@@ -54,12 +54,12 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = /foo/;
-const b = $( 100 );
-const c = $coerce( b, "plustr" );
-const d = `/foo/${tmpStringConcatL}`;
+const a = $( 100 );
+const b = $coerce( a, "plustr" );
+const c = `/foo/${tmpStringConcatL}`;
+$( c );
+const d = /foo/;
 $( d );
-$( a );
 `````
 
 ## Globals

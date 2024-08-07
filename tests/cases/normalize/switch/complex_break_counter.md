@@ -78,8 +78,10 @@ tmpSwitchBreak: {
 
 
 `````js filename=intro
-$(3);
-$(4);
+tmpSwitchBreak: {
+  $(3);
+  $(4);
+}
 `````
 
 ## PST Output
@@ -87,8 +89,10 @@ $(4);
 With rename=true
 
 `````js filename=intro
-$( 3 );
-$( 4 );
+tmpSwitchBreak: {
+  $( 3 );
+  $( 4 );
+}
 `````
 
 ## Globals

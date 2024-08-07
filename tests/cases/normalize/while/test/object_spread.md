@@ -49,18 +49,13 @@ $(`after`);
 
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
-const tmpObjLitVal$1 = $(2);
-const tmpCalleeParam = { a: tmpObjLitVal, b: tmpObjLitVal$1 };
-const tmpObjSpread = $(tmpCalleeParam);
-({ ...tmpObjSpread });
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpObjLitVal = $(1);
+  const tmpObjLitVal$1 = $(2);
+  const tmpCalleeParam = { a: tmpObjLitVal, b: tmpObjLitVal$1 };
+  const tmpObjSpread = $(tmpCalleeParam);
+  ({ ...tmpObjSpread });
   $(`loop`);
-  const tmpObjLitVal$2 = $(1);
-  const tmpObjLitVal$4 = $(2);
-  const tmpCalleeParam$1 = { a: tmpObjLitVal$2, b: tmpObjLitVal$4 };
-  const tmpObjSpread$1 = $(tmpCalleeParam$1);
-  ({ ...tmpObjSpread$1 });
 }
 `````
 
@@ -69,24 +64,16 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-const b = $( 2 );
-const c = {
-  a: a,
-  b: b,
-};
-const d = $( c );
-{ ... d };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( "loop" );
-  const e = $( 1 );
-  const f = $( 2 );
-  const g = {
-    a: e,
-    b: f,
+  const a = $( 1 );
+  const b = $( 2 );
+  const c = {
+    a: a,
+    b: b,
   };
-  const h = $( g );
-  { ... h };
+  const d = $( c );
+  { ... d };
+  $( "loop" );
 }
 `````
 

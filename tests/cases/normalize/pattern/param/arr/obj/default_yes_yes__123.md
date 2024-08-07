@@ -79,8 +79,8 @@ const bindingPatternArrRoot = $(tmpCalleeParam);
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep = undefined;
-let objPatternCrashTest = false;
 const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+let objPatternCrashTest = false;
 if (tmpIfTest$1) {
   arrPatternStep = $(`pass`);
   objPatternCrashTest = arrPatternStep === undefined;
@@ -108,22 +108,22 @@ const b = $( a );
 const c = [ ... b ];
 const d = c[ 0 ];
 let e = undefined;
-let f = false;
-const g = d === undefined;
-if (g) {
+const f = d === undefined;
+let g = false;
+if (f) {
   e = $( "pass" );
-  f = e === undefined;
+  g = e === undefined;
 }
 else {
   e = d;
 }
-if (f) {
+if (g) {
 
 }
 else {
-  f = e === null;
+  g = e === null;
 }
-if (f) {
+if (g) {
   e.cannotDestructureThis;
 }
 $( "ok" );

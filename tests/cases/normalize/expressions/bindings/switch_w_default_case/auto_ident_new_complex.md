@@ -87,8 +87,8 @@ if (tmpIfTest$7) {
 
 `````js filename=intro
 const tmpNewCallee = $($);
-const tmpClusterSSA_a = new tmpNewCallee(1);
-$(tmpClusterSSA_a);
+const a = new tmpNewCallee(1);
+$(a);
 $(`fail1`);
 $(`fail2`);
 `````

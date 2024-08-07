@@ -75,8 +75,8 @@ if (tmpIfTest) {
     arr = [0];
     arr[0] = 1;
     $(arr);
-    const tmpBinLhs$4 = arr[0];
-    const tmpIfTest$1 = tmpBinLhs$4 < 10;
+    const tmpBinLhs$2 = arr[0];
+    const tmpIfTest$1 = tmpBinLhs$2 < 10;
     if (tmpIfTest$1) {
     } else {
       break;

@@ -75,11 +75,11 @@ if (tmpIfTest$3) {
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpChainElementObject$6 = tmpObjLitVal$1.e;
-    const tmpIfTest$1 = tmpChainElementObject$6 == null;
+    const tmpChainElementObject$1 = tmpObjLitVal$1.e;
+    const tmpIfTest$1 = tmpChainElementObject$1 == null;
     if (tmpIfTest$1) {
     } else {
-      const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$6, tmpObjLitVal$1, 1);
+      const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, tmpObjLitVal$1, 1);
       a = tmpChainElementCall$1;
     }
     if (a) {

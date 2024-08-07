@@ -57,8 +57,8 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-const tmpReturnArg = b.$(1);
-$(tmpReturnArg);
+const tmpCalleeParam = b.$(1);
+$(tmpCalleeParam);
 $(a);
 `````
 

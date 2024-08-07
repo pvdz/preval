@@ -63,7 +63,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 
 
 `````js filename=intro
-throw `Preval: This statement contained a read that reached no writes: propTDZ;`;
+throw `Preval: TDZ triggered for this read: propTDZ;`;
 `````
 
 ## PST Output
@@ -71,7 +71,7 @@ throw `Preval: This statement contained a read that reached no writes: propTDZ;`
 With rename=true
 
 `````js filename=intro
-throw "Preval: This statement contained a read that reached no writes: propTDZ;";
+throw "Preval: TDZ triggered for this read: propTDZ;";
 `````
 
 ## Globals

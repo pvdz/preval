@@ -76,24 +76,24 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
 const tmpObjLitVal$1 = { e: $ };
 const tmpIfTest$1 = $ == null;
+let tmpBinBothLhs = undefined;
 if (tmpIfTest$1) {
 } else {
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
-  a = tmpChainElementCall;
+  tmpBinBothLhs = tmpChainElementCall;
 }
 let tmpClusterSSA_a = undefined;
 const tmpChainElementObject$9 = tmpObjLitVal$1.e;
 const tmpIfTest$5 = tmpChainElementObject$9 == null;
 if (tmpIfTest$5) {
-  const tmpClusterSSA_tmpCalleeParam = a + undefined;
+  const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + undefined;
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, 1);
   tmpClusterSSA_a = tmpChainElementCall$1;
-  const tmpClusterSSA_tmpCalleeParam$1 = a + tmpChainElementCall$1;
+  const tmpClusterSSA_tmpCalleeParam$1 = tmpBinBothLhs + tmpChainElementCall$1;
   $(tmpClusterSSA_tmpCalleeParam$1);
 }
 $(tmpClusterSSA_a);
@@ -104,27 +104,27 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { e: $ };
-const c = $ == null;
-if (c) {
+const a = { e: $ };
+const b = $ == null;
+let c = undefined;
+if (b) {
 
 }
 else {
-  const d = $dotCall( $, b, 1 );
-  a = d;
+  const d = $dotCall( $, a, 1 );
+  c = d;
 }
 let e = undefined;
-const f = b.e;
+const f = a.e;
 const g = f == null;
 if (g) {
-  const h = a + undefined;
+  const h = c + undefined;
   $( h );
 }
 else {
-  const i = $dotCall( f, b, 1 );
+  const i = $dotCall( f, a, 1 );
   e = i;
-  const j = a + i;
+  const j = c + i;
   $( j );
 }
 $( e );

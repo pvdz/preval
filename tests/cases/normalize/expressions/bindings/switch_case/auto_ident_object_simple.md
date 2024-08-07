@@ -49,8 +49,8 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const tmpClusterSSA_a = { x: 1, y: 2, z: 3 };
-$(tmpClusterSSA_a);
+const a = { x: 1, y: 2, z: 3 };
+$(a);
 `````
 
 ## PST Output

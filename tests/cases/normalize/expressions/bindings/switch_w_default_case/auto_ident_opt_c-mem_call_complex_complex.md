@@ -109,9 +109,9 @@ if (tmpIfTest$11) {
 
 
 `````js filename=intro
-let tmpClusterSSA_a = undefined;
-const tmpClusterSSA_b = { $: $ };
-const tmpChainElementCall = $(tmpClusterSSA_b);
+let a = undefined;
+const b = { $: $ };
+const tmpChainElementCall = $(b);
 const tmpIfTest$5 = tmpChainElementCall == null;
 if (tmpIfTest$5) {
 } else {
@@ -122,10 +122,10 @@ if (tmpIfTest$5) {
   } else {
     const tmpCalleeParam$3 = $(1);
     const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
-    tmpClusterSSA_a = tmpChainElementCall$1;
+    a = tmpChainElementCall$1;
   }
 }
-$(tmpClusterSSA_a);
+$(a);
 $(`fail1`);
 $(`fail2`);
 `````

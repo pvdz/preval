@@ -65,9 +65,9 @@ $(a);
 
 
 `````js filename=intro
+const tmpObjLitVal$1 = { e: $ };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpObjLitVal$1 = { e: $ };
   const tmpIfTest$3 = $ == null;
   if (tmpIfTest$3) {
   } else {
@@ -76,11 +76,11 @@ if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
-      const tmpChainElementObject$6 = tmpObjLitVal$1.e;
-      const tmpIfTest$4 = tmpChainElementObject$6 == null;
+      const tmpChainElementObject$1 = tmpObjLitVal$1.e;
+      const tmpIfTest$4 = tmpChainElementObject$1 == null;
       if (tmpIfTest$4) {
       } else {
-        $dotCall(tmpChainElementObject$6, tmpObjLitVal$1, 1);
+        $dotCall(tmpChainElementObject$1, tmpObjLitVal$1, 1);
       }
     } else {
       break;
@@ -97,26 +97,26 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-if (a) {
-  const b = { e: $ };
+const a = { e: $ };
+const b = $( 1 );
+if (b) {
   const c = $ == null;
   if (c) {
 
   }
   else {
-    $dotCall( $, b, 1 );
+    $dotCall( $, a, 1 );
   }
   while ($LOOP_UNROLL_10) {
     const d = $( 1 );
     if (d) {
-      const e = b.e;
+      const e = a.e;
       const f = e == null;
       if (f) {
 
       }
       else {
-        $dotCall( e, b, 1 );
+        $dotCall( e, a, 1 );
       }
     }
     else {

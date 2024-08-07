@@ -45,8 +45,8 @@ $(a);
 `````js filename=intro
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const tmpClusterSSA_a = [tmpArrElement, 2, tmpArrElement$3];
-$(tmpClusterSSA_a);
+const a = [tmpArrElement, 2, tmpArrElement$3];
+$(a);
 `````
 
 ## PST Output

@@ -112,8 +112,8 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest$3 = $ == null;
 let tmpIfTest = false;
+const tmpIfTest$3 = $ == null;
 if (tmpIfTest$3) {
   tmpIfTest = undefined === tmpSwitchValue;
 } else {
@@ -154,17 +154,17 @@ const a = {
 };
 const b = $( 1 );
 let c = 1;
-const d = $ == null;
-let e = false;
-if (d) {
-  e = undefined === b;
+let d = false;
+const e = $ == null;
+if (e) {
+  d = undefined === b;
 }
 else {
   const f = { e: $ };
   const g = $dotCall( $, f, 1 );
-  e = g === b;
+  d = g === b;
 }
-if (e) {
+if (d) {
   c = 0;
 }
 else {

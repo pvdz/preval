@@ -79,8 +79,8 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
 const tmpObjLitVal$1 = { e: $ };
+let a = undefined;
 const tmpIfTest$1 = $ == null;
 let tmpCalleeParam = undefined;
 if (tmpIfTest$1) {
@@ -111,36 +111,36 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { e: $ };
+const a = { e: $ };
+let b = undefined;
 const c = $ == null;
 let d = undefined;
 if (c) {
 
 }
 else {
-  const e = $dotCall( $, b, 1 );
-  a = e;
+  const e = $dotCall( $, a, 1 );
+  b = e;
   d = e;
 }
-if (a) {
+if (b) {
   let f = undefined;
-  const g = b.e;
+  const g = a.e;
   const h = g == null;
   if (h) {
 
   }
   else {
-    const i = $dotCall( g, b, 1 );
+    const i = $dotCall( g, a, 1 );
     f = i;
   }
-  a = f;
+  b = f;
   $( f );
 }
 else {
   $( d );
 }
-$( a );
+$( b );
 `````
 
 ## Globals

@@ -352,7 +352,7 @@ function processAttempt(fdata, queue) {
 
                       after(write.blockBody[write.blockIndex]);
                       after(nextRead.blockBody[nextRead.blockIndex]);
-                      updated = true;
+                      updated += 1;
                       if (nextRead.grandNode.arguments.length) addedSequence = true; // Eliminated useless .pop() args
                       return;
                     } else {
@@ -386,7 +386,7 @@ function processAttempt(fdata, queue) {
 
                       after(write.blockBody[write.blockIndex]);
                       after(nextRead.blockBody[nextRead.blockIndex]);
-                      updated = true;
+                      updated += 1;
                       if (nextRead.grandNode.arguments.length) addedSequence = true; // Eliminated useless .pop() args
                       return;
                     }
@@ -431,7 +431,7 @@ function processAttempt(fdata, queue) {
 
                       after(write.blockBody[write.blockIndex]);
                       after(nextRead.blockBody[nextRead.blockIndex]);
-                      updated = true;
+                      updated += 1;
                       if (nextRead.grandNode.arguments.length) addedSequence = true; // Eliminated useless .shift() args
                       return;
                     } else {
@@ -466,7 +466,7 @@ function processAttempt(fdata, queue) {
 
                       after(write.blockBody[write.blockIndex]);
                       after(nextRead.blockBody[nextRead.blockIndex]);
-                      updated = true;
+                      updated += 1;
                       if (nextRead.grandNode.arguments.length) addedSequence = true; // Eliminated useless .shift() args
                       return;
                     }

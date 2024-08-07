@@ -78,21 +78,13 @@ $(a);
 
 `````js filename=intro
 $(1);
-let a = 1;
-const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  a = arr[286];
   try {
-    $(a);
-    if (a) {
-      break;
-    } else {
-    }
+    $(undefined);
   } catch (P) {
     $(`fail`);
   }
 }
-$(a);
 `````
 
 ## PST Output
@@ -101,21 +93,14 @@ With rename=true
 
 `````js filename=intro
 $( 1 );
-let a = 1;
-const b = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k" ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  a = b[ 286 ];
   try {
-    $( a );
-    if (a) {
-      break;
-    }
+    $( undefined );
   }
-  catch (c) {
+  catch (a) {
     $( "fail" );
   }
 }
-$( a );
 `````
 
 ## Globals

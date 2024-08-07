@@ -3,7 +3,6 @@
 //  ->
 //    const arr = [1, 2, 3]; x = 2;
 
-
 import walk from '../../lib/walk.mjs';
 import {
   ASSERT,
@@ -88,7 +87,7 @@ function _arrayReads(fdata) {
     if (meta.isBuiltin) return vlog('- Assigned to built-in. Who does that. Bailing'); // eh
 
     vgroup();
-    withArrayExpr(node, arrName, parentNode, blockBody, blockIndex);
+    withArrayExpr(node, arrName, parentNode, blockBody, blockIndex, meta);
     vgroupEnd();
   }
 
@@ -97,7 +96,7 @@ function _arrayReads(fdata) {
    * @param {number} index
    * @param {ArrayExpression} arrNode
    * @param {string} arrName
-   * @param {'bail' | 'changed' | undefined} An undefined means the statement does not prevent us from checking the next statement
+   * @returns {'bail' | 'changed' | undefined} An undefined means the statement does not prevent us from checking the next statement
    */
   function walkBlock(block, index, arrNode, arrName) {
     if (index >= block.length) return vlog('- No more statements after index', index);
@@ -221,7 +220,41 @@ function _arrayReads(fdata) {
     return undefined; // Did not bail or change
   }
 
-  function withArrayExpr(arrNode, arrName, parentNode, blockBody, blockIndex) {
+  function withArrayExpr(arrNode, arrName, parentNode, blockBody, blockIndex, arrMeta) {
+    if (arrMeta.writes.length === 1 && arrMeta.reads.every(read => {
+      return (
+        read.parentNode.type === 'MemberExpression' &&
+        (read.grandNode.type !== 'UnaryExpression' || read.grandNode.operator !== 'delete') &&
+        read.parentNode.computed &&
+        AST.isNumber(read.parentNode.property) &&
+        (read.grandNode.type !== 'AssignmentExpression' || read.grandProp !== 'left') // Not assignment to prop
+      );
+    })) {
+      // There was one declaration and every read was an indexed access:
+      // array can't mutate and it's totally safe to inline all reads
+
+      arrMeta.reads.forEach(read => {
+        const index = AST.getPrimitiveValue(read.parentNode.property);
+        const enode = arrNode.elements[index];
+        if (!enode || AST.isPrimitive(enode)) {
+          const value = enode ? AST.getPrimitiveValue(enode) : undefined;
+
+          rule('A const array that cant mutate can have any indexed prop access inlined');
+          example('const arr = [1, 2, 3]; f(arr[2]);', 'const arr = [1, 2, 3]; f(3);');
+          before(read.blockBody[read.blockIndex]);
+
+          if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(value);
+          else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(value);
+
+          after(read.blockBody[read.blockIndex]);
+          changes += 1;
+        }
+      });
+
+      // Either way return, if this couldn't inline some access, the next bit can't either.
+      return;
+    }
+
 
     let index = blockIndex + 1; //
     if (!blockBody[index]) {

@@ -110,6 +110,7 @@ function _letAliasing(fdata) {
       if (hasObservableSideEffectsBetweenRefs(prevRead, rw, MAY_MISS, `${prevRead.parentNode.id.name} = ${prevRead.parentNode.init.name}, ${rw.parentNode.id.name} = ${prevRead.parentNode.init.name}`)) {
         prevRead = rw;
         vlog('      - bail, hasObservableSideEffectsBetweenRefs, unsafe')
+        vgroupEnd();
         return;
       }
       vgroupEnd();

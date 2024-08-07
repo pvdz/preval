@@ -43,12 +43,6 @@ function _arr_mutation(fdata) {
 
   let [updated, addedSequence] = processAttempt(fdata, queue);
 
-  if (queue.length) {
-    // By index, high to low. This way it should not be possible to cause reference problems by changing index
-    queue.sort(({ index: a }, { index: b }) => b-a);
-    queue.forEach(({ func }) => func());
-  }
-
   log('');
   if (addedSequence) {
     log('Array accesses changed:', updated, '. At least one change requires a restart to normalize');
@@ -61,7 +55,7 @@ function _arr_mutation(fdata) {
   log('Array accesses changed: 0.');
 }
 
-function processAttempt(fdata, queue) {
+function processAttempt(fdata) {
   // Find arrays where the first read is a method call
   // TODO: Find arrays that call methods before any other potential mutation happens to them (ie. reading index prop is fine, escaping is not)
 

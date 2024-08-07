@@ -1,6 +1,7 @@
 export let VERBOSE_TRACING = true;
 
 export function setVerboseTracing(bool) {
+  // Note: you may also need to call clearStdio(); or setStdio(stdio, verbose); to have changes take effect (when debugging)
   VERBOSE_TRACING = !!bool;
 }
 

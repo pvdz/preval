@@ -692,6 +692,7 @@ export function one() {
 export function param(name, rest = false) {
   // This is a custom Preval node to represent a param name
   // The goal is to shield it away from general inspection by not being a generic Identifier
+  // Note: paramNode.$p.paramVarDeclRef should point to the init in the body
   ASSERT(typeof name === 'string' && name, 'ident names must be valid nonempty strings like $$0 and $$1', name, rest);
   ASSERT(/^\$\$\d+$/.test(name), 'param names should have their index affixed to a double dollar and no suffix', name);
 

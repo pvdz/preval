@@ -301,9 +301,9 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     return;
   }
 
-  ASSERT(typeof action.what === 'string');
-  ASSERT(typeof action.changes === 'number' && action.changes > 0);
-  ASSERT(action.next === 'phase1' || action.next === 'normal', 'next should be phase1 or normal', action.next);
+  ASSERT(typeof action.what === 'string', 'actionwhat should be string', action);
+  ASSERT(typeof action.changes === 'number' && action.changes > 0, 'changes is number?', action);
+  ASSERT(action.next === 'phase1' || action.next === 'normal', 'next should be phase1 or normal', action);
 
   return action;
 }

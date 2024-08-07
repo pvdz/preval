@@ -1,6 +1,6 @@
 import walk from '../../lib/walk.mjs';
 
-import { VERBOSE_TRACING, RED, BLUE, DIM, RESET } from '../constants.mjs';
+import { VERBOSE_TRACING, RED, BLUE, DIM, RESET, setVerboseTracing } from '../constants.mjs';
 import {
   ASSERT,
   log,
@@ -134,9 +134,15 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
     throw e;
   }
-  vlog('\n\n\n####################################################################\n\n\n');
+  vlog('\n\n\n#################################################################### phase1 [',passes,'::', phase1s, ']\n\n\n');
 
   resetUid();
+
+  const tracingValueBefore = VERBOSE_TRACING;
+  if (passes > 1 || phase1s > 1) {
+    vlog('(Disabling verbose tracing for phase 1 after the first pass)');
+    setVerboseTracing(false);
+  }
 
   let called = 0;
   const now = Date.now();
@@ -149,6 +155,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
   vlog('End of phase1\n');
 
   assertNoDupeNodes(ast, 'body');
+
+  setVerboseTracing(tracingValueBefore);
 
   function _walker(node, before, nodeType, path) {
     ASSERT(node, 'node should be truthy', node);

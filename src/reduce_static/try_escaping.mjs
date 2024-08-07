@@ -40,7 +40,7 @@ function _tryEscaping(fdata) {
   let changed = 0;
   let restart = false;
 
-  walk(_walker, ast, 'ast');
+  walk(_walker, ast);
   function _walker(node, beforeWalk, nodeType, path) {
     // There are a couple of cases we'll target but there are probably many more. Can we catch them all?
 
@@ -106,7 +106,7 @@ function _tryEscaping(fdata) {
       // We do not allow property assignments (although we'd only have to disallow .length and computed)
 
       if (arrMeta.reads.some((read,i) => {
-        if (read.parentNode.type !== 'MemberExpression') return vlog('  Not MemberExpression (', read.parentNode.type, ')', read),true; // We can only support it if there are only member expressions
+        if (read.parentNode.type !== 'MemberExpression') return vlog('  Not MemberExpression (', read.parentNode.type, ')'),true; // We can only support it if there are only member expressions
         if (read.parentProp !== 'object') return vlog('  Used as computed prop value'),true; // This is `obj[arr]` somehow, eew. But can't change the type of an array so whatever.
         if (read.grandNode.type === 'VariableDeclarator') return false; // This is ok. `const x = arr[123]` or `const x = arr.foo`
         if (read.grandNode.type === 'AssignmentExpression') return read.grandProp === 'left'; // This is ok. `x = arr[123]` or `x = arr.foo`, but arr[123]=x is not

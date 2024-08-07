@@ -39,7 +39,7 @@ export function $p() {
 
     // - returnBreakThrow // 'return' | 'break' | 'throw', used for dce in normalize
 
-    // reduce/phase2 (these props should exist after phas1... even on new nodes)
+    // reduce/phase2 (these props should exist after phase1... even on new nodes)
     // - hasFuncDecl // bool. Prevent elimination of blocks containing function declarations
     // - readsArgumentsLen // bool. Does it read `arguments.length`?
     // - readsArgumentsLenAs // string. Name of the alias, if any

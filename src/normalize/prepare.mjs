@@ -9,7 +9,7 @@ import {
   RED,
   BLUE,
   RESET,
-  DIM,
+  DIM, setVerboseTracing,
 } from '../constants.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, after, source, assertNoDupeNodes } from '../utils.mjs';
 import {$p, resetUid} from '../$p.mjs';
@@ -74,6 +74,14 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
   if (!options.skipUidReset) {
     resetUid();
   }
+
+
+  const tracingValueBefore = VERBOSE_TRACING;
+  if (!oncePass) {
+    vlog('(Disabling verbose tracing for prepare after the first pass)');
+    setVerboseTracing(false);
+  }
+
 
   walk(_walker, ast, 'ast');
   function _walker(node, beforeWalk, nodeType, path) {
@@ -686,6 +694,8 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
 
     vgroupEnd();
   }
+
+  setVerboseTracing(tracingValueBefore);
 
   // Do a quick pass through all bindings to discover TDZ
   // - Cannot be a closure

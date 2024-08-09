@@ -9674,7 +9674,6 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     const last = whileBody.length > 1 && whileBody[whileBody.length - 1];
     const arrRefKind = last?.type === 'IfStatement' && (isPumpBreak(last.consequent, last.alternate) || isPumpBreak(last.alternate, last.consequent));
     if (arrRefKind) {
-
       const {ref: arrName, kind: pumpKind} = arrRefKind;
 
       let finished = false;
@@ -9683,7 +9682,13 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       // TODO: search further than one statement and in parent nodes (like across labels etc)
 
       function safeToSkip(node) {
-        return node.type === 'VariableDeclaration' && ['ArrayExpression'].includes(node.declarations[0].init.type);
+        vlog('safeToSkip?', node.type, node.declarations?.[0].init.type)
+        return (
+          node.type === 'VariableDeclaration' && (
+            ['ArrayExpression', 'FunctionExpression', 'ObjectExpression'].includes(node.declarations[0].init.type) ||
+            AST.isPrimitive(node.declarations[0].init)
+          )
+        );
       }
       function isTargetArray(node) {
         return (
@@ -9710,7 +9715,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       }
 
       let n = 0;
-      vgroup('Have a loop that pumps', arrName, 'with', pumpKind, '..., a prev stmt:', prev?.type, 'declaring', prev?.declarations?.[0].id.name, 'with init', prev?.declarations?.[0].init.type);
+      vgroup(`Have a loop @${node.$p.pid} that pumps`, arrName, 'with', pumpKind, '..., a prev stmt:', prev?.type, 'declaring', prev?.declarations?.[0].id.name, 'with init', prev?.declarations?.[0].init.type);
 
       // Note: `null` means a gap, which returns `undefined`, so that's not blocking us here. Spreads do block us.
       if (prev?.type !== 'VariableDeclaration') {
@@ -9727,44 +9732,58 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         vlog('Array literal is not only primitives, bailing');
       }
       else {
+        vlog('going to pump it?')
         const arrNode = prev.declarations[0].init;
         vlog('Pump loop has primitive array @', +arrNode.$p.pid);
-        //console.log('arrNode vooraf:', arrName, arrNode.elements.length, arrNode.elements.map(e => AST.getPrimitiveValue(e)));
         // Okay, prev creates an array and it only contains primitives
         // Now we must verify the other statements in the loop. Each must be easy to reason about and stay "local".
         const localNames = new Map; // Remember names that were declared so we can easily verify that they were created inside the loop
         if (
           whileBody.slice(0, -1).every(stmt => {
             vlog('-', stmt.type, stmt.declarations?.[0].id.name, '=', stmt.declarations?.[0].init.type);
-            if (stmt.type !== 'VariableDeclaration') return false; // Probably can include some other things; TODO
+            if (stmt.type !== 'VariableDeclaration') {
+              // Probably can include some other things; TODO
+              vlog('bail; Found a non-binding', stmt.type);
+              return false;
+            }
+            vlog('Found local binding:', stmt.declarations[0].id.name)
             localNames.set(stmt.declarations[0].id.name, undefined);
             const expr = stmt.declarations[0].init;
             // The expr can be one of: array property access, binary expression, unary expression, calling parseInt
             if (expr.type === 'MemberExpression') {
               // Is this `arr[123]` ? Ignore anything else for now.
-              return expr.object.type === 'Identifier' && expr.object.name === arrName && expr.computed && AST.isNumber(expr.property);
+              const b = expr.object.type === 'Identifier' && expr.object.name === arrName && expr.computed && AST.isNumber(expr.property);;
+              if (!b) vlog('bail; Found bad member expression');
+              return b;
             }
             if (expr.type === 'BinaryExpression') {
               // I don't think it really matters what the operator is as long as the operands are local values or primitives none of them can spy/fail
-              return (
+              const b = (
                 ((expr.left.type === 'Identifier' && localNames.has(expr.left.name)) || AST.isPrimitive(expr.left)) &&
                 ((expr.right.type === 'Identifier' && localNames.has(expr.right.name)) || AST.isPrimitive(expr.right))
               );
+              if (!b) vlog('bail; Found bad binary expression', expr.left.type, expr.operator, expr.right.type);
+              return b;
             }
             if (expr.type === 'UnaryExpression') {
               // In particular, exclude `delete` here. The rest should be fine as long as the arg is local or primitive
-              return ['typeof', '-', '+', '~', '!'].includes(expr.operator) && (expr.argument.type === 'Identifier' && localNames.has(expr.argument.name)) || AST.isPrimitive(expr.argument);
+              const b = ['typeof', '-', '+', '~', '!'].includes(expr.operator) && (expr.argument.type === 'Identifier' && localNames.has(expr.argument.name)) || AST.isPrimitive(expr.argument);
+              if (!b) vlog('bail; Found bad unary expression', expr.operator, expr.argument.type);
+              return b;
             }
             if (expr.type === 'CallExpression') {
               // Only allow known functions here to be called and only with local or primitive arguments
               // TODO: expand list of known function names to allow
-              return (
-                expr.callee.type === 'Identifier' && ['parseInt', 'parseFloat'].includes(expr.callee.name) &&
+              const b = (
+                expr.callee.type === 'Identifier' && ['$', 'parseInt', 'parseFloat'].includes(expr.callee.name) &&
                 expr.arguments.every(arg => (arg.type === 'Identifier' && localNames.has(arg.name)) || AST.isPrimitive(arg))
-              ) ;
+              );
+              if (!b) vlog('bail; Found bad call expression');
+              return b;
             }
 
             // TODO: what else can/should we support here?
+            vlog('bail; While body had an expression that did not meet this pattern, bailing... type=', expr.type);
             return false;
           }) &&
           // Assert that the final If-test uses a variable that was declared inside the loop as well
@@ -9877,9 +9896,14 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
               else if (step.action === 'call') {
                 if (step.func === 'parseInt') {
                   localNames.set(step.lhs, parseInt(...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
-                } else if (step.func === 'parseInt') {
+                }
+                else if (step.func === 'parseFloat') {
                   localNames.set(step.lhs, parseFloat(...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
-                } else {
+                }
+                else if (step.func === '$') { // My test hack. Or jquery :shrug:
+                  localNames.set(step.lhs, vlog('$ loop',n,':', ...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
+                }
+                else {
                   ASSERT(false, 'add me, op=', step.op);
                 }
               }
@@ -9927,8 +9951,11 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           }
 
           changed = true;
+        } else {
+          vlog(`No. While-body did not conform or if-test (${last.test.type}, "${last.test?.name}") is not an ident that is local (${localNames.has(last.test?.name)})`);
         }
       }
+      vlog('end of loop, changed=', changed, ', finished=', finished, 'applied', n, 'iterations');
       vgroupEnd(); // pumping loop
 
       if (changed) {
@@ -9981,7 +10008,6 @@ function isPumpBreak(a, b) {
 }
 
 function isPumpBlock(node) {
-  if (!node.body) console.log('wtf', node)
   return (
     node.body.length === 2 &&
     node.body[0].type === 'VariableDeclaration' &&

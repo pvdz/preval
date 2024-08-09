@@ -51,14 +51,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-const tmpCalleeParam$1 = $(2);
-new $(tmpCalleeParam, tmpCalleeParam$1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpCalleeParam = $(1);
+  const tmpCalleeParam$1 = $(2);
+  new $(tmpCalleeParam, tmpCalleeParam$1);
   $(100);
-  const tmpCalleeParam$2 = $(1);
-  const tmpCalleeParam$4 = $(2);
-  new $(tmpCalleeParam$2, tmpCalleeParam$4);
 }
 `````
 
@@ -67,14 +64,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-const b = $( 2 );
-new $( a, b );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const a = $( 1 );
+  const b = $( 2 );
+  new $( a, b );
   $( 100 );
-  const c = $( 1 );
-  const d = $( 2 );
-  new $( c, d );
 }
 `````
 

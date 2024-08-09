@@ -508,7 +508,7 @@ function processAttempt(fdata) {
                       if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
                         if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
                           // Call was a statement. Just drop it.
-                          nextRead.blockBody[nextRead.blockIndex].expression = AST.emptyStatement();
+                          nextRead.blockBody[nextRead.blockIndex] = AST.emptyStatement();
                         } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
                           // Call was assigned
                           nextRead.blockBody[nextRead.blockIndex].expression.right = AST.literal(arrayLiteralNode.elements.length);

@@ -43,11 +43,9 @@ while (true) {
 
 
 `````js filename=intro
-const x = /foo/;
-$(x);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const x$1 = /foo/;
-  $(x$1);
+  const x = /foo/;
+  $(x);
 }
 `````
 
@@ -56,11 +54,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 With rename=true
 
 `````js filename=intro
-const a = /foo/;
-$( a );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const b = /foo/;
-  $( b );
+  const a = /foo/;
+  $( a );
 }
 `````
 

@@ -141,8 +141,8 @@ $(`woohoo`);
 
 
 `````js filename=intro
-loopStop: {
-  loopStop$6: {
+loopStop$1: {
+  loopStop: {
     const tmpIfTest = $(false);
     if (tmpIfTest) {
       $(`uhoh`);
@@ -152,7 +152,7 @@ loopStop: {
         $(`neither`);
       } else {
         $(`exit`);
-        break loopStop$6;
+        break loopStop;
       }
     }
     const tmpIfTest$2 = $(false);
@@ -164,7 +164,7 @@ loopStop: {
         $(`neither`);
       } else {
         $(`exit`);
-        break loopStop$6;
+        break loopStop;
       }
     }
     const tmpIfTest$3 = $(false);
@@ -176,7 +176,7 @@ loopStop: {
         $(`neither`);
       } else {
         $(`exit`);
-        break loopStop$6;
+        break loopStop;
       }
     }
     const tmpIfTest$6 = $(false);
@@ -188,7 +188,7 @@ loopStop: {
         $(`neither`);
       } else {
         $(`exit`);
-        break loopStop$6;
+        break loopStop;
       }
     }
     const tmpIfTest$7 = $(false);
@@ -200,7 +200,7 @@ loopStop: {
         $(`neither`);
       } else {
         $(`exit`);
-        break loopStop$6;
+        break loopStop;
       }
     }
     const tmpIfTest$10 = $(false);
@@ -212,7 +212,7 @@ loopStop: {
         $(`neither`);
       } else {
         $(`exit`);
-        break loopStop$6;
+        break loopStop;
       }
     }
     const tmpIfTest$11 = $(false);
@@ -224,7 +224,7 @@ loopStop: {
         $(`neither`);
       } else {
         $(`exit`);
-        break loopStop$6;
+        break loopStop;
       }
     }
     const tmpIfTest$14 = $(false);
@@ -236,7 +236,7 @@ loopStop: {
         $(`neither`);
       } else {
         $(`exit`);
-        break loopStop$6;
+        break loopStop;
       }
     }
     const tmpIfTest$15 = $(false);
@@ -248,7 +248,7 @@ loopStop: {
         $(`neither`);
       } else {
         $(`exit`);
-        break loopStop$6;
+        break loopStop;
       }
     }
     const tmpIfTest$18 = $(false);
@@ -260,7 +260,7 @@ loopStop: {
         $(`neither`);
       } else {
         $(`exit`);
-        break loopStop$6;
+        break loopStop;
       }
     }
     const tmpIfTest$19 = $(false);
@@ -272,7 +272,7 @@ loopStop: {
         $(`neither`);
       } else {
         $(`exit`);
-        break loopStop$6;
+        break loopStop;
       }
     }
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -298,7 +298,7 @@ loopStop: {
     if (tmpIfTest$25) {
       $(`neither`);
       $(`exit`);
-      break loopStop;
+      break loopStop$1;
     } else {
     }
   } else {
@@ -310,7 +310,7 @@ loopStop: {
     if (tmpIfTest$28) {
       $(`neither`);
       $(`exit`);
-      break loopStop;
+      break loopStop$1;
     } else {
     }
   } else {
@@ -322,7 +322,7 @@ loopStop: {
     if (tmpIfTest$29) {
       $(`neither`);
       $(`exit`);
-      break loopStop;
+      break loopStop$1;
     } else {
     }
   } else {
@@ -334,7 +334,7 @@ loopStop: {
     if (tmpIfTest$32) {
       $(`neither`);
       $(`exit`);
-      break loopStop;
+      break loopStop$1;
     } else {
     }
   } else {
@@ -346,7 +346,7 @@ loopStop: {
     if (tmpIfTest$33) {
       $(`neither`);
       $(`exit`);
-      break loopStop;
+      break loopStop$1;
     } else {
     }
   } else {
@@ -358,7 +358,7 @@ loopStop: {
     if (tmpIfTest$36) {
       $(`neither`);
       $(`exit`);
-      break loopStop;
+      break loopStop$1;
     } else {
     }
   } else {
@@ -370,7 +370,7 @@ loopStop: {
     if (tmpIfTest$37) {
       $(`neither`);
       $(`exit`);
-      break loopStop;
+      break loopStop$1;
     } else {
     }
   } else {
@@ -382,7 +382,7 @@ loopStop: {
     if (tmpIfTest$40) {
       $(`neither`);
       $(`exit`);
-      break loopStop;
+      break loopStop$1;
     } else {
     }
   } else {
@@ -394,7 +394,7 @@ loopStop: {
     if (tmpIfTest$41) {
       $(`neither`);
       $(`exit`);
-      break loopStop;
+      break loopStop$1;
     } else {
     }
   } else {
@@ -406,7 +406,7 @@ loopStop: {
     if (tmpIfTest$44) {
       $(`neither`);
       $(`exit`);
-      break loopStop;
+      break loopStop$1;
     } else {
     }
   } else {
@@ -418,7 +418,7 @@ loopStop: {
     if (tmpIfTest$45) {
       $(`neither`);
       $(`exit`);
-      break loopStop;
+      break loopStop$1;
     } else {
     }
   } else {
@@ -446,8 +446,8 @@ $(`woohoo`);
 With rename=true
 
 `````js filename=intro
-loopStop: {
-  loopStop$6: {
+loopStop$1: {
+  loopStop: {
     const a = $( false );
     if (a) {
       $( "uhoh" );
@@ -459,7 +459,7 @@ loopStop: {
       }
       else {
         $( "exit" );
-        break loopStop$6;
+        break loopStop;
       }
     }
     const c = $( false );
@@ -473,7 +473,7 @@ loopStop: {
       }
       else {
         $( "exit" );
-        break loopStop$6;
+        break loopStop;
       }
     }
     const e = $( false );
@@ -487,7 +487,7 @@ loopStop: {
       }
       else {
         $( "exit" );
-        break loopStop$6;
+        break loopStop;
       }
     }
     const g = $( false );
@@ -501,7 +501,7 @@ loopStop: {
       }
       else {
         $( "exit" );
-        break loopStop$6;
+        break loopStop;
       }
     }
     const i = $( false );
@@ -515,7 +515,7 @@ loopStop: {
       }
       else {
         $( "exit" );
-        break loopStop$6;
+        break loopStop;
       }
     }
     const k = $( false );
@@ -529,7 +529,7 @@ loopStop: {
       }
       else {
         $( "exit" );
-        break loopStop$6;
+        break loopStop;
       }
     }
     const m = $( false );
@@ -543,7 +543,7 @@ loopStop: {
       }
       else {
         $( "exit" );
-        break loopStop$6;
+        break loopStop;
       }
     }
     const o = $( false );
@@ -557,7 +557,7 @@ loopStop: {
       }
       else {
         $( "exit" );
-        break loopStop$6;
+        break loopStop;
       }
     }
     const q = $( false );
@@ -571,7 +571,7 @@ loopStop: {
       }
       else {
         $( "exit" );
-        break loopStop$6;
+        break loopStop;
       }
     }
     const s = $( false );
@@ -585,7 +585,7 @@ loopStop: {
       }
       else {
         $( "exit" );
-        break loopStop$6;
+        break loopStop;
       }
     }
     const u = $( false );
@@ -599,7 +599,7 @@ loopStop: {
       }
       else {
         $( "exit" );
-        break loopStop$6;
+        break loopStop;
       }
     }
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -627,7 +627,7 @@ loopStop: {
     if (z) {
       $( "neither" );
       $( "exit" );
-      break loopStop;
+      break loopStop$1;
     }
   }
   const 01 = $( false );
@@ -637,7 +637,7 @@ loopStop: {
     if (11) {
       $( "neither" );
       $( "exit" );
-      break loopStop;
+      break loopStop$1;
     }
   }
   const 21 = $( false );
@@ -647,7 +647,7 @@ loopStop: {
     if (31) {
       $( "neither" );
       $( "exit" );
-      break loopStop;
+      break loopStop$1;
     }
   }
   const 41 = $( false );
@@ -657,7 +657,7 @@ loopStop: {
     if (51) {
       $( "neither" );
       $( "exit" );
-      break loopStop;
+      break loopStop$1;
     }
   }
   const 61 = $( false );
@@ -667,7 +667,7 @@ loopStop: {
     if (71) {
       $( "neither" );
       $( "exit" );
-      break loopStop;
+      break loopStop$1;
     }
   }
   const 81 = $( false );
@@ -677,7 +677,7 @@ loopStop: {
     if (91) {
       $( "neither" );
       $( "exit" );
-      break loopStop;
+      break loopStop$1;
     }
   }
   const a1 = $( false );
@@ -687,7 +687,7 @@ loopStop: {
     if (b1) {
       $( "neither" );
       $( "exit" );
-      break loopStop;
+      break loopStop$1;
     }
   }
   const c1 = $( false );
@@ -697,7 +697,7 @@ loopStop: {
     if (d1) {
       $( "neither" );
       $( "exit" );
-      break loopStop;
+      break loopStop$1;
     }
   }
   const e1 = $( false );
@@ -707,7 +707,7 @@ loopStop: {
     if (f1) {
       $( "neither" );
       $( "exit" );
-      break loopStop;
+      break loopStop$1;
     }
   }
   const g1 = $( false );
@@ -717,7 +717,7 @@ loopStop: {
     if (h1) {
       $( "neither" );
       $( "exit" );
-      break loopStop;
+      break loopStop$1;
     }
   }
   const i1 = $( false );
@@ -727,7 +727,7 @@ loopStop: {
     if (j1) {
       $( "neither" );
       $( "exit" );
-      break loopStop;
+      break loopStop$1;
     }
   }
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

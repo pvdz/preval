@@ -59,20 +59,16 @@ $(a, x, y);
 
 
 `````js filename=intro
-$(1);
-$(2);
-const tmpArrElement = $(3);
-const tmpArrElement$1 = $(4);
-let tmpClusterSSA_x = tmpArrElement;
-let tmpClusterSSA_y = tmpArrElement$1;
+let x = 1;
+let y = 2;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(x);
+  $(y);
+  const tmpArrElement = $(3);
+  const tmpArrElement$1 = $(4);
+  x = tmpArrElement;
+  y = tmpArrElement$1;
   $(100);
-  $(tmpClusterSSA_x);
-  $(tmpClusterSSA_y);
-  const tmpArrElement$2 = $(3);
-  const tmpArrElement$4 = $(4);
-  tmpClusterSSA_x = tmpArrElement$2;
-  tmpClusterSSA_y = tmpArrElement$4;
 }
 `````
 
@@ -81,20 +77,16 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 With rename=true
 
 `````js filename=intro
-$( 1 );
-$( 2 );
-const a = $( 3 );
-const b = $( 4 );
-let c = a;
-let d = b;
+let a = 1;
+let b = 2;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( a );
+  $( b );
+  const c = $( 3 );
+  const d = $( 4 );
+  a = c;
+  b = d;
   $( 100 );
-  $( c );
-  $( d );
-  const e = $( 3 );
-  const f = $( 4 );
-  c = e;
-  d = f;
 }
 `````
 

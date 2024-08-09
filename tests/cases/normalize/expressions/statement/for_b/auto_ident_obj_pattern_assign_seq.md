@@ -62,20 +62,16 @@ $(a, x, y);
 
 
 `````js filename=intro
-$(1);
-$(2);
-const tmpObjLitVal = $(3);
-const tmpObjLitVal$1 = $(4);
-let x = tmpObjLitVal;
-let y = tmpObjLitVal$1;
+let x = 1;
+let y = 2;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(1);
   $(x);
   $(y);
-  const tmpObjLitVal$2 = $(3);
-  const tmpObjLitVal$4 = $(4);
-  x = tmpObjLitVal$2;
-  y = tmpObjLitVal$4;
+  const tmpObjLitVal = $(3);
+  const tmpObjLitVal$1 = $(4);
+  x = tmpObjLitVal;
+  y = tmpObjLitVal$1;
+  $(1);
 }
 `````
 
@@ -84,20 +80,16 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 With rename=true
 
 `````js filename=intro
-$( 1 );
-$( 2 );
-const a = $( 3 );
-const b = $( 4 );
-let c = a;
-let d = b;
+let a = 1;
+let b = 2;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( a );
+  $( b );
+  const c = $( 3 );
+  const d = $( 4 );
+  a = c;
+  b = d;
   $( 1 );
-  $( c );
-  $( d );
-  const e = $( 3 );
-  const f = $( 4 );
-  c = e;
-  d = f;
 }
 `````
 

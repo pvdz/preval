@@ -87,44 +87,26 @@ $(a, b, c);
 
 `````js filename=intro
 const b = { x: 1 };
-const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $(`x`);
-const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $(`x`);
-const varInitAssignLhsComputedObj$1 = $(b);
-const varInitAssignLhsComputedProp$1 = $(`x`);
-const varInitAssignLhsComputedObj$3 = $(b);
-const varInitAssignLhsComputedProp$3 = $(`x`);
-const varInitAssignLhsComputedObj$5 = $(b);
-const varInitAssignLhsComputedProp$5 = $(`x`);
-const varInitAssignLhsComputedObj$7 = $(b);
-const varInitAssignLhsComputedProp$7 = $(`x`);
-varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = 3;
-varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
-varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpNestedAssignComMemberObj = $(b);
+  const tmpNestedAssignComMemberProp = $(`x`);
+  const varInitAssignLhsComputedObj = $(b);
+  const varInitAssignLhsComputedProp = $(`x`);
+  const varInitAssignLhsComputedObj$1 = $(b);
+  const varInitAssignLhsComputedProp$1 = $(`x`);
+  const varInitAssignLhsComputedObj$3 = $(b);
+  const varInitAssignLhsComputedProp$3 = $(`x`);
+  const varInitAssignLhsComputedObj$5 = $(b);
+  const varInitAssignLhsComputedProp$5 = $(`x`);
+  const varInitAssignLhsComputedObj$7 = $(b);
+  const varInitAssignLhsComputedProp$7 = $(`x`);
+  varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = 3;
+  varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
+  varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
+  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
   $(1);
-  const tmpNestedAssignComMemberObj$1 = $(b);
-  const tmpNestedAssignComMemberProp$1 = $(`x`);
-  const varInitAssignLhsComputedObj$2 = $(b);
-  const varInitAssignLhsComputedProp$2 = $(`x`);
-  const varInitAssignLhsComputedObj$4 = $(b);
-  const varInitAssignLhsComputedProp$4 = $(`x`);
-  const varInitAssignLhsComputedObj$6 = $(b);
-  const varInitAssignLhsComputedProp$6 = $(`x`);
-  const varInitAssignLhsComputedObj$8 = $(b);
-  const varInitAssignLhsComputedProp$8 = $(`x`);
-  const varInitAssignLhsComputedObj$10 = $(b);
-  const varInitAssignLhsComputedProp$10 = $(`x`);
-  varInitAssignLhsComputedObj$10[varInitAssignLhsComputedProp$10] = 3;
-  varInitAssignLhsComputedObj$8[varInitAssignLhsComputedProp$8] = 3;
-  varInitAssignLhsComputedObj$6[varInitAssignLhsComputedProp$6] = 3;
-  varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = 3;
-  varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = 3;
-  tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = 3;
 }
 `````
 
@@ -134,44 +116,26 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = $( a );
-const c = $( "x" );
-const d = $( a );
-const e = $( "x" );
-const f = $( a );
-const g = $( "x" );
-const h = $( a );
-const i = $( "x" );
-const j = $( a );
-const k = $( "x" );
-const l = $( a );
-const m = $( "x" );
-l[m] = 3;
-j[k] = 3;
-h[i] = 3;
-f[g] = 3;
-d[e] = 3;
-b[c] = 3;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const b = $( a );
+  const c = $( "x" );
+  const d = $( a );
+  const e = $( "x" );
+  const f = $( a );
+  const g = $( "x" );
+  const h = $( a );
+  const i = $( "x" );
+  const j = $( a );
+  const k = $( "x" );
+  const l = $( a );
+  const m = $( "x" );
+  l[m] = 3;
+  j[k] = 3;
+  h[i] = 3;
+  f[g] = 3;
+  d[e] = 3;
+  b[c] = 3;
   $( 1 );
-  const n = $( a );
-  const o = $( "x" );
-  const p = $( a );
-  const q = $( "x" );
-  const r = $( a );
-  const s = $( "x" );
-  const t = $( a );
-  const u = $( "x" );
-  const v = $( a );
-  const w = $( "x" );
-  const x = $( a );
-  const y = $( "x" );
-  x[y] = 3;
-  v[w] = 3;
-  t[u] = 3;
-  r[s] = 3;
-  p[q] = 3;
-  n[o] = 3;
 }
 `````
 

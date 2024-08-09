@@ -63,12 +63,8 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
-$inlinedFunction: {
-  const tmpClusterSSA_y = $(`pass`);
-  tmpCalleeParam = tmpClusterSSA_y;
-}
-$(tmpCalleeParam);
+const tmpClusterSSA_y = $(`pass`);
+$(tmpClusterSSA_y);
 `````
 
 ## PST Output
@@ -76,11 +72,7 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-$inlinedFunction: {
-  const b = $( "pass" );
-  a = b;
-}
+const a = $( "pass" );
 $( a );
 `````
 

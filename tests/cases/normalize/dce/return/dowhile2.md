@@ -61,12 +61,8 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
-$inlinedFunction: {
-  const tmpReturnArg = $(1, `return`);
-  tmpCalleeParam = tmpReturnArg;
-}
-$(tmpCalleeParam);
+const tmpReturnArg = $(1, `return`);
+$(tmpReturnArg);
 `````
 
 ## PST Output
@@ -74,11 +70,7 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-$inlinedFunction: {
-  const b = $( 1, "return" );
-  a = b;
-}
+const a = $( 1, "return" );
 $( a );
 `````
 

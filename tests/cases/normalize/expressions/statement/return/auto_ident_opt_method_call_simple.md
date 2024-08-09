@@ -64,12 +64,8 @@ $(a);
 `````js filename=intro
 const b = { c: $ };
 const a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
-$inlinedFunction: {
-  const tmpChainElementCall = b.c(1);
-  tmpCalleeParam = tmpChainElementCall;
-}
-$(tmpCalleeParam);
+const tmpChainElementCall = b.c(1);
+$(tmpChainElementCall);
 $(a);
 `````
 
@@ -83,11 +79,7 @@ const b = {
   a: 999,
   b: 1000,
 };
-let c = undefined;
-$inlinedFunction: {
-  const d = a.c( 1 );
-  c = d;
-}
+const c = a.c( 1 );
 $( c );
 $( b );
 `````

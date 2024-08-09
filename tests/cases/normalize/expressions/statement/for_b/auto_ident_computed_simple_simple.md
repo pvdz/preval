@@ -53,24 +53,22 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
-loopStop: {
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
-  $(1);
-  $(1);
-  $(1);
-  $(1);
-  $(1);
-  $(1);
-  $(1);
-  $(1);
-  $(1);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    $(1);
-    const tmpIfTest$1 = b.c;
-    if (tmpIfTest$1) {
-    } else {
-      break;
-    }
+  const tmpIfTest$1 = b.c;
+  if (tmpIfTest$1) {
+  } else {
+    break;
   }
 }
 $(a, b);
@@ -86,26 +84,24 @@ const b = {
   a: 999,
   b: 1000,
 };
-loopStop: {
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
-  $( 1 );
-  $( 1 );
-  $( 1 );
-  $( 1 );
-  $( 1 );
-  $( 1 );
-  $( 1 );
-  $( 1 );
-  $( 1 );
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    $( 1 );
-    const c = a.c;
-    if (c) {
+  const c = a.c;
+  if (c) {
 
-    }
-    else {
-      break;
-    }
+  }
+  else {
+    break;
   }
 }
 $( b, a );

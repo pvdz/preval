@@ -49,12 +49,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpNewCallee = $($);
-new tmpNewCallee(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpNewCallee = $($);
+  new tmpNewCallee(1);
   $(1);
-  const tmpNewCallee$1 = $($);
-  new tmpNewCallee$1(1);
 }
 `````
 
@@ -63,12 +61,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 With rename=true
 
 `````js filename=intro
-const a = $( $ );
-new a( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const a = $( $ );
+  new a( 1 );
   $( 1 );
-  const b = $( $ );
-  new b( 1 );
 }
 `````
 

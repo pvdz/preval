@@ -63,7 +63,7 @@ $(a);
 
 `````js filename=intro
 let a = 1;
-loopStop$2: {
+loopStop: {
   const tmpCalleeParam = $(0);
   const tmpClusterSSA_a = $(tmpCalleeParam);
   if (tmpClusterSSA_a) {
@@ -79,7 +79,7 @@ loopStop$2: {
       if (a) {
         $(1);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -98,7 +98,7 @@ loopStop$2: {
       if (a) {
         $(1);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -117,7 +117,7 @@ loopStop$2: {
       if (a) {
         $(1);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -136,7 +136,7 @@ loopStop$2: {
       if (a) {
         $(1);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -155,7 +155,7 @@ loopStop$2: {
       if (a) {
         $(1);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -174,7 +174,7 @@ loopStop$2: {
       if (a) {
         $(1);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -193,7 +193,7 @@ loopStop$2: {
       if (a) {
         $(1);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -212,7 +212,7 @@ loopStop$2: {
       if (a) {
         $(1);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -231,7 +231,7 @@ loopStop$2: {
       if (a) {
         $(1);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -250,7 +250,7 @@ loopStop$2: {
       if (a) {
         $(1);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -269,7 +269,7 @@ loopStop$2: {
       if (a) {
         $(1);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -304,7 +304,7 @@ With rename=true
 
 `````js filename=intro
 let a = 1;
-loopStop$2: {
+loopStop: {
   const b = $( 0 );
   const c = $( b );
   if (c) {
@@ -323,7 +323,7 @@ loopStop$2: {
         $( 1 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -345,7 +345,7 @@ loopStop$2: {
         $( 1 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -367,7 +367,7 @@ loopStop$2: {
         $( 1 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -389,7 +389,7 @@ loopStop$2: {
         $( 1 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -411,7 +411,7 @@ loopStop$2: {
         $( 1 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -433,7 +433,7 @@ loopStop$2: {
         $( 1 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -455,7 +455,7 @@ loopStop$2: {
         $( 1 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -477,7 +477,7 @@ loopStop$2: {
         $( 1 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -499,7 +499,7 @@ loopStop$2: {
         $( 1 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -521,7 +521,7 @@ loopStop$2: {
         $( 1 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -543,7 +543,7 @@ loopStop$2: {
         $( 1 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }

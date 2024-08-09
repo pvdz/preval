@@ -57,9 +57,7 @@ f();
 
 
 `````js filename=intro
-$inlinedFunction: {
-  $(`pass`);
-}
+$(`pass`);
 `````
 
 ## PST Output
@@ -67,9 +65,7 @@ $inlinedFunction: {
 With rename=true
 
 `````js filename=intro
-$inlinedFunction: {
-  $( "pass" );
-}
+$( "pass" );
 `````
 
 ## Globals

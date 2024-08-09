@@ -59,7 +59,7 @@ $(a);
 
 
 `````js filename=intro
-loopStop$2: {
+loopStop: {
   const tmpCalleeParam = $(0);
   const tmpIfTest = $(tmpCalleeParam);
   if (tmpIfTest) {
@@ -75,7 +75,7 @@ loopStop$2: {
       if (tmpClusterSSA_tmpIfTest$1) {
         $(100);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -94,7 +94,7 @@ loopStop$2: {
       if (tmpClusterSSA_tmpIfTest$4) {
         $(100);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -113,7 +113,7 @@ loopStop$2: {
       if (tmpClusterSSA_tmpIfTest$5) {
         $(100);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -132,7 +132,7 @@ loopStop$2: {
       if (tmpClusterSSA_tmpIfTest$8) {
         $(100);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -151,7 +151,7 @@ loopStop$2: {
       if (tmpClusterSSA_tmpIfTest$9) {
         $(100);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -170,7 +170,7 @@ loopStop$2: {
       if (tmpClusterSSA_tmpIfTest$12) {
         $(100);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -189,7 +189,7 @@ loopStop$2: {
       if (tmpClusterSSA_tmpIfTest$13) {
         $(100);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -208,7 +208,7 @@ loopStop$2: {
       if (tmpClusterSSA_tmpIfTest$16) {
         $(100);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -227,7 +227,7 @@ loopStop$2: {
       if (tmpClusterSSA_tmpIfTest$17) {
         $(100);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -246,7 +246,7 @@ loopStop$2: {
       if (tmpClusterSSA_tmpIfTest$20) {
         $(100);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -265,7 +265,7 @@ loopStop$2: {
       if (tmpClusterSSA_tmpIfTest$21) {
         $(100);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -300,7 +300,7 @@ $(a);
 With rename=true
 
 `````js filename=intro
-loopStop$2: {
+loopStop: {
   const a = $( 0 );
   const b = $( a );
   if (b) {
@@ -319,7 +319,7 @@ loopStop$2: {
         $( 100 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -341,7 +341,7 @@ loopStop$2: {
         $( 100 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -363,7 +363,7 @@ loopStop$2: {
         $( 100 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -385,7 +385,7 @@ loopStop$2: {
         $( 100 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -407,7 +407,7 @@ loopStop$2: {
         $( 100 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -429,7 +429,7 @@ loopStop$2: {
         $( 100 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -451,7 +451,7 @@ loopStop$2: {
         $( 100 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -473,7 +473,7 @@ loopStop$2: {
         $( 100 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -495,7 +495,7 @@ loopStop$2: {
         $( 100 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -517,7 +517,7 @@ loopStop$2: {
         $( 100 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }
@@ -539,7 +539,7 @@ loopStop$2: {
         $( 100 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
   }

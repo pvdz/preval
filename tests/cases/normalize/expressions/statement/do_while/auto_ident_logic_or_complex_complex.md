@@ -61,7 +61,7 @@ $(a);
 
 
 `````js filename=intro
-loopStop$2: {
+loopStop: {
   $(100);
   const tmpCalleeParam = $(0);
   const tmpIfTest = $(tmpCalleeParam);
@@ -71,7 +71,7 @@ loopStop$2: {
     const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam$1);
     if (tmpClusterSSA_tmpIfTest) {
     } else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   $(100);
@@ -83,7 +83,7 @@ loopStop$2: {
     const tmpClusterSSA_tmpIfTest$1 = $(tmpCalleeParam$4);
     if (tmpClusterSSA_tmpIfTest$1) {
     } else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   $(100);
@@ -95,7 +95,7 @@ loopStop$2: {
     const tmpClusterSSA_tmpIfTest$2 = $(tmpCalleeParam$5);
     if (tmpClusterSSA_tmpIfTest$2) {
     } else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   $(100);
@@ -107,7 +107,7 @@ loopStop$2: {
     const tmpClusterSSA_tmpIfTest$3 = $(tmpCalleeParam$8);
     if (tmpClusterSSA_tmpIfTest$3) {
     } else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   $(100);
@@ -119,7 +119,7 @@ loopStop$2: {
     const tmpClusterSSA_tmpIfTest$4 = $(tmpCalleeParam$9);
     if (tmpClusterSSA_tmpIfTest$4) {
     } else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   $(100);
@@ -131,7 +131,7 @@ loopStop$2: {
     const tmpClusterSSA_tmpIfTest$5 = $(tmpCalleeParam$12);
     if (tmpClusterSSA_tmpIfTest$5) {
     } else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   $(100);
@@ -143,7 +143,7 @@ loopStop$2: {
     const tmpClusterSSA_tmpIfTest$6 = $(tmpCalleeParam$13);
     if (tmpClusterSSA_tmpIfTest$6) {
     } else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   $(100);
@@ -155,7 +155,7 @@ loopStop$2: {
     const tmpClusterSSA_tmpIfTest$7 = $(tmpCalleeParam$16);
     if (tmpClusterSSA_tmpIfTest$7) {
     } else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   $(100);
@@ -167,7 +167,7 @@ loopStop$2: {
     const tmpClusterSSA_tmpIfTest$8 = $(tmpCalleeParam$17);
     if (tmpClusterSSA_tmpIfTest$8) {
     } else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   $(100);
@@ -179,7 +179,7 @@ loopStop$2: {
     const tmpClusterSSA_tmpIfTest$9 = $(tmpCalleeParam$20);
     if (tmpClusterSSA_tmpIfTest$9) {
     } else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   $(100);
@@ -191,7 +191,7 @@ loopStop$2: {
     const tmpClusterSSA_tmpIfTest$10 = $(tmpCalleeParam$21);
     if (tmpClusterSSA_tmpIfTest$10) {
     } else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -218,7 +218,7 @@ $(a);
 With rename=true
 
 `````js filename=intro
-loopStop$2: {
+loopStop: {
   $( 100 );
   const a = $( 0 );
   const b = $( a );
@@ -232,7 +232,7 @@ loopStop$2: {
 
     }
     else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   $( 100 );
@@ -248,7 +248,7 @@ loopStop$2: {
 
     }
     else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   $( 100 );
@@ -264,7 +264,7 @@ loopStop$2: {
 
     }
     else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   $( 100 );
@@ -280,7 +280,7 @@ loopStop$2: {
 
     }
     else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   $( 100 );
@@ -296,7 +296,7 @@ loopStop$2: {
 
     }
     else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   $( 100 );
@@ -312,7 +312,7 @@ loopStop$2: {
 
     }
     else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   $( 100 );
@@ -328,7 +328,7 @@ loopStop$2: {
 
     }
     else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   $( 100 );
@@ -344,7 +344,7 @@ loopStop$2: {
 
     }
     else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   $( 100 );
@@ -360,7 +360,7 @@ loopStop$2: {
 
     }
     else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   $( 100 );
@@ -376,7 +376,7 @@ loopStop$2: {
 
     }
     else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   $( 100 );
@@ -392,7 +392,7 @@ loopStop$2: {
 
     }
     else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

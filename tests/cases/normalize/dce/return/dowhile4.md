@@ -56,12 +56,8 @@ $(s);
 
 
 `````js filename=intro
-let s = undefined;
-$inlinedFunction: {
-  const t = $(1, `return`);
-  s = t;
-}
-$(s);
+const t = $(1, `return`);
+$(t);
 `````
 
 ## PST Output
@@ -69,11 +65,7 @@ $(s);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-$inlinedFunction: {
-  const b = $( 1, "return" );
-  a = b;
-}
+const a = $( 1, "return" );
 $( a );
 `````
 

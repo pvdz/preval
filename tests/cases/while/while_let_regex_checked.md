@@ -71,16 +71,12 @@ while (true) {
 
 
 `````js filename=intro
-const x = /foo/;
-const tmpCalleeParam = x.foo;
-$(tmpCalleeParam);
-let tmpClusterSSA_x = /foo/;
-tmpClusterSSA_x.foo = `object`;
+let x = /foo/;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCalleeParam$1 = tmpClusterSSA_x.foo;
-  $(tmpCalleeParam$1);
-  tmpClusterSSA_x = /foo/;
-  tmpClusterSSA_x.foo = `object`;
+  const tmpCalleeParam = x.foo;
+  $(tmpCalleeParam);
+  x = /foo/;
+  x.foo = `object`;
 }
 `````
 
@@ -89,16 +85,12 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 With rename=true
 
 `````js filename=intro
-const a = /foo/;
-const b = a.foo;
-$( b );
-let c = /foo/;
-c.foo = "object";
+let a = /foo/;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const d = c.foo;
-  $( d );
-  c = /foo/;
-  c.foo = "object";
+  const b = a.foo;
+  $( b );
+  a = /foo/;
+  a.foo = "object";
 }
 `````
 

@@ -63,9 +63,7 @@ x();
 
 
 `````js filename=intro
-$inlinedFunction: {
-  throw `Preval: This statement contained a read that reached no writes: x\$1;`;
-}
+throw `Preval: This statement contained a read that reached no writes: x\$1;`;
 `````
 
 ## PST Output
@@ -73,9 +71,7 @@ $inlinedFunction: {
 With rename=true
 
 `````js filename=intro
-$inlinedFunction: {
-  throw "Preval: This statement contained a read that reached no writes: x$1;";
-}
+throw "Preval: This statement contained a read that reached no writes: x$1;";
 `````
 
 ## Globals

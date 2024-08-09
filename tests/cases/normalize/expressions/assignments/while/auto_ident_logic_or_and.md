@@ -59,7 +59,7 @@ $(a);
 
 `````js filename=intro
 let a = 1;
-loopStop$2: {
+loopStop: {
   const tmpCalleeParam = $(0);
   const tmpClusterSSA_a = $(tmpCalleeParam);
   if (tmpClusterSSA_a) {
@@ -73,10 +73,10 @@ loopStop$2: {
       if (a) {
         $(100);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     } else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   const tmpCalleeParam$2 = $(0);
@@ -92,10 +92,10 @@ loopStop$2: {
       if (a) {
         $(100);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     } else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   const tmpCalleeParam$5 = $(0);
@@ -111,10 +111,10 @@ loopStop$2: {
       if (a) {
         $(100);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     } else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   const tmpCalleeParam$8 = $(0);
@@ -130,10 +130,10 @@ loopStop$2: {
       if (a) {
         $(100);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     } else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   const tmpCalleeParam$11 = $(0);
@@ -149,10 +149,10 @@ loopStop$2: {
       if (a) {
         $(100);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     } else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   const tmpCalleeParam$14 = $(0);
@@ -168,10 +168,10 @@ loopStop$2: {
       if (a) {
         $(100);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     } else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   const tmpCalleeParam$17 = $(0);
@@ -187,10 +187,10 @@ loopStop$2: {
       if (a) {
         $(100);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     } else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   const tmpCalleeParam$20 = $(0);
@@ -206,10 +206,10 @@ loopStop$2: {
       if (a) {
         $(100);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     } else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   const tmpCalleeParam$23 = $(0);
@@ -225,10 +225,10 @@ loopStop$2: {
       if (a) {
         $(100);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     } else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   const tmpCalleeParam$26 = $(0);
@@ -244,10 +244,10 @@ loopStop$2: {
       if (a) {
         $(100);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     } else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   const tmpCalleeParam$29 = $(0);
@@ -263,10 +263,10 @@ loopStop$2: {
       if (a) {
         $(100);
       } else {
-        break loopStop$2;
+        break loopStop;
       }
     } else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -300,7 +300,7 @@ With rename=true
 
 `````js filename=intro
 let a = 1;
-loopStop$2: {
+loopStop: {
   const b = $( 0 );
   const c = $( b );
   if (c) {
@@ -316,11 +316,11 @@ loopStop$2: {
         $( 100 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
     else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   const f = $( 0 );
@@ -338,11 +338,11 @@ loopStop$2: {
         $( 100 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
     else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   const j = $( 0 );
@@ -360,11 +360,11 @@ loopStop$2: {
         $( 100 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
     else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   const n = $( 0 );
@@ -382,11 +382,11 @@ loopStop$2: {
         $( 100 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
     else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   const r = $( 0 );
@@ -404,11 +404,11 @@ loopStop$2: {
         $( 100 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
     else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   const v = $( 0 );
@@ -426,11 +426,11 @@ loopStop$2: {
         $( 100 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
     else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   const z = $( 0 );
@@ -448,11 +448,11 @@ loopStop$2: {
         $( 100 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
     else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   const 31 = $( 0 );
@@ -470,11 +470,11 @@ loopStop$2: {
         $( 100 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
     else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   const 71 = $( 0 );
@@ -492,11 +492,11 @@ loopStop$2: {
         $( 100 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
     else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   const b1 = $( 0 );
@@ -514,11 +514,11 @@ loopStop$2: {
         $( 100 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
     else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   const f1 = $( 0 );
@@ -536,11 +536,11 @@ loopStop$2: {
         $( 100 );
       }
       else {
-        break loopStop$2;
+        break loopStop;
       }
     }
     else {
-      break loopStop$2;
+      break loopStop;
     }
   }
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

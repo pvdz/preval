@@ -55,11 +55,10 @@ while (true) {
 
 
 `````js filename=intro
-$(`yolo`);
-let tmpClusterSSA_counter1 = 1;
+let counter1 = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`yolo`);
-  tmpClusterSSA_counter1 = tmpClusterSSA_counter1 + 1;
+  counter1 = counter1 + 1;
 }
 `````
 
@@ -68,8 +67,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 With rename=true
 
 `````js filename=intro
-$( "yolo" );
-let a = 1;
+let a = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( "yolo" );
   a = a + 1;

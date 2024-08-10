@@ -30,7 +30,7 @@ import { mayBindingMutateBetweenRefs } from '../bindings.mjs';
 import { getPrimitiveValue } from '../ast.mjs';
 
 export function inlineIdenticalParam(fdata) {
-  group('\n\n\nChecking for params which are always a certain primitive');
+  group('\n\n\nChecking for params which are always a certain primitive or the same object literal');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _inlineIdenticalParam(fdata);
   groupEnd();
@@ -39,20 +39,10 @@ export function inlineIdenticalParam(fdata) {
 function _inlineIdenticalParam(fdata) {
   const ast = fdata.tenkoOutput.ast;
 
-  let updated = processAttempt(fdata);
-
-  log('');
-  if (updated) {
-    log('Params replaced:', updated, '. Restarting from phase1 to fix up read/write registry');
-    return {what: 'inlineIdenticalParam', changes: updated, next: 'phase1'};
-  }
-  log('Params replaced: 0.');
-}
-
-function processAttempt(fdata) {
   // Find arrays which are constants and do not escape and where all member expressions are reads
 
-  let changed = 0;
+  let changedPhase1 = 0;
+  let changedNormal = 0;
 
   fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
     if (meta.isBuiltin) return;
@@ -63,16 +53,27 @@ function processAttempt(fdata) {
     if (meta.constValueRef.node.$p.readsArgumentsLen) return;
 
     vgroup('- `' + name + '` is a constant function');
-    if (process(meta, name)) ++changed;
+    const what = process(meta, name);
+    if (what === 'phase1') changedPhase1 += 1;
+    if (what === 'normal') changedNormal += 1;
     vgroupEnd();
   });
 
-  return changed;
+  log('');
+  if (changedPhase1 || changedNormal) {
+    log('Params replaced:', changedPhase1, ', objlits inlined:', changedNormal);
+    if (changedNormal) {
+      log('Restarting from normalization to patch up params');
+      return {what: 'inlineIdenticalParam', changes: changedPhase1 + changedNormal, next: 'normal'}; // Params are wrecked
+    }
+    log('Restarting from phase1');
+    return {what: 'inlineIdenticalParam', changes: changedPhase1 + changedNormal, next: 'phase1'}; // Params are fine
+  }
+  log('Params replaced: 0.');
 }
 
 function process(meta, funcName) {
   const funcNode = meta.constValueRef.node;
-
   if (!meta.reads.length) {
     vlog('- bail: There were no reads to this function');
     return false;
@@ -109,11 +110,21 @@ function process(meta, funcName) {
   }
 
 
-  vlog('Found func "', funcName, '" that is only called and uses no rest/spread: Call');
+  vlog('Found func "', funcName, '" that is only called', meta.reads.length, 'times and uses no rest/spread');
 
+  vgroup('tryInliningPrimitives():');
   if (tryInliningPrimitives(meta, funcNode, params)) {
-    return true;
+    vgroupEnd();
+    return 'phase1'; // This is fine to just cycle to phase1
   }
+  vgroupEnd();
+
+  vgroup('tryInliningObjectLiteral():');
+  if (tryInliningObjectLiteral(meta, funcNode, params)) {
+    vgroupEnd();
+    return 'normal'; // This needs to go through normalize because we messed with params
+  }
+  vgroupEnd();
 
   return false;
 }
@@ -177,7 +188,7 @@ function tryInliningPrimitives(meta, funcNode, params) {
           }
         });
 
-        vlog('Known initialized to', knownArgs, knownValues);
+        vlog('Known args initialized to', knownArgs, knownValues);
       }
 
       if (knownArgs.every((a) => a === false)) return true;
@@ -236,4 +247,225 @@ function tryInliningPrimitives(meta, funcNode, params) {
   after(funcNode, varWrite.blockBody);
 
   return true;
+}
+
+function tryInliningObjectLiteral(meta, funcNode, params) {
+  // It's a bit of a long shot but we're essentially looking for this:
+  //
+  //    function f(obj) { $(obj.a); } f({a: 1}); f({a: 2});
+  //
+  // Hopefully we can change it into something like
+  //
+  //    function f(a) { const obj = {a: a}; $(obj.a); } f(1); f(2);
+  //
+  // But it only works if all calls pass in the same object with the same
+  // shape, which is a bit questionable. But there are tests :)
+
+  let sawObjectValuePerArgIndex = params.map(() => undefined);
+  let objectNodesPerArgIndex = params.map(() => []);
+  let bailed = false; // This means spread/rest arg. We also need to check whether there's any valid param position at all.
+  meta.reads.some((callRead, ri) => {
+    const callNode = callRead.parentNode;
+    const callArgs = callNode['arguments'];
+    vlog('- Processing call', ri, 'which has', callArgs.length, 'args versus', params.length, 'params');
+
+    // We only care about the actual params on the function being called. Excessive args are irrelevant here.
+    params.some((param, pi) => {
+      if (sawObjectValuePerArgIndex[pi] === false) {
+        return;
+      }
+
+      if (!param.$p.paramVarDeclRef) {
+        vlog('- bail: param is unused. Another rule should clean this up.');
+        sawObjectValuePerArgIndex[pi] = false;
+        return;
+      }
+
+      const anode = callArgs[pi];
+      if (!anode) {
+        // There were fewer call args, this will be undefined, so not an object arg.
+        sawObjectValuePerArgIndex[pi] = false;
+        vlog('- bail: param', pi, '; There was at least one call with fewer args than params');
+        return;
+      }
+
+      if (anode?.type === 'Identifier') {
+        // Check if previous line created the object.
+        // TODO: do a more thorough search and/or use registry to see if the shape can be asserted
+      }
+
+      if (!(
+        callRead.blockBody[callRead.blockIndex-1]?.type === 'VariableDeclaration' &&
+        callRead.blockBody[callRead.blockIndex-1].declarations[0].id.name === anode.name &&
+        callRead.blockBody[callRead.blockIndex-1].declarations[0].init.type === 'ObjectExpression'
+      )) {
+        // We can improve this but for now we bail
+        vlog('- bail: param', pi, ': Statement before the call was not a var being passed on');
+        sawObjectValuePerArgIndex[pi] = false;
+        return;
+      }
+
+      // This call passed on an object that was just created.
+      const objNode = callRead.blockBody[callRead.blockIndex-1].declarations[0].init;
+      ASSERT(objNode.type === 'ObjectExpression');
+
+      if (objNode.properties.some(pnode => pnode.computed)) {
+        vlog('- bail: Receives an object with at least one computed property');
+        bailed = true;
+        return true;
+      }
+
+      if (objNode.properties.some(pnode => pnode.method)) {
+        vlog('- bail: Receives an object with at least one method property');
+        bailed = true;
+        return true;
+      }
+
+      if (objNode.properties.some(pnode => pnode.kind !== 'init')) {
+        vlog('- bail: Receives an object with at least one getter/setter property (or whatever kind!=init?)');
+        bailed = true;
+        return true;
+      }
+
+      if (objNode.properties.some(pnode => pnode.key.type !== 'Identifier')) {
+        vlog('- bail: Receives an object with at least one property with non-ident key (number?)');
+        bailed = true;
+        return true;
+      }
+
+      sawObjectValuePerArgIndex[pi] = true;
+      vlog('- Adding objnode now... to', pi);
+      objectNodesPerArgIndex[pi].push(objNode);
+    });
+
+    if (bailed) return true;
+    if (params.every((_, i) => sawObjectValuePerArgIndex[i] === false)) {
+      vlog('- bail: there was no param index that received an object in all calls');
+      bailed = true;
+      // No point checking other calls to the func when this one, at least, did not pass in an objlit
+      return true;
+    }
+  });
+  if (bailed) {
+    return false;
+  }
+
+  vlog('There was at least one param that receives an object lit in all func calls!', sawObjectValuePerArgIndex);
+
+  // There was at least one param that receives an object lit in all func calls. And none of them had a spread.
+  // We must now match their shapes. Confirm all objects have exactly the same object names. We're going to
+  // ignore order, even though that could very technically mess up too. It is what it is.
+  // For every param index, check if it was all objlits in all calls, then check if same prop count, then
+  // check if each next object has the same prop names as the first (by collecting them in a set).
+
+  let changes = 0;
+  let propsNames = undefined; // Set
+  sawObjectValuePerArgIndex.forEach((state, pi) => {
+    if (state !== true) return;
+    ASSERT(objectNodesPerArgIndex[pi].length === meta.reads.length, 'should have an object node for each call if the state is true', objectNodesPerArgIndex[pi].length, meta.reads.length);
+
+    // Compare all seen objlit nodes given to this param index
+    if (!objectNodesPerArgIndex[pi].every((objNode, oi) => {
+      vlog('- trying obj at param index', pi, 'of call', oi, '/', objectNodesPerArgIndex.length)
+      if (!propsNames) {
+        propsNames = new Set(objNode.properties.map(pnode => pnode.key.name));
+        vlog('  - propsNames is now set to', propsNames);
+        return true;
+      } else {
+        if (objNode.properties.length !== propsNames.size) {
+          vlog('  - bail: param', pi, ': at least one object did not have as many properties as another');
+          return false;
+        }
+        // We asserted above each property was regular so now just check their names
+        const same = objNode.properties.every(pnode => propsNames.has(pnode.key.name));
+        vlog('  - ok: param', pi, ': has same keys as first obj');
+        return same;
+      }
+    })) {
+      return;
+    }
+
+    // Should be a match...
+    vlog('- Ok: param', pi, 'is used, should receive an objlit in all calls (', meta.reads.length, '), and they have the same property names in all calls, great!', propsNames);
+
+    // Note: we do this to try and make reasoning about values easier. Objects are complicated.
+    rule('When calling a non-escaping function with the same objlit means we can inline the obj a bit');
+    example(
+      'function f(o){ $(o.a, o.b); } f({a: 1, b: 2}); f({a: 3, b: 4});',
+      'function f(a, b){ const o = {a:a, b:b}; $(o.a, o.b); } f(1, 2); f(3, 4);',
+    );
+    before(funcNode);
+
+    // if one property then we can repurpose the param for that.
+    // if no property, leave the dud param and that's it
+    // otherwise we repurpose the old one and append the other ones
+
+    const propsNamesArr = Array.from(propsNames);
+
+    if (propsNamesArr.length > 0) {
+      // Construct the object as the (new) first step of the function
+      funcNode.body.body.splice(funcNode.$p.bodyOffset, 0,
+        AST.variableDeclaration(funcNode.params[pi].$p.paramVarDeclRef.name, AST.objectExpression(
+          propsNamesArr.map(name => AST.property(name, name))
+        ))
+      );
+      // Replace the original param
+      funcNode.body.body[funcNode.params[pi].$p.paramVarDeclRef.blockIndex].declarations[0].id.name = propsNamesArr[0];
+
+      for (let i=1; i<propsNamesArr.length; ++i) {
+        // Add the $$345 params into the function params (this wont assign them locally yet)
+        funcNode.params.push(AST.param(`$$${funcNode.params.length}`, false));
+
+        funcNode.body.body.unshift(
+          // We need a better way of doing this...
+          // Inject assignments of params to local vars with the actual name
+          AST.expressionStatement(AST.variableDeclaration(propsNamesArr[i], `$$${funcNode.params.length-1}`))
+        );
+      }
+    } else {
+      // Create the empty obj
+      funcNode.body.body.splice(funcNode.$p.bodyOffset, 0,
+        AST.variableDeclaration(funcNode.params[pi].$p.paramVarDeclRef.name, AST.objectExpression())
+      );
+      // Replace the param assignment with an empty string
+      funcNode.body.body[funcNode.params[pi].$p.paramVarDeclRef.blockIndex] = AST.emptyStatement();
+    }
+
+    after(funcNode);
+
+
+    // Now go after the calls. Update the params in the same order
+    // (replace the original arg with the prop value for that call, append the rest)
+
+    meta.reads.forEach(read => {
+      rule('When inling an object that is passeed in all calls to a function, call args are replaced too');
+      example('const obj = {a: 1, b: 2}; f(obj);', 'f(1, 2);');
+      before(read.blockBody[read.blockIndex-1]);
+      before(read.blockBody[read.blockIndex]);
+
+      // This works as long as we only check one index back...
+      const objNode = read.blockBody[read.blockIndex-1].declarations[0].init;
+      ASSERT(objNode.type === 'ObjectExpression');
+
+      // First have to create a map of properties. Then we can just copy those nodes.
+      const map = new Map; // Map<propname, Node>
+      objNode.properties.forEach(pnode => map.set(pnode.key.name, pnode.value));
+
+      const callNode = read.parentNode;
+      ASSERT(callNode.type === 'CallExpression', 'call?', read.parentNode);
+
+      callNode.arguments[pi] = propsNamesArr[0] ? map.get(propsNamesArr[0]) : AST.identifier('undefined');
+      // Now append the remaining ones
+      for (let i=1; i<propsNamesArr.length; ++i) {
+        callNode.arguments.push(map.get(propsNamesArr[i]));
+      }
+
+      after(read.blockBody[read.blockIndex]);
+    });
+
+    changes += 1;
+  });
+
+  vlog('Finished')
+  return changes;
 }

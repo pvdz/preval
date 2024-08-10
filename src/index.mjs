@@ -257,10 +257,6 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           options?.onAfterPhase(2, passes, phaseLoop, fdata, changed, options);
           if (!changed) {
             // Force a normalize pass before moving to phase3. Loop if it changed anything anyways.
-
-            //const outCode = tmat(fdata.tenkoOutput.ast, true);
-            //let fdata2 = parseCode(outCode, fname);
-            //prepareNormalization(fdata2, resolve, req, false, {unrollTrueLimit: options.unrollTrueLimit}); // I want a phase1 because I want the scope tracking set up for normalizing bindings
             changed = phaseNormalize(fdata, fname, { allowEval: options.allowEval });
             options?.onAfterPhase(2.1, passes, phaseLoop, fdata, false, options);
             if (changed) vlog('The pre-phase3 normal did change something! starting from phase0');

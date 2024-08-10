@@ -1,8 +1,8 @@
 # Preval test case
 
-# react_crash.md
+# new_array.md
 
-> Builtins cases > React crash
+> Builtins cases > Array > New array
 >
 > At some point this snippet crashed.
 > Now it's just a case of Array being left behind.

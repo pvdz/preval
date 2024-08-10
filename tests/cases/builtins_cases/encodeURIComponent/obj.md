@@ -4,7 +4,7 @@
 
 > Builtins cases > EncodeURIComponent > Obj
 >
-> 
+>
 
 ## Input
 

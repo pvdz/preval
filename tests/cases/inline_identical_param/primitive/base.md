@@ -1,8 +1,8 @@
 # Preval test case
 
-# with_arg_len.md
+# base.md
 
-> Param always primitive > With arg len
+> Inline identical param > Primitive > Base
 >
 > When a function is always called with a certain primitive for a certain parameter then we can inline this safely in many cases.
 
@@ -13,7 +13,7 @@ In this case the param can also be eliminated. But that's not always possible, l
 `````js filename=intro
 function f(a, b, c) {
   if ($) {
-    $(a, b, c, arguments.length, 'hopefully b is a literal afterwards');
+    $(a, b, c, 'hopefully b is a literal afterwards');
   }
 }
 f(1, 2, 3);
@@ -27,13 +27,12 @@ f(8, 2, 9);
 
 `````js filename=intro
 let f = function ($$0, $$1, $$2) {
-  const tmpPrevalAliasArgumentsLen = arguments.length;
   let a = $$0;
   let b = $$1;
   let c = $$2;
   debugger;
   if ($) {
-    $(a, b, c, tmpPrevalAliasArgumentsLen, `hopefully b is a literal afterwards`);
+    $(a, b, c, `hopefully b is a literal afterwards`);
   }
 };
 f(1, 2, 3);
@@ -47,13 +46,12 @@ f(8, 2, 9);
 
 `````js filename=intro
 let f = function ($$0, $$1, $$2) {
-  const tmpPrevalAliasArgumentsLen = arguments.length;
   let a = $$0;
   let b = $$1;
   let c = $$2;
   debugger;
   if ($) {
-    $(a, b, c, tmpPrevalAliasArgumentsLen, `hopefully b is a literal afterwards`);
+    $(a, b, c, `hopefully b is a literal afterwards`);
     return undefined;
   } else {
     return undefined;
@@ -74,7 +72,7 @@ const f = function ($$0, $$1) {
   const c = $$1;
   debugger;
   if ($) {
-    $(a, 2, c, 3, `hopefully b is a literal afterwards`);
+    $(a, 2, c, `hopefully b is a literal afterwards`);
     return undefined;
   } else {
     return undefined;
@@ -96,7 +94,7 @@ const a = function($$0,$$1 ) {
   const d = e;
   debugger;
   if ($) {
-    $( b, 2, d, 3, "hopefully b is a literal afterwards" );
+    $( b, 2, d, "hopefully b is a literal afterwards" );
     return undefined;
   }
   else {
@@ -116,10 +114,10 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 1, 2, 3, 3, 'hopefully b is a literal afterwards'
- - 2: 4, 2, 5, 3, 'hopefully b is a literal afterwards'
- - 3: 6, 2, 7, 3, 'hopefully b is a literal afterwards'
- - 4: 8, 2, 9, 3, 'hopefully b is a literal afterwards'
+ - 1: 1, 2, 3, 'hopefully b is a literal afterwards'
+ - 2: 4, 2, 5, 'hopefully b is a literal afterwards'
+ - 3: 6, 2, 7, 'hopefully b is a literal afterwards'
+ - 4: 8, 2, 9, 'hopefully b is a literal afterwards'
  - eval returned: undefined
 
 Pre normalization calls: Same

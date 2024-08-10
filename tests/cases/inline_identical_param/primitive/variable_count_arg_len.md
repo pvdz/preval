@@ -2,7 +2,7 @@
 
 # variable_count_arg_len.md
 
-> Param always primitive > Variable count arg len
+> Inline identical param > Primitive > Variable count arg len
 >
 > When a function is always called with a certain primitive for a certain parameter then we can inline this safely in many cases.
 

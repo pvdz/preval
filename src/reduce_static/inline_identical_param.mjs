@@ -1,7 +1,12 @@
 // Find functions for which a certain param is always called with a specific primitive
-// `function f(a) { $(a); } f(1); f(1);`
-// -> `function f() { $(1); } f(); f();`
+//
+//     `function f(a) { $(a); } f(1); f(1);`
+// ->
+//     `function f() { $(1); } f(); f();`
+//
 // (the opposite is "static arg op outlining")
+//
+// Also trying for objects, but that's much harder (f({x:1}) f({x: 2}) -> f(1)f(2))
 
 import {
   ASSERT,
@@ -65,48 +70,60 @@ function processAttempt(fdata) {
   return changed;
 }
 
-function process(meta, name) {
+function process(meta, funcName) {
   const funcNode = meta.constValueRef.node;
 
   if (!meta.reads.length) {
-    vlog('There were no reads to this function. Bailing');
+    vlog('- bail: There were no reads to this function');
     return false;
   }
 
   const params = funcNode.params;
   if (params.some((pnode) => pnode.rest)) {
-    vlog('The function has a rest param. Bailing');
+    vlog('- bail: The function has a rest param');
     return false;
   }
 
-  let knownArgs = undefined;
-  let knownValues = params.map(() => undefined);
   if (
     meta.reads.some((read, ri) => {
       const callNode = read.parentNode;
 
       if (callNode.type !== 'CallExpression') {
-        vlog('At least one read was not a call expression. Bailing');
+        vlog('- bail: At least one read was not a call expression');
         return true;
       }
       if (read.parentProp !== 'callee') {
-        vlog('The value is "lost", passed on as func arg. Bailing');
+        vlog('- bail: The function escapes, passed on as func arg');
         return true;
       }
 
       const args = callNode['arguments'];
 
       if (args.some((anode) => anode.type === 'SpreadElement')) {
-        vlog('At least one call contained a spread. Bailing');
+        vlog('- bail: At least one call contained a spread');
         return true;
       }
+    })
+  ) {
+    return false;
+  }
 
-      vlog(
-        'Call',
-        ri,
-        ':',
-        args.map((anode) => (AST.isPrimitive(anode) ? AST.getPrimitiveValue(anode) : '<not prim>')),
-      );
+
+  vlog('Found func "', funcName, '" that is only called and uses no rest/spread: Call');
+
+  if (tryInliningPrimitives(meta, funcNode, params)) {
+    return true;
+  }
+
+  return false;
+}
+function tryInliningPrimitives(meta, funcNode, params) {
+  let knownArgs = undefined;
+  let knownValues = params.map(() => undefined);
+  if (
+    meta.reads.some((read, ri) => {
+      const callNode = read.parentNode;
+      const args = callNode['arguments'];
 
       if (knownArgs) {
         params.forEach((_, pi) => {

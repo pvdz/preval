@@ -35,6 +35,9 @@ const globalNames = new Map([
   ['String', 'function'],
   ['Function', 'function'],
 
+  // NodeJS / Browser
+  ['encodeURIComponent', 'function'],
+
   // nodejs
   ['module', 'object'],
   ['exports', 'undefined'], // for the react build

@@ -23,7 +23,6 @@ import { ifCallIf } from '../reduce_static/if_call_if.mjs';
 import { assignHoisting } from '../reduce_static/assign_hoisting.mjs';
 import { arrrrrr } from '../reduce_static/arrrr.mjs';
 import { constAssigns } from '../reduce_static/const_assigns.mjs';
-import { ifTailExtending } from '../reduce_static/if_tail_extending.mjs';
 import { ifFlipping } from '../reduce_static/if_flip.mjs';
 import { objlitPropAccess } from '../reduce_static/objlit_prop.mjs';
 import { bitSetTests } from '../reduce_static/bit_set_test.mjs';
@@ -212,7 +211,6 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     aliasedGlobals(fdata) ||
     dotCall(fdata) ||
     letHoisting(fdata) ||
-    ifTailExtending(fdata) ||
     assignHoisting(fdata) ||
     ifFlipping(fdata) ||
     staticLets(fdata) ||

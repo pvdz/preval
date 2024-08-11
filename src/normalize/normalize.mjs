@@ -7979,35 +7979,80 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       vgroupEnd();
     }
 
-    if (node.consequent.$p.returnBreakThrow && i < body.length - 1) {
-      // Doesn't matter what kind of abrupt completion it was
-      // Inline the remainder of the parent block into the else branch
-      rule('If the if-branch returns the remainder of the parent block goes into the else-branch');
-      example('if (x) return; f();', 'if (x) return; else f();');
-      before(node, parentNode);
+    if (node.consequent.$p.returnBreakThrow || node.alternate.$p.returnBreakThrow) {
+      // Be mindful of hoisting variable decls since closures may break over that.
+      // For this reason we cannot apply this trick when there's any functions being created before the If when
+      // there are also var decls in the tail, because they may create closures that would be unreachable when hoisted.
 
-      node.alternate.body.push(...body.slice(i + 1));
-      body.length = i + 1;
+      // Search for functions created before the If (in the same block)
+      let hasFunctionsBefore = false;
+      // Search for var decls after the If, that may become closures in the functions before it
+      let hasVarDeclsAfter = false;
 
-      after(parentNode);
-      assertNoDupeNodes(AST.blockStatement(parentNode), 'body');
-      return true;
+      let index = 0; // Note: even in a function, the function header can't init/assign functions so it can just scan them too and skip them
+      vlog('Search starts at index', index, 'up to', i);
+      for (; index<i; ++index) {
+        //vlog('-', body[index].type, body[index].declarations?.[0].init.type, body[index].expression?.type);
+        if (body[index].type === 'VariableDeclaration' && body[index].declarations[0].init.type === 'FunctionExpression') {
+          hasFunctionsBefore = true;
+          break;
+        }
+        if (body[index].type === 'ExpressionStatement' && body[index].expression.type === 'FunctionExpression') {
+          hasFunctionsBefore = true;
+          break;
+        }
+      }
+
+      // Checking decls after the If is only relevant to know if there are functions at all
+      let j=i;
+      if (hasFunctionsBefore) {
+        for (; j<body.length; ++j) {
+          if (body[j].type === 'VariableDeclaration') {
+            hasVarDeclsAfter = true;
+            break;
+          }
+        }
+      } else {
+        // when len=3 and If index (i) is 1, then j should be 3 (len-1), j - (i+1) == 1
+        j = body.length;
+      }
+      const statementCountToHoist = j - (i+1); // i=If, we're not hoisting that, so start counting after the If.
+
+      vlog('Binding checks: body.len=', body.length, ', i=', i, ', j=', j, ', hasFunctionsBefore=', hasFunctionsBefore, ', hasVarDeclsAfter=', hasVarDeclsAfter, ', statementCountToHoist:', statementCountToHoist);
+      //vlog(body.map(n => [n.type, n.declarations?.[0].id.name]))
+
+      // Hoist if-else tail statements if one of the branches explicitly completes, under certain conditions
+      if (node.consequent.$p.returnBreakThrow && statementCountToHoist > 0) {
+        // Doesn't matter what kind of abrupt completion it was
+        // Inline the remainder of the parent block into the else branch
+        rule('If the if-branch returns the remainder of the parent block goes into the else-branch');
+        example('if (x) return; else f(); g();', 'if (x) return; else { f(); g(); }');
+        before(body[i]);
+
+        const remainder = body.splice(i+1, statementCountToHoist);
+        node.alternate.body.push(...remainder);
+
+        after(body[i]);
+        assertNoDupeNodes(AST.blockStatement(parentNode), 'body');
+        return true;
+      }
+
+      if (node.alternate.$p.returnBreakThrow && statementCountToHoist > 0) {
+        // Doesn't matter what kind of abrupt completion it was
+        // Inline the remainder of the parent block into the if branch
+        rule('If the else-branch returns the remainder of the parent block goes into the if-branch');
+        example('if (x) f(); else return; g();', 'if (x) { f(); g(); } else { return; }');
+        before(node, parentNode);
+
+        const remainder = body.splice(i+1, statementCountToHoist);
+        node.consequent.body.push(...remainder);
+
+        after(parentNode);
+        assertNoDupeNodes(AST.blockStatement(parentNode), 'body');
+        return true;
+      }
     }
 
-    if (node.alternate.$p.returnBreakThrow && i < body.length - 1) {
-      // Doesn't matter what kind of abrupt completion it was
-      // Inline the remainder of the parent block into the if branch
-      rule('If the else-branch returns the remainder of the parent block goes into the if-branch');
-      example('if (x) { f(); } else { return; } g();', 'if (x) { f(); g(); } else { return; }');
-      before(node, parentNode);
-
-      node.consequent.body.push(...body.slice(i + 1));
-      body.length = i + 1;
-
-      after(parentNode);
-      assertNoDupeNodes(AST.blockStatement(parentNode), 'body');
-      return true;
-    }
 
     vlog(
       BLUE + 'if;returnBreakThrow?' + RESET,
@@ -8015,9 +8060,11 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         ? 'yes; ' + node.consequent.$p.returnBreakThrow + ' and ' + node.alternate.$p.returnBreakThrow
         : 'no',
     );
-    if (node.alternate && node.consequent.$p.returnBreakThrow && node.alternate.$p.returnBreakThrow) {
+    ASSERT(node.alternate);
+    if (node.consequent.$p.returnBreakThrow && node.alternate.$p.returnBreakThrow) {
       // Both branches broke flow early so any statements that follow this statement are effectively dead
       node.$p.returnBreakThrow = node.consequent.$p.returnBreakThrow + '+' + node.alternate.$p.returnBreakThrow;
+      parentNode.$p.returnBreakThrow = node.$p.returnBreakThrow;
 
       if (body.length > i + 1) {
         if (dce(body, i, 'after if-else')) {

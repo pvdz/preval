@@ -72,9 +72,9 @@ const tmpLabeledBlockFunc$3 = function ($$0) {
     }
   } else {
     $(3);
+    $(x);
+    return undefined;
   }
-  $(x);
-  return undefined;
 };
 $(tmpLabeledBlockFunc$3);
 `````

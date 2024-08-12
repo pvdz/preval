@@ -351,11 +351,18 @@ export function generateUniqueGlobalName(name, fdata, assumeDoubleDollar = false
     if (/^\$\$\d/.test(name)) {
       return generateUniqueGlobalName('$dlr_' + name, fdata);
     }
-
     if (/^\$\$\d+$/.test(name)) console.log('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast, true), true) + '\n--------------\n');
     ASSERT(!/^\$\$\d+$/.test(name), 'param placeholders should not reach this place');
     // TODO: assert this is the normal_once step and make sure it never happens elsewhere
     return generateUniqueGlobalName('tmp' + name.slice(2), fdata);
+  }
+  if (name === '$$') {
+    // Prevent accidentally generating $$1 (those are special param names)
+    name = '_' + name;
+  }
+  if (name === '$') {
+    // This is a special test symbol. Rename local variables with this name.
+    name = '_$';
   }
 
   const globallyUniqueNamingRegistry = fdata.globallyUniqueNamingRegistry;
@@ -388,7 +395,7 @@ export function registerGlobalIdent(
 ) {
 
   if (/^\$\$\d+$/.test(name)) console.log('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast, true), true) + '\n--------------\n');
-  ASSERT(!/^\$\$\d+$/.test(name), 'param placeholders should not reach this place either', name);
+  ASSERT(!/^\$\$\d+$/.test(name), 'param placeholders should not reach this place either', name, originalName);
   ASSERT(Object.keys(rest).length === 0, 'invalid args', rest);
 
   const meta = fdata.globallyUniqueNamingRegistry.get(name);

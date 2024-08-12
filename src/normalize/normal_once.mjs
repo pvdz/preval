@@ -612,7 +612,8 @@ export function phaseNormalOnce(fdata) {
             // This preserves the abrupt completion semantics in cases where it matters since
             // we are not yet in normalized state and DCE has not happened yet.
             // There are other normalization steps that will eliminate redundant label usages.
-            parentNode[parentProp][parentIndex].label = AST.identifier(newLabelIdentNode.name);
+            if (parentIndex < 0) parentNode[parentProp] = AST.identifier(newLabelIdentNode.name);
+            else parentNode[parentProp][parentIndex].label = AST.identifier(newLabelIdentNode.name);
           });
           const ifRoot = node.cases
             .slice(0)
@@ -643,7 +644,8 @@ export function phaseNormalOnce(fdata) {
             );
           wrapper.body.push(varNode, ifRoot);
 
-          parentNode[parentProp][parentIndex] = newLabelNode;
+          if (parentIndex < 0) parentNode[parentProp] = newLabelNode;
+          else parentNode[parentProp][parentIndex] = newLabelNode;
 
           after(wrapper);
           break;
@@ -1569,7 +1571,8 @@ function hoistingOnce(hoistingRoot, from) {
             vlog('Queueing function node to be moved');
             funcs.push([hoistNode, parentNode, parentProp, parentIndex, exportIndex]);
             // We will inject this node at the top
-            parentNode[parentProp][parentIndex] = AST.emptyStatement();
+            if (parentIndex < 0) parentNode[parentProp] = AST.emptyStatement();
+            else parentNode[parentProp][parentIndex] = AST.emptyStatement();
           } else {
             vlog('Queueing bindings to be moved');
             before(hoistNode);
@@ -1587,10 +1590,11 @@ function hoistingOnce(hoistingRoot, from) {
             });
             // Must replace one node with one new node to preserve indexes of other var statements that appear later
             ASSERT(parentIndex >= 0, 'var decls in global/func/block must be inside a body array');
-            parentNode[parentProp][parentIndex] =
-              newNodes.length === 0
-                ? AST.emptyStatement()
-                : AST.expressionStatement(newNodes.length === 1 ? newNodes[0] : AST.sequenceExpression(newNodes));
+            const newNode = newNodes.length === 0
+              ? AST.emptyStatement()
+              : AST.expressionStatement(newNodes.length === 1 ? newNodes[0] : AST.sequenceExpression(newNodes));
+            if (parentIndex < 0) parentNode[parentProp] = newNode;
+            else parentNode[parentProp][parentIndex] = newNode;
 
             after(newNodes);
           }
@@ -1730,7 +1734,8 @@ function hoistingOnce(hoistingRoot, from) {
           if (hoistNode.type === 'FunctionDeclaration') {
             funcs.push([hoistNode, parentNode, parentProp, parentIndex, exportIndex]);
             // We will inject this node at the top
-            parentNode[parentProp][parentIndex] = AST.emptyStatement();
+            if (parentIndex < 0) parentNode[parentProp] = AST.emptyStatement();
+            else parentNode[parentProp][parentIndex] = AST.emptyStatement();
           } else {
             // Decl is not normalized. Can have any number of declarators, can still be pattern
             hoistNode.declarations.forEach((decl) => {

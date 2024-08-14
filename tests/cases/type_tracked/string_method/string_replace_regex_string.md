@@ -24,11 +24,9 @@ $(`hello   world`.replace(/ /g, `.`));
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCallObj = `hello   world`;
-const tmpCallVal = tmpCallObj.replace;
 const tmpCalleeParam$1 = / /g;
 const tmpCalleeParam$3 = `.`;
-const tmpCalleeParam = $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpCalleeParam = `hello   world`.replace(tmpCalleeParam$1, tmpCalleeParam$3);
 tmpCallCallee(tmpCalleeParam);
 `````
 

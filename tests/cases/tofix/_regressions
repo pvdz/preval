@@ -45,6 +45,4 @@
 // Apply type analysis for our $forIn and $forOf symbols
 // Consider whether tests/cases/regex/dotcall/simple.md should be allowed to inline the regex as the callee or smth
 // tests/cases/type_tracked/if/base_undefined.md -> why does that leave a label?
-
-
-check even of deze nog goed if-tail hoist normalize/dce/return/fence_at_loop_forin_if.md
+// when a function does not use _this_ and is used in a $dotCall and we know which function it is, we dont need the dotcall

@@ -374,62 +374,20 @@ doing multiple static operations on the same value can reuse those results if st
 
  */
 
-const BUILTIN_MEMBERS = new Set([
-  'Array.from',
-  'Array.isArray',
-  'Array.of',
-  'Date.now',
-  'Date.parse',
-  'Date.UTC',
-  'JSON.stringify',
-  'Math.abs',
-  'Math.acos',
-  'Math.acosh',
-  'Math.asin',
-  'Math.asinh',
-  'Math.atan',
-  'Math.atan2',
-  'Math.atanh',
-  'Math.cbrt',
-  'Math.ceil',
-  'Math.clz32',
-  'Math.cos',
-  'Math.cosh',
-  'Math.exp',
-  'Math.expm1',
-  'Math.floor',
-  'Math.fround',
-  'Math.hypot',
-  'Math.imul',
-  'Math.log',
-  'Math.log10',
-  'Math.log1p',
-  'Math.log2',
-  'Math.max',
-  'Math.min',
-  'Math.pow',
-  'Math.random',
-  'Math.round',
-  'Math.sign',
-  'Math.sin',
-  'Math.sinh',
-  'Math.sqrt',
-  'Math.tan',
-  'Math.tanh',
-  'Math.trunc',
-  'Number.isFinite',
-  'Number.isInteger',
-  'Number.isNaN',
-  'Number.isSafeInteger',
-  'Number.parseFloat',
-  'Number.parseInt',
-  'Object.is',
-  'Object.isFrozen',
-  'Object.isSealed',
-  'String.fromCharCode',
-  'String.fromCodePoint',
-  'String.raw',
+const BUILTIN_GLOBAL_NAMES = new Set([
+  'Array',
+  'Date',
+  'JSON',
+  'Math',
+  'Number',
+  'String',
+  'Boolean',
+  'RegExp',
+  'Symbol',
+  'Object',
+  'Function',
 ]);
+
 const BUILTIN_NON_COERCE_MEMBERS = new Set([
   'Array.isArray',
   'Array.of',
@@ -2238,11 +2196,36 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           //       clean those cases up later but that might not be easy as the "call" property is not
           //       guaranteed to be the builtin `call` function... ;(
 
+          const objectMustBeMethodable = (
+            // Yes, you _can_ call methods on `0` and `false`
+            (AST.isPrimitive(callee.object) && AST.getPrimitiveValue(callee.object) != null) ||
+            (callee.object.type === 'Literal' && callee.object.regex) || // Regex is never falsy
+            callee.object.type === 'FunctionExpression' ||
+            callee.object.type === 'ThisExpression' ||
+            callee.object.type === 'ArrayExpression' ||
+            callee.object.type === 'ObjectExpression' ||
+            callee.object.type === 'ClassExpression' ||
+            callee.object.type === 'NewExpression' // `new` is guaranteed to return an object
+          );
+
+          // Bit superficial but there are cases where ?. is redundant, transform just makes that worse
+          if (callee.optional && objectMustBeMethodable) {
+            // `a?.b()`, this is NOT `a.b?.()`!
+            rule('Optional chaining on object value that cannot be null/undef is not optional');
+            example('/foo/?.test()', '/foo/.test()');
+            before(node);
+
+            callee.optional = false;
+
+            before(node);
+            return true;
+          }
+
           if (callee.optional) {
             // `a?.b()`, this is NOT `a.b?.()`!
             rule('Call on optional chaining property must be if-else');
-            example('a()?.b()', 'tmp = a(); if (tmp) tmp.b();', () => !callee.computed);
-            example('a()?.[b()]()', 'tmp = a(); if (tmp) tmp[b()]();', () => callee.computed);
+            example('a()?.b()', 'tmp = a(); tmp == null ? undefined : tmp.b();', () => !callee.computed);
+            example('a()?.[b()]()', 'tmp = a(); tmp == null ? undefined : tmp[b()]();', () => callee.computed);
             before(node, parentNode);
 
             const newArgs = [];
@@ -2490,9 +2473,12 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           if (!callee.computed && hasComplexArg) {
             // Do not dotCall built-in member expressions. Assume it's safe.
             if (
-              ASSUME_BUILTINS &&
-              callee.object.type === 'Identifier' &&
-              BUILTIN_MEMBERS.has(callee.object.name + '.' + callee.property.name)
+              objectMustBeMethodable ||
+              ( // Calling Object.hasOwnProperty() etc
+                ASSUME_BUILTINS &&
+                callee.object.type === 'Identifier' &&
+                BUILTIN_GLOBAL_NAMES.has(callee.object.name)
+              )
             ) {
               // At least one param node is complex. Cache them all. But not the object. It is a builtin.
 
@@ -7764,219 +7750,6 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           return true;
         }
       }
-    }
-
-    // single if-else normalization
-    if (false) {
-      // Disabled because this creates functions and those are just worse for us.
-
-      // Must do this "on the way back up" because we need to first re-map `arguments` and `this`
-      // Requiring the function as the "floor" allows us to build bottom up, at the expense of some useless re-traversals...
-      // This normalization is currently not applied to generators or async functions. Not sure what the ramification is.
-      vgroup('Start of single-branch-per-function algo');
-      const funcNode = ifelseStack[ifelseStack.length - 1];
-
-      console.log('TODO: arrayfunctionexpression?')
-      if (funcNode.type === 'FunctionExpression' || funcNode.type === 'ArrayFunctionExpression') {
-        if (funcNode.generator) {
-          // Currently not seeing a solid way to support function abstraction inside a generator
-          // Sure, we can do it for all the bits that don't contain `yield`, but the thing does taint
-          // so if there's one after the if-else then the whole thing collapses. I dunno yet.
-          vlog(RED + 'Can not apply the branch reduction rule to generators...' + RESET);
-        } else if (funcNode.async) {
-          // Async functions need more research. Unlike generators we may be able to deal with these but I'm not sure yet.
-          // The simplest safe way would be to await the calls of all abstractions. Less invasive would be to filter that
-          // based on whether the abstraction actually contained the keyword `await`. Though it does taint the whole chain.
-          vlog(RED + 'Can not apply the branch reduction rule to async functions yet...' + RESET);
-        } else if (
-          // If this `if` is the last node of the body
-          i >= body.length - 1 &&
-          // or the if or else has no nested `if`
-          !node.consequent.body.some((snode) => snode.type === 'IfStatement') &&
-          !node.alternate.body.some((snode) => snode.type === 'IfStatement')
-        ) {
-          vlog('There is no more code after this if and there are no nested if-elses inside the if or the else. Bailing');
-        } else {
-          vlog('i=', i, 'body has', body.length, 'elements');
-          // TODO: do we want this step before or after the abrubt completion inlining?
-          // This is an if-else directly nested inside another if-else, nested directly in a function/arrow
-          // Note: this may be a method. We'll have to figure out how to outline functions or whatever, or maybe we don't at all.
-          rule('Nested if-else in function must be abstracted');
-          example(
-            'function f(){ if (x) { if (y) { g(); } else { h(); } } }',
-            'function f(){ function A() { return g(); }; function B() { return h(); } if (x) { return A(); } else { return B(); } }',
-          );
-          before(node, funcNode);
-
-          // - Collect all bindings created before and after the binding
-          // - Abstract the if, the else, and all other nodes after the if-else `node` into separate functions
-          // - The if and else abstractions should call-return the "other" abstraction (regardless, let DCE do its magic later)
-          // - If there were bindings after the if, then "hoist" them as undefined lets before the loop. Replace the original bindings with tmp consts and then assign those consts to the original name. Hopefully other rules will eliminate them again, but there are cases where that's not possible and then this rule is necessary.
-          // - If there were bindings before the if, pass them on as parameters to all three new functions
-
-          // We are on the way down the to transform so the body should be normalized, meaning all decls should
-          // be let or const variable declarations now. Collect them up to the if. Also gets us the index.
-
-          const parentBody = parentNode.body;
-
-          let index = -1;
-          let beforeTheIf = true;
-          const declaredBindingsBefore = [];
-          const declaredBindingsAfter = [];
-          const bodyOffsetMaybe = findBodyOffsetExpensiveMaybe(parentBody); // parent may be a regular block!
-          const bodyOffset = bodyOffsetMaybe < 0 ? 0 : bodyOffsetMaybe;
-          for (let i = bodyOffset; i < parentBody.length; ++i) {
-            const snode = parentBody[i];
-            if (snode === node) {
-              index = i;
-              beforeTheIf = false;
-            } else {
-              if (snode.type === 'VariableDeclaration') {
-                if (beforeTheIf) {
-                  // Code up to this `if` node should be normalized so we can rely on a single binding and no patterns
-                  ASSERT(snode.kind === 'let' || snode.kind === 'const');
-                  ASSERT(snode.declarations.length === 1);
-                  ASSERT(snode.declarations[0].id.type === 'Identifier');
-                  // If a binding is not a constant and it is a closure then we cannot create a
-                  // local variable for it. The problem is that the writes would not be observable in
-                  // either the original closure, or the tail abstraction (or both).
-                  const name = snode.declarations[0].id.name;
-                  const meta = fdata.globallyUniqueNamingRegistry.get(name);
-                  if (meta.isConstant) {
-                    declaredBindingsBefore.push(name);
-                  }
-                } else {
-                  // A func at the start of a func can still ref a binding declared later. Here we have to be careful
-                  // not to break this situation when we move bindings into a tail function.
-                  // `function f(){ return x; } if (x) y(); let x = 10; f();`
-                  // Note: these nodes have not been visited by normalization yet so the var decls may not be normalized
-                  // This search is slower but allows for patterns and multiple bindings per node etc.
-                  findBoundNamesInUnnormalizedVarDeclaration(snode, declaredBindingsAfter);
-                  // Replace each existing binding with an assignment. We will declare the names above as undefined lets.
-                  // The transform of a var decl to a regular (or destructuring) assignment
-                  // `let [{x}] = [{x:y}]` -> `[{x} = [{x:y}]` should be safe for any assignment, for any
-                  // number of such bindings declared.
-
-                  // The idea is that `log(x); if (a) b(); const x = 10;` becomes
-                  // `let x = undefined; log(x); if (a) b(); const tmp = 10; x = 10;`
-                  // While this is a TDZ (and would no longer be that), the valid usage is a closure by a function that
-                  // is declared before the if and only called after the if (and closed binding). This should work fine.
-                  parentBody[i] = AST.expressionStatement(
-                    // `let a = 1, [b] = f();` -> `a = 1, [b] = f();`
-                    // For any number of decls, any kind of id, any kind of init (or `undefined` if there was none)
-                    // Everything should be replaced by a sequence of assignments as long as the binding is declared too.
-                    AST.sequenceExpression(
-                      snode.declarations.map(({ id, init = AST.identifier('undefined') }) =>
-                        AST.assignmentExpression(id, init || AST.identifier('undefined')),
-                      ),
-                    ),
-                  );
-                }
-              }
-            }
-          }
-          vlog('Index of `if`:', index, ', bindings before:', declaredBindingsBefore, ', bindings after:', declaredBindingsAfter);
-          ASSERT(index >= 0, 'the if ought to be found? otherwise i think the ifelseStack needs some attention', index);
-
-          // Argument/parameter names to use for all functions and all calls. Let other rules eliminate them.
-          vlog('Local bindings found:', declaredBindingsBefore);
-          // The remainder of the function after the if-else.
-          const bodyRest = parentBody.slice(index + 1);
-          parentBody.length = index + 1;
-
-          vlog('Creating three functions for the if-else branch and its tail');
-          const tmpNameA = createFreshVar('tmpBranchingA', fdata);
-          const tmpNameB = createFreshVar('tmpBranchingB', fdata);
-          const tmpNameC = createFreshVar('tmpBranchingC', fdata);
-          const primeA = AST.functionExpressionNormalized(
-            declaredBindingsBefore.slice(0),
-            [
-              ...node.consequent.body,
-              AST.returnStatement(
-                AST.callExpression(
-                  tmpNameC,
-                  declaredBindingsBefore.map((s) => AST.identifier(s)),
-                ),
-              ),
-            ],
-            { id: createFreshVar('tmpUnusedPrimeFuncNameA', fdata) },
-          );
-          const primeAcloned = cloneFunctionNode(primeA, undefined, [], fdata).expression;
-          {
-            primeAcloned.id = AST.identifier(tmpNameA);
-            source(primeAcloned);
-            primeAcloned.id = null;
-          }
-          const primeB = AST.functionExpressionNormalized(
-            declaredBindingsBefore.slice(0),
-            [
-              ...(node.alternate.body || []),
-              AST.returnStatement(
-                AST.callExpression(
-                  tmpNameC,
-                  declaredBindingsBefore.map((s) => AST.identifier(s)),
-                ),
-              ),
-            ],
-            { id: createFreshVar('tmpUnusedPrimeFuncNameB', fdata) },
-          );
-          const primeBcloned = cloneFunctionNode(primeB, undefined, [], fdata).expression;
-          {
-            primeBcloned.id = AST.identifier(tmpNameB);
-            source(primeBcloned);
-            primeBcloned.id = null;
-          }
-          const primeC = AST.functionExpressionNormalized(declaredBindingsBefore.slice(0), bodyRest, {
-            id: createFreshVar('tmpUnusedPrimeFuncNameC', fdata),
-          });
-          const primeCcloned = cloneFunctionNode(primeC, undefined, [], fdata).expression;
-          {
-            primeCcloned.id = AST.identifier(tmpNameC);
-            source(primeCcloned);
-            primeCcloned.id = null;
-          }
-          const newIf = AST.ifStatement(
-            node.test,
-            AST.blockStatement(
-              AST.returnStatement(
-                AST.callExpression(
-                  tmpNameA,
-                  declaredBindingsBefore.map((s) => AST.identifier(s)),
-                ),
-              ),
-            ),
-            AST.blockStatement(
-              AST.returnStatement(
-                AST.callExpression(
-                  tmpNameB,
-                  declaredBindingsBefore.map((s) => AST.identifier(s)),
-                ),
-              ),
-            ),
-          );
-          body.splice(
-            i,
-            1,
-            // Inject the three functions (if body, else body, tail code) to go before the new `if`
-            AST.variableDeclaration(tmpNameA, primeAcloned, 'const'),
-            AST.variableDeclaration(tmpNameB, primeBcloned, 'const'),
-            AST.variableDeclaration(tmpNameC, primeCcloned, 'const'), // TODO: does it help to declare C before A/B?
-            // Inject all bindings that were defined as siblings after this `if` statement. Make them lets, init to undefined.
-            ...declaredBindingsAfter.map((name) => AST.variableDeclaration(name, 'undefined', 'let')),
-            newIf,
-          );
-
-          if (VERBOSE_TRACING) {
-            vlog('\nCurrent state after applying "Nested if-else" rule\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
-          }
-
-          vlog(); // newline
-          after(newIf, funcNode);
-          assertNoDupeNodes(AST.blockStatement(funcNode), 'body');
-          return true;
-        }
-      }
-      vgroupEnd();
     }
 
     if (node.consequent.$p.returnBreakThrow || node.alternate.$p.returnBreakThrow) {

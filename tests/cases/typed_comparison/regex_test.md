@@ -24,10 +24,9 @@ $(/x/g.test($(`x`)));
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCallObj = /x/g;
-const tmpCallVal = tmpCallObj.test;
 const tmpCalleeParam$1 = $(`x`);
-const tmpCalleeParam = $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam$1);
+const tmpCallObj = /x/g;
+const tmpCalleeParam = tmpCallObj.test(tmpCalleeParam$1);
 tmpCallCallee(tmpCalleeParam);
 `````
 

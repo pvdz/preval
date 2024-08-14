@@ -24,10 +24,8 @@ $(`hello world`.split(/o/g));
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCallObj = `hello world`;
-const tmpCallVal = tmpCallObj.split;
 const tmpCalleeParam$1 = /o/g;
-const tmpCalleeParam = $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam$1);
+const tmpCalleeParam = `hello world`.split(tmpCalleeParam$1);
 tmpCallCallee(tmpCalleeParam);
 `````
 

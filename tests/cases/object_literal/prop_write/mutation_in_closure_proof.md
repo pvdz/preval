@@ -72,8 +72,6 @@ let f = function () {
     delete x.y;
   } else {
   }
-  const tmpCallObj = Object;
-  const tmpCallVal = tmpCallObj.defineProperty;
   const tmpCalleeParam = x;
   const tmpCalleeParam$1 = `y`;
   const tmpCalleeParam$3 = {
@@ -87,7 +85,7 @@ let f = function () {
       return `intercepted`;
     },
   };
-  $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+  Object.defineProperty(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
   $(`b`);
   return undefined;
 };
@@ -115,7 +113,6 @@ const f = function () {
     delete x.y;
   } else {
   }
-  const tmpCallVal = Object.defineProperty;
   const tmpCalleeParam$3 = {
     set($$0) {
       debugger;
@@ -126,7 +123,7 @@ const f = function () {
       return `intercepted`;
     },
   };
-  $dotCall(tmpCallVal, Object, x, `y`, tmpCalleeParam$3);
+  Object.defineProperty(x, `y`, tmpCalleeParam$3);
   $(`b`);
   return undefined;
 };
@@ -153,8 +150,7 @@ const a = function() {
     $( "yeeting" );
     delete c.y;
   }
-  const d = Object.defineProperty;
-  const e = {
+  const d = {
     set( $$0 ) {
       debugger;
       return undefined;
@@ -164,7 +160,7 @@ const a = function() {
       return "intercepted";
     },
   };
-  $dotCall( d, Object, c, "y", e );
+  Object.defineProperty( c, "y", d );
   $( "b" );
   return undefined;
 };
@@ -173,8 +169,8 @@ a();
 c.y = 10;
 a();
 $( c );
-const f = c.y;
-$( f );
+const e = c.y;
+$( e );
 $( a );
 `````
 

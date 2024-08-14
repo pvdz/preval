@@ -31,16 +31,15 @@ $(
 
 `````js filename=intro
 const tmpCallCallee = $;
+const tmpCalleeParam$1 = {};
+const tmpCalleeParam$3 = [`x`];
 const tmpCallObj = function () {
   const tmpPrevalAliasArgumentsAny = arguments;
   debugger;
   $(...tmpPrevalAliasArgumentsAny);
   return undefined;
 };
-const tmpCallVal = tmpCallObj.apply;
-const tmpCalleeParam$1 = {};
-const tmpCalleeParam$3 = [`x`];
-const tmpCalleeParam = $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpCalleeParam = tmpCallObj.apply(tmpCalleeParam$1, tmpCalleeParam$3);
 tmpCallCallee(tmpCalleeParam);
 `````
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# label_switch.md
+# label_switch_blocked.md
 
-> Switch > Label switch
+> Switch > Label switch blocked
 >
 > This did not triggered the edge case in the pre transform
 

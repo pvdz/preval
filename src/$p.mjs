@@ -52,7 +52,6 @@ export function $p() {
     // - returnNodes // Array<node>. All return nodes for this function
     // - hasBranch // bool. Does this function contain an `if`, `while`, or `for-x` statement?
     // - funcDepth // number. Debug. How many nested scopes does this node appear in
-    // - oneTimerDirty // bool. Mark a function as having something inlined into it. This invalidates references and requires another phase1 pass before being able to inline the function itself safely.
     // - bodyOffset // number. First body statement after the function header (after the debugger statement). Discovered while walking a function, not maintained
     // - promoParent // node|null. The parent node of this block. Used for function scope promotion.
     // - ownBindings // Set<string>. Set of all local bindings in a function scope (may be defined in a block). Excludes the custom $$1 params names.

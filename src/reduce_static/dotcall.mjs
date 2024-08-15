@@ -21,6 +21,7 @@ import {
 } from '../constants.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
+import { complexNodeMightSpy } from '../ast.mjs';
 
 export function dotCall(fdata) {
   group('\n\n\nTrying to simplify $dotCall occurrences\n');
@@ -74,6 +75,7 @@ function _dotCall(fdata) {
 
           after(read.blockBody[read.blockIndex]);
           ++changed;
+          return;
         }
         break;
       }
@@ -88,6 +90,7 @@ function _dotCall(fdata) {
 
           after(read.blockBody[read.blockIndex]);
           ++changed;
+          return;
         }
         break;
       }
@@ -102,7 +105,7 @@ function _dotCall(fdata) {
 
           after(read.blockBody[read.blockIndex]);
           ++changed;
-          break;
+          return;
         }
         break;
       }
@@ -117,7 +120,7 @@ function _dotCall(fdata) {
 
           after(read.blockBody[read.blockIndex]);
           ++changed;
-          break;
+          return;
         }
         break;
       }
@@ -132,7 +135,7 @@ function _dotCall(fdata) {
 
           after(read.blockBody[read.blockIndex]);
           ++changed;
-          break;
+          return;
         }
         break;
       }
@@ -147,7 +150,7 @@ function _dotCall(fdata) {
 
           after(read.blockBody[read.blockIndex]);
           ++changed;
-          break;
+          return;
         }
         break;
       }
@@ -184,6 +187,36 @@ function _dotCall(fdata) {
 
         if (read.grandIndex < 0) read.grandNode[read.grandProp] = newNode;
         else read.grandNode[read.grandProp][read.grandIndex] = newNode;
+
+        after(read.blockBody[read.blockIndex]);
+        ++changed;
+        return;
+      }
+    }
+
+    // find `const method = a.b; const arg = x; $dotCall(method, a, x); cases to collapse (back) into a.b(x);
+    // The simple pattern is most common but this can be generalized
+    if (
+      read.blockIndex > 1 &&
+      read.blockBody[read.blockIndex - 2].type === 'VariableDeclaration' &&
+      read.blockBody[read.blockIndex - 1].type === 'VariableDeclaration' &&
+      read.parentNode.arguments.length > 0 &&
+      read.parentNode.arguments[0].type === 'Identifier' &&
+      // dotcall first arg is the method. Was that "cached" two steps ago?
+      read.parentNode.arguments[0].name === read.blockBody[read.blockIndex - 2].declarations[0].id.name &&
+      // Was the rhs a member expr?
+      read.blockBody[read.blockIndex - 2].declarations[0].init.type === 'MemberExpression'
+    ) {
+      // Can the init of the between decl spy?
+      if (!AST.complexNodeMightSpy(read.blockBody[read.blockIndex - 1].declarations[0].init, fdata)) {
+        rule('A dotCall expression where can be collapsed back safely in some cases');
+        example('const method = a.b; const arg = x; $dotCall(method, a, x);', 'a.b(x);');
+        before(read.blockBody[read.blockIndex]);
+
+        read.parentNode.callee = read.blockBody[read.blockIndex - 2].declarations[0].init;
+        read.parentNode.arguments.shift(); // method
+        read.parentNode.arguments.shift(); // context
+        read.blockBody[read.blockIndex - 2] = AST.emptyStatement();
 
         after(read.blockBody[read.blockIndex]);
         ++changed;

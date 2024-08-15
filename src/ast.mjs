@@ -2118,6 +2118,7 @@ export function complexNodeMightSpy(node, fdata) {
   ASSERT(node, 'expecitng node');
   ASSERT(fdata, 'expecting fdata');
   // aka, "a node is user observable when"
+  // Will also cover the simple cases
 
   // Assume `node` is in a normalized state.
 

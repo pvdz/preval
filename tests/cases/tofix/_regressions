@@ -46,3 +46,4 @@
 // Consider whether tests/cases/regex/dotcall/simple.md should be allowed to inline the regex as the callee or smth
 // tests/cases/type_tracked/if/base_undefined.md -> why does that leave a label?
 // when a function does not use _this_ and is used in a $dotCall and we know which function it is, we dont need the dotcall
+// convert array.map etc to while loops using $forOf when we know the context is an array literal of sorts

@@ -1,8 +1,8 @@
 # Preval test case
 
-# missing_method.md
+# missing_method3.md
 
-> Object literal > Static prop lookups > Missing method
+> Object literal > Static prop lookups > Missing method3
 >
 > If we can statically resolve a property lookup, we should
 
@@ -10,7 +10,7 @@
 
 `````js filename=intro
 const o = {
-  
+  valueOf(){ return 'xyz'; },
 };
 $(o.toString());
 `````
@@ -19,7 +19,12 @@ $(o.toString());
 
 
 `````js filename=intro
-const o = {};
+const o = {
+  valueOf() {
+    debugger;
+    return `xyz`;
+  },
+};
 $(o.toString());
 `````
 
@@ -27,7 +32,12 @@ $(o.toString());
 
 
 `````js filename=intro
-const o = {};
+const o = {
+  valueOf() {
+    debugger;
+    return `xyz`;
+  },
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = o.toString();
 tmpCallCallee(tmpCalleeParam);

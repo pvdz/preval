@@ -1,8 +1,8 @@
 # Preval test case
 
-# base.md
+# array_map.md
 
-> Undotcall > Base
+> Dot call > Array map
 >
 > Undo the "damage" done by dot call when we can detect it not to be necessary. We assert that $dotCall used to be a method call before so if the args are safe to inline, we can undo this step now. It was necessary for safe normalization purposes.
 
@@ -57,8 +57,6 @@ $(arr);
 
 
 `````js filename=intro
-const pre = [1, 2, 3];
-const map = pre.map;
 const f = function ($$0) {
   const item = $$0;
   debugger;
@@ -66,7 +64,8 @@ const f = function ($$0) {
   const tmpReturnArg = item + 1;
   return tmpReturnArg;
 };
-const arr = $dotCall(map, pre, f);
+const pre = [1, 2, 3];
+const arr = pre.map(f);
 $(arr);
 `````
 
@@ -75,17 +74,16 @@ $(arr);
 With rename=true
 
 `````js filename=intro
-const a = [ 1, 2, 3 ];
-const b = a.map;
-const c = function($$0 ) {
-  const d = e;
+const a = function($$0 ) {
+  const b = c;
   debugger;
-  $( "hello", d );
-  const f = d + 1;
-  return f;
+  $( "hello", b );
+  const d = b + 1;
+  return d;
 };
-const g = $dotCall( b, a, c );
-$( g );
+const e = [ 1, 2, 3 ];
+const f = e.map( a );
+$( f );
 `````
 
 ## Globals

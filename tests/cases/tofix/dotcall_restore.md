@@ -55,9 +55,8 @@ $(f);
 const f = function ($$0) {
   const Cu$3 = $$0;
   debugger;
-  const tmpCallCompVal$27 = Cu$3.replace;
   const tmpCalleeParam$81 = /[^0-9]/g;
-  const tmpReturnArg$29 = $dotCall(tmpCallCompVal$27, Cu$3, tmpCalleeParam$81, ``);
+  const tmpReturnArg$29 = Cu$3.replace(tmpCalleeParam$81, ``);
   return tmpReturnArg$29;
 };
 $(f);
@@ -71,10 +70,9 @@ With rename=true
 const a = function($$0 ) {
   const b = c;
   debugger;
-  const d = b.replace;
-  const e = /[^0-9]/g;
-  const f = $dotCall( d, b, e, "" );
-  return f;
+  const d = /[^0-9]/g;
+  const e = b.replace( d, "" );
+  return e;
 };
 $( a );
 `````

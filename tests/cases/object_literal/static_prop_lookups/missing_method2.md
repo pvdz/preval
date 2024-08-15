@@ -1,8 +1,8 @@
 # Preval test case
 
-# missing_method.md
+# missing_method2.md
 
-> Object literal > Static prop lookups > Missing method
+> Object literal > Static prop lookups > Missing method2
 >
 > If we can statically resolve a property lookup, we should
 
@@ -10,7 +10,7 @@
 
 `````js filename=intro
 const o = {
-  
+  toString(){ return 'xyz'; },
 };
 $(o.toString());
 `````
@@ -19,7 +19,12 @@ $(o.toString());
 
 
 `````js filename=intro
-const o = {};
+const o = {
+  toString() {
+    debugger;
+    return `xyz`;
+  },
+};
 $(o.toString());
 `````
 
@@ -27,7 +32,12 @@ $(o.toString());
 
 
 `````js filename=intro
-const o = {};
+const o = {
+  toString() {
+    debugger;
+    return `xyz`;
+  },
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = o.toString();
 tmpCallCallee(tmpCalleeParam);
@@ -37,7 +47,13 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam = $ObjectPrototype.toString();
+const o = {
+  toString() {
+    debugger;
+    return `xyz`;
+  },
+};
+const tmpCalleeParam = o.toString();
 $(tmpCalleeParam);
 `````
 
@@ -46,8 +62,12 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = $ObjectPrototype.toString();
-$( a );
+const a = { toString(  ) {
+  debugger;
+  return "xyz";
+} };
+const b = a.toString();
+$( b );
 `````
 
 ## Globals
@@ -57,7 +77,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: '[object Object]'
+ - 1: 'xyz'
  - eval returned: undefined
 
 Pre normalization calls: Same

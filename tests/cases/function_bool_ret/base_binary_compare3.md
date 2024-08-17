@@ -46,8 +46,7 @@ $(!f(), `three`);
 let f = function () {
   debugger;
   if ($) {
-    const tmpReturnArg = $ === $;
-    return tmpReturnArg;
+    return true;
   } else {
     return false;
   }
@@ -73,22 +72,13 @@ tmpCallCallee$3(tmpCalleeParam$7, tmpCalleeParam$9);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  if ($) {
-    const tmpReturnArg = $ === $;
-    return tmpReturnArg;
-  } else {
-    return false;
-  }
-};
-const tmpUnaryArg = f();
+const tmpUnaryArg = Boolean($);
 const tmpCalleeParam = !tmpUnaryArg;
 $(tmpCalleeParam, `one`);
-const tmpUnaryArg$1 = f();
+const tmpUnaryArg$1 = Boolean($);
 const tmpCalleeParam$3 = !tmpUnaryArg$1;
 $(tmpCalleeParam$3, `two`);
-const tmpUnaryArg$3 = f();
+const tmpUnaryArg$3 = Boolean($);
 const tmpCalleeParam$7 = !tmpUnaryArg$3;
 $(tmpCalleeParam$7, `three`);
 `````
@@ -98,25 +88,15 @@ $(tmpCalleeParam$7, `three`);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  if ($) {
-    const b = $ === $;
-    return b;
-  }
-  else {
-    return false;
-  }
-};
-const c = a();
+const a = Boolean( $ );
+const b = !a;
+$( b, "one" );
+const c = Boolean( $ );
 const d = !c;
-$( d, "one" );
-const e = a();
+$( d, "two" );
+const e = Boolean( $ );
 const f = !e;
-$( f, "two" );
-const g = a();
-const h = !g;
-$( h, "three" );
+$( f, "three" );
 `````
 
 ## Globals

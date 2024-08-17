@@ -39,8 +39,9 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const x = {};
-const tmpCalleeParam = x < x;
-$(tmpCalleeParam);
+x ** 0;
+x ** 0;
+$(false);
 `````
 
 ## PST Output
@@ -49,8 +50,9 @@ With rename=true
 
 `````js filename=intro
 const a = {};
-const b = a < a;
-$( b );
+a ** 0;
+a ** 0;
+$( false );
 `````
 
 ## Globals

@@ -117,6 +117,8 @@ Should call `$` with:
     '<function>',
     '<function>',
     '<function>',
+    '<function>',
+    '<function>',
     {},
     '<function>',
     true,

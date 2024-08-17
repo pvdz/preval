@@ -58,9 +58,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const a = [1, 2, 3];
-const tmpCalleeParam = a === a;
-$(tmpCalleeParam);
+$(true);
 `````
 
 ## PST Output
@@ -68,9 +66,7 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = [ 1, 2, 3 ];
-const b = a === a;
-$( b );
+$( true );
 `````
 
 ## Globals

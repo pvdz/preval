@@ -27,7 +27,7 @@ $(x !== x);
 `````js filename=intro
 const x = {};
 const tmpCallCallee = $;
-const tmpCalleeParam = x !== x;
+const tmpCalleeParam = false;
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -35,9 +35,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const x = {};
-const tmpCalleeParam = x !== x;
-$(tmpCalleeParam);
+$(false);
 `````
 
 ## PST Output
@@ -45,9 +43,7 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = {};
-const b = a !== a;
-$( b );
+$( false );
 `````
 
 ## Globals

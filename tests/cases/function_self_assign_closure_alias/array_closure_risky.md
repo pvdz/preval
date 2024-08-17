@@ -95,10 +95,8 @@ tmpCallCallee$5(tmpCalleeParam$5);
 const arr = [1, 2, 3];
 $(arr);
 $(arr);
-const tmpCalleeParam$3 = arr === arr;
-$(tmpCalleeParam$3);
-const tmpCalleeParam$5 = arr === arr;
-$(tmpCalleeParam$5);
+$(true);
+$(true);
 `````
 
 ## PST Output
@@ -109,10 +107,8 @@ With rename=true
 const a = [ 1, 2, 3 ];
 $( a );
 $( a );
-const b = a === a;
-$( b );
-const c = a === a;
-$( c );
+$( true );
+$( true );
 `````
 
 ## Globals

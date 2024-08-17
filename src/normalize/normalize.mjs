@@ -5053,6 +5053,101 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           return true;
         }
 
+        // Note: the statement is a base case so ignore that.
+        // When left and right are the same ident then certain comparisons are safely predictable.
+        if (wrapKind !== 'statement' && node.left.type === 'Identifier' && node.right.type === 'Identifier' && node.left.name === node.right.name) {
+          // Left and right are the same value. There are some bools that want a word.
+          if (['==', '==='].includes(node.operator)) {
+            // The eq comparisons do not touch the value (== won't either when not coercing)
+            // tests/cases/binary/eq_strong/diff_objs_diff_ids.md
+            rule('Comparing the same identifier for being equal will always return true');
+            example('a === a', '(a, true)');
+            before(body[i]);
+
+            const finalNode = AST.sequenceExpression(node.left, AST.tru());
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body[i] = finalParent;
+
+            after(body[i]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+          if (['<=', '>='].includes(node.operator)) {
+            // Note: these coerce so we must leave a bit more.
+            // tests/cases/binary/gt_eq/same_objs.md
+            rule('Comparing the same identifier for being gte/lte will always return true but it may coerce');
+            example('a <= a', '(a <= a, true)');
+            before(body[i]);
+
+            const finalNode = AST.sequenceExpression(node, AST.tru());
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body[i] = finalParent;
+
+            after(body[i]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+          if (['!=', '!=='].includes(node.operator)) {
+            // The eq comparisons do not touch the value (!= won't either when not coercing)
+            // tests/cases/binary/neq_strong/same_objs.md
+            rule('Comparing the same identifier for being equal will always return false');
+            example('a !== a', '(a, false)');
+            before(body[i]);
+
+            const finalNode = AST.sequenceExpression(node.left, AST.fals());
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body[i] = finalParent;
+
+            after(body[i]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+          if (['<', '>'].includes(node.operator)) {
+            // Note: these coerce so we must leave a bit more.
+            // tests/cases/binary/gt/diff_objs_diff_ids.md
+            rule('Comparing the same identifier for being gt/lt will always return false but it may coerce');
+            example('a < a', '(a<a, false)');
+            before(body[i]);
+
+            const finalNode = AST.sequenceExpression(node, AST.fals());
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body[i] = finalParent;
+
+            after(body[i]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+          // These are unsafe because if anything is not a number the result is always NaN. We can't do the remaining ones.
+          //if (['^', '-'].includes(node.operator)) {
+          //  rule('The bitwise operator ^ or math operator `-` on the same identifier always returns zero');
+          //  example('a === a', '(a, true)');
+          //  before(body[i]);
+          //
+          //
+          //  const finalNode = AST.sequenceExpression(AST.identifier(node.left.name), AST.tru());
+          //  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          //  body.splice(i, 1, AST.expressionStatement(finalParent));
+          //
+          //  after(body[i]);
+          //  zoietsdusqmark
+          //}
+          //if (['&', '|'].includes(node.operator)) {
+          //  rule('The bitwise operator & and | on the same identifier always returns itself');
+          //  example('a === a', '(a, true)');
+          //  before(body[i]);
+          //
+          //
+          //  const finalNode = AST.sequenceExpression(AST.identifier(node.left.name), AST.tru());
+          //  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          //  body.splice(i, 1, AST.expressionStatement(finalParent));
+          //
+          //  after(body[i]);
+          //  zoietsdusqmark
+          //}
+          // You could convert x*x to x**2 but i'm not sure that's helpful at all
+          // You could convert x/x to 1 but then what do you do with zeroes?
+        }
+
         return false;
       }
 

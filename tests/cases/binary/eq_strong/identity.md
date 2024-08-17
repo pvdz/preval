@@ -2,7 +2,7 @@
 
 # identity.md
 
-> Tofix > Identity
+> Binary > Eq strong > Identity
 >
 > The triple eq identity check can resolve for an ident on itself
 > And let's face it. The whole example should be collapsed.
@@ -60,7 +60,7 @@ $(3);
 `````js filename=intro
 let tmpSwitchCaseToStart = 1;
 let tmpIfTest$1 = true;
-const tmpIfTest = $ === $;
+const tmpIfTest = true;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -81,15 +81,10 @@ $(3);
 
 
 `````js filename=intro
-const tmpIfTest = $ === $;
-if (tmpIfTest) {
-  try {
-    $(x, 1);
-  } catch ($finalImplicit) {}
-  $(2);
-} else {
-  $(`oops`);
-}
+try {
+  $(x, 1);
+} catch ($finalImplicit) {}
+$(2);
 $(3);
 `````
 
@@ -98,19 +93,13 @@ $(3);
 With rename=true
 
 `````js filename=intro
-const a = $ === $;
-if (a) {
-  try {
-    $( x, 1 );
-  }
-  catch (b) {
+try {
+  $( x, 1 );
+}
+catch (a) {
 
-  }
-  $( 2 );
 }
-else {
-  $( "oops" );
-}
+$( 2 );
 $( 3 );
 `````
 

@@ -101,15 +101,10 @@ $(3);
 
 
 `````js filename=intro
-const tmpIfTest = $ === $;
-if (tmpIfTest) {
-  try {
-    $(x, 1);
-  } catch ($finalImplicit) {}
-  $(2);
-} else {
-  $(`oops`);
-}
+try {
+  $(x, 1);
+} catch ($finalImplicit) {}
+$(2);
 $(3);
 `````
 
@@ -118,19 +113,13 @@ $(3);
 With rename=true
 
 `````js filename=intro
-const a = $ === $;
-if (a) {
-  try {
-    $( x, 1 );
-  }
-  catch (b) {
+try {
+  $( x, 1 );
+}
+catch (a) {
 
-  }
-  $( 2 );
 }
-else {
-  $( "oops" );
-}
+$( 2 );
 $( 3 );
 `````
 

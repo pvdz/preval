@@ -9,7 +9,7 @@
 ## Input
 
 `````js filename=intro
-const o = {x: $(1)};
+const o = {x: function(){ return $(1); }};
 $(o.x());
 `````
 
@@ -17,7 +17,12 @@ $(o.x());
 
 
 `````js filename=intro
-const o = { x: $(1) };
+const o = {
+  x: function () {
+    debugger;
+    return $(1);
+  },
+};
 $(o.x());
 `````
 
@@ -25,7 +30,11 @@ $(o.x());
 
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
+const tmpObjLitVal = function () {
+  debugger;
+  const tmpReturnArg = $(1);
+  return tmpReturnArg;
+};
 const o = { x: tmpObjLitVal };
 const tmpCallCallee = $;
 const tmpCalleeParam = o.x();
@@ -36,9 +45,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
-const o = { x: tmpObjLitVal };
-const tmpCalleeParam = o.x();
+const tmpCalleeParam = $(1);
 $(tmpCalleeParam);
 `````
 
@@ -48,9 +55,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-const b = { x: a };
-const c = b.x();
-$( c );
+$( a );
 `````
 
 ## Globals
@@ -61,7 +66,8 @@ None
 
 Should call `$` with:
  - 1: 1
- - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+ - 2: 1
+ - eval returned: undefined
 
 Pre normalization calls: Same
 

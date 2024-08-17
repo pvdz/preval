@@ -89,6 +89,7 @@ import { builtinCases } from '../reduce_static/builtin_cases.mjs';
 import { arrayReads } from '../reduce_static/array_reads.mjs';
 import { ifTestMerging } from '../reduce_static/if_test_merging.mjs';
 import { tryEscaping } from '../reduce_static/try_escaping.mjs';
+import { constAliasing } from '../reduce_static/const_aliasing.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
@@ -208,6 +209,7 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     findThrowers(fdata) ||
     singleScopeTdz(fdata) || // Mostly superseded by the TDZ analysis in prepare or phase1 (but still for-in/of cases to fix first)
     constAssigns(fdata) ||
+    constAliasing(fdata) ||
     aliasedGlobals(fdata) ||
     dotCall(fdata) ||
     letHoisting(fdata) ||

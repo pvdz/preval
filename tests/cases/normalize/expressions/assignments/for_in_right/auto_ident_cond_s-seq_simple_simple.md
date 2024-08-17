@@ -65,8 +65,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_a = $(2);
-const tmpForInGen = $forIn(tmpClusterSSA_a);
+const a = $(2);
+const tmpForInGen = $forIn(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext = tmpForInGen.next();
   const tmpIfTest$1 = tmpForInNext.done;
@@ -76,7 +76,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForInNext.value;
   }
 }
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 ## PST Output

@@ -62,8 +62,8 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpClusterSSA_b = $(2);
-const tmpForInGen = $forIn(tmpClusterSSA_b);
+const b = $(2);
+const tmpForInGen = $forIn(b);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext = tmpForInGen.next();
   const tmpIfTest = tmpForInNext.done;
@@ -74,7 +74,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   }
 }
 const a = { a: 999, b: 1000 };
-$(a, tmpClusterSSA_b);
+$(a, b);
 `````
 
 ## PST Output

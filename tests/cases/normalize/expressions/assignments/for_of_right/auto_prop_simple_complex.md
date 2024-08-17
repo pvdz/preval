@@ -65,8 +65,8 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const tmpClusterSSA_a = { b: tmpObjLitVal };
-const tmpForOfGen = $forOf(tmpClusterSSA_a);
+const a = { b: tmpObjLitVal };
+const tmpForOfGen = $forOf(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest = tmpForOfNext.done;
@@ -77,8 +77,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   }
 }
 const tmpAssignMemRhs = $(2);
-tmpClusterSSA_a.b = tmpAssignMemRhs;
-$(tmpClusterSSA_a);
+a.b = tmpAssignMemRhs;
+$(a);
 `````
 
 ## PST Output

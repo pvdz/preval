@@ -1,15 +1,18 @@
 # Preval test case
 
-# base.md
+# tdz_loop.md
 
-> Static arg ops > Coerce > Const > Base
+> Const aliasing > Tdz loop
+> 
+> This example was looping because the code wasn't checking whether lhsName === rhsName
+> and so it was infinitely transforming `const y = y` (:
 
 ## Input
 
 `````js filename=intro
 let x = $('50');
 const f = function (c) {
-  const y = $coerce(x, 'number');
+  const y = $coerce(y, 'number');
   $(1);
   $(2);
   $(y);
@@ -26,7 +29,7 @@ let x = $(`50`);
 const f = function ($$0) {
   let c = $$0;
   debugger;
-  const y = $coerce(x, `number`);
+  const y = $coerce(y, `number`);
   $(1);
   $(2);
   $(y);
@@ -43,7 +46,7 @@ let x = $(`50`);
 const f = function ($$0) {
   let c = $$0;
   debugger;
-  const y = $coerce(x, `number`);
+  const y = $coerce(y, `number`);
   $(1);
   $(2);
   $(y);
@@ -57,17 +60,8 @@ f(4);
 
 
 `````js filename=intro
-const x = $(`50`);
-const f = function () {
-  debugger;
-  const y = $coerce(x, `number`);
-  $(1);
-  $(2);
-  $(y);
-  return undefined;
-};
-f();
-f();
+$(`50`);
+throw `Preval: TDZ triggered for this read: y;`;
 `````
 
 ## PST Output
@@ -75,17 +69,8 @@ f();
 With rename=true
 
 `````js filename=intro
-const a = $( "50" );
-const b = function() {
-  debugger;
-  const c = $coerce( a, "number" );
-  $( 1 );
-  $( 2 );
-  $( c );
-  return undefined;
-};
-b();
-b();
+$( "50" );
+throw "Preval: TDZ triggered for this read: y;";
 `````
 
 ## Globals
@@ -96,13 +81,7 @@ None
 
 Should call `$` with:
  - 1: '50'
- - 2: 1
- - 3: 2
- - 4: 50
- - 5: 1
- - 6: 2
- - 7: 50
- - eval returned: undefined
+ - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
 
 Pre normalization calls: Same
 

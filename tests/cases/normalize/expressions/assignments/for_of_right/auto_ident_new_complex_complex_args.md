@@ -68,8 +68,8 @@ $(a);
 const tmpNewCallee = $($);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-const tmpClusterSSA_a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
-const tmpForOfGen = $forOf(tmpClusterSSA_a);
+const a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpForOfGen = $forOf(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest = tmpForOfNext.done;
@@ -79,7 +79,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForOfNext.value;
   }
 }
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 ## PST Output

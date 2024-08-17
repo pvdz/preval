@@ -69,7 +69,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpClusterSSA_a = undefined;
+let a = undefined;
 const b = { x: 1 };
 const tmpChainRootProp = $(b);
 const tmpIfTest = tmpChainRootProp == null;
@@ -78,7 +78,7 @@ if (tmpIfTest) {
   tmpForInGen = $forIn(undefined);
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;
-  tmpClusterSSA_a = tmpChainElementObject;
+  a = tmpChainElementObject;
   tmpForInGen = $forIn(tmpChainElementObject);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -90,7 +90,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForInNext.value;
   }
 }
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 ## PST Output

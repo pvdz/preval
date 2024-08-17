@@ -25,7 +25,7 @@ import {
   BUILTIN_REST_HANDLER_NAME,
   BUILTIN_FUNCTION_PROTOTYPE,
   BUILTIN_FUNCTION_METHOD_LOOKUP,
-  BUILTIN_REGEXP_METHOD_LOOKUP,
+  BUILTIN_REGEXP_METHOD_LOOKUP, BUILTIN_STRING_METHOD_LOOKUP,
 } from '../constants.mjs';
 import * as AST from '../ast.mjs';
 import {getRegexFromLiteralNode, isRegexLiteral, nodeHasNoObservableSideEffectIncStatements} from "../ast.mjs"
@@ -1630,6 +1630,21 @@ function _typeTrackedTricks(fdata) {
                     parentNode.right = AST.identifier(BUILTIN_REGEXP_METHOD_LOOKUP.test);
                   } else {
                     parentNode.init = AST.identifier(BUILTIN_REGEXP_METHOD_LOOKUP.test);
+                  }
+
+                  after(node, blockBody[blockIndex]);
+                  ++changes;
+                  break;
+                }
+                case 'string.charAt': {
+                  rule('Reading .charAt from something that must be a string should yield $String_charAt');
+                  example('const x = "xyz".charAt;', 'const x = $String_charAt;');
+                  before(node, blockBody[blockIndex]);
+
+                  if (parentNode.type === 'AssignmentExpression') {
+                    parentNode.right = AST.identifier(BUILTIN_STRING_METHOD_LOOKUP.charAt);
+                  } else {
+                    parentNode.init = AST.identifier(BUILTIN_STRING_METHOD_LOOKUP.charAt);
                   }
 
                   after(node, blockBody[blockIndex]);

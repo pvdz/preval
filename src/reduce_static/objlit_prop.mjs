@@ -116,19 +116,19 @@ function processAttempt(fdata, queue) {
 
     const singleWriteSafe = meta.writes.length === 1 && !meta.reads.some(read => {
       if (read.parentNode.type !== 'MemberExpression' || read.parentNode.computed || read.parentProp !== 'object') {
-        vlog('note: at least one read escaped as it was not a member. singleWriteSafe=false :', read.parentNode);
+        vlog('note: at least one read escaped as it was not a member. singleWriteSafe=false');
         return true;
       }
 
       if (read.grandNode.type === 'AssignmentExpression' && read.grandProp === 'left') {
         // x.y = z;
-        vlog('note: at least one member expression was being assigned to. singleWriteSafe=false :', read.parentNode);
+        vlog('note: at least one member expression was being assigned to. singleWriteSafe=false');
         return true;
       }
 
       if (read.parentNode.type === 'UnaryExpression' && read.parentNode.op === 'delete') {
         // delete x.y;
-        vlog('note: at least one member expression was a property delete. singleWriteSafe=false :', read.parentNode);
+        vlog('note: at least one member expression was a property delete. singleWriteSafe=false');
         return true;
       }
     });

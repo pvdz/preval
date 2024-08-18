@@ -41,7 +41,12 @@ console$1.log(`yooo foo`);
 
 
 `````js filename=intro
-
+const tmpObjLitVal = function () {
+  debugger;
+  return undefined;
+};
+const console$1 = { log: tmpObjLitVal };
+console$1.log(`yooo foo`);
 `````
 
 ## PST Output
@@ -49,7 +54,12 @@ console$1.log(`yooo foo`);
 With rename=true
 
 `````js filename=intro
-
+const a = function() {
+  debugger;
+  return undefined;
+};
+const b = { log: a };
+b.log( "yooo foo" );
 `````
 
 ## Globals

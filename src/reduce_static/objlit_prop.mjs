@@ -98,6 +98,11 @@ function processAttempt(fdata, queue) {
         return;
       }
 
+      if (rhs.properties.some(pnode => pnode.computed)) {
+        vlog('Objlit had computed properties; bailing');
+        return;
+      }
+
       // Ok this was a write that assigned an object literal. Hurray!
       vlog('Found object expression at ref', ri, ' assigned to `' + name + '`. Tracing nearest property lookups.');
       verifyAfterObjectAssign(meta, rwOrder, ref, ri, rhs);
@@ -126,6 +131,12 @@ function processAttempt(fdata, queue) {
         return true;
       }
 
+      if (read.grandNode.type === 'CallExpression' && read.grandProp === 'callee') {
+        // `x.foo();` (may refer to `this` and mutate object)
+        vlog('note: at least one member expression was called. singleWriteSafe=false');
+        return true;
+      }
+
       if (read.parentNode.type === 'UnaryExpression' && read.parentNode.op === 'delete') {
         // delete x.y;
         vlog('note: at least one member expression was a property delete. singleWriteSafe=false');
@@ -134,7 +145,7 @@ function processAttempt(fdata, queue) {
     });
 
     if (singleWriteSafe) {
-      vlog('single write and all reads do not escape, process any read that can reach the write');
+      vlog('Single write and all reads do not escape, process any read that can reach the write');
 
       // All reads should be safe to resolve now
       meta.reads.forEach(read => {
@@ -203,6 +214,13 @@ function processAttempt(fdata, queue) {
         // delete x.y;
         vlog('The member expression was a property delete. Bailing');
         return;
+      }
+
+
+      if (readRef.grandNode.type === 'CallExpression' && readRef.grandProp === 'callee') {
+        // `x.foo();` (may refer to `this` and mutate object)
+        vlog('At least one member expression was called. Bailing');
+        return true;
       }
 
       if (readRef.parentNode.type !== 'MemberExpression' || readRef.parentNode.computed || readRef.parentProp !== 'object') {

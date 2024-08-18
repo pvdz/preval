@@ -37,7 +37,9 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-$(450);
+const o = { f: parseInt };
+const tmpCalleeParam = o.f(`200`, 15);
+$(tmpCalleeParam);
 `````
 
 ## PST Output
@@ -45,7 +47,9 @@ $(450);
 With rename=true
 
 `````js filename=intro
-$( 450 );
+const a = { f: parseInt };
+const b = a.f( "200", 15 );
+$( b );
 `````
 
 ## Globals

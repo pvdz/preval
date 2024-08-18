@@ -81,7 +81,8 @@ const f = function () {
     return undefined;
   }
 };
-const tmpCalleeParam = f();
+const obj = { f: f, foo: 10 };
+const tmpCalleeParam = obj.f();
 $(tmpCalleeParam);
 `````
 
@@ -107,8 +108,12 @@ const a = function() {
     return undefined;
   }
 };
-const f = a();
-$( f );
+const f = {
+  f: a,
+  foo: 10,
+};
+const g = f.f();
+$( g );
 `````
 
 ## Globals

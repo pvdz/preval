@@ -47,7 +47,13 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam = $ObjectPrototype.toString();
+const o = {
+  valueOf() {
+    debugger;
+    return `xyz`;
+  },
+};
+const tmpCalleeParam = o.toString();
 $(tmpCalleeParam);
 `````
 
@@ -56,8 +62,12 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = $ObjectPrototype.toString();
-$( a );
+const a = { valueOf(  ) {
+  debugger;
+  return "xyz";
+} };
+const b = a.toString();
+$( b );
 `````
 
 ## Globals

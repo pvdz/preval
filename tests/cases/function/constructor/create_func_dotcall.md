@@ -40,7 +40,8 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = Function(a, b, c, d);
+const obj = { Function: Function };
+const f = obj.Function(a, b, c, d);
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
@@ -50,9 +51,10 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = Function( a, b, c, d );
-const b = a();
-$( b );
+const a = { Function: Function };
+const b = a.Function( a, b, c, d );
+const c = b();
+$( c );
 `````
 
 ## Globals

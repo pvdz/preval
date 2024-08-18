@@ -111,7 +111,6 @@ const tmpObjLitVal = function () {
   $(undefined);
   return f$1;
 };
-$(undefined);
 const obj = {
   f: tmpObjLitVal,
   g() {
@@ -127,6 +126,7 @@ const obj = {
     }
   },
 };
+obj.f();
 $(obj);
 `````
 
@@ -146,7 +146,6 @@ const d = function() {
   $( undefined );
   return a;
 };
-$( undefined );
 const e = {
   f: d,
   g(  ) {
@@ -163,6 +162,7 @@ const e = {
     }
   },
 };
+e.f();
 $( e );
 `````
 

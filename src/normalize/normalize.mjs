@@ -2826,6 +2826,29 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                 }
               }
             }
+
+            if (!callee.computed && AST.isPrimitive(callee.object) && AST.getPrimitiveValue(callee.object) === '') {
+              // Property access on empty string... Some silly low hanging fruit cases.
+              if (ASSUME_BUILTINS) {
+                // Targeting a specific obfuscation: ``.replace(/^/, String)
+                if (callee.property.name === 'replace' && node.arguments[1].type === 'Identifier' && node.arguments[1].name === 'String') {
+                  // This will invariably return the empty string
+
+                  riskyRule('Calling .replace on an empty string with irrelevant function always results in empty string');
+                  example('"".replace(/$/, String)', '$coerce(/$/); ""');
+                  before(body[i]);
+
+                  const finalNode = AST.primitive('');
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1, AST.expressionStatement(AST.callExpression('$coerce', [node.arguments[1], AST.primitive('string')])), finalParent);
+
+                  after(body[i]);
+                  after(body[i + 1]);
+
+                  return true;
+                }
+              }
+            }
           }
 
           // Simple member expression is atomic callee. Can't break down further since the object can change the context.
@@ -3621,7 +3644,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           );
 
           const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-          body.splice(i, 1, finalParent);
+          body[i] = finalParent;
 
           after(body[i]);
           return true;

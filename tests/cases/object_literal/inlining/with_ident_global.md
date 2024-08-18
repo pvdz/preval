@@ -1,47 +1,42 @@
 # Preval test case
 
-# local.md
+# with_ident_global.md
 
-> Console > Local
+> Object literal > Inlining > With ident global
 >
 >
 
 ## Input
 
 `````js filename=intro
-const console = {log: function(){ }};
-console.log('yooo foo');
+const obj = {f: wat};
+$(obj.f);
 `````
 
 ## Pre Normal
 
 
 `````js filename=intro
-const console$1 = {
-  log: function () {
-    debugger;
-  },
-};
-console$1.log(`yooo foo`);
+const obj = { f: wat };
+$(obj.f);
 `````
 
 ## Normalized
 
 
 `````js filename=intro
-const tmpObjLitVal = function () {
-  debugger;
-  return undefined;
-};
-const console$1 = { log: tmpObjLitVal };
-console$1.log(`yooo foo`);
+const obj = { f: wat };
+const tmpCallCallee = $;
+const tmpCalleeParam = obj.f;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 
 `````js filename=intro
-
+wat;
+$(wat);
 `````
 
 ## PST Output
@@ -49,17 +44,20 @@ console$1.log(`yooo foo`);
 With rename=true
 
 `````js filename=intro
-
+wat;
+$( wat );
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+wat
 
 ## Result
 
 Should call `$` with:
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Pre normalization calls: Same
 

@@ -73,24 +73,16 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function () {
-  const tmpPrevalAliasThis = this;
-  debugger;
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpIfTest$1 = $(2);
-    if (tmpIfTest$1) {
-      const tmpReturnArg = tmpPrevalAliasThis.foo;
-      return tmpReturnArg;
-    } else {
-      return undefined;
-    }
+let tmpCalleeParam = undefined;
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  const tmpIfTest$1 = $(2);
+  if (tmpIfTest$1) {
+    tmpCalleeParam = 10;
   } else {
-    return undefined;
   }
-};
-const a = { foo: 10, f: f };
-const tmpCalleeParam = a.f();
+} else {
+}
 $(tmpCalleeParam);
 `````
 
@@ -99,30 +91,15 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  const b = this;
-  debugger;
-  const c = $( 1 );
+let a = undefined;
+const b = $( 1 );
+if (b) {
+  const c = $( 2 );
   if (c) {
-    const d = $( 2 );
-    if (d) {
-      const e = b.foo;
-      return e;
-    }
-    else {
-      return undefined;
-    }
+    a = 10;
   }
-  else {
-    return undefined;
-  }
-};
-const f = {
-  foo: 10,
-  f: a,
-};
-const g = f.f();
-$( g );
+}
+$( a );
 `````
 
 ## Globals

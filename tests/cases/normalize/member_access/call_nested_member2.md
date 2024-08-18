@@ -47,13 +47,7 @@ tmpCallObj.b();
 
 
 `````js filename=intro
-const tmpObjLitVal$1 = function () {
-  debugger;
-  const tmpReturnArg = $(1);
-  return tmpReturnArg;
-};
-const tmpObjLitVal = { b: tmpObjLitVal$1 };
-tmpObjLitVal.b();
+$(1);
 `````
 
 ## PST Output
@@ -61,13 +55,7 @@ tmpObjLitVal.b();
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = $( 1 );
-  return b;
-};
-const c = { b: a };
-c.b();
+$( 1 );
 `````
 
 ## Globals

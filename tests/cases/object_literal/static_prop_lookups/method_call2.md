@@ -1,33 +1,34 @@
 # Preval test case
 
-# primitive_method.md
+# method_call2.md
 
-> Object literal > Static prop lookups > Primitive method
+> Object literal > Static prop lookups > Method call2
 >
 > If we can statically resolve a property lookup, we should
 
 ## Input
 
 `````js filename=intro
-const o = {oops: 'fail'};
-$(o.oops());
+const o = {x: $(1)};
+$(o.x());
 `````
 
 ## Pre Normal
 
 
 `````js filename=intro
-const o = { oops: `fail` };
-$(o.oops());
+const o = { x: $(1) };
+$(o.x());
 `````
 
 ## Normalized
 
 
 `````js filename=intro
-const o = { oops: `fail` };
+const tmpObjLitVal = $(1);
+const o = { x: tmpObjLitVal };
 const tmpCallCallee = $;
-const tmpCalleeParam = o.oops();
+const tmpCalleeParam = o.x();
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -35,8 +36,10 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-`fail`();
-throw `[Preval]: Call expression with illegal callee must crash before this line `;
+const tmpObjLitVal = $(1);
+const o = { x: tmpObjLitVal };
+const tmpCalleeParam = o.x();
+$(tmpCalleeParam);
 `````
 
 ## PST Output
@@ -44,8 +47,10 @@ throw `[Preval]: Call expression with illegal callee must crash before this line
 With rename=true
 
 `````js filename=intro
-"fail".undefined();
-throw "[Preval]: Call expression with illegal callee must crash before this line ";
+const a = $( 1 );
+const b = { x: a };
+const c = b.x();
+$( c );
 `````
 
 ## Globals
@@ -55,6 +60,7 @@ None
 ## Result
 
 Should call `$` with:
+ - 1: 1
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Pre normalization calls: Same

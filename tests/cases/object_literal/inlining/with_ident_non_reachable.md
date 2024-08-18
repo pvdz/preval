@@ -1,47 +1,45 @@
 # Preval test case
 
-# local.md
+# with_ident_non_reachable.md
 
-> Console > Local
+> Object literal > Inlining > With ident non reachable
 >
 >
 
 ## Input
 
 `````js filename=intro
-const console = {log: function(){ }};
-console.log('yooo foo');
+let g = /regex/;
+const obj = {f: g};
+$(obj.f);
 `````
 
 ## Pre Normal
 
 
 `````js filename=intro
-const console$1 = {
-  log: function () {
-    debugger;
-  },
-};
-console$1.log(`yooo foo`);
+let g = /regex/;
+const obj = { f: g };
+$(obj.f);
 `````
 
 ## Normalized
 
 
 `````js filename=intro
-const tmpObjLitVal = function () {
-  debugger;
-  return undefined;
-};
-const console$1 = { log: tmpObjLitVal };
-console$1.log(`yooo foo`);
+let g = /regex/;
+const obj = { f: g };
+const tmpCallCallee = $;
+const tmpCalleeParam = obj.f;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 
 `````js filename=intro
-
+const g = /regex/;
+$(g);
 `````
 
 ## PST Output
@@ -49,7 +47,8 @@ console$1.log(`yooo foo`);
 With rename=true
 
 `````js filename=intro
-
+const a = /regex/;
+$( a );
 `````
 
 ## Globals
@@ -59,6 +58,7 @@ None
 ## Result
 
 Should call `$` with:
+ - 1: {}
  - eval returned: undefined
 
 Pre normalization calls: Same

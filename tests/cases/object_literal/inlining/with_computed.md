@@ -1,43 +1,36 @@
 # Preval test case
 
-# method_call.md
+# with_computed.md
 
-> Object literal > Static prop lookups > Method call
+> Object literal > Inlining > With computed
 >
-> If we can statically resolve a property lookup, we should
+>
 
 ## Input
 
 `````js filename=intro
-const o = {x: function(){ return $(1); }};
-$(o.x());
+const key = $('dakey');
+const obj = {[key]: 1};
+$(obj.dakey);
 `````
 
 ## Pre Normal
 
 
 `````js filename=intro
-const o = {
-  x: function () {
-    debugger;
-    return $(1);
-  },
-};
-$(o.x());
+const key = $(`dakey`);
+const obj = { [key]: 1 };
+$(obj.dakey);
 `````
 
 ## Normalized
 
 
 `````js filename=intro
-const tmpObjLitVal = function () {
-  debugger;
-  const tmpReturnArg = $(1);
-  return tmpReturnArg;
-};
-const o = { x: tmpObjLitVal };
+const key = $(`dakey`);
+const obj = { [key]: 1 };
 const tmpCallCallee = $;
-const tmpCalleeParam = o.x();
+const tmpCalleeParam = obj.dakey;
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -45,7 +38,9 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
+const key = $(`dakey`);
+const obj = { [key]: 1 };
+const tmpCalleeParam = obj.dakey;
 $(tmpCalleeParam);
 `````
 
@@ -54,8 +49,10 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-$( a );
+const a = $( "dakey" );
+const b = { [ a ]: 1 };
+const c = b.dakey;
+$( c );
 `````
 
 ## Globals
@@ -65,7 +62,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 1
+ - 1: 'dakey'
  - 2: 1
  - eval returned: undefined
 

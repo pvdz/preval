@@ -49,16 +49,10 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  $(`piss`);
-  $(`pass`);
-  $(`poss`);
-  return undefined;
-};
-const o = { f: f };
-const tmpCalleeParam = o.f();
-$(tmpCalleeParam);
+$(`piss`);
+$(`pass`);
+$(`poss`);
+$(undefined);
 `````
 
 ## PST Output
@@ -66,16 +60,10 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  $( "piss" );
-  $( "pass" );
-  $( "poss" );
-  return undefined;
-};
-const b = { f: a };
-const c = b.f();
-$( c );
+$( "piss" );
+$( "pass" );
+$( "poss" );
+$( undefined );
 `````
 
 ## Globals

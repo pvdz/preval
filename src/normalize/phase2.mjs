@@ -89,6 +89,7 @@ import { builtinCases } from '../reduce_static/builtin_cases.mjs';
 import { arrayReads } from '../reduce_static/array_reads.mjs';
 import { ifTestMerging } from '../reduce_static/if_test_merging.mjs';
 import { tryEscaping } from '../reduce_static/try_escaping.mjs';
+import { objlitInlining } from '../reduce_static/objlit_inlining.mjs';
 import { constAliasing } from '../reduce_static/const_aliasing.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
@@ -288,7 +289,8 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     testingAlias(fdata) ||
     aliasIfIf(fdata) ||
     ifUpdateTest(fdata) ||
-    fakeDoWhile(fdata)
+    fakeDoWhile(fdata) ||
+    objlitInlining(fdata)
 
 
     //// This one is very invasive and expands the code. Needs more work.

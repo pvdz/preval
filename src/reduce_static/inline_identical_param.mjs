@@ -26,7 +26,7 @@ import {
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { mayBindingMutateBetweenRefs } from '../bindings.mjs';
+import { createFreshVar, mayBindingMutateBetweenRefs } from '../bindings.mjs';
 import { getPrimitiveValue } from '../ast.mjs';
 
 export function inlineIdenticalParam(fdata) {
@@ -53,7 +53,7 @@ function _inlineIdenticalParam(fdata) {
     if (meta.constValueRef.node.$p.readsArgumentsLen) return;
 
     vgroup('- `' + name + '` is a constant function');
-    const what = process(meta, name);
+    const what = process(meta, name, fdata);
     if (what === 'phase1') changedPhase1 += 1;
     if (what === 'normal') changedNormal += 1;
     vgroupEnd();
@@ -72,7 +72,7 @@ function _inlineIdenticalParam(fdata) {
   log('Params replaced: 0.');
 }
 
-function process(meta, funcName) {
+function process(meta, funcName, fdata) {
   const funcNode = meta.constValueRef.node;
   if (!meta.reads.length) {
     vlog('- bail: There were no reads to this function');
@@ -120,7 +120,7 @@ function process(meta, funcName) {
   vgroupEnd();
 
   vgroup('tryInliningObjectLiteral():');
-  if (tryInliningObjectLiteral(meta, funcNode, params)) {
+  if (tryInliningObjectLiteral(meta, funcNode, params, fdata)) {
     vgroupEnd();
     return 'normal'; // This needs to go through normalize because we messed with params
   }
@@ -249,7 +249,7 @@ function tryInliningPrimitives(meta, funcNode, params) {
   return true;
 }
 
-function tryInliningObjectLiteral(meta, funcNode, params) {
+function tryInliningObjectLiteral(meta, funcNode, params, fdata) {
   // It's a bit of a long shot but we're essentially looking for this:
   //
   //    function f(obj) { $(obj.a); } f({a: 1}); f({a: 2});
@@ -401,16 +401,18 @@ function tryInliningObjectLiteral(meta, funcNode, params) {
     // otherwise we repurpose the old one and append the other ones
 
     const propsNamesArr = Array.from(propsNames);
+    const propsNameLocalBindings = propsNamesArr.map(name => createFreshVar(name, fdata));
+    const paramConstRef = funcNode.params[pi].$p.paramVarDeclRef;
 
     if (propsNamesArr.length > 0) {
       // Construct the object as the (new) first step of the function
       funcNode.body.body.splice(funcNode.$p.bodyOffset, 0,
-        AST.variableDeclaration(funcNode.params[pi].$p.paramVarDeclRef.name, AST.objectExpression(
-          propsNamesArr.map(name => AST.property(name, name))
+        AST.variableDeclaration(paramConstRef.name, AST.objectExpression(
+          propsNamesArr.map((name,i) => AST.property(name, propsNameLocalBindings[i]))
         ))
       );
       // Replace the original param
-      funcNode.body.body[funcNode.params[pi].$p.paramVarDeclRef.blockIndex].declarations[0].id.name = propsNamesArr[0];
+      funcNode.body.body[paramConstRef.blockIndex].declarations[0].id.name = propsNameLocalBindings[0];
 
       for (let i=1; i<propsNamesArr.length; ++i) {
         // Add the $$345 params into the function params (this wont assign them locally yet)
@@ -419,20 +421,19 @@ function tryInliningObjectLiteral(meta, funcNode, params) {
         funcNode.body.body.unshift(
           // We need a better way of doing this...
           // Inject assignments of params to local vars with the actual name
-          AST.expressionStatement(AST.variableDeclaration(propsNamesArr[i], `$$${funcNode.params.length-1}`))
+          AST.expressionStatement(AST.variableDeclaration(propsNameLocalBindings[i], `$$${funcNode.params.length-1}`))
         );
       }
     } else {
       // Create the empty obj
       funcNode.body.body.splice(funcNode.$p.bodyOffset, 0,
-        AST.variableDeclaration(funcNode.params[pi].$p.paramVarDeclRef.name, AST.objectExpression())
+        AST.variableDeclaration(paramConstRef.name, AST.objectExpression())
       );
       // Replace the param assignment with an empty string
-      funcNode.body.body[funcNode.params[pi].$p.paramVarDeclRef.blockIndex] = AST.emptyStatement();
+      funcNode.body.body[paramConstRef.blockIndex] = AST.emptyStatement();
     }
 
     after(funcNode);
-
 
     // Now go after the calls. Update the params in the same order
     // (replace the original arg with the prop value for that call, append the rest)

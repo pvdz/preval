@@ -204,7 +204,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       );
     }
     //vlog('ids/indexes:', blockIds, blockIndexes);
-
     switch (key) {
       case 'AssignmentExpression:after': {
         vlog('-', node.left.type, node.operator, node.right.type);
@@ -667,8 +666,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
             const blockBody = blockNode.body;
             vlog('- Parent block:', blockNode.type, blockNode.$p.pid);
 
-            const write
-              = createWriteRef({
+            const write = createWriteRef({
               name,
               kind: parentNode.type === 'VariableDeclarator' ? 'var' : parentNode.type === 'AssignmentExpression' ? 'assign' : 'other',
               parentNode,
@@ -1207,8 +1205,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
     //vlog('\nCurrent state (after phase1)\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   }
 
-  fdata.phase1nodes = called / 2;
   log('\n\nEnd of phase 1. Walker called', called, 'times, took', Date.now() - start, 'ms');
+
   groupEnd();
 }
 

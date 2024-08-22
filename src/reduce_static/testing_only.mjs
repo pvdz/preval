@@ -4,8 +4,6 @@
 
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { createFreshVar } from '../bindings.mjs';
-import { ASSUME_BUILTINS } from '../constants.mjs';
 
 export function testing_only(fdata) {
   group('\n\n\nLooking for bindings only used in unobservable boolean testing places\n');

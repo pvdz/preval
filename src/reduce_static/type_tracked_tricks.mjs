@@ -496,6 +496,7 @@ function _typeTrackedTricks(fdata) {
                     'const a = $(undefined); const b = $(undefined); a === b;',
                     'const a = $(undefined); const b = $(undefined); true;',
                   );
+                  vlog('left mustBeType:', lt, ', right mustBeType:', rt);
                   mustBeValue = false; // Note: we're acting as if op is ===
                 } else if (
                   leftMeta.typing.mustBeType &&
@@ -507,6 +508,7 @@ function _typeTrackedTricks(fdata) {
                     'const a = $(undefined); const b = $(undefined); a === b;',
                     'const a = $(undefined); const b = $(undefined); true;',
                   );
+                  vlog('left mustBeType:', lt, ', right mustBeType:', rt);
                   mustBeValue = node.operator === '!=='; // When op is !==, return true because typing mismatch. When ===, return false.
                 }
               } else {

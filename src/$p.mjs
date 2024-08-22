@@ -63,5 +63,7 @@ export function $p() {
     // - isPrimitive // bool. For binary expression operand nodes
     // - primitiveValue // any. When isPrimitive is true, this should be the value. otherwise ignore.
     // - lastPid // number. Block nodes. Last pid inside the block. Same as block if the block is empty.
+    // - paramVarDeclRef // for funcs, the local binding var decl for this param if present, available after phase1, { blockBody, blockIndex, name }
+
   };
 }

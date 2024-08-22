@@ -23,7 +23,7 @@ import {
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
-import { ASSUME_BUILTINS } from '../constants.mjs';
+import { ASSUME_BUILTINS, setVerboseTracing } from '../constants.mjs';
 import {cloneSimple} from "../ast.mjs"
 
 export function refTracked(fdata) {
@@ -46,6 +46,7 @@ function _refTracked(fdata) {
     processBinding(meta, name);
     vgroupEnd();
   });
+  assertNoDupeNodes(fdata.tenkoOutput.ast, 'body');
 
   function processBinding(meta, name) {
     if (!meta.reads.length) {
@@ -143,9 +144,10 @@ function _refTracked(fdata) {
           // Note: the write may be a catch etc. Explicitly check for the var decl or assignment cases. Ignore the rest.
           if (write.parentNode.type === 'AssignmentExpression') {
             // TODO: same if it's a builtin or other "predictable" value. But maybe another rule would already do this anyways?
+            assertNoDupeNodes(AST.blockStatement(read.blockBody), 'body', true);
             if (AST.isPrimitive(write.parentNode.right)) {
               // Covered by tests/cases/arr_mutation/arr_loop_case_assign.md
-              rule('A read that can only reach one write and that write assigns a primitive can be replaced by the primitive value');
+              rule('A read that can only reach one write and that write assigns a primitive can be replaced by the primitive value; rhs');
               example('x = 10; f(x);', 'x = 10; f(10);');
               before(read.blockBody[read.blockIndex]);
 
@@ -165,7 +167,7 @@ function _refTracked(fdata) {
             // TODO: same if it's a builtin or other "predictable" value. But maybe another rule would already do this anyways?
             if (AST.isPrimitive(write.parentNode.init)) {
               // Covered by tests/cases/_base/concat.md
-              rule('A read that can only reach one write and that write assigns a primitive can be replaced by the primitive value');
+              rule('A read that can only reach one write and that write assigns a primitive can be replaced by the primitive value; init');
               example('const x = 10; f(x);', 'const x = 10; f(10);');
               before(read.blockBody[read.blockIndex]);
 

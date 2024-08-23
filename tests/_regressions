@@ -47,3 +47,10 @@
 // tests/cases/type_tracked/if/base_undefined.md -> why does that leave a label?
 // when a function does not use _this_ and is used in a $dotCall and we know which function it is, we dont need the dotcall
 // convert array.map etc to while loops using $forOf when we know the context is an array literal of sorts
+// Calling ! on a value known to be Boolean(x) should do !x directly because neither operation is observable at all. Normalization has a simple rule for this implemented that only looks at the previous statement (to eliminate a transform artifact).
+// Why is PST printer printing the a string as a var name for "".replace(x, y) ?
+// What about type assertions for params in a function header? `function f($$1) { const a = String($$1);` (or smth like $isString()) to indicate that we know the value of a will be a string. And if this param becomes unused, we would not keep this usage around, for all intentions and purposes it's a noop.
+// PST shouldnt print a space after ...
+// Is the PST not renaming vars inside templates?
+// Think some more about how to deal with optional chaining cases: tests/cases/normalize/optional/func_nested_var.md
+// PRNG math.random() round() trick -> tests/cases/math_random/floor_trick/rng3.md

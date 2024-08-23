@@ -137,7 +137,7 @@ export function cloneFunctionNode(funcNode, clonedName = 'noname', staticArgs, f
   clonedFunc.id = null;
   // The Param is a Preval custom node. Tenko won't be returning it. Convert them now.
   // TODO: what about nested funcs?
-  clonedFunc.params = clonedFunc.params.map(p => AST.param(p.type === 'RestElement' ? p.argument.name : p.name, p.type === 'RestElement'));
+  clonedFunc.params = clonedFunc.params.map(p => AST.param((p.type === 'RestElement' || p.rest) ? p.argument.name : p.name, (p.rest || p.type === 'RestElement')));
 
   log('  - uniqify_idents');
   uniqify_idents(clonedFunc, fdata);

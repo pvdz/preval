@@ -55,16 +55,17 @@ $(c);
 
 
 `````js filename=intro
+let b = undefined;
 const tmpChainRootProp = $(2);
 const tmpIfTest = tmpChainRootProp == null;
 let tmpChainRootProp$1 = undefined;
-let tmpIfTest$1 = true;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = tmpChainRootProp.toString;
+  b = tmpChainElementObject;
   tmpChainRootProp$1 = tmpChainElementObject;
-  tmpIfTest$1 = tmpChainElementObject == null;
 }
+const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
   $(undefined);
 } else {
@@ -78,24 +79,25 @@ if (tmpIfTest$1) {
 With rename=true
 
 `````js filename=intro
-const a = $( 2 );
-const b = a == null;
-let c = undefined;
-let d = true;
-if (b) {
+let a = undefined;
+const b = $( 2 );
+const c = b == null;
+let d = undefined;
+if (c) {
 
 }
 else {
-  const e = a.toString;
-  c = e;
-  d = e == null;
+  const e = b.toString;
+  a = e;
+  d = e;
 }
-if (d) {
+const f = a == null;
+if (f) {
   $( undefined );
 }
 else {
-  const f = c.length;
-  $( f );
+  const g = d.length;
+  $( g );
 }
 `````
 

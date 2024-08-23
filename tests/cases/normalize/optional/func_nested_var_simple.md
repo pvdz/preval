@@ -70,16 +70,17 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
+let b = undefined;
 const tmpChainElementCall = $(2);
 const tmpIfTest = tmpChainElementCall == null;
 let tmpChainRootProp = undefined;
-let tmpIfTest$1 = true;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = tmpChainElementCall.toString;
+  b = tmpChainElementObject;
   tmpChainRootProp = tmpChainElementObject;
-  tmpIfTest$1 = tmpChainElementObject == null;
 }
+const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
   const tmpClusterSSA_tmpReturnArg = $(undefined);
   $(tmpClusterSSA_tmpReturnArg);
@@ -95,26 +96,27 @@ if (tmpIfTest$1) {
 With rename=true
 
 `````js filename=intro
-const a = $( 2 );
-const b = a == null;
-let c = undefined;
-let d = true;
-if (b) {
+let a = undefined;
+const b = $( 2 );
+const c = b == null;
+let d = undefined;
+if (c) {
 
 }
 else {
-  const e = a.toString;
-  c = e;
-  d = e == null;
+  const e = b.toString;
+  a = e;
+  d = e;
 }
-if (d) {
-  const f = $( undefined );
-  $( f );
+const f = a == null;
+if (f) {
+  const g = $( undefined );
+  $( g );
 }
 else {
-  const g = c.length;
-  const h = $( g );
-  $( h );
+  const h = d.length;
+  const i = $( h );
+  $( i );
 }
 `````
 

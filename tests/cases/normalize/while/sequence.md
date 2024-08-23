@@ -54,7 +54,7 @@ while (true) {
 let tmpClusterSSA_x = NaN.x;
 let tmpIfTest = false;
 const tmpChainRootProp = tmpClusterSSA_x;
-const tmpIfTest$1 = tmpChainRootProp == null;
+const tmpIfTest$1 = tmpClusterSSA_x == null;
 if (tmpIfTest$1) {
 } else {
   const tmpChainElementCall = tmpChainRootProp.x(tmpClusterSSA_x);
@@ -66,7 +66,7 @@ if (tmpIfTest) {
     tmpClusterSSA_x = NaN.x;
     let tmpIfTest$2 = false;
     const tmpChainRootProp$1 = tmpClusterSSA_x;
-    const tmpIfTest$4 = tmpChainRootProp$1 == null;
+    const tmpIfTest$4 = tmpClusterSSA_x == null;
     if (tmpIfTest$4) {
     } else {
       const tmpChainElementCall$1 = tmpChainRootProp$1.x(tmpClusterSSA_x);
@@ -89,7 +89,7 @@ With rename=true
 let a = NaN.x;
 let b = false;
 const c = a;
-const d = c == null;
+const d = a == null;
 if (d) {
 
 }
@@ -103,7 +103,7 @@ if (b) {
     a = NaN.x;
     let f = false;
     const g = a;
-    const h = g == null;
+    const h = a == null;
     if (h) {
 
     }

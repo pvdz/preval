@@ -33,6 +33,7 @@ import {
 import * as AST from '../ast.mjs';
 import { mayBindingMutateBetweenRefs } from '../bindings.mjs';
 import { ASSUME_BUILTINS } from '../constants.mjs';
+import { complexNodeMightSpy } from '../ast.mjs';
 
 export function constAliasing(fdata) {
   group('\n\n\nSearching for two const values that get assigned to each other\n');
@@ -89,6 +90,7 @@ function _constAliasing(fdata) {
 
       return
     }
+
     if (meta2.isConstant) {
       // Main case we target here. `const x = 1; const y = x;`
       if (meta2.constValueRef?.containerNode.type !== 'VariableDeclaration') return; // catch, ???
@@ -118,8 +120,144 @@ function _constAliasing(fdata) {
       return;
     }
 
-    // Probably not our target...
+    // Try to figure out if the assigned (let) binding may have changed before first usage of the constant.
+    // If that's not the case then we can change that usage to the rhs instead.
+    // So we want to know if `let rhs = x; const lhs = rhs; $(lhs);` and want to change $(lhs) to $(rhs)
 
+    const FOUND = 1;
+    const SPIES = 2;
+    const INVIS = 3;
+    function exprUsesName(expr, targetName, origName, fdata) {
+      if (expr.type === 'BinaryExpression') {
+
+        if (!AST.complexNodeMightSpy(expr.right, fdata) && expr.left.type === 'Identifier' && expr.left.name === targetName) {
+          rule('A let alias where the let value can not be changed before the first usage can have its usage replaced; bin usage left');
+          example('let x = 1; const y = x; const z = y + 5;', 'let x = 1; const y = x; const z = x + 5;');
+          before(expr);
+          expr.left.name = origName;
+          after(expr);
+
+          ++dropped;
+          return FOUND;
+        }
+        if (!AST.complexNodeMightSpy(expr.left, fdata) && expr.right.type === 'Identifier' && expr.right.name === targetName) {
+          rule('A let alias where the let value can not be changed before the first usage can have its usage replaced; bin usage right');
+          example('let x = 1; const y = x; const z = 5 + y;', 'let x = 1; const y = x; const z = 5 + x;');
+          before(expr);
+          expr.right.name = origName;
+          after(expr);
+
+          ++dropped;
+          return FOUND;
+        }
+      }
+
+      if (expr.type === 'UnaryExpression' && expr.argument.type === 'Identifier' && expr.argument.name === targetName) {
+        rule('A let alias where the let value can not be changed before the first usage can have its usage replaced; unary usage');
+        example('let x = 1; const y = x; const z = !y;', 'let x = 1; const y = x; const z = !x;');
+        before(expr);
+        expr.argument.name = origName;
+        after(expr);
+
+        ++dropped;
+        return FOUND;
+      }
+
+      if (expr.type === 'CallExpression') {
+        if (expr.callee.type === 'Identifier' && expr.callee.name === targetName) {
+          rule('A let alias where the let value can not be changed before the first usage can have its usage replaced; call callee usage');
+          example('let x = 1; const y = x; const z = y();', 'let x = 1; const y = x; const z = x();');
+          before(expr);
+          expr.callee.name = origName;
+          after(expr);
+
+          ++dropped;
+          return FOUND;
+        }
+        let und;
+        if (expr.arguments.some(anode => {
+          if (anode.type === 'Identifier' && anode.name === targetName) {
+            rule('A let alias where the let value can not be changed before the first usage can have its usage replaced; call arg usage');
+            example('let x = 1; const y = x; const z = f(y);', 'let x = 1; const y = x; const z = f(x);');
+            before(expr);
+            anode.name = origName;
+            after(expr);
+
+            ++dropped;
+            und = FOUND;
+            return true;
+          }
+          if (AST.complexNodeMightSpy(anode, fdata)) {
+            und = SPIES;
+            return true;
+          }
+        })) {
+          return und;
+        }
+      }
+
+      if (expr.type === 'AssignmentExpression') {
+        if (expr.left.type !== 'Identifier') return SPIES;
+        if (expr.left.name === targetName) {
+          // Can't replace this.
+          return FOUND;
+        }
+        if (expr.right.type === 'Identifier' && expr.right.name === targetName) {
+          rule('A let alias where the let value can not be changed before the first usage can have its usage replaced; assign rhs usage');
+          example('let x = 1; const y = x; z = y;', 'let x = 1; const y = x; z = x;');
+          before(expr);
+          expr.right.name = origName;
+          after(expr);
+
+          ++dropped;
+          return FOUND;
+        }
+        return exprUsesName(expr.right, targetName, origName, fdata);
+      }
+
+      // We might skip places where the ident is used ... :// oh well!
+
+      // Check if the function could have side effects
+      if (!AST.complexNodeMightSpy(expr, fdata)) {
+        // A call with args and it can't spy. Like doing Boolean() or coercing a primitive with Number()
+        index += 1;
+        return INVIS;
+      }
+
+      return SPIES
+    }
+
+    let index = meta.constValueRef.containerIndex + 1;
+    const body = meta.constValueRef.containerParent;
+
+    while (index < body.length) {
+      const stmt = body[index];
+
+      if (stmt.type === 'VariableDeclaration') {
+        const init = stmt.declarations[0].init;
+
+        const usage = exprUsesName(init, lhsName, rhsName, fdata);
+        if (usage === FOUND) break;
+        if (usage === SPIES) break;
+
+        index += 1;
+        continue;
+      }
+
+      if (stmt.type === 'ExpressionStatement') {
+        const expr = stmt.expression;
+
+        const usage = exprUsesName(expr, lhsName, rhsName, fdata);
+        if (usage === FOUND) break;
+        if (usage === SPIES) break;
+
+        index += 1;
+        continue;
+      }
+
+      // Unsupported statement. Maybe we canshould support it? :)
+      break;
+    }
   });
 
   if (dropped) {

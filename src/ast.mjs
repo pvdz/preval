@@ -1140,11 +1140,12 @@ export function getPrimitiveType(node) {
   ASSERT(isPrimitive(node) || node.$p.isPrimitive, 'should assert a node is a primitive value before calling getPrimitiveType on it', node);
 
   if (node.$p.isPrimitive) {
+    if (node.$p.isPrimitive === null) return 'null';
     return typeof node.$p.primitiveValue;
   }
 
   if (node.type === 'Literal') {
-    if (node.raw === 'null') return null;
+    if (node.raw === 'null') return 'null';
     if (['number', 'string', 'boolean'].includes(typeof node.value)) return typeof node.value;
     ASSERT(false);
   }
@@ -1228,24 +1229,24 @@ export function primitive(value) {
   ASSERT(false);
 }
 
-export function isNoob(node, v) {
+export function isNoob(node, verbose) {
   // is non-observable
-  const r = _isNoob(node, v);
-  if (v) vlog('  - Node:', node.type, ', noob?', r);
+  const r = _isNoob(node, verbose);
+  if (verbose) vlog('  - Node:', node.type, ', noob?', r);
   return r;
 }
-function _isNoob(node, v) {
+function _isNoob(node, verbose) {
   // Does this node possibly have any side effect (aside from its main effect, like assignment or call)
   if (node.type === 'VariableDeclaration') {
-    return !node.declarations[0].init || isNoob(node.declarations[0].init, v);
+    return !node.declarations[0].init || isNoob(node.declarations[0].init, verbose);
   }
 
   if (node.type === 'ExpressionStatement') {
-    return isNoob(node.expression, v);
+    return isNoob(node.expression, verbose);
   }
 
   if (node.type === 'AssignmentExpression') {
-    return isNoob(node.left, v) && isNoob(node.right, v);
+    return isNoob(node.left, verbose) && isNoob(node.right, verbose);
   }
 
   if (node.type === 'FunctionExpression' || node.type === 'ArrowFunctionExpression') {
@@ -2121,6 +2122,7 @@ export function complexNodeMightSpy(node, fdata) {
   // Will also cover the simple cases
 
   // Assume `node` is in a normalized state.
+  // Can inspect meta.typing.mustBeType for info
 
   // A given node may represent an observable action if, aside from the thing the node explicitly
   // does, it may also trigger function calls as a side effect. In any way. Like getters and setters.
@@ -2133,49 +2135,64 @@ export function complexNodeMightSpy(node, fdata) {
 
   switch (node.type) {
     case 'CallExpression': {
-      // This may return false when the callee is Boolean, or when the callee is a built-in with
-      // primitive typed args.
+      // There are some cases where a call may not be observable (other than inspecting the return
+      // type). For example, calling Boolean() can not be observed. Calling Number or String on a
+      // primitive, etc.
+
+      if (node.arguments.some(anode => anode.type === 'SpreadElement')) {
+        // Ignore for now. Yeah we can support some cases but we'll probably do them as we encounter the need.
+        // Right now we'll assume that either the spread spies or that we can't tell whether the spreaded args spy.
+        return true;
+      }
 
       if (node.callee.type === 'Identifier') {
+        // Zero param funcs (or Boolean, which is not observable, regardless of the args)
         if (node.callee.name === 'Boolean') {
-          if (node.arguments.length && node.arguments[0].type === 'SpreadElement') {
-            // Why would you do this...
-            return true;
-          }
-          // The arg must be normalized and the call is not observable so this can not be a spy
           return false;
         }
 
-        if (node.callee.name === 'Number') {
-          if (!node.arguments.length) {
-            return false;
-          }
-
-          if (node.arguments[0]?.type === 'Identifier') {
-            const meta = fdata.globallyUniqueNamingRegistry.get(node.arguments[0].name);
-            return !(meta.isConstant && meta?.typing.mustBeType === 'number');
-          }
-
-          // :shrug:
-          return true;
+        // Funcs that call one arg and may coerce them but are otherwise not spying themselves
+        // There's quite a few nowadays that Preval is oblivious to like Symbol, URL, and all the common browser methods
+        if ([
+          'Number', 'String', 'RegExp', 'Array', 'Date', 'BigInt', 'Symbol', 'Buffer', 'Object', 'Function', 'Map', 'Set', 'WeakMap', 'WeakSet', 
+          'Error', // Is Error an observable thing? Other than the stack trace, which I'll accept as destructive
+          'Proxy', // Anyone using proxy is doomed for using preval tbh
+          'AggregateError', 'EvalError', 'RangeError', 'ReferenceError', 'SyntaxError', 'TypeError', 'URIError', // You can see I went to MDN for these
+          'Int8Array', 'Uint8Array', 'Uint8ClampedArray', 'Int16Array', 'Uint16Array', 'Int32Array', 'Uint32Array', 'BigInt64Array', 'BigUint64Array', 'Float16Array', 'Float32Array', 'Float64Array', // And these
+          'ArrayBuffer', 'SharedArrayBuffer', 'DataView', 'WeakRef', 'FinalizationRegistry',
+          'URL',
+          'isNaN', 'isFinite', 'parseFloat',
+          'decodeURI', 'decodeURIComponent', 'encodeURI', 'encodeURIComponent', 'escape', 'unescape', 'btoa', 'atob',
+        ].includes(node.callee.name)) {
+          return complexNodeMightSpy(node.arguments[0], fdata);
         }
 
-        if (node.callee.name === 'String') {
-          if (!node.arguments.length) {
-            return false;
-          }
-
-          if (node.arguments[0]?.type === 'Identifier') {
-            const meta = fdata.globallyUniqueNamingRegistry.get(node.arguments[0].name);
-            return !(meta.isConstant && meta?.typing.mustBeType === 'string');
-          }
-
-          // :shrug:
-          return true;
+        // Funcs that may coerce (up to) two args
+        if (node.callee.name === 'parseInt') {
+          if (node.arguments[0] && complexNodeMightSpy(node.arguments[0], fdata)) return true;
+          if (node.arguments[1] && complexNodeMightSpy(node.arguments[1], fdata)) return true;
+          return false;
         }
       }
 
-      break;
+      if (
+        node.callee.type === 'MemberExpression' &&
+        node.callee.object.type === 'Identifier' &&
+        !node.callee.computed &&
+        node.arguments.every(anode => !simpleNodeMightSpy(anode, fdata)) &&
+        (
+          // It's a lot simpler to use the current node env to check if the math func is legit :)
+          (node.callee.object.name === 'Math' && node.callee.property.name in Math) ||
+          // Here I'm just being lazy heh
+          (node.callee.object.name === 'JSON' && node.callee.property.name in JSON)
+        )
+      ) {
+        return true;
+      }
+
+      // TODO: member expressions like Math.*** and JSON.***? Symbol.*** ?
+
+      return true; // Don't know. Be cautious and consider the call to spy.
     }
     case 'FunctionExpression': {
       // Creating functions is never observable on its own
@@ -2239,6 +2256,7 @@ export function complexNodeMightSpy(node, fdata) {
       return simpleNodeMightSpy(node.left, fdata) || simpleNodeMightSpy(node.right, fdata);
     }
     case 'Literal': {
+      // including regular expressions
       return false;
     }
     case 'TemplateLiteral': {
@@ -2246,6 +2264,7 @@ export function complexNodeMightSpy(node, fdata) {
       return false;
     }
     case 'Identifier': {
+      // Note: this will also inspect the meta.typing.mustBeType state
       return simpleNodeMightSpy(node, fdata);
     }
   }

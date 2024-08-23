@@ -467,20 +467,20 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     vlog(
       '\ngloballyUniqueNamingRegistry (name[r/w] but may be desynced, omits builtins)(1):\n' +
       (
-      (fdata.globallyUniqueNamingRegistry.size - globals.size) > 50
-        ? '<too many (' + (fdata.globallyUniqueNamingRegistry.size - globals.size) + ')>'
-        : fdata.globallyUniqueNamingRegistry.size === globals.size
-        ? '<none>'
-          : Array.from(fdata.globallyUniqueNamingRegistry.keys()).filter((name) => !globals.has(name)).map(name => `${name}[${fdata.globallyUniqueNamingRegistry.get(name).reads.length}/${fdata.globallyUniqueNamingRegistry.get(name).writes.length}]`).join(', ')
-      )
+        (fdata.globallyUniqueNamingRegistry.size - globals.size) > 50
+          ? '<too many (' + (fdata.globallyUniqueNamingRegistry.size - globals.size) + ')>'
+          : fdata.globallyUniqueNamingRegistry.size === globals.size
+            ? '<none>'
+            : Array.from(fdata.globallyUniqueNamingRegistry.keys()).filter((name) => !globals.has(name)).map(name => `${name}[${fdata.globallyUniqueNamingRegistry.get(name).reads.length}/${fdata.globallyUniqueNamingRegistry.get(name).writes.length}]`).join(', ')
+      ),
     );
     vlog(
       '\ngloballyUniqueLabelRegistry:\n',
       fdata.globallyUniqueLabelRegistry.size > 50
         ? '<too many>'
         : fdata.globallyUniqueLabelRegistry.size === 0
-        ? '<none>'
-        : [...fdata.globallyUniqueLabelRegistry.keys()].join(', '),
+          ? '<none>'
+          : [...fdata.globallyUniqueLabelRegistry.keys()].join(', '),
     );
     vlog();
   }
@@ -1182,10 +1182,10 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
         ASSERT(
           node.name !== '$coerce' ||
-            (parentNode.type === 'CallExpression' &&
-              parentNode.callee === node &&
-              parentNode.arguments.length === 2 &&
-              AST.isStringLiteral(parentNode.arguments[1])),
+          (parentNode.type === 'CallExpression' &&
+            parentNode.callee === node &&
+            parentNode.arguments.length === 2 &&
+            AST.isStringLiteral(parentNode.arguments[1])),
           'we control $coerce so it should always have a fixed form',
           node.parentNode,
         );
@@ -1195,7 +1195,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
           // The `arguments` reference is special as it implies func params can not be changed. Something to improve later.
           const meta = node.name !== 'arguments' && fdata.globallyUniqueNamingRegistry.get(node.name);
-          ASSERT(node.name === 'arguments' || meta, 'all names should have a meta now', node.name, node)
+          ASSERT(node.name === 'arguments' || meta, 'all names should have a meta now', node.name, node);
           if (node.name === 'arguments' && funcStack.length === 1) {
             // `arguments` in global is an implicit binding that ought to throw (we can't proof it doesn't)
             vlog('Skipping `arguments` in global space');
@@ -1635,8 +1635,8 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                   args.length === 0
                     ? parseInt()
                     : args.length === 1
-                    ? parseInt(AST.getPrimitiveValue(args[0]))
-                    : parseInt(AST.getPrimitiveValue(args[0]), AST.getPrimitiveValue(args[1])),
+                      ? parseInt(AST.getPrimitiveValue(args[0]))
+                      : parseInt(AST.getPrimitiveValue(args[0]), AST.getPrimitiveValue(args[1])),
                 );
                 const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                 body.splice(i, 1, finalParent);
@@ -1863,10 +1863,10 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                     const bodyString = (args.length ? AST.getPrimitiveValue(args[args.length - 1]) : '');
                     const funcString =
                       'function anon(' +
-                        argString +
+                      argString +
                       ') { ' +
-                        // Hack for returning this. It wont work in nodejs and in browsers it will return window. So return window.
-                        (bodyString === 'return this' || bodyString === 'return this;' ? 'return window' : bodyString) +
+                      // Hack for returning this. It wont work in nodejs and in browsers it will return window. So return window.
+                      (bodyString === 'return this' || bodyString === 'return this;' ? 'return window' : bodyString) +
                       '}';
                     const finalNode = createNormalizedFunctionFromString(
                       funcString,
@@ -2328,11 +2328,11 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                     ? anode.type === 'SpreadElement'
                       ? // If the first arg is a spread, convert it to an array and coerce its first element `""+[...x][0]`
                         // That should work (albeit a little ugly)
-                        AST.unaryExpression('+', AST.memberExpression(AST.arrayExpression(anode), AST.literal(0), true))
+                      AST.unaryExpression('+', AST.memberExpression(AST.arrayExpression(anode), AST.literal(0), true))
                       : AST.unaryExpression('+', anode)
                     : anode.type === 'SpreadElement'
-                    ? AST.arrayExpression(anode)
-                    : anode,
+                      ? AST.arrayExpression(anode)
+                      : anode,
                 ),
               );
               body.splice(i, 1, ...newNodes);
@@ -2356,15 +2356,15 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                       ? anode.type === 'SpreadElement'
                         ? // If the first arg is a spread, convert it to an array and coerce its first element `""+[...x][0]`
                           // That should work (albeit a little ugly)
-                          AST.binaryExpression(
-                            '+',
-                            AST.templateLiteral(''),
-                            AST.memberExpression(AST.arrayExpression(anode), AST.literal(0), true),
-                          )
+                        AST.binaryExpression(
+                          '+',
+                          AST.templateLiteral(''),
+                          AST.memberExpression(AST.arrayExpression(anode), AST.literal(0), true),
+                        )
                         : AST.binaryExpression('+', AST.templateLiteral(''), anode)
                       : anode.type === 'SpreadElement'
-                      ? AST.arrayExpression(anode)
-                      : anode,
+                        ? AST.arrayExpression(anode)
+                        : anode,
                   ),
                 );
                 body.splice(i, 1, ...newNodes);
@@ -2454,10 +2454,10 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                       ai === 0
                         ? AST.binaryExpression('+', AST.templateLiteral(''), anode)
                         : ai === 0
-                        ? AST.unaryExpression('+', AST.templateLiteral(''))
-                        : anode.type === 'SpreadElement'
-                        ? AST.arrayExpression(anode)
-                        : anode,
+                          ? AST.unaryExpression('+', AST.templateLiteral(''))
+                          : anode.type === 'SpreadElement'
+                            ? AST.arrayExpression(anode)
+                            : anode,
                     ),
                   );
                   body.splice(i, 1, ...newNodes);
@@ -2930,31 +2930,31 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
           if (
             i > 0 &&
-            body[i-1].type === 'VariableDeclaration' &&
-            body[i-1].kind === 'const' &&
+            body[i - 1].type === 'VariableDeclaration' &&
+            body[i - 1].kind === 'const' &&
             node.arguments.length &&
             node.arguments[0].type === 'Identifier' &&
-            body[i-1].declarations[0].id.name === node.arguments[0].name &&
+            body[i - 1].declarations[0].id.name === node.arguments[0].name &&
             // `const a = ???; $dotCall(a, b, c)` where a is defined in the previous statement. check context
-            body[i-1].declarations[0].init.type === 'MemberExpression' &&
-            !body[i-1].declarations[0].init.computed &&
-            body[i-1].declarations[0].init.object.type === 'Identifier' &&
+            body[i - 1].declarations[0].init.type === 'MemberExpression' &&
+            !body[i - 1].declarations[0].init.computed &&
+            body[i - 1].declarations[0].init.object.type === 'Identifier' &&
             node.arguments[1].type === 'Identifier' &&
-            body[i-1].declarations[0].init.object.name === node.arguments[1].name
+            body[i - 1].declarations[0].init.object.name === node.arguments[1].name
             // `const a = b.?; $dotCall(a, b, c)` where a is defined in the previous statement. we should be good now
           ) {
             // (We must support method calls, anyways. This makes some things easier.)
             rule('If the first $dotCall arg is found to be declared by a simple member expression then recombine it');
-            example('const a = b.c; $dotCall(a, b, 1, 2);', 'b.c(1, 2);')
-            before(body[i-1])
+            example('const a = b.c; $dotCall(a, b, 1, 2);', 'b.c(1, 2);');
+            before(body[i - 1]);
             before(body[i]);
 
-            node.callee = body[i-1].declarations[0].init;
+            node.callee = body[i - 1].declarations[0].init;
             node.arguments.shift(); // Remove the function being called (that is the callee now)
             node.arguments.shift(); // Remove the context arg
-            body[i-1] = AST.emptyStatement();
+            body[i - 1] = AST.emptyStatement();
 
-            before(body[i-1])
+            before(body[i - 1]);
             before(body[i]);
             assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
@@ -2983,7 +2983,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           }
         }
 
-        node.arguments.forEach((argNode,n) => {
+        node.arguments.forEach((argNode, n) => {
           if (
             argNode?.type === 'Identifier' &&
             (argNode.name === MAX_UNROLL_CONSTANT_NAME || argNode.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
@@ -3002,9 +3002,9 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         // Assert normalized form
         ASSERT(
           !AST.isComplexNode(callee) ||
-            (callee.type === 'MemberExpression' &&
-              !AST.isComplexNode(callee.object) &&
-              (!callee.computed || !AST.isComplexNode(callee.property))),
+          (callee.type === 'MemberExpression' &&
+            !AST.isComplexNode(callee.object) &&
+            (!callee.computed || !AST.isComplexNode(callee.property))),
           'callee should be a simple node or simple member expression',
         );
         ASSERT(!hasComplexArg, 'all args should be simple nodes');
@@ -3094,7 +3094,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           }
         }
 
-        node.arguments.forEach((argNode,n) => {
+        node.arguments.forEach((argNode, n) => {
           if (
             argNode?.type === 'Identifier' &&
             (argNode.name === MAX_UNROLL_CONSTANT_NAME || argNode.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
@@ -3632,15 +3632,15 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           const prop = node.property.name;
           const finalNode = AST.identifier(
             prop === 'log' ? '$console_log' :
-            prop === 'warn' ? '$console_warn' :
-            prop === 'error' ? '$console_error' :
-            prop === 'dir' ? '$console_dir' :
-            prop === 'debug' ? '$console_debug' :
-            prop === 'time' ? '$console_time' :
-            prop === 'timeEnd' ? '$console_timeEnd' :
-            prop === 'group' ? '$console_group' :
-            prop === 'groupEnd' ? '$console_groupEnd' :
-            TODO
+              prop === 'warn' ? '$console_warn' :
+                prop === 'error' ? '$console_error' :
+                  prop === 'dir' ? '$console_dir' :
+                    prop === 'debug' ? '$console_debug' :
+                      prop === 'time' ? '$console_time' :
+                        prop === 'timeEnd' ? '$console_timeEnd' :
+                          prop === 'group' ? '$console_group' :
+                            prop === 'groupEnd' ? '$console_groupEnd' :
+                              TODO,
           );
 
           const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -4154,11 +4154,11 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
             ASSERT(
               !AST.isComplexNode(lhs) &&
-                node.operator === '=' &&
-                !AST.isComplexNode(b) &&
-                (!rhsLhs.computed || !AST.isComplexNode(c)) &&
-                rhs.operator === '=' &&
-                !AST.isComplexNode(d),
+              node.operator === '=' &&
+              !AST.isComplexNode(b) &&
+              (!rhsLhs.computed || !AST.isComplexNode(c)) &&
+              rhs.operator === '=' &&
+              !AST.isComplexNode(d),
               'the nested assignment ought to be atomic now, apart from being nested',
             );
 
@@ -4733,14 +4733,14 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             const finalNode =
               typeof result === 'string'
                 ? // There are no special string cases to consider
-                  AST.templateLiteral(result)
+                AST.templateLiteral(result)
                 : typeof result === 'boolean' || result === null
-                ? // There are no special string/boolean cases to consider
-                  // I don't think any of these operators can have any operands that result in a `null`, but whatever.
+                  ? // There are no special string/boolean cases to consider
+                    // I don't think any of these operators can have any operands that result in a `null`, but whatever.
                   AST.literal(result, true)
-                : // Numbers may result in NaN or Infinity, which are idents. NaN is not a finite so check that one first.
+                  : // Numbers may result in NaN or Infinity, which are idents. NaN is not a finite so check that one first.
                   (ASSERT(typeof result === 'number'),
-                  isNaN(result) ? AST.identifier('NaN') : !isFinite(result) ? AST.identifier('Infinity') : AST.literal(result, true));
+                    isNaN(result) ? AST.identifier('NaN') : !isFinite(result) ? AST.identifier('Infinity') : AST.literal(result, true));
             const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
             body[i] = finalParent;
 
@@ -5028,8 +5028,8 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             node.left.type === 'Identifier' && ['Array', 'Object', 'Boolean', 'Number', 'String', 'RegExp'].includes(node.left.name)
               ? node.left
               : node.right.type === 'Identifier' && ['Array', 'Object', 'Boolean', 'Number', 'String', 'RegExp'].includes(node.right.name)
-              ? node.right
-              : null;
+                ? node.right
+                : null;
           if (isBuiltinConstructor) {
             const constructorName = isBuiltinConstructor.name;
             const builtinLeftOrRight = node.left === isBuiltinConstructor ? 'left' : 'right';
@@ -6290,30 +6290,30 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             if (!el || AST.isPrimitive(el)) {
               rule('Array statements with elided elements can drop the elided elements');
               example('[a, , b, 1];', '[a, b, 1];');
-              before(body[i+moved]);
+              before(body[i + moved]);
 
               node.elements.splice(n, 1);
 
-              after(body[i+moved]);
+              after(body[i + moved]);
               dropped += 1;
             }
             else if (el.type !== 'SpreadElement') {
               rule('Array statements with identifiers should move idents to be statements');
               example('[a, b, 1, c];', 'c; [a, b, 1];');
-              before(body[i+moved]);
+              before(body[i + moved]);
 
-              body.splice(i+moved, 0, AST.expressionStatement(el));
+              body.splice(i + moved, 0, AST.expressionStatement(el));
               node.elements.splice(n, 1);
 
-              after(body[i+moved]);
-              after(body[i+moved + 1]);
+              after(body[i + moved]);
+              after(body[i + moved + 1]);
               moved += 1;
             }
 
             n += 1;
           }
           if (moved + dropped) {
-            vlog('Dropped', dropped,' and moved', moved, 'elements');
+            vlog('Dropped', dropped, ' and moved', moved, 'elements');
             if (moved) {
               after(body.slice(i, i + moved + 1));
             }
@@ -6883,9 +6883,9 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                   ? // a?.b(1, 2, 3)  ->  b.call(a, 1, 2, 3)
                     // Call the special builtin to signify that this call was previously in fact a method call. We need this because
                     // when we find a random `.call()` we can't distinguish the built-in Function#call from a user method named `call`
-                    AST.callExpression(BUILTIN_FUNC_CALL_NAME, [AST.identifier(prevObj), AST.identifier(lastObj), ...node.arguments])
+                  AST.callExpression(BUILTIN_FUNC_CALL_NAME, [AST.identifier(prevObj), AST.identifier(lastObj), ...node.arguments])
                   : // a(1, 2, 3)  ->  b(1, 2, 3)
-                    AST.callExpression(prevObj, node.arguments),
+                  AST.callExpression(prevObj, node.arguments),
                 'const',
               ),
             );
@@ -7882,7 +7882,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
       let index = 0; // Note: even in a function, the function header can't init/assign functions so it can just scan them too and skip them
       vlog('Search starts at index', index, 'up to', i);
-      for (; index<i; ++index) {
+      for (; index < i; ++index) {
         //vlog('-', body[index].type, body[index].declarations?.[0].init.type, body[index].expression?.type);
         if (body[index].type === 'VariableDeclaration' && body[index].declarations[0].init.type === 'FunctionExpression') {
           hasFunctionsBefore = true;
@@ -7895,9 +7895,9 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       }
 
       // Checking decls after the If is only relevant to know if there are functions at all
-      let j=i;
+      let j = i;
       if (hasFunctionsBefore) {
-        for (; j<body.length; ++j) {
+        for (; j < body.length; ++j) {
           if (body[j].type === 'VariableDeclaration') {
             hasVarDeclsAfter = true;
             break;
@@ -7907,7 +7907,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         // when len=3 and If index (i) is 1, then j should be 3 (len-1), j - (i+1) == 1
         j = body.length;
       }
-      const statementCountToHoist = j - (i+1); // i=If, we're not hoisting that, so start counting after the If.
+      const statementCountToHoist = j - (i + 1); // i=If, we're not hoisting that, so start counting after the If.
 
       vlog('Binding checks: body.len=', body.length, ', i=', i, ', j=', j, ', hasFunctionsBefore=', hasFunctionsBefore, ', hasVarDeclsAfter=', hasVarDeclsAfter, ', statementCountToHoist:', statementCountToHoist);
       //vlog(body.map(n => [n.type, n.declarations?.[0].id.name]))
@@ -7920,7 +7920,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         example('if (x) return; else f(); g();', 'if (x) return; else { f(); g(); }');
         before(body[i]);
 
-        const remainder = body.splice(i+1, statementCountToHoist);
+        const remainder = body.splice(i + 1, statementCountToHoist);
         node.alternate.body.push(...remainder);
 
         after(body[i]);
@@ -7935,7 +7935,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         example('if (x) f(); else return; g();', 'if (x) { f(); g(); } else { return; }');
         before(node, parentNode);
 
-        const remainder = body.splice(i+1, statementCountToHoist);
+        const remainder = body.splice(i + 1, statementCountToHoist);
         node.consequent.body.push(...remainder);
 
         after(parentNode);
@@ -8183,8 +8183,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
         switch (nodeType) {
           case 'FunctionExpression':
-          case 'ArrowFunctionExpression':
-          {
+          case 'ArrowFunctionExpression': {
             return true; // Do not traverse
           }
 
@@ -8220,18 +8219,18 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         'ReturnStatement',
         'ThrowStatement',
         'LabeledStatement',
-      ].includes(body[i-1].type)
+      ].includes(body[i - 1].type)
     ) {
       rule('A label should wrap as much as possible so when preceded by an expression or certain statements it should wrap around it');
       example('f(); A: { ... }', '; A: { f(); ... }');
       example('while (true) f(); A: { ... }', '; A: { while (true) f(); ... }');
-      before(body[i-1]);
+      before(body[i - 1]);
       before(body[i]);
 
-      node.body.body.unshift(body[i-1]);
-      body[i-1] = AST.emptyStatement();
+      node.body.body.unshift(body[i - 1]);
+      body[i - 1] = AST.emptyStatement();
 
-      after(body[i-1]);
+      after(body[i - 1]);
       after(body[i]);
       return true;
     }
@@ -8452,17 +8451,17 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     ASSERT(!node.finalizer, 'finally was removed in the normal_once step');
 
     if (node.block.body.length === 0) {
-        // Drop the `try` entirely because the `catch` block can't ever be executed and there is no finally
+      // Drop the `try` entirely because the `catch` block can't ever be executed and there is no finally
 
-        rule('A `try` `catch` without statements in its block can be dropped');
-        example('try {} catch (e) { f(); } ', ';');
-        before(node);
+      rule('A `try` `catch` without statements in its block can be dropped');
+      example('try {} catch (e) { f(); } ', ';');
+      before(node);
 
-        body[i] = AST.emptyStatement();
+      body[i] = AST.emptyStatement();
 
-        after(AST.emptyStatement());
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-        return true;
+      after(AST.emptyStatement());
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      return true;
     }
 
     transformBlock(node.handler.body, undefined, -1, node, false);
@@ -8865,6 +8864,37 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       }
     }
 
+    // Very very specific case. `f = function(){debugger; return 'x';} const y = f();` -> `y = 'x';`
+    if (
+      // Is this a call and was previous statement an assignment?
+      i && body[i - 1].type === 'ExpressionStatement' && body[i - 1].expression.type === 'AssignmentExpression' &&
+      dnode.init.type === 'CallExpression' && dnode.init.callee.type === 'Identifier' &&
+      body[i - 1].expression.left.type === 'Identifier' &&
+      // Are we calling a function binding that was just updated in the statement prior?
+      body[i - 1].expression.left.name === dnode.init.callee.name &&
+      // Is the assignment a function that is just returning a primitive?
+      body[i - 1].expression.right.type === 'FunctionExpression' &&
+      !body[i - 1].expression.right.async && !body[i - 1].expression.right.generator && // eh
+      body[i - 1].expression.right.body.body.length === 2 && // debugger and return statement
+      body[i - 1].expression.right.body.body[1].type === 'ReturnStatement' && // ought to be when normalized, but
+      AST.isPrimitive(body[i - 1].expression.right.body.body[1].argument) // bingo...?
+    ) {
+      rule('When calling a function that was updated in the previous statement and the func returns a primitive, inline it');
+      example(`f = function(){return 'x';} const y = f();`, `f = function(){return 'x';} const y = 'x';`);
+      before(body[i - 1]);
+      before(body[i]);
+
+      // We do not eliminate the previous assignment as that value may still be used again later
+      // Just replace the init with the primitive value returned by the function
+      body.splice(i, 1,
+        ...dnode.init.arguments.map(node => AST.expressionStatement(node)), // Retain TDZ errors
+        AST.variableDeclaration(dnode.id.name, AST.primitive(AST.getPrimitiveValue(body[i - 1].expression.right.body.body[1].argument))),
+      );
+
+      after(body.slice(i, i + dnode.init.arguments.length + 1));
+      return true;
+    }
+
     return false;
   }
 
@@ -8981,6 +9011,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       const rootNode = node;
       /** @var {Array<{node, block, index}>} */
       const breaks = [];
+
       function _walker(node, before, nodeType, path) {
         ASSERT(node, 'node should be truthy', node);
         ASSERT(nodeType === node.type);
@@ -8993,8 +9024,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           }
           case 'ForStatement':
           case 'FunctionExpression':
-          case 'ArrowFunctionExpression':
-          {
+          case 'ArrowFunctionExpression': {
             return true; // Do not traverse
           }
 
@@ -9017,7 +9047,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         const newLabelStatement = createFreshLabelStatement('unlabeledBreak', fdata, node.body);
         breaks.forEach((obj) => {
           ASSERT(typeof obj === 'object' && obj && obj.node && obj.block && obj.index >= 0, 'fail?', obj);
-          const {node, block, index} = obj;
+          const { node, block, index } = obj;
           ASSERT(!node.label, 'you _are_ unlabeled, no?', obj);
           node.label = AST.identifier(newLabelStatement.label.name);
           addLabelReference(fdata, node.label, block, index);
@@ -9084,6 +9114,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         const rootNode = while2;
         /** @var {Array<{node, block, index}>} */
         const breaks = [];
+
         function _walker(node, before, nodeType, path) {
           ASSERT(node, 'node should be truthy', node);
           ASSERT(nodeType === node.type);
@@ -9094,12 +9125,14 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
               if (node === rootNode) break; // Ignore
               return true; // Do not visit
             }
-            case 'ForStatement': throw ASSERT(false);
-            case 'ForInStatement': throw ASSERT(false);
-            case 'ForOfStatement': throw ASSERT(false);
+            case 'ForStatement':
+              throw ASSERT(false);
+            case 'ForInStatement':
+              throw ASSERT(false);
+            case 'ForOfStatement':
+              throw ASSERT(false);
             case 'FunctionExpression':
-            case 'ArrowFunctionExpression':
-            {
+            case 'ArrowFunctionExpression': {
               return true; // Do not traverse
             }
 
@@ -9122,7 +9155,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           const newLabelStatement = createFreshLabelStatement('nestedLoop', fdata, while2.body);
           breaks.forEach((obj) => {
             ASSERT(typeof obj === 'object' && obj && obj.node && obj.block && obj.index >= 0, 'fail?', obj);
-            const {node, block, index} = obj;
+            const { node, block, index } = obj;
             ASSERT(!node.label, 'you _are_ unlabeled, no?', obj);
             node.label = AST.identifier(newLabelStatement.label.name);
             addLabelReference(fdata, node.label, block, index);
@@ -9160,6 +9193,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         const rootNode = while2;
         /** @var {Array<{node, block, index}>} */
         const breaks = [];
+
         function _walker(node, before, nodeType, path) {
           ASSERT(node, 'node should be truthy', node);
           ASSERT(nodeType === node.type);
@@ -9170,12 +9204,14 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
               if (node === rootNode) break; // Ignore
               return true; // Do not visit
             }
-            case 'ForStatement': throw ASSERT(false);
-            case 'ForInStatement': throw ASSERT(false);
-            case 'ForOfStatement': throw ASSERT(false);
+            case 'ForStatement':
+              throw ASSERT(false);
+            case 'ForInStatement':
+              throw ASSERT(false);
+            case 'ForOfStatement':
+              throw ASSERT(false);
             case 'FunctionExpression':
-            case 'ArrowFunctionExpression':
-            {
+            case 'ArrowFunctionExpression': {
               return true; // Do not traverse
             }
 
@@ -9197,7 +9233,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           vlog('Found unlabeled breaks. Compiling a fresh label');
           breaks.forEach((obj) => {
             ASSERT(typeof obj === 'object' && obj && obj.node && obj.block && obj.index >= 0, 'fail?', obj);
-            const {node, block, index} = obj;
+            const { node, block, index } = obj;
             ASSERT(!node.label, 'you _are_ unlabeled, no?', obj);
             node.label = AST.identifier(labelStmt.label.name);
             addLabelReference(fdata, node.label, block, index);
@@ -9233,6 +9269,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         const rootNode = while2;
         /** @var {Array<{node, block, index}>} */
         const breaks = [];
+
         function _walker(node, before, nodeType, path) {
           ASSERT(node, 'node should be truthy', node);
           ASSERT(nodeType === node.type);
@@ -9243,12 +9280,14 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
               if (node === rootNode) break; // Ignore
               return true; // Do not visit
             }
-            case 'ForStatement': throw ASSERT(false);
-            case 'ForInStatement': throw ASSERT(false);
-            case 'ForOfStatement': throw ASSERT(false);
+            case 'ForStatement':
+              throw ASSERT(false);
+            case 'ForInStatement':
+              throw ASSERT(false);
+            case 'ForOfStatement':
+              throw ASSERT(false);
             case 'FunctionExpression':
-            case 'ArrowFunctionExpression':
-            {
+            case 'ArrowFunctionExpression': {
               return true; // Do not traverse
             }
 
@@ -9270,7 +9309,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           vlog('Found unlabeled breaks. Compiling a fresh label');
           breaks.forEach((obj) => {
             ASSERT(typeof obj === 'object' && obj && obj.node && obj.block && obj.index >= 0, 'fail?', obj);
-            const {node, block, index} = obj;
+            const { node, block, index } = obj;
             ASSERT(!node.label, 'you _are_ unlabeled, no?', obj);
             node.label = AST.identifier(labelStmt.label.name);
             addLabelReference(fdata, node.label, block, index);
@@ -9295,7 +9334,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         body.splice(i, 0, whileBody.shift());
 
         after(body[i]);
-        after(body[i+1]);
+        after(body[i + 1]);
         assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
@@ -9309,17 +9348,17 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
         const toMatchKind1 =
           stmtBeforeWhile.type === 'VariableDeclaration' ? 'var' :
-          stmtBeforeWhile.type !== 'ExpressionStatement' ? 'none' :
-          stmtBeforeWhile.expression.type === 'AssignmentExpression' ? 'assign' :
-          stmtBeforeWhile.expression.type === 'CallExpression' ? 'call' :
-          'none';
+            stmtBeforeWhile.type !== 'ExpressionStatement' ? 'none' :
+              stmtBeforeWhile.expression.type === 'AssignmentExpression' ? 'assign' :
+                stmtBeforeWhile.expression.type === 'CallExpression' ? 'call' :
+                  'none';
 
         const toMatchKind2 =
           //lastOfWhile.type === 'VariableDeclaration' ? 'var' : // irrelevant to us (and very unlikely)
           lastOfWhile.type !== 'ExpressionStatement' ? 'none' :
-          lastOfWhile.expression.type === 'AssignmentExpression' ? 'assign' :
-          lastOfWhile.expression.type === 'CallExpression' ? 'call' :
-          'none';
+            lastOfWhile.expression.type === 'AssignmentExpression' ? 'assign' :
+              lastOfWhile.expression.type === 'CallExpression' ? 'call' :
+                'none';
 
         if ((toMatchKind1 === 'assign' || toMatchKind1 === 'var') && toMatchKind2 === 'assign') {
           // A while preceded by var decl/assign and body ends with assign `let ? = ?; while(true) { ...; ? = ?; }` or `? = ?; while(true) { ...; ? = ?; }`
@@ -9346,10 +9385,10 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
               before(body[i]);
 
               if (toMatchKind1 === 'var') {
-                body[i-1].declarations[0].init = AST.identifier('undefined');
+                body[i - 1].declarations[0].init = AST.identifier('undefined');
               } else {
                 // Remove the assignment. The rotate assignment will do the identical thing.
-                body[i-1] = AST.emptyStatement();
+                body[i - 1] = AST.emptyStatement();
               }
 
               // Rotate; last statement becomes first
@@ -9375,9 +9414,9 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
               // Must eliminate the initial call here
               if (toMatchKind1 === 'var') {
-                body[i-1].declarations[0].init = AST.identifier('undefined');
+                body[i - 1].declarations[0].init = AST.identifier('undefined');
               } else {
-                body[i-1] = AST.emptyStatement();
+                body[i - 1] = AST.emptyStatement();
               }
 
               // Rotate; last statement becomes first
@@ -9409,7 +9448,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             before(body[i]);
 
             // Must eliminate the initial call here
-            body[i-1] = AST.emptyStatement();
+            body[i - 1] = AST.emptyStatement();
 
             // Rotate; last statement becomes first
             whileBody.unshift(whileBody.pop());
@@ -9441,9 +9480,9 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             const toMatchKind3 =
               //lastOfWhile.type === 'VariableDeclaration' ? 'var' : // irrelevant to us (and very unlikely)
               lastIfOtherBreaks.type !== 'ExpressionStatement' ? 'none' :
-              lastIfOtherBreaks.expression.type === 'AssignmentExpression' ? 'assign' :
-              lastIfOtherBreaks.expression.type === 'CallExpression' ? 'call' :
-              'none';
+                lastIfOtherBreaks.expression.type === 'AssignmentExpression' ? 'assign' :
+                  lastIfOtherBreaks.expression.type === 'CallExpression' ? 'call' :
+                    'none';
 
             if (toMatchKind1 === 'call' && toMatchKind3 === 'call') {
               // This is, with some form of function call $():
@@ -9496,20 +9535,20 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                   rule('A loop with a decl/assign before and matching assign of regex in tail position of a tail-If in the While can rotate-merge');
                   example(
                     'let x = /xyz/g; while (true) { if ($) { f(x); break; } else { g(x); x = /xyz/g; } }',
-                    '; while (true) { x = /xyz/g; if ($) { f(x); break; } else { g(x); } }'
+                    '; while (true) { x = /xyz/g; if ($) { f(x); break; } else { g(x); } }',
                   );
                   example(
                     'x = /xyz/g; while (true) { if ($) { f(x); break; } else { g(x); x = /xyz/g; } }',
-                    '; while (true) { x = /xyz/g; if ($) { f(x); break; } else { g(x); } }'
+                    '; while (true) { x = /xyz/g; if ($) { f(x); break; } else { g(x); } }',
                   );
                   before(body[i - 1]);
                   before(body[i]);
 
                   if (toMatchKind1 === 'var') {
-                    body[i-1].declarations[0].init = AST.identifier('undefined');
+                    body[i - 1].declarations[0].init = AST.identifier('undefined');
                   } else {
                     // Remove the assignment. The rotate assignment will do the identical thing.
-                    body[i-1] = AST.emptyStatement();
+                    body[i - 1] = AST.emptyStatement();
                   }
 
                   // Rotate; last statement of If becomes first of While
@@ -9534,20 +9573,20 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                   rule('A loop with a decl/assign before and matching assign of call in tail position can rotate-merge');
                   example(
                     'let x = f(); while (true) { if ($) { h(x); break; } else { g(x); x = f(); } }',
-                    'let x = undefined; while (true) { x = f(); if ($) { h(x); break; } else { g(x); } }'
+                    'let x = undefined; while (true) { x = f(); if ($) { h(x); break; } else { g(x); } }',
                   );
                   example(
                     'x = f(); while (true) { if ($) { h(x); break; } else { g(x); x = f(); } }',
-                    '; while (true) { x = f(); if ($) { h(x); break; } else { g(x); } }'
+                    '; while (true) { x = f(); if ($) { h(x); break; } else { g(x); } }',
                   );
                   before(body[i - 1]);
                   before(body[i]);
 
                   // Must eliminate the initial call here
                   if (toMatchKind1 === 'var') {
-                    body[i-1].declarations[0].init = AST.identifier('undefined');
+                    body[i - 1].declarations[0].init = AST.identifier('undefined');
                   } else {
-                    body[i-1] = AST.emptyStatement();
+                    body[i - 1] = AST.emptyStatement();
                   }
 
                   // Rotate; last statement of If becomes first of While
@@ -9570,14 +9609,14 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     }
 
     if (!node.$p.hasUnlabeledBreak && i < body.length - 1) {
-      const next = body[i+1];
+      const next = body[i + 1];
       if (next?.type !== 'ReturnStatement') {
         vlog('This loop has no unlabeled breaks so code flow can not continue to the next statement. The rest of the parent block is unreachable.');
         rule('A while with no unlabeled break means the next sibling statements can not be reached and must be dropped');
         example('while (true) { f(); } g();', 'while (true) { f(); }');
         before(body);
 
-        body.length = i+1;
+        body.length = i + 1;
 
         after(body);
         return true;
@@ -9612,7 +9651,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     const last = whileBody.length > 1 && whileBody[whileBody.length - 1];
     const arrRefKind = last?.type === 'IfStatement' && (isPumpBreak(last.consequent, last.alternate) || isPumpBreak(last.alternate, last.consequent));
     if (arrRefKind) {
-      const {ref: arrName, kind: pumpKind} = arrRefKind;
+      const { ref: arrName, kind: pumpKind } = arrRefKind;
 
       let finished = false;
       // We have a loop that ends with a pump-breaking (on arrName) If. Go time!
@@ -9620,7 +9659,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       // TODO: search further than one statement and in parent nodes (like across labels etc)
 
       function safeToSkip(node) {
-        vlog('safeToSkip?', node.type, node.declarations?.[0].init.type)
+        vlog('safeToSkip?', node.type, node.declarations?.[0].init.type);
         return (
           node.type === 'VariableDeclaration' && (
             ['ArrayExpression', 'FunctionExpression', 'ObjectExpression'].includes(node.declarations[0].init.type) ||
@@ -9628,6 +9667,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           )
         );
       }
+
       function isTargetArray(node) {
         return (
           node?.type === 'VariableDeclaration' &&
@@ -9670,7 +9710,6 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         vlog('Array literal is not only primitives, bailing');
       }
       else {
-        vlog('going to pump it?')
         const arrNode = prev.declarations[0].init;
         vlog('Pump loop has primitive array @', +arrNode.$p.pid);
         // Okay, prev creates an array and it only contains primitives
@@ -9684,13 +9723,14 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
               vlog('bail; Found a non-binding', stmt.type);
               return false;
             }
-            vlog('Found local binding:', stmt.declarations[0].id.name)
+            vlog('Found local binding:', stmt.declarations[0].id.name);
             localNames.set(stmt.declarations[0].id.name, undefined);
             const expr = stmt.declarations[0].init;
             // The expr can be one of: array property access, binary expression, unary expression, calling parseInt
             if (expr.type === 'MemberExpression') {
               // Is this `arr[123]` ? Ignore anything else for now.
-              const b = expr.object.type === 'Identifier' && expr.object.name === arrName && expr.computed && AST.isNumber(expr.property);;
+              const b = expr.object.type === 'Identifier' && expr.object.name === arrName && expr.computed && AST.isNumber(expr.property);
+              ;
               if (!b) vlog('bail; Found bad member expression');
               return b;
             }
@@ -9741,26 +9781,26 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
               const expr = stmt.declarations[0].init;
               if (expr.type === 'MemberExpression') {
                 // Is this `arr[123]` ? Ignore anything else for now.
-                return {action: 'arr', lhs, index: AST.getPrimitiveValue(expr.property)};
+                return { action: 'arr', lhs, index: AST.getPrimitiveValue(expr.property) };
               }
               if (expr.type === 'BinaryExpression') {
                 // I don't think it really matters what the operator is as long as the operands are local values or primitives none of them can spy/fail
-                return {action: 'bin', lhs, a: expr.left, op: expr.operator, b: expr.right};
+                return { action: 'bin', lhs, a: expr.left, op: expr.operator, b: expr.right };
               }
               if (expr.type === 'UnaryExpression') {
-                return {action: 'una', lhs, arg: expr.argument, op: expr.operator};
+                return { action: 'una', lhs, arg: expr.argument, op: expr.operator };
               }
               if (expr.type === 'CallExpression') {
-                return {action: 'call', lhs, func: expr.callee.name, args: expr.arguments};
+                return { action: 'call', lhs, func: expr.callee.name, args: expr.arguments };
               }
               ASSERT(false, 'FIXME', expr);
             }
             else if (stmt.type === 'IfStatement') {
               ASSERT(stmt === last, 'no other ifs, right?');
               if (last.consequent.body.length === 1) {
-                return {action: 'ifnotpump', test: last.test.name, kind: pumpKind};
+                return { action: 'ifnotpump', test: last.test.name, kind: pumpKind };
               } else {
-                return {action: 'ifpump', test: last.test.name, kind: last.consequent.body[0].declarations[0].init.callee.property.name};
+                return { action: 'ifpump', test: last.test.name, kind: last.consequent.body[0].declarations[0].init.callee.property.name };
               }
             }
             else {
@@ -9771,7 +9811,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           vlog('Run mini interpreter on', steps.length, 'steps and pump the array');
 
           // TODO: somehow don't do this over and over again... and make the loop counter configurable
-          for (n=0; n<500; ++n) {
+          for (n = 0; n < 500; ++n) {
             steps.forEach(step => {
               if (step.action === 'arr') {
                 localNames.set(step.lhs, arrNode.elements[step.index] ? AST.getPrimitiveValue(arrNode.elements[step.index]) : undefined);
@@ -9839,7 +9879,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                   localNames.set(step.lhs, parseFloat(...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
                 }
                 else if (step.func === '$') { // My test hack. Or jquery :shrug:
-                  localNames.set(step.lhs, vlog('$ loop',n,':', ...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
+                  localNames.set(step.lhs, vlog('$ loop', n, ':', ...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
                 }
                 else {
                   ASSERT(false, 'add me, op=', step.op);

@@ -60,7 +60,7 @@ if (tmpIfTest) {
 } else {
   b = $(2);
   const tmpNestedComplexRhs = b;
-  a = tmpNestedComplexRhs;
+  a = b;
   $(tmpNestedComplexRhs);
 }
 $(a, b);
@@ -84,7 +84,7 @@ if (c) {
 else {
   a = $( 2 );
   const e = a;
-  b = e;
+  b = a;
   $( e );
 }
 $( b, a );

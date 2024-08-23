@@ -69,9 +69,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpForOfGen = $forOf(1);
+const tmpClusterSSA_tmpForOfGen = $forOf(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext = tmpForOfGen.next();
+  const tmpForOfNext = tmpClusterSSA_tmpForOfGen.next();
   const tmpIfTest$1 = tmpForOfNext.done;
   if (tmpIfTest$1) {
     break;

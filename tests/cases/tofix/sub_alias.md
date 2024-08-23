@@ -1,8 +1,8 @@
 # Preval test case
 
-# auto_base_assign_ident.md
+# sub_alias.md
 
-> Normalize > Expressions > Assignments > Ternary b > Auto base assign ident
+> Tofix > Sub alias
 >
 > Normalization of assignments should work the same everywhere they are
 
@@ -10,9 +10,16 @@
 
 `````js filename=intro
 let b = 1;
-
 let a = { a: 999, b: 1000 };
-$($(1) ? (a = b = $(2)) : $(200));
+const tmp = $(100);
+if (tmp) {
+  b = $(2);
+  const alias = b; // This is a redundant alias that we can eliminate
+  a = b;
+  $(alias);
+} else {
+  $(tmp);
+}
 $(a, b);
 `````
 
@@ -22,7 +29,15 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-$($(1) ? (a = b = $(2)) : $(200));
+const tmp = $(100);
+if (tmp) {
+  b = $(2);
+  const alias = b;
+  a = b;
+  $(alias);
+} else {
+  $(tmp);
+}
 $(a, b);
 `````
 
@@ -32,18 +47,15 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-let tmpCalleeParam = undefined;
-const tmpIfTest = $(1);
-if (tmpIfTest) {
+const tmp = $(100);
+if (tmp) {
   b = $(2);
-  let tmpNestedComplexRhs = b;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  const alias = b;
+  a = b;
+  $(alias);
 } else {
-  tmpCalleeParam = $(200);
+  $(tmp);
 }
-tmpCallCallee(tmpCalleeParam);
 $(a, b);
 `````
 
@@ -53,15 +65,14 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
-if (tmpIfTest) {
+const tmp = $(100);
+if (tmp) {
   b = $(2);
-  const tmpNestedComplexRhs = b;
+  const alias = b;
   a = b;
-  $(tmpNestedComplexRhs);
+  $(alias);
 } else {
-  const tmpClusterSSA_tmpCalleeParam = $(200);
-  $(tmpClusterSSA_tmpCalleeParam);
+  $(tmp);
 }
 $(a, b);
 `````
@@ -76,7 +87,7 @@ let b = {
   a: 999,
   b: 1000,
 };
-const c = $( 1 );
+const c = $( 100 );
 if (c) {
   a = $( 2 );
   const d = a;
@@ -84,8 +95,7 @@ if (c) {
   $( d );
 }
 else {
-  const e = $( 200 );
-  $( e );
+  $( c );
 }
 $( b, a );
 `````
@@ -97,7 +107,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 1
+ - 1: 100
  - 2: 2
  - 3: 2
  - 4: 2, 2

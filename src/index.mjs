@@ -10,6 +10,7 @@ import { phase0 } from './normalize/phase0.mjs';
 import { phase1 } from './normalize/phase1.mjs';
 import { phase2 } from './normalize/phase2.mjs';
 import { phase3 } from './normalize/phase3.mjs';
+import { phase1_1 } from './normalize/phase1_1.mjs';
 
 export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve, req, stopAfterNormalize, refTracing, options = {} }) {
   if (stdio) setStdio(stdio, verbose);
@@ -242,6 +243,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
 
           ++phase1s;
           phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, !firstAfterParse && options.refTest); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+          phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, !firstAfterParse && options.refTest);
           contents.lastPhase1Ast = fdata.tenkoOutput.ast;
 
           options?.onAfterPhase(1, passes, phaseLoop, fdata, false, options);

@@ -71,9 +71,9 @@ $(a);
 `````js filename=intro
 const b = { c: $ };
 const tmpChainElementCall = b.c(1);
-const tmpForOfGen = $forOf(tmpChainElementCall);
+const tmpClusterSSA_tmpForOfGen = $forOf(tmpChainElementCall);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext = tmpForOfGen.next();
+  const tmpForOfNext = tmpClusterSSA_tmpForOfGen.next();
   const tmpIfTest$1 = tmpForOfNext.done;
   if (tmpIfTest$1) {
     break;

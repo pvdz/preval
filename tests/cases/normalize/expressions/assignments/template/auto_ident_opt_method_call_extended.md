@@ -61,8 +61,8 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
 const tmpChainElementCall = tmpObjLitVal$1.e(1);
-const tmpBinBothRhs = $coerce(tmpChainElementCall, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpChainElementCall, `string`);
+const tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(tmpChainElementCall);
 `````
@@ -75,7 +75,7 @@ With rename=true
 const a = { e: $ };
 const b = a.e( 1 );
 const c = $coerce( b, "string" );
-const d = `before  ${tmpBinBothRhs}  after`;
+const d = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
 $( d );
 $( b );
 `````

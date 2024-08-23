@@ -471,6 +471,14 @@ export function registerGlobalIdent(
     //       For constants that's easy but for lets this severely restricts what we can track. In most cases just the typeof.
     //       See getCleanTypingObject()
     typing: getCleanTypingObject(),
+
+    // Array<undefined | ReturnType<getPrimitiveType>>, available after phase1
+    // Only set for functions that get called at least once. And only for "ident" calls (that
+    // means `f()` not `x.f()` kinds of calls). Consumer still has to verify the function does
+    // not escape. If a param index is "undefined" then either a call did not have a primitive
+    // there, or two calls had different primitives there. Otherwise, all ident-calls had the
+    // same primitive in that index.
+    callerArgs: undefined,
   };
   ASSERT(name);
   ASSERT(!/^\$\$\d+$/.test(name), 'Should not be calling this function for special param name idents $$123');

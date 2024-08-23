@@ -95,11 +95,10 @@ const f = function ($$0) {
     const z = $$0;
     debugger;
     $(`keepme`);
-    const tmpReturnArg = [x, z];
+    const tmpReturnArg = [y, z];
     return tmpReturnArg;
   };
-  const x = $coerce(y, `plustr`);
-  if (x) {
+  if (y) {
     return undefined;
   } else {
     const tmpCalleeParam = g(10);
@@ -125,18 +124,17 @@ const a = function($$0 ) {
     const e = c;
     debugger;
     $( "keepme" );
-    const f = [ g, e ];
+    const f = [ b, e ];
     return f;
   };
-  const g = $coerce( b, "plustr" );
-  if (g) {
+  if (b) {
     return undefined;
   }
   else {
-    const h = d( 10 );
+    const g = d( 10 );
+    $( g, "pass" );
+    const h = d( 20 );
     $( h, "pass" );
-    const i = d( 20 );
-    $( i, "pass" );
     return undefined;
   }
 };

@@ -1108,11 +1108,15 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           containerIndex: parentIndex,
         };
 
-        vlog('Resolving .typing details of the init');
-        const newTyping = inferNodeTyping(fdata, node.declarations[0].init);
-        vlog('Results in', newTyping, 'which we will inject into', meta.typing);
-        mergeTyping(newTyping, meta.typing);
-        vlog('  - Typing data:', meta.typing);
+        if (node.declarations[0].init.type !== 'Param') {
+          vlog('Resolving .typing details of the init');
+          const newTyping = inferNodeTyping(fdata, node.declarations[0].init);
+          vlog('Results in', newTyping, 'which we will inject into', meta.typing);
+          mergeTyping(newTyping, meta.typing);
+          vlog('  - Typing data:', meta.typing);
+        } else {
+          vlog('Skipped .typing data of Param');
+        }
 
         // Binding "owner" func node. In which scope was this binding bound?
         meta.bfuncNode = funcStack[funcStack.length - 1];

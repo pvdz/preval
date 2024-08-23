@@ -1168,6 +1168,7 @@ function _inferNodeTyping(fdata, valueNode) {
           return createTypingObject({
             mustBeType: 'boolean',
             worstCaseValueSet: new Set([true, false]),
+            mustBePrimitive: true,
           });
         }
         case '-':
@@ -1180,6 +1181,7 @@ function _inferNodeTyping(fdata, valueNode) {
         case '**': {
           return createTypingObject({
             mustBeType: 'number',
+            mustBePrimitive: true,
           });
         }
         case '&': {
@@ -1188,6 +1190,7 @@ function _inferNodeTyping(fdata, valueNode) {
             const v = AST.getPrimitiveValue(valueNode.left) | 0;
             return createTypingObject({
               mustBeType: 'number',
+              mustBePrimitive: true,
 
               oneBitAnded: isOneSetBit(v) ? v : undefined,
               anded: v,
@@ -1199,6 +1202,7 @@ function _inferNodeTyping(fdata, valueNode) {
             const v = AST.getPrimitiveValue(valueNode.right) | 0;
             return createTypingObject({
               mustBeType: 'number',
+              mustBePrimitive: true,
 
               oneBitAnded: isOneSetBit(v) ? v : undefined,
               anded: v,
@@ -1208,23 +1212,27 @@ function _inferNodeTyping(fdata, valueNode) {
           }
           return createTypingObject({
             mustBeType: 'number',
+            mustBePrimitive: true,
           });
         }
         case '^': {
           if (AST.isPrimitive(valueNode.left)) {
             return createTypingObject({
               mustBeType: 'number',
+              mustBePrimitive: true,
               xorredWith: AST.getPrimitiveValue(valueNode.left) | 0,
             });
           }
           if (AST.isPrimitive(valueNode.right)) {
             return createTypingObject({
               mustBeType: 'number',
+              mustBePrimitive: true,
               xorredWith: AST.getPrimitiveValue(valueNode.right) | 0,
             });
           }
           return createTypingObject({
             mustBeType: 'number',
+            mustBePrimitive: true,
           });
         }
         case '|': {
@@ -1232,6 +1240,7 @@ function _inferNodeTyping(fdata, valueNode) {
             const pv = AST.getPrimitiveValue(valueNode.left) | 0;
             return createTypingObject({
               mustBeType: 'number',
+              mustBePrimitive: true,
               orredWith: pv,
             });
           }
@@ -1239,11 +1248,13 @@ function _inferNodeTyping(fdata, valueNode) {
             const pv = AST.getPrimitiveValue(valueNode.right) | 0;
             return createTypingObject({
               mustBeType: 'number',
+              mustBePrimitive: true,
               orredWith: pv,
             });
           }
           return createTypingObject({
             mustBeType: 'number',
+            mustBePrimitive: true,
           });
         }
         case '+': {
@@ -1286,6 +1297,7 @@ function _inferNodeTyping(fdata, valueNode) {
             vlog('- left is a string so result is a string');
             return createTypingObject({
               mustBeType: 'string',
+              mustBePrimitive: true,
             });
           }
 
@@ -1293,6 +1305,7 @@ function _inferNodeTyping(fdata, valueNode) {
             vlog('- right is a string so result is a string');
             return createTypingObject({
               mustBeType: 'string',
+              mustBePrimitive: true,
             });
           }
 
@@ -1305,6 +1318,7 @@ function _inferNodeTyping(fdata, valueNode) {
               if (rightMeta.typing.mustBeType === 'string') {
                 vlog('- left is primitive but not string, right is a string type, so result is a string');
                 return createTypingObject({
+                  mustBePrimitive: true,
                   mustBeType: 'string',
                 });
               }
@@ -1315,17 +1329,22 @@ function _inferNodeTyping(fdata, valueNode) {
                 vlog('- lhs a primitive, rhs neither string nor object type, so the result is a number');
                 return createTypingObject({
                   mustBeType: 'number',
+                  mustBePrimitive: true,
                 });
               }
 
               // The right side is an object. Maybe we can fix this in the future but for now, let it go.
               vlog('- left is primitive, right is object, so we must bail');
-              return createTypingObject({});
+              return createTypingObject({
+                mustBePrimitive: true,
+              });
             }
 
             // We don't know anything about the right type so we have to pass here.
             vlog('- left is primitive but not a string, right is unknown. We must bail here');
-            return createTypingObject({});
+            return createTypingObject({
+              mustBePrimitive: true,
+            });
           }
 
           if (ipr && left.type === 'Identifier') {
@@ -1338,6 +1357,7 @@ function _inferNodeTyping(fdata, valueNode) {
                 vlog('- right is primitive but not string, left is string type, result is a string');
                 return createTypingObject({
                   mustBeType: 'string',
+                  mustBePrimitive: true,
                 });
               }
 
@@ -1347,17 +1367,22 @@ function _inferNodeTyping(fdata, valueNode) {
                 vlog('- lhs a primitive, rhs neither string nor object type, so the result is a number');
                 return createTypingObject({
                   mustBeType: 'number',
+                  mustBePrimitive: true,
                 });
               }
 
               // The left side is an object. Maybe we can fix this in the future but for now, let it go.
               vlog('- right is primitive, left is object, so we must bail');
-              return createTypingObject({});
+              return createTypingObject({
+                mustBePrimitive: true,
+              });
             }
 
             // We don't know anything about the left type so we have to pass here.
             vlog('- right is primitive but not a string, left is unknown. We must bail here');
-            return createTypingObject({});
+            return createTypingObject({
+              mustBePrimitive: true,
+            });
           }
 
           if (left.type === 'Identifier' && right.type === 'Identifier') {
@@ -1371,6 +1396,7 @@ function _inferNodeTyping(fdata, valueNode) {
               vlog('- left and right are string types, result must be a string');
               return createTypingObject({
                 mustBeType: 'string',
+                mustBePrimitive: true,
               });
             }
 
@@ -1381,18 +1407,23 @@ function _inferNodeTyping(fdata, valueNode) {
               vlog('- left and right are neither string nor object types, result must be a number');
               return createTypingObject({
                 mustBeType: 'number',
+                mustBePrimitive: true,
               });
             }
 
             // Either side is an object type. We don't have enough insight right now.
             vlog('- neither left nor right is a string, at least one is an object, result is unknown');
-            return createTypingObject({});
+            return createTypingObject({
+              mustBePrimitive: true,
+            });
           }
 
           // Neither node was a primitive and the nodes did not have enough type info to
           // guarantee us the outcome of a `+` so we can't predict anything here. Sadly.
           vlog('- left and right are neither primitive nor ident and we do not have enough type information to predict the result type');
-          return createTypingObject({});
+          return createTypingObject({
+            mustBePrimitive: true, // Must be a string or a number, though
+          });
         }
         default:
           ASSERT(false, 'you forgot an op', valueNode);
@@ -1720,7 +1751,7 @@ function _inferNodeTyping(fdata, valueNode) {
       });
     }
     case 'Param': {
-      // hmmmm do nothing?
+      // There may be typing data available. Copy it from the param
       return createTypingObject({});
     }
     case 'ChainExpression': {

@@ -1049,7 +1049,19 @@ export function isStringLiteral(node, allowLiteral = false) {
     (allowLiteral && node.type === 'Literal' && typeof node.value === 'string')
   );
 }
+export function isStringType(node, fdata, allowTemplateExpressions = true) {
+  // This checks if the node is guaranteed to return a string type,
+  // even if it may spy (template literal with expressions). Also checks
+  // the meta.typing
+  return (
+    // Note: in normalized code, template expressions _ought_ to have been coerced to strings in a separate step.
+    (node.type === 'TemplateLiteral' && (!allowTemplateExpressions || node.expression.length === 0)) ||
+    (node.type === 'Literal' && typeof node.value === 'string') ||
+    (node.type === 'Identifier' && fdata.globallyUniqueNamingRegistry.get(node.name).typing.mustBeType === 'string')
+  );
+}
 export function isStringValue(node, str, allowLiteral = false) {
+  ASSERT(typeof str === 'string', 'this func checks if a node equals given string value... see isStringLiteral and isStringType for more general checks');
   return node.type === 'TemplateLiteral'
     ? node.expressions.length === 0 && node.quasis[0].value.cooked === str
     : allowLiteral && node.type === 'Literal'
@@ -2116,7 +2128,7 @@ export function deepCloneForFuncInlining(node, paramArgMapper, fail) {
 }
 
 export function complexNodeMightSpy(node, fdata) {
-  ASSERT(node, 'expecitng node');
+  ASSERT(node, 'expecting node');
   ASSERT(fdata, 'expecting fdata');
   // aka, "a node is user observable when"
   // Will also cover the simple cases
@@ -2263,9 +2275,25 @@ export function complexNodeMightSpy(node, fdata) {
       // If a template reaches this point it must be introduced by Preval which means it cannot have any expressions that spy.
       return false;
     }
+    case 'Param': {
+      return false;
+    }
     case 'Identifier': {
       // Note: this will also inspect the meta.typing.mustBeType state
       return simpleNodeMightSpy(node, fdata);
+    }
+    case 'MemberExpression': {
+      if (node.object.type !== 'Identifier') return true;
+      const objName = node.object.name;
+      const objMeta = fdata.globallyUniqueNamingRegistry.get(objName);
+      if (objMeta.typing.isSimpleObject) {
+        // This means that the object is a literal, it does not escape, and it doesn't have getters/setters.
+        // As such, reading (and even writing) properties should not be able to trigger a spy.
+        // Note that a call could mutate the object and add this property. But in that world it
+        // wouldn't get here (it would bail in the call handler above)
+        return false;
+      }
+      return true;
     }
   }
 

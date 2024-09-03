@@ -1,6 +1,6 @@
 //import Prettier from 'prettier';
 import Prettier from '../lib/prettier.mjs';
-import { printer } from '../lib/printer.mjs';
+import { printer, setPrintPids } from '../lib/printer.mjs';
 import walk from '../lib/walk.mjs';
 
 import { VERBOSE_TRACING, setVerboseTracing, YELLOW, ORANGE_DIM, PURPLE, RESET, DIM, ORANGE } from './constants.mjs';
@@ -259,7 +259,7 @@ export function after(node, parentNode) {
   }
 }
 
-export function assertNoDupeNodes(node, prop, force = false, ...desc) {
+export function assertNoDupeNodes(rootNode, prop, force = false, ...desc) {
   if (!force && !VERBOSE_TRACING) return; // Disable this for large inputs but keep it for tests
   // Assert AST contains no duplicate node objects
   const refset = new Set();
@@ -269,6 +269,16 @@ export function assertNoDupeNodes(node, prop, force = false, ...desc) {
       if (!node || !node.$p) return;
       if (down) {
         if (map.has(node.$p.pid)) {
+
+          console.log('\n\n')
+          console.log('This is the AST printed with PIDs for easier debug. PID', +node.$p.pid, 'will appear at least twice here, which is bad');
+          setPrintPids(true);
+          console.log('`````Whole node\n' + fmat(tmat(rootNode, true)).trim() + '\n`````');
+          console.log('\n\n')
+          console.log('`````Bad node\n' + fmat(tmat(node, true)).trim() + '\n`````');
+          setPrintPids(false);
+          console.log('\n\n')
+
           //if (!refset.has(node)) {
           //  console.log('map:', map)
           //}
@@ -290,7 +300,7 @@ export function assertNoDupeNodes(node, prop, force = false, ...desc) {
         refset.add(node);
       }
     },
-    node,
+    rootNode,
     prop,
   );
 }

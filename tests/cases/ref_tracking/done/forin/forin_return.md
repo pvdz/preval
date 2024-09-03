@@ -31,7 +31,7 @@ $(f());
 (Annotated with pids)
 
 `````filename=intro
-let f___4__ = function () {
+let f___4__ = function () /*6*/ {
   debugger;
   const obj___10__ = { a___13__: 10, b___16__: 20 };
   let tmpForInGen___20__ = $forIn___22__(obj___23__);

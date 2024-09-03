@@ -30,7 +30,7 @@ $(f());
 (Annotated with pids)
 
 `````filename=intro
-let f___4__ = function () {
+let f___4__ = function () /*6*/ {
   debugger;
   const tmpCallCallee___10__ = $forOf___11__;
   const tmpCalleeParam___14__ = [10, 20];

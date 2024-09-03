@@ -28,7 +28,7 @@ $(f);
 (Annotated with pids)
 
 `````filename=intro
-let f___4__ = function () {
+let f___4__ = function () /*6*/ {
   debugger;
   let x___10__ = $(1);
   if ($) {

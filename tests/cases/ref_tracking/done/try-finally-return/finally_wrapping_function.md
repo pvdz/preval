@@ -36,7 +36,7 @@ try {
 `````filename=intro
 let $implicitThrow$1___4__ = false;
 let $finalCatchArg$1___8__ = undefined___9__;
-let f___12__ = function () {
+let f___12__ = function () /*14*/ {
   debugger;
   let x___18__ = 1;
   let $implicitThrow___22__ = false;

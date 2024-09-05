@@ -1,8 +1,8 @@
 # Preval test case
 
-# base_call.md
+# base_call_early.md
 
-> Locking > Base call
+> Locking > Base call early
 >
 > A func that is being cleared after being called once is "locked". I guess.
 
@@ -14,9 +14,9 @@ function f(a, b, c) {
 }
 function g() {
   let x = f;
+  const obj = {}
+  f.call(obj, 1, 2, 3); // This should crash after the first call
   if (f) {
-    const obj = {}
-    f.call(obj, 1, 2, 3);
     f = false;
   }
 }
@@ -39,9 +39,9 @@ let f = function ($$0, $$1, $$2) {
 let g = function () {
   debugger;
   let x = f;
+  const obj = {};
+  f.call(obj, 1, 2, 3);
   if (f) {
-    const obj = {};
-    f.call(obj, 1, 2, 3);
     f = false;
   }
 };
@@ -65,9 +65,9 @@ let f = function ($$0, $$1, $$2) {
 let g = function () {
   debugger;
   let x = f;
+  const obj = {};
+  f.call(obj, 1, 2, 3);
   if (f) {
-    const obj = {};
-    f.call(obj, 1, 2, 3);
     f = false;
     return undefined;
   } else {
@@ -104,7 +104,7 @@ const g = function () {
     tmpFuncLock = false;
     return undefined;
   } else {
-    return undefined;
+    throw `Preval: cannot call a locked function (binding overwritten with non-func)`;
   }
 };
 g();
@@ -137,7 +137,7 @@ const j = function() {
     return undefined;
   }
   else {
-    return undefined;
+    throw "Preval: cannot call a locked function (binding overwritten with non-func)";
   }
 };
 j();
@@ -155,8 +155,7 @@ None
 Should call `$` with:
  - 1: 'call me once', {}, 1, 2, 3
  - 2: undefined
- - 3: undefined
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Pre normalization calls: Same
 

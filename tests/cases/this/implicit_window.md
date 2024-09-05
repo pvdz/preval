@@ -50,7 +50,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-$(window);
+$(undefined);
 `````
 
 ## PST Output
@@ -58,7 +58,7 @@ $(window);
 With rename=true
 
 `````js filename=intro
-$( window );
+$( undefined );
 `````
 
 ## Globals

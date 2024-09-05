@@ -91,6 +91,7 @@ import { ifTestMerging } from '../reduce_static/if_test_merging.mjs';
 import { tryEscaping } from '../reduce_static/try_escaping.mjs';
 import { objlitInlining } from '../reduce_static/objlit_inlining.mjs';
 import { constAliasing } from '../reduce_static/const_aliasing.mjs';
+import { recursiveFuncs } from '../reduce_static/recursive_funcs.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
@@ -235,6 +236,7 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     ifelseifelse(fdata) ||
     ifCallIf(fdata) ||
     arrrrrr(fdata) ||
+    recursiveFuncs(fdata) ||
     labelScoping(fdata) ||
     objlitPropAccess(fdata) ||
     bitSetTests(fdata) ||

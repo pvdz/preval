@@ -1,75 +1,83 @@
 # Preval test case
 
-# locking_reverse2.md
+# nested_if.md
 
-> Function locks > Locking reverse2
+> Tofix > Nested if
 >
-> A func that is being cleared after being called once is "locked". I guess.
-
-- In this case the function gets called before it is tested ...
+> Seems this case is not handled. The nested lock check should fold up.
 
 ## Input
 
 `````js filename=intro
-let f = function() {
-  $(`call me once`);
-};
-const g = function() {
-  f();
-  if (f) {
-    f = false;
+let tmpFuncLock = true;
+const g = function () {
+  debugger;
+  if (tmpFuncLock) {
+    $(`call me once`);
+    if (tmpFuncLock) {
+      tmpFuncLock = false;
+      return undefined;
+    } else {
+      return undefined;
+    }
+  } else {
+    throw `Preval: cannot call a locked function (binding overwritten with non-func)`;
   }
 };
 g();
-$(1);
+$(undefined);
 g();
-$(2);
+$(undefined);
 `````
 
 ## Pre Normal
 
 
 `````js filename=intro
-let f = function () {
-  debugger;
-  $(`call me once`);
-};
+let tmpFuncLock = true;
 const g = function () {
   debugger;
-  f();
-  if (f) {
-    f = false;
+  if (tmpFuncLock) {
+    $(`call me once`);
+    if (tmpFuncLock) {
+      tmpFuncLock = false;
+      return undefined;
+    } else {
+      return undefined;
+    }
+  } else {
+    throw `Preval: cannot call a locked function (binding overwritten with non-func)`;
   }
 };
 g();
-$(1);
+$(undefined);
 g();
-$(2);
+$(undefined);
 `````
 
 ## Normalized
 
 
 `````js filename=intro
-let f = function () {
-  debugger;
-  $(`call me once`);
-  return undefined;
-};
+let tmpFuncLock = true;
 const g = function () {
   debugger;
-  f();
-  if (f) {
-    f = false;
-    return undefined;
+  if (tmpFuncLock) {
+    $(`call me once`);
+    if (tmpFuncLock) {
+      tmpFuncLock = false;
+      return undefined;
+    } else {
+      return undefined;
+    }
   } else {
-    return undefined;
+    throw `Preval: cannot call a locked function (binding overwritten with non-func)`;
   }
 };
 g();
-$(1);
+$(undefined);
 g();
-$(2);
+$(undefined);
 `````
 
 ## Output
@@ -92,9 +100,9 @@ const g = function () {
   }
 };
 g();
-$(1);
+$(undefined);
 g();
-$(2);
+$(undefined);
 `````
 
 ## PST Output
@@ -120,9 +128,9 @@ const b = function() {
   }
 };
 b();
-$( 1 );
+$( undefined );
 b();
-$( 2 );
+$( undefined );
 `````
 
 ## Globals
@@ -133,7 +141,7 @@ None
 
 Should call `$` with:
  - 1: 'call me once'
- - 2: 1
+ - 2: undefined
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Pre normalization calls: Same

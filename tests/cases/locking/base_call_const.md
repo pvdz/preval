@@ -1,8 +1,8 @@
 # Preval test case
 
-# base_call.md
+# base_call_const.md
 
-> Locking > Base call
+> Locking > Base call const
 >
 > A func that is being cleared after being called once is "locked". I guess.
 
@@ -16,8 +16,9 @@ function g() {
   let x = f;
   if (f) {
     const obj = {}
-    f.call(obj, 1, 2, 3);
+    const x = f.call(obj, 1, 2, 3);
     f = false;
+    $(x);
   }
 }
 $(g());
@@ -41,8 +42,9 @@ let g = function () {
   let x = f;
   if (f) {
     const obj = {};
-    f.call(obj, 1, 2, 3);
+    const x$1 = f.call(obj, 1, 2, 3);
     f = false;
+    $(x$1);
   }
 };
 $(g());
@@ -67,8 +69,9 @@ let g = function () {
   let x = f;
   if (f) {
     const obj = {};
-    f.call(obj, 1, 2, 3);
+    const x$1 = f.call(obj, 1, 2, 3);
     f = false;
+    $(x$1);
     return undefined;
   } else {
     return undefined;
@@ -100,8 +103,9 @@ const g = function () {
   debugger;
   if (tmpFuncLock) {
     const obj = {};
-    f.call(obj, 1, 2, 3);
+    const tmpClusterSSA_x$1 = f.call(obj, 1, 2, 3);
     tmpFuncLock = false;
+    $(tmpClusterSSA_x$1);
     return undefined;
   } else {
     return undefined;
@@ -132,8 +136,9 @@ const j = function() {
   debugger;
   if (a) {
     const k = {};
-    b.call( k, 1, 2, 3 );
+    const l = b.call( k, 1, 2, 3 );
     a = false;
+    $( l );
     return undefined;
   }
   else {
@@ -156,6 +161,7 @@ Should call `$` with:
  - 1: 'call me once', {}, 1, 2, 3
  - 2: undefined
  - 3: undefined
+ - 4: undefined
  - eval returned: undefined
 
 Pre normalization calls: Same

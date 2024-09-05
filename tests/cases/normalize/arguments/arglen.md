@@ -43,13 +43,7 @@ let f = function () {
 
 
 `````js filename=intro
-const f = function () {
-  const tmpPrevalAliasThis = this;
-  const tmpPrevalAliasArgumentsLen = arguments.length;
-  debugger;
-  f.apply(tmpPrevalAliasThis, tmpPrevalAliasArgumentsLen);
-  return undefined;
-};
+
 `````
 
 ## PST Output
@@ -57,13 +51,7 @@ const f = function () {
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  const b = this;
-  const c = d.length;
-  debugger;
-  a.apply( b, c );
-  return undefined;
-};
+
 `````
 
 ## Globals

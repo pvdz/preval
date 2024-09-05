@@ -102,18 +102,6 @@ $(tmpCalleeParam$1);
 `````js filename=intro
 const x = $(100);
 $(x);
-const g = function () {
-  debugger;
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    $(`a`);
-    g();
-    return undefined;
-  } else {
-    $(`b`);
-    return undefined;
-  }
-};
 const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
   $(`c`);
@@ -131,26 +119,13 @@ With rename=true
 `````js filename=intro
 const a = $( 100 );
 $( a );
-const b = function() {
-  debugger;
-  const c = $( 1 );
-  if (c) {
-    $( "a" );
-    b();
-    return undefined;
-  }
-  else {
-    $( "b" );
-    return undefined;
-  }
-};
-const d = $( 1 );
-if (d) {
+const b = $( 1 );
+if (b) {
   $( "c" );
 }
-const e = f();
-$( e );
-$( e );
+const c = f();
+$( c );
+$( c );
 `````
 
 ## Globals

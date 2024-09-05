@@ -76,12 +76,12 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-let f = true;
+let tmpFuncLock = true;
 const g = function () {
   debugger;
-  if (f) {
+  if (tmpFuncLock) {
     $(`call me once`);
-    f = false;
+    tmpFuncLock = false;
     return undefined;
   } else {
     return undefined;

@@ -52,7 +52,6 @@ $(a, b);
 
 `````js filename=intro
 const b = { x: 1 };
-const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(b);
 const varInitAssignLhsComputedObj = $(tmpCalleeParam);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;
@@ -63,6 +62,7 @@ if (varInitAssignLhsComputedRhs) {
 } else {
   $(200);
 }
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -72,22 +72,22 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = {
-  a: 999,
-  b: 1000,
-};
-const c = $( a );
-const d = $( c );
-const e = d.x;
-const f = e + 1;
-d.x = f;
-if (f) {
+const b = $( a );
+const c = $( b );
+const d = c.x;
+const e = d + 1;
+c.x = e;
+if (e) {
   $( 100 );
 }
 else {
   $( 200 );
 }
-$( b, a );
+const f = {
+  a: 999,
+  b: 1000,
+};
+$( f, a );
 `````
 
 ## Globals

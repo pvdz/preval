@@ -149,11 +149,11 @@ const tmpArrElement$21 = null <= x;
 const tmpArrElement$23 = null >= x;
 const tmpArrElement$25 = null == x;
 const tmpArrElement$27 = null != x;
-const tmpArrElement$29 = null === x;
-const tmpArrElement$31 = null !== x;
 x ** 0;
 const tmpArrElement$35 = 0 ^ x;
 const tmpArrElement$37 = 0 | x;
+const tmpArrElement$29 = null === x;
+const tmpArrElement$31 = null !== x;
 const arr = [
   tmpArrElement,
   tmpArrElement$1,
@@ -204,12 +204,12 @@ const m = null <= a;
 const n = null >= a;
 const o = null == a;
 const p = null != a;
-const q = null === a;
-const r = null !== a;
 a ** 0;
-const s = 0 ^ a;
-const t = 0 | a;
-const u = [ b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, 0, s, t ];
+const q = 0 ^ a;
+const r = 0 | a;
+const s = null === a;
+const t = null !== a;
+const u = [ b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, s, t, 0, q, r ];
 $( u );
 const v = null in a;
 const w = null instanceof a;

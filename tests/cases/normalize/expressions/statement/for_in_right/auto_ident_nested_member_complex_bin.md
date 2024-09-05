@@ -79,10 +79,9 @@ $(a, b, c, d, e);
 
 `````js filename=intro
 const b = { x: 1 };
-const c = { y: 2 };
-const a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $(`x`);
+const c = { y: 2 };
 const varInitAssignLhsComputedObj$1 = $(c);
 const varInitAssignLhsComputedProp$1 = $(`y`);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
@@ -97,6 +96,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForInNext.value;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a, b, c, 3, 4);
 `````
 
@@ -106,29 +106,29 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = { y: 2 };
-const c = {
-  a: 999,
-  b: 1000,
-};
-const d = $( a );
-const e = $( "x" );
-const f = $( b );
-const g = $( "y" );
-f[g] = 7;
-d[e] = 7;
-const h = $forIn( 7 );
+const b = $( a );
+const c = $( "x" );
+const d = { y: 2 };
+const e = $( d );
+const f = $( "y" );
+e[f] = 7;
+b[c] = 7;
+const g = $forIn( 7 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const i = h.next();
-  const j = i.done;
-  if (j) {
+  const h = g.next();
+  const i = h.done;
+  if (i) {
     break;
   }
   else {
-    i.value;
+    h.value;
   }
 }
-$( c, a, b, 3, 4 );
+const j = {
+  a: 999,
+  b: 1000,
+};
+$( j, a, d, 3, 4 );
 `````
 
 ## Globals

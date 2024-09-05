@@ -53,12 +53,12 @@ $(a, b);
 
 `````js filename=intro
 const b = { x: 1 };
-const obj = {};
 const tmpCalleeParam = $(b);
 const tmpNestedAssignObj = $(tmpCalleeParam);
 const tmpBinLhs = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+const obj = {};
 obj[tmpNestedPropCompoundComplexRhs];
 $(tmpNestedPropCompoundComplexRhs, b);
 `````
@@ -69,14 +69,14 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = {};
-const c = $( a );
-const d = $( c );
-const e = d.x;
-const f = e + 1;
-d.x = f;
-b[ f ];
-$( f, a );
+const b = $( a );
+const c = $( b );
+const d = c.x;
+const e = d + 1;
+c.x = e;
+const f = {};
+f[ e ];
+$( e, a );
 `````
 
 ## Globals

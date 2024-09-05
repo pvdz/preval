@@ -47,7 +47,6 @@ $(a);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 let tmpCompObj = undefined;
 const tmpIfTest = $ == null;
 if (tmpIfTest) {
@@ -56,6 +55,7 @@ if (tmpIfTest) {
   tmpCompObj = tmpChainElementCall;
 }
 tmpCompObj.a;
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -64,21 +64,21 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {
-  a: 999,
-  b: 1000,
-};
-let b = undefined;
-const c = $ == null;
-if (c) {
+let a = undefined;
+const b = $ == null;
+if (b) {
 
 }
 else {
-  const d = $( 1 );
-  b = d;
+  const c = $( 1 );
+  a = c;
 }
-b.a;
-$( a );
+a.a;
+const d = {
+  a: 999,
+  b: 1000,
+};
+$( d );
 `````
 
 ## Globals

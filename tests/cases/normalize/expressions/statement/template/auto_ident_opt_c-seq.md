@@ -55,7 +55,6 @@ $(a);
 
 `````js filename=intro
 const b = { x: 1 };
-const a = { a: 999, b: 1000 };
 const tmpChainRootProp = $(b);
 const tmpIfTest = tmpChainRootProp == null;
 if (tmpIfTest) {
@@ -66,6 +65,7 @@ if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $(tmpClusterSSA_tmpCalleeParam);
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -75,22 +75,22 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = {
-  a: 999,
-  b: 1000,
-};
-const c = $( a );
-const d = c == null;
-if (d) {
+const b = $( a );
+const c = b == null;
+if (c) {
   $( "before  undefined  after" );
 }
 else {
-  const e = c.x;
-  const f = $coerce( e, "string" );
-  const g = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
-  $( g );
+  const d = b.x;
+  const e = $coerce( d, "string" );
+  const f = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  $( f );
 }
-$( b );
+const g = {
+  a: 999,
+  b: 1000,
+};
+$( g );
 `````
 
 ## Globals

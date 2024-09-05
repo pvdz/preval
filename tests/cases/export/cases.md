@@ -84,7 +84,6 @@ export { f };
 
 
 `````js filename=intro
-const c = 3;
 const f = function () {
   debugger;
   return undefined;
@@ -104,6 +103,7 @@ const tmpAnonDefaultExport = function () {
   return undefined;
 };
 export { tmpAnonDefaultExport as default };
+const c = 3;
 export { c };
 export { f };
 `````
@@ -113,30 +113,30 @@ export { f };
 With rename=true
 
 `````js filename=intro
-const a = 3;
-const b = function() {
+const a = function() {
   debugger;
   return undefined;
 };
-const c = 1;
-export { c as a };
-const d = 2;
-export { d as b };
-const e = class   {
+const b = 1;
+export { b as a };
+const c = 2;
+export { c as b };
+const d = class   {
 
 };
-export { e as X };
-const f = 1;
-export { f as g };
-const g = 2;
-export { g as i };
-const h = function() {
+export { d as X };
+const e = 1;
+export { e as g };
+const f = 2;
+export { f as i };
+const g = function() {
   debugger;
   return undefined;
 };
-export { h as default };
-export { a as c };
-export { b as f };
+export { g as default };
+const h = 3;
+export { h as c };
+export { a as f };
 `````
 
 ## Globals

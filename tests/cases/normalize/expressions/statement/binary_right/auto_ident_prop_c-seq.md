@@ -43,12 +43,12 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 1 };
-const a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(100);
+const b = { c: 1 };
 const tmpCompObj = $(b);
 const tmpBinBothRhs = tmpCompObj.c;
 tmpBinBothLhs + tmpBinBothRhs;
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -57,16 +57,16 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-const a = { c: 1 };
-const b = {
+const a = $( 100 );
+const b = { c: 1 };
+const c = $( b );
+const d = c.c;
+a + d;
+const e = {
   a: 999,
   b: 1000,
 };
-const c = $( 100 );
-const d = $( a );
-const e = d.c;
-c + e;
-$( b, a );
+$( e, b );
 `````
 
 ## Globals

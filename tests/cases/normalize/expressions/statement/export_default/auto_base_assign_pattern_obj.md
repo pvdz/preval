@@ -48,7 +48,6 @@ $(a, b);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 let tmpAnonDefaultExport = undefined;
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
@@ -56,6 +55,7 @@ const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
 tmpAnonDefaultExport = tmpNestedAssignObjPatternRhs;
 export { tmpAnonDefaultExport as default };
+const a = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_b);
 `````
 
@@ -64,18 +64,18 @@ $(a, tmpClusterSSA_b);
 With rename=true
 
 `````js filename=intro
-const a = {
+let a = undefined;
+const b = $( 2 );
+const c = { b: b };
+const d = $( c );
+const e = d.b;
+a = d;
+export { a as default };
+const f = {
   a: 999,
   b: 1000,
 };
-let b = undefined;
-const c = $( 2 );
-const d = { b: c };
-const e = $( d );
-const f = e.b;
-b = e;
-export { b as default };
-$( a, f );
+$( f, e );
 `````
 
 ## Globals

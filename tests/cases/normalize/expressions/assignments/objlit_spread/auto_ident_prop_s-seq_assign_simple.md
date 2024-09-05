@@ -47,9 +47,9 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 2 };
 const tmpCalleeParam = {};
 $(tmpCalleeParam);
+const b = { c: 2 };
 $(2, b);
 `````
 
@@ -58,10 +58,10 @@ $(2, b);
 With rename=true
 
 `````js filename=intro
-const a = { c: 2 };
-const b = {};
-$( b );
-$( 2, a );
+const a = {};
+$( a );
+const b = { c: 2 };
+$( 2, b );
 `````
 
 ## Globals

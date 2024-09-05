@@ -54,7 +54,6 @@ $(a, x, y);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 let tmpAnonDefaultExport = undefined;
 $(1);
 $(2);
@@ -66,6 +65,7 @@ const tmpClusterSSA_x = arrPatternSplat[0];
 const tmpClusterSSA_y = arrPatternSplat[1];
 tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
 export { tmpAnonDefaultExport as default };
+const a = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_x, tmpClusterSSA_y);
 `````
 
@@ -74,22 +74,22 @@ $(a, tmpClusterSSA_x, tmpClusterSSA_y);
 With rename=true
 
 `````js filename=intro
-const a = {
+let a = undefined;
+$( 1 );
+$( 2 );
+const b = $( 3 );
+const c = $( 4 );
+const d = [ b, c ];
+const e = [ ... d ];
+const f = e[ 0 ];
+const g = e[ 1 ];
+a = d;
+export { a as default };
+const h = {
   a: 999,
   b: 1000,
 };
-let b = undefined;
-$( 1 );
-$( 2 );
-const c = $( 3 );
-const d = $( 4 );
-const e = [ c, d ];
-const f = [ ... e ];
-const g = f[ 0 ];
-const h = f[ 1 ];
-b = e;
-export { b as default };
-$( a, g, h );
+$( h, f, g );
 `````
 
 ## Globals

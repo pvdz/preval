@@ -45,12 +45,12 @@ $(a, b);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const arrAssignPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...arrAssignPatternRhs];
 const tmpClusterSSA_b = arrPatternSplat[0];
+const a = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_b);
 `````
 
@@ -59,16 +59,16 @@ $(a, tmpClusterSSA_b);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = $( 2 );
+const b = [ a ];
+const c = $( b );
+const d = [ ... c ];
+const e = d[ 0 ];
+const f = {
   a: 999,
   b: 1000,
 };
-const b = $( 2 );
-const c = [ b ];
-const d = $( c );
-const e = [ ... d ];
-const f = e[ 0 ];
-$( a, f );
+$( f, e );
 `````
 
 ## Globals

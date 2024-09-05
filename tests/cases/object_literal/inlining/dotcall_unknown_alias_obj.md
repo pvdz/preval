@@ -51,8 +51,8 @@ const g = function () {
   $();
   return undefined;
 };
-const obj = { f: g };
 const method = /foo/;
+const obj = { f: g };
 $dotCall(method, obj);
 `````
 
@@ -66,9 +66,9 @@ const a = function() {
   $();
   return undefined;
 };
-const b = { f: a };
-const c = /foo/;
-$dotCall( c, b );
+const b = /foo/;
+const c = { f: a };
+$dotCall( b, c );
 `````
 
 ## Globals

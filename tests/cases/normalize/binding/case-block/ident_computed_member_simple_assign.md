@@ -98,10 +98,10 @@ $(a, b, c);
 
 
 `````js filename=intro
-const b = { x: 2 };
 const tmpSwitchDisc = $(`a`);
 const tmpBinBothRhs = $(`a`);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
+const b = { x: 2 };
 if (tmpIfTest) {
   const tmpNestedAssignComMemberProp = $(`x`);
   const varInitAssignLhsComputedObj = $(3);
@@ -119,19 +119,19 @@ $(1, b, 3);
 With rename=true
 
 `````js filename=intro
-const a = { x: 2 };
+const a = $( "a" );
 const b = $( "a" );
-const c = $( "a" );
-const d = b === c;
-if (d) {
+const c = a === b;
+const d = { x: 2 };
+if (c) {
   const e = $( "x" );
   const f = $( 3 );
   const g = $( "y" );
   const h = $( 4 );
   f[g] = h;
-  a[e] = h;
+  d[e] = h;
 }
-$( 1, a, 3 );
+$( 1, d, 3 );
 `````
 
 ## Globals

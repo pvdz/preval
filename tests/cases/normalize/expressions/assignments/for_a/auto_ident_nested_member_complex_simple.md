@@ -63,9 +63,9 @@ while (true) {
 
 `````js filename=intro
 const b = { x: 1 };
-const c = { y: 2 };
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`x`);
+const c = { y: 2 };
 const varInitAssignLhsComputedObj = $(c);
 const varInitAssignLhsComputedProp = $(`y`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
@@ -81,13 +81,13 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = { y: 2 };
-const c = $( a );
-const d = $( "x" );
-const e = $( b );
+const b = $( a );
+const c = $( "x" );
+const d = { y: 2 };
+const e = $( d );
 const f = $( "y" );
 e[f] = 3;
-c[d] = 3;
+b[c] = 3;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }

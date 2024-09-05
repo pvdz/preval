@@ -72,13 +72,12 @@ $(a, x, y);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 $(x$1);
 $(2);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 x$1 = tmpObjLitVal;
+const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 const tmpForInGen = $forIn(tmpNestedAssignObjPatternRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext = tmpForInGen.next();
@@ -89,6 +88,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForInNext.value;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a, 1, tmpObjLitVal$1);
 `````
 
@@ -97,31 +97,31 @@ $(a, 1, tmpObjLitVal$1);
 With rename=true
 
 `````js filename=intro
-const a = {
-  a: 999,
-  b: 1000,
-};
 $( x$1 );
 $( 2 );
-const b = $( 3 );
-const c = $( 4 );
-const d = {
-  x: b,
-  y: c,
+const a = $( 3 );
+const b = $( 4 );
+x$1 = a;
+const c = {
+  x: a,
+  y: b,
 };
-x$1 = b;
-const e = $forIn( d );
+const d = $forIn( c );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const f = e.next();
-  const g = f.done;
-  if (g) {
+  const e = d.next();
+  const f = e.done;
+  if (f) {
     break;
   }
   else {
-    f.value;
+    e.value;
   }
 }
-$( a, 1, c );
+const g = {
+  a: 999,
+  b: 1000,
+};
+$( g, 1, b );
 `````
 
 ## Globals

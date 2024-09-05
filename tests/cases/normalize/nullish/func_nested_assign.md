@@ -65,10 +65,9 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const tmpObjLitVal$1 = $();
-const tmpObjLitVal = { b: tmpObjLitVal$1 };
+$();
+const tmpObjLitVal = { b: 15 };
 const obj = { a: tmpObjLitVal };
-tmpObjLitVal.b = 15;
 const tmpClusterSSA_tmpReturnArg$1 = $(obj);
 $(tmpClusterSSA_tmpReturnArg$1);
 `````
@@ -78,12 +77,11 @@ $(tmpClusterSSA_tmpReturnArg$1);
 With rename=true
 
 `````js filename=intro
-const a = $();
-const b = { b: a };
-const c = { a: b };
-b.b = 15;
-const d = $( c );
-$( d );
+$();
+const a = { b: 15 };
+const b = { a: a };
+const c = $( b );
+$( c );
 `````
 
 ## Globals

@@ -46,11 +46,11 @@ $(a, x);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
-const obj = {};
 const tmpUnaryArg = $(1);
+const obj = {};
 const tmpCompProp = typeof tmpUnaryArg;
 obj[tmpCompProp];
+const a = { a: 999, b: 1000 };
 $(a, 1);
 `````
 
@@ -59,15 +59,15 @@ $(a, 1);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = $( 1 );
+const b = {};
+const c = typeof a;
+b[ c ];
+const d = {
   a: 999,
   b: 1000,
 };
-const b = {};
-const c = $( 1 );
-const d = typeof c;
-b[ d ];
-$( a, 1 );
+$( d, 1 );
 `````
 
 ## Globals

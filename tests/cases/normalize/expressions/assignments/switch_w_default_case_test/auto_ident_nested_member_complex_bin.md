@@ -104,12 +104,12 @@ $(a, b, c, d, e);
 
 
 `````js filename=intro
-const b = { x: 1 };
-const c = { y: 2 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
+const b = { x: 1 };
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`x`);
+const c = { y: 2 };
 const varInitAssignLhsComputedObj = $(c);
 const varInitAssignLhsComputedProp = $(`y`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
@@ -138,32 +138,32 @@ $(7, b, c, 3, 4);
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = { y: 2 };
-const c = $( 1 );
-let d = 1;
-const e = $( a );
-const f = $( "x" );
-const g = $( b );
+const a = $( 1 );
+let b = 1;
+const c = { x: 1 };
+const d = $( c );
+const e = $( "x" );
+const f = { y: 2 };
+const g = $( f );
 const h = $( "y" );
 g[h] = 7;
-e[f] = 7;
-const i = 7 === c;
+d[e] = 7;
+const i = 7 === a;
 if (i) {
-  d = 0;
+  b = 0;
 }
 else {
-  const j = 2 === c;
+  const j = 2 === a;
   if (j) {
-    d = 2;
+    b = 2;
   }
 }
-const k = d <= 1;
+const k = b <= 1;
 if (k) {
   $( "fail1" );
 }
 $( "fail2" );
-$( 7, a, b, 3, 4 );
+$( 7, c, f, 3, 4 );
 `````
 
 ## Globals

@@ -149,11 +149,11 @@ const tmpArrElement$21 = x <= undefined;
 const tmpArrElement$23 = x >= undefined;
 const tmpArrElement$25 = x == undefined;
 const tmpArrElement$27 = x != undefined;
-const tmpArrElement$29 = x === undefined;
-const tmpArrElement$31 = x !== undefined;
 x ** 0;
 const tmpArrElement$35 = x ^ 0;
 const tmpArrElement$37 = x | 0;
+const tmpArrElement$29 = x === undefined;
+const tmpArrElement$31 = x !== undefined;
 const arr = [
   NaN,
   NaN,
@@ -203,12 +203,12 @@ const g = x <= undefined;
 const h = x >= undefined;
 const i = x == undefined;
 const j = x != undefined;
-const k = x === undefined;
-const l = x !== undefined;
 x ** 0;
-const m = x ^ 0;
-const n = x | 0;
-const o = [ NaN, NaN, NaN, NaN, a, NaN, b, c, d, e, f, g, h, i, j, k, l, 0, m, n ];
+const k = x ^ 0;
+const l = x | 0;
+const m = x === undefined;
+const n = x !== undefined;
+const o = [ NaN, NaN, NaN, NaN, a, NaN, b, c, d, e, f, g, h, i, j, m, n, 0, k, l ];
 $( o );
 const p = x in undefined;
 const q = x instanceof undefined;

@@ -42,11 +42,11 @@ $(a);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
-const obj = {};
 const tmpNewCallee = $($);
 const tmpCompProp = new tmpNewCallee(1);
+const obj = {};
 obj[tmpCompProp];
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -55,15 +55,15 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = $( $ );
+const b = new a( 1 );
+const c = {};
+c[ b ];
+const d = {
   a: 999,
   b: 1000,
 };
-const b = {};
-const c = $( $ );
-const d = new c( 1 );
-b[ d ];
-$( a );
+$( d );
 `````
 
 ## Globals

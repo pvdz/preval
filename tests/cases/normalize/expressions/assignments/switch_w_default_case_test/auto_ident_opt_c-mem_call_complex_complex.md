@@ -104,10 +104,10 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 let a = undefined;
+const b = { $: $ };
 const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
@@ -146,11 +146,11 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { $: $ };
-const b = $( 1 );
-let c = 1;
-let d = undefined;
-const e = $( a );
+const a = $( 1 );
+let b = 1;
+let c = undefined;
+const d = { $: $ };
+const e = $( d );
 const f = e == null;
 if (f) {
 
@@ -165,25 +165,25 @@ else {
   else {
     const j = $( 1 );
     const k = $dotCall( h, e, j );
-    d = k;
+    c = k;
   }
 }
-const l = d === b;
+const l = c === a;
 if (l) {
-  c = 0;
+  b = 0;
 }
 else {
-  const m = 2 === b;
+  const m = 2 === a;
   if (m) {
-    c = 2;
+    b = 2;
   }
 }
-const n = c <= 1;
+const n = b <= 1;
 if (n) {
   $( "fail1" );
 }
 $( "fail2" );
-$( d );
+$( c );
 `````
 
 ## Globals

@@ -51,9 +51,9 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
 $(1);
 $(2);
+const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
 const tmpClusterSSA_a = delete tmpDeleteObj.y;
 const tmpBinBothRhs = $coerce(tmpClusterSSA_a, `string`);
@@ -67,9 +67,9 @@ $(tmpClusterSSA_a, arg);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
 $( 1 );
 $( 2 );
+const a = { y: 1 };
 const b = $( a );
 const c = delete b.y;
 const d = $coerce( c, "string" );

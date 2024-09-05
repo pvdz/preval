@@ -90,11 +90,11 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 $(1);
 $(2);
+const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
@@ -122,30 +122,30 @@ $(tmpClusterSSA_a, arg);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-const b = $( 1 );
-let c = 1;
+const a = $( 1 );
+let b = 1;
 $( 1 );
 $( 2 );
-const d = $( a );
+const c = { y: 1 };
+const d = $( c );
 const e = $( "y" );
 const f = delete d[ e ];
-const g = f === b;
+const g = f === a;
 if (g) {
-  c = 0;
+  b = 0;
 }
 else {
-  const h = 2 === b;
+  const h = 2 === a;
   if (h) {
-    c = 2;
+    b = 2;
   }
 }
-const i = c <= 1;
+const i = b <= 1;
 if (i) {
   $( "fail1" );
 }
 $( "fail2" );
-$( f, a );
+$( f, c );
 `````
 
 ## Globals

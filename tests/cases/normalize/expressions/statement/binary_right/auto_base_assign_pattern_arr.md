@@ -49,7 +49,6 @@ $(a, b);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(100);
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
@@ -57,6 +56,7 @@ const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_b = arrPatternSplat[0];
 tmpBinBothLhs + tmpNestedAssignArrPatternRhs;
+const a = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_b);
 `````
 
@@ -65,18 +65,18 @@ $(a, tmpClusterSSA_b);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = $( 100 );
+const b = $( 2 );
+const c = [ b ];
+const d = $( c );
+const e = [ ... d ];
+const f = e[ 0 ];
+a + d;
+const g = {
   a: 999,
   b: 1000,
 };
-const b = $( 100 );
-const c = $( 2 );
-const d = [ c ];
-const e = $( d );
-const f = [ ... e ];
-const g = f[ 0 ];
-b + e;
-$( a, g );
+$( g, f );
 `````
 
 ## Globals

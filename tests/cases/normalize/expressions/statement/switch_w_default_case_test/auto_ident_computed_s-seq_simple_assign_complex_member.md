@@ -99,11 +99,10 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 10, d: 20 };
-const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const varInitAssignLhsComputedProp = $(`c`);
+const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
@@ -128,6 +127,7 @@ if (tmpIfTest$3) {
   }
   $(`fail2`);
 }
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -136,43 +136,43 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = $( 1 );
+let b = 1;
+const c = $( "c" );
+const d = {
   c: 10,
   d: 20,
 };
-const b = {
-  a: 999,
-  b: 1000,
-};
-const c = $( 1 );
-let d = 1;
-const e = $( "c" );
-const f = $( a );
-const g = $( "d" );
-const h = f[ g ];
-a[e] = h;
-const i = h === c;
-if (i) {
-  d = 0;
+const e = $( d );
+const f = $( "d" );
+const g = e[ f ];
+d[c] = g;
+const h = g === a;
+if (h) {
+  b = 0;
 }
 else {
-  const j = 2 === c;
-  if (j) {
-    d = 2;
+  const i = 2 === a;
+  if (i) {
+    b = 2;
   }
 }
-const k = d <= 0;
-if (k) {
+const j = b <= 0;
+if (j) {
 
 }
 else {
-  const l = d <= 1;
-  if (l) {
+  const k = b <= 1;
+  if (k) {
     $( "fail1" );
   }
   $( "fail2" );
 }
-$( b, a );
+const l = {
+  a: 999,
+  b: 1000,
+};
+$( l, d );
 `````
 
 ## Globals

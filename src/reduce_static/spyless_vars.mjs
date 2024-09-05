@@ -18,32 +18,73 @@ import {
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
+import { DIM, RESET, VERBOSE_TRACING } from '../constants.mjs';
 
 export function spylessVars(fdata) {
   group('\n\n\nChecking for single scoped spyless vars to move');
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  vlog('\nCurrent statex\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _spylessVars(fdata);
+  vlog('\nCurrent statex\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   groupEnd();
   return r;
 }
 function _spylessVars(fdata) {
   const queue = [];
-  const dupes = new Map(); // We can't continue if the system detects multiple vars want to move within the same body.
-  processAttempt(fdata, queue, dupes);
+  /** @var {Array<{varNode: Node, oldBody: Array<Node>, oldIndex: number}>} **/
+  const attempted = [];
+  processAttempt(fdata, queue, attempted);
 
   log('');
   if (queue.length) {
     // Inject indexes front to back. If two vars compete for the same index, make sure to keep them in original (as before this step) source order.
-    queue.sort(({ pid: pa, index: ia }, { pid: pb, index: ib }) => (ia < ib ? 1 : ia > ib ? -1 : pa < pb ? 1 : pa > pb ? -1 : 0));
+    queue.sort(({ index: a, pid: pa, del: da, oldBody: oldBodyA }, { index: b, pid: pb, del: db, oldBody: oldBodyB }) => {
+      if (a === b) {
+        // Do deletes first, regardless
+        ASSERT(!(da && db) || oldBodyA !== oldBodyB, 'should not want to delete the same index twice');
+        if (da) return -1;
+        if (db) return -1;
+
+        // So two (or more) decls want to be on the same index. This should mean that they all
+        // have their first reference in the statement of that index, like a binary expression,
+        // array, or object.
+        // We should order them in the reverse order of appearance; first reference should be
+        // the last statement to be inserted here.
+        // This should preserve order a bit and make sure we don't get into infinite transfer
+        // loops. Hopefully? Please?
+
+        // Order by first read pid, asc
+        return pb-pa;
+      }
+
+      // Not the same index. Just order by reverse index then.
+      return b-a;
+    });
+
+    if (VERBOSE_TRACING) {
+      queue.forEach(({varNode, targetBody, oldBody, index, oldIndex, del}, i) => {
+        console.log(i, ':', del ? 'Removing' : 'Adding  ', DIM, tmat(varNode, true), RESET, 'from', oldIndex, del ? '' : 'to', del ? '' : index, del ? '' : ', same body?', del ? '' : targetBody === oldBody);
+      });
+    }
+
+    vgroup('Unwinding', queue.length, 'callbacks');
+    queue.forEach(({ func, index, del }) => {
+      vlog('-- next, index=', index, ', del=',del);
+      func();
+    });
+    vgroupEnd();
 
     let changed = 0;
 
-    vgroup('Unwinding', queue.length, 'callbacks');
-    queue.forEach(({ func }) => {
-      vlog('-- next');
-      if (func()) ++changed;
-    });
-    vgroupEnd();
+    // Now look back and see how many actually changed position
+    attempted.forEach(({varNode, oldBody, oldIndex}) => {
+
+      if (VERBOSE_TRACING) {
+        vlog('Before:', DIM, tmat(varNode,true), RESET, ', from:', oldIndex);
+        vlog('After :', DIM, tmat(oldBody[oldIndex],true), RESET, 'same?', oldBody[oldIndex] === varNode);
+      }
+
+      if (oldBody[oldIndex] !== varNode) ++changed;
+    })
 
     if (changed) {
       log('Var decls moved:', changed, '. Restarting from phase1 to fix up read/write registry');
@@ -53,7 +94,7 @@ function _spylessVars(fdata) {
   log('Var decls moved: 0.');
 }
 
-function processAttempt(fdata, queue, dupes) {
+function processAttempt(fdata, queue, attempted) {
   // We want to find all var decls that are single scoped and have no spies and move
   // them as close to their first ref as possible.
   // Unfortunately, var decls may reference each other so we run into a bit of a jam
@@ -81,41 +122,45 @@ function processAttempt(fdata, queue, dupes) {
     if (meta.isImplicitGlobal) return;
     if (!meta.isConstant) return; // We don't move it beyond the first ref so don't care about it being a let or const
     if (!meta.singleScoped) return; // Maybe we can do it for multi-scoped but this introduces TDZ related problems, and more.
-    if (meta.rwOrder.length === 1) return; // No reads? Bah!
+    if (meta.writes.length !== 1) return; // Whatever
+    if (meta.reads.length === 0) return; // No reads? Bah!
 
     vgroup('- var `' + name + '`');
-    process(fdata, meta, name, queue, dupes);
+    process(fdata, meta, name, queue, attempted);
     vgroupEnd();
   });
 }
 
-function process(fdata, meta, name, queue, dupes) {
+function process(fdata, meta, name, queue, attempted) {
   // Single scoped vars should have their decl first, or they are TDZ
-  const varDeclRef = meta.rwOrder[0];
-  if (varDeclRef.action !== 'write' || varDeclRef.kind !== 'var') {
-    vlog('- First write is not the var decl', varDeclRef.action, varDeclRef.kind);
+  const write = meta.rwOrder[0];
+  if (write.action !== 'write' || write.kind !== 'var') {
+    vlog('- First write is not the var decl', write.action, write.kind);
     return;
   }
 
-  if (varDeclRef.blockBody === varDeclRef.pfuncNode.body.body && varDeclRef.blockIndex < varDeclRef.pfuncNode.$p.bodyOffset) {
+  if (write.blockBody === write.pfuncNode.body.body && write.blockIndex < write.pfuncNode.$p.bodyOffset) {
     vlog('Not changing anything in the function header');
     return;
   }
 
   // Check whether the over statement has a bigger pid than the next ref
-  const firstRef = meta.rwOrder[1];
+  const firstRead = meta.rwOrder[1];
   // No refs is fine but we ignore them here. This var decl will be eliminated.
-  const lastRef = meta.rwOrder[meta.rwOrder.length - 1]; // Worst case it is the first ref. :shrug:
+  const lastRead = meta.rwOrder[meta.rwOrder.length - 1]; // Worst case it is the first ref. :shrug:
 
   // Check whether the init can spy (deep check)
-  const init = varDeclRef.parentNode.init;
-  source(varDeclRef.grandNode);
+  const init = write.parentNode.init;
 
   if (init.type === 'FunctionExpression') {
     // This ends up in an infinite loop... like with tests/cases/type_tracked/invert/else_branch_closure2.md
     vlog('Not moving function expressions because there is another rule that wants to move them further out');
     return;
   }
+
+  // TODO: what about let bindings that may change like array elements or call args? We don't check for that case I think.
+
+  source(write.grandNode);
 
   const isSpy = AST.complexNodeMightSpy(init, fdata);
   if (isSpy) {
@@ -129,192 +174,188 @@ function process(fdata, meta, name, queue, dupes) {
   // - When the binding is used after the if, do nothing
   // - Else, when the binding is used in only one branch, move it inside of that branch
 
-  const firstRefPid = +firstRef.node.$p.pid;
-  const lastRefPid = +lastRef.node.$p.pid;
+  const firstReadPid = +firstRead.node.$p.pid;
+  const lastReadPid = +lastRead.node.$p.pid;
 
-  let targetBody = varDeclRef.blockBody;
-  let targetIndexToContainRef = varDeclRef.blockIndex + 1;
+  let targetBody = write.blockBody;
+  let currentIndex = write.blockIndex + 1;
 
-  vgroup(
-    'Searching for new target from',
-    targetIndexToContainRef,
-    ', body has',
-    targetBody.length,
-    'statements. First ref pid:',
-    firstRefPid,
-    ', last ref pid:',
-    lastRefPid,
-  );
-  while (targetIndexToContainRef < targetBody.length) {
-    const afterPid = +(targetBody[targetIndexToContainRef + 1]?.$p.pid ?? Infinity);
-    vlog(
-      '- loop',
-      targetIndexToContainRef,
-      ', next pid:',
-      +targetBody[targetIndexToContainRef]?.$p.pid,
-      ' (',
-      targetBody[targetIndexToContainRef]?.type,
-      '), followed by:',
-      afterPid,
-      '(',
-      targetBody[targetIndexToContainRef + 1]?.type,
-      ')',
-    );
-    if (!targetBody[targetIndexToContainRef + 1]) {
-      vlog('  (there is no after so ref must be inside next node, using Infinity as after pid)');
+  vgroup('Searching for new target from', currentIndex, ', body has', targetBody.length, 'statements. First ref pid:', firstReadPid, ', last ref pid:', lastReadPid);
+  while (currentIndex < targetBody.length) {
+    const currPid = +targetBody[currentIndex]?.$p.pid;
+    const nextPid = +(targetBody[currentIndex + 1]?.$p.pid ?? Infinity);
+    vlog('- loop, current index:', currentIndex, ', currPid: @', currPid, ' (', targetBody[currentIndex]?.type, '), next pid: @', nextPid, '(', targetBody[currentIndex + 1]?.type ?? 'none', ')');
+
+    if (!targetBody[currentIndex + 1]) {
+      vlog('  (there is no "after statement" so ref must be inside next node, using Infinity as after pid)');
     }
-    if (afterPid < firstRefPid) {
-      // The node after the next node has a lower pid than the first ref. This means the first ref must occur later.
-      ++targetIndexToContainRef;
+    if (nextPid < firstReadPid) {
+      // Keep in mind, this is a single scoped variable and the (only) write
+      // happened before all reads. As such, there can be no side effect that
+      // spies on this var because that always entails invoking a function.
+
+      // The node after the current node has a lower pid than that of the
+      // first read. This means the first read must occur later and so we
+      // can safely skip the current statement. Nothing can spy on the var yet.
+      ++currentIndex;
       vlog('  - Node does not contain ref, skipping to next node');
-    } else {
-      ASSERT(afterPid > firstRefPid);
-      ASSERT(targetBody[targetIndexToContainRef]);
+      continue;
+    }
 
-      vlog(
-        '  - Ok, next node contains first ref, but was the last ref after this node?',
-        lastRefPid,
-        '>',
-        afterPid,
-        '?',
-        lastRefPid > afterPid ? 'yes, so we end here' : 'no, so we move into this node',
-        //meta.rwOrder.map(ref => ref.node.$p.pid)
-      );
+    const currNode = targetBody[currentIndex];
 
-      // First check whether there are any references to this binding _after_ the next node which contains at least one ref.
-      // If there are, then we stop searching. This is where we put the var decl.
-      // All we have to check is whether the last ref is also before the node after
-      if (lastRefPid > afterPid) {
-        // There was a ref inside the next node and one after it. Must move the var decl to be in front of this node now.
-        vlog('  - Ref inside node and after it. Bailing');
-        break;
-      }
+    ASSERT(nextPid > firstReadPid, 'next pid is a statement but the read is an expr so it cant match and it must be bigger');
+    ASSERT(currNode);
 
-      // Enter nodes with children. But note that it may not have any (like `return`)
-      const nextNode = targetBody[targetIndexToContainRef];
-      if (nextNode.type === 'IfStatement') {
-        if (firstRefPid > +nextNode.consequent.$p.pid) {
+    vlog('  - Ok, current statement contains the first ref, but was the last ref after this node?', lastReadPid, '>', nextPid, '?');
+    if (lastReadPid > nextPid) {
+      vlog('    - Yes, so the search ends here and we move the decl to before statement @', nextPid);
+      break;
+    }
+
+    vlog('    - No, so we can move the decl into this block because there is no later reference');
+    // Wait, is that true for loops though? Even if there's no read afterwards, the loop
+    // start would need to remember the last value of the end of the previous iteration..?
+
+    // Enter nodes with children.
+    // It may not have any (like `return`), in which case that's the read and we break.
+    if (currNode.type === 'IfStatement') {
+      if (firstReadPid > +currNode.consequent.$p.pid) {
+        vlog(
+          '  - if statement pid bounds:',
+          +currNode.$p.pid,
+          currNode.consequent.$p.lastPid,
+          +currNode.alternate.$p.pid,
+          currNode.alternate.$p.lastPid,
+          ', looking for range',
+          firstReadPid,
+          lastReadPid,
+        );
+        // Confirm whether both branches have a ref. If so, move the var decl in front of this `if`
+        // Otherwise, move the var decl inside the branch that references it (ofc)
+        if (lastReadPid <= currNode.consequent.$p.lastPid) {
           vlog(
-            '  - if statement pid bounds:',
-            +nextNode.$p.pid,
-            nextNode.consequent.$p.lastPid,
-            +nextNode.alternate.$p.pid,
-            nextNode.alternate.$p.lastPid,
-            ', looking for range',
-            firstRefPid,
-            lastRefPid,
+            '  - if statement... only ref in consequent because last ref pid <= last pid in consequent',
+            lastReadPid,
+            currNode.consequent.$p.lastPid,
           );
-          // Confirm whether both branches have a ref. If so, move the var decl in front of this `if`
-          // Otherwise, move the var decl inside the branch that references it (ofc)
-          if (lastRefPid <= nextNode.consequent.$p.lastPid) {
-            vlog(
-              '  - if statement... only ref in consequent because last ref pid <= last pid in consequent',
-              lastRefPid,
-              nextNode.consequent.$p.lastPid,
-            );
-            // All refs are inside the consequent branch
-            targetBody = nextNode.consequent.body;
-            targetIndexToContainRef = 0;
-          } else if (+nextNode.alternate.$p.pid < firstRefPid) {
-            vlog(
-              '  - if statement... only ref in alternate because if alternate pid < first ref pid',
-              +nextNode.consequent.$p.pid,
-              lastRefPid,
-            );
-            // All refs are inside the alternate branch
-            targetBody = nextNode.alternate.body;
-            targetIndexToContainRef = 0;
-          } else {
-            vlog('  - if statement... ref in both, bailing');
-            // So both branches. Put before the if.
-            break;
-          }
+          // All refs are inside the consequent branch
+          targetBody = currNode.consequent.body;
+          currentIndex = 0;
+        } else if (+currNode.alternate.$p.pid < firstReadPid) {
+          vlog(
+            '  - if statement... only ref in alternate because if alternate pid < first ref pid',
+            +currNode.consequent.$p.pid,
+            lastReadPid,
+          );
+          // All refs are inside the alternate branch
+          targetBody = currNode.alternate.body;
+          currentIndex = 0;
         } else {
-          vlog('Ref was inside if-header. Put node before it');
-          break;
-        }
-      } else if (nextNode.type === 'WhileStatement') {
-        // Technically also goes for regular expressions?
-        if (['FunctionExpression', 'ClassExpression', 'ObjectExpression', 'ArrayExpression'].includes(init.type)) {
-          vlog('Can not move an object type into a loop. It ends here');
-          break;
-        } else if (firstRefPid > +nextNode.body.$p.pid) {
-          vlog('  - inside loop (and not after)');
-          targetBody = nextNode.body.body;
-          targetIndexToContainRef = 0;
-        } else {
-          vlog('Ref was inside if-header. Put node before it');
+          vlog('  - if statement... ref in both branches, move decl to before the if');
           break;
         }
       } else {
-        vlog('  - unknown... stop', nextNode.type);
-        // hmmmm, are we skipping over anything else?
-        // Either way, it should be safe to stop here and put the node in front of the next
-        ASSERT(nextNode.type !== 'BlockStatement');
+        vlog('Ref was inside if-header. Move decl to before the if');
         break;
       }
+    }
+    else if (currNode.type === 'WhileStatement') {
+      // Technically also goes for regular expressions?
+      if (['FunctionExpression', 'ClassExpression', 'ObjectExpression', 'ArrayExpression'].includes(init.type)) {
+        vlog('Can not move an object type into a loop. Move decl to before the loop');
+        break;
+      } else if (firstReadPid > +currNode.body.$p.pid) {
+        vlog('  - inside loop (and not after)');
+        targetBody = currNode.body.body;
+        currentIndex = 0;
+      } else {
+        vlog('Ref was inside loop-header. Move decl to before the loop');
+        break;
+      }
+    }
+    else if (currNode.type === 'BlockStatement') {
+      vlog('Current statement is a block (possible if phase2 did not go back to normalization). Go inside.');
+      targetBody = currNode.body;
+      currentIndex = 0;
+    }
+    else if (currNode.type === 'TryStatement') {
+      vlog('Try; we want to move stuff out of the Try so we bail here');
+      return;
+    }
+    else {
+      // Note: the first read was asserted to be inside the current statement and it does not have a block
+      //       so decl should be moved to precede the current statement.
+      vlog('  - not a block bearing statement, the decl should be moved to before this statement', currNode.type);
+      break;
     }
   }
   vgroupEnd();
 
-  vlog(
-    'Before index:',
-    varDeclRef.blockIndex,
-    ', after index:',
-    targetIndexToContainRef,
-    ', same body?',
-    targetBody === varDeclRef.blockBody,
-  );
+  vlog('Before index:', write.blockIndex, ', after index:', currentIndex, ', same body?', targetBody === write.blockBody);
 
-  const alreadyTargeted = dupes.get(targetBody);
-  if (alreadyTargeted === undefined) {
-    dupes.set(targetBody, false);
-  } else if (alreadyTargeted === false) {
-    dupes.set(targetBody, true);
-  } else if (alreadyTargeted === true) {
-    vlog('This body was already targeted once so we have to skip this one (and the one that was queued already)');
-    return;
-  } else {
-    ASSERT(false);
-  }
+  // Queue regardless. This is how we try to prevent infinite transform loops.
+  // The idea is that we can order them by firstReadPid as a way to normalize the order.
+  // If we would omit the statements that would not need ot move right now then we couldn't
+  // sort queue with them in mind as well, potentially still leading to phase1 loops, where
+  // one sort of frog-leaps one over the other after every iteration. Infinitely so.
 
-  if (targetBody !== varDeclRef.blockBody || targetIndexToContainRef - 1 !== varDeclRef.blockIndex) {
-    // Move the var decl to the blockBody to before nextIndex
-    vlog('Queued up var decl to be moved...', targetIndexToContainRef);
+  // This only affects const decls that are not closures. Hopefully that's a reasonable list.
 
-    // Remove the var decl from AST. Don't change the indexes (normalized code is allowed to
-    // have empty statements, normalization will clean it up).
+  // Move the var decl to the blockBody to end up before the currIndex
+  vlog('Queued up var decl to be moved to end up before index', currentIndex);
 
-    const varNode = varDeclRef.blockBody[varDeclRef.blockIndex];
+  const varNode = write.blockBody[write.blockIndex];
 
-    // Capture the output before modifying this var
-    const outputBefore = before(varNode, varDeclRef.blockBody, true);
+  // Queue the removal and insertion separately.
+  // If we unwind the queue in reverse index order then it should not be possible to ruin index caches too early
 
-    // Queue the re-injection to happen in a queue
-    queue.push({
-      index: targetIndexToContainRef, // targetBody[targetIndexToContainRef],
-      pid: varNode.$p.pid, // If two vars are competing for the same index, make sure to keep original source order
-      func: () => {
-        if (dupes.get(targetBody) === true) {
-          vlog('This body was targeted multiple times. Can not proceed.');
-          return false;
-        }
+  ASSERT(!varNode.deleting, 'each node only gets here once right?');
+  varNode.deleting = true; // Temp mark node to do a sanity check
+  attempted.push({varNode, oldBody: write.blockBody, oldIndex: write.blockIndex, index: write.blockIndex});
 
-        rule('A var decl whose init is not a spy can be moved closer to its first ref');
-        example('const x = +y; const z = x * 2; if ($) $(); $(z);', 'const x = +y; if ($) $(); const z = x * 2; $(z);');
-        vlog(outputBefore);
+  queue.push({
+    index: write.blockIndex,
+    pid: firstReadPid,
+    del: true,
+    targetBody,
+    oldBody: write.blockBody,
+    oldIndex: write.blockIndex,
+    varNode,
+    func: () => {
+      rule('A var decl whose init is not a spy can be moved closer to its first ref; removal step');
+      example('const x = +y; const z = x * 2; if ($) $(); $(z);', 'const x = +y; if ($) $(); const z = x * 2; $(z);');
+      before(varNode, write.blockBody);
 
-        const index = varDeclRef.blockBody.indexOf(varNode);
-        varDeclRef.blockBody[index] = AST.emptyStatement();
-        //varDeclRef.blockBody[varDeclRef.blockIndex] = AST.emptyStatement();
+      vlog('Deleting', DIM, tmat(varNode), RESET, 'at', write.blockIndex);
 
-        targetBody.splice(targetIndexToContainRef, 0, varNode);
+      ASSERT(write.blockBody[write.blockIndex].deleting, 'we should only be deleting nodes marked for deletion... if this fails then queue order is incorrect and its removing the wrong nodes, very bad');
+      write.blockBody[write.blockIndex].deleting = false; // each only once
+      write.blockBody.splice(write.blockIndex, 1);
 
-        after(varNode, targetBody);
-        return true;
-      },
-    });
-  } else {
-    vlog('Target body is same as before. No need to move this var decl.');
-  }
+      after(write.blockBody[write.blockIndex] || AST.emptyStatement(), targetBody);
+      return true;
+    }
+  });
+  queue.push({
+    index: currentIndex,
+    pid: firstReadPid,
+    del: false,
+    targetBody,
+    oldBody: write.blockBody,
+    oldIndex: write.blockIndex,
+    varNode,
+    func: () => {
+      rule('A var decl whose init is not a spy can be moved closer to its first ref; insert step');
+      example('const x = +y; const z = x * 2; if ($) $(); $(z);', 'const x = +y; if ($) $(); const z = x * 2; $(z);');
+      before(varNode, write.blockBody);
+
+      vlog('Injecting', DIM, tmat(varNode), RESET, 'at', currentIndex);
+
+      targetBody.splice(currentIndex, 0, varNode);
+
+      after(targetBody[currentIndex], targetBody);
+      return true;
+    }
+  });
 }

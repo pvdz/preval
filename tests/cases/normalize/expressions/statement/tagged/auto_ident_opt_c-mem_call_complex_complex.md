@@ -61,10 +61,8 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
-const a = { a: 999, b: 1000 };
-const tmpCalleeParam = [`before `, ` after`];
 let tmpCalleeParam$1 = undefined;
+const b = { $: $ };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
@@ -79,7 +77,9 @@ if (tmpIfTest) {
     tmpCalleeParam$1 = tmpChainElementCall$1;
   }
 }
+const tmpCalleeParam = [`before `, ` after`];
 $(tmpCalleeParam, tmpCalleeParam$1);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -88,33 +88,33 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { $: $ };
-const b = {
-  a: 999,
-  b: 1000,
-};
-const c = [ "before ", " after" ];
-let d = undefined;
-const e = $( a );
-const f = e == null;
-if (f) {
+let a = undefined;
+const b = { $: $ };
+const c = $( b );
+const d = c == null;
+if (d) {
 
 }
 else {
-  const g = $( "$" );
-  const h = e[ g ];
-  const i = h == null;
-  if (i) {
+  const e = $( "$" );
+  const f = c[ e ];
+  const g = f == null;
+  if (g) {
 
   }
   else {
-    const j = $( 1 );
-    const k = $dotCall( h, e, j );
-    d = k;
+    const h = $( 1 );
+    const i = $dotCall( f, c, h );
+    a = i;
   }
 }
-$( c, d );
-$( b );
+const j = [ "before ", " after" ];
+$( j, a );
+const k = {
+  a: 999,
+  b: 1000,
+};
+$( k );
 `````
 
 ## Globals

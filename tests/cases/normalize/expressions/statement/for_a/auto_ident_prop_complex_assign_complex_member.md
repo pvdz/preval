@@ -56,7 +56,6 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 10, d: 20 };
-const a = { a: 999, b: 1000 };
 const tmpAssignMemLhsObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
@@ -73,6 +72,7 @@ if (tmpIfTest) {
   }
 } else {
 }
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -85,20 +85,16 @@ const a = {
   c: 10,
   d: 20,
 };
-const b = {
-  a: 999,
-  b: 1000,
-};
+const b = $( a );
 const c = $( a );
-const d = $( a );
-const e = $( "d" );
-const f = d[ e ];
-c.c = f;
-const g = $( 0 );
-if (g) {
+const d = $( "d" );
+const e = c[ d ];
+b.c = e;
+const f = $( 0 );
+if (f) {
   while ($LOOP_UNROLL_10) {
-    const h = $( 0 );
-    if (h) {
+    const g = $( 0 );
+    if (g) {
 
     }
     else {
@@ -106,7 +102,11 @@ if (g) {
     }
   }
 }
-$( b, a );
+const h = {
+  a: 999,
+  b: 1000,
+};
+$( h, a );
 `````
 
 ## Globals

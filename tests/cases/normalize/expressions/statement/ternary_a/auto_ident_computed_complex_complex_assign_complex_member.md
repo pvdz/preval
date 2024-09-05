@@ -52,7 +52,6 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 10, d: 20 };
-const a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $(`c`);
 const tmpCompObj = $(b);
@@ -64,6 +63,7 @@ if (varInitAssignLhsComputedRhs) {
 } else {
   $(200);
 }
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -76,23 +76,23 @@ const a = {
   c: 10,
   d: 20,
 };
-const b = {
-  a: 999,
-  b: 1000,
-};
-const c = $( a );
-const d = $( "c" );
-const e = $( a );
-const f = $( "d" );
-const g = e[ f ];
-c[d] = g;
-if (g) {
+const b = $( a );
+const c = $( "c" );
+const d = $( a );
+const e = $( "d" );
+const f = d[ e ];
+b[c] = f;
+if (f) {
   $( 100 );
 }
 else {
   $( 200 );
 }
-$( b, a );
+const g = {
+  a: 999,
+  b: 1000,
+};
+$( g, a );
 `````
 
 ## Globals

@@ -66,9 +66,9 @@ while (true) {
 
 
 `````js filename=intro
+let a = undefined;
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
-let a = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
@@ -95,10 +95,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-const b = { x: a };
-let c = undefined;
-const d = $( b );
+let a = undefined;
+const b = { y: 1 };
+const c = { x: b };
+const d = $( c );
 const e = d == null;
 if (e) {
 
@@ -113,10 +113,10 @@ else {
   else {
     const i = $( "y" );
     const j = g[ i ];
-    c = j;
+    a = j;
   }
 }
-const k = c;
+const k = a;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( k );
   $( 1 );

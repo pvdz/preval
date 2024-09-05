@@ -73,7 +73,6 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
-const a = { a: 999, b: 1000 };
 const tmpChainElementCall = tmpObjLitVal$1.e(1);
 const tmpClusterSSA_tmpForInGen = $forIn(tmpChainElementCall);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -85,6 +84,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForInNext.value;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -94,23 +94,23 @@ With rename=true
 
 `````js filename=intro
 const a = { e: $ };
-const b = {
-  a: 999,
-  b: 1000,
-};
-const c = a.e( 1 );
-const d = $forIn( c );
+const b = a.e( 1 );
+const c = $forIn( b );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const e = d.next();
-  const f = e.done;
-  if (f) {
+  const d = c.next();
+  const e = d.done;
+  if (e) {
     break;
   }
   else {
-    e.value;
+    d.value;
   }
 }
-$( b );
+const f = {
+  a: 999,
+  b: 1000,
+};
+$( f );
 `````
 
 ## Globals

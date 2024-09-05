@@ -60,10 +60,9 @@ $(a, b, c, d);
 
 
 `````js filename=intro
+const tmpIfTest = $(1);
 const b = { x: 1 };
 const c = { y: 2 };
-const a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpAssignComMemLhsObj = $(b);
   const tmpAssignComMemLhsProp = $(`x`);
@@ -75,6 +74,7 @@ if (tmpIfTest) {
 } else {
   $(200);
 }
+const a = { a: 999, b: 1000 };
 $(a, b, c, 3);
 `````
 
@@ -83,26 +83,26 @@ $(a, b, c, 3);
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = { y: 2 };
-const c = {
-  a: 999,
-  b: 1000,
-};
-const d = $( 1 );
-if (d) {
-  const e = $( a );
-  const f = $( "x" );
-  const g = $( b );
-  const h = $( "y" );
-  const i = $( 3 );
-  g[h] = i;
-  e[f] = i;
+const a = $( 1 );
+const b = { x: 1 };
+const c = { y: 2 };
+if (a) {
+  const d = $( b );
+  const e = $( "x" );
+  const f = $( c );
+  const g = $( "y" );
+  const h = $( 3 );
+  f[g] = h;
+  d[e] = h;
 }
 else {
   $( 200 );
 }
-$( c, a, b, 3 );
+const i = {
+  a: 999,
+  b: 1000,
+};
+$( i, b, c, 3 );
 `````
 
 ## Globals

@@ -51,9 +51,9 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
 $(1);
 $(2);
+const arg = { y: 1 };
 const a = delete arg.y;
 const tmpBinBothRhs = $coerce(a, `string`);
 const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
@@ -66,9 +66,9 @@ $(a, arg);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
 $( 1 );
 $( 2 );
+const a = { y: 1 };
 const b = delete a.y;
 const c = $coerce( b, "string" );
 const d = `before  ${tmpBinBothRhs}  after`;

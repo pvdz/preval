@@ -72,13 +72,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   a = undefined;
+  const tmpObjLitVal = { y: 1 };
   const b = { x: tmpObjLitVal };
   const tmpChainElementCall = $(b);
   const tmpIfTest$1 = tmpChainElementCall == null;
@@ -104,17 +104,17 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-let b = {
+let a = {
   a: 999,
   b: 1000,
 };
+const b = $( 1 );
 const c = $( 1 );
-const d = $( 1 );
-const e = c === d;
-if (e) {
-  b = undefined;
-  const f = { x: a };
+const d = b === c;
+if (d) {
+  a = undefined;
+  const e = { y: 1 };
+  const f = { x: e };
   const g = $( f );
   const h = g == null;
   if (h) {
@@ -130,11 +130,11 @@ if (e) {
     else {
       const l = $( "y" );
       const m = j[ l ];
-      b = m;
+      a = m;
     }
   }
 }
-$( b );
+$( a );
 `````
 
 ## Globals

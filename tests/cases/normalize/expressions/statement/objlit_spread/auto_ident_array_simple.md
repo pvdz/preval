@@ -37,9 +37,9 @@ $(a);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpObjSpreadArg = [1, 2, 3];
 ({ ...tmpObjSpreadArg });
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -48,13 +48,13 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = [ 1, 2, 3 ];
+{ ... a };
+const b = {
   a: 999,
   b: 1000,
 };
-const b = [ 1, 2, 3 ];
-{ ... b };
-$( a );
+$( b );
 `````
 
 ## Globals

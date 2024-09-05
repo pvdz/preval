@@ -46,8 +46,8 @@ $(a, b, c);
 
 
 `````js filename=intro
-const b = { x: 2 };
 const varInitAssignLhsComputedProp = $(`x`);
+const b = { x: 2 };
 b[varInitAssignLhsComputedProp] = 7;
 const a = 7;
 export { a };
@@ -59,12 +59,12 @@ $(7, b, 3);
 With rename=true
 
 `````js filename=intro
-const a = { x: 2 };
-const b = $( "x" );
-a[b] = 7;
+const a = $( "x" );
+const b = { x: 2 };
+b[a] = 7;
 const c = 7;
 export { c as a };
-$( 7, a, 3 );
+$( 7, b, 3 );
 `````
 
 ## Globals

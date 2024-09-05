@@ -62,12 +62,12 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const arg = { y: 1 };
-const a = { a: 999, b: 1000 };
 $(1);
 $(2);
 const tmpDeleteCompProp = $(`y`);
+const arg = { y: 1 };
 delete arg[tmpDeleteCompProp];
+const a = { a: 999, b: 1000 };
 $(a, arg);
 $(undefined);
 `````
@@ -77,16 +77,16 @@ $(undefined);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-const b = {
+$( 1 );
+$( 2 );
+const a = $( "y" );
+const b = { y: 1 };
+delete b[ a ];
+const c = {
   a: 999,
   b: 1000,
 };
-$( 1 );
-$( 2 );
-const c = $( "y" );
-delete a[ c ];
-$( b, a );
+$( c, b );
 $( undefined );
 `````
 

@@ -74,11 +74,11 @@ $(a);
 
 
 `````js filename=intro
-const b = { c: $ };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = { x: 1 };
 const tmpCalleeParam = $(tmpCalleeParam$1);
 const tmpForOfGen = $forOf(tmpCalleeParam);
+const b = { c: $ };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest = tmpForOfNext.done;
@@ -99,28 +99,28 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { c: $ };
-let b = {
+let a = {
   a: 999,
   b: 1000,
 };
-const c = { x: 1 };
-const d = $( c );
-const e = $forOf( d );
+const b = { x: 1 };
+const c = $( b );
+const d = $forOf( c );
+const e = { c: $ };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const f = e.next();
+  const f = d.next();
   const g = f.done;
   if (g) {
     break;
   }
   else {
-    b = undefined;
-    const h = a.c( 1 );
+    a = undefined;
+    const h = e.c( 1 );
     const i = f.value;
     h.x = i;
   }
 }
-$( b );
+$( a );
 `````
 
 ## Globals

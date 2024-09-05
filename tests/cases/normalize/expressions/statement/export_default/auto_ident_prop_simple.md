@@ -42,10 +42,10 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 1 };
-const a = { a: 999, b: 1000 };
 const tmpAnonDefaultExport = 1;
 export { tmpAnonDefaultExport as default };
+const a = { a: 999, b: 1000 };
+const b = { c: 1 };
 $(a, b);
 `````
 
@@ -54,14 +54,14 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-const a = { c: 1 };
+const a = 1;
+export { a as default };
 const b = {
   a: 999,
   b: 1000,
 };
-const c = 1;
-export { c as default };
-$( b, a );
+const c = { c: 1 };
+$( b, c );
 `````
 
 ## Globals

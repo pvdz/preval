@@ -42,8 +42,8 @@ $(a);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
+const a = { a: 999, b: 1000 };
 const tmpBinBothRhs = !tmpUnaryArg;
 const tmpClusterSSA_a = a * tmpBinBothRhs;
 $(tmpClusterSSA_a);
@@ -55,13 +55,13 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = $( 100 );
+const b = {
   a: 999,
   b: 1000,
 };
-const b = $( 100 );
-const c = !b;
-const d = a * c;
+const c = !a;
+const d = b * c;
 $( d );
 $( d );
 `````

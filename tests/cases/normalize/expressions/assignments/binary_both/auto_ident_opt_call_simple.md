@@ -56,8 +56,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $ == null;
 let tmpBinBothLhs = undefined;
+const tmpIfTest = $ == null;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall = $(1);
@@ -82,25 +82,25 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-const a = $ == null;
-let b = undefined;
-if (a) {
+let a = undefined;
+const b = $ == null;
+if (b) {
 
 }
 else {
   const c = $( 1 );
-  b = c;
+  a = c;
 }
 let d = undefined;
 const e = $ == null;
 if (e) {
-  const f = b + undefined;
+  const f = a + undefined;
   $( f );
 }
 else {
   const g = $( 1 );
   d = g;
-  const h = b + g;
+  const h = a + g;
   $( h );
 }
 $( d );

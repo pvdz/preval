@@ -57,8 +57,8 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
-const a = { a: 999, b: 1000 };
 const tmpChainElementCall = tmpObjLitVal$1.e(1);
+const a = { a: 999, b: 1000 };
 const tmpClusterSSA_a$1 = a * tmpChainElementCall;
 $(tmpClusterSSA_a$1);
 $(tmpClusterSSA_a$1);
@@ -70,12 +70,12 @@ With rename=true
 
 `````js filename=intro
 const a = { e: $ };
-const b = {
+const b = a.e( 1 );
+const c = {
   a: 999,
   b: 1000,
 };
-const c = a.e( 1 );
-const d = b * c;
+const d = c * b;
 $( d );
 $( d );
 `````

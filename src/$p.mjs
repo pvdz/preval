@@ -39,7 +39,7 @@ export function $p() {
 
     // - returnBreakThrow // 'return' | 'break' | 'throw', used for dce in normalize
 
-    // reduce/phase2 (these props should exist after phase1... even on new nodes)
+    // phase1 (these props should exist after phase1/1.1/1.2 ...)
     // - hasFuncDecl // bool. Prevent elimination of blocks containing function declarations
     // - readsArgumentsLen // bool. Does it read `arguments.length`?
     // - readsArgumentsLenAs // string. Name of the alias, if any
@@ -52,7 +52,7 @@ export function $p() {
     // - returnNodes // Array<node>. All return nodes for this function
     // - hasBranch // bool. Does this function contain an `if`, `while`, or `for-x` statement?
     // - funcDepth // number. Debug. How many nested scopes does this node appear in
-    // - bodyOffset // number. First body statement after the function header (after the debugger statement). Discovered while walking a function, not maintained
+    // - bodyOffset // number. On funcNode. First body statement after the function header (after the debugger statement). Discovered while walking a function, not maintained
     // - promoParent // node|null. The parent node of this block. Used for function scope promotion.
     // - ownBindings // Set<string>. Set of all local bindings in a function scope (may be defined in a block). Excludes the custom $$1 params names.
     // - blockChain // string. Always ends with trailing comma. For all nodes (from phase1), the block chain of this function, including the trailing zero for this function. Same as for refs.
@@ -64,6 +64,7 @@ export function $p() {
     // - primitiveValue // any. When isPrimitive is true, this should be the value. otherwise ignore.
     // - lastPid // number. Block nodes. Last pid inside the block. Same as block if the block is empty.
     // - paramVarDeclRef // for funcs, the local binding var decl for this param if present, available after phase1, { blockBody, blockIndex, name }
+    // - isSimpleObject // for objlits, if the object has been checked not to escape and not be called as member expression. means the object can not spy when reading properties from it.
 
   };
 }

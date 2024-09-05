@@ -103,7 +103,6 @@ $(a, x, y);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpArrElement = $(3);
@@ -132,6 +131,7 @@ if (tmpIfTest$3) {
   }
   $(`fail2`);
 }
+const a = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_x, tmpClusterSSA_y);
 `````
 
@@ -140,40 +140,40 @@ $(a, tmpClusterSSA_x, tmpClusterSSA_y);
 With rename=true
 
 `````js filename=intro
-const a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-let c = 1;
-const d = $( 3 );
-const e = $( 4 );
-const f = [ d, e ];
-const g = [ ... f ];
-const h = g[ 0 ];
-const i = g[ 1 ];
-const j = f === b;
-if (j) {
-  c = 0;
+const a = $( 1 );
+let b = 1;
+const c = $( 3 );
+const d = $( 4 );
+const e = [ c, d ];
+const f = [ ... e ];
+const g = f[ 0 ];
+const h = f[ 1 ];
+const i = e === a;
+if (i) {
+  b = 0;
 }
 else {
-  const k = 2 === b;
-  if (k) {
-    c = 2;
+  const j = 2 === a;
+  if (j) {
+    b = 2;
   }
 }
-const l = c <= 0;
-if (l) {
+const k = b <= 0;
+if (k) {
 
 }
 else {
-  const m = c <= 1;
-  if (m) {
+  const l = b <= 1;
+  if (l) {
     $( "fail1" );
   }
   $( "fail2" );
 }
-$( a, h, i );
+const m = {
+  a: 999,
+  b: 1000,
+};
+$( m, g, h );
 `````
 
 ## Globals

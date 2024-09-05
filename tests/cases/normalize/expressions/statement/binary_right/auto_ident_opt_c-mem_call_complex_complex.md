@@ -60,10 +60,9 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
-const a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(100);
 let tmpBinBothRhs = undefined;
+const b = { $: $ };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
@@ -79,6 +78,7 @@ if (tmpIfTest) {
   }
 }
 tmpBinBothLhs + tmpBinBothRhs;
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -87,33 +87,33 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { $: $ };
-const b = {
-  a: 999,
-  b: 1000,
-};
-const c = $( 100 );
-let d = undefined;
-const e = $( a );
-const f = e == null;
-if (f) {
+const a = $( 100 );
+let b = undefined;
+const c = { $: $ };
+const d = $( c );
+const e = d == null;
+if (e) {
 
 }
 else {
-  const g = $( "$" );
-  const h = e[ g ];
-  const i = h == null;
-  if (i) {
+  const f = $( "$" );
+  const g = d[ f ];
+  const h = g == null;
+  if (h) {
 
   }
   else {
-    const j = $( 1 );
-    const k = $dotCall( h, e, j );
-    d = k;
+    const i = $( 1 );
+    const j = $dotCall( g, d, i );
+    b = j;
   }
 }
-c + d;
-$( b );
+a + b;
+const k = {
+  a: 999,
+  b: 1000,
+};
+$( k );
 `````
 
 ## Globals

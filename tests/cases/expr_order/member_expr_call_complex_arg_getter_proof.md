@@ -81,13 +81,6 @@ $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam);
 
 
 `````js filename=intro
-const a = {
-  get b() {
-    debugger;
-    $(`b.get`);
-    return 100;
-  },
-};
 const x = {
   get y() {
     debugger;
@@ -96,6 +89,13 @@ const x = {
   },
 };
 const tmpCallVal = x.y;
+const a = {
+  get b() {
+    debugger;
+    $(`b.get`);
+    return 100;
+  },
+};
 const tmpCalleeParam = a.b;
 $dotCall(tmpCallVal, x, tmpCalleeParam);
 `````
@@ -105,19 +105,19 @@ $dotCall(tmpCallVal, x, tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = { get b() {
-  debugger;
-  $( "b.get" );
-  return 100;
-} };
-const b = { get y() {
+const a = { get y() {
   debugger;
   $( "y.get" );
   return $;
 } };
-const c = b.y;
-const d = a.b;
-$dotCall( c, b, d );
+const b = a.y;
+const c = { get b() {
+  debugger;
+  $( "b.get" );
+  return 100;
+} };
+const d = c.b;
+$dotCall( b, a, d );
 `````
 
 ## Globals

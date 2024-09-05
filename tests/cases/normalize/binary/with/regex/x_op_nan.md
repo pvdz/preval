@@ -268,8 +268,8 @@ const arr = [
 ];
 $(arr);
 const tmpBinBothRhs$39 = /foo/g;
-const tmpArrElement$39 = x in tmpBinBothRhs$39;
 const tmpBinBothRhs$41 = /foo/g;
+const tmpArrElement$39 = x in tmpBinBothRhs$39;
 const tmpArrElement$41 = x instanceof tmpBinBothRhs$41;
 const arr2 = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
@@ -327,10 +327,10 @@ const 71 = a | 61;
 const 81 = [ d, f, h, j, l, n, p, r, t, v, x, z, 11, false, true, false, true, 31, 51, 71 ];
 $( 81 );
 const 91 = /foo/g;
-const a1 = a in 91;
-const b1 = /foo/g;
-const c1 = a instanceof b1;
-const d1 = [ a1, c1 ];
+const a1 = /foo/g;
+const b1 = a in 91;
+const c1 = a instanceof a1;
+const d1 = [ b1, c1 ];
 $( d1 );
 `````
 

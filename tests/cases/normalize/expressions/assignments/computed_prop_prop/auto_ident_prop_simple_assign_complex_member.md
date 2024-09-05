@@ -52,11 +52,11 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 10, d: 20 };
-const obj = {};
 const tmpCompObj$1 = $(b);
 const tmpCompProp$1 = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj$1[tmpCompProp$1];
 b.c = tmpNestedAssignPropRhs;
+const obj = {};
 obj[tmpNestedAssignPropRhs];
 $(tmpNestedAssignPropRhs, b);
 `````
@@ -70,13 +70,13 @@ const a = {
   c: 10,
   d: 20,
 };
-const b = {};
-const c = $( a );
-const d = $( "d" );
-const e = c[ d ];
-a.c = e;
-b[ e ];
-$( e, a );
+const b = $( a );
+const c = $( "d" );
+const d = b[ c ];
+a.c = d;
+const e = {};
+e[ d ];
+$( d, a );
 `````
 
 ## Globals

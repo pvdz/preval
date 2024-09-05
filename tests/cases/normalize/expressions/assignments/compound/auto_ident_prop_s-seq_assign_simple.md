@@ -48,10 +48,10 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 2 };
 const a = { a: 999, b: 1000 };
 const tmpClusterSSA_a = a * 2;
 $(tmpClusterSSA_a);
+const b = { c: 2 };
 $(tmpClusterSSA_a, b);
 `````
 
@@ -60,14 +60,14 @@ $(tmpClusterSSA_a, b);
 With rename=true
 
 `````js filename=intro
-const a = { c: 2 };
-const b = {
+const a = {
   a: 999,
   b: 1000,
 };
-const c = b * 2;
-$( c );
-$( c, a );
+const b = a * 2;
+$( b );
+const c = { c: 2 };
+$( b, c );
 `````
 
 ## Globals

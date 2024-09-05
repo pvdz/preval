@@ -61,10 +61,10 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 1 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
+const b = { c: 1 };
 if (tmpIfTest) {
   const tmpAssignRhsCompProp = $(`c`);
   const tmpClusterSSA_a = b[tmpAssignRhsCompProp];
@@ -80,21 +80,21 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = { c: 1 };
+const a = $( 1 );
 const b = $( 1 );
-const c = $( 1 );
-const d = b === c;
-if (d) {
+const c = a === b;
+const d = { c: 1 };
+if (c) {
   const e = $( "c" );
-  const f = a[ e ];
-  $( f, a );
+  const f = d[ e ];
+  $( f, d );
 }
 else {
   const g = {
     a: 999,
     b: 1000,
   };
-  $( g, a );
+  $( g, d );
 }
 `````
 

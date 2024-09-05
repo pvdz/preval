@@ -48,9 +48,9 @@ $(a);
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
-const obj = {};
 $(10);
 $(20);
+const obj = {};
 obj[`1,2`];
 $(a);
 `````
@@ -66,9 +66,9 @@ const a = {
 };
 const b = [ ... a ];
 const c = b[ 0 ];
-const d = {};
 $( 10 );
 $( 20 );
+const d = {};
 d[ "1,2" ];
 $( c );
 `````

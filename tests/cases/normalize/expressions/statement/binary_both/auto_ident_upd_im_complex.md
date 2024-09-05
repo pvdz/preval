@@ -57,7 +57,6 @@ $(a, b);
 
 `````js filename=intro
 const b = { x: 1 };
-const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
@@ -69,6 +68,7 @@ const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
 const tmpAssignMemRhs$1 = tmpPostUpdArgVal$1 - 1;
 tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
 tmpPostUpdArgVal + tmpPostUpdArgVal$1;
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -78,22 +78,22 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = {
+const b = $( a );
+const c = $( b );
+const d = c.x;
+const e = d - 1;
+c.x = e;
+const f = $( a );
+const g = $( f );
+const h = g.x;
+const i = h - 1;
+g.x = i;
+d + h;
+const j = {
   a: 999,
   b: 1000,
 };
-const c = $( a );
-const d = $( c );
-const e = d.x;
-const f = e - 1;
-d.x = f;
-const g = $( a );
-const h = $( g );
-const i = h.x;
-const j = i - 1;
-h.x = j;
-e + i;
-$( b, a );
+$( j, a );
 `````
 
 ## Globals

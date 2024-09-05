@@ -63,11 +63,11 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const b = { c: 10, d: 20 };
-const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
 b.c = tmpAssignMemRhs;
+const a = { a: 999, b: 1000 };
 $(a, b);
 $(undefined);
 `````
@@ -81,15 +81,15 @@ const a = {
   c: 10,
   d: 20,
 };
-const b = {
+const b = $( a );
+const c = $( "d" );
+const d = b[ c ];
+a.c = d;
+const e = {
   a: 999,
   b: 1000,
 };
-const c = $( a );
-const d = $( "d" );
-const e = c[ d ];
-a.c = e;
-$( b, a );
+$( e, a );
 $( undefined );
 `````
 

@@ -85,9 +85,8 @@ $(a, b, c);
 
 
 `````js filename=intro
-const b = { x: 1 };
-const a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
+const b = { x: 1 };
 if (tmpIfTest) {
   const tmpAssignComMemLhsObj = $(b);
   const tmpAssignComMemLhsProp = $(`x`);
@@ -134,6 +133,7 @@ if (tmpIfTest) {
   }
 } else {
 }
+const a = { a: 999, b: 1000 };
 $(a, b, 3);
 `````
 
@@ -142,59 +142,59 @@ $(a, b, 3);
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = {
-  a: 999,
-  b: 1000,
-};
-const c = $( 1 );
-if (c) {
-  const d = $( a );
-  const e = $( "x" );
-  const f = $( a );
-  const g = $( "x" );
-  const h = $( a );
-  const i = $( "x" );
-  const j = $( a );
-  const k = $( "x" );
-  const l = $( a );
-  const m = $( "x" );
-  const n = $( a );
-  const o = $( "x" );
-  n[o] = 3;
-  l[m] = 3;
-  j[k] = 3;
-  h[i] = 3;
-  f[g] = 3;
-  d[e] = 3;
+const a = $( 1 );
+const b = { x: 1 };
+if (a) {
+  const c = $( b );
+  const d = $( "x" );
+  const e = $( b );
+  const f = $( "x" );
+  const g = $( b );
+  const h = $( "x" );
+  const i = $( b );
+  const j = $( "x" );
+  const k = $( b );
+  const l = $( "x" );
+  const m = $( b );
+  const n = $( "x" );
+  m[n] = 3;
+  k[l] = 3;
+  i[j] = 3;
+  g[h] = 3;
+  e[f] = 3;
+  c[d] = 3;
   while ($LOOP_UNROLL_10) {
-    const p = $( 1 );
-    if (p) {
-      const q = $( a );
-      const r = $( "x" );
-      const s = $( a );
-      const t = $( "x" );
-      const u = $( a );
-      const v = $( "x" );
-      const w = $( a );
-      const x = $( "x" );
-      const y = $( a );
-      const z = $( "x" );
-      const 01 = $( a );
-      const 11 = $( "x" );
-      01[11] = 3;
-      y[z] = 3;
-      w[x] = 3;
-      u[v] = 3;
-      s[t] = 3;
-      q[r] = 3;
+    const o = $( 1 );
+    if (o) {
+      const p = $( b );
+      const q = $( "x" );
+      const r = $( b );
+      const s = $( "x" );
+      const t = $( b );
+      const u = $( "x" );
+      const v = $( b );
+      const w = $( "x" );
+      const x = $( b );
+      const y = $( "x" );
+      const z = $( b );
+      const 01 = $( "x" );
+      z[01] = 3;
+      x[y] = 3;
+      v[w] = 3;
+      t[u] = 3;
+      r[s] = 3;
+      p[q] = 3;
     }
     else {
       break;
     }
   }
 }
-$( b, a, 3 );
+const 11 = {
+  a: 999,
+  b: 1000,
+};
+$( 11, b, 3 );
 `````
 
 ## Globals

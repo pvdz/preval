@@ -59,10 +59,9 @@ $(a, b, c, d);
 
 
 `````js filename=intro
+const tmpIfTest = $(100);
 const b = { x: 1 };
 const c = { y: 2 };
-const a = { a: 999, b: 1000 };
-const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
   const tmpAssignComMemLhsObj = $(b);
@@ -73,6 +72,7 @@ if (tmpIfTest) {
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = varInitAssignLhsComputedRhs;
 }
+const a = { a: 999, b: 1000 };
 $(a, b, c, 3);
 `````
 
@@ -81,26 +81,26 @@ $(a, b, c, 3);
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = { y: 2 };
-const c = {
-  a: 999,
-  b: 1000,
-};
-const d = $( 100 );
-if (d) {
+const a = $( 100 );
+const b = { x: 1 };
+const c = { y: 2 };
+if (a) {
 
 }
 else {
-  const e = $( a );
-  const f = $( "x" );
-  const g = $( b );
-  const h = $( "y" );
-  const i = $( 3 );
-  g[h] = i;
-  e[f] = i;
+  const d = $( b );
+  const e = $( "x" );
+  const f = $( c );
+  const g = $( "y" );
+  const h = $( 3 );
+  f[g] = h;
+  d[e] = h;
 }
-$( c, a, b, 3 );
+const i = {
+  a: 999,
+  b: 1000,
+};
+$( i, b, c, 3 );
 `````
 
 ## Globals

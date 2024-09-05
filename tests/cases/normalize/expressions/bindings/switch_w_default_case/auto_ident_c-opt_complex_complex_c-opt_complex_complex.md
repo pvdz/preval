@@ -107,9 +107,9 @@ if (tmpIfTest$11) {
 
 
 `````js filename=intro
+let tmpClusterSSA_a = undefined;
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
-let tmpClusterSSA_a = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest$5 = tmpChainElementCall == null;
 if (tmpIfTest$5) {
@@ -134,10 +134,10 @@ $(`fail2`);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-const b = { x: a };
-let c = undefined;
-const d = $( b );
+let a = undefined;
+const b = { y: 1 };
+const c = { x: b };
+const d = $( c );
 const e = d == null;
 if (e) {
 
@@ -152,10 +152,10 @@ else {
   else {
     const i = $( "y" );
     const j = g[ i ];
-    c = j;
+    a = j;
   }
 }
-$( c );
+$( a );
 $( "fail1" );
 $( "fail2" );
 `````

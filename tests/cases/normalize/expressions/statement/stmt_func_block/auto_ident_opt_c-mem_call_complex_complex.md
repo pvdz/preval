@@ -75,7 +75,6 @@ tmpCallCallee$1(tmpCalleeParam$5);
 
 `````js filename=intro
 const b = { $: $ };
-const a = { a: 999, b: 1000 };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
@@ -89,6 +88,7 @@ if (tmpIfTest) {
     $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 $(undefined);
 `````
@@ -99,28 +99,28 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-const b = {
-  a: 999,
-  b: 1000,
-};
-const c = $( a );
-const d = c == null;
-if (d) {
+const b = $( a );
+const c = b == null;
+if (c) {
 
 }
 else {
-  const e = $( "$" );
-  const f = c[ e ];
-  const g = f == null;
-  if (g) {
+  const d = $( "$" );
+  const e = b[ d ];
+  const f = e == null;
+  if (f) {
 
   }
   else {
-    const h = $( 1 );
-    $dotCall( f, c, h );
+    const g = $( 1 );
+    $dotCall( e, b, g );
   }
 }
-$( b );
+const h = {
+  a: 999,
+  b: 1000,
+};
+$( h );
 $( undefined );
 `````
 

@@ -63,10 +63,9 @@ $(a);
 
 
 `````js filename=intro
+let tmpCallCallee$1 = undefined;
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
-const a = { a: 999, b: 1000 };
-let tmpCallCallee$1 = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
@@ -84,6 +83,7 @@ if (tmpIfTest) {
 const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
 const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -92,35 +92,35 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-const b = { x: a };
-const c = {
-  a: 999,
-  b: 1000,
-};
-let d = undefined;
-const e = $( b );
-const f = e == null;
-if (f) {
+let a = undefined;
+const b = { y: 1 };
+const c = { x: b };
+const d = $( c );
+const e = d == null;
+if (e) {
 
 }
 else {
-  const g = $( "x" );
-  const h = e[ g ];
-  const i = h == null;
-  if (i) {
+  const f = $( "x" );
+  const g = d[ f ];
+  const h = g == null;
+  if (h) {
 
   }
   else {
-    const j = $( "y" );
-    const k = h[ j ];
-    d = k;
+    const i = $( "y" );
+    const j = g[ i ];
+    a = j;
   }
 }
-const l = $coerce( d, "string" );
-const m = `before  ${tmpBinBothRhs}  after`;
+const k = $coerce( a, "string" );
+const l = `before  ${tmpBinBothRhs}  after`;
+$( l );
+const m = {
+  a: 999,
+  b: 1000,
+};
 $( m );
-$( c );
 `````
 
 ## Globals

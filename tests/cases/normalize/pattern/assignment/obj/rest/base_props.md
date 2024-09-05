@@ -40,9 +40,9 @@ $(x);
 
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = { x: 1, a: 2, b: 3, c: 4 };
 a = 2;
 b = 3;
+const tmpAssignObjPatternRhs = { x: 1, a: 2, b: 3, c: 4 };
 const tmpCalleeParam$1 = [`a`, `b`];
 x = objPatternRest(tmpAssignObjPatternRhs, tmpCalleeParam$1, `x`);
 $(x);
@@ -53,14 +53,14 @@ $(x);
 With rename=true
 
 `````js filename=intro
+a = 2;
+b = 3;
 const a = {
   x: 1,
   a: 2,
   b: 3,
   c: 4,
 };
-a = 2;
-b = 3;
 const b = [ "a", "b" ];
 x = objPatternRest( a, b, "x" );
 $( x );

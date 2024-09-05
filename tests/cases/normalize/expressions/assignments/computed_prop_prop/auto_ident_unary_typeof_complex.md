@@ -47,8 +47,8 @@ $(a, arg);
 
 
 `````js filename=intro
-const obj = {};
 const tmpUnaryArg = $(1);
+const obj = {};
 const a = typeof tmpUnaryArg;
 obj[a];
 $(a, 1);
@@ -59,10 +59,10 @@ $(a, 1);
 With rename=true
 
 `````js filename=intro
-const a = {};
-const b = $( 1 );
-const c = typeof b;
-a[ c ];
+const a = $( 1 );
+const b = {};
+const c = typeof a;
+b[ c ];
 $( c, 1 );
 `````
 

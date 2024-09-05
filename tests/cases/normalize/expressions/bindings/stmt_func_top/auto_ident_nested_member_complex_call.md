@@ -66,9 +66,9 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const b = { x: 1 };
-const c = { y: 2 };
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $(`x`);
+const c = { y: 2 };
 const varInitAssignLhsComputedObj$1 = $(c);
 const varInitAssignLhsComputedProp$1 = $(`y`);
 const varInitAssignLhsComputedRhs$1 = $(3);
@@ -84,15 +84,15 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = { y: 2 };
-const c = $( a );
-const d = $( "x" );
-const e = $( b );
+const b = $( a );
+const c = $( "x" );
+const d = { y: 2 };
+const e = $( d );
 const f = $( "y" );
 const g = $( 3 );
 e[f] = g;
-c[d] = g;
-$( g, a, b, 3 );
+b[c] = g;
+$( g, a, d, 3 );
 $( undefined );
 `````
 

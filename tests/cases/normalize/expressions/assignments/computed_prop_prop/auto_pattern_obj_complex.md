@@ -47,10 +47,10 @@ $(a);
 
 
 `````js filename=intro
-const obj = {};
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
+const obj = {};
 obj[tmpNestedAssignObjPatternRhs];
 $(tmpClusterSSA_a);
 `````
@@ -60,15 +60,15 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-const a = {};
-const b = {
+const a = {
   a: 1,
   b: 2,
 };
-const c = $( b );
-const d = c.a;
-a[ c ];
-$( d );
+const b = $( a );
+const c = b.a;
+const d = {};
+d[ b ];
+$( c );
 `````
 
 ## Globals

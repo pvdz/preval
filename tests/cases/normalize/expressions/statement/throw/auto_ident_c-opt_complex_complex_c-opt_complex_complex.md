@@ -56,9 +56,9 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
+let tmpThrowArg = undefined;
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
-let tmpThrowArg = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
@@ -81,10 +81,10 @@ throw tmpThrowArg;
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-const b = { x: a };
-let c = undefined;
-const d = $( b );
+let a = undefined;
+const b = { y: 1 };
+const c = { x: b };
+const d = $( c );
 const e = d == null;
 if (e) {
 
@@ -99,10 +99,10 @@ else {
   else {
     const i = $( "y" );
     const j = g[ i ];
-    c = j;
+    a = j;
   }
 }
-throw c;
+throw a;
 `````
 
 ## Globals

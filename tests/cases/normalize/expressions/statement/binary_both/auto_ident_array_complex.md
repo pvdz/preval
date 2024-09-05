@@ -44,14 +44,14 @@ $(a);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const tmpBinBothLhs = [tmpArrElement, 2, tmpArrElement$3];
 const tmpArrElement$5 = $(1);
 const tmpArrElement$9 = $(3);
+const tmpBinBothLhs = [tmpArrElement, 2, tmpArrElement$3];
 const tmpBinBothRhs = [tmpArrElement$5, 2, tmpArrElement$9];
 tmpBinBothLhs + tmpBinBothRhs;
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -60,18 +60,18 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = $( 1 );
+const b = $( 3 );
+const c = $( 1 );
+const d = $( 3 );
+const e = [ a, 2, b ];
+const f = [ c, 2, d ];
+e + f;
+const g = {
   a: 999,
   b: 1000,
 };
-const b = $( 1 );
-const c = $( 3 );
-const d = [ b, 2, c ];
-const e = $( 1 );
-const f = $( 3 );
-const g = [ e, 2, f ];
-d + g;
-$( a );
+$( g );
 `````
 
 ## Globals

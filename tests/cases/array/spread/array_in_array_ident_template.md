@@ -61,11 +61,11 @@ const tmpCallCallee = $(`x`);
 const tmpBinBothRhs$1 = $coerce(tmpCallCallee, `string`);
 const tmpCallCallee$1 = $(`y`);
 const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
-const tmpBinLhs = `${tmpBinBothRhs$1} ${tmpBinBothRhs}`;
 if ($) {
   $(20);
 } else {
 }
+const tmpBinLhs = `${tmpBinBothRhs$1} ${tmpBinBothRhs}`;
 const y = [`a`, 1, tmpBinLhs, 3, `b`];
 $(y);
 `````
@@ -80,10 +80,10 @@ const a = $( "x" );
 const b = $coerce( a, "string" );
 const c = $( "y" );
 const d = $coerce( c, "string" );
-const e = `${tmpBinBothRhs$1} `;
 if ($) {
   $( 20 );
 }
+const e = `${tmpBinBothRhs$1} `;
 const f = [ "a", 1, e, 3, "b" ];
 $( f );
 `````

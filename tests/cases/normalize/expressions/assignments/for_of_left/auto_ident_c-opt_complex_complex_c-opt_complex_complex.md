@@ -83,12 +83,12 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = { y: 1 };
-const b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = { x: 1 };
 const tmpCalleeParam = $(tmpCalleeParam$1);
 const tmpForOfGen = $forOf(tmpCalleeParam);
+const tmpObjLitVal = { y: 1 };
+const b = { x: tmpObjLitVal };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest = tmpForOfNext.done;
@@ -123,24 +123,24 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-const b = { x: a };
-let c = {
+let a = {
   a: 999,
   b: 1000,
 };
-const d = { x: 1 };
-const e = $( d );
-const f = $forOf( e );
+const b = { x: 1 };
+const c = $( b );
+const d = $forOf( c );
+const e = { y: 1 };
+const f = { x: e };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const g = f.next();
+  const g = d.next();
   const h = g.done;
   if (h) {
     break;
   }
   else {
-    c = undefined;
-    const i = $( b );
+    a = undefined;
+    const i = $( f );
     const j = i == null;
     if (j) {
 
@@ -155,15 +155,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       else {
         const n = $( "y" );
         const o = l[ n ];
-        c = o;
+        a = o;
       }
     }
-    const p = c;
+    const p = a;
     const q = g.value;
     p.x = q;
   }
 }
-$( c );
+$( a );
 `````
 
 ## Globals

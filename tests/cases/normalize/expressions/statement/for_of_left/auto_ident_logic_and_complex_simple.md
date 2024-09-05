@@ -68,7 +68,6 @@ $(a);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = { x: 1 };
 const tmpCalleeParam = $(tmpCalleeParam$1);
 const tmpForOfGen = $forOf(tmpCalleeParam);
@@ -89,6 +88,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -97,34 +97,34 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {
-  a: 999,
-  b: 1000,
-};
-const b = { x: 1 };
-const c = $( b );
-const d = $forOf( c );
+const a = { x: 1 };
+const b = $( a );
+const c = $forOf( b );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const e = d.next();
-  const f = e.done;
-  if (f) {
+  const d = c.next();
+  const e = d.done;
+  if (e) {
     break;
   }
   else {
-    const g = $( 1 );
-    const h = $( g );
-    let i = 2;
-    if (h) {
+    const f = $( 1 );
+    const g = $( f );
+    let h = 2;
+    if (g) {
 
     }
     else {
-      i = h;
+      h = g;
     }
-    const j = e.value;
-    i.x = j;
+    const i = d.value;
+    h.x = i;
   }
 }
-$( a );
+const j = {
+  a: 999,
+  b: 1000,
+};
+$( j );
 `````
 
 ## Globals

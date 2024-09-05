@@ -71,12 +71,11 @@ $(a, b, c, d);
 
 
 `````js filename=intro
-const b = { x: 1 };
-const c = { y: 2 };
-const a = { a: 999, b: 1000 };
 $(100);
+const b = { x: 1 };
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $(`x`);
+const c = { y: 2 };
 const varInitAssignLhsComputedObj$1 = $(c);
 const varInitAssignLhsComputedProp$1 = $(`y`);
 const varInitAssignLhsComputedRhs$1 = $(3);
@@ -99,6 +98,7 @@ if (varInitAssignLhsComputedRhs$1) {
   }
 } else {
 }
+const a = { a: 999, b: 1000 };
 $(a, b, c, 3);
 `````
 
@@ -107,31 +107,27 @@ $(a, b, c, 3);
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = { y: 2 };
-const c = {
-  a: 999,
-  b: 1000,
-};
 $( 100 );
-const d = $( a );
-const e = $( "x" );
-const f = $( b );
-const g = $( "y" );
-const h = $( 3 );
-f[g] = h;
-d[e] = h;
-if (h) {
+const a = { x: 1 };
+const b = $( a );
+const c = $( "x" );
+const d = { y: 2 };
+const e = $( d );
+const f = $( "y" );
+const g = $( 3 );
+e[f] = g;
+b[c] = g;
+if (g) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const i = $( a );
-    const j = $( "x" );
-    const k = $( b );
-    const l = $( "y" );
-    const m = $( 3 );
-    k[l] = m;
-    i[j] = m;
-    if (m) {
+    const h = $( a );
+    const i = $( "x" );
+    const j = $( d );
+    const k = $( "y" );
+    const l = $( 3 );
+    j[k] = l;
+    h[i] = l;
+    if (l) {
 
     }
     else {
@@ -139,7 +135,11 @@ if (h) {
     }
   }
 }
-$( c, a, b, 3 );
+const m = {
+  a: 999,
+  b: 1000,
+};
+$( m, a, d, 3 );
 `````
 
 ## Globals

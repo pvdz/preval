@@ -42,9 +42,9 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-const a = { a: 999, b: 1000 };
 const tmpArrElToSpread = b.$(1);
 [...tmpArrElToSpread];
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -54,13 +54,13 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-const b = {
+const b = a.$( 1 );
+[ ... b ];
+const c = {
   a: 999,
   b: 1000,
 };
-const c = a.$( 1 );
-[ ... c ];
-$( b );
+$( c );
 `````
 
 ## Globals

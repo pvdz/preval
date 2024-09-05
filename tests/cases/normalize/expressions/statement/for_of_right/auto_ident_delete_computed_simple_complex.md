@@ -63,9 +63,8 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
-const a = { a: 999, b: 1000 };
 const tmpDeleteCompProp = $(`y`);
+const arg = { y: 1 };
 const tmpCalleeParam = delete arg[tmpDeleteCompProp];
 const tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -77,6 +76,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForOfNext.value;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a, arg);
 `````
 
@@ -85,25 +85,25 @@ $(a, arg);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-const b = {
-  a: 999,
-  b: 1000,
-};
-const c = $( "y" );
-const d = delete a[ c ];
-const e = $forOf( d );
+const a = $( "y" );
+const b = { y: 1 };
+const c = delete b[ a ];
+const d = $forOf( c );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const f = e.next();
-  const g = f.done;
-  if (g) {
+  const e = d.next();
+  const f = e.done;
+  if (f) {
     break;
   }
   else {
-    f.value;
+    e.value;
   }
 }
-$( b, a );
+const g = {
+  a: 999,
+  b: 1000,
+};
+$( g, b );
 `````
 
 ## Globals

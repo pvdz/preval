@@ -53,13 +53,13 @@ $(a, x, y);
 
 
 `````js filename=intro
-const tmpCalleeParam = [`before `, ` after`];
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_x = arrPatternSplat[0];
 const tmpClusterSSA_y = arrPatternSplat[1];
+const tmpCalleeParam = [`before `, ` after`];
 $(tmpCalleeParam, tmpNestedAssignArrPatternRhs);
 $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_x, tmpClusterSSA_y);
 `````
@@ -69,15 +69,15 @@ $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_x, tmpClusterSSA_y);
 With rename=true
 
 `````js filename=intro
-const a = [ "before ", " after" ];
-const b = $( 3 );
-const c = $( 4 );
-const d = [ b, c ];
-const e = [ ... d ];
-const f = e[ 0 ];
-const g = e[ 1 ];
-$( a, d );
-$( d, f, g );
+const a = $( 3 );
+const b = $( 4 );
+const c = [ a, b ];
+const d = [ ... c ];
+const e = d[ 0 ];
+const f = d[ 1 ];
+const g = [ "before ", " after" ];
+$( g, c );
+$( c, e, f );
 `````
 
 ## Globals

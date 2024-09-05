@@ -69,7 +69,6 @@ $(a);
 
 `````js filename=intro
 const b = { x: 1 };
-const a = { a: 999, b: 1000 };
 const tmpChainRootProp = $(b);
 const tmpIfTest = tmpChainRootProp == null;
 let tmpForOfGen = undefined;
@@ -88,6 +87,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForOfNext.value;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -97,31 +97,31 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = {
-  a: 999,
-  b: 1000,
-};
-const c = $( a );
-const d = c == null;
-let e = undefined;
-if (d) {
-  e = $forOf( undefined );
+const b = $( a );
+const c = b == null;
+let d = undefined;
+if (c) {
+  d = $forOf( undefined );
 }
 else {
-  const f = c.x;
-  e = $forOf( f );
+  const e = b.x;
+  d = $forOf( e );
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const g = e.next();
-  const h = g.done;
-  if (h) {
+  const f = d.next();
+  const g = f.done;
+  if (g) {
     break;
   }
   else {
-    g.value;
+    f.value;
   }
 }
-$( b );
+const h = {
+  a: 999,
+  b: 1000,
+};
+$( h );
 `````
 
 ## Globals

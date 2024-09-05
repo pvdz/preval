@@ -55,7 +55,6 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 10, d: 20 };
-const a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $(`c`);
 const tmpCompObj = $(b);
@@ -69,6 +68,7 @@ const tmpCompProp$1 = $(`d`);
 const varInitAssignLhsComputedRhs$1 = tmpCompObj$1[tmpCompProp$1];
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedRhs + varInitAssignLhsComputedRhs$1;
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -81,24 +81,24 @@ const a = {
   c: 10,
   d: 20,
 };
-const b = {
+const b = $( a );
+const c = $( "c" );
+const d = $( a );
+const e = $( "d" );
+const f = d[ e ];
+b[c] = f;
+const g = $( a );
+const h = $( "c" );
+const i = $( a );
+const j = $( "d" );
+const k = i[ j ];
+g[h] = k;
+f + k;
+const l = {
   a: 999,
   b: 1000,
 };
-const c = $( a );
-const d = $( "c" );
-const e = $( a );
-const f = $( "d" );
-const g = e[ f ];
-c[d] = g;
-const h = $( a );
-const i = $( "c" );
-const j = $( a );
-const k = $( "d" );
-const l = j[ k ];
-h[i] = l;
-g + l;
-$( b, a );
+$( l, a );
 `````
 
 ## Globals

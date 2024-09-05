@@ -58,7 +58,6 @@ $(a);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 let tmpAnonDefaultExport = undefined;
 const tmpIfTest$1 = $ == null;
 if (tmpIfTest$1) {
@@ -68,6 +67,7 @@ if (tmpIfTest$1) {
   tmpAnonDefaultExport = tmpChainElementCall;
 }
 export { tmpAnonDefaultExport as default };
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -76,22 +76,22 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {
-  a: 999,
-  b: 1000,
-};
-let b = undefined;
-const c = $ == null;
-if (c) {
+let a = undefined;
+const b = $ == null;
+if (b) {
 
 }
 else {
-  const d = { e: $ };
-  const e = $dotCall( $, d, 1 );
-  b = e;
+  const c = { e: $ };
+  const d = $dotCall( $, c, 1 );
+  a = d;
 }
-export { b as default };
-$( a );
+export { a as default };
+const e = {
+  a: 999,
+  b: 1000,
+};
+$( e );
 `````
 
 ## Globals

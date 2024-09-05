@@ -44,10 +44,10 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 1 };
-const a = { a: 999, b: 1000 };
 const tmpCalleeParam = [`before `, ` after`];
 $(tmpCalleeParam, 1);
+const a = { a: 999, b: 1000 };
+const b = { c: 1 };
 $(a, b);
 `````
 
@@ -56,14 +56,14 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-const a = { c: 1 };
+const a = [ "before ", " after" ];
+$( a, 1 );
 const b = {
   a: 999,
   b: 1000,
 };
-const c = [ "before ", " after" ];
-$( c, 1 );
-$( b, a );
+const c = { c: 1 };
+$( b, c );
 `````
 
 ## Globals

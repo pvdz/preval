@@ -60,11 +60,10 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
-const a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
+const arg = { y: 1 };
 if (tmpIfTest) {
   $(1);
   $(2);
@@ -73,6 +72,7 @@ if (tmpIfTest) {
   delete tmpDeleteCompObj[tmpDeleteCompProp];
 } else {
 }
+const a = { a: 999, b: 1000 };
 $(a, arg);
 `````
 
@@ -81,22 +81,22 @@ $(a, arg);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-const b = {
+const a = $( 1 );
+const b = $( 1 );
+const c = a === b;
+const d = { y: 1 };
+if (c) {
+  $( 1 );
+  $( 2 );
+  const e = $( d );
+  const f = $( "y" );
+  delete e[ f ];
+}
+const g = {
   a: 999,
   b: 1000,
 };
-const c = $( 1 );
-const d = $( 1 );
-const e = c === d;
-if (e) {
-  $( 1 );
-  $( 2 );
-  const f = $( a );
-  const g = $( "y" );
-  delete f[ g ];
-}
-$( b, a );
+$( g, d );
 `````
 
 ## Globals

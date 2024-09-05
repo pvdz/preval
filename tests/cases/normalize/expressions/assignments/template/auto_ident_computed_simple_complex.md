@@ -50,8 +50,8 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 1 };
 const tmpAssignRhsCompProp = $(`c`);
+const b = { c: 1 };
 const a = b[tmpAssignRhsCompProp];
 const tmpBinBothRhs = $coerce(a, `string`);
 const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
@@ -64,13 +64,13 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-const a = { c: 1 };
-const b = $( "c" );
-const c = a[ b ];
+const a = $( "c" );
+const b = { c: 1 };
+const c = b[ a ];
 const d = $coerce( c, "string" );
 const e = `before  ${tmpBinBothRhs}  after`;
 $( e );
-$( c, a );
+$( c, b );
 `````
 
 ## Globals

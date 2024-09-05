@@ -999,6 +999,8 @@ export function getCleanTypingObject() {
     worstCaseValueSet: undefined, // undefined | Set<primitives>. If set, this is the bound set of possible (primitive) values for this binding. If undefined, the set can not be bound explicitly or contains non-primitives.
     mustBePrimitive: undefined, // When we don't know the actual type but we know it must be a primitive. Used to determine if something might spy curing coercion
     primitiveValue: undefined, // TODO: merge with mustBeValue
+
+    isSimpleObject: undefined, // Is this an object literal that does not escape and without method calls? In that case a property read should not be able to spy. Checked during phase1.1
   };
 }
 export function getUnknownTypingObject(toInit) {
@@ -1816,6 +1818,7 @@ export function mergeTyping(from, into) {
       worstCaseValueSet,
       mustBePrimitive,
       primitiveValue, // TODO: remove
+      isSimpleObject,
       ...unknown
     } = from;
     ASSERT(Object.keys(unknown).length === 0, 'add new .typing properties here as well (from)', unknown);
@@ -1836,6 +1839,7 @@ export function mergeTyping(from, into) {
       worstCaseValueSet,
       mustBePrimitive,
       primitiveValue, // TODO: remove
+      isSimpleObject,
       ...unknown
     } = into;
     ASSERT(Object.keys(unknown).length === 0, 'add new .typing properties here as well (into)', unknown);

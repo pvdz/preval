@@ -64,9 +64,8 @@ $(a);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
-const tmpIfTest = $ == null;
 let tmpForInGen = undefined;
+const tmpIfTest = $ == null;
 if (tmpIfTest) {
   tmpForInGen = $forIn(undefined);
 } else {
@@ -82,6 +81,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForInNext.value;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -90,30 +90,30 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {
-  a: 999,
-  b: 1000,
-};
+let a = undefined;
 const b = $ == null;
-let c = undefined;
 if (b) {
-  c = $forIn( undefined );
+  a = $forIn( undefined );
 }
 else {
-  const d = $( 1 );
-  c = $forIn( d );
+  const c = $( 1 );
+  a = $forIn( c );
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const e = c.next();
-  const f = e.done;
-  if (f) {
+  const d = a.next();
+  const e = d.done;
+  if (e) {
     break;
   }
   else {
-    e.value;
+    d.value;
   }
 }
-$( a );
+const f = {
+  a: 999,
+  b: 1000,
+};
+$( f );
 `````
 
 ## Globals

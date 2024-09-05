@@ -50,7 +50,6 @@ $(a);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpIfTest = $ == null;
 if (tmpIfTest) {
   $(`before  undefined  after`);
@@ -60,6 +59,7 @@ if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $(tmpClusterSSA_tmpCalleeParam);
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -68,21 +68,21 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {
-  a: 999,
-  b: 1000,
-};
-const b = $ == null;
-if (b) {
+const a = $ == null;
+if (a) {
   $( "before  undefined  after" );
 }
 else {
-  const c = $( 1 );
-  const d = $coerce( c, "string" );
-  const e = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
-  $( e );
+  const b = $( 1 );
+  const c = $coerce( b, "string" );
+  const d = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  $( d );
 }
-$( a );
+const e = {
+  a: 999,
+  b: 1000,
+};
+$( e );
 `````
 
 ## Globals

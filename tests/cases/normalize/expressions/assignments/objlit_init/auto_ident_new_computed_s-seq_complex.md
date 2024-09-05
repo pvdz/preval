@@ -47,8 +47,8 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
 const tmpCompProp = $(`\$`);
+const b = { $: $ };
 const tmpNewCallee = b[tmpCompProp];
 const tmpClusterSSA_a = new tmpNewCallee(1);
 const tmpCalleeParam = { x: tmpClusterSSA_a };
@@ -61,9 +61,9 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-const a = { $: $ };
-const b = $( "$" );
-const c = a[ b ];
+const a = $( "$" );
+const b = { $: $ };
+const c = b[ a ];
 const d = new c( 1 );
 const e = { x: d };
 $( e );

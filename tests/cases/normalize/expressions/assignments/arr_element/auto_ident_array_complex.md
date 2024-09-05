@@ -50,9 +50,9 @@ $(a);
 `````js filename=intro
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const a = [tmpArrElement, 2, tmpArrElement$3];
 const tmpArrElement$5 = $(1);
 const tmpArrElement$9 = $(3);
+const a = [tmpArrElement, 2, tmpArrElement$3];
 const tmpClusterSSA_a = [tmpArrElement$5, 2, tmpArrElement$9];
 const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
@@ -66,11 +66,11 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = $( 3 );
-const c = [ a, 2, b ];
-const d = $( 1 );
-const e = $( 3 );
-const f = [ d, 2, e ];
-const g = c + f;
+const c = $( 1 );
+const d = $( 3 );
+const e = [ a, 2, b ];
+const f = [ c, 2, d ];
+const g = e + f;
 $( g );
 $( f );
 `````

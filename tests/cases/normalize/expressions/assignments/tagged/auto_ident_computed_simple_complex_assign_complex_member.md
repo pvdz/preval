@@ -51,13 +51,13 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 10, d: 20 };
-const tmpCalleeParam = [`before `, ` after`];
 const tmpNestedAssignComMemberProp = $(`c`);
+const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
+const tmpCalleeParam = [`before `, ` after`];
 $(tmpCalleeParam, tmpNestedAssignPropRhs);
 $(tmpNestedAssignPropRhs, b);
 `````
@@ -67,18 +67,18 @@ $(tmpNestedAssignPropRhs, b);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = $( "c" );
+const b = {
   c: 10,
   d: 20,
 };
-const b = [ "before ", " after" ];
-const c = $( "c" );
-const d = $( a );
-const e = $( "d" );
-const f = d[ e ];
-a[c] = f;
-$( b, f );
-$( f, a );
+const c = $( b );
+const d = $( "d" );
+const e = c[ d ];
+b[a] = e;
+const f = [ "before ", " after" ];
+$( f, e );
+$( e, b );
 `````
 
 ## Globals

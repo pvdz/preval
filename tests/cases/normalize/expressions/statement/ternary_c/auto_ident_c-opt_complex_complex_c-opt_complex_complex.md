@@ -59,11 +59,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = { y: 1 };
 const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
+  const tmpObjLitVal = { y: 1 };
   const b = { x: tmpObjLitVal };
   const tmpChainElementCall = $(b);
   const tmpIfTest$1 = tmpChainElementCall == null;
@@ -88,13 +88,13 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-const b = $( 0 );
-if (b) {
+const a = $( 0 );
+if (a) {
   $( 100 );
 }
 else {
-  const c = { x: a };
+  const b = { y: 1 };
+  const c = { x: b };
   const d = $( c );
   const e = d == null;
   if (e) {

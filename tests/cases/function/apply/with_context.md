@@ -50,8 +50,6 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 = { x: 15 };
-const tmpCalleeParam$3 = [`x`];
 const tmpCallObj = function () {
   const tmpPrevalAliasThis = this;
   debugger;
@@ -59,6 +57,8 @@ const tmpCallObj = function () {
   $(tmpCalleeParam$5);
   return undefined;
 };
+const tmpCalleeParam$1 = { x: 15 };
+const tmpCalleeParam$3 = [`x`];
 const tmpCalleeParam = tmpCallObj.apply(tmpCalleeParam$1, tmpCalleeParam$3);
 $(tmpCalleeParam);
 `````
@@ -68,16 +68,16 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = { x: 15 };
-const b = [ "x" ];
-const c = function() {
-  const d = this;
+const a = function() {
+  const b = this;
   debugger;
-  const e = d.x;
-  $( e );
+  const c = b.x;
+  $( c );
   return undefined;
 };
-const f = c.apply( a, b );
+const d = { x: 15 };
+const e = [ "x" ];
+const f = a.apply( d, e );
 $( f );
 `````
 

@@ -82,12 +82,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = { y: 1 };
-const b = { x: tmpObjLitVal };
-const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = { x: 1 };
 const tmpCalleeParam = $(tmpCalleeParam$1);
 const tmpForInGen = $forIn(tmpCalleeParam);
+const tmpObjLitVal = { y: 1 };
+const b = { x: tmpObjLitVal };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext = tmpForInGen.next();
   const tmpIfTest = tmpForInNext.done;
@@ -114,6 +113,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -122,47 +122,47 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-const b = { x: a };
-const c = {
-  a: 999,
-  b: 1000,
-};
-const d = { x: 1 };
-const e = $( d );
-const f = $forIn( e );
+const a = { x: 1 };
+const b = $( a );
+const c = $forIn( b );
+const d = { y: 1 };
+const e = { x: d };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const g = f.next();
-  const h = g.done;
-  if (h) {
+  const f = c.next();
+  const g = f.done;
+  if (g) {
     break;
   }
   else {
-    let i = undefined;
-    const j = $( b );
-    const k = j == null;
-    if (k) {
+    let h = undefined;
+    const i = $( e );
+    const j = i == null;
+    if (j) {
 
     }
     else {
-      const l = $( "x" );
-      const m = j[ l ];
-      const n = m == null;
-      if (n) {
+      const k = $( "x" );
+      const l = i[ k ];
+      const m = l == null;
+      if (m) {
 
       }
       else {
-        const o = $( "y" );
-        const p = m[ o ];
-        i = p;
+        const n = $( "y" );
+        const o = l[ n ];
+        h = o;
       }
     }
-    const q = i;
-    const r = g.value;
-    q.x = r;
+    const p = h;
+    const q = f.value;
+    p.x = q;
   }
 }
-$( c );
+const r = {
+  a: 999,
+  b: 1000,
+};
+$( r );
 `````
 
 ## Globals

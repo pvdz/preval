@@ -53,7 +53,6 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`c`);
 tmpCompObj[tmpCompProp];
@@ -68,6 +67,7 @@ if (tmpIfTest) {
   }
 } else {
 }
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -77,18 +77,14 @@ With rename=true
 
 `````js filename=intro
 const a = { c: 1 };
-const b = {
-  a: 999,
-  b: 1000,
-};
-const c = $( a );
-const d = $( "c" );
-c[ d ];
-const e = $( 0 );
-if (e) {
+const b = $( a );
+const c = $( "c" );
+b[ c ];
+const d = $( 0 );
+if (d) {
   while ($LOOP_UNROLL_10) {
-    const f = $( 0 );
-    if (f) {
+    const e = $( 0 );
+    if (e) {
 
     }
     else {
@@ -96,7 +92,11 @@ if (e) {
     }
   }
 }
-$( b, a );
+const f = {
+  a: 999,
+  b: 1000,
+};
+$( f, a );
 `````
 
 ## Globals

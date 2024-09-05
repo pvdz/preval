@@ -45,8 +45,8 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const a = !tmpUnaryArg;
 const tmpUnaryArg$1 = $(100);
+const a = !tmpUnaryArg;
 const tmpClusterSSA_a = !tmpUnaryArg$1;
 const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
@@ -59,10 +59,10 @@ With rename=true
 
 `````js filename=intro
 const a = $( 100 );
-const b = !a;
-const c = $( 100 );
-const d = !c;
-const e = b + d;
+const b = $( 100 );
+const c = !a;
+const d = !b;
+const e = c + d;
 $( e );
 $( d );
 `````

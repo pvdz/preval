@@ -50,13 +50,13 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-const a = { a: 999, b: 1000 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 const tmpCallCallee$1 = delete tmpDeleteCompObj[tmpDeleteCompProp];
 const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
 const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
+const a = { a: 999, b: 1000 };
 $(a, arg);
 `````
 
@@ -66,17 +66,17 @@ With rename=true
 
 `````js filename=intro
 const a = { y: 1 };
-const b = {
+const b = $( a );
+const c = $( "y" );
+const d = delete b[ c ];
+const e = $coerce( d, "string" );
+const f = `before  ${tmpBinBothRhs}  after`;
+$( f );
+const g = {
   a: 999,
   b: 1000,
 };
-const c = $( a );
-const d = $( "y" );
-const e = delete c[ d ];
-const f = $coerce( e, "string" );
-const g = `before  ${tmpBinBothRhs}  after`;
-$( g );
-$( b, a );
+$( g, a );
 `````
 
 ## Globals

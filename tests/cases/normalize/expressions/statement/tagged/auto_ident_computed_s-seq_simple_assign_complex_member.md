@@ -49,15 +49,15 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 10, d: 20 };
-const a = { a: 999, b: 1000 };
-const tmpCalleeParam = [`before `, ` after`];
 const varInitAssignLhsComputedProp = $(`c`);
+const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+const tmpCalleeParam = [`before `, ` after`];
 $(tmpCalleeParam, varInitAssignLhsComputedRhs);
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -66,22 +66,22 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = $( "c" );
+const b = {
   c: 10,
   d: 20,
 };
-const b = {
+const c = $( b );
+const d = $( "d" );
+const e = c[ d ];
+b[a] = e;
+const f = [ "before ", " after" ];
+$( f, e );
+const g = {
   a: 999,
   b: 1000,
 };
-const c = [ "before ", " after" ];
-const d = $( "c" );
-const e = $( a );
-const f = $( "d" );
-const g = e[ f ];
-a[d] = g;
-$( c, g );
-$( b, a );
+$( g, b );
 `````
 
 ## Globals

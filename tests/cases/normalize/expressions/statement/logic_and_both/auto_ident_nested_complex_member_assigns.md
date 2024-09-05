@@ -103,7 +103,6 @@ $(a, b, c);
 
 `````js filename=intro
 const b = { x: 1 };
-const a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $(`x`);
 const varInitAssignLhsComputedObj$1 = $(b);
@@ -140,6 +139,7 @@ varInitAssignLhsComputedObj$15[varInitAssignLhsComputedProp$15] = 3;
 varInitAssignLhsComputedObj$13[varInitAssignLhsComputedProp$13] = 3;
 varInitAssignLhsComputedObj$11[varInitAssignLhsComputedProp$11] = 3;
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
+const a = { a: 999, b: 1000 };
 $(a, b, 3);
 `````
 
@@ -149,47 +149,47 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = {
+const b = $( a );
+const c = $( "x" );
+const d = $( a );
+const e = $( "x" );
+const f = $( a );
+const g = $( "x" );
+const h = $( a );
+const i = $( "x" );
+const j = $( a );
+const k = $( "x" );
+const l = $( a );
+const m = $( "x" );
+l[m] = 3;
+j[k] = 3;
+h[i] = 3;
+f[g] = 3;
+d[e] = 3;
+b[c] = 3;
+const n = $( a );
+const o = $( "x" );
+const p = $( a );
+const q = $( "x" );
+const r = $( a );
+const s = $( "x" );
+const t = $( a );
+const u = $( "x" );
+const v = $( a );
+const w = $( "x" );
+const x = $( a );
+const y = $( "x" );
+x[y] = 3;
+v[w] = 3;
+t[u] = 3;
+r[s] = 3;
+p[q] = 3;
+n[o] = 3;
+const z = {
   a: 999,
   b: 1000,
 };
-const c = $( a );
-const d = $( "x" );
-const e = $( a );
-const f = $( "x" );
-const g = $( a );
-const h = $( "x" );
-const i = $( a );
-const j = $( "x" );
-const k = $( a );
-const l = $( "x" );
-const m = $( a );
-const n = $( "x" );
-m[n] = 3;
-k[l] = 3;
-i[j] = 3;
-g[h] = 3;
-e[f] = 3;
-c[d] = 3;
-const o = $( a );
-const p = $( "x" );
-const q = $( a );
-const r = $( "x" );
-const s = $( a );
-const t = $( "x" );
-const u = $( a );
-const v = $( "x" );
-const w = $( a );
-const x = $( "x" );
-const y = $( a );
-const z = $( "x" );
-y[z] = 3;
-w[x] = 3;
-u[v] = 3;
-s[t] = 3;
-q[r] = 3;
-o[p] = 3;
-$( b, a, 3 );
+$( z, a, 3 );
 `````
 
 ## Globals

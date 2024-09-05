@@ -100,8 +100,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 $(1);
-const arr = [`two`, `three`, `four`, `five`, `one`];
 const tmpCalleeParam = [`two`, `three`, `four`, `five`, `one`];
+const arr = [`two`, `three`, `four`, `five`, `one`];
 try {
   $(tmpCalleeParam);
 } catch (e) {
@@ -156,53 +156,53 @@ $( 1 );
 const a = [ "two", "three", "four", "five", "one" ];
 const b = [ "two", "three", "four", "five", "one" ];
 try {
-  $( b );
+  $( a );
 }
 catch (c) {
-  const d = a.shift();
-  a.push( d );
+  const d = b.shift();
+  b.push( d );
 }
 $( false );
 $( 1 );
-const e = a[ 2 ];
+const e = b[ 2 ];
 const f = e === 820304;
 if (f) {
 
 }
 else {
-  const g = a.shift();
-  a.push( g );
-  const h = a.slice( 0 );
+  const g = b.shift();
+  b.push( g );
+  const h = b.slice( 0 );
   try {
     $( h );
   }
   catch (i) {
-    const j = a.shift();
-    a.push( j );
+    const j = b.shift();
+    b.push( j );
   }
   while ($LOOP_UNROLL_9) {
     $( false );
     $( 1 );
-    const k = a[ 2 ];
+    const k = b[ 2 ];
     const l = k === 820304;
     if (l) {
       break;
     }
     else {
-      const m = a.shift();
-      a.push( m );
-      const n = a.slice( 0 );
+      const m = b.shift();
+      b.push( m );
+      const n = b.slice( 0 );
       try {
         $( n );
       }
       catch (o) {
-        const p = a.shift();
-        a.push( p );
+        const p = b.shift();
+        b.push( p );
       }
     }
   }
 }
-const q = a.slice( 0, 3 );
+const q = b.slice( 0, 3 );
 $( q );
 `````
 

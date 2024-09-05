@@ -49,8 +49,8 @@ $(a, arg);
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-const a = typeof tmpUnaryArg;
 const tmpUnaryArg$1 = $(1);
+const a = typeof tmpUnaryArg;
 const tmpClusterSSA_a = typeof tmpUnaryArg$1;
 const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
@@ -63,10 +63,10 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-const b = typeof a;
-const c = $( 1 );
-const d = typeof c;
-const e = b + d;
+const b = $( 1 );
+const c = typeof a;
+const d = typeof b;
+const e = c + d;
 $( e );
 $( d, 1 );
 `````

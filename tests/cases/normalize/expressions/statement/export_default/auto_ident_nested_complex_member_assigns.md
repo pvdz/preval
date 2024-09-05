@@ -72,7 +72,6 @@ $(a, b, c);
 
 `````js filename=intro
 const b = { x: 1 };
-const a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $(`x`);
 const varInitAssignLhsComputedObj$1 = $(b);
@@ -93,6 +92,7 @@ varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 const tmpAnonDefaultExport = 3;
 export { tmpAnonDefaultExport as default };
+const a = { a: 999, b: 1000 };
 $(a, b, 3);
 `````
 
@@ -102,31 +102,31 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = {
+const b = $( a );
+const c = $( "x" );
+const d = $( a );
+const e = $( "x" );
+const f = $( a );
+const g = $( "x" );
+const h = $( a );
+const i = $( "x" );
+const j = $( a );
+const k = $( "x" );
+const l = $( a );
+const m = $( "x" );
+l[m] = 3;
+j[k] = 3;
+h[i] = 3;
+f[g] = 3;
+d[e] = 3;
+b[c] = 3;
+const n = 3;
+export { n as default };
+const o = {
   a: 999,
   b: 1000,
 };
-const c = $( a );
-const d = $( "x" );
-const e = $( a );
-const f = $( "x" );
-const g = $( a );
-const h = $( "x" );
-const i = $( a );
-const j = $( "x" );
-const k = $( a );
-const l = $( "x" );
-const m = $( a );
-const n = $( "x" );
-m[n] = 3;
-k[l] = 3;
-i[j] = 3;
-g[h] = 3;
-e[f] = 3;
-c[d] = 3;
-const o = 3;
-export { o as default };
-$( b, a, 3 );
+$( o, a, 3 );
 `````
 
 ## Globals

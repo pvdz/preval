@@ -68,9 +68,9 @@ $(a);
 
 
 `````js filename=intro
+let a = undefined;
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
-let a = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
@@ -117,10 +117,10 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-const b = { x: a };
-let c = undefined;
-const d = $( b );
+let a = undefined;
+const b = { y: 1 };
+const c = { x: b };
+const d = $( c );
 const e = d == null;
 if (e) {
 
@@ -135,13 +135,13 @@ else {
   else {
     const i = $( "y" );
     const j = g[ i ];
-    c = j;
+    a = j;
   }
 }
-if (c) {
+if (a) {
   while ($LOOP_UNROLL_10) {
     $( 1 );
-    const k = $( b );
+    const k = $( c );
     const l = k == null;
     if (l) {
 
@@ -156,10 +156,10 @@ if (c) {
       else {
         const p = $( "y" );
         const q = n[ p ];
-        c = q;
+        a = q;
       }
     }
-    if (c) {
+    if (a) {
 
     }
     else {
@@ -167,7 +167,7 @@ if (c) {
     }
   }
 }
-$( c );
+$( a );
 `````
 
 ## Globals

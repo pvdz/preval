@@ -56,10 +56,10 @@ $(a, b);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
+const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(a, 0);
 } else {
@@ -72,18 +72,18 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = $( 1 );
+const b = $( 1 );
+const c = a === b;
+const d = {
   a: 999,
   b: 1000,
 };
-const b = $( 1 );
-const c = $( 1 );
-const d = b === c;
-if (d) {
-  $( a, 0 );
+if (c) {
+  $( d, 0 );
 }
 else {
-  $( a, 1 );
+  $( d, 1 );
 }
 `````
 

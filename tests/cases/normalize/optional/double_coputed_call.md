@@ -60,10 +60,10 @@ if (tmpIfTest$3) {
 
 
 `````js filename=intro
+let tmpCalleeParam = undefined;
 const tmpObjLitVal$1 = { z: $ };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const a = { x: tmpObjLitVal };
-let tmpCalleeParam = undefined;
 const tmpChainElementCall$3 = $(a);
 const tmpIfTest = tmpChainElementCall$3 == null;
 if (tmpIfTest) {
@@ -93,11 +93,11 @@ if (tmpIfTest$3) {
 With rename=true
 
 `````js filename=intro
-const a = { z: $ };
-const b = { y: a };
-const c = { x: b };
-let d = undefined;
-const e = $( c );
+let a = undefined;
+const b = { z: $ };
+const c = { y: b };
+const d = { x: c };
+const e = $( d );
 const f = e == null;
 if (f) {
 
@@ -114,10 +114,10 @@ else {
     const k = h[ j ];
     const l = $( "z" );
     const m = k[ l ];
-    d = m;
+    a = m;
   }
 }
-const n = $( d );
+const n = $( a );
 const o = n == null;
 if (o) {
 

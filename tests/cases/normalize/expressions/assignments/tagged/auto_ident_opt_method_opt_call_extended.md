@@ -60,9 +60,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = [`before `, ` after`];
 let a = undefined;
 const tmpIfTest$1 = $ == null;
+const tmpCalleeParam = [`before `, ` after`];
 if (tmpIfTest$1) {
   $(tmpCalleeParam, undefined);
 } else {
@@ -79,19 +79,19 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = [ "before ", " after" ];
-let b = undefined;
-const c = $ == null;
-if (c) {
-  $( a, undefined );
+let a = undefined;
+const b = $ == null;
+const c = [ "before ", " after" ];
+if (b) {
+  $( c, undefined );
 }
 else {
   const d = { e: $ };
   const e = $dotCall( $, d, 1 );
-  b = e;
-  $( a, e );
+  a = e;
+  $( c, e );
 }
-$( b );
+$( a );
 `````
 
 ## Globals

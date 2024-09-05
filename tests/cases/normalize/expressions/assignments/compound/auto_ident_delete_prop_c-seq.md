@@ -48,12 +48,12 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
-const a = { a: 999, b: 1000 };
 $(1);
 $(2);
+const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
 const tmpBinBothRhs = delete tmpDeleteObj.y;
+const a = { a: 999, b: 1000 };
 const tmpClusterSSA_a = a * tmpBinBothRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, arg);
@@ -64,16 +64,16 @@ $(tmpClusterSSA_a, arg);
 With rename=true
 
 `````js filename=intro
+$( 1 );
+$( 2 );
 const a = { y: 1 };
-const b = {
+const b = $( a );
+const c = delete b.y;
+const d = {
   a: 999,
   b: 1000,
 };
-$( 1 );
-$( 2 );
-const c = $( a );
-const d = delete c.y;
-const e = b * d;
+const e = d * c;
 $( e );
 $( e, a );
 `````

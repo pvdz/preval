@@ -49,7 +49,6 @@ $(a, b);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 let tmpAnonDefaultExport = undefined;
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
@@ -58,6 +57,7 @@ const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_b = arrPatternSplat[0];
 tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
 export { tmpAnonDefaultExport as default };
+const a = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_b);
 `````
 
@@ -66,19 +66,19 @@ $(a, tmpClusterSSA_b);
 With rename=true
 
 `````js filename=intro
-const a = {
+let a = undefined;
+const b = $( 2 );
+const c = [ b ];
+const d = $( c );
+const e = [ ... d ];
+const f = e[ 0 ];
+a = d;
+export { a as default };
+const g = {
   a: 999,
   b: 1000,
 };
-let b = undefined;
-const c = $( 2 );
-const d = [ c ];
-const e = $( d );
-const f = [ ... e ];
-const g = f[ 0 ];
-b = e;
-export { b as default };
-$( a, g );
+$( g, f );
 `````
 
 ## Globals

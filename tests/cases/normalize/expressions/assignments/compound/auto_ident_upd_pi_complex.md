@@ -52,12 +52,12 @@ $(a, b);
 
 `````js filename=intro
 const b = { x: 1 };
-const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = $(b);
 const varInitAssignLhsComputedObj = $(tmpCalleeParam$1);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;
 const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+const a = { a: 999, b: 1000 };
 const tmpClusterSSA_a = a * varInitAssignLhsComputedRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, b);
@@ -69,16 +69,16 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = {
+const b = $( a );
+const c = $( b );
+const d = c.x;
+const e = d + 1;
+c.x = e;
+const f = {
   a: 999,
   b: 1000,
 };
-const c = $( a );
-const d = $( c );
-const e = d.x;
-const f = e + 1;
-d.x = f;
-const g = b * f;
+const g = f * e;
 $( g );
 $( g, a );
 `````

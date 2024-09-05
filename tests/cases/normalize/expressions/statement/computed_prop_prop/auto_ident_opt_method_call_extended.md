@@ -57,10 +57,10 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
-const a = { a: 999, b: 1000 };
-const obj = {};
 const tmpChainElementCall = tmpObjLitVal$1.e(1);
+const obj = {};
 obj[tmpChainElementCall];
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -70,14 +70,14 @@ With rename=true
 
 `````js filename=intro
 const a = { e: $ };
-const b = {
+const b = a.e( 1 );
+const c = {};
+c[ b ];
+const d = {
   a: 999,
   b: 1000,
 };
-const c = {};
-const d = a.e( 1 );
-c[ d ];
-$( b );
+$( d );
 `````
 
 ## Globals

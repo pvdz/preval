@@ -68,7 +68,6 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 10, d: 20 };
-const a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $(`c`);
 const tmpCompObj = $(b);
@@ -85,6 +84,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForOfNext.value;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -97,28 +97,28 @@ const a = {
   c: 10,
   d: 20,
 };
-const b = {
-  a: 999,
-  b: 1000,
-};
-const c = $( a );
-const d = $( "c" );
-const e = $( a );
-const f = $( "d" );
-const g = e[ f ];
-c[d] = g;
-const h = $forOf( g );
+const b = $( a );
+const c = $( "c" );
+const d = $( a );
+const e = $( "d" );
+const f = d[ e ];
+b[c] = f;
+const g = $forOf( f );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const i = h.next();
-  const j = i.done;
-  if (j) {
+  const h = g.next();
+  const i = h.done;
+  if (i) {
     break;
   }
   else {
-    i.value;
+    h.value;
   }
 }
-$( b, a );
+const j = {
+  a: 999,
+  b: 1000,
+};
+$( j, a );
 `````
 
 ## Globals

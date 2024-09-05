@@ -59,11 +59,9 @@ $(a);
 
 
 `````js filename=intro
+let tmpCalleeParam$1 = undefined;
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
-const a = { a: 999, b: 1000 };
-const tmpCalleeParam = [`before `, ` after`];
-let tmpCalleeParam$1 = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
@@ -78,7 +76,9 @@ if (tmpIfTest) {
     tmpCalleeParam$1 = tmpChainElementObject$1;
   }
 }
+const tmpCalleeParam = [`before `, ` after`];
 $(tmpCalleeParam, tmpCalleeParam$1);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -87,34 +87,34 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-const b = { x: a };
-const c = {
-  a: 999,
-  b: 1000,
-};
-const d = [ "before ", " after" ];
-let e = undefined;
-const f = $( b );
-const g = f == null;
-if (g) {
+let a = undefined;
+const b = { y: 1 };
+const c = { x: b };
+const d = $( c );
+const e = d == null;
+if (e) {
 
 }
 else {
-  const h = $( "x" );
-  const i = f[ h ];
-  const j = i == null;
-  if (j) {
+  const f = $( "x" );
+  const g = d[ f ];
+  const h = g == null;
+  if (h) {
 
   }
   else {
-    const k = $( "y" );
-    const l = i[ k ];
-    e = l;
+    const i = $( "y" );
+    const j = g[ i ];
+    a = j;
   }
 }
-$( d, e );
-$( c );
+const k = [ "before ", " after" ];
+$( k, a );
+const l = {
+  a: 999,
+  b: 1000,
+};
+$( l );
 `````
 
 ## Globals

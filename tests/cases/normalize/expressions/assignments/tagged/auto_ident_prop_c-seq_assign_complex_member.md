@@ -51,12 +51,12 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 10, d: 20 };
-const tmpCalleeParam = [`before `, ` after`];
 const tmpNestedAssignObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
+const tmpCalleeParam = [`before `, ` after`];
 $(tmpCalleeParam, tmpNestedAssignPropRhs);
 $(tmpNestedAssignPropRhs, b);
 `````
@@ -70,14 +70,14 @@ const a = {
   c: 10,
   d: 20,
 };
-const b = [ "before ", " after" ];
+const b = $( a );
 const c = $( a );
-const d = $( a );
-const e = $( "d" );
-const f = d[ e ];
-c.c = f;
-$( b, f );
-$( f, a );
+const d = $( "d" );
+const e = c[ d ];
+b.c = e;
+const f = [ "before ", " after" ];
+$( f, e );
+$( e, a );
 `````
 
 ## Globals

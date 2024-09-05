@@ -66,10 +66,10 @@ $(x, y, z);
 
 
 `````js filename=intro
-const z = [10, 20, 30];
 const tmpSwitchDisc = $(`a`);
 const tmpBinBothRhs = $(`a`);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
+const z = [10, 20, 30];
 if (tmpIfTest) {
   $(1);
   $(2);
@@ -87,19 +87,19 @@ $(1, 2, z);
 With rename=true
 
 `````js filename=intro
-const a = [ 10, 20, 30 ];
+const a = $( "a" );
 const b = $( "a" );
-const c = $( "a" );
-const d = b === c;
-if (d) {
+const c = a === b;
+const d = [ 10, 20, 30 ];
+if (c) {
   $( 1 );
   $( 2 );
-  const e = $( a );
+  const e = $( d );
   const f = [ ... e ];
   f[ 0 ];
   f[ 1 ];
 }
-$( 1, 2, a );
+$( 1, 2, d );
 `````
 
 ## Globals

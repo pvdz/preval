@@ -67,10 +67,10 @@ $(a, b, c);
 
 
 `````js filename=intro
-const b = { x: 2 };
 const tmpSwitchDisc = $(`a`);
 const tmpBinBothRhs = $(`a`);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
+const b = { x: 2 };
 if (tmpIfTest) {
   const varInitAssignLhsComputedObj = $(3);
   const varInitAssignLhsComputedRhs = $(4);
@@ -86,17 +86,17 @@ $(1, b, 3);
 With rename=true
 
 `````js filename=intro
-const a = { x: 2 };
+const a = $( "a" );
 const b = $( "a" );
-const c = $( "a" );
-const d = b === c;
-if (d) {
+const c = a === b;
+const d = { x: 2 };
+if (c) {
   const e = $( 3 );
   const f = $( 4 );
   e.y = f;
-  a.x = f;
+  d.x = f;
 }
-$( 1, a, 3 );
+$( 1, d, 3 );
 `````
 
 ## Globals

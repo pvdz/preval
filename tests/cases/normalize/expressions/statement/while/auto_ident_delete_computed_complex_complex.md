@@ -50,7 +50,6 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-const a = { a: 999, b: 1000 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 const tmpIfTest = delete tmpDeleteCompObj[tmpDeleteCompProp];
@@ -67,6 +66,7 @@ if (tmpIfTest) {
   }
 } else {
 }
+const a = { a: 999, b: 1000 };
 $(a, arg);
 `````
 
@@ -76,20 +76,16 @@ With rename=true
 
 `````js filename=intro
 const a = { y: 1 };
-const b = {
-  a: 999,
-  b: 1000,
-};
-const c = $( a );
-const d = $( "y" );
-const e = delete c[ d ];
-if (e) {
+const b = $( a );
+const c = $( "y" );
+const d = delete b[ c ];
+if (d) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const f = $( a );
-    const g = $( "y" );
-    const h = delete f[ g ];
-    if (h) {
+    const e = $( a );
+    const f = $( "y" );
+    const g = delete e[ f ];
+    if (g) {
 
     }
     else {
@@ -97,7 +93,11 @@ if (e) {
     }
   }
 }
-$( b, a );
+const h = {
+  a: 999,
+  b: 1000,
+};
+$( h, a );
 `````
 
 ## Globals

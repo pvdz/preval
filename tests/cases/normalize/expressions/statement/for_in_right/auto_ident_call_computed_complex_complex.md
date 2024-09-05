@@ -64,7 +64,6 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-const a = { a: 999, b: 1000 };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $(`\$`);
 const tmpCalleeParam = tmpCallCompObj[tmpCallCompProp](1);
@@ -78,6 +77,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForInNext.value;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -87,25 +87,25 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-const b = {
-  a: 999,
-  b: 1000,
-};
-const c = $( a );
-const d = $( "$" );
-const e = c[ d ]( 1 );
-const f = $forIn( e );
+const b = $( a );
+const c = $( "$" );
+const d = b[ c ]( 1 );
+const e = $forIn( d );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const g = f.next();
-  const h = g.done;
-  if (h) {
+  const f = e.next();
+  const g = f.done;
+  if (g) {
     break;
   }
   else {
-    g.value;
+    f.value;
   }
 }
-$( b );
+const h = {
+  a: 999,
+  b: 1000,
+};
+$( h );
 `````
 
 ## Globals

@@ -92,9 +92,9 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { x: 1 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
+const b = { x: 1 };
 const tmpCalleeParam = $(b);
 const tmpNestedAssignObj = $(tmpCalleeParam);
 const tmpBinLhs$1 = tmpNestedAssignObj.x;
@@ -124,30 +124,30 @@ $(tmpNestedPropCompoundComplexRhs, b);
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = $( 1 );
-let c = 1;
-const d = $( a );
+const a = $( 1 );
+let b = 1;
+const c = { x: 1 };
+const d = $( c );
 const e = $( d );
 const f = e.x;
 const g = f + 1;
 e.x = g;
-const h = g === b;
+const h = g === a;
 if (h) {
-  c = 0;
+  b = 0;
 }
 else {
-  const i = 2 === b;
+  const i = 2 === a;
   if (i) {
-    c = 2;
+    b = 2;
   }
 }
-const j = c <= 1;
+const j = b <= 1;
 if (j) {
   $( "fail1" );
 }
 $( "fail2" );
-$( g, a );
+$( g, c );
 `````
 
 ## Globals

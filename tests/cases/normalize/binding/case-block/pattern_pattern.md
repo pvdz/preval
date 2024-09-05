@@ -75,10 +75,10 @@ $(a, b, x, y, z);
 `````js filename=intro
 let x = 1;
 let y = 2;
-const z = [10, 20, 30];
 const tmpSwitchDisc = $(`a`);
 const tmpBinBothRhs = $(`a`);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
+const z = [10, 20, 30];
 if (tmpIfTest) {
   const arrPatternSplat$1 = [...z];
   x = arrPatternSplat$1[1];
@@ -98,19 +98,19 @@ With rename=true
 `````js filename=intro
 let a = 1;
 let b = 2;
-const c = [ 10, 20, 30 ];
+const c = $( "a" );
 const d = $( "a" );
-const e = $( "a" );
-const f = d === e;
-if (f) {
-  const g = [ ... c ];
+const e = c === d;
+const f = [ 10, 20, 30 ];
+if (e) {
+  const g = [ ... f ];
   a = g[ 1 ];
   b = g[ 2 ];
-  const h = [ ... c ];
+  const h = [ ... f ];
   h[ 0 ];
   h[ 1 ];
 }
-$( 1, 2, a, b, c );
+$( 1, 2, a, b, f );
 `````
 
 ## Globals

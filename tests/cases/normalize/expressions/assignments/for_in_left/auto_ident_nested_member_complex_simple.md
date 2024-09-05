@@ -82,12 +82,12 @@ $(a, b, c, d);
 
 
 `````js filename=intro
-const b = { x: 1 };
-const c = { y: 2 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = { x: 1 };
 const tmpCalleeParam = $(tmpCalleeParam$1);
 const tmpForInGen = $forIn(tmpCalleeParam);
+const b = { x: 1 };
+const c = { y: 2 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext = tmpForInGen.next();
   const tmpIfTest = tmpForInNext.done;
@@ -113,34 +113,34 @@ $(a, b, c, 3);
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = { y: 2 };
-let c = {
+let a = {
   a: 999,
   b: 1000,
 };
-const d = { x: 1 };
-const e = $( d );
-const f = $forIn( e );
+const b = { x: 1 };
+const c = $( b );
+const d = $forIn( c );
+const e = { x: 1 };
+const f = { y: 2 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const g = f.next();
+  const g = d.next();
   const h = g.done;
   if (h) {
     break;
   }
   else {
-    const i = $( a );
+    const i = $( e );
     const j = $( "x" );
-    const k = $( b );
+    const k = $( f );
     const l = $( "y" );
     k[l] = 3;
     i[j] = 3;
-    c = 3;
+    a = 3;
     const m = g.value;
     3.x = m;
   }
 }
-$( c, a, b, 3 );
+$( a, e, f, 3 );
 `````
 
 ## Globals

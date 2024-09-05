@@ -49,9 +49,8 @@ $(a);
 
 
 `````js filename=intro
-const b = { x: 1 };
-const a = { a: 999, b: 1000 };
 let tmpBinBothLhs = undefined;
+const b = { x: 1 };
 const tmpChainRootProp = $(b);
 const tmpIfTest = tmpChainRootProp == null;
 if (tmpIfTest) {
@@ -61,6 +60,7 @@ if (tmpIfTest) {
 }
 const tmpBinBothRhs = $(100);
 tmpBinBothLhs + tmpBinBothRhs;
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -69,24 +69,24 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = {
-  a: 999,
-  b: 1000,
-};
-let c = undefined;
-const d = $( a );
-const e = d == null;
-if (e) {
+let a = undefined;
+const b = { x: 1 };
+const c = $( b );
+const d = c == null;
+if (d) {
 
 }
 else {
-  const f = d.x;
-  c = f;
+  const e = c.x;
+  a = e;
 }
-const g = $( 100 );
-c + g;
-$( b );
+const f = $( 100 );
+a + f;
+const g = {
+  a: 999,
+  b: 1000,
+};
+$( g );
 `````
 
 ## Globals

@@ -47,8 +47,8 @@ $(a);
 
 
 `````js filename=intro
-const obj = {};
 const tmpObjLitVal = $(1);
+const obj = {};
 const a = { b: tmpObjLitVal };
 obj[a];
 const tmpAssignMemLhsObj = $(a);
@@ -61,10 +61,10 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {};
-const b = $( 1 );
-const c = { b: b };
-a[ c ];
+const a = $( 1 );
+const b = {};
+const c = { b: a };
+b[ c ];
 const d = $( c );
 d.b = 2;
 $( c );

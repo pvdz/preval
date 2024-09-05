@@ -89,9 +89,9 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
+const b = { $: $ };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`\$`);
 const tmpNewCallee = tmpCompObj[tmpCompProp];
@@ -120,24 +120,24 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-const a = { $: $ };
-const b = $( 1 );
-let c = 1;
-const d = $( a );
+const a = $( 1 );
+let b = 1;
+const c = { $: $ };
+const d = $( c );
 const e = $( "$" );
 const f = d[ e ];
 const g = new f( 1 );
-const h = g === b;
+const h = g === a;
 if (h) {
-  c = 0;
+  b = 0;
 }
 else {
-  const i = 2 === b;
+  const i = 2 === a;
   if (i) {
-    c = 2;
+    b = 2;
   }
 }
-const j = c <= 1;
+const j = b <= 1;
 if (j) {
   $( "fail1" );
 }

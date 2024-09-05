@@ -65,10 +65,10 @@ $(a, b, c, d, e);
 
 
 `````js filename=intro
-const b = { x: 1 };
-const c = { y: 2 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(100);
+const b = { x: 1 };
+const c = { y: 2 };
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {
@@ -89,27 +89,27 @@ $(a, b, c, 3, 4);
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = { y: 2 };
-let c = {
+let a = {
   a: 999,
   b: 1000,
 };
-const d = $( 100 );
-if (d) {
-  $( d );
+const b = $( 100 );
+const c = { x: 1 };
+const d = { y: 2 };
+if (b) {
+  $( b );
 }
 else {
-  const e = $( a );
+  const e = $( c );
   const f = $( "x" );
-  const g = $( b );
+  const g = $( d );
   const h = $( "y" );
   g[h] = 7;
   e[f] = 7;
-  c = 7;
+  a = 7;
   $( 7 );
 }
-$( c, a, b, 3, 4 );
+$( a, c, d, 3, 4 );
 `````
 
 ## Globals

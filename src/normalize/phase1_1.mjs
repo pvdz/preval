@@ -19,16 +19,18 @@ import {
 // This phase walks the AST a few times to discover things for which it needs phase1 to complete
 // Currently it discovers call args (for which it needs the meta.typing data)
 
-export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, refTest) {
+export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, refTest, pcodeTest, verboseTracing) {
   const ast = fdata.tenkoOutput.ast;
 
   const start = Date.now();
 
   group(
     '\n\n\n##################################\n## phase1.1 (first=' +
-    firstAfterParse +
-    ', refTest=' +
-    !!refTest +
+      firstAfterParse +
+      ', refTest=' +
+      !!refTest +
+      ', pcodeTest=' +
+      !!pcodeTest +
     ') ::  ' +
     fdata.fname +
     ', pass=' + passes + ', phase1s=', phase1s, ', len:', fdata.len, '\n##################################\n\n\n',
@@ -36,7 +38,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
   try {
     if (VERBOSE_TRACING || REF_TRACK_TRACING) {
       const code = fmat(tmat(ast, true), true);
-      console.log('\nCurrent state (start of phase1)\n--------------\n' + code + '\n--------------\n');
+      console.log('\nCurrent state (start of phase1.1)\n--------------\n' + code + '\n--------------\n');
     }
   } catch (e) {
     vlog('printing ast failed');
@@ -47,12 +49,10 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
   vlog('\n\n\n#################################################################### phase1.1 [',passes,'::', phase1s, ']\n\n\n');
 
   const tracingValueBefore = VERBOSE_TRACING;
-  if (passes > 1 || phase1s > 1) {
+  if (!verboseTracing && (passes > 1 || phase1s > 1)) {
     vlog('(Disabling verbose tracing for phase 1 after the first pass)');
     setVerboseTracing(false);
   }
-
-  let called = 0;
 
   // Discover param types. If an ident always gets invoked in the same way then that's information
   // we can use with the function param. We still have to confirm that the ref doesn't escape
@@ -60,7 +60,12 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
 
   function _callWalker(node, before, nodeType, path) {
     if (before) return;
-    if (nodeType !== 'CallExpression') return;
+
+    if (nodeType === 'CallExpression') return handleCallExpression(node);
+    if (nodeType === 'ObjectExpression') return handleObjectExpression(node, path);
+  }
+
+  function handleCallExpression(node) {
     if (node.callee.type !== 'Identifier') return;
 
     const calleeName = node.callee.name;
@@ -138,6 +143,51 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
       });
     }
     vlog('-', calleeName, ': callerArgs after call step =', meta.callerArgs);
+  }
+
+  function handleObjectExpression(objNode, path) {
+    // Verify whether it does not escape and is only assigned to
+
+    const pathNodes = path.nodes;
+    const pathProps = path.props;
+    const pathIndexes = path.indexes;
+
+    const parentNode = pathNodes[pathNodes.length - 2];
+    const parentProp = pathProps[pathProps.length - 1];
+    const parentIndex = pathIndexes[pathIndexes.length - 1];
+
+    if (parentNode.type !== 'VariableDeclarator') return;
+
+    if (parentNode.id.name === 'generatedObj') console.log('Now checking generatedObj');
+
+    const meta = fdata.globallyUniqueNamingRegistry.get(parentNode.id.name);
+    if (!meta.isConstant) return;
+
+    if (meta.reads.some(read => {
+      if (read.parentNode.type !== 'MemberExpression') return true;
+      if (read.parentProp !== 'object') return true;
+
+      // This must be either a property read or a property write.
+      // The read may not be a call. Delete is fine in this context.
+
+      // Must be the callee in normalized code, a method call, might change
+      // the object into something that spies so we can't trust that case.
+      if (read.grandNode.type === 'CallExpression') return true;
+
+      // Ok? Delete and assignment are fine in this context (they cannot create getters/setters)
+    })) {
+      // At least one bad case found, bail
+      return;
+    }
+
+    if (objNode.properties.some(pnode => pnode.kind !== 'init')) return; // obj has a getter or setter
+
+    // All reads are an object of a member expression and not a method call
+    // This means the object literal should not be able to spy when reading
+    // properties from it. That's good to know!
+
+    objNode.$p.isSimpleObject = true;
+    meta.typing.isSimpleObject = true;
   }
 
   const now = Date.now();
@@ -289,7 +339,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
 
   setVerboseTracing(tracingValueBefore);
 
-  log('\n\nEnd of phase 1. Walker called', called, 'times, took', Date.now() - start, 'ms');
+  log('\n\nEnd of phase 1.1, walker took', Date.now() - start, 'ms');
 
   groupEnd();
 }

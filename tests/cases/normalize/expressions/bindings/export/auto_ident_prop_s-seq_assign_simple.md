@@ -42,9 +42,9 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 2 };
 const a = 2;
 export { a };
+const b = { c: 2 };
 $(2, b);
 `````
 
@@ -53,10 +53,10 @@ $(2, b);
 With rename=true
 
 `````js filename=intro
-const a = { c: 2 };
-const b = 2;
-export { b as a };
-$( 2, a );
+const a = 2;
+export { a as a };
+const b = { c: 2 };
+$( 2, b );
 `````
 
 ## Globals

@@ -46,8 +46,8 @@ $(a, x);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(1);
+const a = { a: 999, b: 1000 };
 const tmpBinBothRhs = typeof tmpUnaryArg;
 const tmpClusterSSA_a = a * tmpBinBothRhs;
 $(tmpClusterSSA_a);
@@ -59,13 +59,13 @@ $(tmpClusterSSA_a, 1);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = $( 1 );
+const b = {
   a: 999,
   b: 1000,
 };
-const b = $( 1 );
-const c = typeof b;
-const d = a * c;
+const c = typeof a;
+const d = b * c;
 $( d );
 $( d, 1 );
 `````

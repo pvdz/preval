@@ -59,14 +59,14 @@ $(a, b, c, d, e);
 
 `````js filename=intro
 const b = { x: 1 };
-const c = { y: 2 };
-const a = { a: 999, b: 1000 };
 const tmpAssignComMemLhsObj = $(b);
 const tmpAssignComMemLhsProp = $(`x`);
+const c = { y: 2 };
 const varInitAssignLhsComputedObj = $(c);
 const varInitAssignLhsComputedProp = $(`y`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 7;
+const a = { a: 999, b: 1000 };
 $(a, b, c, 3, 4);
 `````
 
@@ -76,18 +76,18 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = { y: 2 };
-const c = {
+const b = $( a );
+const c = $( "x" );
+const d = { y: 2 };
+const e = $( d );
+const f = $( "y" );
+e[f] = 7;
+b[c] = 7;
+const g = {
   a: 999,
   b: 1000,
 };
-const d = $( a );
-const e = $( "x" );
-const f = $( b );
-const g = $( "y" );
-f[g] = 7;
-d[e] = 7;
-$( c, a, b, 3, 4 );
+$( g, a, d, 3, 4 );
 `````
 
 ## Globals

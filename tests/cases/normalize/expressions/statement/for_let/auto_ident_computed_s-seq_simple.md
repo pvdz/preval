@@ -53,8 +53,8 @@ while (true) {
 `````js filename=intro
 const tmpCompProp = $(`c`);
 const b = { c: 1 };
-const xyz = b[tmpCompProp];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const xyz = b[tmpCompProp];
   $(xyz);
   $(1);
 }
@@ -67,8 +67,8 @@ With rename=true
 `````js filename=intro
 const a = $( "c" );
 const b = { c: 1 };
-const c = b[ a ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const c = b[ a ];
   $( c );
   $( 1 );
 }

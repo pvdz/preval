@@ -57,7 +57,6 @@ $(a);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
@@ -67,6 +66,7 @@ if (tmpIfTest) {
   tmpBinBothLhs$1 + tmpBinBothRhs$1;
 } else {
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -75,19 +75,19 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = $( 1 );
+const b = $( 1 );
+const c = a === b;
+if (c) {
+  const d = $( 1 );
+  const e = $( 2 );
+  d + e;
+}
+const f = {
   a: 999,
   b: 1000,
 };
-const b = $( 1 );
-const c = $( 1 );
-const d = b === c;
-if (d) {
-  const e = $( 1 );
-  const f = $( 2 );
-  e + f;
-}
-$( a );
+$( f );
 `````
 
 ## Globals

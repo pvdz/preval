@@ -52,9 +52,9 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
+let tmpCalleeParam = undefined;
 const tmpObjLitVal = { c: $ };
 const a = { b: tmpObjLitVal };
-let tmpCalleeParam = undefined;
 const tmpChainElementCall = $(a);
 const tmpChainRootComputed = $(`b`);
 const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
@@ -78,10 +78,10 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = { c: $ };
-const b = { b: a };
-let c = undefined;
-const d = $( b );
+let a = undefined;
+const b = { c: $ };
+const c = { b: b };
+const d = $( c );
 const e = $( "b" );
 const f = d[ e ];
 const g = f == null;
@@ -97,10 +97,10 @@ else {
   }
   else {
     const k = $dotCall( i, f, 100 );
-    c = k;
+    a = k;
   }
 }
-$( c );
+$( a );
 `````
 
 ## Globals

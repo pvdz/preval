@@ -49,7 +49,6 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`\$`);
 const tmpNewCallee = tmpCompObj[tmpCompProp];
@@ -59,6 +58,7 @@ const tmpCompProp$1 = $(`\$`);
 const tmpNewCallee$1 = tmpCompObj$1[tmpCompProp$1];
 const tmpBinBothRhs = new tmpNewCallee$1(1);
 tmpBinBothLhs + tmpBinBothRhs;
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -68,20 +68,20 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-const b = {
+const b = $( a );
+const c = $( "$" );
+const d = b[ c ];
+const e = new d( 1 );
+const f = $( a );
+const g = $( "$" );
+const h = f[ g ];
+const i = new h( 1 );
+e + i;
+const j = {
   a: 999,
   b: 1000,
 };
-const c = $( a );
-const d = $( "$" );
-const e = c[ d ];
-const f = new e( 1 );
-const g = $( a );
-const h = $( "$" );
-const i = g[ h ];
-const j = new i( 1 );
-f + j;
-$( b );
+$( j );
 `````
 
 ## Globals

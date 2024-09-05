@@ -52,8 +52,8 @@ $(a);
 
 `````js filename=intro
 const b = { c: $ };
-const tmpCalleeParam = [`before `, ` after`];
 const tmpChainElementCall = b.c(1);
+const tmpCalleeParam = [`before `, ` after`];
 $(tmpCalleeParam, tmpChainElementCall);
 $(tmpChainElementCall);
 `````
@@ -64,10 +64,10 @@ With rename=true
 
 `````js filename=intro
 const a = { c: $ };
-const b = [ "before ", " after" ];
-const c = a.c( 1 );
-$( b, c );
-$( c );
+const b = a.c( 1 );
+const c = [ "before ", " after" ];
+$( c, b );
+$( b );
 `````
 
 ## Globals

@@ -89,11 +89,11 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 $(1);
 $(2);
+const arg = { y: 1 };
 const a = delete arg.y;
 const tmpIfTest = a === tmpSwitchValue;
 if (tmpIfTest) {
@@ -119,28 +119,28 @@ $(a, arg);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-const b = $( 1 );
-let c = 1;
+const a = $( 1 );
+let b = 1;
 $( 1 );
 $( 2 );
-const d = delete a.y;
-const e = d === b;
+const c = { y: 1 };
+const d = delete c.y;
+const e = d === a;
 if (e) {
-  c = 0;
+  b = 0;
 }
 else {
-  const f = 2 === b;
+  const f = 2 === a;
   if (f) {
-    c = 2;
+    b = 2;
   }
 }
-const g = c <= 1;
+const g = b <= 1;
 if (g) {
   $( "fail1" );
 }
 $( "fail2" );
-$( d, a );
+$( d, c );
 `````
 
 ## Globals

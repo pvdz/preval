@@ -43,8 +43,8 @@ $(a);
 
 
 `````js filename=intro
-const obj = {};
 const tmpUnaryArg = $(100);
+const obj = {};
 const a = !tmpUnaryArg;
 obj[a];
 $(a);
@@ -55,10 +55,10 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {};
-const b = $( 100 );
-const c = !b;
-a[ c ];
+const a = $( 100 );
+const b = {};
+const c = !a;
+b[ c ];
 $( c );
 `````
 

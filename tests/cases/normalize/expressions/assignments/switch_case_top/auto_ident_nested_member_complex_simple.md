@@ -71,11 +71,11 @@ $(a, b, c, d);
 
 
 `````js filename=intro
-const b = { x: 1 };
-const c = { y: 2 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
+const b = { x: 1 };
+const c = { y: 2 };
 if (tmpIfTest) {
   const tmpNestedAssignComMemberObj = $(b);
   const tmpNestedAssignComMemberProp = $(`x`);
@@ -95,26 +95,26 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = { y: 2 };
-const c = $( 1 );
-const d = $( 1 );
-const e = c === d;
-if (e) {
-  const f = $( a );
+const a = $( 1 );
+const b = $( 1 );
+const c = a === b;
+const d = { x: 1 };
+const e = { y: 2 };
+if (c) {
+  const f = $( d );
   const g = $( "x" );
-  const h = $( b );
+  const h = $( e );
   const i = $( "y" );
   h[i] = 3;
   f[g] = 3;
-  $( 3, a, b, 3 );
+  $( 3, d, e, 3 );
 }
 else {
   const j = {
     a: 999,
     b: 1000,
   };
-  $( j, a, b, 3 );
+  $( j, d, e, 3 );
 }
 `````
 

@@ -57,9 +57,9 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
 $(1);
 $(2);
+const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
@@ -78,9 +78,9 @@ $(tmpClusterSSA_a$1, arg);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
 $( 1 );
 $( 2 );
+const a = { y: 1 };
 const b = $( a );
 const c = $( "y" );
 const d = delete b[ c ];

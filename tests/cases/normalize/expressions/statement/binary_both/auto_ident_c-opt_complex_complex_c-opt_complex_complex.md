@@ -73,10 +73,9 @@ $(a);
 
 
 `````js filename=intro
+let tmpBinBothLhs = undefined;
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
-const a = { a: 999, b: 1000 };
-let tmpBinBothLhs = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
@@ -107,6 +106,7 @@ if (tmpIfTest$3) {
   }
 }
 tmpBinBothLhs + tmpBinBothRhs;
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -115,52 +115,52 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-const b = { x: a };
-const c = {
+let a = undefined;
+const b = { y: 1 };
+const c = { x: b };
+const d = $( c );
+const e = d == null;
+if (e) {
+
+}
+else {
+  const f = $( "x" );
+  const g = d[ f ];
+  const h = g == null;
+  if (h) {
+
+  }
+  else {
+    const i = $( "y" );
+    const j = g[ i ];
+    a = j;
+  }
+}
+let k = undefined;
+const l = $( c );
+const m = l == null;
+if (m) {
+
+}
+else {
+  const n = $( "x" );
+  const o = l[ n ];
+  const p = o == null;
+  if (p) {
+
+  }
+  else {
+    const q = $( "y" );
+    const r = o[ q ];
+    k = r;
+  }
+}
+a + k;
+const s = {
   a: 999,
   b: 1000,
 };
-let d = undefined;
-const e = $( b );
-const f = e == null;
-if (f) {
-
-}
-else {
-  const g = $( "x" );
-  const h = e[ g ];
-  const i = h == null;
-  if (i) {
-
-  }
-  else {
-    const j = $( "y" );
-    const k = h[ j ];
-    d = k;
-  }
-}
-let l = undefined;
-const m = $( b );
-const n = m == null;
-if (n) {
-
-}
-else {
-  const o = $( "x" );
-  const p = m[ o ];
-  const q = p == null;
-  if (q) {
-
-  }
-  else {
-    const r = $( "y" );
-    const s = p[ r ];
-    l = s;
-  }
-}
-d + l;
-$( c );
+$( s );
 `````
 
 ## Globals

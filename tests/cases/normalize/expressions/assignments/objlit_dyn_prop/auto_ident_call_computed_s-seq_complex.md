@@ -47,8 +47,8 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
 const tmpCallCompProp = $(`\$`);
+const b = { $: $ };
 const a = b[tmpCallCompProp](1);
 const tmpCalleeParam = { [a]: 10 };
 $(tmpCalleeParam);
@@ -60,9 +60,9 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { $: $ };
-const b = $( "$" );
-const c = a[ b ]( 1 );
+const a = $( "$" );
+const b = { $: $ };
+const c = b[ a ]( 1 );
 const d = { [ c ]: 10 };
 $( d );
 $( c );

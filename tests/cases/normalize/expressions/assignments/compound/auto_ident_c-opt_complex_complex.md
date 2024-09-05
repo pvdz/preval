@@ -55,10 +55,10 @@ $(a);
 
 `````js filename=intro
 const b = { x: 1 };
-const a = { a: 999, b: 1000 };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 let tmpClusterSSA_a = NaN;
+const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   a ** 0;
   $(NaN);
@@ -77,24 +77,24 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = {
+const b = $( a );
+const c = b == null;
+let d = NaN;
+const e = {
   a: 999,
   b: 1000,
 };
-const c = $( a );
-const d = c == null;
-let e = NaN;
-if (d) {
-  b ** 0;
+if (c) {
+  e ** 0;
   $( NaN );
 }
 else {
   const f = $( "x" );
-  const g = c[ f ];
-  e = b * g;
-  $( e );
+  const g = b[ f ];
+  d = e * g;
+  $( d );
 }
-$( e );
+$( d );
 `````
 
 ## Globals

@@ -54,8 +54,8 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const a = { b: tmpObjLitVal };
 const tmpObjLitVal$1 = $(1);
+const a = { b: tmpObjLitVal };
 const tmpClusterSSA_a = { b: tmpObjLitVal$1 };
 const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
@@ -73,10 +73,10 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-const b = { b: a };
-const c = $( 1 );
-const d = { b: c };
-const e = b + d;
+const b = $( 1 );
+const c = { b: a };
+const d = { b: b };
+const e = c + d;
 $( e );
 $( 1 );
 const f = $( d );

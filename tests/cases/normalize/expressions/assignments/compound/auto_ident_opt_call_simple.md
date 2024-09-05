@@ -48,9 +48,9 @@ $(a);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
-const tmpIfTest = $ == null;
 let tmpClusterSSA_a = NaN;
+const tmpIfTest = $ == null;
+const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   a ** 0;
   $(NaN);
@@ -67,22 +67,22 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-const a = {
+let a = NaN;
+const b = $ == null;
+const c = {
   a: 999,
   b: 1000,
 };
-const b = $ == null;
-let c = NaN;
 if (b) {
-  a ** 0;
+  c ** 0;
   $( NaN );
 }
 else {
   const d = $( 1 );
-  c = a * d;
-  $( c );
+  a = c * d;
+  $( a );
 }
-$( c );
+$( a );
 `````
 
 ## Globals

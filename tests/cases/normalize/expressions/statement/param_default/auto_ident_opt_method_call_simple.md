@@ -70,9 +70,9 @@ $(a);
 
 `````js filename=intro
 const b = { c: $ };
-const a = { a: 999, b: 1000 };
 b.c(1);
 $(undefined);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -82,12 +82,12 @@ With rename=true
 
 `````js filename=intro
 const a = { c: $ };
+a.c( 1 );
+$( undefined );
 const b = {
   a: 999,
   b: 1000,
 };
-a.c( 1 );
-$( undefined );
 $( b );
 `````
 

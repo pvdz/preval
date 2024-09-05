@@ -54,11 +54,11 @@ $(a, b);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
+const a = { a: 999, b: 1000 };
 if (tmpNestedAssignObjPatternRhs) {
   $(a, tmpClusterSSA_b);
 } else {
@@ -75,23 +75,23 @@ if (tmpNestedAssignObjPatternRhs) {
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = $( 2 );
+const b = { b: a };
+const c = $( b );
+const d = c.b;
+const e = {
   a: 999,
   b: 1000,
 };
-const b = $( 2 );
-const c = { b: b };
-const d = $( c );
-const e = d.b;
-if (d) {
-  $( a, e );
+if (c) {
+  $( e, d );
 }
 else {
   const f = $( 2 );
   const g = { b: f };
   const h = $( g );
   const i = h.b;
-  $( a, i );
+  $( e, i );
 }
 `````
 

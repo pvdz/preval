@@ -48,10 +48,10 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`c`);
 const tmpBinBothRhs = tmpCompObj[tmpCompProp];
+const a = { a: 999, b: 1000 };
 const tmpClusterSSA_a = a * tmpBinBothRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, b);
@@ -63,14 +63,14 @@ With rename=true
 
 `````js filename=intro
 const a = { c: 1 };
-const b = {
+const b = $( a );
+const c = $( "c" );
+const d = b[ c ];
+const e = {
   a: 999,
   b: 1000,
 };
-const c = $( a );
-const d = $( "c" );
-const e = c[ d ];
-const f = b * e;
+const f = e * d;
 $( f );
 $( f, a );
 `````

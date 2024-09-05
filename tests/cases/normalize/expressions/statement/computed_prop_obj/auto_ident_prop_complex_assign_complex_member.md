@@ -50,13 +50,13 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 10, d: 20 };
-const a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedObj = $(b);
 const tmpCompObj$1 = $(b);
 const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCompProp];
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 varInitAssignLhsComputedRhs.a;
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -69,17 +69,17 @@ const a = {
   c: 10,
   d: 20,
 };
-const b = {
+const b = $( a );
+const c = $( a );
+const d = $( "d" );
+const e = c[ d ];
+b.c = e;
+e.a;
+const f = {
   a: 999,
   b: 1000,
 };
-const c = $( a );
-const d = $( a );
-const e = $( "d" );
-const f = d[ e ];
-c.c = f;
-f.a;
-$( b, a );
+$( f, a );
 `````
 
 ## Globals

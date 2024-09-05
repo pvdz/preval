@@ -77,10 +77,9 @@ $(a);
 
 
 `````js filename=intro
+let tmpCalleeParam = undefined;
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
-const a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
@@ -105,6 +104,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForInNext.value;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -113,43 +113,43 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-const b = { x: a };
-const c = {
-  a: 999,
-  b: 1000,
-};
-let d = undefined;
-const e = $( b );
-const f = e == null;
-if (f) {
+let a = undefined;
+const b = { y: 1 };
+const c = { x: b };
+const d = $( c );
+const e = d == null;
+if (e) {
 
 }
 else {
-  const g = $( "x" );
-  const h = e[ g ];
-  const i = h == null;
-  if (i) {
+  const f = $( "x" );
+  const g = d[ f ];
+  const h = g == null;
+  if (h) {
 
   }
   else {
-    const j = $( "y" );
-    const k = h[ j ];
-    d = k;
+    const i = $( "y" );
+    const j = g[ i ];
+    a = j;
   }
 }
-const l = $forIn( d );
+const k = $forIn( a );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const m = l.next();
-  const n = m.done;
-  if (n) {
+  const l = k.next();
+  const m = l.done;
+  if (m) {
     break;
   }
   else {
-    m.value;
+    l.value;
   }
 }
-$( c );
+const n = {
+  a: 999,
+  b: 1000,
+};
+$( n );
 `````
 
 ## Globals

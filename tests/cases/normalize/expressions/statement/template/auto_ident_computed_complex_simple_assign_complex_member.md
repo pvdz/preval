@@ -53,7 +53,6 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 10, d: 20 };
-const a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
@@ -62,6 +61,7 @@ varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 const tmpBinBothRhs = $coerce(varInitAssignLhsComputedRhs, `string`);
 const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -74,19 +74,19 @@ const a = {
   c: 10,
   d: 20,
 };
-const b = {
+const b = $( a );
+const c = $( a );
+const d = $( "d" );
+const e = c[ d ];
+b.c = e;
+const f = $coerce( e, "string" );
+const g = `before  ${tmpBinBothRhs}  after`;
+$( g );
+const h = {
   a: 999,
   b: 1000,
 };
-const c = $( a );
-const d = $( a );
-const e = $( "d" );
-const f = d[ e ];
-c.c = f;
-const g = $coerce( f, "string" );
-const h = `before  ${tmpBinBothRhs}  after`;
-$( h );
-$( b, a );
+$( h, a );
 `````
 
 ## Globals

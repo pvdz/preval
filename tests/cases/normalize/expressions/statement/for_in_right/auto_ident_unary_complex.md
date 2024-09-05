@@ -62,7 +62,6 @@ $(a, x);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(x$1);
 const tmpCalleeParam = typeof tmpUnaryArg;
 const tmpForInGen = $forIn(tmpCalleeParam);
@@ -75,6 +74,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForInNext.value;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a, 1);
 `````
 
@@ -83,24 +83,24 @@ $(a, 1);
 With rename=true
 
 `````js filename=intro
-const a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( x$1 );
-const c = typeof b;
-const d = $forIn( c );
+const a = $( x$1 );
+const b = typeof a;
+const c = $forIn( b );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const e = d.next();
-  const f = e.done;
-  if (f) {
+  const d = c.next();
+  const e = d.done;
+  if (e) {
     break;
   }
   else {
-    e.value;
+    d.value;
   }
 }
-$( a, 1 );
+const f = {
+  a: 999,
+  b: 1000,
+};
+$( f, 1 );
 `````
 
 ## Globals

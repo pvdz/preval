@@ -46,15 +46,15 @@ $(a);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
-const tmpCalleeParam = [`before `, ` after`];
 const tmpIfTest = $ == null;
+const tmpCalleeParam = [`before `, ` after`];
 if (tmpIfTest) {
   $(tmpCalleeParam, undefined);
 } else {
   const tmpChainElementCall = $(1);
   $(tmpCalleeParam, tmpChainElementCall);
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -63,20 +63,20 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {
-  a: 999,
-  b: 1000,
-};
+const a = $ == null;
 const b = [ "before ", " after" ];
-const c = $ == null;
-if (c) {
+if (a) {
   $( b, undefined );
 }
 else {
-  const d = $( 1 );
-  $( b, d );
+  const c = $( 1 );
+  $( b, c );
 }
-$( a );
+const d = {
+  a: 999,
+  b: 1000,
+};
+$( d );
 `````
 
 ## Globals

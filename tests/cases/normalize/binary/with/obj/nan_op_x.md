@@ -178,6 +178,7 @@ $(arr2);
 
 
 `````js filename=intro
+const tmpBinLhs = {};
 const x = {
   toString() {
     debugger;
@@ -190,7 +191,6 @@ const x = {
     return 100;
   },
 };
-const tmpBinLhs = {};
 const tmpArrElement = tmpBinLhs ** x;
 const tmpBinLhs$1 = {};
 const tmpArrElement$1 = tmpBinLhs$1 * x;
@@ -216,20 +216,20 @@ const tmpBinLhs$21 = {};
 const tmpArrElement$21 = tmpBinLhs$21 <= x;
 const tmpBinLhs$23 = {};
 const tmpArrElement$23 = tmpBinLhs$23 >= x;
-const tmpBinLhs$25 = {};
-const tmpArrElement$25 = tmpBinLhs$25 === x;
-const tmpBinLhs$27 = {};
-const tmpArrElement$27 = tmpBinLhs$27 !== x;
-const tmpBinLhs$29 = {};
-const tmpArrElement$29 = tmpBinLhs$29 === x;
-const tmpBinLhs$31 = {};
-const tmpArrElement$31 = tmpBinLhs$31 !== x;
 const tmpBinLhs$33 = {};
 const tmpArrElement$33 = tmpBinLhs$33 & x;
 const tmpBinLhs$35 = {};
 const tmpArrElement$35 = tmpBinLhs$35 ^ x;
 const tmpBinLhs$37 = {};
 const tmpArrElement$37 = tmpBinLhs$37 | x;
+const tmpBinLhs$25 = {};
+const tmpBinLhs$27 = {};
+const tmpBinLhs$29 = {};
+const tmpBinLhs$31 = {};
+const tmpArrElement$25 = tmpBinLhs$25 === x;
+const tmpArrElement$27 = tmpBinLhs$27 !== x;
+const tmpArrElement$29 = tmpBinLhs$29 === x;
+const tmpArrElement$31 = tmpBinLhs$31 !== x;
 const arr = [
   tmpArrElement,
   tmpArrElement$1,
@@ -254,8 +254,8 @@ const arr = [
 ];
 $(arr);
 const tmpBinLhs$39 = {};
-const tmpArrElement$39 = tmpBinLhs$39 in x;
 const tmpBinLhs$41 = {};
+const tmpArrElement$39 = tmpBinLhs$39 in x;
 const tmpArrElement$41 = tmpBinLhs$41 instanceof x;
 const arr2 = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
@@ -266,11 +266,12 @@ $(arr2);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = {};
+const b = {
   toString(  ) {
     debugger;
-    const b = $( "toString" );
-    return b;
+    const c = $( "toString" );
+    return c;
   },
   valueOf(  ) {
     debugger;
@@ -278,53 +279,52 @@ const a = {
     return 100;
   },
 };
-const c = {};
-const d = c ** a;
+const d = a ** b;
 const e = {};
-const f = e * a;
+const f = e * b;
 const g = {};
-const h = g / a;
+const h = g / b;
 const i = {};
-const j = i % a;
+const j = i % b;
 const k = {};
-const l = k + a;
+const l = k + b;
 const m = {};
-const n = m - a;
+const n = m - b;
 const o = {};
-const p = o << a;
+const p = o << b;
 const q = {};
-const r = q >> a;
+const r = q >> b;
 const s = {};
-const t = s >>> a;
+const t = s >>> b;
 const u = {};
-const v = u < a;
+const v = u < b;
 const w = {};
-const x = w > a;
+const x = w > b;
 const y = {};
-const z = y <= a;
+const z = y <= b;
 const 01 = {};
-const 11 = 01 >= a;
+const 11 = 01 >= b;
 const 21 = {};
-const 31 = 21 === a;
+const 31 = 21 & b;
 const 41 = {};
-const 51 = 41 !== a;
+const 51 = 41 ^ b;
 const 61 = {};
-const 71 = 61 === a;
+const 71 = 61 | b;
 const 81 = {};
-const 91 = 81 !== a;
+const 91 = {};
 const a1 = {};
-const b1 = a1 & a;
-const c1 = {};
-const d1 = c1 ^ a;
-const e1 = {};
-const f1 = e1 | a;
-const g1 = [ d, f, h, j, l, n, p, r, t, v, x, z, 11, 31, 51, 71, 91, b1, d1, f1 ];
+const b1 = {};
+const c1 = 81 === b;
+const d1 = 91 !== b;
+const e1 = a1 === b;
+const f1 = b1 !== b;
+const g1 = [ d, f, h, j, l, n, p, r, t, v, x, z, 11, c1, d1, e1, f1, 31, 51, 71 ];
 $( g1 );
 const h1 = {};
-const i1 = h1 in a;
-const j1 = {};
-const k1 = j1 instanceof a;
-const l1 = [ i1, k1 ];
+const i1 = {};
+const j1 = h1 in b;
+const k1 = i1 instanceof b;
+const l1 = [ j1, k1 ];
 $( l1 );
 `````
 

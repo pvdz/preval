@@ -50,8 +50,8 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
-const a = { a: 999, b: 1000 };
 tmpObjLitVal$1.e(1);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -61,11 +61,11 @@ With rename=true
 
 `````js filename=intro
 const a = { e: $ };
+a.e( 1 );
 const b = {
   a: 999,
   b: 1000,
 };
-a.e( 1 );
 $( b );
 `````
 

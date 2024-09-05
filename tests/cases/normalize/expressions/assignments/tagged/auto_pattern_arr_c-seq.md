@@ -52,13 +52,13 @@ $(a);
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 arrPatternSplat[0];
-const tmpCalleeParam = [`before `, ` after`];
 $(10);
 $(20);
 const tmpCalleeParam$3 = [1, 2];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$3);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_a = arrPatternSplat$1[0];
+const tmpCalleeParam = [`before `, ` after`];
 $(tmpCalleeParam, tmpNestedAssignArrPatternRhs);
 $(tmpClusterSSA_a);
 `````
@@ -74,15 +74,15 @@ const a = {
 };
 const b = [ ... a ];
 b[ 0 ];
-const c = [ "before ", " after" ];
 $( 10 );
 $( 20 );
-const d = [ 1, 2 ];
-const e = $( d );
-const f = [ ... e ];
-const g = f[ 0 ];
-$( c, e );
-$( g );
+const c = [ 1, 2 ];
+const d = $( c );
+const e = [ ... d ];
+const f = e[ 0 ];
+const g = [ "before ", " after" ];
+$( g, d );
+$( f );
 `````
 
 ## Globals

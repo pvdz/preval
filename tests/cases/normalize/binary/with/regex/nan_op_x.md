@@ -178,6 +178,7 @@ $(arr2);
 
 
 `````js filename=intro
+const tmpBinLhs = /foo/g;
 const x = {
   toString() {
     debugger;
@@ -190,7 +191,6 @@ const x = {
     return 100;
   },
 };
-const tmpBinLhs = /foo/g;
 const tmpArrElement = tmpBinLhs ** x;
 const tmpBinLhs$1 = /foo/g;
 const tmpArrElement$1 = tmpBinLhs$1 * x;
@@ -199,7 +199,6 @@ const tmpArrElement$3 = tmpBinLhs$3 / x;
 const tmpBinLhs$5 = /foo/g;
 const tmpArrElement$5 = tmpBinLhs$5 % x;
 const tmpStringConcatL = $coerce(x, `plustr`);
-const tmpArrElement$7 = `/foo/g${tmpStringConcatL}`;
 const tmpBinLhs$9 = /foo/g;
 const tmpArrElement$9 = tmpBinLhs$9 - x;
 const tmpBinLhs$11 = /foo/g;
@@ -222,6 +221,7 @@ const tmpBinLhs$35 = /foo/g;
 const tmpArrElement$35 = tmpBinLhs$35 ^ x;
 const tmpBinLhs$37 = /foo/g;
 const tmpArrElement$37 = tmpBinLhs$37 | x;
+const tmpArrElement$7 = `/foo/g${tmpStringConcatL}`;
 const arr = [
   tmpArrElement,
   tmpArrElement$1,
@@ -246,8 +246,8 @@ const arr = [
 ];
 $(arr);
 const tmpBinLhs$39 = /foo/g;
-const tmpArrElement$39 = tmpBinLhs$39 in x;
 const tmpBinLhs$41 = /foo/g;
+const tmpArrElement$39 = tmpBinLhs$39 in x;
 const tmpArrElement$41 = tmpBinLhs$41 instanceof x;
 const arr2 = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
@@ -258,11 +258,12 @@ $(arr2);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = /foo/g;
+const b = {
   toString(  ) {
     debugger;
-    const b = $( "toString" );
-    return b;
+    const c = $( "toString" );
+    return c;
   },
   valueOf(  ) {
     debugger;
@@ -270,45 +271,44 @@ const a = {
     return 100;
   },
 };
-const c = /foo/g;
-const d = c ** a;
+const d = a ** b;
 const e = /foo/g;
-const f = e * a;
+const f = e * b;
 const g = /foo/g;
-const h = g / a;
+const h = g / b;
 const i = /foo/g;
-const j = i % a;
-const k = $coerce( a, "plustr" );
-const l = `/foo/g${tmpStringConcatL}`;
-const m = /foo/g;
-const n = m - a;
-const o = /foo/g;
-const p = o << a;
-const q = /foo/g;
-const r = q >> a;
-const s = /foo/g;
-const t = s >>> a;
-const u = /foo/g;
-const v = u < a;
-const w = /foo/g;
-const x = w > a;
-const y = /foo/g;
-const z = y <= a;
-const 01 = /foo/g;
-const 11 = 01 >= a;
-const 21 = /foo/g;
-const 31 = 21 & a;
-const 41 = /foo/g;
-const 51 = 41 ^ a;
-const 61 = /foo/g;
-const 71 = 61 | a;
-const 81 = [ d, f, h, j, l, n, p, r, t, v, x, z, 11, false, true, false, true, 31, 51, 71 ];
+const j = i % b;
+const k = $coerce( b, "plustr" );
+const l = /foo/g;
+const m = l - b;
+const n = /foo/g;
+const o = n << b;
+const p = /foo/g;
+const q = p >> b;
+const r = /foo/g;
+const s = r >>> b;
+const t = /foo/g;
+const u = t < b;
+const v = /foo/g;
+const w = v > b;
+const x = /foo/g;
+const y = x <= b;
+const z = /foo/g;
+const 01 = z >= b;
+const 11 = /foo/g;
+const 21 = 11 & b;
+const 31 = /foo/g;
+const 41 = 31 ^ b;
+const 51 = /foo/g;
+const 61 = 51 | b;
+const 71 = `/foo/g${tmpStringConcatL}`;
+const 81 = [ d, f, h, j, 71, m, o, q, s, u, w, y, 01, false, true, false, true, 21, 41, 61 ];
 $( 81 );
 const 91 = /foo/g;
-const a1 = 91 in a;
-const b1 = /foo/g;
-const c1 = b1 instanceof a;
-const d1 = [ a1, c1 ];
+const a1 = /foo/g;
+const b1 = 91 in b;
+const c1 = a1 instanceof b;
+const d1 = [ b1, c1 ];
 $( d1 );
 `````
 

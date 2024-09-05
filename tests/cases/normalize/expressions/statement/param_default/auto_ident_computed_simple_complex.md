@@ -63,11 +63,11 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 1 };
-const a = { a: 999, b: 1000 };
 const tmpAssignRhsCompProp = $(`c`);
+const b = { c: 1 };
 b[tmpAssignRhsCompProp];
 $(undefined);
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -76,15 +76,15 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-const a = { c: 1 };
-const b = {
+const a = $( "c" );
+const b = { c: 1 };
+b[ a ];
+$( undefined );
+const c = {
   a: 999,
   b: 1000,
 };
-const c = $( "c" );
-a[ c ];
-$( undefined );
-$( b, a );
+$( c, b );
 `````
 
 ## Globals

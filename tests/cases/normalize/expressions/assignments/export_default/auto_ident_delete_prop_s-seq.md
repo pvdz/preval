@@ -46,9 +46,9 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
 $(1);
 $(2);
+const arg = { y: 1 };
 const a = delete arg.y;
 const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
@@ -60,9 +60,9 @@ $(a, arg);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
 $( 1 );
 $( 2 );
+const a = { y: 1 };
 const b = delete a.y;
 const c = b;
 export { c as default };

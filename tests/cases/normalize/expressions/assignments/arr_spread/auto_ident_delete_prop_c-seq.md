@@ -47,9 +47,9 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
 $(1);
 $(2);
+const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
 const tmpClusterSSA_a = delete tmpDeleteObj.y;
 const tmpCalleeParam = [...tmpClusterSSA_a];
@@ -62,9 +62,9 @@ $(tmpClusterSSA_a, arg);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
 $( 1 );
 $( 2 );
+const a = { y: 1 };
 const b = $( a );
 const c = delete b.y;
 const d = [ ... c ];

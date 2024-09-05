@@ -58,9 +58,8 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 10, d: 20 };
-const a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
+const b = { c: 10, d: 20 };
 if (tmpIfTest) {
   const tmpAssignComMemLhsObj = $(b);
   const tmpAssignComMemLhsProp = $(`c`);
@@ -83,6 +82,7 @@ if (tmpIfTest) {
   }
 } else {
 }
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -91,38 +91,38 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = $( 1 );
+const b = {
   c: 10,
   d: 20,
 };
-const b = {
-  a: 999,
-  b: 1000,
-};
-const c = $( 1 );
-if (c) {
-  const d = $( a );
-  const e = $( "c" );
-  const f = $( a );
-  const g = $( "d" );
-  const h = f[ g ];
-  d[e] = h;
+if (a) {
+  const c = $( b );
+  const d = $( "c" );
+  const e = $( b );
+  const f = $( "d" );
+  const g = e[ f ];
+  c[d] = g;
   while ($LOOP_UNROLL_10) {
-    const i = $( 1 );
-    if (i) {
-      const j = $( a );
-      const k = $( "c" );
-      const l = $( a );
-      const m = $( "d" );
-      const n = l[ m ];
-      j[k] = n;
+    const h = $( 1 );
+    if (h) {
+      const i = $( b );
+      const j = $( "c" );
+      const k = $( b );
+      const l = $( "d" );
+      const m = k[ l ];
+      i[j] = m;
     }
     else {
       break;
     }
   }
 }
-$( b, a );
+const n = {
+  a: 999,
+  b: 1000,
+};
+$( n, b );
 `````
 
 ## Globals

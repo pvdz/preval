@@ -109,8 +109,6 @@ $(a, b, c, d, e);
 
 
 `````js filename=intro
-const b = { x: 1 };
-const c = { y: 2 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
@@ -126,6 +124,8 @@ if (tmpIfTest) {
   }
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+const b = { x: 1 };
+const c = { y: 2 };
 if (tmpIfTest$3) {
   const tmpNestedAssignComMemberObj = $(b);
   const tmpNestedAssignComMemberProp = $(`x`);
@@ -150,41 +150,41 @@ $(a, b, c, 3, 4);
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = { y: 2 };
-let c = {
+let a = {
   a: 999,
   b: 1000,
 };
+const b = $( 1 );
+let c = 1;
 const d = $( 1 );
-let e = 1;
-const f = $( 1 );
-const g = f === d;
-if (g) {
-  e = 0;
+const e = d === b;
+if (e) {
+  c = 0;
 }
 else {
-  const h = 2 === d;
-  if (h) {
-    e = 2;
+  const f = 2 === b;
+  if (f) {
+    c = 2;
   }
 }
-const i = e <= 0;
-if (i) {
-  const j = $( a );
+const g = c <= 0;
+const h = { x: 1 };
+const i = { y: 2 };
+if (g) {
+  const j = $( h );
   const k = $( "x" );
-  const l = $( b );
+  const l = $( i );
   const m = $( "y" );
   l[m] = 7;
   j[k] = 7;
-  c = 7;
+  a = 7;
 }
-const n = e <= 1;
+const n = c <= 1;
 if (n) {
   $( "fail1" );
 }
 $( "fail2" );
-$( c, a, b, 3, 4 );
+$( a, h, i, 3, 4 );
 `````
 
 ## Globals

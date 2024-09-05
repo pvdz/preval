@@ -111,11 +111,10 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
-const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 let tmpBinLhs = undefined;
+const b = { $: $ };
 const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
@@ -150,6 +149,7 @@ if (tmpIfTest$7) {
   }
   $(`fail2`);
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -158,54 +158,54 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { $: $ };
-const b = {
-  a: 999,
-  b: 1000,
-};
-const c = $( 1 );
-let d = 1;
-let e = undefined;
-const f = $( a );
-const g = f == null;
-if (g) {
+const a = $( 1 );
+let b = 1;
+let c = undefined;
+const d = { $: $ };
+const e = $( d );
+const f = e == null;
+if (f) {
 
 }
 else {
-  const h = $( "$" );
-  const i = f[ h ];
-  const j = i == null;
-  if (j) {
+  const g = $( "$" );
+  const h = e[ g ];
+  const i = h == null;
+  if (i) {
 
   }
   else {
-    const k = $( 1 );
-    const l = $dotCall( i, f, k );
-    e = l;
+    const j = $( 1 );
+    const k = $dotCall( h, e, j );
+    c = k;
   }
 }
-const m = e === c;
-if (m) {
-  d = 0;
+const l = c === a;
+if (l) {
+  b = 0;
 }
 else {
-  const n = 2 === c;
-  if (n) {
-    d = 2;
+  const m = 2 === a;
+  if (m) {
+    b = 2;
   }
 }
-const o = d <= 0;
-if (o) {
+const n = b <= 0;
+if (n) {
 
 }
 else {
-  const p = d <= 1;
-  if (p) {
+  const o = b <= 1;
+  if (o) {
     $( "fail1" );
   }
   $( "fail2" );
 }
-$( b );
+const p = {
+  a: 999,
+  b: 1000,
+};
+$( p );
 `````
 
 ## Globals

@@ -48,8 +48,8 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-const obj = {};
 const a = b.$(1);
+const obj = {};
 obj[a];
 $(a);
 `````
@@ -60,10 +60,10 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-const b = {};
-const c = a.$( 1 );
-b[ c ];
-$( c );
+const b = a.$( 1 );
+const c = {};
+c[ b ];
+$( b );
 `````
 
 ## Globals

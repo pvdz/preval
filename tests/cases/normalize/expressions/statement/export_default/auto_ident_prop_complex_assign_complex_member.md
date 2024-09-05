@@ -48,7 +48,6 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 10, d: 20 };
-const a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
@@ -56,6 +55,7 @@ const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 const tmpAnonDefaultExport = varInitAssignLhsComputedRhs;
 export { tmpAnonDefaultExport as default };
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -68,18 +68,18 @@ const a = {
   c: 10,
   d: 20,
 };
-const b = {
+const b = $( a );
+const c = $( a );
+const d = $( "d" );
+const e = c[ d ];
+b.c = e;
+const f = e;
+export { f as default };
+const g = {
   a: 999,
   b: 1000,
 };
-const c = $( a );
-const d = $( a );
-const e = $( "d" );
-const f = d[ e ];
-c.c = f;
-const g = f;
-export { g as default };
-$( b, a );
+$( g, a );
 `````
 
 ## Globals

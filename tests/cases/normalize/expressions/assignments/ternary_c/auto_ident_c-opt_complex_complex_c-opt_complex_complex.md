@@ -66,7 +66,6 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(0);
 if (tmpIfTest) {
@@ -74,6 +73,7 @@ if (tmpIfTest) {
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   let tmpNestedComplexRhs = undefined;
+  const tmpObjLitVal = { y: 1 };
   const b = { x: tmpObjLitVal };
   const tmpChainElementCall = $(b);
   const tmpIfTest$1 = tmpChainElementCall == null;
@@ -100,19 +100,19 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-let b = {
+let a = {
   a: 999,
   b: 1000,
 };
-const c = $( 0 );
-if (c) {
-  const d = $( 100 );
-  $( d );
+const b = $( 0 );
+if (b) {
+  const c = $( 100 );
+  $( c );
 }
 else {
-  let e = undefined;
-  const f = { x: a };
+  let d = undefined;
+  const e = { y: 1 };
+  const f = { x: e };
   const g = $( f );
   const h = g == null;
   if (h) {
@@ -128,13 +128,13 @@ else {
     else {
       const l = $( "y" );
       const m = j[ l ];
-      e = m;
+      d = m;
     }
   }
-  b = e;
-  $( e );
+  a = d;
+  $( d );
 }
-$( b );
+$( a );
 `````
 
 ## Globals

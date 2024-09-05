@@ -52,8 +52,8 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 10, d: 20 };
 const tmpNestedAssignComMemberProp = $(`c`);
+const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
@@ -68,18 +68,18 @@ $(tmpNestedAssignPropRhs, b);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = $( "c" );
+const b = {
   c: 10,
   d: 20,
 };
-const b = $( "c" );
-const c = $( a );
+const c = $( b );
 const d = $( "d" );
 const e = c[ d ];
-a[b] = e;
+b[a] = e;
 const f = { [ e ]: 10 };
 $( f );
-$( e, a );
+$( e, b );
 `````
 
 ## Globals

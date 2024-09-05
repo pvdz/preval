@@ -93,9 +93,9 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 10, d: 20 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
+const b = { c: 10, d: 20 };
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`c`);
 const tmpCompObj = $(b);
@@ -126,34 +126,34 @@ $(tmpNestedAssignPropRhs, b);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = $( 1 );
+let b = 1;
+const c = {
   c: 10,
   d: 20,
 };
-const b = $( 1 );
-let c = 1;
-const d = $( a );
+const d = $( c );
 const e = $( "c" );
-const f = $( a );
+const f = $( c );
 const g = $( "d" );
 const h = f[ g ];
 d[e] = h;
-const i = h === b;
+const i = h === a;
 if (i) {
-  c = 0;
+  b = 0;
 }
 else {
-  const j = 2 === b;
+  const j = 2 === a;
   if (j) {
-    c = 2;
+    b = 2;
   }
 }
-const k = c <= 1;
+const k = b <= 1;
 if (k) {
   $( "fail1" );
 }
 $( "fail2" );
-$( h, a );
+$( h, c );
 `````
 
 ## Globals

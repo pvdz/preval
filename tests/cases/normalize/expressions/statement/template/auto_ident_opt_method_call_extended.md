@@ -59,11 +59,11 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
-const a = { a: 999, b: 1000 };
 const tmpChainElementCall = tmpObjLitVal$1.e(1);
 const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpChainElementCall, `string`);
 const tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -73,15 +73,15 @@ With rename=true
 
 `````js filename=intro
 const a = { e: $ };
-const b = {
+const b = a.e( 1 );
+const c = $coerce( b, "string" );
+const d = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+$( d );
+const e = {
   a: 999,
   b: 1000,
 };
-const c = a.e( 1 );
-const d = $coerce( c, "string" );
-const e = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
 $( e );
-$( b );
 `````
 
 ## Globals

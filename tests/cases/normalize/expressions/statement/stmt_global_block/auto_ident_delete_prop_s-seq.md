@@ -47,11 +47,11 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
-const a = { a: 999, b: 1000 };
 $(1);
 $(2);
+const arg = { y: 1 };
 delete arg.y;
+const a = { a: 999, b: 1000 };
 $(a, arg);
 `````
 
@@ -60,14 +60,14 @@ $(a, arg);
 With rename=true
 
 `````js filename=intro
+$( 1 );
+$( 2 );
 const a = { y: 1 };
+delete a.y;
 const b = {
   a: 999,
   b: 1000,
 };
-$( 1 );
-$( 2 );
-delete a.y;
 $( b, a );
 `````
 

@@ -53,12 +53,12 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 10, d: 20 };
-const obj = {};
 const tmpNestedAssignObj = $(b);
 const tmpCompObj$1 = $(b);
 const tmpCompProp$1 = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj$1[tmpCompProp$1];
 tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
+const obj = {};
 obj[tmpNestedAssignPropRhs];
 $(tmpNestedAssignPropRhs, b);
 `````
@@ -72,14 +72,14 @@ const a = {
   c: 10,
   d: 20,
 };
-const b = {};
+const b = $( a );
 const c = $( a );
-const d = $( a );
-const e = $( "d" );
-const f = d[ e ];
-c.c = f;
-b[ f ];
-$( f, a );
+const d = $( "d" );
+const e = c[ d ];
+b.c = e;
+const f = {};
+f[ e ];
+$( e, a );
 `````
 
 ## Globals

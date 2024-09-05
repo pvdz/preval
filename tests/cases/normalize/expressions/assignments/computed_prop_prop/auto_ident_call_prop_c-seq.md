@@ -48,9 +48,9 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-const obj = {};
 const tmpCallObj = $(b);
 const tmpClusterSSA_a = tmpCallObj.$(1);
+const obj = {};
 obj[tmpClusterSSA_a];
 $(tmpClusterSSA_a);
 `````
@@ -61,11 +61,11 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-const b = {};
-const c = $( a );
-const d = c.$( 1 );
-b[ d ];
-$( d );
+const b = $( a );
+const c = b.$( 1 );
+const d = {};
+d[ c ];
+$( c );
 `````
 
 ## Globals

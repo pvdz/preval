@@ -73,7 +73,6 @@ $(a, x, y);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 $(x$1);
 $(2);
 const tmpArrElement = $(3);
@@ -92,6 +91,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForOfNext.value;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a, 1, tmpClusterSSA_y);
 `````
 
@@ -100,30 +100,30 @@ $(a, 1, tmpClusterSSA_y);
 With rename=true
 
 `````js filename=intro
-const a = {
-  a: 999,
-  b: 1000,
-};
 $( x$1 );
 $( 2 );
-const b = $( 3 );
-const c = $( 4 );
-const d = [ b, c ];
-const e = [ ... d ];
-x$1 = e[ 0 ];
-const f = e[ 1 ];
-const g = $forOf( d );
+const a = $( 3 );
+const b = $( 4 );
+const c = [ a, b ];
+const d = [ ... c ];
+x$1 = d[ 0 ];
+const e = d[ 1 ];
+const f = $forOf( c );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const h = g.next();
-  const i = h.done;
-  if (i) {
+  const g = f.next();
+  const h = g.done;
+  if (h) {
     break;
   }
   else {
-    h.value;
+    g.value;
   }
 }
-$( a, 1, f );
+const i = {
+  a: 999,
+  b: 1000,
+};
+$( i, 1, e );
 `````
 
 ## Globals

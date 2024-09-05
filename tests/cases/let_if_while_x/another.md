@@ -124,12 +124,11 @@ $(a, b, c, 3);
 
 
 `````js filename=intro
-const b = { x: 1 };
-const c = { y: 2 };
-const a = { a: 999, b: 1000 };
 $(100);
+const b = { x: 1 };
 const B = $(b);
 const X = $(`x`);
+const c = { y: 2 };
 const calt = $(c);
 const Y = $(`y`);
 const three = $(3);
@@ -163,6 +162,7 @@ if (three) {
   }
 } else {
 }
+const a = { a: 999, b: 1000 };
 $(a, b, c, 3);
 `````
 
@@ -171,40 +171,36 @@ $(a, b, c, 3);
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = { y: 2 };
-const c = {
-  a: 999,
-  b: 1000,
-};
 $( 100 );
-const d = $( a );
-const e = $( "x" );
-const f = $( b );
-const g = $( "y" );
-const h = $( 3 );
-f[g] = h;
-d[e] = h;
-if (h) {
+const a = { x: 1 };
+const b = $( a );
+const c = $( "x" );
+const d = { y: 2 };
+const e = $( d );
+const f = $( "y" );
+const g = $( 3 );
+e[f] = g;
+b[c] = g;
+if (g) {
   $( 100 );
-  const i = $( a );
-  const j = $( "x" );
-  const k = $( b );
-  const l = $( "y" );
-  const m = $( 3 );
-  k[l] = m;
-  i[j] = m;
-  if (m) {
+  const h = $( a );
+  const i = $( "x" );
+  const j = $( d );
+  const k = $( "y" );
+  const l = $( 3 );
+  j[k] = l;
+  h[i] = l;
+  if (l) {
     while ($LOOP_UNROLL_10) {
       $( 100 );
-      const n = $( a );
-      const o = $( "x" );
-      const p = $( b );
-      const q = $( "y" );
-      const r = $( 3 );
-      p[q] = r;
-      n[o] = r;
-      if (r) {
+      const m = $( a );
+      const n = $( "x" );
+      const o = $( d );
+      const p = $( "y" );
+      const q = $( 3 );
+      o[p] = q;
+      m[n] = q;
+      if (q) {
 
       }
       else {
@@ -213,7 +209,11 @@ if (h) {
     }
   }
 }
-$( c, a, b, 3 );
+const r = {
+  a: 999,
+  b: 1000,
+};
+$( r, a, d, 3 );
 `````
 
 ## Globals

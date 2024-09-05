@@ -49,12 +49,12 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-const a = { a: 999, b: 1000 };
 const tmpDeleteObj = $(arg);
 const tmpCallCallee$1 = delete tmpDeleteObj.y;
 const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
 const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
+const a = { a: 999, b: 1000 };
 $(a, arg);
 `````
 
@@ -64,16 +64,16 @@ With rename=true
 
 `````js filename=intro
 const a = { y: 1 };
-const b = {
+const b = $( a );
+const c = delete b.y;
+const d = $coerce( c, "string" );
+const e = `before  ${tmpBinBothRhs}  after`;
+$( e );
+const f = {
   a: 999,
   b: 1000,
 };
-const c = $( a );
-const d = delete c.y;
-const e = $coerce( d, "string" );
-const f = `before  ${tmpBinBothRhs}  after`;
-$( f );
-$( b, a );
+$( f, a );
 `````
 
 ## Globals

@@ -47,11 +47,11 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
-const tmpCalleeParam = [`before `, ` after`];
 const tmpCompProp = $(`\$`);
+const b = { $: $ };
 const tmpNewCallee = b[tmpCompProp];
 const tmpClusterSSA_a = new tmpNewCallee(1);
+const tmpCalleeParam = [`before `, ` after`];
 $(tmpCalleeParam, tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
@@ -61,13 +61,13 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-const a = { $: $ };
-const b = [ "before ", " after" ];
-const c = $( "$" );
-const d = a[ c ];
-const e = new d( 1 );
-$( b, e );
-$( e );
+const a = $( "$" );
+const b = { $: $ };
+const c = b[ a ];
+const d = new c( 1 );
+const e = [ "before ", " after" ];
+$( e, d );
+$( d );
 `````
 
 ## Globals

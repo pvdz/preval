@@ -88,9 +88,9 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 1 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
+const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $(`c`);
 const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
@@ -118,28 +118,28 @@ $(tmpClusterSSA_a, b);
 With rename=true
 
 `````js filename=intro
-const a = { c: 1 };
-const b = $( 1 );
-let c = 1;
-const d = $( a );
+const a = $( 1 );
+let b = 1;
+const c = { c: 1 };
+const d = $( c );
 const e = $( "c" );
 const f = d[ e ];
-const g = f === b;
+const g = f === a;
 if (g) {
-  c = 0;
+  b = 0;
 }
 else {
-  const h = 2 === b;
+  const h = 2 === a;
   if (h) {
-    c = 2;
+    b = 2;
   }
 }
-const i = c <= 1;
+const i = b <= 1;
 if (i) {
   $( "fail1" );
 }
 $( "fail2" );
-$( f, a );
+$( f, c );
 `````
 
 ## Globals

@@ -45,9 +45,9 @@ $(a);
 
 
 `````js filename=intro
-const obj = {};
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
+const obj = {};
 const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 obj[a];
 $(a);
@@ -58,15 +58,15 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {};
-const b = $( 1 );
-const c = $( 3 );
+const a = $( 1 );
+const b = $( 3 );
+const c = {};
 const d = {
-  x: b,
+  x: a,
   y: 2,
-  z: c,
+  z: b,
 };
-a[ d ];
+c[ d ];
 $( d );
 `````
 

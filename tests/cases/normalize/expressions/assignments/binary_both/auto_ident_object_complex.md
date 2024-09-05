@@ -50,9 +50,9 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
-const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 const tmpObjLitVal$5 = $(1);
 const tmpObjLitVal$9 = $(3);
+const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 const tmpClusterSSA_a = { x: tmpObjLitVal$5, y: 2, z: tmpObjLitVal$9 };
 const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
@@ -66,19 +66,19 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = $( 3 );
-const c = {
+const c = $( 1 );
+const d = $( 3 );
+const e = {
   x: a,
   y: 2,
   z: b,
 };
-const d = $( 1 );
-const e = $( 3 );
 const f = {
-  x: d,
+  x: c,
   y: 2,
-  z: e,
+  z: d,
 };
-const g = c + f;
+const g = e + f;
 $( g );
 $( f );
 `````

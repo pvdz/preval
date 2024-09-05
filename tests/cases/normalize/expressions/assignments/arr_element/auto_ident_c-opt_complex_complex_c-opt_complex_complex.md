@@ -77,9 +77,9 @@ $(a);
 
 
 `````js filename=intro
+let a = undefined;
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
-let a = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
@@ -120,10 +120,10 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-const b = { x: a };
-let c = undefined;
-const d = $( b );
+let a = undefined;
+const b = { y: 1 };
+const c = { x: b };
+const d = $( c );
 const e = d == null;
 if (e) {
 
@@ -138,12 +138,12 @@ else {
   else {
     const i = $( "y" );
     const j = g[ i ];
-    c = j;
+    a = j;
   }
 }
-const k = c;
+const k = a;
 let l = undefined;
-const m = $( b );
+const m = $( c );
 const n = m == null;
 if (n) {
 

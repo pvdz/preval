@@ -69,10 +69,10 @@ $(a, b, c, d, e);
 
 
 `````js filename=intro
-const b = { x: 1 };
-const c = { y: 2 };
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
+const b = { x: 1 };
+const c = { y: 2 };
 if (tmpIfTest) {
   const tmpNestedAssignComMemberObj = $(b);
   const tmpNestedAssignComMemberProp = $(`x`);
@@ -104,27 +104,27 @@ $(a, b, c, 3, 4);
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = { y: 2 };
-let c = {
+let a = {
   a: 999,
   b: 1000,
 };
-const d = $( 1 );
-if (d) {
-  const e = $( a );
+const b = $( 1 );
+const c = { x: 1 };
+const d = { y: 2 };
+if (b) {
+  const e = $( c );
   const f = $( "x" );
-  const g = $( b );
+  const g = $( d );
   const h = $( "y" );
   g[h] = 7;
   e[f] = 7;
-  c = 7;
+  a = 7;
   while ($LOOP_UNROLL_10) {
     const i = $( 1 );
     if (i) {
-      const j = $( a );
+      const j = $( c );
       const k = $( "x" );
-      const l = $( b );
+      const l = $( d );
       const m = $( "y" );
       l[m] = 7;
       j[k] = 7;
@@ -134,7 +134,7 @@ if (d) {
     }
   }
 }
-$( c, a, b, 3, 4 );
+$( a, c, d, 3, 4 );
 `````
 
 ## Globals

@@ -60,7 +60,6 @@ $(a);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
 const tmpCalleeParam = [tmpArrElement, 2, tmpArrElement$3];
@@ -74,6 +73,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForOfNext.value;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -82,25 +82,25 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-const c = $( 3 );
-const d = [ b, 2, c ];
-const e = $forOf( d );
+const a = $( 1 );
+const b = $( 3 );
+const c = [ a, 2, b ];
+const d = $forOf( c );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const f = e.next();
-  const g = f.done;
-  if (g) {
+  const e = d.next();
+  const f = e.done;
+  if (f) {
     break;
   }
   else {
-    f.value;
+    e.value;
   }
 }
-$( a );
+const g = {
+  a: 999,
+  b: 1000,
+};
+$( g );
 `````
 
 ## Globals

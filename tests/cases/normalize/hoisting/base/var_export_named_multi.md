@@ -46,10 +46,10 @@ export { y };
 
 `````js filename=intro
 $(undefined, undefined);
-const x = 10;
-const y = 20;
 $(10, 20);
+const x = 10;
 export { x };
+const y = 20;
 export { y };
 `````
 
@@ -59,10 +59,10 @@ With rename=true
 
 `````js filename=intro
 $( undefined, undefined );
-const a = 10;
-const b = 20;
 $( 10, 20 );
+const a = 10;
 export { a as x };
+const b = 20;
 export { b as y };
 `````
 

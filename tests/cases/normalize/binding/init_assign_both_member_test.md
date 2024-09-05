@@ -96,19 +96,6 @@ $(5, a);
 
 
 `````js filename=intro
-const b = {
-  get x() {
-    debugger;
-    $(1);
-    return 10;
-  },
-  set x($$0) {
-    const n = $$0;
-    debugger;
-    $(2, n);
-    return undefined;
-  },
-};
 const c = {
   get x() {
     debugger;
@@ -123,6 +110,19 @@ const c = {
   },
 };
 const tmpNestedAssignPropRhs = c.x;
+const b = {
+  get x() {
+    debugger;
+    $(1);
+    return 10;
+  },
+  set x($$0) {
+    const n = $$0;
+    debugger;
+    $(2, n);
+    return undefined;
+  },
+};
 b.x = tmpNestedAssignPropRhs;
 $(5, tmpNestedAssignPropRhs);
 `````
@@ -135,32 +135,32 @@ With rename=true
 const a = {
   get x() {
     debugger;
-    $( 1 );
-    return 10;
-  },
-  set x( $$0 ) {
-    const b = c;
-    debugger;
-    $( 2, b );
-    return undefined;
-  },
-};
-const d = {
-  get x() {
-    debugger;
     $( 3 );
     return 20;
   },
   set x( $$0 ) {
-    const e = c;
+    const b = c;
     debugger;
-    $( 4, e );
+    $( 4, b );
     return undefined;
   },
 };
-const f = d.x;
-a.x = f;
-$( 5, f );
+const d = a.x;
+const e = {
+  get x() {
+    debugger;
+    $( 1 );
+    return 10;
+  },
+  set x( $$0 ) {
+    const f = c;
+    debugger;
+    $( 2, f );
+    return undefined;
+  },
+};
+e.x = d;
+$( 5, d );
 `````
 
 ## Globals

@@ -60,15 +60,15 @@ $(a, b, c, d);
 
 `````js filename=intro
 const b = { x: 1 };
-const c = { y: 2 };
-const tmpCalleeParam = [`before `, ` after`];
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`x`);
+const c = { y: 2 };
 const varInitAssignLhsComputedObj = $(c);
 const varInitAssignLhsComputedProp = $(`y`);
 const varInitAssignLhsComputedRhs = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
+const tmpCalleeParam = [`before `, ` after`];
 $(tmpCalleeParam, varInitAssignLhsComputedRhs);
 $(varInitAssignLhsComputedRhs, b, c, 3);
 `````
@@ -79,17 +79,17 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = { y: 2 };
-const c = [ "before ", " after" ];
-const d = $( a );
-const e = $( "x" );
-const f = $( b );
-const g = $( "y" );
-const h = $( 3 );
-f[g] = h;
-d[e] = h;
-$( c, h );
-$( h, a, b, 3 );
+const b = $( a );
+const c = $( "x" );
+const d = { y: 2 };
+const e = $( d );
+const f = $( "y" );
+const g = $( 3 );
+e[f] = g;
+b[c] = g;
+const h = [ "before ", " after" ];
+$( h, g );
+$( g, a, d, 3 );
 `````
 
 ## Globals

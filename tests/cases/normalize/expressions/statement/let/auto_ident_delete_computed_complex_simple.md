@@ -45,10 +45,10 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-const a = { a: 999, b: 1000 };
 const tmpDeleteObj = $(arg);
 const xyz = delete tmpDeleteObj.y;
 $(xyz);
+const a = { a: 999, b: 1000 };
 $(a, arg);
 `````
 
@@ -58,14 +58,14 @@ With rename=true
 
 `````js filename=intro
 const a = { y: 1 };
-const b = {
+const b = $( a );
+const c = delete b.y;
+$( c );
+const d = {
   a: 999,
   b: 1000,
 };
-const c = $( a );
-const d = delete c.y;
-$( d );
-$( b, a );
+$( d, a );
 `````
 
 ## Globals

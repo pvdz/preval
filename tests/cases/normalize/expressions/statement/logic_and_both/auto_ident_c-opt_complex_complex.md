@@ -60,9 +60,8 @@ $(a);
 
 
 `````js filename=intro
-const b = { x: 1 };
-const a = { a: 999, b: 1000 };
 let tmpIfTest = false;
+const b = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
@@ -81,6 +80,7 @@ if (tmpIfTest) {
   }
 } else {
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -89,34 +89,34 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = {
-  a: 999,
-  b: 1000,
-};
-let c = false;
-const d = $( a );
-const e = d == null;
-if (e) {
+let a = false;
+const b = { x: 1 };
+const c = $( b );
+const d = c == null;
+if (d) {
 
 }
 else {
-  const f = $( "x" );
-  const g = d[ f ];
-  c = g;
+  const e = $( "x" );
+  const f = c[ e ];
+  a = f;
 }
-if (c) {
-  const h = $( a );
-  const i = h == null;
-  if (i) {
+if (a) {
+  const g = $( b );
+  const h = g == null;
+  if (h) {
 
   }
   else {
-    const j = $( "x" );
-    h[ j ];
+    const i = $( "x" );
+    g[ i ];
   }
 }
-$( b );
+const j = {
+  a: 999,
+  b: 1000,
+};
+$( j );
 `````
 
 ## Globals

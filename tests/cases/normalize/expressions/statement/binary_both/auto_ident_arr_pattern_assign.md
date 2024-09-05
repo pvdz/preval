@@ -59,7 +59,6 @@ $(a, x, y);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
@@ -73,6 +72,7 @@ const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
 const tmpClusterSSA_x = arrPatternSplat$1[0];
 const tmpClusterSSA_y = arrPatternSplat$1[1];
 tmpNestedAssignArrPatternRhs + tmpNestedAssignArrPatternRhs$1;
+const a = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_x, tmpClusterSSA_y);
 `````
 
@@ -81,24 +81,24 @@ $(a, tmpClusterSSA_x, tmpClusterSSA_y);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = $( 3 );
+const b = $( 4 );
+const c = [ a, b ];
+const d = [ ... c ];
+d[ 0 ];
+d[ 1 ];
+const e = $( 3 );
+const f = $( 4 );
+const g = [ e, f ];
+const h = [ ... g ];
+const i = h[ 0 ];
+const j = h[ 1 ];
+c + g;
+const k = {
   a: 999,
   b: 1000,
 };
-const b = $( 3 );
-const c = $( 4 );
-const d = [ b, c ];
-const e = [ ... d ];
-e[ 0 ];
-e[ 1 ];
-const f = $( 3 );
-const g = $( 4 );
-const h = [ f, g ];
-const i = [ ... h ];
-const j = i[ 0 ];
-const k = i[ 1 ];
-d + h;
-$( a, j, k );
+$( k, i, j );
 `````
 
 ## Globals

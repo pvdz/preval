@@ -60,14 +60,14 @@ $(a, b, c, d);
 
 `````js filename=intro
 const b = { x: 1 };
-const c = { y: 2 };
-const a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $(`x`);
+const c = { y: 2 };
 const varInitAssignLhsComputedObj$1 = $(c);
 const varInitAssignLhsComputedProp$1 = $(`y`);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+const a = { a: 999, b: 1000 };
 const tmpClusterSSA_a = a * 3;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, b, c, 3);
@@ -79,20 +79,20 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = { y: 2 };
-const c = {
+const b = $( a );
+const c = $( "x" );
+const d = { y: 2 };
+const e = $( d );
+const f = $( "y" );
+e[f] = 3;
+b[c] = 3;
+const g = {
   a: 999,
   b: 1000,
 };
-const d = $( a );
-const e = $( "x" );
-const f = $( b );
-const g = $( "y" );
-f[g] = 3;
-d[e] = 3;
-const h = c * 3;
+const h = g * 3;
 $( h );
-$( h, a, b, 3 );
+$( h, a, d, 3 );
 `````
 
 ## Globals

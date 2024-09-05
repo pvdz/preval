@@ -43,8 +43,8 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 2 };
 const a = { a: 999, b: 1000 };
+const b = { c: 2 };
 $(a, b);
 `````
 
@@ -53,12 +53,12 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-const a = { c: 2 };
-const b = {
+const a = {
   a: 999,
   b: 1000,
 };
-$( b, a );
+const b = { c: 2 };
+$( a, b );
 `````
 
 ## Globals

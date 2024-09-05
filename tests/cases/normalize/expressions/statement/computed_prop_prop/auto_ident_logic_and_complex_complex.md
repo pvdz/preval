@@ -49,8 +49,6 @@ $(a);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
-const obj = {};
 const tmpCalleeParam = $(1);
 let tmpCompProp = $(tmpCalleeParam);
 if (tmpCompProp) {
@@ -58,7 +56,9 @@ if (tmpCompProp) {
   tmpCompProp = $(tmpCalleeParam$1);
 } else {
 }
+const obj = {};
 obj[tmpCompProp];
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -67,19 +67,19 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = $( 1 );
+let b = $( a );
+if (b) {
+  const c = $( 2 );
+  b = $( c );
+}
+const d = {};
+d[ b ];
+const e = {
   a: 999,
   b: 1000,
 };
-const b = {};
-const c = $( 1 );
-let d = $( c );
-if (d) {
-  const e = $( 2 );
-  d = $( e );
-}
-b[ d ];
-$( a );
+$( e );
 `````
 
 ## Globals

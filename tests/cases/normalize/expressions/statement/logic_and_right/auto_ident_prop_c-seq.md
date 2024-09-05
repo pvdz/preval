@@ -45,14 +45,14 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 1 };
-const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
+const b = { c: 1 };
 if (tmpIfTest) {
   const tmpCompObj = $(b);
   tmpCompObj.c;
 } else {
 }
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -61,17 +61,17 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-const a = { c: 1 };
-const b = {
+const a = $( 100 );
+const b = { c: 1 };
+if (a) {
+  const c = $( b );
+  c.c;
+}
+const d = {
   a: 999,
   b: 1000,
 };
-const c = $( 100 );
-if (c) {
-  const d = $( a );
-  d.c;
-}
-$( b, a );
+$( d, b );
 `````
 
 ## Globals

@@ -124,7 +124,6 @@ $(a, b, c);
 
 
 `````js filename=intro
-const b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
@@ -140,6 +139,7 @@ if (tmpIfTest) {
   }
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+const b = { x: 1 };
 if (tmpIfTest$3) {
   const tmpNestedAssignComMemberObj = $(b);
   const tmpNestedAssignComMemberProp = $(`x`);
@@ -176,37 +176,37 @@ $(a, b, 3);
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-let b = {
+let a = {
   a: 999,
   b: 1000,
 };
-const c = $( 1 );
-let d = 1;
-const e = $( 1 );
-const f = e === c;
-if (f) {
-  d = 0;
+const b = $( 1 );
+let c = 1;
+const d = $( 1 );
+const e = d === b;
+if (e) {
+  c = 0;
 }
 else {
-  const g = 2 === c;
-  if (g) {
-    d = 2;
+  const f = 2 === b;
+  if (f) {
+    c = 2;
   }
 }
-const h = d <= 0;
-if (h) {
-  const i = $( a );
+const g = c <= 0;
+const h = { x: 1 };
+if (g) {
+  const i = $( h );
   const j = $( "x" );
-  const k = $( a );
+  const k = $( h );
   const l = $( "x" );
-  const m = $( a );
+  const m = $( h );
   const n = $( "x" );
-  const o = $( a );
+  const o = $( h );
   const p = $( "x" );
-  const q = $( a );
+  const q = $( h );
   const r = $( "x" );
-  const s = $( a );
+  const s = $( h );
   const t = $( "x" );
   s[t] = 3;
   q[r] = 3;
@@ -214,14 +214,14 @@ if (h) {
   m[n] = 3;
   k[l] = 3;
   i[j] = 3;
-  b = 3;
+  a = 3;
 }
-const u = d <= 1;
+const u = c <= 1;
 if (u) {
   $( "fail1" );
 }
 $( "fail2" );
-$( b, a, 3 );
+$( a, h, 3 );
 `````
 
 ## Globals

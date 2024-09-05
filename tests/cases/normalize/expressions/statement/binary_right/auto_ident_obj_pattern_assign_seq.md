@@ -53,7 +53,6 @@ $(a, x, y);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(100);
 $(1);
 $(2);
@@ -61,6 +60,7 @@ const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 tmpBinBothLhs + tmpNestedAssignObjPatternRhs;
+const a = { a: 999, b: 1000 };
 $(a, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
@@ -69,21 +69,21 @@ $(a, tmpObjLitVal, tmpObjLitVal$1);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = $( 100 );
+$( 1 );
+$( 2 );
+const b = $( 3 );
+const c = $( 4 );
+const d = {
+  x: b,
+  y: c,
+};
+a + d;
+const e = {
   a: 999,
   b: 1000,
 };
-const b = $( 100 );
-$( 1 );
-$( 2 );
-const c = $( 3 );
-const d = $( 4 );
-const e = {
-  x: c,
-  y: d,
-};
-b + e;
-$( a, c, d );
+$( e, b, c );
 `````
 
 ## Globals

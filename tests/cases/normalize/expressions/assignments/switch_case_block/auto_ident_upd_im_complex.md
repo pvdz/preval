@@ -66,10 +66,10 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { x: 1 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
+const b = { x: 1 };
 if (tmpIfTest) {
   const tmpCalleeParam = $(b);
   const tmpPostUpdArgObj = $(tmpCalleeParam);
@@ -88,24 +88,24 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
+const a = $( 1 );
 const b = $( 1 );
-const c = $( 1 );
-const d = b === c;
-if (d) {
-  const e = $( a );
+const c = a === b;
+const d = { x: 1 };
+if (c) {
+  const e = $( d );
   const f = $( e );
   const g = f.x;
   const h = g - 1;
   f.x = h;
-  $( g, a );
+  $( g, d );
 }
 else {
   const i = {
     a: 999,
     b: 1000,
   };
-  $( i, a );
+  $( i, d );
 }
 `````
 

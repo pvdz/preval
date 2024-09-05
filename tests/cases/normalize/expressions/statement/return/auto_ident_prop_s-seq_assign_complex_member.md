@@ -59,12 +59,12 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 10, d: 20 };
-const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 b.c = varInitAssignLhsComputedRhs;
 $(varInitAssignLhsComputedRhs);
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -77,16 +77,16 @@ const a = {
   c: 10,
   d: 20,
 };
-const b = {
+const b = $( a );
+const c = $( "d" );
+const d = b[ c ];
+a.c = d;
+$( d );
+const e = {
   a: 999,
   b: 1000,
 };
-const c = $( a );
-const d = $( "d" );
-const e = c[ d ];
-a.c = e;
-$( e );
-$( b, a );
+$( e, a );
 `````
 
 ## Globals

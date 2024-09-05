@@ -58,7 +58,6 @@ $(a, x, y);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 $(1);
 $(2);
 const tmpObjLitVal = $(3);
@@ -67,6 +66,7 @@ const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 const tmpBinBothRhs = $coerce(tmpNestedAssignObjPatternRhs, `string`);
 const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
+const a = { a: 999, b: 1000 };
 $(a, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
@@ -75,22 +75,22 @@ $(a, tmpObjLitVal, tmpObjLitVal$1);
 With rename=true
 
 `````js filename=intro
-const a = {
+$( 1 );
+$( 2 );
+const a = $( 3 );
+const b = $( 4 );
+const c = {
+  x: a,
+  y: b,
+};
+const d = $coerce( c, "string" );
+const e = `before  ${tmpBinBothRhs}  after`;
+$( e );
+const f = {
   a: 999,
   b: 1000,
 };
-$( 1 );
-$( 2 );
-const b = $( 3 );
-const c = $( 4 );
-const d = {
-  x: b,
-  y: c,
-};
-const e = $coerce( d, "string" );
-const f = `before  ${tmpBinBothRhs}  after`;
-$( f );
-$( a, b, c );
+$( f, a, b );
 `````
 
 ## Globals

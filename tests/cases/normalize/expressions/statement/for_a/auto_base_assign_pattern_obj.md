@@ -54,7 +54,6 @@ $(a, b);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpAssignObjPatternRhs = $(tmpCalleeParam);
@@ -70,6 +69,7 @@ if (tmpIfTest) {
   }
 } else {
 }
+const a = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_b);
 `````
 
@@ -78,19 +78,15 @@ $(a, tmpClusterSSA_b);
 With rename=true
 
 `````js filename=intro
-const a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 2 );
-const c = { b: b };
-const d = $( c );
-const e = d.b;
-const f = $( 0 );
-if (f) {
+const a = $( 2 );
+const b = { b: a };
+const c = $( b );
+const d = c.b;
+const e = $( 0 );
+if (e) {
   while ($LOOP_UNROLL_10) {
-    const g = $( 0 );
-    if (g) {
+    const f = $( 0 );
+    if (f) {
 
     }
     else {
@@ -98,7 +94,11 @@ if (f) {
     }
   }
 }
-$( a, e );
+const g = {
+  a: 999,
+  b: 1000,
+};
+$( g, d );
 `````
 
 ## Globals

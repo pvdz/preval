@@ -68,8 +68,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-const arr = [1, 2, 3];
 const obj = {};
+const arr = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     const tmpCalleeParam = obj[`1,2,3`];
@@ -92,14 +92,14 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 With rename=true
 
 `````js filename=intro
-const a = [ 1, 2, 3 ];
-const b = {};
+const a = {};
+const b = [ 1, 2, 3 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
-    const c = b[ "1,2,3" ];
+    const c = a[ "1,2,3" ];
     $( c );
-    a.reverse();
-    const d = a[ 0 ];
+    b.reverse();
+    const d = b[ 0 ];
     const e = d === $;
     if (e) {
       break;

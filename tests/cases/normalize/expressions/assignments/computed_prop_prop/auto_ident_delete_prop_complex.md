@@ -48,9 +48,9 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-const obj = {};
 const tmpDeleteObj = $(arg);
 const tmpClusterSSA_a = delete tmpDeleteObj.y;
+const obj = {};
 obj[tmpClusterSSA_a];
 $(tmpClusterSSA_a, arg);
 `````
@@ -61,11 +61,11 @@ With rename=true
 
 `````js filename=intro
 const a = { y: 1 };
-const b = {};
-const c = $( a );
-const d = delete c.y;
-b[ d ];
-$( d, a );
+const b = $( a );
+const c = delete b.y;
+const d = {};
+d[ c ];
+$( c, a );
 `````
 
 ## Globals

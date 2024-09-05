@@ -55,7 +55,6 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 10, d: 20 };
-const a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
@@ -69,6 +68,7 @@ if (varInitAssignLhsComputedRhs) {
   const tmpAssignMemRhs = tmpCompObj$1[tmpCompProp$1];
   tmpAssignMemLhsObj.c = tmpAssignMemRhs;
 }
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -81,26 +81,26 @@ const a = {
   c: 10,
   d: 20,
 };
-const b = {
-  a: 999,
-  b: 1000,
-};
+const b = $( a );
 const c = $( a );
-const d = $( a );
-const e = $( "d" );
-const f = d[ e ];
-c.c = f;
-if (f) {
+const d = $( "d" );
+const e = c[ d ];
+b.c = e;
+if (e) {
 
 }
 else {
+  const f = $( a );
   const g = $( a );
-  const h = $( a );
-  const i = $( "d" );
-  const j = h[ i ];
-  g.c = j;
+  const h = $( "d" );
+  const i = g[ h ];
+  f.c = i;
 }
-$( b, a );
+const j = {
+  a: 999,
+  b: 1000,
+};
+$( j, a );
 `````
 
 ## Globals

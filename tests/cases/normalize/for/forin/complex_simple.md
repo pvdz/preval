@@ -62,9 +62,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-const a = {};
 const b = { x: 1, y: 2 };
 const tmpForInGen = $forIn(b);
+const a = {};
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext = tmpForInGen.next();
   const tmpIfTest = tmpForInNext.done;
@@ -85,23 +85,23 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 With rename=true
 
 `````js filename=intro
-const a = {};
-const b = {
+const a = {
   x: 1,
   y: 2,
 };
-const c = $forIn( b );
+const b = $forIn( a );
+const c = {};
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const d = c.next();
+  const d = b.next();
   const e = d.done;
   if (e) {
     break;
   }
   else {
-    const f = $( a );
+    const f = $( c );
     const g = d.value;
     f.x = g;
-    const h = a.x;
+    const h = c.x;
     $( h );
   }
 }

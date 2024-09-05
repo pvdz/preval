@@ -65,8 +65,8 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-const tmpObjLitVal$1 = { e: $ };
 const tmpIfTest$3 = $ == null;
+const tmpObjLitVal$1 = { e: $ };
 if (tmpIfTest$3) {
 } else {
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
@@ -98,25 +98,25 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-const b = { e: $ };
-const c = $ == null;
-if (c) {
+const b = $ == null;
+const c = { e: $ };
+if (b) {
 
 }
 else {
-  const d = $dotCall( $, b, 1 );
+  const d = $dotCall( $, c, 1 );
   a = d;
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const e = b.e;
+    const e = c.e;
     const f = e == null;
     if (f) {
 
     }
     else {
-      const g = $dotCall( e, b, 1 );
+      const g = $dotCall( e, c, 1 );
       a = g;
     }
     if (a) {

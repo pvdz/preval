@@ -49,13 +49,13 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 10, d: 20 };
-const a = { a: 999, b: 1000 };
-const tmpCalleeParam = [`before `, ` after`];
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 b.c = varInitAssignLhsComputedRhs;
+const tmpCalleeParam = [`before `, ` after`];
 $(tmpCalleeParam, varInitAssignLhsComputedRhs);
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -68,17 +68,17 @@ const a = {
   c: 10,
   d: 20,
 };
-const b = {
+const b = $( a );
+const c = $( "d" );
+const d = b[ c ];
+a.c = d;
+const e = [ "before ", " after" ];
+$( e, d );
+const f = {
   a: 999,
   b: 1000,
 };
-const c = [ "before ", " after" ];
-const d = $( a );
-const e = $( "d" );
-const f = d[ e ];
-a.c = f;
-$( c, f );
-$( b, a );
+$( f, a );
 `````
 
 ## Globals

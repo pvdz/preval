@@ -50,14 +50,14 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 10, d: 20 };
-const a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedProp = $(`c`);
+const b = { c: 10, d: 20 };
 const tmpCompObj$1 = $(b);
 const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCompProp];
 b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 varInitAssignLhsComputedRhs.a;
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -66,21 +66,21 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = $( "c" );
+const b = {
   c: 10,
   d: 20,
 };
-const b = {
+const c = $( b );
+const d = $( "d" );
+const e = c[ d ];
+b[a] = e;
+e.a;
+const f = {
   a: 999,
   b: 1000,
 };
-const c = $( "c" );
-const d = $( a );
-const e = $( "d" );
-const f = d[ e ];
-a[c] = f;
-f.a;
-$( b, a );
+$( f, b );
 `````
 
 ## Globals

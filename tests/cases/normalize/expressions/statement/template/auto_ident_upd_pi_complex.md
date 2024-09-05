@@ -54,7 +54,6 @@ $(a, b);
 
 `````js filename=intro
 const b = { x: 1 };
-const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = $(b);
 const varInitAssignLhsComputedObj = $(tmpCalleeParam$1);
 const tmpBinLhs$1 = varInitAssignLhsComputedObj.x;
@@ -63,6 +62,7 @@ varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
 const tmpBinBothRhs = $coerce(varInitAssignLhsComputedRhs, `string`);
 const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -72,19 +72,19 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = {
+const b = $( a );
+const c = $( b );
+const d = c.x;
+const e = d + 1;
+c.x = e;
+const f = $coerce( e, "string" );
+const g = `before  ${tmpBinBothRhs}  after`;
+$( g );
+const h = {
   a: 999,
   b: 1000,
 };
-const c = $( a );
-const d = $( c );
-const e = d.x;
-const f = e + 1;
-d.x = f;
-const g = $coerce( f, "string" );
-const h = `before  ${tmpBinBothRhs}  after`;
-$( h );
-$( b, a );
+$( h, a );
 `````
 
 ## Globals

@@ -45,12 +45,12 @@ $(a);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpIfTest = $ == null;
 if (tmpIfTest) {
 } else {
   $(1);
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -59,18 +59,18 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {
-  a: 999,
-  b: 1000,
-};
-const b = $ == null;
-if (b) {
+const a = $ == null;
+if (a) {
 
 }
 else {
   $( 1 );
 }
-$( a );
+const b = {
+  a: 999,
+  b: 1000,
+};
+$( b );
 `````
 
 ## Globals

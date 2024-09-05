@@ -57,9 +57,8 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { x: 1 };
-const a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
+const b = { x: 1 };
 if (tmpIfTest) {
   const tmpCalleeParam = $(b);
   const tmpPostUpdArgObj = $(tmpCalleeParam);
@@ -80,6 +79,7 @@ if (tmpIfTest) {
   }
 } else {
 }
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -88,33 +88,33 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = {
-  a: 999,
-  b: 1000,
-};
-const c = $( 1 );
-if (c) {
-  const d = $( a );
-  const e = $( d );
-  const f = e.x;
-  const g = f + 1;
-  e.x = g;
+const a = $( 1 );
+const b = { x: 1 };
+if (a) {
+  const c = $( b );
+  const d = $( c );
+  const e = d.x;
+  const f = e + 1;
+  d.x = f;
   while ($LOOP_UNROLL_10) {
-    const h = $( 1 );
-    if (h) {
-      const i = $( a );
-      const j = $( i );
-      const k = j.x;
-      const l = k + 1;
-      j.x = l;
+    const g = $( 1 );
+    if (g) {
+      const h = $( b );
+      const i = $( h );
+      const j = i.x;
+      const k = j + 1;
+      i.x = k;
     }
     else {
       break;
     }
   }
 }
-$( b, a );
+const l = {
+  a: 999,
+  b: 1000,
+};
+$( l, b );
 `````
 
 ## Globals

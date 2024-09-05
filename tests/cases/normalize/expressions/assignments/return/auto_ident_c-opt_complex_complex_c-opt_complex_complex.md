@@ -72,10 +72,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = { y: 1 };
-const b = { x: tmpObjLitVal };
 let a = undefined;
 let tmpCalleeParam = undefined;
+const tmpObjLitVal = { y: 1 };
+const b = { x: tmpObjLitVal };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
@@ -100,11 +100,11 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-const b = { x: a };
-let c = undefined;
-let d = undefined;
-const e = $( b );
+let a = undefined;
+let b = undefined;
+const c = { y: 1 };
+const d = { x: c };
+const e = $( d );
 const f = e == null;
 if (f) {
 
@@ -119,12 +119,12 @@ else {
   else {
     const j = $( "y" );
     const k = h[ j ];
-    c = k;
-    d = k;
+    a = k;
+    b = k;
   }
 }
-$( d );
-$( c );
+$( b );
+$( a );
 `````
 
 ## Globals

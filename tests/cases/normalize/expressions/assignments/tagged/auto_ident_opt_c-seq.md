@@ -51,18 +51,17 @@ $(a);
 
 
 `````js filename=intro
-const b = { x: 1 };
-const tmpCalleeParam = [`before `, ` after`];
 let a = undefined;
+const b = { x: 1 };
 const tmpChainRootProp = $(b);
 const tmpIfTest = tmpChainRootProp == null;
 if (tmpIfTest) {
-  $(tmpCalleeParam, undefined);
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;
   a = tmpChainElementObject;
-  $(tmpCalleeParam, tmpChainElementObject);
 }
+const tmpCalleeParam = [`before `, ` after`];
+$(tmpCalleeParam, a);
 $(a);
 `````
 
@@ -71,20 +70,20 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = [ "before ", " after" ];
-let c = undefined;
-const d = $( a );
-const e = d == null;
-if (e) {
-  $( b, undefined );
+let a = undefined;
+const b = { x: 1 };
+const c = $( b );
+const d = c == null;
+if (d) {
+
 }
 else {
-  const f = d.x;
-  c = f;
-  $( b, f );
+  const e = c.x;
+  a = e;
 }
-$( c );
+const f = [ "before ", " after" ];
+$( f, a );
+$( a );
 `````
 
 ## Globals

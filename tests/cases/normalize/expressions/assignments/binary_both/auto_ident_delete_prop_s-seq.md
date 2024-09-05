@@ -52,9 +52,9 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
 $(1);
 $(2);
+const arg = { y: 1 };
 const a = delete arg.y;
 $(1);
 $(2);
@@ -69,9 +69,9 @@ $(tmpClusterSSA_a, arg);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
 $( 1 );
 $( 2 );
+const a = { y: 1 };
 const b = delete a.y;
 $( 1 );
 $( 2 );

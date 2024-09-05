@@ -96,12 +96,11 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
-const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 $(1);
 $(2);
+const arg = { y: 1 };
 const tmpBinLhs = delete arg.y;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
@@ -123,6 +122,7 @@ if (tmpIfTest$3) {
   }
   $(`fail2`);
 }
+const a = { a: 999, b: 1000 };
 $(a, arg);
 `````
 
@@ -131,38 +131,38 @@ $(a, arg);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-const b = {
-  a: 999,
-  b: 1000,
-};
-const c = $( 1 );
-let d = 1;
+const a = $( 1 );
+let b = 1;
 $( 1 );
 $( 2 );
-const e = delete a.y;
-const f = e === c;
-if (f) {
-  d = 0;
+const c = { y: 1 };
+const d = delete c.y;
+const e = d === a;
+if (e) {
+  b = 0;
 }
 else {
-  const g = 2 === c;
-  if (g) {
-    d = 2;
+  const f = 2 === a;
+  if (f) {
+    b = 2;
   }
 }
-const h = d <= 0;
-if (h) {
+const g = b <= 0;
+if (g) {
 
 }
 else {
-  const i = d <= 1;
-  if (i) {
+  const h = b <= 1;
+  if (h) {
     $( "fail1" );
   }
   $( "fail2" );
 }
-$( b, a );
+const i = {
+  a: 999,
+  b: 1000,
+};
+$( i, c );
 `````
 
 ## Globals

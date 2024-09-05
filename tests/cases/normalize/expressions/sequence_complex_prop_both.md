@@ -53,9 +53,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = { y: 10 };
 const tmpCompObj = $(30);
 const tmpBinBothLhs = tmpCompObj.y;
+const tmpObjLitVal = { y: 10 };
 const tmpCompObj$1 = $(tmpObjLitVal);
 const tmpBinBothRhs = tmpCompObj$1.y;
 const tmpClusterSSA_a = tmpBinBothLhs === tmpBinBothRhs;
@@ -67,12 +67,12 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-const a = { y: 10 };
-const b = $( 30 );
-const c = b.y;
-const d = $( a );
+const a = $( 30 );
+const b = a.y;
+const c = { y: 10 };
+const d = $( c );
 const e = d.y;
-const f = c === e;
+const f = b === e;
 $( f );
 `````
 

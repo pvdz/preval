@@ -68,11 +68,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpObjLitVal$1 = { e: $ };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   a = undefined;
   const tmpIfTest$3 = $ == null;
+  const tmpObjLitVal$1 = { e: $ };
   if (tmpIfTest$3) {
   } else {
     $dotCall($, tmpObjLitVal$1, 1);
@@ -104,27 +104,27 @@ let a = {
   a: 999,
   b: 1000,
 };
-const b = { e: $ };
-const c = $( 1 );
-if (c) {
+const b = $( 1 );
+if (b) {
   a = undefined;
-  const d = $ == null;
-  if (d) {
+  const c = $ == null;
+  const d = { e: $ };
+  if (c) {
 
   }
   else {
-    $dotCall( $, b, 1 );
+    $dotCall( $, d, 1 );
   }
   while ($LOOP_UNROLL_10) {
     const e = $( 1 );
     if (e) {
-      const f = b.e;
+      const f = d.e;
       const g = f == null;
       if (g) {
 
       }
       else {
-        $dotCall( f, b, 1 );
+        $dotCall( f, d, 1 );
       }
     }
     else {

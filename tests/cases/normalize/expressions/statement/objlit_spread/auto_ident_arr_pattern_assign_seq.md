@@ -53,13 +53,13 @@ $(a, x, y);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 $(1);
 $(2);
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 ({ ...tmpNestedAssignArrPatternRhs });
+const a = { a: 999, b: 1000 };
 $(a, tmpArrElement, tmpArrElement$1);
 `````
 
@@ -68,17 +68,17 @@ $(a, tmpArrElement, tmpArrElement$1);
 With rename=true
 
 `````js filename=intro
-const a = {
+$( 1 );
+$( 2 );
+const a = $( 3 );
+const b = $( 4 );
+const c = [ a, b ];
+{ ... c };
+const d = {
   a: 999,
   b: 1000,
 };
-$( 1 );
-$( 2 );
-const b = $( 3 );
-const c = $( 4 );
-const d = [ b, c ];
-{ ... d };
-$( a, b, c );
+$( d, a, b );
 `````
 
 ## Globals

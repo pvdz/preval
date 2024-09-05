@@ -48,9 +48,9 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-const obj = {};
 const tmpAssignRhsProp = $(b);
 const tmpClusterSSA_a = tmpAssignRhsProp.c;
+const obj = {};
 obj[tmpClusterSSA_a];
 $(tmpClusterSSA_a, b);
 `````
@@ -61,11 +61,11 @@ With rename=true
 
 `````js filename=intro
 const a = { c: 1 };
-const b = {};
-const c = $( a );
-const d = c.c;
-b[ d ];
-$( d, a );
+const b = $( a );
+const c = b.c;
+const d = {};
+d[ c ];
+$( c, a );
 `````
 
 ## Globals

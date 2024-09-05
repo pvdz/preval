@@ -53,10 +53,9 @@ $(a);
 
 `````js filename=intro
 const b = { x: 1 };
-const a = { a: 999, b: 1000 };
-const tmpCalleeParam = [`before `, ` after`];
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
+const tmpCalleeParam = [`before `, ` after`];
 if (tmpIfTest) {
   $(tmpCalleeParam, undefined);
 } else {
@@ -64,6 +63,7 @@ if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   $(tmpCalleeParam, tmpChainElementObject);
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -73,22 +73,22 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = {
+const b = $( a );
+const c = b == null;
+const d = [ "before ", " after" ];
+if (c) {
+  $( d, undefined );
+}
+else {
+  const e = $( "x" );
+  const f = b[ e ];
+  $( d, f );
+}
+const g = {
   a: 999,
   b: 1000,
 };
-const c = [ "before ", " after" ];
-const d = $( a );
-const e = d == null;
-if (e) {
-  $( c, undefined );
-}
-else {
-  const f = $( "x" );
-  const g = d[ f ];
-  $( c, g );
-}
-$( b );
+$( g );
 `````
 
 ## Globals

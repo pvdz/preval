@@ -45,11 +45,11 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-const a = { a: 999, b: 1000 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 const tmpAnonDefaultExport = delete tmpDeleteCompObj[tmpDeleteCompProp];
 export { tmpAnonDefaultExport as default };
+const a = { a: 999, b: 1000 };
 $(a, arg);
 `````
 
@@ -59,15 +59,15 @@ With rename=true
 
 `````js filename=intro
 const a = { y: 1 };
-const b = {
+const b = $( a );
+const c = $( "y" );
+const d = delete b[ c ];
+export { d as default };
+const e = {
   a: 999,
   b: 1000,
 };
-const c = $( a );
-const d = $( "y" );
-const e = delete c[ d ];
-export { e as default };
-$( b, a );
+$( e, a );
 `````
 
 ## Globals

@@ -98,6 +98,9 @@ $(a, b, c, d, obj);
 
 
 `````js filename=intro
+const tmpSwitchDisc = $(`a`);
+const tmpBinBothRhs = $(`a`);
+const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
 const obj = {
   get c() {
     debugger;
@@ -110,10 +113,6 @@ const obj = {
     return undefined;
   },
 };
-const b = { x: 2 };
-const tmpSwitchDisc = $(`a`);
-const tmpBinBothRhs = $(`a`);
-const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpNestedAssignComMemberObj = $(obj);
   const tmpNestedAssignComMemberProp = $(`x`);
@@ -124,6 +123,7 @@ if (tmpIfTest) {
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
 } else {
 }
+const b = { x: 2 };
 $(1, b, 3, 4, obj);
 `````
 
@@ -132,7 +132,10 @@ $(1, b, 3, 4, obj);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = $( "a" );
+const b = $( "a" );
+const c = a === b;
+const d = {
   get c() {
     debugger;
     $( "get" );
@@ -144,20 +147,17 @@ const a = {
     return undefined;
   },
 };
-const b = { x: 2 };
-const c = $( "a" );
-const d = $( "a" );
-const e = c === d;
-if (e) {
-  const f = $( a );
-  const g = $( "x" );
-  const h = $( a );
-  const i = $( "y" );
-  const j = $( 4 );
-  h[i] = j;
-  f[g] = j;
+if (c) {
+  const e = $( d );
+  const f = $( "x" );
+  const g = $( d );
+  const h = $( "y" );
+  const i = $( 4 );
+  g[h] = i;
+  e[f] = i;
 }
-$( 1, b, 3, 4, a );
+const j = { x: 2 };
+$( 1, j, 3, 4, d );
 `````
 
 ## Globals

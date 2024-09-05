@@ -53,12 +53,12 @@ $(a, b);
 
 `````js filename=intro
 const b = { x: 1 };
-const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam$1);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
+const a = { a: 999, b: 1000 };
 const tmpClusterSSA_a = a * tmpPostUpdArgVal;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, b);
@@ -70,16 +70,16 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = {
+const b = $( a );
+const c = $( b );
+const d = c.x;
+const e = d + 1;
+c.x = e;
+const f = {
   a: 999,
   b: 1000,
 };
-const c = $( a );
-const d = $( c );
-const e = d.x;
-const f = e + 1;
-d.x = f;
-const g = b * e;
+const g = f * d;
 $( g );
 $( g, a );
 `````

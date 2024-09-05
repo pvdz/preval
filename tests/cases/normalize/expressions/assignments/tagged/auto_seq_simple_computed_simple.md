@@ -48,8 +48,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = [`before `, ` after`];
 const tmpObjLitVal = $(1);
+const tmpCalleeParam = [`before `, ` after`];
 const a = { b: tmpObjLitVal };
 $(tmpCalleeParam, a);
 $(1);
@@ -63,10 +63,10 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = [ "before ", " after" ];
-const b = $( 1 );
-const c = { b: b };
-$( a, c );
+const a = $( 1 );
+const b = [ "before ", " after" ];
+const c = { b: a };
+$( b, c );
 $( 1 );
 const d = $( 2 );
 c.b = d;

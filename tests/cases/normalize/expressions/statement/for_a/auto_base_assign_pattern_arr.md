@@ -55,7 +55,6 @@ $(a, b);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const arrAssignPatternRhs = $(tmpCalleeParam);
@@ -72,6 +71,7 @@ if (tmpIfTest) {
   }
 } else {
 }
+const a = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_b);
 `````
 
@@ -80,20 +80,16 @@ $(a, tmpClusterSSA_b);
 With rename=true
 
 `````js filename=intro
-const a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 2 );
-const c = [ b ];
-const d = $( c );
-const e = [ ... d ];
-const f = e[ 0 ];
-const g = $( 0 );
-if (g) {
+const a = $( 2 );
+const b = [ a ];
+const c = $( b );
+const d = [ ... c ];
+const e = d[ 0 ];
+const f = $( 0 );
+if (f) {
   while ($LOOP_UNROLL_10) {
-    const h = $( 0 );
-    if (h) {
+    const g = $( 0 );
+    if (g) {
 
     }
     else {
@@ -101,7 +97,11 @@ if (g) {
     }
   }
 }
-$( a, f );
+const h = {
+  a: 999,
+  b: 1000,
+};
+$( h, e );
 `````
 
 ## Globals

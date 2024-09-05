@@ -48,11 +48,11 @@ $(a, arg);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(1);
 const tmpCallCallee$1 = typeof tmpUnaryArg;
 const tmpCalleeParam = `before  ${tmpCallCallee$1}  after`;
 $(tmpCalleeParam);
+const a = { a: 999, b: 1000 };
 $(a, 1);
 `````
 
@@ -61,15 +61,15 @@ $(a, 1);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = $( 1 );
+const b = typeof a;
+const c = `before  ${tmpCallCallee$1}  after`;
+$( c );
+const d = {
   a: 999,
   b: 1000,
 };
-const b = $( 1 );
-const c = typeof b;
-const d = `before  ${tmpCallCallee$1}  after`;
-$( d );
-$( a, 1 );
+$( d, 1 );
 `````
 
 ## Globals

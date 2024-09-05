@@ -62,9 +62,8 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
-const tmpCalleeParam = [`before `, ` after`];
 let a = undefined;
+const b = { $: $ };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
@@ -79,6 +78,7 @@ if (tmpIfTest) {
     a = tmpChainElementCall$1;
   }
 }
+const tmpCalleeParam = [`before `, ` after`];
 $(tmpCalleeParam, a);
 $(a);
 `````
@@ -88,29 +88,29 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { $: $ };
-const b = [ "before ", " after" ];
-let c = undefined;
-const d = $( a );
-const e = d == null;
-if (e) {
+let a = undefined;
+const b = { $: $ };
+const c = $( b );
+const d = c == null;
+if (d) {
 
 }
 else {
-  const f = $( "$" );
-  const g = d[ f ];
-  const h = g == null;
-  if (h) {
+  const e = $( "$" );
+  const f = c[ e ];
+  const g = f == null;
+  if (g) {
 
   }
   else {
-    const i = $( 1 );
-    const j = $dotCall( g, d, i );
-    c = j;
+    const h = $( 1 );
+    const i = $dotCall( f, c, h );
+    a = i;
   }
 }
-$( b, c );
-$( c );
+const j = [ "before ", " after" ];
+$( j, a );
+$( a );
 `````
 
 ## Globals

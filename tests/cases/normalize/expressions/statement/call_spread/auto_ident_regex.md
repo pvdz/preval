@@ -38,9 +38,9 @@ $(a);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpCalleeParamSpread = /foo/;
 $(...tmpCalleeParamSpread);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -49,13 +49,13 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = /foo/;
+$( ... a );
+const b = {
   a: 999,
   b: 1000,
 };
-const b = /foo/;
-$( ... b );
-$( a );
+$( b );
 `````
 
 ## Globals

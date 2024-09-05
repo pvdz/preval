@@ -72,10 +72,10 @@ $(a, b, c);
 
 
 `````js filename=intro
-const b = { x: 1 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
+const b = { x: 1 };
 if (tmpIfTest) {
   b.x = 3;
   b.x = 3;
@@ -95,25 +95,25 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
+const a = $( 1 );
 const b = $( 1 );
-const c = $( 1 );
-const d = b === c;
-if (d) {
-  a.x = 3;
-  a.x = 3;
-  a.x = 3;
-  a.x = 3;
-  a.x = 3;
-  a.x = 3;
-  $( 3, a, 3 );
+const c = a === b;
+const d = { x: 1 };
+if (c) {
+  d.x = 3;
+  d.x = 3;
+  d.x = 3;
+  d.x = 3;
+  d.x = 3;
+  d.x = 3;
+  $( 3, d, 3 );
 }
 else {
   const e = {
     a: 999,
     b: 1000,
   };
-  $( e, a, 3 );
+  $( e, d, 3 );
 }
 `````
 

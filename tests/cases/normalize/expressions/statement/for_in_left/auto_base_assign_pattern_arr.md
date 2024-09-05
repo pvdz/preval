@@ -74,7 +74,6 @@ $(a, b);
 
 `````js filename=intro
 let b = [];
-const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = { x: 1 };
 const tmpCalleeParam = $(tmpCalleeParam$1);
 const tmpForInGen = $forIn(tmpCalleeParam);
@@ -93,6 +92,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpNestedAssignArrPatternRhs.x = tmpAssignMemRhs;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -102,30 +102,30 @@ With rename=true
 
 `````js filename=intro
 let a = [];
-const b = {
-  a: 999,
-  b: 1000,
-};
-const c = { x: 1 };
-const d = $( c );
-const e = $forIn( d );
+const b = { x: 1 };
+const c = $( b );
+const d = $forIn( c );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const f = e.next();
-  const g = f.done;
-  if (g) {
+  const e = d.next();
+  const f = e.done;
+  if (f) {
     break;
   }
   else {
-    const h = $( 2 );
-    const i = [ h ];
-    const j = $( i );
-    const k = [ ... j ];
-    a = k[ 0 ];
-    const l = f.value;
-    j.x = l;
+    const g = $( 2 );
+    const h = [ g ];
+    const i = $( h );
+    const j = [ ... i ];
+    a = j[ 0 ];
+    const k = e.value;
+    i.x = k;
   }
 }
-$( b, a );
+const l = {
+  a: 999,
+  b: 1000,
+};
+$( l, a );
 `````
 
 ## Globals

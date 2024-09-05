@@ -47,18 +47,17 @@ $(a, b);
 
 
 `````js filename=intro
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
 const b = { c: 1 };
-const a = { a: 999, b: 1000 };
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   const tmpIfTest$1 = b.c;
@@ -67,6 +66,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
@@ -75,32 +75,32 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
+$( 100 );
+$( 100 );
+$( 100 );
+$( 100 );
+$( 100 );
+$( 100 );
+$( 100 );
+$( 100 );
+$( 100 );
+$( 100 );
 const a = { c: 1 };
-const b = {
-  a: 999,
-  b: 1000,
-};
-$( 100 );
-$( 100 );
-$( 100 );
-$( 100 );
-$( 100 );
-$( 100 );
-$( 100 );
-$( 100 );
-$( 100 );
-$( 100 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const c = a.c;
-  if (c) {
+  const b = a.c;
+  if (b) {
 
   }
   else {
     break;
   }
 }
-$( b, a );
+const c = {
+  a: 999,
+  b: 1000,
+};
+$( c, a );
 `````
 
 ## Globals

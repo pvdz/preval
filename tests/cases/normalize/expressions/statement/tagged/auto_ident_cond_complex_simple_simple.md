@@ -47,9 +47,8 @@ $(a);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
-const tmpCalleeParam = [`before `, ` after`];
 const tmpIfTest = $(1);
+const tmpCalleeParam = [`before `, ` after`];
 if (tmpIfTest) {
   $(tmpCalleeParam, 2);
 } else {
@@ -57,6 +56,7 @@ if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam$1 = $(tmpCalleeParam$3);
   $(tmpCalleeParam, tmpClusterSSA_tmpCalleeParam$1);
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -65,21 +65,21 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {
-  a: 999,
-  b: 1000,
-};
+const a = $( 1 );
 const b = [ "before ", " after" ];
-const c = $( 1 );
-if (c) {
+if (a) {
   $( b, 2 );
 }
 else {
-  const d = $( 100 );
-  const e = $( d );
-  $( b, e );
+  const c = $( 100 );
+  const d = $( c );
+  $( b, d );
 }
-$( a );
+const e = {
+  a: 999,
+  b: 1000,
+};
+$( e );
 `````
 
 ## Globals

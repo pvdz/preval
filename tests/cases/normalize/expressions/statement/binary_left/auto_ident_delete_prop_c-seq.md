@@ -45,14 +45,14 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
-const a = { a: 999, b: 1000 };
 $(1);
 $(2);
+const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
 const tmpBinBothLhs = delete tmpDeleteObj.y;
 const tmpBinBothRhs = $(100);
 tmpBinBothLhs + tmpBinBothRhs;
+const a = { a: 999, b: 1000 };
 $(a, arg);
 `````
 
@@ -61,18 +61,18 @@ $(a, arg);
 With rename=true
 
 `````js filename=intro
+$( 1 );
+$( 2 );
 const a = { y: 1 };
-const b = {
+const b = $( a );
+const c = delete b.y;
+const d = $( 100 );
+c + d;
+const e = {
   a: 999,
   b: 1000,
 };
-$( 1 );
-$( 2 );
-const c = $( a );
-const d = delete c.y;
-const e = $( 100 );
-d + e;
-$( b, a );
+$( e, a );
 `````
 
 ## Globals

@@ -48,9 +48,9 @@ $(a);
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
-const obj = {};
 const tmpCalleeParam = [1, 2];
 const tmpCompProp = $(tmpCalleeParam);
+const obj = {};
 obj[tmpCompProp];
 $(a);
 `````
@@ -66,10 +66,10 @@ const a = {
 };
 const b = [ ... a ];
 const c = b[ 0 ];
-const d = {};
-const e = [ 1, 2 ];
-const f = $( e );
-d[ f ];
+const d = [ 1, 2 ];
+const e = $( d );
+const f = {};
+f[ e ];
 $( c );
 `````
 

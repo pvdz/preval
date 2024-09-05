@@ -68,9 +68,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal$1 = { e: $ };
-const a = { a: 999, b: 1000 };
 $(100);
+const tmpObjLitVal$1 = { e: $ };
 const tmpChainElementCall = tmpObjLitVal$1.e(1);
 if (tmpChainElementCall) {
   while ($LOOP_UNROLL_10) {
@@ -83,6 +82,7 @@ if (tmpChainElementCall) {
   }
 } else {
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -91,18 +91,14 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { e: $ };
-const b = {
-  a: 999,
-  b: 1000,
-};
 $( 100 );
-const c = a.e( 1 );
-if (c) {
+const a = { e: $ };
+const b = a.e( 1 );
+if (b) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const d = a.e( 1 );
-    if (d) {
+    const c = a.e( 1 );
+    if (c) {
 
     }
     else {
@@ -110,7 +106,11 @@ if (c) {
     }
   }
 }
-$( b );
+const d = {
+  a: 999,
+  b: 1000,
+};
+$( d );
 `````
 
 ## Globals

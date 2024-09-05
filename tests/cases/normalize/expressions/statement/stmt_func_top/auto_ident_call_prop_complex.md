@@ -56,9 +56,9 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const b = { $: $ };
-const a = { a: 999, b: 1000 };
 const tmpCallObj = $(b);
 tmpCallObj.$(1);
+const a = { a: 999, b: 1000 };
 $(a);
 $(undefined);
 `````
@@ -69,13 +69,13 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-const b = {
+const b = $( a );
+b.$( 1 );
+const c = {
   a: 999,
   b: 1000,
 };
-const c = $( a );
-c.$( 1 );
-$( b );
+$( c );
 $( undefined );
 `````
 

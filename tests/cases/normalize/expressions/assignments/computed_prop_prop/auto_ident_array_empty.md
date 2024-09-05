@@ -43,8 +43,8 @@ $(a);
 
 `````js filename=intro
 const obj = {};
-const a = [];
 obj[``];
+const a = [];
 $(a);
 `````
 
@@ -54,8 +54,8 @@ With rename=true
 
 `````js filename=intro
 const a = {};
-const b = [];
 a[ "" ];
+const b = [];
 $( b );
 `````
 

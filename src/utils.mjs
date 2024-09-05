@@ -207,7 +207,7 @@ export function before(node, parentNode = undefined, returnOnly = false, force =
   return '';
 }
 
-export function source(node, force, callCount = 0) {
+export function source(node, force = false, callCount = 0) {
   if (VERBOSE_TRACING || force) {
     if (Array.isArray(node)) node.forEach((n) => source(n, force, callCount++));
     else {
@@ -246,7 +246,7 @@ export function after(node, parentNode) {
       const parentCode =
         parentNode &&
         (Array.isArray(parentNode)
-          ? parentNode.map((node) => (typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' '))).join('\n')
+          ? '\n  ' + parentNode.map((node) => (typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' '))).join('\n  ')
           : typeof node === 'string'
           ? node
           : tmat(parentNode).replace(/\n/g, ' '));

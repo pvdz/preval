@@ -54,6 +54,8 @@ function _inlineOneTimeFunctions(fdata) {
   const results = []; // The label nodes, for debugging
   let inlined = 0;
 
+  //assertNoDupeNodes(fdata.tenkoOutput.ast, 'ast');
+
   fdata.globallyUniqueNamingRegistry.forEach(function (funcMeta, funcName) {
     if (funcMeta.isBuiltin) return;
     if (funcMeta.isImplicitGlobal) return;
@@ -138,7 +140,7 @@ function _inlineOneTimeFunctions(fdata) {
     }
 
     vlog('Read funcChain:', read.funcChain, ', func readBlock:', funcNode.$p.funcChain);
-    if (read.funcChain !== funcNode.$p.funcChain && read.funcChain.startsWith(funcNode.$p.funcChain)) {
+    if (read.funcChain.startsWith(funcNode.$p.funcChain)) {
       vlog('This call was nested inside the function being called (recursion). This action would implode the function. Bailing.');
       vgroupEnd();
       return;
@@ -170,12 +172,12 @@ function _inlineOneTimeFunctions(fdata) {
       read.blockBody[read.blockIndex].type === 'VariableDeclaration'
       ? 'decl'
       : read.blockBody[read.blockIndex].type !== 'ExpressionStatement'
-      ? ASSERT(false, 'what can this be in normalized code') // ???
+      ? ASSERT(false, 'what can this be in normalized code', read.blockBody[read.blockIndex].type, read.blockBody[read.blockIndex].name) // ???
       : read.blockBody[read.blockIndex].expression.type === 'AssignmentExpression'
       ? 'assign'
       : read.blockBody[read.blockIndex].expression.type === 'CallExpression'
       ? 'stmt'
-      : ASSERT(false, 'what can this be in normalized code') // ???
+      : ASSERT(false, 'what can this be in normalized code', read.blockBody[read.blockIndex].expression.type, read.blockBody[read.blockIndex].expression.name) // ???
     ;
 
     vlog('Function [' + funcNode.$p.pid + '] (', funcName, ') is called (', kind, ') and referenced exactly once and meets all other conditions. Adding it to the queue.');
@@ -195,7 +197,6 @@ function _inlineOneTimeFunctions(fdata) {
       : kind === 'assign'
       ? read.blockBody[read.blockIndex].expression.left // May be member expression
       : undefined;
-
 
     // Replace all returns with assign+break.
     // Every replace gets scheduled separately as it may change index positions and break caches.
@@ -225,6 +226,7 @@ function _inlineOneTimeFunctions(fdata) {
 
               after(parentNode.body[parentIndex]);
               after(parentNode.body[parentIndex + 1]);
+              assertNoDupeNodes(parentNode, 'body');
             }
           });
 
@@ -308,11 +310,13 @@ function _inlineOneTimeFunctions(fdata) {
         funcNode.body.body[funcNode.$p.bodyOffset-1] = AST.emptyStatement();
 
         // Replace the statement with call with maybe a let decl and with the label.
-        rule('Inlining function: replace call with new label');
+        rule('A function that is called one time can be inlined; replace statement step')
         example('function f(){ return 1; } f();', 'A: { 1; }', () => kind === 'stmt');
         example('function f(){ return 1; } x = f();', 'A: { x = 1; }', () => kind === 'assign');
         example('function f(){ return 1; } const x = f();', 'let x = undefined; A: { x = 1; }', () => kind === 'decl');
         before(read.blockBody[read.blockIndex]);
+
+        vlog('Kind=', kind);
 
         read.blockBody.splice(
           read.blockIndex, 1,
@@ -320,8 +324,8 @@ function _inlineOneTimeFunctions(fdata) {
           newLabelWrapper
         );
 
-        before(read.blockBody[read.blockIndex]);
-        if (lhsNode) before(read.blockBody[read.blockIndex + 1]);
+        after(read.blockBody[read.blockIndex]);
+        if (kind === 'decl') after(read.blockBody[read.blockIndex + 1]);
       }
     });
   }
@@ -331,6 +335,10 @@ function _inlineOneTimeFunctions(fdata) {
 
     queue.sort(({ pid: a }, { pid: b }) => (a < b ? 1 : a > b ? -1 : 0));
     queue.forEach(({ func }) => func());
+
+    // Note: because we remove the function separately from the call, the AST will have dupe nodes
+    //       in between. That's expected and fine.
+    assertNoDupeNodes(AST.blockStatement(fdata.tenkoOutput.ast), 'body');
 
     vlog('End results, the new label statement for each transformed function:');
     results.forEach(label => {

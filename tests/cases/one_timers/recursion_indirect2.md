@@ -56,7 +56,11 @@ const f = function () {
 
 
 `````js filename=intro
-
+const f = function () {
+  debugger;
+  f();
+  return undefined;
+};
 `````
 
 ## PST Output
@@ -64,7 +68,11 @@ const f = function () {
 With rename=true
 
 `````js filename=intro
-
+const a = function() {
+  debugger;
+  a();
+  return undefined;
+};
 `````
 
 ## Globals

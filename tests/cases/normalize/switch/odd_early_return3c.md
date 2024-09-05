@@ -83,6 +83,12 @@ $(a);
 
 
 `````js filename=intro
+const f = function () {
+  debugger;
+  f();
+  $(1);
+  return undefined;
+};
 const a = function () {
   debugger;
   $(`x`);
@@ -101,13 +107,19 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
+  a();
+  $( 1 );
+  return undefined;
+};
+const b = function() {
+  debugger;
   $( "x" );
   $( "y" );
   $( "z" );
-  const b = $( 2 );
-  return b;
+  const c = $( 2 );
+  return c;
 };
-$( a );
+$( b );
 `````
 
 ## Globals

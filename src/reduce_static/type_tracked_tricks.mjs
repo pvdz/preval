@@ -28,7 +28,7 @@ import {
   BUILTIN_REGEXP_METHOD_LOOKUP, BUILTIN_STRING_METHOD_LOOKUP,
 } from '../constants.mjs';
 import * as AST from '../ast.mjs';
-import {getRegexFromLiteralNode, isRegexLiteral, nodeHasNoObservableSideEffectIncStatements} from "../ast.mjs"
+import { getRegexFromLiteralNode, isRegexLiteral, nodeHasNoObservableSideEffectIncStatements } from '../ast.mjs';
 import { LOOP_UNROLL_CONSTANT_COUNT_PREFIX, MAX_UNROLL_CONSTANT_NAME } from '../globals.mjs';
 
 export function typeTrackedTricks(fdata) {
@@ -37,6 +37,7 @@ export function typeTrackedTricks(fdata) {
   groupEnd();
   return r;
 }
+
 function _typeTrackedTricks(fdata) {
   const ast = fdata.tenkoOutput.ast;
 
@@ -45,6 +46,7 @@ function _typeTrackedTricks(fdata) {
 
   // TODO: is the walking of individual if-statements here more efficient than the gc pressure of collecting all if-statements and their parent etc in phase1 (often redundantly so)?
   walk(_walker, ast, 'ast');
+
   function _walker(node, beforeWalk, nodeType, path) {
     if (beforeWalk) return;
 
@@ -1050,7 +1052,7 @@ function _typeTrackedTricks(fdata) {
                 // `x.toString()` with x an unknown boolean
 
                 if (isPrim) {
-                  const primValue = AST.getPrimitiveValue(node.callee.object)
+                  const primValue = AST.getPrimitiveValue(node.callee.object);
 
                   rule('Calling bool.toString() on a primitive should inline the call');
                   example('true.toString()', '"true"');
@@ -1066,7 +1068,7 @@ function _typeTrackedTricks(fdata) {
                       func: () => {
                         rest.forEach(arg => {
                           blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
-                        })
+                        });
                       },
                     });
                   }
@@ -1163,7 +1165,7 @@ function _typeTrackedTricks(fdata) {
                 // `x.toString()` with x an unknown boolean
 
                 if (isPrim && (node.arguments.length === 0 || AST.isPrimitive(node.arguments[0]))) {
-                  const primValue = AST.getPrimitiveValue(node.callee.object)
+                  const primValue = AST.getPrimitiveValue(node.callee.object);
 
                   rule('Calling number.toString() on a primitive should inline the call');
                   example('NaN.toString()', '"NaN"');
@@ -1179,7 +1181,7 @@ function _typeTrackedTricks(fdata) {
                       func: () => {
                         rest.forEach(arg => {
                           blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
-                        })
+                        });
                       },
                     });
                   }
@@ -1226,7 +1228,7 @@ function _typeTrackedTricks(fdata) {
                       func: () => {
                         rest.forEach(arg => {
                           blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
-                        })
+                        });
                       },
                     });
                   }
@@ -1286,7 +1288,7 @@ function _typeTrackedTricks(fdata) {
                       func: () => {
                         rest.forEach(arg => {
                           blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
-                        })
+                        });
                       },
                     });
                   }
@@ -1323,7 +1325,7 @@ function _typeTrackedTricks(fdata) {
                       func: () => {
                         rest.forEach(arg => {
                           blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
-                        })
+                        });
                       },
                     });
                   }
@@ -1363,7 +1365,7 @@ function _typeTrackedTricks(fdata) {
                       func: () => {
                         rest.forEach(arg => {
                           blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
-                        })
+                        });
                       },
                     });
                   }
@@ -1372,47 +1374,149 @@ function _typeTrackedTricks(fdata) {
                   ++changes;
                   break;
                 }
-                else if (isPrim) {
+
+                if (isPrim) {
                   const metaArg1 = node.arguments.length > 1 && node.arguments[0].type === 'Identifier' && fdata.globallyUniqueNamingRegistry.get(node.arguments[0].name);
 
                   if (
                     metaArg1 &&
-                    metaArg1.typing.mustBeType === 'regex' && metaArg1.isConstant && AST.isRegexLiteral(metaArg1.constValueRef.node) &&
-                    AST.isPrimitive(node.arguments[1]) && AST.getPrimitiveType(node.arguments[1]) === 'string'
+                    metaArg1.typing.mustBeType === 'regex' && metaArg1.isConstant && AST.isRegexLiteral(metaArg1.constValueRef.node)
                   ) {
-                    // 'foo'.replace(/bar/, 'baz')
+                    if (!node.arguments[1] || AST.isPrimitive(node.arguments[1])) {
+                      // - `'foo'.replace(/bar/)`
+                      // - `'foo'.replace(/bar/, 'baz')`
 
-                    rule('Calling `replace` on a string with regex and string args should resolve the call');
-                    example('"foo".replace(/a/g, "a")', '"faa"');
-                    before(parentNode);
+                      rule('Calling `replace` on a string with regex and primitive args should resolve the call');
+                      example('"foo".replace(/a/g, "a")', '"faa"');
+                      before(parentNode);
 
-                    const ctxString = AST.getPrimitiveValue(node.callee.object);
-                    const regex = getRegexFromLiteralNode(metaArg1.constValueRef.node);
-                    const rplString = AST.getPrimitiveValue(node.arguments[1]);
-                    const rest = node.arguments.slice(2);
-                    const result = ctxString.replace(regex, rplString);
+                      const ctxString = node.arguments[1] ? AST.getPrimitiveValue(node.callee.object) : undefined;
+                      const regex = getRegexFromLiteralNode(metaArg1.constValueRef.node);
+                      const rplString = AST.getPrimitiveValue(node.arguments[1]);
+                      const rest = node.arguments.slice(2);
+                      const result = ctxString.replace(regex, rplString);
 
-                    if (rest.length > 0) {
-                      // Inject excessive args as statements
-                      queue.push({
-                        index: blockIndex,
-                        func: () => {
-                          rest.forEach(arg => {
-                            blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
-                          })
-                        },
-                      });
+                      if (rest.length > 0) {
+                        // Inject excessive args as statements
+                        queue.push({
+                          index: blockIndex,
+                          func: () => {
+                            rest.forEach(arg => {
+                              blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                            });
+                          },
+                        });
+                      }
+
+                      if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+                      else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+                      after(parentNode);
+                      ++changes;
+                      break;
                     }
 
-                    if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
-                    else parentNode[parentProp][parentIndex] = AST.primitive(result);
+                    ASSERT(node.arguments[1].type === 'Identifier', 'either an arg is a primitive or an ident when normalized', node.arguments[1].type);
+                    const metaArg2 = fdata.globallyUniqueNamingRegistry.get(node.arguments[1].name);
+                    if (metaArg2.isConstant && metaArg2.constValueRef.node.type === 'FunctionExpression') {
+                      // There is a (small) subclass of functions that we can support here
+                      const funcNode = metaArg2.constValueRef.node;
+                      const funcBody = funcNode.body.body;
+                      const bodyOffset = funcNode.$p.bodyOffset;
 
-                    after(parentNode);
-                    ++changes;
-                    break;
+                      vlog('Verifying whether func arg to string.replace can be simulated, funcOffset=', bodyOffset);
 
+                      // - simple array lookup replacer; `'abc'.replace(/b/, s => { const r = obj[s]; return r; });`
+                      // - two statements;
+                      //   - var decl that reads property from an object based on first arg. object must be known entirely
+                      //   - return statement of that value
+                      if (
+                        funcBody[bodyOffset].type === 'VariableDeclaration' &&
+                        funcBody[bodyOffset].declarations[0].init.type === 'MemberExpression' &&
+                        funcBody[bodyOffset].declarations[0].init.object.type === 'Identifier' &&
+                        funcBody[bodyOffset].declarations[0].init.computed &&
+                        funcBody[bodyOffset].declarations[0].init.property.type === 'Identifier' &&
+                        // Confirm that the function starts with assigning param 0
+                        funcBody[0].type === 'VariableDeclaration' &&
+                        funcBody[0].declarations[0].init.type === 'Param' &&
+                        funcBody[0].declarations[0].init.name === '$$0' &&
+                        // Is the property being accessed coming from the first param?
+                        funcBody[0].declarations[0].id.name === funcBody[bodyOffset].declarations[0].init.property.name &&
+                        // And the tail, must only be a return for that ident
+                        funcBody[bodyOffset+1]?.type === 'ReturnStatement' &&
+                        funcBody[bodyOffset+1].argument.type === 'Identifier' &&
+                        funcBody[bodyOffset+1].argument.name === funcBody[bodyOffset].declarations[0].id.name &&
+                        !funcBody[bodyOffset+2] // No more
+                      ) {
+                        // - We've verified this function; function f($$0) { const s = $$0; debugger; const r = obj[s]; return r; }`
+                        // We now have to confirm that the `obj` here is fully known and only used
+                        // as property access that is not the child of delete or call or assignment-lhs.
+                        const objMeta = fdata.globallyUniqueNamingRegistry.get(funcBody[bodyOffset].declarations[0].init.object.name);
+                        const objNode = objMeta.isConstant && objMeta.constValueRef.node;
+                        if (
+                          objNode?.type === 'ObjectExpression' &&
+                          objNode.properties.every(pnode => {
+                            // - Key must be known (ident or primitive computed)
+                            // - Prop must not be getter/setter
+                            // - Value must be primitive
+                            if (pnode.key.computed && !AST.isPrimitive(pnode.key)) return false;
+                            if (pnode.kind !== 'init') return false;
+                            if (!AST.isPrimitive(pnode.value)) return false;
+                            return true;
+                          }) &&
+                          objMeta.reads.every(read => {
+                            // - read parent must be member expression
+                            // - read grand must not be delete or call or assignment-lhs
+                            if (read.parentNode.type !== 'MemberExpression') return false;
+                            if (read.grandNode.type === 'CallExpression') return false;
+                            if (read.grandNode.type === 'UnaryExpression' && read.grandNode.operator === 'delete') return false;
+                            if (read.grandNode.type === 'AssignmentExpression' && read.grandProp === 'left') return false;
+                            return true;
+                          })
+                        ) {
+                          // This is `function r($$0) { const s = $$0; debugger; const r = obj[s]; return r; } 'abc'.replace(/b/, r);`
+                          // And the object is a constant object literal where all the keys are known and values are primitives
+                          // We should be able to apply this now. The only risk is a "regex ddos", for which we offer no real defense rn...
+                          vlog('Now resolving string replacement with function callback. If this is a very evil regex things will get stuck now.');
+
+                          const str = AST.getPrimitiveValue(node.callee.object);
+                          const regex = getRegexFromLiteralNode(metaArg1.constValueRef.node);
+                          const out = str.replace(regex, s => {
+                            const pnode = objNode.properties.find(pnode => {
+                              if (pnode.computed) {
+                                // We should have asserted that all computed keys are primitives
+                                return String(AST.getPrimitiveValue(pnode.key)) === s;
+                              } else {
+                                return pnode.key.name === s;
+                              }
+                            });
+                            if (pnode) {
+                              return AST.getPrimitiveValue(pnode.value);
+                            } else {
+                              return undefined;
+                            }
+                          });
+
+                          rule('String replace on string with regex arg and func that is a simple obj lookup can be resolved');
+                          example(
+                            'const obj = {b: "x"}; function f($$0) { const s = $$0; const v = obj[s]; return v; } "abc".replace(/b/, r);',
+                            'const obj = {b: "x"}; function f($$0) { const s = $$0; const v = obj[s]; return v; } "axc";',
+                          );
+                          before(blockBody[blockIndex]);
+
+                          if (parentIndex < 0) parentNode[parentProp] = AST.primitive(out);
+                          else parentNode[parentProp][parentIndex] = AST.primitive(out);
+
+                          after(blockBody[blockIndex]);
+                          ++changes;
+                          break;
+                        }
+                      }
+
+                    }
                   }
                 }
+
                 break;
               }
               case 'string.slice': {
@@ -1441,12 +1545,48 @@ function _typeTrackedTricks(fdata) {
                       func: () => {
                         rest.forEach(arg => {
                           blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
-                        })
+                        });
                       },
                     });
                   }
 
                   after(parentNode);
+                  ++changes;
+                  break;
+                }
+                break;
+              }
+              case 'string.charAt': {
+                const arglen = node.arguments.length;
+                if (isPrim && (arglen === 0 || AST.isPrimitive(node.arguments[0]))) {
+                  // 'foo'.charAt(0)
+
+                  rule('Calling `charAt` on a string with primitive args should resolve the call');
+                  example('"hello, world".charAt(7, 20, $)', '20; $, "w"');
+                  before(blockBody[blockIndex]);
+
+                  const ctxString = AST.getPrimitiveValue(node.callee.object);
+                  const args = [];
+                  if (node.arguments[0]) args.push(AST.getPrimitiveValue(node.arguments[0]));
+                  const rest = node.arguments.slice(1);
+                  const result = ctxString.charAt(...args);
+
+                  if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+                  else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+                  if (rest.length > 0) {
+                    // Inject excessive args as statements to preserve reference errors
+                    queue.push({
+                      index: blockIndex,
+                      func: () => {
+                        rest.forEach(arg => {
+                          blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                        });
+                      },
+                    });
+                  }
+
+                  after(blockBody[blockIndex]);
                   ++changes;
                   break;
                 }
@@ -1480,7 +1620,7 @@ function _typeTrackedTricks(fdata) {
                       func: () => {
                         rest.forEach(arg => {
                           blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
-                        })
+                        });
                       },
                     });
                   }
@@ -1512,7 +1652,7 @@ function _typeTrackedTricks(fdata) {
                         func: () => {
                           rest.forEach(arg => {
                             blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
-                          })
+                          });
                         },
                       });
                     }
@@ -1669,7 +1809,7 @@ function _typeTrackedTricks(fdata) {
     queue.forEach(({ index, func }) => func());
 
     log('Type tracked tricks applied:', changes, '. Restarting from phase1');
-    return {what: 'typeTrackedTricks', changes: changes, next: 'phase1'};
+    return { what: 'typeTrackedTricks', changes: changes, next: 'phase1' };
   }
 
   log('Type tracked tricks applied: 0.');

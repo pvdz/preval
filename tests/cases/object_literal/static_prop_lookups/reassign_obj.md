@@ -57,14 +57,7 @@ $(a, b, d);
 
 
 `````js filename=intro
-let b = {
-  c() {
-    debugger;
-    b = undefined;
-    return undefined;
-  },
-};
-b.c = 3;
+const b = { c: 3 };
 $(1, b, 3);
 `````
 
@@ -73,12 +66,7 @@ $(1, b, 3);
 With rename=true
 
 `````js filename=intro
-let a = { c(  ) {
-  debugger;
-  a = undefined;
-  return undefined;
-} };
-a.c = 3;
+const a = { c: 3 };
 $( 1, a, 3 );
 `````
 

@@ -763,7 +763,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
   }
 
   function jumpTable(node, body, i, parent, funcNode, labelStatementParentNode) {
-    vgroup('jumpTable', node.type);
+    vgroup(i, 'jumpTable', node.type);
     ASSERT(node.type, 'nodes have types oye?', node);
     const r = _jumpTable(node, body, i, parent, funcNode, labelStatementParentNode);
     vgroupEnd();
@@ -3925,6 +3925,57 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
             after(newNodes);
             after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+
+          // If assigning to a property and the previous statement was a var decl defining the object literal: merge it
+          // Ok tbf this will do much better as a ref tracked plugin so this is just picking a low hanging fruit case
+          if (
+            i && body[i-1].type === 'VariableDeclaration' &&
+            body[i-1].declarations[0].init.type === 'ObjectExpression' &&
+            a.type === 'Identifier' &&
+            body[i-1].declarations[0].id.name === a.name && // Assigning to property of objlit defined in prev statement
+            // Check to confirm the property is not already defined as a getter/setter...
+            body[i-1].declarations[0].init.properties.every(pnode => {
+              if (!pnode.computed && !lhs.computed) {
+                // Same ident key. Ok if not the same key or if same key and objlit had it as init (not get/set)
+                // Note: kind is get/set/init
+                return pnode.key.name !== b.name || pnode.kind === 'init';
+              }
+              if (pnode.computed && lhs.computed) {
+                // Both are computed.
+                // If either is not a primitive then we dont know the actual key and return false
+                // If both are primitive but not the same we return true
+                // If both are primitive and the same, we return whether the objlit defined it as init (not get/set)
+
+                if (!AST.isPrimitive(pnode.key) || !AST.isPrimitive(b)) return false; // Don't know
+                if (AST.getPrimitiveValue(pnode.key) !== AST.getPrimitiveValue(b)) return true; // not same key so not a blocker
+                return pnode.kind === 'init'; // Same key, ok if not a getter/setter
+              }
+              ASSERT(pnode.computed !== lhs.computed, 'was asserted above');
+              // In normalized code, if we know the key and it is a valid ident then we would eliminate the computed flag
+              // Otherwise, we apparently don't know the key so we must err on the side of caution: consider it blocking
+
+              // Exception: if the key is a primitive then we can recover by getting the primitive value and comparing it
+              if (pnode.computed) {
+                return AST.isPrimitive(pnode.key) && String(AST.getPrimitiveValue(pnode.key)) !== b.name;
+              }
+
+              // else lhs.computed
+              return AST.isPrimitive(b) && String(AST.getPrimitiveValue(b)) !== pnode.key.name;
+            })
+          ) {
+            rule('Assigning a property to an object literal defined on the previous line should be inlined');
+            example('const obj = {}; obj.x = 5;', 'const obj = {x: 5}');
+            before(body[i-1]);
+            before(body[i]);
+
+            body[i-1].declarations[0].init.properties.push(AST.property(b, rhs, false, a.computed));
+            body[i] = AST.emptyStatement();
+
+            before(body[i-1]);
+            before(body[i]);
             assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }

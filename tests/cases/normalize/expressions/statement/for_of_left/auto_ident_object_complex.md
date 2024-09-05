@@ -74,11 +74,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const tmpObjLitVal = $(1);
-    const tmpObjLitVal$3 = $(3);
-    const tmpAssignMemRhs = tmpForOfNext.value;
-    const tmpAssignMemLhsObj = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    $(1);
+    $(3);
+    tmpForOfNext.value;
   }
 }
 const a = { a: 999, b: 1000 };
@@ -100,22 +98,16 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
   else {
-    const f = $( 1 );
-    const g = $( 3 );
-    const h = d.value;
-    const i = {
-      x: f,
-      y: 2,
-      z: g,
-    };
-    i.x = h;
+    $( 1 );
+    $( 3 );
+    d.value;
   }
 }
-const j = {
+const f = {
   a: 999,
   b: 1000,
 };
-$( j );
+$( f );
 `````
 
 ## Globals

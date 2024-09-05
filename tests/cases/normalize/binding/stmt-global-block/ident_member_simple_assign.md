@@ -58,8 +58,7 @@ if (tmpIfTest) {
   const varInitAssignLhsComputedObj = $(3);
   const varInitAssignLhsComputedRhs$1 = $(4);
   varInitAssignLhsComputedObj.y = varInitAssignLhsComputedRhs$1;
-  const b = { x: 2 };
-  b.x = varInitAssignLhsComputedRhs$1;
+  const b = { x: varInitAssignLhsComputedRhs$1 };
   $(varInitAssignLhsComputedRhs$1, b, 3);
 } else {
 }
@@ -75,8 +74,7 @@ if (a) {
   const b = $( 3 );
   const c = $( 4 );
   b.y = c;
-  const d = { x: 2 };
-  d.x = c;
+  const d = { x: c };
   $( c, d, 3 );
 }
 `````

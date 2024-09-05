@@ -52,8 +52,6 @@ let a$1 = varInitAssignLhsComputedRhs;
 const varInitAssignLhsComputedObj = $(3);
 const varInitAssignLhsComputedRhs$1 = $(4);
 varInitAssignLhsComputedObj.y = varInitAssignLhsComputedRhs$1;
-const b = { x: 2 };
-b.x = varInitAssignLhsComputedRhs$1;
 `````
 
 ## PST Output
@@ -64,8 +62,6 @@ With rename=true
 const a = $( 3 );
 const b = $( 4 );
 a.y = b;
-const c = { x: 2 };
-c.x = b;
 `````
 
 ## Globals

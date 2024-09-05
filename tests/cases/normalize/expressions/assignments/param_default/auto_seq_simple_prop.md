@@ -67,12 +67,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
+$(1);
 $(undefined);
 $(1);
 const tmpAssignMemRhs = $(2);
-const tmpNestedComplexRhs = { b: tmpObjLitVal };
-tmpNestedComplexRhs.b = tmpAssignMemRhs;
+const tmpNestedComplexRhs = { b: tmpAssignMemRhs };
 $(tmpNestedComplexRhs);
 `````
 
@@ -81,13 +80,12 @@ $(tmpNestedComplexRhs);
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
+$( 1 );
 $( undefined );
 $( 1 );
-const b = $( 2 );
-const c = { b: a };
-c.b = b;
-$( c );
+const a = $( 2 );
+const b = { b: a };
+$( b );
 `````
 
 ## Globals

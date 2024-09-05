@@ -43,9 +43,7 @@ tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 `````js filename=intro
 const tmpCompoundAssignLhs = $ObjectPrototype.foo;
 const tmpClusterSSA_a = $();
-const tmpAssignMemRhs = tmpCompoundAssignLhs + tmpClusterSSA_a;
-const a = {};
-a.foo = tmpAssignMemRhs;
+tmpCompoundAssignLhs + tmpClusterSSA_a;
 `````
 
 ## PST Output
@@ -55,9 +53,7 @@ With rename=true
 `````js filename=intro
 const a = $ObjectPrototype.foo;
 const b = $();
-const c = a + b;
-const d = {};
-d.foo = c;
+a + b;
 `````
 
 ## Globals

@@ -27,8 +27,7 @@ $(blob);
 
 
 `````js filename=intro
-const blob = { thing: `woop` };
-blob.thing = `boing`;
+const blob = { thing: `boing` };
 $(blob);
 `````
 

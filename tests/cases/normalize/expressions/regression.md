@@ -46,8 +46,7 @@ tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = c;
 
 
 `````js filename=intro
-const x = {};
-x[3] = 3;
+
 `````
 
 ## PST Output
@@ -55,8 +54,7 @@ x[3] = 3;
 With rename=true
 
 `````js filename=intro
-const a = {};
-a[3] = 3;
+
 `````
 
 ## Globals

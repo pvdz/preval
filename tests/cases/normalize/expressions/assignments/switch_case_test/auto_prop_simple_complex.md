@@ -54,10 +54,9 @@ $(a);
 
 `````js filename=intro
 $(1);
-const tmpObjLitVal = $(1);
+$(1);
 const tmpAssignMemRhs = $(2);
-const a = { b: tmpObjLitVal };
-a.b = tmpAssignMemRhs;
+const a = { b: tmpAssignMemRhs };
 $(a);
 `````
 
@@ -67,11 +66,10 @@ With rename=true
 
 `````js filename=intro
 $( 1 );
-const a = $( 1 );
-const b = $( 2 );
-const c = { b: a };
-c.b = b;
-$( c );
+$( 1 );
+const a = $( 2 );
+const b = { b: a };
+$( b );
 `````
 
 ## Globals

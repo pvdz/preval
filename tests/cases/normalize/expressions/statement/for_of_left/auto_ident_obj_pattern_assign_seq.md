@@ -94,9 +94,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpObjLitVal$1 = $(4);
     x = tmpObjLitVal;
     y = tmpObjLitVal$1;
-    const tmpAssignMemRhs = tmpForOfNext.value;
-    const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-    tmpNestedAssignObjPatternRhs.x = tmpAssignMemRhs;
+    tmpForOfNext.value;
   }
 }
 const a = { a: 999, b: 1000 };
@@ -126,19 +124,14 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const i = $( 4 );
     a = h;
     b = i;
-    const j = f.value;
-    const k = {
-      x: h,
-      y: i,
-    };
-    k.x = j;
+    f.value;
   }
 }
-const l = {
+const j = {
   a: 999,
   b: 1000,
 };
-$( l, a, b );
+$( j, a, b );
 `````
 
 ## Globals

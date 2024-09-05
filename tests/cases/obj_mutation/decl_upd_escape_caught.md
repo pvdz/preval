@@ -43,8 +43,7 @@ let f = function ($$0) {
   blob.thing = `boom`;
   return undefined;
 };
-const blob = { thing: `woop` };
-blob.thing = `boing`;
+const blob = { thing: `boing` };
 f(blob);
 $(blob);
 `````

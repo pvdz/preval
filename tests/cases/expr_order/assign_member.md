@@ -42,8 +42,6 @@ $(a);
 
 `````js filename=intro
 const tmpClusterSSA_a = $();
-const a = {};
-a.foo = tmpClusterSSA_a;
 $(tmpClusterSSA_a);
 `````
 
@@ -53,8 +51,6 @@ With rename=true
 
 `````js filename=intro
 const a = $();
-const b = {};
-b.foo = a;
 $( a );
 `````
 

@@ -91,6 +91,7 @@ import { ifTestMerging } from '../reduce_static/if_test_merging.mjs';
 import { tryEscaping } from '../reduce_static/try_escaping.mjs';
 import { objlitInlining } from '../reduce_static/objlit_inlining.mjs';
 import { constAliasing } from '../reduce_static/const_aliasing.mjs';
+import { unusedAssigns } from '../reduce_static/unused_assigns.mjs';
 import { recursiveFuncs } from '../reduce_static/recursive_funcs.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
@@ -111,7 +112,7 @@ import { recursiveFuncs } from '../reduce_static/recursive_funcs.mjs';
 // - should Program always have a block just to eliminate the Program? That's not going to fix function boundaries though but maybe it is more consistent anyways?
 // - should loops always explicitly end with a continue statement? does that matter?
 
-export function phase2(program, fdata, resolve, req, options) {
+export function phase2(program, fdata, resolve, req, prng, options) {
   const ast = fdata.tenkoOutput.ast;
   group('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
   if (VERBOSE_TRACING) vlog('\nCurrent state (before phase2)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
@@ -120,7 +121,7 @@ export function phase2(program, fdata, resolve, req, options) {
   assertNoDupeNodes(ast, 'body');
 
   vlog('Phase 2 options:', options);
-  const r = _phase2(program, fdata, resolve, req, options);
+  const r = _phase2(fdata, prng, options);
   groupEnd();
 
   // For phase1 it should have unique nodes/pids
@@ -128,7 +129,7 @@ export function phase2(program, fdata, resolve, req, options) {
 
   return r;
 }
-function _phase2(program, fdata, resolve, req, options = {}) {
+function _phase2(fdata, prng, options = {}) {
   // Initially we only care about bindings whose writes have one var decl and only assignments otherwise
   // Due to normalization, the assignments will be a statement. The var decl can not contain an assignment as init.
   // Elimination of var decls or assignments will be deferred. This way we can preserve parent/node
@@ -292,6 +293,7 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     aliasIfIf(fdata) ||
     ifUpdateTest(fdata) ||
     fakeDoWhile(fdata) ||
+    unusedAssigns(fdata) ||
     objlitInlining(fdata)
 
 

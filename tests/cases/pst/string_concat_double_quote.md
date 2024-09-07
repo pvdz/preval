@@ -49,7 +49,7 @@ With rename=true
 `````js filename=intro
 const a = $( "here" );
 const b = $coerce( a, "plustr" );
-const c = `this "thing"${tmpStringConcatL}is "quoted"`;
+const c = `this "thing"${b}is "quoted"`;
 $( c );
 `````
 

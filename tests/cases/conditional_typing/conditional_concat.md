@@ -100,11 +100,11 @@ const a = function() {
   const b = $coerce( desc$1, "plustr" );
   const c = lastType === 2097173;
   if (c) {
-    const d = `Parser error! ${tmpStringConcatL} (at EOF)`;
+    const d = `Parser error! ${b} (at EOF)`;
     _THROW( d, tokenStart$5, tokenStop$5, "" );
   }
   else {
-    const e = `Parser error! ${tmpStringConcatL}`;
+    const e = `Parser error! ${b}`;
     _THROW( e, tokenStart$5, tokenStop$5, "" );
   }
   throw "Preval: the previous call always throws";

@@ -54,7 +54,7 @@ With rename=true
 `````js filename=intro
 const a = $( 10 );
 const b = $coerce( a, "string" );
-const c = `abc ${tmpBinBothRhs$1} 20 def`;
+const c = `abc ${b} 20 def`;
 $( c );
 `````
 

@@ -279,7 +279,7 @@ function printExpression(indent, config, node) {
       return `/${node.pattern}/${node.flags}`;
     }
     case 'StringConcat': {
-      return `\`${node.left.replace(/([\\`])/g, '\\$1')}\${${node.middle.name}}${node.right.replace(/([\\`])/g, '\\$1')}\``;
+      return `\`${node.left.replace(/([\\`])/g, '\\$1')}\${${printSimple(indent, config, node.middle)}}${node.right.replace(/([\\`])/g, '\\$1')}\``;
     }
     case 'ThisExpression': {
       return 'this';

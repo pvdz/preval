@@ -206,7 +206,7 @@ const h = x >= "function String() { [native code] }";
 x ** 0;
 const i = x ^ 0;
 const j = x | 0;
-const k = `${tmpStringConcatR}function String() { [native code] }`;
+const k = `${a}function String() { [native code] }`;
 const l = x === String;
 const m = x !== String;
 const n = x === String;

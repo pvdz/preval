@@ -98,7 +98,7 @@ else {
   }
 }
 const e = $coerce( b, "string" );
-const f = `before  ${tmpBinBothRhs}  after`;
+const f = `before  ${e}  after`;
 $( f );
 const g = {
   a: 999,

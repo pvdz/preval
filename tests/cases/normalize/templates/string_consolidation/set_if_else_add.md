@@ -106,11 +106,11 @@ const b = $( "t" );
 const c = $coerce( a, "plustr" );
 if (b) {
   const d = $coerce( b, "plustr" );
-  const e = `${tmpStringConcatR}abcdef`;
+  const e = `${c}abcdef`;
   $( e );
 }
 else {
-  const f = `${tmpStringConcatR}abcghi`;
+  const f = `${c}abcghi`;
   $( f );
 }
 `````

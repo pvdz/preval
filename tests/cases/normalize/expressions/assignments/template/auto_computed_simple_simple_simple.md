@@ -65,7 +65,7 @@ With rename=true
 const a = $( 1 );
 const b = { b: a };
 const c = $coerce( b, "string" );
-const d = `before  ${tmpBinBothRhs}  after`;
+const d = `before  ${c}  after`;
 $( d );
 b.b = 2;
 $( b );

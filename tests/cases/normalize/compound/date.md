@@ -122,7 +122,7 @@ const c = new Date( 12345 );
 const d = {
   get x() {
     debugger;
-    a = `${s}read;`;
+    a = `${a}read;`;
     return b;
   },
   set x( $$0 ) {
@@ -130,7 +130,7 @@ const d = {
     debugger;
     const g = a;
     const h = $coerce( e, "plustr" );
-    const i = `write[${tmpStringConcatL}];`;
+    const i = `write[${h}];`;
     a = g + i;
     b = b + e;
     return b;

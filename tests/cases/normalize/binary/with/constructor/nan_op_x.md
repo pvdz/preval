@@ -256,7 +256,7 @@ const j = "function String() { [native code] }" >= a;
 a ** 0;
 const k = 0 ^ a;
 const l = 0 | a;
-const m = `function String() { [native code] }${tmpStringConcatL}`;
+const m = `function String() { [native code] }${c}`;
 const n = String === a;
 const o = String !== a;
 const p = String === a;

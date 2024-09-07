@@ -56,7 +56,7 @@ With rename=true
 `````js filename=intro
 const a = $( 100 );
 const b = $coerce( a, "plustr" );
-const c = `${tmpStringConcatR}1,2,3`;
+const c = `${b}1,2,3`;
 $( c );
 const d = [ 1, 2, 3 ];
 $( d );

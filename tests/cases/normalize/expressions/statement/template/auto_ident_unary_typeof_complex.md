@@ -63,7 +63,7 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = typeof a;
-const c = `before  ${tmpCallCallee$1}  after`;
+const c = `before  ${b}  after`;
 $( c );
 const d = {
   a: 999,

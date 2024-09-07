@@ -93,7 +93,7 @@ const g = $( 3 );
 e[f] = g;
 b[c] = g;
 const h = $coerce( g, "string" );
-const i = `before  ${tmpBinBothRhs}  after`;
+const i = `before  ${h}  after`;
 $( i );
 $( g, a, d, 3 );
 `````

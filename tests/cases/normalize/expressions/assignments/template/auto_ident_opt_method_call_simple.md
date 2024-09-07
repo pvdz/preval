@@ -71,7 +71,7 @@ With rename=true
 const a = { c: $ };
 const b = a.c( 1 );
 const c = $coerce( b, "string" );
-const d = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+const d = `before  ${c}  after`;
 $( d );
 $( b );
 `````

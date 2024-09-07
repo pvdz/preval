@@ -77,14 +77,14 @@ const a = $( 0 );
 let b = $( a );
 if (b) {
   const c = $coerce( b, "string" );
-  const d = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  const d = `before  ${c}  after`;
   $( d );
 }
 else {
   const e = $( 2 );
   b = $( e );
   const f = $coerce( b, "string" );
-  const g = `before  ${tmpClusterSSA_tmpBinBothRhs$1}  after`;
+  const g = `before  ${f}  after`;
   $( g );
 }
 $( b );

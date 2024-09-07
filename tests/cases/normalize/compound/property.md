@@ -123,7 +123,7 @@ let b = 0;
 const c = {
   get x() {
     debugger;
-    a = `${s}read;`;
+    a = `${a}read;`;
     return b;
   },
   set x( $$0 ) {
@@ -131,7 +131,7 @@ const c = {
     debugger;
     const f = a;
     const g = $coerce( d, "plustr" );
-    const h = `write[${tmpStringConcatL}];`;
+    const h = `write[${g}];`;
     a = f + h;
     b = b + d;
     return b;

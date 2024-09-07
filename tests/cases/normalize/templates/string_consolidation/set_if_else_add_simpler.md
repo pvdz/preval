@@ -92,12 +92,12 @@ const a = $( "s" );
 const b = $( "t" );
 if (b) {
   const c = $coerce( b, "plustr" );
-  const d = `abcdef${tmpStringConcatL}`;
+  const d = `abcdef${c}`;
   $( d );
 }
 else {
   const e = $coerce( a, "plustr" );
-  const f = `abcghi${tmpStringConcatL$1}`;
+  const f = `abcghi${e}`;
   $( f );
 }
 `````

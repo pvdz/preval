@@ -301,7 +301,7 @@ const 31 = /foo/g;
 const 41 = 31 ^ b;
 const 51 = /foo/g;
 const 61 = 51 | b;
-const 71 = `/foo/g${tmpStringConcatL}`;
+const 71 = `/foo/g${k}`;
 const 81 = [ d, f, h, j, 71, m, o, q, s, u, w, y, 01, false, true, false, true, 21, 41, 61 ];
 $( 81 );
 const 91 = /foo/g;

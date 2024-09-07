@@ -70,7 +70,7 @@ const b = $( a );
 const c = $( "c" );
 const d = b[ c ];
 const e = $coerce( d, "string" );
-const f = `before  ${tmpBinBothRhs}  after`;
+const f = `before  ${e}  after`;
 $( f );
 const g = {
   a: 999,

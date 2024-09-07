@@ -83,7 +83,7 @@ const d = $coerce( c, "string" );
 if ($) {
   $( 20 );
 }
-const e = `${tmpBinBothRhs$1} `;
+const e = `${b} `;
 const f = [ "a", 1, e, 3, "b" ];
 $( f );
 `````

@@ -114,7 +114,7 @@ With rename=true
 const a = function($$0 ) {
   const b = c;
   debugger;
-  const d = `purpleRule:reset "${$dlr_$$0}"`;
+  const d = `purpleRule:reset "${b}"`;
   $( d );
   return undefined;
 };

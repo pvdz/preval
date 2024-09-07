@@ -68,7 +68,7 @@ const a = $( "y" );
 const b = { y: 1 };
 const c = delete b[ a ];
 const d = $coerce( c, "string" );
-const e = `before  ${tmpBinBothRhs}  after`;
+const e = `before  ${d}  after`;
 $( e );
 const f = {
   a: 999,

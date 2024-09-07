@@ -120,7 +120,7 @@ With rename=true
 const a = function($$0 ) {
   const b = c;
   debugger;
-  const d = `purpleRule:reset "${desc}"`;
+  const d = `purpleRule:reset "${b}"`;
   $( d );
   return undefined;
 };

@@ -98,7 +98,7 @@ $( "test 10" );
 let a = 9;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const b = $coerce( a, "string" );
-  const c = `test ${tmpStringConcatL$1}`;
+  const c = `test ${b}`;
   $( c );
   a = a - 1;
   if (a) {

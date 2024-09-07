@@ -59,7 +59,7 @@ With rename=true
 `````js filename=intro
 const a = $( 100 );
 const b = $coerce( a, "plustr" );
-const c = `number${tmpStringConcatL}`;
+const c = `number${b}`;
 $( c );
 $( "number", 1 );
 `````

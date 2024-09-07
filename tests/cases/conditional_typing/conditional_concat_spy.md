@@ -102,11 +102,11 @@ const b = $spy();
 const c = $coerce( b, "plustr" );
 const d = a === 2097173;
 if (d) {
-  const e = `Parser error! ${tmpStringConcatL} (at EOF)`;
+  const e = `Parser error! ${c} (at EOF)`;
   $( "-->", e );
 }
 else {
-  const f = `Parser error! ${tmpStringConcatL}`;
+  const f = `Parser error! ${c}`;
   $( "-->", f );
 }
 $( undefined );

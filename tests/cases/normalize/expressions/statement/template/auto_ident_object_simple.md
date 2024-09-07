@@ -62,7 +62,7 @@ const a = {
   z: 3,
 };
 const b = $coerce( a, "string" );
-const c = `before  ${tmpBinBothRhs}  after`;
+const c = `before  ${b}  after`;
 $( c );
 const d = {
   a: 999,

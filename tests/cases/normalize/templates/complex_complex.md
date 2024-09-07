@@ -59,7 +59,7 @@ const a = $( 10 );
 const b = $coerce( a, "string" );
 const c = $( 20 );
 const d = $coerce( c, "string" );
-const e = `abc ${tmpBinBothRhs$1} `;
+const e = `abc ${b} `;
 $( e );
 `````
 

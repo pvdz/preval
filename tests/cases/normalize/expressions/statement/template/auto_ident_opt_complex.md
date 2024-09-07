@@ -84,7 +84,7 @@ if (c) {
 else {
   const d = b.x;
   const e = $coerce( d, "string" );
-  const f = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  const f = `before  ${e}  after`;
   $( f );
 }
 const g = {

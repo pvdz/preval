@@ -92,14 +92,14 @@ if (b) {
 }
 if (b) {
   const d = $coerce( b, "string" );
-  const e = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  const e = `before  ${d}  after`;
   $( e );
 }
 else {
   const f = $( 2 );
   const g = $( f );
   const h = $coerce( g, "string" );
-  const i = `before  ${tmpClusterSSA_tmpBinBothRhs$1}  after`;
+  const i = `before  ${h}  after`;
   $( i );
 }
 const j = {

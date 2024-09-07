@@ -261,7 +261,7 @@ const 51 = /foo/g;
 const 61 = /foo/g;
 const 71 = /foo/g;
 const 81 = /foo/g;
-const 91 = `/foo/g${tmpStringConcatL}`;
+const 91 = `/foo/g${i}`;
 const a1 = 51 === x;
 const b1 = 61 !== x;
 const c1 = 71 === x;

@@ -78,7 +78,7 @@ $( 20 );
 const d = [ 1, 2 ];
 const e = $( d );
 const f = $coerce( e, "string" );
-const g = `before  ${tmpBinBothRhs}  after`;
+const g = `before  ${f}  after`;
 $( g );
 $( c );
 `````

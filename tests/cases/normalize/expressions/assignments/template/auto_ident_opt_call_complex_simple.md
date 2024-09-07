@@ -82,7 +82,7 @@ else {
   const d = $dotCall( b, $, 1 );
   a = d;
   const e = $coerce( d, "string" );
-  const f = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  const f = `before  ${e}  after`;
   $( f );
 }
 $( a );

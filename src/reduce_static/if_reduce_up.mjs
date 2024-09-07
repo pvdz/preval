@@ -101,7 +101,14 @@ function _ifReduceUp(fdata) {
           example('if (x) { a = 1; f(a); } else { a = 1; g(a); }', 'a = 1; if (x) { f(a); } else { g(a); }');
           before(node);
 
-          blockBody.splice(blockIndex, 0, firstThen);
+          if (firstThen.type === 'ReturnStatement' || firstThen.type === 'BreakStatement' || firstThen.type === 'ThrowStatement') {
+            // Preserve if-test expression
+            blockBody.splice(blockIndex, 0, firstThen);
+            blockBody.splice(blockIndex, 0, AST.expressionStatement(AST.cloneSimple(node.test)));
+          } else {
+            blockBody.splice(blockIndex, 0, firstThen);
+          }
+
           node.consequent.body.shift();
           node.alternate.body.shift();
 

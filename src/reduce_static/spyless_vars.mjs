@@ -207,7 +207,7 @@ function process(fdata, meta, name, queue, attempted) {
     ASSERT(nextPid > firstReadPid, 'next pid is a statement but the read is an expr so it cant match and it must be bigger');
     ASSERT(currNode);
 
-    vlog('  - Ok, current statement contains the first ref, but was the last ref after this node?', lastReadPid, '>', nextPid, '?');
+    vlog('  - Ok, curr statement contains the first ref, but was the last ref after this node?', lastReadPid, '>', nextPid, '?');
     if (lastReadPid > nextPid) {
       vlog('    - Yes, so the search ends here and we move the decl to before statement @', nextPid);
       break;
@@ -275,7 +275,7 @@ function process(fdata, meta, name, queue, attempted) {
       }
     }
     else if (currNode.type === 'BlockStatement') {
-      vlog('Current statement is a block (possible if phase2 did not go back to normalization). Go inside.');
+      vlog('Curr statement is a block (possible if phase2 did not go back to normalization). Go inside.');
       targetBody = currNode.body;
       currentIndex = 0;
     }

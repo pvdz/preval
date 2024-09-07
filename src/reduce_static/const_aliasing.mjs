@@ -31,9 +31,7 @@ import {
   findBodyOffset, riskyRule,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { mayBindingMutateBetweenRefs } from '../bindings.mjs';
 import { ASSUME_BUILTINS } from '../constants.mjs';
-import { complexNodeMightSpy } from '../ast.mjs';
 
 export function constAliasing(fdata) {
   group('\n\n\nSearching for two const values that get assigned to each other\n');
@@ -130,7 +128,7 @@ function _constAliasing(fdata) {
     function exprUsesName(expr, targetName, origName, fdata) {
       if (expr.type === 'BinaryExpression') {
 
-        if (!AST.complexNodeMightSpy(expr.right, fdata) && expr.left.type === 'Identifier' && expr.left.name === targetName) {
+        if (!AST.complexExpressionNodeMightSpy(expr.right, fdata) && expr.left.type === 'Identifier' && expr.left.name === targetName) {
           rule('A let alias where the let value can not be changed before the first usage can have its usage replaced; bin usage left');
           example('let x = 1; const y = x; const z = y + 5;', 'let x = 1; const y = x; const z = x + 5;');
           before(expr);
@@ -140,7 +138,7 @@ function _constAliasing(fdata) {
           ++dropped;
           return FOUND;
         }
-        if (!AST.complexNodeMightSpy(expr.left, fdata) && expr.right.type === 'Identifier' && expr.right.name === targetName) {
+        if (!AST.complexExpressionNodeMightSpy(expr.left, fdata) && expr.right.type === 'Identifier' && expr.right.name === targetName) {
           rule('A let alias where the let value can not be changed before the first usage can have its usage replaced; bin usage right');
           example('let x = 1; const y = x; const z = 5 + y;', 'let x = 1; const y = x; const z = 5 + x;');
           before(expr);
@@ -187,7 +185,7 @@ function _constAliasing(fdata) {
             und = FOUND;
             return true;
           }
-          if (AST.complexNodeMightSpy(anode, fdata)) {
+          if (AST.complexExpressionNodeMightSpy(anode, fdata)) {
             und = SPIES;
             return true;
           }
@@ -218,7 +216,7 @@ function _constAliasing(fdata) {
       // We might skip places where the ident is used ... :// oh well!
 
       // Check if the function could have side effects
-      if (!AST.complexNodeMightSpy(expr, fdata)) {
+      if (!AST.complexExpressionNodeMightSpy(expr, fdata)) {
         // A call with args and it can't spy. Like doing Boolean() or coercing a primitive with Number()
         index += 1;
         return INVIS;

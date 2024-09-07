@@ -147,7 +147,7 @@ function exprNodeSpyOnBinding(exprNode, fdata, bindingName) {
   if (exprNode.type === 'Literal') return false; // Regex (or whatever lit) has no side effect in itself
 
   if (exprNode.type === 'BinaryExpression') {
-    if (AST.complexNodeMightSpy(exprNode, fdata)) return true;
+    if (AST.complexExpressionNodeMightSpy(exprNode, fdata)) return true;
     // operands must be simple now, not member
     if (exprNode.left.type === 'Identifier' && exprNode.left.name === bindingName) return true;
     if (exprNode.right.type === 'Identifier' && exprNode.right.name === bindingName) return true;
@@ -155,7 +155,7 @@ function exprNodeSpyOnBinding(exprNode, fdata, bindingName) {
   }
 
   if (exprNode.type === 'UnaryExpression') {
-    if (AST.complexNodeMightSpy(exprNode, fdata)) return true;
+    if (AST.complexExpressionNodeMightSpy(exprNode, fdata)) return true;
     // operands must be simple now, not member
     if (exprNode.argument.type === 'Identifier' && exprNode.argument.name === bindingName) return true;
     return false;
@@ -177,7 +177,7 @@ function exprNodeSpyOnBinding(exprNode, fdata, bindingName) {
 
     // The call is not referencing the ident. It's probably got side effects but maybe not? Like parseInt on a number is fine.
 
-    if (AST.complexNodeMightSpy(exprNode, fdata)) {
+    if (AST.complexExpressionNodeMightSpy(exprNode, fdata)) {
       vlog('- call node is complex; type:', exprNode.type, ', can we salvage it?');
       if (exprNode.callee.type === 'MemberExpression') {
         if (
@@ -188,7 +188,7 @@ function exprNodeSpyOnBinding(exprNode, fdata, bindingName) {
           // This is `const x = 'foo'.replace(...)`
           //ASSERT(!AST.complexNodeMightSpy(exprNode.callee, fdata), 'Since this is a string, it shouldnt be able to spy ...');
           const arg1 = exprNode.arguments[0];
-          if (AST.complexNodeMightSpy(arg1, fdata)) {
+          if (AST.complexExpressionNodeMightSpy(arg1, fdata)) {
             // This arg should be a string or regex. A regex can technically spy (it holds offset state for
             // global regexes) but this can not refer to a binding so we can skip that case here too.
 
@@ -207,7 +207,7 @@ function exprNodeSpyOnBinding(exprNode, fdata, bindingName) {
             }
           }
           const arg2 = exprNode.arguments[1];
-          if (AST.complexNodeMightSpy(arg2, fdata)) {
+          if (AST.complexExpressionNodeMightSpy(arg2, fdata)) {
 
             // The second arg can be a func. If so, verify that it doesn't spy
 
@@ -217,11 +217,11 @@ function exprNodeSpyOnBinding(exprNode, fdata, bindingName) {
                 vlog('- scanning func arg');
                 if (arg2meta.constValueRef.node.body.body.some(stmt => {
                   if (stmt.type === 'VariableDeclaration') {
-                    const spies = AST.complexNodeMightSpy(stmt.declarations[0].init, fdata);
+                    const spies = AST.complexExpressionNodeMightSpy(stmt.declarations[0].init, fdata);
                     vlog('  -', stmt.type, 'may spy?', spies, stmt.declarations[0]?.init.type);
                     return spies;
                   } else if (stmt.type === 'ExpressionStatement') {
-                    const spies = AST.complexNodeMightSpy(stmt.expression, fdata);
+                    const spies = AST.complexExpressionNodeMightSpy(stmt.expression, fdata);
                     vlog('  -', stmt.type, 'may spy?', spies);
                     return spies;
                   } else if (stmt.type === 'DebuggerStatement') {

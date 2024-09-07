@@ -2127,7 +2127,7 @@ export function deepCloneForFuncInlining(node, paramArgMapper, fail) {
   }
 }
 
-export function complexNodeMightSpy(node, fdata) {
+export function complexExpressionNodeMightSpy(node, fdata) {
   ASSERT(node, 'expecting node');
   ASSERT(fdata, 'expecting fdata');
   // aka, "a node is user observable when"
@@ -2176,13 +2176,13 @@ export function complexNodeMightSpy(node, fdata) {
           'isNaN', 'isFinite', 'parseFloat',
           'decodeURI', 'decodeURIComponent', 'encodeURI', 'encodeURIComponent', 'escape', 'unescape', 'btoa', 'atob',
         ].includes(node.callee.name)) {
-          return complexNodeMightSpy(node.arguments[0], fdata);
+          return complexExpressionNodeMightSpy(node.arguments[0], fdata);
         }
 
         // Funcs that may coerce (up to) two args
         if (node.callee.name === 'parseInt') {
-          if (node.arguments[0] && complexNodeMightSpy(node.arguments[0], fdata)) return true;
-          if (node.arguments[1] && complexNodeMightSpy(node.arguments[1], fdata)) return true;
+          if (node.arguments[0] && complexExpressionNodeMightSpy(node.arguments[0], fdata)) return true;
+          if (node.arguments[1] && complexExpressionNodeMightSpy(node.arguments[1], fdata)) return true;
           return false;
         }
       }
@@ -2214,17 +2214,17 @@ export function complexNodeMightSpy(node, fdata) {
       // Creating classes is observable if the superClass is observable, or if any of the method keys
       // are computed and observable.
 
-      if (node.superClass && complexNodeMightSpy(node.superClass, fdata)) return true;
+      if (node.superClass && complexExpressionNodeMightSpy(node.superClass, fdata)) return true;
       if (node.body.body.some((pnode) => pnode.computed && simpleNodeMightSpy(pnode.key, fdata))) return true;
       return false;
     }
     case 'ArrayExpression': {
       // Creating an array is not observable unless there's a spread and a spread arg is observable
-      return node.elements.some((enode) => enode && enode.type === 'SpreadElement' && complexNodeMightSpy(enode.argument, fdata));
+      return node.elements.some((enode) => enode && enode.type === 'SpreadElement' && complexExpressionNodeMightSpy(enode.argument, fdata));
     }
     case 'ObjectExpression': {
       // Creating an object is not observable unless there's a spread and a spread arg that is observable
-      return node.properties.some((pnode) => pnode.type === 'SpreadElement' && complexNodeMightSpy(pnode.argument, fdata));
+      return node.properties.some((pnode) => pnode.type === 'SpreadElement' && complexExpressionNodeMightSpy(pnode.argument, fdata));
     }
     case 'UnaryExpression': {
       // The `!` and `typeof` operators can not be observed in normalized code.

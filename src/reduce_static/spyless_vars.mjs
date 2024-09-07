@@ -162,7 +162,7 @@ function process(fdata, meta, name, queue, attempted) {
 
   source(write.grandNode);
 
-  const isSpy = AST.complexNodeMightSpy(init, fdata);
+  const isSpy = AST.complexExpressionNodeMightSpy(init, fdata);
   if (isSpy) {
     vlog('- The init to this binding is a spy. Bailing');
     return;

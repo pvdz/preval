@@ -21,7 +21,6 @@ import {
 } from '../constants.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { complexNodeMightSpy } from '../ast.mjs';
 
 export function dotCall(fdata) {
   group('\n\n\nTrying to simplify $dotCall occurrences\n');
@@ -208,7 +207,7 @@ function _dotCall(fdata) {
       read.blockBody[read.blockIndex - 2].declarations[0].init.type === 'MemberExpression'
     ) {
       // Can the init of the between decl spy?
-      if (!AST.complexNodeMightSpy(read.blockBody[read.blockIndex - 1].declarations[0].init, fdata)) {
+      if (!AST.complexExpressionNodeMightSpy(read.blockBody[read.blockIndex - 1].declarations[0].init, fdata)) {
         rule('A dotCall expression where can be collapsed back safely in some cases');
         example('const method = a.b; const arg = x; $dotCall(method, a, x);', 'a.b(x);');
         before(read.blockBody[read.blockIndex]);

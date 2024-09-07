@@ -2,7 +2,7 @@
 
 # base.md
 
-> If reduce up > Base
+> If hoisting > Base
 >
 > Trivial case
 

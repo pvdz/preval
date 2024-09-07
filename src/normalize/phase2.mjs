@@ -48,7 +48,7 @@ import { propertyLookups } from '../reduce_static/property_lookups.mjs';
 import { letIfElse } from '../reduce_static/let_if_else.mjs';
 import { coercials } from '../reduce_static/coerced.mjs';
 import { redundantWrites } from '../reduce_static/redundant_if_else_writes.mjs';
-import { ifReduceUp } from '../reduce_static/if_reduce_up.mjs';
+import { ifHoisting } from '../reduce_static/if_hoisting.mjs';
 import { orXor } from '../reduce_static/or_xor.mjs';
 import { resolveBoundValueSet } from '../reduce_static/bound_value_set.mjs';
 import { typedComparison } from '../reduce_static/typed_comparison.mjs';
@@ -271,7 +271,7 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
     propertyLookups(fdata) ||
     letIfElse(fdata) ||
     redundantWrites(fdata) ||
-    ifReduceUp(fdata) ||
+    ifHoisting(fdata) ||
     orXor(fdata) ||
     typedComparison(fdata) ||
     eqBang(fdata) ||

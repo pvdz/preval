@@ -24,13 +24,13 @@ import {
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 
-export function ifReduceUp(fdata) {
+export function ifHoisting(fdata) {
   group('\n\n\nFinding ifs with branches that start the same\n');
-  const r = _ifReduceUp(fdata);
+  const r = _ifHoisting(fdata);
   groupEnd();
   return r;
 }
-function _ifReduceUp(fdata) {
+function _ifHoisting(fdata) {
   const ast = fdata.tenkoOutput.ast;
 
   let queue = [];
@@ -124,7 +124,7 @@ function _ifReduceUp(fdata) {
     queue.forEach(({ func }) => func());
 
     log('Branch starts lifted:', queue.length, '. Restarting from phase1');
-    return {what: 'ifReduceUp', changes: queue.length, next: 'phase1'};
+    return {what: 'ifHoisting', changes: queue.length, next: 'phase1'};
   }
 
   log('Branch starts lifted: 0.');

@@ -2,7 +2,7 @@
 
 # tdz.md
 
-> If reduce up > Tdz
+> If hoisting > Tdz
 >
 > Trivial case
 

@@ -27,6 +27,22 @@ Do not evaluate the result even on success.
 
 This enables a special testing mode and output that prints reference tracking details.
 
+- pcode
+
+This enables a special testing mode for testing and compiling pcode.
+
+It will run preval on the input code until after the first phase1 and then test if the function is pcode compilable.
+
+If it can be compiled, it will compile it, dump the "pcode", and compare running it against running the original func.
+
+- seed N
+
+Sets the seed for Math.random() inlining. Defaults to 1. Disable by setting it to 0.
+
+Not sure this is very useful to configure to other values but you can set this to any 16bit int.
+
+It seeds a consistent prng such that test cases always have the same outcome but each call to Math.random() still gets a different value. It uses the simple xorshift algorithm to generate numbers, which is totally fine for this use case.
+
 ## Ref tracking test
 
 The special ref tracking mode stops the run after the first phase1 pass.
@@ -37,6 +53,16 @@ It will dump a special annotated source code and for all references it will tell
 - by which writes a write might be overwritten
 
 To enable this, set the refTest option in the options header (see previous section) or use --refTest from cli.
+
+## Pcode test
+
+In this case it will run the pre/normalization step all the way to phase 1.1 and then stop.
+
+The test case will serialize the pcode for any function that was pcode compiled at that point.
+
+It will then execute the pcode with the pcode executor and also the original function with eval (the assumption is that if the function can be pcode-compiled then the function must be safe to eval). The test case will display the result for both cases for a couple of predetermined arguments so you can assert them being equal.
+
+The same pcode will also be executed for primitives called in the test so you can test specific values as well.
 
 ## Input
 

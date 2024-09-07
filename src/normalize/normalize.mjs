@@ -433,7 +433,7 @@ const BUILTIN_COERCE_FIRST_TO_NUMBER_MEMBER = new Set([
   'Math.trunc',
 ]);
 
-export function phaseNormalize(fdata, fname, { allowEval = true }) {
+export function phaseNormalize(fdata, fname, prng, { allowEval = true, prngSeed = 1 }) {
   let changed = false; // Was the AST updated? We assume that updates can not be circular and repeat until nothing changes.
   let somethingChanged = false; // Did phase2 change anything at all?
 
@@ -2635,6 +2635,129 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                       return true;
                     }
                     break;
+                  }
+                  break;
+                }
+
+                case 'Math.random': {
+                  // We can special case Math.random with args to be excluded as a
+                  // way for users to control math.randoms that should be left alone.
+                  if (prngSeed && args.length === 0) {
+                    // If in global but not in a loop:
+                    if (funcStack.length === 1 && loopStack[loopStack.length-1] === null) {
+                      rule('Calling `Math.random` in global space can be replaced with a pseudo rng value');
+                      example('Math.random()', '0.12345');
+                      before(node, body[i]);
+
+                      const finalParent = wrapExpressionAs(
+                        wrapKind,
+                        varInitAssignKind,
+                        varInitAssignId,
+                        wrapLhs,
+                        varOrAssignKind,
+                        AST.primitive(prng()),
+                      );
+                      body.splice(
+                        i,
+                        1,
+                        // Do not ignore the args. If there are any, make sure to preserve their side effects. If any.
+                        // If it was called with a spread, make sure the spread still happens.
+                        ...args.map((anode) => AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode)),
+                        finalParent,
+                      );
+
+                      after(node, body[i]);
+                      assertNoDupeNodes(AST.blockStatement(body), 'body');
+                      return true;
+                    }
+                  }
+                  break;
+                }
+
+                case 'Math.floor': {
+                  if (args.length > 0 && AST.isPrimitive(args[0])) {
+                    rule('Calling `Math.floor` with a primitive can be resolved');
+                    example('Math.floor(5.3842)', '5');
+                    before(node, body[i]);
+
+                    const finalParent = wrapExpressionAs(
+                      wrapKind,
+                      varInitAssignKind,
+                      varInitAssignId,
+                      wrapLhs,
+                      varOrAssignKind,
+                      AST.primitive(Math.floor(AST.getPrimitiveValue(args[0]))),
+                    );
+                    body.splice(
+                      i,
+                      1,
+                      // Do not ignore the args. If there are any, make sure to preserve their side effects. If any.
+                      // If it was called with a spread, make sure the spread still happens.
+                      ...args.map((anode) => AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode)),
+                      finalParent,
+                    );
+
+                    after(node, body[i]);
+                    assertNoDupeNodes(AST.blockStatement(body), 'body');
+                    return true;
+                  }
+                }
+
+                case 'Math.ceil': {
+                  if (args.length > 0 && AST.isPrimitive(args[0])) {
+                    rule('Calling `Math.ceil` with a primitive can be resolved');
+                    example('Math.ceil(5.3842)', '6');
+                    before(node, body[i]);
+
+                    const finalParent = wrapExpressionAs(
+                      wrapKind,
+                      varInitAssignKind,
+                      varInitAssignId,
+                      wrapLhs,
+                      varOrAssignKind,
+                      AST.primitive(Math.ceil(AST.getPrimitiveValue(args[0]))),
+                    );
+                    body.splice(
+                      i,
+                      1,
+                      // Do not ignore the args. If there are any, make sure to preserve their side effects. If any.
+                      // If it was called with a spread, make sure the spread still happens.
+                      ...args.map((anode) => AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode)),
+                      finalParent,
+                    );
+
+                    after(node, body[i]);
+                    assertNoDupeNodes(AST.blockStatement(body), 'body');
+                    return true;
+                  }
+                }
+
+                case 'Math.round': {
+                  if (args.length > 0 && AST.isPrimitive(args[0])) {
+                    rule('Calling `Math.round` with a primitive can be resolved');
+                    example('Math.round(5.3842)', '5');
+                    before(node, body[i]);
+
+                    const finalParent = wrapExpressionAs(
+                      wrapKind,
+                      varInitAssignKind,
+                      varInitAssignId,
+                      wrapLhs,
+                      varOrAssignKind,
+                      AST.primitive(Math.round(AST.getPrimitiveValue(args[0]))),
+                    );
+                    body.splice(
+                      i,
+                      1,
+                      // Do not ignore the args. If there are any, make sure to preserve their side effects. If any.
+                      // If it was called with a spread, make sure the spread still happens.
+                      ...args.map((anode) => AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode)),
+                      finalParent,
+                    );
+
+                    after(node, body[i]);
+                    assertNoDupeNodes(AST.blockStatement(body), 'body');
+                    return true;
                   }
                 }
               }
@@ -5881,6 +6004,29 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           return true;
         }
 
+        // Probably too late to enforce this unary rule now. Stuff depends on wanting to inline Infinity/NaN
+        //if (node.operator === '-' && AST.isNumber(node.argument)) {
+        //  // Ok, ignore this for negative number literals (but not NaN/Infinity)
+        //} else if (!['VariableDeclaration', 'ExpressionStatement', 'AssignmentExpression'].includes(parentNode.type)) {
+        //  vlog('Because parent is', parentNode.type);
+        //
+        //  rule('A unary expression must be a statement, assignment, or var decl unless it is an actual negative number');
+        //  example('return -foo;', 'const tmp = -foo; return tmp;');
+        //  before(body[i]);
+        //
+        //  // Force this to be a statement, assignment, or var decl
+        //  const tmpName = createFreshVar('tmpUnaryArg', fdata);
+        //
+        //  const finalNode = AST.identifier(tmpName);
+        //  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        //  body[i] = finalParent;
+        //  body.splice(i, 0, AST.variableDeclaration(tmpName, node, 'const'));
+        //
+        //  after(body[i]);
+        //  after(body[i+1]);
+        //  return true;
+        //}
+
         return false;
       }
 
@@ -8328,6 +8474,34 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
+
+    // Enforce the situation where Unary minus is only allowed on numeric literals, not NaN/Infinity/anything else.
+    // Probably too late to want to do this now. Runs into infinite transform loops
+    // trying to put Infinity back into the Return argument "because it's a primitive".
+    //if (
+    //  (node.argument.type === 'Identifier' && node.argument.name !== 'arguments') ||
+    //  AST.isNumber(node.argument) ||
+    //  (node.argument.type === 'UnaryExpression' && AST.isNumber(node.argument.argument)) ||
+    //  AST.isStringLiteral(node.argument) ||
+    //  AST.isBoolean(node.argument) ||
+    //  AST.isNull(node.argument)
+    //) {
+    //  // This is a fine return arg
+    //} else {
+    //  rule('Return argument must be very simple');
+    //  example('return -xyz;', 'const tmp = -xyz; return xyz;');
+    //  before(body[i]);
+    //  console.log(node.argument)
+    //
+    //  const tmpName = createFreshVar('tmpReturnArg', fdata);
+    //  body.splice(i, 0, AST.variableDeclaration(tmpName, node.argument, 'const'));
+    //  node.argument = AST.identifier(tmpName);
+    //
+    //  after(body[i]);
+    //  after(body[i+1]);
+    //  assertNoDupeNodes(AST.blockStatement(body), 'body');
+    //  return true;
+    //}
 
     if (AST.isComplexNode(node.argument) || (node.argument.type === 'Identifier' && node.argument.name === 'arguments')) {
       rule('Return argument must be simple');

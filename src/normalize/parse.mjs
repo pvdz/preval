@@ -36,5 +36,7 @@ export function parseCode(code, fname) {
     exports: undefined, // phase1
     globallyUniqueNamingRegistry: undefined, // phase1. every binding is assigned a (module) globally unique name and meta data for this binding is stored here by that name
     reports: [],
+    /** @property {Map<pid, {name: string, pcode: Pcode}> pcodeOutput */
+    pcodeOutput: {},
   };
 }

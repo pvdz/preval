@@ -11,6 +11,22 @@ import { phase1 } from './normalize/phase1.mjs';
 import { phase2 } from './normalize/phase2.mjs';
 import { phase3 } from './normalize/phase3.mjs';
 import { phase1_1 } from './normalize/phase1_1.mjs';
+import { ASSERT } from '../tests/utils.mjs';
+import { freeFuncs } from './reduce_static/free_funcs.mjs';
+
+let rngSeed = 1;
+function prng() {
+  // Note: keep in sync with the test $prng func. We'll probably consolidate them later.
+  // Super simple PRNG which we shove into Math.random for our eval tests
+  // We use the same algo for inlining in preval so it ought to lead to the same outcome..? tbd if that holds (:
+  // https://pvdz.ee/weblog/456
+  ASSERT(rngSeed !== 0, 'do not call xorshift with zero');
+  rngSeed = rngSeed ^ rngSeed << 13;
+  rngSeed = rngSeed ^ rngSeed >> 17;
+  rngSeed = rngSeed ^ rngSeed << 5;
+  // Note: bitwise ops are 32bit in JS so we divide the result by the max 32bit number to get a number [0..1>
+  return ((rngSeed >>> 0) % 0b1111111111111111) / 0b1111111111111111;
+}
 
 export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve, req, stopAfterNormalize, refTracing, options = {} }) {
   if (stdio) setStdio(stdio, verbose);
@@ -19,7 +35,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
   setRiskyRules(!!(options.risky ?? true));
 
   {
-    const { logDir, logPasses, logPhases, maxPass, cloneLimit, allowEval, unrollLimit, implicitThisIdent, unrollTrueLimit, refTest, risky, ...rest } = options;
+    const { logDir, logPasses, logPhases, maxPass, cloneLimit, allowEval, unrollLimit, implicitThisIdent, unrollTrueLimit, refTest, pcodeTest, risky, prngSeed, ...rest } = options;
     if (JSON.stringify(rest) !== '{}') throw new Error(`Preval: Unsupported options received: ${JSON.stringify(rest)}`);
   }
 
@@ -27,6 +43,8 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
     console.log('Preval options:');
     console.log(options);
   }
+
+  if (options.prngSeed) rngSeed = options.prngSeed;
 
   const entryPoint = resolve(entryPointFile);
 
@@ -68,6 +86,8 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
     // Was used for discovering code that wasn't normalized. Currently unused.
     special: {},
     lastAst: {todo: 'updateMe'},
+    // Compiled function data per file, Record<fname, Map<pid, {name:string, pcode}>
+    pcodeData: {},
   };
 
   const normalizeQueue = [entryPoint]; // Order is not relevant in this phase
@@ -98,7 +118,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
     const fdata = parseCode(preCode, nextFname);
     contents.lastAst = fdata.tenkoOutput.ast;
     prepareNormalization(fdata, resolve, req, false, {unrollTrueLimit: options.unrollTrueLimit}); // I want a phase1 because I want the scope tracking set up for normalizing bindings
-    phaseNormalize(fdata, nextFname, { allowEval: options.allowEval });
+    phaseNormalize(fdata, nextFname, prng, { allowEval: options.allowEval, prngSeed: options.prngSeed });
 
     mod.children = new Set(fdata.imports.values());
     mod.fdata = fdata;
@@ -241,25 +261,29 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           // Slow; serialize and parse to verify each cycle
           //parseCode(tmat(fdata.tenkoOutput.ast, true), fname);
 
+          // Phase 1 does mostly noop analysis to reset information that may have gone stale after each transform
           ++phase1s;
-          phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, !firstAfterParse && options.refTest); // I want a phase1 because I want the scope tracking set up for normalizing bindings
-          phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, !firstAfterParse && options.refTest);
+          phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, !firstAfterParse && options.refTest, !firstAfterParse && options.pcodeTest, verboseTracing);
+          phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, !firstAfterParse && options.refTest, !firstAfterParse && options.pcodeTest, verboseTracing);
+          // In a pcode test we have to run the pcode plugin here because we don't want ot run all of phase2
+          if (options.pcodeTest) freeFuncs(fdata, prng, !!options.prngSeed);
           contents.lastPhase1Ast = fdata.tenkoOutput.ast;
 
           options?.onAfterPhase(1, passes, phaseLoop, fdata, false, options);
 
-          if (options.refTest) {
-            // Test runner only cares about the first pass up to here
+          if (options.refTest || options.pcodeTest) {
+            // For refTest, the test runner only cares about the first pass up to here
+            // For pcodeTest, the test will be based on the AST after phase1 (with meta data)
             break;
           }
 
           firstAfterParse = false;
 
-          changed = phase2(program, fdata, resolve, req, {unrollLimit: options.unrollLimit, implicitThisIdent: options.implicitThisIdent, unrollTrueLimit: options.unrollTrueLimit});
+          changed = phase2(program, fdata, resolve, req, prng, {unrollLimit: options.unrollLimit, implicitThisIdent: options.implicitThisIdent, unrollTrueLimit: options.unrollTrueLimit, rngSeed});
           options?.onAfterPhase(2, passes, phaseLoop, fdata, changed, options);
           if (!changed) {
             // Force a normalize pass before moving to phase3. Loop if it changed anything anyways.
-            changed = phaseNormalize(fdata, fname, { allowEval: options.allowEval });
+            changed = phaseNormalize(fdata, fname, prng,  { allowEval: options.allowEval, prngSeed: options.prngSeed });
             options?.onAfterPhase(2.1, passes, phaseLoop, fdata, false, options);
             if (changed) vlog('The pre-phase3 normal did change something! starting from phase0');
           }
@@ -281,6 +305,8 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           throw e;
         }
 
+        contents.pcodeData[fname] = fdata.pcodeOutput;
+
         options.onPassEnd?.(outCode, passes, fi, options, contents);
 
         changed = outCode !== inputCode;
@@ -295,7 +321,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
 
           const fdata = parseCode(inputCode, fname);
           prepareNormalization(fdata, resolve, req, false, {unrollTrueLimit: options.unrollTrueLimit}); // I want a phase1 because I want the scope tracking set up for normalizing bindings
-          phaseNormalize(fdata, fname, { allowEval: options.allowEval });
+          phaseNormalize(fdata, fname, prng, { allowEval: options.allowEval, rngSeed: options.prngSeed });
 
           options.onAfterNormalize?.(fdata, passes + 1, fi, options, contents);
 
@@ -327,6 +353,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           log('This is a ref test. Stopping after first pass.');
         }
       }
+
       log('\nPreval ran for', passes, 'passes');
     });
   }

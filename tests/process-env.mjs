@@ -21,7 +21,9 @@ export function parseTestArgs() {
     maxPass: undefined,
     onlyNormalized: false,
     onlyOutput: false, // When generating test cases, only add the `## Output` block (for diffing)
+    pcodeTest: undefined, // Specific pcode test case
     randomizedOrder: false,
+    prngSeed: undefined, // Initial seed value for prng. Zero disables it. Defaults to 1.
     refTest: undefined, // Dump special ref tracking debug output / test formatting, instead of normal test cases?
     refTracing: false, // Print ref tracking trace logs
     riskyRules: true, // Enable risky rules. May not be 100% sound but should be ok in most cases and lead to much better results.
@@ -155,6 +157,16 @@ export function parseTestArgs() {
 
       case '--no-trace': {
         config.verboseTracing = false;
+        break;
+      }
+
+      case '--pcode': {
+        config.pcodeTest = true;
+        break;
+      }
+
+      case '--seed': {
+        config.prngSeed = argv.shift() | 0; // Convert to number, allow for zero (disables it)
         break;
       }
 

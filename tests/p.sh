@@ -41,6 +41,9 @@ PARAM_RANDOMIZED=''
 PARAM_REFTEST=''
 PARAM_REF_TRACING=''
 PARAM_RISKY=''
+PARAM_PCODE=''
+PARAM_SEED=''
+PARAM_SEED_N=''
 
 BOLD="\e[;1;1m";
 BOLD_RED="\e[1;31m";
@@ -97,6 +100,8 @@ Preval CLI Toolkit help:
  --ref           Alias for --no-trace --ref-tracing :shrug:
  --risky         Enable risky rules. These rules cut a few corners but should be okay in most scenarios. Enabled by default.
  --no-risky      Disable risky rules. These rules cut a few corners but should be okay in most scenarios. Enabled by default.
+ --pcode         Consider input a pcode test
+ --seed n        Set the rng seed to inline certain Math.random cases. If zero then math.random is never inlined. Default: 1
  -C              Do not print colors
  -n              Only show normalized output
  -t <count>      Run tests in this many threads (default=1; no threads)
@@ -208,6 +213,9 @@ Preval CLI Toolkit help:
     --refTest)
       PARAM_REFTEST='--refTest'
       ;;
+    --pcode)
+      PARAM_PCODE='--pcode'
+      ;;
     --ref-tracing)
       PARAM_REF_TRACING='--refTracing'
       ;;
@@ -220,6 +228,11 @@ Preval CLI Toolkit help:
       ;;
     --no-risky)
       PARAM_RISKY='--no-risky'
+      ;;
+    --seed)
+      PARAM_SEED='--seed'
+      shift
+      PARAM_SEED_N=$1
       ;;
     -C)
       shift
@@ -272,7 +285,7 @@ set -x
 case "${ACTION}" in
 
     *)
-      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}" -t "${PARAM_THREADS}" "${PARAM_LOG}" "${PARAM_LOGTO}" "${PARAM_MAXPASS}" "${PARAM_MAXPASS_COUNT}" "${PARAM_CLONELIMIT}" "${PARAM_CLONELIMIT_COUNT}" "${PARAM_TRIM_DOLLAR}" "${PARAM_ONLY_OUTPUT}" "${PARAM_TRACE}" "${PARAM_NO_TRACE}" "${PARAM_SILENT}" "${PARAM_SKIP_EVAL}" "${PARAM_UNROLL}" "${PARAM_UNROLL_VALUE}" "${PARAM_UNROLL_TRUE}" "${PARAM_UNROLL_TRUE_VALUE}" "${PARAM_IMPTHIS}" "${PARAM_IMPTHIS_VALUE}" "${PARAM_RANDOMIZED}" "${PARAM_REFTEST}" "${PARAM_REF_TRACING}" "${PARAM_RISKY}"
+      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}" -t "${PARAM_THREADS}" "${PARAM_LOG}" "${PARAM_LOGTO}" "${PARAM_MAXPASS}" "${PARAM_MAXPASS_COUNT}" "${PARAM_CLONELIMIT}" "${PARAM_CLONELIMIT_COUNT}" "${PARAM_TRIM_DOLLAR}" "${PARAM_ONLY_OUTPUT}" "${PARAM_TRACE}" "${PARAM_NO_TRACE}" "${PARAM_SILENT}" "${PARAM_SKIP_EVAL}" "${PARAM_UNROLL}" "${PARAM_UNROLL_VALUE}" "${PARAM_UNROLL_TRUE}" "${PARAM_UNROLL_TRUE_VALUE}" "${PARAM_IMPTHIS}" "${PARAM_IMPTHIS_VALUE}" "${PARAM_RANDOMIZED}" "${PARAM_REFTEST}" "${PARAM_REF_TRACING}" "${PARAM_RISKY}" "${PARAM_PCODE}" "${PARAM_SEED}" "${PARAM_SEED_N}"
     ;;
 esac
 set +x

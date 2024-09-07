@@ -64,7 +64,7 @@ import { addLabelReference, registerGlobalLabel } from '../labels.mjs';
 // It does replace Identifier nodes in the AST that are $$123 param names with a special custom Param node
 // It runs twice; once for actual input code and once on normalized code.
 
-export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, refTest) {
+export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, refTest, pcodeTest, verboseTracing) {
   const ast = fdata.tenkoOutput.ast;
 
   const start = Date.now();
@@ -119,6 +119,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       firstAfterParse +
       ', refTest=' +
       !!refTest +
+      ', pcodeTest=' +
+      !!pcodeTest +
     ') ::  ' +
       fdata.fname +
       ', pass=' + passes + ', phase1s=', phase1s, ', len:', fdata.len, '\n##################################\n\n\n',
@@ -139,7 +141,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
   resetUid();
 
   const tracingValueBefore = VERBOSE_TRACING;
-  if (passes > 1 || phase1s > 1) {
+  if (!verboseTracing && (passes > 1 || phase1s > 1)) {
     vlog('(Disabling verbose tracing for phase 1 after the first pass)');
     setVerboseTracing(false);
   }

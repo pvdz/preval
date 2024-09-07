@@ -6,6 +6,7 @@ import {verifyPst} from "../src/utils/verify_pst.mjs"
 import {printPst} from "../src/utils/print_pst.mjs"
 import {setPrintPids} from "../lib/printer.mjs";
 import {tmat} from "../src/utils.mjs"
+import { printPcode, serializePcode } from '../src/pcode.mjs';
 
 export const RED = '\x1b[31;1m';
 export const GREEN = '\x1b[32m';
@@ -115,6 +116,14 @@ export function fromMarkdownCase(md, fname, config) {
           case 'implicitThis':
             value = value.trim();
             break;
+          case 'pcode':
+            name = 'pcodeTest';
+            value = true;
+            break;
+          case 'seed':
+            name = 'seed';
+            value = parseInt(value.trim());
+            break;
           default:
             throw new Error('Test case contained unsupported option: `' + name + '` (with value `' + value + '`)');
         }
@@ -135,6 +144,7 @@ export function fromMarkdownCase(md, fname, config) {
           (s) =>
             // Remove these names because they will be auto-generated (or maybe because ew don't want them?)
             !s.startsWith('Output\n') &&
+            !s.startsWith('Pcode output\n') &&
             !s.startsWith('Pre Normal\n') &&
             !s.startsWith('Normalized\n') &&
             !s.startsWith('Uniformed\n') &&
@@ -146,7 +156,7 @@ export function fromMarkdownCase(md, fname, config) {
       fin: {},
     };
 
-    const fin = mdInput.replace(/\n`````js(?:[ \t]+filename=(.*?))\n([\s\S]*?)\n`````\n/g, (_, name = intro, code) => {
+    const fin = mdInput.replace(/\n`````js(?:[ \t]+filename=(.*?))\n([\s\S]*?)\n`````\n/g, (_, name = 'intro', code) => {
       const n = name.trim();
       if (testCase.fin[n]) throw new Error('Duplicate name: ' + n);
       testCase.fin[n] = code.trim();
@@ -232,6 +242,7 @@ export function toEvaluationResult(evalled, implicitGlobals, skipFinal) {
   const pre_invOutput = printStack(evalled.$pre_inv);
   const normalized_invOutput = printStack(evalled.$norm_inv);
   const output_invOutput = printStack(evalled.$out_inv);
+  const result_pcode = evalled.$pcode;
 
   const preEvalResult_inv = input_invOutput !== pre_invOutput ? '\n\nPre normalization inverse calls: BAD!%\n' + inputOutput : '';
   const normalizedEvalResult_inv = input_invOutput !== normalized_invOutput ? '\n\nNormalization inverse calls: BAD!?\n' + normalizedOutput : '';
@@ -262,11 +273,12 @@ export function toEvaluationResult(evalled, implicitGlobals, skipFinal) {
     (!hasError ? preEvalResult_inv : '') +
     (!hasError ? normalizedEvalResult_inv : '') +
     (!hasError ? finalEvalResult_inv : '') +
+    (result_pcode ? result_pcode : '') +
     ''
   );
 }
 
-export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, output, evalled, lastError, isExpectingAnError, leGlobalSymbols }, CONFIG) {
+export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, output, evalled, lastError, isExpectingAnError, leGlobalSymbols, pcodeData }, CONFIG) {
   if (lastError) {
     return mdHead + '\n\n' + mdChunks.join('\n\n').trim() + '\n\n## Output\n\nThrew expected error:' + '\n\n' + lastError.message + '\n';
   }
@@ -295,11 +307,12 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
   leGlobalSymbols.forEach(name => output.implicitGlobals.delete(name));
 
   const wasRefTest = CONFIG.refTest || mdOptions?.refTest;
+  const wasPcodeTest = CONFIG.pcodeTest || mdOptions?.pcodeTest;
 
   let mdBody =
     ((CONFIG.logPasses || CONFIG.logPhases) ? '<trimmed, see logs>' : (
       (wasRefTest || CONFIG.onlyOutput ? '' : toPreResult(output.pre)) +
-      (wasRefTest || CONFIG.onlyOutput ? '' : toNormalizedResult(output.normalized)) +
+      (wasRefTest || wasPcodeTest || CONFIG.onlyOutput ? '' : toNormalizedResult(output.normalized)) +
       (!wasRefTest ? '' : (
         (setPrintPids(true), '') +
 
@@ -312,14 +325,34 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
 
         (setPrintPids(false), '')
       )) +
-      (wasRefTest ? '' : (
+      (!wasPcodeTest ? '' : (
+        '\n\n## Pcode output\n\n' +
+        Object.keys(pcodeData) // fname
+        .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
+        .map((fname) => {
+          const list = [];
+          pcodeData[fname].forEach(({pcode, name}, id) => {
+            if (typeof id === 'number') return;
+
+            list.push(`${name} =\n${
+              printPcode(pcode, 4)
+            }`);
+          });
+          return '`````file' + fname + '\n' +
+            list.join('\n\n')
+            .trim() +
+            '\n`````\n\n'
+        })
+        .join('\n\n')
+      )) +
+      (wasPcodeTest || wasRefTest ? '' : (
         '\n\n## Output\n\n\n' + // two empty lines. this way diff always captures this as the hunk header (with the default U3)
         Object.keys(output.files)
         .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
         .map((key) => '`````js filename=' + key + '\n' + fmat(output.files[key]).trim() + '\n`````')
         .join('\n\n')
       )) +
-      (wasRefTest ? '' : (
+      (wasPcodeTest || wasRefTest ? '' : (
         '\n\n## PST Output\n\n' +
         'With rename=true\n\n' +
         Object.keys(output.files)
@@ -339,7 +372,13 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
         })
         .join('\n\n')
       )) +
-      (wasRefTest ? '\n\nRef tracking result:\n\n' + createOpenRefsState(output.globallyUniqueNamingRegistry) : toEvaluationResult(evalled, output.implicitGlobals, false))
+      (
+        wasRefTest
+          ? '\n\nRef tracking result:\n\n' + createOpenRefsState(output.globallyUniqueNamingRegistry)
+          : wasPcodeTest
+          ? evalled.$pcode + '\n'
+          : toEvaluationResult(evalled, output.implicitGlobals, false)
+      )
     )) +
   '';
 

@@ -64,15 +64,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const g = function ($$0) {
-  const n$1 = $$0;
-  debugger;
-  const tmpCalleeParam = n$1 + 1;
-  const tmpReturnArg$1 = g(tmpCalleeParam);
-  return tmpReturnArg$1;
-};
-const tmpCalleeParam$1 = g(0);
-$(tmpCalleeParam$1);
+throw `<max pcode call depth exceeded>; calling \`const tmpCalleeParam\$1 = g(0);\``;
 `````
 
 ## PST Output
@@ -80,15 +72,7 @@ $(tmpCalleeParam$1);
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = c;
-  debugger;
-  const d = b + 1;
-  const e = a( d );
-  return e;
-};
-const f = a( 0 );
-$( f );
+throw "<max pcode call depth exceeded>; calling `const tmpCalleeParam$1 = g(0);`";
 `````
 
 ## Globals

@@ -1,6 +1,5 @@
 // TOFIX regressions:
 
-// tests/cases/normalize/nullish/global_nested_assign.md -> used to be able to inline the obj.prop assign and end with `{ b: 15 }` (same tests/cases/normalize/nullish/func_nested_assign.md)
 // tests/cases/import/import_default_named_class.md -> ref tracking: exported let/const decls should get the same treatment as escaping closures (read any write)
 // tests/cases/bit_hacks/if_return_bit/base_16.md -> regressed when restoring options to phase3, so must be loop unroll related? before it would end with $(b)
 
@@ -54,3 +53,9 @@
 // Is the PST not renaming vars inside templates?
 // Think some more about how to deal with optional chaining cases: tests/cases/normalize/optional/func_nested_var.md
 // PRNG math.random() round() trick -> tests/cases/math_random/floor_trick/rng3.md
+// tests/cases/normalize/expressions/statement/for_in_left/auto_ident_obj_pattern_assign.md the iterator .value is left as a statement. we know it's safe to drop this. some more love for $forIn/$forOf might be nice.
+// src/reduce_static/spyless_vars.mjs should also check if the thing being moved refers to any let-bindings because it currently doesn't really check for this and i think that's a small bug. let a = 1; const arr = [a]; a = 2; if ($) $(arr); would move the arr decl inside the if, but that's bad because by then a has changed
+// tests/cases/normalize/expressions/assignments/computed_prop_prop/auto_pattern_arr_c-seq.md we know the obj has no side effects so the member-expression-statement can be dropped safely
+// tests/cases/normalize/expressions/assignments/compound/auto_ident_c-opt_complex_complex_c-opt_complex_complex.md doesnt tmpClusterSSA_a invariably get NaN assigned ? We can resolve that.
+// rename complexNodeMightSpy to include "expression" for clarity
+// investigate return elimination... `return x` -> `let $r; $ret: { $r = x; break $ret; } return $r;`

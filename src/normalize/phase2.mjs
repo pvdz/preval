@@ -93,6 +93,7 @@ import { objlitInlining } from '../reduce_static/objlit_inlining.mjs';
 import { constAliasing } from '../reduce_static/const_aliasing.mjs';
 import { unusedAssigns } from '../reduce_static/unused_assigns.mjs';
 import { recursiveFuncs } from '../reduce_static/recursive_funcs.mjs';
+import { freeFuncs } from '../reduce_static/free_funcs.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
@@ -129,7 +130,7 @@ export function phase2(program, fdata, resolve, req, prng, options) {
 
   return r;
 }
-function _phase2(fdata, prng, options = {}) {
+function _phase2(fdata, prng, options = {prngSeed: 1}) {
   // Initially we only care about bindings whose writes have one var decl and only assignments otherwise
   // Due to normalization, the assignments will be a statement. The var decl can not contain an assignment as init.
   // Elimination of var decls or assignments will be deferred. This way we can preserve parent/node
@@ -201,6 +202,8 @@ function _phase2(fdata, prng, options = {}) {
   });
 
   const action = (
+    freeFuncs(fdata, prng, !!options.prngSeed) || // Do this first...?
+
     coercials(fdata) ||
     resolveBoundValueSet(fdata) ||
     removeUnusedConstants(fdata) ||

@@ -10,6 +10,8 @@ Regression was not inlining a single used function.
 
 This version is wrapped in another function.
 
+There's an implicit global that should prevent compilation.
+
 ## Input
 
 `````js filename=intro
@@ -22,7 +24,7 @@ function f() {
       inlineMe();
     }
   };
-  if (tmpIfTest) {
+  if (implicitGlobalOops) {
     g();
   }
 }
@@ -45,7 +47,7 @@ let f = function () {
       inlineMe();
     }
   };
-  if (tmpIfTest) {
+  if (implicitGlobalOops) {
     g();
   }
 };
@@ -72,7 +74,7 @@ let f = function () {
       return undefined;
     }
   };
-  if (tmpIfTest) {
+  if (implicitGlobalOops) {
     g();
     return undefined;
   } else {
@@ -88,16 +90,8 @@ $(f);
 `````js filename=intro
 const f = function () {
   debugger;
-  if (tmpIfTest) {
-    if ($) {
-      $ ** 0;
-      return undefined;
-    } else {
-      return undefined;
-    }
-  } else {
-    return undefined;
-  }
+  implicitGlobalOops;
+  return undefined;
 };
 $(f);
 `````
@@ -109,18 +103,8 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  if (tmpIfTest) {
-    if ($) {
-      $ ** 0;
-      return undefined;
-    }
-    else {
-      return undefined;
-    }
-  }
-  else {
-    return undefined;
-  }
+  implicitGlobalOops;
+  return undefined;
 };
 $( a );
 `````
@@ -129,7 +113,7 @@ $( a );
 
 BAD@! Found 1 implicit global bindings:
 
-tmpIfTest
+implicitGlobalOops
 
 ## Result
 

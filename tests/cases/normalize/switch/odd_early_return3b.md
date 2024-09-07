@@ -73,10 +73,7 @@ if ($) {
 
 
 `````js filename=intro
-if ($) {
-  $ ** 0;
-} else {
-}
+
 `````
 
 ## PST Output
@@ -84,9 +81,7 @@ if ($) {
 With rename=true
 
 `````js filename=intro
-if ($) {
-  $ ** 0;
-}
+
 `````
 
 ## Globals

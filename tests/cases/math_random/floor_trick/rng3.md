@@ -31,7 +31,7 @@ $(is_123 === 1 || is_123 === 2 || is_123 === 3);
 
 
 `````js filename=intro
-const r = Math.random();
+const r = 0.12556649118791485;
 const a = r * 3;
 const is_012 = Math.floor(a);
 const is_123 = is_012 + 1;
@@ -52,20 +52,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const r = Math.random();
-const a = r * 3;
-const is_012 = Math.floor(a);
-const is_123 = is_012 + 1;
-let tmpCalleeParam = is_123 === 1;
-if (tmpCalleeParam) {
-} else {
-  tmpCalleeParam = is_123 === 2;
-  if (tmpCalleeParam) {
-  } else {
-    tmpCalleeParam = is_123 === 3;
-  }
-}
-$(tmpCalleeParam);
+$(true);
 `````
 
 ## PST Output
@@ -73,24 +60,7 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = Math.random();
-const b = a * 3;
-const c = Math.floor( b );
-const d = c + 1;
-let e = d === 1;
-if (e) {
-
-}
-else {
-  e = d === 2;
-  if (e) {
-
-  }
-  else {
-    e = d === 3;
-  }
-}
-$( e );
+$( true );
 `````
 
 ## Globals

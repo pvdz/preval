@@ -88,7 +88,7 @@ else {
   const d = $dotCall( $, c, 1 );
   a = d;
 }
-const e = [ ... a ];
+const e = [ ...a ];
 $( e );
 $( a );
 `````

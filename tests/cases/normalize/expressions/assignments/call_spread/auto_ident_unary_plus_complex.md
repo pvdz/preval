@@ -53,7 +53,7 @@ With rename=true
 `````js filename=intro
 const a = $( 100 );
 const b = +a;
-$( ... b );
+$( ...b );
 $( b );
 `````
 

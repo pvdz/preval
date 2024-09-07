@@ -101,7 +101,7 @@ const d = [ 10, 20, 30 ];
 if (c) {
   $( undefined );
   $( undefined );
-  const e = [ ... d ];
+  const e = [ ...d ];
   e[ 0 ];
   e[ 1 ];
 }

@@ -61,7 +61,7 @@ With rename=true
 const a = { y: 1 };
 const b = $( a );
 const c = delete b.y;
-const d = [ ... c ];
+const d = [ ...c ];
 $( d );
 $( c, a );
 `````

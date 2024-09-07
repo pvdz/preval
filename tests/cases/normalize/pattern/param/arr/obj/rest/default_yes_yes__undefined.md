@@ -98,7 +98,7 @@ With rename=true
 const a = { a: "pass2" };
 const b = [ a ];
 const c = $( b );
-const d = [ ... c ];
+const d = [ ...c ];
 const e = d[ 0 ];
 let f = undefined;
 const g = e === undefined;

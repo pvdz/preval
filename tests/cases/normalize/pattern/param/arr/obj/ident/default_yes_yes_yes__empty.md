@@ -107,7 +107,7 @@ With rename=true
 const a = { x: "pass3" };
 const b = [ a ];
 const c = $( b );
-const d = [ ... c ];
+const d = [ ...c ];
 const e = d[ 0 ];
 let f = undefined;
 const g = e === undefined;

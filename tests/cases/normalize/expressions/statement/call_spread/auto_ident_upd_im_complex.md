@@ -71,7 +71,7 @@ const c = $( b );
 const d = c.x;
 const e = d - 1;
 c.x = e;
-$( ... d );
+$( ...d );
 const f = {
   a: 999,
   b: 1000,

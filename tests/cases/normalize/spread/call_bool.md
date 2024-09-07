@@ -38,7 +38,7 @@ $(...true);
 With rename=true
 
 `````js filename=intro
-$( ... true );
+$( ...true );
 `````
 
 ## Globals

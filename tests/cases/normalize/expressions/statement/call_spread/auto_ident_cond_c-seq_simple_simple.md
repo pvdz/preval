@@ -67,12 +67,12 @@ With rename=true
 const a = $( 30 );
 if (a) {
   const b = $( 2 );
-  $( ... b );
+  $( ...b );
 }
 else {
   const c = $( 100 );
   const d = $( c );
-  $( ... d );
+  $( ...d );
 }
 const e = {
   a: 999,

@@ -80,13 +80,13 @@ With rename=true
 let a = undefined;
 const b = $ == null;
 if (b) {
-  $( ... undefined );
+  $( ...undefined );
 }
 else {
   const c = { e: $ };
   const d = $dotCall( $, c, 1 );
   a = d;
-  $( ... d );
+  $( ...d );
 }
 $( a );
 `````

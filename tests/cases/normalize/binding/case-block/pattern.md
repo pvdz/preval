@@ -87,7 +87,7 @@ const b = $( "a" );
 const c = a === b;
 const d = [ 10, 20, 30 ];
 if (c) {
-  const e = [ ... d ];
+  const e = [ ...d ];
   e[ 0 ];
   e[ 1 ];
 }

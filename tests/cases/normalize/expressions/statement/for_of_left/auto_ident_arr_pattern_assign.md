@@ -121,7 +121,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const h = $( 3 );
     const i = $( 4 );
     const j = [ h, i ];
-    const k = [ ... j ];
+    const k = [ ...j ];
     a = k[ 0 ];
     b = k[ 1 ];
     const l = f.value;

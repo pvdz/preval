@@ -49,7 +49,7 @@ With rename=true
 
 `````js filename=intro
 $( 100 );
-[ ... undefined ];
+[ ...undefined ];
 throw "[Preval]: Array spread must crash before this line";
 `````
 

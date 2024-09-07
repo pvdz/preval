@@ -70,12 +70,12 @@ const a = {
   a: 999,
   b: 1000,
 };
-const b = [ ... a ];
+const b = [ ...a ];
 b[ 0 ];
 const c = $( 100 );
 const d = [ 1, 2 ];
 const e = $( d );
-const f = [ ... e ];
+const f = [ ...e ];
 const g = f[ 0 ];
 const h = c + e;
 $( h );

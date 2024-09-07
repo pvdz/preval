@@ -66,11 +66,11 @@ With rename=true
 const a = $( $ );
 const b = a == null;
 if (b) {
-  $( ... undefined );
+  $( ...undefined );
 }
 else {
   const c = $dotCall( a, $, 1 );
-  $( ... c );
+  $( ...c );
 }
 const d = {
   a: 999,

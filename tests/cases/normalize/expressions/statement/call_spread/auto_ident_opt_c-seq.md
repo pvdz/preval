@@ -71,11 +71,11 @@ const a = { x: 1 };
 const b = $( a );
 const c = b == null;
 if (c) {
-  $( ... undefined );
+  $( ...undefined );
 }
 else {
   const d = b.x;
-  $( ... d );
+  $( ...d );
 }
 const e = {
   a: 999,

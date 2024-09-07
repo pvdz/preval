@@ -48,7 +48,7 @@ With rename=true
 
 `````js filename=intro
 const a = 1.x;
-[ ... a ];
+[ ...a ];
 $( "bad" );
 `````
 

@@ -61,7 +61,7 @@ const a = { $: $ };
 const b = $( a );
 const c = b.$;
 const d = new c( 1 );
-[ ... d ];
+[ ...d ];
 const e = {
   a: 999,
   b: 1000,

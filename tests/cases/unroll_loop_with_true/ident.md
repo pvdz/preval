@@ -54,7 +54,7 @@ f();
 With rename=true
 
 `````js filename=intro
-[ ... $LOOP_DONE_UNROLLING_ALWAYS_TRUE ];
+[ ...$LOOP_DONE_UNROLLING_ALWAYS_TRUE ];
 `````
 
 ## Globals

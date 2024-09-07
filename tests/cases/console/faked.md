@@ -79,15 +79,15 @@ With rename=true
 `````js filename=intro
 const a = [ 1, 2, 3, "consle test case" ];
 $( a );
-console.log( "a", "b", ... c );
-console.warn( "a", "b", ... c );
-console.error( "a", "b", ... c );
-console.dir( "a", "b", ... c );
-console.debug( "a", "b", ... c );
-console.time( "a", "b", ... c );
-console.timeEnd( "a", "b", ... c );
-console.group( "a", "b", ... c );
-console.groupEnd( "a", "b", ... c );
+console.log( "a", "b", ...c );
+console.warn( "a", "b", ...c );
+console.error( "a", "b", ...c );
+console.dir( "a", "b", ...c );
+console.debug( "a", "b", ...c );
+console.time( "a", "b", ...c );
+console.timeEnd( "a", "b", ...c );
+console.group( "a", "b", ...c );
+console.groupEnd( "a", "b", ...c );
 `````
 
 ## Globals

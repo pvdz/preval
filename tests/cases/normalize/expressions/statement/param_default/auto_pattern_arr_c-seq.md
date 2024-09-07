@@ -83,7 +83,7 @@ const a = {
   a: 999,
   b: 1000,
 };
-const b = [ ... a ];
+const b = [ ...a ];
 const c = b[ 0 ];
 $( 10 );
 $( 20 );

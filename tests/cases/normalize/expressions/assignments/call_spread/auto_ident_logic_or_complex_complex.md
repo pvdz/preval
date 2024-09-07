@@ -72,7 +72,7 @@ With rename=true
 const a = $( 0 );
 let b = $( a );
 if (b) {
-  $( ... b );
+  $( ...b );
 }
 else {
   const c = $( 2 );

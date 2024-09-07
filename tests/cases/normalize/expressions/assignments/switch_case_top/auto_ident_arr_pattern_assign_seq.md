@@ -100,7 +100,7 @@ if (c) {
   const d = $( 3 );
   const e = $( 4 );
   const f = [ d, e ];
-  const g = [ ... f ];
+  const g = [ ...f ];
   const h = g[ 0 ];
   const i = g[ 1 ];
   $( f, h, i );

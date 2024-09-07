@@ -66,10 +66,10 @@ With rename=true
 `````js filename=intro
 const a = $( "hello" );
 const b = $( "there" );
-let c = $( 1, ... a, 3 );
+let c = $( 1, ...a, 3 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( c );
-  c = $( 1, ... b, 3 );
+  c = $( 1, ...b, 3 );
 }
 `````
 

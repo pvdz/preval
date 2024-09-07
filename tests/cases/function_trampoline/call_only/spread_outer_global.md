@@ -70,7 +70,7 @@ const b = function($$0 ) {
   $( c );
   return undefined;
 };
-b( ... a );
+b( ...a );
 `````
 
 ## Globals

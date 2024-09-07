@@ -103,7 +103,7 @@ if (f) {
 else {
   e = d;
 }
-const h = [ ... e ];
+const h = [ ...e ];
 const i = h.slice( 0 );
 $( i );
 `````

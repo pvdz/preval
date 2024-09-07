@@ -65,12 +65,12 @@ With rename=true
 `````js filename=intro
 const a = $( 30 );
 if (a) {
-  $( ... 60 );
+  $( ...60 );
 }
 else {
   const b = $( 100 );
   const c = $( b );
-  $( ... c );
+  $( ...c );
 }
 const d = {
   a: 999,

@@ -64,11 +64,11 @@ With rename=true
 const a = $( 0 );
 let b = $( a );
 if (b) {
-  $( ... b );
+  $( ...b );
 }
 else {
   b = 2;
-  $( ... 2 );
+  $( ...2 );
 }
 $( b );
 `````

@@ -49,7 +49,7 @@ With rename=true
 
 `````js filename=intro
 const a = /foo/;
-[ ... a ];
+[ ...a ];
 const b = {
   a: 999,
   b: 1000,

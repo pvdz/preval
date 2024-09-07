@@ -74,7 +74,7 @@ if (c) {
 else {
   b = a;
 }
-const e = [ ... b ];
+const e = [ ...b ];
 e.slice( 0 );
 $( "bad" );
 `````

@@ -56,7 +56,7 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = typeof a;
-[ ... b ];
+[ ...b ];
 const c = {
   a: 999,
   b: 1000,

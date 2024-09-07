@@ -217,7 +217,7 @@ const a = function() {
   return f;
 };
 const g = a();
-const h = [ ... g ];
+const h = [ ...g ];
 const i = h[ 0 ];
 const j = h[ 1 ];
 const k = i();

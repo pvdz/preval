@@ -73,7 +73,7 @@ else {
   const c = $( 1 );
   a = c;
 }
-const d = [ ... a ];
+const d = [ ...a ];
 $( d );
 $( a );
 `````

@@ -102,7 +102,7 @@ const a = {
   a: 999,
   b: 1000,
 };
-const b = [ ... a ];
+const b = [ ...a ];
 let c = b[ 0 ];
 const d = { x: 1 };
 const e = $( d );
@@ -116,7 +116,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   else {
     const i = [ 1, 2 ];
     const j = $( i );
-    const k = [ ... j ];
+    const k = [ ...j ];
     c = k[ 0 ];
     const l = g.value;
     j.x = l;

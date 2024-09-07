@@ -73,7 +73,7 @@ With rename=true
 2.c;
 5[ 6 ];
 const a = [ 7 ];
-new String( 8.5, 8, ... a );
+new String( 8.5, 8, ...a );
 `````
 
 ## Globals

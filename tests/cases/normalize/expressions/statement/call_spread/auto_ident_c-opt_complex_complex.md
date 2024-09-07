@@ -74,12 +74,12 @@ const a = { x: 1 };
 const b = $( a );
 const c = b == null;
 if (c) {
-  $( ... undefined );
+  $( ...undefined );
 }
 else {
   const d = $( "x" );
   const e = b[ d ];
-  $( ... e );
+  $( ...e );
 }
 const f = {
   a: 999,

@@ -77,7 +77,7 @@ const c = {
   x: a,
   y: b,
 };
-const d = [ ... c ];
+const d = [ ...c ];
 $( d );
 $( c, a, b );
 `````

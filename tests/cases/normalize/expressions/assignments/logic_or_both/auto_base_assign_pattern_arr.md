@@ -90,7 +90,7 @@ With rename=true
 const a = $( 2 );
 const b = [ a ];
 const c = $( b );
-const d = [ ... c ];
+const d = [ ...c ];
 let e = d[ 0 ];
 let f = c;
 if (c) {
@@ -100,7 +100,7 @@ else {
   const g = $( 2 );
   const h = [ g ];
   const i = $( h );
-  const j = [ ... i ];
+  const j = [ ...i ];
   e = j[ 0 ];
   f = i;
   $( i );

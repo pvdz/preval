@@ -81,17 +81,17 @@ const a = {
   a: 999,
   b: 1000,
 };
-const b = [ ... a ];
+const b = [ ...a ];
 b[ 0 ];
 $( 10 );
 $( 20 );
 const c = [ 1, 2 ];
-const d = [ ... c ];
+const d = [ ...c ];
 d[ 0 ];
 $( 10 );
 $( 20 );
 const e = [ 1, 2 ];
-const f = [ ... e ];
+const f = [ ...e ];
 const g = f[ 0 ];
 const h = c + e;
 $( h );

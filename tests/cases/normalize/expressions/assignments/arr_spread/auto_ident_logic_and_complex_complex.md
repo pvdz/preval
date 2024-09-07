@@ -71,7 +71,7 @@ if (b) {
   const c = $( 2 );
   b = $( c );
 }
-const d = [ ... b ];
+const d = [ ...b ];
 $( d );
 $( b );
 `````

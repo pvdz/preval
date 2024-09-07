@@ -162,7 +162,7 @@ if (g) {
   const h = $( 2 );
   const i = [ h ];
   const j = $( i );
-  const k = [ ... j ];
+  const k = [ ...j ];
   a = k[ 0 ];
 }
 else {

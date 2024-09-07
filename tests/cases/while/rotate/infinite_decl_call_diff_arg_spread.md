@@ -64,7 +64,7 @@ const a = $( "hello" );
 let b = $( 1, 2, 3 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( b );
-  b = $( 1, ... a, 3 );
+  b = $( 1, ...a, 3 );
 }
 `````
 

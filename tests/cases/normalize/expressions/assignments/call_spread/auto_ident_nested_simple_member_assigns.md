@@ -69,7 +69,7 @@ $(3, b, 3);
 With rename=true
 
 `````js filename=intro
-$( ... 3 );
+$( ...3 );
 const a = { x: 3 };
 $( 3, a, 3 );
 `````

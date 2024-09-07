@@ -81,7 +81,7 @@ With rename=true
 const a = [ 10, 20 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const b = $( a );
-  const c = [ ... b ];
+  const c = [ ...b ];
   c[ 0 ];
   c[ 1 ];
 }

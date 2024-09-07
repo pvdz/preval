@@ -63,11 +63,11 @@ With rename=true
 `````js filename=intro
 const a = $ == null;
 if (a) {
-  $( ... undefined );
+  $( ...undefined );
 }
 else {
   const b = $( 1 );
-  $( ... b );
+  $( ...b );
 }
 const c = {
   a: 999,

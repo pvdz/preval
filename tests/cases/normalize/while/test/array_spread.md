@@ -63,7 +63,7 @@ With rename=true
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const a = [ 1, 2, 3 ];
   const b = $( a );
-  [ ... b ];
+  [ ...b ];
   $( "loop" );
 }
 `````

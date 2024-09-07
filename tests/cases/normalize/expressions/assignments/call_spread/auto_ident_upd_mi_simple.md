@@ -55,7 +55,7 @@ $(0, 0);
 With rename=true
 
 `````js filename=intro
-$( ... 0 );
+$( ...0 );
 $( 0, 0 );
 `````
 

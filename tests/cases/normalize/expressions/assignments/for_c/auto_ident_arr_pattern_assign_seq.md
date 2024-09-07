@@ -115,7 +115,7 @@ if (d) {
   const e = $( 3 );
   const f = $( 4 );
   const g = [ e, f ];
-  const h = [ ... g ];
+  const h = [ ...g ];
   a = h[ 0 ];
   b = h[ 1 ];
   c = g;
@@ -127,7 +127,7 @@ if (d) {
       const j = $( 3 );
       const k = $( 4 );
       const l = [ j, k ];
-      const m = [ ... l ];
+      const m = [ ...l ];
       a = m[ 0 ];
       b = m[ 1 ];
       c = l;

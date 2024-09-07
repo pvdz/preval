@@ -55,7 +55,7 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 const b = delete a.y;
-[ ... b ];
+[ ...b ];
 const c = {
   a: 999,
   b: 1000,

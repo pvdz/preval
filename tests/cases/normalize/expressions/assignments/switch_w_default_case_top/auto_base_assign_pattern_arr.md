@@ -159,7 +159,7 @@ if (h) {
   const i = $( 2 );
   const j = [ i ];
   const k = $( j );
-  const l = [ ... k ];
+  const l = [ ...k ];
   a = l[ 0 ];
   b = k;
 }

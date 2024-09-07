@@ -67,7 +67,7 @@ const a = $( 2 );
 const b = { b: a };
 const c = $( b );
 const d = c.b;
-const e = [ ... c ];
+const e = [ ...c ];
 $( e );
 $( c, d );
 `````

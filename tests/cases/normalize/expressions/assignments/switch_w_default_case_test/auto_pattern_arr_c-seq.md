@@ -130,7 +130,7 @@ const a = {
   a: 999,
   b: 1000,
 };
-const b = [ ... a ];
+const b = [ ...a ];
 b[ 0 ];
 const c = $( 1 );
 let d = 1;
@@ -138,7 +138,7 @@ $( 10 );
 $( 20 );
 const e = [ 1, 2 ];
 const f = $( e );
-const g = [ ... f ];
+const g = [ ...f ];
 const h = g[ 0 ];
 const i = f === c;
 if (i) {

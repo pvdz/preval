@@ -52,7 +52,7 @@ $(-2, 1);
 With rename=true
 
 `````js filename=intro
-$( ... -2 );
+$( ...-2 );
 $( -2, 1 );
 `````
 

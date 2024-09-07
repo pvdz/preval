@@ -50,7 +50,7 @@ With rename=true
 
 `````js filename=intro
 const a = {};
-$( ... a );
+$( ...a );
 $( a );
 `````
 

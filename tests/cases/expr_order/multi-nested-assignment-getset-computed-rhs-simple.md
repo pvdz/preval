@@ -420,7 +420,7 @@ With rename=true
 const a = function($$0 ) {
   const b = c;
   debugger;
-  const d = [ "$:", b, e, f, g, h, i, j, k, l, "::", ... b ];
+  const d = [ "$:", b, e, f, g, h, i, j, k, l, "::", ...b ];
   $( d );
   const m = b[ 0 ];
   return m;

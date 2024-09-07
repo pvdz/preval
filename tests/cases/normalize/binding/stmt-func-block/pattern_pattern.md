@@ -94,10 +94,10 @@ With rename=true
 const a = $( true );
 if (a) {
   const b = [ 10, 20, 30 ];
-  const c = [ ... b ];
+  const c = [ ...b ];
   const d = c[ 1 ];
   const e = c[ 2 ];
-  const f = [ ... b ];
+  const f = [ ...b ];
   const g = f[ 0 ];
   const h = f[ 1 ];
   $( g, h, d, e, b );

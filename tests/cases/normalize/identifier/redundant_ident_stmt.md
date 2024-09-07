@@ -100,7 +100,7 @@ With rename=true
 const a = function($$0 ) {
   const b = c;
   debugger;
-  $( ... b );
+  $( ...b );
   return undefined;
 };
 drop1();

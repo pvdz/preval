@@ -93,7 +93,7 @@ if (b) {
   const c = $( 2 );
   const d = [ c ];
   const e = $( d );
-  const f = [ ... e ];
+  const f = [ ...e ];
   a = f[ 0 ];
   while ($LOOP_UNROLL_10) {
     const g = $( 1 );
@@ -101,7 +101,7 @@ if (b) {
       const h = $( 2 );
       const i = [ h ];
       const j = $( i );
-      const k = [ ... j ];
+      const k = [ ...j ];
       a = k[ 0 ];
     }
     else {

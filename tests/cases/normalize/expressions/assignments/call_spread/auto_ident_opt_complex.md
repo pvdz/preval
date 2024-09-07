@@ -75,12 +75,12 @@ const b = { x: 1 };
 const c = $( b );
 const d = c == null;
 if (d) {
-  $( ... undefined );
+  $( ...undefined );
 }
 else {
   const e = c.x;
   a = e;
-  $( ... e );
+  $( ...e );
 }
 $( a );
 `````

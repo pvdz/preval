@@ -76,7 +76,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( "pass" );
-const b = [ ... a ];
+const b = [ ...a ];
 const c = b.slice( 0 );
 $( c );
 `````

@@ -58,7 +58,7 @@ With rename=true
 const a = { y: 1 };
 const b = $( a );
 const c = delete b.y;
-[ ... c ];
+[ ...c ];
 const d = {
   a: 999,
   b: 1000,

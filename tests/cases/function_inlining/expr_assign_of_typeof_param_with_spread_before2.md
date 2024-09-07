@@ -100,7 +100,7 @@ const b = function($$0,$$1 ) {
 };
 const e = [ "uh", "oh", "no" ];
 const f = $( e );
-b( ... f, 10, 20 );
+b( ...f, 10, 20 );
 $( a );
 `````
 

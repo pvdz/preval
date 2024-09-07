@@ -72,7 +72,7 @@ $( 10 );
 $( 20 );
 const a = [ 1, 2 ];
 const b = $( a );
-const c = [ ... b ];
+const c = [ ...b ];
 const d = c[ 0 ];
 $( d );
 $( undefined );

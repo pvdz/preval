@@ -89,7 +89,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   }
   else {
     const e = c.value;
-    const f = [ ... e ];
+    const f = [ ...e ];
     const g = f[ 0 ];
     $( g );
   }

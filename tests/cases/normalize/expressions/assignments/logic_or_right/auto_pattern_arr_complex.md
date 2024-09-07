@@ -74,7 +74,7 @@ const a = {
   a: 999,
   b: 1000,
 };
-const b = [ ... a ];
+const b = [ ...a ];
 let c = b[ 0 ];
 const d = $( 100 );
 if (d) {
@@ -83,7 +83,7 @@ if (d) {
 else {
   const e = [ 1, 2 ];
   const f = $( e );
-  const g = [ ... f ];
+  const g = [ ...f ];
   c = g[ 0 ];
   $( f );
 }

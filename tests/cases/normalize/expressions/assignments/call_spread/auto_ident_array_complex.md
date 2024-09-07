@@ -57,7 +57,7 @@ With rename=true
 const a = $( 1 );
 const b = $( 3 );
 const c = [ a, 2, b ];
-$( ... c );
+$( ...c );
 $( c );
 `````
 

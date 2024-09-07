@@ -82,12 +82,12 @@ if (b) {
   b = $( c );
 }
 if (b) {
-  $( ... b );
+  $( ...b );
 }
 else {
   const d = $( 2 );
   const e = $( d );
-  $( ... e );
+  $( ...e );
 }
 const f = {
   a: 999,

@@ -90,7 +90,7 @@ With rename=true
 `````js filename=intro
 const a = [ "pass3" ];
 const b = $( a );
-const c = [ ... b ];
+const c = [ ...b ];
 const d = c[ 0 ];
 let e = undefined;
 const f = d === undefined;
@@ -101,7 +101,7 @@ if (f) {
 else {
   e = d;
 }
-[ ... e ];
+[ ...e ];
 $( "ok" );
 `````
 

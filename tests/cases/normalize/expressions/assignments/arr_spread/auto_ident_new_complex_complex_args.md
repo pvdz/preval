@@ -65,7 +65,7 @@ const a = $( $ );
 const b = $( 1 );
 const c = $( 2 );
 const d = new a( b, c );
-const e = [ ... d ];
+const e = [ ...d ];
 $( e );
 $( d );
 `````

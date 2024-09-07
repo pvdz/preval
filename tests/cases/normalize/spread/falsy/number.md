@@ -65,7 +65,7 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 if (a) {
-  $( "truthy", ... a );
+  $( "truthy", ...a );
 }
 else {
   const b = a === "";

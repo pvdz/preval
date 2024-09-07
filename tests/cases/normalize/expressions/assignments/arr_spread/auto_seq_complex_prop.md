@@ -66,7 +66,7 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = { b: a };
-const c = [ ... b ];
+const c = [ ...b ];
 $( c );
 $( 1 );
 const d = $( b );

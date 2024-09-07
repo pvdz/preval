@@ -66,7 +66,7 @@ const a = function() {
   debugger;
   return undefined;
 };
-const b = [ ... a ];
+const b = [ ...a ];
 $( b );
 $( a );
 `````

@@ -63,7 +63,7 @@ $( 1 );
 $( 2 );
 const a = { y: 1 };
 const b = delete a.y;
-$( ... b );
+$( ...b );
 const c = {
   a: 999,
   b: 1000,

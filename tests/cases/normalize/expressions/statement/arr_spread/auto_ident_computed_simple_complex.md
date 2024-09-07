@@ -59,7 +59,7 @@ With rename=true
 const a = $( "c" );
 const b = { c: 1 };
 const c = b[ a ];
-[ ... c ];
+[ ...c ];
 const d = {
   a: 999,
   b: 1000,

@@ -183,7 +183,7 @@ function printSimple(indent, config, node) {
 
 function printSimpleOrSpread(indent, config, node) {
   if (node.type === 'SpreadElement') {
-    return `... ${printSimple(indent, config, node.arg)}`;
+    return `...${printSimple(indent, config, node.arg)}`;
   } else {
     return printSimple(indent, config, node);
   }

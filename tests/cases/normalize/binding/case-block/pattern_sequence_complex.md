@@ -95,7 +95,7 @@ if (c) {
   $( 1 );
   $( 2 );
   const e = $( d );
-  const f = [ ... e ];
+  const f = [ ...e ];
   f[ 0 ];
   f[ 1 ];
 }

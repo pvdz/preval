@@ -77,13 +77,13 @@ const b = { x: 1 };
 const c = $( b );
 const d = c == null;
 if (d) {
-  $( ... undefined );
+  $( ...undefined );
 }
 else {
   const e = $( "x" );
   const f = c[ e ];
   a = f;
-  $( ... f );
+  $( ...f );
 }
 $( a );
 `````

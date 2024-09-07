@@ -63,7 +63,7 @@ $(100);
 With rename=true
 
 `````js filename=intro
-$( ... 100 );
+$( ...100 );
 $( 100 );
 `````
 

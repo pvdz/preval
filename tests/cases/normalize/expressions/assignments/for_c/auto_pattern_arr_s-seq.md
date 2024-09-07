@@ -84,7 +84,7 @@ const a = {
   a: 999,
   b: 1000,
 };
-const b = [ ... a ];
+const b = [ ...a ];
 let c = b[ 0 ];
 const d = $( 1 );
 if (d) {

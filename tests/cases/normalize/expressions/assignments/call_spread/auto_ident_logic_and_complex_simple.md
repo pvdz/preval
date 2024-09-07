@@ -70,7 +70,7 @@ const a = $( 1 );
 let b = $( a );
 if (b) {
   b = 2;
-  $( ... 2 );
+  $( ...2 );
 }
 else {
   const c = b === "";

@@ -69,7 +69,7 @@ const a = $( 100 );
 const b = $( 2 );
 const c = [ b ];
 const d = $( c );
-const e = [ ... d ];
+const e = [ ...d ];
 const f = e[ 0 ];
 a + d;
 const g = {

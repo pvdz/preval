@@ -116,7 +116,7 @@ if (f) {
 else {
   e = d;
 }
-const h = [ ... e ];
+const h = [ ...e ];
 const i = h[ 0 ];
 const j = i === undefined;
 if (j) {

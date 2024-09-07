@@ -79,12 +79,12 @@ With rename=true
 const a = $( 2 );
 const b = [ a ];
 const c = $( b );
-const d = [ ... c ];
+const d = [ ...c ];
 d[ 0 ];
 const e = $( 2 );
 const f = [ e ];
 const g = $( f );
-const h = [ ... g ];
+const h = [ ...g ];
 const i = h[ 0 ];
 c + g;
 const j = {

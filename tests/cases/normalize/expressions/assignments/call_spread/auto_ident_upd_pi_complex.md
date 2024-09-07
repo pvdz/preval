@@ -70,7 +70,7 @@ const c = $( b );
 const d = c.x;
 const e = d + 1;
 c.x = e;
-$( ... e );
+$( ...e );
 $( e, a );
 `````
 

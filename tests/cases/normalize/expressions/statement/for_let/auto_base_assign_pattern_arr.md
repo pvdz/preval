@@ -75,7 +75,7 @@ With rename=true
 const a = $( 2 );
 const b = [ a ];
 const c = $( b );
-const d = [ ... c ];
+const d = [ ...c ];
 d[ 0 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( c );

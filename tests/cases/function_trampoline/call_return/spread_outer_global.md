@@ -76,7 +76,7 @@ const b = function($$0 ) {
   const e = $( c );
   return e;
 };
-const f = b( ... a );
+const f = b( ...a );
 $( f );
 `````
 

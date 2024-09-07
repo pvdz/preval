@@ -74,7 +74,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 With rename=true
 
 `````js filename=intro
-const a = [ 1, 2, ... $, 3 ];
+const a = [ 1, 2, ...$, 3 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const b = a[ 0 ];
   try {

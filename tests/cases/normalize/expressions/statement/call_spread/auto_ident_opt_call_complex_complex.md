@@ -71,12 +71,12 @@ With rename=true
 const a = $( $ );
 const b = a == null;
 if (b) {
-  $( ... undefined );
+  $( ...undefined );
 }
 else {
   const c = $( 1 );
   const d = $dotCall( a, $, c );
-  $( ... d );
+  $( ...d );
 }
 const e = {
   a: 999,

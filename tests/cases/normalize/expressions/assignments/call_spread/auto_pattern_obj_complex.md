@@ -62,7 +62,7 @@ const a = {
 };
 const b = $( a );
 const c = b.a;
-$( ... b );
+$( ...b );
 $( c );
 `````
 

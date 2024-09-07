@@ -73,7 +73,7 @@ const a = $( 100 );
 const b = $( 3 );
 const c = $( 4 );
 const d = [ b, c ];
-const e = [ ... d ];
+const e = [ ...d ];
 const f = e[ 0 ];
 const g = e[ 1 ];
 a + d;

@@ -108,7 +108,7 @@ else {
     a = j;
   }
 }
-const k = [ ... a ];
+const k = [ ...a ];
 $( k );
 $( a );
 `````

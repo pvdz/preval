@@ -74,13 +74,13 @@ let a = undefined;
 const b = $( $ );
 const c = b == null;
 if (c) {
-  $( ... undefined );
+  $( ...undefined );
 }
 else {
   const d = $( 1 );
   const e = $dotCall( b, $, d );
   a = e;
-  $( ... e );
+  $( ...e );
 }
 $( a );
 `````

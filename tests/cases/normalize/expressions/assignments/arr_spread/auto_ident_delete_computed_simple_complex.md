@@ -62,7 +62,7 @@ With rename=true
 const a = $( "y" );
 const b = { y: 1 };
 const c = delete b[ a ];
-const d = [ ... c ];
+const d = [ ...c ];
 $( d );
 $( c, b );
 `````

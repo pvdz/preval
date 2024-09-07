@@ -78,7 +78,7 @@ const a = {
   a: 999,
   b: 1000,
 };
-const b = [ ... a ];
+const b = [ ...a ];
 b[ 0 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 10 );

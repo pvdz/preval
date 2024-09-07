@@ -103,10 +103,10 @@ const d = $( "a" );
 const e = c === d;
 const f = [ 10, 20, 30 ];
 if (e) {
-  const g = [ ... f ];
+  const g = [ ...f ];
   a = g[ 1 ];
   b = g[ 2 ];
-  const h = [ ... f ];
+  const h = [ ...f ];
   h[ 0 ];
   h[ 1 ];
 }

@@ -56,7 +56,7 @@ With rename=true
 
 `````js filename=intro
 const a = 1.x;
-const b = [ ... a ];
+const b = [ ...a ];
 y = b[ 0 ];
 `````
 

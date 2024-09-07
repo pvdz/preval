@@ -78,7 +78,7 @@ With rename=true
 const a = $( 2 );
 const b = [ a ];
 const c = $( b );
-const d = [ ... c ];
+const d = [ ...c ];
 const e = d[ 0 ];
 if (c) {
   const f = $( 100 );

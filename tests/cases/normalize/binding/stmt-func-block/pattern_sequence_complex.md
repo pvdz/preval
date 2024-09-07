@@ -94,7 +94,7 @@ if (a) {
   $( 2 );
   const b = [ 10, 20, 30 ];
   const c = $( b );
-  const d = [ ... c ];
+  const d = [ ...c ];
   const e = d[ 0 ];
   const f = d[ 1 ];
   $( e, f, 1, 2, b );

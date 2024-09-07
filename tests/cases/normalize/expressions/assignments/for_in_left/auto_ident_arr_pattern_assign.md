@@ -126,7 +126,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const i = $( 3 );
     const j = $( 4 );
     const k = [ i, j ];
-    const l = [ ... k ];
+    const l = [ ...k ];
     a = l[ 0 ];
     b = l[ 1 ];
     c = k;

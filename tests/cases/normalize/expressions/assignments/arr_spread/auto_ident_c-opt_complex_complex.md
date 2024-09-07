@@ -85,7 +85,7 @@ else {
   const f = c[ e ];
   a = f;
 }
-const g = [ ... a ];
+const g = [ ...a ];
 $( g );
 $( a );
 `````

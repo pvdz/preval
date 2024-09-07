@@ -56,7 +56,7 @@ throw `[Preval]: Array spread must crash before this line`;
 With rename=true
 
 `````js filename=intro
-[ ... true ];
+[ ...true ];
 throw "[Preval]: Array spread must crash before this line";
 `````
 

@@ -67,7 +67,7 @@ With rename=true
 `````js filename=intro
 const a = $( "hello" );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const b = $( 1, ... a, 3 );
+  const b = $( 1, ...a, 3 );
   $( b );
 }
 `````

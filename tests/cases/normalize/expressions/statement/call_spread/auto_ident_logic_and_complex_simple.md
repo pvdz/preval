@@ -68,7 +68,7 @@ With rename=true
 const a = $( 1 );
 const b = $( a );
 if (b) {
-  $( ... 2 );
+  $( ...2 );
 }
 else {
   const c = b === "";

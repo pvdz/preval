@@ -115,7 +115,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   }
   else {
     const f = d.value;
-    const g = [ ... f ];
+    const g = [ ...f ];
     a = g[ 0 ];
     $( a, "for" );
   }

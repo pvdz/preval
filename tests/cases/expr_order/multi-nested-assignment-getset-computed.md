@@ -498,7 +498,7 @@ With rename=true
 const a = function($$0 ) {
   const b = c;
   debugger;
-  const d = [ "$:", b, e, f, g, h, i, j, k, l, m, "::", ... b ];
+  const d = [ "$:", b, e, f, g, h, i, j, k, l, m, "::", ...b ];
   $( d );
   const n = b[ 0 ];
   return n;

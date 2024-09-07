@@ -60,7 +60,7 @@ With rename=true
 $( 1 );
 $( 2 );
 const a = $( 1 );
-$( ... a );
+$( ...a );
 const b = {
   a: 999,
   b: 1000,

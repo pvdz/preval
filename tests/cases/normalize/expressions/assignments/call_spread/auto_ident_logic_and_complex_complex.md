@@ -74,7 +74,7 @@ let b = $( a );
 if (b) {
   const c = $( 2 );
   b = $( c );
-  $( ... b );
+  $( ...b );
 }
 else {
   const d = b === "";

@@ -76,7 +76,7 @@ if (a) {
   $( 1 );
   $( 2 );
   const b = [ 10, 20, 30 ];
-  const c = [ ... b ];
+  const c = [ ...b ];
   const d = c[ 0 ];
   const e = c[ 1 ];
   $( d, e, 1, 2, b );

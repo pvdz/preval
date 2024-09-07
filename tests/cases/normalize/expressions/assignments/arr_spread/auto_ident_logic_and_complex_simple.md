@@ -67,7 +67,7 @@ let b = $( a );
 if (b) {
   b = 2;
 }
-const c = [ ... b ];
+const c = [ ...b ];
 $( c );
 $( b );
 `````

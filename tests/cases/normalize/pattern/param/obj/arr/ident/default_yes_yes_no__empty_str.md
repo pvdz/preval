@@ -101,7 +101,7 @@ if (c) {
 else {
   b = a;
 }
-const e = [ ... b ];
+const e = [ ...b ];
 const f = e[ 0 ];
 const g = f === undefined;
 if (g) {

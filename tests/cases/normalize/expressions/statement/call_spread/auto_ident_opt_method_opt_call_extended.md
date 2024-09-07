@@ -77,12 +77,12 @@ With rename=true
 `````js filename=intro
 const a = $ == null;
 if (a) {
-  $( ... undefined );
+  $( ...undefined );
 }
 else {
   const b = { e: $ };
   const c = $dotCall( $, b, 1 );
-  $( ... c );
+  $( ...c );
 }
 const d = {
   a: 999,

@@ -82,7 +82,7 @@ else {
   const f = c[ e ];
   a = f;
 }
-[ ... a ];
+[ ...a ];
 const g = {
   a: 999,
   b: 1000,

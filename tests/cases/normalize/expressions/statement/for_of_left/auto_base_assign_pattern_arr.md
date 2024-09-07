@@ -115,7 +115,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const g = $( 2 );
     const h = [ g ];
     const i = $( h );
-    const j = [ ... i ];
+    const j = [ ...i ];
     a = j[ 0 ];
     const k = e.value;
     i.x = k;

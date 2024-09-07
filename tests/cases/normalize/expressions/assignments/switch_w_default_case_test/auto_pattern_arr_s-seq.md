@@ -127,14 +127,14 @@ const a = {
   a: 999,
   b: 1000,
 };
-const b = [ ... a ];
+const b = [ ...a ];
 b[ 0 ];
 const c = $( 1 );
 let d = 1;
 $( 10 );
 $( 20 );
 const e = [ 1, 2 ];
-const f = [ ... e ];
+const f = [ ...e ];
 const g = f[ 0 ];
 const h = e === c;
 if (h) {

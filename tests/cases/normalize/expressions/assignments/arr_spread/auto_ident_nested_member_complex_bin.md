@@ -87,7 +87,7 @@ const e = $( d );
 const f = $( "y" );
 e[f] = 7;
 b[c] = 7;
-[ ... 7 ];
+[ ...7 ];
 throw "[Preval]: Array spread must crash before this line";
 `````
 

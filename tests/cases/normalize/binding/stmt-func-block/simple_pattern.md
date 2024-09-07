@@ -88,7 +88,7 @@ With rename=true
 const a = $( true );
 if (a) {
   const b = [ 10, 20, 30 ];
-  const c = [ ... b ];
+  const c = [ ...b ];
   const d = c[ 0 ];
   const e = c[ 1 ];
   $( b, d, e, b );

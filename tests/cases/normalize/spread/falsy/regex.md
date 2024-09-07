@@ -69,7 +69,7 @@ With rename=true
 const a = /foo/g;
 const b = $( a );
 if (b) {
-  $( "truthy", ... b );
+  $( "truthy", ...b );
 }
 else {
   const c = b === "";

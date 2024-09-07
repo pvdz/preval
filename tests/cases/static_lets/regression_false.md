@@ -105,7 +105,7 @@ With rename=true
 const a = function($$0 ) {
   const b = c;
   debugger;
-  $( ... b );
+  $( ...b );
   d = "fail";
   return undefined;
 };

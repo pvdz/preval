@@ -97,7 +97,7 @@ if (c) {
   const e = $( 2 );
   const f = [ e ];
   const g = $( f );
-  const h = [ ... g ];
+  const h = [ ...g ];
   const i = h[ 0 ];
   $( d, i );
 }

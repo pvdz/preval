@@ -70,7 +70,7 @@ const b = $( a );
 const c = $( "d" );
 const d = b[ c ];
 a.c = d;
-$( ... d );
+$( ...d );
 const e = {
   a: 999,
   b: 1000,

@@ -63,10 +63,10 @@ With rename=true
 const a = $( 0 );
 const b = $( a );
 if (b) {
-  $( ... b );
+  $( ...b );
 }
 else {
-  $( ... 2 );
+  $( ...2 );
 }
 const c = {
   a: 999,

@@ -110,7 +110,7 @@ const c = [ "val_2_1" ];
 val_2_rest = objPatternRest( b, c, undefined );
 a.val_1_2;
 const d = a.val_1_3;
-const e = [ ... d ];
+const e = [ ...d ];
 e[ 0 ];
 e[ 1 ];
 const f = e[ 2 ];

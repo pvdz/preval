@@ -66,12 +66,12 @@ With rename=true
 let a = 2;
 const b = $( 1 );
 if (b) {
-  $( ... 2 );
+  $( ...2 );
 }
 else {
   const c = $( 100 );
   a = $( c );
-  $( ... a );
+  $( ...a );
 }
 $( a );
 `````

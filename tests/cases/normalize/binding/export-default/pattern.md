@@ -55,7 +55,7 @@ With rename=true
 
 `````js filename=intro
 const a = [ 10, 20, 30 ];
-const b = [ ... a ];
+const b = [ ...a ];
 const c = b[ 0 ];
 const d = b[ 1 ];
 export { c as x,d as y };

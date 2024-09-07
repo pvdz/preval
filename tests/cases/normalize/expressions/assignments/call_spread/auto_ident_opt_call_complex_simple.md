@@ -69,12 +69,12 @@ let a = undefined;
 const b = $( $ );
 const c = b == null;
 if (c) {
-  $( ... undefined );
+  $( ...undefined );
 }
 else {
   const d = $dotCall( b, $, 1 );
   a = d;
-  $( ... d );
+  $( ...d );
 }
 $( a );
 `````

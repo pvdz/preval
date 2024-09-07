@@ -81,7 +81,7 @@ if (c) {
 else {
   b = a;
 }
-const e = [ ... b ];
+const e = [ ...b ];
 e[ 0 ];
 $( "bad" );
 `````

@@ -78,7 +78,7 @@ else {
   const e = c.x;
   a = e;
 }
-[ ... a ];
+[ ...a ];
 const f = {
   a: 999,
   b: 1000,

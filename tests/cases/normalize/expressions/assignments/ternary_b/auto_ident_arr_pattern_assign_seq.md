@@ -102,7 +102,7 @@ if (d) {
   const e = $( 3 );
   const f = $( 4 );
   const g = [ e, f ];
-  const h = [ ... g ];
+  const h = [ ...g ];
   a = h[ 0 ];
   b = h[ 1 ];
   c = g;

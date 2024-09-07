@@ -79,13 +79,13 @@ const a = {
   a: 999,
   b: 1000,
 };
-const b = [ ... a ];
+const b = [ ...a ];
 b[ 0 ];
 $( 10 );
 $( 20 );
 const c = [ 1, 2 ];
 const d = $( c );
-const e = [ ... d ];
+const e = [ ...d ];
 e[ 0 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( d );

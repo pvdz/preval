@@ -63,7 +63,7 @@ const c = {
   y: 2,
   z: b,
 };
-const d = [ ... c ];
+const d = [ ...c ];
 $( d );
 $( c );
 `````

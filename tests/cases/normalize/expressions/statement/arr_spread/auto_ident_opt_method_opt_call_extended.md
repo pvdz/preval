@@ -85,7 +85,7 @@ else {
   const d = $dotCall( $, c, 1 );
   a = d;
 }
-[ ... a ];
+[ ...a ];
 const e = {
   a: 999,
   b: 1000,

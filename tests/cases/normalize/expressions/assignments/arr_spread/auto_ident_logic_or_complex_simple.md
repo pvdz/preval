@@ -70,7 +70,7 @@ if (b) {
 else {
   b = 2;
 }
-const c = [ ... b ];
+const c = [ ...b ];
 $( c );
 $( b );
 `````

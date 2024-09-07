@@ -129,7 +129,7 @@ const b = $( "a" );
 const c = b === a;
 const d = [ 10, 20, 30 ];
 if (c) {
-  const e = [ ... d ];
+  const e = [ ...d ];
   const f = e[ 0 ];
   const g = e[ 1 ];
   $( 1, f, g, d );

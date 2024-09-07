@@ -221,7 +221,7 @@ catch (d) {
 }
 $( c );
 b();
-[ ... undefined ];
+[ ...undefined ];
 throw "[Preval]: Array spread must crash before this line";
 `````
 

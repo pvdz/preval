@@ -93,7 +93,7 @@ const a = {
   a: 999,
   b: 1000,
 };
-const b = [ ... a ];
+const b = [ ...a ];
 let c = b[ 0 ];
 const d = $( 1 );
 if (d) {
@@ -101,7 +101,7 @@ if (d) {
   $( 20 );
   const e = [ 1, 2 ];
   const f = $( e );
-  const g = [ ... f ];
+  const g = [ ...f ];
   c = g[ 0 ];
   while ($LOOP_UNROLL_10) {
     const h = $( 1 );
@@ -110,7 +110,7 @@ if (d) {
       $( 20 );
       const i = [ 1, 2 ];
       const j = $( i );
-      const k = [ ... j ];
+      const k = [ ...j ];
       c = k[ 0 ];
     }
     else {

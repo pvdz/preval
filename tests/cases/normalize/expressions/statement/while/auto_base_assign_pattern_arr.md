@@ -86,7 +86,7 @@ With rename=true
 const a = $( 2 );
 const b = [ a ];
 const c = $( b );
-const d = [ ... c ];
+const d = [ ...c ];
 let e = d[ 0 ];
 if (c) {
   while ($LOOP_UNROLL_10) {
@@ -94,7 +94,7 @@ if (c) {
     const f = $( 2 );
     const g = [ f ];
     const h = $( g );
-    const i = [ ... h ];
+    const i = [ ...h ];
     e = i[ 0 ];
     if (h) {
 

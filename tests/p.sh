@@ -33,8 +33,6 @@ PARAM_SILENT=''
 PARAM_SKIP_EVAL=''
 PARAM_UNROLL=''
 PARAM_UNROLL_VALUE=''
-PARAM_UNROLL_TRUE=''
-PARAM_UNROLL_TRUE_VALUE=''
 PARAM_IMPTHIS=''
 PARAM_IMPTHIS_VALUE=''
 PARAM_RANDOMIZED=''
@@ -92,7 +90,6 @@ Preval CLI Toolkit help:
  --silent        Suppress most output while running
  --skip-eval     Do not eval the result to compare runtime differences
  --unroll n      User a different cap on the number of times a loop can be unrolled. Higher increases code bloat.
- --unroll-true n  Max number of true-loop unrolls (different trick from the one above)
  --implicit-this x User defined ident to replace \`this\` when the function is never called with a context. Defaults to \`undefined\`.
  --randomized    Shuffle the test order. All tests will be visited but in .sort(Math.random) order.
  --refTest       Special mode to test ref tracking. Output will be different, dumping ref tracking state after first phase1 pass.
@@ -197,11 +194,6 @@ Preval CLI Toolkit help:
       shift
       PARAM_UNROLL_VALUE=$1
       ;;
-    --unroll-true)
-      PARAM_UNROLL_TRUE='--unrollTrue'
-      shift
-      PARAM_UNROLL_TRUE_VALUE=$1
-      ;;
     --implicit-this)
       PARAM_IMPTHIS='--implicit-this'
       shift
@@ -285,7 +277,7 @@ set -x
 case "${ACTION}" in
 
     *)
-      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}" -t "${PARAM_THREADS}" "${PARAM_LOG}" "${PARAM_LOGTO}" "${PARAM_MAXPASS}" "${PARAM_MAXPASS_COUNT}" "${PARAM_CLONELIMIT}" "${PARAM_CLONELIMIT_COUNT}" "${PARAM_TRIM_DOLLAR}" "${PARAM_ONLY_OUTPUT}" "${PARAM_TRACE}" "${PARAM_NO_TRACE}" "${PARAM_SILENT}" "${PARAM_SKIP_EVAL}" "${PARAM_UNROLL}" "${PARAM_UNROLL_VALUE}" "${PARAM_UNROLL_TRUE}" "${PARAM_UNROLL_TRUE_VALUE}" "${PARAM_IMPTHIS}" "${PARAM_IMPTHIS_VALUE}" "${PARAM_RANDOMIZED}" "${PARAM_REFTEST}" "${PARAM_REF_TRACING}" "${PARAM_RISKY}" "${PARAM_PCODE}" "${PARAM_SEED}" "${PARAM_SEED_N}"
+      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}" -t "${PARAM_THREADS}" "${PARAM_LOG}" "${PARAM_LOGTO}" "${PARAM_MAXPASS}" "${PARAM_MAXPASS_COUNT}" "${PARAM_CLONELIMIT}" "${PARAM_CLONELIMIT_COUNT}" "${PARAM_TRIM_DOLLAR}" "${PARAM_ONLY_OUTPUT}" "${PARAM_TRACE}" "${PARAM_NO_TRACE}" "${PARAM_SILENT}" "${PARAM_SKIP_EVAL}" "${PARAM_UNROLL}" "${PARAM_UNROLL_VALUE}" "${PARAM_IMPTHIS}" "${PARAM_IMPTHIS_VALUE}" "${PARAM_RANDOMIZED}" "${PARAM_REFTEST}" "${PARAM_REF_TRACING}" "${PARAM_RISKY}" "${PARAM_PCODE}" "${PARAM_SEED}" "${PARAM_SEED_N}"
     ;;
 esac
 set +x

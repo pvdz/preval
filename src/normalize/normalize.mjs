@@ -433,7 +433,15 @@ const BUILTIN_COERCE_FIRST_TO_NUMBER_MEMBER = new Set([
   'Math.trunc',
 ]);
 
-export function phaseNormalize(fdata, fname, prng, { allowEval = true, prngSeed = 1 }) {
+export function phaseNormalize(fdata, fname, prng, options) {
+  {
+    const {prngSeed, allowEval, ...rest} = options;
+    const keys = Object.keys(rest);
+    ASSERT(keys.length === 0, 'normalize should not receive these options or this should be updated', keys);
+  }
+
+  const { allowEval = true, prngSeed = 1 } = options;
+
   let changed = false; // Was the AST updated? We assume that updates can not be circular and repeat until nothing changes.
   let somethingChanged = false; // Did phase2 change anything at all?
 

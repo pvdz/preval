@@ -27,13 +27,13 @@ import { addLabelReference, createUniqueGlobalLabel, registerGlobalLabel } from 
 // It sets up scope tracking, imports/exports tracking, return value analysis. That sort of thing.
 // It runs twice; once for actual input code and once on normalized code.
 
-export function prepareNormalization(fdata, resolve, req, oncePass, options = {}) {
+export function prepareNormalization(fdata, resolve, req, oncePass, options) {
   ASSERT(arguments.length > prepareNormalization.length - 1, 'invalid prepareNormalization arg count');
   const ast = fdata.tenkoOutput.ast;
   const fname = fdata.fname;
 
   {
-    const {skipUidReset, unrollTrueLimit, ...rest} = options;
+    const {skipUidReset, unrollLimit, ...rest} = options;
     ASSERT(Object.keys(rest).length === 0, 'not expecting these options', rest);
   }
 
@@ -113,7 +113,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
         funcScopeStack[funcScopeStack.length - 1],
         ++lexScopeCounter,
         oncePass,
-        options.unrollTrueLimit
+        options.unrollLimit
       );
     }
 

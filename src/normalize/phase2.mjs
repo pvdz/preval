@@ -119,6 +119,12 @@ export function phase2(program, fdata, resolve, req, prng, options) {
   if (VERBOSE_TRACING) vlog('\nCurrent state (before phase2)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
   vlog('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
 
+  {
+    const {prngSeed, implicitThisIdent, ...rest} = options;
+    const keys = Object.keys(rest);
+    ASSERT(keys.length === 0, 'phase 2 should not receive these options or this should be updated', keys);
+  }
+
   assertNoDupeNodes(ast, 'body');
 
   vlog('Phase 2 options:', options);

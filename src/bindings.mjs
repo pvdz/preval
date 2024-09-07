@@ -737,14 +737,14 @@ export function findUniqueNameForBindingIdent(node, isFuncDeclId = false, fdata,
   ASSERT(meta, 'the meta should exist for all declared variables at this point');
   return uniqueName;
 }
-export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeCounter, oncePass, unrollTrueLimit = 10) {
+export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeCounter, oncePass, unrollLimit = 10) {
   ASSERT(arguments.length === preprocessScopeNode.length || arguments.length === preprocessScopeNode.length + 1, 'arg count', arguments.length, preprocessScopeNode.length);
   // This function attempts to find all binding names defined in this scope and create unique name mappings for them
   // (This doesn't update any read/write nodes with their new name! Only prepares their new name to be used and unique.)
 
-  ASSERT(typeof unrollTrueLimit === 'number' && unrollTrueLimit > 0, 'should receive a unrollTrueLimit', unrollTrueLimit);
-  if (unrollTrueLimit > MAX_UNROLL_TRUE_COUNT) {
-    throw new Error('unrollLoopWithTrue; The unrollTrueLimit (' + unrollTrueLimit + ') is bigger than the hardcoded max MAX_UNROLL_TRUE_COUNT of ' + MAX_UNROLL_TRUE_COUNT);
+  ASSERT(typeof unrollLimit === 'number' && unrollLimit > 0, 'should receive a unrollLimit', unrollLimit);
+  if (unrollLimit > MAX_UNROLL_TRUE_COUNT) {
+    throw new Error('unrollLoopWithTrue; The unrollLimit (' + unrollLimit + ') is bigger than the hardcoded max MAX_UNROLL_TRUE_COUNT of ' + MAX_UNROLL_TRUE_COUNT);
   }
 
   ASSERT(node.$scope);
@@ -795,7 +795,7 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
     // global scope
     node.$p.nameMapping = new Map([...globals.keys()].map((k) => [k, k]));
 
-    for (let i=0; i<=unrollTrueLimit; ++i) {
+    for (let i=0; i<=unrollLimit; ++i) {
       // $LOOP_UNROLL_1 $LOOP_UNROLL_2 $LOOP_UNROLL_3 etc
       // Special symbols whose number suffix has semantic meaning
       node.$p.nameMapping.set(`$LOOP_UNROLL_${i}`, `$LOOP_UNROLL_${i}`);

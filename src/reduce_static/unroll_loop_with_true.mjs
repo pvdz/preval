@@ -39,20 +39,20 @@ import { deepCloneForFuncInlining, labeledStatement, updateExpression } from '..
 import {MAX_UNROLL_TRUE_COUNT} from "../globals.mjs"
 import { createFreshLabelStatement } from '../labels.mjs';
 
-export function unrollLoopWithTrue(fdata, unrollTrueLimit = 10) {
-  group('\n\n\nChecking for while loops with true to unroll (limit =' , unrollTrueLimit, ')');
-  ASSERT(typeof unrollTrueLimit === 'number' && unrollTrueLimit > 0, 'should have a unrollTrueLimit', unrollTrueLimit);
-  if (unrollTrueLimit > MAX_UNROLL_TRUE_COUNT) {
-    throw new Error('unrollLoopWithTrue; The unrollTrueLimit (' + unrollTrueLimit + ') is bigger than the hardcoded max MAX_UNROLL_TRUE_COUNT of ' + MAX_UNROLL_TRUE_COUNT);
+export function unrollLoopWithTrue(fdata, unrollLimit = 10) {
+  group('\n\n\nChecking for while loops with true to unroll (limit =' , unrollLimit, ')');
+  ASSERT(typeof unrollLimit === 'number' && unrollLimit > 0, 'should have a unrollLimit', unrollLimit);
+  if (unrollLimit > MAX_UNROLL_TRUE_COUNT) {
+    throw new Error('unrollLoopWithTrue; The unrollLimit (' + unrollLimit + ') is bigger than the hardcoded max MAX_UNROLL_TRUE_COUNT of ' + MAX_UNROLL_TRUE_COUNT);
   }
 
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
-  const r = _unrollLoopWithTrue(fdata, unrollTrueLimit);
+  const r = _unrollLoopWithTrue(fdata, unrollLimit);
   groupEnd();
   return r;
 }
-function _unrollLoopWithTrue(fdata, unrollTrueLimit) {
-  let updated = processAttempt(fdata, unrollTrueLimit);
+function _unrollLoopWithTrue(fdata, unrollLimit) {
+  let updated = processAttempt(fdata, unrollLimit);
 
   log('');
   if (updated) {
@@ -62,9 +62,9 @@ function _unrollLoopWithTrue(fdata, unrollTrueLimit) {
   log('True loops unrolled: 0.');
 }
 
-function processAttempt(fdata, unrollTrueLimit) {
-  if (!(unrollTrueLimit > 0)) {
-    log('The unroll limit is not greater than zero, bailing', unrollTrueLimit);
+function processAttempt(fdata, unrollLimit) {
+  if (!(unrollLimit > 0)) {
+    log('The unroll limit is not greater than zero, bailing', unrollLimit);
   }
   let updated = 0;
 
@@ -175,7 +175,7 @@ function processAttempt(fdata, unrollTrueLimit) {
 
       const labelStatementNode = createFreshLabelStatement('loopStop', fdata, AST.blockStatement(clone, blockBody[blockIndex]));
 
-      const condCount = AST.isTrue(whileNode.test) ? unrollTrueLimit - 1 : parseInt(whileNode.test.name.slice('$LOOP_UNROLL_'.length), 10) - 1;
+      const condCount = AST.isTrue(whileNode.test) ? unrollLimit - 1 : parseInt(whileNode.test.name.slice('$LOOP_UNROLL_'.length), 10) - 1;
       const condIdent = condCount > 0 ? '$LOOP_UNROLL_' + condCount : ('$LOOP_DONE_UNROLLING_ALWAYS_TRUE');
 
       const walker = function replacer(node, beforeWalk, nodeType, path) {

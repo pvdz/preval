@@ -35,7 +35,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
   setRiskyRules(!!(options.risky ?? true));
 
   {
-    const { logDir, logPasses, logPhases, maxPass, cloneLimit, allowEval, unrollLimit, implicitThisIdent, unrollTrueLimit, refTest, pcodeTest, risky, prngSeed, ...rest } = options;
+    const { logDir, logPasses, logPhases, maxPass, cloneLimit, allowEval, unrollLimit, implicitThisIdent, refTest, pcodeTest, risky, prngSeed, ...rest } = options;
     if (JSON.stringify(rest) !== '{}') throw new Error(`Preval: Unsupported options received: ${JSON.stringify(rest)}`);
   }
 
@@ -109,7 +109,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
     const preFdata = parseCode(inputCode, nextFname);
 
     options.onAfterFirstParse?.(preFdata);
-    prepareNormalization(preFdata, resolve, req, true, {unrollTrueLimit: options.unrollTrueLimit}); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+    prepareNormalization(preFdata, resolve, req, true, {unrollLimit: options.unrollLimit}); // I want a phase1 because I want the scope tracking set up for normalizing bindings
     phaseNormalOnce(preFdata);
     const preCode = tmat(preFdata.tenkoOutput.ast, true);
 
@@ -117,7 +117,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
 
     const fdata = parseCode(preCode, nextFname);
     contents.lastAst = fdata.tenkoOutput.ast;
-    prepareNormalization(fdata, resolve, req, false, {unrollTrueLimit: options.unrollTrueLimit}); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+    prepareNormalization(fdata, resolve, req, false, {unrollLimit: options.unrollLimit}); // I want a phase1 because I want the scope tracking set up for normalizing bindings
     phaseNormalize(fdata, nextFname, prng, { allowEval: options.allowEval, prngSeed: options.prngSeed });
 
     mod.children = new Set(fdata.imports.values());
@@ -279,7 +279,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
 
           firstAfterParse = false;
 
-          changed = phase2(program, fdata, resolve, req, prng, {unrollLimit: options.unrollLimit, implicitThisIdent: options.implicitThisIdent, unrollTrueLimit: options.unrollTrueLimit, rngSeed});
+          changed = phase2(program, fdata, resolve, req, prng, {implicitThisIdent: options.implicitThisIdent, prngSeed: rngSeed});
           options?.onAfterPhase(2, passes, phaseLoop, fdata, changed, options);
           if (!changed) {
             // Force a normalize pass before moving to phase3. Loop if it changed anything anyways.
@@ -288,7 +288,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
             if (changed) vlog('The pre-phase3 normal did change something! starting from phase0');
           }
           if (!changed) {
-            changed = phase3(program, fdata, resolve, req, {unrollLimit: options.unrollLimit, implicitThisIdent: options.implicitThisIdent, unrollTrueLimit: options.unrollTrueLimit});
+            changed = phase3(program, fdata, resolve, req, {unrollLimit: options.unrollLimit});
             options?.onAfterPhase(3, passes, phaseLoop, fdata, changed, options);
           }
         } while (changed?.next === 'phase1');
@@ -320,8 +320,8 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           vlog('\nCurrent state before restart\n--------------\n' + fmat(inputCode) + '\n--------------\n');
 
           const fdata = parseCode(inputCode, fname);
-          prepareNormalization(fdata, resolve, req, false, {unrollTrueLimit: options.unrollTrueLimit}); // I want a phase1 because I want the scope tracking set up for normalizing bindings
-          phaseNormalize(fdata, fname, prng, { allowEval: options.allowEval, rngSeed: options.prngSeed });
+          prepareNormalization(fdata, resolve, req, false, {unrollLimit: options.unrollLimit}); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+          phaseNormalize(fdata, fname, prng, { allowEval: options.allowEval, prngSeed: options.prngSeed });
 
           options.onAfterNormalize?.(fdata, passes + 1, fi, options, contents);
 

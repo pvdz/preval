@@ -10,6 +10,12 @@ export function phase3(program, fdata, resolve, req, options) {
   if (VERBOSE_TRACING) vlog('\nCurrent state (before phase3)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
   vlog('\n\n\n##################################\n## phase3  ::  ' + fdata.fname + '\n##################################\n\n\n');
 
+  {
+    const {unrollLimit, ...rest} = options;
+    const keys = Object.keys(rest);
+    ASSERT(keys.length === 0, 'phase 3 should not receive these options or this should be updated', keys);
+  }
+
   assertNoDupeNodes(ast, 'body');
 
   vlog('Phase 3 options:', options);
@@ -26,7 +32,7 @@ function _phase3(program, fdata, resolve, req, options = {}) {
   const action = (
     // This one should probably be lowest priority as it might blow up code...
     // And we must run a normalization step if _anything_ changed since in phase2, even if it was non-blocking
-    unrollLoopWithTrue(fdata, options.unrollTrueLimit)
+    unrollLoopWithTrue(fdata, options.unrollLimit)
   );
 
   ASSERT(action === undefined || (action && typeof action === 'object'), 'plugins must return an object or undefined', action);

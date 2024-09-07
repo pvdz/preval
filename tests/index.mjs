@@ -292,8 +292,7 @@ function runTestCase(
         refTest: isRefTest,
         pcodeTest: isPcodeTest,
         prngSeed: initialPrngSeed,
-        unrollLimit: CONFIG.unroll ?? mdOptions?.unroll ?? 10,
-        unrollTrueLimit: CONFIG.unrollTrue ?? mdOptions?.unrollTrue ?? 11,
+        unrollLimit: CONFIG.unrollLimit ?? mdOptions?.unroll ?? 11,
         onAfterFirstParse(preFdata) {
           // No action applied. I dont think we need to do anything here
         },
@@ -506,7 +505,7 @@ function runTestCase(
       ...BUILTIN_BOOLEAN_METHODS_SUPPORTED.reduce((obj, key) => (obj[BUILTIN_BOOLEAN_METHOD_LOOKUP[key]] = String.prototype[key], obj), {}),
     };
 
-    const max = CONFIG.unrollTrue ?? mdOptions?.unrollTrue ?? 10;
+    const max = CONFIG.unrollLimit ?? mdOptions?.unroll ?? 10;
     for (let i=0; i<=max; ++i) {
       // $LOOP_UNROLL_1 $LOOP_UNROLL_2 $LOOP_UNROLL_3 etc. Alias as `true`
       frameworkInjectedGlobals[`$LOOP_UNROLL_${i}`] = true;

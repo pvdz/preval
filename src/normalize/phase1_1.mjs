@@ -36,9 +36,11 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
     ', pass=' + passes + ', phase1s=', phase1s, ', len:', fdata.len, '\n##################################\n\n\n',
   );
   try {
-    if (VERBOSE_TRACING || REF_TRACK_TRACING) {
-      const code = fmat(tmat(ast, true), true);
-      console.log('\nCurrent state (start of phase1.1)\n--------------\n' + code + '\n--------------\n');
+    if (!(!verboseTracing && (passes > 1 || phase1s > 1))) {
+      if (VERBOSE_TRACING || REF_TRACK_TRACING) {
+        const code = fmat(tmat(ast, true), true);
+        console.log('\nCurrent state (start of phase1.1)\n--------------\n' + code + '\n--------------\n');
+      }
     }
   } catch (e) {
     vlog('printing ast failed');

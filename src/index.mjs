@@ -279,7 +279,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
 
           firstAfterParse = false;
 
-          changed = phase2(program, fdata, resolve, req, prng, {implicitThisIdent: options.implicitThisIdent, prngSeed: rngSeed});
+          changed = phase2(program, fdata, resolve, req, passes, phase1s, verboseTracing, prng, {implicitThisIdent: options.implicitThisIdent, prngSeed: rngSeed});
           options?.onAfterPhase(2, passes, phaseLoop, fdata, changed, options);
           if (!changed) {
             // Force a normalize pass before moving to phase3. Loop if it changed anything anyways.

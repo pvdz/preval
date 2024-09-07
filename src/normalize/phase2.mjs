@@ -113,10 +113,13 @@ import { freeFuncs } from '../reduce_static/free_funcs.mjs';
 // - should Program always have a block just to eliminate the Program? That's not going to fix function boundaries though but maybe it is more consistent anyways?
 // - should loops always explicitly end with a continue statement? does that matter?
 
-export function phase2(program, fdata, resolve, req, prng, options) {
+export function phase2(program, fdata, resolve, req, passes, phase1s, verboseTracing, prng, options) {
   const ast = fdata.tenkoOutput.ast;
   group('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
-  if (VERBOSE_TRACING) vlog('\nCurrent state (before phase2)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  // Dont print this again when phase1 is printing almost nothing
+  if (!(!verboseTracing && (passes > 1 || phase1s > 1))) {
+    if (VERBOSE_TRACING) vlog('\nCurrent state (before phase2)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  }
   vlog('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
 
   {

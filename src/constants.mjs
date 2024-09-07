@@ -75,7 +75,7 @@ export const BUILTIN_REGEXP_METHODS_SUPPORTED = Object.keys(BUILTIN_REGEXP_METHO
 export const BUILTIN_REGEXP_METHODS_SYMBOLS = Object.values(BUILTIN_REGEXP_METHOD_LOOKUP);
 export const BUILTIN_STRING_PROTOTYPE = '$StringPrototype';
 export const BUILTIN_STRING_METHOD_LOOKUP = {
-  charAt: '$String_chart',
+  charAt: '$String_charAt',
   charCodeAt: '$String_charCodeAt',
   concat: '$String_concat',
   indexOf: '$String_indexOf',
@@ -113,6 +113,16 @@ export const BUILTIN_PROTO_TO_LOOKUP = {
   //[BUILTIN_MAP_PROTOTYPE]: BUILTIN_MAP_METHOD_LOOKUP,
   //[BUILTIN_SET_PROTOTYPE]: BUILTIN_SET_METHOD_LOOKUP,
 }
+// Used for serialization; `''+[].flat()` -> `'function flat() { [native code] }'` -> obj[$String_charAt] -> 'charAt'
+export const BUILTIN_NAMESPACED_TO_FUNC_NAME = {
+  ...BUILTIN_STRING_METHOD_LOOKUP_REV,
+  ...BUILTIN_NUMBER_METHOD_LOOKUP_REV,
+  ...BUILTIN_REGEXP_METHOD_LOOKUP_REV,
+  ...BUILTIN_FUNCTION_METHOD_LOOKUP_REV,
+  ...BUILTIN_BOOLEAN_METHOD_LOOKUP_REV,
+  ...BUILTIN_ARRAY_METHOD_LOOKUP_REV,
+  //...BUILTIN_OBJECT_METHOD_LOOKUP_REV,
+};
 
 export const FRESH = true;
 export const OLD = false;

@@ -13,7 +13,7 @@ import {
   BLUE,
   RESET,
   BUILTIN_ARRAY_PROTOTYPE,
-  BUILTIN_NUMBER_PROTOTYPE,
+  BUILTIN_NUMBER_PROTOTYPE, BUILTIN_NAMESPACED_TO_FUNC_NAME,
 } from '../constants.mjs';
 import {
   ASSERT,
@@ -1860,7 +1860,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                     // TODO: we could try to find the original point of this call and replace the arg but I'm sure there are plenty of cases where this is not feasible (like conditionals etc)
                     vlog('This call to `Function` has primitive args so we should be able to resolve it...');
                     riskyRule('Call to `Function` with primitive args can be resolved (although there is no guarantee it will work)');
-                    example('const x = Function("return 10;"', 'const x = function(){ return 10; };');
+                    example('const x = Function("return 10;");', 'const x = function(){ return 10; };');
                     before(node, body[i]);
 
                     const argString =
@@ -3055,6 +3055,26 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
         if (node.callee.type === 'Identifier' && node.callee.name === BUILTIN_FUNC_CALL_NAME) {
           // This is $dotCall()
+
+          if (
+            node.arguments[0].type === 'Identifier' &&
+            node.arguments[0].name === 'Function' &&
+            !(node.arguments[1] === 'Identifier' && node.arguments[1].name === 'undefined')
+          ) {
+            rule('dotCalling the global Function does not need a context');
+            example('$dotCall(Function, x, y);', 'Function(y);');
+            before(body[i]);
+
+            node.callee.name = 'Function';
+            node.arguments.shift();
+            const ctxArg = node.arguments.shift(); // TODO: we want to retain this tho
+            body.splice(i, 0, AST.expressionStatement(ctxArg));
+
+            after(body[i]);
+            after(body[i+1]);
+            return true;
+          }
+
           // Lowest hanging fruit: `const x = a.b; $dotCall(x, a, 1, 2); -> a.b(1, 2)
           // Check previous statement. If it is a const binding to the first arg of the $dotCall
           // and it is a member expression where the object equals the second $dotCall arg... simplify!
@@ -5229,6 +5249,24 @@ export function phaseNormalize(fdata, fname, prng, options) {
             before(node, body[i]);
             return true;
           }
+
+          if (BUILTIN_NAMESPACED_TO_FUNC_NAME[node.left.name] || BUILTIN_NAMESPACED_TO_FUNC_NAME[node.right.name]) {
+            rule('Binary expr with known built-in function can serialize function');
+            example('true + $Array_flat', 'true + "function flat() { [native code] }"');
+            before(node, body[i]);
+
+            if (BUILTIN_NAMESPACED_TO_FUNC_NAME[node.left.name]) {
+              node.left = AST.primitive('function ' + BUILTIN_NAMESPACED_TO_FUNC_NAME[node.left.name] + '() { [native code] }');
+            }
+            if (BUILTIN_NAMESPACED_TO_FUNC_NAME[node.right.name]) {
+              node.right = AST.primitive('function ' + BUILTIN_NAMESPACED_TO_FUNC_NAME[node.right.name] + '() { [native code] }');
+            }
+
+            after(body[i]);
+            return true;
+          }
+
+
         }
 
         if (

@@ -19,6 +19,7 @@ import {
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
+import { BUILTIN_NAMESPACED_TO_FUNC_NAME } from '../constants.mjs';
 
 export function coercials(fdata) {
   group('\n\n\nFind cases of $coerce to eliminate');
@@ -44,7 +45,7 @@ function _coercials(fdata) {
       example('$coerce(500.123, "string");', '"500.123";');
       example('$coerce(500.123, "number");', '500.123;');
       example('$coerce("500.123", "plustr");', '"500.123";');
-      before(read.parentNode, read.blockBody[read.blockIndex]);
+      before(read.blockBody[read.blockIndex]);
 
       const pv = AST.getPrimitiveValue(argNode);
       const pvc =
@@ -61,7 +62,7 @@ function _coercials(fdata) {
       if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(pvc);
       else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(pvc);
 
-      after(read.parentNode, read.blockBody[read.blockIndex]);
+      after(read.blockBody[read.blockIndex]);
       ++changes;
     }
 
@@ -87,16 +88,30 @@ function _coercials(fdata) {
         example('f(0 + String);', 'f("0function Number() { [native code] }");', () => argName === 'Number');
         example('f(0 + String);', 'f("0function String() { [native code] }");', () => argName === 'String');
         example('f(0 + String);', 'f("0function RegExp() { [native code] }");', () => argName === 'RegExp');
-        before(read.node, read.blockBody[read.blockIndex]);
+        before(read.blockBody[read.blockIndex]);
 
         ASSERT(['number', 'string', 'plustr'].includes(kind), 'result is the same no matter the kind', kind);
         const finalNode = AST.primitive('function ' + argName + '() { [native code] }');
         read.parentNode['arguments'][0] = finalNode;
 
-        after(finalNode, read.blockBody[read.blockIndex]);
+        after(read.blockBody[read.blockIndex]);
         ++changes;
         return;
       }
+    }
+
+    if (BUILTIN_NAMESPACED_TO_FUNC_NAME[argName]) {
+      rule('$coerce on a namespaced preval built-in symbol should become a string'); // kind of regardless. even if NaN later.
+      example('$coerce($Array_flat, "plustr")', '"function flat() { [native code] }"');
+      before(read.blockBody[read.blockIndex]);
+
+      const finalNode = AST.primitive('function ' + BUILTIN_NAMESPACED_TO_FUNC_NAME[argName] + '() { [native code] }');
+      if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
+      else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
+
+      after(read.blockBody[read.blockIndex]);
+      ++changes;
+      return;
     }
 
     const argMeta = fdata.globallyUniqueNamingRegistry.get(argName);
@@ -114,13 +129,12 @@ function _coercials(fdata) {
       rule('Coercing a string to a string is a noop');
       example('const x = `a${b}c`; const b = $coerce(x, "string");', 'const x = `a${b}c`; const b = x;');
       before(argWrite.blockBody[argWrite.blockIndex]);
-      before(read.parentNode, read.blockBody[read.blockIndex]);
+      before(read.blockBody[read.blockIndex]);
 
       if (read.grandIndex < 0) read.grandNode[read.grandProp] = argNode;
       else read.grandNode[read.grandProp][read.grandIndex] = argNode;
 
-      after(argWrite.blockBody[argWrite.blockIndex]);
-      after(AST.emptyStatement());
+      after(read.blockBody[read.blockIndex]);
       ++changes;
       return;
     }
@@ -128,11 +142,11 @@ function _coercials(fdata) {
     if (at === 'number' && kind === 'plustr') {
       rule('Calling $coerce on a value that is a number when asking for plustr can be changed to want a string');
       example('const x = +y; $coerce(y, "plustr");', 'const x = +y; $coerce(y, "string");');
-      before(read.parentNode, read.blockBody[read.blockIndex]);
+      before(read.blockBody[read.blockIndex]);
 
       read.parentNode['arguments'][1] = AST.primitive('string');
 
-      after(argNode, read.blockBody[read.blockIndex]);
+      after(read.blockBody[read.blockIndex]);
       ++changes;
       // Allow next checks to scan this change
     }
@@ -140,12 +154,12 @@ function _coercials(fdata) {
     if ((at === 'number' && kind === 'number') || (at === 'string' && kind === 'string')) {
       rule('Calling $coerce on a value that is already of target type is a noop');
       example('const x = +y; $coerce(y, "number");', 'const x = +y; y;');
-      before(read.parentNode, read.blockBody[read.blockIndex]);
+      before(read.blockBody[read.blockIndex]);
 
       if (read.grandIndex < 0) read.grandNode[read.grandProp] = argNode;
       else read.grandNode[read.grandProp][read.grandIndex] = argNode;
 
-      after(argNode, read.blockBody[read.blockIndex]);
+      after(read.blockBody[read.blockIndex]);
       ++changes;
     }
 
@@ -155,12 +169,12 @@ function _coercials(fdata) {
         example('$coerce(/foo/, "number")', 'NaN');
         example('$coerce(/foo/, "string")', '"/foo/"');
         example('$coerce(/foo/, "plustr")', '"/foo/"');
-        before(read.node, read.blockBody);
+        before(read.blockBody[read.blockIndex]);
 
         const finalNode = AST.primitive(coerce(argMeta.typing.mustBeValue || argMeta.constValueRef.node.raw, kind));
         read.parentNode['arguments'][0] = finalNode;
 
-        after(finalNode, read.blockBody);
+        after(read.blockBody[read.blockIndex]);
         ++changes;
         return;
       }
@@ -170,27 +184,28 @@ function _coercials(fdata) {
       if (kind === 'number') {
         rule('A regex as arg to $coerce with number is always NaN');
         example('$coerce(function(){}, "number")', 'NaN');
-        before(read.node, read.blockBody);
+        before(read.blockBody[read.blockIndex]);
 
         const finalNode = AST.primitive(NaN);
         read.parentNode['arguments'][0] = finalNode;
 
-        after(finalNode, read.blockBody);
+        after(read.blockBody[read.blockIndex]);
         ++changes;
         return;
       } else {
+        // Note: if this is a builtin the name would appear in the function... and the body etc too.
         vlog('Serializing a function. This will probably only work in fringe cases.');
         fdata.reports.push('Serialized a function to a string, this string was unlikely to be the accurate and may lead to bad results');
 
         rule('A function as arg to $coerce with string or plustr can be yolod');
         example('$coerce(function(){}, "string")', 'function () {}');
         example('$coerce(function(a,b){}, "plustr")', '"function (a, b) {}"');
-        before(read.node, read.blockBody);
+        before(read.blockBody[read.blockIndex]);
 
         const finalNode = AST.primitive('function(){}');
         read.parentNode['arguments'][0] = finalNode;
 
-        after(finalNode, read.blockBody);
+        after(read.blockBody[read.blockIndex]);
         ++changes;
         return;
       }
@@ -202,12 +217,12 @@ function _coercials(fdata) {
         // This is a one-of example which serves to unravel the jsf*ck code (which uses Array#filter)
         rule('Having `Array#filter` in $coerce can be resolved');
         example('f($coerce(Array.prototype.filter. "plustr"))', 'f("function filter() { [native code] }")');
-        before(read.node, read.blockBody[read.blockIndex]);
+        before(read.blockBody[read.blockIndex]);
 
         const finalNode = AST.primitive('function filter() { [native code] }');
         read.parentNode['arguments'][0] = finalNode;
 
-        after(finalNode, read.blockBody[read.blockIndex]);
+        after(read.blockBody[read.blockIndex]);
         ++changes;
         return;
       }
@@ -215,60 +230,60 @@ function _coercials(fdata) {
         // This is a one-of example which serves to unravel the jsf*ck code (which uses Array#flat)
         rule('Having `Array#flat` in $coerce can be resolved');
         example('f($coerce(Array.prototype.flat. "plustr"))', 'f("function flat() { [native code] }")');
-        before(read.node, read.blockBody[read.blockIndex]);
+        before(read.blockBody[read.blockIndex]);
 
         const finalNode = AST.primitive('function flat() { [native code] }');
         read.parentNode['arguments'][0] = finalNode;
 
-        after(finalNode, read.blockBody[read.blockIndex]);
+        after(read.blockBody[read.blockIndex]);
         ++changes;
         return;
       }
       case 'Array#pop': {
         rule('Having `Array#pop` in $coerce can be resolved');
         example('f($coerce(Array.prototype.pop. "plustr"))', 'f("function pop() { [native code] }")');
-        before(read.node, read.blockBody[read.blockIndex]);
+        before(read.blockBody[read.blockIndex]);
 
         const finalNode = AST.primitive('function pop() { [native code] }');
         read.parentNode['arguments'][0] = finalNode;
 
-        after(finalNode, read.blockBody[read.blockIndex]);
+        after(read.blockBody[read.blockIndex]);
         ++changes;
         return;
       }
       case 'Array#push': {
         rule('Having `Array#push` in $coerce can be resolved');
         example('f($coerce(Array.prototype.push. "plustr"))', 'f("function push() { [native code] }")');
-        before(read.node, read.blockBody[read.blockIndex]);
+        before(read.blockBody[read.blockIndex]);
 
         const finalNode = AST.primitive('function push() { [native code] }');
         read.parentNode['arguments'][0] = finalNode;
 
-        after(finalNode, read.blockBody[read.blockIndex]);
+        after(read.blockBody[read.blockIndex]);
         ++changes;
         return;
       }
       case 'Array#shift': {
         rule('Having `Array#shift` in $coerce can be resolved');
         example('f($coerce(Array.prototype.shift. "plustr"))', 'f("function shift() { [native code] }")');
-        before(read.node, read.blockBody[read.blockIndex]);
+        before(read.blockBody[read.blockIndex]);
 
         const finalNode = AST.primitive('function shift() { [native code] }');
         read.parentNode['arguments'][0] = finalNode;
 
-        after(finalNode, read.blockBody[read.blockIndex]);
+        after(read.blockBody[read.blockIndex]);
         ++changes;
         return;
       }
       case 'Array#unshift': {
         rule('Having `Array#unshift` in $coerce can be resolved');
         example('f($coerce(Array.prototype.unshift. "plustr"))', 'f("function unshift() { [native code] }")');
-        before(read.node, read.blockBody[read.blockIndex]);
+        before(read.blockBody[read.blockIndex]);
 
         const finalNode = AST.primitive('function unshift() { [native code] }');
         read.parentNode['arguments'][0] = finalNode;
 
-        after(finalNode, read.blockBody[read.blockIndex]);
+        after(read.blockBody[read.blockIndex]);
         ++changes;
         return;
       }

@@ -90,7 +90,7 @@ function processArray(fdata) {
     }
     else if (args.length === 1) {
       // Make sure to ignore NaN and Infinity here (even though they'd result in a runtime error so we could fix that too)
-      if (AST.isNumber(args[0])) { // This only checks for literals
+      if (AST.isNumberLiteral(args[0])) { // This only checks for literals
         if (args[0].raw === '0') {
           rule('Calling new Array(0) should be replaced with an empty array literal');
           example('const x = new Array(0);', 'const x = [];');

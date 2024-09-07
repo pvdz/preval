@@ -1037,7 +1037,7 @@ export function isFalse(node) {
   ASSERT(typeof node === 'object');
   return node.type === 'Literal' && node.value === false;
 }
-export function isNumber(node) {
+export function isNumberLiteral(node) {
   ASSERT(typeof node === 'object');
   return node.type === 'Literal' && typeof node.value === 'number';
 }

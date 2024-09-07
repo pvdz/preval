@@ -156,7 +156,7 @@ function _tryEscaping(fdata) {
           // We can assert the value of the member expression is a primitive when it's computed number access or .length but not much else
           if (
             read.parentNode.type === 'MemberExpression' &&
-            (read.parentNode.computed ? AST.isNumber(read.parentNode.property) : read.parentNode.property.name === 'length')
+            (read.parentNode.computed ? AST.isNumberLiteral(read.parentNode.property) : read.parentNode.property.name === 'length')
           ) {
             const id = read.blockBody[read.blockIndex].declarations[0].id;
             const varMeta = fdata.globallyUniqueNamingRegistry.get(id.name);
@@ -529,7 +529,7 @@ function isNotSpyingValueNode(node, fdata, isVarDecl, isAssign, dontPrint) {
     node.type === 'MemberExpression' &&
     node.object.type === 'Identifier' &&
     node.computed &&
-    AST.isNumber(node.property)
+    AST.isNumberLiteral(node.property)
   ) {
     // Something like `x[6]`
     // We want to catch the array case specifically here

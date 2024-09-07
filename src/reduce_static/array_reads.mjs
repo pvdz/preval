@@ -130,7 +130,7 @@ function _arrayReads(fdata) {
         const prop = next.declarations[0].init.property;
         if (
           next.declarations[0].init.computed &&
-          AST.isNumber(prop) // literal, not NaN/Infinity
+          AST.isNumberLiteral(prop)
         ) {
           const arrIndex = AST.getPrimitiveValue(prop);
           const enode = arrNode.elements[arrIndex];
@@ -168,7 +168,7 @@ function _arrayReads(fdata) {
         const prop = next.expression.right.property;
         if (
           next.expression.right.computed &&
-          AST.isNumber(prop) // literal, not NaN/Infinity
+          AST.isNumberLiteral(prop)
         ) {
           const arrIndex = AST.getPrimitiveValue(prop);
           const enode = arrNode.elements[arrIndex];
@@ -226,7 +226,7 @@ function _arrayReads(fdata) {
         read.parentNode.type === 'MemberExpression' &&
         (read.grandNode.type !== 'UnaryExpression' || read.grandNode.operator !== 'delete') &&
         read.parentNode.computed &&
-        AST.isNumber(read.parentNode.property) &&
+        AST.isNumberLiteral(read.parentNode.property) &&
         (read.grandNode.type !== 'AssignmentExpression' || read.grandProp !== 'left') // Not assignment to prop
       );
     })) {

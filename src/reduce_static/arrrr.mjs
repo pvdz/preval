@@ -302,7 +302,7 @@ function processAttempt(fdata, queue) {
           // doesn't "escape", we can assert that it should not matter whether non-index properties
           // are accessed as long as they aren't immediately called)
           vlog('Reading a dynamic property should be okay since it is not called');
-          if (AST.isNumber(mem.property)) {
+          if (AST.isNumberLiteral(mem.property)) {
             vgroup('This is an indexed access to the array tp index', mem.property.value, '. May be able to resolve it immediately');
             // Skip if the read is not in the same loop as the write
             // Skip if the read is in a different function scope
@@ -665,7 +665,7 @@ function processAttempt(fdata, queue) {
 
       if (
         read.parentNode.computed &&
-        AST.isNumber(read.parentNode.property) &&
+        AST.isNumberLiteral(read.parentNode.property) &&
         // Must be a positive number since otherwise it would be a unary so just check the upper bound
         read.parentNode.property.value < arrLen
       ) {

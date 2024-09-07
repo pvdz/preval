@@ -3308,7 +3308,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           if (AST.isStringLiteral(node.object, true)) {
             if (node.computed) {
               // "foo"[0]
-              if (AST.isNumber(node.property)) {
+              if (AST.isNumberLiteral(node.property)) {
                 rule('Array access on string should be the actual character being accessed');
                 example('"Hello!"[1]', '"e"');
                 before(node, parentNode);
@@ -9962,7 +9962,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             // The expr can be one of: array property access, binary expression, unary expression, calling parseInt
             if (expr.type === 'MemberExpression') {
               // Is this `arr[123]` ? Ignore anything else for now.
-              const b = expr.object.type === 'Identifier' && expr.object.name === arrName && expr.computed && AST.isNumber(expr.property);
+              const b = expr.object.type === 'Identifier' && expr.object.name === arrName && expr.computed && AST.isNumberLiteral(expr.property);
               ;
               if (!b) vlog('bail; Found bad member expression');
               return b;

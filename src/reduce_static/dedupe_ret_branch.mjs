@@ -153,7 +153,7 @@ function _dedupeBranchedReturns(fdata) {
           match = false;
           break;
         }
-      } else if (a.type === 'UnaryExpression' && AST.isNumber(a.argument) && AST.isNumber(b.argument)) {
+      } else if (a.type === 'UnaryExpression' && AST.isNumberLiteral(a.argument) && AST.isNumberLiteral(b.argument)) {
         if (a.argument.value !== b.argument.value) {
           vlog('  - Negative value of arg at index', i, 'does not match');
           match = false;

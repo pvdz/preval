@@ -261,7 +261,7 @@ function verifyExpression(node) {
       return;
     }
     case 'CallComputedMethodExpression': {
-      verifyRef(node.callee);
+      verifySimple(node.callee); // true[x]()
       verifySimple(node.method);
       node.args.forEach(arg => verifySimpleOrSpread(arg));
       return;

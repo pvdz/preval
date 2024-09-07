@@ -48,7 +48,7 @@ With rename=true
 `````js filename=intro
 const a = $();
 const b = $();
-c.replace( a, b );
+"".replace( a, b );
 `````
 
 ## Globals

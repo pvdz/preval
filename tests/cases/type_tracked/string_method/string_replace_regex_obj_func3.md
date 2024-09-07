@@ -87,7 +87,7 @@ const b = function($$0 ) {
   return f;
 };
 const g = /\w.*\w/g;
-const h = i.replace( g, b );
+const h = "a is not b".replace( g, b );
 $( h );
 `````
 

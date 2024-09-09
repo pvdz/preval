@@ -69,9 +69,7 @@ $(tmpCalleeParam);
 `````js filename=intro
 const arr_inner1 = [];
 const arr_inner2 = [];
-const arr_outer1 = [arr_inner1];
-const arr_outer2 = [arr_inner2];
-const arrs = arr_outer1.concat(arr_outer2);
+const arrs = [arr_inner1, arr_inner2];
 const comma = $coerce(arrs, `plustr`);
 const return_12 = `return"\\44(1${comma} 2)"`;
 const tmpCallComplexCallee = Function(return_12);
@@ -86,14 +84,12 @@ With rename=true
 `````js filename=intro
 const a = [];
 const b = [];
-const c = [ a ];
-const d = [ b ];
-const e = c.concat( d );
-const f = $coerce( e, "plustr" );
-const g = `return"\\44(1${f} 2)"`;
-const h = Function( g );
-const i = h();
-$( i );
+const c = [ a, b ];
+const d = $coerce( c, "plustr" );
+const e = `return"\\44(1${d} 2)"`;
+const f = Function( e );
+const g = f();
+$( g );
 `````
 
 ## Globals

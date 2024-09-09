@@ -50,9 +50,7 @@ $(f);
 `````js filename=intro
 const a = [];
 const c = [];
-const b = [a];
-const d = [c];
-const e = b.concat(d);
+const e = [a, c];
 const f = $coerce(e, `plustr`);
 $(f);
 `````
@@ -64,11 +62,9 @@ With rename=true
 `````js filename=intro
 const a = [];
 const b = [];
-const c = [ a ];
-const d = [ b ];
-const e = c.concat( d );
-const f = $coerce( e, "plustr" );
-$( f );
+const c = [ a, b ];
+const d = $coerce( c, "plustr" );
+$( d );
 `````
 
 ## Globals

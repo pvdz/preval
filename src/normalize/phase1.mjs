@@ -580,7 +580,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         }
         else if (kind !== 'none' && kind !== 'label') {
           ASSERT(kind === 'read' || kind === 'write', 'consider what to do if this check fails', kind, node);
-          let meta = registerGlobalIdent(fdata, name, name, { isExport: false, isImplicitGlobal: 'unknown', isBuiltin: false });
+          const meta = registerGlobalIdent(fdata, name, name, { isExport: false, isImplicitGlobal: 'unknown', isBuiltin: false });
           vlog('- Binding referenced in $p.pid:', currentScope.$p.pid, ', reads so far:', meta.reads.length, ', writes so far:', meta.writes.length);
           ASSERT(kind !== 'readwrite', 'compound assignments and update expressions should be eliminated by normalization', node);
 

@@ -89,13 +89,12 @@ function processAttempt(fdata) {
       return;
     }
 
-    if (arrayLiteralNode.elements.some(enode => enode && !AST.isPrimitive(enode))) {
-      vlog('- bail: at least one element was not a primitive');
+    if (arrayLiteralNode.elements.some(enode => enode?.type === 'SpreadElement')) {
+      vlog('- bail: at least one element is a spread');
       return;
     }
 
     // - Array is a constant
-    // - Only contains primitives or elided elements
 
     const arrayName = parentNode.id.name;
     const arrayMeta = fdata.globallyUniqueNamingRegistry.get(arrayName);
@@ -162,7 +161,6 @@ function processAttempt(fdata) {
         // - Array is a constant
         // - Not escaping
         // - May have method calls but only to known non-mutating built-in methods
-        // - Only contains primitives or elided elements
 
         arrayMeta.reads.forEach((read, i) => {
           // Only okay for the reads that can reach the write
@@ -226,9 +224,38 @@ function processAttempt(fdata) {
 
   function haveMethodCall(arrayName, arrayLiteralNode, arrayMeta, write, read) {
     // This array should be safe and not mutate and only certain methods are called on it
+    // Note that its elements have not yet been verified. Other than a quick not-SpreadElement check.
     switch (read.parentNode.property.name) {
       case 'concat': {
         const concatCallNode = read.grandNode;
+
+        // Confirm its own elements are supproted
+
+        function hasBadConcatElement(arrNode) {
+          // Assumes the SpreadElement case was already ruled out before
+          return arrNode.elements.some(enode => {
+            if (!enode) return false; // Elided elements are okay: [,]
+            if (AST.isPrimitive(enode)) return false; // Primitive elements are okay: [1]
+            ASSERT(enode.type === 'Identifier', 'since it cant be spread, im not sure what else it could be in normalized code', enode.type);
+
+            // - `const x = []; const y = [x]; const z = []; const arr = z.concat(y);`
+            // enode = x in y. Confirm if _this_ place can reach the x ident.
+            // This would be necessary to replace the .concat() with a fresh array here.
+            const meta = fdata.globallyUniqueNamingRegistry.get(enode.name);
+            // This can reach x if the decl of x (whatever it is) has a blockChain that is a prefix of this node's blockChain
+            if (!concatCallNode.$p.blockChain.startsWith(meta.constValueRef.node.$p.blockChain)) {
+              return true; // Can not reach that array so we must bail
+            }
+            // Okay
+            return false;
+          });
+        }
+
+        if (hasBadConcatElement(arrayLiteralNode)) {
+          vlog('- bail: the ctx array has elements for which we dont support concat right now');
+          return
+        }
+
         // For every arg
         // - Verify that the arg is an array (-> must be ident in normalized code, ignore edge cases)
         // - Verify that this array is a constant that does not escape
@@ -281,8 +308,9 @@ function processAttempt(fdata) {
             return true;
           }
 
-          if (concatArgMeta.constValueRef.node.elements.some(enode => enode && !AST.isPrimitive(enode))) {
-            vlog('- bail: at least one element of a concat arg that was an array, was not a primitive;', concatArg.name);
+          // Confirm the elements of the concatenated array. Must be all idents or primitives. All idents must be reachable from here.
+          if (hasBadConcatElement(concatArgMeta.constValueRef.node)) {
+            vlog('- bail: an arg array has elements for which we dont support concat right now;', concatArg.name);
             return true;
           }
 

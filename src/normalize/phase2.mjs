@@ -94,6 +94,7 @@ import { constAliasing } from '../reduce_static/const_aliasing.mjs';
 import { unusedAssigns } from '../reduce_static/unused_assigns.mjs';
 import { recursiveFuncs } from '../reduce_static/recursive_funcs.mjs';
 import { freeFuncs } from '../reduce_static/free_funcs.mjs';
+import { arrMethodCall } from '../reduce_static/arr_method_call.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
@@ -306,7 +307,8 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
     ifUpdateTest(fdata) ||
     fakeDoWhile(fdata) ||
     unusedAssigns(fdata) ||
-    objlitInlining(fdata)
+    objlitInlining(fdata) ||
+    arrMethodCall(fdata)
 
 
     //// This one is very invasive and expands the code. Needs more work.

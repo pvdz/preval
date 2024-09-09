@@ -96,6 +96,10 @@ function processAttempt(fdata) {
       vlog('- bail: can only handle array literals that are init to a const decl');
       return;
     }
+    if (grandNode.kind !== 'const') {
+      vlog('- bail: was not a const');
+      return;
+    }
 
     const arrayName = parentNode.id.name;
     const arrayMeta = fdata.globallyUniqueNamingRegistry.get(arrayName);

@@ -902,7 +902,7 @@ function runTestCase(
     if (snapshotChanged) {
       ++snap;
 
-      if (CONFIG.fileVerbatim) {
+      if (CONFIG.fileVerbatim || CONFIG.logDir) {
         if (CONFIG.logPasses || CONFIG.logPhases) {
           console.log('Not updating input file with result. See written logs.');
         } else {

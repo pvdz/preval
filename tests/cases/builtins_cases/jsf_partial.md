@@ -15,7 +15,7 @@ const arr_inner2 = [];
 const arr_outer2 = [arr_inner2];
 const arrs = arr_outer1.concat(arr_outer2);
 const comma = $coerce(arrs, `plustr`);
-const the_return_part1 = `return"\\44(1${comma}`;
+const the_return_part1 = `return"$(1${comma}`;
 const return_12 = `${the_return_part1} 2)"`;
 const tmpCallComplexCallee = $dotCall(Function, $Array_flat, return_12);
 const tmpCalleeParam = tmpCallComplexCallee();
@@ -32,7 +32,7 @@ const arr_inner2 = [];
 const arr_outer2 = [arr_inner2];
 const arrs = arr_outer1.concat(arr_outer2);
 const comma = $coerce(arrs, `plustr`);
-const the_return_part1 = `return"\\44(1` + $coerce(comma, `string`) + ``;
+const the_return_part1 = `return"\$(1` + $coerce(comma, `string`) + ``;
 const return_12 = `` + $coerce(the_return_part1, `string`) + ` 2)"`;
 const tmpCallComplexCallee = $dotCall(Function, $Array_flat, return_12);
 const tmpCalleeParam = tmpCallComplexCallee();
@@ -49,7 +49,7 @@ const arr_inner2 = [];
 const arr_outer2 = [arr_inner2];
 const arrs = arr_outer1.concat(arr_outer2);
 const comma = $coerce(arrs, `plustr`);
-const tmpBinBothLhs = `return"\\44(1`;
+const tmpBinBothLhs = `return"\$(1`;
 const tmpBinBothRhs = $coerce(comma, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const the_return_part1 = $coerce(tmpBinLhs, `plustr`);
@@ -67,14 +67,7 @@ $(tmpCalleeParam);
 
 
 `````js filename=intro
-const arr_inner1 = [];
-const arr_inner2 = [];
-const arrs = [arr_inner1, arr_inner2];
-const comma = $coerce(arrs, `plustr`);
-const return_12 = `return"\\44(1${comma} 2)"`;
-const tmpCallComplexCallee = Function(return_12);
-const tmpCalleeParam = tmpCallComplexCallee();
-$(tmpCalleeParam);
+$(`\$(1, 2)`);
 `````
 
 ## PST Output
@@ -82,14 +75,7 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = [];
-const b = [];
-const c = [ a, b ];
-const d = $coerce( c, "plustr" );
-const e = `return"\\44(1${d} 2)"`;
-const f = Function( e );
-const g = f();
-$( g );
+$( "$(1, 2)" );
 `````
 
 ## Globals

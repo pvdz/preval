@@ -1,10 +1,8 @@
 # Preval test case
 
-# concat_arrays_nested.md
+# nested_empty_arrays_plustr.md
 
-> Builtins cases > Array > Concat arrays nested
->
-> const a = [];
+> Coerce > Array > Nested empty arrays plustr
 
 ## Input
 
@@ -13,8 +11,8 @@ const a = [];
 const b = [a];
 const c = [];
 const d = [c];
-const e = b.concat(d);
-const f = $coerce( e, "plustr" );
+const e = [b, d];
+const f = $coerce(e, 'plustr');
 $(f);
 `````
 
@@ -26,7 +24,7 @@ const a = [];
 const b = [a];
 const c = [];
 const d = [c];
-const e = b.concat(d);
+const e = [b, d];
 const f = $coerce(e, `plustr`);
 $(f);
 `````
@@ -39,7 +37,7 @@ const a = [];
 const b = [a];
 const c = [];
 const d = [c];
-const e = b.concat(d);
+const e = [b, d];
 const f = $coerce(e, `plustr`);
 $(f);
 `````

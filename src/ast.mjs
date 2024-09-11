@@ -2763,3 +2763,81 @@ function isSamePrimitiveExceptBool(nodeA, nodeB, collect, ap, bp, prop) {
 
   ASSERT(false, 'unreachable because the node was asserted to be a primitive', nodeA, nodeB);
 }
+
+export function isImmutableArray(arrayMeta, knownParent = null, sush = false) {
+  if (!arrayMeta.isConstant) {
+    if (!sush) vlog('- bail: array is not a constant', arrayMeta, ', name:', arrayMeta.originalName);
+    return false;
+  }
+  return arrayMeta.reads.every(read => {
+    // Doesn't matter which property is accessed, so computed prop or not is not relevant here
+    if (read.parentNode.type !== 'MemberExpression' || read.parentProp !== 'object') {
+      if (read.parentNode.type === 'CallExpression' && read.parentNode.callee.type === 'Identifier' && read.parentNode.callee.name === '$coerce') {
+        // Allow the Preval controlled $coerce calls as they are doing String(arr) or Number(arr) which ought to not mutate the array
+        return true; // ok
+      }
+      if (read.parentNode === knownParent) {
+        // Like a nested array or expected call arg
+        return true; // ok
+      }
+      if (!sush) vlog('bail: at least one read escaped as it was not a member;', read.parentNode.type, read.parentNode.callee?.name, ', name:', arrayMeta.originalName, read.grandNode.type, read.grandNode.id?.name);
+      return false;
+    }
+    // This check subsumes delete, method-calls, assignments, and whatever else.
+    // Assuming normalized code, this is what we want to filter down to.
+    if (
+      (read.grandNode.type === 'ExpressionStatement' && read.grandNode.expression === read.node) ||
+      (read.grandNode.type === 'AssignmentExpression' && read.grandNode.right === read.node) ||
+      (read.grandNode.type === 'VariableDeclaration' && read.grandNode.declarations[0].init !== read.node)
+    ) {
+      // Member expression that was the init to a var, the rhs of an assign, or just a statement
+      return true; // ok
+    }
+
+    if (!sush) vlog('- bail: Found a ref used in a:', read.grandNode, '.', read.grandProp, '>', read.parentNode, '.', read.parentProp, ', name:', arrayMeta.originalName);
+    return false;
+  });
+}
+
+export function isArraySerializable(arrayMeta, fdata, knownParent = null, sush = false) {
+  // An array is serializable when it is immutable and its contents are serializable, recursively
+  // In this context, serializable means as much as "known value", because otherwise we can't turn it into a string can we
+  // TODO: Note: this function has penty of room for improvement
+
+  if (!arrayMeta.constValueRef) return false;
+  if (!isImmutableArray(arrayMeta, knownParent, sush)) {
+    return false;
+  }
+  return arrayMeta.constValueRef.node.elements.every(enode => {
+    if (!enode) return true;
+    if (isPrimitive(enode)) return true;
+    if (enode.type === 'SpreadElement') {
+      if (!sush) vlog('- bail: sub-element contained spread, name:', arrayMeta.originalName);
+      return false;
+    }
+    ASSERT(enode.type === 'Identifier', 'what else?', enode.type);
+    // Verify whether we can safely serialize the value this ident refers to
+    // We have to support it case by case.
+    const meta = fdata.globallyUniqueNamingRegistry.get(enode.name);
+    if (
+      !meta.isConstant ||
+      meta.constValueRef?.node.type !== 'ArrayExpression'
+    ) {
+      if (!sush) vlog('- bail: sub-element ident is not referring to an array, name:', arrayMeta.originalName);
+      return false;
+    }
+    return isArraySerializable(meta, fdata, arrayMeta.constValueRef.node, sush);
+  });
+}
+
+export function getSerializableArrayParts(arrayMeta, fdata) {
+  // Should have been checked by isArraySerializable before calling this func
+  return arrayMeta.constValueRef.node.elements.map(enode => {
+    if (!enode) return undefined;
+    if (isPrimitive(enode)) return getPrimitiveValue(enode);
+    ASSERT(enode.type === 'Identifier');
+    const meta = fdata.globallyUniqueNamingRegistry.get(enode.name);
+    ASSERT(meta.isConstant && meta.constValueRef);
+    return getSerializableArrayParts(meta, fdata);
+  });
+}

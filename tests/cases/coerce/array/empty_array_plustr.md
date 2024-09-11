@@ -1,21 +1,15 @@
 # Preval test case
 
-# concat_arrays_nested.md
+# empty_array_plustr.md
 
-> Builtins cases > Array > Concat arrays nested
->
-> const a = [];
+> Coerce > Array > Empty array plustr
 
 ## Input
 
 `````js filename=intro
 const a = [];
-const b = [a];
-const c = [];
-const d = [c];
-const e = b.concat(d);
-const f = $coerce( e, "plustr" );
-$(f);
+const b = $coerce(a, 'plustr');
+$(b);
 `````
 
 ## Pre Normal
@@ -23,12 +17,8 @@ $(f);
 
 `````js filename=intro
 const a = [];
-const b = [a];
-const c = [];
-const d = [c];
-const e = b.concat(d);
-const f = $coerce(e, `plustr`);
-$(f);
+const b = $coerce(a, `plustr`);
+$(b);
 `````
 
 ## Normalized
@@ -36,19 +26,15 @@ $(f);
 
 `````js filename=intro
 const a = [];
-const b = [a];
-const c = [];
-const d = [c];
-const e = b.concat(d);
-const f = $coerce(e, `plustr`);
-$(f);
+const b = $coerce(a, `plustr`);
+$(b);
 `````
 
 ## Output
 
 
 `````js filename=intro
-$(`,`);
+$(``);
 `````
 
 ## PST Output
@@ -56,7 +42,7 @@ $(`,`);
 With rename=true
 
 `````js filename=intro
-$( "," );
+$( "" );
 `````
 
 ## Globals
@@ -66,7 +52,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: ','
+ - 1: ''
  - eval returned: undefined
 
 Pre normalization calls: Same

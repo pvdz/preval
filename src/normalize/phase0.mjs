@@ -17,6 +17,7 @@ export function phase0(code, fname, subCall) {
     goalMode: Tenko.GOAL_MODULE,
     locationTracking: false,
     toplevelAwait: true,
+    alwaysAllowOctalEscapes: true, // It's possible for eval/Function to drop these into the code while transforming so we need this option
 
     astUids: false, // For debugging
   });

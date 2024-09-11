@@ -20,6 +20,7 @@ import {
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { BUILTIN_NAMESPACED_TO_FUNC_NAME } from '../constants.mjs';
+import { getSerializableArrayParts } from '../ast.mjs';
 
 export function coercials(fdata) {
   group('\n\n\nFind cases of $coerce to eliminate');
@@ -29,6 +30,17 @@ export function coercials(fdata) {
   return r;
 }
 function _coercials(fdata) {
+  const changes = core(fdata);
+
+  if (changes) {
+    log('$coerces eliminated:', changes, '. Restarting from phase1 to fix up read/write registry');
+    return {what: 'coercials', changes: changes, next: 'phase1'};
+  }
+  log('$coerces eliminated: 0.');
+
+}
+
+function core(fdata) {
   let changes = 0;
   const meta = fdata.globallyUniqueNamingRegistry.get('$coerce');
   meta.reads.forEach((read, ri) => {
@@ -211,6 +223,53 @@ function _coercials(fdata) {
       }
     }
 
+    if (at === 'array') {
+      // jsfck and other obfuscation cases will try to convert an array to string because it's fun
+      if (
+        argMeta.isConstant &&
+        argMeta.writes.length === 1 &&
+        AST.isArraySerializable(argMeta, fdata, null, false)
+      ) {
+        // We should be able to build a local version of the array and then serialize that
+        const shadow = getSerializableArrayParts(argMeta, fdata);
+        if (kind === 'number') {
+          rule('If we can serialize an array literal to number then we should');
+          example('f(2 * [3])', 'f(6)');
+          before(read.blockBody[read.blockIndex]);
+
+          // There are some curious edge cases with arrays with numbers here ([]+1 = 1)
+          const value = Number(shadow);
+          const finalNode = AST.primitive(value);
+          if (read.grandNode.type === 'VariableDeclarator') read.grandNode.init = finalNode;
+          else if (read.grandNode.type === 'ExpressionStatement' && read.parentNode.type === 'AssignmentExpression') read.parentNode.right = finalNode;
+          else if (read.grandNode.type === 'ExpressionStatement' && read.grandNode.expression === read.parentNode) read.grandNode.expression = finalNode;
+          else ASSERT(false, 'normalized code, one of these', read.grandNode.type, read.parentNode.type);
+
+          after(read.blockBody[read.blockIndex]);
+          ++changes;
+          return;
+        }
+        else {
+          // plustr (string concat) is the same as string (String()) in this case: it calls .join()
+          rule('If we can serialize an array literal to string then we should');
+          example('f("" + [3])', 'f("3")');
+          before(read.blockBody[read.blockIndex]);
+
+          // This should call .join() on the array
+          const value = String(shadow);
+          const finalNode = AST.primitive(value);
+          if (read.grandNode.type === 'VariableDeclarator') read.grandNode.init = finalNode;
+          else if (read.grandNode.type === 'ExpressionStatement' && read.parentNode.type === 'AssignmentExpression') read.parentNode.right = finalNode;
+          else if (read.grandNode.type === 'ExpressionStatement' && read.grandNode.expression === read.parentNode) read.grandNode.expression = finalNode;
+          else ASSERT(false, 'normalized code, one of these', read.grandNode.type, read.parentNode.type);
+
+          after(read.blockBody[read.blockIndex]);
+          ++changes;
+          return;
+        }
+      }
+    }
+
     // tbf these are mostly for jsf*ck cases :)
     switch (argMeta.typing.builtinTag) {
       case 'Array#filter': {
@@ -290,9 +349,5 @@ function _coercials(fdata) {
     }
   });
 
-  if (changes) {
-    log('IsPrimitives eliminated:', changes, '. Restarting from phase1 to fix up read/write registry');
-    return {what: 'coercials', changes: changes, next: 'phase1'};
-  }
-  log('IsPrimitives eliminated: 0.');
+  return changes;
 }

@@ -17,6 +17,8 @@ export function parseCode(code, fname) {
     locationTracking: false,
     toplevelAwait: true,
 
+    alwaysAllowOctalEscapes: true, // It's possible for eval/Function to drop these into the code while transforming so we need this option
+
     astUids: true, // debugging
   });
 

@@ -1,10 +1,8 @@
 # Preval test case
 
-# concat_arrays_nested.md
+# nested_empty_arrays_number.md
 
-> Builtins cases > Array > Concat arrays nested
->
-> const a = [];
+> Coerce > Array > Nested empty arrays number
 
 ## Input
 
@@ -13,8 +11,8 @@ const a = [];
 const b = [a];
 const c = [];
 const d = [c];
-const e = b.concat(d);
-const f = $coerce( e, "plustr" );
+const e = [b, d];
+const f = $coerce(e, 'number');
 $(f);
 `````
 
@@ -26,8 +24,8 @@ const a = [];
 const b = [a];
 const c = [];
 const d = [c];
-const e = b.concat(d);
-const f = $coerce(e, `plustr`);
+const e = [b, d];
+const f = $coerce(e, `number`);
 $(f);
 `````
 
@@ -39,8 +37,8 @@ const a = [];
 const b = [a];
 const c = [];
 const d = [c];
-const e = b.concat(d);
-const f = $coerce(e, `plustr`);
+const e = [b, d];
+const f = $coerce(e, `number`);
 $(f);
 `````
 
@@ -48,7 +46,7 @@ $(f);
 
 
 `````js filename=intro
-$(`,`);
+$(NaN);
 `````
 
 ## PST Output
@@ -56,7 +54,7 @@ $(`,`);
 With rename=true
 
 `````js filename=intro
-$( "," );
+$( NaN );
 `````
 
 ## Globals
@@ -66,7 +64,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: ','
+ - 1: NaN
  - eval returned: undefined
 
 Pre normalization calls: Same

@@ -36,7 +36,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 `fail`();
-throw `[Preval]: Call expression with illegal callee must crash before this line `;
+throw `[Preval]: Call expression with illegal callee must crash before this line ; \`\`fail\`()\``;
 `````
 
 ## PST Output
@@ -45,7 +45,7 @@ With rename=true
 
 `````js filename=intro
 "fail".undefined();
-throw "[Preval]: Call expression with illegal callee must crash before this line ";
+throw "[Preval]: Call expression with illegal callee must crash before this line ; ``fail`()`";
 `````
 
 ## Globals

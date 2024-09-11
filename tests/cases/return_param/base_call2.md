@@ -70,7 +70,7 @@ $(`pass`);
 $(undefined);
 f();
 const tmpCalleeParam$3 = 2();
-throw `[Preval]: Call expression with illegal callee must crash before this line `;
+throw `[Preval]: Call expression with illegal callee must crash before this line ; \`2()\``;
 const tmpCalleeParam$5 = 0;
 `````
 
@@ -90,7 +90,7 @@ $(`pass`);
 $(undefined);
 f();
 2();
-throw `[Preval]: Call expression with illegal callee must crash before this line `;
+throw `[Preval]: Call expression with illegal callee must crash before this line ; \`2()\``;
 `````
 
 ## PST Output
@@ -110,7 +110,7 @@ $( "pass" );
 $( undefined );
 a();
 2.undefined();
-throw "[Preval]: Call expression with illegal callee must crash before this line ";
+throw "[Preval]: Call expression with illegal callee must crash before this line ; `2()`";
 `````
 
 ## Globals

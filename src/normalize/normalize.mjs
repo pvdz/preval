@@ -3126,7 +3126,9 @@ export function phaseNormalize(fdata, fname, prng, options) {
             // Drop any references. They shouldn't trigger a crash and are not needed to trigger the crash.
             // Perhaps this is more of a dead code branch and it leads to fewer references to bindings.
             args.length = 0;
-            body.splice(i + 1, 0, AST.throwStatement(AST.templateLiteral(ERR_MSG_ILLEGAL_CALLEE)));
+            body.splice(i + 1, 0, AST.throwStatement(AST.templateLiteral(ERR_MSG_ILLEGAL_CALLEE + `; \`${JSON.stringify(
+              tmat(node, true).replace(/\n/g, ' ')
+            ).slice(1, -1)}\``)));
 
             after(node);
             assertNoDupeNodes(AST.blockStatement(body), 'body');

@@ -29,7 +29,7 @@ $(`after`);
 `````js filename=intro
 $(`before`);
 false();
-throw `[Preval]: Call expression with illegal callee must crash before this line `;
+throw `[Preval]: Call expression with illegal callee must crash before this line ; \`false()\``;
 `````
 
 ## Output
@@ -38,7 +38,7 @@ throw `[Preval]: Call expression with illegal callee must crash before this line
 `````js filename=intro
 $(`before`);
 false();
-throw `[Preval]: Call expression with illegal callee must crash before this line `;
+throw `[Preval]: Call expression with illegal callee must crash before this line ; \`false()\``;
 `````
 
 ## PST Output
@@ -48,7 +48,7 @@ With rename=true
 `````js filename=intro
 $( "before" );
 false.undefined();
-throw "[Preval]: Call expression with illegal callee must crash before this line ";
+throw "[Preval]: Call expression with illegal callee must crash before this line ; `false()`";
 `````
 
 ## Globals

@@ -82,7 +82,7 @@ if ($) {
   tmpClusterSSA_f();
 } else {
   undefined();
-  throw `[Preval]: Call expression with illegal callee must crash before this line `;
+  throw `[Preval]: Call expression with illegal callee must crash before this line ; \`undefined()\``;
 }
 `````
 
@@ -107,7 +107,7 @@ if ($) {
 }
 else {
   undefined.undefined();
-  throw "[Preval]: Call expression with illegal callee must crash before this line ";
+  throw "[Preval]: Call expression with illegal callee must crash before this line ; `undefined()`";
 }
 `````
 

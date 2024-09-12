@@ -1,30 +1,29 @@
 // Built-in symbol names and their `typeof` result
 
 import {
-  BUILTIN_ARRAY_METHODS_SYMBOLS,
-  BUILTIN_ARRAY_PROTOTYPE,
-  BUILTIN_ARRAY_STATIC_SYMBOLS,
-  BUILTIN_BOOLEAN_METHODS_SYMBOLS,
-  BUILTIN_BOOLEAN_PROTOTYPE,
-  BUILTIN_BOOLEAN_STATIC_SYMBOLS, BUILTIN_DATE_METHODS_SYMBOLS,
-  BUILTIN_DATE_PROTOTYPE, BUILTIN_DATE_STATIC_SYMBOLS,
   BUILTIN_FOR_IN_CALL_NAME,
   BUILTIN_FOR_OF_CALL_NAME,
+} from './constants.mjs';
+import {
+  BUILTIN_ARRAY_METHODS_SYMBOLS,
+  BUILTIN_ARRAY_STATIC_SYMBOLS,
+  BUILTIN_BOOLEAN_METHODS_SYMBOLS,
+  BUILTIN_BOOLEAN_STATIC_SYMBOLS,
+  BUILTIN_DATE_METHODS_SYMBOLS,
+  BUILTIN_DATE_STATIC_SYMBOLS,
   BUILTIN_FUNCTION_METHODS_SYMBOLS,
-  BUILTIN_FUNCTION_PROTOTYPE,
-  BUILTIN_FUNCTION_STATIC_SYMBOLS, BUILTIN_JSON_STATIC_SYMBOLS, BUILTIN_MATH_STATIC_SYMBOLS,
+  BUILTIN_FUNCTION_STATIC_SYMBOLS,
+  BUILTIN_JSON_STATIC_SYMBOLS,
+  BUILTIN_MATH_STATIC_SYMBOLS,
   BUILTIN_NUMBER_METHODS_SYMBOLS,
-  BUILTIN_NUMBER_PROTOTYPE,
-  BUILTIN_NUMBER_STATIC_SYMBOLS, BUILTIN_OBJECT_METHODS_SYMBOLS,
-  BUILTIN_OBJECT_PROTOTYPE,
+  BUILTIN_NUMBER_STATIC_SYMBOLS,
+  BUILTIN_OBJECT_METHODS_SYMBOLS,
   BUILTIN_OBJECT_STATIC_SYMBOLS,
   BUILTIN_REGEXP_METHODS_SYMBOLS,
-  BUILTIN_REGEXP_PROTOTYPE,
   BUILTIN_REGEXP_STATIC_SYMBOLS,
   BUILTIN_STRING_METHODS_SYMBOLS,
-  BUILTIN_STRING_PROTOTYPE,
   BUILTIN_STRING_STATIC_SYMBOLS,
-} from './constants.mjs';
+} from './symbols_builtins.mjs';
 
 // We have to set a max of unrolling infinite loops because we have to predefine their global constant value here.
 // It's fine to up but would have to be upped in code. Can't pass this as an argument. Well. Not without changing smoe logic around first.
@@ -91,34 +90,11 @@ const globalNames = new Map([
   [BUILTIN_FOR_IN_CALL_NAME, BUILTIN_FOR_IN_CALL_NAME],
   [BUILTIN_FOR_OF_CALL_NAME, BUILTIN_FOR_OF_CALL_NAME],
 
-  [BUILTIN_BOOLEAN_PROTOTYPE, { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
-  [BUILTIN_FUNCTION_PROTOTYPE, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
-  [BUILTIN_NUMBER_PROTOTYPE, { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
-  [BUILTIN_OBJECT_PROTOTYPE, { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
-  [BUILTIN_REGEXP_PROTOTYPE, { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
-  [BUILTIN_STRING_PROTOTYPE, { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
-  [BUILTIN_DATE_PROTOTYPE, { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
-  //[BUILTIN_MAP_PROTOTYPE, { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
-  //[BUILTIN_SET_PROTOTYPE, { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
-  ...BUILTIN_ARRAY_STATIC_SYMBOLS.map(name => {
-    if (name === 'prototype') return { mustBeType: 'array', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
-  ...BUILTIN_ARRAY_METHODS_SYMBOLS.map(name => {
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
   ...BUILTIN_BOOLEAN_STATIC_SYMBOLS.map(name => {
     if (name === 'prototype') return { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
     return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
   }),
   ...BUILTIN_BOOLEAN_METHODS_SYMBOLS.map(name => {
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
-  ...BUILTIN_FUNCTION_STATIC_SYMBOLS.map(name => {
-    if (name === 'prototype') return { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
-  ...BUILTIN_FUNCTION_METHODS_SYMBOLS.map(name => {
     return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
   }),
   ...BUILTIN_NUMBER_STATIC_SYMBOLS.map(name => {
@@ -138,13 +114,6 @@ const globalNames = new Map([
   ...BUILTIN_NUMBER_METHODS_SYMBOLS.map(name => {
     return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
   }),
-  ...BUILTIN_REGEXP_STATIC_SYMBOLS.map(name => {
-    if (name === 'prototype') return { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
-  ...BUILTIN_REGEXP_METHODS_SYMBOLS.map(name => {
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
   ...BUILTIN_STRING_STATIC_SYMBOLS.map(name => {
     if (name === 'prototype') return { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
     return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
@@ -159,11 +128,28 @@ const globalNames = new Map([
   ...BUILTIN_OBJECT_METHODS_SYMBOLS.map(name => {
     return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
   }),
+  ...BUILTIN_ARRAY_STATIC_SYMBOLS.map(name => {
+    if (name === 'prototype') return { mustBeType: 'array', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
+  ...BUILTIN_ARRAY_METHODS_SYMBOLS.map(name => {
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
+  ...BUILTIN_FUNCTION_STATIC_SYMBOLS.map(name => {
+    if (name === 'prototype') return { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
+  ...BUILTIN_FUNCTION_METHODS_SYMBOLS.map(name => {
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
   ...BUILTIN_DATE_STATIC_SYMBOLS.map(name => {
     if (name === 'prototype') return { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
     return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
   }),
   ...BUILTIN_DATE_METHODS_SYMBOLS.map(name => {
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
+  ...BUILTIN_JSON_STATIC_SYMBOLS.map(name => {
     return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
   }),
   ...BUILTIN_MATH_STATIC_SYMBOLS.map(name => {
@@ -172,7 +158,11 @@ const globalNames = new Map([
     }
     return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
   }),
-  ...BUILTIN_JSON_STATIC_SYMBOLS.map(name => {
+  ...BUILTIN_REGEXP_STATIC_SYMBOLS.map(name => {
+    if (name === 'prototype') return { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
+  ...BUILTIN_REGEXP_METHODS_SYMBOLS.map(name => {
     return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
   }),
 ]);

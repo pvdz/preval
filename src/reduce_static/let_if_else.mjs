@@ -20,8 +20,6 @@ import {
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { createFreshVar } from '../bindings.mjs';
-import { RESET, GREEN } from '../constants.mjs';
 
 export function letIfElse(fdata) {
   group('\n\n\nSearching for conditionally initialized lets\n');

@@ -3,6 +3,8 @@ import {
   VERBOSE_TRACING,
   BLUE,
   RESET,
+} from './constants.mjs';
+import {
   BUILTIN_ARRAY_PROTOTYPE,
   BUILTIN_BOOLEAN_PROTOTYPE,
   BUILTIN_FUNCTION_PROTOTYPE,
@@ -10,7 +12,7 @@ import {
   BUILTIN_OBJECT_PROTOTYPE,
   BUILTIN_REGEXP_PROTOTYPE,
   BUILTIN_STRING_PROTOTYPE,
-} from './constants.mjs';
+} from './symbols_builtins.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, source, fmat, tmat } from './utils.mjs';
 import globals, {MAX_UNROLL_TRUE_COUNT} from './globals.mjs';
 import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/

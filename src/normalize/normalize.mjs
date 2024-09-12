@@ -12,13 +12,14 @@ import {
   RED,
   BLUE,
   RESET,
-  BUILTIN_ARRAY_PROTOTYPE,
+} from '../constants.mjs';
+import {
   BUILTIN_NUMBER_PROTOTYPE,
   BUILTIN_NAMESPACED_TO_FUNC_NAME,
   QUALIFIED_NAME_TO_PREVAL_NAME,
   PREVAL_PROTO_SYMBOLS_TO_LOOKUP,
-  PREVAL_BUILTIN_SYMBOLS, BUILTIN_STRING_METHOD_LOOKUP_REV,
-} from '../constants.mjs';
+  PREVAL_BUILTIN_SYMBOLS,
+} from '../symbols_builtins.mjs';
 import {
   ASSERT,
   assertNoDupeNodes,
@@ -35,8 +36,8 @@ import {
   before,
   source,
   after,
-  findBodyOffsetExpensive,
-  findBodyOffsetExpensiveMaybe, riskyRule, useRiskyRules,
+  riskyRule,
+  useRiskyRules,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { BUILTIN_FUNC_CALL_NAME } from '../constants.mjs';

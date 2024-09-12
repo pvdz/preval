@@ -19,7 +19,7 @@ import {
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { BUILTIN_NAMESPACED_TO_FUNC_NAME } from '../constants.mjs';
+import { BUILTIN_NAMESPACED_TO_FUNC_NAME } from '../symbols_builtins.mjs';
 import { getSerializableArrayParts } from '../ast.mjs';
 
 export function coercials(fdata) {

@@ -1,6 +1,5 @@
 import walk from '../../lib/walk.mjs';
 import * as AST from '../ast.mjs';
-import { VERBOSE_TRACING, RED, BLUE, DIM, RESET, setVerboseTracing } from '../constants.mjs';
 import {
   ASSERT,
   log,

@@ -9,7 +9,6 @@
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
-import { ASSUME_BUILTINS } from '../constants.mjs';
 
 export function expandoSplitting(fdata) {
   group('\n\n\nFinding funcs with expandos so we can split them into regular objects\n');

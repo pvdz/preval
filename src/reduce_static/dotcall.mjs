@@ -32,7 +32,7 @@ import {
   BUILTIN_DATE_STATIC_SYMBOLS,
   BUILTIN_JSON_STATIC_LOOKUP_REV,
   BUILTIN_JSON_STATIC_SYMBOLS,
-} from '../constants.mjs';
+} from '../symbols_builtins.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import globalNames from '../globals.mjs';

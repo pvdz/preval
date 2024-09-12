@@ -6,8 +6,6 @@
 
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { createFreshVar } from '../bindings.mjs';
-import { ASSUME_BUILTINS } from '../constants.mjs';
 
 export function excessiveArgs(fdata) {
   group('\n\n\nLooking for function calls containing args where the functions dont have params at that position\n');

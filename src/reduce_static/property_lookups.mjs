@@ -31,7 +31,7 @@ import {
   PREVAL_BUILTIN_SYMBOLS,
   PREVAL_PROTO_SYMBOLS_TO_LOOKUP,
   BUILTIN_FUNCTION_METHOD_LOOKUP,
-} from '../constants.mjs';
+} from '../symbols_builtins.mjs';
 import * as AST from '../ast.mjs';
 import {getPrimitiveType} from "../ast.mjs"
 

@@ -18,8 +18,6 @@ import {
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { createFreshVar } from '../bindings.mjs';
-import { RESET, GREEN } from '../constants.mjs';
 
 export function inlineCommonReturns(fdata) {
   group('\n\n\nChecking for functions that have a common return value that is a primitive');

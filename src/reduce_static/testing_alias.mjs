@@ -5,8 +5,6 @@
 
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { createFreshVar } from '../bindings.mjs';
-import { ASSUME_BUILTINS } from '../constants.mjs';
 import {cloneSimple} from "../ast.mjs"
 
 export function testingAlias(fdata) {

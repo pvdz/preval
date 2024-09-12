@@ -23,10 +23,11 @@ import {
   ARGUMENTS_ALIAS_BASE_NAME,
   BUILTIN_FUNC_CALL_NAME,
   BUILTIN_REST_HANDLER_NAME,
-  BUILTIN_FUNCTION_PROTOTYPE,
+} from '../constants.mjs';
+import {
   BUILTIN_FUNCTION_METHOD_LOOKUP,
   BUILTIN_REGEXP_METHOD_LOOKUP, BUILTIN_STRING_METHOD_LOOKUP,
-} from '../constants.mjs';
+} from '../symbols_builtins.mjs';
 import * as AST from '../ast.mjs';
 import { getRegexFromLiteralNode, isRegexLiteral, nodeHasNoObservableSideEffectIncStatements } from '../ast.mjs';
 import { LOOP_UNROLL_CONSTANT_COUNT_PREFIX, MAX_UNROLL_CONSTANT_NAME } from '../globals.mjs';

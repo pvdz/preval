@@ -37,8 +37,7 @@ import {
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { createFreshVar, mayBindingMutateBetweenRefs } from '../bindings.mjs';
-import { BUILTIN_FUNC_CALL_NAME, BUILTIN_OBJECT_PROTOTYPE } from '../constants.mjs';
+import { BUILTIN_FUNC_CALL_NAME } from '../constants.mjs';
 
 export function objlitInlining(fdata) {
   group('\n\n\nChecking for object literals to inline');

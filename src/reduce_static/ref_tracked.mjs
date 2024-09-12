@@ -22,9 +22,6 @@ import {
   tmat, assertNoDupeNodes,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { createFreshVar } from '../bindings.mjs';
-import { ASSUME_BUILTINS, setVerboseTracing } from '../constants.mjs';
-import {cloneSimple} from "../ast.mjs"
 
 export function refTracked(fdata) {
   group('\n\n\nLooking ref-tracking tricks to apply\n');

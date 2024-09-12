@@ -28,7 +28,7 @@ $(tmpCompObj$459);
 
 
 `````js filename=intro
-const tmpBinBothRhs$893 = $ArrayPrototype.flat;
+const tmpBinBothRhs$893 = $array_flat;
 const tmpCompObj$459 = NaN + tmpBinBothRhs$893;
 $(tmpCompObj$459);
 `````

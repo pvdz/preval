@@ -27,7 +27,7 @@ $(f + ``);
 
 
 `````js filename=intro
-const f = $NumberPrototype.toString;
+const f = $number_toString;
 $(f);
 const tmpCallCallee = $;
 const tmpCalleeParam = $coerce(f, `plustr`);
@@ -38,8 +38,8 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-$($Number_toString);
-$(`function(){}`);
+$($number_toString);
+$(`function toString() { [native code] }`);
 `````
 
 ## PST Output
@@ -47,8 +47,8 @@ $(`function(){}`);
 With rename=true
 
 `````js filename=intro
-$( $Number_toString );
-$( "function(){}" );
+$( $number_toString );
+$( "function toString() { [native code] }" );
 `````
 
 ## Globals
@@ -66,7 +66,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: '<function>'
- - 2: 'function() {return undefined;}'
- - eval returned: undefined
+Final output calls: Same

@@ -1779,8 +1779,8 @@ function _typeTrackedTricks(fdata) {
                   break;
                 }
                 case 'string.charAt': {
-                  rule('Reading .charAt from something that must be a string should yield $String_charAt');
-                  example('const x = "xyz".charAt;', 'const x = $String_charAt;');
+                  rule('Reading .charAt from something that must be a string should yield $string_charAt');
+                  example('const x = "xyz".charAt;', 'const x = $string_charAt;');
                   before(node, blockBody[blockIndex]);
 
                   if (parentNode.type === 'AssignmentExpression') {

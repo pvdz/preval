@@ -23,7 +23,6 @@ $(`3.48`);
 
 
 `````js filename=intro
-$NumberPrototype.toString;
 $(`3.48`);
 `````
 

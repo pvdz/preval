@@ -1,10 +1,29 @@
 // Built-in symbol names and their `typeof` result
 
 import {
-  BUILTIN_ARRAY_METHODS_SYMBOLS, BUILTIN_BOOLEAN_METHODS_SYMBOLS, BUILTIN_FOR_IN_CALL_NAME, BUILTIN_FOR_OF_CALL_NAME,
+  BUILTIN_ARRAY_METHODS_SYMBOLS,
+  BUILTIN_ARRAY_PROTOTYPE,
+  BUILTIN_ARRAY_STATIC_SYMBOLS,
+  BUILTIN_BOOLEAN_METHODS_SYMBOLS,
+  BUILTIN_BOOLEAN_PROTOTYPE,
+  BUILTIN_BOOLEAN_STATIC_SYMBOLS, BUILTIN_DATE_METHODS_SYMBOLS,
+  BUILTIN_DATE_PROTOTYPE, BUILTIN_DATE_STATIC_SYMBOLS,
+  BUILTIN_FOR_IN_CALL_NAME,
+  BUILTIN_FOR_OF_CALL_NAME,
   BUILTIN_FUNCTION_METHODS_SYMBOLS,
+  BUILTIN_FUNCTION_PROTOTYPE,
+  BUILTIN_FUNCTION_STATIC_SYMBOLS, BUILTIN_JSON_STATIC_SYMBOLS, BUILTIN_MATH_STATIC_SYMBOLS,
   BUILTIN_NUMBER_METHODS_SYMBOLS,
-  BUILTIN_REGEXP_METHODS_SYMBOLS, BUILTIN_STRING_METHODS_SYMBOLS,
+  BUILTIN_NUMBER_PROTOTYPE,
+  BUILTIN_NUMBER_STATIC_SYMBOLS, BUILTIN_OBJECT_METHODS_SYMBOLS,
+  BUILTIN_OBJECT_PROTOTYPE,
+  BUILTIN_OBJECT_STATIC_SYMBOLS,
+  BUILTIN_REGEXP_METHODS_SYMBOLS,
+  BUILTIN_REGEXP_PROTOTYPE,
+  BUILTIN_REGEXP_STATIC_SYMBOLS,
+  BUILTIN_STRING_METHODS_SYMBOLS,
+  BUILTIN_STRING_PROTOTYPE,
+  BUILTIN_STRING_STATIC_SYMBOLS,
 } from './constants.mjs';
 
 // We have to set a max of unrolling infinite loops because we have to predefine their global constant value here.
@@ -72,30 +91,88 @@ const globalNames = new Map([
   [BUILTIN_FOR_IN_CALL_NAME, BUILTIN_FOR_IN_CALL_NAME],
   [BUILTIN_FOR_OF_CALL_NAME, BUILTIN_FOR_OF_CALL_NAME],
 
-  // Preval special aliases for builtins
-  ['$ArrayPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
-  ['$BooleanPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
-  ['$FunctionPrototype', { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
-  ['$NumberPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
-  ['$ObjectPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
-  ['$RegExpPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
-  ['$StringPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
+  [BUILTIN_BOOLEAN_PROTOTYPE, { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
+  [BUILTIN_FUNCTION_PROTOTYPE, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
+  [BUILTIN_NUMBER_PROTOTYPE, { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
+  [BUILTIN_OBJECT_PROTOTYPE, { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
+  [BUILTIN_REGEXP_PROTOTYPE, { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
+  [BUILTIN_STRING_PROTOTYPE, { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
+  [BUILTIN_DATE_PROTOTYPE, { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
+  //[BUILTIN_MAP_PROTOTYPE, { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
+  //[BUILTIN_SET_PROTOTYPE, { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
+  ...BUILTIN_ARRAY_STATIC_SYMBOLS.map(name => {
+    if (name === 'prototype') return { mustBeType: 'array', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
   ...BUILTIN_ARRAY_METHODS_SYMBOLS.map(name => {
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
+  ...BUILTIN_BOOLEAN_STATIC_SYMBOLS.map(name => {
+    if (name === 'prototype') return { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
     return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
   }),
   ...BUILTIN_BOOLEAN_METHODS_SYMBOLS.map(name => {
     return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
   }),
+  ...BUILTIN_FUNCTION_STATIC_SYMBOLS.map(name => {
+    if (name === 'prototype') return { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
   ...BUILTIN_FUNCTION_METHODS_SYMBOLS.map(name => {
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
+  ...BUILTIN_NUMBER_STATIC_SYMBOLS.map(name => {
+    switch (name) {
+      // TODO: not sure we should set the mustBeValue for these. We should not inline floats and dangerous numbers.
+      case 'EPSILON': return { mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: Number.EPSILON };
+      case 'MAX_SAFE_INTEGER': return { mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: Number.MAX_SAFE_INTEGER };
+      case 'MAX_VALUE': return { mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: Number.MAX_VALUE };
+      case 'MIN_SAFE_INTEGER': return { mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: Number.MIN_SAFE_INTEGER };
+      case 'MIN_VALUE': return { mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: Number.MIN_VALUE };
+      case 'NaN': return { mustBeType: 'number', mustBeFalsy: true, mustBeTruthy: false, mustBePrimitive: true, mustBeValue: Number.NaN };
+      case 'NEGATIVE_INFINITY': return { mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: Number.NEGATIVE_INFINITY };
+      case 'POSITIVE_INFINITY': return { mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: Number.POSITIVE_INFINITY };
+    }
     return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
   }),
   ...BUILTIN_NUMBER_METHODS_SYMBOLS.map(name => {
     return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
   }),
+  ...BUILTIN_REGEXP_STATIC_SYMBOLS.map(name => {
+    if (name === 'prototype') return { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
   ...BUILTIN_REGEXP_METHODS_SYMBOLS.map(name => {
     return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
   }),
+  ...BUILTIN_STRING_STATIC_SYMBOLS.map(name => {
+    if (name === 'prototype') return { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
   ...BUILTIN_STRING_METHODS_SYMBOLS.map(name => {
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
+  ...BUILTIN_OBJECT_STATIC_SYMBOLS.map(name => {
+    if (name === 'prototype') return { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
+  ...BUILTIN_OBJECT_METHODS_SYMBOLS.map(name => {
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
+  ...BUILTIN_DATE_STATIC_SYMBOLS.map(name => {
+    if (name === 'prototype') return { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
+  ...BUILTIN_DATE_METHODS_SYMBOLS.map(name => {
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
+  ...BUILTIN_MATH_STATIC_SYMBOLS.map(name => {
+    if (['E', 'LN10', 'LN2', 'LOG10E', 'LOG2E', 'PI', 'SQRT1_2', 'SQRT2'].includes(name)) {
+      return [name, { mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: Math[name] }];
+    }
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
+  ...BUILTIN_JSON_STATIC_SYMBOLS.map(name => {
     return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
   }),
 ]);

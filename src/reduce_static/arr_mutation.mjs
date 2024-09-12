@@ -390,7 +390,7 @@ function processAttempt(fdata) {
                     }
                   } else {
                     vlog('- bail: Read .pop but did not call it');
-                    // TODO: replace it with $Array_pop
+                    // TODO: replace it with $array_pop
                     return;
                   }
                 }
@@ -470,7 +470,7 @@ function processAttempt(fdata) {
                     }
                   } else {
                     vlog('- bail: Read .shift but did not call it');
-                    // TODO: replace it with $Array_shift
+                    // TODO: replace it with $array_shift
                     return;
                   }
                 }
@@ -589,7 +589,7 @@ function processAttempt(fdata) {
                     }
                   } else {
                     vlog('- bail: Read .push but did not call it');
-                    // TODO: replace it with $Array_push
+                    // TODO: replace it with $array_push
                     return;
                   }
 
@@ -708,7 +708,7 @@ function processAttempt(fdata) {
                     }
                   } else {
                     vlog('- bail: Read .unshift but did not call it');
-                    // TODO: replace it with $Array_unshift
+                    // TODO: replace it with $array_unshift
                     return;
                   }
                   break;

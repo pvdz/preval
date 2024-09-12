@@ -47,11 +47,9 @@ tmpCallCallee(tmpCalleeParam$9);
 
 
 `````js filename=intro
-const arr = [1, 2, 3];
-const tmpCallObj = arr.splice;
-const tmpCallVal = tmpCallObj.call;
 const tmpCalleeParam$1 = $(1);
-$dotCall(tmpCallVal, tmpCallObj, arr, tmpCalleeParam$1, 2, 10, 20);
+const arr = [1, 2, 3];
+$array_splice.call(arr, tmpCalleeParam$1, 2, 10, 20);
 $(3);
 `````
 
@@ -60,11 +58,9 @@ $(3);
 With rename=true
 
 `````js filename=intro
-const a = [ 1, 2, 3 ];
-const b = a.splice;
-const c = b.call;
-const d = $( 1 );
-$dotCall( c, b, a, d, 2, 10, 20 );
+const a = $( 1 );
+const b = [ 1, 2, 3 ];
+$array_splice.call( b, a, 2, 10, 20 );
 $( 3 );
 `````
 

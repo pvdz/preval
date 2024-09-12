@@ -9,7 +9,7 @@
 ## Input
 
 `````js filename=intro
-const x = $coerce($Array_flat, 'plustr')
+const x = $coerce($array_flat, 'plustr')
 $(x);
 `````
 
@@ -17,7 +17,7 @@ $(x);
 
 
 `````js filename=intro
-const x = $coerce($Array_flat, `plustr`);
+const x = $coerce($array_flat, `plustr`);
 $(x);
 `````
 
@@ -25,7 +25,7 @@ $(x);
 
 
 `````js filename=intro
-const x = $coerce($Array_flat, `plustr`);
+const x = $coerce($array_flat, `plustr`);
 $(x);
 `````
 

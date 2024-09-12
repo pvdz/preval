@@ -21,22 +21,19 @@ import {
 import {
   BUILTIN_ARRAY_METHOD_LOOKUP,
   BUILTIN_ARRAY_METHODS_SUPPORTED,
-  BUILTIN_ARRAY_PROTOTYPE,
-  BUILTIN_BOOLEAN_PROTOTYPE,
-  BUILTIN_FUNCTION_PROTOTYPE,
-  BUILTIN_NUMBER_PROTOTYPE,
-  BUILTIN_OBJECT_PROTOTYPE,
-  BUILTIN_REGEXP_PROTOTYPE,
-  BUILTIN_STRING_PROTOTYPE,
   BUILTIN_STRING_METHODS_SUPPORTED,
   BUILTIN_STRING_METHOD_LOOKUP,
   BUILTIN_FUNCTION_METHODS_SUPPORTED,
   BUILTIN_NUMBER_METHODS_SUPPORTED,
   BUILTIN_NUMBER_METHOD_LOOKUP,
-  BUILTIN_REGEXP_METHODS_SUPPORTED, BUILTIN_REGEXP_METHOD_LOOKUP, KNOWN_IMPLICIT_GLOBALS, BUILTIN_PROTO_TO_LOOKUP,
+  BUILTIN_REGEXP_METHODS_SUPPORTED,
+  BUILTIN_REGEXP_METHOD_LOOKUP,
+  PREVAL_BUILTIN_SYMBOLS,
+  PREVAL_PROTO_SYMBOLS_TO_LOOKUP,
+  BUILTIN_FUNCTION_METHOD_LOOKUP,
 } from '../constants.mjs';
 import * as AST from '../ast.mjs';
-import {getPrimitiveType, getPrimitiveValue} from "../ast.mjs"
+import {getPrimitiveType} from "../ast.mjs"
 
 export function propertyLookups(fdata) {
   group('\n\n\nFinding static builtin properties to resolve\n');
@@ -124,11 +121,11 @@ function _propertyLookups(fdata) {
             // jsf*ck specific support
             // This is Function#flat ...
             riskyRule('Fetching but not calling a method from Function.prototype should do this explicitly');
-            example('f(f.call)', 'f(' + BUILTIN_FUNCTION_METHODS_SUPPORTED['call'] + ')');
+            example('f(f.call)', 'f(' + BUILTIN_FUNCTION_METHOD_LOOKUP['call'] + ')');
             before(node, grandNode);
 
-            ASSERT(BUILTIN_FUNCTION_METHODS_SUPPORTED[prop], 'missing Function method name should have constant', prop); // just add it.
-            const newNode = AST.identifier(BUILTIN_FUNCTION_METHODS_SUPPORTED[prop]);
+            ASSERT(BUILTIN_FUNCTION_METHOD_LOOKUP[prop], 'missing Function method name should have constant', prop); // just add it.
+            const newNode = AST.identifier(BUILTIN_FUNCTION_METHOD_LOOKUP[prop]);
             if (parentIndex < 0) parentNode[parentProp] = newNode;
             else parentNode[parentProp][parentIndex] = newNode;
 
@@ -297,10 +294,10 @@ function _propertyLookups(fdata) {
         // Technically expandos could cause observable side effects for accessing them. But aren't you just really trying at that point?
 
         if (!isPrimitive && !node.computed) {
-          if (useRiskyRules() && KNOWN_IMPLICIT_GLOBALS.includes(node.object.name)) {
+          if (useRiskyRules() && PREVAL_BUILTIN_SYMBOLS.includes(node.object.name)) {
             vlog(`    - ${node.object.name} is a known global`);
 
-            const knownAlias = BUILTIN_PROTO_TO_LOOKUP[node.object.name]?.[node.property.name];
+            const knownAlias = PREVAL_PROTO_SYMBOLS_TO_LOOKUP[node.object.name]?.[node.property.name];
 
             if (parentNode.type === 'ExpressionStatement') {
               vlog(`    - this member expression is a statement so if we know it has no side effects it can be dropped`);
@@ -318,7 +315,7 @@ function _propertyLookups(fdata) {
               // TODO: another case is more risky but accessing a property of an object literal should be fine
             } else if (knownAlias) {
               rule('Known property of built-in prototype object should be a special alias');
-              example('f(Number.toString)', 'f($Number_toString)');
+              example('f(Number.toString)', 'f($number_toString)');
               before(grandNode[grandProp]);
 
               if (parentIndex < 0) parentNode[parentProp] = AST.identifier(knownAlias);

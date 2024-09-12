@@ -54,7 +54,7 @@ const getMessages = async function ($$0) {
   const D$15 = $dlr_$$0;
   const tmpAwaitArg = fetchFromStore(D$15);
   const l$11 = await tmpAwaitArg;
-  const tmpCallCompVal = JSON.parse;
+  const tmpCallCompVal = $JSON_parse;
   const tmpCompObj$1 = l$11[0];
   const tmpCompObj = tmpCompObj$1.dataValues;
   const tmpCalleeParam = tmpCompObj.bucket;
@@ -73,11 +73,10 @@ const getMessages = async function ($$0) {
   debugger;
   const tmpAwaitArg = fetchFromStore($dlr_$$0);
   const l$11 = await tmpAwaitArg;
-  const tmpCallCompVal = JSON.parse;
   const tmpCompObj$1 = l$11[0];
   const tmpCompObj = tmpCompObj$1.dataValues;
   const tmpCalleeParam = tmpCompObj.bucket;
-  const tmpReturnArg$13 = $dotCall(tmpCallCompVal, JSON, tmpCalleeParam);
+  const tmpReturnArg$13 = JSON.parse(tmpCalleeParam);
   return tmpReturnArg$13;
 };
 $(getMessages);
@@ -93,12 +92,11 @@ const a = async function($$0 ) {
   debugger;
   const d = fetchFromStore( b );
   const e = (await (d));
-  const f = JSON.parse;
-  const g = e[ 0 ];
-  const h = g.dataValues;
-  const i = h.bucket;
-  const j = $dotCall( f, JSON, i );
-  return j;
+  const f = e[ 0 ];
+  const g = f.dataValues;
+  const h = g.bucket;
+  const i = JSON.parse( h );
+  return i;
 };
 $( a );
 `````

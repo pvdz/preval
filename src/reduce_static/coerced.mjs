@@ -114,7 +114,7 @@ function core(fdata) {
 
     if (BUILTIN_NAMESPACED_TO_FUNC_NAME[argName]) {
       rule('$coerce on a namespaced preval built-in symbol should become a string'); // kind of regardless. even if NaN later.
-      example('$coerce($Array_flat, "plustr")', '"function flat() { [native code] }"');
+      example('$coerce($array_flat, "plustr")', '"function flat() { [native code] }"');
       before(read.blockBody[read.blockIndex]);
 
       const finalNode = AST.primitive('function ' + BUILTIN_NAMESPACED_TO_FUNC_NAME[argName] + '() { [native code] }');

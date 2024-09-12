@@ -23,7 +23,7 @@ $(x);
 
 
 `````js filename=intro
-const x = $StringPrototype.lastIndexOf;
+const x = $string_lastIndexOf;
 $(x);
 `````
 
@@ -31,7 +31,7 @@ $(x);
 
 
 `````js filename=intro
-$($String_lastIndexOf);
+$($string_lastIndexOf);
 `````
 
 ## PST Output
@@ -39,7 +39,7 @@ $($String_lastIndexOf);
 With rename=true
 
 `````js filename=intro
-$( $String_lastIndexOf );
+$( $string_lastIndexOf );
 `````
 
 ## Globals

@@ -23,7 +23,6 @@ $(`3.48`);
 
 
 `````js filename=intro
-$StringPrototype.lastIndexOf;
 $(`3.48`);
 `````
 

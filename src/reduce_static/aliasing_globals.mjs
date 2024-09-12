@@ -1,6 +1,6 @@
 // Rename constants when they are initialized with a known implivit global
-// `const x = $Array_push; $(x)`
-// -> `$($Array_push)`
+// `const x = $array_push; $(x)`
+// -> `$($array_push)`
 
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
@@ -41,7 +41,7 @@ function _aliasedGlobals(fdata) {
     const reads = aliasMeta.reads;
 
     rule('Assigning known implicit globals to constants should eliminate the constant in favor of the global');
-    example('const x = $Array_push; $(x);', '$($Array_push)');
+    example('const x = $array_push; $(x);', '$($array_push)');
     before(write.blockBody[write.blockIndex]);
 
     // Drop decl

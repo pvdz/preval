@@ -23,7 +23,7 @@ $(x);
 
 
 `````js filename=intro
-const x = $NumberPrototype.toString;
+const x = $number_toString;
 $(x);
 `````
 
@@ -31,7 +31,7 @@ $(x);
 
 
 `````js filename=intro
-$($Number_toString);
+$($number_toString);
 `````
 
 ## PST Output
@@ -39,7 +39,7 @@ $($Number_toString);
 With rename=true
 
 `````js filename=intro
-$( $Number_toString );
+$( $number_toString );
 `````
 
 ## Globals

@@ -13,7 +13,11 @@ import {
   BLUE,
   RESET,
   BUILTIN_ARRAY_PROTOTYPE,
-  BUILTIN_NUMBER_PROTOTYPE, BUILTIN_NAMESPACED_TO_FUNC_NAME,
+  BUILTIN_NUMBER_PROTOTYPE,
+  BUILTIN_NAMESPACED_TO_FUNC_NAME,
+  QUALIFIED_NAME_TO_PREVAL_NAME,
+  PREVAL_PROTO_SYMBOLS_TO_LOOKUP,
+  PREVAL_BUILTIN_SYMBOLS, BUILTIN_STRING_METHOD_LOOKUP_REV,
 } from '../constants.mjs';
 import {
   ASSERT,
@@ -1199,21 +1203,21 @@ export function phaseNormalize(fdata, fname, prng, options) {
         );
 
         if (wrapKind === 'statement') {
-          // TODO: what about implicit globals? This prevents a crash.
-
           // The `arguments` reference is special as it implies func params can not be changed. Something to improve later.
+          // Note: the registry does know about builtin globals until phase1 so we pull from the globals Map instead
           const meta = node.name !== 'arguments' && fdata.globallyUniqueNamingRegistry.get(node.name);
           ASSERT(node.name === 'arguments' || meta, 'all names should have a meta now', node.name, node);
+
           if (node.name === 'arguments' && funcStack.length === 1) {
             // `arguments` in global is an implicit binding that ought to throw (we can't proof it doesn't)
             vlog('Skipping `arguments` in global space');
           }
-          else if (meta.isBuiltin || (useRiskyRules() && !meta.isImplicitGlobal)) {
-            // We can't do this safely because implicit globals would throw and this eliminates them.
+          else if (globals.has(node.name) || meta.isBuiltin || (useRiskyRules() && !meta.isImplicitGlobal)) {
+            // We can't "just" do this safely because implicit globals would throw and this eliminates a runtime exception.
             // Restrictions:
-            // - Eliminating local bindings that are closures is unsafe because (worst case) we can't proof TDZ. -> enableRiskyRules()
+            // - Eliminating local bindings that are closures is unsafe because (worst case) we can't prove TDZ. -> enableRiskyRules()
             // - Eliminating implicit globals is unsafe because we can't proof they won't throw -> enableRiskyRules()
-            // Note: it's not risky for built-ins and non-closured bindings (something we could improve on)
+            // Note: it's not risky for built-ins (and we could improve on non-closured bindings)
 
             riskyRule('A statement can not just be an identifier');
             example('x;', ';');
@@ -1224,7 +1228,8 @@ export function phaseNormalize(fdata, fname, prng, options) {
             after(body[i]);
             assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
-          } else {
+          }
+          else {
             vlog(
               'Expression statement that is only an identifier that is an implicit global. Checking if it happens to be used in the next statement',
             );
@@ -3312,7 +3317,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
           if (
             node.object.type === 'Identifier' &&
-            ['Boolean', 'Number', 'String', 'Function', 'Regex', 'Array', 'Object', BUILTIN_ARRAY_PROTOTYPE].includes(node.object.name)
+            ['Boolean', 'Number', 'String', 'Function', 'Regex', 'Array', 'Object', 'Set', 'Map', 'WeakSet', 'WeakMap'].includes(node.object.name)
           ) {
             if (wrapKind === 'statement') {
               rule('A statement that is a property on a built in constructor should be removed');
@@ -3501,81 +3506,18 @@ export function phaseNormalize(fdata, fname, prng, options) {
           }
 
           if (!node.computed && node.object.type === 'Identifier') {
+            const qualifiedName = node.object.name + '.' + node.property.name;
+
             // Drop statements that are static function calls when we know they are not observable otherwise
             if (
               wrapKind === 'statement' &&
-              ((node.object.name === 'Array' && ['from', 'isArray', 'of'].includes(node.property.name)) ||
-                (node.object.name === 'Date' && ['now', 'parse', 'UTC'].includes(node.property.name)) ||
-                (node.object.name === 'Math' &&
-                  [
-                    'abs',
-                    'acos',
-                    'acosh',
-                    'asin',
-                    'asinh',
-                    'atan',
-                    'atan2',
-                    'atanh',
-                    'cbrt',
-                    'ceil',
-                    'clz32',
-                    'cos',
-                    'cosh',
-                    'exp',
-                    'expm1',
-                    'floor',
-                    'fround',
-                    'hypot',
-                    'imul',
-                    'log',
-                    'log10',
-                    'log1p',
-                    'log2',
-                    'max',
-                    'min',
-                    'pow',
-                    'random',
-                    'round',
-                    'sign',
-                    'sin',
-                    'sinh',
-                    'sqrt',
-                    'tan',
-                    'tanh',
-                    'trunc',
-                    'E',
-                    'LN10',
-                    'LN2',
-                    'LOG10E',
-                    'LOG2E',
-                    'PI',
-                    'SQRT1_2',
-                    'SQRT2',
-                  ].includes(node.property.name)) ||
-                (node.object.name === 'Number' &&
-                  [
-                    'EPSILON',
-                    'MAX_VALUE',
-                    'MIN_VALUE',
-                    'NEGATIVE_INFINITY',
-                    'POSITIVE_INFINITY',
-                    'isFinite',
-                    'isInteger',
-                    'isNaN',
-                    'isSafeInteger',
-                    'parseFloat',
-                    'parseInt',
-                  ].includes(node.property.name)) ||
-                (node.object.name === 'Object' && ['is', 'isFrozen', 'isSealed'].includes(node.property.name)) ||
-                (node.object.name === 'String' && ['fromCharCode', 'fromCodePoint', 'raw'].includes(node.property.name)))
+              QUALIFIED_NAME_TO_PREVAL_NAME.has(qualifiedName)
             ) {
               rule('A statement that is a built-in constant value or built-in static call should be eliminated');
               example('Number.NEGATIVE_INFINITY;', 'undefined;');
               before(node, body[i]);
 
-              const finalNode = AST.identifier('undefined'); // May be necessary to return an expression in certain wrap cases?
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body.splice(i, 1, finalParent);
+              body[i] = AST.emptyStatement();
 
               after(body[i]);
               return true;
@@ -3628,6 +3570,19 @@ export function phaseNormalize(fdata, fname, prng, options) {
                   return true;
                 }
               }
+            }
+
+            if (QUALIFIED_NAME_TO_PREVAL_NAME.has(qualifiedName)) {
+              rule('A statement that is a built-in constant value or built-in static call should be eliminated');
+              example('Number.NEGATIVE_INFINITY;', 'undefined;');
+              before(node, body[i]);
+
+              const finalNode = AST.identifier(QUALIFIED_NAME_TO_PREVAL_NAME.get(qualifiedName));
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body.splice(i, 1, finalParent);
+
+              after(body[i]);
+              return true;
             }
           }
         }
@@ -3800,6 +3755,29 @@ export function phaseNormalize(fdata, fname, prng, options) {
           body[i] = finalParent;
 
           after(body[i]);
+          return true;
+        }
+
+        if (
+          useRiskyRules() &&
+          node.object.type === 'Identifier' &&
+          !node.computed &&
+          PREVAL_PROTO_SYMBOLS_TO_LOOKUP[node.object.name] &&
+          PREVAL_BUILTIN_SYMBOLS.includes(node.object.name) && // This check is __proto__ (etc) protection
+          PREVAL_PROTO_SYMBOLS_TO_LOOKUP[node.object.name][node.property.name]
+        ) {
+          rule('Prototype property read of known builtin can be replaced with our own symbol');
+          example('$($StringPrototype.toString)', '$($string_toString)');
+          before(body[i]);
+
+          const prevalSymbol = PREVAL_PROTO_SYMBOLS_TO_LOOKUP[node.object.name][node.property.name];
+
+          const finalNode = AST.identifier(prevalSymbol);
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body.splice(i, 1, finalParent);
+
+          after(body[i]);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -5254,7 +5232,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
           if (BUILTIN_NAMESPACED_TO_FUNC_NAME[node.left.name] || BUILTIN_NAMESPACED_TO_FUNC_NAME[node.right.name]) {
             rule('Binary expr with known built-in function can serialize function');
-            example('true + $Array_flat', 'true + "function flat() { [native code] }"');
+            example('true + $array_flat', 'true + "function flat() { [native code] }"');
             before(node, body[i]);
 
             if (BUILTIN_NAMESPACED_TO_FUNC_NAME[node.left.name]) {

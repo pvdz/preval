@@ -19,6 +19,7 @@ import {
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
+import { SYMBOL_COERCE } from '../symbols_preval.mjs';
 
 export function globalCasting(fdata) {
   group('\n\n\nSearching for calls to global builtins that cast their arg\n');
@@ -36,7 +37,7 @@ function _globalCasting(fdata) {
 
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (!meta.isBuiltin) return;
-    if (!['Boolean', '$coerce'].includes(name)) return;
+    if (!['Boolean', SYMBOL_COERCE].includes(name)) return;
 
     vgroup('- Checking an explicit cast using `' + name + '()` (', meta.reads.length, 'reads)');
     process(fdata, meta, name, queue);
@@ -67,7 +68,7 @@ function process(fdata, meta, name, queue) {
       'We completely control $coerce and it should always have exactly two args',
       read.parentNode,
     );
-    const kind = name === '$coerce' ? AST.getPrimitiveValue(args[1]) : 'boolean';
+    const kind = name === SYMBOL_COERCE ? AST.getPrimitiveValue(args[1]) : 'boolean';
 
     if (args.length === 0) {
       ASSERT(name === 'Boolean');

@@ -22,7 +22,7 @@ import {
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar, mayBindingMutateBetweenRefs } from '../bindings.mjs';
-import { BUILTIN_FUNC_CALL_NAME } from '../constants.mjs';
+import { BUILTIN_DOTCALL_NAME } from '../symbols_preval.mjs';
 import { BUILTIN_OBJECT_PROTOTYPE } from '../symbols_builtins.mjs';
 
 export function objlitPropAccess(fdata) {
@@ -394,7 +394,7 @@ function processAttempt(fdata, queue) {
             const methodVarNode = AST.variableDeclaration(tmpNameMethod, methodNode, 'const');
 
             // `$dotCall(tmpNameMethod, obj, ...args)`
-            const callNode = AST.callExpression(BUILTIN_FUNC_CALL_NAME, [
+            const callNode = AST.callExpression(BUILTIN_DOTCALL_NAME, [
               AST.identifier(tmpNameMethod),
               readRef.parentNode.object,
               ...readRef.grandNode.arguments,

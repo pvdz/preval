@@ -37,7 +37,7 @@ import {
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { BUILTIN_FUNC_CALL_NAME } from '../constants.mjs';
+import { BUILTIN_DOTCALL_NAME } from '../symbols_preval.mjs';
 
 export function objlitInlining(fdata) {
   group('\n\n\nChecking for object literals to inline');
@@ -97,7 +97,7 @@ function process(fdata, queue) {
       if (
         read.parentNode.type === 'CallExpression' &&
         read.parentNode.callee.type === 'Identifier' &&
-        read.parentNode.callee.name === BUILTIN_FUNC_CALL_NAME // $dotCall
+        read.parentNode.callee.name === BUILTIN_DOTCALL_NAME // $dotCall
       ) {
         // So something like `$dotCall(method, obj, args)`
         // To proceed the read must be the second arg and the first arg must be the value of a or be the result of a property...
@@ -584,7 +584,7 @@ function process(fdata, queue) {
         return;
       }
       else {
-        if (read.parentNode.type === 'CallExpression' && read.parentNode.callee.type === 'Identifier' && read.parentNode.callee.name === BUILTIN_FUNC_CALL_NAME) {
+        if (read.parentNode.type === 'CallExpression' && read.parentNode.callee.type === 'Identifier' && read.parentNode.callee.name === BUILTIN_DOTCALL_NAME) {
           // Two forms:
           // - `const f = function(){}; const objlit = {f}; const x = objlit.f; $dotCall(x, objlit, rest)`
           // - `const f = function(){}; const objlit = {f}; $dotCall(x, objlit, rest)`

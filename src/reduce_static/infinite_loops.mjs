@@ -21,6 +21,7 @@ import {
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshLabelStatement } from '../labels.mjs';
+import { MAX_UNROLL_CONSTANT_NAME } from '../symbols_preval.mjs';
 
 export function infiniteLoops(fdata) {
   group('\n\n\nFind loops that always loop and add a "throw unreachable" after them\n');
@@ -64,7 +65,7 @@ function _infiniteLoops(fdata) {
             example('while (true) {}', 'while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {}');
             before(node);
 
-            node.test = AST.identifier('$LOOP_DONE_UNROLLING_ALWAYS_TRUE');
+            node.test = AST.identifier(MAX_UNROLL_CONSTANT_NAME);
 
             after(node);
             // I don't think this really changes much so it doesn't require a loop restart...? a rare case indeed

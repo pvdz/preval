@@ -24,11 +24,13 @@ import {
 } from './utils.mjs';
 import {
   VERBOSE_TRACING,
+} from '../src/constants.mjs';
+import {
   BUILTIN_FOR_OF_CALL_NAME,
   BUILTIN_FOR_IN_CALL_NAME,
-  BUILTIN_FUNC_CALL_NAME,
-  BUILTIN_REST_HANDLER_NAME,
-} from '../src/constants.mjs';
+  BUILTIN_DOTCALL_NAME,
+  BUILTIN_REST_HANDLER_NAME, LOOP_UNROLL_CONSTANT_COUNT_PREFIX, MAX_UNROLL_CONSTANT_NAME, THROW_TDZ_ERROR, SYMBOL_PRNG, SYMBOL_COERCE,
+} from '../src/symbols_preval.mjs';
 import {
   BUILTIN_ARRAY_PROTOTYPE,
   BUILTIN_FUNCTION_PROTOTYPE,
@@ -474,7 +476,7 @@ function runTestCase(
     const frameworkInjectedGlobals = {
       '$': $,
       [BUILTIN_REST_HANDLER_NAME]: objPatternRest,
-      [BUILTIN_FUNC_CALL_NAME]: $dotCall,
+      [BUILTIN_DOTCALL_NAME]: $dotCall,
       '$console_log': $console_log,
       '$console_warn': $console_warn,
       '$console_error': $console_error,
@@ -485,8 +487,8 @@ function runTestCase(
       '$console_group': $console_group,
       '$console_groupEnd': $console_groupEnd,
       '$spy': $spy,
-      '$coerce': $coerce,
-      '$prng': $prng,
+      [SYMBOL_COERCE]: $coerce,
+      [SYMBOL_PRNG]: $prng,
 
       $Array_isArray: Array.isArray,
       $Array_from: Array.from,
@@ -694,8 +696,8 @@ function runTestCase(
 
       [BUILTIN_FOR_IN_CALL_NAME]: $forIn,
       [BUILTIN_FOR_OF_CALL_NAME]: $forOf,
-      '$throwTDZError': $throwTDZError,
-      '$LOOP_DONE_UNROLLING_ALWAYS_TRUE': true, // TODO: this would need to be configurable and then this value is update
+      [THROW_TDZ_ERROR]: $throwTDZError,
+      [MAX_UNROLL_CONSTANT_NAME]: true, // TODO: this would need to be configurable and then this value is update
       [BUILTIN_ARRAY_PROTOTYPE]: Array.prototype,
       ...BUILTIN_ARRAY_METHODS_SUPPORTED.reduce((obj, key) => (obj[BUILTIN_ARRAY_METHOD_LOOKUP[key]] = Array.prototype[key], obj), {}),
       [BUILTIN_FUNCTION_PROTOTYPE]: Function.prototype,
@@ -714,10 +716,10 @@ function runTestCase(
     const max = CONFIG.unrollLimit ?? mdOptions?.unroll ?? 10;
     for (let i=0; i<=max; ++i) {
       // $LOOP_UNROLL_1 $LOOP_UNROLL_2 $LOOP_UNROLL_3 etc. Alias as `true`
-      frameworkInjectedGlobals[`$LOOP_UNROLL_${i}`] = true;
+      frameworkInjectedGlobals[`${LOOP_UNROLL_CONSTANT_COUNT_PREFIX}${i}`] = true;
     }
     // $LOOP_DONE_UNROLLING_ALWAYS_TRUE. Alias as `true`
-    frameworkInjectedGlobals[`$LOOP_DONE_UNROLLING_ALWAYS_TRUE`] = true; // "signals not to unroll any further, but to treat this as "true" anyways"
+    frameworkInjectedGlobals[MAX_UNROLL_CONSTANT_NAME] = true; // "signals not to unroll any further, but to treat this as "true" anyways"
 
     return frameworkInjectedGlobals;
   }
@@ -879,7 +881,7 @@ function runTestCase(
         ...Object.keys(frameworkInjectedGlobals),
         // Test code to execute/eval
         // Patch "global" arguments so we can detect it (it's the arguments of the Function we generate here) because they blow up test case results.
-        '"use strict"; arguments.$preval_isArguments = true; '+ (initialPrngSeed ? 'Math.random = $prng;' : '') + ' ' + fdata.intro,
+        '"use strict"; arguments.$preval_isArguments = true; '+ (initialPrngSeed ? 'Math.random = '+SYMBOL_PRNG+';' : '') + ' ' + fdata.intro,
       )(
         // The values of the injected globals
         ...Object.values(frameworkInjectedGlobals),
@@ -1001,7 +1003,7 @@ function runTestCase(
             return ((rngSeed >>> 0) % 0b1111111111111111) / 0b1111111111111111;
           }
 
-          const coerceStr = 'function $coerce(v,t){if (t==="number") return Number(v); if (t==="string") return String(v); return ""+v; }';
+          const coerceStr = 'function '+SYMBOL_COERCE+'(v,t){if (t==="number") return Number(v); if (t==="string") return String(v); return ""+v; }';
 
           return testArgs.map(vals => {
             if (VERBOSE_TRACING) console.group('\nTest Running', funcName, '(', JSON.stringify(vals), ')');
@@ -1017,8 +1019,11 @@ function runTestCase(
             const bak = Math.random;
             Math.random = $prng; // Wire up prng for the eval (shares same global scope)
             rngSeed = initialPrngSeed;
-            try { eout = (0, eval)(evalCode); } catch (e) { eout = e.message; }
-            Math.random = bak; // Restore built-in
+            try { eout = (0, eval)(evalCode); }
+            catch (e) { eout = e.message; }
+            finally {
+              Math.random = bak; // Restore built-in
+            }
 
             list.push(
               (` - \`${funcName}(${argStr})\``.padEnd(30, ' ')) +

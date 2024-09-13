@@ -39,6 +39,7 @@
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset, tmat } from './utils.mjs';
 import * as AST from './ast.mjs';
 import { VERBOSE_TRACING, setVerboseTracing, YELLOW, ORANGE_DIM, PURPLE, RESET, DIM, ORANGE } from './constants.mjs';
+import { SYMBOL_COERCE } from './symbols_preval.mjs';
 
 const NONE = 0;
 const RETURN = 1;
@@ -54,7 +55,7 @@ export const pcodeSupportedBuiltins = [
   'number.toString', // built-in method
   'Math.random', // we can fake this with a prng, fails if the prngSeed is zero
   'Math.floor', // Static built-in
-  '$coerce', // Preval special func
+  SYMBOL_COERCE, // Preval special func
 ];
 
 /**
@@ -809,7 +810,7 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
             vlog('(Math.floor(', v, ') ) =', c);
             return c;
           }
-          case '$coerce': {
+          case SYMBOL_COERCE: {
             // see reduce_static/coerced.mjs
             const v = prunVal(registers, op[3], op[4]);
             const target = prunVal(registers, op[5], op[6]); // number, string, plustr

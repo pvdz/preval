@@ -28,6 +28,7 @@ import {
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 import { cloneSimple, cloneSortOfSimple, functionExpressionNormalized, isSimpleNodeOrSimpleMember, normalizeFunction } from '../ast.mjs';
+import { SYMBOL_COERCE } from '../symbols_preval.mjs';
 
 export function staticArgOpOutlining(fdata) {
   group('\n\n\nFinding static param ops to outline\n');
@@ -728,7 +729,7 @@ function _staticArgOpOutlining(fdata) {
       firstStmt.type === 'ExpressionStatement' &&
       firstStmt.expression.type === 'CallExpression' &&
       firstStmt.expression.callee.type === 'Identifier' &&
-      firstStmt.expression.callee.name === '$coerce'
+      firstStmt.expression.callee.name === SYMBOL_COERCE
     ) {
       // `function f() { $(coerce, x, 'string') }`
       // Coerce as a statement
@@ -848,7 +849,7 @@ function _staticArgOpOutlining(fdata) {
       firstStmt.expression.type === 'AssignmentExpression' &&
       firstStmt.expression.right.type === 'CallExpression' &&
       firstStmt.expression.right.callee.type === 'Identifier' &&
-      firstStmt.expression.right.callee.name === '$coerce'
+      firstStmt.expression.right.callee.name === SYMBOL_COERCE
     ) {
       // `function f() { y = $(coerce, x, 'string') }`
       // Coerce as a statement
@@ -1023,7 +1024,7 @@ function _staticArgOpOutlining(fdata) {
       firstStmt.type === 'VariableDeclaration' &&
       firstStmt.declarations[0].init.type === 'CallExpression' &&
       firstStmt.declarations[0].init.callee.type === 'Identifier' &&
-      firstStmt.declarations[0].init.callee.name === '$coerce'
+      firstStmt.declarations[0].init.callee.name === SYMBOL_COERCE
     ) {
       // `function f() { y = $(coerce, x, 'string') }`
       // Coerce as a statement

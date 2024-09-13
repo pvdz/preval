@@ -3,7 +3,7 @@ import {walkStmt, WALK_NO_FURTHER, HARD_STOP} from '../lib/walk_stmt_norm.mjs';
 import {ASSERT, source, tmat, vlog, log} from './utils.mjs';
 import { $p } from './$p.mjs';
 import { createFreshVar } from './bindings.mjs';
-import { ARGLENGTH_ALIAS_BASE_NAME, ARGUMENTS_ALIAS_BASE_NAME, THIS_ALIAS_BASE_NAME } from './constants.mjs';
+import { ARGLENGTH_ALIAS_BASE_NAME, ARGUMENTS_ALIAS_BASE_NAME, SYMBOL_COERCE, THIS_ALIAS_BASE_NAME } from './symbols_preval.mjs';
 
 export function cloneSimple(node) {
   if (node.type === 'Identifier') {
@@ -2772,7 +2772,7 @@ export function isImmutableArray(arrayMeta, knownParent = null, sush = false) {
   return arrayMeta.reads.every(read => {
     // Doesn't matter which property is accessed, so computed prop or not is not relevant here
     if (read.parentNode.type !== 'MemberExpression' || read.parentProp !== 'object') {
-      if (read.parentNode.type === 'CallExpression' && read.parentNode.callee.type === 'Identifier' && read.parentNode.callee.name === '$coerce') {
+      if (read.parentNode.type === 'CallExpression' && read.parentNode.callee.type === 'Identifier' && read.parentNode.callee.name === SYMBOL_COERCE) {
         // Allow the Preval controlled $coerce calls as they are doing String(arr) or Number(arr) which ought to not mutate the array
         return true; // ok
       }

@@ -36,6 +36,7 @@ import {
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import globalNames from '../globals.mjs';
+import { BUILTIN_DOTCALL_NAME } from '../symbols_preval.mjs';
 
 export function dotCall(fdata) {
   group('\n\n\nTrying to simplify $dotCall occurrences\n');
@@ -48,7 +49,7 @@ function _dotCall(fdata) {
 
   let changed = 0;
 
-  const meta = fdata.globallyUniqueNamingRegistry.get('$dotCall');
+  const meta = fdata.globallyUniqueNamingRegistry.get(BUILTIN_DOTCALL_NAME);
   if (!meta) return;
 
   meta.reads.forEach(read => {

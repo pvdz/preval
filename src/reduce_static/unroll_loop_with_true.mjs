@@ -38,6 +38,7 @@ import {createFreshVar} from '../bindings.mjs';
 import { deepCloneForFuncInlining, labeledStatement, updateExpression } from '../ast.mjs';
 import {MAX_UNROLL_TRUE_COUNT} from "../globals.mjs"
 import { createFreshLabelStatement } from '../labels.mjs';
+import { LOOP_UNROLL_CONSTANT_COUNT_PREFIX, MAX_UNROLL_CONSTANT_NAME } from '../symbols_preval.mjs';
 
 export function unrollLoopWithTrue(fdata, unrollLimit = 10) {
   group('\n\n\nChecking for while loops with true to unroll (limit =' , unrollLimit, ')');
@@ -80,19 +81,19 @@ function processAttempt(fdata, unrollLimit) {
     if (beforeWalk) return; // Go from inner to outer...?
     if (updated) return; // TODO: allow to do this for multiple loops in the same iteration as long as they're not nested
     if (whileNode.type !== 'WhileStatement') return;
-    if (whileNode.test.type === 'Identifier' && whileNode.test.name === '$LOOP_DONE_UNROLLING_ALWAYS_TRUE') return;
+    if (whileNode.test.type === 'Identifier' && whileNode.test.name === MAX_UNROLL_CONSTANT_NAME) return;
 
     const isWhileTrue =
       AST.isTrue(whileNode.test) ||
       (
         whileNode.test.type === 'Identifier' &&
-        whileNode.test.name.startsWith('$LOOP_UNROLL_')
+        whileNode.test.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX)
       );
     ASSERT(isWhileTrue, 'all whiles must be normalized to while(true) (in some form) at this point', whileNode.test);
 
     if (
       whileNode.test.type === 'Identifier' &&
-      whileNode.test.name.startsWith('$LOOP_UNROLL_') &&
+      whileNode.test.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX) &&
       (path.nodes[path.nodes.length - 3]?.type === 'IfStatement')
     ) {
       // Technically we don't need this check but it leads to a significant uptick in code bloat so for now we're keeping this check
@@ -158,7 +159,7 @@ function processAttempt(fdata, unrollLimit) {
 
     // In theory we can do this multiple times. In practice it makes certain heavy cases much worse. To be further investigated.
     for (let i=0; i<1; ++i) {
-      if (whileNode.test.name === '$LOOP_DONE_UNROLLING_ALWAYS_TRUE') break;
+      if (whileNode.test.name === MAX_UNROLL_CONSTANT_NAME) break;
 
       vlog('Attempting to clone loop body...')
 
@@ -175,8 +176,8 @@ function processAttempt(fdata, unrollLimit) {
 
       const labelStatementNode = createFreshLabelStatement('loopStop', fdata, AST.blockStatement(clone, blockBody[blockIndex]));
 
-      const condCount = AST.isTrue(whileNode.test) ? unrollLimit - 1 : parseInt(whileNode.test.name.slice('$LOOP_UNROLL_'.length), 10) - 1;
-      const condIdent = condCount > 0 ? '$LOOP_UNROLL_' + condCount : ('$LOOP_DONE_UNROLLING_ALWAYS_TRUE');
+      const condCount = AST.isTrue(whileNode.test) ? unrollLimit - 1 : parseInt(whileNode.test.name.slice(LOOP_UNROLL_CONSTANT_COUNT_PREFIX.length), 10) - 1;
+      const condIdent = condCount > 0 ? LOOP_UNROLL_CONSTANT_COUNT_PREFIX + condCount : MAX_UNROLL_CONSTANT_NAME;
 
       const walker = function replacer(node, beforeWalk, nodeType, path) {
         if (beforeWalk) {

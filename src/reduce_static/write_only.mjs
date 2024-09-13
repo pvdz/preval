@@ -1,6 +1,6 @@
 // Inline constants where values permit it
 
-import { ARG_THIS_ALIAS_PREFIX } from '../constants.mjs';
+import { ARG_THIS_ALIAS_PREFIX } from '../symbols_preval.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 

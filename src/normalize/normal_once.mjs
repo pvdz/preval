@@ -13,9 +13,6 @@ import walk from '../../lib/walk.mjs';
 import {
   BLUE,
   RESET,
-  THIS_ALIAS_BASE_NAME,
-  ARGUMENTS_ALIAS_BASE_NAME,
-  ARGLENGTH_ALIAS_BASE_NAME,
   VERBOSE_TRACING,
   DIM,
 } from '../constants.mjs';
@@ -45,7 +42,7 @@ import {
 } from '../bindings.mjs';
 import { addLabelReference, createFreshLabelStatement, updateGlobalLabelStatementRef } from '../labels.mjs';
 import { cloneSortOfSimple, isSortOfSimpleNode, normalizeFunction, transformFunctionParams } from '../ast.mjs';
-import { MAX_UNROLL_CONSTANT_NAME } from '../globals.mjs';
+import { BUILTIN_FOR_IN_CALL_NAME, BUILTIN_FOR_OF_CALL_NAME, MAX_UNROLL_CONSTANT_NAME, SYMBOL_COERCE } from '../symbols_preval.mjs';
 
 export function phaseNormalOnce(fdata) {
   const ast = fdata.tenkoOutput.ast;
@@ -734,7 +731,7 @@ export function phaseNormalOnce(fdata) {
             // a = (a + expr) + b
             finalNode = AST.binaryExpression(
               '+',
-              AST.binaryExpression('+', finalNode, AST.callExpression('$coerce', [node.expressions[i], AST.primitive('string')])),
+              AST.binaryExpression('+', finalNode, AST.callExpression(SYMBOL_COERCE, [node.expressions[i], AST.primitive('string')])),
               AST.templateLiteral(node.quasis[i + 1].value.cooked),
             );
           }
@@ -1197,7 +1194,7 @@ export function phaseNormalOnce(fdata) {
 
           const newNode = AST.blockStatement(
             // const forInGen = $forIn(x)
-            AST.variableDeclaration(genName, AST.callExpression(AST.identifier('$forIn'), [node.right])),
+            AST.variableDeclaration(genName, AST.callExpression(AST.identifier(BUILTIN_FOR_IN_CALL_NAME), [node.right])),
             // while (true) {}
             // (It probably doesn't make sense for for-in/of loops to get unrolled because there's no base case right now, maybe later tho, but that's probably handled differently?)
             AST.whileStatement(AST.identifier(MAX_UNROLL_CONSTANT_NAME), AST.blockStatement(
@@ -1252,7 +1249,7 @@ export function phaseNormalOnce(fdata) {
         // should be able to simply do something like `x[f()] = g().value` and maintain code execution order
         const newNode = AST.blockStatement(
           // const forInGen = $forIn(x)
-          AST.variableDeclaration(genName, AST.callExpression(AST.identifier('$forIn'), [node.right])),
+          AST.variableDeclaration(genName, AST.callExpression(AST.identifier(BUILTIN_FOR_IN_CALL_NAME), [node.right])),
           // while (true) {}
           // (It probably doesn't make sense for for-in/of loops to get unrolled because there's no base case right now, maybe later tho, but that's probably handled differently?)
           AST.whileStatement(AST.identifier(MAX_UNROLL_CONSTANT_NAME), AST.blockStatement(
@@ -1325,7 +1322,7 @@ export function phaseNormalOnce(fdata) {
 
           const newNode = AST.blockStatement(
             // const forOfGen = $forOf(x)
-            AST.variableDeclaration(genName, AST.callExpression(AST.identifier('$forOf'), [node.right])),
+            AST.variableDeclaration(genName, AST.callExpression(AST.identifier(BUILTIN_FOR_OF_CALL_NAME), [node.right])),
             // while (true) {}
             // (It probably doesn't make sense for for-in/of loops to get unrolled because there's no base case right now, maybe later tho, but that's probably handled differently?)
             AST.whileStatement(AST.identifier(MAX_UNROLL_CONSTANT_NAME), AST.blockStatement(
@@ -1379,7 +1376,7 @@ export function phaseNormalOnce(fdata) {
         // should be able to simply do something like `x[f()] = g().value` and maintain code execution order
         const newNode = AST.blockStatement(
           // const forOfGen = $forOf(x)
-          AST.variableDeclaration(genName, AST.callExpression(AST.identifier('$forOf'), [node.right])),
+          AST.variableDeclaration(genName, AST.callExpression(AST.identifier(BUILTIN_FOR_OF_CALL_NAME), [node.right])),
           // while (true) {}
           // (It probably doesn't make sense for for-of/of loops to get unrolled because there's no base case right now, maybe later tho, but that's probably handled differently?)
           AST.whileStatement(AST.identifier(MAX_UNROLL_CONSTANT_NAME), AST.blockStatement(

@@ -58,6 +58,7 @@ import {
   openRefsOnAfterLabel,
 } from '../utils/ref_tracking.mjs';
 import { addLabelReference, registerGlobalLabel } from '../labels.mjs';
+import { SYMBOL_COERCE } from '../symbols_preval.mjs';
 
 // This phase is fairly mechanical and should only do discovery, no AST changes.
 // It sets up scope tracking, imports/exports tracking, return value analysis, ref tracking (which binding can see which binding). That sort of thing.
@@ -398,7 +399,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       case 'CallExpression:before': {
         ASSERT(
           node.callee.type !== 'Identifier' ||
-            node.callee.name !== '$coerce' ||
+            node.callee.name !== SYMBOL_COERCE ||
             (node.arguments.length === 2 && AST.isPrimitive(node.arguments[1])),
           '$coerce is a custom symbol that we control. make sure it always conforms to normalized state.',
           node,
@@ -514,7 +515,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
         ASSERT(kind !== 'readwrite', 'I think readwrite is compound assignment (or unary inc/dec) and we eliminated those? prove me wrong', node);
         ASSERT(
-          name !== '$coerce' ||
+          name !== SYMBOL_COERCE ||
             (parentNode.type === 'CallExpression' &&
               parentProp === 'callee' &&
               parentNode.arguments.length === 2 &&

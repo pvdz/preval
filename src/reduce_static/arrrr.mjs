@@ -28,6 +28,7 @@ import {
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { mayBindingMutateBetweenRefs } from '../bindings.mjs';
+import { SYMBOL_COERCE } from '../symbols_preval.mjs';
 
 export function arrrrrr(fdata) {
   group('\n\n\nChecking for arrrrrrray stuffs');
@@ -417,7 +418,7 @@ function processAttempt(fdata, queue) {
             ASSERT(false, 'string an number constructors should be replaced by $coerce during normalization');
             break;
           }
-          case '$coerce': {
+          case SYMBOL_COERCE: {
             if (
               arrNode.elements.every((enode) => {
                 ASSERT(!enode || enode.type !== 'SpreadElement', 'asserted above');

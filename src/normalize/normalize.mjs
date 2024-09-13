@@ -6,7 +6,6 @@ import {
   DCE_ERROR_MSG,
   ERR_MSG_ILLEGAL_ARRAY_SPREAD,
   ERR_MSG_ILLEGAL_CALLEE,
-  BUILTIN_REST_HANDLER_NAME,
   FRESH,
   OLD,
   RED,
@@ -20,6 +19,9 @@ import {
   PREVAL_PROTO_SYMBOLS_TO_LOOKUP,
   PREVAL_BUILTIN_SYMBOLS,
 } from '../symbols_builtins.mjs';
+import {
+  BUILTIN_REST_HANDLER_NAME, SYMBOL_COERCE, THROW_TDZ_ERROR,
+} from '../symbols_preval.mjs';
 import {
   ASSERT,
   assertNoDupeNodes,
@@ -40,14 +42,11 @@ import {
   useRiskyRules,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { BUILTIN_FUNC_CALL_NAME } from '../constants.mjs';
+import { BUILTIN_DOTCALL_NAME, LOOP_UNROLL_CONSTANT_COUNT_PREFIX, MAX_UNROLL_CONSTANT_NAME } from '../symbols_preval.mjs';
 import {
   createFreshVar,
-  findBoundNamesInVarDeclaration,
-  findBoundNamesInUnnormalizedVarDeclaration,
 } from '../bindings.mjs';
-
-import globals, { LOOP_UNROLL_CONSTANT_COUNT_PREFIX, MAX_UNROLL_CONSTANT_NAME } from '../globals.mjs';
+import globals from '../globals.mjs';
 import { cloneFunctionNode, createNormalizedFunctionFromString } from '../utils/serialize_func.mjs';
 import { addLabelReference, createFreshLabelStatement, removeLabelReference } from '../labels.mjs';
 
@@ -517,7 +516,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         // `function f({a, ...b}){ return b; }`
         // -> `function f(obj) { const tmp = obj.a; const {b: tmp3, ...b} = obj; }`
         // -> `function f(obj) { const tmp = obj.a; const b = objPatternRest(tmp, ['a']); return b; }
-        // Object spread will actually be quite hard to emulate... Let's use something like `objPatternRest` as DSL for it.
+        // Object spread will actually be quite hard to emulate... Let's use something like `$objPatternRest` as DSL for it.
 
         ASSERT(propNode.argument.type === 'Identifier', 'TODO: non ident rest keys?', propNode);
 
@@ -1194,7 +1193,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         vlog('- name: `' + node.name + '`');
 
         ASSERT(
-          node.name !== '$coerce' ||
+          node.name !== SYMBOL_COERCE ||
           (parentNode.type === 'CallExpression' &&
             parentNode.callee === node &&
             parentNode.arguments.length === 2 &&
@@ -1392,7 +1391,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         const args = node.arguments;
         const firstSpread = args.length > 0 && args[0].type === 'SpreadElement';
 
-        if (callee.type === 'Identifier' && callee.name === '$throwTDZError') {
+        if (callee.type === 'Identifier' && callee.name === THROW_TDZ_ERROR) {
           // Special case that we inject for a variable that was detected to throw an error if it were ever referenced
           rule('A statement that is calling $throwTDZError should become an explicit throw of the arg');
           example('$throwTDZError("something bad")', 'throw "something bad"');
@@ -1444,7 +1443,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               ];
               // Call the special builtin to signify that this call was previously in fact a method call. We need this because
               // when we find a random `.call()` we can't distinguish the built-in Function#call from a user method named `call`
-              const finalNode = AST.callExpression(BUILTIN_FUNC_CALL_NAME, [
+              const finalNode = AST.callExpression(BUILTIN_DOTCALL_NAME, [
                 AST.identifier(tmpNameFunc),
                 AST.identifier(tmpNameObj), // Context
                 ...args,
@@ -1471,7 +1470,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               // might trigger a getter, and we don't want to trigger a getter twice. We may choose to go with a custom func later.
               // Call the special builtin to signify that this call was previously in fact a method call. We need this because
               // when we find a random `.call()` we can't distinguish the built-in Function#call from a user method named `call`
-              const finalNode = AST.callExpression(BUILTIN_FUNC_CALL_NAME, [
+              const finalNode = AST.callExpression(BUILTIN_DOTCALL_NAME, [
                 AST.identifier(tmpNameFunc),
                 AST.identifier(tmpNameObj), // Context
                 ...args,
@@ -1793,7 +1792,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                   example('Number(a);', '$coerce(a, "number");');
                   before(node, parentNode);
 
-                  body.splice(i, 1, AST.expressionStatement(AST.callExpression('$coerce', [args[0], AST.primitive('number')])));
+                  body.splice(i, 1, AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [args[0], AST.primitive('number')])));
 
                   after(body[i]);
                   assertNoDupeNodes(AST.blockStatement(body), 'body');
@@ -1811,7 +1810,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                   example('String(a);', '$coerce(a, "string");');
                   before(node, parentNode);
 
-                  body.splice(i, 1, AST.expressionStatement(AST.callExpression('$coerce', [args[0], AST.primitive('string')])));
+                  body.splice(i, 1, AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [args[0], AST.primitive('string')])));
 
                   after(parentNode);
                   assertNoDupeNodes(AST.blockStatement(body), 'body');
@@ -2090,7 +2089,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                     newNodes.push(AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode));
                   }
                 });
-                const finalNode = AST.callExpression('$coerce', [
+                const finalNode = AST.callExpression(SYMBOL_COERCE, [
                   args[0].type === 'SpreadElement'
                     ? AST.memberExpression(tmpArgName, AST.literal(0), true) // `tmpName[0]`
                     : AST.identifier(tmpArgName),
@@ -2182,7 +2181,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                     newNodes.push(AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode));
                   }
                 });
-                const finalNode = AST.callExpression('$coerce', [
+                const finalNode = AST.callExpression(SYMBOL_COERCE, [
                   args[0].type === 'SpreadElement'
                     ? AST.memberExpression(tmpArgName, AST.literal(0), true) // `tmpName[0]`
                     : AST.identifier(tmpArgName),
@@ -2286,7 +2285,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             // might trigger a getter, and we don't want to trigger a getter twice. We may choose to go with a custom func later.
             // Call the special builtin to signify that this call was previously in fact a method call. We need this because
             // when we find a random `.call()` we can't distinguish the built-in Function#call from a user method named `call`
-            const finalNode = AST.callExpression(BUILTIN_FUNC_CALL_NAME, [
+            const finalNode = AST.callExpression(BUILTIN_DOTCALL_NAME, [
               AST.identifier(tmpNameVal),
               AST.identifier(tmpNameObj),
               ...newArgs,
@@ -2536,7 +2535,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               // might trigger a getter, and we don't want to trigger a getter twice. We may choose to go with a custom func later.
               // Call the special builtin to signify that this call was previously in fact a method call. We need this because
               // when we find a random `.call()` we can't distinguish the built-in Function#call from a user method named `call`
-              const finalNode = AST.callExpression(BUILTIN_FUNC_CALL_NAME, [
+              const finalNode = AST.callExpression(BUILTIN_DOTCALL_NAME, [
                 AST.identifier(tmpNameVal),
                 AST.identifier(tmpNameObj),
                 ...newArgs,
@@ -2887,7 +2886,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                       example('123..constructor("500")', '$coerce("500", "number)');
                       before(node, body[i]);
 
-                      node.callee = AST.identifier('$coerce');
+                      node.callee = AST.identifier(SYMBOL_COERCE);
                       node.arguments[1] = AST.primitive('number');
 
                       after(node, body[i]);
@@ -2977,7 +2976,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
                   const finalNode = AST.primitive('');
                   const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                  body.splice(i, 1, AST.expressionStatement(AST.callExpression('$coerce', [node.arguments[1], AST.primitive('string')])), finalParent);
+                  body.splice(i, 1, AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [node.arguments[1], AST.primitive('string')])), finalParent);
 
                   after(body[i]);
                   after(body[i + 1]);
@@ -2997,7 +2996,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         // Otherwise, check if the callee is simple. If not cache just the callee.
 
         if (hasComplexArg) {
-          if (callee.name === '$coerce') {
+          if (callee.name === SYMBOL_COERCE) {
             // Just outline the first arg. The rest is controlled by us and should be ok.
 
             rule('The arg of $coerce must allways be simple');
@@ -3023,8 +3022,8 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
             const newArgs = [];
             const newNodes = [];
-            let tmpName = '$coerce';
-            if (callee.name !== '$coerce') {
+            let tmpName = SYMBOL_COERCE;
+            if (callee.name !== SYMBOL_COERCE) {
               tmpName = createFreshVar('tmpCallCallee', fdata);
               newNodes.push(AST.variableDeclaration(tmpName, callee, 'const'));
             }
@@ -3059,7 +3058,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           return true;
         }
 
-        if (node.callee.type === 'Identifier' && node.callee.name === BUILTIN_FUNC_CALL_NAME) {
+        if (node.callee.type === 'Identifier' && node.callee.name === BUILTIN_DOTCALL_NAME) {
           // This is $dotCall()
 
           if (
@@ -5146,7 +5145,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 example('const x = a + "";', 'const x = $coerce(a, "plustr");');
                 before(node, body[i]);
 
-                const finalNode = AST.callExpression('$coerce', [node.right, AST.primitive('plustr')]);
+                const finalNode = AST.callExpression(SYMBOL_COERCE, [node.right, AST.primitive('plustr')]);
                 const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                 body.splice(i, 1, finalParent);
 
@@ -5177,7 +5176,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 example('const x = a + "";', 'const x = $coerce(a);');
                 before(node, body[i]);
 
-                const finalNode = AST.callExpression('$coerce', [node.left, AST.primitive('plustr')]);
+                const finalNode = AST.callExpression(SYMBOL_COERCE, [node.left, AST.primitive('plustr')]);
                 const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                 body.splice(i, 1, finalParent);
 
@@ -7107,7 +7106,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                   ? // a?.b(1, 2, 3)  ->  b.call(a, 1, 2, 3)
                     // Call the special builtin to signify that this call was previously in fact a method call. We need this because
                     // when we find a random `.call()` we can't distinguish the built-in Function#call from a user method named `call`
-                  AST.callExpression(BUILTIN_FUNC_CALL_NAME, [AST.identifier(prevObj), AST.identifier(lastObj), ...node.arguments])
+                  AST.callExpression(BUILTIN_DOTCALL_NAME, [AST.identifier(prevObj), AST.identifier(lastObj), ...node.arguments])
                   : // a(1, 2, 3)  ->  b(1, 2, 3)
                   AST.callExpression(prevObj, node.arguments),
                 'const',

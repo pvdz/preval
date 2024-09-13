@@ -2,15 +2,18 @@ import walk from '../../lib/walk.mjs';
 import * as AST from '../ast.mjs';
 import {
   VERBOSE_TRACING,
-  THIS_ALIAS_BASE_NAME,
-  ARGUMENTS_ALIAS_BASE_NAME,
-  ARGLENGTH_ALIAS_BASE_NAME,
-  IMPLICIT_GLOBAL_PREFIX,
   RED,
   BLUE,
   RESET,
-  DIM, setVerboseTracing,
+  DIM,
+  setVerboseTracing,
 } from '../constants.mjs';
+import {
+  THIS_ALIAS_BASE_NAME,
+  ARGUMENTS_ALIAS_BASE_NAME,
+  ARGLENGTH_ALIAS_BASE_NAME,
+  IMPLICIT_GLOBAL_PREFIX, THROW_TDZ_ERROR,
+} from '../symbols_preval.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, after, source, assertNoDupeNodes } from '../utils.mjs';
 import {$p, resetUid} from '../$p.mjs';
 import globals from '../globals.mjs';
@@ -732,7 +735,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
 
         const stringArg = tmat(ref.parentNode, true).replace(/\n.*/g, ' ').trim();
         const stringArgTrunced = stringArg.slice(0, 50) + (stringArg.length > 50 ? ' ...' : '');
-        const newNode = AST.callExpression('$throwTDZError', [AST.primitive(`Preval: TDZ triggered for this read: ${stringArgTrunced}`)]);
+        const newNode = AST.callExpression(THROW_TDZ_ERROR, [AST.primitive(`Preval: TDZ triggered for this read: ${stringArgTrunced}`)]);
         if (ref.parentIndex === -1) ref.parentNode[ref.parentProp] = newNode;
         else ref.parentNode[ref.parentProp][ref.parentIndex] = newNode;
 
@@ -748,7 +751,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
               const stringArg = tmat(ref.parentNode, true).replace(/\n/g, ' ')
               const newNode = AST.sequenceExpression(
                 ref.parentNode.right,
-                AST.callExpression('$throwTDZError', [AST.primitive(`Preval: TDZ triggered for this assignment: ${stringArg}`)])
+                AST.callExpression(THROW_TDZ_ERROR, [AST.primitive(`Preval: TDZ triggered for this assignment: ${stringArg}`)])
               );
               if (ref.grandIndex === -1) ref.grandNode[ref.grandProp] = newNode;
               else ref.grandNode[ref.grandProp][ref.grandIndex] = newNode;

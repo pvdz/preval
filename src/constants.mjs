@@ -11,18 +11,6 @@ export const DCE_ERROR_MSG = '[Preval]: Can not reach here';
 export const ERR_MSG_ILLEGAL_ARRAY_SPREAD = '[Preval]: Array spread must crash before this line';
 export const ERR_MSG_ILLEGAL_CALLEE = '[Preval]: Call expression with illegal callee must crash before this line ';
 
-export const ARG_THIS_ALIAS_PREFIX = 'tmpPrevalAlias';
-export const THIS_ALIAS_BASE_NAME = ARG_THIS_ALIAS_PREFIX + 'This'; // 'tmpThis' 'tmpPrevalAliasThis'
-export const ARGUMENTS_ALIAS_PREFIX = ARG_THIS_ALIAS_PREFIX + 'Arguments'; // 'tmpArguments' 'tmpPrevalAliasArguments'
-export const ARGUMENTS_ALIAS_BASE_NAME = ARGUMENTS_ALIAS_PREFIX + 'Any'; // 'tmpArgumentsAny' 'tmpPrevalAliasArgumentsAny'
-export const ARGLENGTH_ALIAS_BASE_NAME = ARGUMENTS_ALIAS_PREFIX + 'Len'; // 'tmpArgumentsLen' 'tmpPrevalAliasArgumentsLen'; `arguments.length`, which is easier than just `arguments`
-export const IMPLICIT_GLOBAL_PREFIX = '$prevalImplicit$';
-
-export const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
-export const BUILTIN_FUNC_CALL_NAME = '$dotCall'; // syntactic clue that this was an actual method call before, not arbitrary .call method
-export const BUILTIN_FOR_IN_CALL_NAME = '$forIn';
-export const BUILTIN_FOR_OF_CALL_NAME = '$forOf';
-
 export const FRESH = true;
 export const OLD = false;
 

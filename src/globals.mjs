@@ -3,7 +3,11 @@
 import {
   BUILTIN_FOR_IN_CALL_NAME,
   BUILTIN_FOR_OF_CALL_NAME,
-} from './constants.mjs';
+  BUILTIN_DOTCALL_NAME,
+  BUILTIN_REST_HANDLER_NAME,
+  LOOP_UNROLL_CONSTANT_COUNT_PREFIX,
+  MAX_UNROLL_CONSTANT_NAME, SYMBOL_COERCE,
+} from './symbols_preval.mjs';
 import {
   BUILTIN_ARRAY_METHODS_SYMBOLS,
   BUILTIN_ARRAY_STATIC_SYMBOLS,
@@ -84,9 +88,9 @@ const globalNames = new Map([
   // special to Preval
   ['$', '$'], // Do we want to tell Preval that it's a function?
   ['$spy', '$spy'], // Do we want to tell Preval that it's a function?
-  ['objPatternRest', 'function'], // Should we tell Preval this is a function?
-  ['$dotCall', 'function'], // Should we tell Preval this is a function?
-  ['$coerce', '$coerce'], // dito
+  [BUILTIN_REST_HANDLER_NAME, 'function'], // Should we tell Preval this is a function?
+  [BUILTIN_DOTCALL_NAME, 'function'], // Should we tell Preval this is a function?
+  [SYMBOL_COERCE, SYMBOL_COERCE], // dito
   [BUILTIN_FOR_IN_CALL_NAME, BUILTIN_FOR_IN_CALL_NAME],
   [BUILTIN_FOR_OF_CALL_NAME, BUILTIN_FOR_OF_CALL_NAME],
 
@@ -167,7 +171,6 @@ const globalNames = new Map([
   }),
 ]);
 
-export const LOOP_UNROLL_CONSTANT_COUNT_PREFIX = '$LOOP_UNROLL_'; // TODO: replace usages
 for (let i=0; i<=MAX_UNROLL_TRUE_COUNT; ++i) {
   // $LOOP_UNROLL_1 $LOOP_UNROLL_2 $LOOP_UNROLL_3 etc
   // Special symbols whose number suffix has semantic meaning. Ultimately they boil down to an alias for "true",
@@ -177,7 +180,6 @@ for (let i=0; i<=MAX_UNROLL_TRUE_COUNT; ++i) {
 }
 // $LOOP_DONE_UNROLLING_ALWAYS_TRUE
 // "signals not to unroll any further. Cannot set this as "true" because that'll cause infinite loops when transforming.
-export const MAX_UNROLL_CONSTANT_NAME = '$LOOP_DONE_UNROLLING_ALWAYS_TRUE'; // TODO: replace usages
 globalNames.set(MAX_UNROLL_CONSTANT_NAME, { mustBeType: 'boolean', mustBeFalsy: false, mustBeTruthy: false, mustBePrimitive: true });
 
 export default globalNames;

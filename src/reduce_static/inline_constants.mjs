@@ -1,6 +1,6 @@
 // Inline constants where values permit it
 
-import { ARG_THIS_ALIAS_PREFIX } from '../constants.mjs';
+import { ARG_THIS_ALIAS_PREFIX } from '../symbols_preval.mjs';
 import {
   ASSERT,
   log,

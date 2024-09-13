@@ -21,6 +21,7 @@ import {
 import * as AST from '../ast.mjs';
 import { BUILTIN_NAMESPACED_TO_FUNC_NAME } from '../symbols_builtins.mjs';
 import { getSerializableArrayParts } from '../ast.mjs';
+import { SYMBOL_COERCE } from '../symbols_preval.mjs';
 
 export function coercials(fdata) {
   group('\n\n\nFind cases of $coerce to eliminate');
@@ -42,7 +43,7 @@ function _coercials(fdata) {
 
 function core(fdata) {
   let changes = 0;
-  const meta = fdata.globallyUniqueNamingRegistry.get('$coerce');
+  const meta = fdata.globallyUniqueNamingRegistry.get(SYMBOL_COERCE);
   meta.reads.forEach((read, ri) => {
     ASSERT(read.parentNode.type === 'CallExpression', 'when else does $coerce appear??', read.parentNode);
     ASSERT(read.parentProp === 'callee', 'should always be called', read.parentNode);

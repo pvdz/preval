@@ -21,16 +21,17 @@ import {
 } from '../utils.mjs';
 import {
   ARGUMENTS_ALIAS_BASE_NAME,
-  BUILTIN_FUNC_CALL_NAME,
+  BUILTIN_DOTCALL_NAME,
   BUILTIN_REST_HANDLER_NAME,
-} from '../constants.mjs';
+  LOOP_UNROLL_CONSTANT_COUNT_PREFIX,
+  MAX_UNROLL_CONSTANT_NAME,
+} from '../symbols_preval.mjs';
 import {
   BUILTIN_FUNCTION_METHOD_LOOKUP,
   BUILTIN_REGEXP_METHOD_LOOKUP, BUILTIN_STRING_METHOD_LOOKUP,
 } from '../symbols_builtins.mjs';
 import * as AST from '../ast.mjs';
-import { getRegexFromLiteralNode, isRegexLiteral, nodeHasNoObservableSideEffectIncStatements } from '../ast.mjs';
-import { LOOP_UNROLL_CONSTANT_COUNT_PREFIX, MAX_UNROLL_CONSTANT_NAME } from '../globals.mjs';
+import { getRegexFromLiteralNode } from '../ast.mjs';
 
 export function typeTrackedTricks(fdata) {
   group('\n\n\nFinding type tracking based tricks\n');
@@ -808,7 +809,7 @@ function _typeTrackedTricks(fdata) {
               // TODO: if the arg is a string, we could generate a function from it? Dunno if that's gonna break anything :)
               break;
             }
-            case BUILTIN_FUNC_CALL_NAME: {
+            case BUILTIN_DOTCALL_NAME: {
               // '$dotCall' -- folding builtins
               // Resolve .call in some cases ($dotCall)
 
@@ -831,7 +832,7 @@ function _typeTrackedTricks(fdata) {
                     // Context is ignored. Replace with regular call
                     rule('Doing .call on `Function` is moot because it ignores the context');
                     example('Function.call(a, b, c)', 'Function(b, c)');
-                    example(BUILTIN_FUNC_CALL_NAME + '(Function, a, b, c)', 'Function(a, b, c)');
+                    example(BUILTIN_DOTCALL_NAME + '(Function, a, b, c)', 'Function(a, b, c)');
                     before(node, grandNode);
 
                     node.callee = funcRefNode;
@@ -871,7 +872,7 @@ function _typeTrackedTricks(fdata) {
                     // Context is ignored. Replace with regular call
                     rule('Doing .call on `RegExp` is moot because it ignores the context');
                     example('RegExp.call(a, b, c)', 'RegExp(b, c)');
-                    example(BUILTIN_FUNC_CALL_NAME + '(RegExp, a, b, c)', 'RegExp(a, b, c)');
+                    example(BUILTIN_DOTCALL_NAME + '(RegExp, a, b, c)', 'RegExp(a, b, c)');
                     before(node, grandNode);
 
                     node.callee = funcRefNode;

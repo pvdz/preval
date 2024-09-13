@@ -1,12 +1,12 @@
 // Built-in symbol names and their `typeof` result
 
 import {
-  BUILTIN_FOR_IN_CALL_NAME,
-  BUILTIN_FOR_OF_CALL_NAME,
-  BUILTIN_DOTCALL_NAME,
+  SYMBOL_FORIN,
+  SYMBOL_FOROF,
+  SYMBOL_DOTCALL,
   BUILTIN_REST_HANDLER_NAME,
-  LOOP_UNROLL_CONSTANT_COUNT_PREFIX,
-  MAX_UNROLL_CONSTANT_NAME, SYMBOL_COERCE,
+  SYMBOL_LOOP_UNROLL,
+  SYMBOL_MAX_LOOP_UNROLL, SYMBOL_COERCE,
 } from './symbols_preval.mjs';
 import {
   BUILTIN_ARRAY_METHODS_SYMBOLS,
@@ -89,10 +89,10 @@ const globalNames = new Map([
   ['$', '$'], // Do we want to tell Preval that it's a function?
   ['$spy', '$spy'], // Do we want to tell Preval that it's a function?
   [BUILTIN_REST_HANDLER_NAME, 'function'], // Should we tell Preval this is a function?
-  [BUILTIN_DOTCALL_NAME, 'function'], // Should we tell Preval this is a function?
+  [SYMBOL_DOTCALL, 'function'], // Should we tell Preval this is a function?
   [SYMBOL_COERCE, SYMBOL_COERCE], // dito
-  [BUILTIN_FOR_IN_CALL_NAME, BUILTIN_FOR_IN_CALL_NAME],
-  [BUILTIN_FOR_OF_CALL_NAME, BUILTIN_FOR_OF_CALL_NAME],
+  [SYMBOL_FORIN, SYMBOL_FORIN],
+  [SYMBOL_FOROF, SYMBOL_FOROF],
 
   ...BUILTIN_BOOLEAN_STATIC_SYMBOLS.map(name => {
     if (name === 'prototype') return { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
@@ -176,10 +176,10 @@ for (let i=0; i<=MAX_UNROLL_TRUE_COUNT; ++i) {
   // Special symbols whose number suffix has semantic meaning. Ultimately they boil down to an alias for "true",
   // where the name implies that we can still unroll this infinite `while(true)` that many times, before bailing.
   // We can't set it to actual `true` though because then loop unrolling goes infinite.
-  globalNames.set(`${LOOP_UNROLL_CONSTANT_COUNT_PREFIX}${i}`, { mustBeType: 'boolean', mustBeFalsy: false, mustBeTruthy: false, mustBePrimitive: true });
+  globalNames.set(`${SYMBOL_LOOP_UNROLL}${i}`, { mustBeType: 'boolean', mustBeFalsy: false, mustBeTruthy: false, mustBePrimitive: true });
 }
 // $LOOP_DONE_UNROLLING_ALWAYS_TRUE
 // "signals not to unroll any further. Cannot set this as "true" because that'll cause infinite loops when transforming.
-globalNames.set(MAX_UNROLL_CONSTANT_NAME, { mustBeType: 'boolean', mustBeFalsy: false, mustBeTruthy: false, mustBePrimitive: true });
+globalNames.set(SYMBOL_MAX_LOOP_UNROLL, { mustBeType: 'boolean', mustBeFalsy: false, mustBeTruthy: false, mustBePrimitive: true });
 
 export default globalNames;

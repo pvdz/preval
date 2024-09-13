@@ -21,10 +21,10 @@ import {
 } from '../utils.mjs';
 import {
   ARGUMENTS_ALIAS_BASE_NAME,
-  BUILTIN_DOTCALL_NAME,
+  SYMBOL_DOTCALL,
   BUILTIN_REST_HANDLER_NAME,
-  LOOP_UNROLL_CONSTANT_COUNT_PREFIX,
-  MAX_UNROLL_CONSTANT_NAME,
+  SYMBOL_LOOP_UNROLL,
+  SYMBOL_MAX_LOOP_UNROLL,
 } from '../symbols_preval.mjs';
 import {
   BUILTIN_FUNCTION_METHOD_LOOKUP,
@@ -177,7 +177,7 @@ function _typeTrackedTricks(fdata) {
 
                     if (
                       read.parentNode.type === 'WhileStatement' &&
-                      (testName.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX) || testName === MAX_UNROLL_CONSTANT_NAME)
+                      (testName.startsWith(SYMBOL_LOOP_UNROLL) || testName === SYMBOL_MAX_LOOP_UNROLL)
                     ) {
                       // Ignore. Do not replace while() tests. That risks infinite loops.
                       vlog('- skipped. Not replacing while() tests with `true` here');
@@ -809,7 +809,7 @@ function _typeTrackedTricks(fdata) {
               // TODO: if the arg is a string, we could generate a function from it? Dunno if that's gonna break anything :)
               break;
             }
-            case BUILTIN_DOTCALL_NAME: {
+            case SYMBOL_DOTCALL: {
               // '$dotCall' -- folding builtins
               // Resolve .call in some cases ($dotCall)
 
@@ -832,7 +832,7 @@ function _typeTrackedTricks(fdata) {
                     // Context is ignored. Replace with regular call
                     rule('Doing .call on `Function` is moot because it ignores the context');
                     example('Function.call(a, b, c)', 'Function(b, c)');
-                    example(BUILTIN_DOTCALL_NAME + '(Function, a, b, c)', 'Function(a, b, c)');
+                    example(SYMBOL_DOTCALL + '(Function, a, b, c)', 'Function(a, b, c)');
                     before(node, grandNode);
 
                     node.callee = funcRefNode;
@@ -872,7 +872,7 @@ function _typeTrackedTricks(fdata) {
                     // Context is ignored. Replace with regular call
                     rule('Doing .call on `RegExp` is moot because it ignores the context');
                     example('RegExp.call(a, b, c)', 'RegExp(b, c)');
-                    example(BUILTIN_DOTCALL_NAME + '(RegExp, a, b, c)', 'RegExp(a, b, c)');
+                    example(SYMBOL_DOTCALL + '(RegExp, a, b, c)', 'RegExp(a, b, c)');
                     before(node, grandNode);
 
                     node.callee = funcRefNode;

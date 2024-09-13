@@ -4,7 +4,7 @@ import {
   RESET,
 } from './constants.mjs';
 import {
-  IMPLICIT_GLOBAL_PREFIX, LOOP_UNROLL_CONSTANT_COUNT_PREFIX, MAX_UNROLL_CONSTANT_NAME, SYMBOL_COERCE,
+  IMPLICIT_GLOBAL_PREFIX, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_COERCE,
 } from './symbols_preval.mjs';
 import {
   BUILTIN_ARRAY_PROTOTYPE,
@@ -804,11 +804,11 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
     for (let i=0; i<=unrollLimit; ++i) {
       // $LOOP_UNROLL_1 $LOOP_UNROLL_2 $LOOP_UNROLL_3 etc
       // Special symbols whose number suffix has semantic meaning
-      node.$p.nameMapping.set(`${LOOP_UNROLL_CONSTANT_COUNT_PREFIX}${i}`, `${LOOP_UNROLL_CONSTANT_COUNT_PREFIX}${i}`);
+      node.$p.nameMapping.set(`${SYMBOL_LOOP_UNROLL}${i}`, `${SYMBOL_LOOP_UNROLL}${i}`);
     }
     // $LOOP_DONE_UNROLLING_ALWAYS_TRUE
     // "signals not to unroll any further, but to treat this as "true" anyways"
-    node.$p.nameMapping.set(MAX_UNROLL_CONSTANT_NAME, MAX_UNROLL_CONSTANT_NAME);
+    node.$p.nameMapping.set(SYMBOL_MAX_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL);
 
   } else {
     // non-global scope

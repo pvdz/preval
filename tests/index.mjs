@@ -26,10 +26,10 @@ import {
   VERBOSE_TRACING,
 } from '../src/constants.mjs';
 import {
-  BUILTIN_FOR_OF_CALL_NAME,
-  BUILTIN_FOR_IN_CALL_NAME,
-  BUILTIN_DOTCALL_NAME,
-  BUILTIN_REST_HANDLER_NAME, LOOP_UNROLL_CONSTANT_COUNT_PREFIX, MAX_UNROLL_CONSTANT_NAME, THROW_TDZ_ERROR, SYMBOL_PRNG, SYMBOL_COERCE,
+  SYMBOL_FOROF,
+  SYMBOL_FORIN,
+  SYMBOL_DOTCALL,
+  BUILTIN_REST_HANDLER_NAME, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_THROW_TDZ_ERROR, SYMBOL_PRNG, SYMBOL_COERCE,
 } from '../src/symbols_preval.mjs';
 import {
   BUILTIN_ARRAY_PROTOTYPE,
@@ -476,7 +476,7 @@ function runTestCase(
     const frameworkInjectedGlobals = {
       '$': $,
       [BUILTIN_REST_HANDLER_NAME]: objPatternRest,
-      [BUILTIN_DOTCALL_NAME]: $dotCall,
+      [SYMBOL_DOTCALL]: $dotCall,
       '$console_log': $console_log,
       '$console_warn': $console_warn,
       '$console_error': $console_error,
@@ -694,10 +694,10 @@ function runTestCase(
       $JSON_parse: JSON.parse,
       $JSON_stringify: JSON.stringify,
 
-      [BUILTIN_FOR_IN_CALL_NAME]: $forIn,
-      [BUILTIN_FOR_OF_CALL_NAME]: $forOf,
-      [THROW_TDZ_ERROR]: $throwTDZError,
-      [MAX_UNROLL_CONSTANT_NAME]: true, // TODO: this would need to be configurable and then this value is update
+      [SYMBOL_FORIN]: $forIn,
+      [SYMBOL_FOROF]: $forOf,
+      [SYMBOL_THROW_TDZ_ERROR]: $throwTDZError,
+      [SYMBOL_MAX_LOOP_UNROLL]: true, // TODO: this would need to be configurable and then this value is update
       [BUILTIN_ARRAY_PROTOTYPE]: Array.prototype,
       ...BUILTIN_ARRAY_METHODS_SUPPORTED.reduce((obj, key) => (obj[BUILTIN_ARRAY_METHOD_LOOKUP[key]] = Array.prototype[key], obj), {}),
       [BUILTIN_FUNCTION_PROTOTYPE]: Function.prototype,
@@ -716,10 +716,10 @@ function runTestCase(
     const max = CONFIG.unrollLimit ?? mdOptions?.unroll ?? 10;
     for (let i=0; i<=max; ++i) {
       // $LOOP_UNROLL_1 $LOOP_UNROLL_2 $LOOP_UNROLL_3 etc. Alias as `true`
-      frameworkInjectedGlobals[`${LOOP_UNROLL_CONSTANT_COUNT_PREFIX}${i}`] = true;
+      frameworkInjectedGlobals[`${SYMBOL_LOOP_UNROLL}${i}`] = true;
     }
     // $LOOP_DONE_UNROLLING_ALWAYS_TRUE. Alias as `true`
-    frameworkInjectedGlobals[MAX_UNROLL_CONSTANT_NAME] = true; // "signals not to unroll any further, but to treat this as "true" anyways"
+    frameworkInjectedGlobals[SYMBOL_MAX_LOOP_UNROLL] = true; // "signals not to unroll any further, but to treat this as "true" anyways"
 
     return frameworkInjectedGlobals;
   }

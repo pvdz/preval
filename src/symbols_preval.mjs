@@ -26,7 +26,7 @@ export const BUILTIN_REST_HANDLER_NAME = 'objPatternRest';
  * When reconstructing it, we should be safe to assume the source code was trying to access
  * this method on the context.
  */
-export const BUILTIN_DOTCALL_NAME = '$dotCall';
+export const SYMBOL_DOTCALL = '$dotCall';
 
 /**
  * Special function that Preval uses to enforce a certain type. This is usually because
@@ -41,32 +41,32 @@ export const SYMBOL_COERCE = '$coerce';
  * Custom abstraction of the for-in loop, implemented as a generator.
  * This allows us to eliminate for-in loops, in favor of (slightly more awkward but generic) while-loops
  */
-export const BUILTIN_FOR_IN_CALL_NAME = '$forIn';
+export const SYMBOL_FORIN = '$forIn';
 
 /**
  * Custom abstraction of the for-of loop, implemented as a generator.
  * This allows us to eliminate for-of loops, in favor of (slightly more awkward but generic) while-loops
  */
-export const BUILTIN_FOR_OF_CALL_NAME = '$forOf';
+export const SYMBOL_FOROF = '$forOf';
 
 /**
  * This is a special symbol exclusively as while-test.
  * Preval should consider any ident that starts with this as `true`
  * but transforms can tell how many times this loop can still be unrolled.
  */
-export const LOOP_UNROLL_CONSTANT_COUNT_PREFIX = '$LOOP_UNROLL_';
+export const SYMBOL_LOOP_UNROLL = '$LOOP_UNROLL_';
 /**
  * This is a special symbol exclusively as while-test.
  * Preval should consider this ident as `true` and transforms should
  * consider that this loop can no longer be unrolled any further.
  */
-export const MAX_UNROLL_CONSTANT_NAME = '$LOOP_DONE_UNROLLING_ALWAYS_TRUE';
+export const SYMBOL_MAX_LOOP_UNROLL = '$LOOP_DONE_UNROLLING_ALWAYS_TRUE';
 
 /**
  * We compile this when we know the previous line ought to trigger a TDZ error.
  * This helps rules automatically clean up the remainder as part of DCE sweeps.
  */
-export const THROW_TDZ_ERROR = '$throwTDZError';
+export const SYMBOL_THROW_TDZ_ERROR = '$throwTDZError';
 
 /**
  * Our special Math.random replacement. This one actually isn't exposed in userland (I think).

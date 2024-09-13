@@ -20,7 +20,7 @@ import {
   PREVAL_BUILTIN_SYMBOLS,
 } from '../symbols_builtins.mjs';
 import {
-  BUILTIN_REST_HANDLER_NAME, SYMBOL_COERCE, THROW_TDZ_ERROR,
+  BUILTIN_REST_HANDLER_NAME, SYMBOL_COERCE, SYMBOL_THROW_TDZ_ERROR,
 } from '../symbols_preval.mjs';
 import {
   ASSERT,
@@ -42,7 +42,7 @@ import {
   useRiskyRules,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { BUILTIN_DOTCALL_NAME, LOOP_UNROLL_CONSTANT_COUNT_PREFIX, MAX_UNROLL_CONSTANT_NAME } from '../symbols_preval.mjs';
+import { SYMBOL_DOTCALL, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL } from '../symbols_preval.mjs';
 import {
   createFreshVar,
 } from '../bindings.mjs';
@@ -1324,7 +1324,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
         if (
           parentNode.type !== 'WhileStatement' &&
-          (node.name === MAX_UNROLL_CONSTANT_NAME || node.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+          (node.name === SYMBOL_MAX_LOOP_UNROLL || node.name.startsWith(SYMBOL_LOOP_UNROLL))
         ) {
           rule('Any usage of the unroll constants that is not the while-test should become `true`');
           example('x = $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = true');
@@ -1391,7 +1391,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         const args = node.arguments;
         const firstSpread = args.length > 0 && args[0].type === 'SpreadElement';
 
-        if (callee.type === 'Identifier' && callee.name === THROW_TDZ_ERROR) {
+        if (callee.type === 'Identifier' && callee.name === SYMBOL_THROW_TDZ_ERROR) {
           // Special case that we inject for a variable that was detected to throw an error if it were ever referenced
           rule('A statement that is calling $throwTDZError should become an explicit throw of the arg');
           example('$throwTDZError("something bad")', 'throw "something bad"');
@@ -1443,7 +1443,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               ];
               // Call the special builtin to signify that this call was previously in fact a method call. We need this because
               // when we find a random `.call()` we can't distinguish the built-in Function#call from a user method named `call`
-              const finalNode = AST.callExpression(BUILTIN_DOTCALL_NAME, [
+              const finalNode = AST.callExpression(SYMBOL_DOTCALL, [
                 AST.identifier(tmpNameFunc),
                 AST.identifier(tmpNameObj), // Context
                 ...args,
@@ -1470,7 +1470,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               // might trigger a getter, and we don't want to trigger a getter twice. We may choose to go with a custom func later.
               // Call the special builtin to signify that this call was previously in fact a method call. We need this because
               // when we find a random `.call()` we can't distinguish the built-in Function#call from a user method named `call`
-              const finalNode = AST.callExpression(BUILTIN_DOTCALL_NAME, [
+              const finalNode = AST.callExpression(SYMBOL_DOTCALL, [
                 AST.identifier(tmpNameFunc),
                 AST.identifier(tmpNameObj), // Context
                 ...args,
@@ -2319,7 +2319,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             // might trigger a getter, and we don't want to trigger a getter twice. We may choose to go with a custom func later.
             // Call the special builtin to signify that this call was previously in fact a method call. We need this because
             // when we find a random `.call()` we can't distinguish the built-in Function#call from a user method named `call`
-            const finalNode = AST.callExpression(BUILTIN_DOTCALL_NAME, [
+            const finalNode = AST.callExpression(SYMBOL_DOTCALL, [
               AST.identifier(tmpNameVal),
               AST.identifier(tmpNameObj),
               ...newArgs,
@@ -2569,7 +2569,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               // might trigger a getter, and we don't want to trigger a getter twice. We may choose to go with a custom func later.
               // Call the special builtin to signify that this call was previously in fact a method call. We need this because
               // when we find a random `.call()` we can't distinguish the built-in Function#call from a user method named `call`
-              const finalNode = AST.callExpression(BUILTIN_DOTCALL_NAME, [
+              const finalNode = AST.callExpression(SYMBOL_DOTCALL, [
                 AST.identifier(tmpNameVal),
                 AST.identifier(tmpNameObj),
                 ...newArgs,
@@ -3092,7 +3092,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           return true;
         }
 
-        if (node.callee.type === 'Identifier' && node.callee.name === BUILTIN_DOTCALL_NAME) {
+        if (node.callee.type === 'Identifier' && node.callee.name === SYMBOL_DOTCALL) {
           // This is $dotCall()
 
           if (
@@ -3178,7 +3178,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         node.arguments.forEach((argNode, n) => {
           if (
             argNode?.type === 'Identifier' &&
-            (argNode.name === MAX_UNROLL_CONSTANT_NAME || argNode.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+            (argNode.name === SYMBOL_MAX_LOOP_UNROLL || argNode.name.startsWith(SYMBOL_LOOP_UNROLL))
           ) {
             rule('A call arg that is the special infinite loop `true` value can just be `true`');
             example('$($LOOP_DONE_UNROLLING_ALWAYS_TRUE)', '$(true);');
@@ -3289,7 +3289,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         node.arguments.forEach((argNode, n) => {
           if (
             argNode?.type === 'Identifier' &&
-            (argNode.name === MAX_UNROLL_CONSTANT_NAME || argNode.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+            (argNode.name === SYMBOL_MAX_LOOP_UNROLL || argNode.name.startsWith(SYMBOL_LOOP_UNROLL))
           ) {
             rule('A call arg that is the special infinite loop `true` value can just be `true`');
             example('$($LOOP_DONE_UNROLLING_ALWAYS_TRUE)', '$(true);');
@@ -3738,7 +3738,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         if (
           node.computed &&
           node.property.type === 'Identifier' &&
-          (node.property.name === MAX_UNROLL_CONSTANT_NAME || node.property.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+          (node.property.name === SYMBOL_MAX_LOOP_UNROLL || node.property.name.startsWith(SYMBOL_LOOP_UNROLL))
         ) {
           rule('Any usage of the unroll constants that is not a while-test should become `true`');
           example('x = $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = true');
@@ -4649,7 +4649,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
         if (
           lhs.type === 'Identifier' &&
-          (lhs.name === MAX_UNROLL_CONSTANT_NAME || lhs.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+          (lhs.name === SYMBOL_MAX_LOOP_UNROLL || lhs.name.startsWith(SYMBOL_LOOP_UNROLL))
         ) {
           rule('Any usage of the unroll constants that is not a while-test should become `true`');
           example('x = $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = true');
@@ -5285,7 +5285,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
         if (
           node.left.type === 'Identifier' &&
-          (node.left.name === MAX_UNROLL_CONSTANT_NAME || node.left.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+          (node.left.name === SYMBOL_MAX_LOOP_UNROLL || node.left.name.startsWith(SYMBOL_LOOP_UNROLL))
         ) {
           rule('Any usage of the unroll constants as lhs of binary expression should become `true`');
           example('x = $LOOP_DONE_UNROLLING_ALWAYS_TRUE + 1;', 'x = true + 1');
@@ -5298,7 +5298,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         }
         if (
           node.right.type === 'Identifier' &&
-          (node.right.name === MAX_UNROLL_CONSTANT_NAME || node.right.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+          (node.right.name === SYMBOL_MAX_LOOP_UNROLL || node.right.name.startsWith(SYMBOL_LOOP_UNROLL))
         ) {
           rule('Any usage of the unroll constants as rhs of binary expression should become `true`');
           example('x = 1 + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = 1 + true');
@@ -6052,7 +6052,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
         if (
           node.argument.type === 'Identifier' &&
-          (node.argument.name === MAX_UNROLL_CONSTANT_NAME || node.argument.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+          (node.argument.name === SYMBOL_MAX_LOOP_UNROLL || node.argument.name.startsWith(SYMBOL_LOOP_UNROLL))
         ) {
           rule('Any usage of the unroll constants as arg of a unary expression should become `true`');
           example('x = + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = + true');
@@ -6113,7 +6113,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
         if (
           node.argument.type === 'Identifier' &&
-          (node.argument.name === MAX_UNROLL_CONSTANT_NAME || node.argument.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+          (node.argument.name === SYMBOL_MAX_LOOP_UNROLL || node.argument.name.startsWith(SYMBOL_LOOP_UNROLL))
         ) {
           rule('Any usage of the unroll constants as arg of await should become `true`');
           example('x = + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = + true');
@@ -6650,7 +6650,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
             if (
               enode.type === 'Identifier' &&
-              (enode.name === MAX_UNROLL_CONSTANT_NAME || enode.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+              (enode.name === SYMBOL_MAX_LOOP_UNROLL || enode.name.startsWith(SYMBOL_LOOP_UNROLL))
             ) {
               rule('Any usage of the unroll constants as array literal should become `true`');
               example('x = + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = + true');
@@ -6813,7 +6813,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             if (
               pnode.computed &&
               pnode.key.type === 'Identifier' &&
-              (pnode.key.name === MAX_UNROLL_CONSTANT_NAME || pnode.key.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+              (pnode.key.name === SYMBOL_MAX_LOOP_UNROLL || pnode.key.name.startsWith(SYMBOL_LOOP_UNROLL))
             ) {
               rule('Any usage of the unroll constants as obj literal property value should become `true`');
               example('x = + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = + true');
@@ -6828,7 +6828,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
             if (
               pnode.value.type === 'Identifier' &&
-              (pnode.value.name === MAX_UNROLL_CONSTANT_NAME || pnode.value.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+              (pnode.value.name === SYMBOL_MAX_LOOP_UNROLL || pnode.value.name.startsWith(SYMBOL_LOOP_UNROLL))
             ) {
               rule('Any usage of the unroll constants as obj literal property value should become `true`');
               example('x = + $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = + true');
@@ -7140,7 +7140,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                   ? // a?.b(1, 2, 3)  ->  b.call(a, 1, 2, 3)
                     // Call the special builtin to signify that this call was previously in fact a method call. We need this because
                     // when we find a random `.call()` we can't distinguish the built-in Function#call from a user method named `call`
-                  AST.callExpression(BUILTIN_DOTCALL_NAME, [AST.identifier(prevObj), AST.identifier(lastObj), ...node.arguments])
+                  AST.callExpression(SYMBOL_DOTCALL, [AST.identifier(prevObj), AST.identifier(lastObj), ...node.arguments])
                   : // a(1, 2, 3)  ->  b(1, 2, 3)
                   AST.callExpression(prevObj, node.arguments),
                 'const',
@@ -7673,7 +7673,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
     if (
       node.test.type === 'Identifier' &&
-      (node.test.name === MAX_UNROLL_CONSTANT_NAME || node.test.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+      (node.test.name === SYMBOL_MAX_LOOP_UNROLL || node.test.name.startsWith(SYMBOL_LOOP_UNROLL))
     ) {
       rule('The if test that is the special infinite loop `true` value can just be `true`');
       example('if ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) f();', 'if (true) f();');
@@ -8653,7 +8653,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
     if (
       node.argument.type === 'Identifier' &&
-      (node.argument.name === MAX_UNROLL_CONSTANT_NAME || node.argument.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+      (node.argument.name === SYMBOL_MAX_LOOP_UNROLL || node.argument.name.startsWith(SYMBOL_LOOP_UNROLL))
     ) {
       rule('Any usage of the unroll constants as return arg should become `true`');
       example('return $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'return true');
@@ -8714,7 +8714,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
     if (
       node.argument.type === 'Identifier' &&
-      (node.argument.name === MAX_UNROLL_CONSTANT_NAME || node.argument.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+      (node.argument.name === SYMBOL_MAX_LOOP_UNROLL || node.argument.name.startsWith(SYMBOL_LOOP_UNROLL))
     ) {
       rule('Any usage of the unroll constants as throw arg should become `true`');
       example('throw $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'throw true');
@@ -9141,7 +9141,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
     if (
       dnode.init.type === 'Identifier' &&
-      (dnode.init.name === MAX_UNROLL_CONSTANT_NAME || dnode.init.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX))
+      (dnode.init.name === SYMBOL_MAX_LOOP_UNROLL || dnode.init.name.startsWith(SYMBOL_LOOP_UNROLL))
     ) {
       if (transformExpression('var', dnode.init, body, i, node, dnode.id, node.kind)) {
         assertNoDupeNodes(AST.blockStatement(body), 'body');
@@ -9236,7 +9236,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
     if (
       !AST.isTrue(node.test) &&
-      !(node.test.type === 'Identifier' && (node.test.name.startsWith(LOOP_UNROLL_CONSTANT_COUNT_PREFIX) || node.test.name === MAX_UNROLL_CONSTANT_NAME))
+      !(node.test.type === 'Identifier' && (node.test.name.startsWith(SYMBOL_LOOP_UNROLL) || node.test.name === SYMBOL_MAX_LOOP_UNROLL))
     ) {
       // We do this because it makes all reads that relate to the loop be inside the block.
       // There are heuristics that want to know whether a binding is used inside a loop and if

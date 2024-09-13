@@ -42,7 +42,7 @@ import {
 } from '../bindings.mjs';
 import { addLabelReference, createFreshLabelStatement, updateGlobalLabelStatementRef } from '../labels.mjs';
 import { cloneSortOfSimple, isSortOfSimpleNode, normalizeFunction, transformFunctionParams } from '../ast.mjs';
-import { BUILTIN_FOR_IN_CALL_NAME, BUILTIN_FOR_OF_CALL_NAME, MAX_UNROLL_CONSTANT_NAME, SYMBOL_COERCE } from '../symbols_preval.mjs';
+import { SYMBOL_FORIN, SYMBOL_FOROF, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_COERCE } from '../symbols_preval.mjs';
 
 export function phaseNormalOnce(fdata) {
   const ast = fdata.tenkoOutput.ast;
@@ -1194,10 +1194,10 @@ export function phaseNormalOnce(fdata) {
 
           const newNode = AST.blockStatement(
             // const forInGen = $forIn(x)
-            AST.variableDeclaration(genName, AST.callExpression(AST.identifier(BUILTIN_FOR_IN_CALL_NAME), [node.right])),
+            AST.variableDeclaration(genName, AST.callExpression(AST.identifier(SYMBOL_FORIN), [node.right])),
             // while (true) {}
             // (It probably doesn't make sense for for-in/of loops to get unrolled because there's no base case right now, maybe later tho, but that's probably handled differently?)
-            AST.whileStatement(AST.identifier(MAX_UNROLL_CONSTANT_NAME), AST.blockStatement(
+            AST.whileStatement(AST.identifier(SYMBOL_MAX_LOOP_UNROLL), AST.blockStatement(
               // const next = forInGen.next();
               AST.variableDeclaration(valName, AST.callExpression(AST.memberExpression(AST.identifier(genName), AST.identifier('next'), false), [])),
               // if (x.done)
@@ -1249,10 +1249,10 @@ export function phaseNormalOnce(fdata) {
         // should be able to simply do something like `x[f()] = g().value` and maintain code execution order
         const newNode = AST.blockStatement(
           // const forInGen = $forIn(x)
-          AST.variableDeclaration(genName, AST.callExpression(AST.identifier(BUILTIN_FOR_IN_CALL_NAME), [node.right])),
+          AST.variableDeclaration(genName, AST.callExpression(AST.identifier(SYMBOL_FORIN), [node.right])),
           // while (true) {}
           // (It probably doesn't make sense for for-in/of loops to get unrolled because there's no base case right now, maybe later tho, but that's probably handled differently?)
-          AST.whileStatement(AST.identifier(MAX_UNROLL_CONSTANT_NAME), AST.blockStatement(
+          AST.whileStatement(AST.identifier(SYMBOL_MAX_LOOP_UNROLL), AST.blockStatement(
             // const next = forInGen.next();
             AST.variableDeclaration(valName, AST.callExpression(AST.memberExpression(AST.identifier(genName), AST.identifier('next'), false), [])),
             // if (x.done)
@@ -1322,10 +1322,10 @@ export function phaseNormalOnce(fdata) {
 
           const newNode = AST.blockStatement(
             // const forOfGen = $forOf(x)
-            AST.variableDeclaration(genName, AST.callExpression(AST.identifier(BUILTIN_FOR_OF_CALL_NAME), [node.right])),
+            AST.variableDeclaration(genName, AST.callExpression(AST.identifier(SYMBOL_FOROF), [node.right])),
             // while (true) {}
             // (It probably doesn't make sense for for-in/of loops to get unrolled because there's no base case right now, maybe later tho, but that's probably handled differently?)
-            AST.whileStatement(AST.identifier(MAX_UNROLL_CONSTANT_NAME), AST.blockStatement(
+            AST.whileStatement(AST.identifier(SYMBOL_MAX_LOOP_UNROLL), AST.blockStatement(
               // const next = forOfGen.next();
               AST.variableDeclaration(valName, AST.callExpression(AST.memberExpression(AST.identifier(genName), AST.identifier('next'), false), [])),
               // if (x.done)
@@ -1376,10 +1376,10 @@ export function phaseNormalOnce(fdata) {
         // should be able to simply do something like `x[f()] = g().value` and maintain code execution order
         const newNode = AST.blockStatement(
           // const forOfGen = $forOf(x)
-          AST.variableDeclaration(genName, AST.callExpression(AST.identifier(BUILTIN_FOR_OF_CALL_NAME), [node.right])),
+          AST.variableDeclaration(genName, AST.callExpression(AST.identifier(SYMBOL_FOROF), [node.right])),
           // while (true) {}
           // (It probably doesn't make sense for for-of/of loops to get unrolled because there's no base case right now, maybe later tho, but that's probably handled differently?)
-          AST.whileStatement(AST.identifier(MAX_UNROLL_CONSTANT_NAME), AST.blockStatement(
+          AST.whileStatement(AST.identifier(SYMBOL_MAX_LOOP_UNROLL), AST.blockStatement(
             // const next = forOfGen.next();
             AST.variableDeclaration(valName, AST.callExpression(AST.memberExpression(AST.identifier(genName), AST.identifier('next'), false), [])),
             // if (x.done)

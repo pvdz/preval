@@ -1733,6 +1733,40 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
               break;
             }
+            case 'atob': {
+              if (args.length === 1 && AST.isPrimitive(args[0])) {
+                rule('A call to `atob` with a primitive can be inlined');
+                example('atob("eHl6");', 'xyz');
+                before(body[i]);
+
+                const value = AST.getPrimitiveValue(args[0]);
+                const finalNode = AST.primitive(atob(value));
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(i, 1, finalParent);
+
+                after(body[i]);
+                return true;
+              }
+              break;
+            }
+            case 'btoa': {
+              if (args.length === 1 && AST.isPrimitive(args[0])) {
+                rule('A call to `btoa` with a primitive can be inlined');
+                example('btoa("xyz");', 'eHl6');
+                before(body[i]);
+
+                const value = AST.getPrimitiveValue(args[0]);
+                const finalNode = AST.primitive(btoa(value));
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(i, 1, finalParent);
+
+                after(body[i]);
+                return true;
+              }
+              break;
+            }
+
+
           }
 
           if (wrapKind === 'statement') {

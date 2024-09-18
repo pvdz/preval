@@ -281,6 +281,7 @@ function process(fdata, meta, name, queue, attempted) {
     }
     else if (currNode.type === 'TryStatement') {
       vlog('Try; we want to move stuff out of the Try so we bail here');
+      vgroupEnd();
       return;
     }
     else {

@@ -59,3 +59,4 @@
 // tests/cases/normalize/expressions/assignments/compound/auto_ident_c-opt_complex_complex_c-opt_complex_complex.md doesnt tmpClusterSSA_a invariably get NaN assigned ? We can resolve that.
 // rename complexNodeMightSpy to include "expression" for clarity
 // investigate return elimination... `return x` -> `let $r; $ret: { $r = x; break $ret; } return $r;`
+// add func return type and array type to meta.typing?

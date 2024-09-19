@@ -155,8 +155,13 @@ function printRef(indent, config, node) {
     const newName = config.names.get(node.name);
     if (newName) return newName + suffix;
 
-    const size = config.names.size;
-    const nextName = (size + 10).toString(36).split('').reverse().join(''); // Can not start with a digit (low endian 0-9)
+    let size = config.names.size;
+    let nextName = size ? '' : 'a';
+    while (size > 0) {
+      const n = size % 26;
+      nextName = 'abcdefghijklmnopqrstuvwxyz'[n] + nextName;
+      size = Math.floor(size / 26);
+    }
     config.names.set(node.name, nextName);
     return nextName + suffix;
   }

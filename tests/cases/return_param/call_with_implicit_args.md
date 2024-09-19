@@ -223,14 +223,14 @@ const w = function($$0,$$1,$$2,$$3,$$4 ) {
   const x = c;
   const y = h;
   const z = j;
-  const 01 = l;
-  const 11 = n;
+  const ba = l;
+  const bb = n;
   debugger;
-  $( "pass3", x, y, z, 01, 11 );
+  $( "pass3", x, y, z, ba, bb );
   return undefined;
 };
-const 21 = a( w );
-$( 21 );
+const bc = a( w );
+$( bc );
 `````
 
 ## Globals

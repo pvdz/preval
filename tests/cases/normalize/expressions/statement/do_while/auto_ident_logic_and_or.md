@@ -387,18 +387,18 @@ loopStop: {
   }
   $( 100 );
   const z = $( 1 );
-  let 01 = $( z );
-  if (01) {
-    const 11 = $( 1 );
-    01 = $( 11 );
+  let ba = $( z );
+  if (ba) {
+    const bb = $( 1 );
+    ba = $( bb );
   }
-  if (01) {
+  if (ba) {
 
   }
   else {
-    const 21 = $( 2 );
-    const 31 = $( 21 );
-    if (31) {
+    const bc = $( 2 );
+    const bd = $( bc );
+    if (bd) {
 
     }
     else {
@@ -406,19 +406,19 @@ loopStop: {
     }
   }
   $( 100 );
-  const 41 = $( 1 );
-  let 51 = $( 41 );
-  if (51) {
-    const 61 = $( 1 );
-    51 = $( 61 );
+  const be = $( 1 );
+  let bf = $( be );
+  if (bf) {
+    const bg = $( 1 );
+    bf = $( bg );
   }
-  if (51) {
+  if (bf) {
 
   }
   else {
-    const 71 = $( 2 );
-    const 81 = $( 71 );
-    if (81) {
+    const bh = $( 2 );
+    const bi = $( bh );
+    if (bi) {
 
     }
     else {
@@ -426,19 +426,19 @@ loopStop: {
     }
   }
   $( 100 );
-  const 91 = $( 1 );
-  let a1 = $( 91 );
-  if (a1) {
-    const b1 = $( 1 );
-    a1 = $( b1 );
+  const bj = $( 1 );
+  let bk = $( bj );
+  if (bk) {
+    const bl = $( 1 );
+    bk = $( bl );
   }
-  if (a1) {
+  if (bk) {
 
   }
   else {
-    const c1 = $( 2 );
-    const d1 = $( c1 );
-    if (d1) {
+    const bm = $( 2 );
+    const bn = $( bm );
+    if (bn) {
 
     }
     else {
@@ -446,19 +446,19 @@ loopStop: {
     }
   }
   $( 100 );
-  const e1 = $( 1 );
-  let f1 = $( e1 );
-  if (f1) {
-    const g1 = $( 1 );
-    f1 = $( g1 );
+  const bo = $( 1 );
+  let bp = $( bo );
+  if (bp) {
+    const bq = $( 1 );
+    bp = $( bq );
   }
-  if (f1) {
+  if (bp) {
 
   }
   else {
-    const h1 = $( 2 );
-    const i1 = $( h1 );
-    if (i1) {
+    const br = $( 2 );
+    const bs = $( br );
+    if (bs) {
 
     }
     else {
@@ -466,19 +466,19 @@ loopStop: {
     }
   }
   $( 100 );
-  const j1 = $( 1 );
-  let k1 = $( j1 );
-  if (k1) {
-    const l1 = $( 1 );
-    k1 = $( l1 );
+  const bt = $( 1 );
+  let bu = $( bt );
+  if (bu) {
+    const bv = $( 1 );
+    bu = $( bv );
   }
-  if (k1) {
+  if (bu) {
 
   }
   else {
-    const m1 = $( 2 );
-    const n1 = $( m1 );
-    if (n1) {
+    const bw = $( 2 );
+    const bx = $( bw );
+    if (bx) {
 
     }
     else {
@@ -486,19 +486,19 @@ loopStop: {
     }
   }
   $( 100 );
-  const o1 = $( 1 );
-  let p1 = $( o1 );
-  if (p1) {
-    const q1 = $( 1 );
-    p1 = $( q1 );
+  const by = $( 1 );
+  let bz = $( by );
+  if (bz) {
+    const ca = $( 1 );
+    bz = $( ca );
   }
-  if (p1) {
+  if (bz) {
 
   }
   else {
-    const r1 = $( 2 );
-    const s1 = $( r1 );
-    if (s1) {
+    const cb = $( 2 );
+    const cc = $( cb );
+    if (cc) {
 
     }
     else {
@@ -507,19 +507,19 @@ loopStop: {
   }
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $( 100 );
-    const t1 = $( 1 );
-    let u1 = $( t1 );
-    if (u1) {
-      const v1 = $( 1 );
-      u1 = $( v1 );
+    const cd = $( 1 );
+    let ce = $( cd );
+    if (ce) {
+      const cf = $( 1 );
+      ce = $( cf );
     }
-    if (u1) {
+    if (ce) {
 
     }
     else {
-      const w1 = $( 2 );
-      const x1 = $( w1 );
-      if (x1) {
+      const cg = $( 2 );
+      const ch = $( cg );
+      if (ch) {
 
       }
       else {
@@ -528,11 +528,11 @@ loopStop: {
     }
   }
 }
-const y1 = {
+const ci = {
   a: 999,
   b: 1000,
 };
-$( y1 );
+$( ci );
 `````
 
 ## Globals

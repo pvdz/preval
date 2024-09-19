@@ -182,9 +182,9 @@ if (b) {
       const x = $( "x" );
       const y = $( c );
       const z = $( "x" );
-      const 01 = $( c );
-      const 11 = $( "x" );
-      01[11] = 3;
+      const ba = $( c );
+      const bb = $( "x" );
+      ba[bb] = 3;
       y[z] = 3;
       w[x] = 3;
       u[v] = 3;

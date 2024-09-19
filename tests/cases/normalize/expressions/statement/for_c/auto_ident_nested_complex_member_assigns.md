@@ -177,8 +177,8 @@ if (a) {
       const x = $( b );
       const y = $( "x" );
       const z = $( b );
-      const 01 = $( "x" );
-      z[01] = 3;
+      const ba = $( "x" );
+      z[ba] = 3;
       x[y] = 3;
       v[w] = 3;
       t[u] = 3;
@@ -190,11 +190,11 @@ if (a) {
     }
   }
 }
-const 11 = {
+const bb = {
   a: 999,
   b: 1000,
 };
-$( 11, b, 3 );
+$( bb, b, 3 );
 `````
 
 ## Globals

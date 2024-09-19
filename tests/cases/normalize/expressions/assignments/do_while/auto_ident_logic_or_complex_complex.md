@@ -351,13 +351,13 @@ loopStop: {
   }
   $( 100 );
   const z = $( 0 );
-  const 01 = $( z );
-  if (01) {
+  const ba = $( z );
+  if (ba) {
 
   }
   else {
-    const 11 = $( 2 );
-    a = $( 11 );
+    const bb = $( 2 );
+    a = $( bb );
     if (a) {
 
     }
@@ -366,14 +366,14 @@ loopStop: {
     }
   }
   $( 100 );
-  const 21 = $( 0 );
-  const 31 = $( 21 );
-  if (31) {
+  const bc = $( 0 );
+  const bd = $( bc );
+  if (bd) {
 
   }
   else {
-    const 41 = $( 2 );
-    a = $( 41 );
+    const be = $( 2 );
+    a = $( be );
     if (a) {
 
     }
@@ -382,14 +382,14 @@ loopStop: {
     }
   }
   $( 100 );
-  const 51 = $( 0 );
-  const 61 = $( 51 );
-  if (61) {
+  const bf = $( 0 );
+  const bg = $( bf );
+  if (bg) {
 
   }
   else {
-    const 71 = $( 2 );
-    a = $( 71 );
+    const bh = $( 2 );
+    a = $( bh );
     if (a) {
 
     }
@@ -399,14 +399,14 @@ loopStop: {
   }
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $( 100 );
-    const 81 = $( 0 );
-    const 91 = $( 81 );
-    if (91) {
+    const bi = $( 0 );
+    const bj = $( bi );
+    if (bj) {
 
     }
     else {
-      const a1 = $( 2 );
-      a = $( a1 );
+      const bk = $( 2 );
+      a = $( bk );
       if (a) {
 
       }

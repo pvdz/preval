@@ -222,15 +222,15 @@ $( w );
 const x = function($$0,$$1,$$2,$$3,$$4 ) {
   const y = c;
   const z = i;
-  const 01 = k;
-  const 11 = m;
-  const 21 = o;
+  const ba = k;
+  const bb = m;
+  const bc = o;
   debugger;
-  $( "pass3", y, z, 01, 11, 21 );
+  $( "pass3", y, z, ba, bb, bc );
   return undefined;
 };
-const 31 = a( x );
-$( 31 );
+const bd = a( x );
+$( bd );
 `````
 
 ## Globals

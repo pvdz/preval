@@ -304,19 +304,19 @@ const j = function($$0,$$1,$$2,$$3 ) {
     q[u] = r;
     q[s] = w;
     let z = u;
-    let 01 = u > 0;
+    let ba = u > 0;
     while ($LOOP_UNROLL_100) {
-      if (01) {
-        const 11 = z - 1;
-        const 21 = 11 >>> 1;
-        const 31 = q[ 21 ];
-        const 41 = compare( 31, r );
-        const 51 = 41 > 0;
-        if (51) {
-          q[21] = r;
-          q[z] = 31;
-          z = 21;
-          01 = 21 > 0;
+      if (ba) {
+        const bb = z - 1;
+        const bc = bb >>> 1;
+        const bd = q[ bc ];
+        const be = compare( bd, r );
+        const bf = be > 0;
+        if (bf) {
+          q[bc] = r;
+          q[z] = bd;
+          z = bc;
+          ba = bc > 0;
         }
         else {
           return undefined;

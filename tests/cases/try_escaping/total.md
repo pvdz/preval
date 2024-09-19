@@ -309,29 +309,29 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const x = u * v;
   const y = -j;
   const z = w + x;
-  const 01 = y / 4;
-  const 11 = z + 01;
-  const 21 = l / 5;
-  const 31 = 11 + 21;
-  const 41 = n / 6;
-  const 51 = -p;
-  const 61 = 31 + 41;
-  const 71 = 51 / 7;
-  const 81 = -r;
-  const 91 = 61 + 71;
-  const a1 = 81 / 8;
-  const b1 = 91 + a1;
-  const c1 = b1 === 644244;
-  if (c1) {
+  const ba = y / 4;
+  const bb = z + ba;
+  const bc = l / 5;
+  const bd = bb + bc;
+  const be = n / 6;
+  const bf = -p;
+  const bg = bd + be;
+  const bh = bf / 7;
+  const bi = -r;
+  const bj = bg + bh;
+  const bk = bi / 8;
+  const bl = bj + bk;
+  const bm = bl === 644244;
+  if (bm) {
     break;
   }
   else {
-    const d1 = a.shift();
-    a.push( d1 );
+    const bn = a.shift();
+    a.push( bn );
   }
 }
-const e1 = a[ 0 ];
-$( e1 );
+const bo = a[ 0 ];
+$( bo );
 `````
 
 ## Globals

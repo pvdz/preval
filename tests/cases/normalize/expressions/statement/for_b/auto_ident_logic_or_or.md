@@ -399,15 +399,15 @@ loopStop: {
     $( 1 );
   }
   else {
-    const 01 = $( 1 );
-    const 11 = $( 01 );
-    if (11) {
+    const ba = $( 1 );
+    const bb = $( ba );
+    if (bb) {
       $( 1 );
     }
     else {
-      const 21 = $( 2 );
-      const 31 = $( 21 );
-      if (31) {
+      const bc = $( 2 );
+      const bd = $( bc );
+      if (bd) {
         $( 1 );
       }
       else {
@@ -415,21 +415,21 @@ loopStop: {
       }
     }
   }
-  const 41 = $( 0 );
-  const 51 = $( 41 );
-  if (51) {
+  const be = $( 0 );
+  const bf = $( be );
+  if (bf) {
     $( 1 );
   }
   else {
-    const 61 = $( 1 );
-    const 71 = $( 61 );
-    if (71) {
+    const bg = $( 1 );
+    const bh = $( bg );
+    if (bh) {
       $( 1 );
     }
     else {
-      const 81 = $( 2 );
-      const 91 = $( 81 );
-      if (91) {
+      const bi = $( 2 );
+      const bj = $( bi );
+      if (bj) {
         $( 1 );
       }
       else {
@@ -437,21 +437,21 @@ loopStop: {
       }
     }
   }
-  const a1 = $( 0 );
-  const b1 = $( a1 );
-  if (b1) {
+  const bk = $( 0 );
+  const bl = $( bk );
+  if (bl) {
     $( 1 );
   }
   else {
-    const c1 = $( 1 );
-    const d1 = $( c1 );
-    if (d1) {
+    const bm = $( 1 );
+    const bn = $( bm );
+    if (bn) {
       $( 1 );
     }
     else {
-      const e1 = $( 2 );
-      const f1 = $( e1 );
-      if (f1) {
+      const bo = $( 2 );
+      const bp = $( bo );
+      if (bp) {
         $( 1 );
       }
       else {
@@ -459,21 +459,21 @@ loopStop: {
       }
     }
   }
-  const g1 = $( 0 );
-  const h1 = $( g1 );
-  if (h1) {
+  const bq = $( 0 );
+  const br = $( bq );
+  if (br) {
     $( 1 );
   }
   else {
-    const i1 = $( 1 );
-    const j1 = $( i1 );
-    if (j1) {
+    const bs = $( 1 );
+    const bt = $( bs );
+    if (bt) {
       $( 1 );
     }
     else {
-      const k1 = $( 2 );
-      const l1 = $( k1 );
-      if (l1) {
+      const bu = $( 2 );
+      const bv = $( bu );
+      if (bv) {
         $( 1 );
       }
       else {
@@ -481,21 +481,21 @@ loopStop: {
       }
     }
   }
-  const m1 = $( 0 );
-  const n1 = $( m1 );
-  if (n1) {
+  const bw = $( 0 );
+  const bx = $( bw );
+  if (bx) {
     $( 1 );
   }
   else {
-    const o1 = $( 1 );
-    const p1 = $( o1 );
-    if (p1) {
+    const by = $( 1 );
+    const bz = $( by );
+    if (bz) {
       $( 1 );
     }
     else {
-      const q1 = $( 2 );
-      const r1 = $( q1 );
-      if (r1) {
+      const ca = $( 2 );
+      const cb = $( ca );
+      if (cb) {
         $( 1 );
       }
       else {
@@ -503,21 +503,21 @@ loopStop: {
       }
     }
   }
-  const s1 = $( 0 );
-  const t1 = $( s1 );
-  if (t1) {
+  const cc = $( 0 );
+  const cd = $( cc );
+  if (cd) {
     $( 1 );
   }
   else {
-    const u1 = $( 1 );
-    const v1 = $( u1 );
-    if (v1) {
+    const ce = $( 1 );
+    const cf = $( ce );
+    if (cf) {
       $( 1 );
     }
     else {
-      const w1 = $( 2 );
-      const x1 = $( w1 );
-      if (x1) {
+      const cg = $( 2 );
+      const ch = $( cg );
+      if (ch) {
         $( 1 );
       }
       else {
@@ -525,21 +525,21 @@ loopStop: {
       }
     }
   }
-  const y1 = $( 0 );
-  const z1 = $( y1 );
-  if (z1) {
+  const ci = $( 0 );
+  const cj = $( ci );
+  if (cj) {
     $( 1 );
   }
   else {
-    const 02 = $( 1 );
-    const 12 = $( 02 );
-    if (12) {
+    const ck = $( 1 );
+    const cl = $( ck );
+    if (cl) {
       $( 1 );
     }
     else {
-      const 22 = $( 2 );
-      const 32 = $( 22 );
-      if (32) {
+      const cm = $( 2 );
+      const cn = $( cm );
+      if (cn) {
         $( 1 );
       }
       else {
@@ -548,21 +548,21 @@ loopStop: {
     }
   }
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const 42 = $( 0 );
-    const 52 = $( 42 );
-    if (52) {
+    const co = $( 0 );
+    const cp = $( co );
+    if (cp) {
       $( 1 );
     }
     else {
-      const 62 = $( 1 );
-      const 72 = $( 62 );
-      if (72) {
+      const cq = $( 1 );
+      const cr = $( cq );
+      if (cr) {
         $( 1 );
       }
       else {
-        const 82 = $( 2 );
-        const 92 = $( 82 );
-        if (92) {
+        const cs = $( 2 );
+        const ct = $( cs );
+        if (ct) {
           $( 1 );
         }
         else {
@@ -572,11 +572,11 @@ loopStop: {
     }
   }
 }
-const a2 = {
+const cu = {
   a: 999,
   b: 1000,
 };
-$( a2 );
+$( cu );
 `````
 
 ## Globals

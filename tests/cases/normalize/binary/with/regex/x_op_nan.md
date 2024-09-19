@@ -316,22 +316,22 @@ const w = /foo/g;
 const x = a > w;
 const y = /foo/g;
 const z = a <= y;
-const 01 = /foo/g;
-const 11 = a >= 01;
-const 21 = /foo/g;
-const 31 = a & 21;
-const 41 = /foo/g;
-const 51 = a ^ 41;
-const 61 = /foo/g;
-const 71 = a | 61;
-const 81 = [ d, f, h, j, l, n, p, r, t, v, x, z, 11, false, true, false, true, 31, 51, 71 ];
-$( 81 );
-const 91 = /foo/g;
-const a1 = /foo/g;
-const b1 = a in 91;
-const c1 = a instanceof a1;
-const d1 = [ b1, c1 ];
-$( d1 );
+const ba = /foo/g;
+const bb = a >= ba;
+const bc = /foo/g;
+const bd = a & bc;
+const be = /foo/g;
+const bf = a ^ be;
+const bg = /foo/g;
+const bh = a | bg;
+const bi = [ d, f, h, j, l, n, p, r, t, v, x, z, bb, false, true, false, true, bd, bf, bh ];
+$( bi );
+const bj = /foo/g;
+const bk = /foo/g;
+const bl = a in bj;
+const bm = a instanceof bk;
+const bn = [ bl, bm ];
+$( bn );
 `````
 
 ## Globals

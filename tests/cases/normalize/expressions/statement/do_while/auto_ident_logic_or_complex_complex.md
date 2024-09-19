@@ -322,9 +322,9 @@ loopStop: {
 
   }
   else {
-    const 01 = $( 2 );
-    const 11 = $( 01 );
-    if (11) {
+    const ba = $( 2 );
+    const bb = $( ba );
+    if (bb) {
 
     }
     else {
@@ -332,15 +332,15 @@ loopStop: {
     }
   }
   $( 100 );
-  const 21 = $( 0 );
-  const 31 = $( 21 );
-  if (31) {
+  const bc = $( 0 );
+  const bd = $( bc );
+  if (bd) {
 
   }
   else {
-    const 41 = $( 2 );
-    const 51 = $( 41 );
-    if (51) {
+    const be = $( 2 );
+    const bf = $( be );
+    if (bf) {
 
     }
     else {
@@ -348,15 +348,15 @@ loopStop: {
     }
   }
   $( 100 );
-  const 61 = $( 0 );
-  const 71 = $( 61 );
-  if (71) {
+  const bg = $( 0 );
+  const bh = $( bg );
+  if (bh) {
 
   }
   else {
-    const 81 = $( 2 );
-    const 91 = $( 81 );
-    if (91) {
+    const bi = $( 2 );
+    const bj = $( bi );
+    if (bj) {
 
     }
     else {
@@ -364,15 +364,15 @@ loopStop: {
     }
   }
   $( 100 );
-  const a1 = $( 0 );
-  const b1 = $( a1 );
-  if (b1) {
+  const bk = $( 0 );
+  const bl = $( bk );
+  if (bl) {
 
   }
   else {
-    const c1 = $( 2 );
-    const d1 = $( c1 );
-    if (d1) {
+    const bm = $( 2 );
+    const bn = $( bm );
+    if (bn) {
 
     }
     else {
@@ -380,15 +380,15 @@ loopStop: {
     }
   }
   $( 100 );
-  const e1 = $( 0 );
-  const f1 = $( e1 );
-  if (f1) {
+  const bo = $( 0 );
+  const bp = $( bo );
+  if (bp) {
 
   }
   else {
-    const g1 = $( 2 );
-    const h1 = $( g1 );
-    if (h1) {
+    const bq = $( 2 );
+    const br = $( bq );
+    if (br) {
 
     }
     else {
@@ -397,15 +397,15 @@ loopStop: {
   }
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $( 100 );
-    const i1 = $( 0 );
-    const j1 = $( i1 );
-    if (j1) {
+    const bs = $( 0 );
+    const bt = $( bs );
+    if (bt) {
 
     }
     else {
-      const k1 = $( 2 );
-      const l1 = $( k1 );
-      if (l1) {
+      const bu = $( 2 );
+      const bv = $( bu );
+      if (bv) {
 
       }
       else {
@@ -414,11 +414,11 @@ loopStop: {
     }
   }
 }
-const m1 = {
+const bw = {
   a: 999,
   b: 1000,
 };
-$( m1 );
+$( bw );
 `````
 
 ## Globals

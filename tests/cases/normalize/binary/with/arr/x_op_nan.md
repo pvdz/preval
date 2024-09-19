@@ -315,21 +315,21 @@ const w = a > v;
 const x = [];
 const y = a <= x;
 const z = [];
-const 01 = a >= z;
-const 11 = [];
-const 21 = a & 11;
-const 31 = [];
-const 41 = a ^ 31;
-const 51 = [];
-const 61 = a | 51;
-const 71 = [ d, f, h, j, k, m, o, q, s, u, w, y, 01, false, true, false, true, 21, 41, 61 ];
-$( 71 );
-const 81 = [];
-const 91 = [];
-const a1 = a in 81;
-const b1 = a instanceof 91;
-const c1 = [ a1, b1 ];
-$( c1 );
+const ba = a >= z;
+const bb = [];
+const bc = a & bb;
+const bd = [];
+const be = a ^ bd;
+const bf = [];
+const bg = a | bf;
+const bh = [ d, f, h, j, k, m, o, q, s, u, w, y, ba, false, true, false, true, bc, be, bg ];
+$( bh );
+const bi = [];
+const bj = [];
+const bk = a in bi;
+const bl = a instanceof bj;
+const bm = [ bk, bl ];
+$( bm );
 `````
 
 ## Globals

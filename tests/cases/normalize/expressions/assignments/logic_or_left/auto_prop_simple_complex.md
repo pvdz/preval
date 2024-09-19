@@ -50,7 +50,7 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const a = { b: tmpObjLitVal };
+const a /*:object*/ = { b: tmpObjLitVal };
 $(a);
 const tmpAssignMemRhs = $(2);
 a.b = tmpAssignMemRhs;

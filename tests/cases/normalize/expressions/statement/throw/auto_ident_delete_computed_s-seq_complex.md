@@ -47,8 +47,8 @@ throw tmpThrowArg;
 $(1);
 $(2);
 const tmpDeleteCompProp = $(`y`);
-const arg = { y: 1 };
-const tmpThrowArg = delete arg[tmpDeleteCompProp];
+const arg /*:object*/ = { y: 1 };
+const tmpThrowArg /*:boolean*/ = delete arg[tmpDeleteCompProp];
 throw tmpThrowArg;
 `````
 

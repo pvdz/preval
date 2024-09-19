@@ -73,8 +73,8 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
-const b = { x: 3 };
+const a /*:object*/ = { a: 999, b: 1000 };
+const b /*:object*/ = { x: 3 };
 $(a, b, 3);
 $(undefined);
 `````

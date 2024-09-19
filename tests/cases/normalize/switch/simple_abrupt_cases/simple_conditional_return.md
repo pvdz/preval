@@ -150,20 +150,20 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 $inlinedFunction: {
   const tmpSwitchValue = $(1);
-  let tmpSwitchCaseToStart = 4;
-  const tmpIfTest = 0 === tmpSwitchValue;
+  let tmpSwitchCaseToStart /*:number*/ = 4;
+  const tmpIfTest /*:boolean*/ = 0 === tmpSwitchValue;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   } else {
-    const tmpIfTest$1 = 1 === tmpSwitchValue;
+    const tmpIfTest$1 /*:boolean*/ = 1 === tmpSwitchValue;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 1;
     } else {
-      const tmpIfTest$3 = 2 === tmpSwitchValue;
+      const tmpIfTest$3 /*:boolean*/ = 2 === tmpSwitchValue;
       if (tmpIfTest$3) {
         tmpSwitchCaseToStart = 2;
       } else {
-        const tmpIfTest$5 = 3 === tmpSwitchValue;
+        const tmpIfTest$5 /*:boolean*/ = 3 === tmpSwitchValue;
         if (tmpIfTest$5) {
           tmpSwitchCaseToStart = 3;
         } else {
@@ -171,7 +171,7 @@ $inlinedFunction: {
       }
     }
   }
-  const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
+  const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$7) {
     $(`one`);
     const tmpIfTest$9 = $(1);
@@ -181,15 +181,15 @@ $inlinedFunction: {
     }
   } else {
   }
-  const tmpIfTest$11 = tmpSwitchCaseToStart <= 1;
+  const tmpIfTest$11 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$11) {
     $(`two`);
   } else {
-    const tmpIfTest$13 = tmpSwitchCaseToStart <= 2;
+    const tmpIfTest$13 /*:boolean*/ = tmpSwitchCaseToStart <= 2;
     if (tmpIfTest$13) {
       $(`three`);
     } else {
-      const tmpIfTest$15 = tmpSwitchCaseToStart <= 3;
+      const tmpIfTest$15 /*:boolean*/ = tmpSwitchCaseToStart <= 3;
       if (tmpIfTest$15) {
         $(`four`);
       } else {

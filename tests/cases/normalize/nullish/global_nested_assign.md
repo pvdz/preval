@@ -52,8 +52,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 $();
-const tmpObjLitVal = { b: 15 };
-const obj = { a: tmpObjLitVal };
+const tmpObjLitVal /*:object*/ = { b: 15 };
+const obj /*:object*/ = { a: tmpObjLitVal };
 $(obj);
 `````
 

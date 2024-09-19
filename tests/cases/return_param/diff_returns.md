@@ -96,7 +96,7 @@ const f = function ($$0) {
   $(`no`);
   $(`inlining`);
   $(`please`);
-  const y = ~x;
+  const y /*:number*/ = ~x;
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     $(`a`);

@@ -79,7 +79,7 @@ const f = function () {
   return undefined;
 };
 f();
-const tmpCalleeParam$1 = [1, 2, 3];
+const tmpCalleeParam$1 /*:array*/ = [1, 2, 3];
 const tmpCalleeParam = tmpCalleeParam$1.toString();
 $(tmpCalleeParam);
 f();

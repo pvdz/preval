@@ -53,13 +53,13 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const tmpCalleeParam = Boolean($);
+const tmpCalleeParam /*:boolean*/ = Boolean($);
 $(tmpCalleeParam);
 const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(`fail`);
 } else {
-  const x = !$;
+  const x /*:boolean*/ = !$;
   $(x);
 }
 `````

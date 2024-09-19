@@ -49,10 +49,10 @@ $(a, arg);
 $(1);
 $(2);
 const tmpDeleteCompProp = $(`y`);
-const arg = { y: 1 };
-const tmpCalleeParamSpread = delete arg[tmpDeleteCompProp];
+const arg /*:object*/ = { y: 1 };
+const tmpCalleeParamSpread /*:boolean*/ = delete arg[tmpDeleteCompProp];
 $(...tmpCalleeParamSpread);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 

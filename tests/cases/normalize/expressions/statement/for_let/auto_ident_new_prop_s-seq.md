@@ -51,7 +51,7 @@ while (true) {
 
 
 `````js filename=intro
-const xyz = new $(1);
+const xyz /*:object*/ = new $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);

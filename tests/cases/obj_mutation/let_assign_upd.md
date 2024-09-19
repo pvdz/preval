@@ -63,14 +63,14 @@ $(blob);
 
 
 `````js filename=intro
-let blob = { thing: `woop`, xyz: 0 };
+let blob /*:object*/ = { thing: `woop`, xyz: 0 };
 const tmpAssignMemLhsObj = blob;
 const tmpBinLhs = blob.xyz;
 const tmpAssignMemRhs = tmpBinLhs + 1;
 tmpAssignMemLhsObj.xyz = tmpAssignMemRhs;
 $(blob);
 const tmpBinLhs$1 = blob.xyz;
-const tmpIfTest = tmpBinLhs$1 < 10;
+const tmpIfTest /*:boolean*/ = tmpBinLhs$1 < 10;
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     blob = { thing: `woop`, xyz: 0 };
@@ -80,7 +80,7 @@ if (tmpIfTest) {
     tmpAssignMemLhsObj$1.xyz = tmpAssignMemRhs$1;
     $(blob);
     const tmpBinLhs$4 = blob.xyz;
-    const tmpIfTest$1 = tmpBinLhs$4 < 10;
+    const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$4 < 10;
     if (tmpIfTest$1) {
     } else {
       break;

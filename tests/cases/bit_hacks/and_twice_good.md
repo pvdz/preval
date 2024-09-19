@@ -41,7 +41,7 @@ $(y);
 
 `````js filename=intro
 const tmpBinLhs = $(100);
-const x = tmpBinLhs & 32;
+const x /*:number*/ = tmpBinLhs & 32;
 $(x);
 $(x);
 `````

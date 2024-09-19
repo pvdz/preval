@@ -66,11 +66,11 @@ if (atest) {
 
 
 `````js filename=intro
-const a = x & 1;
+const a /*:number*/ = x & 1;
 if (a) {
   $(`no 1`);
 } else {
-  const b = x & 4;
+  const b /*:number*/ = x & 4;
   if (b) {
     $(`no 2`);
   } else {

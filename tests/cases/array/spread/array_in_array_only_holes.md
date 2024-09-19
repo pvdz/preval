@@ -36,7 +36,7 @@ $(y);
 
 
 `````js filename=intro
-const y = [`a`, undefined, undefined, undefined, `b`];
+const y /*:array*/ = [`a`, undefined, undefined, undefined, `b`];
 $(y);
 `````
 

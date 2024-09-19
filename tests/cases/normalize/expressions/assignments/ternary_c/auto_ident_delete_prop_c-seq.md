@@ -55,7 +55,7 @@ $(a, arg);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(0);
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
@@ -63,7 +63,7 @@ if (tmpIfTest) {
   $(1);
   $(2);
   const tmpDeleteObj = $(arg);
-  const tmpNestedComplexRhs = delete tmpDeleteObj.y;
+  const tmpNestedComplexRhs /*:boolean*/ = delete tmpDeleteObj.y;
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }

@@ -50,14 +50,14 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 10, d: 20 };
+const b /*:object*/ = { c: 10, d: 20 };
 const varInitAssignLhsComputedObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-const a = { a: 999, b: 1000 };
-const tmpClusterSSA_a = a * varInitAssignLhsComputedRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
+const tmpClusterSSA_a /*:number*/ = a * varInitAssignLhsComputedRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, b);
 `````

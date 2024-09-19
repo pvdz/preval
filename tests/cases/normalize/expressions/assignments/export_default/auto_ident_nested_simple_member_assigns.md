@@ -59,9 +59,9 @@ $(a, b, c);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport = 3;
+const tmpAnonDefaultExport /*:number*/ = 3;
 export { tmpAnonDefaultExport as default };
-const b = { x: 3 };
+const b /*:object*/ = { x: 3 };
 $(3, b, 3);
 `````
 

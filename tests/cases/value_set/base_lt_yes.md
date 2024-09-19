@@ -219,37 +219,37 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const x = $();
-const t = 0 === x;
+const t /*:boolean*/ = 0 === x;
 if (t) {
 } else {
-  const tmpClusterSSA_t = 1 === x;
+  const tmpClusterSSA_t /*:boolean*/ = 1 === x;
   if (tmpClusterSSA_t) {
   } else {
-    const tmpClusterSSA_t$1 = 2 === x;
+    const tmpClusterSSA_t$1 /*:boolean*/ = 2 === x;
     if (tmpClusterSSA_t$1) {
     } else {
-      const tmpClusterSSA_t$3 = 3 === x;
+      const tmpClusterSSA_t$3 /*:boolean*/ = 3 === x;
       if (tmpClusterSSA_t$3) {
       } else {
-        const tmpClusterSSA_t$5 = 4 === x;
+        const tmpClusterSSA_t$5 /*:boolean*/ = 4 === x;
         if (tmpClusterSSA_t$5) {
         } else {
-          const tmpClusterSSA_t$7 = 5 === x;
+          const tmpClusterSSA_t$7 /*:boolean*/ = 5 === x;
           if (tmpClusterSSA_t$7) {
           } else {
-            const tmpClusterSSA_t$9 = 6 === x;
+            const tmpClusterSSA_t$9 /*:boolean*/ = 6 === x;
             if (tmpClusterSSA_t$9) {
             } else {
-              const tmpClusterSSA_t$11 = 7 === x;
+              const tmpClusterSSA_t$11 /*:boolean*/ = 7 === x;
               if (tmpClusterSSA_t$11) {
               } else {
-                const tmpClusterSSA_t$13 = 8 === x;
+                const tmpClusterSSA_t$13 /*:boolean*/ = 8 === x;
                 if (tmpClusterSSA_t$13) {
                 } else {
-                  const tmpClusterSSA_t$15 = 10 === x;
+                  const tmpClusterSSA_t$15 /*:boolean*/ = 10 === x;
                   if (tmpClusterSSA_t$15) {
                   } else {
-                    const tmpClusterSSA_t$17 = 9 === x;
+                    const tmpClusterSSA_t$17 /*:boolean*/ = 9 === x;
                     if (tmpClusterSSA_t$17) {
                     } else {
                       $(`must be 11`);

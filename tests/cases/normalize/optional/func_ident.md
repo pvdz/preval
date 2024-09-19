@@ -53,7 +53,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const tmpIfTest = global == null;
+const tmpIfTest /*:boolean*/ = global == null;
 if (tmpIfTest) {
   const tmpClusterSSA_tmpReturnArg = $(undefined);
   $(tmpClusterSSA_tmpReturnArg);

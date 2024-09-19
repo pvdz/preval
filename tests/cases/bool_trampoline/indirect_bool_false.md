@@ -72,7 +72,7 @@ const f = function ($$0) {
   const arg = $$0;
   debugger;
   const x = $(arg);
-  const y = Boolean(x);
+  const y /*:boolean*/ = Boolean(x);
   return y;
 };
 $(f);

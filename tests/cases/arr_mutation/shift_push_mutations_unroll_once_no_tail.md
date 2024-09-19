@@ -63,7 +63,7 @@ while ($LOOP_UNROLL_2) {
 const test = $(`never`);
 if (test) {
 } else {
-  const arr = [2, 3, 4, 5, 1];
+  const arr /*:array*/ = [2, 3, 4, 5, 1];
   while ($LOOP_UNROLL_1) {
     const test$1 = $(`never`);
     if (test$1) {

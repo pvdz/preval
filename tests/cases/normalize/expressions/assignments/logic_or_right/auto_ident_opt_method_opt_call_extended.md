@@ -70,10 +70,10 @@ if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {
   let tmpNestedComplexRhs = undefined;
-  const tmpIfTest$1 = $ == null;
+  const tmpIfTest$1 /*:boolean*/ = $ == null;
   if (tmpIfTest$1) {
   } else {
-    const tmpObjLitVal$1 = { e: $ };
+    const tmpObjLitVal$1 /*:object*/ = { e: $ };
     const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
     tmpNestedComplexRhs = tmpChainElementCall;
   }

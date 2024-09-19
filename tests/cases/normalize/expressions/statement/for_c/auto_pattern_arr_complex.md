@@ -51,17 +51,17 @@ $(a);
 
 
 `````js filename=intro
-const bindingPatternArrRoot = { a: 999, b: 1000 };
-const arrPatternSplat = [...bindingPatternArrRoot];
+const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpCalleeParam = [1, 2];
+  const tmpCalleeParam /*:array*/ = [1, 2];
   $(tmpCalleeParam);
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
-      const tmpCalleeParam$1 = [1, 2];
+      const tmpCalleeParam$1 /*:array*/ = [1, 2];
       $(tmpCalleeParam$1);
     } else {
       break;

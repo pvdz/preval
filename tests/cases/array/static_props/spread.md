@@ -42,9 +42,9 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const tmpCalleeParam = [10, 20];
+const tmpCalleeParam /*:array*/ = [10, 20];
 const tmpArrSpread = $(tmpCalleeParam);
-const arr = [1, 2, ...tmpArrSpread, 3];
+const arr /*:array*/ = [1, 2, ...tmpArrSpread, 3];
 const tmpCalleeParam$1 = arr.length;
 $(tmpCalleeParam$1);
 `````

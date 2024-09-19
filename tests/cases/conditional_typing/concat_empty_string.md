@@ -43,7 +43,7 @@ $(z);
 
 `````js filename=intro
 const tmpStringFirstArg = $(`hello`);
-const x = $coerce(tmpStringFirstArg, `string`);
+const x /*:string*/ = $coerce(tmpStringFirstArg, `string`);
 $(x);
 `````
 

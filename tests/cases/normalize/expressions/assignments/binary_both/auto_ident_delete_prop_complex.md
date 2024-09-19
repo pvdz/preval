@@ -48,12 +48,12 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj = $(arg);
-const tmpClusterSSA_a = delete tmpDeleteObj.y;
+const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
 const tmpDeleteObj$1 = $(arg);
-const tmpClusterSSA_a$1 = delete tmpDeleteObj$1.y;
-const tmpCalleeParam = tmpClusterSSA_a + tmpClusterSSA_a$1;
+const tmpClusterSSA_a$1 /*:boolean*/ = delete tmpDeleteObj$1.y;
+const tmpCalleeParam /*:number*/ = tmpClusterSSA_a + tmpClusterSSA_a$1;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a$1, arg);
 `````

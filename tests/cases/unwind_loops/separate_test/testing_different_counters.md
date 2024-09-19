@@ -55,7 +55,7 @@ while (true) {
 
 
 `````js filename=intro
-let counter1 = 0;
+let counter1 /*:number*/ = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`yolo`);
   counter1 = counter1 + 1;

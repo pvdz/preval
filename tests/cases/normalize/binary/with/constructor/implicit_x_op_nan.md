@@ -139,24 +139,24 @@ x ** 0;
 x ** 0;
 x ** 0;
 x ** 0;
-const tmpStringConcatR = $coerce(x, `plustr`);
+const tmpStringConcatR /*:string*/ = $coerce(x, `plustr`);
 x ** 0;
-const tmpArrElement$11 = x << 0;
-const tmpArrElement$13 = x >> 0;
-const tmpArrElement$15 = x >>> 0;
-const tmpArrElement$17 = x < `function String() { [native code] }`;
-const tmpArrElement$19 = x > `function String() { [native code] }`;
-const tmpArrElement$21 = x <= `function String() { [native code] }`;
-const tmpArrElement$23 = x >= `function String() { [native code] }`;
+const tmpArrElement$11 /*:number*/ = x << 0;
+const tmpArrElement$13 /*:number*/ = x >> 0;
+const tmpArrElement$15 /*:number*/ = x >>> 0;
+const tmpArrElement$17 /*:boolean*/ = x < `function String() { [native code] }`;
+const tmpArrElement$19 /*:boolean*/ = x > `function String() { [native code] }`;
+const tmpArrElement$21 /*:boolean*/ = x <= `function String() { [native code] }`;
+const tmpArrElement$23 /*:boolean*/ = x >= `function String() { [native code] }`;
 x ** 0;
-const tmpArrElement$35 = x ^ 0;
-const tmpArrElement$37 = x | 0;
-const tmpArrElement$7 = `${tmpStringConcatR}function String() { [native code] }`;
-const tmpArrElement$25 = x === String;
-const tmpArrElement$27 = x !== String;
-const tmpArrElement$29 = x === String;
-const tmpArrElement$31 = x !== String;
-const arr = [
+const tmpArrElement$35 /*:number*/ = x ^ 0;
+const tmpArrElement$37 /*:number*/ = x | 0;
+const tmpArrElement$7 /*:string*/ = `${tmpStringConcatR}function String() { [native code] }`;
+const tmpArrElement$25 /*:boolean*/ = x === String;
+const tmpArrElement$27 /*:boolean*/ = x !== String;
+const tmpArrElement$29 /*:boolean*/ = x === String;
+const tmpArrElement$31 /*:boolean*/ = x !== String;
+const arr /*:array*/ = [
   NaN,
   NaN,
   NaN,
@@ -179,9 +179,9 @@ const arr = [
   tmpArrElement$37,
 ];
 $(arr);
-const tmpArrElement$39 = x in String;
-const tmpArrElement$41 = x instanceof String;
-const arr2 = [tmpArrElement$39, tmpArrElement$41];
+const tmpArrElement$39 /*:boolean*/ = x in String;
+const tmpArrElement$41 /*:boolean*/ = x instanceof String;
+const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 

@@ -70,7 +70,7 @@ const f = function () {
 };
 f();
 f();
-const x = { y: 10 };
+const x /*:object*/ = { y: 10 };
 $(x);
 $(f);
 `````

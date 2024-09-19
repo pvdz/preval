@@ -67,17 +67,17 @@ $(a, x, y);
 `````js filename=intro
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
-const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);
-  const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+  const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
+  const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
   const tmpClusterSSA_x = arrPatternSplat[0];
   const tmpClusterSSA_y = arrPatternSplat[1];
   $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_x, tmpClusterSSA_y);
 } else {
-  const a = { a: 999, b: 1000 };
+  const a /*:object*/ = { a: 999, b: 1000 };
   $(a, 1, 2);
 }
 `````

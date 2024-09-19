@@ -48,7 +48,7 @@ $(`after`, blob);
 
 
 `````js filename=intro
-const blob = { thing: `woop` };
+const blob /*:object*/ = { thing: `woop` };
 try {
   blob.thing = `boing`;
 } catch (e) {

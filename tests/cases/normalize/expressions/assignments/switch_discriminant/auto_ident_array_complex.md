@@ -53,7 +53,7 @@ $(a);
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
 $(100);
-const a = [tmpArrElement, 2, tmpArrElement$3];
+const a /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
 $(a);
 `````
 

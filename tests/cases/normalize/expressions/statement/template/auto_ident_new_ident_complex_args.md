@@ -52,11 +52,11 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-const tmpCallCallee$1 = new $(tmpCalleeParam$1, tmpCalleeParam$3);
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+const tmpCallCallee$1 /*:object*/ = new $(tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpBinBothRhs /*:string*/ = $coerce(tmpCallCallee$1, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

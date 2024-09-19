@@ -64,7 +64,7 @@ $(tmpCalleeParam);
 `````js filename=intro
 $(undefined);
 if ($) {
-  const x = [$];
+  const x /*:array*/ = [$];
   $(x);
 } else {
 }

@@ -36,7 +36,7 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-const tmpThrowArg = /foo/;
+const tmpThrowArg /*:regex*/ = /foo/;
 throw tmpThrowArg;
 `````
 

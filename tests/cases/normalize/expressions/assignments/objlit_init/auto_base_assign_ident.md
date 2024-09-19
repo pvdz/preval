@@ -47,7 +47,7 @@ $(a, b);
 
 `````js filename=intro
 const tmpNestedComplexRhs = $(2);
-const tmpCalleeParam = { x: tmpNestedComplexRhs };
+const tmpCalleeParam /*:object*/ = { x: tmpNestedComplexRhs };
 $(tmpCalleeParam);
 $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````

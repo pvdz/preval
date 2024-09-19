@@ -69,10 +69,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam$1 /*:object*/ = { x: 1 };
 const tmpCalleeParam = $(tmpCalleeParam$1);
 const tmpForOfGen = $forOf(tmpCalleeParam);
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest = tmpForOfNext.done;
@@ -81,12 +81,12 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     const tmpCompProp = $(`\$`);
     const tmpNewCallee = b[tmpCompProp];
-    const tmpAssignMemLhsObj = new tmpNewCallee(1);
+    const tmpAssignMemLhsObj /*:object*/ = new tmpNewCallee(1);
     const tmpAssignMemRhs = tmpForOfNext.value;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   }
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

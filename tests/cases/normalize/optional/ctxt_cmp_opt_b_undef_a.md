@@ -50,7 +50,7 @@ tmpCallCallee(tmpCalleeParam);
 const tmpChainElementCall = $(undefined);
 const tmpChainRootComputed = $(`b`);
 const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-const tmpIfTest = tmpChainElementObject == null;
+const tmpIfTest /*:boolean*/ = tmpChainElementObject == null;
 if (tmpIfTest) {
   $(undefined);
 } else {

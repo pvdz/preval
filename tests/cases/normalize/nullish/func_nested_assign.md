@@ -66,8 +66,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 $();
-const tmpObjLitVal = { b: 15 };
-const obj = { a: tmpObjLitVal };
+const tmpObjLitVal /*:object*/ = { b: 15 };
+const obj /*:object*/ = { a: tmpObjLitVal };
 const tmpClusterSSA_tmpReturnArg$1 = $(obj);
 $(tmpClusterSSA_tmpReturnArg$1);
 `````

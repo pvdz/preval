@@ -57,18 +57,18 @@ $(a, b);
 
 `````js filename=intro
 const tmpArrElement = $(2);
-const tmpCalleeParam = [tmpArrElement];
+const tmpCalleeParam /*:array*/ = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_b = arrPatternSplat[0];
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpNestedAssignArrPatternRhs) {
   $(a, tmpClusterSSA_b);
 } else {
   const tmpArrElement$1 = $(2);
-  const tmpCalleeParam$1 = [tmpArrElement$1];
+  const tmpCalleeParam$1 /*:array*/ = [tmpArrElement$1];
   const arrAssignPatternRhs = $(tmpCalleeParam$1);
-  const arrPatternSplat$1 = [...arrAssignPatternRhs];
+  const arrPatternSplat$1 /*:array*/ = [...arrAssignPatternRhs];
   const tmpClusterSSA_b$1 = arrPatternSplat$1[0];
   $(a, tmpClusterSSA_b$1);
 }

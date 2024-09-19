@@ -38,10 +38,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpBinBothLhs = new $(1);
+const tmpBinBothLhs /*:object*/ = new $(1);
 const tmpBinBothRhs = $(100);
 tmpBinBothLhs + tmpBinBothRhs;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -64,7 +64,7 @@ $(a, x);
 
 `````js filename=intro
 const tmpUnaryArg = $(x$1);
-const a = typeof tmpUnaryArg;
+const a /*:string*/ = typeof tmpUnaryArg;
 const tmpForInGen = $forIn(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext = tmpForInGen.next();

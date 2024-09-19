@@ -41,7 +41,7 @@ $(`after`, blob);
 
 
 `````js filename=intro
-const blob = [1, 2, 3];
+const blob /*:array*/ = [1, 2, 3];
 $(`after`, blob);
 `````
 

@@ -59,7 +59,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const tmpCalleeParam = [`pass2`];
+const tmpCalleeParam /*:array*/ = [`pass2`];
 const arrPatternStep = $(tmpCalleeParam);
 [...arrPatternStep];
 $(`ok`);

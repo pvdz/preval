@@ -50,7 +50,7 @@ while (true) {
 `````js filename=intro
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const xyz = [tmpArrElement, 2, tmpArrElement$3];
+const xyz /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);

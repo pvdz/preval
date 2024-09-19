@@ -51,12 +51,12 @@ while (true) {
 
 
 `````js filename=intro
-const bindingPatternArrRoot = { a: 999, b: 1000 };
-const arrPatternSplat = [...bindingPatternArrRoot];
+const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 arrPatternSplat[0];
 $(10);
 $(20);
-const tmpCalleeParam = [1, 2];
+const tmpCalleeParam /*:array*/ = [1, 2];
 const xyz = $(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);

@@ -84,10 +84,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam$1 /*:object*/ = { x: 1 };
 const tmpCalleeParam = $(tmpCalleeParam$1);
 const tmpForOfGen = $forOf(tmpCalleeParam);
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest = tmpForOfNext.done;
@@ -96,12 +96,12 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     let tmpAssignMemLhsObj = undefined;
     const tmpChainElementCall = $(b);
-    const tmpIfTest$1 = tmpChainElementCall == null;
+    const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
     if (tmpIfTest$1) {
     } else {
       const tmpChainRootComputed = $(`\$`);
       const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-      const tmpIfTest$3 = tmpChainElementObject == null;
+      const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
       if (tmpIfTest$3) {
       } else {
         const tmpCalleeParam$7 = $(1);
@@ -114,7 +114,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   }
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

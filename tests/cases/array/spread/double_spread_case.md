@@ -70,8 +70,8 @@ const tmpClusterSSA_a = $(`u`);
 const b = $(`w`);
 const tmpClusterSSA_a$1 = $(`o`);
 const tmpClusterSSA_b = $(`p`);
-const aa = [`a`, a, a, a, a, 2, 3, 1, b, tmpClusterSSA_a, tmpClusterSSA_a, b, 3, `a`];
-const zz = [`z`, 1, b, tmpClusterSSA_a, tmpClusterSSA_a, b, 3, a, a, a, a, 2, 3, `z`];
+const aa /*:array*/ = [`a`, a, a, a, a, 2, 3, 1, b, tmpClusterSSA_a, tmpClusterSSA_a, b, 3, `a`];
+const zz /*:array*/ = [`z`, 1, b, tmpClusterSSA_a, tmpClusterSSA_a, b, 3, a, a, a, a, 2, 3, `z`];
 $(aa, zz, tmpClusterSSA_a$1, tmpClusterSSA_b);
 `````
 

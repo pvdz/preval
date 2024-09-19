@@ -54,10 +54,10 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-const tmpObjLitVal$1 = { e: $ };
+const tmpObjLitVal$1 /*:object*/ = { e: $ };
 const tmpChainElementCall = tmpObjLitVal$1.e(1);
 tmpBinBothLhs + tmpChainElementCall;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

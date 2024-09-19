@@ -59,8 +59,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
 tmpCalleeParam$1 ** 0;
-const tmpOrXor = tmpCalleeParam$1 & -17;
-const c = tmpOrXor ^ 32;
+const tmpOrXor /*:number*/ = tmpCalleeParam$1 & -17;
+const c /*:number*/ = tmpOrXor ^ 32;
 $(c);
 `````
 

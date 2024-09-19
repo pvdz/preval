@@ -55,12 +55,12 @@ $(a, x, y);
 const tmpBinBothLhs = $(100);
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
-const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
+const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_x = arrPatternSplat[0];
 const tmpClusterSSA_y = arrPatternSplat[1];
 tmpBinBothLhs + tmpNestedAssignArrPatternRhs;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_x, tmpClusterSSA_y);
 `````
 

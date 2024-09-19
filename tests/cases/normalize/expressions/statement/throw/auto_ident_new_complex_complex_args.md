@@ -46,7 +46,7 @@ throw tmpThrowArg;
 const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const tmpThrowArg = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpThrowArg /*:object*/ = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 throw tmpThrowArg;
 `````
 

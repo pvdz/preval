@@ -55,7 +55,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-const tmpCalleeParam = [1, 2, 3];
+const tmpCalleeParam /*:array*/ = [1, 2, 3];
 const tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext = tmpForOfGen.next();

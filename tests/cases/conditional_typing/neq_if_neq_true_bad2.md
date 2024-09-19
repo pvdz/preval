@@ -55,7 +55,7 @@ if (x) {
 
 `````js filename=intro
 const a = $(67636);
-const x = a === 67636;
+const x /*:boolean*/ = a === 67636;
 if (x) {
   f(`Preval: Cannot write to const binding \`a\``);
   $(false);

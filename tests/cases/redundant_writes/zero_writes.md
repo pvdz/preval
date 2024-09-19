@@ -104,7 +104,7 @@ while (true) {
   if (y) {
     $(y, `before`);
     let x = undefined;
-    const obj = { a: 1, b: 2 };
+    const obj /*:object*/ = { a: 1, b: 2 };
     const tmpForInGen = $forIn(obj);
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       const tmpForInNext = tmpForInGen.next();

@@ -53,7 +53,7 @@ const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {
-  const b = { $: $ };
+  const b /*:object*/ = { $: $ };
   const tmpNestedComplexRhs = b.$(1);
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);

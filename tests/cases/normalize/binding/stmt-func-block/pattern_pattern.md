@@ -73,11 +73,11 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  const z = [10, 20, 30];
-  const arrPatternSplat$1 = [...z];
+  const z /*:array*/ = [10, 20, 30];
+  const arrPatternSplat$1 /*:array*/ = [...z];
   const tmpClusterSSA_x = arrPatternSplat$1[1];
   const tmpClusterSSA_y = arrPatternSplat$1[2];
-  const arrPatternSplat = [...z];
+  const arrPatternSplat /*:array*/ = [...z];
   const a = arrPatternSplat[0];
   const b = arrPatternSplat[1];
   $(a, b, tmpClusterSSA_x, tmpClusterSSA_y, z);

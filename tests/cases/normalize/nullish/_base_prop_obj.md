@@ -42,7 +42,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = { x: 10 };
+const f /*:object*/ = { x: 10 };
 $(f);
 `````
 

@@ -64,7 +64,7 @@ $(1);
 $(1);
 $(1);
 $(1);
-const b = { c: 1 };
+const b /*:object*/ = { c: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
   a = b.c;

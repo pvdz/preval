@@ -58,11 +58,11 @@ $(a);
 
 `````js filename=intro
 const tmpCompProp = $(`\$`);
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpNewCallee = b[tmpCompProp];
-const tmpReturnArg = new tmpNewCallee(1);
+const tmpReturnArg /*:object*/ = new tmpNewCallee(1);
 $(tmpReturnArg);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

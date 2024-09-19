@@ -48,12 +48,12 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpObjLitVal = {};
-const a = { b: tmpObjLitVal };
+const tmpObjLitVal /*:object*/ = {};
+const a /*:object*/ = { b: tmpObjLitVal };
 const tmpChainElementCall = $(a);
 const tmpChainRootComputed = $(`b`);
 const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-const tmpIfTest = tmpChainElementObject == null;
+const tmpIfTest /*:boolean*/ = tmpChainElementObject == null;
 if (tmpIfTest) {
   $(undefined);
 } else {

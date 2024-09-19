@@ -59,7 +59,7 @@ $(ARR);
 
 
 `````js filename=intro
-const ARR = [`a`, `b`, `c`];
+const ARR /*:array*/ = [`a`, `b`, `c`];
 const NOOP = function () {
   debugger;
   $(ARR);

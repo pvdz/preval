@@ -62,7 +62,7 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   a = undefined;
-  const b = { c: $ };
+  const b /*:object*/ = { c: $ };
   while ($LOOP_UNROLL_10) {
     b.c(1);
     const tmpIfTest$1 = $(1);

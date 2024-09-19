@@ -50,7 +50,7 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-let a = ~tmpUnaryArg;
+let a /*:number*/ = ~tmpUnaryArg;
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(1);

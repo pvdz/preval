@@ -64,10 +64,10 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
-const tmpClusterSSA_a = new tmpNewCallee(1);
+const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
 const tmpForInGen = $forIn(tmpClusterSSA_a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext = tmpForInGen.next();

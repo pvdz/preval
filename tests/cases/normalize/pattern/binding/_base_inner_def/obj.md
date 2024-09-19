@@ -39,7 +39,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const objPatternBeforeDefault = (1).x;
-const tmpIfTest = objPatternBeforeDefault === undefined;
+const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   b;
 } else {

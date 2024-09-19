@@ -68,7 +68,7 @@ if (tmpIfTest) {
 const f = function ($$0) {
   debugger;
   const x = $(0);
-  const tmpClusterSSA_y = Boolean(x);
+  const tmpClusterSSA_y /*:boolean*/ = Boolean(x);
   return tmpClusterSSA_y;
 };
 $(f);

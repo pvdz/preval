@@ -76,7 +76,7 @@ while (true) {
 
 
 `````js filename=intro
-let tmpClusterSSA_i$2 = -1;
+let tmpClusterSSA_i$2 /*:number*/ = -1;
 const test$2 = $(`first`);
 $(`second`);
 if (test$2) {
@@ -85,7 +85,7 @@ if (test$2) {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpPostUpdArgIdent$1 = tmpClusterSSA_i$2;
     tmpClusterSSA_i$2 = tmpClusterSSA_i$2 - 1;
-    const tmpIfTest$1 = tmpPostUpdArgIdent$1 > 0;
+    const tmpIfTest$1 /*:boolean*/ = tmpPostUpdArgIdent$1 > 0;
     if (tmpIfTest$1) {
     } else {
       const test$1 = $(`first`);

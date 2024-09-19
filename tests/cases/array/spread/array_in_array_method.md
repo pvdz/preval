@@ -41,10 +41,10 @@ $(y);
 
 
 `````js filename=intro
-const x = [1, 2, 3];
+const x /*:array*/ = [1, 2, 3];
 const tmpCalleeParam = x.join(``);
 $(tmpCalleeParam);
-const y = [`a`, ...x, `b`];
+const y /*:array*/ = [`a`, ...x, `b`];
 $(y);
 `````
 

@@ -74,7 +74,7 @@ $(a, b, c);
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   b.x = 3;

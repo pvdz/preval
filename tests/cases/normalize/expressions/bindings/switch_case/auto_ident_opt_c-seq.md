@@ -62,9 +62,9 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpChainRootProp = $(b);
-const tmpIfTest$1 = tmpChainRootProp == null;
+const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest$1) {
   $(undefined);
 } else {

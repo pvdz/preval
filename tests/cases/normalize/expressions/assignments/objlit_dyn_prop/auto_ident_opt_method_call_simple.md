@@ -52,9 +52,9 @@ $(a);
 
 
 `````js filename=intro
-const b = { c: $ };
+const b /*:object*/ = { c: $ };
 const tmpChainElementCall = b.c(1);
-const tmpCalleeParam = { [tmpChainElementCall]: 10 };
+const tmpCalleeParam /*:object*/ = { [tmpChainElementCall]: 10 };
 $(tmpCalleeParam);
 $(tmpChainElementCall);
 `````

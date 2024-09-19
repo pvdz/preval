@@ -56,13 +56,13 @@ $(a, arg);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 if (tmpIfTest) {
   $(1);
   $(2);
   const tmpDeleteCompObj = $(arg);
   const tmpDeleteCompProp = $(`y`);
-  const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  const tmpNestedComplexRhs /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {

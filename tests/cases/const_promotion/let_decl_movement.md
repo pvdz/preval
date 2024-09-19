@@ -39,7 +39,7 @@ $(tmpCalleeParam$1, arrPatternSplat);
 
 
 `````js filename=intro
-const arrPatternSplat = [undefined, undefined, undefined, 1, 20, 30];
+const arrPatternSplat /*:array*/ = [undefined, undefined, undefined, 1, 20, 30];
 $(undefined, arrPatternSplat);
 `````
 

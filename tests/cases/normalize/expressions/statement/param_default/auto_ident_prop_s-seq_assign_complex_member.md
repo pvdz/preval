@@ -67,13 +67,13 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 10, d: 20 };
+const b /*:object*/ = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 b.c = tmpNestedAssignPropRhs;
 $(undefined);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

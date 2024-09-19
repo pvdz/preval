@@ -91,7 +91,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const g = function ($$0) {
-  const arg = $$0;
+  const arg /*:boolean*/ = $$0;
   debugger;
   $(arg);
   $(arg);
@@ -99,7 +99,7 @@ const g = function ($$0) {
   return undefined;
 };
 const tmpCalleeParam = $(10);
-const b = tmpCalleeParam === 10;
+const b /*:boolean*/ = tmpCalleeParam === 10;
 if (b) {
   $(`a`, true);
   g(true);

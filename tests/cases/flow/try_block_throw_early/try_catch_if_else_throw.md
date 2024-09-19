@@ -78,7 +78,7 @@ f();
 
 
 `````js filename=intro
-let x = `fail`;
+let x /*:string*/ = `fail`;
 try {
   fail_early;
   if ($) {

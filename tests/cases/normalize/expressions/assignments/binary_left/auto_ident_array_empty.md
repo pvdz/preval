@@ -42,9 +42,9 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam = $coerce(tmpBinBothRhs, `plustr`);
+const tmpCalleeParam /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
 $(tmpCalleeParam);
-const a = [];
+const a /*:array*/ = [];
 $(a);
 `````
 

@@ -39,7 +39,7 @@ $(y);
 
 `````js filename=intro
 const y = $();
-const tmpIfTest = y == null;
+const tmpIfTest /*:boolean*/ = y == null;
 if (tmpIfTest) {
   foo;
   $(foo);

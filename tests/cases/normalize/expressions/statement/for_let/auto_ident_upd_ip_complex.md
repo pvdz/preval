@@ -56,7 +56,7 @@ while (true) {
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpCalleeParam = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;

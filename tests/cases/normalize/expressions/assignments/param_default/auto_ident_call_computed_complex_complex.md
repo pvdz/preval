@@ -65,7 +65,7 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $(`\$`);
 const tmpNestedComplexRhs = tmpCallCompObj[tmpCallCompProp](1);

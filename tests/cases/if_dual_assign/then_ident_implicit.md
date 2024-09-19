@@ -68,7 +68,7 @@ $(x, `end`);
 
 
 `````js filename=intro
-const a = b === c;
+const a /*:boolean*/ = b === c;
 $(a, `middle`);
 $(a, `end`);
 `````

@@ -59,7 +59,7 @@ $(a);
 
 `````js filename=intro
 const tmpNewCallee = $($);
-const tmpCalleeParam = new tmpNewCallee(1);
+const tmpCalleeParam /*:object*/ = new tmpNewCallee(1);
 const tmpForInGen = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext = tmpForInGen.next();
@@ -70,7 +70,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForInNext.value;
   }
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

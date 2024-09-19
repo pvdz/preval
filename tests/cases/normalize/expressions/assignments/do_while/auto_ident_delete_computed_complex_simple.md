@@ -60,9 +60,9 @@ $(a, arg);
 
 `````js filename=intro
 $(100);
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj = $(arg);
-let tmpClusterSSA_a = delete tmpDeleteObj.y;
+let tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
 if (tmpClusterSSA_a) {
   while ($LOOP_UNROLL_10) {
     $(100);

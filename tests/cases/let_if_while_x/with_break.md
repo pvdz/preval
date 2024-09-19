@@ -91,9 +91,9 @@ $(wat);
 
 `````js filename=intro
 const s = $(10);
-let count = true;
+let count /*:boolean*/ = true;
 $(`before`);
-let wat = s | 10;
+let wat /*:number*/ = s | 10;
 const chk = $(true);
 if (chk) {
   $(`inside`);

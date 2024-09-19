@@ -39,7 +39,7 @@ $(x);
 const tmpArgOverflow = $spy(`a`);
 $spy(`b`);
 $spy(`c`);
-const x = isNaN(tmpArgOverflow);
+const x /*:boolean*/ = isNaN(tmpArgOverflow);
 $(x);
 `````
 

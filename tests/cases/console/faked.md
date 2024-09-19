@@ -59,7 +59,7 @@ $dotCall($console_groupEnd, console, `a`, `b`, ...c);
 
 
 `````js filename=intro
-const tmpCalleeParam = [1, 2, 3, `consle test case`];
+const tmpCalleeParam /*:array*/ = [1, 2, 3, `consle test case`];
 $(tmpCalleeParam);
 console.log(`a`, `b`, ...c);
 console.warn(`a`, `b`, ...c);

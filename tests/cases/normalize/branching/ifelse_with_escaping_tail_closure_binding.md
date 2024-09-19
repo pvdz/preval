@@ -86,7 +86,7 @@ const g = function () {
   $(xyz, `g`);
   return undefined;
 };
-const tmpCalleeParam = [g];
+const tmpCalleeParam /*:array*/ = [g];
 const t = $(tmpCalleeParam);
 if ($) {
   $(1);

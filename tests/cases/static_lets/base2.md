@@ -58,7 +58,7 @@ $(x);
 
 
 `````js filename=intro
-let x = 10;
+let x /*:number*/ = 10;
 $(5);
 const tmpIfTest = $(false);
 if (tmpIfTest) {

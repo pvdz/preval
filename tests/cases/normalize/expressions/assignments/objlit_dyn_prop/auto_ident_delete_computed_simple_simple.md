@@ -45,9 +45,9 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
-const a = delete arg.y;
-const tmpCalleeParam = { [a]: 10 };
+const arg /*:object*/ = { y: 1 };
+const a /*:boolean*/ = delete arg.y;
+const tmpCalleeParam /*:object*/ = { [a]: 10 };
 $(tmpCalleeParam);
 $(a, arg);
 `````

@@ -56,7 +56,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const x = class {
+const x /*:class*/ = class {
   a() {
     debugger;
     return undefined;
@@ -66,7 +66,7 @@ const x = class {
     return undefined;
   }
 };
-const tmpCallObj = new x();
+const tmpCallObj /*:object*/ = new x();
 const tmpCalleeParam = tmpCallObj.b();
 $(tmpCalleeParam);
 `````

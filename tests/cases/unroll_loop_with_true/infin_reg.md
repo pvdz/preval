@@ -81,11 +81,11 @@ $(10);
 $(11);
 $(12);
 $(13);
-let tmpClusterSSA_i$2 = 14;
+let tmpClusterSSA_i$2 /*:number*/ = 14;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpClusterSSA_i$2);
   tmpClusterSSA_i$2 = tmpClusterSSA_i$2 + 1;
-  const tmpClusterSSA_tst$1 = tmpClusterSSA_i$2 > -5;
+  const tmpClusterSSA_tst$1 /*:boolean*/ = tmpClusterSSA_i$2 > -5;
   if (tmpClusterSSA_tst$1) {
   } else {
     break;

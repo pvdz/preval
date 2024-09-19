@@ -50,11 +50,11 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 let tmpCalleeParam = undefined;
 const tmpChainElementObject = $ObjectPrototype.b;
-const tmpIfTest = tmpChainElementObject == null;
+const tmpIfTest /*:boolean*/ = tmpChainElementObject == null;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject$1 = tmpChainElementObject.c;
-  const tmpIfTest$1 = tmpChainElementObject$1 == null;
+  const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject$1 == null;
   if (tmpIfTest$1) {
   } else {
     const tmpChainElementObject$3 = tmpChainElementObject$1.d;

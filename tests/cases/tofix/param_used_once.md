@@ -2915,7 +2915,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
   const fooReturnArgX5632 = function ($$0) {
     const nCeX418 = $$0;
     debugger;
-    const fooCalleeParamX11334 = [5, SSA_xNeX108, nCeX418];
+    const fooCalleeParamX11334 /*:array*/ = [5, SSA_xNeX108, nCeX418];
     const fooReturnArgX5633 = RP$cloneX5(SSA_bNeX94, $, fooCalleeParamX11334, QNeX102);
     return fooReturnArgX5633;
   };
@@ -2925,7 +2925,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
     const fooCalleeParamX11330 = SSA_bNeX94;
     const fooArrElementX3282 = SSA_xNeX108;
     const fooArrElementX3284 = $yX2(Iq, nCeX417);
-    const fooCalleeParamX11331 = [4, fooArrElementX3282, fooArrElementX3284];
+    const fooCalleeParamX11331 /*:array*/ = [4, fooArrElementX3282, fooArrElementX3284];
     const fooReturnArgX5631 = RP$cloneX5(fooCalleeParamX11330, $, fooCalleeParamX11331, KNeX38);
     return fooReturnArgX5631;
   };
@@ -2937,7 +2937,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
   const fooReturnArgX5622 = function ($$0) {
     const nCeX414 = $$0;
     debugger;
-    const fooCalleeParamX11326 = [6, SSA_xNeX108, nCeX414];
+    const fooCalleeParamX11326 /*:array*/ = [6, SSA_xNeX108, nCeX414];
     const fooReturnArgX5623 = RP$cloneX5(SSA_bNeX94, $, fooCalleeParamX11326, XNeX77);
     return fooReturnArgX5623;
   };
@@ -2951,7 +2951,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
       const fooReturnArgX5621 = YE(nCeX413, sCeX131, rCeX221);
       return fooReturnArgX5621;
     };
-    const fooCalleeParamX11323 = [6, SSA_xNeX108, fooArrElementX3269];
+    const fooCalleeParamX11323 /*:array*/ = [6, SSA_xNeX108, fooArrElementX3269];
     const fooReturnArgX5620 = RP$cloneX5(SSA_bNeX94, $, fooCalleeParamX11323, UNeX80);
     return fooReturnArgX5620;
   };
@@ -2964,8 +2964,8 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
     const fooCalleeParamX11316 = WE(fooCalleeParamX11315);
     const sCeX130 = YA(rCeX220, fooCalleeParamX11316);
     const fooUnaryArgX395 = sCeX130[2];
-    const fooBinBothRhsX4246 = typeof fooUnaryArgX395;
-    const fooIfTestX13192 = `number` == fooBinBothRhsX4246;
+    const fooBinBothRhsX4246 /*:string*/ = typeof fooUnaryArgX395;
+    const fooIfTestX13192 /*:boolean*/ = `number` == fooBinBothRhsX4246;
     if (fooIfTestX13192) {
       const fooCalleeParamX11317 = SSA_bNeX94;
       const fooCalleeParamX11318 = SSA_xNeX108;
@@ -2979,7 +2979,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
   };
   const fooReturnArgX5615 = function () {
     debugger;
-    const fooCalleeParamX11313 = [4, SSA_xNeX108, FNeX55];
+    const fooCalleeParamX11313 /*:array*/ = [4, SSA_xNeX108, FNeX55];
     const fooReturnArgX5616 = RP$cloneX5(SSA_bNeX94, $, fooCalleeParamX11313, MNeX63);
     return fooReturnArgX5616;
   };
@@ -2993,7 +2993,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
     } else {
       rCeX219 = _U;
     }
-    const fooCalleeParamX11310 = [4, SSA_xNeX108, rCeX219];
+    const fooCalleeParamX11310 /*:array*/ = [4, SSA_xNeX108, rCeX219];
     const fooReturnArgX5614 = RP$cloneX5(SSA_bNeX94, $, fooCalleeParamX11310, DNeX65);
     return fooReturnArgX5614;
   };
@@ -3006,7 +3006,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
     const fooCalleeParamX11305 = jNeX68;
     const fooCalleeParamX11306 = SP(kNeX164, RNeX72, rCeX218);
     const fooArrElementX3254 = UA(fooCalleeParamX11305, nCeX410, fooCalleeParamX11306);
-    const fooCalleeParamX11307 = [4, fooArrElementX3252, fooArrElementX3254];
+    const fooCalleeParamX11307 /*:array*/ = [4, fooArrElementX3252, fooArrElementX3254];
     const fooReturnArgX5612 = RP$cloneX5(fooCalleeParamX11304, $, fooCalleeParamX11307, PNeX191);
     return fooReturnArgX5612;
   };
@@ -3020,7 +3020,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
     const fooCalleeParamX11300 = jNeX68;
     const fooCalleeParamX11301 = SP(kNeX164, rCeX217, sCeX129);
     const fooArrElementX3249 = UA(fooCalleeParamX11300, nCeX409, fooCalleeParamX11301);
-    const fooCalleeParamX11302 = [4, fooArrElementX3247, fooArrElementX3249];
+    const fooCalleeParamX11302 /*:array*/ = [4, fooArrElementX3247, fooArrElementX3249];
     const fooReturnArgX5611 = RP$cloneX5(fooCalleeParamX11299, $, fooCalleeParamX11302, PNeX191);
     return fooReturnArgX5611;
   };
@@ -3033,7 +3033,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
     const fooCalleeParamX11295 = jNeX68;
     const fooCalleeParamX11296 = SP(kNeX164, zAe, rCeX216);
     const fooArrElementX3244 = UA(fooCalleeParamX11295, nCeX408, fooCalleeParamX11296);
-    const fooCalleeParamX11297 = [4, fooArrElementX3242, fooArrElementX3244];
+    const fooCalleeParamX11297 /*:array*/ = [4, fooArrElementX3242, fooArrElementX3244];
     const fooReturnArgX5610 = RP$cloneX5(fooCalleeParamX11294, $, fooCalleeParamX11297, PNeX191);
     return fooReturnArgX5610;
   };
@@ -3046,7 +3046,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
     const fooCalleeParamX11290 = wNeX70;
     const fooCalleeParamX11291 = SP(kNeX164, INeX72, nCeX407);
     const fooArrElementX3239 = UA(fooCalleeParamX11289, fooCalleeParamX11290, fooCalleeParamX11291);
-    const fooCalleeParamX11292 = [4, fooArrElementX3237, fooArrElementX3239];
+    const fooCalleeParamX11292 /*:array*/ = [4, fooArrElementX3237, fooArrElementX3239];
     const fooReturnArgX5608 = RP$cloneX5(fooCalleeParamX11288, $, fooCalleeParamX11292, PNeX191);
     return fooReturnArgX5608;
   };
@@ -3060,7 +3060,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
     const fooCalleeParamX11284 = wNeX70;
     const fooCalleeParamX11285 = SP(kNeX164, nCeX406, rCeX215);
     const fooArrElementX3234 = UA(fooCalleeParamX11283, fooCalleeParamX11284, fooCalleeParamX11285);
-    const fooCalleeParamX11286 = [4, fooArrElementX3232, fooArrElementX3234];
+    const fooCalleeParamX11286 /*:array*/ = [4, fooArrElementX3232, fooArrElementX3234];
     const fooReturnArgX5607 = RP$cloneX5(fooCalleeParamX11282, $, fooCalleeParamX11286, PNeX191);
     return fooReturnArgX5607;
   };
@@ -3073,7 +3073,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
     const fooCalleeParamX11278 = wNeX70;
     const fooCalleeParamX11279 = SP(kNeX164, zAe, nCeX405);
     const fooArrElementX3229 = UA(fooCalleeParamX11277, fooCalleeParamX11278, fooCalleeParamX11279);
-    const fooCalleeParamX11280 = [4, fooArrElementX3227, fooArrElementX3229];
+    const fooCalleeParamX11280 /*:array*/ = [4, fooArrElementX3227, fooArrElementX3229];
     const fooReturnArgX5606 = RP$cloneX5(fooCalleeParamX11276, $, fooCalleeParamX11280, PNeX191);
     return fooReturnArgX5606;
   };
@@ -3083,7 +3083,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
     const fooCalleeParamX11273 = SSA_bNeX94;
     const fooArrElementX3223 = SSA_xNeX108;
     const fooArrElementX3225 = SP(kNeX164, vNeX134, nCeX404);
-    const fooCalleeParamX11274 = [4, fooArrElementX3223, fooArrElementX3225];
+    const fooCalleeParamX11274 /*:array*/ = [4, fooArrElementX3223, fooArrElementX3225];
     const fooReturnArgX5603 = RP$cloneX5(fooCalleeParamX11273, $, fooCalleeParamX11274, PNeX191);
     return fooReturnArgX5603;
   };
@@ -3094,7 +3094,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
     const fooCalleeParamX11270 = SSA_bNeX94;
     const fooArrElementX3219 = SSA_xNeX108;
     const fooArrElementX3221 = SP(kNeX164, nCeX403, rCeX214);
-    const fooCalleeParamX11271 = [4, fooArrElementX3219, fooArrElementX3221];
+    const fooCalleeParamX11271 /*:array*/ = [4, fooArrElementX3219, fooArrElementX3221];
     const fooReturnArgX5602 = RP$cloneX5(fooCalleeParamX11270, $, fooCalleeParamX11271, PNeX191);
     return fooReturnArgX5602;
   };
@@ -3104,7 +3104,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
     const fooCalleeParamX11267 = SSA_bNeX94;
     const fooArrElementX3215 = SSA_xNeX108;
     const fooArrElementX3217 = SP(kNeX164, zAe, nCeX402);
-    const fooCalleeParamX11268 = [4, fooArrElementX3215, fooArrElementX3217];
+    const fooCalleeParamX11268 /*:array*/ = [4, fooArrElementX3215, fooArrElementX3217];
     const fooReturnArgX5601 = RP$cloneX5(fooCalleeParamX11267, $, fooCalleeParamX11268, PNeX191);
     return fooReturnArgX5601;
   };
@@ -3116,7 +3116,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
     const fooCalleeParamX11232 = XT(nCeX400);
     Jq;
     const fooArrElementX3213 = __(fooCalleeParamX11232, Jq);
-    const fooCalleeParamX11234 = [4, fooArrElementX3211, fooArrElementX3213];
+    const fooCalleeParamX11234 /*:array*/ = [4, fooArrElementX3211, fooArrElementX3213];
     const fooReturnArgX5597 = RP$cloneX5(fooCalleeParamX11231, $, fooCalleeParamX11234, TNeX211);
     return fooReturnArgX5597;
   };
@@ -3140,7 +3140,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
   const fooReturnArgX5594 = function ($$0) {
     const nCeX399 = $$0;
     debugger;
-    const fooCalleeParamX11229 = [5, SSA_xNeX108, nCeX399];
+    const fooCalleeParamX11229 /*:array*/ = [5, SSA_xNeX108, nCeX399];
     const fooReturnArgX5595 = RP$cloneX5(SSA_bNeX94, $, fooCalleeParamX11229, ENeX311);
     return fooReturnArgX5595;
   };
@@ -3150,107 +3150,107 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
   let wNeX70 = undefined;
   let SSA_SNeX76 = yNeX272;
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const fooBinBothRhsX4240 = typeof SSA_SNeX76;
-    const fooIfTestX13134 = `number` == fooBinBothRhsX4240;
+    const fooBinBothRhsX4240 /*:string*/ = typeof SSA_SNeX76;
+    const fooIfTestX13134 /*:boolean*/ = `number` == fooBinBothRhsX4240;
     if (fooIfTestX13134) {
       const fooReturnArgX5593 = YE$cloneX5(SSA_bNeX94, $, SSA_xNeX108);
       return fooReturnArgX5593;
     } else {
       const fooSwitchTestX186 = SSA_SNeX76[0];
-      let fooSwitchCaseToStartX352 = 24;
-      const fooIfTestX13135 = 0 === fooSwitchTestX186;
+      let fooSwitchCaseToStartX352 /*:number*/ = 24;
+      const fooIfTestX13135 /*:boolean*/ = 0 === fooSwitchTestX186;
       if (fooIfTestX13135) {
         fooSwitchCaseToStartX352 = 0;
       } else {
-        const fooIfTestX13161 = 1 === fooSwitchTestX186;
+        const fooIfTestX13161 /*:boolean*/ = 1 === fooSwitchTestX186;
         if (fooIfTestX13161) {
           fooSwitchCaseToStartX352 = 1;
         } else {
-          const fooIfTestX13162 = 2 === fooSwitchTestX186;
+          const fooIfTestX13162 /*:boolean*/ = 2 === fooSwitchTestX186;
           if (fooIfTestX13162) {
             fooSwitchCaseToStartX352 = 2;
           } else {
-            const fooIfTestX13163 = 3 === fooSwitchTestX186;
+            const fooIfTestX13163 /*:boolean*/ = 3 === fooSwitchTestX186;
             if (fooIfTestX13163) {
               fooSwitchCaseToStartX352 = 3;
             } else {
-              const fooIfTestX13164 = 4 === fooSwitchTestX186;
+              const fooIfTestX13164 /*:boolean*/ = 4 === fooSwitchTestX186;
               if (fooIfTestX13164) {
                 fooSwitchCaseToStartX352 = 4;
               } else {
-                const fooIfTestX13165 = 5 === fooSwitchTestX186;
+                const fooIfTestX13165 /*:boolean*/ = 5 === fooSwitchTestX186;
                 if (fooIfTestX13165) {
                   fooSwitchCaseToStartX352 = 5;
                 } else {
-                  const fooIfTestX13166 = 6 === fooSwitchTestX186;
+                  const fooIfTestX13166 /*:boolean*/ = 6 === fooSwitchTestX186;
                   if (fooIfTestX13166) {
                     fooSwitchCaseToStartX352 = 6;
                   } else {
-                    const fooIfTestX13167 = 7 === fooSwitchTestX186;
+                    const fooIfTestX13167 /*:boolean*/ = 7 === fooSwitchTestX186;
                     if (fooIfTestX13167) {
                       fooSwitchCaseToStartX352 = 7;
                     } else {
-                      const fooIfTestX13168 = 8 === fooSwitchTestX186;
+                      const fooIfTestX13168 /*:boolean*/ = 8 === fooSwitchTestX186;
                       if (fooIfTestX13168) {
                         fooSwitchCaseToStartX352 = 8;
                       } else {
-                        const fooIfTestX13169 = 9 === fooSwitchTestX186;
+                        const fooIfTestX13169 /*:boolean*/ = 9 === fooSwitchTestX186;
                         if (fooIfTestX13169) {
                           fooSwitchCaseToStartX352 = 9;
                         } else {
-                          const fooIfTestX13170 = 10 === fooSwitchTestX186;
+                          const fooIfTestX13170 /*:boolean*/ = 10 === fooSwitchTestX186;
                           if (fooIfTestX13170) {
                             fooSwitchCaseToStartX352 = 10;
                           } else {
-                            const fooIfTestX13171 = 11 === fooSwitchTestX186;
+                            const fooIfTestX13171 /*:boolean*/ = 11 === fooSwitchTestX186;
                             if (fooIfTestX13171) {
                               fooSwitchCaseToStartX352 = 11;
                             } else {
-                              const fooIfTestX13172 = 12 === fooSwitchTestX186;
+                              const fooIfTestX13172 /*:boolean*/ = 12 === fooSwitchTestX186;
                               if (fooIfTestX13172) {
                                 fooSwitchCaseToStartX352 = 12;
                               } else {
-                                const fooIfTestX13173 = 13 === fooSwitchTestX186;
+                                const fooIfTestX13173 /*:boolean*/ = 13 === fooSwitchTestX186;
                                 if (fooIfTestX13173) {
                                   fooSwitchCaseToStartX352 = 13;
                                 } else {
-                                  const fooIfTestX13174 = 14 === fooSwitchTestX186;
+                                  const fooIfTestX13174 /*:boolean*/ = 14 === fooSwitchTestX186;
                                   if (fooIfTestX13174) {
                                     fooSwitchCaseToStartX352 = 14;
                                   } else {
-                                    const fooIfTestX13175 = 15 === fooSwitchTestX186;
+                                    const fooIfTestX13175 /*:boolean*/ = 15 === fooSwitchTestX186;
                                     if (fooIfTestX13175) {
                                       fooSwitchCaseToStartX352 = 15;
                                     } else {
-                                      const fooIfTestX13176 = 16 === fooSwitchTestX186;
+                                      const fooIfTestX13176 /*:boolean*/ = 16 === fooSwitchTestX186;
                                       if (fooIfTestX13176) {
                                         fooSwitchCaseToStartX352 = 16;
                                       } else {
-                                        const fooIfTestX13177 = 17 === fooSwitchTestX186;
+                                        const fooIfTestX13177 /*:boolean*/ = 17 === fooSwitchTestX186;
                                         if (fooIfTestX13177) {
                                           fooSwitchCaseToStartX352 = 17;
                                         } else {
-                                          const fooIfTestX13178 = 18 === fooSwitchTestX186;
+                                          const fooIfTestX13178 /*:boolean*/ = 18 === fooSwitchTestX186;
                                           if (fooIfTestX13178) {
                                             fooSwitchCaseToStartX352 = 18;
                                           } else {
-                                            const fooIfTestX13179 = 19 === fooSwitchTestX186;
+                                            const fooIfTestX13179 /*:boolean*/ = 19 === fooSwitchTestX186;
                                             if (fooIfTestX13179) {
                                               fooSwitchCaseToStartX352 = 19;
                                             } else {
-                                              const fooIfTestX13180 = 20 === fooSwitchTestX186;
+                                              const fooIfTestX13180 /*:boolean*/ = 20 === fooSwitchTestX186;
                                               if (fooIfTestX13180) {
                                                 fooSwitchCaseToStartX352 = 20;
                                               } else {
-                                                const fooIfTestX13181 = 21 === fooSwitchTestX186;
+                                                const fooIfTestX13181 /*:boolean*/ = 21 === fooSwitchTestX186;
                                                 if (fooIfTestX13181) {
                                                   fooSwitchCaseToStartX352 = 21;
                                                 } else {
-                                                  const fooIfTestX13182 = 22 === fooSwitchTestX186;
+                                                  const fooIfTestX13182 /*:boolean*/ = 22 === fooSwitchTestX186;
                                                   if (fooIfTestX13182) {
                                                     fooSwitchCaseToStartX352 = 22;
                                                   } else {
-                                                    const fooIfTestX13183 = 23 === fooSwitchTestX186;
+                                                    const fooIfTestX13183 /*:boolean*/ = 23 === fooSwitchTestX186;
                                                     if (fooIfTestX13183) {
                                                       fooSwitchCaseToStartX352 = 23;
                                                     } else {
@@ -3278,24 +3278,24 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
           }
         }
       }
-      const fooIfTestX13136 = fooSwitchCaseToStartX352 <= 0;
+      const fooIfTestX13136 /*:boolean*/ = fooSwitchCaseToStartX352 <= 0;
       if (fooIfTestX13136) {
         ENeX311 = SSA_SNeX76[1];
         return fooReturnArgX5594;
       } else {
-        const fooIfTestX13137 = fooSwitchCaseToStartX352 <= 1;
+        const fooIfTestX13137 /*:boolean*/ = fooSwitchCaseToStartX352 <= 1;
         if (fooIfTestX13137) {
           TNeX211 = SSA_SNeX76[1];
           return fooReturnArgX5596;
         } else {
-          const fooIfTestX13138 = fooSwitchCaseToStartX352 <= 2;
+          const fooIfTestX13138 /*:boolean*/ = fooSwitchCaseToStartX352 <= 2;
           if (fooIfTestX13138) {
             const _NeX233 = SSA_SNeX76[2];
             const ANeX206 = SSA_SNeX76[1];
             const SSA_fooReturnArgX138 = NP$cloneX2$clone($, SSA_bNeX94, $, SSA_xNeX108, _NeX233, ANeX206, fooCalleeParamX11238);
             return SSA_fooReturnArgX138;
           } else {
-            const fooIfTestX13139 = fooSwitchCaseToStartX352 <= 3;
+            const fooIfTestX13139 /*:boolean*/ = fooSwitchCaseToStartX352 <= 3;
             if (fooIfTestX13139) {
               const fooCalleeParamX11239 = SSA_bNeX94;
               const fooCalleeParamX11240 = SSA_xNeX108;
@@ -3312,7 +3312,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
               );
               return SSA_fooReturnArgX139;
             } else {
-              const fooIfTestX13140 = fooSwitchCaseToStartX352 <= 4;
+              const fooIfTestX13140 /*:boolean*/ = fooSwitchCaseToStartX352 <= 4;
               if (fooIfTestX13140) {
                 const fooCalleeParamX11243 = SSA_bNeX94;
                 const fooCalleeParamX11244 = SSA_xNeX108;
@@ -3333,7 +3333,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                 );
                 return SSA_fooReturnArgX140;
               } else {
-                const fooIfTestX13141 = fooSwitchCaseToStartX352 <= 5;
+                const fooIfTestX13141 /*:boolean*/ = fooSwitchCaseToStartX352 <= 5;
                 if (fooIfTestX13141) {
                   const fooCalleeParamX11249 = SSA_bNeX94;
                   const fooCalleeParamX11250 = SSA_xNeX108;
@@ -3354,7 +3354,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                   );
                   return SSA_fooReturnArgX141;
                 } else {
-                  const fooIfTestX13142 = fooSwitchCaseToStartX352 <= 6;
+                  const fooIfTestX13142 /*:boolean*/ = fooSwitchCaseToStartX352 <= 6;
                   if (fooIfTestX13142) {
                     const fooCalleeParamX11255 = SSA_bNeX94;
                     const fooCalleeParamX11256 = SSA_xNeX108;
@@ -3375,7 +3375,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                     );
                     return SSA_fooReturnArgX142;
                   } else {
-                    const fooIfTestX13143 = fooSwitchCaseToStartX352 <= 7;
+                    const fooIfTestX13143 /*:boolean*/ = fooSwitchCaseToStartX352 <= 7;
                     if (fooIfTestX13143) {
                       const fooCalleeParamX11261 = SSA_bNeX94;
                       const fooCalleeParamX11262 = SSA_xNeX108;
@@ -3396,19 +3396,19 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                       );
                       return SSA_fooReturnArgX143;
                     } else {
-                      const fooIfTestX13144 = fooSwitchCaseToStartX352 <= 8;
+                      const fooIfTestX13144 /*:boolean*/ = fooSwitchCaseToStartX352 <= 8;
                       if (fooIfTestX13144) {
                         PNeX191 = SSA_SNeX76[4];
                         const NNeX135 = SSA_SNeX76[3];
                         const CNeX70 = SSA_SNeX76[2];
                         kNeX164 = SSA_SNeX76[1];
-                        const fooBinBothRhsX4241 = typeof CNeX70;
-                        const fooIfTestX13184 = `number` == fooBinBothRhsX4241;
+                        const fooBinBothRhsX4241 /*:string*/ = typeof CNeX70;
+                        const fooIfTestX13184 /*:boolean*/ = `number` == fooBinBothRhsX4241;
                         if (fooIfTestX13184) {
-                          const fooBinBothRhsX4244 = typeof NNeX135;
-                          const fooIfTestX13187 = `number` == fooBinBothRhsX4244;
+                          const fooBinBothRhsX4244 /*:string*/ = typeof NNeX135;
+                          const fooIfTestX13187 /*:boolean*/ = `number` == fooBinBothRhsX4244;
                           if (fooIfTestX13187) {
-                            const fooIfTestX13188 = 0 === NNeX135;
+                            const fooIfTestX13188 /*:boolean*/ = 0 === NNeX135;
                             if (fooIfTestX13188) {
                               return tmpClusterSSA_fooReturnArgX5600;
                             } else {
@@ -3420,14 +3420,14 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                           }
                         } else {
                           const fooBinBothRhsX4242 = CNeX70[0];
-                          const fooIfTestX13185 = 0 === fooBinBothRhsX4242;
+                          const fooIfTestX13185 /*:boolean*/ = 0 === fooBinBothRhsX4242;
                           if (fooIfTestX13185) {
                             wNeX70 = CNeX70[2];
                             LNeX86 = CNeX70[1];
-                            const fooBinBothRhsX4245 = typeof NNeX135;
-                            const fooIfTestX13189 = `number` == fooBinBothRhsX4245;
+                            const fooBinBothRhsX4245 /*:string*/ = typeof NNeX135;
+                            const fooIfTestX13189 /*:boolean*/ = `number` == fooBinBothRhsX4245;
                             if (fooIfTestX13189) {
-                              const fooIfTestX13190 = 0 === NNeX135;
+                              const fooIfTestX13190 /*:boolean*/ = 0 === NNeX135;
                               if (fooIfTestX13190) {
                                 return tmpClusterSSA_fooReturnArgX5605;
                               } else {
@@ -3439,10 +3439,10 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                             }
                           } else {
                             jNeX68 = CNeX70[1];
-                            const fooBinBothRhsX4243 = typeof NNeX135;
-                            const fooIfTestX13186 = `number` == fooBinBothRhsX4243;
+                            const fooBinBothRhsX4243 /*:string*/ = typeof NNeX135;
+                            const fooIfTestX13186 /*:boolean*/ = `number` == fooBinBothRhsX4243;
                             if (fooIfTestX13186) {
-                              const fooIfTestX13191 = 0 === NNeX135;
+                              const fooIfTestX13191 /*:boolean*/ = 0 === NNeX135;
                               if (fooIfTestX13191) {
                                 return tmpClusterSSA_fooReturnArgX5609;
                               } else {
@@ -3455,31 +3455,31 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                           }
                         }
                       } else {
-                        const fooIfTestX13145 = fooSwitchCaseToStartX352 <= 9;
+                        const fooIfTestX13145 /*:boolean*/ = fooSwitchCaseToStartX352 <= 9;
                         if (fooIfTestX13145) {
                           DNeX65 = SSA_SNeX76[1];
                           return fooReturnArgX5613;
                         } else {
-                          const fooIfTestX13146 = fooSwitchCaseToStartX352 <= 10;
+                          const fooIfTestX13146 /*:boolean*/ = fooSwitchCaseToStartX352 <= 10;
                           if (fooIfTestX13146) {
                             SSA_xNeX108 = [7, SSA_xNeX108];
                             SSA_SNeX76 = SSA_SNeX76[1];
                           } else {
-                            const fooIfTestX13147 = fooSwitchCaseToStartX352 <= 11;
+                            const fooIfTestX13147 /*:boolean*/ = fooSwitchCaseToStartX352 <= 11;
                             if (fooIfTestX13147) {
                               const fooArrElementX3257 = SSA_xNeX108;
                               const fooArrElementX3259 = SSA_SNeX76[1];
                               SSA_xNeX108 = [2, fooArrElementX3257, fooArrElementX3259];
                               SSA_SNeX76 = SSA_SNeX76[2];
                             } else {
-                              const fooIfTestX13148 = fooSwitchCaseToStartX352 <= 12;
+                              const fooIfTestX13148 /*:boolean*/ = fooSwitchCaseToStartX352 <= 12;
                               if (fooIfTestX13148) {
                                 const fooArrElementX3262 = SSA_xNeX108;
                                 const fooArrElementX3264 = SSA_SNeX76[1];
                                 SSA_xNeX108 = [3, fooArrElementX3262, fooArrElementX3264];
                                 SSA_SNeX76 = SSA_SNeX76[2];
                               } else {
-                                const fooIfTestX13149 = fooSwitchCaseToStartX352 <= 13;
+                                const fooIfTestX13149 /*:boolean*/ = fooSwitchCaseToStartX352 <= 13;
                                 if (fooIfTestX13149) {
                                   MNeX63 = SSA_SNeX76[3];
                                   const ONeX61 = SSA_SNeX76[2];
@@ -3488,37 +3488,37 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                   FNeX55 = TA(YNeX58);
                                   return fooReturnArgX5615;
                                 } else {
-                                  const fooIfTestX13150 = fooSwitchCaseToStartX352 <= 14;
+                                  const fooIfTestX13150 /*:boolean*/ = fooSwitchCaseToStartX352 <= 14;
                                   if (fooIfTestX13150) {
                                     VNeX53 = SSA_SNeX76[3];
                                     BNeX51 = SSA_SNeX76[2];
                                     return fooReturnArgX5617;
                                   } else {
-                                    const fooIfTestX13151 = fooSwitchCaseToStartX352 <= 15;
+                                    const fooIfTestX13151 /*:boolean*/ = fooSwitchCaseToStartX352 <= 15;
                                     if (fooIfTestX13151) {
                                       UNeX80 = SSA_SNeX76[1];
                                       return fooReturnArgX5619;
                                     } else {
-                                      const fooIfTestX13152 = fooSwitchCaseToStartX352 <= 16;
+                                      const fooIfTestX13152 /*:boolean*/ = fooSwitchCaseToStartX352 <= 16;
                                       if (fooIfTestX13152) {
                                         XNeX77 = SSA_SNeX76[1];
                                         return fooReturnArgX5622;
                                       } else {
-                                        const fooIfTestX13153 = fooSwitchCaseToStartX352 <= 17;
+                                        const fooIfTestX13153 /*:boolean*/ = fooSwitchCaseToStartX352 <= 17;
                                         if (fooIfTestX13153) {
                                           const fooArrElementX3272 = SSA_xNeX108;
                                           const fooArrElementX3274 = SSA_SNeX76[1];
                                           SSA_xNeX108 = [0, fooArrElementX3272, fooArrElementX3274];
                                           SSA_SNeX76 = SSA_SNeX76[2];
                                         } else {
-                                          const fooIfTestX13154 = fooSwitchCaseToStartX352 <= 18;
+                                          const fooIfTestX13154 /*:boolean*/ = fooSwitchCaseToStartX352 <= 18;
                                           if (fooIfTestX13154) {
                                             const fooReturnArgX5626 = function ($$0, $$1) {
                                               const iCeX155 = $$0;
                                               const oCeX144 = $$1;
                                               debugger;
-                                              const fooArrElementX3279 = [1, oCeX144];
-                                              const fooCalleeParamX11329 = [1, nCeX415, fooArrElementX3279];
+                                              const fooArrElementX3279 /*:array*/ = [1, oCeX144];
+                                              const fooCalleeParamX11329 /*:array*/ = [1, nCeX415, fooArrElementX3279];
                                               const fooReturnArgX5627 = RP(rCeX222, iCeX155, fooCalleeParamX11329, qNeX60);
                                               return fooReturnArgX5627;
                                             };
@@ -3526,8 +3526,8 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                               const iCeX154 = $$0;
                                               const oCeX143 = $$1;
                                               debugger;
-                                              const fooArrElementX3277 = [0, oCeX143];
-                                              const fooCalleeParamX11328 = [1, nCeX415, fooArrElementX3277];
+                                              const fooArrElementX3277 /*:array*/ = [0, oCeX143];
+                                              const fooCalleeParamX11328 /*:array*/ = [1, nCeX415, fooArrElementX3277];
                                               const fooReturnArgX5625 = RP(rCeX222, iCeX154, fooCalleeParamX11328, qNeX60);
                                               return fooReturnArgX5625;
                                             };
@@ -3538,7 +3538,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                             const GNeX69 = fooAssignRhsPropX413[1];
                                             const nCeX415 = SSA_xNeX108;
                                             const rCeX222 = SSA_bNeX94;
-                                            const fooIfTestX13193 = 0 === fooBinBothRhsX4247;
+                                            const fooIfTestX13193 /*:boolean*/ = 0 === fooBinBothRhsX4247;
                                             if (fooIfTestX13193) {
                                               SSA_bNeX94 = fooReturnArgX5624;
                                               SSA_xNeX108 = 0;
@@ -3549,48 +3549,48 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                               SSA_SNeX76 = GNeX69;
                                             }
                                           } else {
-                                            const fooIfTestX13155 = fooSwitchCaseToStartX352 <= 19;
+                                            const fooIfTestX13155 /*:boolean*/ = fooSwitchCaseToStartX352 <= 19;
                                             if (fooIfTestX13155) {
-                                              const fooThrowArgX300 = [0, WB, Rq];
+                                              const fooThrowArgX300 /*:array*/ = [0, WB, Rq];
                                               throw fooThrowArgX300;
                                             } else {
-                                              const fooIfTestX13156 = fooSwitchCaseToStartX352 <= 20;
+                                              const fooIfTestX13156 /*:boolean*/ = fooSwitchCaseToStartX352 <= 20;
                                               if (fooIfTestX13156) {
                                                 HNeX48 = SSA_SNeX76[3];
                                                 ZNeX45 = [8, SSA_xNeX108, Mq];
                                                 return fooReturnArgX5628;
                                               } else {
-                                                const fooIfTestX13157 = fooSwitchCaseToStartX352 <= 21;
+                                                const fooIfTestX13157 /*:boolean*/ = fooSwitchCaseToStartX352 <= 21;
                                                 if (fooIfTestX13157) {
                                                   KNeX38 = SSA_SNeX76[2];
                                                   return fooReturnArgX5630;
                                                 } else {
-                                                  const fooIfTestX13158 = fooSwitchCaseToStartX352 <= 22;
+                                                  const fooIfTestX13158 /*:boolean*/ = fooSwitchCaseToStartX352 <= 22;
                                                   if (fooIfTestX13158) {
                                                     QNeX102 = SSA_SNeX76[1];
                                                     return fooReturnArgX5632;
                                                   } else {
-                                                    const fooIfTestX13159 = fooSwitchCaseToStartX352 <= 23;
+                                                    const fooIfTestX13159 /*:boolean*/ = fooSwitchCaseToStartX352 <= 23;
                                                     if (fooIfTestX13159) {
                                                       const $NeX101 = SSA_SNeX76[2];
                                                       const eCeX71 = SSA_SNeX76[1];
-                                                      const fooBinBothRhsX4248 = typeof eCeX71;
-                                                      const fooIfTestX13194 = `number` == fooBinBothRhsX4248;
+                                                      const fooBinBothRhsX4248 /*:string*/ = typeof eCeX71;
+                                                      const fooIfTestX13194 /*:boolean*/ = `number` == fooBinBothRhsX4248;
                                                       if (fooIfTestX13194) {
-                                                        let fooSwitchCaseToStartX353 = 4;
-                                                        const fooIfTestX13195 = 0 === eCeX71;
+                                                        let fooSwitchCaseToStartX353 /*:number*/ = 4;
+                                                        const fooIfTestX13195 /*:boolean*/ = 0 === eCeX71;
                                                         if (fooIfTestX13195) {
                                                           fooSwitchCaseToStartX353 = 0;
                                                         } else {
-                                                          const fooIfTestX13201 = 1 === eCeX71;
+                                                          const fooIfTestX13201 /*:boolean*/ = 1 === eCeX71;
                                                           if (fooIfTestX13201) {
                                                             fooSwitchCaseToStartX353 = 1;
                                                           } else {
-                                                            const fooIfTestX13202 = 2 === eCeX71;
+                                                            const fooIfTestX13202 /*:boolean*/ = 2 === eCeX71;
                                                             if (fooIfTestX13202) {
                                                               fooSwitchCaseToStartX353 = 2;
                                                             } else {
-                                                              const fooIfTestX13203 = 3 === eCeX71;
+                                                              const fooIfTestX13203 /*:boolean*/ = 3 === eCeX71;
                                                               if (fooIfTestX13203) {
                                                                 fooSwitchCaseToStartX353 = 3;
                                                               } else {
@@ -3598,7 +3598,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                             }
                                                           }
                                                         }
-                                                        const fooIfTestX13196 = fooSwitchCaseToStartX353 <= 0;
+                                                        const fooIfTestX13196 /*:boolean*/ = fooSwitchCaseToStartX353 <= 0;
                                                         if (fooIfTestX13196) {
                                                           const SSA_fooReturnArgX144 = PP$cloneX3$clone(
                                                             $,
@@ -3609,7 +3609,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                           );
                                                           return SSA_fooReturnArgX144;
                                                         } else {
-                                                          const fooIfTestX13197 = fooSwitchCaseToStartX353 <= 1;
+                                                          const fooIfTestX13197 /*:boolean*/ = fooSwitchCaseToStartX353 <= 1;
                                                           if (fooIfTestX13197) {
                                                             const SSA_fooReturnArgX145 = PP$cloneX3$clone(
                                                               $,
@@ -3620,7 +3620,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                             );
                                                             return SSA_fooReturnArgX145;
                                                           } else {
-                                                            const fooIfTestX13198 = fooSwitchCaseToStartX353 <= 2;
+                                                            const fooIfTestX13198 /*:boolean*/ = fooSwitchCaseToStartX353 <= 2;
                                                             if (fooIfTestX13198) {
                                                               const SSA_fooReturnArgX146 = PP$cloneX3$clone(
                                                                 $,
@@ -3631,9 +3631,9 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                               );
                                                               return SSA_fooReturnArgX146;
                                                             } else {
-                                                              const fooIfTestX13199 = fooSwitchCaseToStartX353 <= 3;
+                                                              const fooIfTestX13199 /*:boolean*/ = fooSwitchCaseToStartX353 <= 3;
                                                               if (fooIfTestX13199) {
-                                                                const fooThrowArgX301 = [0, WB, Oq];
+                                                                const fooThrowArgX301 /*:array*/ = [0, WB, Oq];
                                                                 throw fooThrowArgX301;
                                                               } else {
                                                                 const SSA_fooReturnArgX147 = PP$cloneX3$clone(
@@ -3650,44 +3650,44 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                         }
                                                       } else {
                                                         const fooSwitchTestX187 = eCeX71[0];
-                                                        let fooSwitchCaseToStartX354 = 10;
-                                                        const fooIfTestX13204 = 0 === fooSwitchTestX187;
+                                                        let fooSwitchCaseToStartX354 /*:number*/ = 10;
+                                                        const fooIfTestX13204 /*:boolean*/ = 0 === fooSwitchTestX187;
                                                         if (fooIfTestX13204) {
                                                           fooSwitchCaseToStartX354 = 0;
                                                         } else {
-                                                          const fooIfTestX13216 = 1 === fooSwitchTestX187;
+                                                          const fooIfTestX13216 /*:boolean*/ = 1 === fooSwitchTestX187;
                                                           if (fooIfTestX13216) {
                                                             fooSwitchCaseToStartX354 = 1;
                                                           } else {
-                                                            const fooIfTestX13217 = 2 === fooSwitchTestX187;
+                                                            const fooIfTestX13217 /*:boolean*/ = 2 === fooSwitchTestX187;
                                                             if (fooIfTestX13217) {
                                                               fooSwitchCaseToStartX354 = 2;
                                                             } else {
-                                                              const fooIfTestX13218 = 3 === fooSwitchTestX187;
+                                                              const fooIfTestX13218 /*:boolean*/ = 3 === fooSwitchTestX187;
                                                               if (fooIfTestX13218) {
                                                                 fooSwitchCaseToStartX354 = 3;
                                                               } else {
-                                                                const fooIfTestX13219 = 4 === fooSwitchTestX187;
+                                                                const fooIfTestX13219 /*:boolean*/ = 4 === fooSwitchTestX187;
                                                                 if (fooIfTestX13219) {
                                                                   fooSwitchCaseToStartX354 = 4;
                                                                 } else {
-                                                                  const fooIfTestX13220 = 5 === fooSwitchTestX187;
+                                                                  const fooIfTestX13220 /*:boolean*/ = 5 === fooSwitchTestX187;
                                                                   if (fooIfTestX13220) {
                                                                     fooSwitchCaseToStartX354 = 5;
                                                                   } else {
-                                                                    const fooIfTestX13221 = 6 === fooSwitchTestX187;
+                                                                    const fooIfTestX13221 /*:boolean*/ = 6 === fooSwitchTestX187;
                                                                     if (fooIfTestX13221) {
                                                                       fooSwitchCaseToStartX354 = 6;
                                                                     } else {
-                                                                      const fooIfTestX13222 = 7 === fooSwitchTestX187;
+                                                                      const fooIfTestX13222 /*:boolean*/ = 7 === fooSwitchTestX187;
                                                                       if (fooIfTestX13222) {
                                                                         fooSwitchCaseToStartX354 = 7;
                                                                       } else {
-                                                                        const fooIfTestX13223 = 8 === fooSwitchTestX187;
+                                                                        const fooIfTestX13223 /*:boolean*/ = 8 === fooSwitchTestX187;
                                                                         if (fooIfTestX13223) {
                                                                           fooSwitchCaseToStartX354 = 8;
                                                                         } else {
-                                                                          const fooIfTestX13224 = 9 === fooSwitchTestX187;
+                                                                          const fooIfTestX13224 /*:boolean*/ = 9 === fooSwitchTestX187;
                                                                           if (fooIfTestX13224) {
                                                                             fooSwitchCaseToStartX354 = 9;
                                                                           } else {
@@ -3701,7 +3701,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                             }
                                                           }
                                                         }
-                                                        const fooIfTestX13205 = fooSwitchCaseToStartX354 <= 0;
+                                                        const fooIfTestX13205 /*:boolean*/ = fooSwitchCaseToStartX354 <= 0;
                                                         if (fooIfTestX13205) {
                                                           const SSA_fooReturnArgX148 = PP$cloneX3$clone(
                                                             $,
@@ -3712,7 +3712,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                           );
                                                           return SSA_fooReturnArgX148;
                                                         } else {
-                                                          const fooIfTestX13206 = fooSwitchCaseToStartX354 <= 1;
+                                                          const fooIfTestX13206 /*:boolean*/ = fooSwitchCaseToStartX354 <= 1;
                                                           if (fooIfTestX13206) {
                                                             const SSA_fooReturnArgX149 = PP$cloneX3$clone(
                                                               $,
@@ -3723,7 +3723,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                             );
                                                             return SSA_fooReturnArgX149;
                                                           } else {
-                                                            const fooIfTestX13207 = fooSwitchCaseToStartX354 <= 2;
+                                                            const fooIfTestX13207 /*:boolean*/ = fooSwitchCaseToStartX354 <= 2;
                                                             if (fooIfTestX13207) {
                                                               const SSA_fooReturnArgX150 = PP$cloneX3$clone(
                                                                 $,
@@ -3734,7 +3734,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                               );
                                                               return SSA_fooReturnArgX150;
                                                             } else {
-                                                              const fooIfTestX13208 = fooSwitchCaseToStartX354 <= 3;
+                                                              const fooIfTestX13208 /*:boolean*/ = fooSwitchCaseToStartX354 <= 3;
                                                               if (fooIfTestX13208) {
                                                                 const SSA_fooReturnArgX151 = PP$cloneX3$clone(
                                                                   $,
@@ -3745,7 +3745,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                                 );
                                                                 return SSA_fooReturnArgX151;
                                                               } else {
-                                                                const fooIfTestX13209 = fooSwitchCaseToStartX354 <= 4;
+                                                                const fooIfTestX13209 /*:boolean*/ = fooSwitchCaseToStartX354 <= 4;
                                                                 if (fooIfTestX13209) {
                                                                   const SSA_fooReturnArgX152 = PP$cloneX3$clone(
                                                                     $,
@@ -3756,7 +3756,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                                   );
                                                                   return SSA_fooReturnArgX152;
                                                                 } else {
-                                                                  const fooIfTestX13210 = fooSwitchCaseToStartX354 <= 5;
+                                                                  const fooIfTestX13210 /*:boolean*/ = fooSwitchCaseToStartX354 <= 5;
                                                                   if (fooIfTestX13210) {
                                                                     const SSA_fooReturnArgX153 = PP$cloneX3$clone(
                                                                       $,
@@ -3767,7 +3767,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                                     );
                                                                     return SSA_fooReturnArgX153;
                                                                   } else {
-                                                                    const fooIfTestX13211 = fooSwitchCaseToStartX354 <= 6;
+                                                                    const fooIfTestX13211 /*:boolean*/ = fooSwitchCaseToStartX354 <= 6;
                                                                     if (fooIfTestX13211) {
                                                                       const SSA_fooReturnArgX154 = PP$cloneX3$clone(
                                                                         $,
@@ -3778,7 +3778,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                                       );
                                                                       return SSA_fooReturnArgX154;
                                                                     } else {
-                                                                      const fooIfTestX13212 = fooSwitchCaseToStartX354 <= 7;
+                                                                      const fooIfTestX13212 /*:boolean*/ = fooSwitchCaseToStartX354 <= 7;
                                                                       if (fooIfTestX13212) {
                                                                         const SSA_fooReturnArgX155 = PP$cloneX3$clone(
                                                                           $,
@@ -3789,7 +3789,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                                         );
                                                                         return SSA_fooReturnArgX155;
                                                                       } else {
-                                                                        const fooIfTestX13213 = fooSwitchCaseToStartX354 <= 8;
+                                                                        const fooIfTestX13213 /*:boolean*/ = fooSwitchCaseToStartX354 <= 8;
                                                                         if (fooIfTestX13213) {
                                                                           const fooCalleeParamX11360 = SSA_bNeX94;
                                                                           const fooCalleeParamX11361 = SSA_xNeX108;

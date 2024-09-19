@@ -39,7 +39,7 @@ $(blob);
 
 
 `````js filename=intro
-const blob = { thing: `boom` };
+const blob /*:object*/ = { thing: `boom` };
 $(blob);
 `````
 

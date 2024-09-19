@@ -83,7 +83,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-let test = 9;
+let test /*:number*/ = 9;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`inner`);
   test = test - 1;

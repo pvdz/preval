@@ -54,14 +54,14 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 10, d: 20 };
+const b /*:object*/ = { c: 10, d: 20 };
 const tmpNestedAssignObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
-const tmpBinBothRhs = $coerce(tmpNestedAssignPropRhs, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+const tmpBinBothRhs /*:string*/ = $coerce(tmpNestedAssignPropRhs, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(tmpNestedAssignPropRhs, b);
 `````

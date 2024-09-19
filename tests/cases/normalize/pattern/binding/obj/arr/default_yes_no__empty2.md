@@ -44,7 +44,7 @@ $(`ok`);
 `````js filename=intro
 const objPatternBeforeDefault = (1).x;
 let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
+const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   objPatternAfterDefault = [`fail`];
 } else {

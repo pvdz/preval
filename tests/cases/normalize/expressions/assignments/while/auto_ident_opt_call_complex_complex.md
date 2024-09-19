@@ -58,7 +58,7 @@ $(a);
 `````js filename=intro
 let a = undefined;
 const tmpChainElementCall = $($);
-const tmpIfTest$1 = tmpChainElementCall == null;
+const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
   const tmpCalleeParam$3 = $(1);
@@ -69,7 +69,7 @@ if (a) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpChainElementCall$2 = $($);
-    const tmpIfTest$2 = tmpChainElementCall$2 == null;
+    const tmpIfTest$2 /*:boolean*/ = tmpChainElementCall$2 == null;
     if (tmpIfTest$2) {
     } else {
       const tmpCalleeParam$1 = $(1);

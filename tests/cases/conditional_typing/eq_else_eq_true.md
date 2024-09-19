@@ -49,7 +49,7 @@ $(x);
 
 `````js filename=intro
 const a = $(67636);
-const x = a === 67636;
+const x /*:boolean*/ = a === 67636;
 $(x);
 `````
 

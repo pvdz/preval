@@ -72,8 +72,8 @@ const tmpIfTest = $(true);
 if (tmpIfTest) {
   $(1);
   $(2);
-  const z = [10, 20, 30];
-  const arrPatternSplat = [...z];
+  const z /*:array*/ = [10, 20, 30];
+  const arrPatternSplat /*:array*/ = [...z];
   const a = arrPatternSplat[0];
   const b = arrPatternSplat[1];
   $(a, b, 1, 2, z);

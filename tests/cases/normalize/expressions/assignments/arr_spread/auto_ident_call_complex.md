@@ -43,7 +43,7 @@ $(a);
 `````js filename=intro
 const tmpCallComplexCallee = $($);
 const a = tmpCallComplexCallee(1);
-const tmpCalleeParam = [...a];
+const tmpCalleeParam /*:array*/ = [...a];
 $(tmpCalleeParam);
 $(a);
 `````

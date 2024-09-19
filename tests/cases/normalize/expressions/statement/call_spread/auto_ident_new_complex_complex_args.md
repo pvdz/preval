@@ -48,9 +48,9 @@ $(a);
 const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const tmpCalleeParamSpread = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpCalleeParamSpread /*:object*/ = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(...tmpCalleeParamSpread);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

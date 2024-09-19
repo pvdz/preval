@@ -78,13 +78,13 @@ while (true) {
 
 
 `````js filename=intro
-const x = /foo/;
+const x /*:regex*/ = /foo/;
 const tmpCalleeParam = x.foo;
 $(tmpCalleeParam);
 const tmpIfTest = $(x);
 if (tmpIfTest) {
 } else {
-  let tmpClusterSSA_x = /foo/;
+  let tmpClusterSSA_x /*:regex*/ = /foo/;
   tmpClusterSSA_x.foo = `object`;
   while ($LOOP_UNROLL_10) {
     const tmpCalleeParam$1 = tmpClusterSSA_x.foo;

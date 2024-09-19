@@ -36,7 +36,7 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-const tmpThrowArg = [1, 2, 3];
+const tmpThrowArg /*:array*/ = [1, 2, 3];
 throw tmpThrowArg;
 `````
 

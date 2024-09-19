@@ -41,7 +41,7 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpCallObj = $(b);
 const tmpThrowArg = tmpCallObj.$(1);
 throw tmpThrowArg;

@@ -73,7 +73,7 @@ $(`after`);
 `````js filename=intro
 $(`before`);
 const tmpBinBothRhs = $(5);
-const x = 0 < tmpBinBothRhs;
+const x /*:boolean*/ = 0 < tmpBinBothRhs;
 if (x) {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $(`again`);

@@ -82,7 +82,7 @@ const f = function () {
   } else {
     $(`b`);
   }
-  const tmpReturnArg = Boolean(x);
+  const tmpReturnArg /*:boolean*/ = Boolean(x);
   return tmpReturnArg;
 };
 const tmpCalleeParam = f();

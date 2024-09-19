@@ -52,14 +52,14 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-const tmpIfTest = $ == null;
+const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
   $(`before  undefined  after`);
 } else {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
-  const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpChainElementCall, `string`);
-  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpChainElementCall, `string`);
+  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $(tmpClusterSSA_tmpCalleeParam);
 }
 $(a);

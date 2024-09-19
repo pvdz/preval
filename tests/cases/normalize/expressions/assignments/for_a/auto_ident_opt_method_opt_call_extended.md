@@ -63,10 +63,10 @@ while (true) {
 
 
 `````js filename=intro
-const tmpIfTest$1 = $ == null;
+const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpObjLitVal$1 = { e: $ };
+  const tmpObjLitVal$1 /*:object*/ = { e: $ };
   $dotCall($, tmpObjLitVal$1, 1);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

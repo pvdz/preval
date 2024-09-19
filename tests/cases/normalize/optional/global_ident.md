@@ -39,7 +39,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpIfTest = global == null;
+const tmpIfTest /*:boolean*/ = global == null;
 if (tmpIfTest) {
   $(undefined);
 } else {

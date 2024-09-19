@@ -58,13 +58,13 @@ $(a);
 
 
 `````js filename=intro
-const bindingPatternArrRoot = { a: 999, b: 1000 };
-const arrPatternSplat$1 = [...bindingPatternArrRoot];
+const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const arrPatternSplat$1 /*:array*/ = [...bindingPatternArrRoot];
 arrPatternSplat$1[0];
 $(10);
 $(20);
-const tmpNestedAssignArrPatternRhs = [1, 2];
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+const tmpNestedAssignArrPatternRhs /*:array*/ = [1, 2];
+const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_a = arrPatternSplat[0];
 $(tmpNestedAssignArrPatternRhs);
 $(tmpClusterSSA_a);

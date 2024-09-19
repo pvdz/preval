@@ -55,15 +55,15 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall == null;
+const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = tmpChainElementCall.x;
   a = tmpChainElementObject;
 }
-const obj = {};
+const obj /*:object*/ = {};
 obj[a];
 $(a);
 `````

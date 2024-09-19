@@ -46,13 +46,13 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpIfTest = b.$(1);
 if (tmpIfTest) {
 } else {
   b.$(1);
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

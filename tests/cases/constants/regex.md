@@ -42,7 +42,7 @@ $(bar);
 
 
 `````js filename=intro
-const foo = /foo/g;
+const foo /*:regex*/ = /foo/g;
 $(foo);
 `````
 

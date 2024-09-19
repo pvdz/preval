@@ -54,14 +54,14 @@ let b = [];
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpArrElement = $(2);
-  const tmpCalleeParam = [tmpArrElement];
+  const tmpCalleeParam /*:array*/ = [tmpArrElement];
   const arrAssignPatternRhs = $(tmpCalleeParam);
-  const arrPatternSplat = [...arrAssignPatternRhs];
+  const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
   b = arrPatternSplat[0];
 } else {
   $(200);
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

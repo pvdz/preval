@@ -37,7 +37,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const o = { f: parseInt };
+const o /*:object*/ = { f: parseInt };
 const tmpCalleeParam = o.f(`200`, 15);
 $(tmpCalleeParam);
 `````

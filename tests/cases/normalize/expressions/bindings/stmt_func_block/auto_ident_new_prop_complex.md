@@ -57,10 +57,10 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
-const a = new tmpNewCallee(1);
+const a /*:object*/ = new tmpNewCallee(1);
 $(a);
 $(undefined);
 `````

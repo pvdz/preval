@@ -98,7 +98,7 @@ considerMutated(x);
 
 
 `````js filename=intro
-let $implicitThrow = false;
+let $implicitThrow /*:boolean*/ = false;
 let $finalCatchArg = undefined;
 try {
   fail_early;

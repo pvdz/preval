@@ -64,7 +64,7 @@ tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 
 
 `````js filename=intro
-const b = {
+const b /*:object*/ = {
   get c() {
     debugger;
     $(`get`);

@@ -59,7 +59,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpNestedComplexRhs = new $(1);
+const tmpNestedComplexRhs /*:object*/ = new $(1);
 $(undefined);
 $(tmpNestedComplexRhs);
 `````

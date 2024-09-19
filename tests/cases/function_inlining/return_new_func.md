@@ -65,7 +65,7 @@ const g = function ($$0) {
   const tmpReturnArg$1 = $(a, `g`);
   return tmpReturnArg$1;
 };
-const tmpReturnArg = new g(10);
+const tmpReturnArg /*:object*/ = new g(10);
 $(tmpReturnArg, `outer`);
 `````
 

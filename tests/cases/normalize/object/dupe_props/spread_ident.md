@@ -37,10 +37,10 @@ $(x);
 
 
 `````js filename=intro
-const tmpCalleeParam = { a: `ignored` };
+const tmpCalleeParam /*:object*/ = { a: `ignored` };
 const tmpObjSpread = $(tmpCalleeParam);
 const tmpObjLitVal = $(`prop`);
-const x = { ...tmpObjSpread, a: tmpObjLitVal };
+const x /*:object*/ = { ...tmpObjSpread, a: tmpObjLitVal };
 $(x);
 `````
 

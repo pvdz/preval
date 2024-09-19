@@ -64,8 +64,8 @@ $(a);
 
 
 `````js filename=intro
-const bindingPatternArrRoot = { a: 999, b: 1000 };
-const arrPatternSplat$1 = [...bindingPatternArrRoot];
+const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const arrPatternSplat$1 /*:array*/ = [...bindingPatternArrRoot];
 arrPatternSplat$1[0];
 $(10);
 $(20);

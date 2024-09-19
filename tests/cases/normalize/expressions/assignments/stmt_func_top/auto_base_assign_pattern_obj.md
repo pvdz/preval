@@ -60,7 +60,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpObjLitVal = $(2);
-const tmpCalleeParam = { b: tmpObjLitVal };
+const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
 $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);

@@ -53,17 +53,17 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 let tmpCalleeParam = undefined;
-const tmpObjLitVal = { c: $ };
-const a = { b: tmpObjLitVal };
+const tmpObjLitVal /*:object*/ = { c: $ };
+const a /*:object*/ = { b: tmpObjLitVal };
 const tmpChainElementCall = $(a);
 const tmpChainRootComputed = $(`b`);
 const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-const tmpIfTest = tmpChainElementObject == null;
+const tmpIfTest /*:boolean*/ = tmpChainElementObject == null;
 if (tmpIfTest) {
 } else {
   const tmpChainRootComputed$1 = $(`c`);
   const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-  const tmpIfTest$1 = tmpChainElementObject$1 == null;
+  const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject$1 == null;
   if (tmpIfTest$1) {
   } else {
     const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, tmpChainElementObject, 100);

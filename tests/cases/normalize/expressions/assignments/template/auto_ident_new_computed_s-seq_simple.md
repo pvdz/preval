@@ -50,9 +50,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_a = new $(1);
-const tmpBinBothRhs = $coerce(tmpClusterSSA_a, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+const tmpClusterSSA_a /*:object*/ = new $(1);
+const tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````

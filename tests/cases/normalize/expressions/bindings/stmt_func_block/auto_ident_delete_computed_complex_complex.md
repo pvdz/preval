@@ -57,10 +57,10 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-const a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
 $(a, arg);
 $(undefined);
 `````

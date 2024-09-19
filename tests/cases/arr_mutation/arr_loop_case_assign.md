@@ -100,8 +100,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 $(1);
-const tmpCalleeParam = [`two`, `three`, `four`, `five`, `one`];
-const arr = [`two`, `three`, `four`, `five`, `one`];
+const tmpCalleeParam /*:array*/ = [`two`, `three`, `four`, `five`, `one`];
+const arr /*:array*/ = [`two`, `three`, `four`, `five`, `one`];
 try {
   $(tmpCalleeParam);
 } catch (e) {
@@ -111,7 +111,7 @@ try {
 $(false);
 $(1);
 const tmpBinLhs$1 = arr[2];
-const tmpClusterSSA_test$1 = tmpBinLhs$1 === 820304;
+const tmpClusterSSA_test$1 /*:boolean*/ = tmpBinLhs$1 === 820304;
 if (tmpClusterSSA_test$1) {
 } else {
   const next$1 = arr.shift();
@@ -127,7 +127,7 @@ if (tmpClusterSSA_test$1) {
     $(false);
     $(1);
     const tmpBinLhs$2 = arr[2];
-    const tmpClusterSSA_test$2 = tmpBinLhs$2 === 820304;
+    const tmpClusterSSA_test$2 /*:boolean*/ = tmpBinLhs$2 === 820304;
     if (tmpClusterSSA_test$2) {
       break;
     } else {

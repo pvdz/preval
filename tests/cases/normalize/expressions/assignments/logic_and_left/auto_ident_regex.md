@@ -45,7 +45,7 @@ $(a);
 `````js filename=intro
 const tmpClusterSSA_tmpCalleeParam = $(100);
 $(tmpClusterSSA_tmpCalleeParam);
-const a = /foo/;
+const a /*:regex*/ = /foo/;
 $(a);
 `````
 

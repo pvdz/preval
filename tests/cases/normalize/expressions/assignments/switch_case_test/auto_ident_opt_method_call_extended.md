@@ -63,7 +63,7 @@ $(a);
 
 `````js filename=intro
 $(1);
-const tmpObjLitVal$1 = { e: $ };
+const tmpObjLitVal$1 /*:object*/ = { e: $ };
 const tmpChainElementCall = tmpObjLitVal$1.e(1);
 $(tmpChainElementCall);
 `````

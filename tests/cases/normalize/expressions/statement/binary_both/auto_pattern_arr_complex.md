@@ -44,12 +44,12 @@ $(a);
 
 
 `````js filename=intro
-const bindingPatternArrRoot = { a: 999, b: 1000 };
-const arrPatternSplat = [...bindingPatternArrRoot];
+const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
-const tmpCalleeParam = [1, 2];
+const tmpCalleeParam /*:array*/ = [1, 2];
 const tmpBinBothLhs = $(tmpCalleeParam);
-const tmpCalleeParam$1 = [1, 2];
+const tmpCalleeParam$1 /*:array*/ = [1, 2];
 const tmpBinBothRhs = $(tmpCalleeParam$1);
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);

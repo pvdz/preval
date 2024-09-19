@@ -45,7 +45,7 @@ if (tmpIfTest$3265) {
 
 
 `````js filename=intro
-const tmpIfTest$3265 = fromStmtOrExpr$1 !== 1;
+const tmpIfTest$3265 /*:boolean*/ = fromStmtOrExpr$1 !== 1;
 tmpCalleeParam$1359 = tmpIfTest$3265;
 `````
 

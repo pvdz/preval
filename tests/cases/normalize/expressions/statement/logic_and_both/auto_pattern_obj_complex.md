@@ -45,10 +45,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = { a: 1, b: 2 };
+const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
 const tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
-  const tmpCalleeParam$1 = { a: 1, b: 2 };
+  const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
   $(tmpCalleeParam$1);
 } else {
 }

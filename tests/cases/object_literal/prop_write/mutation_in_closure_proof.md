@@ -113,7 +113,7 @@ const f = function () {
     delete x.y;
   } else {
   }
-  const tmpCalleeParam$3 = {
+  const tmpCalleeParam$3 /*:object*/ = {
     set($$0) {
       debugger;
       return undefined;
@@ -127,7 +127,7 @@ const f = function () {
   $(`b`);
   return undefined;
 };
-const x = { y: 0 };
+const x /*:object*/ = { y: 0 };
 f();
 x.y = 10;
 f();

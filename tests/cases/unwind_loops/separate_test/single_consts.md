@@ -65,12 +65,12 @@ while (true) {
 
 `````js filename=intro
 const max = $(10);
-const test = 2 < max;
+const test /*:boolean*/ = 2 < max;
 if (test) {
   $(103);
-  let tmpClusterSSA_counter = 3;
-  let tmpClusterSSA_test = true;
-  const arr = [101, 102, 103, 104, 105, 106, 107, 108, 109, 1010];
+  let tmpClusterSSA_counter /*:number*/ = 3;
+  let tmpClusterSSA_test /*:boolean*/ = true;
+  const arr /*:array*/ = [101, 102, 103, 104, 105, 106, 107, 108, 109, 1010];
   while ($LOOP_UNROLL_10) {
     if (tmpClusterSSA_test) {
       const tmpCalleeParam$1 = arr[tmpClusterSSA_counter];

@@ -48,7 +48,7 @@ $dotCall(tmpCallCompVal, tmpCallCompObj, tmpCalleeParam, tmpCalleeParam$1);
 
 
 `````js filename=intro
-const a = { b: $ };
+const a /*:object*/ = { b: $ };
 const tmpCallCompObj = $(a);
 const tmpCallCompProp = $(`b`);
 const tmpCallCompVal = tmpCallCompObj[tmpCallCompProp];

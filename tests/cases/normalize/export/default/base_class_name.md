@@ -35,7 +35,7 @@ new X();
 
 
 `````js filename=intro
-const X = class {};
+const X /*:class*/ = class {};
 export { X };
 new X();
 `````

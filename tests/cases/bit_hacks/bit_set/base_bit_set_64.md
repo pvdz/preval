@@ -52,7 +52,7 @@ if (set) {
 
 `````js filename=intro
 const v = $(64);
-const and = v & 64;
+const and /*:number*/ = v & 64;
 if (and) {
   $(`pass`);
 } else {

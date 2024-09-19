@@ -47,7 +47,7 @@ $(f);
 `````js filename=intro
 const f = async function () {
   debugger;
-  const x = await true;
+  const x /*:boolean*/ = await true;
   $(x);
   return undefined;
 };

@@ -90,7 +90,7 @@ tmpCallCallee$5(tmpCalleeParam$5);
 `````js filename=intro
 let a = function () {
   debugger;
-  const arr = [1, 2, 3];
+  const arr /*:array*/ = [1, 2, 3];
   a = function () {
     debugger;
     return arr;
@@ -105,11 +105,11 @@ const tmpCalleeParam$1 = b();
 $(tmpCalleeParam$1);
 const tmpBinBothLhs = a();
 const tmpBinBothRhs = b();
-const tmpCalleeParam$3 = tmpBinBothLhs === tmpBinBothRhs;
+const tmpCalleeParam$3 /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 $(tmpCalleeParam$3);
 const tmpBinBothLhs$1 = a();
 const tmpBinBothRhs$1 = a();
-const tmpCalleeParam$5 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
+const tmpCalleeParam$5 /*:boolean*/ = tmpBinBothLhs$1 === tmpBinBothRhs$1;
 $(tmpCalleeParam$5);
 `````
 

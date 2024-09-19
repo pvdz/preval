@@ -37,7 +37,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpIfTest = parseInt == null;
+const tmpIfTest /*:boolean*/ = parseInt == null;
 if (tmpIfTest) {
   foo;
   $(foo);

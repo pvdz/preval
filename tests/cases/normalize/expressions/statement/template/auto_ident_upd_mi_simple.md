@@ -49,7 +49,7 @@ $(a, b);
 
 `````js filename=intro
 $(`before  0  after`);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, 0);
 `````
 

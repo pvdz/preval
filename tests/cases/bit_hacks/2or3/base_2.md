@@ -52,11 +52,11 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const x = $(2);
-const tmpIfTest = x === 2;
+const tmpIfTest /*:boolean*/ = x === 2;
 if (tmpIfTest) {
   $(`pass`);
 } else {
-  const tmpClusterSSA_tmpIfTest = x === 3;
+  const tmpClusterSSA_tmpIfTest /*:boolean*/ = x === 3;
   if (tmpClusterSSA_tmpIfTest) {
     $(`pass`);
   } else {

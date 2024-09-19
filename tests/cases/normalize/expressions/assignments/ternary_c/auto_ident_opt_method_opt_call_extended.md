@@ -73,10 +73,10 @@ if (tmpIfTest) {
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   let tmpNestedComplexRhs = undefined;
-  const tmpIfTest$3 = $ == null;
+  const tmpIfTest$3 /*:boolean*/ = $ == null;
   if (tmpIfTest$3) {
   } else {
-    const tmpObjLitVal$1 = { e: $ };
+    const tmpObjLitVal$1 /*:object*/ = { e: $ };
     const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
     tmpNestedComplexRhs = tmpChainElementCall;
   }

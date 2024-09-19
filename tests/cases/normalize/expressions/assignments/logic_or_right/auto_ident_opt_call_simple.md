@@ -57,7 +57,7 @@ if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {
   let tmpNestedComplexRhs = undefined;
-  const tmpIfTest = $ == null;
+  const tmpIfTest /*:boolean*/ = $ == null;
   if (tmpIfTest) {
   } else {
     const tmpChainElementCall = $(1);

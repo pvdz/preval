@@ -66,7 +66,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const test = $(`never`);
-const arr = [1, 2, 3, 4, 5];
+const arr /*:array*/ = [1, 2, 3, 4, 5];
 if (test) {
 } else {
   const tmp = arr.shift();

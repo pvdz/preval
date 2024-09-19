@@ -47,7 +47,7 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpCallObj = $(b);
 const tmpClusterSSA_a = tmpCallObj.$(1);
 const tmpCalleeParam = tmpBinBothLhs + tmpClusterSSA_a;

@@ -54,13 +54,13 @@ $(a);
 let a = 999;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpCalleeParam = { a: 1, b: 2 };
+  const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
   const tmpAssignObjPatternRhs = $(tmpCalleeParam);
   a = tmpAssignObjPatternRhs.a;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
-      const tmpCalleeParam$1 = { a: 1, b: 2 };
+      const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
       const tmpAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
       a = tmpAssignObjPatternRhs$1.a;
     } else {

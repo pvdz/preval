@@ -77,11 +77,11 @@ tmpCallCallee$3(tmpCalleeParam$3);
 const f = function () {
   debugger;
   const x = $spy();
-  const t = x & 8192;
+  const t /*:number*/ = x & 8192;
   if (t) {
     return 128;
   } else {
-    const r = x & 128;
+    const r /*:number*/ = x & 128;
     return r;
   }
 };

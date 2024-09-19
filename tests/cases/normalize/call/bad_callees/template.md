@@ -41,7 +41,7 @@ $(`after`);
 
 `````js filename=intro
 $(`before`);
-const tmpBinBothRhs = $coerce($, `string`);
+const tmpBinBothRhs /*:string*/ = $coerce($, `string`);
 tmpBinBothRhs();
 $(`after`);
 `````

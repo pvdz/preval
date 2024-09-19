@@ -45,11 +45,11 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const a = {};
+const a /*:object*/ = {};
 const tmpChainElementCall = $(a);
 const tmpChainElementObject = tmpChainElementCall.b;
 const tmpChainElementObject$1 = tmpChainElementObject.c;
-const tmpIfTest = tmpChainElementObject$1 == null;
+const tmpIfTest /*:boolean*/ = tmpChainElementObject$1 == null;
 if (tmpIfTest) {
   $(undefined);
 } else {

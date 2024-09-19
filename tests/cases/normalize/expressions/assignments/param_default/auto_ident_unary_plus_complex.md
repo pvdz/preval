@@ -61,7 +61,7 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const tmpNestedComplexRhs = +tmpUnaryArg;
+const tmpNestedComplexRhs /*:number*/ = +tmpUnaryArg;
 $(undefined);
 $(tmpNestedComplexRhs);
 `````

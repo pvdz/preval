@@ -38,7 +38,7 @@ $(`after`);
 
 `````js filename=intro
 $(`before`);
-const tmpCallComplexCallee = class x {};
+const tmpCallComplexCallee /*:class*/ = class x {};
 tmpCallComplexCallee();
 $(`after`);
 `````

@@ -57,7 +57,7 @@ $(a);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpCompProp = $(`\$`);
-  const b = { $: $ };
+  const b /*:object*/ = { $: $ };
   const tmpNewCallee = b[tmpCompProp];
   new tmpNewCallee(1);
   while ($LOOP_UNROLL_10) {
@@ -72,7 +72,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

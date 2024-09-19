@@ -59,14 +59,14 @@ $(a, b);
 
 `````js filename=intro
 const tmpArrElement = $(2);
-const tmpCalleeParam$1 = [tmpArrElement];
+const tmpCalleeParam$1 /*:array*/ = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 arrPatternSplat[0];
 const tmpArrElement$1 = $(2);
-const tmpCalleeParam$3 = [tmpArrElement$1];
+const tmpCalleeParam$3 /*:array*/ = [tmpArrElement$1];
 const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$3);
-const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
+const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
 const tmpClusterSSA_b = arrPatternSplat$1[0];
 const tmpCalleeParam = tmpNestedAssignArrPatternRhs + tmpNestedAssignArrPatternRhs$1;
 $(tmpCalleeParam);

@@ -63,7 +63,7 @@ while (true) {
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCalleeParam = {
+  const tmpCalleeParam /*:object*/ = {
     toString() {
       debugger;
       $(`PASS`);
@@ -72,7 +72,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   };
   const x = $(tmpCalleeParam);
   try {
-    const y = parseInt(x);
+    const y /*:number*/ = parseInt(x);
     $(y);
   } catch (e) {}
 }

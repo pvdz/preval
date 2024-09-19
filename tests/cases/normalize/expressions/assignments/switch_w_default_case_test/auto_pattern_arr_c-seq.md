@@ -91,28 +91,28 @@ $(a);
 
 
 `````js filename=intro
-const bindingPatternArrRoot = { a: 999, b: 1000 };
-const arrPatternSplat = [...bindingPatternArrRoot];
+const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 arrPatternSplat[0];
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
+let tmpSwitchCaseToStart /*:number*/ = 1;
 $(10);
 $(20);
-const tmpCalleeParam = [1, 2];
+const tmpCalleeParam /*:array*/ = [1, 2];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
-const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
+const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_a = arrPatternSplat$1[0];
-const tmpIfTest = tmpNestedAssignArrPatternRhs === tmpSwitchValue;
+const tmpIfTest /*:boolean*/ = tmpNestedAssignArrPatternRhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 2 === tmpSwitchValue;
+  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
   } else {
   }
 }
-const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
   $(`fail1`);
 } else {

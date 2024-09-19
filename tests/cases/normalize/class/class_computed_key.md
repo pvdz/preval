@@ -53,14 +53,14 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpClassComputedKey = $(`f`);
-const x = class {
+const x /*:class*/ = class {
   [tmpClassComputedKey]() {
     debugger;
     const tmpReturnArg = $(100);
     return tmpReturnArg;
   }
 };
-const tmpCallObj = new x();
+const tmpCallObj /*:object*/ = new x();
 const tmpCalleeParam = tmpCallObj.f();
 $(tmpCalleeParam);
 `````

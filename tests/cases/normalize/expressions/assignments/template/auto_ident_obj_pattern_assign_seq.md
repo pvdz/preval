@@ -62,9 +62,9 @@ $(1);
 $(2);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-const tmpBinBothRhs = $coerce(tmpNestedAssignObjPatternRhs, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+const tmpBinBothRhs /*:string*/ = $coerce(tmpNestedAssignObjPatternRhs, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 `````

@@ -70,9 +70,9 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-const x = tmpCalleeParam & 1;
+const x /*:number*/ = tmpCalleeParam & 1;
 if (x) {
-  const y = tmpCalleeParam & 4;
+  const y /*:number*/ = tmpCalleeParam & 4;
   if (y) {
     $(`pass`);
   } else {

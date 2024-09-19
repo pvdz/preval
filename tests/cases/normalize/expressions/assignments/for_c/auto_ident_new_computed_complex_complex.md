@@ -54,10 +54,10 @@ $(a);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let a /*:object*/ = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const b = { $: $ };
+  const b /*:object*/ = { $: $ };
   const tmpCompObj = $(b);
   const tmpCompProp = $(`\$`);
   const tmpNewCallee = tmpCompObj[tmpCompProp];

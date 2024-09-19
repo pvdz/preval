@@ -68,11 +68,11 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const tmpCalleeParam = [`pass2`];
+const tmpCalleeParam /*:array*/ = [`pass2`];
 const arrPatternStep = $(tmpCalleeParam);
-const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternSplat$1 /*:array*/ = [...arrPatternStep];
 const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
-const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
+const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault$1 === undefined;
 if (tmpIfTest$1) {
   const tmpClusterSSA_x = $(`fail`);
   $(tmpClusterSSA_x);

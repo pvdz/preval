@@ -62,7 +62,7 @@ $(a, x);
 
 
 `````js filename=intro
-const a = typeof x$1;
+const a /*:string*/ = typeof x$1;
 const tmpForInGen = $forIn(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext = tmpForInGen.next();

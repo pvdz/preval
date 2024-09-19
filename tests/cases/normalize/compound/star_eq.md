@@ -40,7 +40,7 @@ $(a);
 `````js filename=intro
 const a = $(1);
 const tmpBinBothRhs = $(2);
-const tmpClusterSSA_a = a * tmpBinBothRhs;
+const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
 $(tmpClusterSSA_a);
 `````
 

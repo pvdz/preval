@@ -58,13 +58,13 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpObjLitVal$1 = function () {
-  const tmpPrevalAliasThis = this;
+  const tmpPrevalAliasThis /*:object*/ = this;
   debugger;
   const tmpCalleeParam = tmpPrevalAliasThis.g;
   $(tmpCalleeParam);
   return undefined;
 };
-const obj = { g: 1, f: tmpObjLitVal$1 };
+const obj /*:object*/ = { g: 1, f: tmpObjLitVal$1 };
 const tmpAssignMemLhsObj = obj.value();
 tmpAssignMemLhsObj.g = 2;
 const tmpCalleeParam$1 = obj.f();

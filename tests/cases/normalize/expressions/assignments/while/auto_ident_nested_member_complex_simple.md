@@ -63,8 +63,8 @@ $(a, b, c, d);
 
 
 `````js filename=intro
-const b = { x: 1 };
-const c = { y: 2 };
+const b /*:object*/ = { x: 1 };
+const c /*:object*/ = { y: 2 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpNestedAssignComMemberObj = $(b);
   const tmpNestedAssignComMemberProp = $(`x`);

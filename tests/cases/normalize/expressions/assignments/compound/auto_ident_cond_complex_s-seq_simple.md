@@ -51,7 +51,7 @@ $(a);
 `````js filename=intro
 const tmpIfTest = $(1);
 let tmpClusterSSA_a = undefined;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   tmpClusterSSA_a = a * 60;
   $(tmpClusterSSA_a);

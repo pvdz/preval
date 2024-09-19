@@ -43,9 +43,9 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const objPatternNoDefault = (1).x;
-const arrPatternSplat = [...objPatternNoDefault];
+const arrPatternSplat /*:array*/ = [...objPatternNoDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-const tmpIfTest = arrPatternBeforeDefault === undefined;
+const tmpIfTest /*:boolean*/ = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   a;
 } else {

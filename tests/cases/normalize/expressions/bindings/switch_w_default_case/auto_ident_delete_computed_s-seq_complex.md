@@ -98,8 +98,8 @@ if (tmpIfTest$7) {
 $(1);
 $(2);
 const tmpDeleteCompProp = $(`y`);
-const arg = { y: 1 };
-const a = delete arg[tmpDeleteCompProp];
+const arg /*:object*/ = { y: 1 };
+const a /*:boolean*/ = delete arg[tmpDeleteCompProp];
 $(a, arg);
 $(`fail1`);
 $(`fail2`);

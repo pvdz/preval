@@ -56,7 +56,7 @@ const f = function () {
   arr[0] = 1;
   return undefined;
 };
-const arr = [1];
+const arr /*:array*/ = [1];
 $(f);
 $(arr);
 `````

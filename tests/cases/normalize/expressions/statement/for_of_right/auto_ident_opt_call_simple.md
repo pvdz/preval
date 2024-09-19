@@ -65,7 +65,7 @@ $(a);
 
 `````js filename=intro
 let tmpForOfGen = undefined;
-const tmpIfTest = $ == null;
+const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
   tmpForOfGen = $forOf(undefined);
 } else {
@@ -81,7 +81,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForOfNext.value;
   }
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

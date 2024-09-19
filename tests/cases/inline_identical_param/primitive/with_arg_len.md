@@ -70,8 +70,8 @@ f(8, 2, 9);
 
 `````js filename=intro
 const f = function ($$0, $$1) {
-  const a = $$0;
-  const c = $$1;
+  const a /*:number*/ = $$0;
+  const c /*:number*/ = $$1;
   debugger;
   if ($) {
     $(a, 2, c, 3, `hopefully b is a literal afterwards`);

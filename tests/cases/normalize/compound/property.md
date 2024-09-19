@@ -88,9 +88,9 @@ $(a, s);
 
 
 `````js filename=intro
-let s = ``;
+let s /*:string*/ = ``;
 let a = 0;
-const obj = {
+const obj /*:object*/ = {
   get x() {
     debugger;
     s = `${s}read;`;
@@ -100,8 +100,8 @@ const obj = {
     const v = $$0;
     debugger;
     const tmpBinBothLhs = s;
-    const tmpStringConcatL = $coerce(v, `plustr`);
-    const tmpBinBothRhs = `write[${tmpStringConcatL}];`;
+    const tmpStringConcatL /*:string*/ = $coerce(v, `plustr`);
+    const tmpBinBothRhs /*:string*/ = `write[${tmpStringConcatL}];`;
     s = tmpBinBothLhs + tmpBinBothRhs;
     a = a + v;
     return a;

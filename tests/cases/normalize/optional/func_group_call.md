@@ -55,7 +55,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpChainRootCall = $();
-const tmpIfTest = tmpChainRootCall == null;
+const tmpIfTest /*:boolean*/ = tmpChainRootCall == null;
 if (tmpIfTest) {
   const tmpClusterSSA_tmpReturnArg = $(undefined);
   $(tmpClusterSSA_tmpReturnArg);

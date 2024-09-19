@@ -65,7 +65,7 @@ $(a);
 let a = undefined;
 $(100);
 const tmpChainElementCall = $($);
-const tmpIfTest$1 = tmpChainElementCall == null;
+const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
@@ -75,7 +75,7 @@ if (a) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpChainElementCall$2 = $($);
-    const tmpIfTest$2 = tmpChainElementCall$2 == null;
+    const tmpIfTest$2 /*:boolean*/ = tmpChainElementCall$2 == null;
     if (tmpIfTest$2) {
     } else {
       const tmpChainElementCall$4 = $dotCall(tmpChainElementCall$2, $, 1);

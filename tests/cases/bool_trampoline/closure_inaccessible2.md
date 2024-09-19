@@ -103,7 +103,7 @@ $(obj);
 const f$1 = function () {
   debugger;
   const tmpssa2_x = $(100);
-  const y = Boolean(tmpssa2_x);
+  const y /*:boolean*/ = Boolean(tmpssa2_x);
   return y;
 };
 const tmpObjLitVal = function () {
@@ -111,10 +111,10 @@ const tmpObjLitVal = function () {
   $(undefined);
   return f$1;
 };
-const obj = {
+const obj /*:object*/ = {
   f: tmpObjLitVal,
   g() {
-    const tmpPrevalAliasThis = this;
+    const tmpPrevalAliasThis /*:object*/ = this;
     debugger;
     const tmpIfTest = tmpPrevalAliasThis.f();
     if (tmpIfTest) {

@@ -69,7 +69,7 @@ $(a);
 const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const tmpNestedComplexRhs = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(undefined);
 $(tmpNestedComplexRhs);
 `````

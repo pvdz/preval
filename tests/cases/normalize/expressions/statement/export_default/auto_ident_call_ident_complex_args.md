@@ -49,7 +49,7 @@ const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 const tmpAnonDefaultExport = $(tmpCalleeParam, tmpCalleeParam$1);
 export { tmpAnonDefaultExport as default };
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -41,8 +41,8 @@ $(arr);
 
 `````js filename=intro
 const x = $spy();
-const tmpArrElement = $coerce(x, `plustr`);
-const arr = [tmpArrElement];
+const tmpArrElement /*:string*/ = $coerce(x, `plustr`);
+const arr /*:array*/ = [tmpArrElement];
 $(arr);
 `````
 

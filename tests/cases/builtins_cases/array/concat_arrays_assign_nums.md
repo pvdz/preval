@@ -50,7 +50,7 @@ $(c);
 
 `````js filename=intro
 if ($) {
-  const tmpClusterSSA_c = [1, 2];
+  const tmpClusterSSA_c /*:array*/ = [1, 2];
   $(tmpClusterSSA_c);
 } else {
   $(undefined);

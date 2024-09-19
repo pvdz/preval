@@ -50,7 +50,7 @@ while (true) {
 
 
 `````js filename=intro
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`\$`);
 const tmpNewCallee = tmpCompObj[tmpCompProp];

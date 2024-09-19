@@ -57,9 +57,9 @@ if (x) {
 
 `````js filename=intro
 const spy = $spy(33);
-const x = spy & 32;
+const x /*:number*/ = spy & 32;
 if (x) {
-  const tmpCalleeParam$1 = spy === 33;
+  const tmpCalleeParam$1 /*:boolean*/ = spy === 33;
   $(`pass`, tmpCalleeParam$1);
 } else {
   $(`fail`, false);

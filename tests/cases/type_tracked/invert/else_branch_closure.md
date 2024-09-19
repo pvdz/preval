@@ -104,14 +104,14 @@ const f = function ($$0) {
   const y = $$0;
   debugger;
   const f$1 = function ($$0) {
-    const z = $$0;
+    const z /*:number*/ = $$0;
     debugger;
     $(`keepme`);
     $(`keepme`);
-    const tmpReturnArg = [x, z];
+    const tmpReturnArg /*:array*/ = [x, z];
     return tmpReturnArg;
   };
-  const x = $coerce(y, `plustr`);
+  const x /*:string*/ = $coerce(y, `plustr`);
   if (x) {
     $(x, `if`);
     return undefined;

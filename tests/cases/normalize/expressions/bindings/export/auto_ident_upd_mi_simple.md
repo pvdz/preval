@@ -40,7 +40,7 @@ $(a, b);
 
 
 `````js filename=intro
-const a = 0;
+const a /*:number*/ = 0;
 export { a };
 $(0, 0);
 `````

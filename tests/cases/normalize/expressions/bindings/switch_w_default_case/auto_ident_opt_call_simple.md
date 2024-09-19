@@ -92,7 +92,7 @@ if (tmpIfTest$9) {
 
 
 `````js filename=intro
-const tmpIfTest$5 = $ == null;
+const tmpIfTest$5 /*:boolean*/ = $ == null;
 if (tmpIfTest$5) {
   $(undefined);
 } else {

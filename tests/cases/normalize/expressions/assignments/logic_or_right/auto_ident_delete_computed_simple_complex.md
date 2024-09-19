@@ -52,12 +52,12 @@ $(a, arg);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(100);
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {
   const tmpDeleteCompProp = $(`y`);
-  const tmpNestedComplexRhs = delete arg[tmpDeleteCompProp];
+  const tmpNestedComplexRhs /*:boolean*/ = delete arg[tmpDeleteCompProp];
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }

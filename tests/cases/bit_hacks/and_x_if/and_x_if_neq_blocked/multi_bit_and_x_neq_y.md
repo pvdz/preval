@@ -53,9 +53,9 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const x = $(200);
-const y = x & 200;
+const y /*:number*/ = x & 200;
 $(y);
-const tmpIfTest = y === 64;
+const tmpIfTest /*:boolean*/ = y === 64;
 if (tmpIfTest) {
   $(`fail`);
 } else {

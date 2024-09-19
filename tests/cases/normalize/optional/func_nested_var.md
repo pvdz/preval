@@ -71,7 +71,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 let b = undefined;
 const tmpChainRootProp = $(2);
-const tmpIfTest = tmpChainRootProp == null;
+const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 let tmpChainRootProp$1 = undefined;
 if (tmpIfTest) {
 } else {
@@ -79,7 +79,7 @@ if (tmpIfTest) {
   b = tmpChainElementObject;
   tmpChainRootProp$1 = tmpChainElementObject;
 }
-const tmpIfTest$1 = b == null;
+const tmpIfTest$1 /*:boolean*/ = b == null;
 if (tmpIfTest$1) {
   const tmpClusterSSA_tmpReturnArg = $(undefined);
   $(tmpClusterSSA_tmpReturnArg);

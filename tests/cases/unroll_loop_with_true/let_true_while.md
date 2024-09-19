@@ -61,7 +61,7 @@ while (true) {
 
 
 `````js filename=intro
-let tmp = true;
+let tmp /*:boolean*/ = true;
 const test = $(`first`);
 $(`second`);
 if (test) {

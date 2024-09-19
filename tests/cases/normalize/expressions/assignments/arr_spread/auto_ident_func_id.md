@@ -52,7 +52,7 @@ const f = function () {
   debugger;
   return undefined;
 };
-const tmpCalleeParam = [...f];
+const tmpCalleeParam /*:array*/ = [...f];
 $(tmpCalleeParam);
 $(f);
 `````

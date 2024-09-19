@@ -88,7 +88,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 `````js filename=intro
 let a = function () {
   debugger;
-  const arr = [1, 2, 3];
+  const arr /*:array*/ = [1, 2, 3];
   a = function () {
     debugger;
     return arr;

@@ -129,27 +129,27 @@ $(arr2);
 
 
 `````js filename=intro
-const tmpArrElement = 0 ** x;
-const tmpArrElement$1 = 0 * x;
-const tmpArrElement$3 = 0 / x;
-const tmpArrElement$5 = 0 % x;
+const tmpArrElement /*:number*/ = 0 ** x;
+const tmpArrElement$1 /*:number*/ = 0 * x;
+const tmpArrElement$3 /*:number*/ = 0 / x;
+const tmpArrElement$5 /*:number*/ = 0 % x;
 const tmpArrElement$7 = null + x;
-const tmpArrElement$9 = 0 - x;
-const tmpArrElement$11 = 0 << x;
-const tmpArrElement$13 = 0 >> x;
-const tmpArrElement$15 = 0 >>> x;
-const tmpArrElement$17 = null < x;
-const tmpArrElement$19 = null > x;
-const tmpArrElement$21 = null <= x;
-const tmpArrElement$23 = null >= x;
-const tmpArrElement$25 = null == x;
-const tmpArrElement$27 = null != x;
+const tmpArrElement$9 /*:number*/ = 0 - x;
+const tmpArrElement$11 /*:number*/ = 0 << x;
+const tmpArrElement$13 /*:number*/ = 0 >> x;
+const tmpArrElement$15 /*:number*/ = 0 >>> x;
+const tmpArrElement$17 /*:boolean*/ = null < x;
+const tmpArrElement$19 /*:boolean*/ = null > x;
+const tmpArrElement$21 /*:boolean*/ = null <= x;
+const tmpArrElement$23 /*:boolean*/ = null >= x;
+const tmpArrElement$25 /*:boolean*/ = null == x;
+const tmpArrElement$27 /*:boolean*/ = null != x;
 x ** 0;
-const tmpArrElement$35 = 0 ^ x;
-const tmpArrElement$37 = 0 | x;
-const tmpArrElement$29 = null === x;
-const tmpArrElement$31 = null !== x;
-const arr = [
+const tmpArrElement$35 /*:number*/ = 0 ^ x;
+const tmpArrElement$37 /*:number*/ = 0 | x;
+const tmpArrElement$29 /*:boolean*/ = null === x;
+const tmpArrElement$31 /*:boolean*/ = null !== x;
+const arr /*:array*/ = [
   tmpArrElement,
   tmpArrElement$1,
   tmpArrElement$3,
@@ -172,9 +172,9 @@ const arr = [
   tmpArrElement$37,
 ];
 $(arr);
-const tmpArrElement$39 = null in x;
-const tmpArrElement$41 = null instanceof x;
-const arr2 = [tmpArrElement$39, tmpArrElement$41];
+const tmpArrElement$39 /*:boolean*/ = null in x;
+const tmpArrElement$41 /*:boolean*/ = null instanceof x;
+const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 

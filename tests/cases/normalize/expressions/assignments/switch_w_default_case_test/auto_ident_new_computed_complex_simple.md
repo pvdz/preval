@@ -89,22 +89,22 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
-const b = { $: $ };
+let tmpSwitchCaseToStart /*:number*/ = 1;
+const b /*:object*/ = { $: $ };
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
-const tmpClusterSSA_a = new tmpNewCallee(1);
-const tmpIfTest = tmpClusterSSA_a === tmpSwitchValue;
+const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
+const tmpIfTest /*:boolean*/ = tmpClusterSSA_a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 2 === tmpSwitchValue;
+  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
   } else {
   }
 }
-const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
   $(`fail1`);
 } else {

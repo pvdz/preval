@@ -51,11 +51,11 @@ $(`bad`);
 
 
 `````js filename=intro
-const tmpCalleeParam = [`pass2`];
+const tmpCalleeParam /*:array*/ = [`pass2`];
 const objPatternAfterDefault = $(tmpCalleeParam);
-const arrPatternSplat = [...objPatternAfterDefault];
+const arrPatternSplat /*:array*/ = [...objPatternAfterDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   y = `fail`;
 } else {

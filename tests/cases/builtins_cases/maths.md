@@ -68,14 +68,14 @@ $(maxed);
 
 `````js filename=intro
 const tmpBinLhs = $(120);
-const ten = tmpBinLhs / 12;
-const twoten = Math.pow(2, ten);
-const zero = 0 * twoten;
-const divvy = zero / 695;
-const sinned = Math.sin(divvy);
-const lottasin = 1000000 * sinned;
-const minned = Math.min(10000, lottasin);
-const maxed = Math.max(-10000, minned);
+const ten /*:number*/ = tmpBinLhs / 12;
+const twoten /*:number*/ = Math.pow(2, ten);
+const zero /*:number*/ = 0 * twoten;
+const divvy /*:number*/ = zero / 695;
+const sinned /*:number*/ = Math.sin(divvy);
+const lottasin /*:number*/ = 1000000 * sinned;
+const minned /*:number*/ = Math.min(10000, lottasin);
+const maxed /*:number*/ = Math.max(-10000, minned);
 $(maxed);
 `````
 

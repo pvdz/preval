@@ -50,7 +50,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = { [10]: 20 };
+const f /*:object*/ = { [10]: 20 };
 const tmpChainElementObject = f[10];
 $(tmpChainElementObject);
 `````

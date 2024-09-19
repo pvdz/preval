@@ -56,9 +56,9 @@ $(a, b);
 
 `````js filename=intro
 const tmpArrElement = $(2);
-const tmpCalleeParam = [tmpArrElement];
+const tmpCalleeParam /*:array*/ = [tmpArrElement];
 const arrAssignPatternRhs = $(tmpCalleeParam);
-const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
 const tmpClusterSSA_b = arrPatternSplat[0];
 const tmpIfTest = $(0);
 if (tmpIfTest) {
@@ -71,7 +71,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_b);
 `````
 

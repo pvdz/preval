@@ -51,12 +51,12 @@ $(a);
 
 `````js filename=intro
 let a = $(1);
-const tmpIfTest = a < 10;
+const tmpIfTest /*:boolean*/ = a < 10;
 if (tmpIfTest) {
   a = a + 1;
   while ($LOOP_UNROLL_10) {
     $(a);
-    const tmpIfTest$1 = a < 10;
+    const tmpIfTest$1 /*:boolean*/ = a < 10;
     if (tmpIfTest$1) {
       a = a + 1;
     } else {

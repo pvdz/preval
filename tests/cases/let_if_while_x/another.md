@@ -125,10 +125,10 @@ $(a, b, c, 3);
 
 `````js filename=intro
 $(100);
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const B = $(b);
 const X = $(`x`);
-const c = { y: 2 };
+const c /*:object*/ = { y: 2 };
 const calt = $(c);
 const Y = $(`y`);
 const three = $(3);
@@ -162,7 +162,7 @@ if (three) {
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b, c, 3);
 `````
 

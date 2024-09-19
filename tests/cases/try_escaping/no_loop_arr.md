@@ -199,7 +199,7 @@ $(arr);
 
 `````js filename=intro
 $(`a`);
-const arr = [`b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `a`];
+const arr /*:array*/ = [`b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `a`];
 $(arr);
 `````
 

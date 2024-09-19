@@ -39,7 +39,7 @@ $(arr);
 
 
 `````js filename=intro
-const arr = [];
+const arr /*:array*/ = [];
 arr.call(arr, 1);
 $(arr);
 `````

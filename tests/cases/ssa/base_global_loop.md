@@ -59,13 +59,13 @@ const x = $(3);
 $(x);
 let tmpClusterSSA_x = x + 1;
 $(tmpClusterSSA_x);
-const tmpIfTest = tmpClusterSSA_x > 5;
+const tmpIfTest /*:boolean*/ = tmpClusterSSA_x > 5;
 if (tmpIfTest) {
 } else {
   while ($LOOP_UNROLL_10) {
     tmpClusterSSA_x = tmpClusterSSA_x + 1;
     $(tmpClusterSSA_x);
-    const tmpIfTest$1 = tmpClusterSSA_x > 5;
+    const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_x > 5;
     if (tmpIfTest$1) {
       break;
     } else {

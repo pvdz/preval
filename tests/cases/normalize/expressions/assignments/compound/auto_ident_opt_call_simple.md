@@ -48,9 +48,9 @@ $(a);
 
 
 `````js filename=intro
-let tmpClusterSSA_a = NaN;
-const tmpIfTest = $ == null;
-const a = { a: 999, b: 1000 };
+let tmpClusterSSA_a /*:number*/ = NaN;
+const tmpIfTest /*:boolean*/ = $ == null;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   a ** 0;
   $(NaN);

@@ -63,7 +63,7 @@ if (f) {
 
 
 `````js filename=intro
-const a = [1];
+const a /*:array*/ = [1];
 $(a);
 $(a, a, 0, 1, 1, true);
 `````

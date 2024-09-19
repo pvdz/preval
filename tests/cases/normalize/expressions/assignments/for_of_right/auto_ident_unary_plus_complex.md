@@ -60,7 +60,7 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const a = +tmpUnaryArg;
+const a /*:number*/ = +tmpUnaryArg;
 const tmpForOfGen = $forOf(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext = tmpForOfGen.next();

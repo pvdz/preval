@@ -63,7 +63,7 @@ $(x, `third read (C)`);
 
 
 `````js filename=intro
-let x = 1;
+let x /*:number*/ = 1;
 if ($) {
   $(1, `first read (A)`);
   const tmpIfTest = $();

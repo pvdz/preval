@@ -97,9 +97,9 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
-let tmpIfTest = false;
-const tmpIfTest$1 = $ == null;
+let tmpSwitchCaseToStart /*:number*/ = 1;
+let tmpIfTest /*:boolean*/ = false;
+const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
   tmpIfTest = undefined === tmpSwitchValue;
 } else {
@@ -109,23 +109,23 @@ if (tmpIfTest$1) {
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$3 = 2 === tmpSwitchValue;
+  const tmpIfTest$3 /*:boolean*/ = 2 === tmpSwitchValue;
   if (tmpIfTest$3) {
     tmpSwitchCaseToStart = 2;
   } else {
   }
 }
-const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
+const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$5) {
 } else {
-  const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
+  const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$7) {
     $(`fail1`);
   } else {
   }
   $(`fail2`);
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

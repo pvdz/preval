@@ -66,10 +66,10 @@ while (true) {
 
 `````js filename=intro
 let xyz = undefined;
-const tmpIfTest$1 = $ == null;
+const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpObjLitVal$1 = { e: $ };
+  const tmpObjLitVal$1 /*:object*/ = { e: $ };
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
   xyz = tmpChainElementCall;
 }

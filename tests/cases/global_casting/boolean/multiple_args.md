@@ -45,7 +45,7 @@ $(y);
 `````js filename=intro
 const a = $(`a`);
 const b = $(`b`);
-const x = a === b;
+const x /*:boolean*/ = a === b;
 $(x);
 `````
 

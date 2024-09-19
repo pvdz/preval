@@ -78,7 +78,7 @@ const f = function () {
   const x = $(1);
   $(`block`);
   $(`block`);
-  const y = Boolean(x);
+  const y /*:boolean*/ = Boolean(x);
   return y;
 };
 f();

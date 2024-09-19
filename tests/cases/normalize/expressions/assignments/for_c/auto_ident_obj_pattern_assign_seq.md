@@ -72,7 +72,7 @@ if (tmpIfTest) {
   const tmpObjLitVal$1 = $(4);
   x = tmpObjLitVal;
   y = tmpObjLitVal$1;
-  const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+  const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
   a = tmpNestedAssignObjPatternRhs;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 = $(1);
@@ -83,7 +83,7 @@ if (tmpIfTest) {
       const tmpObjLitVal$4 = $(4);
       x = tmpObjLitVal$2;
       y = tmpObjLitVal$4;
-      const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$2, y: tmpObjLitVal$4 };
+      const tmpNestedAssignObjPatternRhs$1 /*:object*/ = { x: tmpObjLitVal$2, y: tmpObjLitVal$4 };
       a = tmpNestedAssignObjPatternRhs$1;
     } else {
       break;

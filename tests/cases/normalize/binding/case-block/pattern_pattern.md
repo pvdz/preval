@@ -77,13 +77,13 @@ let x = 1;
 let y = 2;
 const tmpSwitchDisc = $(`a`);
 const tmpBinBothRhs = $(`a`);
-const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
-const z = [10, 20, 30];
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const z /*:array*/ = [10, 20, 30];
 if (tmpIfTest) {
-  const arrPatternSplat$1 = [...z];
+  const arrPatternSplat$1 /*:array*/ = [...z];
   x = arrPatternSplat$1[1];
   y = arrPatternSplat$1[2];
-  const arrPatternSplat = [...z];
+  const arrPatternSplat /*:array*/ = [...z];
   arrPatternSplat[0];
   arrPatternSplat[1];
 } else {

@@ -60,7 +60,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 let x = $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest = x % 2;
+  const tmpIfTest /*:number*/ = x % 2;
   if (tmpIfTest) {
     x = x + 1;
     $(x, `write`);

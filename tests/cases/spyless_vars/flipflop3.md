@@ -47,11 +47,11 @@ $(arr);
 
 
 `````js filename=intro
-const x = {};
-const a = x instanceof String;
-const b = x instanceof Function;
-const c = x instanceof Array;
-const arr = [a, b, c];
+const x /*:object*/ = {};
+const a /*:boolean*/ = x instanceof String;
+const b /*:boolean*/ = x instanceof Function;
+const c /*:boolean*/ = x instanceof Array;
+const arr /*:array*/ = [a, b, c];
 $(arr);
 `````
 

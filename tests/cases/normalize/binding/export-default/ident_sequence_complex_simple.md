@@ -47,7 +47,7 @@ $(a, b, c);
 $(2);
 const varInitAssignLhsComputedObj = $(3);
 varInitAssignLhsComputedObj.x = 3;
-const a = 3;
+const a /*:number*/ = 3;
 export { a };
 $(3, 2, 3);
 `````

@@ -44,10 +44,10 @@ $(a);
 `````js filename=intro
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const tmpCalleeParam = [`before `, ` after`];
-const tmpCalleeParam$1 = [tmpArrElement, 2, tmpArrElement$3];
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
+const tmpCalleeParam$1 /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
 $(tmpCalleeParam, tmpCalleeParam$1);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

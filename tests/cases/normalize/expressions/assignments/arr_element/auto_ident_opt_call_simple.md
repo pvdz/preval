@@ -57,14 +57,14 @@ $(a);
 
 `````js filename=intro
 let tmpBinBothLhs = undefined;
-const tmpIfTest = $ == null;
+const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall = $(1);
   tmpBinBothLhs = tmpChainElementCall;
 }
 let tmpClusterSSA_a = undefined;
-const tmpIfTest$1 = $ == null;
+const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
   const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + undefined;
   $(tmpClusterSSA_tmpCalleeParam);

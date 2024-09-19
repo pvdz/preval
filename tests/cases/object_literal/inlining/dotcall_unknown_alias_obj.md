@@ -51,8 +51,8 @@ const g = function () {
   $();
   return undefined;
 };
-const method = /foo/;
-const obj = { f: g };
+const method /*:regex*/ = /foo/;
+const obj /*:object*/ = { f: g };
 $dotCall(method, obj);
 `````
 

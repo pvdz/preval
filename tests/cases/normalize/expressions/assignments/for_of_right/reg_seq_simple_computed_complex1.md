@@ -53,7 +53,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-const tmpCalleeParam$1 = [];
+const tmpCalleeParam$1 /*:array*/ = [];
 const tmpCalleeParam = $(tmpCalleeParam$1);
 const tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

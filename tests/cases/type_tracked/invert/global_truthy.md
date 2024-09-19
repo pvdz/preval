@@ -69,7 +69,7 @@ f();
 `````js filename=intro
 const f = function () {
   debugger;
-  const tmpCalleeParam = !$;
+  const tmpCalleeParam /*:boolean*/ = !$;
   if ($) {
     $(tmpCalleeParam, `fail`);
     return undefined;

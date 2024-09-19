@@ -68,11 +68,11 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpCalleeParam$1 = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam$1);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
+const tmpAssignMemRhs /*:number*/ = tmpPostUpdArgVal - 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
 const tmpForInGen = $forIn(tmpPostUpdArgVal);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -84,7 +84,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForInNext.value;
   }
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

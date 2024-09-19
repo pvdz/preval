@@ -61,7 +61,7 @@ if (tmpIfTest) {
   tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

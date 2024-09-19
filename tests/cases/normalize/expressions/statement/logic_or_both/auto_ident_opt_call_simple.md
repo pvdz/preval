@@ -53,7 +53,7 @@ $(a);
 
 `````js filename=intro
 let tmpIfTest = false;
-const tmpIfTest$1 = $ == null;
+const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
   const tmpChainElementCall = $(1);
@@ -61,13 +61,13 @@ if (tmpIfTest$1) {
 }
 if (tmpIfTest) {
 } else {
-  const tmpIfTest$3 = $ == null;
+  const tmpIfTest$3 /*:boolean*/ = $ == null;
   if (tmpIfTest$3) {
   } else {
     $(1);
   }
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

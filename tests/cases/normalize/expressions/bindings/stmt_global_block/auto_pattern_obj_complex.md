@@ -40,7 +40,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = { a: 1, b: 2 };
+const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
 const bindingPatternObjRoot = $(tmpCalleeParam);
 const a = bindingPatternObjRoot.a;
 $(a);

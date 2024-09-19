@@ -83,9 +83,9 @@ const f = function () {
   $(x);
   return undefined;
 };
-let x = 1;
+let x /*:number*/ = 1;
 $(f);
-const arr = [1, 2, 3];
+const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   x = 2;
   const tmpCalleeParam = arr[0];

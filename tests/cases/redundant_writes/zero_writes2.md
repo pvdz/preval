@@ -103,7 +103,7 @@ while (true) {
   if (tmpClusterSSA_y) {
     $(tmpClusterSSA_y, `before`);
     let x$1 = undefined;
-    const obj = { a: 1, b: 2 };
+    const obj /*:object*/ = { a: 1, b: 2 };
     const tmpForInGen = $forIn(obj);
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       const tmpForInNext = tmpForInGen.next();

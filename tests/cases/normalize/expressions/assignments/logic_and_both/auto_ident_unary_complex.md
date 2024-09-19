@@ -56,7 +56,7 @@ let a = typeof tmpUnaryArg;
 const tmpCalleeParam = a;
 if (a) {
   const tmpUnaryArg$1 = $(1);
-  const tmpNestedComplexRhs = typeof tmpUnaryArg$1;
+  const tmpNestedComplexRhs /*:string*/ = typeof tmpUnaryArg$1;
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {

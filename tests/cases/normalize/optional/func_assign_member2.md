@@ -61,9 +61,9 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const tmpCalleeParam = { foo: 10 };
+const tmpCalleeParam /*:object*/ = { foo: 10 };
 const tmpChainRootProp = $(tmpCalleeParam);
-const tmpIfTest = tmpChainRootProp == null;
+const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest) {
   const tmpClusterSSA_tmpReturnArg = $(undefined);
   $(tmpClusterSSA_tmpReturnArg);

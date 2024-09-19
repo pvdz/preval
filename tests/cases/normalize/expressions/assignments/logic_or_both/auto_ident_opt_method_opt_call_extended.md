@@ -81,8 +81,8 @@ $(a);
 `````js filename=intro
 let a = undefined;
 let tmpCalleeParam = undefined;
-const tmpIfTest$1 = $ == null;
-const tmpObjLitVal$1 = { e: $ };
+const tmpIfTest$1 /*:boolean*/ = $ == null;
+const tmpObjLitVal$1 /*:object*/ = { e: $ };
 if (tmpIfTest$1) {
 } else {
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
@@ -94,7 +94,7 @@ if (a) {
 } else {
   let tmpNestedComplexRhs = undefined;
   const tmpChainElementObject$9 = tmpObjLitVal$1.e;
-  const tmpIfTest$5 = tmpChainElementObject$9 == null;
+  const tmpIfTest$5 /*:boolean*/ = tmpChainElementObject$9 == null;
   if (tmpIfTest$5) {
   } else {
     const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, 1);

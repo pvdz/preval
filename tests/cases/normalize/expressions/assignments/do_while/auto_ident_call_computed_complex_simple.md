@@ -60,7 +60,7 @@ $(a);
 
 `````js filename=intro
 $(100);
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpCallObj = $(b);
 let tmpClusterSSA_a = tmpCallObj.$(1);
 if (tmpClusterSSA_a) {

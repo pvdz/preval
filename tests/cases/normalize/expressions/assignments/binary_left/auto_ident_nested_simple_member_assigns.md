@@ -64,7 +64,7 @@ $(a, b, c);
 const tmpBinBothRhs = $(100);
 const tmpCalleeParam = 3 + tmpBinBothRhs;
 $(tmpCalleeParam);
-const b = { x: 3 };
+const b /*:object*/ = { x: 3 };
 $(3, b, 3);
 `````
 

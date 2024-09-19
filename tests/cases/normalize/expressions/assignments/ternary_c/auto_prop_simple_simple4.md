@@ -70,11 +70,11 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
-  const a = { a: 999, b: 2 };
+  const a /*:object*/ = { a: 999, b: 2 };
   $(a);
 } else {
   const tmpObjLitVal = $(1);
-  const tmpNestedComplexRhs = { b: tmpObjLitVal };
+  const tmpNestedComplexRhs /*:object*/ = { b: tmpObjLitVal };
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 }

@@ -91,7 +91,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const f = [1, 2, 3];
+const f /*:array*/ = [1, 2, 3];
 $(f);
 $(f);
 `````

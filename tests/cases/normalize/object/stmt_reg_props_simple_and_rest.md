@@ -31,7 +31,7 @@ const tmpObjSpreadArg = { a: 10 };
 
 
 `````js filename=intro
-const tmpObjSpreadArg = { a: 10 };
+const tmpObjSpreadArg /*:object*/ = { a: 10 };
 ({ ...tmpObjSpreadArg });
 `````
 

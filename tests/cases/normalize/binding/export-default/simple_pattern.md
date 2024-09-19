@@ -48,8 +48,8 @@ $(a, x, y, z);
 
 `````js filename=intro
 let a = undefined;
-const z = [10, 20, 30];
-const arrPatternSplat = [...z];
+const z /*:array*/ = [10, 20, 30];
+const arrPatternSplat /*:array*/ = [...z];
 const tmpClusterSSA_x = arrPatternSplat[0];
 const tmpClusterSSA_y = arrPatternSplat[1];
 a = z;

@@ -52,7 +52,7 @@ while (true) {
 
 
 `````js filename=intro
-const b = { c: 1 };
+const b /*:object*/ = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $(`c`);
 const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];

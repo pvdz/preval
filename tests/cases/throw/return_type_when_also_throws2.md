@@ -90,7 +90,7 @@ const _THROW = function () {
   if ($) {
     return undefined;
   } else {
-    const tmpThrowArg = new Error(`always throws`);
+    const tmpThrowArg /*:object*/ = new Error(`always throws`);
     throw tmpThrowArg;
   }
 };

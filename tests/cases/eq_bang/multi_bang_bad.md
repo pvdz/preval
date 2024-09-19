@@ -58,12 +58,12 @@ $(same);
 `````js filename=intro
 const a = $(1);
 const b = $(2);
-const same = a === b;
-const tmpCalleeParam = !same;
+const same /*:boolean*/ = a === b;
+const tmpCalleeParam /*:boolean*/ = !same;
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = !same;
+const tmpCalleeParam$1 /*:boolean*/ = !same;
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 = !same;
+const tmpCalleeParam$3 /*:boolean*/ = !same;
 $(tmpCalleeParam$3);
 $(same);
 `````

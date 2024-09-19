@@ -62,9 +62,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-const b = { x: 1, y: 2 };
+const b /*:object*/ = { x: 1, y: 2 };
 const tmpForInGen = $forIn(b);
-const a = {};
+const a /*:object*/ = {};
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext = tmpForInGen.next();
   const tmpIfTest = tmpForInNext.done;

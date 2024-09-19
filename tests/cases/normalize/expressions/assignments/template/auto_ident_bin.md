@@ -49,8 +49,8 @@ $(a);
 const tmpBinBothLhs$1 = $(1);
 const tmpBinBothRhs$1 = $(2);
 const a = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpBinBothRhs = $coerce(a, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

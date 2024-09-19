@@ -60,7 +60,7 @@ f(4);
 const x = $(`50`);
 const f = function () {
   debugger;
-  const y = $coerce(x, `number`);
+  const y /*:number*/ = $coerce(x, `number`);
   $(1);
   $(2);
   $(y);

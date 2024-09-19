@@ -77,12 +77,12 @@ tmpSwitchBreak: {
 `````js filename=intro
 const tmpSwitchDisc = $(2);
 const tmpBinBothRhs = $(1);
-const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   $(`pass`);
 } else {
   const tmpBinBothRhs$1 = $(2);
-  const tmpIfTest$1 = tmpSwitchDisc === tmpBinBothRhs$1;
+  const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs$1;
   if (tmpIfTest$1) {
     $(`pass`);
     $(`pass`);

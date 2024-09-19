@@ -80,13 +80,13 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const lastType = $(2097173);
 const tmpBinBothRhs = $spy();
-const tmpStringConcatL = $coerce(tmpBinBothRhs, `plustr`);
-const tmpIfTest$1787 = lastType === 2097173;
+const tmpStringConcatL /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
+const tmpIfTest$1787 /*:boolean*/ = lastType === 2097173;
 if (tmpIfTest$1787) {
-  const tmpClusterSSA_fullErrmsg = `Parser error! ${tmpStringConcatL} (at EOF)`;
+  const tmpClusterSSA_fullErrmsg /*:string*/ = `Parser error! ${tmpStringConcatL} (at EOF)`;
   $(`-->`, tmpClusterSSA_fullErrmsg);
 } else {
-  const tmpBinBothLhs$253 = `Parser error! ${tmpStringConcatL}`;
+  const tmpBinBothLhs$253 /*:string*/ = `Parser error! ${tmpStringConcatL}`;
   $(`-->`, tmpBinBothLhs$253);
 }
 $(undefined);

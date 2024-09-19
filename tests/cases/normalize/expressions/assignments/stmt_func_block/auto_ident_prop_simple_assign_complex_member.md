@@ -63,7 +63,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const b = { c: 10, d: 20 };
+const b /*:object*/ = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];

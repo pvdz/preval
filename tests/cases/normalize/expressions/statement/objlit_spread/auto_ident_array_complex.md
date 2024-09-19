@@ -42,9 +42,9 @@ $(a);
 `````js filename=intro
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const tmpObjSpreadArg = [tmpArrElement, 2, tmpArrElement$3];
+const tmpObjSpreadArg /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
 ({ ...tmpObjSpreadArg });
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

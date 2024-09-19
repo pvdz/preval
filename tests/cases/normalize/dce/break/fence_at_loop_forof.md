@@ -87,7 +87,7 @@ $(`after (not invoked)`);
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   $(`loop`);
-  const tmpCalleeParam = [1, 2];
+  const tmpCalleeParam /*:array*/ = [1, 2];
   const tmpForOfGen = $forOf(tmpCalleeParam);
   const tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest$1 = tmpForOfNext.done;
@@ -101,7 +101,7 @@ if (tmpIfTest) {
     const tmpIfTest$2 = $(true);
     if (tmpIfTest$2) {
       $(`loop`);
-      const tmpCalleeParam$1 = [1, 2];
+      const tmpCalleeParam$1 /*:array*/ = [1, 2];
       const tmpForOfGen$1 = $forOf(tmpCalleeParam$1);
       const tmpForOfNext$1 = tmpForOfGen$1.next();
       const tmpIfTest$4 = tmpForOfNext$1.done;

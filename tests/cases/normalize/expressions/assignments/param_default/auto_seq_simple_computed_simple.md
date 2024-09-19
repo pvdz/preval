@@ -71,7 +71,7 @@ $(1);
 $(undefined);
 $(1);
 const tmpAssignMemRhs = $(2);
-const tmpNestedComplexRhs = { b: tmpAssignMemRhs };
+const tmpNestedComplexRhs /*:object*/ = { b: tmpAssignMemRhs };
 $(tmpNestedComplexRhs);
 `````
 

@@ -45,14 +45,14 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj = $(arg);
-const tmpIfTest = delete tmpDeleteObj.y;
+const tmpIfTest /*:boolean*/ = delete tmpDeleteObj.y;
 if (tmpIfTest) {
 } else {
   $(100);
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 

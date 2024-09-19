@@ -58,7 +58,7 @@ if (x) {
 
 `````js filename=intro
 const tmpBinBothRhs = $(1);
-const x = 1 * tmpBinBothRhs;
+const x /*:number*/ = 1 * tmpBinBothRhs;
 if (x) {
   $(x, `fail1`);
 } else {

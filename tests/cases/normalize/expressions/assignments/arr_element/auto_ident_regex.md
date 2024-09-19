@@ -43,7 +43,7 @@ $(a);
 
 `````js filename=intro
 $(`/foo//foo/`);
-const tmpClusterSSA_a = /foo/;
+const tmpClusterSSA_a /*:regex*/ = /foo/;
 $(tmpClusterSSA_a);
 `````
 

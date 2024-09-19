@@ -45,7 +45,7 @@ $(x);
 
 `````js filename=intro
 $(`prop`);
-const x = {
+const x /*:object*/ = {
   a() {
     debugger;
     return undefined;

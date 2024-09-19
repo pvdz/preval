@@ -56,14 +56,14 @@ $(a);
 `````js filename=intro
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
-const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpBinBothLhs$1 = $(1);
   const tmpBinBothRhs$1 = $(2);
   tmpBinBothLhs$1 + tmpBinBothRhs$1;
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

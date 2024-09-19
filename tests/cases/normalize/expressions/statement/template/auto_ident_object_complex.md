@@ -48,11 +48,11 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
-const tmpCallCallee$1 = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+const tmpCallCallee$1 /*:object*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+const tmpBinBothRhs /*:string*/ = $coerce(tmpCallCallee$1, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

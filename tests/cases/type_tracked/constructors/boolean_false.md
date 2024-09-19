@@ -39,7 +39,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const x = tmpBinBothLhs === tmpBinBothRhs;
+const x /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 $(x);
 `````
 

@@ -68,10 +68,10 @@ $(a);
 
 
 `````js filename=intro
-const bindingPatternArrRoot = { a: 999, b: 1000 };
-const arrPatternSplat = [...bindingPatternArrRoot];
+const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
-const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam$1 /*:object*/ = { x: 1 };
 const tmpCalleeParam = $(tmpCalleeParam$1);
 const tmpForInGen = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -82,7 +82,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     $(10);
     $(20);
-    const tmpCalleeParam$3 = [1, 2];
+    const tmpCalleeParam$3 /*:array*/ = [1, 2];
     const tmpAssignMemLhsObj = $(tmpCalleeParam$3);
     const tmpAssignMemRhs = tmpForInNext.value;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;

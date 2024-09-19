@@ -93,7 +93,7 @@ $(parseIdentifierRest);
 `````js filename=intro
 const parseIdentifierRest = function () {
   debugger;
-  let s = 10;
+  let s /*:number*/ = 10;
   $inlinedFunction: {
     const tmpIfTest = $(1);
     if (tmpIfTest) {

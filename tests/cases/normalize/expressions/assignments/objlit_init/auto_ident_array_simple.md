@@ -40,8 +40,8 @@ $(a);
 
 
 `````js filename=intro
-const a = [1, 2, 3];
-const tmpCalleeParam = { x: a };
+const a /*:array*/ = [1, 2, 3];
+const tmpCalleeParam /*:object*/ = { x: a };
 $(tmpCalleeParam);
 $(a);
 `````

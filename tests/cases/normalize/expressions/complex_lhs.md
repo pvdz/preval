@@ -33,7 +33,7 @@ tmpAssignMemLhsObj.foo = 10;
 
 
 `````js filename=intro
-const tmpCalleeParam = {};
+const tmpCalleeParam /*:object*/ = {};
 const tmpAssignMemLhsObj = $(tmpCalleeParam);
 tmpAssignMemLhsObj.foo = 10;
 `````

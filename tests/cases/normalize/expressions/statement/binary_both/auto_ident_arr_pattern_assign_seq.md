@@ -67,20 +67,20 @@ $(1);
 $(2);
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
-const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
+const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_x = arrPatternSplat[0];
 const tmpClusterSSA_y = arrPatternSplat[1];
 $(tmpClusterSSA_x);
 $(tmpClusterSSA_y);
 const tmpArrElement$3 = $(3);
 const tmpArrElement$5 = $(4);
-const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$3, tmpArrElement$5];
-const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
+const tmpNestedAssignArrPatternRhs$1 /*:array*/ = [tmpArrElement$3, tmpArrElement$5];
+const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
 const tmpClusterSSA_x$1 = arrPatternSplat$1[0];
 const tmpClusterSSA_y$1 = arrPatternSplat$1[1];
 tmpNestedAssignArrPatternRhs + tmpNestedAssignArrPatternRhs$1;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_x$1, tmpClusterSSA_y$1);
 `````
 

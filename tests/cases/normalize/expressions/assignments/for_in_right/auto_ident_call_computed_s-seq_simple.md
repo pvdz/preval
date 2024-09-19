@@ -63,7 +63,7 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const a = b.$(1);
 const tmpForInGen = $forIn(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

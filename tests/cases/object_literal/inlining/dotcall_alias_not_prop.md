@@ -48,7 +48,7 @@ const g = function () {
   debugger;
   return `win`;
 };
-const obj = { f: g };
+const obj /*:object*/ = { f: g };
 obj.g();
 `````
 

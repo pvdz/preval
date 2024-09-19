@@ -91,8 +91,8 @@ if (tmpIfTest$7) {
 
 
 `````js filename=intro
-const arg = { y: 1 };
-const a = delete arg.y;
+const arg /*:object*/ = { y: 1 };
+const a /*:boolean*/ = delete arg.y;
 $(a, arg);
 $(`fail1`);
 $(`fail2`);

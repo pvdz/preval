@@ -63,7 +63,7 @@ $(tmpCalleeParam);
 `````
 
 `````js filename=x
-const X = class {};
+const X /*:class*/ = class {};
 export { X };
 `````
 

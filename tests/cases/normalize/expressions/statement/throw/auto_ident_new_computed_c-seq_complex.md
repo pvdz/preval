@@ -43,11 +43,11 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`\$`);
 const tmpNewCallee = tmpCompObj[tmpCompProp];
-const tmpThrowArg = new tmpNewCallee(1);
+const tmpThrowArg /*:object*/ = new tmpNewCallee(1);
 throw tmpThrowArg;
 `````
 

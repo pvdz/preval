@@ -54,7 +54,7 @@ $(a);
 
 `````js filename=intro
 $(1);
-const tmpIfTest = $ == null;
+const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
   $(undefined);
 } else {

@@ -79,7 +79,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const tmpCalleeParam = [1, 2];
+const tmpCalleeParam /*:array*/ = [1, 2];
 const tmpForOfGen = $forOf(tmpCalleeParam);
 const tmpForOfNext = tmpForOfGen.next();
 const tmpIfTest = tmpForOfNext.done;

@@ -73,7 +73,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpObjLitVal$3 = { a: 10 };
+const tmpObjLitVal$3 /*:object*/ = { a: 10 };
 $(tmpObjLitVal$3);
 `````
 

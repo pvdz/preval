@@ -60,7 +60,7 @@ if (tmpCalleeParam$1) {
   tmpCalleeParam$1 = $(tmpCalleeParam$5);
 } else {
 }
-const tmpCalleeParam = [`before `, ` after`];
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 if (tmpCalleeParam$1) {
   $(tmpCalleeParam, tmpCalleeParam$1);
 } else {
@@ -68,7 +68,7 @@ if (tmpCalleeParam$1) {
   const tmpClusterSSA_tmpCalleeParam$1 = $(tmpCalleeParam$7);
   $(tmpCalleeParam, tmpClusterSSA_tmpCalleeParam$1);
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

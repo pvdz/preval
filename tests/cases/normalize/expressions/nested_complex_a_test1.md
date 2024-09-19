@@ -53,7 +53,7 @@ tmpAssignMemLhsObj.length = b;
 
 
 `````js filename=intro
-const tmpCalleeParam = [];
+const tmpCalleeParam /*:array*/ = [];
 const a = $(tmpCalleeParam);
 const tmpAssignMemLhsObj = $(a);
 tmpAssignMemLhsObj.length = undefined;

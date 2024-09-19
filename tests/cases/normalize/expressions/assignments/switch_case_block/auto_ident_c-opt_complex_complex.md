@@ -71,12 +71,12 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
-const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   a = undefined;
-  const b = { x: 1 };
+  const b /*:object*/ = { x: 1 };
   const tmpChainElementCall = $(b);
-  const tmpIfTest$1 = tmpChainElementCall == null;
+  const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$1) {
   } else {
     const tmpChainRootComputed = $(`x`);

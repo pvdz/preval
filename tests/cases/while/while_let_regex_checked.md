@@ -71,7 +71,7 @@ while (true) {
 
 
 `````js filename=intro
-let x = /foo/;
+let x /*:regex*/ = /foo/;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpCalleeParam = x.foo;
   $(tmpCalleeParam);

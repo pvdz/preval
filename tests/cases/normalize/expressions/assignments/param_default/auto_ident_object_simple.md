@@ -60,7 +60,7 @@ $(a);
 
 `````js filename=intro
 $(undefined);
-const tmpNestedComplexRhs = { x: 1, y: 2, z: 3 };
+const tmpNestedComplexRhs /*:object*/ = { x: 1, y: 2, z: 3 };
 $(tmpNestedComplexRhs);
 `````
 

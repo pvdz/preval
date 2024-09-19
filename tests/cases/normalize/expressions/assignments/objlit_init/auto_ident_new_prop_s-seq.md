@@ -46,8 +46,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_a = new $(1);
-const tmpCalleeParam = { x: tmpClusterSSA_a };
+const tmpClusterSSA_a /*:object*/ = new $(1);
+const tmpCalleeParam /*:object*/ = { x: tmpClusterSSA_a };
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````

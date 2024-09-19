@@ -45,10 +45,10 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const tmpIfTest$1 = $ == null;
+const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpObjLitVal = { c: $ };
+  const tmpObjLitVal /*:object*/ = { c: $ };
   $dotCall($, tmpObjLitVal, 1);
 }
 `````

@@ -75,7 +75,7 @@ $(a, b);
 
 `````js filename=intro
 let flag = true;
-let b = 12;
+let b /*:number*/ = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (flag) {
     $(100);
@@ -86,7 +86,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

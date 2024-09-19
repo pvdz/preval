@@ -57,7 +57,7 @@ if (tmpIfTest) {
   const tmpCalleeParam = $(100);
   a = $(tmpCalleeParam);
 }
-const obj = {};
+const obj /*:object*/ = {};
 obj[a];
 $(a);
 `````

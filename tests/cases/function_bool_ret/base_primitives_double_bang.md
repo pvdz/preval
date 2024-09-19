@@ -75,11 +75,11 @@ tmpCallCallee$3(tmpCalleeParam$7, tmpCalleeParam$9);
 
 
 `````js filename=intro
-const tmpUnaryArg$1 = Boolean($);
+const tmpUnaryArg$1 /*:boolean*/ = Boolean($);
 $(tmpUnaryArg$1, `one`);
-const tmpUnaryArg$5 = Boolean($);
+const tmpUnaryArg$5 /*:boolean*/ = Boolean($);
 $(tmpUnaryArg$5, `two`);
-const tmpUnaryArg$9 = Boolean($);
+const tmpUnaryArg$9 /*:boolean*/ = Boolean($);
 $(tmpUnaryArg$9, `three`);
 `````
 

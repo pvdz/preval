@@ -47,9 +47,9 @@ $(a, b, c);
 
 `````js filename=intro
 const varInitAssignLhsComputedProp = $(`x`);
-const b = { x: 2 };
+const b /*:object*/ = { x: 2 };
 b[varInitAssignLhsComputedProp] = 7;
-const a = 7;
+const a /*:number*/ = 7;
 export { a };
 $(7, b, 3);
 `````

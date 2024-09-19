@@ -61,13 +61,13 @@ $(a, b);
 
 `````js filename=intro
 const tmpObjLitVal = $(2);
-const tmpCalleeParam$1 = { b: tmpObjLitVal };
+const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
 let tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
 let tmpClusterSSA_a = tmpNestedAssignObjPatternRhs;
 if (tmpNestedAssignObjPatternRhs) {
   const tmpObjLitVal$1 = $(2);
-  const tmpCalleeParam$3 = { b: tmpObjLitVal$1 };
+  const tmpCalleeParam$3 /*:object*/ = { b: tmpObjLitVal$1 };
   const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$3);
   tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
   tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1;

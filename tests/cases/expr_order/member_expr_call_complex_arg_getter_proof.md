@@ -81,7 +81,7 @@ $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam);
 
 
 `````js filename=intro
-const x = {
+const x /*:object*/ = {
   get y() {
     debugger;
     $(`y.get`);
@@ -89,7 +89,7 @@ const x = {
   },
 };
 const tmpCallVal = x.y;
-const a = {
+const a /*:object*/ = {
   get b() {
     debugger;
     $(`b.get`);

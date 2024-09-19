@@ -54,7 +54,7 @@ $(a);
 let tmpClusterSSA_a = new $(1);
 const tmpCalleeParam = tmpClusterSSA_a;
 if (tmpClusterSSA_a) {
-  const tmpNestedComplexRhs = new $(1);
+  const tmpNestedComplexRhs /*:object*/ = new $(1);
   tmpClusterSSA_a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {

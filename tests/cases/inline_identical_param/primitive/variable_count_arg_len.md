@@ -73,9 +73,9 @@ f(8, 2, 9);
 `````js filename=intro
 const f = function ($$0, $$1, $$2, $$3) {
   const tmpPrevalAliasArgumentsLen = arguments.length;
-  const a = $$0;
-  const b = $$1;
-  const c = $$2;
+  const a /*:number*/ = $$0;
+  const b /*:number*/ = $$1;
+  const c /*:number*/ = $$2;
   const d = $$3;
   debugger;
   if ($) {

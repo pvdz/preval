@@ -64,7 +64,7 @@ const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {
-  const tmpObjLitVal$1 = { e: $ };
+  const tmpObjLitVal$1 /*:object*/ = { e: $ };
   const tmpChainElementCall = tmpObjLitVal$1.e(1);
   a = tmpChainElementCall;
   $(tmpChainElementCall);

@@ -41,7 +41,7 @@ y = arrPatternSplat[0];
 
 `````js filename=intro
 const objPatternNoDefault = (1).x;
-const arrPatternSplat = [...objPatternNoDefault];
+const arrPatternSplat /*:array*/ = [...objPatternNoDefault];
 arrPatternSplat[0];
 `````
 

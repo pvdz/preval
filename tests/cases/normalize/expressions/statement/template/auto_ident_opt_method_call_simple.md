@@ -54,12 +54,12 @@ $(a);
 
 
 `````js filename=intro
-const b = { c: $ };
+const b /*:object*/ = { c: $ };
 const tmpChainElementCall = b.c(1);
-const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpChainElementCall, `string`);
-const tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpChainElementCall, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

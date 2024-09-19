@@ -67,8 +67,8 @@ $(a, arg);
 `````js filename=intro
 $(1);
 $(2);
-const arg = { y: 1 };
-const a = delete arg.y;
+const arg /*:object*/ = { y: 1 };
+const a /*:boolean*/ = delete arg.y;
 const tmpForOfGen = $forOf(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext = tmpForOfGen.next();

@@ -36,7 +36,7 @@ $(arr);
 
 
 `````js filename=intro
-const arr = [1];
+const arr /*:array*/ = [1];
 $(arr);
 `````
 

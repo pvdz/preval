@@ -39,7 +39,7 @@ $(a);
 
 
 `````js filename=intro
-const a = [];
+const a /*:array*/ = [];
 const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
 $(a);

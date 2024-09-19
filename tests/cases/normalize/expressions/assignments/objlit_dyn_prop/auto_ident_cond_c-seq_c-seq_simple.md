@@ -56,7 +56,7 @@ if (tmpIfTest) {
   const tmpCalleeParam$1 = $(100);
   a = $(tmpCalleeParam$1);
 }
-const tmpCalleeParam = { [a]: 10 };
+const tmpCalleeParam /*:object*/ = { [a]: 10 };
 $(tmpCalleeParam);
 $(a);
 `````

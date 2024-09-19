@@ -40,8 +40,8 @@ $(z);
 
 `````js filename=intro
 const x = $(32768);
-const y = x & 32768;
-const z = !y;
+const y /*:number*/ = x & 32768;
+const z /*:boolean*/ = !y;
 $(z);
 `````
 

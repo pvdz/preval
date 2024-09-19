@@ -51,16 +51,16 @@ $(a);
 
 
 `````js filename=intro
-const bindingPatternArrRoot = { a: 999, b: 1000 };
-const arrPatternSplat = [...bindingPatternArrRoot];
+const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 arrPatternSplat[0];
 $(10);
 $(20);
-const tmpNestedAssignArrPatternRhs = [1, 2];
-const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
+const tmpNestedAssignArrPatternRhs /*:array*/ = [1, 2];
+const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_a = arrPatternSplat$1[0];
-const tmpBinBothRhs = $coerce(tmpNestedAssignArrPatternRhs, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+const tmpBinBothRhs /*:string*/ = $coerce(tmpNestedAssignArrPatternRhs, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````

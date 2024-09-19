@@ -57,7 +57,7 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-const tmpObjLitVal$1 = { e: $ };
+const tmpObjLitVal$1 /*:object*/ = { e: $ };
 const tmpChainElementCall = tmpObjLitVal$1.e(1);
 const tmpCalleeParam = tmpBinBothLhs + tmpChainElementCall;
 $(tmpCalleeParam);

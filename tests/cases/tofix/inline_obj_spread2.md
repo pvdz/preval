@@ -58,8 +58,8 @@ $(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpObjLitVal = { bar: 10 };
-const tmpCalleeParam = { ...tmpObjLitVal };
+const tmpObjLitVal /*:object*/ = { bar: 10 };
+const tmpCalleeParam /*:object*/ = { ...tmpObjLitVal };
 $(tmpCalleeParam);
 `````
 

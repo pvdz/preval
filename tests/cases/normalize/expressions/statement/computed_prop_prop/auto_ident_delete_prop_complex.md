@@ -46,12 +46,12 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj = $(arg);
-const tmpCompProp = delete tmpDeleteObj.y;
-const obj = {};
+const tmpCompProp /*:boolean*/ = delete tmpDeleteObj.y;
+const obj /*:object*/ = {};
 obj[tmpCompProp];
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 

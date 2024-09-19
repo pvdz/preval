@@ -49,7 +49,7 @@ $(a);
 `````js filename=intro
 let a = undefined;
 const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall == null;
+const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 let tmpAnonDefaultExport = undefined;
 if (tmpIfTest) {
 } else {

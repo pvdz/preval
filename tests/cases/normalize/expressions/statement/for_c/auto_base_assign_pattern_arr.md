@@ -60,17 +60,17 @@ let b = [];
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpArrElement = $(2);
-  const tmpCalleeParam = [tmpArrElement];
+  const tmpCalleeParam /*:array*/ = [tmpArrElement];
   const arrAssignPatternRhs = $(tmpCalleeParam);
-  const arrPatternSplat = [...arrAssignPatternRhs];
+  const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
   b = arrPatternSplat[0];
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
       const tmpArrElement$1 = $(2);
-      const tmpCalleeParam$1 = [tmpArrElement$1];
+      const tmpCalleeParam$1 /*:array*/ = [tmpArrElement$1];
       const arrAssignPatternRhs$1 = $(tmpCalleeParam$1);
-      const arrPatternSplat$1 = [...arrAssignPatternRhs$1];
+      const arrPatternSplat$1 /*:array*/ = [...arrAssignPatternRhs$1];
       b = arrPatternSplat$1[0];
     } else {
       break;
@@ -78,7 +78,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

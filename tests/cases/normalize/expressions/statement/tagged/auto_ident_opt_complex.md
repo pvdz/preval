@@ -51,17 +51,17 @@ $(a);
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall == null;
-const tmpCalleeParam = [`before `, ` after`];
+const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 if (tmpIfTest) {
   $(tmpCalleeParam, undefined);
 } else {
   const tmpChainElementObject = tmpChainElementCall.x;
   $(tmpCalleeParam, tmpChainElementObject);
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

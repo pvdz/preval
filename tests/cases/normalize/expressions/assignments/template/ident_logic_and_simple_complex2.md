@@ -75,7 +75,7 @@ $(a);
 
 
 `````js filename=intro
-const obj = {
+const obj /*:object*/ = {
   toString() {
     debugger;
     $(`toString`);
@@ -89,8 +89,8 @@ const obj = {
 };
 const tmpCalleeParam$1 = $(obj);
 const tmpClusterSSA_a = $(tmpCalleeParam$1);
-const tmpBinBothRhs = $coerce(tmpClusterSSA_a, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+const tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````

@@ -54,7 +54,7 @@ $(f);
 
 `````js filename=intro
 const f = function ($$0) {
-  const tmpPrevalAliasThis$1 = this;
+  const tmpPrevalAliasThis$1 /*:object*/ = this;
   debugger;
   tmpPrevalAliasThis$1.e$;
   tmpPrevalAliasThis$1.e$;

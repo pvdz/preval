@@ -57,7 +57,7 @@ $(x);
 
 
 `````js filename=intro
-let x = 10;
+let x /*:number*/ = 10;
 $(5);
 if ($) {
   $(10, `a`);

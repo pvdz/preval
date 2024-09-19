@@ -55,10 +55,10 @@ $(a);
 `````js filename=intro
 const tmpCompObj = $(30);
 const tmpBinBothLhs = tmpCompObj.y;
-const tmpObjLitVal = { y: 10 };
+const tmpObjLitVal /*:object*/ = { y: 10 };
 const tmpCompObj$1 = $(tmpObjLitVal);
 const tmpBinBothRhs = tmpCompObj$1.y;
-const tmpClusterSSA_a = tmpBinBothLhs === tmpBinBothRhs;
+const tmpClusterSSA_a /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 $(tmpClusterSSA_a);
 `````
 

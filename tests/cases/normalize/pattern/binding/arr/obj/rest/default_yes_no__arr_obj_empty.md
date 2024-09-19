@@ -50,8 +50,8 @@ $(x);
 
 
 `````js filename=intro
-const tmpArrElement = {};
-const tmpCalleeParam$3 = [];
+const tmpArrElement /*:object*/ = {};
+const tmpCalleeParam$3 /*:array*/ = [];
 const x = objPatternRest(tmpArrElement, tmpCalleeParam$3, undefined);
 $(x);
 `````

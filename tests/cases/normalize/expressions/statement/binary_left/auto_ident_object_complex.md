@@ -44,9 +44,9 @@ $(a);
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
 const tmpBinBothRhs = $(100);
-const tmpBinBothLhs = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+const tmpBinBothLhs /*:object*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 tmpBinBothLhs + tmpBinBothRhs;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

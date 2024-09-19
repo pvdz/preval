@@ -39,7 +39,7 @@ $(a, arg);
 
 
 `````js filename=intro
-const a = undefined;
+const a /*:undefined*/ = undefined;
 export { a };
 $(undefined, 1);
 `````

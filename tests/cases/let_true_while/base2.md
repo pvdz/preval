@@ -60,13 +60,13 @@ $(x, y);
 `````js filename=intro
 const y = $(5);
 $(true);
-const z = y - 1;
+const z /*:number*/ = y - 1;
 let tmpClusterSSA_y = z;
 let tmpClusterSSA_x = z;
 if (z) {
   while ($LOOP_UNROLL_10) {
     $(tmpClusterSSA_x);
-    const z$1 = tmpClusterSSA_y - 1;
+    const z$1 /*:number*/ = tmpClusterSSA_y - 1;
     tmpClusterSSA_y = z$1;
     tmpClusterSSA_x = z$1;
     if (z$1) {

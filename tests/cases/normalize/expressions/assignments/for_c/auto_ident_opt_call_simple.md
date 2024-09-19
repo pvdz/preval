@@ -58,7 +58,7 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   a = undefined;
-  const tmpIfTest$1 = $ == null;
+  const tmpIfTest$1 /*:boolean*/ = $ == null;
   if (tmpIfTest$1) {
   } else {
     $(1);
@@ -66,7 +66,7 @@ if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$2 = $(1);
     if (tmpIfTest$2) {
-      const tmpIfTest$4 = $ == null;
+      const tmpIfTest$4 /*:boolean*/ = $ == null;
       if (tmpIfTest$4) {
       } else {
         $(1);

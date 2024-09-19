@@ -56,9 +56,9 @@ $(a, arg);
 $(1);
 $(1);
 $(2);
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 delete arg.y;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 

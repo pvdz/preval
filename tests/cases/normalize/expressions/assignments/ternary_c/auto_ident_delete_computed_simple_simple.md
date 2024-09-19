@@ -52,12 +52,12 @@ $(a, arg);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(0);
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  const tmpNestedComplexRhs = delete arg.y;
+  const tmpNestedComplexRhs /*:boolean*/ = delete arg.y;
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }

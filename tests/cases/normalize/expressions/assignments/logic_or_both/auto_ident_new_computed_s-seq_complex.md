@@ -56,7 +56,7 @@ $(a);
 
 `````js filename=intro
 const tmpCompProp = $(`\$`);
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpNewCallee = b[tmpCompProp];
 let tmpClusterSSA_a = new tmpNewCallee(1);
 const tmpCalleeParam = tmpClusterSSA_a;
@@ -65,7 +65,7 @@ if (tmpClusterSSA_a) {
 } else {
   const tmpCompProp$1 = $(`\$`);
   const tmpNewCallee$1 = b[tmpCompProp$1];
-  const tmpNestedComplexRhs = new tmpNewCallee$1(1);
+  const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee$1(1);
   tmpClusterSSA_a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }

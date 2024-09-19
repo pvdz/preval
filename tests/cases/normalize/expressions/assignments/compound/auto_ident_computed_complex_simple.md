@@ -46,11 +46,11 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 1 };
+const b /*:object*/ = { c: 1 };
 const tmpCompObj = $(b);
 const tmpBinBothRhs = tmpCompObj.c;
-const a = { a: 999, b: 1000 };
-const tmpClusterSSA_a = a * tmpBinBothRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
+const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, b);
 `````

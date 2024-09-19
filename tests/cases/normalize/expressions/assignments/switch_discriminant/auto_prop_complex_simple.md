@@ -54,7 +54,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 $(100);
-const a = { b: tmpObjLitVal };
+const a /*:object*/ = { b: tmpObjLitVal };
 const tmpAssignMemLhsObj = $(a);
 tmpAssignMemLhsObj.b = 2;
 $(a);

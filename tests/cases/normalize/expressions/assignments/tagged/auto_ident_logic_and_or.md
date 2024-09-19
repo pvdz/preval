@@ -66,7 +66,7 @@ if (a) {
   const tmpCalleeParam$7 = $(2);
   a = $(tmpCalleeParam$7);
 }
-const tmpCalleeParam = [`before `, ` after`];
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, a);
 $(a);
 `````

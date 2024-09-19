@@ -158,7 +158,7 @@ $(a, b, c, d, e);
 
 
 `````js filename=intro
-const obj = {
+const obj /*:object*/ = {
   get c() {
     debugger;
     $(`get`);

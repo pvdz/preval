@@ -61,15 +61,15 @@ $(a);
 
 `````js filename=intro
 let tmpIfTest = false;
-const tmpObjLitVal = { y: 1 };
-const b = { x: tmpObjLitVal };
+const tmpObjLitVal /*:object*/ = { y: 1 };
+const b /*:object*/ = { x: tmpObjLitVal };
 const tmpChainElementCall = $(b);
-const tmpIfTest$1 = tmpChainElementCall == null;
+const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$3 = tmpChainElementObject == null;
+  const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$3) {
   } else {
     const tmpChainRootComputed$1 = $(`y`);
@@ -81,7 +81,7 @@ if (tmpIfTest) {
 } else {
   $(100);
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -57,9 +57,9 @@ $(a);
 
 `````js filename=intro
 let tmpBinBothLhs = undefined;
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpChainRootProp = $(b);
-const tmpIfTest = tmpChainRootProp == null;
+const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;
@@ -67,14 +67,14 @@ if (tmpIfTest) {
 }
 let tmpBinBothRhs = undefined;
 const tmpChainRootProp$1 = $(b);
-const tmpIfTest$1 = tmpChainRootProp$1 == null;
+const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp$1 == null;
 if (tmpIfTest$1) {
 } else {
   const tmpChainElementObject$1 = tmpChainRootProp$1.x;
   tmpBinBothRhs = tmpChainElementObject$1;
 }
 tmpBinBothLhs + tmpBinBothRhs;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

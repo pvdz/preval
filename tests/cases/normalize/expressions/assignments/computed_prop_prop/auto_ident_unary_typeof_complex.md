@@ -48,8 +48,8 @@ $(a, arg);
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-const obj = {};
-const a = typeof tmpUnaryArg;
+const obj /*:object*/ = {};
+const a /*:string*/ = typeof tmpUnaryArg;
 obj[a];
 $(a, 1);
 `````

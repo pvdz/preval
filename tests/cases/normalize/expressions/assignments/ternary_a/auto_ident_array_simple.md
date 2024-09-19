@@ -47,7 +47,7 @@ $(a);
 `````js filename=intro
 const tmpClusterSSA_tmpCalleeParam = $(100);
 $(tmpClusterSSA_tmpCalleeParam);
-const a = [1, 2, 3];
+const a /*:array*/ = [1, 2, 3];
 $(a);
 `````
 

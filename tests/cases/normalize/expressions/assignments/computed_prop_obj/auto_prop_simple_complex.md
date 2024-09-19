@@ -50,7 +50,7 @@ $(a);
 $(1);
 $ObjectPrototype.a;
 const tmpAssignMemRhs = $(2);
-const a = { b: tmpAssignMemRhs };
+const a /*:object*/ = { b: tmpAssignMemRhs };
 $(a);
 `````
 

@@ -52,7 +52,7 @@ while (true) {
 `````js filename=intro
 const tmpUnaryArg = $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const xyz = typeof tmpUnaryArg;
+  const xyz /*:string*/ = typeof tmpUnaryArg;
   $(xyz);
   $(1);
 }

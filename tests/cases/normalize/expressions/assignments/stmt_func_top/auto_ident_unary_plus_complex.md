@@ -52,7 +52,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const a = +tmpUnaryArg;
+const a /*:number*/ = +tmpUnaryArg;
 $(a);
 $(undefined);
 `````

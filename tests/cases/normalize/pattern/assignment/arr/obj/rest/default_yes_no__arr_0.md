@@ -49,7 +49,7 @@ $(x);
 
 
 `````js filename=intro
-const tmpCalleeParam$3 = [];
+const tmpCalleeParam$3 /*:array*/ = [];
 x = objPatternRest(0, tmpCalleeParam$3, undefined);
 $(x);
 `````

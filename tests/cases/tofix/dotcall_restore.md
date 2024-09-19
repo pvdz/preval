@@ -55,7 +55,7 @@ $(f);
 const f = function ($$0) {
   const Cu$3 = $$0;
   debugger;
-  const tmpCalleeParam$81 = /[^0-9]/g;
+  const tmpCalleeParam$81 /*:regex*/ = /[^0-9]/g;
   const tmpReturnArg$29 = Cu$3.replace(tmpCalleeParam$81, ``);
   return tmpReturnArg$29;
 };

@@ -46,7 +46,7 @@ if (tmpIfTest) {
 const objPatternNoDefault = (1).x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 const objPatternBeforeDefault = objPatternNoDefault$1.z;
-const tmpIfTest = objPatternBeforeDefault === undefined;
+const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   z = a;
 } else {

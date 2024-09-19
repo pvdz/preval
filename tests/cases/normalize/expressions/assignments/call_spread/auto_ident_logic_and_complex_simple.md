@@ -51,7 +51,7 @@ if (a) {
   a = 2;
   $(...2);
 } else {
-  const tmpIfTest = a === ``;
+  const tmpIfTest /*:boolean*/ = a === ``;
   if (tmpIfTest) {
     $();
   } else {

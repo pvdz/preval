@@ -55,7 +55,7 @@ $(a, arg);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 if (tmpIfTest) {
   const tmpDeleteCompProp = $(`y`);
   a = delete arg[tmpDeleteCompProp];

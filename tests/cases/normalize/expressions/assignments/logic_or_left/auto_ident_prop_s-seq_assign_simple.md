@@ -51,7 +51,7 @@ $(a, b);
 
 `````js filename=intro
 $(2);
-const b = { c: 2 };
+const b /*:object*/ = { c: 2 };
 $(2, b);
 `````
 

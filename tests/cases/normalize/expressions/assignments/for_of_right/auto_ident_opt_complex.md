@@ -71,9 +71,9 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall == null;
+const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 let tmpForOfGen = undefined;
 if (tmpIfTest) {
   tmpForOfGen = $forOf(undefined);

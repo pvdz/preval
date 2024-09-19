@@ -61,7 +61,7 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpObjLitVal = $(2);
-  const tmpCalleeParam = { b: tmpObjLitVal };
+  const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
   b = tmpNestedAssignObjPatternRhs.b;
   a = tmpNestedAssignObjPatternRhs;
@@ -69,7 +69,7 @@ if (tmpIfTest) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
       const tmpObjLitVal$1 = $(2);
-      const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
+      const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal$1 };
       const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
       b = tmpNestedAssignObjPatternRhs$1.b;
       a = tmpNestedAssignObjPatternRhs$1;

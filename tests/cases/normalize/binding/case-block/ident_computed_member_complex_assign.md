@@ -100,8 +100,8 @@ $(a, b, c, d, obj);
 `````js filename=intro
 const tmpSwitchDisc = $(`a`);
 const tmpBinBothRhs = $(`a`);
-const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
-const obj = {
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const obj /*:object*/ = {
   get c() {
     debugger;
     $(`get`);
@@ -123,7 +123,7 @@ if (tmpIfTest) {
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
 } else {
 }
-const b = { x: 2 };
+const b /*:object*/ = { x: 2 };
 $(1, b, 3, 4, obj);
 `````
 

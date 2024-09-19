@@ -52,9 +52,9 @@ $(a, b, d);
 
 
 `````js filename=intro
-const a = 1;
-const b = 2;
-const d = 3;
+const a /*:number*/ = 1;
+const b /*:number*/ = 2;
+const d /*:number*/ = 3;
 export { a, b, d };
 $(1, 2, 3);
 `````

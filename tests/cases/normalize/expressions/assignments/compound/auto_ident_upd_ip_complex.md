@@ -52,14 +52,14 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpCalleeParam$1 = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam$1);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-const a = { a: 999, b: 1000 };
-const tmpClusterSSA_a = a * tmpPostUpdArgVal;
+const a /*:object*/ = { a: 999, b: 1000 };
+const tmpClusterSSA_a /*:number*/ = a * tmpPostUpdArgVal;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, b);
 `````

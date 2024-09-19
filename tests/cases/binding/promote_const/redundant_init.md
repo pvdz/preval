@@ -110,7 +110,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const tmpCalleeParam = [10, 20, 30, 40];
+const tmpCalleeParam /*:array*/ = [10, 20, 30, 40];
 const SSA_SNe$596 = $(tmpCalleeParam);
 if (tmpIfTest$32854) {
   const tmpCalleeParam$36039 = $(1);

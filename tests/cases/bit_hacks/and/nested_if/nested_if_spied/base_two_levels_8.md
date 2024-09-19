@@ -50,9 +50,9 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const x = $spy(8);
-const tmpIfTest = x & 8;
+const tmpIfTest /*:number*/ = x & 8;
 if (tmpIfTest) {
-  const tmpIfTest$1 = x & 2;
+  const tmpIfTest$1 /*:number*/ = x & 2;
   if (tmpIfTest$1) {
     $(`it is ten`);
   } else {

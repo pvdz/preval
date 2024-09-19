@@ -43,7 +43,7 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-const tmpClusterSSA_a = new $(1);
+const tmpClusterSSA_a /*:object*/ = new $(1);
 throw tmpClusterSSA_a;
 `````
 

@@ -55,7 +55,7 @@ $(a);
 `````js filename=intro
 $(1);
 const tmpObjLitVal = $(1);
-const a = { b: tmpObjLitVal };
+const a /*:object*/ = { b: tmpObjLitVal };
 const tmpAssignComMemLhsObj = $(a);
 const tmpAssignComMemLhsProp = $(`b`);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;

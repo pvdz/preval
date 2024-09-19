@@ -60,14 +60,14 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpChainElementCall = $(b);
-const tmpIfTest$1 = tmpChainElementCall == null;
+const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
   const tmpChainRootComputed = $(`\$`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$3 = tmpChainElementObject == null;
+  const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$3) {
   } else {
     const tmpCalleeParam$3 = $(1);

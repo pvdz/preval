@@ -122,7 +122,7 @@ tmpCallCallee$11(tmpCalleeParam$23, tmpCalleeParam$25);
 `````js filename=intro
 let zzzz = function () {
   debugger;
-  const a = [];
+  const a /*:array*/ = [];
   zzzz = function ($$0, $$1) {
     debugger;
     return a;
@@ -133,32 +133,32 @@ let zzzz = function () {
 const x = zzzz;
 const tmpBinBothLhs = zzzz();
 const tmpBinBothRhs = zzzz();
-const tmpCalleeParam$1 = tmpBinBothLhs === tmpBinBothRhs;
+const tmpCalleeParam$1 /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 $(`eq`, tmpCalleeParam$1);
 const y = zzzz;
 const tmpBinBothLhs$1 = x();
 const tmpBinBothRhs$1 = zzzz();
-const tmpCalleeParam$5 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
+const tmpCalleeParam$5 /*:boolean*/ = tmpBinBothLhs$1 === tmpBinBothRhs$1;
 $(`eq, x should update z`, tmpCalleeParam$5);
 const tmpBinBothLhs$3 = zzzz();
 const tmpBinBothRhs$3 = x();
-const tmpCalleeParam$9 = tmpBinBothLhs$3 === tmpBinBothRhs$3;
+const tmpCalleeParam$9 /*:boolean*/ = tmpBinBothLhs$3 === tmpBinBothRhs$3;
 $(`neq, z is read before x updates it`, tmpCalleeParam$9);
 const tmpBinBothLhs$5 = x();
 const tmpBinBothRhs$5 = x();
-const tmpCalleeParam$13 = tmpBinBothLhs$5 === tmpBinBothRhs$5;
+const tmpCalleeParam$13 /*:boolean*/ = tmpBinBothLhs$5 === tmpBinBothRhs$5;
 $(`xx diff`, tmpCalleeParam$13);
 const tmpBinBothLhs$7 = y();
 const tmpBinBothRhs$7 = y();
-const tmpCalleeParam$17 = tmpBinBothLhs$7 === tmpBinBothRhs$7;
+const tmpCalleeParam$17 /*:boolean*/ = tmpBinBothLhs$7 === tmpBinBothRhs$7;
 $(`yy same`, tmpCalleeParam$17);
 const tmpBinBothLhs$9 = x();
 const tmpBinBothRhs$9 = y();
-const tmpCalleeParam$21 = tmpBinBothLhs$9 === tmpBinBothRhs$9;
+const tmpCalleeParam$21 /*:boolean*/ = tmpBinBothLhs$9 === tmpBinBothRhs$9;
 $(`xy diff`, tmpCalleeParam$21);
 const tmpBinBothLhs$11 = y();
 const tmpBinBothRhs$11 = x();
-const tmpCalleeParam$25 = tmpBinBothLhs$11 === tmpBinBothRhs$11;
+const tmpCalleeParam$25 /*:boolean*/ = tmpBinBothLhs$11 === tmpBinBothRhs$11;
 $(`yx diff`, tmpCalleeParam$25);
 `````
 

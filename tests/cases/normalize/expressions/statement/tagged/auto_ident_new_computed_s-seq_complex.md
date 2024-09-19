@@ -47,12 +47,12 @@ $(a);
 
 `````js filename=intro
 const tmpCompProp = $(`\$`);
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpNewCallee = b[tmpCompProp];
-const tmpCalleeParam$1 = new tmpNewCallee(1);
-const tmpCalleeParam = [`before `, ` after`];
+const tmpCalleeParam$1 /*:object*/ = new tmpNewCallee(1);
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, tmpCalleeParam$1);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

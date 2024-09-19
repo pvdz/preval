@@ -50,9 +50,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpReturnArg = /foo/;
+const tmpReturnArg /*:regex*/ = /foo/;
 $(tmpReturnArg);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

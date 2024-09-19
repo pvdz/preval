@@ -41,12 +41,12 @@ $(a);
 
 
 `````js filename=intro
-const bindingPatternArrRoot = { a: 999, b: 1000 };
-const arrPatternSplat = [...bindingPatternArrRoot];
+const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
 $(10);
 $(20);
-const tmpObjSpreadArg = [1, 2];
+const tmpObjSpreadArg /*:array*/ = [1, 2];
 ({ ...tmpObjSpreadArg });
 $(a);
 `````

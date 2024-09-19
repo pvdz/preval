@@ -32,7 +32,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam = /foo\(x\)/;
+const tmpCalleeParam /*:regex*/ = /foo\(x\)/;
 $(tmpCalleeParam);
 `````
 

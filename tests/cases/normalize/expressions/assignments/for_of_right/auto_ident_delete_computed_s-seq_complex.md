@@ -69,8 +69,8 @@ $(a, arg);
 $(1);
 $(2);
 const tmpDeleteCompProp = $(`y`);
-const arg = { y: 1 };
-const a = delete arg[tmpDeleteCompProp];
+const arg /*:object*/ = { y: 1 };
+const a /*:boolean*/ = delete arg[tmpDeleteCompProp];
 const tmpForOfGen = $forOf(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext = tmpForOfGen.next();

@@ -61,7 +61,7 @@ $(problem2);
 
 `````js filename=intro
 $ObjectPrototype.now;
-const tmpClusterSSA_problem2 = {};
+const tmpClusterSSA_problem2 /*:object*/ = {};
 $(tmpClusterSSA_problem2);
 `````
 

@@ -44,9 +44,9 @@ $(a, x);
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-const tmpCalleeParam = typeof tmpUnaryArg;
+const tmpCalleeParam /*:string*/ = typeof tmpUnaryArg;
 $(tmpCalleeParam);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, 1);
 `````
 

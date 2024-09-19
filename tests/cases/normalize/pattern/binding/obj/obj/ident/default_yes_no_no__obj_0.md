@@ -45,7 +45,7 @@ $(y);
 
 `````js filename=intro
 const objPatternBeforeDefault = (0).y;
-const tmpIfTest = objPatternBeforeDefault === undefined;
+const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpClusterSSA_y = $(`pass`);
   $(tmpClusterSSA_y);

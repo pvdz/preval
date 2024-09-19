@@ -102,7 +102,7 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  let x = 0;
+  let x /*:number*/ = 0;
   const g_t = function () {
     debugger;
     x = x + 1;

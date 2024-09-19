@@ -56,7 +56,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport = 1;
+const tmpAnonDefaultExport /*:number*/ = 1;
 export { tmpAnonDefaultExport as default };
 $(1);
 `````

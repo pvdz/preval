@@ -62,7 +62,7 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
 } else {
   const one = $(1);
-  const obj = { b: one };
+  const obj /*:object*/ = { b: one };
   a = obj;
 }
 a.b = 2;

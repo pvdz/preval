@@ -46,9 +46,9 @@ $(a);
 `````js filename=intro
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const a = { a: 999, b: 1000 };
-const tmpBinBothRhs = [tmpArrElement, 2, tmpArrElement$3];
-const tmpClusterSSA_a = a * tmpBinBothRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
+const tmpBinBothRhs /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
+const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````

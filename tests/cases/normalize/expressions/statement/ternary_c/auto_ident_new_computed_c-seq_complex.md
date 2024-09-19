@@ -52,13 +52,13 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const b = { $: $ };
+  const b /*:object*/ = { $: $ };
   const tmpCompObj = $(b);
   const tmpCompProp = $(`\$`);
   const tmpNewCallee = tmpCompObj[tmpCompProp];
   new tmpNewCallee(1);
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -56,11 +56,11 @@ while (true) {
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpCalleeParam = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
+const tmpAssignMemRhs /*:number*/ = tmpPostUpdArgVal - 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpPostUpdArgVal);

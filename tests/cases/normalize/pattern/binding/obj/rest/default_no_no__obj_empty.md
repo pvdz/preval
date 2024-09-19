@@ -38,8 +38,8 @@ $(x);
 
 
 `````js filename=intro
-const bindingPatternObjRoot = {};
-const tmpCalleeParam$1 = [];
+const bindingPatternObjRoot /*:object*/ = {};
+const tmpCalleeParam$1 /*:array*/ = [];
 const x = objPatternRest(bindingPatternObjRoot, tmpCalleeParam$1, `x`);
 $(x);
 `````

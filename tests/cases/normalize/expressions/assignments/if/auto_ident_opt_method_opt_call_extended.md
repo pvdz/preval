@@ -57,11 +57,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest$3 = $ == null;
+const tmpIfTest$3 /*:boolean*/ = $ == null;
 if (tmpIfTest$3) {
   $(undefined);
 } else {
-  const tmpObjLitVal$1 = { e: $ };
+  const tmpObjLitVal$1 /*:object*/ = { e: $ };
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
   $(tmpChainElementCall);
 }

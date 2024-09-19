@@ -45,7 +45,7 @@ $(a);
 
 `````js filename=intro
 $(`before  /foo/  after`);
-const a = /foo/;
+const a /*:regex*/ = /foo/;
 $(a);
 `````
 

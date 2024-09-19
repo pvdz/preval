@@ -43,9 +43,9 @@ $(a, x);
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-const tmpArrElToSpread = typeof tmpUnaryArg;
+const tmpArrElToSpread /*:string*/ = typeof tmpUnaryArg;
 [...tmpArrElToSpread];
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, 1);
 `````
 

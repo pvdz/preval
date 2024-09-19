@@ -47,7 +47,7 @@ $(a, b);
 const b = $(2);
 const tmpClusterSSA_b = $(2);
 b + tmpClusterSSA_b;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_b);
 `````
 

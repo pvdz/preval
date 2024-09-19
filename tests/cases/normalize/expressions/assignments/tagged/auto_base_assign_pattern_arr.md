@@ -51,11 +51,11 @@ $(a, b);
 
 `````js filename=intro
 const tmpArrElement = $(2);
-const tmpCalleeParam$3 = [tmpArrElement];
+const tmpCalleeParam$3 /*:array*/ = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$3);
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_b = arrPatternSplat[0];
-const tmpCalleeParam = [`before `, ` after`];
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, tmpNestedAssignArrPatternRhs);
 $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
 `````

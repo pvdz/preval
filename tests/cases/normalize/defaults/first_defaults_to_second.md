@@ -94,17 +94,17 @@ const f = function ($$0, $$1) {
   const tmpParamBare = $$0;
   const tmpParamBare$1 = $$1;
   debugger;
-  const tmpIfTest = tmpParamBare === undefined;
+  const tmpIfTest /*:boolean*/ = tmpParamBare === undefined;
   if (tmpIfTest) {
     throw `Preval: TDZ triggered for this read: ((tmpParamBare === undefined)? b : tmpParamBare)`;
   } else {
     let b = `bar`;
-    const tmpIfTest$1 = tmpParamBare$1 === undefined;
+    const tmpIfTest$1 /*:boolean*/ = tmpParamBare$1 === undefined;
     if (tmpIfTest$1) {
     } else {
       b = tmpParamBare$1;
     }
-    const tmpReturnArg = [tmpParamBare, b];
+    const tmpReturnArg /*:array*/ = [tmpParamBare, b];
     return tmpReturnArg;
   }
 };

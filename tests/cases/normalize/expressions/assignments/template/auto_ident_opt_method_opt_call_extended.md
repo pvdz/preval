@@ -65,15 +65,15 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-const tmpIfTest$1 = $ == null;
+const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
   $(`before  undefined  after`);
 } else {
-  const tmpObjLitVal$1 = { e: $ };
+  const tmpObjLitVal$1 /*:object*/ = { e: $ };
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
   a = tmpChainElementCall;
-  const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpChainElementCall, `string`);
-  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpChainElementCall, `string`);
+  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $(tmpClusterSSA_tmpCalleeParam);
 }
 $(a);

@@ -57,7 +57,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-const tmpClusterSSA_a = typeof tmpUnaryArg;
+const tmpClusterSSA_a /*:string*/ = typeof tmpUnaryArg;
 $(tmpClusterSSA_a, 1);
 `````
 

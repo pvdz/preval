@@ -64,7 +64,7 @@ $(x);
 
 
 `````js filename=intro
-let x = 20;
+let x /*:number*/ = 20;
 if ($) {
 } else {
   x = 30;

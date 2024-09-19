@@ -54,7 +54,7 @@ $(a, b);
 
 
 `````js filename=intro
-let b = 12;
+let b /*:number*/ = 12;
 let a = 1;
 $(1);
 $(1);

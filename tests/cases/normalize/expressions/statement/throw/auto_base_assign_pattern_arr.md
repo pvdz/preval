@@ -48,9 +48,9 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const tmpArrElement = $(2);
-const tmpCalleeParam = [tmpArrElement];
+const tmpCalleeParam /*:array*/ = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 arrPatternSplat[0];
 throw tmpNestedAssignArrPatternRhs;
 `````

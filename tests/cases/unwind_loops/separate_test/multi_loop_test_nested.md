@@ -66,15 +66,15 @@ while (true) {
 
 
 `````js filename=intro
-let counter = 0;
+let counter /*:number*/ = 0;
 while (true) {
   $(`yolo`);
-  const tmpClusterSSA_counter = counter + 1;
-  const tmpClusterSSA_test = tmpClusterSSA_counter < 10;
+  const tmpClusterSSA_counter /*:number*/ = counter + 1;
+  const tmpClusterSSA_test /*:boolean*/ = tmpClusterSSA_counter < 10;
   if (tmpClusterSSA_test) {
     $(`yolo`);
     counter = tmpClusterSSA_counter + 1;
-    let tmpClusterSSA_test$1 = counter < 10;
+    let tmpClusterSSA_test$1 /*:boolean*/ = counter < 10;
     while ($LOOP_UNROLL_9) {
       if (tmpClusterSSA_test$1) {
         $(`yolo`);

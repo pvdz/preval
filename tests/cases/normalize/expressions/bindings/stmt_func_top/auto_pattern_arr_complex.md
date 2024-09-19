@@ -51,9 +51,9 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const tmpCalleeParam = [1, 2];
+const tmpCalleeParam /*:array*/ = [1, 2];
 const bindingPatternArrRoot = $(tmpCalleeParam);
-const arrPatternSplat = [...bindingPatternArrRoot];
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
 $(a);
 $(undefined);

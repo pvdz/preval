@@ -67,13 +67,13 @@ import { c as c } from 'd';
 `````
 
 `````js filename=d
-const a = 10;
+const a /*:number*/ = 10;
 export { a };
-const b = 20;
+const b /*:number*/ = 20;
 export { b };
-const c = 30;
+const c /*:number*/ = 30;
 export { c };
-const tmpAnonDefaultExport = 100;
+const tmpAnonDefaultExport /*:number*/ = 100;
 export { tmpAnonDefaultExport as default };
 `````
 

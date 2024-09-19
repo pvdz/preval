@@ -48,7 +48,7 @@ considerMutated(x);
 
 
 `````js filename=intro
-let x = 0;
+let x /*:number*/ = 0;
 try {
   fail_early;
 } catch (e) {

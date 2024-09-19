@@ -67,7 +67,7 @@ $(a);
 const tmpNewCallee = $($);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-const tmpCalleeParam = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpCalleeParam /*:object*/ = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 const tmpForInGen = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext = tmpForInGen.next();
@@ -78,7 +78,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForInNext.value;
   }
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

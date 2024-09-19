@@ -58,7 +58,7 @@ $(a);
 
 `````js filename=intro
 $(1);
-const b = { c: $ };
+const b /*:object*/ = { c: $ };
 const tmpChainElementCall = b.c(1);
 $(tmpChainElementCall);
 `````

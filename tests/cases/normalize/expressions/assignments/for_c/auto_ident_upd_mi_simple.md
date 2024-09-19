@@ -63,7 +63,7 @@ if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
-      const tmpNestedComplexRhs$1 = b - 1;
+      const tmpNestedComplexRhs$1 /*:number*/ = b - 1;
       b = tmpNestedComplexRhs$1;
       a = tmpNestedComplexRhs$1;
     } else {

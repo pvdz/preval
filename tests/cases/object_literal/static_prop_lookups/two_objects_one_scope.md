@@ -78,7 +78,7 @@ if (x) {
 }
 problem1.now;
 y;
-const tmpClusterSSA_problem2 = {};
+const tmpClusterSSA_problem2 /*:object*/ = {};
 $(tmpClusterSSA_problem2);
 $(undefined);
 `````

@@ -44,7 +44,7 @@ const tmpUnaryArg = $(100);
 +tmpUnaryArg;
 const tmpUnaryArg$1 = $(100);
 +tmpUnaryArg$1;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

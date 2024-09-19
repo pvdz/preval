@@ -58,7 +58,7 @@ $(100);
 $(100);
 $(100);
 $(100);
-let b = 12;
+let b /*:number*/ = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   b = b + 1;
@@ -67,7 +67,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

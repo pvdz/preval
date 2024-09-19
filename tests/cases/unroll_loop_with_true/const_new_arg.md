@@ -33,7 +33,7 @@ $(x);
 
 
 `````js filename=intro
-const x = new String(true);
+const x /*:object*/ = new String(true);
 $(x);
 `````
 

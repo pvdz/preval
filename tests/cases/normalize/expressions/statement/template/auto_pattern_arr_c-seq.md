@@ -49,15 +49,15 @@ $(a);
 
 
 `````js filename=intro
-const bindingPatternArrRoot = { a: 999, b: 1000 };
-const arrPatternSplat = [...bindingPatternArrRoot];
+const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
 $(10);
 $(20);
-const tmpCalleeParam$1 = [1, 2];
+const tmpCalleeParam$1 /*:array*/ = [1, 2];
 const tmpCallCallee$1 = $(tmpCalleeParam$1);
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+const tmpBinBothRhs /*:string*/ = $coerce(tmpCallCallee$1, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

@@ -61,16 +61,16 @@ if (tmpIfTest$3) {
 
 `````js filename=intro
 let tmpCalleeParam = undefined;
-const tmpObjLitVal$1 = { z: $ };
-const tmpObjLitVal = { y: tmpObjLitVal$1 };
-const a = { x: tmpObjLitVal };
+const tmpObjLitVal$1 /*:object*/ = { z: $ };
+const tmpObjLitVal /*:object*/ = { y: tmpObjLitVal$1 };
+const a /*:object*/ = { x: tmpObjLitVal };
 const tmpChainElementCall$3 = $(a);
-const tmpIfTest = tmpChainElementCall$3 == null;
+const tmpIfTest /*:boolean*/ = tmpChainElementCall$3 == null;
 if (tmpIfTest) {
 } else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall$3[tmpChainRootComputed];
-  const tmpIfTest$1 = tmpChainElementObject == null;
+  const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$1) {
   } else {
     const tmpChainRootComputed$1 = $(`y`);
@@ -81,7 +81,7 @@ if (tmpIfTest) {
   }
 }
 const tmpChainElementCall = $(tmpCalleeParam);
-const tmpIfTest$3 = tmpChainElementCall == null;
+const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$3) {
 } else {
   $dotCall(tmpChainElementCall, $, 100);

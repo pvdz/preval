@@ -55,7 +55,7 @@ tmpBinBothLhs in tmpBinBothRhs;
 
 
 `````js filename=intro
-const spy = {
+const spy /*:object*/ = {
   toString() {
     debugger;
     $(`pass`);
@@ -67,7 +67,7 @@ const spy = {
     return undefined;
   },
 };
-const tmpBinBothRhs = {};
+const tmpBinBothRhs /*:object*/ = {};
 spy in tmpBinBothRhs;
 `````
 

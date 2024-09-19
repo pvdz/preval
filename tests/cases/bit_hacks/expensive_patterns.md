@@ -90,7 +90,7 @@ $(y);
 
 
 `````js filename=intro
-const bit = objDestructible & 1;
+const bit /*:number*/ = objDestructible & 1;
 if (bit) {
   $(16);
 } else {

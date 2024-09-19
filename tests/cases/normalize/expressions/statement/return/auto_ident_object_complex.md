@@ -55,9 +55,9 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
-const tmpReturnArg = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+const tmpReturnArg /*:object*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 $(tmpReturnArg);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

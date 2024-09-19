@@ -48,9 +48,9 @@ $(a, b);
 
 `````js filename=intro
 const tmpAssignRhsCompProp = $(`c`);
-const b = { c: 1 };
+const b /*:object*/ = { c: 1 };
 const a = b[tmpAssignRhsCompProp];
-const tmpCalleeParam = { [a]: 10 };
+const tmpCalleeParam /*:object*/ = { [a]: 10 };
 $(tmpCalleeParam);
 $(a, b);
 `````

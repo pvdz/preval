@@ -89,13 +89,13 @@ f(`foop`);
 
 `````js filename=intro
 const f = function ($$0) {
-  const y = $$0;
+  const y /*:string*/ = $$0;
   debugger;
   const g = function ($$0) {
-    const z = $$0;
+    const z /*:number*/ = $$0;
     debugger;
     $(`keepme`);
-    const tmpReturnArg = [y, z];
+    const tmpReturnArg /*:array*/ = [y, z];
     return tmpReturnArg;
   };
   if (y) {

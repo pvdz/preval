@@ -47,7 +47,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const a = /foo/;
+const a /*:regex*/ = /foo/;
 $(a);
 $(undefined);
 `````

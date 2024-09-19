@@ -73,7 +73,7 @@ $(x);
 
 
 `````js filename=intro
-let x = 0;
+let x /*:number*/ = 0;
 const g = function ($$0, $$1) {
   const a = $$0;
   const b = $$1;
@@ -81,7 +81,7 @@ const g = function ($$0, $$1) {
   x = a - b;
   return undefined;
 };
-const tmpCalleeParam = [1, 2, 3];
+const tmpCalleeParam /*:array*/ = [1, 2, 3];
 const arr = $(tmpCalleeParam);
 g(...arr, 10, 20);
 $(x);

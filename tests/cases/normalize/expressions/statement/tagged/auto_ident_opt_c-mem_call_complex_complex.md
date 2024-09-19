@@ -62,14 +62,14 @@ $(a);
 
 `````js filename=intro
 let tmpCalleeParam$1 = undefined;
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall == null;
+const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
   const tmpChainRootComputed = $(`\$`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$1 = tmpChainElementObject == null;
+  const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$1) {
   } else {
     const tmpCalleeParam$7 = $(1);
@@ -77,9 +77,9 @@ if (tmpIfTest) {
     tmpCalleeParam$1 = tmpChainElementCall$1;
   }
 }
-const tmpCalleeParam = [`before `, ` after`];
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, tmpCalleeParam$1);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

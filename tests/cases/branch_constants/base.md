@@ -47,7 +47,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const x = $(100);
-const tmpIfTest = x === 100;
+const tmpIfTest /*:boolean*/ = x === 100;
 if (tmpIfTest) {
   $(100);
 } else {

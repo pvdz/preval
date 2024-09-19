@@ -87,7 +87,7 @@ $(f);
 
 
 `````js filename=intro
-const arr = [`2175510YjCZON`, `10TAFtVj`, `11526394DNqxUn`, `60YWJuYY`, `794766IkrVMo`, `348105xrUwtS`];
+const arr /*:array*/ = [`2175510YjCZON`, `10TAFtVj`, `11526394DNqxUn`, `60YWJuYY`, `794766IkrVMo`, `348105xrUwtS`];
 let f = function ($$0, $$1) {
   const a = $$0;
   const b = $$1;
@@ -95,7 +95,7 @@ let f = function ($$0, $$1) {
   f = function ($$0, $$1) {
     const c = $$0;
     debugger;
-    const tmp = c - 427;
+    const tmp /*:number*/ = c - 427;
     const Co$1 = arr[tmp];
     return Co$1;
   };

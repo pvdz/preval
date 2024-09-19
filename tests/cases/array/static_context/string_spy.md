@@ -63,10 +63,10 @@ const f = function () {
   arr[0] = `pass`;
   return undefined;
 };
-const arr = [`fail`, 2, 3];
+const arr /*:array*/ = [`fail`, 2, 3];
 f();
 f();
-const tmpCalleeParam = $coerce(arr, `string`);
+const tmpCalleeParam /*:string*/ = $coerce(arr, `string`);
 $(tmpCalleeParam);
 `````
 

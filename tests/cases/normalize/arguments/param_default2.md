@@ -60,7 +60,7 @@ const f = function ($$0) {
   const tmpPrevalAliasArgumentsAny = arguments;
   const tmpParamBare = $$0;
   debugger;
-  const tmpIfTest = tmpParamBare === undefined;
+  const tmpIfTest /*:boolean*/ = tmpParamBare === undefined;
   if (tmpIfTest) {
     return tmpPrevalAliasArgumentsAny;
   } else {

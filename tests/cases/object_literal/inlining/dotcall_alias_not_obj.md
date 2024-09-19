@@ -54,7 +54,7 @@ const g = function () {
 };
 const alias = $.f;
 $();
-const obj = { f: g };
+const obj /*:object*/ = { f: g };
 $dotCall(alias, obj, 1);
 `````
 

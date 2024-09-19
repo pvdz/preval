@@ -86,7 +86,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const tmpClusterSSA_b = { x: 1 };
+const tmpClusterSSA_b /*:object*/ = { x: 1 };
 const tmpNestedAssignComMemberObj = $(tmpClusterSSA_b);
 const tmpNestedAssignComMemberProp = $(`x`);
 const varInitAssignLhsComputedObj = $(tmpClusterSSA_b);

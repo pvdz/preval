@@ -57,7 +57,7 @@ while (true) {
 
 
 `````js filename=intro
-const b = { c: $ };
+const b /*:object*/ = { c: $ };
 const tmpChainElementCall = b.c(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpChainElementCall);

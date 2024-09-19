@@ -63,14 +63,14 @@ $(1);
 $(2);
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
-const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
+const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_x = arrPatternSplat[0];
 const tmpClusterSSA_y = arrPatternSplat[1];
-const tmpBinBothRhs = $coerce(tmpNestedAssignArrPatternRhs, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+const tmpBinBothRhs /*:string*/ = $coerce(tmpNestedAssignArrPatternRhs, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_x, tmpClusterSSA_y);
 `````
 

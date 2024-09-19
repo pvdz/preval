@@ -75,7 +75,7 @@ $(a, x, y);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 $(undefined);
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 $(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 `````
 

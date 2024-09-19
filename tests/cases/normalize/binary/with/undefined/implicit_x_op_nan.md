@@ -140,21 +140,21 @@ x ** 0;
 x ** 0;
 const tmpArrElement$7 = x + undefined;
 x ** 0;
-const tmpArrElement$11 = x << 0;
-const tmpArrElement$13 = x >> 0;
-const tmpArrElement$15 = x >>> 0;
-const tmpArrElement$17 = x < undefined;
-const tmpArrElement$19 = x > undefined;
-const tmpArrElement$21 = x <= undefined;
-const tmpArrElement$23 = x >= undefined;
-const tmpArrElement$25 = x == undefined;
-const tmpArrElement$27 = x != undefined;
+const tmpArrElement$11 /*:number*/ = x << 0;
+const tmpArrElement$13 /*:number*/ = x >> 0;
+const tmpArrElement$15 /*:number*/ = x >>> 0;
+const tmpArrElement$17 /*:boolean*/ = x < undefined;
+const tmpArrElement$19 /*:boolean*/ = x > undefined;
+const tmpArrElement$21 /*:boolean*/ = x <= undefined;
+const tmpArrElement$23 /*:boolean*/ = x >= undefined;
+const tmpArrElement$25 /*:boolean*/ = x == undefined;
+const tmpArrElement$27 /*:boolean*/ = x != undefined;
 x ** 0;
-const tmpArrElement$35 = x ^ 0;
-const tmpArrElement$37 = x | 0;
-const tmpArrElement$29 = x === undefined;
-const tmpArrElement$31 = x !== undefined;
-const arr = [
+const tmpArrElement$35 /*:number*/ = x ^ 0;
+const tmpArrElement$37 /*:number*/ = x | 0;
+const tmpArrElement$29 /*:boolean*/ = x === undefined;
+const tmpArrElement$31 /*:boolean*/ = x !== undefined;
+const arr /*:array*/ = [
   NaN,
   NaN,
   NaN,
@@ -177,9 +177,9 @@ const arr = [
   tmpArrElement$37,
 ];
 $(arr);
-const tmpArrElement$39 = x in undefined;
-const tmpArrElement$41 = x instanceof undefined;
-const arr2 = [tmpArrElement$39, tmpArrElement$41];
+const tmpArrElement$39 /*:boolean*/ = x in undefined;
+const tmpArrElement$41 /*:boolean*/ = x instanceof undefined;
+const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 

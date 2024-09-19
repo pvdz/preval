@@ -78,7 +78,7 @@ if (y) {
 
 `````js filename=intro
 const x = $(`a`);
-const y = x === `undefined`;
+const y /*:boolean*/ = x === `undefined`;
 if (y) {
   const tmpAssignRhsProp$105 = tmpthis$63.getInitialState;
   const tmpssa2_y = tmpAssignRhsProp$105._isMockFunction;

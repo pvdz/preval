@@ -53,12 +53,12 @@ $(a, b);
 
 `````js filename=intro
 const tmpArrElement = $(2);
-const tmpCalleeParam$1 = [tmpArrElement];
+const tmpCalleeParam$1 /*:array*/ = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_b = arrPatternSplat[0];
-const a = { a: 999, b: 1000 };
-const tmpClusterSSA_a = a * tmpNestedAssignArrPatternRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
+const tmpClusterSSA_a /*:number*/ = a * tmpNestedAssignArrPatternRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, tmpClusterSSA_b);
 `````

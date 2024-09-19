@@ -76,7 +76,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const x = $(1);
-const arr = [1, 2, 3];
+const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (x) {
   } else {

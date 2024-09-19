@@ -61,15 +61,15 @@ $(a, b, c, d, e);
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`x`);
-const c = { y: 2 };
+const c /*:object*/ = { y: 2 };
 const varInitAssignLhsComputedObj = $(c);
 const varInitAssignLhsComputedProp = $(`y`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
-const tmpAnonDefaultExport = 7;
+const tmpAnonDefaultExport /*:number*/ = 7;
 export { tmpAnonDefaultExport as default };
 $(7, b, c, 3, 4);
 `````

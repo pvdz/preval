@@ -52,17 +52,17 @@ $(a, b);
 
 `````js filename=intro
 const tmpIfTest = $(1);
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 if (tmpIfTest) {
   const tmpCalleeParam = $(b);
   const tmpAssignMemLhsObj = $(tmpCalleeParam);
   const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-  const tmpAssignMemRhs = tmpCompoundAssignLhs - 1;
+  const tmpAssignMemRhs /*:number*/ = tmpCompoundAssignLhs - 1;
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 } else {
   $(200);
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

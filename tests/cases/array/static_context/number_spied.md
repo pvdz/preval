@@ -59,7 +59,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const spy = {
+const spy /*:object*/ = {
   valueOf() {
     debugger;
     $(`x`);
@@ -71,8 +71,8 @@ const spy = {
     return undefined;
   },
 };
-const tmpStringFirstArg = [spy, spy];
-const tmpCalleeParam = $coerce(tmpStringFirstArg, `number`);
+const tmpStringFirstArg /*:array*/ = [spy, spy];
+const tmpCalleeParam /*:number*/ = $coerce(tmpStringFirstArg, `number`);
 $(tmpCalleeParam);
 `````
 

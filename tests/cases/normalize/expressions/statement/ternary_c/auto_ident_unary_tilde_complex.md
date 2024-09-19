@@ -49,7 +49,7 @@ if (tmpIfTest) {
   const tmpUnaryArg = $(100);
   +tmpUnaryArg;
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

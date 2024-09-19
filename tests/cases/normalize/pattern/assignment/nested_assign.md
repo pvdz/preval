@@ -39,7 +39,7 @@ $(y);
 
 `````js filename=intro
 x = 1;
-const tmpNestedAssignObjPatternRhs = { x: 1 };
+const tmpNestedAssignObjPatternRhs /*:object*/ = { x: 1 };
 $(tmpNestedAssignObjPatternRhs);
 `````
 

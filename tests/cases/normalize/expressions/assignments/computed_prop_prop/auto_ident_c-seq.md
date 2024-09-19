@@ -51,7 +51,7 @@ $(a, x);
 $(1);
 $(2);
 const a = $(1);
-const obj = {};
+const obj /*:object*/ = {};
 obj[a];
 $(a, 1);
 `````

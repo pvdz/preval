@@ -60,8 +60,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-const obj = { [`1,2,3`]: `pass` };
-const arr = [1, 2, 3];
+const obj /*:object*/ = { [`1,2,3`]: `pass` };
+const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     const tmpCalleeParam = obj[`1,2,3`];

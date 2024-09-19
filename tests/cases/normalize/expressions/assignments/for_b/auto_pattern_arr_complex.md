@@ -55,19 +55,19 @@ $(a);
 
 
 `````js filename=intro
-const bindingPatternArrRoot = { a: 999, b: 1000 };
-const arrPatternSplat = [...bindingPatternArrRoot];
+const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 arrPatternSplat[0];
-const tmpCalleeParam = [1, 2];
+const tmpCalleeParam /*:array*/ = [1, 2];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
-const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
+const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 let tmpClusterSSA_a = arrPatternSplat$1[0];
 if (tmpNestedAssignArrPatternRhs) {
   while ($LOOP_UNROLL_10) {
     $(1);
-    const tmpCalleeParam$1 = [1, 2];
+    const tmpCalleeParam$1 /*:array*/ = [1, 2];
     const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$1);
-    const arrPatternSplat$2 = [...tmpNestedAssignArrPatternRhs$1];
+    const arrPatternSplat$2 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
     tmpClusterSSA_a = arrPatternSplat$2[0];
     if (tmpNestedAssignArrPatternRhs$1) {
     } else {

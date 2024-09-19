@@ -61,7 +61,7 @@ const f = function ($$0, $$1) {
   const a = $$0;
   const b = $$1;
   debugger;
-  const rest = [];
+  const rest /*:array*/ = [];
   $(a, b, rest);
   return undefined;
 };

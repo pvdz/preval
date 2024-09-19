@@ -63,7 +63,7 @@ if (a) {
   $(tmpCalleeParam);
 } else {
   const tmpObjLitVal$1 = $(1);
-  const tmpNestedComplexRhs = { b: tmpObjLitVal$1 };
+  const tmpNestedComplexRhs /*:object*/ = { b: tmpObjLitVal$1 };
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }

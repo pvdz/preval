@@ -42,9 +42,9 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const tmpCompObj = -tmpUnaryArg;
+const tmpCompObj /*:number*/ = -tmpUnaryArg;
 tmpCompObj.a;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -53,9 +53,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport = 100;
+const tmpAnonDefaultExport /*:number*/ = 100;
 export { tmpAnonDefaultExport as default };
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

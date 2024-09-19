@@ -46,11 +46,11 @@ $(a);
 
 `````js filename=intro
 const tmpCallCompProp = $(`\$`);
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpCalleeParam$1 = b[tmpCallCompProp](1);
-const tmpCalleeParam = [`before `, ` after`];
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, tmpCalleeParam$1);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

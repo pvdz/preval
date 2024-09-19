@@ -46,10 +46,10 @@ $(a, arg);
 `````js filename=intro
 $(1);
 $(2);
-const arg = { y: 1 };
-const tmpArrElToSpread = delete arg.y;
+const arg /*:object*/ = { y: 1 };
+const tmpArrElToSpread /*:boolean*/ = delete arg.y;
 [...tmpArrElToSpread];
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 

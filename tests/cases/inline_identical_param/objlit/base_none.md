@@ -57,7 +57,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 const f = function () {
   debugger;
-  const obj = {};
+  const obj /*:object*/ = {};
   $(obj);
   $(obj);
   return undefined;

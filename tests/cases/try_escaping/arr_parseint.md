@@ -112,13 +112,13 @@ $(arr);
 
 
 `````js filename=intro
-const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
+const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpCalleeParam = arr[0];
   $(tmpCalleeParam);
   const a = arr[286];
   try {
-    const b = parseInt(a);
+    const b /*:number*/ = parseInt(a);
     if (b) {
       break;
     } else {

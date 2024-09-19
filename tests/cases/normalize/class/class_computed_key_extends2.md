@@ -49,7 +49,7 @@ tmpCompObj.y;
 
 
 `````js filename=intro
-const x = class {
+const x /*:class*/ = class {
   x() {
     debugger;
     return undefined;

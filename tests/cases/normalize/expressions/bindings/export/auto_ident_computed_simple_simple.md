@@ -39,9 +39,9 @@ $(a, b);
 
 
 `````js filename=intro
-const a = 1;
+const a /*:number*/ = 1;
 export { a };
-const b = { c: 1 };
+const b /*:object*/ = { c: 1 };
 $(1, b);
 `````
 

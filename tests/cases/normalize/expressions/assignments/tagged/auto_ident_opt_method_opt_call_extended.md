@@ -61,12 +61,12 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-const tmpIfTest$1 = $ == null;
-const tmpCalleeParam = [`before `, ` after`];
+const tmpIfTest$1 /*:boolean*/ = $ == null;
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 if (tmpIfTest$1) {
   $(tmpCalleeParam, undefined);
 } else {
-  const tmpObjLitVal$1 = { e: $ };
+  const tmpObjLitVal$1 /*:object*/ = { e: $ };
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
   a = tmpChainElementCall;
   $(tmpCalleeParam, tmpChainElementCall);

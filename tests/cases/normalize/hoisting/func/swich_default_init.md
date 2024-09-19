@@ -80,7 +80,7 @@ tmpSwitchBreak: {
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpIfTest /*:boolean*/ = 1 === tmpSwitchValue;
 if (tmpIfTest) {
   $(`f`);
 } else {

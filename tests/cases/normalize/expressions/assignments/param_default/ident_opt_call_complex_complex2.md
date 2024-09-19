@@ -130,7 +130,7 @@ $(a);
 `````js filename=intro
 let a = undefined;
 const tmpChainElementCall$2 = $($);
-const tmpIfTest$3 = tmpChainElementCall$2 == null;
+const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$2 == null;
 if (tmpIfTest$3) {
   $(undefined);
 } else {

@@ -59,16 +59,16 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest$1 = $ == null;
-const tmpCalleeParam = [`before `, ` after`];
+const tmpIfTest$1 /*:boolean*/ = $ == null;
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 if (tmpIfTest$1) {
   $(tmpCalleeParam, undefined);
 } else {
-  const tmpObjLitVal$1 = { e: $ };
+  const tmpObjLitVal$1 /*:object*/ = { e: $ };
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
   $(tmpCalleeParam, tmpChainElementCall);
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -68,7 +68,7 @@ $(a, b);
 
 `````js filename=intro
 const tmpObjLitVal = $(2);
-const tmpCalleeParam$1 = { b: tmpObjLitVal };
+const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
 const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
 const tmpForOfGen = $forOf(tmpNestedAssignObjPatternRhs);
@@ -81,7 +81,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForOfNext.value;
   }
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_b);
 `````
 

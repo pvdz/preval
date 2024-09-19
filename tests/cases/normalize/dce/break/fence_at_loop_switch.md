@@ -94,7 +94,7 @@ if (tmpIfTest) {
   $(`loop`);
   const tmpSwitchDisc = $(true, `dis`);
   const tmpBinBothRhs = $(true, `case`);
-  const tmpIfTest$1 = tmpSwitchDisc === tmpBinBothRhs;
+  const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
   if (tmpIfTest$1) {
     $(`case`);
   } else {
@@ -107,7 +107,7 @@ if (tmpIfTest) {
       $(`loop`);
       const tmpSwitchDisc$1 = $(true, `dis`);
       const tmpBinBothRhs$1 = $(true, `case`);
-      const tmpIfTest$4 = tmpSwitchDisc$1 === tmpBinBothRhs$1;
+      const tmpIfTest$4 /*:boolean*/ = tmpSwitchDisc$1 === tmpBinBothRhs$1;
       if (tmpIfTest$4) {
         $(`case`);
       } else {

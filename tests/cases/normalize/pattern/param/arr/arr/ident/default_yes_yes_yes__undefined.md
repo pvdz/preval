@@ -76,21 +76,21 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const tmpCalleeParam = [`pass3`];
+const tmpCalleeParam /*:array*/ = [`pass3`];
 const bindingPatternArrRoot = $(tmpCalleeParam);
-const arrPatternSplat = [...bindingPatternArrRoot];
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep = undefined;
-const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
-  const tmpCalleeParam$1 = [`fail2`];
+  const tmpCalleeParam$1 /*:array*/ = [`fail2`];
   arrPatternStep = $(tmpCalleeParam$1);
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternSplat$1 /*:array*/ = [...arrPatternStep];
 const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
-const tmpIfTest$3 = arrPatternBeforeDefault$1 === undefined;
+const tmpIfTest$3 /*:boolean*/ = arrPatternBeforeDefault$1 === undefined;
 if (tmpIfTest$3) {
   const tmpClusterSSA_x = $(`fail`);
   $(tmpClusterSSA_x);

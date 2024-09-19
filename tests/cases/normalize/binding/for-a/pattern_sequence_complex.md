@@ -49,9 +49,9 @@ let y = arrPatternSplat[1];
 `````js filename=intro
 $(1);
 $(2);
-const z = [10, 20, 30];
+const z /*:array*/ = [10, 20, 30];
 const bindingPatternArrRoot = $(z);
-const arrPatternSplat = [...bindingPatternArrRoot];
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 arrPatternSplat[0];
 arrPatternSplat[1];
 `````

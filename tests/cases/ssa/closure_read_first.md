@@ -91,7 +91,7 @@ const f = function () {
     debugger;
     $(x);
     if ($) {
-      const tmpCalleeParam = x + 1;
+      const tmpCalleeParam /*:number*/ = x + 1;
       x = $(tmpCalleeParam);
       $(x);
       return undefined;

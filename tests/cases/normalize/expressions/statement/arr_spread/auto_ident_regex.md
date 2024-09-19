@@ -37,9 +37,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpArrElToSpread = /foo/;
+const tmpArrElToSpread /*:regex*/ = /foo/;
 [...tmpArrElToSpread];
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

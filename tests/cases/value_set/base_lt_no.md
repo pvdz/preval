@@ -219,48 +219,48 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const x = $();
-let n = 11;
-const t = 0 === x;
+let n /*:number*/ = 11;
+const t /*:boolean*/ = 0 === x;
 if (t) {
   n = 0;
 } else {
-  const tmpClusterSSA_t = 1 === x;
+  const tmpClusterSSA_t /*:boolean*/ = 1 === x;
   if (tmpClusterSSA_t) {
     n = 1;
   } else {
-    const tmpClusterSSA_t$1 = 2 === x;
+    const tmpClusterSSA_t$1 /*:boolean*/ = 2 === x;
     if (tmpClusterSSA_t$1) {
       n = 2;
     } else {
-      const tmpClusterSSA_t$3 = 3 === x;
+      const tmpClusterSSA_t$3 /*:boolean*/ = 3 === x;
       if (tmpClusterSSA_t$3) {
         n = 3;
       } else {
-        const tmpClusterSSA_t$5 = 4 === x;
+        const tmpClusterSSA_t$5 /*:boolean*/ = 4 === x;
         if (tmpClusterSSA_t$5) {
           n = 4;
         } else {
-          const tmpClusterSSA_t$7 = 5 === x;
+          const tmpClusterSSA_t$7 /*:boolean*/ = 5 === x;
           if (tmpClusterSSA_t$7) {
             n = 5;
           } else {
-            const tmpClusterSSA_t$9 = 6 === x;
+            const tmpClusterSSA_t$9 /*:boolean*/ = 6 === x;
             if (tmpClusterSSA_t$9) {
               n = 6;
             } else {
-              const tmpClusterSSA_t$11 = 7 === x;
+              const tmpClusterSSA_t$11 /*:boolean*/ = 7 === x;
               if (tmpClusterSSA_t$11) {
                 n = 7;
               } else {
-                const tmpClusterSSA_t$13 = 8 === x;
+                const tmpClusterSSA_t$13 /*:boolean*/ = 8 === x;
                 if (tmpClusterSSA_t$13) {
                   n = 8;
                 } else {
-                  const tmpClusterSSA_t$15 = 10 === x;
+                  const tmpClusterSSA_t$15 /*:boolean*/ = 10 === x;
                   if (tmpClusterSSA_t$15) {
                     n = 9;
                   } else {
-                    const tmpClusterSSA_t$17 = 9 === x;
+                    const tmpClusterSSA_t$17 /*:boolean*/ = 9 === x;
                     if (tmpClusterSSA_t$17) {
                       n = 10;
                     } else {
@@ -276,7 +276,7 @@ if (t) {
     }
   }
 }
-const tmpIfTest = n <= 10;
+const tmpIfTest /*:boolean*/ = n <= 10;
 if (tmpIfTest) {
   $(`pass`);
 } else {

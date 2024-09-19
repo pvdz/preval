@@ -35,7 +35,7 @@ $(x);
 
 `````js filename=intro
 const tmpClassSuper = $(String);
-const x = class extends tmpClassSuper {};
+const x /*:class*/ = class extends tmpClassSuper {};
 $(x);
 `````
 

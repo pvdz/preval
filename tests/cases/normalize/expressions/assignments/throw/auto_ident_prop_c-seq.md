@@ -42,7 +42,7 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-const b = { c: 1 };
+const b /*:object*/ = { c: 1 };
 const tmpAssignRhsProp = $(b);
 const tmpClusterSSA_a = tmpAssignRhsProp.c;
 throw tmpClusterSSA_a;

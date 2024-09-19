@@ -55,7 +55,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const b = { $: $ };
+  const b /*:object*/ = { $: $ };
   a = b.$(1);
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 = $(1);

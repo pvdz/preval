@@ -47,7 +47,7 @@ $(a, b);
 `````js filename=intro
 let a = undefined;
 const tmpObjLitVal = $(2);
-const tmpCalleeParam = { b: tmpObjLitVal };
+const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
 a = tmpNestedAssignObjPatternRhs;

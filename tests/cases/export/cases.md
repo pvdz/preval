@@ -88,22 +88,22 @@ const f = function () {
   debugger;
   return undefined;
 };
-const a = 1;
+const a /*:number*/ = 1;
 export { a };
-const b = 2;
+const b /*:number*/ = 2;
 export { b };
-const X = class {};
+const X /*:class*/ = class {};
 export { X };
-const g = 1;
+const g /*:number*/ = 1;
 export { g };
-const h = 2;
+const h /*:number*/ = 2;
 export { h as i };
 const tmpAnonDefaultExport = function () {
   debugger;
   return undefined;
 };
 export { tmpAnonDefaultExport as default };
-const c = 3;
+const c /*:number*/ = 3;
 export { c };
 export { f };
 `````

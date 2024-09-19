@@ -36,7 +36,7 @@ $(f);
 
 
 `````js filename=intro
-const f = /bar/g;
+const f /*:regex*/ = /bar/g;
 $(f);
 `````
 

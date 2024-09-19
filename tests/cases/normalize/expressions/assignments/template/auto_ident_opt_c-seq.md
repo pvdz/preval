@@ -56,16 +56,16 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpChainRootProp = $(b);
-const tmpIfTest = tmpChainRootProp == null;
+const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest) {
   $(`before  undefined  after`);
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;
   a = tmpChainElementObject;
-  const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpChainElementObject, `string`);
-  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpChainElementObject, `string`);
+  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $(tmpClusterSSA_tmpCalleeParam);
 }
 $(a);

@@ -54,7 +54,7 @@ if (tmpUnaryArg) {
   const tmpClusterSSA_tmpCalleeParam$1 = $(100);
   $(tmpClusterSSA_tmpCalleeParam$1);
 }
-const a = !tmpUnaryArg;
+const a /*:boolean*/ = !tmpUnaryArg;
 $(a);
 `````
 

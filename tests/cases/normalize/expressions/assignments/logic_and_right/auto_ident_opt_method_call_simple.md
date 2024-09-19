@@ -58,7 +58,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
-  const b = { c: $ };
+  const b /*:object*/ = { c: $ };
   const tmpChainElementCall = b.c(1);
   a = tmpChainElementCall;
   $(tmpChainElementCall);

@@ -1,6 +1,7 @@
 import { setVerboseTracing, VERBOSE_TRACING, MARK_NONE, MARK_TEMP, MARK_PERM } from './constants.mjs';
 import { clearStdio, setStdio, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, setRefTracing, setRiskyRules } from './utils.mjs';
 import globals from './globals.mjs';
+import {setPrintVarTyping} from "../lib/printer.mjs";
 
 import { parseCode } from './normalize/parse.mjs';
 import { phaseNormalize } from './normalize/normalize.mjs';
@@ -341,8 +342,19 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           contents.explicitGlobals = new Set(Array.from(globals.keys()));
           contents.globallyUniqueNamingRegistry = fdata.globallyUniqueNamingRegistry;
 
-          contents.files[fname] = outCode;
-          options.onFinal?.(outCode, passes, fi, options);
+          let testOutputCode;
+          try {
+            setPrintVarTyping(true, fdata); // Handy typing details
+            testOutputCode = tmat(fdata.tenkoOutput.ast, true);
+            setPrintVarTyping(false); // Handy typing details
+          } catch (e) {
+            console.log('Printer threw up on AST, message:', e.message);
+            options.onError?.('printer', e, fdata.tenkoOutput.ast, options);
+            throw e;
+          }
+
+          contents.files[fname] = testOutputCode;
+          options.onFinal?.(testOutputCode, passes, fi, options);
         }
 
         if (changed && maxPasses && passes >= maxPasses) {

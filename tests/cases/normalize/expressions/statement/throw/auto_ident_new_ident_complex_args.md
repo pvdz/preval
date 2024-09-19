@@ -45,7 +45,7 @@ throw tmpThrowArg;
 `````js filename=intro
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const tmpThrowArg = new $(tmpCalleeParam, tmpCalleeParam$1);
+const tmpThrowArg /*:object*/ = new $(tmpCalleeParam, tmpCalleeParam$1);
 throw tmpThrowArg;
 `````
 

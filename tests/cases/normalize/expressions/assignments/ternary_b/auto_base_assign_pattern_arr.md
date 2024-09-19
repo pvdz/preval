@@ -62,9 +62,9 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpArrElement = $(2);
-  const tmpCalleeParam$1 = [tmpArrElement];
+  const tmpCalleeParam$1 /*:array*/ = [tmpArrElement];
   const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
-  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+  const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
   b = arrPatternSplat[0];
   a = tmpNestedAssignArrPatternRhs;
   $(tmpNestedAssignArrPatternRhs);

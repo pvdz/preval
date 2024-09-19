@@ -32,7 +32,7 @@ export { tmpAnonDefaultExport as default };
 
 
 `````js filename=intro
-const tmpAnonDefaultExport = 500;
+const tmpAnonDefaultExport /*:number*/ = 500;
 export { tmpAnonDefaultExport as default };
 `````
 

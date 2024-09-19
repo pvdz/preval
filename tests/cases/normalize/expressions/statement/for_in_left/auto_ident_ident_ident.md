@@ -70,8 +70,8 @@ $(a, b, c);
 
 
 `````js filename=intro
-let b = 1;
-const tmpCalleeParam$1 = { x: 1 };
+let b /*:number*/ = 1;
+const tmpCalleeParam$1 /*:object*/ = { x: 1 };
 const tmpCalleeParam = $(tmpCalleeParam$1);
 const tmpForInGen = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -85,7 +85,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     (2).x = tmpAssignMemRhs;
   }
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b, 2);
 `````
 

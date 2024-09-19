@@ -47,10 +47,10 @@ $(a, b);
 
 
 `````js filename=intro
-const b = [];
-const tmpCalleeParam = { ...b };
+const b /*:array*/ = [];
+const tmpCalleeParam /*:object*/ = { ...b };
 $(tmpCalleeParam);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, undefined);
 `````
 

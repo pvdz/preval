@@ -59,8 +59,8 @@ $(a, arg);
 $(1);
 $(2);
 const tmpDeleteCompProp = $(`y`);
-const arg = { y: 1 };
-let a = delete arg[tmpDeleteCompProp];
+const arg /*:object*/ = { y: 1 };
+let a /*:boolean*/ = delete arg[tmpDeleteCompProp];
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(1);

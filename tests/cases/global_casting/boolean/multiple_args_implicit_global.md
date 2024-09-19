@@ -47,7 +47,7 @@ $(y);
 const a = $(`a`);
 const b = $(`b`);
 fail_hard;
-const x = a === b;
+const x /*:boolean*/ = a === b;
 $(x);
 `````
 

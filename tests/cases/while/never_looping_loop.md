@@ -153,7 +153,7 @@ if ($) {
   const x = $(`x`);
   const tmpClusterSSA_A = x.length;
   const tmpBinBothLhs$30 = tmpClusterSSA_A[0];
-  const tmpIfTest$10 = tmpBinBothLhs$30 === `.`;
+  const tmpIfTest$10 /*:boolean*/ = tmpBinBothLhs$30 === `.`;
   if (tmpIfTest$10) {
     B = tmpClusterSSA_A.slice(1);
   } else {
@@ -161,16 +161,16 @@ if ($) {
   }
   const len = $.length;
   const len2 = B.length;
-  const diff = len - len2;
+  const diff /*:number*/ = len - len2;
   const pos = $.indexOf(B, diff);
-  const isnot = pos === -1;
+  const isnot /*:boolean*/ = pos === -1;
   if (isnot) {
   } else {
-    const tmpClusterSSA_isnot = pos === diff;
+    const tmpClusterSSA_isnot /*:boolean*/ = pos === diff;
     if (tmpClusterSSA_isnot) {
       const len3 = $.length;
       const lena2 = tmpClusterSSA_A.length;
-      const isa2 = len3 === lena2;
+      const isa2 /*:boolean*/ = len3 === lena2;
       if (isa2) {
       } else {
         tmpClusterSSA_A.indexOf(`.`);

@@ -50,9 +50,9 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-const tmpBinBothRhs = new $(tmpCalleeParam$1, tmpCalleeParam$3);
-const a = { a: 999, b: 1000 };
-const tmpClusterSSA_a = a * tmpBinBothRhs;
+const tmpBinBothRhs /*:object*/ = new $(tmpCalleeParam$1, tmpCalleeParam$3);
+const a /*:object*/ = { a: 999, b: 1000 };
+const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````

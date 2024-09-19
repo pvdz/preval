@@ -54,12 +54,12 @@ $(a, arg);
 $(1);
 $(2);
 const tmpDeleteCompProp = $(`y`);
-const arg = { y: 1 };
-const tmpCallCallee$1 = delete arg[tmpDeleteCompProp];
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+const arg /*:object*/ = { y: 1 };
+const tmpCallCallee$1 /*:boolean*/ = delete arg[tmpDeleteCompProp];
+const tmpBinBothRhs /*:string*/ = $coerce(tmpCallCallee$1, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 

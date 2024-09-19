@@ -63,7 +63,7 @@ if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  const b = { c: $ };
+  const b /*:object*/ = { c: $ };
   const tmpChainElementCall = b.c(1);
   a = tmpChainElementCall;
   $(tmpChainElementCall);

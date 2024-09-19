@@ -50,11 +50,11 @@ $(a);
 
 `````js filename=intro
 let tmpAnonDefaultExport = undefined;
-const b = { c: $ };
+const b /*:object*/ = { c: $ };
 const tmpChainElementCall = b.c(1);
 tmpAnonDefaultExport = tmpChainElementCall;
 export { tmpAnonDefaultExport as default };
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

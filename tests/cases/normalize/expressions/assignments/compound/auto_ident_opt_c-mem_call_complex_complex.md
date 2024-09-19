@@ -64,14 +64,14 @@ $(a);
 
 `````js filename=intro
 let tmpBinBothRhs = undefined;
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall == null;
+const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
   const tmpChainRootComputed = $(`\$`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$1 = tmpChainElementObject == null;
+  const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$1) {
   } else {
     const tmpCalleeParam$5 = $(1);
@@ -79,8 +79,8 @@ if (tmpIfTest) {
     tmpBinBothRhs = tmpChainElementCall$1;
   }
 }
-const a = { a: 999, b: 1000 };
-const tmpClusterSSA_a = a * tmpBinBothRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
+const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````

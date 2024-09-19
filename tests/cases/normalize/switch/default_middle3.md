@@ -111,36 +111,36 @@ if (tmpIfTest$11) {
 
 `````js filename=intro
 const tmpSwitchValue = $(30);
-let tmpSwitchCaseToStart = 1;
+let tmpSwitchCaseToStart /*:number*/ = 1;
 const tmpBinLhs = $(30);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
   const tmpBinLhs$1 = $(31);
-  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
+  const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$1 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
   } else {
     const tmpBinLhs$3 = $(32);
-    const tmpIfTest$3 = tmpBinLhs$3 === tmpSwitchValue;
+    const tmpIfTest$3 /*:boolean*/ = tmpBinLhs$3 === tmpSwitchValue;
     if (tmpIfTest$3) {
       tmpSwitchCaseToStart = 3;
     } else {
     }
   }
 }
-const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
+const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$5) {
   $(`a`);
 } else {
 }
-const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
+const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$7) {
   $(`b`);
 } else {
 }
-const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
+const tmpIfTest$9 /*:boolean*/ = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$9) {
   $(`c`);
 } else {

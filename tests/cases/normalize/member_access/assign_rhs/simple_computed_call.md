@@ -42,7 +42,7 @@ $(x);
 
 `````js filename=intro
 const tmpAssignRhsCompProp = $(`foo`);
-const obj = { foo: 10 };
+const obj /*:object*/ = { foo: 10 };
 const x = obj[tmpAssignRhsCompProp];
 $(x);
 `````

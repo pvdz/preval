@@ -42,7 +42,7 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-const tmpThrowArg = typeof tmpUnaryArg;
+const tmpThrowArg /*:string*/ = typeof tmpUnaryArg;
 throw tmpThrowArg;
 `````
 

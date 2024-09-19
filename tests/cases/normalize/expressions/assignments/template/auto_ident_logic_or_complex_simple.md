@@ -53,8 +53,8 @@ $(a);
 const tmpCalleeParam$1 = $(0);
 let a = $(tmpCalleeParam$1);
 if (a) {
-  const tmpClusterSSA_tmpBinBothRhs = $coerce(a, `string`);
-  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
+  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   a = 2;

@@ -52,7 +52,7 @@ if (a) {
 } else {
   a = 2;
 }
-const tmpCalleeParam = { ...a };
+const tmpCalleeParam /*:object*/ = { ...a };
 $(tmpCalleeParam);
 $(a);
 `````

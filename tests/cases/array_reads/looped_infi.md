@@ -48,7 +48,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-const arr = [1, 2, 3];
+const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpCompoundAssignLhs = arr[0];
   const tmpAssignComputedRhs = tmpCompoundAssignLhs + 1;

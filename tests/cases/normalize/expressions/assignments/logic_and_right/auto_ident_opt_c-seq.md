@@ -59,9 +59,9 @@ let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   let tmpNestedComplexRhs = undefined;
-  const b = { x: 1 };
+  const b /*:object*/ = { x: 1 };
   const tmpChainRootProp = $(b);
-  const tmpIfTest = tmpChainRootProp == null;
+  const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
   if (tmpIfTest) {
   } else {
     const tmpChainElementObject = tmpChainRootProp.x;

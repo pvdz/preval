@@ -44,7 +44,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpReturnArg = [10, 20, 30];
+const tmpReturnArg /*:array*/ = [10, 20, 30];
 $(tmpReturnArg);
 `````
 

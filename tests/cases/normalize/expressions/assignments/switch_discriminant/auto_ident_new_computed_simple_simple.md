@@ -52,7 +52,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_a = new $(1);
+const tmpClusterSSA_a /*:object*/ = new $(1);
 $(100);
 $(tmpClusterSSA_a);
 `````

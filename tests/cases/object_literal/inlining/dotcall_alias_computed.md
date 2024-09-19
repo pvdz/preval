@@ -69,7 +69,7 @@ const g = function () {
   debugger;
   return `win`;
 };
-const obj = { f: g };
+const obj /*:object*/ = { f: g };
 const alias = obj[`f f`];
 $(order);
 `````

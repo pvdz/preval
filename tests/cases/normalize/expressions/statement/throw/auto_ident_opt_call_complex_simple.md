@@ -46,7 +46,7 @@ throw tmpThrowArg;
 `````js filename=intro
 let tmpThrowArg = undefined;
 const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall == null;
+const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);

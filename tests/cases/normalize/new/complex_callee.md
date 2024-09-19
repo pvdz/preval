@@ -34,7 +34,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpNewCallee = $();
-const tmpCalleeParam = new tmpNewCallee();
+const tmpCalleeParam /*:object*/ = new tmpNewCallee();
 $(tmpCalleeParam);
 `````
 

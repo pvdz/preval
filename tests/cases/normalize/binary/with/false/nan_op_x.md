@@ -157,7 +157,7 @@ $(arr2);
 
 
 `````js filename=intro
-const x = {
+const x /*:object*/ = {
   toString() {
     debugger;
     const tmpReturnArg = $(`toString`);
@@ -169,25 +169,25 @@ const x = {
     return 100;
   },
 };
-const tmpArrElement = 0 ** x;
-const tmpArrElement$1 = 0 * x;
-const tmpArrElement$3 = 0 / x;
-const tmpArrElement$5 = 0 % x;
+const tmpArrElement /*:number*/ = 0 ** x;
+const tmpArrElement$1 /*:number*/ = 0 * x;
+const tmpArrElement$3 /*:number*/ = 0 / x;
+const tmpArrElement$5 /*:number*/ = 0 % x;
 const tmpArrElement$7 = false + x;
-const tmpArrElement$9 = 0 - x;
-const tmpArrElement$11 = 0 << x;
-const tmpArrElement$13 = 0 >> x;
-const tmpArrElement$15 = 0 >>> x;
-const tmpArrElement$17 = false < x;
-const tmpArrElement$19 = false > x;
-const tmpArrElement$21 = false <= x;
-const tmpArrElement$23 = false >= x;
-const tmpArrElement$25 = false == x;
-const tmpArrElement$27 = false != x;
+const tmpArrElement$9 /*:number*/ = 0 - x;
+const tmpArrElement$11 /*:number*/ = 0 << x;
+const tmpArrElement$13 /*:number*/ = 0 >> x;
+const tmpArrElement$15 /*:number*/ = 0 >>> x;
+const tmpArrElement$17 /*:boolean*/ = false < x;
+const tmpArrElement$19 /*:boolean*/ = false > x;
+const tmpArrElement$21 /*:boolean*/ = false <= x;
+const tmpArrElement$23 /*:boolean*/ = false >= x;
+const tmpArrElement$25 /*:boolean*/ = false == x;
+const tmpArrElement$27 /*:boolean*/ = false != x;
 x ** 0;
-const tmpArrElement$35 = 0 ^ x;
-const tmpArrElement$37 = 0 | x;
-const arr = [
+const tmpArrElement$35 /*:number*/ = 0 ^ x;
+const tmpArrElement$37 /*:number*/ = 0 | x;
+const arr /*:array*/ = [
   tmpArrElement,
   tmpArrElement$1,
   tmpArrElement$3,
@@ -210,9 +210,9 @@ const arr = [
   tmpArrElement$37,
 ];
 $(arr);
-const tmpArrElement$39 = false in x;
-const tmpArrElement$41 = false instanceof x;
-const arr2 = [tmpArrElement$39, tmpArrElement$41];
+const tmpArrElement$39 /*:boolean*/ = false in x;
+const tmpArrElement$41 /*:boolean*/ = false instanceof x;
+const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 

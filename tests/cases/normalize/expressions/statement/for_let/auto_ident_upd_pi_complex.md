@@ -55,7 +55,7 @@ while (true) {
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpCalleeParam = $(b);
 const varInitAssignLhsComputedObj = $(tmpCalleeParam);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;

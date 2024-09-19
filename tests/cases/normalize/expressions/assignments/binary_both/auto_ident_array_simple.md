@@ -43,7 +43,7 @@ $(a);
 
 `````js filename=intro
 $(`1,2,31,2,3`);
-const tmpClusterSSA_a = [1, 2, 3];
+const tmpClusterSSA_a /*:array*/ = [1, 2, 3];
 $(tmpClusterSSA_a);
 `````
 

@@ -48,9 +48,9 @@ $(a);
 const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const tmpAnonDefaultExport = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpAnonDefaultExport /*:object*/ = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 export { tmpAnonDefaultExport as default };
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

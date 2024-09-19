@@ -55,7 +55,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpNestedComplexRhs = new $(1);
+  const tmpNestedComplexRhs /*:object*/ = new $(1);
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {

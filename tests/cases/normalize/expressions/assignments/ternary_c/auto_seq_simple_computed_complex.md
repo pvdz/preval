@@ -63,7 +63,7 @@ if (tmpIfTest) {
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpObjLitVal = $(1);
-  const tmpNestedComplexRhs = { b: tmpObjLitVal };
+  const tmpNestedComplexRhs /*:object*/ = { b: tmpObjLitVal };
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }

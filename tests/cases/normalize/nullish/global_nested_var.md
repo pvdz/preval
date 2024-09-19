@@ -52,9 +52,9 @@ $(c);
 
 `````js filename=intro
 const b = $(2);
-const tmpIfTest = b == null;
+const tmpIfTest /*:boolean*/ = b == null;
 let c = undefined;
-let tmpIfTest$1 = false;
+let tmpIfTest$1 /*:boolean*/ = false;
 if (tmpIfTest) {
   c = toString;
   tmpIfTest$1 = c == null;

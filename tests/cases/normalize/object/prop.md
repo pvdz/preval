@@ -51,9 +51,9 @@ const program = { modules: tmpObjLitVal, main: tmpObjLitVal$1 };
 
 
 `````js filename=intro
-const fdata = { name: 1 };
-const tmpClusterSSA_tmpElement = [1, fdata];
-const tmpClusterSSA_tmpArg_1 = [tmpClusterSSA_tmpElement];
+const fdata /*:object*/ = { name: 1 };
+const tmpClusterSSA_tmpElement /*:array*/ = [1, fdata];
+const tmpClusterSSA_tmpArg_1 /*:array*/ = [tmpClusterSSA_tmpElement];
 new Map(tmpClusterSSA_tmpArg_1);
 fdata.name;
 `````

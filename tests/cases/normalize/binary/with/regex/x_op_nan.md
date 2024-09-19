@@ -200,7 +200,7 @@ $(arr2);
 
 
 `````js filename=intro
-const x = {
+const x /*:object*/ = {
   toString() {
     debugger;
     const tmpReturnArg = $(`toString`);
@@ -212,39 +212,39 @@ const x = {
     return 100;
   },
 };
-const tmpBinBothRhs = /foo/g;
-const tmpArrElement = x ** tmpBinBothRhs;
-const tmpBinBothRhs$1 = /foo/g;
-const tmpArrElement$1 = x * tmpBinBothRhs$1;
-const tmpBinBothRhs$3 = /foo/g;
-const tmpArrElement$3 = x / tmpBinBothRhs$3;
-const tmpBinBothRhs$5 = /foo/g;
-const tmpArrElement$5 = x % tmpBinBothRhs$5;
-const tmpBinBothRhs$7 = /foo/g;
+const tmpBinBothRhs /*:regex*/ = /foo/g;
+const tmpArrElement /*:number*/ = x ** tmpBinBothRhs;
+const tmpBinBothRhs$1 /*:regex*/ = /foo/g;
+const tmpArrElement$1 /*:number*/ = x * tmpBinBothRhs$1;
+const tmpBinBothRhs$3 /*:regex*/ = /foo/g;
+const tmpArrElement$3 /*:number*/ = x / tmpBinBothRhs$3;
+const tmpBinBothRhs$5 /*:regex*/ = /foo/g;
+const tmpArrElement$5 /*:number*/ = x % tmpBinBothRhs$5;
+const tmpBinBothRhs$7 /*:regex*/ = /foo/g;
 const tmpArrElement$7 = x + tmpBinBothRhs$7;
-const tmpBinBothRhs$9 = /foo/g;
-const tmpArrElement$9 = x - tmpBinBothRhs$9;
-const tmpBinBothRhs$11 = /foo/g;
-const tmpArrElement$11 = x << tmpBinBothRhs$11;
-const tmpBinBothRhs$13 = /foo/g;
-const tmpArrElement$13 = x >> tmpBinBothRhs$13;
-const tmpBinBothRhs$15 = /foo/g;
-const tmpArrElement$15 = x >>> tmpBinBothRhs$15;
-const tmpBinBothRhs$17 = /foo/g;
-const tmpArrElement$17 = x < tmpBinBothRhs$17;
-const tmpBinBothRhs$19 = /foo/g;
-const tmpArrElement$19 = x > tmpBinBothRhs$19;
-const tmpBinBothRhs$21 = /foo/g;
-const tmpArrElement$21 = x <= tmpBinBothRhs$21;
-const tmpBinBothRhs$23 = /foo/g;
-const tmpArrElement$23 = x >= tmpBinBothRhs$23;
-const tmpBinBothRhs$33 = /foo/g;
-const tmpArrElement$33 = x & tmpBinBothRhs$33;
-const tmpBinBothRhs$35 = /foo/g;
-const tmpArrElement$35 = x ^ tmpBinBothRhs$35;
-const tmpBinBothRhs$37 = /foo/g;
-const tmpArrElement$37 = x | tmpBinBothRhs$37;
-const arr = [
+const tmpBinBothRhs$9 /*:regex*/ = /foo/g;
+const tmpArrElement$9 /*:number*/ = x - tmpBinBothRhs$9;
+const tmpBinBothRhs$11 /*:regex*/ = /foo/g;
+const tmpArrElement$11 /*:number*/ = x << tmpBinBothRhs$11;
+const tmpBinBothRhs$13 /*:regex*/ = /foo/g;
+const tmpArrElement$13 /*:number*/ = x >> tmpBinBothRhs$13;
+const tmpBinBothRhs$15 /*:regex*/ = /foo/g;
+const tmpArrElement$15 /*:number*/ = x >>> tmpBinBothRhs$15;
+const tmpBinBothRhs$17 /*:regex*/ = /foo/g;
+const tmpArrElement$17 /*:boolean*/ = x < tmpBinBothRhs$17;
+const tmpBinBothRhs$19 /*:regex*/ = /foo/g;
+const tmpArrElement$19 /*:boolean*/ = x > tmpBinBothRhs$19;
+const tmpBinBothRhs$21 /*:regex*/ = /foo/g;
+const tmpArrElement$21 /*:boolean*/ = x <= tmpBinBothRhs$21;
+const tmpBinBothRhs$23 /*:regex*/ = /foo/g;
+const tmpArrElement$23 /*:boolean*/ = x >= tmpBinBothRhs$23;
+const tmpBinBothRhs$33 /*:regex*/ = /foo/g;
+const tmpArrElement$33 /*:number*/ = x & tmpBinBothRhs$33;
+const tmpBinBothRhs$35 /*:regex*/ = /foo/g;
+const tmpArrElement$35 /*:number*/ = x ^ tmpBinBothRhs$35;
+const tmpBinBothRhs$37 /*:regex*/ = /foo/g;
+const tmpArrElement$37 /*:number*/ = x | tmpBinBothRhs$37;
+const arr /*:array*/ = [
   tmpArrElement,
   tmpArrElement$1,
   tmpArrElement$3,
@@ -267,11 +267,11 @@ const arr = [
   tmpArrElement$37,
 ];
 $(arr);
-const tmpBinBothRhs$39 = /foo/g;
-const tmpBinBothRhs$41 = /foo/g;
-const tmpArrElement$39 = x in tmpBinBothRhs$39;
-const tmpArrElement$41 = x instanceof tmpBinBothRhs$41;
-const arr2 = [tmpArrElement$39, tmpArrElement$41];
+const tmpBinBothRhs$39 /*:regex*/ = /foo/g;
+const tmpBinBothRhs$41 /*:regex*/ = /foo/g;
+const tmpArrElement$39 /*:boolean*/ = x in tmpBinBothRhs$39;
+const tmpArrElement$41 /*:boolean*/ = x instanceof tmpBinBothRhs$41;
+const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 

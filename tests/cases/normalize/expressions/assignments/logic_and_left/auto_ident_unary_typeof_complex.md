@@ -51,7 +51,7 @@ $(a, arg);
 const tmpUnaryArg = $(1);
 const tmpClusterSSA_tmpCalleeParam = $(100);
 $(tmpClusterSSA_tmpCalleeParam);
-const a = typeof tmpUnaryArg;
+const a /*:string*/ = typeof tmpUnaryArg;
 $(a, 1);
 `````
 

@@ -38,7 +38,7 @@ $(`after`);
 
 `````js filename=intro
 $(`before`);
-const tmpCallComplexCallee = /nope/;
+const tmpCallComplexCallee /*:regex*/ = /nope/;
 tmpCallComplexCallee();
 $(`after`);
 `````

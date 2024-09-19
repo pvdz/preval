@@ -42,7 +42,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const objPatternBeforeDefault = $ObjectPrototype.a;
-const tmpIfTest = objPatternBeforeDefault === undefined;
+const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   $(`default`);
 } else {

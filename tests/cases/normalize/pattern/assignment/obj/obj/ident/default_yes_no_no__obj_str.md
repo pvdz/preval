@@ -44,7 +44,7 @@ $(y);
 
 `````js filename=intro
 const objPatternBeforeDefault = `abc`.y;
-const tmpIfTest = objPatternBeforeDefault === undefined;
+const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   y = $(`pass`);
   $(y);

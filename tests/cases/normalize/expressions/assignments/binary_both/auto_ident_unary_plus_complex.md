@@ -45,10 +45,10 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const a = +tmpUnaryArg;
+const a /*:number*/ = +tmpUnaryArg;
 const tmpUnaryArg$1 = $(100);
-const tmpClusterSSA_a = +tmpUnaryArg$1;
-const tmpCalleeParam = a + tmpClusterSSA_a;
+const tmpClusterSSA_a /*:number*/ = +tmpUnaryArg$1;
+const tmpCalleeParam /*:number*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````

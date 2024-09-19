@@ -52,7 +52,7 @@ $(a, b);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-const b = { c: 10, d: 20 };
+const b /*:object*/ = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];

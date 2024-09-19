@@ -85,7 +85,7 @@ if (tmpIfTest$7) {
 
 
 `````js filename=intro
-const a = /foo/;
+const a /*:regex*/ = /foo/;
 $(a);
 $(`fail1`);
 $(`fail2`);

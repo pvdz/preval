@@ -60,9 +60,9 @@ let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   let tmpNestedComplexRhs = undefined;
-  const b = { x: 1 };
+  const b /*:object*/ = { x: 1 };
   const tmpChainElementCall = $(b);
-  const tmpIfTest = tmpChainElementCall == null;
+  const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest) {
   } else {
     const tmpChainElementObject = tmpChainElementCall.x;

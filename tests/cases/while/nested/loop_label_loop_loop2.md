@@ -85,7 +85,7 @@ while (true) {
 
 
 `````js filename=intro
-let x = 10;
+let x /*:number*/ = 10;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   foo: {
     while (true) {

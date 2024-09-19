@@ -61,7 +61,7 @@ $(a);
 `````js filename=intro
 let tmpIfTest = false;
 const tmpChainElementCall = $($);
-const tmpIfTest$1 = tmpChainElementCall == null;
+const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
   const tmpCalleeParam$3 = $(1);
@@ -73,7 +73,7 @@ if (tmpIfTest) {
     $(1);
     let tmpIfTest$2 = false;
     const tmpChainElementCall$2 = $($);
-    const tmpIfTest$4 = tmpChainElementCall$2 == null;
+    const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$2 == null;
     if (tmpIfTest$4) {
     } else {
       const tmpCalleeParam$1 = $(1);
@@ -87,7 +87,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

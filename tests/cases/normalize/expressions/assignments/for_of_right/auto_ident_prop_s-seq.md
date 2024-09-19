@@ -73,7 +73,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForOfNext.value;
   }
 }
-const b = { c: 1 };
+const b /*:object*/ = { c: 1 };
 $(1, b);
 `````
 

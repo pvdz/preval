@@ -38,7 +38,7 @@ a < b;
 
 
 `````js filename=intro
-const tmpCalleeParam = { valueOf: $ };
+const tmpCalleeParam /*:object*/ = { valueOf: $ };
 const a = $(tmpCalleeParam);
 a ** 0;
 `````

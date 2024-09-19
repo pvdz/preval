@@ -46,7 +46,7 @@ $(x);
 
 
 `````js filename=intro
-let x = 2;
+let x /*:number*/ = 2;
 try {
   fail();
 } catch (e) {

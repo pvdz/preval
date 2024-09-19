@@ -108,15 +108,15 @@ if (tmpIfTest$11) {
 
 `````js filename=intro
 let tmpClusterSSA_a = undefined;
-const tmpObjLitVal = { y: 1 };
-const b = { x: tmpObjLitVal };
+const tmpObjLitVal /*:object*/ = { y: 1 };
+const b /*:object*/ = { x: tmpObjLitVal };
 const tmpChainElementCall = $(b);
-const tmpIfTest$5 = tmpChainElementCall == null;
+const tmpIfTest$5 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$5) {
 } else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$7 = tmpChainElementObject == null;
+  const tmpIfTest$7 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$7) {
   } else {
     const tmpChainRootComputed$1 = $(`y`);

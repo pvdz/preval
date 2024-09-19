@@ -43,10 +43,10 @@ $(a);
 
 `````js filename=intro
 const tmpNewCallee = $($);
-const tmpCompProp = new tmpNewCallee(1);
-const obj = {};
+const tmpCompProp /*:object*/ = new tmpNewCallee(1);
+const obj /*:object*/ = {};
 obj[tmpCompProp];
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

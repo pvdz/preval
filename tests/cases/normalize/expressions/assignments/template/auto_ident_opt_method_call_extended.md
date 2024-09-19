@@ -59,10 +59,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal$1 = { e: $ };
+const tmpObjLitVal$1 /*:object*/ = { e: $ };
 const tmpChainElementCall = tmpObjLitVal$1.e(1);
-const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpChainElementCall, `string`);
-const tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpChainElementCall, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(tmpChainElementCall);
 `````

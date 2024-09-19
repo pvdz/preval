@@ -49,11 +49,11 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 let a = delete arg.y;
 const tmpCalleeParam = a;
 if (a) {
-  const tmpNestedComplexRhs = delete arg.y;
+  const tmpNestedComplexRhs /*:boolean*/ = delete arg.y;
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {

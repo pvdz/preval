@@ -53,7 +53,7 @@ let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   const tmpUnaryArg = $(1);
-  const tmpNestedComplexRhs = typeof tmpUnaryArg;
+  const tmpNestedComplexRhs /*:string*/ = typeof tmpUnaryArg;
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {

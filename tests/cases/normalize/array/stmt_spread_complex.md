@@ -37,7 +37,7 @@ const tmpArrElToSpread = tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 $(1);
 $(3);
-const tmpCalleeParam = [4, 5];
+const tmpCalleeParam /*:array*/ = [4, 5];
 const tmpArrElToSpread = $(tmpCalleeParam);
 [...tmpArrElToSpread];
 `````

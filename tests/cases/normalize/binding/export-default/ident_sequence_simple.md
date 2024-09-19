@@ -42,7 +42,7 @@ $(a, b, c);
 
 `````js filename=intro
 $(2);
-const a = 3;
+const a /*:number*/ = 3;
 export { a };
 $(3, 2, 3);
 `````

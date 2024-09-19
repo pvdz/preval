@@ -58,7 +58,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const tmpClusterSSA_b = { c: 2 };
+const tmpClusterSSA_b /*:object*/ = { c: 2 };
 $(2, tmpClusterSSA_b);
 `````
 

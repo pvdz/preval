@@ -67,7 +67,7 @@ $(a);
 `````js filename=intro
 let a = undefined;
 let tmpForOfGen = undefined;
-const tmpIfTest = $ == null;
+const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
   tmpForOfGen = $forOf(undefined);
 } else {

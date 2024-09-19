@@ -50,9 +50,9 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const a = { a: 999, b: 1000 };
-const tmpBinBothRhs = { b: tmpObjLitVal };
-const tmpClusterSSA_a = a * tmpBinBothRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
+const tmpBinBothRhs /*:object*/ = { b: tmpObjLitVal };
+const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
 $(tmpClusterSSA_a);
 $(1);
 const tmpAssignMemLhsObj = $(tmpClusterSSA_a);

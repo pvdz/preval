@@ -51,7 +51,7 @@ const a = function () {
   debugger;
   return undefined;
 };
-const tmpCalleeParam = [...a];
+const tmpCalleeParam /*:array*/ = [...a];
 $(tmpCalleeParam);
 $(a);
 `````

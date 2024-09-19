@@ -49,7 +49,7 @@ while (true) {
 
 
 `````js filename=intro
-let i = 0;
+let i /*:number*/ = 0;
 $(10);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   i = i + 1;

@@ -55,7 +55,7 @@ $(x);
 
 `````js filename=intro
 let x = $(35);
-const y = x | 32;
+const y /*:number*/ = x | 32;
 if (y) {
   x = x ^ 32;
   $(`then`);

@@ -50,15 +50,15 @@ $(a, b);
 
 `````js filename=intro
 const tmpIfTest = $(100);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  const b = [];
+  const b /*:array*/ = [];
   $(a, b);
 } else {
   const tmpArrElement = $(2);
-  const tmpCalleeParam = [tmpArrElement];
+  const tmpCalleeParam /*:array*/ = [tmpArrElement];
   const arrAssignPatternRhs = $(tmpCalleeParam);
-  const arrPatternSplat = [...arrAssignPatternRhs];
+  const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
   const tmpClusterSSA_b = arrPatternSplat[0];
   $(a, tmpClusterSSA_b);
 }

@@ -107,11 +107,11 @@ if (tmpIfTest$11) {
 
 
 `````js filename=intro
-const tmpIfTest$7 = $ == null;
+const tmpIfTest$7 /*:boolean*/ = $ == null;
 if (tmpIfTest$7) {
   $(undefined);
 } else {
-  const tmpObjLitVal$1 = { e: $ };
+  const tmpObjLitVal$1 /*:object*/ = { e: $ };
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
   $(tmpChainElementCall);
 }

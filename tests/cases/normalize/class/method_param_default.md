@@ -62,11 +62,11 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const x = class {
+const x /*:class*/ = class {
   y($$0) {
     const tmpParamBare = $$0;
     debugger;
-    const tmpIfTest = tmpParamBare === undefined;
+    const tmpIfTest /*:boolean*/ = tmpParamBare === undefined;
     if (tmpIfTest) {
       const tmpClusterSSA_arg = $(10, `default`);
       return tmpClusterSSA_arg;
@@ -75,7 +75,7 @@ const x = class {
     }
   }
 };
-const tmpCallObj = new x();
+const tmpCallObj /*:object*/ = new x();
 const tmpCalleeParam = tmpCallObj.y();
 $(tmpCalleeParam);
 `````

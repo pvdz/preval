@@ -45,14 +45,14 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 1 };
+const b /*:object*/ = { c: 1 };
 const tmpCompObj = $(b);
 const tmpIfTest = tmpCompObj.c;
 if (tmpIfTest) {
   $(100);
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

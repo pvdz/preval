@@ -66,7 +66,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 $(0);
 const tmpBoolTrampoline = $(0);
-const tmpBoolTrampolineB = Boolean(tmpBoolTrampoline);
+const tmpBoolTrampolineB /*:boolean*/ = Boolean(tmpBoolTrampoline);
 $(tmpBoolTrampolineB);
 `````
 

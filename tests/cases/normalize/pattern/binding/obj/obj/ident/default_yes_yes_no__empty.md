@@ -53,15 +53,15 @@ $(`bad`);
 `````js filename=intro
 const objPatternBeforeDefault = (1).x;
 let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
+const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  const tmpCalleeParam = { y: `fail2` };
+  const tmpCalleeParam /*:object*/ = { y: `fail2` };
   objPatternAfterDefault = $(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
+const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault$1 === undefined;
 if (tmpIfTest$1) {
   $(`fail`);
 } else {

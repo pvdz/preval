@@ -102,9 +102,9 @@ rule(`You have to listen to me`);
 
 `````js filename=intro
 const rule = function ($$0) {
-  const desc = $$0;
+  const desc /*:string*/ = $$0;
   debugger;
-  const e = `purpleRule:reset "${desc}"`;
+  const e /*:string*/ = `purpleRule:reset "${desc}"`;
   $(e);
   return undefined;
 };

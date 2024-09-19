@@ -62,8 +62,8 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
-const b = { c: 2 };
+const a /*:object*/ = { a: 999, b: 1000 };
+const b /*:object*/ = { c: 2 };
 $(a, b);
 `````
 

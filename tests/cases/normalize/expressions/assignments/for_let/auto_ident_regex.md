@@ -47,7 +47,7 @@ while (true) {
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const a = /foo/;
+  const a /*:regex*/ = /foo/;
   $(a);
   $(1);
 }

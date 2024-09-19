@@ -63,7 +63,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 = { a: 1, b: 2 };
+const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
 const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
 const tmpForInGen = $forIn(tmpNestedAssignObjPatternRhs);

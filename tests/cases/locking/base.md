@@ -75,7 +75,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-let tmpFuncLock = true;
+let tmpFuncLock /*:boolean*/ = true;
 const g = function () {
   debugger;
   if (tmpFuncLock) {

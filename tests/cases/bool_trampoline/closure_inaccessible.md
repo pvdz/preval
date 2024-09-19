@@ -85,7 +85,7 @@ if (tmpIfTest) {
 const f$1 = function () {
   debugger;
   const tmpssa2_x = $(100);
-  const y = Boolean(tmpssa2_x);
+  const y /*:boolean*/ = Boolean(tmpssa2_x);
   return y;
 };
 $(undefined);

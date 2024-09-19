@@ -49,7 +49,7 @@ $(b);
 
 `````js filename=intro
 const tmpObjLitVal = $(`prop`);
-const tmpIfTest = tmpObjLitVal === undefined;
+const tmpIfTest /*:boolean*/ = tmpObjLitVal === undefined;
 if (tmpIfTest) {
   const tmpClusterSSA_b = $(`default`);
   $(tmpClusterSSA_b);

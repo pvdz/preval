@@ -42,7 +42,7 @@ $(x);
 
 
 `````js filename=intro
-const tmpArrElement$3 = [1, 2, 3];
+const tmpArrElement$3 /*:array*/ = [1, 2, 3];
 $(tmpArrElement$3);
 `````
 

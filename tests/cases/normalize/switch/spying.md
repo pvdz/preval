@@ -81,17 +81,17 @@ tmpSwitchBreak: {
 `````js filename=intro
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $spy(0);
-const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   $(`false`);
 } else {
   const tmpBinBothRhs$1 = $spy(1);
-  const tmpIfTest$1 = tmpSwitchDisc === tmpBinBothRhs$1;
+  const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs$1;
   if (tmpIfTest$1) {
     $(`true`);
   } else {
     const tmpBinBothRhs$3 = $spy(2);
-    const tmpIfTest$3 = tmpSwitchDisc === tmpBinBothRhs$3;
+    const tmpIfTest$3 /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs$3;
     if (tmpIfTest$3) {
       $(`false`);
     } else {

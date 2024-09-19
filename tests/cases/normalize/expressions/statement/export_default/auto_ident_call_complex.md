@@ -42,7 +42,7 @@ $(a);
 const tmpCallComplexCallee = $($);
 const tmpAnonDefaultExport = tmpCallComplexCallee(1);
 export { tmpAnonDefaultExport as default };
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

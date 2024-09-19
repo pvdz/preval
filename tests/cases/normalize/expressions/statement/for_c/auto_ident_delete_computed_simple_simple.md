@@ -52,7 +52,7 @@ $(a, arg);
 
 `````js filename=intro
 const tmpIfTest = $(1);
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 if (tmpIfTest) {
   delete arg.y;
   while ($LOOP_UNROLL_10) {
@@ -65,7 +65,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 

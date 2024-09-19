@@ -88,7 +88,7 @@ if ($) {
   $(20);
   let n = undefined;
   if ($) {
-    let x = 5;
+    let x /*:number*/ = 5;
     if ($) {
       x = 10;
     } else {

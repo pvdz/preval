@@ -55,7 +55,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpObjLitPropVal = $(1);
-const x = {
+const x /*:object*/ = {
   [`hello, world!`]: tmpObjLitPropVal,
   [`hey, me too!`]() {
     debugger;

@@ -50,11 +50,11 @@ $(a, arg);
 `````js filename=intro
 $(1);
 $(2);
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-const tmpCalleeParam = { ...tmpClusterSSA_a };
+const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpCalleeParam /*:object*/ = { ...tmpClusterSSA_a };
 $(tmpCalleeParam);
 $(tmpClusterSSA_a, arg);
 `````

@@ -66,7 +66,7 @@ tmpCallCallee(tmpCalleeParam);
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   const a = (3).foo;
-  const b = { x: 2 };
+  const b /*:object*/ = { x: 2 };
   $(a, b, 3);
 } else {
 }

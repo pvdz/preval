@@ -58,14 +58,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $ == null;
+const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
   $(undefined);
 } else {
   const tmpChainElementCall = $(1);
   $(tmpChainElementCall);
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

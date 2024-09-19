@@ -68,8 +68,8 @@ $(a, b, c, d, e);
 
 
 `````js filename=intro
-const b = { x: 1 };
-const c = { y: 2 };
+const b /*:object*/ = { x: 1 };
+const c /*:object*/ = { y: 2 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const varInitAssignLhsComputedObj = $(b);
   const varInitAssignLhsComputedProp = $(`x`);

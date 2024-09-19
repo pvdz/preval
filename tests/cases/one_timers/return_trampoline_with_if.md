@@ -102,7 +102,7 @@ $(parseIdentifierRest);
 const parseIdentifierRest = function () {
   debugger;
   c$53;
-  let s$15 = 10;
+  let s$15 /*:number*/ = 10;
   $inlinedFunction: {
     const tmpIfTest = $(1);
     if (tmpIfTest) {

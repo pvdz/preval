@@ -53,7 +53,7 @@ $(q);
 
 
 `````js filename=intro
-const obj = { $: $ };
+const obj /*:object*/ = { $: $ };
 const q = obj.$(1);
 $(q);
 `````

@@ -70,9 +70,9 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const tmpCalleeParam = [`pass2`];
+const tmpCalleeParam /*:array*/ = [`pass2`];
 const objPatternAfterDefault = $(tmpCalleeParam);
-const arrPatternSplat = [...objPatternAfterDefault];
+const arrPatternSplat /*:array*/ = [...objPatternAfterDefault];
 arrPatternSplat[0];
 $(`bad`);
 `````

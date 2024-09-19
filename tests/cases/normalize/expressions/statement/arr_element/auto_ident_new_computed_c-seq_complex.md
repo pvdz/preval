@@ -48,17 +48,17 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`\$`);
 const tmpNewCallee = tmpCompObj[tmpCompProp];
-const tmpBinBothLhs = new tmpNewCallee(1);
+const tmpBinBothLhs /*:object*/ = new tmpNewCallee(1);
 const tmpCompObj$1 = $(b);
 const tmpCompProp$1 = $(`\$`);
 const tmpNewCallee$1 = tmpCompObj$1[tmpCompProp$1];
-const tmpBinBothRhs = new tmpNewCallee$1(1);
+const tmpBinBothRhs /*:object*/ = new tmpNewCallee$1(1);
 tmpBinBothLhs + tmpBinBothRhs;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

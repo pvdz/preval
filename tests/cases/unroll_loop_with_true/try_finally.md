@@ -100,7 +100,7 @@ while (true) {
 
 
 `````js filename=intro
-let $finalStep = false;
+let $finalStep /*:boolean*/ = false;
 try {
   const test = $(`first`);
   $(`second`);
@@ -117,7 +117,7 @@ $(`finally`);
 if ($finalStep) {
 } else {
   while ($LOOP_UNROLL_10) {
-    let $finalStep$1 = false;
+    let $finalStep$1 /*:boolean*/ = false;
     try {
       const test$1 = $(`first`);
       $(`second`);

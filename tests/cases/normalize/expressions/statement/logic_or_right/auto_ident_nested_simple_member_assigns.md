@@ -60,7 +60,7 @@ $(a, b, c);
 
 `````js filename=intro
 const tmpIfTest = $(100);
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 if (tmpIfTest) {
 } else {
   b.x = 3;
@@ -70,7 +70,7 @@ if (tmpIfTest) {
   b.x = 3;
   b.x = 3;
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b, 3);
 `````
 

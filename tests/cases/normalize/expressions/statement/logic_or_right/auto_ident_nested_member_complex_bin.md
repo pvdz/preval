@@ -63,8 +63,8 @@ $(a, b, c, d, e);
 
 `````js filename=intro
 const tmpIfTest = $(100);
-const b = { x: 1 };
-const c = { y: 2 };
+const b /*:object*/ = { x: 1 };
+const c /*:object*/ = { y: 2 };
 if (tmpIfTest) {
 } else {
   const tmpAssignComMemLhsObj = $(b);
@@ -74,7 +74,7 @@ if (tmpIfTest) {
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 7;
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b, c, 3, 4);
 `````
 

@@ -53,16 +53,16 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpCalleeParam$1 = $(b);
 const varInitAssignLhsComputedObj = $(tmpCalleeParam$1);
 const tmpBinLhs$1 = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs = tmpBinLhs$1 - 1;
+const varInitAssignLhsComputedRhs /*:number*/ = tmpBinLhs$1 - 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpBinBothRhs = $coerce(varInitAssignLhsComputedRhs, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+const tmpBinBothRhs /*:string*/ = $coerce(varInitAssignLhsComputedRhs, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

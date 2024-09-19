@@ -40,7 +40,7 @@ $(c);
 
 `````js filename=intro
 const a = $(1);
-const c = Boolean(a);
+const c /*:boolean*/ = Boolean(a);
 $(c);
 `````
 

@@ -53,7 +53,7 @@ spy in 150;
 
 
 `````js filename=intro
-const spy = {
+const spy /*:object*/ = {
   toString() {
     debugger;
     $(`pass`);

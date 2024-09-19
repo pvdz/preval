@@ -68,7 +68,7 @@ $(a);
 const tmpNewCallee = $($);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-const a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+const a /*:object*/ = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 const tmpForOfGen = $forOf(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext = tmpForOfGen.next();

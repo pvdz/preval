@@ -50,7 +50,7 @@ while (true) {
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
-const xyz = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+const xyz /*:object*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);

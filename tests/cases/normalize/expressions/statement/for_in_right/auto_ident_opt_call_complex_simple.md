@@ -66,7 +66,7 @@ $(a);
 
 `````js filename=intro
 const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall == null;
+const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 let tmpForInGen = undefined;
 if (tmpIfTest) {
   tmpForInGen = $forIn(undefined);
@@ -83,7 +83,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForInNext.value;
   }
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

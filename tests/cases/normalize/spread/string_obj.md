@@ -35,7 +35,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam = { [`0`]: `h`, [`1`]: `e`, [`2`]: `l`, [`3`]: `l`, [`4`]: `o` };
+const tmpCalleeParam /*:object*/ = { [`0`]: `h`, [`1`]: `e`, [`2`]: `l`, [`3`]: `l`, [`4`]: `o` };
 $(tmpCalleeParam);
 `````
 

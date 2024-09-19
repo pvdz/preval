@@ -60,7 +60,7 @@ if (a) {
 } else {
   const tmpObjLitVal$5 = $(1);
   const tmpObjLitVal$9 = $(3);
-  const tmpNestedComplexRhs = { x: tmpObjLitVal$5, y: 2, z: tmpObjLitVal$9 };
+  const tmpNestedComplexRhs /*:object*/ = { x: tmpObjLitVal$5, y: 2, z: tmpObjLitVal$9 };
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }

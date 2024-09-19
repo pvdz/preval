@@ -49,11 +49,11 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj = $(arg);
-const tmpClusterSSA_a = delete tmpDeleteObj.y;
-const tmpBinBothRhs = $coerce(tmpClusterSSA_a, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
+const tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a, arg);
 `````

@@ -64,8 +64,8 @@ $(a);
 
 `````js filename=intro
 let tmpIfTest = false;
-const tmpIfTest$3 = $ == null;
-const tmpObjLitVal$1 = { e: $ };
+const tmpIfTest$3 /*:boolean*/ = $ == null;
+const tmpObjLitVal$1 /*:object*/ = { e: $ };
 if (tmpIfTest$3) {
 } else {
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
@@ -76,7 +76,7 @@ if (tmpIfTest) {
     $(100);
     let tmpIfTest$1 = false;
     const tmpChainElementObject$1 = tmpObjLitVal$1.e;
-    const tmpIfTest$4 = tmpChainElementObject$1 == null;
+    const tmpIfTest$4 /*:boolean*/ = tmpChainElementObject$1 == null;
     if (tmpIfTest$4) {
     } else {
       const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, tmpObjLitVal$1, 1);
@@ -89,7 +89,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

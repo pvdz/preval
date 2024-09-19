@@ -52,11 +52,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 = { a: 1, b: 2 };
+const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
 let tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
 if (tmpNestedAssignObjPatternRhs) {
-  const tmpCalleeParam$3 = { a: 1, b: 2 };
+  const tmpCalleeParam$3 /*:object*/ = { a: 1, b: 2 };
   const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$3);
   tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1.a;
   $(tmpNestedAssignObjPatternRhs$1);

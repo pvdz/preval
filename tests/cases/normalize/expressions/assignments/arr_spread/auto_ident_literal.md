@@ -40,7 +40,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = [`f`, `o`, `o`];
+const tmpCalleeParam /*:array*/ = [`f`, `o`, `o`];
 $(tmpCalleeParam);
 $(`foo`);
 `````

@@ -80,12 +80,12 @@ $(tmpCalleeParam$1);
 const f = function ($$0) {
   const $dlr_$$0 = $$0;
   debugger;
-  const tmpIfTest$1 = $dlr_$$0 === undefined;
+  const tmpIfTest$1 /*:boolean*/ = $dlr_$$0 === undefined;
   if (tmpIfTest$1) {
-    const c = [`x`, `bar`];
+    const c /*:array*/ = [`x`, `bar`];
     return c;
   } else {
-    const d = [`x`, $dlr_$$0];
+    const d /*:array*/ = [`x`, $dlr_$$0];
     return d;
   }
 };

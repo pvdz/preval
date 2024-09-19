@@ -39,9 +39,9 @@ $(a);
 
 
 `````js filename=intro
-const xyz = { x: 1, y: 2, z: 3 };
+const xyz /*:object*/ = { x: 1, y: 2, z: 3 };
 $(xyz);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

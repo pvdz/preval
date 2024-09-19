@@ -41,7 +41,7 @@ $(a);
 
 `````js filename=intro
 const a = $(1);
-const tmpCalleeParam = [`before `, ` after`];
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, a);
 $(a);
 `````

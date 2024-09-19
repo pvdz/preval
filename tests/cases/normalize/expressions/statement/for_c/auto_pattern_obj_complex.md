@@ -52,12 +52,12 @@ $(a);
 `````js filename=intro
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpCalleeParam = { a: 1, b: 2 };
+  const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
   $(tmpCalleeParam);
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
-      const tmpCalleeParam$1 = { a: 1, b: 2 };
+      const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
       $(tmpCalleeParam$1);
     } else {
       break;

@@ -55,7 +55,7 @@ if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  const tmpCalleeParam$1 = { a: 1, b: 2 };
+  const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
   a = tmpNestedAssignObjPatternRhs.a;
   $(tmpNestedAssignObjPatternRhs);

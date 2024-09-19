@@ -44,7 +44,7 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs = $(100);
 const tmpUnaryArg = $(100);
-const a = !tmpUnaryArg;
+const a /*:boolean*/ = !tmpUnaryArg;
 const tmpCalleeParam = tmpBinBothLhs + a;
 $(tmpCalleeParam);
 $(a);

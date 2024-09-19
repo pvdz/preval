@@ -55,11 +55,11 @@ $(a, arg);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 if (tmpIfTest) {
   $(1);
   $(2);
-  const tmpNestedComplexRhs = delete arg.y;
+  const tmpNestedComplexRhs /*:boolean*/ = delete arg.y;
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {

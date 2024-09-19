@@ -78,7 +78,7 @@ const f = function () {
   debugger;
   const s = $(10);
   parseExpression(lexerFlags$285, astProp$181);
-  let tmpClusterSSA_s = s | 10;
+  let tmpClusterSSA_s /*:number*/ = s | 10;
   const tmpClusterSSA_x = $(true);
   if (tmpClusterSSA_x) {
     while ($LOOP_UNROLL_10) {

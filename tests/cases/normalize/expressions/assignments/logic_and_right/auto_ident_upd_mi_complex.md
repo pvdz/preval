@@ -56,12 +56,12 @@ $(a, b);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(100);
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 if (tmpCalleeParam) {
   const tmpCalleeParam$1 = $(b);
   const varInitAssignLhsComputedObj = $(tmpCalleeParam$1);
   const tmpBinLhs = varInitAssignLhsComputedObj.x;
-  const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
+  const varInitAssignLhsComputedRhs /*:number*/ = tmpBinLhs - 1;
   varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
   a = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs);

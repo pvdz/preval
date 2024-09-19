@@ -49,7 +49,7 @@ $(a, b);
 
 `````js filename=intro
 const tmpNestedComplexRhs = $(2);
-const obj = {};
+const obj /*:object*/ = {};
 obj[tmpNestedComplexRhs];
 $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````

@@ -50,7 +50,7 @@ $(a);
 
 `````js filename=intro
 const tmpCallCompProp = $(`\$`);
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpIfTest = b[tmpCallCompProp](1);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
@@ -64,7 +64,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

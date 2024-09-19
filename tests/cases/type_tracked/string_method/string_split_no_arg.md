@@ -32,7 +32,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam = [`hello world`];
+const tmpCalleeParam /*:array*/ = [`hello world`];
 $(tmpCalleeParam);
 `````
 

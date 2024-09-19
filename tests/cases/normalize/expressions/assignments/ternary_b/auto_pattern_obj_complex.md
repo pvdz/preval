@@ -52,7 +52,7 @@ $(a);
 let a = 999;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpCalleeParam$1 = { a: 1, b: 2 };
+  const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
   a = tmpNestedAssignObjPatternRhs.a;
   $(tmpNestedAssignObjPatternRhs);

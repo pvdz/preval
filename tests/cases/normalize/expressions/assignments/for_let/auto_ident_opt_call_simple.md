@@ -54,7 +54,7 @@ while (true) {
 
 `````js filename=intro
 let xyz = undefined;
-const tmpIfTest = $ == null;
+const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall = $(1);

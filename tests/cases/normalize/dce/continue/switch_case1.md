@@ -73,7 +73,7 @@ const tmpIfTest = $(true);
 if (tmpIfTest) {
   const tmpSwitchDisc = $(1, `disc`);
   const tmpBinBothRhs = $(1, `case`);
-  const tmpIfTest$1 = tmpSwitchDisc === tmpBinBothRhs;
+  const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
   if (tmpIfTest$1) {
   } else {
     $(`keep`);
@@ -83,7 +83,7 @@ if (tmpIfTest) {
     if (tmpIfTest$2) {
       const tmpSwitchDisc$1 = $(1, `disc`);
       const tmpBinBothRhs$1 = $(1, `case`);
-      const tmpIfTest$4 = tmpSwitchDisc$1 === tmpBinBothRhs$1;
+      const tmpIfTest$4 /*:boolean*/ = tmpSwitchDisc$1 === tmpBinBothRhs$1;
       if (tmpIfTest$4) {
       } else {
         $(`keep`);

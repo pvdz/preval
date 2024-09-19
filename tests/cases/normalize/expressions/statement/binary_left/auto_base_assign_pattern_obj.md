@@ -49,12 +49,12 @@ $(a, b);
 
 `````js filename=intro
 const tmpObjLitVal = $(2);
-const tmpCalleeParam = { b: tmpObjLitVal };
+const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
 const tmpBinBothRhs = $(100);
 tmpNestedAssignObjPatternRhs + tmpBinBothRhs;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_b);
 `````
 

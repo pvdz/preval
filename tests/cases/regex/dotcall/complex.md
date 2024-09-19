@@ -45,8 +45,8 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam
 
 `````js filename=intro
 const arg = $(`give food`);
-const regex = /foo/;
-const tmpCalleeParam$5 = { some: `stuff` };
+const regex /*:regex*/ = /foo/;
+const tmpCalleeParam$5 /*:object*/ = { some: `stuff` };
 regex.test(arg, tmpCalleeParam$5);
 `````
 

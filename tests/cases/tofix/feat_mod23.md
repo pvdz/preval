@@ -84,14 +84,14 @@ while (true) {
 `````js filename=intro
 let x = $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest = x % 2;
+  const tmpIfTest /*:number*/ = x % 2;
   if (tmpIfTest) {
     x = x + 1;
     $(x, `write`);
   } else {
     $(x, `read`);
   }
-  const tmpIfTest$1 = x % 3;
+  const tmpIfTest$1 /*:number*/ = x % 3;
   if (tmpIfTest$1) {
     x = $(10, `ten`);
   } else {

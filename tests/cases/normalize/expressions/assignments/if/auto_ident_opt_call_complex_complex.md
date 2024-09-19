@@ -50,7 +50,7 @@ $(a);
 
 `````js filename=intro
 const tmpChainElementCall = $($);
-const tmpIfTest$1 = tmpChainElementCall == null;
+const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
   $(undefined);
 } else {

@@ -50,7 +50,7 @@ while (true) {
 
 
 `````js filename=intro
-let tmpLoopRetCode = true;
+let tmpLoopRetCode /*:boolean*/ = true;
 if ($) {
 } else {
   while ($LOOP_UNROLL_10) {

@@ -62,17 +62,17 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpObjLitVal = function (...$$0) {
-  const tmpPrevalAliasThis = this;
+  const tmpPrevalAliasThis /*:object*/ = this;
   const args = $$0;
   debugger;
   const tmpCalleeParam$1 = tmpPrevalAliasThis.y;
   $(args, tmpCalleeParam$1);
   return undefined;
 };
-const a = { x: tmpObjLitVal, y: 100 };
+const a /*:object*/ = { x: tmpObjLitVal, y: 100 };
 const tmpChainElementCall = $(a);
 const tmpChainElementObject = tmpChainElementCall.x;
-const tmpIfTest = tmpChainElementObject == null;
+const tmpIfTest /*:boolean*/ = tmpChainElementObject == null;
 if (tmpIfTest) {
 } else {
   $dotCall(tmpChainElementObject, tmpChainElementCall, 1, 2, 3);

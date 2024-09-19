@@ -46,8 +46,8 @@ $(a, arg);
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-const tmpCalleeParam = [`before `, ` after`];
-const a = typeof tmpUnaryArg;
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
+const a /*:string*/ = typeof tmpUnaryArg;
 $(tmpCalleeParam, a);
 $(a, 1);
 `````

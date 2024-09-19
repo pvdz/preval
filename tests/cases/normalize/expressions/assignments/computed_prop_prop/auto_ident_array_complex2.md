@@ -48,8 +48,8 @@ $(a);
 `````js filename=intro
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const obj = {};
-const a = [tmpArrElement, 2, tmpArrElement$3];
+const obj /*:object*/ = {};
+const a /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
 obj[a];
 $(a);
 `````

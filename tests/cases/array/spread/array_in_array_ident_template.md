@@ -58,15 +58,15 @@ $(y);
 `````js filename=intro
 $(10);
 const tmpCallCallee = $(`x`);
-const tmpBinBothRhs$1 = $coerce(tmpCallCallee, `string`);
+const tmpBinBothRhs$1 /*:string*/ = $coerce(tmpCallCallee, `string`);
 const tmpCallCallee$1 = $(`y`);
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
+const tmpBinBothRhs /*:string*/ = $coerce(tmpCallCallee$1, `string`);
 if ($) {
   $(20);
 } else {
 }
-const tmpBinLhs = `${tmpBinBothRhs$1} ${tmpBinBothRhs}`;
-const y = [`a`, 1, tmpBinLhs, 3, `b`];
+const tmpBinLhs /*:string*/ = `${tmpBinBothRhs$1} ${tmpBinBothRhs}`;
+const y /*:array*/ = [`a`, 1, tmpBinLhs, 3, `b`];
 $(y);
 `````
 

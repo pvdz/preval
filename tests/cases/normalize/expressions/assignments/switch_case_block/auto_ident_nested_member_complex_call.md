@@ -76,9 +76,9 @@ $(a, b, c, d);
 `````js filename=intro
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
-const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
-const b = { x: 1 };
-const c = { y: 2 };
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const b /*:object*/ = { x: 1 };
+const c /*:object*/ = { y: 2 };
 if (tmpIfTest) {
   const tmpNestedAssignComMemberObj = $(b);
   const tmpNestedAssignComMemberProp = $(`x`);
@@ -89,7 +89,7 @@ if (tmpIfTest) {
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs, b, c, 3);
 } else {
-  const a = { a: 999, b: 1000 };
+  const a /*:object*/ = { a: 999, b: 1000 };
   $(a, b, c, 3);
 }
 `````

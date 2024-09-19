@@ -110,14 +110,14 @@ if (tmpIfTest$11) {
 
 `````js filename=intro
 let a = undefined;
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpChainElementCall = $(b);
-const tmpIfTest$5 = tmpChainElementCall == null;
+const tmpIfTest$5 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$5) {
 } else {
   const tmpChainRootComputed = $(`\$`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$7 = tmpChainElementObject == null;
+  const tmpIfTest$7 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$7) {
   } else {
     const tmpCalleeParam$3 = $(1);

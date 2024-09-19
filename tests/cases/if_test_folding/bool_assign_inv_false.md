@@ -79,7 +79,7 @@ const f = function () {
   const tmpBinLhs = $(0);
   $(`block`);
   $(`block`);
-  const x = tmpBinLhs === 1;
+  const x /*:boolean*/ = tmpBinLhs === 1;
   return x;
 };
 f();

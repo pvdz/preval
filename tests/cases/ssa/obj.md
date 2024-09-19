@@ -73,7 +73,7 @@ if ($) {
     obj.bla = c;
     return undefined;
   };
-  const obj = { selfRef: f };
+  const obj /*:object*/ = { selfRef: f };
   $(undefined);
 } else {
 }

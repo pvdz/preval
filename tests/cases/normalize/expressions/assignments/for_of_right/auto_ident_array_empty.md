@@ -58,7 +58,7 @@ $(a);
 
 
 `````js filename=intro
-const a = [];
+const a /*:array*/ = [];
 const tmpForOfGen = $forOf(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext = tmpForOfGen.next();

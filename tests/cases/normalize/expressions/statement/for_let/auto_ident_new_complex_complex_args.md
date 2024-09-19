@@ -55,7 +55,7 @@ while (true) {
 const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const xyz = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+const xyz /*:object*/ = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);

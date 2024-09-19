@@ -75,7 +75,7 @@ if (y) {
 const a = $(1);
 const b = $(2);
 const c = $(3);
-let y = a === b;
+let y /*:boolean*/ = a === b;
 if (y) {
   y = a === c;
 } else {

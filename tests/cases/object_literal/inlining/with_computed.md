@@ -39,7 +39,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const key = $(`dakey`);
-const obj = { [key]: 1 };
+const obj /*:object*/ = { [key]: 1 };
 const tmpCalleeParam = obj.dakey;
 $(tmpCalleeParam);
 `````

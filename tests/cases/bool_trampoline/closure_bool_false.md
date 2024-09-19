@@ -74,7 +74,7 @@ $(x);
 const f = function () {
   debugger;
   x = $(0);
-  const y = Boolean(x);
+  const y /*:boolean*/ = Boolean(x);
   return y;
 };
 let x = 1;

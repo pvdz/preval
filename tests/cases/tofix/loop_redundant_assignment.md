@@ -157,7 +157,7 @@ if ($) {
   const tmpClusterSSA__0x15f773 = $(`x`);
   const tmpClusterSSA_A = tmpClusterSSA__0x15f773.length;
   const tmpBinBothLhs$30 = tmpClusterSSA_A[0];
-  const tmpIfTest$10 = tmpBinBothLhs$30 === `.`;
+  const tmpIfTest$10 /*:boolean*/ = tmpBinBothLhs$30 === `.`;
   if (tmpIfTest$10) {
     B = tmpClusterSSA_A.slice(1);
   } else {
@@ -173,7 +173,7 @@ if ($) {
     if (tmpClusterSSA__0x5dc746) {
       const tmpBinBothLhs$34 = tmpClusterSSA__0x26b289.length;
       const tmpBinBothRhs$34 = tmpClusterSSA_A.length;
-      const tmpIfTest$12 = tmpBinBothLhs$34 === tmpBinBothRhs$34;
+      const tmpIfTest$12 /*:boolean*/ = tmpBinBothLhs$34 === tmpBinBothRhs$34;
       if (tmpIfTest$12) {
       } else {
         tmpClusterSSA_A.indexOf(`.`);

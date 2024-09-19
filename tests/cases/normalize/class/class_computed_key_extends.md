@@ -118,7 +118,7 @@ tmpCallCallee$5(tmpCalleeParam$5);
 `````js filename=intro
 const tmpClassSuper = $(String);
 const tmpClassComputedKey = $(`f`);
-const x = class extends tmpClassSuper {
+const x /*:class*/ = class extends tmpClassSuper {
   [tmpClassComputedKey]() {
     debugger;
     const tmpReturnArg = $(100, `method`);
@@ -140,16 +140,16 @@ const x = class extends tmpClassSuper {
     return tmpReturnArg$5;
   }
 };
-const tmpCallObj = new x();
+const tmpCallObj /*:object*/ = new x();
 const tmpCalleeParam = tmpCallObj.f();
 $(tmpCalleeParam);
-const tmpCallObj$1 = new x();
+const tmpCallObj$1 /*:object*/ = new x();
 const tmpCalleeParam$1 = tmpCallObj$1.g();
 $(tmpCalleeParam$1);
-const tmpCallObj$3 = new x();
+const tmpCallObj$3 /*:object*/ = new x();
 const tmpCalleeParam$3 = tmpCallObj$3.x();
 $(tmpCalleeParam$3);
-const tmpCallObj$5 = new x();
+const tmpCallObj$5 /*:object*/ = new x();
 const tmpCalleeParam$5 = tmpCallObj$5.y();
 $(tmpCalleeParam$5);
 `````

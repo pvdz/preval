@@ -55,7 +55,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-const tmpCalleeParam = { a: 1, b: 2 };
+const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
 const tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext = tmpForOfGen.next();
@@ -64,7 +64,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     const bindingPatternArrRoot = tmpForOfNext.value;
-    const arrPatternSplat = [...bindingPatternArrRoot];
+    const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
     const x = arrPatternSplat[0];
     $(x);
   }

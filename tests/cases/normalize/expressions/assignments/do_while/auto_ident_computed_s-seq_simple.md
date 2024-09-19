@@ -62,7 +62,7 @@ $(a, b);
 `````js filename=intro
 $(100);
 const tmpAssignRhsCompProp = $(`c`);
-const b = { c: 1 };
+const b /*:object*/ = { c: 1 };
 let a = b[tmpAssignRhsCompProp];
 if (a) {
   while ($LOOP_UNROLL_10) {

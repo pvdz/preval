@@ -39,7 +39,7 @@ $(a, arg);
 
 
 `````js filename=intro
-const a = false;
+const a /*:boolean*/ = false;
 export { a };
 $(false, 1);
 `````

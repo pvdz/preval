@@ -72,7 +72,7 @@ $(a);
 
 `````js filename=intro
 const tmpChainElementCall = $($);
-const tmpIfTest$1 = tmpChainElementCall == null;
+const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 let tmpClusterSSA_a = undefined;
 if (tmpIfTest$1) {
 } else {

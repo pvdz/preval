@@ -54,8 +54,8 @@ if (set) {
 
 `````js filename=intro
 const v = $(64);
-const and = v & 65;
-const set = and === 64;
+const and /*:number*/ = v & 65;
+const set /*:boolean*/ = and === 64;
 if (set) {
   $(`pass`);
 } else {

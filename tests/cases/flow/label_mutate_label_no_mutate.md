@@ -80,7 +80,7 @@ f();
 
 
 `````js filename=intro
-let x = `fail`;
+let x /*:string*/ = `fail`;
 if ($) {
   x = `pass`;
 } else {

@@ -34,7 +34,7 @@ tmpCallObj.b(1);
 
 
 `````js filename=intro
-const a = { b: $ };
+const a /*:object*/ = { b: $ };
 const tmpCallObj = $(a);
 tmpCallObj.b(1);
 `````

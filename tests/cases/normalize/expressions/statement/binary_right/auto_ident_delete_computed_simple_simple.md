@@ -43,10 +43,10 @@ $(a, arg);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-const arg = { y: 1 };
-const tmpBinBothRhs = delete arg.y;
+const arg /*:object*/ = { y: 1 };
+const tmpBinBothRhs /*:boolean*/ = delete arg.y;
 tmpBinBothLhs + tmpBinBothRhs;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 

@@ -57,7 +57,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = [1, 2, 3];
+const tmpCalleeParam /*:array*/ = [1, 2, 3];
 const tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext = tmpForOfGen.next();
@@ -68,7 +68,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForOfNext.value;
   }
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

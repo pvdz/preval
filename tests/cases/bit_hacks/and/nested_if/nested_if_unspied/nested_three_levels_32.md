@@ -63,11 +63,11 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpUnaryArg = $spy(32);
-const x = +tmpUnaryArg;
-const tmpIfTest = x & 10;
-const tmpIfTest$1 = tmpIfTest === 10;
+const x /*:number*/ = +tmpUnaryArg;
+const tmpIfTest /*:number*/ = x & 10;
+const tmpIfTest$1 /*:boolean*/ = tmpIfTest === 10;
 if (tmpIfTest$1) {
-  const tmpIfTest$3 = x & 32;
+  const tmpIfTest$3 /*:number*/ = x & 32;
   if (tmpIfTest$3) {
     $(`it is 42`);
   } else {

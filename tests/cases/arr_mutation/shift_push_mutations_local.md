@@ -73,7 +73,7 @@ $(`exit`);
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const test = $(`never`);
-  const arr = [1, 2, 3, 4];
+  const arr /*:array*/ = [1, 2, 3, 4];
   if (test) {
     $(arr);
     break;

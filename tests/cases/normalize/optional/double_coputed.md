@@ -55,16 +55,16 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 let tmpCalleeParam = undefined;
-const tmpObjLitVal$1 = { z: 10 };
-const tmpObjLitVal = { y: tmpObjLitVal$1 };
-const a = { x: tmpObjLitVal };
+const tmpObjLitVal$1 /*:object*/ = { z: 10 };
+const tmpObjLitVal /*:object*/ = { y: tmpObjLitVal$1 };
+const a /*:object*/ = { x: tmpObjLitVal };
 const tmpChainElementCall = $(a);
-const tmpIfTest = tmpChainElementCall == null;
+const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$1 = tmpChainElementObject == null;
+  const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$1) {
   } else {
     const tmpChainRootComputed$1 = $(`y`);

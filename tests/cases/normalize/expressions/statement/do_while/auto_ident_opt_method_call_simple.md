@@ -65,7 +65,7 @@ $(a);
 
 `````js filename=intro
 $(100);
-const b = { c: $ };
+const b /*:object*/ = { c: $ };
 const tmpChainElementCall = b.c(1);
 if (tmpChainElementCall) {
   while ($LOOP_UNROLL_10) {
@@ -78,7 +78,7 @@ if (tmpChainElementCall) {
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

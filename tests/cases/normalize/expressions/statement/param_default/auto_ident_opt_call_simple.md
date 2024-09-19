@@ -65,13 +65,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest$1 = $ == null;
+const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
   $(1);
 }
 $(undefined);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

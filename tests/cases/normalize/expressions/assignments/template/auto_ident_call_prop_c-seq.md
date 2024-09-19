@@ -49,11 +49,11 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpCallObj = $(b);
 const tmpClusterSSA_a = tmpCallObj.$(1);
-const tmpBinBothRhs = $coerce(tmpClusterSSA_a, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+const tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````

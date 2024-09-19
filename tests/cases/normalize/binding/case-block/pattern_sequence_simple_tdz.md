@@ -76,12 +76,12 @@ $(x, y, z);
 `````js filename=intro
 const tmpSwitchDisc = $(`a`);
 const tmpBinBothRhs = $(`a`);
-const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
-const z = [10, 20, 30];
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const z /*:array*/ = [10, 20, 30];
 if (tmpIfTest) {
   $(undefined);
   $(undefined);
-  const arrPatternSplat = [...z];
+  const arrPatternSplat /*:array*/ = [...z];
   arrPatternSplat[0];
   arrPatternSplat[1];
 } else {

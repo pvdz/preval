@@ -121,24 +121,24 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 let tmpCalleeParam = undefined;
 const tmpSwitchValue = $(1, `disc`);
-let tmpSwitchCaseToStart = 2;
+let tmpSwitchCaseToStart /*:number*/ = 2;
 const tmpBinLhs = $(0);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
   const tmpBinLhs$1 = $(1);
-  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
+  const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$1 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
   } else {
   }
 }
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   $(`keep, do not eval`);
 } else {
-  const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+  const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$5) {
     $(`keep, eval`);
   } else {

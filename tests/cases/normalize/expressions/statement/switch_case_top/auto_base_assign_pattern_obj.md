@@ -62,16 +62,16 @@ $(a, b);
 `````js filename=intro
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
-const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
-const a = { a: 999, b: 1000 };
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpObjLitVal = $(2);
-  const tmpCalleeParam = { b: tmpObjLitVal };
+  const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
   const tmpAssignObjPatternRhs = $(tmpCalleeParam);
   const tmpClusterSSA_b = tmpAssignObjPatternRhs.b;
   $(a, tmpClusterSSA_b);
 } else {
-  const b = {};
+  const b /*:object*/ = {};
   $(a, b);
 }
 `````

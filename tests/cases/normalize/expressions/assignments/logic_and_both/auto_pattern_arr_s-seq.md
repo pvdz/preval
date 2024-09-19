@@ -55,15 +55,15 @@ $(a);
 
 
 `````js filename=intro
-const bindingPatternArrRoot = { a: 999, b: 1000 };
-const arrPatternSplat = [...bindingPatternArrRoot];
+const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 arrPatternSplat[0];
 $(10);
 $(20);
 $(10);
 $(20);
-const tmpNestedAssignArrPatternRhs$1 = [1, 2];
-const arrPatternSplat$3 = [...tmpNestedAssignArrPatternRhs$1];
+const tmpNestedAssignArrPatternRhs$1 /*:array*/ = [1, 2];
+const arrPatternSplat$3 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
 const tmpClusterSSA_a$1 = arrPatternSplat$3[0];
 $(tmpNestedAssignArrPatternRhs$1);
 $(tmpClusterSSA_a$1);

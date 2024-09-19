@@ -67,14 +67,14 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const tmpCalleeParam = [`pass3`];
+const tmpCalleeParam /*:array*/ = [`pass3`];
 const bindingPatternArrRoot = $(tmpCalleeParam);
-const arrPatternSplat = [...bindingPatternArrRoot];
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep = undefined;
-const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
-  const tmpCalleeParam$1 = [`fail2`];
+  const tmpCalleeParam$1 /*:array*/ = [`fail2`];
   arrPatternStep = $(tmpCalleeParam$1);
 } else {
   arrPatternStep = arrPatternBeforeDefault;

@@ -62,9 +62,9 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   a = undefined;
-  const b = { x: 1 };
+  const b /*:object*/ = { x: 1 };
   const tmpChainRootProp = $(b);
-  const tmpIfTest$1 = tmpChainRootProp == null;
+  const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
   if (tmpIfTest$1) {
   } else {
     tmpChainRootProp.x;
@@ -73,7 +73,7 @@ if (tmpIfTest) {
     const tmpIfTest$2 = $(1);
     if (tmpIfTest$2) {
       const tmpChainRootProp$1 = $(b);
-      const tmpIfTest$4 = tmpChainRootProp$1 == null;
+      const tmpIfTest$4 /*:boolean*/ = tmpChainRootProp$1 == null;
       if (tmpIfTest$4) {
       } else {
         tmpChainRootProp$1.x;

@@ -57,9 +57,9 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpChainRootProp = $(b);
-const tmpIfTest$1 = tmpChainRootProp == null;
+const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest$1) {
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;

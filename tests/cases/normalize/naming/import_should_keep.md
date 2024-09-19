@@ -82,7 +82,7 @@ const g = function ($$0) {
   debugger;
   return x$3;
 };
-const c = class {};
+const c /*:class*/ = class {};
 export { c };
 const tmpCalleeParam = $(1);
 const x = $(tmpCalleeParam);

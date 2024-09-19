@@ -72,20 +72,20 @@ tmpCallCallee$5(tmpCalleeParam$9);
 
 
 `````js filename=intro
-const tmpArrElement = { a: `pass2` };
-const tmpCalleeParam = [tmpArrElement];
+const tmpArrElement /*:object*/ = { a: `pass2` };
+const tmpCalleeParam /*:array*/ = [tmpArrElement];
 const bindingPatternArrRoot = $(tmpCalleeParam);
-const arrPatternSplat = [...bindingPatternArrRoot];
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep = undefined;
-const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
-  const tmpCalleeParam$1 = { a: `fail` };
+  const tmpCalleeParam$1 /*:object*/ = { a: `fail` };
   arrPatternStep = $(tmpCalleeParam$1);
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-const tmpCalleeParam$5 = [];
+const tmpCalleeParam$5 /*:array*/ = [];
 const x = objPatternRest(arrPatternStep, tmpCalleeParam$5, undefined);
 $(x);
 `````

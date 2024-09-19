@@ -63,9 +63,9 @@ f(8, 2, 9);
 
 `````js filename=intro
 const f = function ($$0, $$1, $$2) {
-  const a = $$0;
-  const c = $$1;
-  const tmpOutlinedParam = $$2;
+  const a /*:number*/ = $$0;
+  const c /*:number*/ = $$1;
+  const tmpOutlinedParam /*:number*/ = $$2;
   debugger;
   $(tmpOutlinedParam);
   $(a, 2, c);

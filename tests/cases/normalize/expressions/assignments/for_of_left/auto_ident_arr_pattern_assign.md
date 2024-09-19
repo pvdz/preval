@@ -79,7 +79,7 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam$1 /*:object*/ = { x: 1 };
 const tmpCalleeParam = $(tmpCalleeParam$1);
 const tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -90,8 +90,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     const tmpArrElement = $(3);
     const tmpArrElement$1 = $(4);
-    const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+    const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
+    const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
     x = arrPatternSplat[0];
     y = arrPatternSplat[1];
     a = tmpNestedAssignArrPatternRhs;

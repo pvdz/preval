@@ -41,7 +41,7 @@ new String(8.5, 8, ...tmpObjLitVal);
 `````js filename=intro
 (2).c;
 (5)[6];
-const tmpObjLitVal = [7];
+const tmpObjLitVal /*:array*/ = [7];
 new String(8.5, 8, ...tmpObjLitVal);
 `````
 

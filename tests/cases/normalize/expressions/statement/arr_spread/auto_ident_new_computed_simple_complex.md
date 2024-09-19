@@ -45,11 +45,11 @@ $(a);
 
 `````js filename=intro
 const tmpCompProp = $(`\$`);
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpNewCallee = b[tmpCompProp];
-const tmpArrElToSpread = new tmpNewCallee(1);
+const tmpArrElToSpread /*:object*/ = new tmpNewCallee(1);
 [...tmpArrElToSpread];
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

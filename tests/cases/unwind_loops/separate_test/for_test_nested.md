@@ -77,12 +77,12 @@ while (true) {
 
 
 `````js filename=intro
-let counter = 0;
+let counter /*:number*/ = 0;
 let test = true;
 while (true) {
   $(`yolo`);
   counter = counter + 1;
-  const tmpCalleeParam$1 = { a: 1 };
+  const tmpCalleeParam$1 /*:object*/ = { a: 1 };
   const tmpCalleeParam = $(tmpCalleeParam$1);
   const tmpForOfGen = $forOf(tmpCalleeParam);
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

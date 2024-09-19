@@ -80,7 +80,7 @@ $(x);
 
 
 `````js filename=intro
-let x = 1;
+let x /*:number*/ = 1;
 $(1);
 try {
   $(1);

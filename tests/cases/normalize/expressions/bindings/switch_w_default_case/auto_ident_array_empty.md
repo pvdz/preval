@@ -85,7 +85,7 @@ if (tmpIfTest$7) {
 
 
 `````js filename=intro
-const a = [];
+const a /*:array*/ = [];
 $(a);
 $(`fail1`);
 $(`fail2`);

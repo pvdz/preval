@@ -45,8 +45,8 @@ $(a);
 `````js filename=intro
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const a = [tmpArrElement, 2, tmpArrElement$3];
-const tmpCalleeParam = [...a];
+const a /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
+const tmpCalleeParam /*:array*/ = [...a];
 $(tmpCalleeParam);
 $(a);
 `````

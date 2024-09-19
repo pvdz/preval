@@ -200,11 +200,11 @@ const push = function ($$0, $$1) {
   const index$1 = heap.length;
   index$1 ** 0;
   heap.push(node$1);
-  const tmpSaooB$1 = index$1 - 1;
-  const tmpSaooB$4 = tmpSaooB$1 >>> 1;
+  const tmpSaooB$1 /*:number*/ = index$1 - 1;
+  const tmpSaooB$4 /*:number*/ = tmpSaooB$1 >>> 1;
   siftUp_t(heap, node$1, index$1, tmpSaooB$4);
-  const tmpSaooB = index$1 - 1;
-  const tmpSaooB$2 = tmpSaooB >>> 1;
+  const tmpSaooB /*:number*/ = index$1 - 1;
+  const tmpSaooB$2 /*:number*/ = tmpSaooB >>> 1;
   siftUp_t(heap, node$1, index$1, tmpSaooB$2);
   siftUp_f(heap, node$1, index$1);
   siftUp_f(heap, node$1, index$1);
@@ -214,16 +214,16 @@ const siftUp_t = function ($$0, $$1, $$2, $$3) {
   const heap$1 = $$0;
   const node = $$1;
   const i = $$2;
-  const tmpOutlinedParam$1 = $$3;
+  const tmpOutlinedParam$1 /*:number*/ = $$3;
   debugger;
   const parent = heap$1[tmpOutlinedParam$1];
   const lhs = $(parent, node);
-  const test = lhs > 0;
+  const test /*:boolean*/ = lhs > 0;
   if (test) {
     heap$1[tmpOutlinedParam$1] = node;
     heap$1[i] = parent;
     while ($LOOP_UNROLL_100) {
-      const test2 = tmpOutlinedParam$1 > 0;
+      const test2 /*:boolean*/ = tmpOutlinedParam$1 > 0;
       if (test2) {
         $(123);
       } else {
@@ -241,7 +241,7 @@ const siftUp_f = function ($$0, $$1, $$2) {
   const i$1 = $$2;
   debugger;
   heap$2[i$1] = node$2;
-  const parentIndex$1 = i$1 > 0;
+  const parentIndex$1 /*:boolean*/ = i$1 > 0;
   if (parentIndex$1) {
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       $(123);

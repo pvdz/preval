@@ -52,11 +52,11 @@ $(a);
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpChainRootProp = $(b);
-const tmpIfTest = tmpChainRootProp == null;
-let tmpClusterSSA_a = NaN;
-const a = { a: 999, b: 1000 };
+const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
+let tmpClusterSSA_a /*:number*/ = NaN;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   a ** 0;
   $(NaN);

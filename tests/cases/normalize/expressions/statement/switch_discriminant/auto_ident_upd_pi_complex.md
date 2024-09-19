@@ -56,14 +56,14 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpCalleeParam = $(b);
 const varInitAssignLhsComputedObj = $(tmpCalleeParam);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;
 const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
 $(100);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

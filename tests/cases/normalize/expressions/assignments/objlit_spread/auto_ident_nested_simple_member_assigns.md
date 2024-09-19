@@ -60,9 +60,9 @@ $(a, b, c);
 
 
 `````js filename=intro
-const tmpCalleeParam = {};
+const tmpCalleeParam /*:object*/ = {};
 $(tmpCalleeParam);
-const b = { x: 3 };
+const b /*:object*/ = { x: 3 };
 $(3, b, 3);
 `````
 

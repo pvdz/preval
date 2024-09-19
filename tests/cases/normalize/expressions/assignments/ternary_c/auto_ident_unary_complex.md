@@ -58,7 +58,7 @@ if (tmpIfTest) {
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpUnaryArg = $(1);
-  const tmpNestedComplexRhs = typeof tmpUnaryArg;
+  const tmpNestedComplexRhs /*:string*/ = typeof tmpUnaryArg;
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }

@@ -52,9 +52,9 @@ $(a, arg);
 `````js filename=intro
 $(1);
 $(2);
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj = $(arg);
-const tmpIfTest = delete tmpDeleteObj.y;
+const tmpIfTest /*:boolean*/ = delete tmpDeleteObj.y;
 if (tmpIfTest) {
 } else {
   $(1);
@@ -62,7 +62,7 @@ if (tmpIfTest) {
   const tmpDeleteObj$1 = $(arg);
   delete tmpDeleteObj$1.y;
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 

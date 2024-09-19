@@ -61,7 +61,7 @@ $(a, b);
 `````js filename=intro
 $(100);
 const tmpCompProp = $(`c`);
-const b = { c: 1 };
+const b /*:object*/ = { c: 1 };
 const tmpIfTest = b[tmpCompProp];
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
@@ -75,7 +75,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

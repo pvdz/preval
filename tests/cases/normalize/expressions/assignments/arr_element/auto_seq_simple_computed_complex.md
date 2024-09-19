@@ -55,8 +55,8 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$1 = $(1);
-const a = { b: tmpObjLitVal };
-const tmpClusterSSA_a = { b: tmpObjLitVal$1 };
+const a /*:object*/ = { b: tmpObjLitVal };
+const tmpClusterSSA_a /*:object*/ = { b: tmpObjLitVal$1 };
 const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(1);

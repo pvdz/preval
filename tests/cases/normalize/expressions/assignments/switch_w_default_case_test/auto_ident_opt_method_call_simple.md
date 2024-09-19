@@ -94,20 +94,20 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
-const b = { c: $ };
+let tmpSwitchCaseToStart /*:number*/ = 1;
+const b /*:object*/ = { c: $ };
 const tmpChainElementCall = b.c(1);
-const tmpIfTest = tmpChainElementCall === tmpSwitchValue;
+const tmpIfTest /*:boolean*/ = tmpChainElementCall === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$3 = 2 === tmpSwitchValue;
+  const tmpIfTest$3 /*:boolean*/ = 2 === tmpSwitchValue;
   if (tmpIfTest$3) {
     tmpSwitchCaseToStart = 2;
   } else {
   }
 }
-const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
+const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$7) {
   $(`fail1`);
 } else {

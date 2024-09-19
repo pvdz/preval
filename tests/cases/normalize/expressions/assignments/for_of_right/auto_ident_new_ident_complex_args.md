@@ -67,7 +67,7 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-const a = new $(tmpCalleeParam$1, tmpCalleeParam$3);
+const a /*:object*/ = new $(tmpCalleeParam$1, tmpCalleeParam$3);
 const tmpForOfGen = $forOf(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext = tmpForOfGen.next();

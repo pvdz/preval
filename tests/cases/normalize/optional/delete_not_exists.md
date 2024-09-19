@@ -44,7 +44,7 @@ $(o);
 
 
 `````js filename=intro
-const o = {};
+const o /*:object*/ = {};
 $(o);
 delete o.x;
 $(o);

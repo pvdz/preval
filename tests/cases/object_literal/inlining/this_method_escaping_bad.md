@@ -92,24 +92,24 @@ tmpCallCallee$3(tmpCalleeParam$5);
 
 `````js filename=intro
 const tmpObjLitVal$1 = function () {
-  const tmpPrevalAliasThis = this;
+  const tmpPrevalAliasThis /*:object*/ = this;
   debugger;
   const tmpBinLhs = tmpPrevalAliasThis.x;
-  const tmpIfTest = tmpBinLhs === `burn`;
+  const tmpIfTest /*:boolean*/ = tmpBinLhs === `burn`;
   if (tmpIfTest) {
     const tmpReturnArg = $(`burned`);
     return tmpReturnArg;
   } else {
     const tmpCalleeParam$1 = tmpPrevalAliasThis.f;
     $(`once`);
-    const tmpCalleeParam = { f: 1, x: `burn` };
+    const tmpCalleeParam /*:object*/ = { f: 1, x: `burn` };
     tmpCalleeParam$1.call(tmpCalleeParam);
     const tmpCalleeParam$3 = tmpPrevalAliasThis.x;
     $(tmpCalleeParam$3);
     return `win`;
   }
 };
-const obj = { x: `pass`, f: tmpObjLitVal$1 };
+const obj /*:object*/ = { x: `pass`, f: tmpObjLitVal$1 };
 const tmpCalleeParam$5 = obj.f();
 $(tmpCalleeParam$5);
 `````

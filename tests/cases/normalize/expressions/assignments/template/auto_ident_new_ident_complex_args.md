@@ -53,9 +53,9 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-const a = new $(tmpCalleeParam$1, tmpCalleeParam$3);
-const tmpBinBothRhs = $coerce(a, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+const a /*:object*/ = new $(tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

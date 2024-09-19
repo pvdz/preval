@@ -52,8 +52,8 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
-let a = delete arg.y;
+const arg /*:object*/ = { y: 1 };
+let a /*:boolean*/ = delete arg.y;
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(1);

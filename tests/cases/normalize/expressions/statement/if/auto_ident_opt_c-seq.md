@@ -47,14 +47,14 @@ $(a);
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpChainRootProp = $(b);
-const tmpIfTest$1 = tmpChainRootProp == null;
+const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest$1) {
 } else {
   tmpChainRootProp.x;
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

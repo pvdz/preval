@@ -64,13 +64,13 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-let y = 1;
+let y /*:number*/ = 1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     missing;
     $(y);
     y = y + 1;
-    const tmpIfTest = y === $;
+    const tmpIfTest /*:boolean*/ = y === $;
     if (tmpIfTest) {
       break;
     } else {

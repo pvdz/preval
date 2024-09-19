@@ -48,8 +48,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpObjLitVal$1 = $();
-const tmpObjLitVal = { b: tmpObjLitVal$1 };
-const obj = { a: tmpObjLitVal };
+const tmpObjLitVal /*:object*/ = { b: tmpObjLitVal$1 };
+const obj /*:object*/ = { a: tmpObjLitVal };
 $(obj);
 `````
 

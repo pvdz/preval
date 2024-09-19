@@ -51,7 +51,7 @@ const tmpCallCallee$1 = $($);
 const tmpCalleeParam$3 = $(1);
 const tmpCalleeParam$5 = $(2);
 const a = tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
-const tmpCalleeParam = [`before `, ` after`];
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, a);
 $(a);
 `````

@@ -35,7 +35,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpBinBothRhs = $spy();
-const tmpCalleeParam = $coerce(tmpBinBothRhs, `plustr`);
+const tmpCalleeParam /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
 $(tmpCalleeParam);
 `````
 

@@ -73,12 +73,12 @@ $(z);
 const s = $(`s`);
 const t = $(`t`);
 if (t) {
-  const tmpStringConcatL = $coerce(t, `plustr`);
-  const tmpClusterSSA_z = `abcdef${tmpStringConcatL}`;
+  const tmpStringConcatL /*:string*/ = $coerce(t, `plustr`);
+  const tmpClusterSSA_z /*:string*/ = `abcdef${tmpStringConcatL}`;
   $(tmpClusterSSA_z);
 } else {
-  const tmpStringConcatL$1 = $coerce(s, `plustr`);
-  const tmpClusterSSA_z$1 = `abcghi${tmpStringConcatL$1}`;
+  const tmpStringConcatL$1 /*:string*/ = $coerce(s, `plustr`);
+  const tmpClusterSSA_z$1 /*:string*/ = `abcghi${tmpStringConcatL$1}`;
   $(tmpClusterSSA_z$1);
 }
 `````

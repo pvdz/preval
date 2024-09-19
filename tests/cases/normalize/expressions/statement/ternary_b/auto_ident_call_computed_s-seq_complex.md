@@ -50,12 +50,12 @@ $(a);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpCallCompProp = $(`\$`);
-  const b = { $: $ };
+  const b /*:object*/ = { $: $ };
   b[tmpCallCompProp](1);
 } else {
   $(200);
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -75,13 +75,13 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
-const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   a = undefined;
-  const tmpIfTest$3 = $ == null;
+  const tmpIfTest$3 /*:boolean*/ = $ == null;
   if (tmpIfTest$3) {
   } else {
-    const tmpObjLitVal$1 = { e: $ };
+    const tmpObjLitVal$1 /*:object*/ = { e: $ };
     const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
     a = tmpChainElementCall;
   }

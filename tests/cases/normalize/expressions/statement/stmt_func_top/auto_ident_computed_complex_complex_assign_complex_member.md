@@ -61,14 +61,14 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const b = { c: 10, d: 20 };
+const b /*:object*/ = { c: 10, d: 20 };
 const tmpAssignComMemLhsObj = $(b);
 const tmpAssignComMemLhsProp = $(`c`);
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 $(undefined);
 `````

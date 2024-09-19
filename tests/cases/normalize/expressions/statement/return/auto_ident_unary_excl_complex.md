@@ -52,9 +52,9 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const tmpReturnArg = !tmpUnaryArg;
+const tmpReturnArg /*:boolean*/ = !tmpUnaryArg;
 $(tmpReturnArg);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

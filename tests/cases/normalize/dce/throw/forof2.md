@@ -79,7 +79,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const tmpCalleeParam = { a: 1, b: 2 };
+const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
 const tmpForInGen = $forIn(tmpCalleeParam);
 const tmpForInNext = tmpForInGen.next();
 const tmpIfTest = tmpForInNext.done;

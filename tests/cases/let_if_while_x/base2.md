@@ -90,17 +90,17 @@ $(x);
 
 
 `````js filename=intro
-let flag = true;
+let flag /*:boolean*/ = true;
 $(`before`);
 const x = $(`what`);
 if (x) {
   $(`inner`, 0);
-  let tmpClusterSSA_n = 1;
+  let tmpClusterSSA_n /*:number*/ = 1;
   while ($LOOP_UNROLL_10) {
     if (flag) {
       $(`inner`, tmpClusterSSA_n);
       tmpClusterSSA_n = tmpClusterSSA_n + 1;
-      const tmpIfTest$1 = tmpClusterSSA_n >= 5;
+      const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_n >= 5;
       if (tmpIfTest$1) {
         flag = false;
       } else {

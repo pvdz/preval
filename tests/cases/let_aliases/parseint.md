@@ -96,10 +96,10 @@ let f = function () {
 const n = $(`1`);
 let the_let_binding = $(1);
 const a = the_let_binding;
-const m = parseInt(n);
+const m /*:number*/ = parseInt(n);
 $(a, a);
 $(f);
-const mm = m / 33;
+const mm /*:number*/ = m / 33;
 $(mm);
 `````
 

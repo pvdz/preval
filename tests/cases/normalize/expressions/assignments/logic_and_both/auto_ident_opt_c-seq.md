@@ -64,9 +64,9 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpChainRootProp = $(b);
-const tmpIfTest = tmpChainRootProp == null;
+const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 let tmpCalleeParam = undefined;
 if (tmpIfTest) {
 } else {
@@ -77,7 +77,7 @@ if (tmpIfTest) {
 if (a) {
   let tmpNestedComplexRhs = undefined;
   const tmpChainRootProp$1 = $(b);
-  const tmpIfTest$1 = tmpChainRootProp$1 == null;
+  const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp$1 == null;
   if (tmpIfTest$1) {
   } else {
     const tmpChainElementObject$1 = tmpChainRootProp$1.x;

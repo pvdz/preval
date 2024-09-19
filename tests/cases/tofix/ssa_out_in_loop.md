@@ -141,7 +141,7 @@ if ($) {
   const ex = $(`x`);
   const tmpClusterSSA_A = ex.length;
   const first = tmpClusterSSA_A[0];
-  const isdot = first === `.`;
+  const isdot /*:boolean*/ = first === `.`;
   if (isdot) {
     B = tmpClusterSSA_A.slice(1);
   } else {
@@ -150,12 +150,12 @@ if ($) {
   const tmpClusterSSA__0x26b289 = $(`abc`);
   const len = tmpClusterSSA__0x26b289.length;
   const len2 = B.length;
-  const tmpClusterSSA__0x30c47e = len - len2;
+  const tmpClusterSSA__0x30c47e /*:number*/ = len - len2;
   const tmpClusterSSA__0x2a669d = tmpClusterSSA__0x26b289.indexOf(B, tmpClusterSSA__0x30c47e);
-  const tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d === -1;
+  const tmpClusterSSA__0x5dc746 /*:boolean*/ = tmpClusterSSA__0x2a669d === -1;
   if (tmpClusterSSA__0x5dc746) {
   } else {
-    const tmpClusterSSA__0x5dc746$1 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
+    const tmpClusterSSA__0x5dc746$1 /*:boolean*/ = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
     if (tmpClusterSSA__0x5dc746$1) {
       tmpClusterSSA__0x26b289.length;
       tmpClusterSSA_A.length;

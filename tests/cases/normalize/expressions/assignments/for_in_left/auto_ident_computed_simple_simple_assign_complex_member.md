@@ -73,10 +73,10 @@ $(a, b);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam$1 /*:object*/ = { x: 1 };
 const tmpCalleeParam = $(tmpCalleeParam$1);
 const tmpForInGen = $forIn(tmpCalleeParam);
-const b = { c: 10, d: 20 };
+const b /*:object*/ = { c: 10, d: 20 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext = tmpForInGen.next();
   const tmpIfTest = tmpForInNext.done;

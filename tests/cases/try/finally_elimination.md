@@ -226,9 +226,9 @@ $(f);
 `````js filename=intro
 const f = function () {
   debugger;
-  let $finalStep = false;
-  let $finalStep$1 = false;
-  let $finalStep$3 = false;
+  let $finalStep /*:boolean*/ = false;
+  let $finalStep$1 /*:boolean*/ = false;
+  let $finalStep$3 /*:boolean*/ = false;
   let $finalArg = undefined;
   let $finalArg$1 = undefined;
   try {
@@ -263,9 +263,9 @@ const f = function () {
         throw $finalArg$1;
       } else {
         while ($LOOP_UNROLL_10) {
-          let $finalStep$2 = false;
-          let $finalStep$4 = false;
-          let $finalStep$6 = false;
+          let $finalStep$2 /*:boolean*/ = false;
+          let $finalStep$4 /*:boolean*/ = false;
+          let $finalStep$6 /*:boolean*/ = false;
           let $finalArg$2 = undefined;
           let $finalArg$4 = undefined;
           try {

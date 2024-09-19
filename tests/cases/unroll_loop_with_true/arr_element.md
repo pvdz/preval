@@ -33,7 +33,7 @@ $(x);
 
 
 `````js filename=intro
-const x = [1, true, 3];
+const x /*:array*/ = [1, true, 3];
 $(x);
 `````
 

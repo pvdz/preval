@@ -59,7 +59,7 @@ if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam = $(200);
   $(tmpClusterSSA_tmpCalleeParam);
 }
-const b = { c: 1 };
+const b /*:object*/ = { c: 1 };
 $(a, b);
 `````
 

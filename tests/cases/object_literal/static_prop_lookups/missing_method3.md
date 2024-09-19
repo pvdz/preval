@@ -47,7 +47,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const o = {
+const o /*:object*/ = {
   valueOf() {
     debugger;
     return `xyz`;

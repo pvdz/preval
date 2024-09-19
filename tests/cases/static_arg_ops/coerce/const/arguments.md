@@ -63,7 +63,7 @@ $(`50`);
 const f = function ($$0) {
   const tmpPrevalAliasArgumentsAny = arguments;
   debugger;
-  const y = $coerce(tmpPrevalAliasArgumentsAny, `number`);
+  const y /*:number*/ = $coerce(tmpPrevalAliasArgumentsAny, `number`);
   $(1);
   $(2);
   $(y);

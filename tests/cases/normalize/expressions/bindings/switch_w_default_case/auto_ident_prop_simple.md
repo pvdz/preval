@@ -91,7 +91,7 @@ if (tmpIfTest$7) {
 
 
 `````js filename=intro
-const b = { c: 1 };
+const b /*:object*/ = { c: 1 };
 $(1, b);
 $(`fail1`);
 $(`fail2`);

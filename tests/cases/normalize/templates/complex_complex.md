@@ -43,10 +43,10 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpCallCallee$1 = $(10);
-const tmpBinBothRhs$1 = $coerce(tmpCallCallee$1, `string`);
+const tmpBinBothRhs$1 /*:string*/ = $coerce(tmpCallCallee$1, `string`);
 const tmpCallCallee$3 = $(20);
-const tmpBinBothRhs = $coerce(tmpCallCallee$3, `string`);
-const tmpCalleeParam = `abc ${tmpBinBothRhs$1} ${tmpBinBothRhs} def`;
+const tmpBinBothRhs /*:string*/ = $coerce(tmpCallCallee$3, `string`);
+const tmpCalleeParam /*:string*/ = `abc ${tmpBinBothRhs$1} ${tmpBinBothRhs} def`;
 $(tmpCalleeParam);
 `````
 

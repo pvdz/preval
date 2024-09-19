@@ -47,8 +47,8 @@ $(a);
 
 
 `````js filename=intro
-const bindingPatternArrRoot = { a: 999, b: 1000 };
-const arrPatternSplat = [...bindingPatternArrRoot];
+const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
 const tmpIfTest = $(0);
 if (tmpIfTest) {
@@ -56,7 +56,7 @@ if (tmpIfTest) {
 } else {
   $(10);
   $(20);
-  const tmpCalleeParam = [1, 2];
+  const tmpCalleeParam /*:array*/ = [1, 2];
   $(tmpCalleeParam);
 }
 $(a);

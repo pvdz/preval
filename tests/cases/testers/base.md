@@ -55,7 +55,7 @@ while (true) {
 
 
 `````js filename=intro
-let x = true;
+let x /*:boolean*/ = true;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (x) {
     x = false;

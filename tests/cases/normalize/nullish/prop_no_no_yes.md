@@ -43,7 +43,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpCompObj = $ObjectPrototype.b;
 const tmpCalleeParam = tmpCompObj.c;
-const tmpIfTest = tmpCalleeParam == null;
+const tmpIfTest /*:boolean*/ = tmpCalleeParam == null;
 if (tmpIfTest) {
   d;
   $(d);

@@ -102,15 +102,15 @@ if ($) {
 const f = function ($$0) {
   const s = $$0;
   debugger;
-  const promoMe = s === ``;
+  const promoMe /*:boolean*/ = s === ``;
   if (promoMe) {
     return true;
   } else {
     const r = $(`.`);
-    const tmpssa2_promoMe = r === `.`;
+    const tmpssa2_promoMe /*:boolean*/ = r === `.`;
     if (tmpssa2_promoMe) {
       const t = $(``);
-      const tmpClusterSSA_tmpssa2_promoMe = t !== `.`;
+      const tmpClusterSSA_tmpssa2_promoMe /*:boolean*/ = t !== `.`;
       return tmpClusterSSA_tmpssa2_promoMe;
     } else {
       return false;

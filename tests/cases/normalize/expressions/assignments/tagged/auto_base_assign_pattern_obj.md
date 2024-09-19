@@ -50,10 +50,10 @@ $(a, b);
 
 `````js filename=intro
 const tmpObjLitVal = $(2);
-const tmpCalleeParam$3 = { b: tmpObjLitVal };
+const tmpCalleeParam$3 /*:object*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$3);
 const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
-const tmpCalleeParam = [`before `, ` after`];
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, tmpNestedAssignObjPatternRhs);
 $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
 `````

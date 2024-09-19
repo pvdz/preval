@@ -48,7 +48,7 @@ $(a);
 const tmpObjLitVal = $(1);
 const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
-const a = { b: tmpObjLitVal };
+const a /*:object*/ = { b: tmpObjLitVal };
 a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);
 `````

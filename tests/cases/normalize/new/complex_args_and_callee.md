@@ -40,7 +40,7 @@ tmpCallCallee(tmpCalleeParam);
 const tmpNewCallee = $();
 const tmpCalleeParam$3 = $();
 const tmpCalleeParam$5 = $ArrayPrototype.length;
-const tmpCalleeParam = new tmpNewCallee(10, tmpCalleeParam$3, tmpCalleeParam$5);
+const tmpCalleeParam /*:object*/ = new tmpNewCallee(10, tmpCalleeParam$3, tmpCalleeParam$5);
 $(tmpCalleeParam);
 `````
 

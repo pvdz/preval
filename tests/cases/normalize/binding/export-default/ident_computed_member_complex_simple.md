@@ -44,11 +44,11 @@ $(a, b, c);
 
 
 `````js filename=intro
-const b = { x: 2 };
+const b /*:object*/ = { x: 2 };
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $(`x`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-const a = 3;
+const a /*:number*/ = 3;
 export { a };
 $(3, b, 3);
 `````

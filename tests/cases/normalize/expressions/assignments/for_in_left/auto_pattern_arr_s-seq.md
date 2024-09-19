@@ -70,10 +70,10 @@ $(a);
 
 
 `````js filename=intro
-const bindingPatternArrRoot = { a: 999, b: 1000 };
-const arrPatternSplat = [...bindingPatternArrRoot];
+const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam$1 /*:object*/ = { x: 1 };
 const tmpCalleeParam = $(tmpCalleeParam$1);
 const tmpForInGen = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -84,8 +84,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     $(10);
     $(20);
-    const tmpNestedAssignArrPatternRhs = [1, 2];
-    const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
+    const tmpNestedAssignArrPatternRhs /*:array*/ = [1, 2];
+    const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
     a = arrPatternSplat$1[0];
     const tmpAssignMemRhs = tmpForInNext.value;
     tmpNestedAssignArrPatternRhs.x = tmpAssignMemRhs;

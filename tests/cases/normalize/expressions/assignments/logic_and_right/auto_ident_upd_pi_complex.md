@@ -56,7 +56,7 @@ $(a, b);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(100);
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 if (tmpCalleeParam) {
   const tmpCalleeParam$1 = $(b);
   const varInitAssignLhsComputedObj = $(tmpCalleeParam$1);

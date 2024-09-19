@@ -39,7 +39,7 @@ $(`out:`, y);
 
 `````js filename=intro
 const tmpCalleeParam = $(true);
-const x = Boolean(tmpCalleeParam);
+const x /*:boolean*/ = Boolean(tmpCalleeParam);
 $(`out:`, x);
 `````
 

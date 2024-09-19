@@ -40,7 +40,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const tmpObjLitVal = { c: $ };
+const tmpObjLitVal /*:object*/ = { c: $ };
 tmpObjLitVal.c(1);
 `````
 

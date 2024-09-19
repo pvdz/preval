@@ -55,15 +55,15 @@ $(a, b);
 
 `````js filename=intro
 const tmpObjLitVal = $(2);
-const tmpCalleeParam = { b: tmpObjLitVal };
+const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 tmpNestedAssignObjPatternRhs.b;
 const tmpObjLitVal$1 = $(2);
-const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
+const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal$1 };
 const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
 const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
 tmpNestedAssignObjPatternRhs + tmpNestedAssignObjPatternRhs$1;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_b);
 `````
 

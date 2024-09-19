@@ -39,7 +39,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpCalleeParam$3 = $();
 const tmpCalleeParam$5 = $ArrayPrototype.length;
-const tmpCalleeParam = [10, tmpCalleeParam$3, tmpCalleeParam$5];
+const tmpCalleeParam /*:array*/ = [10, tmpCalleeParam$3, tmpCalleeParam$5];
 $(tmpCalleeParam);
 `````
 

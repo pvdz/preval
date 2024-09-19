@@ -61,7 +61,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpAssignRhsCompProp = $(`c`);
-const b = { c: 1 };
+const b /*:object*/ = { c: 1 };
 const a = b[tmpAssignRhsCompProp];
 $(a, b);
 $(undefined);

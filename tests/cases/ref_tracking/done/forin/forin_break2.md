@@ -64,7 +64,7 @@ $();
 
 
 `````js filename=intro
-const wat = { a: 1, b: 2 };
+const wat /*:object*/ = { a: 1, b: 2 };
 const tmpForInGen = $forIn(wat);
 const tmpForInNext = tmpForInGen.next();
 const tmpIfTest = tmpForInNext.done;

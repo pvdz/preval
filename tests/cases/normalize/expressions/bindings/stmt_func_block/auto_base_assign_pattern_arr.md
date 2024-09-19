@@ -63,9 +63,9 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpArrElement = $(2);
-const tmpCalleeParam = [tmpArrElement];
+const tmpCalleeParam /*:array*/ = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_b = arrPatternSplat[0];
 $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
 $(undefined);

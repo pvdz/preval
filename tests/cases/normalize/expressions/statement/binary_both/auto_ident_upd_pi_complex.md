@@ -54,7 +54,7 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpCalleeParam = $(b);
 const varInitAssignLhsComputedObj = $(tmpCalleeParam);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;
@@ -66,7 +66,7 @@ const tmpBinLhs$1 = varInitAssignLhsComputedObj$1.x;
 const varInitAssignLhsComputedRhs$1 = tmpBinLhs$1 + 1;
 varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedRhs + varInitAssignLhsComputedRhs$1;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

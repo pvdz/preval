@@ -51,7 +51,7 @@ $(a);
 
 `````js filename=intro
 const tmpCallCompProp = $(`\$`);
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const a = b[tmpCallCompProp](1);
 const tmpCallCompProp$1 = $(`\$`);
 const tmpClusterSSA_a = b[tmpCallCompProp$1](1);

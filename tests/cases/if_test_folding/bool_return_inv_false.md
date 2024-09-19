@@ -68,7 +68,7 @@ tmpCallCallee(tmpCalleeParam);
 const f = function () {
   debugger;
   const tmpBinLhs = $(1);
-  const x = tmpBinLhs === 1;
+  const x /*:boolean*/ = tmpBinLhs === 1;
   return x;
 };
 f();

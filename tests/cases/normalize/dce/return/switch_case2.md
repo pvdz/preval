@@ -69,7 +69,7 @@ tmpCallCallee(tmpCalleeParam);
 let tmpCalleeParam = undefined;
 const tmpSwitchDisc = $(1, `disc`);
 const tmpBinBothRhs = $(1, `case`);
-const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpReturnArg = $(2, `ret`);
   tmpCalleeParam = tmpReturnArg;

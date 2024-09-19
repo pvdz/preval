@@ -59,7 +59,7 @@ f();
 const f = function () {
   debugger;
   const tmpBinBothRhs = $(1);
-  const a = $coerce(tmpBinBothRhs, `plustr`);
+  const a /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
   $(a, `a`);
   $(a, `b`);
   return undefined;

@@ -43,7 +43,7 @@ const tmpUnaryArg = $(100);
 +tmpUnaryArg;
 const tmpBinBothRhs = $(100);
 tmpBinBothRhs + 0;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

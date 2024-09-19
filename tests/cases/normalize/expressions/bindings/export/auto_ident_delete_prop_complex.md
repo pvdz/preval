@@ -40,9 +40,9 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj = $(arg);
-const a = delete tmpDeleteObj.y;
+const a /*:boolean*/ = delete tmpDeleteObj.y;
 export { a };
 $(a, arg);
 `````

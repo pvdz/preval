@@ -56,7 +56,7 @@ $(a);
 $(1);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const a = new $(tmpCalleeParam, tmpCalleeParam$1);
+const a /*:object*/ = new $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 

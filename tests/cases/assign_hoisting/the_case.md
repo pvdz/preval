@@ -148,7 +148,7 @@ if ($) {
       }
     } else {
     }
-    const tmpReturnArg = [a, b, c];
+    const tmpReturnArg /*:array*/ = [a, b, c];
     $(tmpReturnArg);
   } else {
     $(undefined);

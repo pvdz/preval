@@ -40,8 +40,8 @@ $(a);
 
 
 `````js filename=intro
-const a = /foo/;
-const tmpCalleeParam = { x: a };
+const a /*:regex*/ = /foo/;
+const tmpCalleeParam /*:object*/ = { x: a };
 $(tmpCalleeParam);
 $(a);
 `````

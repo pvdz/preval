@@ -54,7 +54,7 @@ while (true) {
 let tmpClusterSSA_x = NaN.x;
 let tmpIfTest = false;
 const tmpChainRootProp = tmpClusterSSA_x;
-const tmpIfTest$1 = tmpClusterSSA_x == null;
+const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_x == null;
 if (tmpIfTest$1) {
 } else {
   const tmpChainElementCall = tmpChainRootProp.x(tmpClusterSSA_x);
@@ -66,7 +66,7 @@ if (tmpIfTest) {
     tmpClusterSSA_x = NaN.x;
     let tmpIfTest$2 = false;
     const tmpChainRootProp$1 = tmpClusterSSA_x;
-    const tmpIfTest$4 = tmpClusterSSA_x == null;
+    const tmpIfTest$4 /*:boolean*/ = tmpClusterSSA_x == null;
     if (tmpIfTest$4) {
     } else {
       const tmpChainElementCall$1 = tmpChainRootProp$1.x(tmpClusterSSA_x);

@@ -50,7 +50,7 @@ $(a, z);
 
 `````js filename=intro
 $(`a`);
-const z = [10, 20, 30];
+const z /*:array*/ = [10, 20, 30];
 $(a, z);
 `````
 

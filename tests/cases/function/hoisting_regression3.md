@@ -74,7 +74,7 @@ const tmpCalleeParam = function () {
   debugger;
   const incorrectlyhoisted$3 = function () {
     debugger;
-    const tmpCalleeParam$1 = {};
+    const tmpCalleeParam$1 /*:object*/ = {};
     const C = $(tmpCalleeParam$1);
     C.innerHTML = wheredoyougoto;
     return undefined;

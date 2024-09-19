@@ -45,7 +45,7 @@ $(a, arg);
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-const a = typeof tmpUnaryArg;
+const a /*:string*/ = typeof tmpUnaryArg;
 const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
 $(a, 1);

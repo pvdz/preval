@@ -64,18 +64,18 @@ $(arr);
 
 
 `````js filename=intro
-let arr = [0];
+let arr /*:array*/ = [0];
 arr[0] = 1;
 $(arr);
 const tmpBinLhs$1 = arr[0];
-const tmpIfTest = tmpBinLhs$1 < 10;
+const tmpIfTest /*:boolean*/ = tmpBinLhs$1 < 10;
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     arr = [0];
     arr[0] = 1;
     $(arr);
     const tmpBinLhs$2 = arr[0];
-    const tmpIfTest$1 = tmpBinLhs$2 < 10;
+    const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$2 < 10;
     if (tmpIfTest$1) {
     } else {
       break;

@@ -45,7 +45,7 @@ $(`ok`);
 
 
 `````js filename=intro
-const tmpCalleeParam = [`pass2`];
+const tmpCalleeParam /*:array*/ = [`pass2`];
 const arrPatternStep = $(tmpCalleeParam);
 [...arrPatternStep];
 $(`ok`);

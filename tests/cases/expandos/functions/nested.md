@@ -80,7 +80,7 @@ g(4);
 
 `````js filename=intro
 const g = function ($$0) {
-  const a = $$0;
+  const a /*:number*/ = $$0;
   debugger;
   const f = function () {
     debugger;

@@ -49,7 +49,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpNestedComplexRhs = [1, 2, 3];
+  const tmpNestedComplexRhs /*:array*/ = [1, 2, 3];
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {

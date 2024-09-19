@@ -57,10 +57,10 @@ $(a, b, c);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport = 3;
+const tmpAnonDefaultExport /*:number*/ = 3;
 export { tmpAnonDefaultExport as default };
-const a = { a: 999, b: 1000 };
-const b = { x: 3 };
+const a /*:object*/ = { a: 999, b: 1000 };
+const b /*:object*/ = { x: 3 };
 $(a, b, 3);
 `````
 

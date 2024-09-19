@@ -54,16 +54,16 @@ $(a);
 const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
-  const b = { x: 1 };
+  const b /*:object*/ = { x: 1 };
   const tmpChainElementCall = $(b);
-  const tmpIfTest$1 = tmpChainElementCall == null;
+  const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$1) {
   } else {
     const tmpChainRootComputed = $(`x`);
     tmpChainElementCall[tmpChainRootComputed];
   }
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

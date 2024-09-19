@@ -49,7 +49,7 @@ while (true) {
 
 
 `````js filename=intro
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 delete tmpDeleteCompObj[tmpDeleteCompProp];

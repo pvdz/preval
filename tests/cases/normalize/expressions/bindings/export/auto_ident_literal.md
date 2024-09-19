@@ -35,7 +35,7 @@ $(a);
 
 
 `````js filename=intro
-const a = `foo`;
+const a /*:string*/ = `foo`;
 export { a };
 $(`foo`);
 `````

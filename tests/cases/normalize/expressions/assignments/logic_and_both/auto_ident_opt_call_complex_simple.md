@@ -63,7 +63,7 @@ $(a);
 `````js filename=intro
 let a = undefined;
 const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall == null;
+const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 let tmpCalleeParam = undefined;
 if (tmpIfTest) {
 } else {
@@ -74,7 +74,7 @@ if (tmpIfTest) {
 if (a) {
   let tmpNestedComplexRhs = undefined;
   const tmpChainElementCall$3 = $($);
-  const tmpIfTest$1 = tmpChainElementCall$3 == null;
+  const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall$3 == null;
   if (tmpIfTest$1) {
   } else {
     const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, $, 1);

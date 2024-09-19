@@ -49,7 +49,7 @@ const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {
-  const tmpNestedComplexRhs = [];
+  const tmpNestedComplexRhs /*:array*/ = [];
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }

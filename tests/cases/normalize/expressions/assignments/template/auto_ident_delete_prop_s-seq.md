@@ -53,10 +53,10 @@ $(a, arg);
 `````js filename=intro
 $(1);
 $(2);
-const arg = { y: 1 };
-const a = delete arg.y;
-const tmpBinBothRhs = $coerce(a, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+const arg /*:object*/ = { y: 1 };
+const a /*:boolean*/ = delete arg.y;
+const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a, arg);
 `````

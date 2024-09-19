@@ -37,7 +37,7 @@ $(x);
 
 `````js filename=intro
 $ + 0;
-const x = 0 * $;
+const x /*:number*/ = 0 * $;
 $(x);
 `````
 

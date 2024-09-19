@@ -40,7 +40,7 @@ $(c);
 
 `````js filename=intro
 const a = $spy();
-const b = a | 48;
+const b /*:number*/ = a | 48;
 $(b);
 `````
 

@@ -52,15 +52,15 @@ $(y);
 `````js filename=intro
 const objPatternBeforeDefault = (0).x;
 let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
+const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  const tmpCalleeParam = { y: `pass2` };
+  const tmpCalleeParam /*:object*/ = { y: `pass2` };
   objPatternAfterDefault = $(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
+const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault$1 === undefined;
 if (tmpIfTest$1) {
   y = $(`fail`);
   $(y);

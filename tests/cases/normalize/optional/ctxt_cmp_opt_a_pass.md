@@ -70,7 +70,7 @@ tmpCallCallee$1(tmpCalleeParam$3);
 
 `````js filename=intro
 const tmpObjLitVal$1 = function (...$$0) {
-  const tmpPrevalAliasThis = this;
+  const tmpPrevalAliasThis /*:object*/ = this;
   const a$1 = $$0;
   debugger;
   const tmpCalleeParam = $(a$1);
@@ -78,10 +78,10 @@ const tmpObjLitVal$1 = function (...$$0) {
   const tmpReturnArg = a$1[0];
   return tmpReturnArg;
 };
-const tmpObjLitVal = { c: tmpObjLitVal$1 };
-const a = { b: tmpObjLitVal };
+const tmpObjLitVal /*:object*/ = { c: tmpObjLitVal$1 };
+const a /*:object*/ = { b: tmpObjLitVal };
 const tmpChainElementCall = $(a);
-const tmpIfTest = tmpChainElementCall == null;
+const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
   $(undefined);
 } else {

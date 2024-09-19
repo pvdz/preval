@@ -70,8 +70,8 @@ $(a, arg);
 $(1);
 $(2);
 const tmpDeleteCompProp = $(`y`);
-const arg = { y: 1 };
-const tmpNestedComplexRhs = delete arg[tmpDeleteCompProp];
+const arg /*:object*/ = { y: 1 };
+const tmpNestedComplexRhs /*:boolean*/ = delete arg[tmpDeleteCompProp];
 $(undefined);
 $(tmpNestedComplexRhs, arg);
 `````

@@ -105,16 +105,16 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
+let tmpSwitchCaseToStart /*:number*/ = 1;
 let a = undefined;
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpChainElementCall = $(b);
-const tmpIfTest$1 = tmpChainElementCall == null;
+const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
   const tmpChainRootComputed = $(`\$`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$3 = tmpChainElementObject == null;
+  const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$3) {
   } else {
     const tmpCalleeParam$3 = $(1);
@@ -122,17 +122,17 @@ if (tmpIfTest$1) {
     a = tmpChainElementCall$1;
   }
 }
-const tmpIfTest = a === tmpSwitchValue;
+const tmpIfTest /*:boolean*/ = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$5 = 2 === tmpSwitchValue;
+  const tmpIfTest$5 /*:boolean*/ = 2 === tmpSwitchValue;
   if (tmpIfTest$5) {
     tmpSwitchCaseToStart = 2;
   } else {
   }
 }
-const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
+const tmpIfTest$9 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$9) {
   $(`fail1`);
 } else {

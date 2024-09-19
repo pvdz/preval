@@ -50,11 +50,11 @@ $(a, arg);
 $(1);
 $(2);
 const tmpDeleteCompProp = $(`y`);
-const arg = { y: 1 };
-const tmpCalleeParam$1 = delete arg[tmpDeleteCompProp];
-const tmpCalleeParam = [`before `, ` after`];
+const arg /*:object*/ = { y: 1 };
+const tmpCalleeParam$1 /*:boolean*/ = delete arg[tmpDeleteCompProp];
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, tmpCalleeParam$1);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 

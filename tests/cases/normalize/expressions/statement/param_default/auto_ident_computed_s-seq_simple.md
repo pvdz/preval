@@ -64,10 +64,10 @@ $(a, b);
 
 `````js filename=intro
 const tmpAssignRhsCompProp = $(`c`);
-const b = { c: 1 };
+const b /*:object*/ = { c: 1 };
 b[tmpAssignRhsCompProp];
 $(undefined);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

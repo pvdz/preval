@@ -64,7 +64,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const bindingPatternObjRoot = $(`pass`);
-let objPatternCrashTest = bindingPatternObjRoot === undefined;
+let objPatternCrashTest /*:boolean*/ = bindingPatternObjRoot === undefined;
 if (objPatternCrashTest) {
 } else {
   objPatternCrashTest = bindingPatternObjRoot === null;

@@ -66,14 +66,14 @@ while ($LOOP_UNROLL_10) {
 
 
 `````js filename=intro
-const x = /foo/;
+const x /*:regex*/ = /foo/;
 x.foo = `object`;
 const tmp = x.foo;
 $(tmp);
 const end = $(x);
 if (end) {
 } else {
-  let tmpClusterSSA_x = /foo/;
+  let tmpClusterSSA_x /*:regex*/ = /foo/;
   tmpClusterSSA_x.foo = `object`;
   while ($LOOP_UNROLL_9) {
     const tmp$1 = tmpClusterSSA_x.foo;

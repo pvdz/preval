@@ -81,12 +81,12 @@ const f = function ($$0) {
   const $dlr_$$0 = $$0;
   debugger;
   let b = `bar`;
-  const tmpIfTest$1 = $dlr_$$0 === undefined;
+  const tmpIfTest$1 /*:boolean*/ = $dlr_$$0 === undefined;
   if (tmpIfTest$1) {
   } else {
     b = $dlr_$$0;
   }
-  const tmpReturnArg = [`x`, b];
+  const tmpReturnArg /*:array*/ = [`x`, b];
   return tmpReturnArg;
 };
 const tmpCalleeParam = f();

@@ -104,26 +104,26 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
+let tmpSwitchCaseToStart /*:number*/ = 1;
 const tmpBinLhs = $(1);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 2 === tmpSwitchValue;
+  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
   } else {
   }
 }
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
-  const tmpObjLitVal$1 = { e: $ };
+  const tmpObjLitVal$1 /*:object*/ = { e: $ };
   const tmpChainElementCall = tmpObjLitVal$1.e(1);
   a = tmpChainElementCall;
 } else {
 }
-const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
+const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$7) {
   $(`fail1`);
 } else {

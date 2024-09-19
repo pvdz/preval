@@ -39,7 +39,7 @@ $(a);
 
 
 `````js filename=intro
-const a = /foo/;
+const a /*:regex*/ = /foo/;
 const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
 $(a);

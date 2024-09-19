@@ -49,13 +49,13 @@ $(a, arg);
 `````js filename=intro
 $(1);
 $(2);
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-const tmpCalleeParam$1 = delete tmpDeleteCompObj[tmpDeleteCompProp];
-const tmpCalleeParam = [`before `, ` after`];
+const tmpCalleeParam$1 /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, tmpCalleeParam$1);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 

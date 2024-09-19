@@ -70,7 +70,7 @@ $(a, b, d);
 
 
 `````js filename=intro
-const b = {
+const b /*:object*/ = {
   get c() {
     debugger;
     $(`should not be called`);

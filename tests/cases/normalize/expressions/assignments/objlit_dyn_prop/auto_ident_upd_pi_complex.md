@@ -51,13 +51,13 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpCalleeParam$1 = $(b);
 const tmpNestedAssignObj = $(tmpCalleeParam$1);
 const tmpBinLhs = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-const tmpCalleeParam = { [tmpNestedPropCompoundComplexRhs]: 10 };
+const tmpCalleeParam /*:object*/ = { [tmpNestedPropCompoundComplexRhs]: 10 };
 $(tmpCalleeParam);
 $(tmpNestedPropCompoundComplexRhs, b);
 `````

@@ -54,9 +54,9 @@ while (true) {
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpChainRootProp = $(b);
-const tmpIfTest = tmpChainRootProp == null;
+const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest) {
 } else {
   tmpChainRootProp.x;

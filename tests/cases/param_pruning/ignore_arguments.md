@@ -60,7 +60,7 @@ const f = function ($$0, $$1, $$2) {
   const x = $$0;
   const z = $$2;
   debugger;
-  const tmpCalleeParam = Boolean(tmpPrevalAliasArgumentsAny);
+  const tmpCalleeParam /*:boolean*/ = Boolean(tmpPrevalAliasArgumentsAny);
   $(tmpCalleeParam, x, z);
   return undefined;
 };

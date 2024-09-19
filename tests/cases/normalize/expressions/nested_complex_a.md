@@ -47,7 +47,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const a = [];
+const a /*:array*/ = [];
 const varInitAssignLhsComputedObj = $(a);
 varInitAssignLhsComputedObj.length = 30;
 $(30);

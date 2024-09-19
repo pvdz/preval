@@ -50,12 +50,12 @@ $(a, b);
 `````js filename=intro
 let tmpAnonDefaultExport = undefined;
 const tmpObjLitVal = $(2);
-const tmpCalleeParam = { b: tmpObjLitVal };
+const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
 tmpAnonDefaultExport = tmpNestedAssignObjPatternRhs;
 export { tmpAnonDefaultExport as default };
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_b);
 `````
 

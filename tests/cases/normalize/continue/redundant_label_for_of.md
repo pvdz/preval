@@ -98,8 +98,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 let x = $(2);
-const tmpCalleeParam$3 = [`a`, `b`];
-const tmpCalleeParam$1 = new Set(tmpCalleeParam$3);
+const tmpCalleeParam$3 /*:array*/ = [`a`, `b`];
+const tmpCalleeParam$1 /*:object*/ = new Set(tmpCalleeParam$3);
 const tmpCalleeParam = $(tmpCalleeParam$1);
 const tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

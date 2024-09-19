@@ -58,7 +58,7 @@ $(a);
 
 
 `````js filename=intro
-const a = /foo/;
+const a /*:regex*/ = /foo/;
 const tmpForOfGen = $forOf(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext = tmpForOfGen.next();

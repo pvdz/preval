@@ -49,7 +49,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const a = {};
+const a /*:object*/ = {};
 $(a);
 `````
 

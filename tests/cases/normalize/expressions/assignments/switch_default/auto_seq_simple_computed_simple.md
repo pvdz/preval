@@ -58,7 +58,7 @@ $(1);
 $(1);
 $(1);
 const tmpAssignMemRhs = $(2);
-const a = { b: tmpAssignMemRhs };
+const a /*:object*/ = { b: tmpAssignMemRhs };
 $(a);
 `````
 

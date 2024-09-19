@@ -33,7 +33,7 @@ $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam = [`console tet case`];
+const tmpCalleeParam /*:array*/ = [`console tet case`];
 console.log(tmpCalleeParam);
 `````
 

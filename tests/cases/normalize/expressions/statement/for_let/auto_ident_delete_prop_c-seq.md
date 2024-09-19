@@ -54,9 +54,9 @@ while (true) {
 `````js filename=intro
 $(1);
 $(2);
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj = $(arg);
-const xyz = delete tmpDeleteObj.y;
+const xyz /*:boolean*/ = delete tmpDeleteObj.y;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);

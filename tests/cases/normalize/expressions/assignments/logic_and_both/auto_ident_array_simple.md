@@ -48,7 +48,7 @@ $(a);
 let a = [1, 2, 3];
 const tmpCalleeParam = a;
 if (a) {
-  const tmpNestedComplexRhs = [1, 2, 3];
+  const tmpNestedComplexRhs /*:array*/ = [1, 2, 3];
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {

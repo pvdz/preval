@@ -52,15 +52,15 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 10, d: 20 };
+const b /*:object*/ = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 b.c = varInitAssignLhsComputedRhs;
-const tmpBinBothRhs = $coerce(varInitAssignLhsComputedRhs, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+const tmpBinBothRhs /*:string*/ = $coerce(varInitAssignLhsComputedRhs, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

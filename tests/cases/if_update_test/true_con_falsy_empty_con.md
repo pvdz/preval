@@ -54,7 +54,7 @@ if (x) {
 
 
 `````js filename=intro
-let x = true;
+let x /*:boolean*/ = true;
 if ($) {
   x = false;
 } else {

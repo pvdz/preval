@@ -44,13 +44,13 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-const tmpBinBothLhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpBinBothLhs /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
 const tmpBinBothRhs = $(100);
 tmpBinBothLhs + tmpBinBothRhs;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 

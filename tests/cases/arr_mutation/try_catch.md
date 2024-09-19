@@ -54,7 +54,7 @@ $(`after`, blob);
 
 
 `````js filename=intro
-const blob = [2, 3];
+const blob /*:array*/ = [2, 3];
 try {
   $(`try`, 1);
 } catch (e) {

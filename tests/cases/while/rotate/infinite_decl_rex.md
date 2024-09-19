@@ -51,7 +51,7 @@ while ($LOOP_UNROLL_10) {
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpClusterSSA_x = /tmp/;
+  const tmpClusterSSA_x /*:regex*/ = /tmp/;
   $(tmpClusterSSA_x);
 }
 `````

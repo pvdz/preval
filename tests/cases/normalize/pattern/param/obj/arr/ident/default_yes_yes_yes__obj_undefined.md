@@ -79,11 +79,11 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 = [`pass2`];
+const tmpCalleeParam$1 /*:array*/ = [`pass2`];
 const objPatternAfterDefault = $(tmpCalleeParam$1);
-const arrPatternSplat = [...objPatternAfterDefault];
+const arrPatternSplat /*:array*/ = [...objPatternAfterDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-const tmpIfTest$3 = arrPatternBeforeDefault === undefined;
+const tmpIfTest$3 /*:boolean*/ = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$3) {
   $(`fail`);
 } else {

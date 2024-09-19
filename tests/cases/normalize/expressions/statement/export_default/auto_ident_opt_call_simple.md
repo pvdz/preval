@@ -46,14 +46,14 @@ $(a);
 
 `````js filename=intro
 let tmpAnonDefaultExport = undefined;
-const tmpIfTest = $ == null;
+const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall = $(1);
   tmpAnonDefaultExport = tmpChainElementCall;
 }
 export { tmpAnonDefaultExport as default };
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

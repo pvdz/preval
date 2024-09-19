@@ -52,8 +52,8 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const a = { b: tmpObjLitVal };
-const tmpCalleeParam = { [a]: 10 };
+const a /*:object*/ = { b: tmpObjLitVal };
+const tmpCalleeParam /*:object*/ = { [a]: 10 };
 $(tmpCalleeParam);
 $(1);
 const tmpAssignComMemLhsObj = $(a);

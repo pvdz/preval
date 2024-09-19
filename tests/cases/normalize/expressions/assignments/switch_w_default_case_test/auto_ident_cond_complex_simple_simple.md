@@ -91,9 +91,9 @@ $(a);
 `````js filename=intro
 let a = 2;
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
+let tmpSwitchCaseToStart /*:number*/ = 1;
 const tmpIfTest$1 = $(1);
-let tmpIfTest = false;
+let tmpIfTest /*:boolean*/ = false;
 if (tmpIfTest$1) {
   tmpIfTest = 2 === tmpSwitchValue;
 } else {
@@ -104,13 +104,13 @@ if (tmpIfTest$1) {
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$3 = 2 === tmpSwitchValue;
+  const tmpIfTest$3 /*:boolean*/ = 2 === tmpSwitchValue;
   if (tmpIfTest$3) {
     tmpSwitchCaseToStart = 2;
   } else {
   }
 }
-const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
+const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$7) {
   $(`fail1`);
 } else {

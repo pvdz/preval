@@ -51,7 +51,7 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpUnaryArg = $(100);
-  const tmpNestedComplexRhs = -tmpUnaryArg;
+  const tmpNestedComplexRhs /*:number*/ = -tmpUnaryArg;
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {

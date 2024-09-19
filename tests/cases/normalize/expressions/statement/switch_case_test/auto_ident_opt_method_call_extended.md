@@ -62,9 +62,9 @@ $(a);
 
 `````js filename=intro
 $(1);
-const tmpObjLitVal$1 = { e: $ };
+const tmpObjLitVal$1 /*:object*/ = { e: $ };
 tmpObjLitVal$1.e(1);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

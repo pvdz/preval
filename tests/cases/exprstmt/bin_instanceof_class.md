@@ -55,7 +55,7 @@ undefined instanceof tmpBinBothRhs;
 
 
 `````js filename=intro
-const tmpBinBothRhs = class {};
+const tmpBinBothRhs /*:class*/ = class {};
 undefined instanceof tmpBinBothRhs;
 `````
 

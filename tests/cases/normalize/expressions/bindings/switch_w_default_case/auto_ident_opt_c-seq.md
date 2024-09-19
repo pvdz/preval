@@ -98,9 +98,9 @@ if (tmpIfTest$9) {
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpChainRootProp = $(b);
-const tmpIfTest$5 = tmpChainRootProp == null;
+const tmpIfTest$5 /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest$5) {
   $(undefined);
 } else {

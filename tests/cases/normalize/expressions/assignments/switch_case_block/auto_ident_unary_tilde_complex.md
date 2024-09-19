@@ -58,13 +58,13 @@ $(a);
 `````js filename=intro
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
-const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpUnaryArg = $(100);
-  const tmpClusterSSA_a = ~tmpUnaryArg;
+  const tmpClusterSSA_a /*:number*/ = ~tmpUnaryArg;
   $(tmpClusterSSA_a);
 } else {
-  const a = { a: 999, b: 1000 };
+  const a /*:object*/ = { a: 999, b: 1000 };
   $(a);
 }
 `````

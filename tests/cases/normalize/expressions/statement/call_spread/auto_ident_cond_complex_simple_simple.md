@@ -54,7 +54,7 @@ if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParamSpread = $(tmpCalleeParam);
   $(...tmpClusterSSA_tmpCalleeParamSpread);
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

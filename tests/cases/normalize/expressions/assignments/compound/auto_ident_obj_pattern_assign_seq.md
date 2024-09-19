@@ -60,9 +60,9 @@ $(1);
 $(2);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
-const a = { a: 999, b: 1000 };
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-const tmpClusterSSA_a = a * tmpNestedAssignObjPatternRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
+const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+const tmpClusterSSA_a /*:number*/ = a * tmpNestedAssignObjPatternRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, tmpObjLitVal, tmpObjLitVal$1);
 `````

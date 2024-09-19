@@ -61,7 +61,7 @@ if (tmpIfTest) {
 const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+const a /*:object*/ = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 

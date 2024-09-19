@@ -43,7 +43,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpCallCompProp = $(`splice`);
-const arr = [1, 2, 3];
+const arr /*:array*/ = [1, 2, 3];
 arr[tmpCallCompProp](1, 2, 20);
 const tmpCalleeParam = arr.length;
 $(tmpCalleeParam);

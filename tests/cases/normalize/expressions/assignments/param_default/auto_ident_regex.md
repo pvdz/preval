@@ -60,7 +60,7 @@ $(a);
 
 `````js filename=intro
 $(undefined);
-const tmpNestedComplexRhs = /foo/;
+const tmpNestedComplexRhs /*:regex*/ = /foo/;
 $(tmpNestedComplexRhs);
 `````
 

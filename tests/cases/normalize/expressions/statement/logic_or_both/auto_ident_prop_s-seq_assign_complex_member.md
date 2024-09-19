@@ -54,7 +54,7 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 10, d: 20 };
+const b /*:object*/ = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
@@ -66,7 +66,7 @@ if (varInitAssignLhsComputedRhs) {
   const tmpAssignMemRhs = tmpCompObj$1[tmpCompProp$1];
   b.c = tmpAssignMemRhs;
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

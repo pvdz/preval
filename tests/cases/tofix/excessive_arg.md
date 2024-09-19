@@ -97,7 +97,7 @@ $(alias);
 
 
 `````js filename=intro
-const arr = [1, 2, 3, 4];
+const arr /*:array*/ = [1, 2, 3, 4];
 let f = function ($$0, $$1) {
   const a = $$0;
   const b = $$1;
@@ -105,7 +105,7 @@ let f = function ($$0, $$1) {
   f = function ($$0, $$1) {
     const c = $$0;
     debugger;
-    const index = c - 427;
+    const index /*:number*/ = c - 427;
     const n = arr[index];
     return n;
   };

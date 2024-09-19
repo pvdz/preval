@@ -65,7 +65,7 @@ $(a, b);
 
 `````js filename=intro
 $(100);
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpCalleeParam = $(b);
 const tmpNestedAssignObj = $(tmpCalleeParam);
 const tmpBinLhs = tmpNestedAssignObj.x;

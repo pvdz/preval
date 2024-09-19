@@ -44,7 +44,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpObjLitVal = $(`prop`);
-const tmpIfTest = tmpObjLitVal === undefined;
+const tmpIfTest /*:boolean*/ = tmpObjLitVal === undefined;
 if (tmpIfTest) {
   $(`default`);
 } else {

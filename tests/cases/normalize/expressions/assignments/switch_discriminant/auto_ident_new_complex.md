@@ -49,7 +49,7 @@ $(a);
 
 `````js filename=intro
 const tmpNewCallee = $($);
-const a = new tmpNewCallee(1);
+const a /*:object*/ = new tmpNewCallee(1);
 $(100);
 $(a);
 `````

@@ -148,7 +148,7 @@ $(`-------- start`);
 $(`-------- bound`);
 $(`-------- let 1`);
 const tmpNestedAssignPropRhs = $(6);
-const b = {
+const b /*:object*/ = {
   get foo() {
     debugger;
     const tmpReturnArg = $(2);

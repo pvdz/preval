@@ -53,13 +53,13 @@ let b = {};
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpObjLitVal = $(2);
-  const tmpCalleeParam = { b: tmpObjLitVal };
+  const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
   const tmpAssignObjPatternRhs = $(tmpCalleeParam);
   b = tmpAssignObjPatternRhs.b;
 } else {
   $(200);
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

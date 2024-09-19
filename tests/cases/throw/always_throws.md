@@ -79,7 +79,7 @@ $(`do`);
 $(`not`);
 $(`inline`);
 $(`please`);
-const tmpThrowArg = new Error(`always throws`);
+const tmpThrowArg /*:object*/ = new Error(`always throws`);
 throw tmpThrowArg;
 `````
 

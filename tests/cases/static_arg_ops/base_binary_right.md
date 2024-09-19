@@ -61,7 +61,7 @@ f(8, 2, 9);
 
 `````js filename=intro
 const f = function ($$0) {
-  const a = $$0;
+  const a /*:number*/ = $$0;
   debugger;
   const tmpBinLhs = $(1);
   const tmpCalleeParam = tmpBinLhs + a;

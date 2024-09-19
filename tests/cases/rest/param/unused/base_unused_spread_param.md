@@ -44,7 +44,7 @@ f();
 
 
 `````js filename=intro
-const rest = [];
+const rest /*:array*/ = [];
 $(rest);
 `````
 

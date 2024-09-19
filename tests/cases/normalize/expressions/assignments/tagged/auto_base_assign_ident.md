@@ -47,7 +47,7 @@ $(a, b);
 
 `````js filename=intro
 const tmpNestedComplexRhs = $(2);
-const tmpCalleeParam = [`before `, ` after`];
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, tmpNestedComplexRhs);
 $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````

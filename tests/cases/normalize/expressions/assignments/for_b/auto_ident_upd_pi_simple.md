@@ -69,7 +69,7 @@ $(1);
 let b = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
-  const tmpNestedComplexRhs$1 = b + 1;
+  const tmpNestedComplexRhs$1 /*:number*/ = b + 1;
   b = tmpNestedComplexRhs$1;
   a = tmpNestedComplexRhs$1;
   if (tmpNestedComplexRhs$1) {

@@ -41,9 +41,9 @@ $(z);
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-const x = +tmpUnaryArg;
-const y = x & 32768;
-const z = !y;
+const x /*:number*/ = +tmpUnaryArg;
+const y /*:number*/ = x & 32768;
+const z /*:boolean*/ = !y;
 $(z);
 `````
 

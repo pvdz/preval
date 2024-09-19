@@ -67,7 +67,7 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam$1 /*:object*/ = { x: 1 };
 const tmpCalleeParam = $(tmpCalleeParam$1);
 const tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -78,11 +78,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     const tmpUnaryArg = $(1);
     const tmpAssignMemRhs = tmpForOfNext.value;
-    const tmpAssignMemLhsObj = typeof tmpUnaryArg;
+    const tmpAssignMemLhsObj /*:string*/ = typeof tmpUnaryArg;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   }
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, 1);
 `````
 

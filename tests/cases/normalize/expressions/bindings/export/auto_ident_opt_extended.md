@@ -50,7 +50,7 @@ $(a);
 
 
 `````js filename=intro
-const a = 100;
+const a /*:number*/ = 100;
 export { a };
 $(100);
 `````

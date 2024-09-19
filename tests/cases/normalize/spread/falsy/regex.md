@@ -47,12 +47,12 @@ if (x) {
 
 
 `````js filename=intro
-const tmpCalleeParam = /foo/g;
+const tmpCalleeParam /*:regex*/ = /foo/g;
 const x = $(tmpCalleeParam);
 if (x) {
   $(`truthy`, ...x);
 } else {
-  const tmpIfTest = x === ``;
+  const tmpIfTest /*:boolean*/ = x === ``;
   if (tmpIfTest) {
     $(`falsy`);
   } else {

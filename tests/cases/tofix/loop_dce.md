@@ -69,7 +69,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-let x = 1;
+let x /*:number*/ = 1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(x);
   if ($) {

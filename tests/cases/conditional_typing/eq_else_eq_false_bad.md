@@ -59,11 +59,11 @@ $(x);
 
 `````js filename=intro
 const a = $(67637);
-const x = a === 67636;
+const x /*:boolean*/ = a === 67636;
 if (x) {
   $(true);
 } else {
-  const tmpBool = Boolean($);
+  const tmpBool /*:boolean*/ = Boolean($);
   $(tmpBool);
 }
 `````

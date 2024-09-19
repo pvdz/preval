@@ -53,7 +53,7 @@ $(a, b);
 
 
 `````js filename=intro
-let b = 12;
+let b /*:number*/ = 12;
 $(1);
 $(1);
 $(1);
@@ -73,7 +73,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

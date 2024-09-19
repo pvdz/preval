@@ -41,7 +41,7 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-const tmpThrowArg = new $(1);
+const tmpThrowArg /*:object*/ = new $(1);
 throw tmpThrowArg;
 `````
 

@@ -53,7 +53,7 @@ $(a);
 
 `````js filename=intro
 $(`before  function(){}  after`);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

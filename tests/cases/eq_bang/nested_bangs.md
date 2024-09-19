@@ -54,11 +54,11 @@ tmpCallCallee$3(tmpCalleeParam$3);
 `````js filename=intro
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const a = tmpBinBothLhs !== tmpBinBothRhs;
+const a /*:boolean*/ = tmpBinBothLhs !== tmpBinBothRhs;
 $(a);
 const tmpBinBothLhs$1 = $(1);
 const tmpBinBothRhs$1 = $(2);
-const b = tmpBinBothLhs$1 !== tmpBinBothRhs$1;
+const b /*:boolean*/ = tmpBinBothLhs$1 !== tmpBinBothRhs$1;
 $(b);
 $(a);
 `````

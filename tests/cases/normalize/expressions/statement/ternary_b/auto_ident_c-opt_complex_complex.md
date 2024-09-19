@@ -54,9 +54,9 @@ $(a);
 `````js filename=intro
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const b = { x: 1 };
+  const b /*:object*/ = { x: 1 };
   const tmpChainElementCall = $(b);
-  const tmpIfTest$1 = tmpChainElementCall == null;
+  const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$1) {
   } else {
     const tmpChainRootComputed = $(`x`);
@@ -65,7 +65,7 @@ if (tmpIfTest) {
 } else {
   $(200);
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

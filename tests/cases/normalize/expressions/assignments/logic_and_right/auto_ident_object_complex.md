@@ -52,7 +52,7 @@ const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   const tmpObjLitVal = $(1);
   const tmpObjLitVal$3 = $(3);
-  const tmpNestedComplexRhs = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+  const tmpNestedComplexRhs /*:object*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {

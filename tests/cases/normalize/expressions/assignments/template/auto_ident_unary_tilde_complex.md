@@ -46,9 +46,9 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const a = ~tmpUnaryArg;
-const tmpBinBothRhs = $coerce(a, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+const a /*:number*/ = ~tmpUnaryArg;
+const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

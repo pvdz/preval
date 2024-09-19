@@ -43,7 +43,7 @@ $(y);
 
 `````js filename=intro
 const a = $(`a`);
-const x = +a;
+const x /*:number*/ = +a;
 fail_hard;
 $(x);
 `````

@@ -156,7 +156,7 @@ $(arr2);
 
 
 `````js filename=intro
-const x = {
+const x /*:object*/ = {
   toString() {
     debugger;
     const tmpReturnArg = $(`toString`);
@@ -168,25 +168,25 @@ const x = {
     return 100;
   },
 };
-const tmpArrElement = x ** 1;
-const tmpArrElement$1 = x * 1;
-const tmpArrElement$3 = x / 1;
-const tmpArrElement$5 = x % 1;
+const tmpArrElement /*:number*/ = x ** 1;
+const tmpArrElement$1 /*:number*/ = x * 1;
+const tmpArrElement$3 /*:number*/ = x / 1;
+const tmpArrElement$5 /*:number*/ = x % 1;
 const tmpArrElement$7 = x + true;
-const tmpArrElement$9 = x - 1;
-const tmpArrElement$11 = x << 1;
-const tmpArrElement$13 = x >> 1;
-const tmpArrElement$15 = x >>> 1;
-const tmpArrElement$17 = x < true;
-const tmpArrElement$19 = x > true;
-const tmpArrElement$21 = x <= true;
-const tmpArrElement$23 = x >= true;
-const tmpArrElement$25 = x == true;
-const tmpArrElement$27 = x != true;
-const tmpArrElement$33 = x & 1;
-const tmpArrElement$35 = x ^ 1;
-const tmpArrElement$37 = x | 1;
-const arr = [
+const tmpArrElement$9 /*:number*/ = x - 1;
+const tmpArrElement$11 /*:number*/ = x << 1;
+const tmpArrElement$13 /*:number*/ = x >> 1;
+const tmpArrElement$15 /*:number*/ = x >>> 1;
+const tmpArrElement$17 /*:boolean*/ = x < true;
+const tmpArrElement$19 /*:boolean*/ = x > true;
+const tmpArrElement$21 /*:boolean*/ = x <= true;
+const tmpArrElement$23 /*:boolean*/ = x >= true;
+const tmpArrElement$25 /*:boolean*/ = x == true;
+const tmpArrElement$27 /*:boolean*/ = x != true;
+const tmpArrElement$33 /*:number*/ = x & 1;
+const tmpArrElement$35 /*:number*/ = x ^ 1;
+const tmpArrElement$37 /*:number*/ = x | 1;
+const arr /*:array*/ = [
   tmpArrElement,
   tmpArrElement$1,
   tmpArrElement$3,
@@ -209,9 +209,9 @@ const arr = [
   tmpArrElement$37,
 ];
 $(arr);
-const tmpArrElement$39 = x in true;
-const tmpArrElement$41 = x instanceof true;
-const arr2 = [tmpArrElement$39, tmpArrElement$41];
+const tmpArrElement$39 /*:boolean*/ = x in true;
+const tmpArrElement$41 /*:boolean*/ = x instanceof true;
+const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 

@@ -69,10 +69,10 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 const objPatternBeforeDefault = (0).x;
 let objPatternAfterDefault = undefined;
-let objPatternCrashTest = false;
-const tmpIfTest = objPatternBeforeDefault === undefined;
+let objPatternCrashTest /*:boolean*/ = false;
+const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  const tmpCalleeParam = { x: `pass` };
+  const tmpCalleeParam /*:object*/ = { x: `pass` };
   objPatternAfterDefault = $(tmpCalleeParam);
   objPatternCrashTest = objPatternAfterDefault === undefined;
 } else {

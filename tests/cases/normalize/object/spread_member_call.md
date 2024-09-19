@@ -49,16 +49,16 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const obj = {
+const obj /*:object*/ = {
   foo() {
     debugger;
-    const tmpCalleeParam = { x: 1 };
+    const tmpCalleeParam /*:object*/ = { x: 1 };
     const tmpReturnArg = $(tmpCalleeParam);
     return tmpReturnArg;
   },
 };
 const tmpObjSpread = obj.foo();
-const tmpCalleeParam$1 = { ...tmpObjSpread };
+const tmpCalleeParam$1 /*:object*/ = { ...tmpObjSpread };
 $(tmpCalleeParam$1);
 `````
 

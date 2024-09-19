@@ -69,7 +69,7 @@ $(a);
 
 `````js filename=intro
 let a = 999;
-const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam$1 /*:object*/ = { x: 1 };
 const tmpCalleeParam = $(tmpCalleeParam$1);
 const tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -78,7 +78,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const tmpCalleeParam$3 = { a: 1, b: 2 };
+    const tmpCalleeParam$3 /*:object*/ = { a: 1, b: 2 };
     const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$3);
     a = tmpNestedAssignObjPatternRhs.a;
     const tmpAssignMemRhs = tmpForOfNext.value;

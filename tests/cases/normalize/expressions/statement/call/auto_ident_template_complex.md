@@ -38,8 +38,8 @@ $(a);
 
 `````js filename=intro
 const tmpCallCallee = $(1);
-const tmpBinBothRhs = $coerce(tmpCallCallee, `string`);
-const tmpBinLhs = `foo${tmpBinBothRhs}`;
+const tmpBinBothRhs /*:string*/ = $coerce(tmpCallCallee, `string`);
+const tmpBinLhs /*:string*/ = `foo${tmpBinBothRhs}`;
 $(tmpBinLhs);
 `````
 

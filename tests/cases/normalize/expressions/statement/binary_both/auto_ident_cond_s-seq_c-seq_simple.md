@@ -58,7 +58,7 @@ $(a);
 const tmpBinBothLhs = $(60);
 const tmpBinBothRhs = $(60);
 tmpBinBothLhs + tmpBinBothRhs;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

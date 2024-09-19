@@ -55,11 +55,11 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpCalleeParam = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
+const tmpAssignMemRhs /*:number*/ = tmpPostUpdArgVal - 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
 let tmpClusterSSA_a = tmpPostUpdArgVal;
 if (tmpPostUpdArgVal) {
@@ -68,7 +68,7 @@ if (tmpPostUpdArgVal) {
     const tmpCalleeParam$1 = $(b);
     const tmpPostUpdArgObj$1 = $(tmpCalleeParam$1);
     const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
-    const tmpAssignMemRhs$1 = tmpPostUpdArgVal$1 - 1;
+    const tmpAssignMemRhs$1 /*:number*/ = tmpPostUpdArgVal$1 - 1;
     tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
     tmpClusterSSA_a = tmpPostUpdArgVal$1;
     if (tmpPostUpdArgVal$1) {

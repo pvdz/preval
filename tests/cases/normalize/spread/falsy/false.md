@@ -49,7 +49,7 @@ const x = $(false);
 if (x) {
   $(`truthy`, ...x);
 } else {
-  const tmpIfTest = x === ``;
+  const tmpIfTest /*:boolean*/ = x === ``;
   if (tmpIfTest) {
     $(`falsy`);
   } else {

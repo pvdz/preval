@@ -64,7 +64,7 @@ $(blob);
 
 
 `````js filename=intro
-const blob = { thing: `woop` };
+const blob /*:object*/ = { thing: `woop` };
 const tmpForInGen = $forIn(blob);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext = tmpForInGen.next();

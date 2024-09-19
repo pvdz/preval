@@ -135,7 +135,7 @@ tmpCallCallee$7(tmpCalleeParam$7);
 
 `````js filename=intro
 const f = function ($$0) {
-  const x = $$0;
+  const x /*:function*/ = $$0;
   debugger;
   $(`no`);
   $(`inlining`);

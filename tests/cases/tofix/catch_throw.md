@@ -94,7 +94,7 @@ $(unstable_runWithPriority);
 const unstable_runWithPriority = function ($$0) {
   const eventHandler = $$0;
   debugger;
-  let $implicitThrow = false;
+  let $implicitThrow /*:boolean*/ = false;
   let $finalCatchArg = undefined;
   let value = undefined;
   try {

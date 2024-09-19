@@ -47,7 +47,7 @@ while (true) {
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpClusterSSA_x = /foo/;
+  const tmpClusterSSA_x /*:regex*/ = /foo/;
   $(tmpClusterSSA_x);
 }
 `````

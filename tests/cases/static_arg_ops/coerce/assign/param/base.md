@@ -62,7 +62,7 @@ f(4);
 const x = $(`50`);
 const f = function () {
   debugger;
-  const tmpClusterSSA_d = $coerce(x, `number`);
+  const tmpClusterSSA_d /*:number*/ = $coerce(x, `number`);
   $(1);
   $(2);
   $(tmpClusterSSA_d);

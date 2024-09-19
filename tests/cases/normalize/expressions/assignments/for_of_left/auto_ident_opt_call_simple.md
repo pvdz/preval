@@ -71,7 +71,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam$1 /*:object*/ = { x: 1 };
 const tmpCalleeParam = $(tmpCalleeParam$1);
 const tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -82,7 +82,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     a = undefined;
     let tmpAssignMemLhsObj = undefined;
-    const tmpIfTest$1 = $ == null;
+    const tmpIfTest$1 /*:boolean*/ = $ == null;
     if (tmpIfTest$1) {
     } else {
       const tmpChainElementCall = $(1);

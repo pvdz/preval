@@ -62,16 +62,16 @@ $(a, b, c, d, e);
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $(`x`);
-const c = { y: 2 };
+const c /*:object*/ = { y: 2 };
 const varInitAssignLhsComputedObj$1 = $(c);
 const varInitAssignLhsComputedProp$1 = $(`y`);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
-const a = { a: 999, b: 1000 };
-const tmpClusterSSA_a = a * 7;
+const a /*:object*/ = { a: 999, b: 1000 };
+const tmpClusterSSA_a /*:number*/ = a * 7;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, b, c, 3, 4);
 `````

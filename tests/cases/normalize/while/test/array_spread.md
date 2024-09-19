@@ -48,7 +48,7 @@ $(`after`);
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCalleeParam = [1, 2, 3];
+  const tmpCalleeParam /*:array*/ = [1, 2, 3];
   const tmpArrSpread = $(tmpCalleeParam);
   [...tmpArrSpread];
   $(`loop`);

@@ -62,11 +62,11 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const x = $spy(10);
-const tmpIfTest = x & 8;
+const tmpIfTest /*:number*/ = x & 8;
 if (tmpIfTest) {
-  const tmpIfTest$1 = x & 2;
+  const tmpIfTest$1 /*:number*/ = x & 2;
   if (tmpIfTest$1) {
-    const tmpIfTest$3 = x & 32;
+    const tmpIfTest$3 /*:number*/ = x & 32;
     if (tmpIfTest$3) {
       $(`it is 42`);
     } else {

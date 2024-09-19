@@ -44,7 +44,7 @@ throw tmpThrowArg;
 
 `````js filename=intro
 let tmpThrowArg = undefined;
-const tmpIfTest = $ == null;
+const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall = $(1);

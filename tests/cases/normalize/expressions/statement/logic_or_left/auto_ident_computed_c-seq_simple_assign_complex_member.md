@@ -50,7 +50,7 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 10, d: 20 };
+const b /*:object*/ = { c: 10, d: 20 };
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $(`c`);
 const tmpCompObj = $(b);
@@ -61,7 +61,7 @@ if (varInitAssignLhsComputedRhs) {
 } else {
   $(100);
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

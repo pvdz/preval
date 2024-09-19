@@ -50,7 +50,7 @@ while (true) {
 
 
 `````js filename=intro
-const b = { c: 1 };
+const b /*:object*/ = { c: 1 };
 const tmpCompObj = $(b);
 const xyz = tmpCompObj.c;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

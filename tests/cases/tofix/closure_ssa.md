@@ -171,7 +171,7 @@ if ($) {
 if ($) {
   let x = $(5);
   $(x);
-  const tmpCalleeParam = {
+  const tmpCalleeParam /*:object*/ = {
     toString() {
       debugger;
       x = 200;

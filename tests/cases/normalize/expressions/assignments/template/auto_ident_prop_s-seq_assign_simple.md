@@ -52,7 +52,7 @@ $(a, b);
 
 `````js filename=intro
 $(`before  2  after`);
-const b = { c: 2 };
+const b /*:object*/ = { c: 2 };
 $(2, b);
 `````
 

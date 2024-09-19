@@ -134,8 +134,8 @@ if ($implicitThrow$1) {
 `````js filename=intro
 const f = function () {
   debugger;
-  let x = 1;
-  let $finalStep = false;
+  let x /*:number*/ = 1;
+  let $finalStep /*:boolean*/ = false;
   let $finalArg = undefined;
   try {
     const tmpIfTest = $();

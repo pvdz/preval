@@ -66,7 +66,7 @@ if (a) {
   const tmpCalleeParam$5 = $(2);
   a = $(tmpCalleeParam$5);
 }
-const tmpCalleeParam = { x: a };
+const tmpCalleeParam /*:object*/ = { x: a };
 $(tmpCalleeParam);
 $(a);
 `````

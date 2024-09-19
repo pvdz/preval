@@ -47,14 +47,14 @@ $(y);
 `````js filename=intro
 const objPatternBeforeDefault = ``.x;
 let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
+const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  const tmpCalleeParam = [`pass`];
+  const tmpCalleeParam /*:array*/ = [`pass`];
   objPatternAfterDefault = $(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-const arrPatternSplat = [...objPatternAfterDefault];
+const arrPatternSplat /*:array*/ = [...objPatternAfterDefault];
 const y = arrPatternSplat.slice(0);
 $(y);
 `````

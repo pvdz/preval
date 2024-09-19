@@ -98,26 +98,26 @@ $(a, x, y);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
+let tmpSwitchCaseToStart /*:number*/ = 1;
 $(1);
 $(2);
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
-const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
+const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_x = arrPatternSplat[0];
 const tmpClusterSSA_y = arrPatternSplat[1];
-const tmpIfTest = tmpNestedAssignArrPatternRhs === tmpSwitchValue;
+const tmpIfTest /*:boolean*/ = tmpNestedAssignArrPatternRhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 2 === tmpSwitchValue;
+  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
   } else {
   }
 }
-const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
   $(`fail1`);
 } else {

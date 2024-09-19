@@ -49,12 +49,12 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const tmpIfTest = ~tmpUnaryArg;
+const tmpIfTest /*:number*/ = ~tmpUnaryArg;
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(1);
     const tmpUnaryArg$1 = $(100);
-    const tmpIfTest$1 = ~tmpUnaryArg$1;
+    const tmpIfTest$1 /*:number*/ = ~tmpUnaryArg$1;
     if (tmpIfTest$1) {
     } else {
       break;
@@ -62,7 +62,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

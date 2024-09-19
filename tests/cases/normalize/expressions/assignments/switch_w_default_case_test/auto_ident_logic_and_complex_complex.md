@@ -91,10 +91,10 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
+let tmpSwitchCaseToStart /*:number*/ = 1;
 const tmpCalleeParam = $(1);
 let a = $(tmpCalleeParam);
-let tmpIfTest = false;
+let tmpIfTest /*:boolean*/ = false;
 if (a) {
   const tmpCalleeParam$1 = $(2);
   a = $(tmpCalleeParam$1);
@@ -105,13 +105,13 @@ if (a) {
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 2 === tmpSwitchValue;
+  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
   } else {
   }
 }
-const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
   $(`fail1`);
 } else {

@@ -62,9 +62,9 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpCompProp = $(`\$`);
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpNewCallee = b[tmpCompProp];
-const tmpClusterSSA_a = new tmpNewCallee(1);
+const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
 $(tmpClusterSSA_a);
 $(undefined);
 `````

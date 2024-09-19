@@ -45,7 +45,7 @@ $(a);
 
 `````js filename=intro
 $(`before    after`);
-const a = [];
+const a /*:array*/ = [];
 $(a);
 `````
 

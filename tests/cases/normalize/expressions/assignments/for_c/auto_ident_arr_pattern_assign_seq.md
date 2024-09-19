@@ -71,8 +71,8 @@ if (tmpIfTest) {
   $(2);
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);
-  const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+  const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
+  const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
   a = tmpNestedAssignArrPatternRhs;
@@ -83,8 +83,8 @@ if (tmpIfTest) {
       $(y);
       const tmpArrElement$2 = $(3);
       const tmpArrElement$4 = $(4);
-      const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$2, tmpArrElement$4];
-      const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
+      const tmpNestedAssignArrPatternRhs$1 /*:array*/ = [tmpArrElement$2, tmpArrElement$4];
+      const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
       x = arrPatternSplat$1[0];
       y = arrPatternSplat$1[1];
       a = tmpNestedAssignArrPatternRhs$1;

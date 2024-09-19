@@ -51,11 +51,11 @@ $(c);
 
 
 `````js filename=intro
-const a1 = [];
-const b1 = [];
-const a2 = [a1];
-const b2 = [b1];
-const c = [a2, b2];
+const a1 /*:array*/ = [];
+const b1 /*:array*/ = [];
+const a2 /*:array*/ = [a1];
+const b2 /*:array*/ = [b1];
+const c /*:array*/ = [a2, b2];
 $(c);
 `````
 

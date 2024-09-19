@@ -49,12 +49,12 @@ $(x);
 
 `````js filename=intro
 const tmpUnaryArg = $(`1`);
-const a = +tmpUnaryArg;
+const a /*:number*/ = +tmpUnaryArg;
 if ($) {
   $(`foo`);
 } else {
 }
-const x = a * 2;
+const x /*:number*/ = a * 2;
 $(x);
 `````
 

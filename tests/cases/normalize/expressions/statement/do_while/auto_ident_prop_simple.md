@@ -68,7 +68,7 @@ $(100);
 $(100);
 $(100);
 $(100);
-const b = { c: 1 };
+const b /*:object*/ = { c: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   const tmpIfTest$1 = b.c;
@@ -77,7 +77,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

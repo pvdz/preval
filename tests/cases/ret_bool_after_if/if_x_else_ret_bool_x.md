@@ -68,7 +68,7 @@ const f = function () {
   if (y) {
     return y;
   } else {
-    const x = Boolean(y);
+    const x /*:boolean*/ = Boolean(y);
     return x;
   }
 };

@@ -66,7 +66,7 @@ $(a);
 
 `````js filename=intro
 $(100);
-const b = { c: $ };
+const b /*:object*/ = { c: $ };
 const tmpChainElementCall = b.c(1);
 let tmpClusterSSA_a = tmpChainElementCall;
 if (tmpChainElementCall) {

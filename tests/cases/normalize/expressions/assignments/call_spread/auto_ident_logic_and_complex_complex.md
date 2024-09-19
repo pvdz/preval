@@ -54,7 +54,7 @@ if (a) {
   a = $(tmpCalleeParam$1);
   $(...a);
 } else {
-  const tmpIfTest = a === ``;
+  const tmpIfTest /*:boolean*/ = a === ``;
   if (tmpIfTest) {
     $();
   } else {

@@ -105,7 +105,7 @@ if ($) {
     $(`a`);
   } else {
     const tmpClusterSSA_x = $(0);
-    let tmpReturnArg$1 = 500;
+    let tmpReturnArg$1 /*:number*/ = 500;
     if (tmpClusterSSA_x) {
       $(`a`);
     } else {

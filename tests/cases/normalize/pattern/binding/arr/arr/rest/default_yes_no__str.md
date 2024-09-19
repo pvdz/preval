@@ -44,7 +44,7 @@ $(x);
 
 
 `````js filename=intro
-const x = [`a`];
+const x /*:array*/ = [`a`];
 $(x);
 `````
 

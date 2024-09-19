@@ -47,9 +47,9 @@ $(x);
 
 `````js filename=intro
 const x = $(35);
-const y = x | 32;
+const y /*:number*/ = x | 32;
 if (y) {
-  const tmpClusterSSA_x = x ^ 32;
+  const tmpClusterSSA_x /*:number*/ = x ^ 32;
   $(tmpClusterSSA_x);
 } else {
   $(x);

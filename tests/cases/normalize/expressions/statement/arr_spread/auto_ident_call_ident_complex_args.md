@@ -48,7 +48,7 @@ const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 const tmpArrElToSpread = $(tmpCalleeParam, tmpCalleeParam$1);
 [...tmpArrElToSpread];
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

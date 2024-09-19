@@ -52,7 +52,7 @@ const varInitAssignLhsComputedRhs$1 = $(4);
 varInitAssignLhsComputedObj.y = varInitAssignLhsComputedRhs$1;
 const a = varInitAssignLhsComputedRhs$1;
 export { a };
-const b = { x: varInitAssignLhsComputedRhs$1 };
+const b /*:object*/ = { x: varInitAssignLhsComputedRhs$1 };
 $(varInitAssignLhsComputedRhs$1, b, 3);
 `````
 

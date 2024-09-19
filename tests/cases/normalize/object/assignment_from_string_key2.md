@@ -48,7 +48,7 @@ $(y, o);
 
 `````js filename=intro
 $(true);
-const o = { x: 1 };
+const o /*:object*/ = { x: 1 };
 $(1, o);
 `````
 

@@ -44,10 +44,10 @@ $(arr);
 
 
 `````js filename=intro
-const x = {};
-const a = x in NaN;
-const b = x instanceof NaN;
-const arr = [a, b];
+const x /*:object*/ = {};
+const a /*:boolean*/ = x in NaN;
+const b /*:boolean*/ = x instanceof NaN;
+const arr /*:array*/ = [a, b];
 $(arr);
 `````
 

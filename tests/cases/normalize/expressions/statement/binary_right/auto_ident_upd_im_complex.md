@@ -50,14 +50,14 @@ $(a, b);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpCalleeParam = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
+const tmpAssignMemRhs /*:number*/ = tmpPostUpdArgVal - 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
 tmpBinBothLhs + tmpPostUpdArgVal;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

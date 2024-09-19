@@ -44,9 +44,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParamSpread = new $(1);
+const tmpCalleeParamSpread /*:object*/ = new $(1);
 $(...tmpCalleeParamSpread);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

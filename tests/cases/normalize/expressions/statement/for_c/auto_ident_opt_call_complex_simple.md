@@ -56,7 +56,7 @@ $(a);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpChainElementCall = $($);
-  const tmpIfTest$1 = tmpChainElementCall == null;
+  const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$1) {
   } else {
     $dotCall(tmpChainElementCall, $, 1);
@@ -65,7 +65,7 @@ if (tmpIfTest) {
     const tmpIfTest$2 = $(1);
     if (tmpIfTest$2) {
       const tmpChainElementCall$1 = $($);
-      const tmpIfTest$4 = tmpChainElementCall$1 == null;
+      const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$1 == null;
       if (tmpIfTest$4) {
       } else {
         $dotCall(tmpChainElementCall$1, $, 1);
@@ -76,7 +76,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -47,7 +47,7 @@ $(a);
 `````js filename=intro
 $(1);
 $ObjectPrototype.a;
-const a = { b: 2 };
+const a /*:object*/ = { b: 2 };
 $(a);
 `````
 

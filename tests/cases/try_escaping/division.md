@@ -61,10 +61,10 @@ while (true) {
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpStringFirstArg = $(1);
-  const x = $coerce(tmpStringFirstArg, `number`);
+  const x /*:number*/ = $coerce(tmpStringFirstArg, `number`);
   const tmpStringFirstArg$1 = $(2);
-  const y = $coerce(tmpStringFirstArg$1, `number`);
-  const z = x / y;
+  const y /*:number*/ = $coerce(tmpStringFirstArg$1, `number`);
+  const z /*:number*/ = x / y;
   try {
     $(z);
   } catch (e) {

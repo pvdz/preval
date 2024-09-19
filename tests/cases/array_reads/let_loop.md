@@ -53,7 +53,7 @@ $(arr);
 
 
 `````js filename=intro
-let arr = [2, 3, 4];
+let arr /*:array*/ = [2, 3, 4];
 $(2);
 if ($) {
 } else {

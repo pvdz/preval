@@ -47,9 +47,9 @@ export { y };
 `````js filename=intro
 $(undefined, undefined);
 $(10, 20);
-const x = 10;
+const x /*:number*/ = 10;
 export { x };
-const y = 20;
+const y /*:number*/ = 20;
 export { y };
 `````
 

@@ -52,7 +52,7 @@ $(a);
 $(1);
 const tmpClusterSSA_tmpCalleeParam = $(100);
 $(tmpClusterSSA_tmpCalleeParam);
-const a = { b: 2 };
+const a /*:object*/ = { b: 2 };
 $(a);
 `````
 

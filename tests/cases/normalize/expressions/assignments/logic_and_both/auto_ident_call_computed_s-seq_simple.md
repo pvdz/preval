@@ -51,7 +51,7 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 let a = b.$(1);
 const tmpCalleeParam = a;
 if (a) {

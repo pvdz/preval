@@ -64,7 +64,7 @@ if (x) {
 
 
 `````js filename=intro
-let x = false;
+let x /*:boolean*/ = false;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   const tmpUnaryArg = $(true);

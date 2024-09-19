@@ -57,10 +57,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-const arr = [1, 2, 3];
+const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
-    const tmpCalleeParam = delete arr[0];
+    const tmpCalleeParam /*:boolean*/ = delete arr[0];
     $(tmpCalleeParam);
     arr.reverse();
   } catch (e) {

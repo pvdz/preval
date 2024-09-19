@@ -103,14 +103,14 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
+let tmpSwitchCaseToStart /*:number*/ = 1;
 let a = undefined;
-let tmpIfTest = false;
-const tmpIfTest$3 = $ == null;
+let tmpIfTest /*:boolean*/ = false;
+const tmpIfTest$3 /*:boolean*/ = $ == null;
 if (tmpIfTest$3) {
   tmpIfTest = undefined === tmpSwitchValue;
 } else {
-  const tmpObjLitVal$1 = { e: $ };
+  const tmpObjLitVal$1 /*:object*/ = { e: $ };
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
   a = tmpChainElementCall;
   tmpIfTest = tmpChainElementCall === tmpSwitchValue;
@@ -118,13 +118,13 @@ if (tmpIfTest$3) {
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$5 = 2 === tmpSwitchValue;
+  const tmpIfTest$5 /*:boolean*/ = 2 === tmpSwitchValue;
   if (tmpIfTest$5) {
     tmpSwitchCaseToStart = 2;
   } else {
   }
 }
-const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
+const tmpIfTest$9 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$9) {
   $(`fail1`);
 } else {

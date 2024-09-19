@@ -56,7 +56,7 @@ if (xyz) {
   const tmpClusterSSA_xyz = $(tmpCalleeParam$1);
   $(tmpClusterSSA_xyz);
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

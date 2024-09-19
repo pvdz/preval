@@ -64,9 +64,9 @@ if (tmpIfTest) {
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   let tmpNestedComplexRhs = undefined;
-  const b = { x: 1 };
+  const b /*:object*/ = { x: 1 };
   const tmpChainRootProp = $(b);
-  const tmpIfTest$1 = tmpChainRootProp == null;
+  const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
   if (tmpIfTest$1) {
   } else {
     const tmpChainElementObject = tmpChainRootProp.x;

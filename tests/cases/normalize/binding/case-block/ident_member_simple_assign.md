@@ -69,8 +69,8 @@ $(a, b, c);
 `````js filename=intro
 const tmpSwitchDisc = $(`a`);
 const tmpBinBothRhs = $(`a`);
-const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
-const b = { x: 2 };
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const b /*:object*/ = { x: 2 };
 if (tmpIfTest) {
   const varInitAssignLhsComputedObj = $(3);
   const varInitAssignLhsComputedRhs = $(4);

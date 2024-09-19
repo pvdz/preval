@@ -50,7 +50,7 @@ $(m);
 `````js filename=intro
 const tmpClusterSSA_a = $(10);
 const b = $(20);
-const t = [tmpClusterSSA_a, b];
+const t /*:array*/ = [tmpClusterSSA_a, b];
 $(t);
 `````
 

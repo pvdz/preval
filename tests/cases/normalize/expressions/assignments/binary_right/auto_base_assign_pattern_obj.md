@@ -52,7 +52,7 @@ $(a, b);
 `````js filename=intro
 const tmpBinBothLhs = $(100);
 const tmpObjLitVal = $(2);
-const tmpCalleeParam$1 = { b: tmpObjLitVal };
+const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
 const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
 const tmpCalleeParam = tmpBinBothLhs + tmpNestedAssignObjPatternRhs;

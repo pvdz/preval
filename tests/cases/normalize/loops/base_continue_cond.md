@@ -73,7 +73,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-let n = 0;
+let n /*:number*/ = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   n = n + 1;
   $(n);

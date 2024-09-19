@@ -43,8 +43,8 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const a = ~tmpUnaryArg;
-const tmpCalleeParam = { [a]: 10 };
+const a /*:number*/ = ~tmpUnaryArg;
+const tmpCalleeParam /*:object*/ = { [a]: 10 };
 $(tmpCalleeParam);
 $(a);
 `````

@@ -77,7 +77,7 @@ try {
   $();
 } catch (e) {
   const f = function ($$0) {
-    const a = $$0;
+    const a /*:number*/ = $$0;
     debugger;
     e = a;
     $(`filler`);

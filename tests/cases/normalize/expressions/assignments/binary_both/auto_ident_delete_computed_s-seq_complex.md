@@ -60,13 +60,13 @@ $(a, arg);
 $(1);
 $(2);
 const tmpDeleteCompProp = $(`y`);
-const arg = { y: 1 };
-const a = delete arg[tmpDeleteCompProp];
+const arg /*:object*/ = { y: 1 };
+const a /*:boolean*/ = delete arg[tmpDeleteCompProp];
 $(1);
 $(2);
 const tmpDeleteCompProp$1 = $(`y`);
-const tmpClusterSSA_a = delete arg[tmpDeleteCompProp$1];
-const tmpCalleeParam = a + tmpClusterSSA_a;
+const tmpClusterSSA_a /*:boolean*/ = delete arg[tmpDeleteCompProp$1];
+const tmpCalleeParam /*:number*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a, arg);
 `````

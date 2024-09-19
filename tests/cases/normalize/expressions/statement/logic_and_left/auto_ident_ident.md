@@ -44,7 +44,7 @@ $(a, b);
 
 `````js filename=intro
 $(100);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, 1);
 `````
 

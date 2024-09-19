@@ -70,7 +70,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 $(undefined);
-const tmpNestedComplexRhs = { b: tmpObjLitVal };
+const tmpNestedComplexRhs /*:object*/ = { b: tmpObjLitVal };
 const tmpAssignComMemLhsObj = $(tmpNestedComplexRhs);
 const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);

@@ -70,10 +70,10 @@ $(tmpObjLitVal);
 $(tmpObjLitVal$1);
 const tmpObjLitVal$3 = $(3);
 const tmpObjLitVal$5 = $(4);
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
+const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+const tmpNestedAssignObjPatternRhs$1 /*:object*/ = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
 tmpNestedAssignObjPatternRhs + tmpNestedAssignObjPatternRhs$1;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpObjLitVal$3, tmpObjLitVal$5);
 `````
 

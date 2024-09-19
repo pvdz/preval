@@ -50,9 +50,9 @@ $(a, x);
 `````js filename=intro
 const tmpUnaryArg = $(1);
 const tmpUnaryArg$1 = $(1);
-const a = typeof tmpUnaryArg;
-const tmpClusterSSA_a = typeof tmpUnaryArg$1;
-const tmpCalleeParam = a + tmpClusterSSA_a;
+const a /*:string*/ = typeof tmpUnaryArg;
+const tmpClusterSSA_a /*:string*/ = typeof tmpUnaryArg$1;
+const tmpCalleeParam /*:string*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a, 1);
 `````

@@ -55,7 +55,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = { x: 100 };
+const tmpCalleeParam /*:object*/ = { x: 100 };
 $(tmpCalleeParam);
 $(100);
 `````

@@ -52,7 +52,7 @@ $(a);
 
 
 `````js filename=intro
-const a = 1;
+const a /*:number*/ = 1;
 export { a };
 $(1);
 `````

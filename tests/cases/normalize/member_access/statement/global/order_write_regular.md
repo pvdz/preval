@@ -60,7 +60,7 @@ tmpAssignMemLhsObj.x = 30;
 
 
 `````js filename=intro
-const obj = {
+const obj /*:object*/ = {
   get x() {
     debugger;
     const tmpReturnArg = $(10);

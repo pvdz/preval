@@ -54,7 +54,7 @@ if (tmpIfTest) {
   const tmpCalleeParam$1 = $(100);
   a = $(tmpCalleeParam$1);
 }
-const tmpCalleeParam = [...a];
+const tmpCalleeParam /*:array*/ = [...a];
 $(tmpCalleeParam);
 $(a);
 `````

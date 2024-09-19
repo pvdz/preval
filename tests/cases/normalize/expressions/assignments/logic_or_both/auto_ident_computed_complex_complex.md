@@ -53,7 +53,7 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 1 };
+const b /*:object*/ = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $(`c`);
 let tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];

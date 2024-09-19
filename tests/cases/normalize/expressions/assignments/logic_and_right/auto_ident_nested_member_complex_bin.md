@@ -67,8 +67,8 @@ $(a, b, c, d, e);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(100);
-const b = { x: 1 };
-const c = { y: 2 };
+const b /*:object*/ = { x: 1 };
+const c /*:object*/ = { y: 2 };
 if (tmpCalleeParam) {
   const varInitAssignLhsComputedObj = $(b);
   const varInitAssignLhsComputedProp = $(`x`);

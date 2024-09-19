@@ -69,7 +69,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-let x = +tmpUnaryArg;
+let x /*:number*/ = +tmpUnaryArg;
 if ($) {
   $(x);
   const tmpUnaryArg$1 = $(2);
@@ -78,7 +78,7 @@ if ($) {
 }
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  const tmpClusterSSA_x = x & -257;
+  const tmpClusterSSA_x /*:number*/ = x & -257;
   $(tmpClusterSSA_x);
 } else {
 }

@@ -162,7 +162,7 @@ $tryCatch(one, two, three);
 
 
 `````js filename=intro
-let ignore = false;
+let ignore /*:boolean*/ = false;
 const one = function () {
   debugger;
   $(x);

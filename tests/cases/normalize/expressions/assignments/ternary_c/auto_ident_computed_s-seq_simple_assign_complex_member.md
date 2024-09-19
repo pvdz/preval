@@ -58,7 +58,7 @@ $(a, b);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(0);
-const b = { c: 10, d: 20 };
+const b /*:object*/ = { c: 10, d: 20 };
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam = $(100);
   $(tmpClusterSSA_tmpCalleeParam);

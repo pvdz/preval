@@ -34,7 +34,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpBinLhs = $spy(3.402823669209385e38);
-const tmpCalleeParam = tmpBinLhs ^ 0;
+const tmpCalleeParam /*:number*/ = tmpBinLhs ^ 0;
 $(tmpCalleeParam);
 `````
 

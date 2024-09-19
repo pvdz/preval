@@ -57,8 +57,8 @@ $(a, arg);
 $(1);
 $(1);
 $(2);
-const arg = { y: 1 };
-const a = delete arg.y;
+const arg /*:object*/ = { y: 1 };
+const a /*:boolean*/ = delete arg.y;
 $(a, arg);
 `````
 

@@ -49,7 +49,7 @@ $(a, x);
 $(1);
 $(2);
 const a = $(1);
-const tmpCalleeParam = { x: a };
+const tmpCalleeParam /*:object*/ = { x: a };
 $(tmpCalleeParam);
 $(a, 1);
 `````

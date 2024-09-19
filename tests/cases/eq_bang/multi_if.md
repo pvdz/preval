@@ -58,7 +58,7 @@ if (same) {
 `````js filename=intro
 const a = $(1);
 const b = $(2);
-const same = a === b;
+const same /*:boolean*/ = a === b;
 if (same) {
 } else {
   $(`a`);

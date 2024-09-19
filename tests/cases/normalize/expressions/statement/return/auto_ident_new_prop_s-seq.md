@@ -56,9 +56,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpReturnArg = new $(1);
+const tmpReturnArg /*:object*/ = new $(1);
 $(tmpReturnArg);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

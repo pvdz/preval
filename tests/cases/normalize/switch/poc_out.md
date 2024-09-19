@@ -130,10 +130,10 @@ exit: {
 
 
 `````js filename=intro
-let fallthrough = false;
+let fallthrough /*:boolean*/ = false;
 const tmpBinBothRhs = $(1);
-let tmpIfTest$1 = true;
-const tmpIfTest = undefined === tmpBinBothRhs;
+let tmpIfTest$1 /*:boolean*/ = true;
+const tmpIfTest /*:boolean*/ = undefined === tmpBinBothRhs;
 if (tmpIfTest) {
   $(`A`);
   fallthrough = true;

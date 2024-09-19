@@ -53,7 +53,7 @@ const tmpCallCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 const a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-const obj = {};
+const obj /*:object*/ = {};
 obj[a];
 $(a);
 `````

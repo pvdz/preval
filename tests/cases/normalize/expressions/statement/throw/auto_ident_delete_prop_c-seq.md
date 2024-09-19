@@ -45,9 +45,9 @@ throw tmpThrowArg;
 `````js filename=intro
 $(1);
 $(2);
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj = $(arg);
-const tmpThrowArg = delete tmpDeleteObj.y;
+const tmpThrowArg /*:boolean*/ = delete tmpDeleteObj.y;
 throw tmpThrowArg;
 `````
 

@@ -80,7 +80,7 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam$1 = { x: 1 };
+const tmpCalleeParam$1 /*:object*/ = { x: 1 };
 const tmpCalleeParam = $(tmpCalleeParam$1);
 const tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -95,7 +95,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpObjLitVal$1 = $(4);
     x = tmpObjLitVal;
     y = tmpObjLitVal$1;
-    const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+    const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
     a = tmpNestedAssignObjPatternRhs;
     const tmpAssignMemRhs = tmpForOfNext.value;
     tmpNestedAssignObjPatternRhs.x = tmpAssignMemRhs;

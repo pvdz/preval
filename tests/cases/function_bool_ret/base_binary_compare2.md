@@ -76,20 +76,20 @@ tmpCallCallee$3(tmpCalleeParam$7, tmpCalleeParam$9);
 const f = function () {
   debugger;
   if ($) {
-    const tmpReturnArg = `a` === $;
+    const tmpReturnArg /*:boolean*/ = `a` === $;
     return tmpReturnArg;
   } else {
     return false;
   }
 };
 const tmpUnaryArg = f();
-const tmpCalleeParam = !tmpUnaryArg;
+const tmpCalleeParam /*:boolean*/ = !tmpUnaryArg;
 $(tmpCalleeParam, `one`);
 const tmpUnaryArg$1 = f();
-const tmpCalleeParam$3 = !tmpUnaryArg$1;
+const tmpCalleeParam$3 /*:boolean*/ = !tmpUnaryArg$1;
 $(tmpCalleeParam$3, `two`);
 const tmpUnaryArg$3 = f();
-const tmpCalleeParam$7 = !tmpUnaryArg$3;
+const tmpCalleeParam$7 /*:boolean*/ = !tmpUnaryArg$3;
 $(tmpCalleeParam$7, `three`);
 `````
 

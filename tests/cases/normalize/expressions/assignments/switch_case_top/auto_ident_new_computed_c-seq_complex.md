@@ -61,16 +61,16 @@ $(a);
 `````js filename=intro
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
-const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
-  const b = { $: $ };
+  const b /*:object*/ = { $: $ };
   const tmpCompObj = $(b);
   const tmpCompProp = $(`\$`);
   const tmpNewCallee = tmpCompObj[tmpCompProp];
-  const tmpClusterSSA_a = new tmpNewCallee(1);
+  const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
   $(tmpClusterSSA_a);
 } else {
-  const a = { a: 999, b: 1000 };
+  const a /*:object*/ = { a: 999, b: 1000 };
   $(a);
 }
 `````

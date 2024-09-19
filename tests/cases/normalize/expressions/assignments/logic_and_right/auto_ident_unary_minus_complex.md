@@ -49,7 +49,7 @@ let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   const tmpUnaryArg = $(100);
-  const tmpNestedComplexRhs = -tmpUnaryArg;
+  const tmpNestedComplexRhs /*:number*/ = -tmpUnaryArg;
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {

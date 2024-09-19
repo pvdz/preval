@@ -64,9 +64,9 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   a = undefined;
-  const b = { x: 1 };
+  const b /*:object*/ = { x: 1 };
   const tmpChainElementCall = $(b);
-  const tmpIfTest$1 = tmpChainElementCall == null;
+  const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$1) {
   } else {
     const tmpChainRootComputed = $(`x`);
@@ -76,7 +76,7 @@ if (tmpIfTest) {
     const tmpIfTest$2 = $(1);
     if (tmpIfTest$2) {
       const tmpChainElementCall$1 = $(b);
-      const tmpIfTest$4 = tmpChainElementCall$1 == null;
+      const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$1 == null;
       if (tmpIfTest$4) {
       } else {
         const tmpChainRootComputed$1 = $(`x`);

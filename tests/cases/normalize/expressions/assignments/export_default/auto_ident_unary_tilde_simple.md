@@ -43,7 +43,7 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport = -2;
+const tmpAnonDefaultExport /*:number*/ = -2;
 export { tmpAnonDefaultExport as default };
 $(-2, 1);
 `````

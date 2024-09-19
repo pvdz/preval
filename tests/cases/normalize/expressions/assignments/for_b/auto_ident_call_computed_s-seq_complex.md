@@ -55,7 +55,7 @@ $(a);
 
 `````js filename=intro
 const tmpCallCompProp = $(`\$`);
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 let a = b[tmpCallCompProp](1);
 if (a) {
   while ($LOOP_UNROLL_10) {

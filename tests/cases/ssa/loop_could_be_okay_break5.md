@@ -94,7 +94,7 @@ if ($tmpLoopUnrollCheck) {
 
 
 `````js filename=intro
-let tmpLoopRetCode = !$;
+let tmpLoopRetCode /*:boolean*/ = !$;
 if ($) {
 } else {
   while ($LOOP_UNROLL_9) {

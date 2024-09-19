@@ -46,7 +46,7 @@ $(a, b);
 const b = $(2);
 const tmpBinBothRhs = $(100);
 b + tmpBinBothRhs;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

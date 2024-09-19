@@ -47,10 +47,10 @@ $(a, arg);
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-const obj = {};
-const tmpCompProp = typeof tmpUnaryArg;
+const obj /*:object*/ = {};
+const tmpCompProp /*:string*/ = typeof tmpUnaryArg;
 obj[tmpCompProp];
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, 1);
 `````
 

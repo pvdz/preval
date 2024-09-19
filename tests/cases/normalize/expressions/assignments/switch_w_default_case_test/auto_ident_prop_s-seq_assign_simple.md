@@ -92,7 +92,7 @@ $(a, b);
 $(1);
 $(`fail1`);
 $(`fail2`);
-const b = { c: 2 };
+const b /*:object*/ = { c: 2 };
 $(2, b);
 `````
 

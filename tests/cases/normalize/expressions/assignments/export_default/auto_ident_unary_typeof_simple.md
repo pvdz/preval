@@ -43,7 +43,7 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport = `number`;
+const tmpAnonDefaultExport /*:string*/ = `number`;
 export { tmpAnonDefaultExport as default };
 $(`number`, 1);
 `````

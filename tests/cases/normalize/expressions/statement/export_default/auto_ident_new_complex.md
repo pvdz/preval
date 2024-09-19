@@ -40,9 +40,9 @@ $(a);
 
 `````js filename=intro
 const tmpNewCallee = $($);
-const tmpAnonDefaultExport = new tmpNewCallee(1);
+const tmpAnonDefaultExport /*:object*/ = new tmpNewCallee(1);
 export { tmpAnonDefaultExport as default };
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

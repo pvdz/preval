@@ -40,9 +40,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpCompObj = [1, 2, 3];
+const tmpCompObj /*:array*/ = [1, 2, 3];
 tmpCompObj.a;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

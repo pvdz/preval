@@ -75,7 +75,7 @@ f();
 `````js filename=intro
 let x = undefined;
 $(undefined);
-const tmpCalleeParam = [100];
+const tmpCalleeParam /*:array*/ = [100];
 const tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext = tmpForOfGen.next();

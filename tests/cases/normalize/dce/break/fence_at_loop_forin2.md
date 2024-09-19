@@ -98,7 +98,7 @@ $(`after (not invoked)`);
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   $(`loop`);
-  const tmpForInDeclRhs = { a: 1, b: 2 };
+  const tmpForInDeclRhs /*:object*/ = { a: 1, b: 2 };
   const tmpForInGen = $forIn(tmpForInDeclRhs);
   const tmpForInNext = tmpForInGen.next();
   const tmpIfTest$1 = tmpForInNext.done;
@@ -112,7 +112,7 @@ if (tmpIfTest) {
     const tmpIfTest$2 = $(true);
     if (tmpIfTest$2) {
       $(`loop`);
-      const tmpForInDeclRhs$1 = { a: 1, b: 2 };
+      const tmpForInDeclRhs$1 /*:object*/ = { a: 1, b: 2 };
       const tmpForInGen$1 = $forIn(tmpForInDeclRhs$1);
       const tmpForInNext$1 = tmpForInGen$1.next();
       const tmpIfTest$4 = tmpForInNext$1.done;

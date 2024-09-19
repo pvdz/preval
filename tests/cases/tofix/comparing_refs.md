@@ -69,17 +69,17 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const tmpssa2_a$11 = [1, 2, 3];
-const tmpssa2_a$9 = [1, 2, 3];
-const tmpCalleeParam = tmpssa2_a$11 === tmpssa2_a$9;
+const tmpssa2_a$11 /*:array*/ = [1, 2, 3];
+const tmpssa2_a$9 /*:array*/ = [1, 2, 3];
+const tmpCalleeParam /*:boolean*/ = tmpssa2_a$11 === tmpssa2_a$9;
 $(tmpCalleeParam);
-const tmpssa2_a$7 = [1, 2, 3];
-const tmpssa2_a$5 = [1, 2, 3];
-const tmpCalleeParam$1 = tmpssa2_a$7 !== tmpssa2_a$5;
+const tmpssa2_a$7 /*:array*/ = [1, 2, 3];
+const tmpssa2_a$5 /*:array*/ = [1, 2, 3];
+const tmpCalleeParam$1 /*:boolean*/ = tmpssa2_a$7 !== tmpssa2_a$5;
 $(tmpCalleeParam$1);
-const tmpssa2_a$3 = [1, 2, 3];
-const tmpssa2_a$1 = [1, 2, 3];
-const tmpCalleeParam$3 = tmpssa2_a$3 === tmpssa2_a$1;
+const tmpssa2_a$3 /*:array*/ = [1, 2, 3];
+const tmpssa2_a$1 /*:array*/ = [1, 2, 3];
+const tmpCalleeParam$3 /*:boolean*/ = tmpssa2_a$3 === tmpssa2_a$1;
 $(tmpCalleeParam$3);
 `````
 

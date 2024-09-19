@@ -53,7 +53,7 @@ if (tmpIfTest) {
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   const varInitAssignLhsComputedProp = $(`x`);
-  const b = { x: 2 };
+  const b /*:object*/ = { x: 2 };
   b[varInitAssignLhsComputedProp] = 3;
   $(3, b, 3);
 } else {

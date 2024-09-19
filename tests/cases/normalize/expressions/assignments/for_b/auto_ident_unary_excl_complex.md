@@ -50,7 +50,7 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-let a = !tmpUnaryArg;
+let a /*:boolean*/ = !tmpUnaryArg;
 if (tmpUnaryArg) {
 } else {
   while ($LOOP_UNROLL_10) {

@@ -75,20 +75,20 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const tmpObjLitVal = { y: `pass3` };
-const tmpCalleeParam = { x: tmpObjLitVal };
+const tmpObjLitVal /*:object*/ = { y: `pass3` };
+const tmpCalleeParam /*:object*/ = { x: tmpObjLitVal };
 const tmpClusterSSA_bindingPatternObjRoot = $(tmpCalleeParam);
 const objPatternBeforeDefault = tmpClusterSSA_bindingPatternObjRoot.x;
 let objPatternAfterDefault = undefined;
-const tmpIfTest$1 = objPatternBeforeDefault === undefined;
+const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
-  const tmpCalleeParam$1 = { y: `fail2` };
+  const tmpCalleeParam$1 /*:object*/ = { y: `fail2` };
   objPatternAfterDefault = $(tmpCalleeParam$1);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-const tmpIfTest$3 = objPatternBeforeDefault$1 === undefined;
+const tmpIfTest$3 /*:boolean*/ = objPatternBeforeDefault$1 === undefined;
 if (tmpIfTest$3) {
   const tmpClusterSSA_y = $(`fail`);
   $(tmpClusterSSA_y);

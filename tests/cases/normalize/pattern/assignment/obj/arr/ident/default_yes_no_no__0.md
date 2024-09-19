@@ -45,9 +45,9 @@ $(`bad`);
 
 `````js filename=intro
 const objPatternNoDefault = (0).x;
-const arrPatternSplat = [...objPatternNoDefault];
+const arrPatternSplat /*:array*/ = [...objPatternNoDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-const tmpIfTest = arrPatternBeforeDefault === undefined;
+const tmpIfTest /*:boolean*/ = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   y = `fail`;
 } else {

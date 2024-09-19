@@ -54,9 +54,9 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs = $(100);
 let a = undefined;
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpChainRootProp = $(b);
-const tmpIfTest = tmpChainRootProp == null;
+const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + undefined;
   $(tmpClusterSSA_tmpCalleeParam);

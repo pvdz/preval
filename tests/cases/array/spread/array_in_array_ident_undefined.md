@@ -50,7 +50,7 @@ if ($) {
   $(20);
 } else {
 }
-const y = [`a`, 1, undefined, 3, `b`];
+const y /*:array*/ = [`a`, 1, undefined, 3, `b`];
 $(y);
 `````
 

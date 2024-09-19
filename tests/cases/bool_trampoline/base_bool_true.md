@@ -68,7 +68,7 @@ if (tmpIfTest) {
 const f = function () {
   debugger;
   const x = $(100);
-  const y = Boolean(x);
+  const y /*:boolean*/ = Boolean(x);
   return y;
 };
 $(f);

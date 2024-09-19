@@ -88,10 +88,10 @@ tmpCallCallee$9(tmpCalleeParam$29, tmpCalleeParam$31, tmpCalleeParam$33);
 const f = function ($$0, $$1, $$2, $$3, $$4, $$5) {
   const d = $$5;
   const c = $$4;
-  const b = $$3;
-  const x = $$0;
-  const a = $$1;
-  const y = $$2;
+  const b /*:number*/ = $$3;
+  const x /*:string*/ = $$0;
+  const a /*:number*/ = $$1;
+  const y /*:string*/ = $$2;
   debugger;
   $(x, y, a);
   $(x, y, b);

@@ -105,7 +105,7 @@ $inlinedFunction: {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
       $(`loop`);
-      const tmpCalleeParam = { a: 1, b: 2 };
+      const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
       const tmpForInGen = $forIn(tmpCalleeParam);
       const tmpForInNext = tmpForInGen.next();
       const tmpIfTest$1 = tmpForInNext.done;

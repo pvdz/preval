@@ -59,12 +59,12 @@ $(a, b);
 `````js filename=intro
 $(1);
 const tmpAssignComMemLhsProp = $(`c`);
-const b = { c: 10, d: 20 };
+const b /*:object*/ = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
 b[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

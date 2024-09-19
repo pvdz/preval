@@ -69,10 +69,10 @@ $(a, b, c, d);
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`x`);
-const c = { y: 2 };
+const c /*:object*/ = { y: 2 };
 const varInitAssignLhsComputedObj = $(c);
 const varInitAssignLhsComputedProp = $(`y`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;

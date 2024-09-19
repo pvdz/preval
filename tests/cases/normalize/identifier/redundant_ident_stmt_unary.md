@@ -58,10 +58,10 @@ $(y);
 
 `````js filename=intro
 +drop1;
-const x = ~drop2;
+const x /*:number*/ = ~drop2;
 $(x);
 $();
-const y = ~drop3;
+const y /*:number*/ = ~drop3;
 $(y);
 `````
 

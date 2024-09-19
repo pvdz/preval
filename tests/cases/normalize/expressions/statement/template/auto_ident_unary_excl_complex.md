@@ -45,11 +45,11 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const tmpCallCallee$1 = !tmpUnaryArg;
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+const tmpCallCallee$1 /*:boolean*/ = !tmpUnaryArg;
+const tmpBinBothRhs /*:string*/ = $coerce(tmpCallCallee$1, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

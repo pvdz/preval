@@ -85,13 +85,13 @@ $(z);
 `````js filename=intro
 const s = $(`s`);
 const t = $(`t`);
-const tmpStringConcatR = $coerce(s, `plustr`);
+const tmpStringConcatR /*:string*/ = $coerce(s, `plustr`);
 if (t) {
-  const tmpStringConcatL = $coerce(t, `plustr`);
-  const tmpClusterSSA_z = `${tmpStringConcatR}abcdef${tmpStringConcatL}`;
+  const tmpStringConcatL /*:string*/ = $coerce(t, `plustr`);
+  const tmpClusterSSA_z /*:string*/ = `${tmpStringConcatR}abcdef${tmpStringConcatL}`;
   $(tmpClusterSSA_z);
 } else {
-  const tmpClusterSSA_z$1 = `${tmpStringConcatR}abcghi`;
+  const tmpClusterSSA_z$1 /*:string*/ = `${tmpStringConcatR}abcghi`;
   $(tmpClusterSSA_z$1);
 }
 `````

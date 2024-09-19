@@ -38,9 +38,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParamSpread = /foo/;
+const tmpCalleeParamSpread /*:regex*/ = /foo/;
 $(...tmpCalleeParamSpread);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

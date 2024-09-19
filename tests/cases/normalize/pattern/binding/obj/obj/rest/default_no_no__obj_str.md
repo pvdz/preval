@@ -41,7 +41,7 @@ $(y);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 = [];
+const tmpCalleeParam$1 /*:array*/ = [];
 const y = objPatternRest(`abc`, tmpCalleeParam$1, undefined);
 $(y);
 `````

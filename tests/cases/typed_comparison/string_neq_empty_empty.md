@@ -38,8 +38,8 @@ $(`out:`, y);
 
 `````js filename=intro
 const tmpStringFirstArg = $(``);
-const x = $coerce(tmpStringFirstArg, `string`);
-const y = Boolean(x);
+const x /*:string*/ = $coerce(tmpStringFirstArg, `string`);
+const y /*:boolean*/ = Boolean(x);
 $(`out:`, y);
 `````
 

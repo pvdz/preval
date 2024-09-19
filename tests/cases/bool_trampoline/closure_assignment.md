@@ -73,7 +73,7 @@ $(x);
 const f = function () {
   debugger;
   x = $(100);
-  const y = Boolean(x);
+  const y /*:boolean*/ = Boolean(x);
   return y;
 };
 let x = undefined;

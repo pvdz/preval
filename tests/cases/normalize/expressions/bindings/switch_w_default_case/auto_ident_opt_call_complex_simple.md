@@ -94,7 +94,7 @@ if (tmpIfTest$9) {
 
 `````js filename=intro
 const tmpChainElementCall = $($);
-const tmpIfTest$5 = tmpChainElementCall == null;
+const tmpIfTest$5 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$5) {
   $(undefined);
 } else {

@@ -66,7 +66,7 @@ out();
 const out = function () {
   debugger;
   $(`function`);
-  const tmpCalleeParam$1 = typeof g;
+  const tmpCalleeParam$1 /*:string*/ = typeof g;
   $(tmpCalleeParam$1, undefined);
   return undefined;
 };

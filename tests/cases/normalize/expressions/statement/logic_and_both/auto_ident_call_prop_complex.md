@@ -46,7 +46,7 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpCallObj = $(b);
 const tmpIfTest = tmpCallObj.$(1);
 if (tmpIfTest) {
@@ -54,7 +54,7 @@ if (tmpIfTest) {
   tmpCallObj$1.$(1);
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

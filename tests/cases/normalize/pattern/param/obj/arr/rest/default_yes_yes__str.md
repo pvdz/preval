@@ -70,14 +70,14 @@ tmpCallCallee$3(tmpCalleeParam$3);
 `````js filename=intro
 const objPatternBeforeDefault = `abc`.x;
 let objPatternAfterDefault = undefined;
-const tmpIfTest$1 = objPatternBeforeDefault === undefined;
+const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
-  const tmpCalleeParam$1 = [`pass`];
+  const tmpCalleeParam$1 /*:array*/ = [`pass`];
   objPatternAfterDefault = $(tmpCalleeParam$1);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-const arrPatternSplat = [...objPatternAfterDefault];
+const arrPatternSplat /*:array*/ = [...objPatternAfterDefault];
 const y = arrPatternSplat.slice(0);
 $(y);
 `````

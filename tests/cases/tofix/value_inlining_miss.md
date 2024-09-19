@@ -76,7 +76,7 @@ $(x);
 
 
 `````js filename=intro
-let x = 20;
+let x /*:number*/ = 20;
 $(20);
 const tmpIfTest = $(1);
 $(20);

@@ -71,16 +71,16 @@ $(arr1);
 
 `````js filename=intro
 const max = $(10);
-const test = 2 < max;
-const arr1 = [];
+const test /*:boolean*/ = 2 < max;
+const arr1 /*:array*/ = [];
 if (test) {
   arr1[0] = 103;
-  let tmpClusterSSA_counter = 3;
-  let tmpClusterSSA_test = 3 < max;
-  const arr2 = [101, 102, 103, 104, 105, 106, 107, 108, 109, 1010];
+  let tmpClusterSSA_counter /*:number*/ = 3;
+  let tmpClusterSSA_test /*:boolean*/ = 3 < max;
+  const arr2 /*:array*/ = [101, 102, 103, 104, 105, 106, 107, 108, 109, 1010];
   while ($LOOP_UNROLL_10) {
     if (tmpClusterSSA_test) {
-      const x$1 = tmpClusterSSA_counter - 2;
+      const x$1 /*:number*/ = tmpClusterSSA_counter - 2;
       const y$1 = arr2[tmpClusterSSA_counter];
       arr1[x$1] = y$1;
       tmpClusterSSA_counter = tmpClusterSSA_counter + 1;

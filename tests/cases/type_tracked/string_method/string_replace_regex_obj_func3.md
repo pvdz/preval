@@ -55,7 +55,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const obj = { a: 1, b: 2 };
+const obj /*:object*/ = { a: 1, b: 2 };
 const tmpCalleeParam$3 = function ($$0) {
   const c = $$0;
   debugger;
@@ -64,7 +64,7 @@ const tmpCalleeParam$3 = function ($$0) {
   const tmpReturnArg = obj[c];
   return tmpReturnArg;
 };
-const rex = /\w.*\w/g;
+const rex /*:regex*/ = /\w.*\w/g;
 const tmpCalleeParam = `a is not b`.replace(rex, tmpCalleeParam$3);
 $(tmpCalleeParam);
 `````

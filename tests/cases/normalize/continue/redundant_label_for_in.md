@@ -96,7 +96,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 let x = $(2);
-const tmpCalleeParam$1 = { a: 1, b: 2 };
+const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
 const tmpCalleeParam = $(tmpCalleeParam$1);
 const tmpForInGen = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

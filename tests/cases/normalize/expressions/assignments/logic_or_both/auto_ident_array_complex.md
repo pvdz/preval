@@ -60,7 +60,7 @@ if (a) {
 } else {
   const tmpArrElement$5 = $(1);
   const tmpArrElement$9 = $(3);
-  const tmpNestedComplexRhs = [tmpArrElement$5, 2, tmpArrElement$9];
+  const tmpNestedComplexRhs /*:array*/ = [tmpArrElement$5, 2, tmpArrElement$9];
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }

@@ -139,9 +139,9 @@ $(50);
 $(true);
 if (tmpIfTest$9045) {
 } else {
-  const tmpClusterSSA_secondPart = tmpBinLhs$1687 | vh;
+  const tmpClusterSSA_secondPart /*:number*/ = tmpBinLhs$1687 | vh;
   firstPart;
-  const tmpIfTest$9053 = tmpClusterSSA_secondPart < 56320;
+  const tmpIfTest$9053 /*:boolean*/ = tmpClusterSSA_secondPart < 56320;
   if (tmpIfTest$9053) {
   } else {
     $(tmpClusterSSA_secondPart);

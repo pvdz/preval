@@ -39,7 +39,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpBinBothRhs = $(1);
-const x = $coerce(tmpBinBothRhs, `plustr`);
+const x /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
 $(x);
 `````
 

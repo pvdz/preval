@@ -135,32 +135,32 @@ exit: {
 `````js filename=intro
 let x = $(2);
 const tmpSwitchValue = $(100);
-let tmpSwitchCaseToStart = 3;
-const tmpIfTest = 1 === tmpSwitchValue;
+let tmpSwitchCaseToStart /*:number*/ = 3;
+const tmpIfTest /*:boolean*/ = 1 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 2 === tmpSwitchValue;
+  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
   } else {
-    const tmpIfTest$3 = 100 === tmpSwitchValue;
+    const tmpIfTest$3 /*:boolean*/ = 100 === tmpSwitchValue;
     if (tmpIfTest$3) {
       tmpSwitchCaseToStart = 2;
     } else {
     }
   }
 }
-const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
+const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$5) {
   $(1);
 } else {
-  const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
+  const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$7) {
     $(2);
   } else {
   }
-  const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
+  const tmpIfTest$9 /*:boolean*/ = tmpSwitchCaseToStart <= 2;
   if (tmpIfTest$9) {
     $(`yo`);
     const tmpIfTest$11 = $(1);

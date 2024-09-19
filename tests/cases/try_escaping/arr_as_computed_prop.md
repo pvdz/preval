@@ -68,15 +68,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-const obj = {};
-const arr = [1, 2, 3];
+const obj /*:object*/ = {};
+const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     const tmpCalleeParam = obj[`1,2,3`];
     $(tmpCalleeParam);
     arr.reverse();
     const tmpBinLhs = arr[0];
-    const tmpIfTest = tmpBinLhs === $;
+    const tmpIfTest /*:boolean*/ = tmpBinLhs === $;
     if (tmpIfTest) {
       break;
     } else {

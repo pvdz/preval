@@ -44,8 +44,8 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const obj = {};
-const a = !tmpUnaryArg;
+const obj /*:object*/ = {};
+const a /*:boolean*/ = !tmpUnaryArg;
 obj[a];
 $(a);
 `````

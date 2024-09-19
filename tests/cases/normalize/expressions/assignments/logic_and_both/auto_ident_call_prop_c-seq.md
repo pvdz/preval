@@ -51,7 +51,7 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpCallObj = $(b);
 let tmpClusterSSA_a = tmpCallObj.$(1);
 const tmpCalleeParam = tmpClusterSSA_a;

@@ -51,14 +51,14 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpCalleeParam$1 = $(b);
 const varInitAssignLhsComputedObj = $(tmpCalleeParam$1);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
+const varInitAssignLhsComputedRhs /*:number*/ = tmpBinLhs - 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const a = { a: 999, b: 1000 };
-const tmpClusterSSA_a = a * varInitAssignLhsComputedRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
+const tmpClusterSSA_a /*:number*/ = a * varInitAssignLhsComputedRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, b);
 `````

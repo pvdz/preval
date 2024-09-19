@@ -88,9 +88,9 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-let tmpFuncLock = true;
+let tmpFuncLock /*:boolean*/ = true;
 const f = function ($$0, $$1, $$2) {
-  const tmpPrevalAliasThis = this;
+  const tmpPrevalAliasThis /*:object*/ = this;
   const a = $$0;
   const b = $$1;
   const c = $$2;
@@ -101,7 +101,7 @@ const f = function ($$0, $$1, $$2) {
 const g = function () {
   debugger;
   if (tmpFuncLock) {
-    const obj = {};
+    const obj /*:object*/ = {};
     const tmpClusterSSA_y = f.call(obj, 1, 2, 3);
     tmpFuncLock = false;
     $(tmpClusterSSA_y);

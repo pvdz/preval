@@ -68,7 +68,7 @@ $(a);
 const tmpObjLitVal = $(1);
 $(undefined);
 const tmpAssignComMemLhsProp = $(`b`);
-const tmpNestedComplexRhs = { b: tmpObjLitVal };
+const tmpNestedComplexRhs /*:object*/ = { b: tmpObjLitVal };
 tmpNestedComplexRhs[tmpAssignComMemLhsProp] = 2;
 $(tmpNestedComplexRhs);
 `````

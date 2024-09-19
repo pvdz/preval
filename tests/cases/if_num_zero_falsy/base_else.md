@@ -49,7 +49,7 @@ if (atest) {
 `````js filename=intro
 const x = $(1);
 const tmpBinBothRhs = $(2);
-const a = x & tmpBinBothRhs;
+const a /*:number*/ = x & tmpBinBothRhs;
 if (a) {
   $(`b`);
 } else {

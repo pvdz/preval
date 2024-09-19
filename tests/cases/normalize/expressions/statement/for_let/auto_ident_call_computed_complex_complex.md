@@ -51,7 +51,7 @@ while (true) {
 
 
 `````js filename=intro
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $(`\$`);
 const xyz = tmpCallCompObj[tmpCallCompProp](1);

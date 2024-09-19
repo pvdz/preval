@@ -43,9 +43,9 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const a = { a: 999, b: 1000 };
-const tmpBinBothRhs = !tmpUnaryArg;
-const tmpClusterSSA_a = a * tmpBinBothRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
+const tmpBinBothRhs /*:boolean*/ = !tmpUnaryArg;
+const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````

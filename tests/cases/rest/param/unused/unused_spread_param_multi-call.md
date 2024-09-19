@@ -52,7 +52,7 @@ f();
 `````js filename=intro
 const f = function () {
   debugger;
-  const rest = [];
+  const rest /*:array*/ = [];
   $(rest);
   return undefined;
 };

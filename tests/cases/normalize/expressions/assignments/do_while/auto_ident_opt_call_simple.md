@@ -63,7 +63,7 @@ $(a);
 `````js filename=intro
 let a = undefined;
 $(100);
-const tmpIfTest$1 = $ == null;
+const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
   const tmpChainElementCall = $(1);
@@ -72,7 +72,7 @@ if (tmpIfTest$1) {
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpIfTest$2 = $ == null;
+    const tmpIfTest$2 /*:boolean*/ = $ == null;
     if (tmpIfTest$2) {
     } else {
       const tmpChainElementCall$1 = $(1);

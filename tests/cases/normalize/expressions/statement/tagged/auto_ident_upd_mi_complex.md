@@ -49,15 +49,15 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpCalleeParam$3 = $(b);
 const varInitAssignLhsComputedObj = $(tmpCalleeParam$3);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
+const varInitAssignLhsComputedRhs /*:number*/ = tmpBinLhs - 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpCalleeParam = [`before `, ` after`];
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, varInitAssignLhsComputedRhs);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

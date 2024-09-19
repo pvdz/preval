@@ -89,7 +89,7 @@ tmpCallCallee(tmpCalleeParam);
 let tmpCalleeParam = undefined;
 const tmpSwitchValue = $(1, `disc`);
 const tmpBinLhs = $(0);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   $(`keep, do not eval`);
 } else {

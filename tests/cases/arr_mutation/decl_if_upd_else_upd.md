@@ -48,7 +48,7 @@ $(arr);
 
 
 `````js filename=intro
-const arr = [];
+const arr /*:array*/ = [];
 if ($) {
   arr[0] = 1;
 } else {

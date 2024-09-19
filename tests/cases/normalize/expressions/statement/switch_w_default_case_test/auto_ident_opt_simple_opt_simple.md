@@ -107,28 +107,28 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
-const tmpClusterSSA_tmpIfTest = 1 === tmpSwitchValue;
+let tmpSwitchCaseToStart /*:number*/ = 1;
+const tmpClusterSSA_tmpIfTest /*:boolean*/ = 1 === tmpSwitchValue;
 if (tmpClusterSSA_tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$5 = 2 === tmpSwitchValue;
+  const tmpIfTest$5 /*:boolean*/ = 2 === tmpSwitchValue;
   if (tmpIfTest$5) {
     tmpSwitchCaseToStart = 2;
   } else {
   }
 }
-const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
+const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$7) {
 } else {
-  const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
+  const tmpIfTest$9 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$9) {
     $(`fail1`);
   } else {
   }
   $(`fail2`);
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

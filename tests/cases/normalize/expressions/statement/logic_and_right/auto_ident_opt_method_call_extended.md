@@ -55,11 +55,11 @@ $(a);
 `````js filename=intro
 const tmpIfTest = $(100);
 if (tmpIfTest) {
-  const tmpObjLitVal$1 = { e: $ };
+  const tmpObjLitVal$1 /*:object*/ = { e: $ };
   tmpObjLitVal$1.e(1);
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

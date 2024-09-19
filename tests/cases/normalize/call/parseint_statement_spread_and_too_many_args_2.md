@@ -55,9 +55,9 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const tmpCalleeParam = [1, 2];
+const tmpCalleeParam /*:array*/ = [1, 2];
 const tmpArrSpread = $(tmpCalleeParam);
-const tmpArgOverflowOne = [...tmpArrSpread];
+const tmpArgOverflowOne /*:array*/ = [...tmpArrSpread];
 const tmpArgOverflowLen = tmpArgOverflowOne.length;
 const tmpArgOverflowTwo = $spy(`b`);
 const tmpArgOverflowThree = $spy(`c`);
@@ -68,7 +68,7 @@ if (tmpArgOverflowLen) {
   $coerce(tmpArgOverflowTwo, `string`);
 }
 let tmpUnaryArg = undefined;
-const tmpIfTest = tmpArgOverflowLen > 1;
+const tmpIfTest /*:boolean*/ = tmpArgOverflowLen > 1;
 if (tmpIfTest) {
   tmpUnaryArg = tmpArgOverflowOne[1];
 } else {

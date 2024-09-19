@@ -180,7 +180,7 @@ if ($) {
       return undefined;
     }
   };
-  const tmpCalleeParam = {
+  const tmpCalleeParam /*:object*/ = {
     toString() {
       debugger;
       x = 200;

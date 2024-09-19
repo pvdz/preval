@@ -51,9 +51,9 @@ while (true) {
 
 
 `````js filename=intro
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj = $(arg);
-const tmpClusterSSA_a = delete tmpDeleteObj.y;
+const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpClusterSSA_a);
   $(1);

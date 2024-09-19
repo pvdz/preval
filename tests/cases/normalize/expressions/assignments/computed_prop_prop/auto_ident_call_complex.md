@@ -45,7 +45,7 @@ $(a);
 `````js filename=intro
 const tmpCallComplexCallee = $($);
 const a = tmpCallComplexCallee(1);
-const obj = {};
+const obj /*:object*/ = {};
 obj[a];
 $(a);
 `````

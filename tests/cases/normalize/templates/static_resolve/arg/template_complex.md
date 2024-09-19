@@ -42,8 +42,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpCallCallee$3 = $(1);
-const tmpBinBothRhs$1 = $coerce(tmpCallCallee$3, `string`);
-const tmpCallCallee$1 = `a ${tmpBinBothRhs$1} b`;
+const tmpBinBothRhs$1 /*:string*/ = $coerce(tmpCallCallee$3, `string`);
+const tmpCallCallee$1 /*:string*/ = `a ${tmpBinBothRhs$1} b`;
 $(tmpCallCallee$1);
 `````
 

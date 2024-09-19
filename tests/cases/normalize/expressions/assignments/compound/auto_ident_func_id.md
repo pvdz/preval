@@ -53,8 +53,8 @@ const f = function () {
   debugger;
   return undefined;
 };
-const a = { a: 999, b: 1000 };
-const tmpClusterSSA_a = a * f;
+const a /*:object*/ = { a: 999, b: 1000 };
+const tmpClusterSSA_a /*:number*/ = a * f;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````

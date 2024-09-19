@@ -42,7 +42,7 @@ $(a);
 
 `````js filename=intro
 $(100);
-const tmpCalleeParam = { x: undefined };
+const tmpCalleeParam /*:object*/ = { x: undefined };
 $(tmpCalleeParam);
 $(undefined);
 `````

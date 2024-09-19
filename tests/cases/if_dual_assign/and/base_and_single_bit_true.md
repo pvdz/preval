@@ -47,7 +47,7 @@ if (x) {
 
 `````js filename=intro
 const tmpBinLhs = $(32);
-const x = tmpBinLhs & 32;
+const x /*:number*/ = tmpBinLhs & 32;
 if (x) {
   $(`pass`, 32);
 } else {

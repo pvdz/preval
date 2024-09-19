@@ -68,7 +68,7 @@ if (a) {
   }
 } else {
 }
-const obj = {};
+const obj /*:object*/ = {};
 obj[a];
 $(a);
 `````

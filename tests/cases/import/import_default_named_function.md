@@ -66,7 +66,7 @@ $(x);
 `````
 
 `````js filename=x
-const f = 10;
+const f /*:number*/ = 10;
 export { f as default };
 `````
 

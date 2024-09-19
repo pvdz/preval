@@ -75,7 +75,7 @@ const f = function (...$$0) {
   $(`no`);
   $(`inlining`);
   $(`please`);
-  const y = ~x;
+  const y /*:number*/ = ~x;
   return y;
 };
 const tmpCalleeParam = f(1);

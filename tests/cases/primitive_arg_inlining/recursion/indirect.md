@@ -89,7 +89,7 @@ const g = function ($$0) {
   debugger;
   const tmpCalleeParam = n$1 + 1;
   const tmpBinLhs = $(tmpCalleeParam);
-  const tmpIfTest = tmpBinLhs > 1000;
+  const tmpIfTest /*:boolean*/ = tmpBinLhs > 1000;
   if (tmpIfTest) {
     return tmpCalleeParam;
   } else {

@@ -54,7 +54,7 @@ $(a);
 `````js filename=intro
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const b = { $: $ };
+  const b /*:object*/ = { $: $ };
   while ($LOOP_UNROLL_10) {
     b.$(1);
     const tmpIfTest$1 = $(1);
@@ -65,7 +65,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

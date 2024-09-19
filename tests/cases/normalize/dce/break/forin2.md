@@ -80,7 +80,7 @@ $(`after`);
 `````js filename=intro
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  const tmpCalleeParam = [10, 20];
+  const tmpCalleeParam /*:array*/ = [10, 20];
   const tmpForOfGen = $forOf(tmpCalleeParam);
   const tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest$1 = tmpForOfNext.done;
@@ -92,7 +92,7 @@ if (tmpIfTest) {
     $(`keep`);
     const tmpIfTest$2 = $(true);
     if (tmpIfTest$2) {
-      const tmpCalleeParam$1 = [10, 20];
+      const tmpCalleeParam$1 /*:array*/ = [10, 20];
       const tmpForOfGen$1 = $forOf(tmpCalleeParam$1);
       const tmpForOfNext$1 = tmpForOfGen$1.next();
       const tmpIfTest$4 = tmpForOfNext$1.done;

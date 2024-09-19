@@ -55,8 +55,8 @@ $(a, arg);
 $(1);
 $(2);
 const tmpDeleteCompProp = $(`y`);
-const arg = { y: 1 };
-const tmpIfTest = delete arg[tmpDeleteCompProp];
+const arg /*:object*/ = { y: 1 };
+const tmpIfTest /*:boolean*/ = delete arg[tmpDeleteCompProp];
 if (tmpIfTest) {
   $(1);
   $(2);
@@ -64,7 +64,7 @@ if (tmpIfTest) {
   delete arg[tmpDeleteCompProp$1];
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 

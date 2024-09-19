@@ -51,7 +51,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const a = [];
+const a /*:array*/ = [];
 $(a);
 $(undefined);
 `````

@@ -54,9 +54,9 @@ $(a, x, y);
 const tmpBinBothLhs = $(100);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 tmpBinBothLhs + tmpNestedAssignObjPatternRhs;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpObjLitVal, tmpObjLitVal$1);
 `````
 

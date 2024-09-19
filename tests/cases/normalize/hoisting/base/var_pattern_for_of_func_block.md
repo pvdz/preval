@@ -82,8 +82,8 @@ f();
 `````js filename=intro
 let x = undefined;
 $(undefined);
-const tmpArrElement = [100];
-const tmpCalleeParam = [tmpArrElement];
+const tmpArrElement /*:array*/ = [100];
+const tmpCalleeParam /*:array*/ = [tmpArrElement];
 const tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext = tmpForOfGen.next();
@@ -92,7 +92,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     const arrAssignPatternRhs = tmpForOfNext.value;
-    const arrPatternSplat = [...arrAssignPatternRhs];
+    const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
     x = arrPatternSplat[0];
     $(x, `for`);
   }

@@ -65,8 +65,8 @@ $(a, b);
 `````js filename=intro
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
-const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
-const b = { c: 10, d: 20 };
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const b /*:object*/ = { c: 10, d: 20 };
 if (tmpIfTest) {
   const tmpAssignComMemLhsProp = $(`c`);
   const tmpCompObj = $(b);
@@ -75,7 +75,7 @@ if (tmpIfTest) {
   b[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

@@ -43,7 +43,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const arr = [1, 2, 3];
+const arr /*:array*/ = [1, 2, 3];
 $array_splice.call(arr, 1, 2, 10, 20);
 $(3);
 `````

@@ -52,7 +52,7 @@ while (true) {
 
 
 `````js filename=intro
-const tmpClusterSSA_a = new $(1);
+const tmpClusterSSA_a /*:object*/ = new $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpClusterSSA_a);
   $(1);

@@ -64,14 +64,14 @@ tmpCallCallee$3(tmpCalleeParam$7);
 `````js filename=intro
 const objPatternBeforeDefault = ``.x;
 let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
+const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  const tmpCalleeParam = { a: `pass` };
+  const tmpCalleeParam /*:object*/ = { a: `pass` };
   objPatternAfterDefault = $(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-const tmpCalleeParam$3 = [];
+const tmpCalleeParam$3 /*:array*/ = [];
 const y = objPatternRest(objPatternAfterDefault, tmpCalleeParam$3, undefined);
 $(y);
 `````

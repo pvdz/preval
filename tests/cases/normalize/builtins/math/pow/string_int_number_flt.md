@@ -32,7 +32,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam = Math.pow(`3`, 5.7);
+const tmpCalleeParam /*:number*/ = Math.pow(`3`, 5.7);
 $(tmpCalleeParam);
 `````
 

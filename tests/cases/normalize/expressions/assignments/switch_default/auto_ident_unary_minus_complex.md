@@ -49,7 +49,7 @@ $(a);
 `````js filename=intro
 $(1);
 const tmpUnaryArg = $(100);
-const a = -tmpUnaryArg;
+const a /*:number*/ = -tmpUnaryArg;
 $(a);
 `````
 

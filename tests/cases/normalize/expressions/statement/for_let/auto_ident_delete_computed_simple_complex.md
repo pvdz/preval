@@ -52,8 +52,8 @@ while (true) {
 
 `````js filename=intro
 const tmpDeleteCompProp = $(`y`);
-const arg = { y: 1 };
-const xyz = delete arg[tmpDeleteCompProp];
+const arg /*:object*/ = { y: 1 };
+const xyz /*:boolean*/ = delete arg[tmpDeleteCompProp];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);

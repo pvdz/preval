@@ -39,9 +39,9 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const tmpObjSpreadArg = +tmpUnaryArg;
+const tmpObjSpreadArg /*:number*/ = +tmpUnaryArg;
 ({ ...tmpObjSpreadArg });
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

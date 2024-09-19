@@ -178,8 +178,8 @@ $(arr2);
 
 
 `````js filename=intro
-const tmpBinLhs = /foo/g;
-const x = {
+const tmpBinLhs /*:regex*/ = /foo/g;
+const x /*:object*/ = {
   toString() {
     debugger;
     const tmpReturnArg = $(`toString`);
@@ -191,38 +191,38 @@ const x = {
     return 100;
   },
 };
-const tmpArrElement = tmpBinLhs ** x;
-const tmpBinLhs$1 = /foo/g;
-const tmpArrElement$1 = tmpBinLhs$1 * x;
-const tmpBinLhs$3 = /foo/g;
-const tmpArrElement$3 = tmpBinLhs$3 / x;
-const tmpBinLhs$5 = /foo/g;
-const tmpArrElement$5 = tmpBinLhs$5 % x;
-const tmpStringConcatL = $coerce(x, `plustr`);
-const tmpBinLhs$9 = /foo/g;
-const tmpArrElement$9 = tmpBinLhs$9 - x;
-const tmpBinLhs$11 = /foo/g;
-const tmpArrElement$11 = tmpBinLhs$11 << x;
-const tmpBinLhs$13 = /foo/g;
-const tmpArrElement$13 = tmpBinLhs$13 >> x;
-const tmpBinLhs$15 = /foo/g;
-const tmpArrElement$15 = tmpBinLhs$15 >>> x;
-const tmpBinLhs$17 = /foo/g;
-const tmpArrElement$17 = tmpBinLhs$17 < x;
-const tmpBinLhs$19 = /foo/g;
-const tmpArrElement$19 = tmpBinLhs$19 > x;
-const tmpBinLhs$21 = /foo/g;
-const tmpArrElement$21 = tmpBinLhs$21 <= x;
-const tmpBinLhs$23 = /foo/g;
-const tmpArrElement$23 = tmpBinLhs$23 >= x;
-const tmpBinLhs$33 = /foo/g;
-const tmpArrElement$33 = tmpBinLhs$33 & x;
-const tmpBinLhs$35 = /foo/g;
-const tmpArrElement$35 = tmpBinLhs$35 ^ x;
-const tmpBinLhs$37 = /foo/g;
-const tmpArrElement$37 = tmpBinLhs$37 | x;
-const tmpArrElement$7 = `/foo/g${tmpStringConcatL}`;
-const arr = [
+const tmpArrElement /*:number*/ = tmpBinLhs ** x;
+const tmpBinLhs$1 /*:regex*/ = /foo/g;
+const tmpArrElement$1 /*:number*/ = tmpBinLhs$1 * x;
+const tmpBinLhs$3 /*:regex*/ = /foo/g;
+const tmpArrElement$3 /*:number*/ = tmpBinLhs$3 / x;
+const tmpBinLhs$5 /*:regex*/ = /foo/g;
+const tmpArrElement$5 /*:number*/ = tmpBinLhs$5 % x;
+const tmpStringConcatL /*:string*/ = $coerce(x, `plustr`);
+const tmpBinLhs$9 /*:regex*/ = /foo/g;
+const tmpArrElement$9 /*:number*/ = tmpBinLhs$9 - x;
+const tmpBinLhs$11 /*:regex*/ = /foo/g;
+const tmpArrElement$11 /*:number*/ = tmpBinLhs$11 << x;
+const tmpBinLhs$13 /*:regex*/ = /foo/g;
+const tmpArrElement$13 /*:number*/ = tmpBinLhs$13 >> x;
+const tmpBinLhs$15 /*:regex*/ = /foo/g;
+const tmpArrElement$15 /*:number*/ = tmpBinLhs$15 >>> x;
+const tmpBinLhs$17 /*:regex*/ = /foo/g;
+const tmpArrElement$17 /*:boolean*/ = tmpBinLhs$17 < x;
+const tmpBinLhs$19 /*:regex*/ = /foo/g;
+const tmpArrElement$19 /*:boolean*/ = tmpBinLhs$19 > x;
+const tmpBinLhs$21 /*:regex*/ = /foo/g;
+const tmpArrElement$21 /*:boolean*/ = tmpBinLhs$21 <= x;
+const tmpBinLhs$23 /*:regex*/ = /foo/g;
+const tmpArrElement$23 /*:boolean*/ = tmpBinLhs$23 >= x;
+const tmpBinLhs$33 /*:regex*/ = /foo/g;
+const tmpArrElement$33 /*:number*/ = tmpBinLhs$33 & x;
+const tmpBinLhs$35 /*:regex*/ = /foo/g;
+const tmpArrElement$35 /*:number*/ = tmpBinLhs$35 ^ x;
+const tmpBinLhs$37 /*:regex*/ = /foo/g;
+const tmpArrElement$37 /*:number*/ = tmpBinLhs$37 | x;
+const tmpArrElement$7 /*:string*/ = `/foo/g${tmpStringConcatL}`;
+const arr /*:array*/ = [
   tmpArrElement,
   tmpArrElement$1,
   tmpArrElement$3,
@@ -245,11 +245,11 @@ const arr = [
   tmpArrElement$37,
 ];
 $(arr);
-const tmpBinLhs$39 = /foo/g;
-const tmpBinLhs$41 = /foo/g;
-const tmpArrElement$39 = tmpBinLhs$39 in x;
-const tmpArrElement$41 = tmpBinLhs$41 instanceof x;
-const arr2 = [tmpArrElement$39, tmpArrElement$41];
+const tmpBinLhs$39 /*:regex*/ = /foo/g;
+const tmpBinLhs$41 /*:regex*/ = /foo/g;
+const tmpArrElement$39 /*:boolean*/ = tmpBinLhs$39 in x;
+const tmpArrElement$41 /*:boolean*/ = tmpBinLhs$41 instanceof x;
+const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 

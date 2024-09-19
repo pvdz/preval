@@ -64,7 +64,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const objPatternNoDefault = $ObjectPrototype.x;
 const objPatternBeforeDefault = objPatternNoDefault.y;
-const tmpIfTest = objPatternBeforeDefault === undefined;
+const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   $(`fail`);
 } else {

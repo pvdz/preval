@@ -55,7 +55,7 @@ $(a);
 `````js filename=intro
 $(1);
 const tmpCallCompProp = $(`\$`);
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const a = b[tmpCallCompProp](1);
 $(a);
 `````

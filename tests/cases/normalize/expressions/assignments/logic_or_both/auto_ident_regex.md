@@ -50,7 +50,7 @@ const tmpCalleeParam = a;
 if (a) {
   $(tmpCalleeParam);
 } else {
-  const tmpNestedComplexRhs = /foo/;
+  const tmpNestedComplexRhs /*:regex*/ = /foo/;
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }

@@ -68,7 +68,7 @@ $(y);
 `````js filename=intro
 const x = $(`50`);
 const f = function ($$0) {
-  const c = $$0;
+  const c /*:number*/ = $$0;
   debugger;
   $(1);
   $(2);
@@ -77,7 +77,7 @@ const f = function ($$0) {
 };
 $coerce(x, `number`);
 f(3);
-const tmpClusterSSA_y = $coerce(x, `number`);
+const tmpClusterSSA_y /*:number*/ = $coerce(x, `number`);
 f(4);
 $(x);
 $(tmpClusterSSA_y);

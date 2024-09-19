@@ -48,10 +48,10 @@ const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
 const tmpArrElement$5 = $(1);
 const tmpArrElement$9 = $(3);
-const tmpBinBothLhs = [tmpArrElement, 2, tmpArrElement$3];
-const tmpBinBothRhs = [tmpArrElement$5, 2, tmpArrElement$9];
+const tmpBinBothLhs /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
+const tmpBinBothRhs /*:array*/ = [tmpArrElement$5, 2, tmpArrElement$9];
 tmpBinBothLhs + tmpBinBothRhs;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

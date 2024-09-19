@@ -48,7 +48,7 @@ $(a, b);
 
 
 `````js filename=intro
-let a = 2;
+let a /*:number*/ = 2;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
 } else {

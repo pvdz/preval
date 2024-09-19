@@ -60,7 +60,7 @@ $(a);
 
 `````js filename=intro
 $(100);
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $(`\$`);
 const tmpIfTest = tmpCallCompObj[tmpCallCompProp](1);
@@ -77,7 +77,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

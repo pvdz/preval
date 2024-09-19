@@ -45,14 +45,14 @@ $(a);
 
 `````js filename=intro
 let tmpObjSpreadArg = undefined;
-const tmpIfTest = $ == null;
+const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall = $(1);
   tmpObjSpreadArg = tmpChainElementCall;
 }
 ({ ...tmpObjSpreadArg });
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

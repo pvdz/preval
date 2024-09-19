@@ -104,9 +104,9 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  let x = 0;
+  let x /*:number*/ = 0;
   const g = function ($$0) {
-    const t = $$0;
+    const t /*:boolean*/ = $$0;
     debugger;
     if (t) {
       x = x + 1;

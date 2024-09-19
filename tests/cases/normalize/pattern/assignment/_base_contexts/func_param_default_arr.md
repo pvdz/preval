@@ -55,8 +55,8 @@ f();
 
 
 `````js filename=intro
-const tmpNestedAssignArrPatternRhs = [100];
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+const tmpNestedAssignArrPatternRhs /*:array*/ = [100];
+const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 $(tmpNestedAssignArrPatternRhs);
 `````

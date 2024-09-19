@@ -75,7 +75,7 @@ zzzz();
 `````js filename=intro
 let zzzz = function () {
   debugger;
-  const a = [];
+  const a /*:array*/ = [];
   zzzz = function ($$0, $$1) {
     debugger;
     return a;

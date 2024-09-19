@@ -46,8 +46,8 @@ $(aa, zz, a, b);
 
 
 `````js filename=intro
-const aa = [];
-const zz = [];
+const aa /*:array*/ = [];
+const zz /*:array*/ = [];
 $(aa, zz, a, b);
 `````
 

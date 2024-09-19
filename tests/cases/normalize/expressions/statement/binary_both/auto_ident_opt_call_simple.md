@@ -53,21 +53,21 @@ $(a);
 
 `````js filename=intro
 let tmpBinBothLhs = undefined;
-const tmpIfTest = $ == null;
+const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall = $(1);
   tmpBinBothLhs = tmpChainElementCall;
 }
 let tmpBinBothRhs = undefined;
-const tmpIfTest$1 = $ == null;
+const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
   const tmpChainElementCall$1 = $(1);
   tmpBinBothRhs = tmpChainElementCall$1;
 }
 tmpBinBothLhs + tmpBinBothRhs;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

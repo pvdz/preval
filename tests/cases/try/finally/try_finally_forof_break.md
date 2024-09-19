@@ -92,7 +92,7 @@ $(3);
 
 
 `````js filename=intro
-const tmpCalleeParam = [`a`, `b`, `c`];
+const tmpCalleeParam /*:array*/ = [`a`, `b`, `c`];
 const tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext = tmpForOfGen.next();

@@ -47,10 +47,10 @@ $(a, arg);
 `````js filename=intro
 $(1);
 $(2);
-const arg = { y: 1 };
-const tmpAnonDefaultExport = delete arg.y;
+const arg /*:object*/ = { y: 1 };
+const tmpAnonDefaultExport /*:boolean*/ = delete arg.y;
 export { tmpAnonDefaultExport as default };
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 

@@ -82,7 +82,7 @@ const tmpObjLitVal = function () {
   $(`PASS`);
   return undefined;
 };
-const tmpCalleeParam = { valueOf: tmpObjLitVal };
+const tmpCalleeParam /*:object*/ = { valueOf: tmpObjLitVal };
 let x = $(tmpCalleeParam);
 $coerce(x, `number`);
 const f = function ($$0) {

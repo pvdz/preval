@@ -50,7 +50,7 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs = $(100);
 let a = undefined;
-const tmpIfTest = $ == null;
+const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + undefined;
   $(tmpClusterSSA_tmpCalleeParam);

@@ -35,7 +35,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpArrSpread = $Boolean_toString.name;
-const tmpCalleeParam = [...tmpArrSpread];
+const tmpCalleeParam /*:array*/ = [...tmpArrSpread];
 $(tmpCalleeParam);
 `````
 

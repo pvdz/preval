@@ -49,10 +49,10 @@ $(a, arg);
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-const tmpCallCallee$1 = typeof tmpUnaryArg;
-const tmpCalleeParam = `before  ${tmpCallCallee$1}  after`;
+const tmpCallCallee$1 /*:string*/ = typeof tmpUnaryArg;
+const tmpCalleeParam /*:string*/ = `before  ${tmpCallCallee$1}  after`;
 $(tmpCalleeParam);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, 1);
 `````
 

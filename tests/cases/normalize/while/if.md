@@ -72,13 +72,13 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  let i = 1;
+  let i /*:number*/ = 1;
   $(1, `sub`);
   while ($LOOP_UNROLL_10) {
     i = i + 1;
-    const tmpIfTest$2 = i < 10;
+    const tmpIfTest$2 /*:boolean*/ = i < 10;
     if (tmpIfTest$2) {
-      const tmpIfTest$4 = i < 5;
+      const tmpIfTest$4 /*:boolean*/ = i < 5;
       if (tmpIfTest$4) {
         $(i, `sub`);
       } else {

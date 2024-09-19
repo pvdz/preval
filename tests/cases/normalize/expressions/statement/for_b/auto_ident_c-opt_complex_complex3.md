@@ -88,9 +88,9 @@ $(a);
 
 `````js filename=intro
 let maybegx = false;
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const g = $(b);
-const same = g == null;
+const same /*:boolean*/ = g == null;
 if (same) {
 } else {
   const x = $(`x`);
@@ -102,7 +102,7 @@ if (maybegx) {
     $(1);
     let maybegx$1 = false;
     const g$1 = $(b);
-    const same$1 = g$1 == null;
+    const same$1 /*:boolean*/ = g$1 == null;
     if (same$1) {
     } else {
       const x$1 = $(`x`);
@@ -116,7 +116,7 @@ if (maybegx) {
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

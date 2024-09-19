@@ -65,7 +65,7 @@ $(a);
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
 $(undefined);
-const tmpNestedComplexRhs = [tmpArrElement, 2, tmpArrElement$3];
+const tmpNestedComplexRhs /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
 $(tmpNestedComplexRhs);
 `````
 

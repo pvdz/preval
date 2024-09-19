@@ -64,7 +64,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const objPatternNoDefault = $ObjectPrototype.x;
-const arrPatternSplat = [...objPatternNoDefault];
+const arrPatternSplat /*:array*/ = [...objPatternNoDefault];
 arrPatternSplat[0];
 $(`bad`);
 `````

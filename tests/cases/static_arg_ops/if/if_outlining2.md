@@ -199,20 +199,20 @@ const push = function ($$0, $$1) {
   const node$1 = $$1;
   debugger;
   const index$1 = heap.length;
-  const tmpSaooB$1 = index$1 > 0;
+  const tmpSaooB$1 /*:boolean*/ = index$1 > 0;
   heap.push(node$1);
   if (tmpSaooB$1) {
-    const tmpSaooB = index$1 - 1;
-    const tmpSaooB$9 = tmpSaooB >>> 1;
+    const tmpSaooB /*:number*/ = index$1 - 1;
+    const tmpSaooB$9 /*:number*/ = tmpSaooB >>> 1;
     siftUp_t(heap, node$1, index$1, tmpSaooB$9);
-    const tmpSaooB$2 = index$1 - 1;
-    const tmpSaooB$7 = tmpSaooB$2 >>> 1;
+    const tmpSaooB$2 /*:number*/ = index$1 - 1;
+    const tmpSaooB$7 /*:number*/ = tmpSaooB$2 >>> 1;
     siftUp_t(heap, node$1, index$1, tmpSaooB$7);
-    const tmpSaooB$4 = index$1 - 1;
-    const tmpSaooB$5 = tmpSaooB$4 >>> 1;
+    const tmpSaooB$4 /*:number*/ = index$1 - 1;
+    const tmpSaooB$5 /*:number*/ = tmpSaooB$4 >>> 1;
     siftUp_t(heap, node$1, index$1, tmpSaooB$5);
-    const tmpSaooB$6 = index$1 - 1;
-    const tmpSaooB$3 = tmpSaooB$6 >>> 1;
+    const tmpSaooB$6 /*:number*/ = index$1 - 1;
+    const tmpSaooB$3 /*:number*/ = tmpSaooB$6 >>> 1;
     siftUp_t(heap, node$1, index$1, tmpSaooB$3);
     return undefined;
   } else {
@@ -223,23 +223,23 @@ const siftUp_t = function ($$0, $$1, $$2, $$3) {
   const heap$5 = $$0;
   const node$3 = $$1;
   const i$13 = $$2;
-  const tmpOutlinedParam$1 = $$3;
+  const tmpOutlinedParam$1 /*:number*/ = $$3;
   debugger;
   const tmpClusterSSA_parent = heap$5[tmpOutlinedParam$1];
   const tmpBinLhs$263 = compare(tmpClusterSSA_parent, node$3);
-  const tmpIfTest$369 = tmpBinLhs$263 > 0;
+  const tmpIfTest$369 /*:boolean*/ = tmpBinLhs$263 > 0;
   if (tmpIfTest$369) {
     heap$5[tmpOutlinedParam$1] = node$3;
     heap$5[i$13] = tmpClusterSSA_parent;
     let tmpClusterSSA_index$3 = tmpOutlinedParam$1;
-    let tmpClusterSSA_tmpIfTest$367 = tmpOutlinedParam$1 > 0;
+    let tmpClusterSSA_tmpIfTest$367 /*:boolean*/ = tmpOutlinedParam$1 > 0;
     while ($LOOP_UNROLL_100) {
       if (tmpClusterSSA_tmpIfTest$367) {
-        const tmpBinLhs$1 = tmpClusterSSA_index$3 - 1;
-        const tmpClusterSSA_parentIndex$1 = tmpBinLhs$1 >>> 1;
+        const tmpBinLhs$1 /*:number*/ = tmpClusterSSA_index$3 - 1;
+        const tmpClusterSSA_parentIndex$1 /*:number*/ = tmpBinLhs$1 >>> 1;
         const tmpClusterSSA_parent$1 = heap$5[tmpClusterSSA_parentIndex$1];
         const tmpBinLhs$3 = compare(tmpClusterSSA_parent$1, node$3);
-        const tmpIfTest$2 = tmpBinLhs$3 > 0;
+        const tmpIfTest$2 /*:boolean*/ = tmpBinLhs$3 > 0;
         if (tmpIfTest$2) {
           heap$5[tmpClusterSSA_parentIndex$1] = node$3;
           heap$5[tmpClusterSSA_index$3] = tmpClusterSSA_parent$1;

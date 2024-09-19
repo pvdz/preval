@@ -62,14 +62,14 @@ $(x);
 `````js filename=intro
 const x = $(`50`);
 const f = function ($$0) {
-  const c = $$0;
+  const c /*:number*/ = $$0;
   debugger;
   $(1);
   $(2);
   $(c);
   return undefined;
 };
-const tmpClusterSSA_x = $coerce(x, `number`);
+const tmpClusterSSA_x /*:number*/ = $coerce(x, `number`);
 f(3);
 f(4);
 $(tmpClusterSSA_x);

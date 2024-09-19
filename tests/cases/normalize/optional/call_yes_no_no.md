@@ -96,7 +96,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const a$1 = {
+const a$1 /*:object*/ = {
   a() {
     debugger;
     return a$1;

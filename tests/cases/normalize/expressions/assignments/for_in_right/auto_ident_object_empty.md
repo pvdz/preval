@@ -58,7 +58,7 @@ $(a);
 
 
 `````js filename=intro
-const a = {};
+const a /*:object*/ = {};
 const tmpForInGen = $forIn(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext = tmpForInGen.next();

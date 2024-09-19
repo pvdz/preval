@@ -79,14 +79,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest$3 = $ == null;
+const tmpIfTest$3 /*:boolean*/ = $ == null;
 if (tmpIfTest$3) {
 } else {
-  const tmpObjLitVal$1 = { e: $ };
+  const tmpObjLitVal$1 /*:object*/ = { e: $ };
   $dotCall($, tmpObjLitVal$1, 1);
 }
 $(undefined);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

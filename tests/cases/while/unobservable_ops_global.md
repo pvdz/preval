@@ -57,7 +57,7 @@ $(s);
 `````js filename=intro
 const s = $(10);
 $(1);
-let tmpClusterSSA_s = s | 10;
+let tmpClusterSSA_s /*:number*/ = s | 10;
 const tmpClusterSSA_x = $(true);
 if (tmpClusterSSA_x) {
   while ($LOOP_UNROLL_10) {

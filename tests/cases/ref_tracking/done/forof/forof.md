@@ -62,7 +62,7 @@ $(`keep, do not eval`);
 
 
 `````js filename=intro
-const tmpCalleeParam = [10, 20];
+const tmpCalleeParam /*:array*/ = [10, 20];
 const tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext = tmpForOfGen.next();

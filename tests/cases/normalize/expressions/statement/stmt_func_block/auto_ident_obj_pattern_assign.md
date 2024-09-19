@@ -67,7 +67,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpObjLitVal, tmpObjLitVal$1);
 $(undefined);
 `````

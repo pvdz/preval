@@ -85,18 +85,18 @@ const f = function ($$0, $$1) {
   const tmpParamBare$1 = $$1;
   debugger;
   let a = `foo`;
-  const tmpIfTest = tmpParamBare === undefined;
+  const tmpIfTest /*:boolean*/ = tmpParamBare === undefined;
   if (tmpIfTest) {
   } else {
     a = tmpParamBare;
   }
   let b = `bar`;
-  const tmpIfTest$1 = tmpParamBare$1 === undefined;
+  const tmpIfTest$1 /*:boolean*/ = tmpParamBare$1 === undefined;
   if (tmpIfTest$1) {
   } else {
     b = tmpParamBare$1;
   }
-  const tmpReturnArg = [a, b];
+  const tmpReturnArg /*:array*/ = [a, b];
   return tmpReturnArg;
 };
 const tmpCalleeParam = f();

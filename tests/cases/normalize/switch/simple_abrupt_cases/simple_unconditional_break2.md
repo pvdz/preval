@@ -72,12 +72,12 @@ tmpSwitchBreak: {
 
 `````js filename=intro
 const tmpSwitchDisc = $(1);
-const tmpIfTest = tmpSwitchDisc === 0;
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === 0;
 if (tmpIfTest) {
   $(`one`);
   KEEP_ME_AROUND;
 } else {
-  const tmpIfTest$1 = tmpSwitchDisc === 1;
+  const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === 1;
   if (tmpIfTest$1) {
     $(`two`);
   } else {

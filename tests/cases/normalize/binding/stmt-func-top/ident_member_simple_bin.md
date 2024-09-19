@@ -56,7 +56,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const b = { x: 7 };
+const b /*:object*/ = { x: 7 };
 $(7, b, 3);
 $(undefined);
 `````

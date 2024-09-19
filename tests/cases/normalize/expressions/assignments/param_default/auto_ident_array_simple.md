@@ -60,7 +60,7 @@ $(a);
 
 `````js filename=intro
 $(undefined);
-const tmpNestedComplexRhs = [1, 2, 3];
+const tmpNestedComplexRhs /*:array*/ = [1, 2, 3];
 $(tmpNestedComplexRhs);
 `````
 

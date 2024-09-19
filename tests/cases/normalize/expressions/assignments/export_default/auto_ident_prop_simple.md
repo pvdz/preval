@@ -43,9 +43,9 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport = 1;
+const tmpAnonDefaultExport /*:number*/ = 1;
 export { tmpAnonDefaultExport as default };
-const b = { c: 1 };
+const b /*:object*/ = { c: 1 };
 $(1, b);
 `````
 

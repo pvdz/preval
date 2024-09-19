@@ -66,14 +66,14 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 `````js filename=intro
 const tmpObjLitVal = function () {
-  const tmpPrevalAliasThis = this;
+  const tmpPrevalAliasThis /*:object*/ = this;
   debugger;
   tmpPrevalAliasThis.str = `changed`;
   const tmpCalleeParam = tmpPrevalAliasThis.str;
   $(tmpCalleeParam);
   return undefined;
 };
-const obj = { encode: tmpObjLitVal, str: `abc` };
+const obj /*:object*/ = { encode: tmpObjLitVal, str: `abc` };
 const tmpCalleeParam$1 = tmpObjLitVal.call(obj);
 $(tmpCalleeParam$1);
 const tmpCalleeParam$3 = obj.str;

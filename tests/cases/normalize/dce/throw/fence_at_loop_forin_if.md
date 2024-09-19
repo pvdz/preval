@@ -126,7 +126,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   $(`loop`);
-  const tmpCalleeParam = { a: 1, b: 2 };
+  const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
   const tmpForInGen = $forIn(tmpCalleeParam);
   const tmpForInNext = tmpForInGen.next();
   const tmpIfTest$1 = tmpForInNext.done;
@@ -136,7 +136,7 @@ if (tmpIfTest) {
       const tmpIfTest$2 = $(true);
       if (tmpIfTest$2) {
         $(`loop`);
-        const tmpCalleeParam$1 = { a: 1, b: 2 };
+        const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
         const tmpForInGen$1 = $forIn(tmpCalleeParam$1);
         const tmpForInNext$1 = tmpForInGen$1.next();
         const tmpIfTest$4 = tmpForInNext$1.done;

@@ -45,7 +45,7 @@ while (true) {
 
 
 `````js filename=intro
-const blob = { thing: `woop` };
+const blob /*:object*/ = { thing: `woop` };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   blob.thing = `boing`;
   $(1);

@@ -47,10 +47,10 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
-const tmpClusterSSA_a = new tmpNewCallee(1);
+const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
 const tmpBinBothRhs = $(100);
 const tmpCalleeParam = tmpClusterSSA_a + tmpBinBothRhs;
 $(tmpCalleeParam);

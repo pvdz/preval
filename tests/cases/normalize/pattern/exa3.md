@@ -104,7 +104,7 @@ $(a, c, rest);
 
 
 `````js filename=intro
-const obj = {
+const obj /*:object*/ = {
   get a() {
     debugger;
     const tmpReturnArg = $(`a`);
@@ -112,7 +112,7 @@ const obj = {
   },
   get b() {
     debugger;
-    const tmpReturnArg$1 = {
+    const tmpReturnArg$1 /*:object*/ = {
       get c() {
         debugger;
         const tmpReturnArg$3 = $(`b`);
@@ -135,7 +135,7 @@ const obj = {
 const a = obj.a;
 const objPatternNoDefault = obj.b;
 const c = objPatternNoDefault.c;
-const tmpCalleeParam$1 = [`c`];
+const tmpCalleeParam$1 /*:array*/ = [`c`];
 const rest = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
 $(a, c, rest);
 `````

@@ -59,7 +59,7 @@ f(4);
 `````js filename=intro
 $(`50`);
 const f = function ($$0) {
-  const c = $$0;
+  const c /*:number*/ = $$0;
   debugger;
   $(1);
   $(2);

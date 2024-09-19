@@ -91,13 +91,13 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-const tmpIfTest = 2 === tmpSwitchValue;
+const tmpIfTest /*:boolean*/ = 2 === tmpSwitchValue;
 if (tmpIfTest) {
 } else {
   $(`fail1`);
   $(`fail2`);
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

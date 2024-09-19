@@ -56,7 +56,7 @@ while (true) {
 
 `````js filename=intro
 const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall == null;
+const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam$3 = $(1);

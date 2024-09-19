@@ -58,7 +58,7 @@ $(a);
 
 
 `````js filename=intro
-const a = { x: 1, y: 2, z: 3 };
+const a /*:object*/ = { x: 1, y: 2, z: 3 };
 const tmpForInGen = $forIn(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext = tmpForInGen.next();

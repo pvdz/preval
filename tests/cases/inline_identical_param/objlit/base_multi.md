@@ -72,8 +72,8 @@ tmpCallCallee$9(tmpCalleeParam$9);
 const f = function ($$0, $$1, $$2, $$3) {
   const d = $$3;
   const c = $$2;
-  const b = $$1;
-  const a = $$0;
+  const b /*:number*/ = $$1;
+  const a /*:number*/ = $$0;
   debugger;
   $(a);
   $(b);

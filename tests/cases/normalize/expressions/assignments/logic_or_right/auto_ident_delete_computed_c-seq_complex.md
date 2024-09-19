@@ -54,7 +54,7 @@ $(a, arg);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(100);
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {
@@ -62,7 +62,7 @@ if (tmpCalleeParam) {
   $(2);
   const tmpDeleteCompObj = $(arg);
   const tmpDeleteCompProp = $(`y`);
-  const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  const tmpNestedComplexRhs /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }

@@ -81,7 +81,7 @@ $(x, y);
 `````js filename=intro
 let x = undefined;
 let y = 1;
-const arr = [1, 2, 3];
+const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpCalleeParam = arr[0];
   try {
@@ -89,7 +89,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     x = arr;
     arr.reverse();
     y = [5, 6];
-    const tmpIfTest = y === $;
+    const tmpIfTest /*:boolean*/ = y === $;
     if (tmpIfTest) {
       break;
     } else {

@@ -34,9 +34,9 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpBinBothLhs = {};
-const tmpBinBothRhs = {};
-const tmpCalleeParam = tmpBinBothLhs < tmpBinBothRhs;
+const tmpBinBothLhs /*:object*/ = {};
+const tmpBinBothRhs /*:object*/ = {};
+const tmpCalleeParam /*:boolean*/ = tmpBinBothLhs < tmpBinBothRhs;
 $(tmpCalleeParam);
 `````
 

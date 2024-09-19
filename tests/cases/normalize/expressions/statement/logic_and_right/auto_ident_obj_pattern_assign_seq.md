@@ -54,7 +54,7 @@ $(a, x, y);
 
 `````js filename=intro
 const tmpIfTest = $(100);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(1);
   $(2);

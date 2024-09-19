@@ -40,9 +40,9 @@ $(a);
 
 `````js filename=intro
 const tmpNewCallee = $($);
-const tmpCalleeParamSpread = new tmpNewCallee(1);
+const tmpCalleeParamSpread /*:object*/ = new tmpNewCallee(1);
 $(...tmpCalleeParamSpread);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

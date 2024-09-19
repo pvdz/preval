@@ -36,7 +36,7 @@ tmpCompObj[tmpCompProp];
 
 `````js filename=intro
 const tmpCompProp = $(`foo`);
-const obj = { foo: 10 };
+const obj /*:object*/ = { foo: 10 };
 obj[tmpCompProp];
 `````
 

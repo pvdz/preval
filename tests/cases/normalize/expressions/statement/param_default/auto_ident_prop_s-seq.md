@@ -63,8 +63,8 @@ $(a, b);
 
 `````js filename=intro
 $(undefined);
-const a = { a: 999, b: 1000 };
-const b = { c: 1 };
+const a /*:object*/ = { a: 999, b: 1000 };
+const b /*:object*/ = { c: 1 };
 $(a, b);
 `````
 

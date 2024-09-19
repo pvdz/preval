@@ -50,17 +50,17 @@ $(a);
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpChainRootProp = $(b);
-const tmpIfTest = tmpChainRootProp == null;
-const tmpCalleeParam = [`before `, ` after`];
+const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 if (tmpIfTest) {
   $(tmpCalleeParam, undefined);
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;
   $(tmpCalleeParam, tmpChainElementObject);
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

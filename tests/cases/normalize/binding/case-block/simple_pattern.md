@@ -67,10 +67,10 @@ $(a, x, y, z);
 `````js filename=intro
 const tmpSwitchDisc = $(`a`);
 const tmpBinBothRhs = $(`a`);
-const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
-const z = [10, 20, 30];
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const z /*:array*/ = [10, 20, 30];
 if (tmpIfTest) {
-  const arrPatternSplat = [...z];
+  const arrPatternSplat /*:array*/ = [...z];
   const tmpClusterSSA_x = arrPatternSplat[0];
   const tmpClusterSSA_y = arrPatternSplat[1];
   $(1, tmpClusterSSA_x, tmpClusterSSA_y, z);

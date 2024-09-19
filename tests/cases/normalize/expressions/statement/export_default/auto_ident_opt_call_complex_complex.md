@@ -52,7 +52,7 @@ $(a);
 `````js filename=intro
 let tmpAnonDefaultExport = undefined;
 const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall == null;
+const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam$3 = $(1);
@@ -60,7 +60,7 @@ if (tmpIfTest) {
   tmpAnonDefaultExport = tmpChainElementCall$1;
 }
 export { tmpAnonDefaultExport as default };
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

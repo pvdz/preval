@@ -53,7 +53,7 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 let tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
@@ -63,7 +63,7 @@ if (tmpClusterSSA_a) {
 } else {
   const tmpDeleteCompObj$1 = $(arg);
   const tmpDeleteCompProp$1 = $(`y`);
-  const tmpNestedComplexRhs = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
+  const tmpNestedComplexRhs /*:boolean*/ = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
   tmpClusterSSA_a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }

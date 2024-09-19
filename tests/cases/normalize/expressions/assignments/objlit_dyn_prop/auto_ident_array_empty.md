@@ -41,8 +41,8 @@ $(a);
 
 
 `````js filename=intro
-const a = [];
-const tmpCalleeParam = { [a]: 10 };
+const a /*:array*/ = [];
+const tmpCalleeParam /*:object*/ = { [a]: 10 };
 $(tmpCalleeParam);
 $(a);
 `````

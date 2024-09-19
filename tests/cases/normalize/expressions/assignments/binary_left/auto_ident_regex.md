@@ -42,10 +42,10 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothRhs = $(100);
-const tmpStringConcatL = $coerce(tmpBinBothRhs, `plustr`);
-const tmpCalleeParam = `/foo/${tmpStringConcatL}`;
+const tmpStringConcatL /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
+const tmpCalleeParam /*:string*/ = `/foo/${tmpStringConcatL}`;
 $(tmpCalleeParam);
-const a = /foo/;
+const a /*:regex*/ = /foo/;
 $(a);
 `````
 

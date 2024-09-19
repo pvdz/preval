@@ -60,7 +60,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpChainRootProp = $();
-const tmpIfTest = tmpChainRootProp == null;
+const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest) {
   const tmpClusterSSA_tmpReturnArg = $(undefined);
   $(tmpClusterSSA_tmpReturnArg);

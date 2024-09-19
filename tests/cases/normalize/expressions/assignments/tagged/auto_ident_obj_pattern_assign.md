@@ -54,8 +54,8 @@ $(a, x, y);
 `````js filename=intro
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
-const tmpCalleeParam = [`before `, ` after`];
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
+const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 $(tmpCalleeParam, tmpNestedAssignObjPatternRhs);
 $(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 `````

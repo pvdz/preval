@@ -87,15 +87,15 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 const a = $(`x`);
 const b = $(`y`);
-const tmpBinBothRhs$1 = $coerce(a, `string`);
-const tmpBinBothRhs = $coerce(b, `string`);
-const tmpCalleeParam = `A${tmpBinBothRhs$1}B${tmpBinBothRhs}C`;
+const tmpBinBothRhs$1 /*:string*/ = $coerce(a, `string`);
+const tmpBinBothRhs /*:string*/ = $coerce(b, `string`);
+const tmpCalleeParam /*:string*/ = `A${tmpBinBothRhs$1}B${tmpBinBothRhs}C`;
 $(tmpCalleeParam);
-const tmpBinBothRhs$9 = $coerce(a, `string`);
-const tmpBinBothRhs$7 = $coerce(b, `string`);
-const tmpBinBothRhs$13 = $coerce(a, `string`);
-const tmpBinBothRhs$11 = $coerce(b, `string`);
-const tmpCalleeParam$1 = `AA${tmpBinBothRhs$9}B${tmpBinBothRhs$7}CBA${tmpBinBothRhs$13}B${tmpBinBothRhs$11}CC`;
+const tmpBinBothRhs$9 /*:string*/ = $coerce(a, `string`);
+const tmpBinBothRhs$7 /*:string*/ = $coerce(b, `string`);
+const tmpBinBothRhs$13 /*:string*/ = $coerce(a, `string`);
+const tmpBinBothRhs$11 /*:string*/ = $coerce(b, `string`);
+const tmpCalleeParam$1 /*:string*/ = `AA${tmpBinBothRhs$9}B${tmpBinBothRhs$7}CBA${tmpBinBothRhs$13}B${tmpBinBothRhs$11}CC`;
 $(tmpCalleeParam$1);
 `````
 

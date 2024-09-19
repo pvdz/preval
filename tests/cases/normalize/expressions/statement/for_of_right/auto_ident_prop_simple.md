@@ -71,8 +71,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForOfNext.value;
   }
 }
-const a = { a: 999, b: 1000 };
-const b = { c: 1 };
+const a /*:object*/ = { a: 999, b: 1000 };
+const b /*:object*/ = { c: 1 };
 $(a, b);
 `````
 

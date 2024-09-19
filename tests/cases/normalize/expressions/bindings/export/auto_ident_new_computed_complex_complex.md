@@ -42,11 +42,11 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`\$`);
 const tmpNewCallee = tmpCompObj[tmpCompProp];
-const a = new tmpNewCallee(1);
+const a /*:object*/ = new tmpNewCallee(1);
 export { a };
 $(a);
 `````

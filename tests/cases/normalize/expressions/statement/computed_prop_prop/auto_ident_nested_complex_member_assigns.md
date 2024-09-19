@@ -76,7 +76,7 @@ $(a, b, c);
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $(`x`);
 const varInitAssignLhsComputedObj$1 = $(b);
@@ -95,9 +95,9 @@ varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
 varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-const obj = {};
+const obj /*:object*/ = {};
 obj[3];
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b, 3);
 `````
 

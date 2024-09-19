@@ -62,8 +62,8 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
-const a = delete arg.y;
+const arg /*:object*/ = { y: 1 };
+const a /*:boolean*/ = delete arg.y;
 const tmpForInGen = $forIn(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext = tmpForInGen.next();

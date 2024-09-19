@@ -64,7 +64,7 @@ const f = function ($$0) {
   const tmpReturnArg = item + 1;
   return tmpReturnArg;
 };
-const pre = [1, 2, 3];
+const pre /*:array*/ = [1, 2, 3];
 const arr = pre.map(f);
 $(arr);
 `````

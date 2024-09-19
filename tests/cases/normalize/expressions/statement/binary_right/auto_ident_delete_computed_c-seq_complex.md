@@ -49,12 +49,12 @@ $(a, arg);
 const tmpBinBothLhs = $(100);
 $(1);
 $(2);
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-const tmpBinBothRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpBinBothRhs /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
 tmpBinBothLhs + tmpBinBothRhs;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 

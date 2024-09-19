@@ -54,7 +54,7 @@ const f = function () {
   debugger;
   return undefined;
 };
-const obj = {};
+const obj /*:object*/ = {};
 obj[f];
 $(f);
 `````

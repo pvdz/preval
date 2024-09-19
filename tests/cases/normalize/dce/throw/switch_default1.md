@@ -88,7 +88,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpSwitchValue = $(1, `disc`);
 const tmpBinLhs = $(0);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   $(`keep, do not eval`);
   throw `wrong exig`;

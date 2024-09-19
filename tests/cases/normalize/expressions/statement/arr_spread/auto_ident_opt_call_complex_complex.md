@@ -51,7 +51,7 @@ $(a);
 `````js filename=intro
 let tmpArrElToSpread = undefined;
 const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall == null;
+const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam$3 = $(1);
@@ -59,7 +59,7 @@ if (tmpIfTest) {
   tmpArrElToSpread = tmpChainElementCall$1;
 }
 [...tmpArrElToSpread];
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

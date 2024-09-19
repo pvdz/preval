@@ -63,7 +63,7 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpCallObj = $(b);
 const tmpClusterSSA_a = tmpCallObj.$(1);
 const tmpForInGen = $forIn(tmpClusterSSA_a);

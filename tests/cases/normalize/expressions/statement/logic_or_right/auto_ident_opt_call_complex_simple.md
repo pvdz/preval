@@ -50,13 +50,13 @@ const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall = $($);
-  const tmpIfTest$1 = tmpChainElementCall == null;
+  const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$1) {
   } else {
     $dotCall(tmpChainElementCall, $, 1);
   }
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

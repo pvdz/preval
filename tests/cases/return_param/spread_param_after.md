@@ -73,7 +73,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 `````js filename=intro
 const f = function () {
   debugger;
-  const rest = [];
+  const rest /*:array*/ = [];
   $(`no`, rest);
   $(`inlining`);
   $(`please`);

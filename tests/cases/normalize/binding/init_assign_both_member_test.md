@@ -96,7 +96,7 @@ $(5, a);
 
 
 `````js filename=intro
-const c = {
+const c /*:object*/ = {
   get x() {
     debugger;
     $(3);
@@ -110,7 +110,7 @@ const c = {
   },
 };
 const tmpNestedAssignPropRhs = c.x;
-const b = {
+const b /*:object*/ = {
   get x() {
     debugger;
     $(1);

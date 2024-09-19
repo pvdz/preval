@@ -65,7 +65,7 @@ if (a) {
 } else {
   const tmpCalleeParam$3 = $(2);
   a = $(tmpCalleeParam$3);
-  const tmpIfTest = a === ``;
+  const tmpIfTest /*:boolean*/ = a === ``;
   if (tmpIfTest) {
     $();
   } else {

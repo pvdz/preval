@@ -51,9 +51,9 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpUnaryArg = $spy(10);
-const x = +tmpUnaryArg;
-const tmpIfTest = x & 10;
-const tmpIfTest$1 = tmpIfTest === 10;
+const x /*:number*/ = +tmpUnaryArg;
+const tmpIfTest /*:number*/ = x & 10;
+const tmpIfTest$1 /*:boolean*/ = tmpIfTest === 10;
 if (tmpIfTest$1) {
   $(`it is ten`);
 } else {

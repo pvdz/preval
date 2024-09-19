@@ -58,8 +58,8 @@ $(a, b);
 `````js filename=intro
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
-const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
-const a = { a: 999, b: 1000 };
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpClusterSSA_b = $(2);
   $(a, tmpClusterSSA_b);

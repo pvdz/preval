@@ -42,9 +42,9 @@ $(a);
 
 
 `````js filename=intro
-const obj = {};
+const obj /*:object*/ = {};
 obj[``];
-const a = [];
+const a /*:array*/ = [];
 $(a);
 `````
 

@@ -139,7 +139,7 @@ if ($) {
 if ($) {
   const x = $(5);
   $(x);
-  const tmpCalleeParam = {
+  const tmpCalleeParam /*:object*/ = {
     toString() {
       debugger;
       $(`tostring`);

@@ -100,18 +100,18 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
-const tmpClusterSSA_tmpIfTest = 1 === tmpSwitchValue;
+let tmpSwitchCaseToStart /*:number*/ = 1;
+const tmpClusterSSA_tmpIfTest /*:boolean*/ = 1 === tmpSwitchValue;
 if (tmpClusterSSA_tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$5 = 2 === tmpSwitchValue;
+  const tmpIfTest$5 /*:boolean*/ = 2 === tmpSwitchValue;
   if (tmpIfTest$5) {
     tmpSwitchCaseToStart = 2;
   } else {
   }
 }
-const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
+const tmpIfTest$9 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$9) {
   $(`fail1`);
 } else {

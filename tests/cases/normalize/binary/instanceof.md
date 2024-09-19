@@ -32,7 +32,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam = 5 instanceof Infinity;
+const tmpCalleeParam /*:boolean*/ = 5 instanceof Infinity;
 $(tmpCalleeParam);
 `````
 

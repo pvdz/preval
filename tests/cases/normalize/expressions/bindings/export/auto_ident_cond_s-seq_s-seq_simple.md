@@ -43,7 +43,7 @@ $(a);
 
 
 `````js filename=intro
-const a = 60;
+const a /*:number*/ = 60;
 export { a };
 $(60);
 `````

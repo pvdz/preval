@@ -52,7 +52,7 @@ $();
 `````js filename=intro
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $spy(0);
-const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
 } else {
   $spy(1);

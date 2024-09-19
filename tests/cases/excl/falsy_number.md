@@ -53,8 +53,8 @@ if (x) {
 
 `````js filename=intro
 const tmpBinBothRhs = $(1);
-const x = 1 * tmpBinBothRhs;
-const tmpBool = !x;
+const x /*:number*/ = 1 * tmpBinBothRhs;
+const tmpBool /*:boolean*/ = !x;
 $(tmpBool);
 `````
 

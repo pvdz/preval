@@ -107,7 +107,7 @@ $(tmpCalleeParam);
 `````js filename=intro
 const outer = function () {
   debugger;
-  const r = [undefined];
+  const r /*:array*/ = [undefined];
   $(r);
   return undefined;
 };

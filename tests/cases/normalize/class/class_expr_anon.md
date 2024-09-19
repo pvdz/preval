@@ -33,7 +33,7 @@ $(a);
 
 
 `````js filename=intro
-const a = class {};
+const a /*:class*/ = class {};
 $(a);
 `````
 

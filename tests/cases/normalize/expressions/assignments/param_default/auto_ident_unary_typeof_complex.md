@@ -66,7 +66,7 @@ $(a, arg);
 `````js filename=intro
 const tmpUnaryArg = $(1);
 $(undefined);
-const tmpNestedComplexRhs = typeof tmpUnaryArg;
+const tmpNestedComplexRhs /*:string*/ = typeof tmpUnaryArg;
 $(tmpNestedComplexRhs, 1);
 `````
 

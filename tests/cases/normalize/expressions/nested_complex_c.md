@@ -47,7 +47,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const c = [];
+const c /*:array*/ = [];
 const tmpCompObj = $(c);
 const tmpNestedComplexRhs = tmpCompObj.length;
 $(tmpNestedComplexRhs);

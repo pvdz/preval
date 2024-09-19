@@ -44,7 +44,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const tmpCalleeParam = [];
+const tmpCalleeParam /*:array*/ = [];
 const a = $(tmpCalleeParam);
 const tmpCompObj = $(a);
 const tmpCalleeParam$1 = tmpCompObj.length;

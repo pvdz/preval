@@ -45,7 +45,7 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpCalleeParam = { [-2]: 10 };
+const tmpCalleeParam /*:object*/ = { [-2]: 10 };
 $(tmpCalleeParam);
 $(-2, 1);
 `````

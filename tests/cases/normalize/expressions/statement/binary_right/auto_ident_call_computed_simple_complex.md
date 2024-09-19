@@ -46,10 +46,10 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs = $(100);
 const tmpCallCompProp = $(`\$`);
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpBinBothRhs = b[tmpCallCompProp](1);
 tmpBinBothLhs + tmpBinBothRhs;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

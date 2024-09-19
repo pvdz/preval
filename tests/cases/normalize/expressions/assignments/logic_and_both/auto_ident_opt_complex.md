@@ -66,9 +66,9 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall == null;
+const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 let tmpCalleeParam = undefined;
 if (tmpIfTest) {
 } else {
@@ -79,7 +79,7 @@ if (tmpIfTest) {
 if (a) {
   let tmpNestedComplexRhs = undefined;
   const tmpChainElementCall$1 = $(b);
-  const tmpIfTest$1 = tmpChainElementCall$1 == null;
+  const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall$1 == null;
   if (tmpIfTest$1) {
   } else {
     const tmpChainElementObject$1 = tmpChainElementCall$1.x;

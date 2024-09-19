@@ -87,7 +87,7 @@ $(undefined);
 
 
 `````js filename=intro
-let f = true;
+let f /*:boolean*/ = true;
 const g = function () {
   debugger;
   if (f) {

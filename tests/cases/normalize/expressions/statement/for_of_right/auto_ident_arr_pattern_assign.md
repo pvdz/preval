@@ -79,8 +79,8 @@ $(a, x, y);
 `````js filename=intro
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
-const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
+const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 x$1 = arrPatternSplat[0];
 const tmpClusterSSA_y = arrPatternSplat[1];
 const tmpForOfGen = $forOf(tmpNestedAssignArrPatternRhs);
@@ -93,7 +93,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForOfNext.value;
   }
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, 1, tmpClusterSSA_y);
 `````
 

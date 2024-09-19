@@ -57,7 +57,7 @@ $(1);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 new $(tmpCalleeParam, tmpCalleeParam$1);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

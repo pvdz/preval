@@ -109,7 +109,7 @@ tmpCallCallee$7(tmpCalleeParam$15, tmpCalleeParam$17);
 
 `````js filename=intro
 const g = function ($$0) {
-  const a = $$0;
+  const a /*:number*/ = $$0;
   debugger;
   const f = function () {
     debugger;

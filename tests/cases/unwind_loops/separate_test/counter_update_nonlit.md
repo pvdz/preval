@@ -51,12 +51,12 @@ while (true) {
 const max = $(10);
 $(0);
 const tmpClusterSSA_i = 0 + max;
-const tmpIfTest$1 = tmpClusterSSA_i < 10;
+const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_i < 10;
 if (tmpIfTest$1) {
   $(tmpClusterSSA_i);
   let tmpClusterSSA_i$1 = tmpClusterSSA_i + max;
   while ($LOOP_UNROLL_9) {
-    const tmpIfTest$2 = tmpClusterSSA_i$1 < 10;
+    const tmpIfTest$2 /*:boolean*/ = tmpClusterSSA_i$1 < 10;
     if (tmpIfTest$2) {
       $(tmpClusterSSA_i$1);
       tmpClusterSSA_i$1 = tmpClusterSSA_i$1 + max;

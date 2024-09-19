@@ -51,7 +51,7 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpCompProp = $(`\$`);
   const tmpNewCallee = b[tmpCompProp];

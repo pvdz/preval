@@ -56,15 +56,15 @@ const tmpCallCallee$1 = $(tmpCalleeParam$1);
 if (tmpCallCallee$1) {
   const tmpCalleeParam$3 = $(2);
   const tmpClusterSSA_tmpCallCallee$1 = $(tmpCalleeParam$3);
-  const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpClusterSSA_tmpCallCallee$1, `string`);
-  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_tmpCallCallee$1, `string`);
+  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  const tmpClusterSSA_tmpBinBothRhs$1 = $coerce(tmpCallCallee$1, `string`);
-  const tmpClusterSSA_tmpCalleeParam$1 = `before  ${tmpClusterSSA_tmpBinBothRhs$1}  after`;
+  const tmpClusterSSA_tmpBinBothRhs$1 /*:string*/ = $coerce(tmpCallCallee$1, `string`);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs$1}  after`;
   $(tmpClusterSSA_tmpCalleeParam$1);
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

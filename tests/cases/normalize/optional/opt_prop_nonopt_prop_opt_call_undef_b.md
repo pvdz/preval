@@ -46,7 +46,7 @@ if (tmpIfTest) {
 `````js filename=intro
 const tmpChainElementObject = $ObjectPrototype.b;
 const tmpChainElementObject$1 = tmpChainElementObject.c;
-const tmpIfTest$1 = tmpChainElementObject$1 == null;
+const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject$1 == null;
 if (tmpIfTest$1) {
 } else {
   $dotCall(tmpChainElementObject$1, tmpChainElementObject, 1);

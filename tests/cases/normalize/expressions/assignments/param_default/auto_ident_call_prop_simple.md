@@ -63,7 +63,7 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpNestedComplexRhs = b.$(1);
 $(undefined);
 $(tmpNestedComplexRhs);

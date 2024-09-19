@@ -48,14 +48,14 @@ $(a, arg);
 
 `````js filename=intro
 const tmpIfTest = $(100);
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 if (tmpIfTest) {
   $(1);
   $(2);
   delete arg.y;
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 

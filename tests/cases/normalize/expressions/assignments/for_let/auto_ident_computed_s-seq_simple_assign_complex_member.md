@@ -58,7 +58,7 @@ while (true) {
 
 `````js filename=intro
 const tmpNestedAssignComMemberProp = $(`c`);
-const b = { c: 10, d: 20 };
+const b /*:object*/ = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];

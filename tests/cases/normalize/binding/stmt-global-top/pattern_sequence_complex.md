@@ -47,9 +47,9 @@ $(a, b, x, y, z);
 `````js filename=intro
 $(1);
 $(2);
-const z = [10, 20, 30];
+const z /*:array*/ = [10, 20, 30];
 const bindingPatternArrRoot = $(z);
-const arrPatternSplat = [...bindingPatternArrRoot];
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
 const b = arrPatternSplat[1];
 $(a, b, 1, 2, z);

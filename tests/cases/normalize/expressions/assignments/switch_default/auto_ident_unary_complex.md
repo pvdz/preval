@@ -53,7 +53,7 @@ $(a, x);
 `````js filename=intro
 $(1);
 const tmpUnaryArg = $(1);
-const a = typeof tmpUnaryArg;
+const a /*:string*/ = typeof tmpUnaryArg;
 $(a, 1);
 `````
 

@@ -58,7 +58,7 @@ let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   const tmpObjLitVal = $(1);
-  const tmpNestedComplexRhs = { b: tmpObjLitVal };
+  const tmpNestedComplexRhs /*:object*/ = { b: tmpObjLitVal };
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {

@@ -48,7 +48,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpChainElementCall = $(undefined);
-const tmpIfTest = tmpChainElementCall == null;
+const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
   $(undefined);
 } else {

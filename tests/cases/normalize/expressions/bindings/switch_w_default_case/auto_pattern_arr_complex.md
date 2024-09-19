@@ -89,9 +89,9 @@ if (tmpIfTest$7) {
 
 
 `````js filename=intro
-const tmpCalleeParam = [1, 2];
+const tmpCalleeParam /*:array*/ = [1, 2];
 const arrAssignPatternRhs = $(tmpCalleeParam);
-const arrPatternSplat = [...arrAssignPatternRhs];
+const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
 const tmpClusterSSA_a = arrPatternSplat[0];
 $(tmpClusterSSA_a);
 $(`fail1`);

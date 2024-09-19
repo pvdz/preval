@@ -46,7 +46,7 @@ $(a);
 
 `````js filename=intro
 let tmpBinBothLhs = undefined;
-const tmpIfTest = $ == null;
+const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall = $(1);
@@ -54,7 +54,7 @@ if (tmpIfTest) {
 }
 const tmpBinBothRhs = $(100);
 tmpBinBothLhs + tmpBinBothRhs;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

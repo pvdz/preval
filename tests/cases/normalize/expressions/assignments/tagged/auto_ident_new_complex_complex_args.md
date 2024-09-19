@@ -50,8 +50,8 @@ $(a);
 const tmpNewCallee = $($);
 const tmpCalleeParam$3 = $(1);
 const tmpCalleeParam$5 = $(2);
-const a = new tmpNewCallee(tmpCalleeParam$3, tmpCalleeParam$5);
-const tmpCalleeParam = [`before `, ` after`];
+const a /*:object*/ = new tmpNewCallee(tmpCalleeParam$3, tmpCalleeParam$5);
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, a);
 $(a);
 `````

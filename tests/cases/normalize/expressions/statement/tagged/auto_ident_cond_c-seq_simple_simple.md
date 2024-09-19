@@ -48,7 +48,7 @@ $(a);
 
 `````js filename=intro
 const tmpIfTest = $(30);
-const tmpCalleeParam = [`before `, ` after`];
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam$1 = $(2);
   $(tmpCalleeParam, tmpClusterSSA_tmpCalleeParam$1);
@@ -57,7 +57,7 @@ if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam$2 = $(tmpCalleeParam$3);
   $(tmpCalleeParam, tmpClusterSSA_tmpCalleeParam$2);
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

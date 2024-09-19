@@ -59,10 +59,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-const arr = [1, 2, 3];
+const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpCalleeParam$1 = arr[0];
-  const tmpCalleeParam = parseInt(tmpCalleeParam$1);
+  const tmpCalleeParam /*:number*/ = parseInt(tmpCalleeParam$1);
   try {
     $(tmpCalleeParam);
     arr.reverse();

@@ -65,10 +65,10 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
-const tmpNestedComplexRhs = new tmpNewCallee(1);
+const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee(1);
 $(undefined);
 $(tmpNestedComplexRhs);
 `````

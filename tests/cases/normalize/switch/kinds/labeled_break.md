@@ -108,7 +108,7 @@ $(`pass`);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpSwitchDisc = $(1);
-  const tmpIfTest$1 = tmpSwitchDisc === 0;
+  const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === 0;
   if (tmpIfTest$1) {
     $(`one`);
   } else {

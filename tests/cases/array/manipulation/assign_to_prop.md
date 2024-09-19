@@ -69,7 +69,7 @@ $(arr);
 
 
 `````js filename=intro
-const arr = [10];
+const arr /*:array*/ = [10];
 $(arr);
 `````
 

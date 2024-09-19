@@ -41,10 +41,10 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const tmpCalleeParam = [`before `, ` after`];
-const tmpCalleeParam$1 = !tmpUnaryArg;
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
+const tmpCalleeParam$1 /*:boolean*/ = !tmpUnaryArg;
 $(tmpCalleeParam, tmpCalleeParam$1);
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

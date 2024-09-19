@@ -54,13 +54,13 @@ $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam, tmpCalleeParam$1, tmpCalleePara
 
 `````js filename=intro
 const f = function () {
-  const tmpPrevalAliasThis = this;
+  const tmpPrevalAliasThis /*:object*/ = this;
   debugger;
   $(tmpPrevalAliasThis);
   return undefined;
 };
-const tmpCalleeParam = { pass: 1 };
-const tmpCalleeParam$1 = [1, 2, 3];
+const tmpCalleeParam /*:object*/ = { pass: 1 };
+const tmpCalleeParam$1 /*:array*/ = [1, 2, 3];
 f.call(tmpCalleeParam, tmpCalleeParam$1, `nope`, $);
 `````
 

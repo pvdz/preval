@@ -50,12 +50,12 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = { a: 1, b: 2 };
+const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
 const tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(1);
-    const tmpCalleeParam$1 = { a: 1, b: 2 };
+    const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
     const tmpIfTest$1 = $(tmpCalleeParam$1);
     if (tmpIfTest$1) {
     } else {

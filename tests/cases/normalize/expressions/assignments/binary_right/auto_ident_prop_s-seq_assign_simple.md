@@ -51,7 +51,7 @@ $(a, b);
 const tmpBinBothLhs = $(100);
 const tmpCalleeParam = tmpBinBothLhs + 2;
 $(tmpCalleeParam);
-const b = { c: 2 };
+const b /*:object*/ = { c: 2 };
 $(2, b);
 `````
 

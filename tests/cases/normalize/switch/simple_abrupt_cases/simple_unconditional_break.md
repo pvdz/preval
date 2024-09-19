@@ -101,20 +101,20 @@ tmpSwitchBreak: {
 
 `````js filename=intro
 const tmpSwitchDisc = $(1);
-const tmpIfTest = tmpSwitchDisc === 0;
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === 0;
 if (tmpIfTest) {
   $(`one`);
   x;
 } else {
-  const tmpIfTest$1 = tmpSwitchDisc === 1;
+  const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === 1;
   if (tmpIfTest$1) {
     $(`two`);
   } else {
-    const tmpIfTest$3 = tmpSwitchDisc === 2;
+    const tmpIfTest$3 /*:boolean*/ = tmpSwitchDisc === 2;
     if (tmpIfTest$3) {
       $(`three`);
     } else {
-      const tmpIfTest$5 = tmpSwitchDisc === 3;
+      const tmpIfTest$5 /*:boolean*/ = tmpSwitchDisc === 3;
       if (tmpIfTest$5) {
         $(`four`);
       } else {

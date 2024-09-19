@@ -58,7 +58,7 @@ const h = function () {
   $();
   return undefined;
 };
-const obj = { f: 123 };
+const obj /*:object*/ = { f: 123 };
 $dotCall(h, obj);
 `````
 

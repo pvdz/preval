@@ -61,14 +61,14 @@ $(a);
 
 
 `````js filename=intro
-let tmpClusterSSA_a = NaN;
-const tmpIfTest$1 = $ == null;
-const a = { a: 999, b: 1000 };
+let tmpClusterSSA_a /*:number*/ = NaN;
+const tmpIfTest$1 /*:boolean*/ = $ == null;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest$1) {
   a ** 0;
   $(NaN);
 } else {
-  const tmpObjLitVal$1 = { e: $ };
+  const tmpObjLitVal$1 /*:object*/ = { e: $ };
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
   tmpClusterSSA_a = a * tmpChainElementCall;
   $(tmpClusterSSA_a);

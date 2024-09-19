@@ -52,7 +52,7 @@ let a = ~tmpUnaryArg;
 const tmpCalleeParam = a;
 if (a) {
   const tmpUnaryArg$1 = $(100);
-  const tmpNestedComplexRhs = ~tmpUnaryArg$1;
+  const tmpNestedComplexRhs /*:number*/ = ~tmpUnaryArg$1;
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {

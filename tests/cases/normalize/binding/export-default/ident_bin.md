@@ -40,7 +40,7 @@ $(a, b, c);
 
 
 `````js filename=intro
-const a = 5;
+const a /*:number*/ = 5;
 export { a };
 $(5, 2, 3);
 `````

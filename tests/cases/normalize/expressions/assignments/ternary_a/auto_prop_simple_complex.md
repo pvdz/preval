@@ -55,7 +55,7 @@ $(1);
 const tmpClusterSSA_tmpCalleeParam = $(100);
 $(tmpClusterSSA_tmpCalleeParam);
 const tmpAssignMemRhs = $(2);
-const a = { b: tmpAssignMemRhs };
+const a /*:object*/ = { b: tmpAssignMemRhs };
 $(a);
 `````
 

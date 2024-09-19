@@ -55,7 +55,7 @@ const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {
-  const b = { $: $ };
+  const b /*:object*/ = { $: $ };
   const tmpCallCompObj = $(b);
   const tmpCallCompProp = $(`\$`);
   const tmpNestedComplexRhs = tmpCallCompObj[tmpCallCompProp](1);

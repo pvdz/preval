@@ -84,7 +84,7 @@ if ($) {
 if ($) {
   $(undefined);
   const x = $(2);
-  const tmpSSA_x = [1, x, 2, x, 3, x, 4, x];
+  const tmpSSA_x /*:array*/ = [1, x, 2, x, 3, x, 4, x];
   $(tmpSSA_x);
   if ($) {
     $(tmpSSA_x);

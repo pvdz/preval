@@ -50,14 +50,14 @@ $(`bad`);
 `````js filename=intro
 const objPatternBeforeDefault = (1).x;
 let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
+const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  const tmpCalleeParam = { a: `fail` };
+  const tmpCalleeParam /*:object*/ = { a: `fail` };
   objPatternAfterDefault = $(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-const tmpCalleeParam$3 = [];
+const tmpCalleeParam$3 /*:array*/ = [];
 objPatternRest(objPatternAfterDefault, tmpCalleeParam$3, undefined);
 $(`bad`);
 `````

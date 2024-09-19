@@ -70,7 +70,7 @@ while (true) {
 
 
 `````js filename=intro
-let x = 10;
+let x /*:number*/ = 10;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const t = $(x);
   if (t) {

@@ -112,10 +112,10 @@ if (tmpIfTest$7) {
 
 
 `````js filename=intro
-const tmpClusterSSA_b = { x: 1 };
+const tmpClusterSSA_b /*:object*/ = { x: 1 };
 const tmpNestedAssignComMemberObj = $(tmpClusterSSA_b);
 const tmpNestedAssignComMemberProp = $(`x`);
-const tmpClusterSSA_c = { y: 2 };
+const tmpClusterSSA_c /*:object*/ = { y: 2 };
 const varInitAssignLhsComputedObj = $(tmpClusterSSA_c);
 const varInitAssignLhsComputedProp = $(`y`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;

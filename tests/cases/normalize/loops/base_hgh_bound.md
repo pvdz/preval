@@ -75,9 +75,9 @@ $(7);
 $(8);
 $(9);
 $(10);
-let tmpClusterSSA_i$2 = 11;
+let tmpClusterSSA_i$2 /*:number*/ = 11;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest$1 = tmpClusterSSA_i$2 < 1000000000;
+  const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_i$2 < 1000000000;
   if (tmpIfTest$1) {
     $(tmpClusterSSA_i$2);
     tmpClusterSSA_i$2 = tmpClusterSSA_i$2 + 1;

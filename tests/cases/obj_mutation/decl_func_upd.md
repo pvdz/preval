@@ -56,7 +56,7 @@ const f = function () {
   blob.thing = `boing`;
   return undefined;
 };
-const blob = { thing: `woop` };
+const blob /*:object*/ = { thing: `woop` };
 $(f);
 blob.thing = `boing`;
 $(blob);

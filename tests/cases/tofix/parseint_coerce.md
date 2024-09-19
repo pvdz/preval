@@ -60,8 +60,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpStringFirstArg = $(`1`);
-  const x = $coerce(tmpStringFirstArg, `string`);
-  const y = parseInt(x);
+  const x /*:string*/ = $coerce(tmpStringFirstArg, `string`);
+  const y /*:number*/ = parseInt(x);
   try {
     $(y);
   } catch (e) {

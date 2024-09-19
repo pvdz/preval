@@ -80,7 +80,7 @@ const g = function (...$$0) {
   x = typeof b;
   return undefined;
 };
-const tmpCalleeParam = [1, 2];
+const tmpCalleeParam /*:array*/ = [1, 2];
 $(tmpCalleeParam);
 g(20, 30, 40, 50, 60);
 $(x);

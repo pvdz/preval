@@ -48,8 +48,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_a = new $(1);
-const obj = {};
+const tmpClusterSSA_a /*:object*/ = new $(1);
+const obj /*:object*/ = {};
 obj[tmpClusterSSA_a];
 $(tmpClusterSSA_a);
 `````

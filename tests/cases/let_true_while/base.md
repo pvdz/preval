@@ -57,13 +57,13 @@ $(x, y);
 `````js filename=intro
 const y = $(5);
 $(true);
-const tmpNestedComplexRhs = y - 1;
+const tmpNestedComplexRhs /*:number*/ = y - 1;
 let tmpClusterSSA_y = tmpNestedComplexRhs;
 let tmpClusterSSA_x = tmpNestedComplexRhs;
 if (tmpNestedComplexRhs) {
   while ($LOOP_UNROLL_10) {
     $(tmpClusterSSA_x);
-    const tmpNestedComplexRhs$1 = tmpClusterSSA_y - 1;
+    const tmpNestedComplexRhs$1 /*:number*/ = tmpClusterSSA_y - 1;
     tmpClusterSSA_y = tmpNestedComplexRhs$1;
     tmpClusterSSA_x = tmpNestedComplexRhs$1;
     if (tmpNestedComplexRhs$1) {

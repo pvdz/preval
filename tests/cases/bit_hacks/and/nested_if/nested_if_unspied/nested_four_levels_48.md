@@ -71,12 +71,12 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpUnaryArg = $spy(48);
-const x = +tmpUnaryArg;
-const tmpIfTest = x & 10;
-const tmpIfTest$1 = tmpIfTest === 10;
+const x /*:number*/ = +tmpUnaryArg;
+const tmpIfTest /*:number*/ = x & 10;
+const tmpIfTest$1 /*:boolean*/ = tmpIfTest === 10;
 if (tmpIfTest$1) {
-  const tmpIfTest$3 = x & 48;
-  const tmpIfTest$5 = tmpIfTest$3 === 48;
+  const tmpIfTest$3 /*:number*/ = x & 48;
+  const tmpIfTest$5 /*:boolean*/ = tmpIfTest$3 === 48;
   if (tmpIfTest$5) {
     $(`it is 58`);
   } else {

@@ -41,8 +41,8 @@ $(x, y, z);
 
 
 `````js filename=intro
-const z = [10, 20, 30];
-const arrPatternSplat = [...z];
+const z /*:array*/ = [10, 20, 30];
+const arrPatternSplat /*:array*/ = [...z];
 const x = arrPatternSplat[0];
 const y = arrPatternSplat[1];
 export { x, y };

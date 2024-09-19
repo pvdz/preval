@@ -75,7 +75,7 @@ $(x);
 `````js filename=intro
 $(undefined);
 let x = undefined;
-const list = [100];
+const list /*:array*/ = [100];
 const tmpForOfGen = $forOf(list);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext = tmpForOfGen.next();

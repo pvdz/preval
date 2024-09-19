@@ -39,9 +39,9 @@ $(a);
 
 `````js filename=intro
 const tmpNewCallee = $($);
-const tmpArrElToSpread = new tmpNewCallee(1);
+const tmpArrElToSpread /*:object*/ = new tmpNewCallee(1);
 [...tmpArrElToSpread];
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

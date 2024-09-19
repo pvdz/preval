@@ -55,7 +55,7 @@ $(a);
 
 `````js filename=intro
 let tmpIfTest = false;
-const tmpIfTest$1 = $ == null;
+const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
   const tmpChainElementCall = $(1);
@@ -65,7 +65,7 @@ if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(1);
     let tmpIfTest$2 = false;
-    const tmpIfTest$4 = $ == null;
+    const tmpIfTest$4 /*:boolean*/ = $ == null;
     if (tmpIfTest$4) {
     } else {
       const tmpChainElementCall$1 = $(1);
@@ -78,7 +78,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

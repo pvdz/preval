@@ -53,7 +53,7 @@ $(a, arg);
 
 `````js filename=intro
 const tmpDeleteCompProp = $(`y`);
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 delete arg[tmpDeleteCompProp];
 const tmpIfTest = $(0);
 if (tmpIfTest) {
@@ -66,7 +66,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 

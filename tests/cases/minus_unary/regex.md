@@ -33,8 +33,8 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpUnaryArg = /1/;
-const tmpCalleeParam = -tmpUnaryArg;
+const tmpUnaryArg /*:regex*/ = /1/;
+const tmpCalleeParam /*:number*/ = -tmpUnaryArg;
 $(tmpCalleeParam);
 `````
 

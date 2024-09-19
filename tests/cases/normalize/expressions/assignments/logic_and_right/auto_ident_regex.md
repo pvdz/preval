@@ -47,7 +47,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
-  const tmpNestedComplexRhs = /foo/;
+  const tmpNestedComplexRhs /*:regex*/ = /foo/;
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {

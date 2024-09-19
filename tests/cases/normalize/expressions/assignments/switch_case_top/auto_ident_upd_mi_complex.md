@@ -64,17 +64,17 @@ $(a, b);
 `````js filename=intro
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
-const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
-const b = { x: 1 };
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const b /*:object*/ = { x: 1 };
 if (tmpIfTest) {
   const tmpCalleeParam = $(b);
   const tmpNestedAssignObj = $(tmpCalleeParam);
   const tmpBinLhs = tmpNestedAssignObj.x;
-  const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
+  const tmpNestedPropCompoundComplexRhs /*:number*/ = tmpBinLhs - 1;
   tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
   $(tmpNestedPropCompoundComplexRhs, b);
 } else {
-  const a = { a: 999, b: 1000 };
+  const a /*:object*/ = { a: 999, b: 1000 };
   $(a, b);
 }
 `````

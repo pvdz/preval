@@ -81,7 +81,7 @@ $(x, a, b, `final`);
 
 `````js filename=intro
 let x = $(10);
-const b = {
+const b /*:object*/ = {
   set x($$0) {
     debugger;
     x = $(30, `from set`);

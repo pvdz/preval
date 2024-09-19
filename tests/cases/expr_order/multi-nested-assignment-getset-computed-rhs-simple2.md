@@ -84,7 +84,7 @@ $(d);
 
 
 `````js filename=intro
-const objd = {
+const objd /*:object*/ = {
   get foo() {
     debugger;
     return 100;

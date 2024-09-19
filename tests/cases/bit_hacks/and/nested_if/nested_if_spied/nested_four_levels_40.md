@@ -70,13 +70,13 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const x = $spy(40);
-const tmpIfTest = x & 8;
+const tmpIfTest /*:number*/ = x & 8;
 if (tmpIfTest) {
-  const tmpIfTest$1 = x & 2;
+  const tmpIfTest$1 /*:number*/ = x & 2;
   if (tmpIfTest$1) {
-    const tmpIfTest$3 = x & 32;
+    const tmpIfTest$3 /*:number*/ = x & 32;
     if (tmpIfTest$3) {
-      const tmpIfTest$5 = x & 16;
+      const tmpIfTest$5 /*:number*/ = x & 16;
       if (tmpIfTest$5) {
         $(`it is 58`);
       } else {

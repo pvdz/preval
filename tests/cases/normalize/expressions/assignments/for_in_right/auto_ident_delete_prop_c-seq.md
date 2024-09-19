@@ -67,9 +67,9 @@ $(a, arg);
 `````js filename=intro
 $(1);
 $(2);
-const arg = { y: 1 };
+const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj = $(arg);
-const tmpClusterSSA_a = delete tmpDeleteObj.y;
+const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
 const tmpForInGen = $forIn(tmpClusterSSA_a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext = tmpForInGen.next();

@@ -46,15 +46,15 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $ == null;
-const tmpCalleeParam = [`before `, ` after`];
+const tmpIfTest /*:boolean*/ = $ == null;
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 if (tmpIfTest) {
   $(tmpCalleeParam, undefined);
 } else {
   const tmpChainElementCall = $(1);
   $(tmpCalleeParam, tmpChainElementCall);
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

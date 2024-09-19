@@ -39,7 +39,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const o = $(undefined);
-const tmpIfTest = o == null;
+const tmpIfTest /*:boolean*/ = o == null;
 if (tmpIfTest) {
 } else {
   delete o.x;

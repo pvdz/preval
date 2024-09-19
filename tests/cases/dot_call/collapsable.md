@@ -44,7 +44,7 @@ $(out);
 
 `````js filename=intro
 const str = $(`hello`);
-const regex = /e/g;
+const regex /*:regex*/ = /e/g;
 const out = str.replace(regex, `u`);
 $(out);
 `````

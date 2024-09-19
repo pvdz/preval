@@ -48,10 +48,10 @@ const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
 const tmpObjLitVal$5 = $(1);
 const tmpObjLitVal$9 = $(3);
-const tmpBinBothLhs = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-const tmpBinBothRhs = { x: tmpObjLitVal$5, y: 2, z: tmpObjLitVal$9 };
+const tmpBinBothLhs /*:object*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+const tmpBinBothRhs /*:object*/ = { x: tmpObjLitVal$5, y: 2, z: tmpObjLitVal$9 };
 tmpBinBothLhs + tmpBinBothRhs;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

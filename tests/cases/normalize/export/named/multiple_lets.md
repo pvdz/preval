@@ -34,8 +34,8 @@ export { a, b };
 
 
 `````js filename=intro
-const a = 10;
-const b = 20;
+const a /*:number*/ = 10;
+const b /*:number*/ = 20;
 export { a, b };
 `````
 

@@ -86,14 +86,14 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall == null;
+const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
   const tmpChainRootComputed = $(`\$`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$1 = tmpChainElementObject == null;
+  const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$1) {
   } else {
     const tmpCalleeParam$5 = $(1);
@@ -105,12 +105,12 @@ const tmpCalleeParam = a;
 if (a) {
   let tmpNestedComplexRhs = undefined;
   const tmpChainElementCall$3 = $(b);
-  const tmpIfTest$3 = tmpChainElementCall$3 == null;
+  const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$3 == null;
   if (tmpIfTest$3) {
   } else {
     const tmpChainRootComputed$1 = $(`\$`);
     const tmpChainElementObject$1 = tmpChainElementCall$3[tmpChainRootComputed$1];
-    const tmpIfTest$5 = tmpChainElementObject$1 == null;
+    const tmpIfTest$5 /*:boolean*/ = tmpChainElementObject$1 == null;
     if (tmpIfTest$5) {
     } else {
       const tmpCalleeParam$11 = $(1);

@@ -56,7 +56,7 @@ if (tmpCompObj) {
   tmpCompObj = $(tmpCalleeParam$1);
 }
 tmpCompObj.a;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

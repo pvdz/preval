@@ -60,7 +60,7 @@ $(`end`);
 
 
 `````js filename=intro
-let test = 4;
+let test /*:number*/ = 4;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`loop`);
   test = test - 1;

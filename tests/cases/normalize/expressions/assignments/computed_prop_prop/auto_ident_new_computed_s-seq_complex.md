@@ -50,10 +50,10 @@ $(a);
 
 `````js filename=intro
 const tmpCompProp$1 = $(`\$`);
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpNewCallee = b[tmpCompProp$1];
-const tmpClusterSSA_a = new tmpNewCallee(1);
-const obj = {};
+const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
+const obj /*:object*/ = {};
 obj[tmpClusterSSA_a];
 $(tmpClusterSSA_a);
 `````

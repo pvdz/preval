@@ -60,7 +60,7 @@ $(a);
 
 `````js filename=intro
 $(100);
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 let a = b.$(1);
 if (a) {
   while ($LOOP_UNROLL_10) {

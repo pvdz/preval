@@ -46,10 +46,10 @@ $(a, arg);
 
 
 `````js filename=intro
-const arg = { y: 1 };
-const a = delete arg.y;
-const tmpClusterSSA_a = delete arg.y;
-const tmpCalleeParam = a + tmpClusterSSA_a;
+const arg /*:object*/ = { y: 1 };
+const a /*:boolean*/ = delete arg.y;
+const tmpClusterSSA_a /*:boolean*/ = delete arg.y;
+const tmpCalleeParam /*:number*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a, arg);
 `````

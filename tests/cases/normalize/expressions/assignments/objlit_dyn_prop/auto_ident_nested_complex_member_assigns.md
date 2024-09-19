@@ -77,7 +77,7 @@ $(a, b, c);
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`x`);
 const varInitAssignLhsComputedObj = $(b);
@@ -96,7 +96,7 @@ varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-const tmpCalleeParam = { [3]: 10 };
+const tmpCalleeParam /*:object*/ = { [3]: 10 };
 $(tmpCalleeParam);
 $(3, b, 3);
 `````

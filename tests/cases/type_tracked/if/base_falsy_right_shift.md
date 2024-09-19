@@ -59,7 +59,7 @@ if (x) {
 
 `````js filename=intro
 const tmpBinLhs = $(1);
-const x = tmpBinLhs >>> 0;
+const x /*:number*/ = tmpBinLhs >>> 0;
 if (x) {
   $(x, `fail1`);
 } else {

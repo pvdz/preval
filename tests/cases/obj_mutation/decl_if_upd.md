@@ -45,7 +45,7 @@ $(blob);
 
 
 `````js filename=intro
-const blob = { thing: `woop` };
+const blob /*:object*/ = { thing: `woop` };
 if ($) {
   blob.thing = `boing`;
 } else {

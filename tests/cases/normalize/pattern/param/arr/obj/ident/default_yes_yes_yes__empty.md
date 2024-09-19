@@ -76,21 +76,21 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const tmpArrElement = { x: `pass3` };
-const tmpCalleeParam = [tmpArrElement];
+const tmpArrElement /*:object*/ = { x: `pass3` };
+const tmpCalleeParam /*:array*/ = [tmpArrElement];
 const bindingPatternArrRoot = $(tmpCalleeParam);
-const arrPatternSplat = [...bindingPatternArrRoot];
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep = undefined;
-const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
-  const tmpCalleeParam$1 = { x: `fail2` };
+  const tmpCalleeParam$1 /*:object*/ = { x: `fail2` };
   arrPatternStep = $(tmpCalleeParam$1);
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
 const objPatternBeforeDefault = arrPatternStep.x;
-const tmpIfTest$3 = objPatternBeforeDefault === undefined;
+const tmpIfTest$3 /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest$3) {
   const tmpClusterSSA_x = $(`pass`);
   $(tmpClusterSSA_x);

@@ -52,7 +52,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-let tmpBinBothLhs = 1;
+let tmpBinBothLhs /*:number*/ = 1;
 if ($) {
 } else {
   tmpBinBothLhs = 2;

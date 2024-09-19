@@ -93,7 +93,7 @@ $(a);
 `````js filename=intro
 $(100);
 const c = $(100);
-let a = !c;
+let a /*:boolean*/ = !c;
 if (c) {
 } else {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

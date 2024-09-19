@@ -46,7 +46,7 @@ $(diff);
 `````js filename=intro
 const a = $(1);
 const b = $(1);
-const same = a === b;
+const same /*:boolean*/ = a === b;
 $(same);
 `````
 

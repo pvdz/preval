@@ -50,14 +50,14 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const x = class {
+const x /*:class*/ = class {
   [`very stringy`]() {
     debugger;
     const tmpReturnArg = $(1);
     return tmpReturnArg;
   }
 };
-const tmpCallObj = new x();
+const tmpCallObj /*:object*/ = new x();
 const tmpCalleeParam = tmpCallObj[`very stringy`]();
 $(tmpCalleeParam);
 `````

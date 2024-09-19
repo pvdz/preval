@@ -64,10 +64,10 @@ $(p, q);
 
 
 `````js filename=intro
-const b = [10, 20];
+const b /*:array*/ = [10, 20];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const arrAssignPatternRhs = $(b);
-  const arrPatternSplat = [...arrAssignPatternRhs];
+  const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
   arrPatternSplat[0];
   arrPatternSplat[1];
 }

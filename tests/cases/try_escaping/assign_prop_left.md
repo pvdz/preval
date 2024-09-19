@@ -78,7 +78,7 @@ $(a);
 
 `````js filename=intro
 const a = $(1);
-const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
+const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     arr[286] = a;

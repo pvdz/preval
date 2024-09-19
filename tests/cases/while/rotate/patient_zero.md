@@ -51,7 +51,7 @@ while ($LOOP_UNROLL_10) {
 
 
 `````js filename=intro
-let x = /foo/;
+let x /*:regex*/ = /foo/;
 x.foo = `object`;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmp = x.foo;

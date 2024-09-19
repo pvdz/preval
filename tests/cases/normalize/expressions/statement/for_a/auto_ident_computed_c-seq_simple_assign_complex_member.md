@@ -57,7 +57,7 @@ $(a, b);
 
 
 `````js filename=intro
-const b = { c: 10, d: 20 };
+const b /*:object*/ = { c: 10, d: 20 };
 const tmpAssignComMemLhsObj = $(b);
 const tmpAssignComMemLhsProp = $(`c`);
 const tmpCompObj = $(b);
@@ -75,7 +75,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 

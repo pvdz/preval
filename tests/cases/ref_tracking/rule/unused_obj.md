@@ -91,7 +91,7 @@ let b = 1;
 let a = 1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
-  const sum = b + 1;
+  const sum /*:number*/ = b + 1;
   b = sum;
   a = sum;
   if (sum) {

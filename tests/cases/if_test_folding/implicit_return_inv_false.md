@@ -62,7 +62,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 x;
-const tmpCalleeParam = Boolean(x);
+const tmpCalleeParam /*:boolean*/ = Boolean(x);
 $(tmpCalleeParam);
 `````
 

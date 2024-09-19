@@ -107,7 +107,7 @@ if ($) {
 `````js filename=intro
 if ($) {
   $(1);
-  let tmpLoopRetCode = true;
+  let tmpLoopRetCode /*:boolean*/ = true;
   const tmpssa2_x = $(2);
   $(tmpssa2_x);
   if ($) {

@@ -46,7 +46,7 @@ while (true) {
 
 
 `````js filename=intro
-const a = [1, 2, 3];
+const a /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(a);
   $(1);

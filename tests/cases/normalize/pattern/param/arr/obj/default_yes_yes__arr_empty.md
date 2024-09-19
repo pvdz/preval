@@ -77,7 +77,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const arrPatternStep = $(`pass`);
-let objPatternCrashTest = arrPatternStep === undefined;
+let objPatternCrashTest /*:boolean*/ = arrPatternStep === undefined;
 if (objPatternCrashTest) {
 } else {
   objPatternCrashTest = arrPatternStep === null;

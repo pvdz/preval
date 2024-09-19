@@ -63,7 +63,7 @@ $(x);
 const r = function ($$0) {
   const n = $$0;
   debugger;
-  const tmpIfTest = n > 100;
+  const tmpIfTest /*:boolean*/ = n > 100;
   if (tmpIfTest) {
     return 10;
   } else {

@@ -81,7 +81,7 @@ f();
 const f = function () {
   debugger;
   let x = $(1);
-  let tmpCalleeParam$1 = false;
+  let tmpCalleeParam$1 /*:boolean*/ = false;
   if ($) {
     x = 10;
   } else {

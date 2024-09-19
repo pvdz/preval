@@ -108,7 +108,7 @@ const d = function () {
 };
 d();
 d();
-const objd = {
+const objd /*:object*/ = {
   get foo() {
     debugger;
     return 100;

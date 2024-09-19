@@ -64,7 +64,7 @@ if (a) {
   const tmpNewCallee$1 = $($);
   const tmpCalleeParam$5 = $(1);
   const tmpCalleeParam$7 = $(2);
-  const tmpNestedComplexRhs = new tmpNewCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
+  const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {

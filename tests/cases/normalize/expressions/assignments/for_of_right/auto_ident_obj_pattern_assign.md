@@ -79,7 +79,7 @@ $(a, x, y);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 x$1 = tmpObjLitVal;
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 const tmpForOfGen = $forOf(tmpNestedAssignObjPatternRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext = tmpForOfGen.next();

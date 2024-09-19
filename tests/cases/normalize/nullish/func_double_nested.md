@@ -78,9 +78,9 @@ $(1);
 $(2);
 $(3);
 const tmpObjLitVal$3 = $();
-const tmpObjLitVal$1 = { c: tmpObjLitVal$3 };
-const tmpObjLitVal = { b: tmpObjLitVal$1 };
-const obj = { a: tmpObjLitVal };
+const tmpObjLitVal$1 /*:object*/ = { c: tmpObjLitVal$3 };
+const tmpObjLitVal /*:object*/ = { b: tmpObjLitVal$1 };
+const obj /*:object*/ = { a: tmpObjLitVal };
 const tmpClusterSSA_tmpReturnArg$1 = $(obj);
 $(tmpClusterSSA_tmpReturnArg$1);
 `````

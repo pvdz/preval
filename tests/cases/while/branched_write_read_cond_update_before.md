@@ -66,7 +66,7 @@ while (true) {
 `````js filename=intro
 let x = $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest = x % 3;
+  const tmpIfTest /*:number*/ = x % 3;
   let tmpIfTest$1 = false;
   if (tmpIfTest) {
     x = $(10, `ten`);

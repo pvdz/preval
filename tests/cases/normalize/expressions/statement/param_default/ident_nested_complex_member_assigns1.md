@@ -57,7 +57,7 @@ $(100);
 
 
 `````js filename=intro
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpAssignMemLhsObj = $(b);
 const varInitAssignLhsComputedObj = $(b);
 varInitAssignLhsComputedObj.x = 3;

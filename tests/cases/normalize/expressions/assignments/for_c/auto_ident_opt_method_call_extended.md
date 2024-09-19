@@ -66,7 +66,7 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   a = undefined;
-  const tmpObjLitVal$1 = { e: $ };
+  const tmpObjLitVal$1 /*:object*/ = { e: $ };
   while ($LOOP_UNROLL_10) {
     tmpObjLitVal$1.e(1);
     const tmpIfTest$1 = $(1);

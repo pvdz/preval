@@ -42,8 +42,8 @@ $(a);
 
 
 `````js filename=intro
-const obj = {};
-const a = /foo/;
+const obj /*:object*/ = {};
+const a /*:regex*/ = /foo/;
 obj[a];
 $(a);
 `````

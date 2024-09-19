@@ -131,8 +131,8 @@ $(x);
 
 
 `````js filename=intro
-let x = 1;
-let $finalAbruptAction = 0;
+let x /*:number*/ = 1;
+let $finalAbruptAction /*:number*/ = 0;
 let $finalCatchArg = undefined;
 try {
   if ($) {
@@ -146,10 +146,10 @@ try {
   $finalCatchArg = $finalImplicit;
 }
 $(x);
-const tmpIfTest = $finalAbruptAction === 1;
+const tmpIfTest /*:boolean*/ = $finalAbruptAction === 1;
 if (tmpIfTest) {
 } else {
-  const tmpIfTest$1 = $finalAbruptAction === 2;
+  const tmpIfTest$1 /*:boolean*/ = $finalAbruptAction === 2;
   if (tmpIfTest$1) {
     throw $finalCatchArg;
   } else {

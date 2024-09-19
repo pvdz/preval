@@ -46,7 +46,7 @@ $(`bad`);
 
 `````js filename=intro
 const objPatternNoDefault = (0).x;
-let objPatternCrashTest = objPatternNoDefault === undefined;
+let objPatternCrashTest /*:boolean*/ = objPatternNoDefault === undefined;
 if (objPatternCrashTest) {
 } else {
   objPatternCrashTest = objPatternNoDefault === null;

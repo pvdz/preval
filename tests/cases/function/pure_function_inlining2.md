@@ -9,9 +9,7 @@
 ## Input
 
 `````js filename=intro
-const rule = function($$0) {
-  const desc = $$0;
-  debugger;
+const rule = function(desc) {
   const func = $;
   PURPLE;
   `purple`;
@@ -38,9 +36,8 @@ rule(`You have to listen to me`);
 
 `````js filename=intro
 const rule = function ($$0) {
-  let $dlr_$$0 = $$0;
+  let desc = $$0;
   debugger;
-  const desc = $dlr_$$0;
   const func = $;
   null;
   `purple`;
@@ -67,9 +64,8 @@ rule(`You have to listen to me`);
 
 `````js filename=intro
 const rule = function ($$0) {
-  let $dlr_$$0 = $$0;
+  let desc = $$0;
   debugger;
-  const desc = $dlr_$$0;
   const func = $;
   const tmpStringConcatL = $coerce(desc, `plustr`);
   const tmpBinBothLhs = `purpleRule:reset "`;
@@ -96,9 +92,9 @@ rule(`You have to listen to me`);
 
 `````js filename=intro
 const rule = function ($$0) {
-  const $dlr_$$0 = $$0;
+  const desc /*:string*/ = $$0;
   debugger;
-  const e = `purpleRule:reset "${$dlr_$$0}"`;
+  const e /*:string*/ = `purpleRule:reset "${desc}"`;
   $(e);
   return undefined;
 };

@@ -81,7 +81,7 @@ $(a, b, c);
 
 `````js filename=intro
 $(1);
-const b = { x: 1 };
+const b /*:object*/ = { x: 1 };
 const tmpAssignComMemLhsObj = $(b);
 const tmpAssignComMemLhsProp = $(`x`);
 const varInitAssignLhsComputedObj = $(b);
@@ -100,7 +100,7 @@ varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b, 3);
 `````
 

@@ -49,7 +49,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpChainElementObject = $ObjectPrototype.b;
-const tmpIfTest$1 = tmpChainElementObject == null;
+const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
 if (tmpIfTest$1) {
   $(undefined);
 } else {

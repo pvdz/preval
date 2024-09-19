@@ -40,7 +40,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpBinBothLhs = $(5);
 const tmpBinBothRhs = $(`10`);
-const x = tmpBinBothLhs * tmpBinBothRhs;
+const x /*:number*/ = tmpBinBothLhs * tmpBinBothRhs;
 $(x);
 `````
 

@@ -48,7 +48,7 @@ $(a);
 
 `````js filename=intro
 $(1);
-const a = /foo/;
+const a /*:regex*/ = /foo/;
 $(a);
 `````
 

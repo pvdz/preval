@@ -45,7 +45,7 @@ $(x);
 
 
 `````js filename=intro
-const x = [undefined, undefined, 1];
+const x /*:array*/ = [undefined, undefined, 1];
 $(x);
 `````
 

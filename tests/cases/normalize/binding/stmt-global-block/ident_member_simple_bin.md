@@ -52,7 +52,7 @@ if (tmpIfTest) {
 `````js filename=intro
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  const b = { x: 7 };
+  const b /*:object*/ = { x: 7 };
   $(7, b, 3);
 } else {
 }

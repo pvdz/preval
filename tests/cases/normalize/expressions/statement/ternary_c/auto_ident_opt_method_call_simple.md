@@ -54,10 +54,10 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const b = { c: $ };
+  const b /*:object*/ = { c: $ };
   b.c(1);
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

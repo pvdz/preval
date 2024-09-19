@@ -67,7 +67,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
-  const tmpPrevalAliasThis = this;
+  const tmpPrevalAliasThis /*:object*/ = this;
   debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
@@ -81,7 +81,7 @@ const f = function () {
     return undefined;
   }
 };
-const obj = { f: f, foo: 10 };
+const obj /*:object*/ = { f: f, foo: 10 };
 const tmpCalleeParam = obj.f();
 $(tmpCalleeParam);
 `````

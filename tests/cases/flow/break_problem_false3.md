@@ -153,7 +153,7 @@ f();
 `````js filename=intro
 const tmpIfTest$3 = $(false);
 if (tmpIfTest$3) {
-  const $dlr_$$1 = [];
+  const $dlr_$$1 /*:array*/ = [];
   $($dlr_$$1);
 } else {
   $(`pass`);

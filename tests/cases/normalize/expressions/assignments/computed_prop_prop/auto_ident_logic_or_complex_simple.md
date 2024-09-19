@@ -54,7 +54,7 @@ if (a) {
 } else {
   a = 2;
 }
-const obj = {};
+const obj /*:object*/ = {};
 obj[a];
 $(a);
 `````

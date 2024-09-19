@@ -75,7 +75,7 @@ $(x, `end`);
 const b = $(`x`, `one`);
 const c = $(`y`, `one`);
 $(false, `middle`);
-const a = b === c;
+const a /*:boolean*/ = b === c;
 $(a, `end`);
 `````
 

@@ -49,7 +49,7 @@ if (y) {
 
 `````js filename=intro
 const x = $(1);
-const y = x == null;
+const y /*:boolean*/ = x == null;
 if (y) {
   $(`else`);
 } else {

@@ -47,7 +47,7 @@ let a$1 = varInitAssignLhsComputedRhs;
 
 `````js filename=intro
 const varInitAssignLhsComputedProp = $(`x`);
-const b = { x: 2 };
+const b /*:object*/ = { x: 2 };
 b[varInitAssignLhsComputedProp] = 3;
 `````
 

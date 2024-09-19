@@ -52,8 +52,8 @@ $(a);
 const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-const obj = {};
+const a /*:object*/ = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+const obj /*:object*/ = {};
 obj[a];
 $(a);
 `````

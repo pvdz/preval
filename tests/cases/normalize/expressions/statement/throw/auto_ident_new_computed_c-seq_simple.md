@@ -42,10 +42,10 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
-const tmpThrowArg = new tmpNewCallee(1);
+const tmpThrowArg /*:object*/ = new tmpNewCallee(1);
 throw tmpThrowArg;
 `````
 

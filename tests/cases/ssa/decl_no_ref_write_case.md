@@ -84,7 +84,7 @@ if ($) {
     needle.f();
     return undefined;
   };
-  const needle = { a: a };
+  const needle /*:object*/ = { a: a };
   $(needle);
 } else {
 }

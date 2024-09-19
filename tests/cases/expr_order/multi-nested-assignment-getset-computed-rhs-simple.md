@@ -294,12 +294,12 @@ tmp(obja, objb, objc, objd);
 const tmp = function (...$$0) {
   const a$1 = $$0;
   debugger;
-  const tmpCalleeParam = [`\$:`, a$1, b, c, d, e, obja, objb, objc, objd, `::`, ...a$1];
+  const tmpCalleeParam /*:array*/ = [`\$:`, a$1, b, c, d, e, obja, objb, objc, objd, `::`, ...a$1];
   $(tmpCalleeParam);
   const tmpReturnArg = a$1[0];
   return tmpReturnArg;
 };
-const obja = {
+const obja /*:object*/ = {
   get a() {
     debugger;
     tmp(`a.get`);
@@ -313,7 +313,7 @@ const obja = {
     return 1000;
   },
 };
-const objb = {
+const objb /*:object*/ = {
   get b() {
     debugger;
     tmp(`b.get`);
@@ -329,7 +329,7 @@ const objb = {
     return 2000;
   },
 };
-const objc = {
+const objc /*:object*/ = {
   get c() {
     debugger;
     tmp(`c.get`);
@@ -347,7 +347,7 @@ const objc = {
     return 3000;
   },
 };
-const objd = {
+const objd /*:object*/ = {
   get d() {
     debugger;
     tmp(`d.get`);

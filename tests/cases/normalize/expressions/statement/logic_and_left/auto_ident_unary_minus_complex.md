@@ -42,12 +42,12 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const tmpIfTest = -tmpUnaryArg;
+const tmpIfTest /*:number*/ = -tmpUnaryArg;
 if (tmpIfTest) {
   $(100);
 } else {
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

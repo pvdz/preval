@@ -50,8 +50,8 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const x = $(200);
-const y = x & 200;
-const tmpIfTest = y === 200;
+const y /*:number*/ = x & 200;
+const tmpIfTest /*:boolean*/ = y === 200;
 if (tmpIfTest) {
   $(`pass`);
 } else {

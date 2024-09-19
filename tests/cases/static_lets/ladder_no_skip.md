@@ -196,7 +196,7 @@ $(x);
 
 
 `````js filename=intro
-let x = 10;
+let x /*:number*/ = 10;
 $(1);
 $(1);
 if ($) {

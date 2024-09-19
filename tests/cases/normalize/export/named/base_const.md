@@ -35,7 +35,7 @@ $(foo);
 
 
 `````js filename=intro
-const foo = 10;
+const foo /*:number*/ = 10;
 export { foo };
 $(10);
 `````

@@ -100,7 +100,7 @@ tmpCallCallee(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const tmpClusterSSA_args = [];
+const tmpClusterSSA_args /*:array*/ = [];
 $(tmpClusterSSA_args);
 `````
 

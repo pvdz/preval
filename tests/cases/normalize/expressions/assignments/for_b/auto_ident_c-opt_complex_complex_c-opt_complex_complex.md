@@ -69,15 +69,15 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-const tmpObjLitVal = { y: 1 };
-const b = { x: tmpObjLitVal };
+const tmpObjLitVal /*:object*/ = { y: 1 };
+const b /*:object*/ = { x: tmpObjLitVal };
 const tmpChainElementCall = $(b);
-const tmpIfTest$1 = tmpChainElementCall == null;
+const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$3 = tmpChainElementObject == null;
+  const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$3) {
   } else {
     const tmpChainRootComputed$1 = $(`y`);
@@ -89,12 +89,12 @@ if (a) {
   while ($LOOP_UNROLL_10) {
     $(1);
     const tmpChainElementCall$1 = $(b);
-    const tmpIfTest$2 = tmpChainElementCall$1 == null;
+    const tmpIfTest$2 /*:boolean*/ = tmpChainElementCall$1 == null;
     if (tmpIfTest$2) {
     } else {
       const tmpChainRootComputed$2 = $(`x`);
       const tmpChainElementObject$2 = tmpChainElementCall$1[tmpChainRootComputed$2];
-      const tmpIfTest$4 = tmpChainElementObject$2 == null;
+      const tmpIfTest$4 /*:boolean*/ = tmpChainElementObject$2 == null;
       if (tmpIfTest$4) {
       } else {
         const tmpChainRootComputed$4 = $(`y`);

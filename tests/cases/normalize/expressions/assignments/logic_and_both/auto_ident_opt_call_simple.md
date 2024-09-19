@@ -61,7 +61,7 @@ $(a);
 `````js filename=intro
 let a = undefined;
 let tmpCalleeParam = undefined;
-const tmpIfTest = $ == null;
+const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall = $(1);
@@ -70,7 +70,7 @@ if (tmpIfTest) {
 }
 if (a) {
   let tmpNestedComplexRhs = undefined;
-  const tmpIfTest$1 = $ == null;
+  const tmpIfTest$1 /*:boolean*/ = $ == null;
   if (tmpIfTest$1) {
   } else {
     const tmpChainElementCall$1 = $(1);

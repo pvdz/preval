@@ -97,7 +97,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const a$1 = {
+const a$1 /*:object*/ = {
   a() {
     debugger;
     return a$1;
@@ -117,7 +117,7 @@ const a$1 = {
 };
 const tmpChainElementCall$1 = a$1.b();
 const tmpChainElementObject$1 = tmpChainElementCall$1.c;
-const tmpIfTest = tmpChainElementObject$1 == null;
+const tmpIfTest /*:boolean*/ = tmpChainElementObject$1 == null;
 if (tmpIfTest) {
   $(undefined);
 } else {

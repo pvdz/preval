@@ -32,7 +32,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam = { [10000]: 10 };
+const tmpCalleeParam /*:object*/ = { [10000]: 10 };
 $(tmpCalleeParam);
 `````
 

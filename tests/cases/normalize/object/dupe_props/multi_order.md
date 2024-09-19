@@ -51,7 +51,7 @@ $(x);
 $(`1`);
 $(`2`);
 $(`3`);
-const x = {
+const x /*:object*/ = {
   a() {
     debugger;
     return undefined;

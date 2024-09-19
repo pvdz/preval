@@ -34,7 +34,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam = [-100];
+const tmpCalleeParam /*:array*/ = [-100];
 $(tmpCalleeParam);
 `````
 

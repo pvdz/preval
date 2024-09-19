@@ -43,7 +43,7 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const a = b.$(1);
 const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };

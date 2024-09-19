@@ -48,11 +48,11 @@ $(a);
 
 
 `````js filename=intro
-const b = { $: $ };
+const b /*:object*/ = { $: $ };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $(`\$`);
 const tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
-const obj = {};
+const obj /*:object*/ = {};
 obj[tmpClusterSSA_a];
 $(tmpClusterSSA_a);
 `````

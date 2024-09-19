@@ -50,7 +50,7 @@ $(a);
 const tmpCalleeParam$1 = $(1);
 const tmpBinBothRhs = $(tmpCalleeParam$1);
 let tmpClusterSSA_a = undefined;
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpBinBothRhs) {
   tmpClusterSSA_a = a * 2;
   $(tmpClusterSSA_a);

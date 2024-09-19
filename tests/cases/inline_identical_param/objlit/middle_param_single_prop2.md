@@ -63,9 +63,9 @@ f(3, tmpCalleeParam$13, `z`);
 
 
 `````js filename=intro
-const tmpCalleeParam$7 = { a: 1 };
+const tmpCalleeParam$7 /*:object*/ = { a: 1 };
 $(1, `y`, tmpCalleeParam$7);
-const tmpCalleeParam$13 = { a: 3 };
+const tmpCalleeParam$13 /*:object*/ = { a: 3 };
 $(3, `z`, tmpCalleeParam$13);
 `````
 

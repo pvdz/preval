@@ -53,14 +53,14 @@ if (tmpCalleeParamSpread) {
   const tmpClusterSSA_tmpCalleeParamSpread = $(tmpCalleeParam$1);
   $(...tmpClusterSSA_tmpCalleeParamSpread);
 } else {
-  const tmpIfTest = tmpCalleeParamSpread === ``;
+  const tmpIfTest /*:boolean*/ = tmpCalleeParamSpread === ``;
   if (tmpIfTest) {
     $();
   } else {
     throw `Preval: Attempting to spread primitive that is not an empty string`;
   }
 }
-const a = { a: 999, b: 1000 };
+const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 

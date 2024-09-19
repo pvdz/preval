@@ -49,7 +49,7 @@ $(a, x);
 $(1);
 $(2);
 const a = $(1);
-const tmpCalleeParam = [`before `, ` after`];
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, a);
 $(a, 1);
 `````

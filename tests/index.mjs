@@ -23,6 +23,7 @@ import {
   toNormalizedResult, ASSERT,
 } from './utils.mjs';
 import {
+  DIM,
   VERBOSE_TRACING,
 } from '../src/constants.mjs';
 import {
@@ -180,7 +181,11 @@ let fail = 0; // crash
 let badNorm = 0; // evaluation of normalized code does not match input
 let badFinal = 0; // evaluation of final output does not match input
 
-testCases.forEach((tc, i) => runTestCase({ ...tc, withOutput: testCases.length === 1 && !CONFIG.onlyNormalized }, i));
+try {
+  testCases.forEach((tc, i) => runTestCase({ ...tc, withOutput: testCases.length === 1 && !CONFIG.onlyNormalized }, i));
+} catch {
+  console.log(DIM + 'At least one test crashed hard.' + RESET);
+}
 
 if (isMainThread) {
   if (CONFIG.fileVerbatim) {
@@ -1075,8 +1080,15 @@ function runTestCase(
     console.log('###################################################', caseIndex + 1, '/', testCases.length, '[', fname, ']');
 
     console.log(`TEST ${RED}FAIL${RESET} Threw an error`);
-    console.log('(stack should be printed above. uncomment me if not)');
-    console.log(lastError.stack || lastError);
+    if (
+      lastError.message?.includes?.('PREVAL ASSERT:') ||
+      lastError.includes?.('PREVAL ASSERT:') ||
+      lastError.stack?.includes('PREVAL ASSERT:')
+    ) {
+      console.log('(stack should be printed above. uncomment me if not)');
+    } else {
+      console.log(lastError.stack || lastError);
+    }
     throw new Error('the test failed...');
   }
 

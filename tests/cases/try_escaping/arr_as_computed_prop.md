@@ -75,7 +75,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpCalleeParam = obj[`1,2,3`];
     $(tmpCalleeParam);
     arr.reverse();
-    const tmpBinLhs = arr[0];
+    const tmpBinLhs /*:primitive*/ = arr[0];
     const tmpIfTest /*:boolean*/ = tmpBinLhs === $;
     if (tmpIfTest) {
       break;

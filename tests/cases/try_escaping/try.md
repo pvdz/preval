@@ -76,7 +76,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     } catch (e) {
       $(2);
     }
-    const tmpCalleeParam = arr[0];
+    const tmpCalleeParam /*:primitive*/ = arr[0];
     $(tmpCalleeParam);
     arr.reverse();
   } catch (e$1) {

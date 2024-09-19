@@ -88,7 +88,7 @@ $(f);
 const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   x = 2;
-  const tmpCalleeParam = arr[0];
+  const tmpCalleeParam /*:primitive*/ = arr[0];
   try {
     $(tmpCalleeParam);
     arr.reverse();

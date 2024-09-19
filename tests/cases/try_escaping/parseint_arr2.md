@@ -89,7 +89,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const a = arr[2];
+  const a /*:primitive*/ = arr[2];
   $(a);
   const b /*:number*/ = parseInt(a);
   const c /*:number*/ = b / 1;
@@ -100,7 +100,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     arr.push(M);
   }
 }
-const tmpCalleeParam = arr[1];
+const tmpCalleeParam /*:primitive*/ = arr[1];
 $(tmpCalleeParam);
 `````
 

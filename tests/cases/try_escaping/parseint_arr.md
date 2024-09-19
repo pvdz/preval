@@ -77,7 +77,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const x = arr[0];
+  const x /*:primitive*/ = arr[0];
   $(x);
   const y /*:number*/ = parseInt(x);
   if (y) {

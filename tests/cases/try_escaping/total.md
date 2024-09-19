@@ -215,23 +215,23 @@ $(`j`);
 $(`k`);
 const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCalleeParam$2 = arr[0];
+  const tmpCalleeParam$2 /*:primitive*/ = arr[0];
   $(tmpCalleeParam$2);
-  const a$1 = arr[286];
+  const a$1 /*:primitive*/ = arr[286];
   const b$1 /*:number*/ = parseInt(a$1);
-  const d$1 = arr[181];
+  const d$1 /*:primitive*/ = arr[181];
   const e$1 /*:number*/ = parseInt(d$1);
-  const h$1 = arr[308];
+  const h$1 /*:primitive*/ = arr[308];
   const i$1 /*:number*/ = parseInt(h$1);
-  const n$1 = arr[32];
+  const n$1 /*:primitive*/ = arr[32];
   const o$1 /*:number*/ = parseInt(n$1);
-  const s$1 = arr[86];
+  const s$1 /*:primitive*/ = arr[86];
   const t$1 /*:number*/ = parseInt(s$1);
-  const w$1 = arr[87];
+  const w$1 /*:primitive*/ = arr[87];
   const x$1 /*:number*/ = parseInt(w$1);
-  const A$1 = arr[30];
+  const A$1 /*:primitive*/ = arr[30];
   const B$1 /*:number*/ = parseInt(A$1);
-  const F$1 = arr[356];
+  const F$1 /*:primitive*/ = arr[356];
   const G$1 /*:number*/ = parseInt(F$1);
   const f$1 /*:number*/ = -e$1;
   const j$1 /*:number*/ = -i$1;
@@ -261,7 +261,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     arr.push(M$1);
   }
 }
-const tmpCalleeParam$1 = arr[0];
+const tmpCalleeParam$1 /*:primitive*/ = arr[0];
 $(tmpCalleeParam$1);
 `````
 

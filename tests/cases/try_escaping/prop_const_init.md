@@ -62,7 +62,7 @@ const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     arr.reverse();
-    const x = arr[0];
+    const x /*:primitive*/ = arr[0];
     $(x);
   } catch (e) {
     $(`fail`);

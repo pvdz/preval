@@ -61,7 +61,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCalleeParam$1 = arr[0];
+  const tmpCalleeParam$1 /*:primitive*/ = arr[0];
   const tmpCalleeParam /*:number*/ = parseInt(tmpCalleeParam$1);
   try {
     $(tmpCalleeParam);

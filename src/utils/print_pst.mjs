@@ -2,7 +2,7 @@ import {ASSERT} from "../utils.mjs"
 
 export function printPst(node, config = {rename: false, indent: '', refPids: false}) {
   if (config.rename) {
-    config.names = new Map;
+    config.names = new Map; // Map<Identifier | '#SKIP>
     if (!config.globals) config.globals = new Set;
   }
   //ASSERT(/^ *$/.test(indent), 'no obj', [indent]);
@@ -161,6 +161,12 @@ function printRef(indent, config, node) {
       const n = size % 26;
       nextName = 'abcdefghijklmnopqrstuvwxyz'[n] + nextName;
       size = Math.floor(size / 26);
+    }
+    if (['do', 'in', 'for', 'let', 'if', 'var'].includes(nextName)) {
+      // This leads to a keyword and invalid code so inject a placeholder and move to the next index
+      // Expand this list to include four letter keywords if necessary... or just all of them.
+      config.names.set('#SKIP', nextName);
+      return printRef(indent, config, node);
     }
     config.names.set(node.name, nextName);
     return nextName + suffix;

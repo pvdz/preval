@@ -49,7 +49,40 @@ export const SO_MESSAGE = '<max pcode call depth exceeded>';
 
 /** @var {Array<string>} we need the func node because a let binding can have multiple funcs assigned to it. true means its a built-in we support */
 export const pcodeSupportedBuiltins = [
-  'parseInt', // global builtin
+  // global builtins (only include those that return a primitive we can transform into)
+  //'clearInterval', // has side-effect. returns an object in nodejs
+  //'clearTimeout', // has side-effect. returns an object in nodejs
+  'parseInt',
+  'parseFloat',
+  //'setInterval', // (obviously) has side-effect
+  //'setTimeout', // (obviously) has side-effect
+  'isNaN',
+  //'eval', // dangerous
+  'isFinite',
+  //'Array', // returns object
+  'Boolean',
+  //'Date', // returns object
+  //'Error', // returns object
+  //'JSON', // Cant call this
+  //'Math', // Cant call this
+  //'Map', // returns object
+  'Number',
+  //'Object', // returns object
+  //'RegExp', // returns object
+  //'Set', // returns object
+  'String',
+  //'Function', // returns object
+
+  // NodeJS / Browser
+  'encodeURI',
+  'decodeURI',
+  'encodeURIComponent',
+  'decodeURIComponent',
+  'escape',
+  'unescape',
+  'btoa',
+  'atob',
+
   'String.fromCharCode', // built-in static function
   'string.charAt', // built-in instance method
   'number.toString', // built-in method
@@ -452,6 +485,7 @@ function compileExpression(exprNode, regs, fdata, stmt, withAssign=false) {
     case 'UnaryExpression': {
       ASSERT('+-~!typeof'.includes(exprNode.operator), 'unary operator asserted in pcanCompile', exprNode.operator);
       if (exprNode.operator === '-') return ['neg', ...compileExpression(exprNode.argument, regs, fdata, stmt)];
+      if (exprNode.operator === '+') return ['pos', ...compileExpression(exprNode.argument, regs, fdata, stmt)];
       return [exprNode.operator, ...compileExpression(exprNode.argument, regs, fdata, stmt)];
     }
     case 'Param': return ['=', '$$' + exprNode.index, ''];
@@ -666,6 +700,11 @@ function prunStmt(registers, bytecode, pcodeData, fdata, prng, usePrng, depth) {
           vlog('return', registers.$return);
           return RETURN;
         }
+        else if (op[1] === 'pos') {
+          registers.$return = op[2] ? +registers[op[2]] : +op[3];
+          vlog('return', registers.$return);
+          return RETURN;
+        }
         registers.$return = op[1] ? registers[op[1]] : op[2];
         vlog('return', registers.$return);
         return RETURN;
@@ -677,6 +716,11 @@ function prunStmt(registers, bytecode, pcodeData, fdata, prng, usePrng, depth) {
 
         if (op[1] === 'neg') { // Extreme edge case but.
           registers.$throw = op[2] ? -registers[op[2]] : -op[3];
+          vlog('throw', registers.$return);
+          return RETURN;
+        }
+        else if (op[1] === 'pos') { // Extremer edge case but.
+          registers.$throw = op[2] ? +registers[op[2]] : +op[3];
           vlog('throw', registers.$return);
           return RETURN;
         }
@@ -748,7 +792,6 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
     case '>': return prunVal(registers, op[2], op[3]) > prunVal(registers, op[4], op[5]);
     case '>=': return prunVal(registers, op[2], op[3]) >= prunVal(registers, op[4], op[5]);
 
-    // + should not appear I think
     //case '+': return +prunVal(registers, op[2], op[3]);
     //case '-': return -prunVal(registers, op[2], op[3]);
     case '!': return !prunVal(registers, op[2], op[3]);
@@ -756,6 +799,8 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
     case 'typeof': return typeof prunVal(registers, op[2], op[3]);
     // unary minus, not to be confused with subtraction
     case 'neg': return -prunVal(registers, op[2], op[3]);
+    // unary plus, not to be confused with addition
+    case 'pos': return +prunVal(registers, op[2], op[3]);
 
     case '/': return prunVal(registers, op[2], op[3]) / prunVal(registers, op[4], op[5]);
     case '*': return prunVal(registers, op[2], op[3]) * prunVal(registers, op[4], op[5]);
@@ -775,7 +820,38 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
       }
       if (pcodeSupportedBuiltins.includes(op[2])) {
         switch (op[2]) {
+          //case 'clearInterval': throw new Error('Do not call `clearInterval`');
+          //case 'clearTimeout': throw new Error('Do not call `clearTimeout`');
           case 'parseInt': return parseInt(...arr);
+          case 'parseFloat': return parseFloat(...arr);
+          case 'setInterval': throw new Error('Do not call `setInterval`');
+          case 'setTimeout': throw new Error('Do not call `setTimeout`');
+          case 'isNaN': return isNaN(...arr);
+          case 'eval': throw new Error('Do not call `eval`');
+          case 'isFinite': return isFinite(...arr);
+          //case 'Array':
+          case 'Boolean': return Boolean(...arr);
+          //case 'Date':
+          //case 'Error':
+          //case 'JSON':
+          //case 'Map':
+          case 'Number': return Number(...arr);
+          //case 'Object':
+          //case 'RegExp':
+          //case 'Set':
+          case 'String': return String(...arr);
+          case 'Function': throw new Error('Do not call `Function`');
+
+          case 'encodeURI': return encodeURI(...arr);
+          case 'decodeURI': return decodeURI(...arr);
+          case 'encodeURIComponent': return encodeURIComponent(...arr);
+          case 'decodeURIComponent': return decodeURIComponent(...arr);
+          case 'escape': return escape(...arr);
+          case 'unescape': return unescape(...arr);
+          case 'btoa': return btoa(...arr);
+          case 'atob': return atob(...arr);
+
+
           case 'number.toString': {
             const v = prunVal(registers, op[3], op[4]);
             ASSERT(typeof v === 'number');

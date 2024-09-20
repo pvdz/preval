@@ -33,23 +33,24 @@ import {
 // It's fine to up but would have to be upped in code. Can't pass this as an argument. Well. Not without changing smoe logic around first.
 export const MAX_UNROLL_TRUE_COUNT = 1000;
 
-const globalNames = new Map([
+// Don't add preval symbols here. It's used for pcode/$free too
+const BUILTIN_GLOBAL_FUNCS = [
   ['clearInterval', 'function'],
   ['clearTimeout', 'function'],
   ['parseInt', 'function'],
   ['parseFloat', 'function'],
   ['setInterval', 'function'],
   ['setTimeout', 'function'],
-  ['undefined', { mustBeType: 'undefined', mustBeFalsy: true, mustBeTruthy: false, mustBePrimitive: true, primitiveValue: undefined }],
+  ['isNaN', 'function'],
+  ['eval', 'function'],
+  ['isFinite', 'function'],
   ['Array', 'function'],
   ['Boolean', 'function'],
   ['Date', 'function'],
   ['Error', 'function'],
-  ['Infinity', { mustBeType: 'number', mustBeFalsy: true, mustBeTruthy: false, mustBePrimitive: true, primitiveValue: Infinity }],
   ['JSON', 'object'],
   ['Math', 'object'],
   ['Map', 'function'],
-  ['NaN', { mustBeType: 'number', mustBeFalsy: true, mustBeTruthy: false, mustBePrimitive: true, primitiveValue: NaN }],
   ['Number', 'function'],
   ['Object', 'function'],
   ['RegExp', 'function'],
@@ -58,7 +59,23 @@ const globalNames = new Map([
   ['Function', 'function'],
 
   // NodeJS / Browser
+  ['encodeURI', 'function'],
+  ['decodeURI', 'function'],
   ['encodeURIComponent', 'function'],
+  ['decodeURIComponent', 'function'],
+  ['escape', 'function'],
+  ['unescape', 'function'],
+  ['btoa', 'function'],
+  ['atob', 'function'],
+];
+export const BUILTIN_GLOBAL_FUNC_NAMES = new Set(BUILTIN_GLOBAL_FUNCS.map(arr => arr[0]));
+
+const globalNames = new Map([
+  ...BUILTIN_GLOBAL_FUNCS,
+
+  ['undefined', { mustBeType: 'undefined', mustBeFalsy: true, mustBeTruthy: false, mustBePrimitive: true, primitiveValue: undefined }],
+  ['NaN', { mustBeType: 'number', mustBeFalsy: true, mustBeTruthy: false, mustBePrimitive: true, primitiveValue: NaN }],
+  ['Infinity', { mustBeType: 'number', mustBeFalsy: true, mustBeTruthy: false, mustBePrimitive: true, primitiveValue: Infinity }],
 
   // nodejs
   ['module', 'object'],

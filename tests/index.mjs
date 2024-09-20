@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { preval } from '../src/index.mjs';
 import * as AST from '../src/ast.mjs';
+import {setPrintVarTyping} from '../lib/printer.mjs';
 import {
   RED,
   GREEN,
@@ -371,7 +372,9 @@ function runTestCase(
           // Changed is either falsy, or {action: string (name of plugin), changes: number, next: phase1 | normal}
           if (options.logPhases) {
             const f = path.join(options.logDir, `preval.pass.${passIndex}.loop.${phaseLoopIndex}.phase${phaseIndex}.log.js`);
+            if (phaseIndex >= 1) setPrintVarTyping(true, fdata);
             const code = tmat(fdata.tenkoOutput.ast, true);
+            if (phaseIndex >= 1) setPrintVarTyping(false);
             const now = Date.now();
             console.log(`--log: Logging state of pass ${passIndex}, loop ${phaseLoopIndex}, ${phaseIndex ? `phase ${phaseIndex}` : 'normal '} to disk:`, f, '(', code.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase 2/3: changed by ${changed.what}` : '');
             lastWrite = now;

@@ -708,7 +708,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (!meta.preNormalizeTdzCheckDecl) return;
     if (shown === 10) vlog(`Omitting further output...`);
-    if (++shown < 10) vlog(`Testing \`${name}\` now...`);
+    if (++shown < 10) vlog('Testing', [name], 'now...');
 
     let pfunc = meta.preNormalizeTdzCheckList[0]?.pfunc;
     for (let i=1; i<meta.preNormalizeTdzCheckList.length; ++i) {

@@ -476,7 +476,7 @@ export function registerGlobalIdent(
     // Note: This should be typing information that holds for any point in the life cycle of the binding
     //       For constants that's easy but for lets this severely restricts what we can track. In most cases just the typeof.
     //       See getCleanTypingObject()
-    typing: getCleanTypingObject(),
+    typing: getCleanTypingObject(), // Set in phase1 and phase1.1
 
     // Array<undefined | ReturnType<getPrimitiveType>>, available after phase1
     // Only set for functions that get called at least once. And only for "ident" calls (that
@@ -484,7 +484,7 @@ export function registerGlobalIdent(
     // not escape. If a param index is "undefined" then either a call did not have a primitive
     // there, or two calls had different primitives there. Otherwise, all ident-calls had the
     // same primitive in that index.
-    callerArgs: undefined,
+    callerArgs: undefined, // set in phase1.1
   };
   ASSERT(name);
   ASSERT(!/^\$\$\d+$/.test(name), 'Should not be calling this function for special param name idents $$123');
@@ -1507,7 +1507,6 @@ function _inferNodeTyping(fdata, valueNode) {
       }
       if (valueNode.callee.type === 'MemberExpression' && !valueNode.callee.computed) {
         if (valueNode.callee.object.type === 'Identifier') {
-
           switch (valueNode.callee.object.name + '.' + valueNode.callee.property.name) {
             case 'Array.from': {
               return createTypingObject({
@@ -1624,99 +1623,21 @@ function _inferNodeTyping(fdata, valueNode) {
             }
             default: {
               // We have no real idea what's going on here yet
-              // TODO: we can track the callee and see if the return type reveals a clue...
+
+              // This may miss in phase1 if the typing is not yet known but would be discovered/settled in phase1.1
+              const meta = fdata.globallyUniqueNamingRegistry.get(valueNode.callee.object.name);
+              if (meta.typing?.mustBeType) {
+                const t = getMetaTypingFromTypedMethod(meta.typing.mustBeType, valueNode.callee.property.name);
+                if (t) return t;
+              }
+
               return createTypingObject({});
             }
           }
         }
         else if (AST.isPrimitive(valueNode.callee.object) && !valueNode.callee.computed) {
-          switch (AST.getPrimitiveType(valueNode.callee.object) + '.' + valueNode.callee.property.name) {
-            case 'boolean.toString': {
-              return createTypingObject({
-                mustBeType: 'string',
-              });
-            }
-
-            case 'number.toPrecision':
-            case 'number.toString':
-            case 'number.toLocaleString':
-            case 'number.toFixed':
-            case 'number.toExponential': {
-              return createTypingObject({
-                mustBeType: 'string',
-              });
-            }
-            case 'number.valueOf': {
-              return createTypingObject({
-                mustBeType: 'number',
-              });
-            }
-
-            case 'string.charCodeAt': {
-              return createTypingObject({
-                mustBeType: 'number', // Can be NaN though, for OOB
-              });
-            }
-            case 'string.length': {
-              return createTypingObject({
-                mustBeType: 'number',
-              });
-            }
-            case 'string.charAt': {
-              return createTypingObject({
-                mustBeType: 'string', // Seems to always return a string, even if the arg is missing or not a number
-              });
-            }
-            case 'string.concat': {
-              return createTypingObject({
-                mustBeType: 'string',
-              });
-            }
-            case 'string.includes': {
-              return createTypingObject({
-                mustBeType: 'boolean',
-              });
-            }
-            case 'string.lastIndexOf':
-            case 'string.indexOf': {
-              return createTypingObject({
-                mustBeType: 'number',
-              });
-            }
-            // string.match returns objects
-            case 'string.replace': {
-              return createTypingObject({
-                mustBeType: 'string',
-              });
-            }
-            case 'string.slice': {
-              return createTypingObject({
-                mustBeType: 'string',
-              });
-            }
-            // string.split returns an array of strings
-            case 'string.substring':
-            case 'string.substr': {
-              return createTypingObject({
-                mustBeType: 'string',
-              });
-            }
-            case 'string.toString': {
-              return createTypingObject({
-                mustBeType: 'string',
-              });
-            }
-            case 'string.toLowerCase': {
-              return createTypingObject({
-                mustBeType: 'string',
-              });
-            }
-            case 'string.toUpperCase': {
-              return createTypingObject({
-                mustBeType: 'string',
-              });
-            }
-          }
+          const t = getMetaTypingFromTypedMethod(AST.getPrimitiveType(valueNode.callee.object), valueNode.callee.property.name);
+          if (t) return t;
         }
       }
 
@@ -1829,6 +1750,31 @@ function _inferNodeTyping(fdata, valueNode) {
               mustBeTruthy: true,
 
               builtinTag: 'Boolean#' + valueNode.property.name,
+            });
+          }
+        }
+
+        if (AST.isPrimitive(valueNode)) {
+          if (AST.getPrimitiveType(valueNode) === 'string' && valueNode.property.name === 'length') {
+            const str = AST.getPrimitiveValue(valueNode);
+            return createTypingObject({
+              mustBeType: 'number',
+              mustBeTruthy: str.length > 0,
+              mustBeValue: str.length,
+
+              worstCaseValueSet: new Set([str]),
+              mustBePrimitive: true,
+              primitiveValue: str,
+            });
+          }
+        }
+
+        if (valueNode.object.type === 'Identifier' && valueNode.property.name === 'length' && valueNode.object.name !== 'arguments') {
+          const meta = fdata.globallyUniqueNamingRegistry.get(valueNode.object.name);
+          if (meta.typing?.mustBeType === 'string') {
+            return createTypingObject({
+              mustBeType: 'number',
+              mustBePrimitive: true,
             });
           }
         }
@@ -2764,4 +2710,94 @@ function isOneSetBit(v) {
   // Alternative, we could create an object/Set with 32 entries and do a straight lookup. Not sure what's faster. Won't matter much here.
 
   return 1 << (31 - Math.clz32(v)) === v;
+}
+
+function getMetaTypingFromTypedMethod(objType, propName) {
+  switch (objType + '.' + propName) {
+    case 'boolean.toString': {
+      return createTypingObject({
+        mustBeType: 'string',
+      });
+    }
+
+    case 'number.toPrecision':
+    case 'number.toString':
+    case 'number.toLocaleString':
+    case 'number.toFixed':
+    case 'number.toExponential': {
+      return createTypingObject({
+        mustBeType: 'string',
+      });
+    }
+    case 'number.valueOf': {
+      return createTypingObject({
+        mustBeType: 'number',
+      });
+    }
+
+    case 'string.charCodeAt': {
+      return createTypingObject({
+        mustBeType: 'number', // Can be NaN though, for OOB
+      });
+    }
+    case 'string.length': {
+      return createTypingObject({
+        mustBeType: 'number',
+      });
+    }
+    case 'string.charAt': {
+      return createTypingObject({
+        mustBeType: 'string', // Seems to always return a string, even if the arg is missing or not a number
+      });
+    }
+    case 'string.concat': {
+      return createTypingObject({
+        mustBeType: 'string',
+      });
+    }
+    case 'string.includes': {
+      return createTypingObject({
+        mustBeType: 'boolean',
+      });
+    }
+    case 'string.lastIndexOf':
+    case 'string.indexOf': {
+      return createTypingObject({
+        mustBeType: 'number',
+      });
+    }
+    // string.match returns objects
+    case 'string.replace': {
+      return createTypingObject({
+        mustBeType: 'string',
+      });
+    }
+    case 'string.slice': {
+      return createTypingObject({
+        mustBeType: 'string',
+      });
+    }
+    // string.split returns an array of strings
+    case 'string.substring':
+    case 'string.substr': {
+      return createTypingObject({
+        mustBeType: 'string',
+      });
+    }
+    case 'string.toString': {
+      return createTypingObject({
+        mustBeType: 'string',
+      });
+    }
+    case 'string.toLowerCase': {
+      return createTypingObject({
+        mustBeType: 'string',
+      });
+    }
+    case 'string.toUpperCase': {
+      return createTypingObject({
+        mustBeType: 'string',
+      });
+    }
+  }
 }

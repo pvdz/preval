@@ -52,7 +52,7 @@ export function _freeFuncs(fdata, prng, usePrng) {
   /** @var {Map<string, {func: FunctionExpressionNode, calls: Set<string>}>} */
   const candidates = new Map;
   /** @var {Map<string, FunctionExpressionNode|true>} we need the func node because a let binding can have multiple funcs assigned to it. true means its a built-in we support */
-  const validated = new Map(pcodeSupportedBuiltins.map(name => [name, true]));
+  const validated = new Map(Array.from(pcodeSupportedBuiltins).map(name => [name, true]));
   /** @var {Set<string>} */
   const validatedUserFuncNames = new Set;
 
@@ -138,7 +138,7 @@ export function _freeFuncs(fdata, prng, usePrng) {
     vlog('Now compiling validated funcs'); // We should lazily compile them, actually. Init to undefined and compile them when used...
 
     validated.forEach((funcNode, funcName) => {
-      if (!pcodeSupportedBuiltins.includes(funcName) ) {
+      if (!pcodeSupportedBuiltins.has(funcName) ) {
         vgroup('-', funcName);
         const pcode = pcompile(funcNode, fdata);
         fdata.pcodeOutput.set(+funcNode.$p.pid, { pcode, funcNode, name: funcName });

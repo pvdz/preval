@@ -15,9 +15,10 @@ import {
   REF_TRACK_TRACING,
   assertNoDupeNodes,
 } from '../utils.mjs';
+import { inferNodeTyping, mergeTyping } from '../bindings.mjs';
 
 // This phase walks the AST a few times to discover things for which it needs phase1 to complete
-// Currently it discovers call args (for which it needs the meta.typing data)
+// Currently it discovers call args (for which it needs the meta.typing data) and propagated mustBeType cases
 
 export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, refTest, pcodeTest, verboseTracing) {
   const ast = fdata.tenkoOutput.ast;
@@ -198,10 +199,24 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
   groupEnd();
   log('Walked AST to collect func call arg types', Date.now() - now, 'ms');
 
+  // Collect all const decls that have no typing yet.
+  const untypedConstDecls = new Set;
+
   // Set the param typing if we know
   const now2 = Date.now();
   function _paramWalker(node, before, nodeType, path) {
     if (before) return;
+    if (nodeType === 'VariableDeclaration' && node.kind === 'const') {
+      const meta = fdata.globallyUniqueNamingRegistry.get(node.declarations[0].id.name);
+      if (!meta.typing?.mustBeType) {
+        vlog('## added decl for', node.declarations[0].id.name, '(', meta.typing?.mustBeType, ')');
+        untypedConstDecls.add({node, meta});
+      } else {
+        vlog('## decl for', node.declarations[0].id.name, 'has typing;', meta.typing.mustBeType)
+      }
+    } else if (nodeType === 'VariableDeclaration') {
+      vlog('## skipped decl for', node.declarations[0].id.name);
+    }
     if (nodeType !== 'FunctionExpression') return;
 
     const pathNodes = path.nodes;
@@ -336,6 +351,34 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
   walk(_paramWalker, ast, 'ast');
   groupEnd();
   log('Walked AST to type params, in', Date.now() - now2, 'ms');
+
+  vlog('');
+  vgroup('Trying to resolve a mustBeType of', untypedConstDecls.size, 'var decls');
+  let typingUpdated = 0;
+  let typingChanged = true;
+  while (typingChanged && untypedConstDecls.size) {
+    typingChanged = false;
+    vgroup('TypingLoop,', untypedConstDecls.size, 'left');
+    untypedConstDecls.forEach(obj => {
+      const {node, meta} = obj;
+      if (!meta.typing?.mustBeType) {
+        const name = node.declarations[0].id.name;
+        const init = node.declarations[0].init;
+        vlog('Resolving .typing of `' + name + '` with the details of the rhs', init.type);
+        const newTyping = inferNodeTyping(fdata, init);
+        vlog('Results in', newTyping?.mustBeType, 'which we will inject');
+        if (newTyping?.mustBeType) {
+          meta.typing = newTyping; // Is there any reason we shouldn't overwrite it anyways? It may have discovered other typing things?
+          typingChanged = true;
+          typingUpdated += 1;
+          untypedConstDecls.delete(obj);
+        }
+      }
+    });
+    vgroupEnd();
+  }
+  vlog('All typing settled now..., updated', typingUpdated, 'times. Still have', untypedConstDecls.size, 'decls without a mustBeType, sadge');
+  vgroupEnd();
 
   assertNoDupeNodes(ast, 'body');
 

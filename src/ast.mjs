@@ -2841,3 +2841,45 @@ export function getSerializableArrayParts(arrayMeta, fdata) {
     return getSerializableArrayParts(meta, fdata);
   });
 }
+
+
+export function isStatementCalling(stmtNode) {
+  // Assumes normalized code. Returns CallNode or undefined
+  // Abstraction over normalized code expressions appearing as var decls, assigns, or statements
+
+  if (
+    stmtNode.type === 'VariableDeclaration' &&
+    stmtNode.declarations[0].init.type === 'CallExpression' &&
+    stmtNode.declarations[0].init.callee.type === 'Identifier'
+  ) {
+    return stmtNode.declarations[0].init;
+  }
+
+  if (
+    stmtNode.type === 'ExpressionStatement' &&
+    stmtNode.expression.type === 'AssignmentExpression' &&
+    stmtNode.expression.right.type === 'CallExpression' &&
+    stmtNode.expression.right.callee.type === 'Identifier'
+  ) {
+    return stmtNode.expression.right;
+  }
+
+  if (
+    stmtNode.type === 'ExpressionStatement' &&
+    stmtNode.expression.type === 'CallExpression' &&
+    stmtNode.expression.callee.type === 'Identifier'
+  ) {
+    return stmtNode.expression;
+  }
+
+  return undefined;
+}
+export function isStatementCallingFunc(stmtNode, funcName) {
+  // Assumes normalized code. Returns CallNode or undefined
+
+  const call = isStatementCalling(stmtNode);
+  if (call && call.callee.type === 'Identifier' && call.callee.name === funcName) {
+    return call;
+  }
+  return undefined;
+}

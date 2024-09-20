@@ -538,11 +538,9 @@ $(`number`);
 const tmpCalleeParam$13 = $(`parseFloat`);
 $coerce(tmpCalleeParam$13, `plustr`);
 $(`number`);
-isNaN;
 const tmpCalleeParam$17 = $(`isNaN`);
 isNaN(tmpCalleeParam$17);
 $(`boolean`);
-isFinite;
 const tmpCalleeParam$21 = $(`isFinite`);
 isFinite(tmpCalleeParam$21);
 $(`boolean`);
@@ -718,11 +716,9 @@ $( "number" );
 const d = $( "parseFloat" );
 $coerce( d, "plustr" );
 $( "number" );
-isNaN;
 const e = $( "isNaN" );
 isNaN( e );
 $( "boolean" );
-isFinite;
 const f = $( "isFinite" );
 isFinite( f );
 $( "boolean" );
@@ -881,9 +877,7 @@ $( "number", "Number.NaN" );
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
-
-isNaN, isFinite
+None
 
 ## Result
 

@@ -52,9 +52,7 @@ isNaN( a );
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-isNaN
+None
 
 ## Result
 

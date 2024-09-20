@@ -488,6 +488,7 @@ export function registerGlobalIdent(
   };
   ASSERT(name);
   ASSERT(!/^\$\$\d+$/.test(name), 'Should not be calling this function for special param name idents $$123');
+
   fdata.globallyUniqueNamingRegistry.set(name, newMeta);
   return newMeta;
 }
@@ -818,6 +819,7 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
     ]);
   }
 
+  /** @var {{names: Map<string, number>, type: number, parent: Node, $sid: number}} s This is Tenko's special scope object **/
   let s = node.$scope;
   ASSERT(
     ['FunctionExpression', 'FunctionDeclaration'].includes(node.type) ? s.type === Tenko.SCOPE_LAYER_FUNC_BODY : true,
@@ -860,8 +862,6 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
       break;
     } else {
       s.names.forEach((v, name) => {
-        vlog('-', name, ':', v);
-
         if (v === Tenko.BINDING_TYPE_VAR && funcNode !== node) {
           // only process `var` bindings in the scope root
           vlog('  - skipping var because not scope root');
@@ -1506,122 +1506,216 @@ function _inferNodeTyping(fdata, valueNode) {
         }
       }
       if (valueNode.callee.type === 'MemberExpression' && !valueNode.callee.computed) {
-        switch (valueNode.callee.object.name + '.' + valueNode.callee.property.name) {
-          case 'Array.from': {
-            return createTypingObject({
-              mustBeType: 'array',
-              mustBeTruthy: true,
-            });
+        if (valueNode.callee.object.type === 'Identifier') {
+
+          switch (valueNode.callee.object.name + '.' + valueNode.callee.property.name) {
+            case 'Array.from': {
+              return createTypingObject({
+                mustBeType: 'array',
+                mustBeTruthy: true,
+              });
+            }
+            case 'Array.isArray': {
+              return createTypingObject({
+                mustBeType: 'boolean',
+                worstCaseValueSet: new Set([true, false]),
+              });
+              break;
+            }
+            case 'Array.of': {
+              // Normalization can replace this with array literals in many-if-not-all cases
+              return createTypingObject({
+                mustBeType: 'array',
+                mustBeTruthy: true,
+              });
+            }
+            case 'Date.now': {
+              return createTypingObject({
+                mustBeType: 'number',
+                mustBeTruthy: true,
+              });
+            }
+            case 'Date.parse':
+            case 'Date.UTC': {
+              // (Looks like parse/UTC always return a number as well. I hope there's no edge case around that.)
+              return createTypingObject({
+                mustBeType: 'number',
+              });
+            }
+            case 'JSON.stringify': {
+              // This can be undefined (if you pass no args or `undefined`), so we don't know for sure.
+              // TODO: Although, if the arg is known to be not `undefined`, then I think the result must be string...
+              return createTypingObject({
+                mustBePrimitive: true,
+              });
+            }
+            case 'Math.abs':
+            case 'Math.acos':
+            case 'Math.acosh':
+            case 'Math.asin':
+            case 'Math.asinh':
+            case 'Math.atan':
+            case 'Math.atan2':
+            case 'Math.atanh':
+            case 'Math.cbrt':
+            case 'Math.ceil':
+            case 'Math.clz32':
+            case 'Math.cos':
+            case 'Math.cosh':
+            case 'Math.exp':
+            case 'Math.expm1':
+            case 'Math.floor':
+            case 'Math.fround':
+            case 'Math.hypot':
+            case 'Math.imul':
+            case 'Math.log':
+            case 'Math.log10':
+            case 'Math.log1p':
+            case 'Math.log2':
+            case 'Math.max':
+            case 'Math.min':
+            case 'Math.pow':
+            case 'Math.random': // The odds of this being a round zero are very small... so let's not bet on it :)
+            case 'Math.round':
+            case 'Math.sign':
+            case 'Math.sin':
+            case 'Math.sinh':
+            case 'Math.sqrt':
+            case 'Math.tan':
+            case 'Math.tanh':
+            case 'Math.trunc': {
+              // I think the only thing we can predict about all these funcs is that their result is a number... (might be NaN/Infinity)
+              return createTypingObject({
+                mustBeType: 'number',
+              });
+            }
+            case 'Number.isFinite':
+            case 'Number.isInteger':
+            case 'Number.isNaN':
+            case 'Number.isSafeInteger': {
+              // Some of these should be replaced with the global builtin function, by normalization
+              return createTypingObject({
+                mustBeType: 'boolean',
+                worstCaseValueSet: new Set([true, false]),
+              });
+            }
+            case 'Number.parseFloat':
+            case 'Number.parseInt': {
+              // These should be replaced with the global value by normalization
+              return createTypingObject({
+                mustBeType: 'number',
+              });
+            }
+            case 'Object.is': // We may be able to predict certain outcomes
+            case 'Object.isFrozen':
+            case 'Object.isSealed': {
+              return createTypingObject({
+                mustBeType: 'boolean',
+                worstCaseValueSet: new Set([true, false]),
+              });
+            }
+            case 'String.fromCharCode':
+            case 'String.fromCodePoint':
+            case 'String.raw': {
+              // Looks like these always return a string of sorts... no matter what arg you feed them
+              return createTypingObject({
+                mustBeType: 'string',
+              });
+            }
+            default: {
+              // We have no real idea what's going on here yet
+              // TODO: we can track the callee and see if the return type reveals a clue...
+              return createTypingObject({});
+            }
           }
-          case 'Array.isArray': {
-            return createTypingObject({
-              mustBeType: 'boolean',
-              worstCaseValueSet: new Set([true, false]),
-            });
-            break;
-          }
-          case 'Array.of': {
-            // Normalization can replace this with array literals in many-if-not-all cases
-            return createTypingObject({
-              mustBeType: 'array',
-              mustBeTruthy: true,
-            });
-          }
-          case 'Date.now': {
-            return createTypingObject({
-              mustBeType: 'number',
-              mustBeTruthy: true,
-            });
-          }
-          case 'Date.parse':
-          case 'Date.UTC': {
-            // (Looks like parse/UTC always return a number as well. I hope there's no edge case around that.)
-            return createTypingObject({
-              mustBeType: 'number',
-            });
-          }
-          case 'JSON.stringify': {
-            // This can be undefined (if you pass no args or `undefined`), so we don't know for sure.
-            // TODO: Although, if the arg is known to be not `undefined`, then I think the result must be string...
-            return createTypingObject({});
-          }
-          case 'Math.abs':
-          case 'Math.acos':
-          case 'Math.acosh':
-          case 'Math.asin':
-          case 'Math.asinh':
-          case 'Math.atan':
-          case 'Math.atan2':
-          case 'Math.atanh':
-          case 'Math.cbrt':
-          case 'Math.ceil':
-          case 'Math.clz32':
-          case 'Math.cos':
-          case 'Math.cosh':
-          case 'Math.exp':
-          case 'Math.expm1':
-          case 'Math.floor':
-          case 'Math.fround':
-          case 'Math.hypot':
-          case 'Math.imul':
-          case 'Math.log':
-          case 'Math.log10':
-          case 'Math.log1p':
-          case 'Math.log2':
-          case 'Math.max':
-          case 'Math.min':
-          case 'Math.pow':
-          case 'Math.random': // The odds of this being a round zero are very small... but let's not bet on it :)
-          case 'Math.round':
-          case 'Math.sign':
-          case 'Math.sin':
-          case 'Math.sinh':
-          case 'Math.sqrt':
-          case 'Math.tan':
-          case 'Math.tanh':
-          case 'Math.trunc': {
-            // I think the only thing we can predict about all these funcs is that their result is a number... (might be NaN/Infinity)
-            return createTypingObject({
-              mustBeType: 'number',
-            });
-          }
-          case 'Number.isFinite':
-          case 'Number.isInteger':
-          case 'Number.isNaN':
-          case 'Number.isSafeInteger': {
-            // Some of these should be replaced with the global builtin function, by normalization
-            return createTypingObject({
-              mustBeType: 'boolean',
-              worstCaseValueSet: new Set([true, false]),
-            });
-          }
-          case 'Number.parseFloat':
-          case 'Number.parseInt': {
-            // These should be replaced with the global value by normalization
-            return createTypingObject({
-              mustBeType: 'number',
-            });
-          }
-          case 'Object.is': // We may be able to predict certain outcomes
-          case 'Object.isFrozen':
-          case 'Object.isSealed': {
-            return createTypingObject({
-              mustBeType: 'boolean',
-              worstCaseValueSet: new Set([true, false]),
-            });
-          }
-          case 'String.fromCharCode':
-          case 'String.fromCodePoint':
-          case 'String.raw': {
-            // Looks like these always return a string of sorts... no matter what arg you feed them
-            return createTypingObject({
-              mustBeType: 'string',
-            });
-          }
-          default: {
-            // We have no real idea what's going on here yet
-            // TODO: we can track the callee and see if the return type reveals a clue...
-            return createTypingObject({});
+        }
+        else if (AST.isPrimitive(valueNode.callee.object) && !valueNode.callee.computed) {
+          switch (AST.getPrimitiveType(valueNode.callee.object) + '.' + valueNode.callee.property.name) {
+            case 'boolean.toString': {
+              return createTypingObject({
+                mustBeType: 'string',
+              });
+            }
+
+            case 'number.toPrecision':
+            case 'number.toString':
+            case 'number.toLocaleString':
+            case 'number.toFixed':
+            case 'number.toExponential': {
+              return createTypingObject({
+                mustBeType: 'string',
+              });
+            }
+            case 'number.valueOf': {
+              return createTypingObject({
+                mustBeType: 'number',
+              });
+            }
+
+            case 'string.charCodeAt': {
+              return createTypingObject({
+                mustBeType: 'number', // Can be NaN though, for OOB
+              });
+            }
+            case 'string.length': {
+              return createTypingObject({
+                mustBeType: 'number',
+              });
+            }
+            case 'string.charAt': {
+              return createTypingObject({
+                mustBeType: 'string', // Seems to always return a string, even if the arg is missing or not a number
+              });
+            }
+            case 'string.concat': {
+              return createTypingObject({
+                mustBeType: 'string',
+              });
+            }
+            case 'string.includes': {
+              return createTypingObject({
+                mustBeType: 'boolean',
+              });
+            }
+            case 'string.lastIndexOf':
+            case 'string.indexOf': {
+              return createTypingObject({
+                mustBeType: 'number',
+              });
+            }
+            // string.match returns objects
+            case 'string.replace': {
+              return createTypingObject({
+                mustBeType: 'string',
+              });
+            }
+            case 'string.slice': {
+              return createTypingObject({
+                mustBeType: 'string',
+              });
+            }
+            // string.split returns an array of strings
+            case 'string.substring':
+            case 'string.substr': {
+              return createTypingObject({
+                mustBeType: 'string',
+              });
+            }
+            case 'string.toString': {
+              return createTypingObject({
+                mustBeType: 'string',
+              });
+            }
+            case 'string.toLowerCase': {
+              return createTypingObject({
+                mustBeType: 'string',
+              });
+            }
+            case 'string.toUpperCase': {
+              return createTypingObject({
+                mustBeType: 'string',
+              });
+            }
           }
         }
       }

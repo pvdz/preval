@@ -65,7 +65,7 @@ const tmpCalleeParam$3 = function ($$0) {
   return tmpReturnArg;
 };
 const rex /*:regex*/ = /\w.*\w/g;
-const tmpCalleeParam = `a is not b`.replace(rex, tmpCalleeParam$3);
+const tmpCalleeParam /*:string*/ = `a is not b`.replace(rex, tmpCalleeParam$3);
 $(tmpCalleeParam);
 `````
 

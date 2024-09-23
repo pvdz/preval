@@ -61,7 +61,7 @@ if (tmpCalleeParam) {
   const tmpCalleeParam$1 = $(b);
   const varInitAssignLhsComputedObj = $(tmpCalleeParam$1);
   const tmpBinLhs = varInitAssignLhsComputedObj.x;
-  const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
+  const varInitAssignLhsComputedRhs /*:primitive*/ = tmpBinLhs + 1;
   varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
   a = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs);

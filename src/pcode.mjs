@@ -40,6 +40,7 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, b
 import * as AST from './ast.mjs';
 import { VERBOSE_TRACING, setVerboseTracing, YELLOW, ORANGE_DIM, PURPLE, RESET, DIM, ORANGE } from './constants.mjs';
 import { SYMBOL_COERCE } from './symbols_preval.mjs';
+import { BUILTIN_NUMBER_PROTOTYPE, BUILTIN_STRING_PROTOTYPE } from './symbols_builtins.mjs';
 
 const NONE = 0;
 const RETURN = 1;
@@ -83,11 +84,82 @@ export const pcodeSupportedBuiltinFuncs = new Set([
   'btoa',
   'atob',
 
-  'String.fromCharCode', // built-in static function
-  'string.charAt', // built-in instance method
+  'boolean.toString',
+  'boolean.valueOf',
+
+  'Number.isFinite',
+  'Number.isInteger',
+  'Number.isNaN',
+  'Number.isSafeInteger',
+  'Number.parseFloat',
+  'Number.parseInt',
+
+  'number.toExponential',
+  'number.toFixed',
+  //'number.toLocaleString', // The second argument is an options object which we need to consider later
+  'number.toPrecision',
   'number.toString', // built-in method
-  'Math.random', // we can fake this with a prng, fails if the prngSeed is zero
+  'number.valueOf',
+
+  'String.fromCharCode', // built-in static function
+  'String.fromCodePoint',
+  'String.raw',
+
+  'string.charAt', // built-in instance method
+  'string.charCodeAt',
+  'string.concat',
+  'string.includes',
+  'string.indexOf',
+  'string.lastIndexOf',
+  //'string.match', // TODO: regex and callbacks make this oenewkward?
+  //'string.replace', // TODO: regex case makes this awkward?
+  'string.slice',
+  'string.split',
+  'string.substring',
+  'string.substr',
+  'string.toString',
+  'string.toLowerCase',
+  'string.toUpperCase',
+  'string.valueOf',
+
+  // Note: some of the math props are questionable due to rounding errors and lossy serialization of complex floats
+  'Math.abs',
+  'Math.acos',
+  'Math.acosh',
+  'Math.asin',
+  'Math.asinh',
+  'Math.atan',
+  'Math.atan2',
+  'Math.atanh',
+  'Math.cbrt',
+  'Math.ceil',
+  'Math.clz32',
+  'Math.cos',
+  'Math.cosh',
+  'Math.exp',
+  'Math.expm1',
+  'Math.f16round',
   'Math.floor', // Static built-in
+  'Math.fround',
+  'Math.hypot',
+  'Math.imul',
+  'Math.log',
+  'Math.log10',
+  'Math.log1p',
+  'Math.log2',
+  'Math.max',
+  'Math.min',
+  'Math.pow',
+  'Math.random', // we can fake this with a prng, fails if the prngSeed is zero
+  'Math.round',
+  'Math.sign',
+  'Math.sin',
+  'Math.sinh',
+  'Math.sqrt',
+  'Math.tan',
+  'Math.tanh',
+  'Math.trunc',
+
   SYMBOL_COERCE, // Preval special func
 ]);
 
@@ -851,7 +923,76 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
           case 'btoa': return btoa(...arr);
           case 'atob': return atob(...arr);
 
+          case 'boolean.toString': {
+            const v = prunVal(registers, op[3], op[4]);
+            ASSERT(typeof v === 'boolean');
+            vlog('(', v, '.toString() )');
+            return v.toString();
+          }
+          case 'boolean.valueOf': {
+            const v = prunVal(registers, op[3], op[4]);
+            ASSERT(typeof v === 'boolean');
+            vlog('(', v, '.valueOf() )');
+            return v.valueOf();
+          }
 
+          case 'Number.isFinite': {
+            const a = prunVal(registers, op[3], op[4]);
+            vlog('(Number.isFinite(', a, '))');
+            return Number.isFinite(a);
+          }
+          case 'Number.isInteger': {
+            const a = prunVal(registers, op[3], op[4]);
+            vlog('(Number.isInteger(', a, '))');
+            return Number.isInteger(a);
+          }
+          case 'Number.isNaN': {
+            const a = prunVal(registers, op[3], op[4]);
+            vlog('(Number.isNaN(', a, '))');
+            return Number.isNaN(a);
+          }
+          case 'Number.isSafeInteger': {
+            const a = prunVal(registers, op[3], op[4]);
+            vlog('(Number.isSafeInteger(', a, '))');
+            return Number.isSafeInteger(a);
+          }
+          case 'Number.parseFloat': {
+            const a = prunVal(registers, op[3], op[4]);
+            vlog('(Number.parseFloat(', a, '))');
+            return Number.parseFloat(a);
+          }
+          case 'Number.parseInt': {
+            const a = prunVal(registers, op[3], op[4]);
+            const b = prunVal(registers, op[4], op[5]);
+            vlog('(Number.isFinite(', a, ',', b, '))');
+            return Number.parseInt(a, b);
+          }
+
+          case 'number.toExponential': {
+            const v = prunVal(registers, op[3], op[4]);
+            ASSERT(typeof v === 'number');
+            const a = prunVal(registers, op[5], op[6])
+            vlog('(', v, '.toString(', a, ') )');
+            return v.toString(a);
+          }
+          case 'number.toFixed': {
+            const v = prunVal(registers, op[3], op[4]);
+            ASSERT(typeof v === 'number');
+            const a = prunVal(registers, op[5], op[6])
+            vlog('(', v, '.toFixed(', a, ') )');
+            return v.toFixed(a);
+          }
+          case 'number.toLocaleString': {
+            ASSERT(false, 'no not this one');
+            break;
+          }
+          case 'number.toPrecision': {
+            const v = prunVal(registers, op[3], op[4]);
+            ASSERT(typeof v === 'number');
+            const a = prunVal(registers, op[5], op[6])
+            vlog('(', v, '.toPrecision(', a, ') )');
+            return v.toPrecision(a);
+          }
           case 'number.toString': {
             const v = prunVal(registers, op[3], op[4]);
             ASSERT(typeof v === 'number');
@@ -859,13 +1000,38 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
             vlog('(', v, '.toString(', a, ') )');
             return v.toString(a);
           }
+          case 'number.valueOf': {
+            const v = prunVal(registers, op[3], op[4]);
+            ASSERT(typeof v === 'number');
+            vlog('(', v, '.toPrecision(...) )');
+            return v.valueOf();
+          }
+
           case 'String.fromCharCode': {
             const args = [];
             for (let i=3; i<op.length; i+=2) {
               args.push(prunVal(registers, op[i], op[i+1]))
             }
+            vlog('(String.fromCharCode(...) )');
             return String.fromCharCode(...args);
           }
+          case 'String.fromCodePoint': {
+            const args = [];
+            for (let i=3; i<op.length; i+=2) {
+              args.push(prunVal(registers, op[i], op[i+1]))
+            }
+            vlog('(String.fromCodePoint(...) )');
+            return String.fromCodePoint(...args);
+          }
+          case 'String.raw': {
+            const args = [];
+            for (let i=3; i<op.length; i+=2) {
+              args.push(prunVal(registers, op[i], op[i+1]))
+            }
+            vlog('(String.raw(...) )');
+            return String.raw(...args);
+          }
+
           case 'string.charAt': {
             const v = prunVal(registers, op[3], op[4]);
             ASSERT(typeof v === 'string');
@@ -874,11 +1040,205 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
             vlog('(', v, '.charAt(', a, ') ) =', c);
             return c;
           }
-          case 'Math.random': {
-            if (!usePrng) throw new Error('Tried to invoke pcode function that contained Math.random but the prngSeed is zero');
-            // Ignore if there are args. This way the user could control to keep a Math.random :shrug:
-            ASSERT(arr.length === 0, 'can compile should have checked this');
-            return prng();
+          case 'string.charCodeAt': {
+            const v = prunVal(registers, op[3], op[4]);
+            ASSERT(typeof v === 'string');
+            const a = prunVal(registers, op[5], op[6])
+            const c = v.charCodeAt(a);
+            vlog('(', v, '.charCodeAt(', a, ') ) =', c);
+            return c;
+          }
+          case 'string.concat': {
+            const v = prunVal(registers, op[3], op[4]);
+            ASSERT(typeof v === 'string');
+            const args = [];
+            for (let i=3; i<op.length; i+=2) {
+              args.push(prunVal(registers, op[i], op[i+1]))
+            }
+            const c = v.concat(...args);
+            vlog('(', v, '.concat(', ...args, ') ) =', c);
+            return c;
+          }
+          case 'string.includes': {
+            const v = prunVal(registers, op[3], op[4]);
+            ASSERT(typeof v === 'string');
+            const a = prunVal(registers, op[5], op[6])
+            const c = v.includes(a);
+            vlog('(', v, '.includes(', a, ') ) =', c);
+            return c;
+          }
+          case 'string.indexOf': {
+            const v = prunVal(registers, op[3], op[4]);
+            ASSERT(typeof v === 'string');
+            const a = prunVal(registers, op[5], op[6])
+            const c = v.charAt(a);
+            vlog('(', v, '.indexOf(', a, ') ) =', c);
+            return c;
+          }
+          case 'string.lastIndexOf': {
+            const v = prunVal(registers, op[3], op[4]);
+            ASSERT(typeof v === 'string');
+            const a = prunVal(registers, op[5], op[6])
+            const c = v.lastIndexOf(a);
+            vlog('(', v, '.lastIndexOf(', a, ') ) =', c);
+            return c;
+          }
+          case 'string.match': { ASSERT('TODO') }
+          case 'string.replace': { ASSERT('TODO') }
+          case 'string.slice': {
+            const v = prunVal(registers, op[3], op[4]);
+            ASSERT(typeof v === 'string');
+            const a = prunVal(registers, op[5], op[6])
+            const b = prunVal(registers, op[7], op[8])
+            const c = v.slice(a, b);
+            vlog('(', v, '.slice(', a, ',', b, ') ) =', c);
+            return c;
+          }
+          case 'string.split': { ASSERT('TODO') }
+          case 'string.substring': {
+            const v = prunVal(registers, op[3], op[4]);
+            ASSERT(typeof v === 'string');
+            const a = prunVal(registers, op[5], op[6])
+            const b = prunVal(registers, op[7], op[8])
+            const c = v.substring(a, b);
+            vlog('(', v, '.substring(', a, ',', b, ') ) =', c);
+            return c;
+          }
+          case 'string.substr': {
+            const v = prunVal(registers, op[3], op[4]);
+            ASSERT(typeof v === 'string');
+            const a = prunVal(registers, op[5], op[6])
+            const b = prunVal(registers, op[7], op[8])
+            const c = v.substr(a, b);
+            vlog('(', v, '.substr(', a, ',', b, ') ) =', c);
+            return c;
+          }
+          case 'string.toString': {
+            const v = prunVal(registers, op[3], op[4]);
+            ASSERT(typeof v === 'string');
+            const c = v.toString();
+            vlog('(', v, '.toString() ) =', c);
+            return c;
+          }
+          case 'string.toLowerCase': {
+            const v = prunVal(registers, op[3], op[4]);
+            ASSERT(typeof v === 'string');
+            const c = v.toLowerCase();
+            vlog('(', v, '.toLowerCase() ) =', c);
+            return c;
+          }
+          case 'string.toUpperCase': {
+            const v = prunVal(registers, op[3], op[4]);
+            ASSERT(typeof v === 'string');
+            const c = v.toUpperCase();
+            vlog('(', v, '.toUpperCase() ) =', c);
+            return c;
+          }
+          case 'string.valueOf': {
+            const v = prunVal(registers, op[3], op[4]);
+            ASSERT(typeof v === 'string');
+            const c = v.valueOf();
+            vlog('(', v, '.valueOf() ) =', c);
+            return c;
+          }
+
+              // Note: some of the math props are questionable due to rounding errors and lossy serialization of complex floats
+          case 'Math.abs':  {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.abs(a);
+            vlog('( Math.abs(', a, ') ) =', c);
+            return c;
+          }
+          case 'Math.acos': {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.acos(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+            vlog('( Math.acos(', a, ') ) =', c);
+            return c;
+          }
+          case 'Math.acosh': {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.acosh(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+            vlog('( Math.acosh(', a, ') ) =', c);
+            return c;
+          }
+          case 'Math.asin': {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.asin(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+            vlog('( Math.asin(', a, ') ) =', c);
+            return c;
+          }
+          case 'Math.asinh': {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.asinh(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+            vlog('( Math.asinh(', a, ') ) =', c);
+            return c;
+          }
+          case 'Math.atan': {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.atan(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+            vlog('( Math.atan(', a, ') ) =', c);
+            return c;
+          }
+          case 'Math.atan2': {
+            const a = prunVal(registers, op[3], op[4]);
+            const b = prunVal(registers, op[5], op[6]);
+            const c = Math.atan2(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+            vlog('( Math.atan2(', a, ', ', b, ') ) =', c);
+            return c;
+          }
+          case 'Math.atanh': {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.atanh(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+            vlog('( Math.atanh(', a, ') ) =', c);
+            return c;
+          }
+          case 'Math.cbrt': {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.cbrt(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+            vlog('( Math.cbrt(', a, ') ) =', c);
+            return c;
+          }
+          case 'Math.ceil': {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.ceil(a);
+            vlog('( Math.ceil(', a, ') ) =', c);
+            return c;
+          }
+          case 'Math.clz32': {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.clz32(a);
+            vlog('( Math.clz32(', a, ') ) =', c);
+            return c;
+          }
+          case 'Math.cos': {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.cos(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+            vlog('( Math.cos(', a, ') ) =', c);
+            return c;
+          }
+          case 'Math.cosh': {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.cosh(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+            vlog('( Math.cosh(', a, ') ) =', c);
+            return c;
+          }
+          case 'Math.exp': {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.exp(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+            vlog('( Math.exp(', a, ') ) =', c);
+            return c;
+          }
+          case 'Math.expm1': {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.expm1(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+            vlog('( Math.expm1(', a, ') ) =', c);
+            return c;
+          }
+          case 'Math.f16round': {
+            const v = prunVal(registers, op[3], op[4]);
+            const c = Math.f16round(v);
+            vlog('(Math.f16round(', v, ') ) =', c);
+            return c;
           }
           case 'Math.floor': {
             const v = prunVal(registers, op[3], op[4]);
@@ -886,6 +1246,129 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
             vlog('(Math.floor(', v, ') ) =', c);
             return c;
           }
+          case 'Math.fround': {
+            const v = prunVal(registers, op[3], op[4]);
+            const c = Math.fround(v);
+            vlog('(Math.fround(', v, ') ) =', c);
+            return c;
+          }
+          case 'Math.hypot': {
+            const a = prunVal(registers, op[3], op[4]);
+            vlog('( Math.hypot(', a, ') )');
+            return Math.hypot(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+          }
+          case 'Math.imul': {
+            const a = prunVal(registers, op[3], op[4]);
+            const b = prunVal(registers, op[3], op[4]);
+            const c = Math.imul(a);
+            vlog('(Math.imul(', a, ', ', b, ') ) =', c);
+            return c;
+          }
+          case 'Math.log': {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.log(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+            vlog('( Math.log(', a, ') ) =', c);
+            return c;
+          }
+          case 'Math.log10': {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.log10(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+            vlog('( Math.log10(', a, ') ) =', c);
+            return c;
+          }
+          case 'Math.log1p': {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.log1p(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+            vlog('( Math.log1p(', a, ') ) =', c);
+            return c;
+          }
+          case 'Math.log2': {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.log2(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+            vlog('( Math.log2(', a, ') ) =', c);
+            return c;
+          }
+          case 'Math.max': {
+            const args = [];
+            for (let i=3; i<op.length; i+=2) {
+              args.push(prunVal(registers, op[i], op[i+1]))
+            }
+            const c = Math.max(...args);
+            vlog('( Math.max(', args.join(', '), ') ) =', c);
+            return c;
+          }
+          case 'Math.min': {
+            const args = [];
+            for (let i=3; i<op.length; i+=2) {
+              args.push(prunVal(registers, op[i], op[i+1]))
+            }
+            const c = Math.min(...args);
+            vlog('( Math.min(', args.join(', '), ') ) =', c);
+            return c;
+          }
+          case 'Math.pow': {
+            const a = prunVal(registers, op[3], op[4]);
+            const b = prunVal(registers, op[3], op[4]);
+            const c = Math.pow(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+            vlog('(Math.pow(', a, ', ', b, ') ) =', c);
+            return c;
+          }
+          // we can fake this with a prng, fails if the prngSeed is zero
+          case 'Math.random': {
+            if (!usePrng) throw new Error('Tried to invoke pcode function that contained Math.random but the prngSeed is zero');
+            // Ignore if there are args. This way the user could control to keep a Math.random :shrug:
+            ASSERT(arr.length === 0, 'can compile should have checked this');
+            return prng();
+          }
+          case 'Math.round': {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.round(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+            vlog('( Math.round(', a, ') ) =', c);
+            return c;
+          }
+          case 'Math.sign': {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.sign(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+            vlog('( Math.sign(', a, ') ) =', c);
+            return c;
+          }
+          case 'Math.sin': {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.sin(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+            vlog('( Math.sin(', a, ') ) =', c);
+            return c;
+          }
+          case 'Math.sinh': {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.sinh(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+            vlog('( Math.sinh(', a, ') ) =', c);
+            return c;
+          }
+          case 'Math.sqrt': {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.sqrt(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+            vlog('( Math.sqrt(', a, ') ) =', c);
+            return c;
+          }
+          case 'Math.tan': {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.tan(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+            vlog('( Math.tan(', a, ') ) =', c);
+            return c;
+          }
+          case 'Math.tanh': {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.tanh(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+            vlog('( Math.tanh(', a, ') ) =', c);
+            return c;
+          }
+          case 'Math.trunc': {
+            const a = prunVal(registers, op[3], op[4]);
+            const c = Math.trunc(a); // TODO: this is dangerous with rounding errors and serialization precision loss
+            vlog('( Math.trunc(', a, ') ) =', c);
+            return c;
+          }
+
           case SYMBOL_COERCE: {
             // see reduce_static/coerced.mjs
             const v = prunVal(registers, op[3], op[4]);

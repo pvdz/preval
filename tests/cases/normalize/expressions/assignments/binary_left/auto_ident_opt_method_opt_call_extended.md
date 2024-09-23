@@ -72,7 +72,7 @@ if (tmpIfTest$1) {
   tmpBinBothLhs = tmpChainElementCall;
 }
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);
 `````

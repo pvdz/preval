@@ -44,7 +44,7 @@ $(a);
 
 
 `````js filename=intro
-const xyz = function () {
+const xyz /*:()=>*/ = function () {
   debugger;
   return undefined;
 };

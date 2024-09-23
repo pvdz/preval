@@ -1765,8 +1765,6 @@ export function phaseNormalize(fdata, fname, prng, options) {
               }
               break;
             }
-
-
           }
 
           if (wrapKind === 'statement') {
@@ -2626,6 +2624,47 @@ export function phaseNormalize(fdata, fname, prng, options) {
             return true;
           }
 
+          if (ASSUME_BUILTINS && wrapKind === 'statement' && !callee.computed && AST.isPrimitive(callee.object)) {
+            // Is there any case where a method call on a primitive is observable? I guess things like string.replace might so yeah.
+            if (
+              [
+                'boolean.toString',
+                'boolean.valueOf',
+                //'number.toExponential',
+                //'number.toFixed',
+                'number.toLocaleString',
+                //'number.toPrecision',
+                //'number.toString'
+                'number.valueOf',
+                //'string.charAt', // TODO: these take args that get coerced. we can remove this but need to replace it with a coerce
+                //'string.charCodeAt',
+                //'string.concat',
+                //'string.includes',
+                //'string.indexOf',
+                //'string.lastIndexOf',
+                //'string.match',
+                //'string.replace',
+                //'string.slice',
+                //'string.split',
+                //'string.substring',
+                //'string.substr',
+                'string.toLowerCase',
+                'string.toString',
+                'string.toUpperCase',
+                'string.valueOf',
+              ].includes(AST.getPrimitiveType(callee.object) + '.' + callee.property.name)
+            ) {
+              rule('Statement that is a method call on primitive can be eliminated in most cases');
+              example('"foo".toString();', ';');
+              before(body[i]);
+
+              body.splice(i, 1);
+
+              after(AST.emptyStatement());
+              return true;
+            }
+          }
+
           if (ASSUME_BUILTINS) {
             if (!callee.computed && callee.object.type === 'Identifier') {
               const objName = callee.object.name;
@@ -2999,24 +3038,22 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
             if (!callee.computed && AST.isPrimitive(callee.object) && AST.getPrimitiveValue(callee.object) === '') {
               // Property access on empty string... Some silly low hanging fruit cases.
-              if (ASSUME_BUILTINS) {
-                // Targeting a specific obfuscation: ``.replace(/^/, String)
-                if (callee.property.name === 'replace' && node.arguments[1].type === 'Identifier' && node.arguments[1].name === 'String') {
-                  // This will invariably return the empty string
+              // Targeting a specific obfuscation: ``.replace(/^/, String)
+              if (callee.property.name === 'replace' && node.arguments[1].type === 'Identifier' && node.arguments[1].name === 'String') {
+                // This will invariably return the empty string
 
-                  riskyRule('Calling .replace on an empty string with irrelevant function always results in empty string');
-                  example('"".replace(/$/, String)', '$coerce(/$/); ""');
-                  before(body[i]);
+                riskyRule('Calling .replace on an empty string with irrelevant function always results in empty string');
+                example('"".replace(/$/, String)', '$coerce(/$/); ""');
+                before(body[i]);
 
-                  const finalNode = AST.primitive('');
-                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                  body.splice(i, 1, AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [node.arguments[1], AST.primitive('string')])), finalParent);
+                const finalNode = AST.primitive('');
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(i, 1, AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [node.arguments[1], AST.primitive('string')])), finalParent);
 
-                  after(body[i]);
-                  after(body[i + 1]);
+                after(body[i]);
+                after(body[i + 1]);
 
-                  return true;
-                }
+                return true;
               }
             }
           }

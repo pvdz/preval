@@ -57,7 +57,7 @@ const tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
 const tmpCallCompObj$1 = $(b);
 const tmpCallCompProp$1 = $(`\$`);
 const tmpClusterSSA_a$1 = tmpCallCompObj$1[tmpCallCompProp$1](1);
-const tmpCalleeParam = tmpClusterSSA_a + tmpClusterSSA_a$1;
+const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a$1;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a$1);
 `````

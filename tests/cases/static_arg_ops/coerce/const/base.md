@@ -58,7 +58,7 @@ f(4);
 
 `````js filename=intro
 const x = $(`50`);
-const f /*:()=>*/ = function () {
+const f /*:()=>undefined*/ = function () {
   debugger;
   const y /*:number*/ = $coerce(x, `number`);
   $(1);

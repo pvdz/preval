@@ -70,12 +70,12 @@ let tmpClusterSSA_a = undefined;
 const tmpChainElementCall$3 = $($);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall$3 == null;
 if (tmpIfTest$1) {
-  const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + undefined;
+  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + undefined;
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, $, 1);
   tmpClusterSSA_a = tmpChainElementCall$5;
-  const tmpClusterSSA_tmpCalleeParam$1 = tmpBinBothLhs + tmpChainElementCall$5;
+  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpChainElementCall$5;
   $(tmpClusterSSA_tmpCalleeParam$1);
 }
 $(tmpClusterSSA_a);

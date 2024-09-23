@@ -71,7 +71,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 if ($) {
-  const g = function () {
+  const g /*:()=>undefined*/ = function () {
     debugger;
     $(xyz);
     return undefined;

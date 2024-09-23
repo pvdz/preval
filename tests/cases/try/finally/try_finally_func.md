@@ -132,7 +132,7 @@ if ($implicitThrow$1) {
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>?,undefined*/ = function () {
   debugger;
   let x /*:number*/ = 1;
   let $finalStep /*:boolean*/ = false;

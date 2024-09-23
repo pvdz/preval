@@ -81,11 +81,11 @@ $(f);
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f /*:()=>undefined*/ = function () {
   debugger;
-  const g /*:()=>*/ = function () {
+  const g /*:()=>undefined*/ = function () {
     debugger;
-    const tmpCalleeParam = x + 1;
+    const tmpCalleeParam /*:primitive*/ = x + 1;
     x = $(tmpCalleeParam);
     return undefined;
   };

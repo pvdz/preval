@@ -64,7 +64,7 @@ if (tmpIfTest) {
   const tmpCalleeParam = $(b);
   const tmpNestedAssignObj = $(tmpCalleeParam);
   const tmpBinLhs = tmpNestedAssignObj.x;
-  const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
+  const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs + 1;
   tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
   a = tmpNestedPropCompoundComplexRhs;
   while ($LOOP_UNROLL_10) {
@@ -73,7 +73,7 @@ if (tmpIfTest) {
       const tmpCalleeParam$1 = $(b);
       const tmpNestedAssignObj$1 = $(tmpCalleeParam$1);
       const tmpBinLhs$1 = tmpNestedAssignObj$1.x;
-      const tmpNestedPropCompoundComplexRhs$1 = tmpBinLhs$1 + 1;
+      const tmpNestedPropCompoundComplexRhs$1 /*:primitive*/ = tmpBinLhs$1 + 1;
       tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
       a = tmpNestedPropCompoundComplexRhs$1;
     } else {

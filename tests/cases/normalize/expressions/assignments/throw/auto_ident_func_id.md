@@ -43,7 +43,7 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>*/ = function () {
   debugger;
   return undefined;
 };

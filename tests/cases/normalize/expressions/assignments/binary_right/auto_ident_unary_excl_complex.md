@@ -45,7 +45,7 @@ $(a);
 const tmpBinBothLhs = $(100);
 const tmpUnaryArg = $(100);
 const a /*:boolean*/ = !tmpUnaryArg;
-const tmpCalleeParam = tmpBinBothLhs + a;
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
 $(tmpCalleeParam);
 $(a);
 `````

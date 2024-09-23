@@ -57,9 +57,9 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 
 
 `````js filename=intro
-const f /*:(unknown, unknown)=>*/ = function ($$0, $$1) {
-  const a = $$0;
-  const b = $$1;
+const f /*:(number, number)=>undefined*/ = function ($$0, $$1) {
+  const a /*:number*/ = $$0;
+  const b /*:number*/ = $$1;
   debugger;
   const rest /*:array*/ = [];
   $(a, b, rest);

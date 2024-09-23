@@ -58,7 +58,7 @@ const a = $(tmpCalleeParam$1, tmpCalleeParam$3);
 const tmpCalleeParam$5 = $(1);
 const tmpCalleeParam$7 = $(2);
 const tmpClusterSSA_a = $(tmpCalleeParam$5, tmpCalleeParam$7);
-const tmpCalleeParam = a + tmpClusterSSA_a;
+const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````

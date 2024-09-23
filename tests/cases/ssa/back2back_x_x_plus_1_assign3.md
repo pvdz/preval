@@ -148,7 +148,7 @@ if ($) {
     },
   };
   const ssax = $(tmpCalleeParam);
-  const tmpClusterSSA_x = ssax + 1;
+  const tmpClusterSSA_x /*:primitive*/ = ssax + 1;
   if ($) {
     $(tmpClusterSSA_x);
   } else {

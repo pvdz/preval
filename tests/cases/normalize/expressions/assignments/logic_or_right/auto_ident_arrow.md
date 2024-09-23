@@ -57,7 +57,7 @@ const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {
-  const tmpNestedComplexRhs = function () {
+  const tmpNestedComplexRhs /*:()=>undefined*/ = function () {
     debugger;
     return undefined;
   };

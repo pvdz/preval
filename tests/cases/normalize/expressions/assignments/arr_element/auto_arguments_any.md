@@ -44,7 +44,7 @@ $(a);
 `````js filename=intro
 arguments;
 const tmpClusterSSA_a = arguments;
-const tmpCalleeParam = arguments + tmpClusterSSA_a;
+const tmpCalleeParam /*:primitive*/ = arguments + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````

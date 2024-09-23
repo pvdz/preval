@@ -57,15 +57,15 @@ $(a);
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
-const f$1 = function () {
+const f$1 /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
-const tmpCalleeParam = f + f$1;
+const tmpCalleeParam /*:primitive*/ = f + f$1;
 $(tmpCalleeParam);
 $(f$1);
 `````

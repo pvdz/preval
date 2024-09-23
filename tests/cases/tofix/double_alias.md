@@ -54,7 +54,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const update = arr[0];
-  const result = update + 1;
+  const result /*:primitive*/ = update + 1;
   arr[0] = result;
   const tmp = arr[0];
   $(tmp);

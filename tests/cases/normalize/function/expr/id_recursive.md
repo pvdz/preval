@@ -60,14 +60,14 @@ $(x);
 
 
 `````js filename=intro
-const r /*:(unknown)=>*/ = function ($$0) {
+const r /*:(unknown)=>number,?*/ = function ($$0) {
   const n = $$0;
   debugger;
   const tmpIfTest /*:boolean*/ = n > 100;
   if (tmpIfTest) {
     return 10;
   } else {
-    const tmpCalleeParam = n + 1;
+    const tmpCalleeParam /*:primitive*/ = n + 1;
     const tmpReturnArg = r(tmpCalleeParam);
     return tmpReturnArg;
   }

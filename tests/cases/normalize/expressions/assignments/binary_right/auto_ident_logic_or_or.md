@@ -68,7 +68,7 @@ if (a) {
     a = $(tmpCalleeParam$5);
   }
 }
-const tmpCalleeParam = tmpBinBothLhs + a;
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
 $(tmpCalleeParam);
 $(a);
 `````

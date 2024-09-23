@@ -48,7 +48,7 @@ const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
 const tmpBinBothRhs = $(100);
 const a /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
-const tmpCalleeParam = a + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);
 `````

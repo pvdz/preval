@@ -56,7 +56,7 @@ f();
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f /*:()=>undefined*/ = function () {
   debugger;
   const tmpBinBothRhs = $spy();
   const a /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);

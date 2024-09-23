@@ -79,7 +79,7 @@ try {
   $();
 } catch (e) {
   let a = $(1);
-  const f /*:()=>*/ = function () {
+  const f = function () {
     debugger;
     a = e;
     $(`filler`);

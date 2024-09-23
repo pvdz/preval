@@ -63,7 +63,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f /*:()=>?,boolean*/ = function () {
   debugger;
   if (y) {
     return y;

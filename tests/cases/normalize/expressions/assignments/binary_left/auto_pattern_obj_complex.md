@@ -50,7 +50,7 @@ const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
 const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam = tmpNestedAssignObjPatternRhs + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = tmpNestedAssignObjPatternRhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````

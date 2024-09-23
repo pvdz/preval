@@ -65,7 +65,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>boolean*/ = function () {
   debugger;
   const x = $(0);
   const y /*:boolean*/ = !x;

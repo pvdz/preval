@@ -59,13 +59,13 @@ $(order);
 
 
 `````js filename=intro
-const order = function () {
+const order /*:()=>undefined*/ = function () {
   debugger;
   const tmpCalleeParam = $dotCall(alias, obj);
   $(tmpCalleeParam);
   return undefined;
 };
-const g = function () {
+const g /*:()=>string*/ = function () {
   debugger;
   return `win`;
 };

@@ -84,10 +84,10 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const g /*:(unknown)=>*/ = function ($$0) {
+const g /*:(unknown)=>primitive,?*/ = function ($$0) {
   const n$1 = $$0;
   debugger;
-  const tmpCalleeParam = n$1 + 1;
+  const tmpCalleeParam /*:primitive*/ = n$1 + 1;
   const tmpBinLhs = $(tmpCalleeParam);
   const tmpIfTest /*:boolean*/ = tmpBinLhs > 1000;
   if (tmpIfTest) {

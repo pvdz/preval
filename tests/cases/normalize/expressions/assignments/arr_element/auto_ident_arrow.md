@@ -61,15 +61,15 @@ $(a);
 
 
 `````js filename=intro
-const a = function () {
+const a /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
-const tmpClusterSSA_a = function () {
+const tmpClusterSSA_a /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
-const tmpCalleeParam = a + tmpClusterSSA_a;
+const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````

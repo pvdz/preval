@@ -51,7 +51,7 @@ $(arr);
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>*/ = function () {
   debugger;
   arr[0] = 1;
   return undefined;

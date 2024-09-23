@@ -170,7 +170,7 @@ if ($) {
 if ($) {
   let x = $(5);
   $(x);
-  const t /*:()=>*/ = function () {
+  const t = function () {
     debugger;
     if ($) {
       $(x, `t`);

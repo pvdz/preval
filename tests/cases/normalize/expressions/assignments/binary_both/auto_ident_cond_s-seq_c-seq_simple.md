@@ -61,7 +61,7 @@ $(a);
 `````js filename=intro
 const a = $(60);
 const tmpClusterSSA_a = $(60);
-const tmpCalleeParam = a + tmpClusterSSA_a;
+const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````

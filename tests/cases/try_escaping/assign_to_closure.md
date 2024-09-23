@@ -78,7 +78,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>undefined*/ = function () {
   debugger;
   $(x);
   return undefined;

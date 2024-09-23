@@ -64,7 +64,7 @@ let x = $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpIfTest /*:number*/ = x % 2;
   if (tmpIfTest) {
-    const tmpClusterSSA_x = x + 1;
+    const tmpClusterSSA_x /*:primitive*/ = x + 1;
     $(tmpClusterSSA_x, `write`);
   } else {
     $(x, `read`);

@@ -95,7 +95,7 @@ tmpCallCallee$5(tmpCalleeParam$5);
 
 
 `````js filename=intro
-const f /*:(unknown)=>*/ = function ($$0) {
+const f /*:(unknown)=>number*/ = function ($$0) {
   const x = $$0;
   debugger;
   $(`no`);
@@ -111,13 +111,13 @@ const f /*:(unknown)=>*/ = function ($$0) {
     return y;
   }
 };
-const tmpCalleeParam = f(1);
+const tmpCalleeParam /*:number*/ = f(1);
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = f(2);
+const tmpCalleeParam$1 /*:number*/ = f(2);
 $(tmpCalleeParam$1);
 const tmpCalleeParam$3 = f.length;
 $(tmpCalleeParam$3);
-const tmpCalleeParam$5 = f(`three`);
+const tmpCalleeParam$5 /*:number*/ = f(`three`);
 $(tmpCalleeParam$5);
 `````
 

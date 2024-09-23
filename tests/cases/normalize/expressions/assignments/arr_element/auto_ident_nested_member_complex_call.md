@@ -89,7 +89,7 @@ const varInitAssignLhsComputedProp$1 = $(`y`);
 const varInitAssignLhsComputedRhs$1 = $(3);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = varInitAssignLhsComputedRhs$1;
-const tmpCalleeParam = varInitAssignLhsComputedRhs + varInitAssignLhsComputedRhs$1;
+const tmpCalleeParam /*:primitive*/ = varInitAssignLhsComputedRhs + varInitAssignLhsComputedRhs$1;
 $(tmpCalleeParam);
 $(varInitAssignLhsComputedRhs$1, b, c, 3);
 `````

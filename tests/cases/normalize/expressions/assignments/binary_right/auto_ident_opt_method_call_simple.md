@@ -55,7 +55,7 @@ $(a);
 const tmpBinBothLhs = $(100);
 const b /*:object*/ = { c: $ };
 const tmpChainElementCall = b.c(1);
-const tmpCalleeParam = tmpBinBothLhs + tmpChainElementCall;
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpChainElementCall;
 $(tmpCalleeParam);
 $(tmpChainElementCall);
 `````

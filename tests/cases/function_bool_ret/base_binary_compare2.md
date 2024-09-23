@@ -73,7 +73,7 @@ tmpCallCallee$3(tmpCalleeParam$7, tmpCalleeParam$9);
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f /*:()=>boolean*/ = function () {
   debugger;
   if ($) {
     const tmpReturnArg /*:boolean*/ = `a` === $;
@@ -82,13 +82,13 @@ const f /*:()=>*/ = function () {
     return false;
   }
 };
-const tmpUnaryArg = f();
+const tmpUnaryArg /*:boolean*/ = f();
 const tmpCalleeParam /*:boolean*/ = !tmpUnaryArg;
 $(tmpCalleeParam, `one`);
-const tmpUnaryArg$1 = f();
+const tmpUnaryArg$1 /*:boolean*/ = f();
 const tmpCalleeParam$3 /*:boolean*/ = !tmpUnaryArg$1;
 $(tmpCalleeParam$3, `two`);
-const tmpUnaryArg$3 = f();
+const tmpUnaryArg$3 /*:boolean*/ = f();
 const tmpCalleeParam$7 /*:boolean*/ = !tmpUnaryArg$3;
 $(tmpCalleeParam$7, `three`);
 `````

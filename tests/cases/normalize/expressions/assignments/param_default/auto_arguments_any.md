@@ -61,7 +61,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const f /*:(unknown)=>*/ = function ($$0) {
+const f /*:(unknown)=>undefined*/ = function ($$0) {
   const tmpPrevalAliasArgumentsAny = arguments;
   const tmpParamBare = $$0;
   debugger;

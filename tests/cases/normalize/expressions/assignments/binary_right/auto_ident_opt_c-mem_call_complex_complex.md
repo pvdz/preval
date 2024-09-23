@@ -80,7 +80,7 @@ if (tmpIfTest) {
     a = tmpChainElementCall$1;
   }
 }
-const tmpCalleeParam = tmpBinBothLhs + a;
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
 $(tmpCalleeParam);
 $(a);
 `````

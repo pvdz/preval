@@ -53,7 +53,7 @@ const tmpAssignRhsProp = $(b);
 const tmpClusterSSA_a = tmpAssignRhsProp.c;
 const tmpAssignRhsProp$1 = $(b);
 const tmpClusterSSA_a$1 = tmpAssignRhsProp$1.c;
-const tmpCalleeParam = tmpClusterSSA_a + tmpClusterSSA_a$1;
+const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a$1;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a$1, b);
 `````

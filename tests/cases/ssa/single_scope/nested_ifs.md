@@ -74,7 +74,7 @@ $(f);
 
 
 `````js filename=intro
-const f = function ($$0) {
+const f /*:(unknown)=>undefined*/ = function ($$0) {
   const y = $$0;
   debugger;
   if (y) {

@@ -57,7 +57,7 @@ $(f);
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>*/ = function () {
   debugger;
   return 0;
 };

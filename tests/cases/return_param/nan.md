@@ -90,13 +90,11 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const f /*:(unknown)=>*/ = function ($$0) {
-  const x = $$0;
+const f /*:()=>undefined*/ = function () {
   debugger;
   $(`no`);
   $(`inlining`);
   $(`please`);
-  +x;
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     $(`a`);
@@ -106,11 +104,11 @@ const f /*:(unknown)=>*/ = function ($$0) {
     return undefined;
   }
 };
-f(1);
+f();
 $(NaN);
-f(2);
+f();
 $(NaN);
-f(`three`);
+f();
 $(NaN);
 `````
 
@@ -119,15 +117,13 @@ $(NaN);
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = c;
+const a = function() {
   debugger;
   $( "no" );
   $( "inlining" );
   $( "please" );
-  +b;
-  const d = $( true );
-  if (d) {
+  const b = $( true );
+  if (b) {
     $( "a" );
     return undefined;
   }
@@ -136,11 +132,11 @@ const a = function($$0 ) {
     return undefined;
   }
 };
-a( 1 );
+a();
 $( NaN );
-a( 2 );
+a();
 $( NaN );
-a( "three" );
+a();
 $( NaN );
 `````
 

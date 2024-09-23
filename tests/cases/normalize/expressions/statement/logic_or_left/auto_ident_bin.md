@@ -44,7 +44,7 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const tmpIfTest = tmpBinBothLhs + tmpBinBothRhs;
+const tmpIfTest /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 if (tmpIfTest) {
 } else {
   $(100);

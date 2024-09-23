@@ -264,7 +264,7 @@ let d /*:()=>*/ = function () {
   c = 43;
   return obj;
 };
-const e /*:()=>*/ = function () {
+const e /*:()=>?*/ = function () {
   debugger;
   $(`e`);
   a = 51;

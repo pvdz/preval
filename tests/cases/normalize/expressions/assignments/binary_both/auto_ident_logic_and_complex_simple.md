@@ -65,10 +65,10 @@ const tmpCalleeParam$3 = $(1);
 let tmpClusterSSA_a = $(tmpCalleeParam$3);
 if (tmpClusterSSA_a) {
   tmpClusterSSA_a = 2;
-  const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + 2;
+  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + 2;
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  const tmpClusterSSA_tmpCalleeParam$1 = tmpBinBothLhs + tmpClusterSSA_a;
+  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
   $(tmpClusterSSA_tmpCalleeParam$1);
 }
 $(tmpClusterSSA_a);

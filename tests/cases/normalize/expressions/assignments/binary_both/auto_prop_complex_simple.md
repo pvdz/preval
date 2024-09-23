@@ -52,7 +52,7 @@ const tmpObjLitVal = $(1);
 const tmpObjLitVal$1 = $(1);
 const a /*:object*/ = { b: tmpObjLitVal };
 const tmpClusterSSA_a /*:object*/ = { b: tmpObjLitVal$1 };
-const tmpCalleeParam = a + tmpClusterSSA_a;
+const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 const tmpAssignMemLhsObj = $(tmpClusterSSA_a);
 tmpAssignMemLhsObj.b = 2;

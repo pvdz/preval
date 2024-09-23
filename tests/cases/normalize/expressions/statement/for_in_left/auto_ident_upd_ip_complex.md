@@ -86,7 +86,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpCalleeParam$3 = $(b);
     const tmpPostUpdArgObj = $(tmpCalleeParam$3);
     const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-    const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
+    const tmpAssignMemRhs /*:primitive*/ = tmpPostUpdArgVal + 1;
     tmpPostUpdArgObj.x = tmpAssignMemRhs;
     const tmpAssignMemRhs$1 = tmpForInNext.value;
     tmpPostUpdArgVal.x = tmpAssignMemRhs$1;

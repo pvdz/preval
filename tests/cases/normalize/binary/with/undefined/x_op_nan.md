@@ -178,7 +178,7 @@ x ** 0;
 x ** 0;
 x ** 0;
 x ** 0;
-const tmpArrElement$7 = x + undefined;
+const tmpArrElement$7 /*:primitive*/ = x + undefined;
 x ** 0;
 const tmpArrElement$11 /*:number*/ = x << 0;
 const tmpArrElement$13 /*:number*/ = x >> 0;

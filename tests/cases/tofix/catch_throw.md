@@ -91,7 +91,7 @@ $(unstable_runWithPriority);
 
 
 `````js filename=intro
-const unstable_runWithPriority = function ($$0) {
+const unstable_runWithPriority /*:(unknown)=>?*/ = function ($$0) {
   const eventHandler = $$0;
   debugger;
   let $implicitThrow /*:boolean*/ = false;

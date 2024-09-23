@@ -109,7 +109,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
-  const f = function () {
+  const f /*:()=>undefined*/ = function () {
     debugger;
     return undefined;
   };

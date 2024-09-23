@@ -56,7 +56,7 @@ const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam = tmpClusterSSA_a + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a, arg);
 `````

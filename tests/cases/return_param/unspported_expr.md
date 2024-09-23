@@ -92,14 +92,14 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const f /*:(unknown)=>*/ = function ($$0) {
-  const x = $$0;
+const f /*:(number)=>primitive*/ = function ($$0) {
+  const x /*:number*/ = $$0;
   debugger;
   $(`no`);
   $(`inlining`);
   $(`please`);
   const tmpBinBothRhs = $(1);
-  const y = x + tmpBinBothRhs;
+  const y /*:primitive*/ = x + tmpBinBothRhs;
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     $(`a`);

@@ -52,7 +52,7 @@ $(f);
 
 
 `````js filename=intro
-const f = function ($$0) {
+const f /*:(unknown)=>?*/ = function ($$0) {
   const Cu$3 = $$0;
   debugger;
   const tmpCalleeParam$81 /*:regex*/ = /[^0-9]/g;

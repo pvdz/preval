@@ -106,8 +106,8 @@ $(true);
 const p = $(1);
 const q = $(3);
 const r = $(5);
-const tmpBinLhs = p + q;
-const tmpReturnArg = tmpBinLhs + r;
+const tmpBinLhs /*:primitive*/ = p + q;
+const tmpReturnArg /*:primitive*/ = tmpBinLhs + r;
 $(tmpReturnArg);
 `````
 

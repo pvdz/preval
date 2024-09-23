@@ -73,12 +73,12 @@ let tmpClusterSSA_a = undefined;
 const tmpChainRootProp$1 = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp$1 == null;
 if (tmpIfTest$1) {
-  const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + undefined;
+  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + undefined;
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpChainElementObject$1 = tmpChainRootProp$1.x;
   tmpClusterSSA_a = tmpChainElementObject$1;
-  const tmpClusterSSA_tmpCalleeParam$1 = tmpBinBothLhs + tmpChainElementObject$1;
+  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpChainElementObject$1;
   $(tmpClusterSSA_tmpCalleeParam$1);
 }
 $(tmpClusterSSA_a);

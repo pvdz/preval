@@ -50,7 +50,7 @@ while (true) {
 `````js filename=intro
 const max = $(10);
 $(0);
-const tmpClusterSSA_i = 0 + max;
+const tmpClusterSSA_i /*:primitive*/ = 0 + max;
 const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_i < 10;
 if (tmpIfTest$1) {
   $(tmpClusterSSA_i);

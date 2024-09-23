@@ -88,7 +88,7 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const a = tmpBinBothLhs + tmpBinBothRhs;
+const a /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 const tmpIfTest /*:boolean*/ = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

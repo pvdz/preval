@@ -61,7 +61,7 @@ $(a, b, c);
 
 
 `````js filename=intro
-const f /*:(string)=>*/ = function ($$0) {
+const f /*:(string)=>undefined*/ = function ($$0) {
   const thisisastring /*:string*/ = $$0;
   debugger;
   const regex /*:regex*/ = /[^A-Za-z0-9\+\/\=]/g;

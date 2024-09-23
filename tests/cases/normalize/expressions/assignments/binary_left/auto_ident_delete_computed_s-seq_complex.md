@@ -55,7 +55,7 @@ const tmpDeleteCompProp = $(`y`);
 const arg /*:object*/ = { y: 1 };
 const a /*:boolean*/ = delete arg[tmpDeleteCompProp];
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam = a + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a, arg);
 `````

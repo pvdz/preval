@@ -184,7 +184,7 @@ x ** 0;
 x ** 0;
 x ** 0;
 x ** 0;
-const tmpArrElement$7 = NaN + x;
+const tmpArrElement$7 /*:primitive*/ = NaN + x;
 x ** 0;
 const tmpArrElement$11 /*:number*/ = 0 << x;
 const tmpArrElement$13 /*:number*/ = 0 >> x;

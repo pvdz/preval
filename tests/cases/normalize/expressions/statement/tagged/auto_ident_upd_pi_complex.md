@@ -53,7 +53,7 @@ const b /*:object*/ = { x: 1 };
 const tmpCalleeParam$3 = $(b);
 const varInitAssignLhsComputedObj = $(tmpCalleeParam$3);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
+const varInitAssignLhsComputedRhs /*:primitive*/ = tmpBinLhs + 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, varInitAssignLhsComputedRhs);

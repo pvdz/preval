@@ -61,11 +61,11 @@ $(y);
 `````js filename=intro
 drop1 + 0;
 drop2;
-const x = 1 + drop2;
+const x /*:primitive*/ = 1 + drop2;
 $(x);
 $();
 drop3;
-const y = 1 + drop3;
+const y /*:primitive*/ = 1 + drop3;
 $(y);
 `````
 

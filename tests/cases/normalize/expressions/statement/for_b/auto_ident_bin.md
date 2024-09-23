@@ -51,13 +51,13 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const tmpIfTest = tmpBinBothLhs + tmpBinBothRhs;
+const tmpIfTest /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(1);
     const tmpBinBothLhs$1 = $(1);
     const tmpBinBothRhs$1 = $(2);
-    const tmpIfTest$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+    const tmpIfTest$1 /*:primitive*/ = tmpBinBothLhs$1 + tmpBinBothRhs$1;
     if (tmpIfTest$1) {
     } else {
       break;

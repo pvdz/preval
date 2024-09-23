@@ -62,7 +62,7 @@ f(8, 2, 9);
 
 
 `````js filename=intro
-const f /*:(number, number, number)=>*/ = function ($$0, $$1, $$2) {
+const f /*:(number, number, number)=>undefined*/ = function ($$0, $$1, $$2) {
   const a /*:number*/ = $$0;
   const c /*:number*/ = $$1;
   const tmpOutlinedParam /*:number*/ = $$2;

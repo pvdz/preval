@@ -76,7 +76,7 @@ try {
 try {
   $();
 } catch (e) {
-  const f /*:(number)=>*/ = function ($$0) {
+  const f /*:(number)=>undefined*/ = function ($$0) {
     const a /*:number*/ = $$0;
     debugger;
     e = a;

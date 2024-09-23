@@ -59,7 +59,7 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + 1;
+const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + 1;
 $(tmpClusterSSA_tmpCalleeParam);
 $(1);
 `````

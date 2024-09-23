@@ -48,7 +48,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpBinBothRhs = function () {
+const tmpBinBothRhs /*:()=>*/ = function () {
   debugger;
   return undefined;
 };

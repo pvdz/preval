@@ -48,7 +48,7 @@ $(a);
 const tmpObjLitVal = $(1);
 const tmpBinBothRhs = $(100);
 const a /*:object*/ = { b: tmpObjLitVal };
-const tmpCalleeParam = a + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpCalleeParam);
 a.b = 2;
 $(a);

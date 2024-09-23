@@ -72,7 +72,7 @@ const varInitAssignLhsComputedObj = $(c);
 const varInitAssignLhsComputedProp = $(`y`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
-const tmpCalleeParam = tmpBinBothLhs + 7;
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + 7;
 $(tmpCalleeParam);
 $(7, b, c, 3, 4);
 `````

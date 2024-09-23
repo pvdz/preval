@@ -54,7 +54,7 @@ const b /*:object*/ = { x: 1 };
 const tmpCalleeParam$3 = $(b);
 const tmpNestedAssignObj = $(tmpCalleeParam$3);
 const tmpBinLhs = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
+const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs + 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, tmpNestedPropCompoundComplexRhs);

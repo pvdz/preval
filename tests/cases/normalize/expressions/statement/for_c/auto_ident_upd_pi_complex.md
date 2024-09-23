@@ -63,7 +63,7 @@ if (tmpIfTest) {
   const tmpCalleeParam = $(b);
   const tmpAssignMemLhsObj = $(tmpCalleeParam);
   const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-  const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
+  const tmpAssignMemRhs /*:primitive*/ = tmpCompoundAssignLhs + 1;
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 = $(1);
@@ -71,7 +71,7 @@ if (tmpIfTest) {
       const tmpCalleeParam$1 = $(b);
       const tmpAssignMemLhsObj$1 = $(tmpCalleeParam$1);
       const tmpCompoundAssignLhs$1 = tmpAssignMemLhsObj$1.x;
-      const tmpAssignMemRhs$1 = tmpCompoundAssignLhs$1 + 1;
+      const tmpAssignMemRhs$1 /*:primitive*/ = tmpCompoundAssignLhs$1 + 1;
       tmpAssignMemLhsObj$1.x = tmpAssignMemRhs$1;
     } else {
       break;

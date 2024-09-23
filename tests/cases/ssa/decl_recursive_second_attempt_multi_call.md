@@ -90,7 +90,7 @@ if ($) {
 
 
 `````js filename=intro
-const tmpReturnArg = function () {
+const tmpReturnArg /*:()=>undefined*/ = function () {
   debugger;
   $(`new`);
   return undefined;

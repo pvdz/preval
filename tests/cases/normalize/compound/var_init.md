@@ -45,7 +45,7 @@ $(x);
 `````js filename=intro
 const a = $(1);
 const tmpBinBothRhs = $(2);
-const tmpNestedComplexRhs = a + tmpBinBothRhs;
+const tmpNestedComplexRhs /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpNestedComplexRhs);
 `````
 

@@ -54,7 +54,7 @@ f(1, 2, 3, 4, 5);
 
 
 `````js filename=intro
-const f /*:(number, number, number, number, number)=>*/ = function ($$0, $$1, $$2, $$3, $$4) {
+const f /*:(number, number, number, number, number)=>undefined*/ = function ($$0, $$1, $$2, $$3, $$4) {
   const tmpPrevalAliasArgumentsAny = arguments;
   debugger;
   $(tmpPrevalAliasArgumentsAny);

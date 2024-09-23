@@ -46,7 +46,7 @@ $(a, arg);
 
 `````js filename=intro
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam = undefined + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = undefined + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(undefined, 1);
 `````

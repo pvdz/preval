@@ -43,7 +43,7 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const tmpCalleeParam$1 = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, tmpCalleeParam$1);
 const a /*:object*/ = { a: 999, b: 1000 };

@@ -75,7 +75,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f /*:()=>number*/ = function () {
   debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
@@ -88,7 +88,7 @@ f();
 f();
 f();
 f();
-const tmpCalleeParam = f();
+const tmpCalleeParam /*:number*/ = f();
 $(tmpCalleeParam);
 `````
 

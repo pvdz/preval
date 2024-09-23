@@ -57,7 +57,7 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    const f = function () {
+    const f /*:()=>undefined*/ = function () {
       debugger;
       return undefined;
     };

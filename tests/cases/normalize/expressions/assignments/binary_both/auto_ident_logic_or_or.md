@@ -95,7 +95,7 @@ if (tmpClusterSSA_a) {
     tmpClusterSSA_a = $(tmpCalleeParam$11);
   }
 }
-const tmpCalleeParam = tmpBinBothLhs + tmpClusterSSA_a;
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````

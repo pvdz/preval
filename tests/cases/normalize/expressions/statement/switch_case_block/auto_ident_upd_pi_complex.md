@@ -73,7 +73,7 @@ if (tmpIfTest) {
   const tmpCalleeParam = $(b);
   const tmpAssignMemLhsObj = $(tmpCalleeParam);
   const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-  const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
+  const tmpAssignMemRhs /*:primitive*/ = tmpCompoundAssignLhs + 1;
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 } else {
 }

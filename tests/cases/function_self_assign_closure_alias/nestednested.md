@@ -138,7 +138,7 @@ $(outer);
 
 
 `````js filename=intro
-const outer /*:()=>*/ = function () {
+const outer /*:()=>array*/ = function () {
   debugger;
   let f /*:()=>*/ = function () {
     debugger;
@@ -160,7 +160,7 @@ const outer /*:()=>*/ = function () {
   const tmpReturnArg /*:array*/ = [f, g];
   return tmpReturnArg;
 };
-const bindingPatternArrRoot = outer();
+const bindingPatternArrRoot /*:array*/ = outer();
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 const ff = arrPatternSplat[0];
 const gg = arrPatternSplat[1];

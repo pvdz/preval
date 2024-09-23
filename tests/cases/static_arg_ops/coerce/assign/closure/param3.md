@@ -77,18 +77,17 @@ f(x);
 
 
 `````js filename=intro
-const tmpObjLitVal = function () {
+const tmpObjLitVal /*:()=>undefined*/ = function () {
   debugger;
   $(`PASS`);
   return undefined;
 };
 const tmpCalleeParam /*:object*/ = { valueOf: tmpObjLitVal };
-let x = $(tmpCalleeParam);
+const x = $(tmpCalleeParam);
 $coerce(x, `number`);
-const f /*:(unknown)=>*/ = function ($$0) {
-  const c = $$0;
+const f /*:(number)=>undefined*/ = function ($$0) {
+  const c /*:number*/ = $$0;
   debugger;
-  x = $coerce(c, `number`);
   $(1);
   $(2);
   $(c);
@@ -96,7 +95,7 @@ const f /*:(unknown)=>*/ = function ($$0) {
 };
 f(3);
 f(4);
-f(x);
+f(4);
 `````
 
 ## PST Output
@@ -110,12 +109,11 @@ const a = function() {
   return undefined;
 };
 const b = { valueOf: a };
-let c = $( b );
+const c = $( b );
 $coerce( c, "number" );
 const d = function($$0 ) {
   const e = f;
   debugger;
-  c = $coerce( e, "number" );
   $( 1 );
   $( 2 );
   $( e );
@@ -123,7 +121,7 @@ const d = function($$0 ) {
 };
 d( 3 );
 d( 4 );
-d( c );
+d( 4 );
 `````
 
 ## Globals

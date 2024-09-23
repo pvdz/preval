@@ -87,7 +87,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpCalleeParam$3 = $(b);
     const tmpNestedAssignObj = $(tmpCalleeParam$3);
     const tmpBinLhs = tmpNestedAssignObj.x;
-    const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
+    const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs + 1;
     tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
     a = tmpNestedPropCompoundComplexRhs;
     const tmpAssignMemRhs = tmpForOfNext.value;

@@ -79,7 +79,7 @@ if ($) {
 `````js filename=intro
 if ($) {
   $(144);
-  const a = function () {
+  const a /*:()=>*/ = function () {
     debugger;
     needle.f();
     return undefined;

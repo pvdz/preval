@@ -57,7 +57,7 @@ if (tmpIfTest) {
   const tmpCalleeParam = $(b);
   const tmpPostUpdArgObj = $(tmpCalleeParam);
   const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-  const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
+  const tmpAssignMemRhs /*:primitive*/ = tmpPostUpdArgVal + 1;
   tmpPostUpdArgObj.x = tmpAssignMemRhs;
 }
 const a /*:object*/ = { a: 999, b: 1000 };

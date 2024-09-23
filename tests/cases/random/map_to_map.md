@@ -86,7 +86,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam$3 = function ($$0) {
+const tmpCalleeParam$3 /*:(unknown)=>array*/ = function ($$0) {
   const k = $$0;
   debugger;
   const tmpReturnArg /*:array*/ = [k, k];

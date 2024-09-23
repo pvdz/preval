@@ -291,7 +291,7 @@ tmp(obja, objb, objc, objd);
 
 
 `````js filename=intro
-const tmp /*:(unknown)=>*/ = function (...$$0) {
+const tmp /*:(unknown)=>?*/ = function (...$$0) {
   const a$1 = $$0;
   debugger;
   const tmpCalleeParam /*:array*/ = [`\$:`, a$1, b, c, d, e, obja, objb, objc, objd, `::`, ...a$1];
@@ -385,7 +385,7 @@ let c /*:()=>*/ = function () {
   b = 32;
   return objc;
 };
-const d /*:()=>*/ = function () {
+const d /*:()=>object*/ = function () {
   debugger;
   tmp(`d`);
   a = 41;

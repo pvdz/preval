@@ -186,7 +186,7 @@ const tmpBinBothRhs$5 /*:regex*/ = /foo/g;
 const tmpArrElement$5 /*:number*/ = x % tmpBinBothRhs$5;
 x;
 const tmpBinBothRhs$7 /*:regex*/ = /foo/g;
-const tmpArrElement$7 = x + tmpBinBothRhs$7;
+const tmpArrElement$7 /*:primitive*/ = x + tmpBinBothRhs$7;
 x;
 const tmpBinBothRhs$9 /*:regex*/ = /foo/g;
 const tmpArrElement$9 /*:number*/ = x - tmpBinBothRhs$9;

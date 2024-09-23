@@ -65,7 +65,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const f = function ($$0) {
+const f /*:(unknown)=>boolean*/ = function ($$0) {
   debugger;
   const x = $(0);
   const tmpClusterSSA_y /*:boolean*/ = Boolean(x);

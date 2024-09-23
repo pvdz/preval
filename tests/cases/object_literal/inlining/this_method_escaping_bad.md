@@ -91,7 +91,7 @@ tmpCallCallee$3(tmpCalleeParam$5);
 
 
 `````js filename=intro
-const tmpObjLitVal$1 = function () {
+const tmpObjLitVal$1 /*:()=>?,string*/ = function () {
   const tmpPrevalAliasThis /*:object*/ = this;
   debugger;
   const tmpBinLhs = tmpPrevalAliasThis.x;

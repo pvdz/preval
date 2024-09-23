@@ -41,7 +41,7 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const tmpArrElToSpread = tmpBinBothLhs + tmpBinBothRhs;
+const tmpArrElToSpread /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 [...tmpArrElToSpread];
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

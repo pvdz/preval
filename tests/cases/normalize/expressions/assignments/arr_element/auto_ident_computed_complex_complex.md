@@ -57,7 +57,7 @@ const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 const tmpAssignRhsCompObj$1 = $(b);
 const tmpAssignRhsCompProp$1 = $(`c`);
 const tmpClusterSSA_a$1 = tmpAssignRhsCompObj$1[tmpAssignRhsCompProp$1];
-const tmpCalleeParam = tmpClusterSSA_a + tmpClusterSSA_a$1;
+const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a$1;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a$1, b);
 `````

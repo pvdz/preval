@@ -48,7 +48,7 @@ $dotCall(alias, obj, 1);
 
 
 `````js filename=intro
-const g = function () {
+const g /*:()=>string*/ = function () {
   debugger;
   return `win`;
 };

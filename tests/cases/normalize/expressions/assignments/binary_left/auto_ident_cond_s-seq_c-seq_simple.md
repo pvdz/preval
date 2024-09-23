@@ -50,7 +50,7 @@ $(a);
 `````js filename=intro
 const a = $(60);
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam = a + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);
 `````

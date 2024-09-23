@@ -51,7 +51,7 @@ const tmpBinBothLhs = $(100);
 const tmpDeleteCompProp = $(`y`);
 const arg /*:object*/ = { y: 1 };
 const a /*:boolean*/ = delete arg[tmpDeleteCompProp];
-const tmpCalleeParam = tmpBinBothLhs + a;
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
 $(tmpCalleeParam);
 $(a, arg);
 `````

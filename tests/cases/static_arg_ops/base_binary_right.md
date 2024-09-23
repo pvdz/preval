@@ -60,11 +60,11 @@ f(8, 2, 9);
 
 
 `````js filename=intro
-const f /*:(number)=>*/ = function ($$0) {
+const f /*:(number)=>undefined*/ = function ($$0) {
   const a /*:number*/ = $$0;
   debugger;
   const tmpBinLhs = $(1);
-  const tmpCalleeParam = tmpBinLhs + a;
+  const tmpCalleeParam /*:primitive*/ = tmpBinLhs + a;
   $(tmpCalleeParam);
   return undefined;
 };

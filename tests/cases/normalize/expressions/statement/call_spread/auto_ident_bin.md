@@ -42,7 +42,7 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const tmpCalleeParamSpread = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParamSpread /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 $(...tmpCalleeParamSpread);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

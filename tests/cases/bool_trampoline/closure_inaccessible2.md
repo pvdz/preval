@@ -100,13 +100,13 @@ $(obj);
 
 
 `````js filename=intro
-const f$1 = function () {
+const f$1 /*:()=>boolean*/ = function () {
   debugger;
   const tmpssa2_x = $(100);
   const y /*:boolean*/ = Boolean(tmpssa2_x);
   return y;
 };
-const tmpObjLitVal = function () {
+const tmpObjLitVal /*:()=>function*/ = function () {
   debugger;
   $(undefined);
   return f$1;

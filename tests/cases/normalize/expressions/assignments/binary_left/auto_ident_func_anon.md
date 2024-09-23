@@ -48,12 +48,12 @@ $(a);
 
 
 `````js filename=intro
-const a = function () {
+const a /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam = a + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);
 `````

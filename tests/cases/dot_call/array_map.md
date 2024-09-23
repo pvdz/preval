@@ -57,11 +57,11 @@ $(arr);
 
 
 `````js filename=intro
-const f = function ($$0) {
+const f /*:(unknown)=>primitive*/ = function ($$0) {
   const item = $$0;
   debugger;
   $(`hello`, item);
-  const tmpReturnArg = item + 1;
+  const tmpReturnArg /*:primitive*/ = item + 1;
   return tmpReturnArg;
 };
 const pre /*:array*/ = [1, 2, 3];

@@ -88,10 +88,10 @@ f(`foop`);
 
 
 `````js filename=intro
-const f /*:(string)=>*/ = function ($$0) {
+const f /*:(string)=>undefined*/ = function ($$0) {
   const y /*:string*/ = $$0;
   debugger;
-  const g /*:(number)=>*/ = function ($$0) {
+  const g /*:(number)=>array*/ = function ($$0) {
     const z /*:number*/ = $$0;
     debugger;
     $(`keepme`);
@@ -101,9 +101,9 @@ const f /*:(string)=>*/ = function ($$0) {
   if (y) {
     return undefined;
   } else {
-    const tmpCalleeParam = g(10);
+    const tmpCalleeParam /*:array*/ = g(10);
     $(tmpCalleeParam, `pass`);
-    const tmpCalleeParam$3 = g(20);
+    const tmpCalleeParam$3 /*:array*/ = g(20);
     $(tmpCalleeParam$3, `pass`);
     return undefined;
   }

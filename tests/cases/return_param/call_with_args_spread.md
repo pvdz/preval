@@ -108,14 +108,14 @@ tmpCallCallee$7(tmpCalleeParam$7);
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f /*:()=>undefined*/ = function () {
   debugger;
   $(`no`);
   $(`inlining`);
   $(`please`);
   return undefined;
 };
-const tmpCalleeParam$1 /*:(unknown)=>*/ = function (...$$0) {
+const tmpCalleeParam$1 /*:(unknown)=>undefined*/ = function (...$$0) {
   const args = $$0;
   debugger;
   $(`pass1`, args);
@@ -124,7 +124,7 @@ const tmpCalleeParam$1 /*:(unknown)=>*/ = function (...$$0) {
 f();
 tmpCalleeParam$1(1, `two`, null, NaN);
 $(undefined);
-const tmpCalleeParam$5 /*:(unknown)=>*/ = function (...$$0) {
+const tmpCalleeParam$5 /*:(unknown)=>undefined*/ = function (...$$0) {
   const args$1 = $$0;
   debugger;
   $(`pass2`, args$1);
@@ -133,7 +133,7 @@ const tmpCalleeParam$5 /*:(unknown)=>*/ = function (...$$0) {
 f();
 tmpCalleeParam$5(1, `two`, null, NaN);
 $(undefined);
-const tmpCalleeParam$9 /*:(unknown)=>*/ = function (...$$0) {
+const tmpCalleeParam$9 /*:(unknown)=>undefined*/ = function (...$$0) {
   const args$3 = $$0;
   debugger;
   $(`pass3`, args$3);

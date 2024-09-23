@@ -48,7 +48,7 @@ $(a, arg);
 const tmpBinBothLhs = $(100);
 const arg /*:object*/ = { y: 1 };
 const a /*:boolean*/ = delete arg.y;
-const tmpCalleeParam = tmpBinBothLhs + a;
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
 $(tmpCalleeParam);
 $(a, arg);
 `````

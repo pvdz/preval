@@ -61,7 +61,7 @@ const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
-  const tmpClusterSSA_a = function () {
+  const tmpClusterSSA_a /*:()=>undefined*/ = function () {
     debugger;
     return undefined;
   };

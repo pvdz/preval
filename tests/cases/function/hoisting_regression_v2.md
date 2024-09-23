@@ -76,12 +76,12 @@ $(outer);
 
 
 `````js filename=intro
-const inner = function () {
+const inner /*:()=>undefined*/ = function () {
   debugger;
   $(1);
   return undefined;
 };
-const outer = function () {
+const outer /*:()=>undefined*/ = function () {
   debugger;
   const tmpIfTest = $();
   if (tmpIfTest) {

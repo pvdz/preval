@@ -134,7 +134,7 @@ tmpCallCallee$7(tmpCalleeParam$7);
 
 
 `````js filename=intro
-const f /*:(function)=>*/ = function ($$0) {
+const f /*:(function)=>?*/ = function ($$0) {
   const x /*:function*/ = $$0;
   debugger;
   $(`no`);
@@ -143,7 +143,7 @@ const f /*:(function)=>*/ = function ($$0) {
   const y = x(1, `two`, foo, NaN);
   return y;
 };
-const tmpCalleeParam$1 = function ($$0, $$1, $$2, $$3, $$4) {
+const tmpCalleeParam$1 /*:(unknown, unknown, unknown, unknown, unknown)=>undefined*/ = function ($$0, $$1, $$2, $$3, $$4) {
   const a = $$0;
   const b = $$1;
   const c = $$2;
@@ -155,7 +155,7 @@ const tmpCalleeParam$1 = function ($$0, $$1, $$2, $$3, $$4) {
 };
 const tmpCalleeParam = f(tmpCalleeParam$1);
 $(tmpCalleeParam);
-const tmpCalleeParam$5 = function ($$0, $$1, $$2, $$3, $$4) {
+const tmpCalleeParam$5 /*:(unknown, unknown, unknown, unknown, unknown)=>undefined*/ = function ($$0, $$1, $$2, $$3, $$4) {
   const a$1 = $$0;
   const b$1 = $$1;
   const c$1 = $$2;
@@ -167,7 +167,7 @@ const tmpCalleeParam$5 = function ($$0, $$1, $$2, $$3, $$4) {
 };
 const tmpCalleeParam$3 = f(tmpCalleeParam$5);
 $(tmpCalleeParam$3);
-const tmpCalleeParam$9 = function ($$0, $$1, $$2, $$3, $$4) {
+const tmpCalleeParam$9 /*:(unknown, unknown, unknown, unknown, unknown)=>undefined*/ = function ($$0, $$1, $$2, $$3, $$4) {
   const a$3 = $$0;
   const b$3 = $$1;
   const c$3 = $$2;

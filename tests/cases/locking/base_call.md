@@ -87,7 +87,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 let tmpFuncLock /*:boolean*/ = true;
-const f = function ($$0, $$1, $$2) {
+const f /*:(unknown, unknown, unknown)=>undefined*/ = function ($$0, $$1, $$2) {
   const tmpPrevalAliasThis /*:object*/ = this;
   const a = $$0;
   const b = $$1;
@@ -96,7 +96,7 @@ const f = function ($$0, $$1, $$2) {
   $(`call me once`, tmpPrevalAliasThis, a, b, c);
   return undefined;
 };
-const g /*:()=>*/ = function () {
+const g /*:()=>undefined*/ = function () {
   debugger;
   if (tmpFuncLock) {
     const obj /*:object*/ = {};

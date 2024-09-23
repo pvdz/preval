@@ -53,7 +53,7 @@ $dotCall(h, obj);
 
 
 `````js filename=intro
-const h = function () {
+const h /*:()=>*/ = function () {
   debugger;
   $();
   return undefined;

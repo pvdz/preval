@@ -65,14 +65,14 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f /*:()=>boolean*/ = function () {
   debugger;
   const tmpBinLhs = $(0);
   const x /*:boolean*/ = tmpBinLhs === 1;
   return x;
 };
 f();
-const tmpCalleeParam = f();
+const tmpCalleeParam /*:boolean*/ = f();
 $(tmpCalleeParam);
 `````
 

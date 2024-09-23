@@ -68,7 +68,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const f = function ($$0) {
+const f /*:(unknown)=>boolean*/ = function ($$0) {
   const arg = $$0;
   debugger;
   const x = $(arg);

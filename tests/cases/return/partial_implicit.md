@@ -66,7 +66,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f /*:()=>number,undefined*/ = function () {
   debugger;
   if ($) {
     $(100);
@@ -75,11 +75,11 @@ const f /*:()=>*/ = function () {
     return undefined;
   }
 };
-const tmpCalleeParam = f();
+const tmpCalleeParam /*:primitive*/ = f();
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = f();
+const tmpCalleeParam$1 /*:primitive*/ = f();
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f();
+const tmpCalleeParam$3 /*:primitive*/ = f();
 $(tmpCalleeParam$3);
 `````
 

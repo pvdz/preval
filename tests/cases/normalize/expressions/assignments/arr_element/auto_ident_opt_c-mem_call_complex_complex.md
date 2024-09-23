@@ -114,7 +114,7 @@ if (tmpIfTest$3) {
     tmpClusterSSA_a = tmpChainElementCall$5;
   }
 }
-const tmpCalleeParam = tmpBinBothLhs + tmpClusterSSA_a;
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````

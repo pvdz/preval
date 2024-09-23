@@ -40,7 +40,7 @@ throw tmpThrowArg;
 `````js filename=intro
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const tmpThrowArg = tmpBinBothLhs + tmpBinBothRhs;
+const tmpThrowArg /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 throw tmpThrowArg;
 `````
 

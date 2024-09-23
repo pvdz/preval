@@ -62,7 +62,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const tmpObjLitVal = function (...$$0) {
+const tmpObjLitVal /*:(unknown)=>undefined*/ = function (...$$0) {
   const tmpPrevalAliasThis /*:object*/ = this;
   const args = $$0;
   debugger;

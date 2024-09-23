@@ -78,7 +78,7 @@ const tmpCalleeParam$5 = 0;
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f = function () {
   debugger;
   $(`no`);
   $(`inlining`);

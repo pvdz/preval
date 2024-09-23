@@ -54,7 +54,7 @@ const b /*:object*/ = { x: 1 };
 const tmpCalleeParam$3 = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam$3);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
+const tmpAssignMemRhs /*:primitive*/ = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, tmpPostUpdArgVal);

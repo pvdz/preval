@@ -55,7 +55,7 @@ f();
 
 
 `````js filename=intro
-const f /*:(unknown, unknown, unknown)=>*/ = function ($$0, $$1, $$2) {
+const f /*:(unknown, unknown, unknown)=>undefined*/ = function ($$0, $$1, $$2) {
   const tmpPrevalAliasArgumentsAny = arguments;
   const x = $$0;
   const z = $$2;

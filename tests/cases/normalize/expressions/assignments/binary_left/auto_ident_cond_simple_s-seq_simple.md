@@ -42,7 +42,7 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam = 60 + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = 60 + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(60);
 `````

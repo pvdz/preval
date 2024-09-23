@@ -95,7 +95,7 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpBinLhs /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

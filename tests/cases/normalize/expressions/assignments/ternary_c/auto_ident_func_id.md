@@ -62,7 +62,7 @@ if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  const f = function () {
+  const f /*:()=>undefined*/ = function () {
     debugger;
     return undefined;
   };

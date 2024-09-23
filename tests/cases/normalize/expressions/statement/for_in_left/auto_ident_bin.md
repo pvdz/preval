@@ -75,7 +75,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     const tmpBinBothLhs = $(1);
     const tmpBinBothRhs = $(2);
-    const tmpAssignMemLhsObj = tmpBinBothLhs + tmpBinBothRhs;
+    const tmpAssignMemLhsObj /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
     const tmpAssignMemRhs = tmpForInNext.value;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   }

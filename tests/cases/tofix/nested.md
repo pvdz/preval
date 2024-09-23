@@ -96,7 +96,7 @@ $(z);
 
 
 `````js filename=intro
-const g /*:()=>*/ = function () {
+const g /*:()=>array*/ = function () {
   debugger;
   const a /*:array*/ = [1, 2, 3];
   const b /*:array*/ = [1, 2, 3];
@@ -113,11 +113,11 @@ const g /*:()=>*/ = function () {
   const g$1 /*:array*/ = [1, 2, 3];
   return g$1;
 };
-const x = g();
-const y = g();
+const x /*:array*/ = g();
+const y /*:array*/ = g();
 const xy /*:boolean*/ = x === y;
 $(xy);
-const z = g();
+const z /*:array*/ = g();
 $(z);
 `````
 

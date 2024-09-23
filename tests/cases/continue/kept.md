@@ -220,7 +220,7 @@ $continue();
 
 
 `````js filename=intro
-const $continue /*:()=>*/ = function () {
+const $continue /*:()=>undefined*/ = function () {
   debugger;
   const tmpIfTest = $();
   if (tmpIfTest) {

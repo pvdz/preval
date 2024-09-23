@@ -84,7 +84,7 @@ export { f };
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>*/ = function () {
   debugger;
   return undefined;
 };
@@ -98,7 +98,7 @@ const g /*:number*/ = 1;
 export { g };
 const h /*:number*/ = 2;
 export { h as i };
-const tmpAnonDefaultExport = function () {
+const tmpAnonDefaultExport /*:()=>*/ = function () {
   debugger;
   return undefined;
 };

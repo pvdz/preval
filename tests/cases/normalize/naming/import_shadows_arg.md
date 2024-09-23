@@ -49,7 +49,7 @@ export { g };
 
 
 `````js filename=intro
-const g = function ($$0) {
+const g /*:(unknown)=>?*/ = function ($$0) {
   const x$1 = $$0;
   debugger;
   return x$1;

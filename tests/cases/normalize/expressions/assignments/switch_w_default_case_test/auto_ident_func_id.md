@@ -93,7 +93,7 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
-const f = function () {
+const f /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };

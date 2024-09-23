@@ -50,7 +50,7 @@ $(a, x);
 const tmpBinBothLhs = $(100);
 $(1);
 $(2);
-const tmpCalleeParam = tmpBinBothLhs + 1;
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + 1;
 $(tmpCalleeParam);
 $(1, 1);
 `````

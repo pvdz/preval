@@ -56,7 +56,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
-  const f = function () {
+  const f /*:()=>undefined*/ = function () {
     debugger;
     return undefined;
   };

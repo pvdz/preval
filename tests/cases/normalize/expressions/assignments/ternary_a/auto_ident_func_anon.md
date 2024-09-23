@@ -54,7 +54,7 @@ $(a);
 
 
 `````js filename=intro
-const a = function () {
+const a /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };

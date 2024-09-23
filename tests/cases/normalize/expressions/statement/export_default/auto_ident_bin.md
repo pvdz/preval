@@ -42,7 +42,7 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const tmpAnonDefaultExport = tmpBinBothLhs + tmpBinBothRhs;
+const tmpAnonDefaultExport /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

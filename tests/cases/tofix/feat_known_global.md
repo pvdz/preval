@@ -565,7 +565,7 @@ const tmpCalleeParam$45 = $(`Date.parse`);
 $coerce(tmpCalleeParam$45, `plustr`);
 $(`number`);
 const tmpCalleeParam$49 = $(`JSON.stringify`);
-const tmpUnaryArg$25 = JSON.stringify(tmpCalleeParam$49);
+const tmpUnaryArg$25 /*:primitive*/ = JSON.stringify(tmpCalleeParam$49);
 const tmpCalleeParam$47 /*:string*/ = typeof tmpUnaryArg$25;
 $(tmpCalleeParam$47);
 const tmpCalleeParam$53 = $(`Math.abs`);

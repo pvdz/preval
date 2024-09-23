@@ -79,7 +79,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const f = function () {
+    const f /*:()=>undefined*/ = function () {
       debugger;
       return undefined;
     };

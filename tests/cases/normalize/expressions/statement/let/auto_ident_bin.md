@@ -43,7 +43,7 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const xyz = tmpBinBothLhs + tmpBinBothRhs;
+const xyz /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 $(xyz);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

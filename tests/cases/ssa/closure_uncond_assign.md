@@ -84,7 +84,7 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const tmpClusterSSA_x = function () {
+  const tmpClusterSSA_x /*:()=>*/ = function () {
     debugger;
     return undefined;
   };

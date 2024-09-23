@@ -105,7 +105,7 @@ const b /*:object*/ = { x: 1 };
 const tmpCalleeParam = $(b);
 const varInitAssignLhsComputedObj = $(tmpCalleeParam);
 const tmpBinLhs$1 = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs = tmpBinLhs$1 + 1;
+const varInitAssignLhsComputedRhs /*:primitive*/ = tmpBinLhs$1 + 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
 const tmpIfTest /*:boolean*/ = varInitAssignLhsComputedRhs === tmpSwitchValue;
 if (tmpIfTest) {

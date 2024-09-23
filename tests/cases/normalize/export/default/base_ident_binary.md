@@ -36,7 +36,7 @@ export { tmpAnonDefaultExport as default };
 `````js filename=intro
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const tmpAnonDefaultExport = tmpBinBothLhs + tmpBinBothRhs;
+const tmpAnonDefaultExport /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 export { tmpAnonDefaultExport as default };
 `````
 

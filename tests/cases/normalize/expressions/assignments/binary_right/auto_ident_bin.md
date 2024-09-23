@@ -46,8 +46,8 @@ $(a);
 const tmpBinBothLhs = $(100);
 const tmpBinBothLhs$1 = $(1);
 const tmpBinBothRhs$1 = $(2);
-const a = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpCalleeParam = tmpBinBothLhs + a;
+const a /*:primitive*/ = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
 $(tmpCalleeParam);
 $(a);
 `````

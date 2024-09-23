@@ -52,12 +52,12 @@ const tmpBinBothLhs = $(100);
 let a = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + undefined;
+  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + undefined;
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
-  const tmpClusterSSA_tmpCalleeParam$1 = tmpBinBothLhs + tmpChainElementCall;
+  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpChainElementCall;
   $(tmpClusterSSA_tmpCalleeParam$1);
 }
 $(a);

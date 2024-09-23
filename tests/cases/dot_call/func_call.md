@@ -55,7 +55,7 @@ $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam, tmpCalleeParam$1, tmpCalleePara
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>*/ = function () {
   const tmpPrevalAliasThis /*:object*/ = this;
   debugger;
   $(tmpPrevalAliasThis);

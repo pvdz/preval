@@ -71,12 +71,12 @@ f(8, 2, 9);
 
 
 `````js filename=intro
-const f /*:(number, number, number, unknown)=>*/ = function ($$0, $$1, $$2, $$3) {
+const f /*:(number, number, number, string)=>undefined*/ = function ($$0, $$1, $$2, $$3) {
   const tmpPrevalAliasArgumentsLen = arguments.length;
   const a /*:number*/ = $$0;
   const b /*:number*/ = $$1;
   const c /*:number*/ = $$2;
-  const d = $$3;
+  const d /*:string*/ = $$3;
   debugger;
   if ($) {
     $(a, b, c, d, tmpPrevalAliasArgumentsLen, `hopefully b is a literal afterwards`);

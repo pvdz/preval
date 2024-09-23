@@ -112,7 +112,7 @@ $(f);
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>undefined*/ = function () {
   debugger;
   const test = $(1);
   if (test) {

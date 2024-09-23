@@ -48,11 +48,11 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs$1 = $(1);
 const tmpBinBothRhs$1 = $(2);
-const a = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+const a /*:primitive*/ = tmpBinBothLhs$1 + tmpBinBothRhs$1;
 const tmpBinBothLhs$3 = $(1);
 const tmpBinBothRhs$3 = $(2);
-const tmpClusterSSA_a = tmpBinBothLhs$3 + tmpBinBothRhs$3;
-const tmpCalleeParam = a + tmpClusterSSA_a;
+const tmpClusterSSA_a /*:primitive*/ = tmpBinBothLhs$3 + tmpBinBothRhs$3;
+const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````

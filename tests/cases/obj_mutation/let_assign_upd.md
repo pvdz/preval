@@ -66,7 +66,7 @@ $(blob);
 let blob /*:object*/ = { thing: `woop`, xyz: 0 };
 const tmpAssignMemLhsObj = blob;
 const tmpBinLhs = blob.xyz;
-const tmpAssignMemRhs = tmpBinLhs + 1;
+const tmpAssignMemRhs /*:primitive*/ = tmpBinLhs + 1;
 tmpAssignMemLhsObj.xyz = tmpAssignMemRhs;
 $(blob);
 const tmpBinLhs$1 = blob.xyz;
@@ -76,7 +76,7 @@ if (tmpIfTest) {
     blob = { thing: `woop`, xyz: 0 };
     const tmpAssignMemLhsObj$1 = blob;
     const tmpBinLhs$2 = blob.xyz;
-    const tmpAssignMemRhs$1 = tmpBinLhs$2 + 1;
+    const tmpAssignMemRhs$1 /*:primitive*/ = tmpBinLhs$2 + 1;
     tmpAssignMemLhsObj$1.xyz = tmpAssignMemRhs$1;
     $(blob);
     const tmpBinLhs$4 = blob.xyz;

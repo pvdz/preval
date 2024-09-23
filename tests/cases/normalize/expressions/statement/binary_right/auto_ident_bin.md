@@ -43,7 +43,7 @@ $(a);
 const tmpBinBothLhs = $(100);
 const tmpBinBothLhs$1 = $(1);
 const tmpBinBothRhs$1 = $(2);
-const tmpBinBothRhs = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+const tmpBinBothRhs /*:primitive*/ = tmpBinBothLhs$1 + tmpBinBothRhs$1;
 tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

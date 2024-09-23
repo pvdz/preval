@@ -58,13 +58,13 @@ $(a);
 
 
 `````js filename=intro
-let a = function () {
+let a /*:()=>*/ = function () {
   debugger;
   return undefined;
 };
 const tmpCalleeParam = a;
 if (a) {
-  const tmpNestedComplexRhs = function () {
+  const tmpNestedComplexRhs /*:()=>undefined*/ = function () {
     debugger;
     return undefined;
   };

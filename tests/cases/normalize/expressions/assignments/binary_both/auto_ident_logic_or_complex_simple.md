@@ -64,11 +64,11 @@ if (a) {
 const tmpCalleeParam$3 = $(0);
 let tmpClusterSSA_a = $(tmpCalleeParam$3);
 if (tmpClusterSSA_a) {
-  const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + tmpClusterSSA_a;
+  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   tmpClusterSSA_a = 2;
-  const tmpClusterSSA_tmpCalleeParam$1 = tmpBinBothLhs + 2;
+  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + 2;
   $(tmpClusterSSA_tmpCalleeParam$1);
 }
 $(tmpClusterSSA_a);

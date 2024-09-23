@@ -64,14 +64,14 @@ const b /*:object*/ = { x: 1 };
 const tmpCalleeParam$1 = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam$1);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
+const tmpAssignMemRhs /*:primitive*/ = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
 const tmpCalleeParam$3 = $(b);
 const tmpPostUpdArgObj$1 = $(tmpCalleeParam$3);
 const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
-const tmpAssignMemRhs$1 = tmpPostUpdArgVal$1 + 1;
+const tmpAssignMemRhs$1 /*:primitive*/ = tmpPostUpdArgVal$1 + 1;
 tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
-const tmpCalleeParam = tmpPostUpdArgVal + tmpPostUpdArgVal$1;
+const tmpCalleeParam /*:primitive*/ = tmpPostUpdArgVal + tmpPostUpdArgVal$1;
 $(tmpCalleeParam);
 $(tmpPostUpdArgVal$1, b);
 `````

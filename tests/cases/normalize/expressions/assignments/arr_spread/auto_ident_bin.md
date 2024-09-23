@@ -44,7 +44,7 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const a = tmpBinBothLhs + tmpBinBothRhs;
+const a /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam /*:array*/ = [...a];
 $(tmpCalleeParam);
 $(a);

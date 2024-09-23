@@ -44,7 +44,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 = function () {
+const tmpCalleeParam$1 /*:()=>*/ = function () {
   debugger;
   return undefined;
 };

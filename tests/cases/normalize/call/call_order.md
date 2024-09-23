@@ -55,9 +55,7 @@ a( b, c, d );
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-isNaN
+None
 
 ## Result
 

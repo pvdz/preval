@@ -79,10 +79,10 @@ g(4);
 
 
 `````js filename=intro
-const g /*:(number)=>*/ = function ($$0) {
+const g /*:(number)=>undefined*/ = function ($$0) {
   const a /*:number*/ = $$0;
   debugger;
-  const f = function () {
+  const f /*:()=>undefined*/ = function () {
     debugger;
     $(a);
     return undefined;

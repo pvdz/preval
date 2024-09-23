@@ -53,7 +53,7 @@ const tmpCallObj = $(b);
 const tmpClusterSSA_a = tmpCallObj.$(1);
 const tmpCallObj$1 = $(b);
 const tmpClusterSSA_a$1 = tmpCallObj$1.$(1);
-const tmpCalleeParam = tmpClusterSSA_a + tmpClusterSSA_a$1;
+const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a$1;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a$1);
 `````

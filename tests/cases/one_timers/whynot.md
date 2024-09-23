@@ -91,7 +91,7 @@ $(parseIdentifierRest);
 
 
 `````js filename=intro
-const parseIdentifierRest = function () {
+const parseIdentifierRest /*:()=>number*/ = function () {
   debugger;
   let s /*:number*/ = 10;
   $inlinedFunction: {

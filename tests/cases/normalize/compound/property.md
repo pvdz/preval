@@ -108,7 +108,7 @@ const obj /*:object*/ = {
   },
 };
 const tmpCompoundAssignLhs = obj.x;
-const tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
+const tmpAssignMemRhs /*:primitive*/ = tmpCompoundAssignLhs + 5;
 obj.x = tmpAssignMemRhs;
 $(a, s);
 `````

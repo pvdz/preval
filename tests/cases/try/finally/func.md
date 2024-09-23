@@ -79,7 +79,7 @@ if ($implicitThrow) {
 `````js filename=intro
 try {
   $(1);
-  const f = function () {
+  const f /*:()=>*/ = function () {
     debugger;
     throw `test`;
   };

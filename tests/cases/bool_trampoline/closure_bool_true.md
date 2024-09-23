@@ -71,7 +71,7 @@ $(x);
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>*/ = function () {
   debugger;
   x = $(1);
   const y /*:boolean*/ = Boolean(x);

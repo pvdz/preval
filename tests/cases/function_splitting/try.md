@@ -74,14 +74,14 @@ f(false);
 
 
 `````js filename=intro
-const tmpSplitTruthy /*:()=>*/ = function () {
+const tmpSplitTruthy = function () {
   debugger;
   try {
     $(`then`);
   } catch (tmpCatchParam) {}
   return undefined;
 };
-const tmpSplitFalsy /*:()=>*/ = function () {
+const tmpSplitFalsy = function () {
   debugger;
   try {
     $(`else`);

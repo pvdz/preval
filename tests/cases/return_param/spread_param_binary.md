@@ -69,13 +69,13 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const f /*:(unknown)=>*/ = function (...$$0) {
+const f /*:(unknown)=>primitive*/ = function (...$$0) {
   const x = $$0;
   debugger;
   $(`no`);
   $(`inlining`);
   $(`please`);
-  const y = x + 500;
+  const y /*:primitive*/ = x + 500;
   return y;
 };
 const tmpCalleeParam = f(1);

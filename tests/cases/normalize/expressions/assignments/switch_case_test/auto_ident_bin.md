@@ -52,7 +52,7 @@ $(a);
 $(1);
 const tmpBinBothLhs$1 = $(1);
 const tmpBinBothRhs$1 = $(2);
-const a = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+const a /*:primitive*/ = tmpBinBothLhs$1 + tmpBinBothRhs$1;
 $(a);
 `````
 

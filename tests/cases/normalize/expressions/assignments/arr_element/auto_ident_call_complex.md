@@ -48,7 +48,7 @@ const tmpCallComplexCallee = $($);
 const a = tmpCallComplexCallee(1);
 const tmpCallComplexCallee$1 = $($);
 const tmpClusterSSA_a = tmpCallComplexCallee$1(1);
-const tmpCalleeParam = a + tmpClusterSSA_a;
+const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````

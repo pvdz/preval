@@ -58,7 +58,7 @@ const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {
-  const f = function () {
+  const f /*:()=>undefined*/ = function () {
     debugger;
     return undefined;
   };

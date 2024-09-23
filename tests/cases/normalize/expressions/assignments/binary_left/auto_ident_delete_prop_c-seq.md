@@ -54,7 +54,7 @@ const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj = $(arg);
 const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam = tmpClusterSSA_a + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a, arg);
 `````

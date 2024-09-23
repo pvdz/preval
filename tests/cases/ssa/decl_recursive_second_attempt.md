@@ -78,7 +78,7 @@ if ($) {
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f /*:()=>undefined*/ = function () {
   debugger;
   let g /*:(unknown)=>*/ = function ($$0) {
     const x = $$0;

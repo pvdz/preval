@@ -105,7 +105,7 @@ if ($) {
 `````js filename=intro
 if ($) {
   let x /*:number*/ = 0;
-  const g /*:(boolean)=>*/ = function ($$0) {
+  const g /*:(boolean)=>undefined*/ = function ($$0) {
     const t /*:boolean*/ = $$0;
     debugger;
     if (t) {

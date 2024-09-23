@@ -65,7 +65,7 @@ const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
-  const f = function () {
+  const f /*:()=>undefined*/ = function () {
     debugger;
     return undefined;
   };

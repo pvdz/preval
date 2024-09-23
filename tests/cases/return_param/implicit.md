@@ -90,13 +90,11 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const f /*:(unknown)=>*/ = function ($$0) {
-  const x = $$0;
+const f /*:()=>?*/ = function () {
   debugger;
   $(`no`);
   $(`inlining`);
   $(`please`);
-  +x;
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     $(`a`);
@@ -106,11 +104,11 @@ const f /*:(unknown)=>*/ = function ($$0) {
     return foo;
   }
 };
-const tmpCalleeParam = f(1);
+const tmpCalleeParam = f();
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = f(2);
+const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f(`three`);
+const tmpCalleeParam$3 = f();
 $(tmpCalleeParam$3);
 `````
 
@@ -119,15 +117,13 @@ $(tmpCalleeParam$3);
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = c;
+const a = function() {
   debugger;
   $( "no" );
   $( "inlining" );
   $( "please" );
-  +b;
-  const d = $( true );
-  if (d) {
+  const b = $( true );
+  if (b) {
     $( "a" );
     return foo;
   }
@@ -136,12 +132,12 @@ const a = function($$0 ) {
     return foo;
   }
 };
-const e = a( 1 );
+const c = a();
+$( c );
+const d = a();
+$( d );
+const e = a();
 $( e );
-const f = a( 2 );
-$( f );
-const g = a( "three" );
-$( g );
 `````
 
 ## Globals

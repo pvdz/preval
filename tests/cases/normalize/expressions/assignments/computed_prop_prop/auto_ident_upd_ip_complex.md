@@ -57,7 +57,7 @@ const b /*:object*/ = { x: 1 };
 const tmpCalleeParam = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
+const tmpAssignMemRhs /*:primitive*/ = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
 const obj /*:object*/ = {};
 obj[tmpPostUpdArgVal];

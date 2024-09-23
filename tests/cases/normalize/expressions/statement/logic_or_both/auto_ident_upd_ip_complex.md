@@ -61,14 +61,14 @@ const b /*:object*/ = { x: 1 };
 const tmpCalleeParam = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
+const tmpAssignMemRhs /*:primitive*/ = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
 if (tmpPostUpdArgVal) {
 } else {
   const tmpCalleeParam$1 = $(b);
   const tmpPostUpdArgObj$1 = $(tmpCalleeParam$1);
   const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
-  const tmpAssignMemRhs$1 = tmpPostUpdArgVal$1 + 1;
+  const tmpAssignMemRhs$1 /*:primitive*/ = tmpPostUpdArgVal$1 + 1;
   tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
 }
 const a /*:object*/ = { a: 999, b: 1000 };

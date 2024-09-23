@@ -116,7 +116,7 @@ if ($) {
   const x = $(5);
   $(x);
   const tmpClusterSSA_x = $(10);
-  const tmpClusterSSA_x$1 = tmpClusterSSA_x + tmpClusterSSA_x;
+  const tmpClusterSSA_x$1 /*:primitive*/ = tmpClusterSSA_x + tmpClusterSSA_x;
   if ($) {
     $(tmpClusterSSA_x$1);
   } else {

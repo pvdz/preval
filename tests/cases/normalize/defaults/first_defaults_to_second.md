@@ -90,7 +90,7 @@ tmpCallCallee$5(tmpCalleeParam$5);
 
 
 `````js filename=intro
-const f /*:(unknown, unknown)=>*/ = function ($$0, $$1) {
+const f /*:(unknown, unknown)=>array*/ = function ($$0, $$1) {
   const tmpParamBare = $$0;
   const tmpParamBare$1 = $$1;
   debugger;
@@ -108,13 +108,13 @@ const f /*:(unknown, unknown)=>*/ = function ($$0, $$1) {
     return tmpReturnArg;
   }
 };
-const tmpCalleeParam = f();
+const tmpCalleeParam /*:array*/ = f();
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = f(`x`);
+const tmpCalleeParam$1 /*:array*/ = f(`x`);
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f(undefined, `y`);
+const tmpCalleeParam$3 /*:array*/ = f(undefined, `y`);
 $(tmpCalleeParam$3);
-const tmpCalleeParam$5 = f(`x`, `y`);
+const tmpCalleeParam$5 /*:array*/ = f(`x`, `y`);
 $(tmpCalleeParam$5);
 `````
 

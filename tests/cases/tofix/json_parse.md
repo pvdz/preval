@@ -68,7 +68,7 @@ $(getMessages);
 
 
 `````js filename=intro
-const getMessages = async function ($$0) {
+const getMessages /*:(unknown)=>?*/ = async function ($$0) {
   const $dlr_$$0 = $$0;
   debugger;
   const tmpAwaitArg = fetchFromStore($dlr_$$0);

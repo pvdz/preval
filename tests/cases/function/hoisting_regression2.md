@@ -74,9 +74,9 @@ $(f);
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>undefined,function*/ = function () {
   debugger;
-  const incorrectlyhoisted = function () {
+  const incorrectlyhoisted /*:()=>undefined*/ = function () {
     debugger;
     $(thisrefgetslost);
     return undefined;

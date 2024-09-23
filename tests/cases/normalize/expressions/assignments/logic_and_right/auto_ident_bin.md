@@ -51,7 +51,7 @@ const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   const tmpBinBothLhs = $(1);
   const tmpBinBothRhs = $(2);
-  const tmpNestedComplexRhs = tmpBinBothLhs + tmpBinBothRhs;
+  const tmpNestedComplexRhs /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {

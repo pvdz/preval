@@ -88,7 +88,7 @@ f();
 
 
 `````js filename=intro
-const g /*:()=>*/ = function () {
+const g /*:()=>undefined*/ = function () {
   debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {

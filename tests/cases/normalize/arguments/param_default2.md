@@ -56,7 +56,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f /*:(unknown)=>*/ = function ($$0) {
+const f /*:(unknown)=>?*/ = function ($$0) {
   const tmpPrevalAliasArgumentsAny = arguments;
   const tmpParamBare = $$0;
   debugger;

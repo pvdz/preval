@@ -56,7 +56,7 @@ const tmpCalleeParam = a;
 if (a) {
   const tmpBinBothLhs$1 = $(1);
   const tmpBinBothRhs$1 = $(2);
-  const tmpNestedComplexRhs = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+  const tmpNestedComplexRhs /*:primitive*/ = tmpBinBothLhs$1 + tmpBinBothRhs$1;
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {

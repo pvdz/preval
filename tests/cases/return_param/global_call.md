@@ -67,8 +67,8 @@ f(`three`);
 
 
 `````js filename=intro
-const f /*:(unknown)=>*/ = function ($$0) {
-  const x = $$0;
+const f /*:(number)=>number*/ = function ($$0) {
+  const x /*:number*/ = $$0;
   debugger;
   $(`no`);
   $(`inlining`);
@@ -76,9 +76,9 @@ const f /*:(unknown)=>*/ = function ($$0) {
   const y /*:number*/ = x | bad;
   return y;
 };
-const tmpCalleeParam = f(1);
+const tmpCalleeParam /*:number*/ = f(1);
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = f(2);
+const tmpCalleeParam$1 /*:number*/ = f(2);
 $(tmpCalleeParam$1);
 f(`three`);
 `````

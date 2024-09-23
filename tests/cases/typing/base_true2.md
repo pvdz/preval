@@ -76,7 +76,7 @@ if (b) {
 
 
 `````js filename=intro
-const g /*:(boolean)=>*/ = function ($$0) {
+const g /*:(boolean)=>undefined*/ = function ($$0) {
   const arg /*:boolean*/ = $$0;
   debugger;
   $(arg);

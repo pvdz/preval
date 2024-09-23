@@ -60,13 +60,13 @@ const b /*:object*/ = { x: 1 };
 const tmpCalleeParam = $(b);
 const varInitAssignLhsComputedObj = $(tmpCalleeParam);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
+const varInitAssignLhsComputedRhs /*:primitive*/ = tmpBinLhs + 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
   const tmpCalleeParam$1 = $(b);
   const tmpAssignMemLhsObj = $(tmpCalleeParam$1);
   const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-  const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
+  const tmpAssignMemRhs /*:primitive*/ = tmpCompoundAssignLhs + 1;
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 } else {
 }

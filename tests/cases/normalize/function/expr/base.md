@@ -39,7 +39,7 @@ $(f);
 
 
 `````js filename=intro
-const g = function () {
+const g /*:()=>*/ = function () {
   debugger;
   return undefined;
 };

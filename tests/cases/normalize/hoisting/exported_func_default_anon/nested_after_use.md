@@ -61,7 +61,7 @@ export { tmpAnonDefaultExport as default };
 
 `````js filename=intro
 $(1);
-const tmpAnonDefaultExport = function () {
+const tmpAnonDefaultExport /*:()=>undefined*/ = function () {
   debugger;
   const tmpCalleeParam = $(2);
   $(tmpCalleeParam);

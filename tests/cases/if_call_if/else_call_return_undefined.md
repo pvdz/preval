@@ -112,7 +112,7 @@ if ($) {
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>undefined*/ = function () {
   debugger;
   const test = $(3);
   if (test) {

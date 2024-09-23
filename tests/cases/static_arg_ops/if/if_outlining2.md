@@ -194,7 +194,7 @@ $(push);
 
 
 `````js filename=intro
-const push = function ($$0, $$1) {
+const push /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
   const heap = $$0;
   const node$1 = $$1;
   debugger;
@@ -219,7 +219,7 @@ const push = function ($$0, $$1) {
     return undefined;
   }
 };
-const siftUp_t /*:(unknown, unknown, unknown, number)=>*/ = function ($$0, $$1, $$2, $$3) {
+const siftUp_t /*:(unknown, unknown, unknown, number)=>undefined*/ = function ($$0, $$1, $$2, $$3) {
   const heap$5 = $$0;
   const node$3 = $$1;
   const i$13 = $$2;

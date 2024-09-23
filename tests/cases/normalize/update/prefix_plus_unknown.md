@@ -37,7 +37,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const x = $(1);
-const tmpClusterSSA_x = x + 1;
+const tmpClusterSSA_x /*:primitive*/ = x + 1;
 $(tmpClusterSSA_x);
 `````
 

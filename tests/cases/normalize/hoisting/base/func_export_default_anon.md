@@ -44,7 +44,7 @@ $(f);
 
 `````js filename=intro
 $(f);
-const tmpAnonDefaultExport = function () {
+const tmpAnonDefaultExport /*:()=>*/ = function () {
   debugger;
   return undefined;
 };

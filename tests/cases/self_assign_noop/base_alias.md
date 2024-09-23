@@ -93,7 +93,7 @@ $(h);
 
 
 `````js filename=intro
-const h = function () {
+const h /*:()=>*/ = function () {
   debugger;
   $(`inner`);
   $(`inner`);

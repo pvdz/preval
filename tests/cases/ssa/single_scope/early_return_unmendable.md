@@ -81,7 +81,7 @@ $(tmpLabeledBlockFunc$3);
 
 
 `````js filename=intro
-const tmpLabeledBlockFunc$3 = function ($$0) {
+const tmpLabeledBlockFunc$3 /*:(unknown)=>undefined*/ = function ($$0) {
   const x = $$0;
   debugger;
   const tmpIfTest = $(1);

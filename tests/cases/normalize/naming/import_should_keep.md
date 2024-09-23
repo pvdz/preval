@@ -72,12 +72,12 @@ export { g };
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>?*/ = function () {
   debugger;
   const x$1 = $(1);
   return x$1;
 };
-const g = function ($$0) {
+const g /*:(unknown)=>?*/ = function ($$0) {
   const x$3 = $$0;
   debugger;
   return x$3;

@@ -77,7 +77,7 @@ $(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const f /*:(unknown)=>*/ = function ($$0) {
+const f /*:(unknown)=>array*/ = function ($$0) {
   const $dlr_$$0 = $$0;
   debugger;
   let b = `bar`;
@@ -89,9 +89,9 @@ const f /*:(unknown)=>*/ = function ($$0) {
   const tmpReturnArg /*:array*/ = [`x`, b];
   return tmpReturnArg;
 };
-const tmpCalleeParam = f();
+const tmpCalleeParam /*:array*/ = f();
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = f(`y`);
+const tmpCalleeParam$1 /*:array*/ = f(`y`);
 $(tmpCalleeParam$1);
 `````
 

@@ -54,7 +54,7 @@ const tmpArrElement$5 = $(1);
 const tmpArrElement$9 = $(3);
 const a /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
 const tmpClusterSSA_a /*:array*/ = [tmpArrElement$5, 2, tmpArrElement$9];
-const tmpCalleeParam = a + tmpClusterSSA_a;
+const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````

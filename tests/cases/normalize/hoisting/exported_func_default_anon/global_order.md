@@ -70,12 +70,12 @@ export { g };
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>?*/ = function () {
   debugger;
   const tmpReturnArg = $();
   return tmpReturnArg;
 };
-const g = function () {
+const g /*:()=>?*/ = function () {
   debugger;
   const tmpReturnArg$1 = $();
   return tmpReturnArg$1;
@@ -83,7 +83,7 @@ const g = function () {
 const tmpCalleeParam = $();
 const tmpCalleeParam$1 = $();
 $(tmpCalleeParam, tmpCalleeParam$1);
-const tmpAnonDefaultExport = function () {
+const tmpAnonDefaultExport /*:()=>?*/ = function () {
   debugger;
   const tmpReturnArg$3 = $();
   return tmpReturnArg$3;

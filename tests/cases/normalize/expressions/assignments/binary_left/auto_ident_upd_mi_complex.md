@@ -58,7 +58,7 @@ const tmpBinLhs = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs /*:number*/ = tmpBinLhs - 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam = tmpNestedPropCompoundComplexRhs + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = tmpNestedPropCompoundComplexRhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(tmpNestedPropCompoundComplexRhs, b);
 `````

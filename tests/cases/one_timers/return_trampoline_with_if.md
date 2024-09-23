@@ -99,7 +99,7 @@ $(parseIdentifierRest);
 
 
 `````js filename=intro
-const parseIdentifierRest = function () {
+const parseIdentifierRest /*:()=>number*/ = function () {
   debugger;
   c$53;
   let s$15 /*:number*/ = 10;

@@ -58,7 +58,7 @@ $(ARR);
 
 `````js filename=intro
 const ARR /*:array*/ = [undefined];
-const NOOP = function () {
+const NOOP /*:()=>*/ = function () {
   debugger;
   $(ARR);
   return undefined;

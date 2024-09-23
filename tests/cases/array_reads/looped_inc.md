@@ -51,7 +51,7 @@ while (true) {
 const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpCompoundAssignLhs = arr[0];
-  const tmpAssignComputedRhs = tmpCompoundAssignLhs + 1;
+  const tmpAssignComputedRhs /*:primitive*/ = tmpCompoundAssignLhs + 1;
   arr[0] = tmpAssignComputedRhs;
   const tmpCalleeParam = arr[0];
   $(tmpCalleeParam);

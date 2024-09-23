@@ -50,7 +50,7 @@ const b /*:object*/ = { c: 1 };
 const tmpAssignRhsProp = $(b);
 const tmpClusterSSA_a = tmpAssignRhsProp.c;
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam = tmpClusterSSA_a + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a, b);
 `````

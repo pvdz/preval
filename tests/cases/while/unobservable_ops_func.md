@@ -74,7 +74,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f /*:()=>undefined*/ = function () {
   debugger;
   const s = $(10);
   parseExpression(lexerFlags$285, astProp$181);

@@ -85,7 +85,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpCalleeParam$3 = $(b);
     const varInitAssignLhsComputedObj = $(tmpCalleeParam$3);
     const tmpBinLhs = varInitAssignLhsComputedObj.x;
-    const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
+    const varInitAssignLhsComputedRhs /*:primitive*/ = tmpBinLhs + 1;
     varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
     const tmpAssignMemRhs = tmpForOfNext.value;
     varInitAssignLhsComputedRhs.x = tmpAssignMemRhs;

@@ -191,7 +191,7 @@ $(push);
 
 
 `````js filename=intro
-const push = function ($$0, $$1) {
+const push /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
   const heap = $$0;
   const node = $$1;
   debugger;

@@ -77,7 +77,7 @@ f(e, drop3);
 
 
 `````js filename=intro
-const f /*:(unknown)=>*/ = function (...$$0) {
+const f /*:(unknown)=>undefined*/ = function (...$$0) {
   const args = $$0;
   debugger;
   $(...args);

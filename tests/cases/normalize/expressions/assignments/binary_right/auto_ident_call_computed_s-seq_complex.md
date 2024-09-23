@@ -51,7 +51,7 @@ const tmpBinBothLhs = $(100);
 const tmpCallCompProp = $(`\$`);
 const b /*:object*/ = { $: $ };
 const a = b[tmpCallCompProp](1);
-const tmpCalleeParam = tmpBinBothLhs + a;
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
 $(tmpCalleeParam);
 $(a);
 `````

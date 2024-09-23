@@ -56,11 +56,11 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-const a = function () {
+const a /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
-const tmpCalleeParam = tmpBinBothLhs + a;
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
 $(tmpCalleeParam);
 $(a);
 `````

@@ -74,7 +74,7 @@ const tmpCompObj$1 = $(b);
 const tmpCompProp$1 = $(`d`);
 const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
 b[tmpNestedAssignComMemberProp$1] = tmpNestedAssignPropRhs$1;
-const tmpCalleeParam = tmpNestedAssignPropRhs + tmpNestedAssignPropRhs$1;
+const tmpCalleeParam /*:primitive*/ = tmpNestedAssignPropRhs + tmpNestedAssignPropRhs$1;
 $(tmpCalleeParam);
 $(tmpNestedAssignPropRhs$1, b);
 `````

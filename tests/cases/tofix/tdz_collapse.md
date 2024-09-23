@@ -36,7 +36,7 @@ $(x);
 
 
 `````js filename=intro
-const x = TDZ + $;
+const x /*:primitive*/ = TDZ + $;
 $(x);
 `````
 

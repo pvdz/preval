@@ -59,7 +59,7 @@ const tmpPostUpdArgObj = $(tmpCalleeParam$1);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs /*:number*/ = tmpPostUpdArgVal - 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-const tmpCalleeParam = tmpBinBothLhs + tmpPostUpdArgVal;
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpPostUpdArgVal;
 $(tmpCalleeParam);
 $(tmpPostUpdArgVal, b);
 `````

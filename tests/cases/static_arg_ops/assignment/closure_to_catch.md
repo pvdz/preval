@@ -76,7 +76,7 @@ try {
   $();
 } catch (e) {
   const a = $();
-  const f /*:()=>*/ = function () {
+  const f /*:()=>undefined*/ = function () {
     debugger;
     e = a;
     $(`filler`);

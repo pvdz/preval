@@ -74,7 +74,7 @@ $(x);
 
 `````js filename=intro
 let x /*:number*/ = 0;
-const g /*:(unknown, unknown)=>*/ = function ($$0, $$1) {
+const g /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
   const a = $$0;
   const b = $$1;
   debugger;

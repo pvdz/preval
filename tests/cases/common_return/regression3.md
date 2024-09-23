@@ -85,7 +85,7 @@ c();
 
 
 `````js filename=intro
-const d /*:()=>*/ = function () {
+const d /*:()=>undefined*/ = function () {
   debugger;
   if ($) {
     $(`d`);
@@ -94,7 +94,7 @@ const d /*:()=>*/ = function () {
     return undefined;
   }
 };
-const c /*:()=>*/ = function () {
+const c /*:()=>undefined*/ = function () {
   debugger;
   $(`c`);
   const tmpCalleeParam$3 = $(10);

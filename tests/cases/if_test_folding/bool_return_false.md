@@ -65,7 +65,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>*/ = function () {
   debugger;
   const tmpBinLhs = $(1);
   const x /*:boolean*/ = tmpBinLhs !== 1;

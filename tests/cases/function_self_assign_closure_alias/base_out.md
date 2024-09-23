@@ -108,7 +108,7 @@ c();
 
 
 `````js filename=intro
-const b = function () {
+const b /*:()=>*/ = function () {
   debugger;
   $(`before`);
   a = function () {

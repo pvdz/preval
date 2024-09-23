@@ -215,9 +215,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           ASSERT(meta);
           vlog('Resolving .typing of `' + node.left.name + '` with the details of the rhs', node.right.type);
           const newTyping = inferNodeTyping(fdata, node.right);
-          vlog('Results in', newTyping, 'which we will inject into', meta.typing);
+          vlog('-- Results in', newTyping, 'which we will inject into', meta.typing);
           mergeTyping(newTyping, meta.typing);
-          vlog('  - Typing data:', meta.typing);
+          vlog('---- Typing:', meta.typing.mustBeType, meta.typing.mustBePrimitive);
         }
         break;
       }
@@ -336,7 +336,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
             'LabeledStatement',
             'TryStatement',
             'BlockStatement',
-            'ReturnStatement', 'ThrowStatement', 'BreakStatement'
+            'ReturnStatement',
+            'ThrowStatement',
+            'BreakStatement'
           ].includes(cnode.type)) {
             // These are the nodes that can propagate their completion status to this Block
             // If they all alwaysCompletes then so does the Block. Otherwise, the block may implicitly

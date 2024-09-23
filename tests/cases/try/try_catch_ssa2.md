@@ -163,7 +163,7 @@ $tryCatch(one, two, three);
 
 `````js filename=intro
 let ignore /*:boolean*/ = false;
-const one = function () {
+const one /*:()=>*/ = function () {
   debugger;
   $(x);
   x = $(2);

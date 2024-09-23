@@ -73,7 +73,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>*/ = function () {
   debugger;
   let x = $(1);
   if (x) {

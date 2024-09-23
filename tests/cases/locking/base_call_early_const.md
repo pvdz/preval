@@ -98,7 +98,7 @@ const f = function ($$0, $$1, $$2) {
   $(`call me once`, tmpPrevalAliasThis, a, b, c);
   return undefined;
 };
-const g = function () {
+const g /*:()=>*/ = function () {
   debugger;
   if (tmpFuncLock) {
     const obj /*:object*/ = {};

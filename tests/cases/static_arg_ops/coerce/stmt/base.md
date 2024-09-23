@@ -55,7 +55,7 @@ f(4);
 
 `````js filename=intro
 const x = $(`50`);
-const f = function () {
+const f /*:()=>*/ = function () {
   debugger;
   $(1);
   $(2);

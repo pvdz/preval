@@ -92,7 +92,7 @@ const tmpReturnArg = function () {
   const tmpReturnArg$1 = $(2, `from new func`);
   return tmpReturnArg$1;
 };
-let f = function ($$0) {
+let f /*:(unknown)=>*/ = function ($$0) {
   const bool = $$0;
   debugger;
   if (bool) {

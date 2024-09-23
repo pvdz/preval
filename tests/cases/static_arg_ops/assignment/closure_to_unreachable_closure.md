@@ -71,7 +71,7 @@ if ($) {
   const a = $();
   $();
   let b = a;
-  const tmpClusterSSA_f = function () {
+  const tmpClusterSSA_f /*:()=>*/ = function () {
     debugger;
     $(a);
     $(b);

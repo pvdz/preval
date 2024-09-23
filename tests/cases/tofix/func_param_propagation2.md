@@ -77,7 +77,7 @@ $(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const f = function ($$0) {
+const f /*:(unknown)=>*/ = function ($$0) {
   const $dlr_$$0 = $$0;
   debugger;
   let b = `bar`;

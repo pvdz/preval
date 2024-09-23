@@ -96,7 +96,7 @@ $(z);
 
 
 `````js filename=intro
-const g = function () {
+const g /*:()=>*/ = function () {
   debugger;
   const a /*:array*/ = [1, 2, 3];
   const b /*:array*/ = [1, 2, 3];

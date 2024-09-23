@@ -60,7 +60,7 @@ $(x);
 
 
 `````js filename=intro
-const r = function ($$0) {
+const r /*:(unknown)=>*/ = function ($$0) {
   const n = $$0;
   debugger;
   const tmpIfTest /*:boolean*/ = n > 100;

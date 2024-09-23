@@ -138,9 +138,9 @@ $(outer);
 
 
 `````js filename=intro
-const outer = function () {
+const outer /*:()=>*/ = function () {
   debugger;
-  let f = function () {
+  let f /*:()=>*/ = function () {
     debugger;
     const a /*:array*/ = [];
     f = function ($$0, $$1) {

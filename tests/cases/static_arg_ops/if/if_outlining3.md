@@ -210,7 +210,7 @@ const push = function ($$0, $$1) {
   siftUp_f(heap, node$1, index$1);
   return undefined;
 };
-const siftUp_t = function ($$0, $$1, $$2, $$3) {
+const siftUp_t /*:(unknown, unknown, unknown, number)=>*/ = function ($$0, $$1, $$2, $$3) {
   const heap$1 = $$0;
   const node = $$1;
   const i = $$2;
@@ -235,7 +235,7 @@ const siftUp_t = function ($$0, $$1, $$2, $$3) {
     return undefined;
   }
 };
-const siftUp_f = function ($$0, $$1, $$2) {
+const siftUp_f /*:(unknown, unknown, unknown)=>*/ = function ($$0, $$1, $$2) {
   const heap$2 = $$0;
   const node$2 = $$1;
   const i$1 = $$2;

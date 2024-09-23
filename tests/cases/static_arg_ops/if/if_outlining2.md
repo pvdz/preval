@@ -219,7 +219,7 @@ const push = function ($$0, $$1) {
     return undefined;
   }
 };
-const siftUp_t = function ($$0, $$1, $$2, $$3) {
+const siftUp_t /*:(unknown, unknown, unknown, number)=>*/ = function ($$0, $$1, $$2, $$3) {
   const heap$5 = $$0;
   const node$3 = $$1;
   const i$13 = $$2;

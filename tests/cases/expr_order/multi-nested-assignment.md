@@ -170,25 +170,25 @@ const obj /*:object*/ = {
     return undefined;
   },
 };
-let a = function () {
+let a /*:()=>*/ = function () {
   debugger;
   $(`a`);
   return obj;
 };
-let b = function () {
+let b /*:()=>*/ = function () {
   debugger;
   $(`b`);
   a = 21;
   return obj;
 };
-let c = function () {
+let c /*:()=>*/ = function () {
   debugger;
   $(`c`);
   a = 31;
   b = 32;
   return obj;
 };
-let d = function () {
+let d /*:()=>*/ = function () {
   debugger;
   $(`d`);
   a = 41;
@@ -196,7 +196,7 @@ let d = function () {
   c = 43;
   return obj;
 };
-const e = function () {
+const e /*:()=>*/ = function () {
   debugger;
   $(`e`);
   a = 51;

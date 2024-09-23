@@ -85,7 +85,7 @@ tmpCallCallee$9(tmpCalleeParam$29, tmpCalleeParam$31, tmpCalleeParam$33);
 
 
 `````js filename=intro
-const f = function ($$0, $$1, $$2, $$3, $$4, $$5) {
+const f /*:(string, number, string, number, unknown, unknown)=>*/ = function ($$0, $$1, $$2, $$3, $$4, $$5) {
   const d = $$5;
   const c = $$4;
   const b /*:number*/ = $$3;

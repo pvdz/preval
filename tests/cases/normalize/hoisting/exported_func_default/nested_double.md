@@ -59,7 +59,7 @@ export { g as default };
 
 
 `````js filename=intro
-const g = function () {
+const g /*:()=>*/ = function () {
   debugger;
   const tmpCalleeParam = $(2);
   $(tmpCalleeParam);

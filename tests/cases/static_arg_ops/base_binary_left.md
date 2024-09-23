@@ -61,7 +61,7 @@ f(8, 2, 9);
 
 
 `````js filename=intro
-const f = function ($$0) {
+const f /*:(number)=>*/ = function ($$0) {
   const a /*:number*/ = $$0;
   debugger;
   const tmpBinBothRhs = $(1);

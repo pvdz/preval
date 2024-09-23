@@ -82,7 +82,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-let zzzz = function () {
+let zzzz /*:()=>*/ = function () {
   debugger;
   const a /*:array*/ = [];
   zzzz = function ($$0, $$1) {

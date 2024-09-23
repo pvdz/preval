@@ -81,9 +81,9 @@ $(f);
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>*/ = function () {
   debugger;
-  const g = function () {
+  const g /*:()=>*/ = function () {
     debugger;
     const tmpCalleeParam = x + 1;
     x = $(tmpCalleeParam);

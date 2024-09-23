@@ -85,7 +85,7 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const g = function () {
+  const g /*:()=>*/ = function () {
     debugger;
     const tmpssa2_x = $(`first`);
     $(tmpssa2_x);

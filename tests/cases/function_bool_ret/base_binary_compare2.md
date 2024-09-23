@@ -73,7 +73,7 @@ tmpCallCallee$3(tmpCalleeParam$7, tmpCalleeParam$9);
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>*/ = function () {
   debugger;
   if ($) {
     const tmpReturnArg /*:boolean*/ = `a` === $;

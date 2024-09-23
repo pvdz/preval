@@ -114,7 +114,7 @@ tmpCallCallee$7(tmpCalleeParam$7);
 
 
 `````js filename=intro
-let a = function () {
+let a /*:()=>*/ = function () {
   debugger;
   const arr /*:array*/ = [1, 2, 3];
   a = function () {
@@ -124,7 +124,7 @@ let a = function () {
   const tmpReturnArg = a();
   return tmpReturnArg;
 };
-const b = function () {
+const b /*:()=>*/ = function () {
   debugger;
   const arr$1 /*:array*/ = [1, 2, 3];
   a = function () {

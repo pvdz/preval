@@ -88,10 +88,10 @@ f(`foop`);
 
 
 `````js filename=intro
-const f = function ($$0) {
+const f /*:(string)=>*/ = function ($$0) {
   const y /*:string*/ = $$0;
   debugger;
-  const g = function ($$0) {
+  const g /*:(number)=>*/ = function ($$0) {
     const z /*:number*/ = $$0;
     debugger;
     $(`keepme`);

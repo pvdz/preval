@@ -90,7 +90,7 @@ tmpCallCallee$5(tmpCalleeParam$5);
 
 
 `````js filename=intro
-const f = function ($$0, $$1) {
+const f /*:(unknown, unknown)=>*/ = function ($$0, $$1) {
   const tmpParamBare = $$0;
   const tmpParamBare$1 = $$1;
   debugger;

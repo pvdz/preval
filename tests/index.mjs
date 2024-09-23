@@ -219,10 +219,9 @@ function runTestCase(
   }
 
   const code = '// ' + (caseIndex + 1) + ' / ' + testCases.length + ' : intro\n' + fin.intro; // .intro is the main entry point
-
   {
     const data = [
-      '###################################################',
+      '|###################################################|',
       ' '.repeat(String(fastFileNames.length).length - String(caseIndex + 1).length),
       caseIndex + 1,
       '/',
@@ -265,7 +264,6 @@ function runTestCase(
     else if (withOutput) console.log('\n--- Actual call now ---\n');
 
     let lastWrite = 0;
-
     output = preval({
       entryPointFile: 'intro',
       stdio: CONFIG.verbose === true || (CONFIG.verbose === undefined && withOutput) ? undefined : () => {}, // handler receives all console calls, first arg is handler string. cant prevent the overhead but does suppress the output
@@ -410,6 +408,7 @@ function runTestCase(
       lastError = e;
     }
   }
+
 
   function createGlobalPrevalSymbols(stack, $, $spy) {
 
@@ -1176,5 +1175,23 @@ function runTestCase(
       console.log(md2);
       console.log('###################################################', caseIndex + 1, '/', testCases.length, '[', fname, ']');
     }
+
+    //const data = [
+    //  '|########################end########################|',
+    //  ' '.repeat(String(fastFileNames.length).length - String(caseIndex + 1).length),
+    //  caseIndex + 1,
+    //  '/',
+    //  fastFileNames.length,
+    //  '(',
+    //  (((caseIndex - workerOffset) / testCases.length) * 100) | 0,
+    //  '%) [',
+    //  sname,
+    //  ']',
+    //];
+    //if (isMainThread) {
+    //  console.log(...data);
+    //} else {
+    //  parentPort.postMessage(data);
+    //}
   }
 }

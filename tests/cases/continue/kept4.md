@@ -77,7 +77,7 @@ $continue();
 
 
 `````js filename=intro
-const $continue = function () {
+const $continue /*:()=>*/ = function () {
   debugger;
   const tmpIfTest = $();
   if (tmpIfTest) {

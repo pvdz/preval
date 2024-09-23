@@ -101,7 +101,7 @@ rule(`You have to listen to me`);
 
 
 `````js filename=intro
-const rule = function ($$0) {
+const rule /*:(string)=>*/ = function ($$0) {
   const desc /*:string*/ = $$0;
   debugger;
   const e /*:string*/ = `purpleRule:reset "${desc}"`;

@@ -49,7 +49,7 @@ f(...x);
 
 `````js filename=intro
 const x = $(`pass`);
-const f = function ($$0) {
+const f /*:(unknown)=>*/ = function ($$0) {
   const y = $$0;
   debugger;
   $(y);

@@ -51,7 +51,7 @@ $(a, b);
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>*/ = function () {
   debugger;
   $(a);
   $(tmpSSA_b);

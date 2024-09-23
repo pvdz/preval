@@ -100,10 +100,10 @@ tmpCallCallee$5(tmpCalleeParam$9);
 
 
 `````js filename=intro
-const f = function ($$0) {
+const f /*:(unknown)=>*/ = function ($$0) {
   const y = $$0;
   debugger;
-  const f$1 = function ($$0) {
+  const f$1 /*:(number)=>*/ = function ($$0) {
     const z /*:number*/ = $$0;
     debugger;
     $(`keepme`);

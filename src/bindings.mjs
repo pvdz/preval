@@ -1007,6 +1007,8 @@ export function getCleanTypingObject() {
     primitiveValue: undefined, // TODO: merge with mustBeValue
 
     isSimpleObject: undefined, // Is this an object literal that does not escape and without method calls? In that case a property read should not be able to spy. Checked during phase1.1
+
+    returns: undefined, // Set<'undefined' | 'null' | 'number' | 'string' | 'primitive' | '?'>, // Set for constant functions in phase1.1
   };
 }
 export function getUnknownTypingObject(toInit) {
@@ -1029,6 +1031,10 @@ export function getUnknownTypingObject(toInit) {
     worstCaseValueSet: toInit ? new Set() : false,
     mustBePrimitive: false,
     primitiveValue: undefined, // (irrelevant) TODO: merge with mustBeValue
+
+    isSimpleObject: undefined,
+
+    returns: undefined,
   };
 }
 export function createTypingObject({
@@ -1049,6 +1055,10 @@ export function createTypingObject({
   worstCaseValueSet = false,
   mustBePrimitive = false,
   primitiveValue = false,
+
+  isSimpleObject = false,
+
+  returns = false,
   ...rest
 }) {
   ASSERT(Object.keys(rest).length === 0, 'add new keys', rest);
@@ -1070,6 +1080,10 @@ export function createTypingObject({
     worstCaseValueSet,
     mustBePrimitive,
     primitiveValue,
+
+    isSimpleObject,
+
+    returns,
   };
 }
 export function inferNodeTyping(fdata, valueNode) {
@@ -1461,12 +1475,14 @@ function _inferNodeTyping(fdata, valueNode) {
             ASSERT(false, 'should be changed to $coerce during normalization. should not be reintroduced...?', valueNode);
             return createTypingObject({
               mustBeType: 'string',
+              mustBePrimitive: true,
             });
           }
           case 'Number': {
             ASSERT(false, 'should be changed to $coerce during normalization. should not be reintroduced...?', valueNode);
             return createTypingObject({
               mustBeType: 'number',
+              mustBePrimitive: true,
             });
           }
           case SYMBOL_COERCE: {
@@ -1474,6 +1490,7 @@ function _inferNodeTyping(fdata, valueNode) {
             return createTypingObject({
               mustBeType:
                 kind === 'string' || kind === 'plustr' ? 'string' : kind === 'number' ? 'number' : ASSERT(false, 'add this kind', kind),
+              mustBePrimitive: true,
             });
           }
           case 'Boolean': {
@@ -1481,6 +1498,7 @@ function _inferNodeTyping(fdata, valueNode) {
             return createTypingObject({
               mustBeType: 'boolean',
               worstCaseValueSet: new Set([true, false]),
+              mustBePrimitive: true,
             });
           }
           case 'parseInt':
@@ -1488,6 +1506,7 @@ function _inferNodeTyping(fdata, valueNode) {
             // If the arg is a literal we could resolve it immediately
             return createTypingObject({
               mustBeType: 'number',
+              mustBePrimitive: true,
             });
           }
           case 'isNaN':
@@ -1499,8 +1518,28 @@ function _inferNodeTyping(fdata, valueNode) {
             });
           }
           default: {
+            const calleeMeta = getMeta(valueNode.callee.name, fdata); // I think this should always exist..?
+            if (calleeMeta.typing.returns?.size === 1 && !calleeMeta.typing.returns?.has('?') && !calleeMeta.typing.returns?.has('primitive')) {
+              // It always returns this particular type. That's very helpful.
+              const mustbe = Array.from(calleeMeta.typing.returns)[0];
+              return createTypingObject({
+                mustBeType: mustbe,
+                mustBePrimitive: ['undefined', 'null', 'boolean', 'number', 'string'].includes(mustbe),
+              });
+            }
+            // Maybe we just know that it returns a primitive (`a+b`), or have multiple concrete candidates
+            if (calleeMeta.typing.returns && !calleeMeta.typing.returns?.has('?')) {
+              const clone = calleeMeta.typing.returns ? new Set(calleeMeta.typing.returns) : new Set;
+              clone.delete('undefined');
+              clone.delete('null');
+              clone.delete('boolean');
+              clone.delete('number');
+              clone.delete('string');
+              return createTypingObject({
+                mustBePrimitive: clone.size === 0,
+              });
+            }
             // We have no real idea what's going on here yet
-            // TODO: we can track the callee and see if the return type reveals a clue...
             return createTypingObject({});
           }
         }
@@ -1518,6 +1557,7 @@ function _inferNodeTyping(fdata, valueNode) {
               return createTypingObject({
                 mustBeType: 'boolean',
                 worstCaseValueSet: new Set([true, false]),
+                mustBePrimitive: true,
               });
               break;
             }
@@ -1532,6 +1572,7 @@ function _inferNodeTyping(fdata, valueNode) {
               return createTypingObject({
                 mustBeType: 'number',
                 mustBeTruthy: true,
+                mustBePrimitive: true,
               });
             }
             case 'Date.parse':
@@ -1539,6 +1580,7 @@ function _inferNodeTyping(fdata, valueNode) {
               // (Looks like parse/UTC always return a number as well. I hope there's no edge case around that.)
               return createTypingObject({
                 mustBeType: 'number',
+                mustBePrimitive: true,
               });
             }
             case 'JSON.stringify': {
@@ -1586,6 +1628,7 @@ function _inferNodeTyping(fdata, valueNode) {
               // I think the only thing we can predict about all these funcs is that their result is a number... (might be NaN/Infinity)
               return createTypingObject({
                 mustBeType: 'number',
+                mustBePrimitive: true,
               });
             }
             case 'Number.isFinite':
@@ -1595,6 +1638,7 @@ function _inferNodeTyping(fdata, valueNode) {
               // Some of these should be replaced with the global builtin function, by normalization
               return createTypingObject({
                 mustBeType: 'boolean',
+                mustBePrimitive: true,
                 worstCaseValueSet: new Set([true, false]),
               });
             }
@@ -1603,6 +1647,7 @@ function _inferNodeTyping(fdata, valueNode) {
               // These should be replaced with the global value by normalization
               return createTypingObject({
                 mustBeType: 'number',
+                mustBePrimitive: true,
               });
             }
             case 'Object.is': // We may be able to predict certain outcomes
@@ -1611,6 +1656,7 @@ function _inferNodeTyping(fdata, valueNode) {
               return createTypingObject({
                 mustBeType: 'boolean',
                 worstCaseValueSet: new Set([true, false]),
+                mustBePrimitive: true,
               });
             }
             case 'String.fromCharCode':
@@ -1619,6 +1665,7 @@ function _inferNodeTyping(fdata, valueNode) {
               // Looks like these always return a string of sorts... no matter what arg you feed them
               return createTypingObject({
                 mustBeType: 'string',
+                mustBePrimitive: true,
               });
             }
             default: {
@@ -1865,6 +1912,7 @@ export function mergeTyping(from, into) {
       mustBePrimitive,
       primitiveValue, // TODO: remove
       isSimpleObject,
+      returns,
       ...unknown
     } = from;
     ASSERT(Object.keys(unknown).length === 0, 'add new .typing properties here as well (from)', unknown);
@@ -1886,6 +1934,7 @@ export function mergeTyping(from, into) {
       mustBePrimitive,
       primitiveValue, // TODO: remove
       isSimpleObject,
+      returns,
       ...unknown
     } = into;
     ASSERT(Object.keys(unknown).length === 0, 'add new .typing properties here as well (into)', unknown);
@@ -2800,4 +2849,12 @@ function getMetaTypingFromTypedMethod(objType, propName) {
       });
     }
   }
+}
+
+export function getMeta(name, fdata) {
+  ASSERT(typeof name === 'string', 'getMeta expects a string for name');
+  ASSERT(fdata, 'you forgot the fdata, again, you dummy');
+  const meta = fdata.globallyUniqueNamingRegistry.get(name);
+  ASSERT(meta, 'if you call getMeta, you should be expecting it to exist', name); // Prevents us having to assert it everywhere
+  return meta;
 }

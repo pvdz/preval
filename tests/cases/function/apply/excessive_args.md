@@ -50,7 +50,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCallObj = function () {
+const tmpCallObj /*:()=>*/ = function () {
   const tmpPrevalAliasArgumentsAny = arguments;
   debugger;
   $(...tmpPrevalAliasArgumentsAny);

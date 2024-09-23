@@ -74,7 +74,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>*/ = function () {
   debugger;
   const tmpBinLhs = $(0);
   $(`block`);

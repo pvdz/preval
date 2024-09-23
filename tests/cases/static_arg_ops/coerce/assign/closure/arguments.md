@@ -63,7 +63,7 @@ $(x);
 
 `````js filename=intro
 let x = $(`50`);
-const f = function ($$0) {
+const f /*:(number)=>*/ = function ($$0) {
   const tmpPrevalAliasArgumentsAny = arguments;
   const c /*:number*/ = $$0;
   debugger;

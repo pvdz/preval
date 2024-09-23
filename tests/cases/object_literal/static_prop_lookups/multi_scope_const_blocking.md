@@ -64,7 +64,7 @@ f();
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const o /*:object*/ = { x: tmpObjLitVal };
-const f = function () {
+const f /*:()=>*/ = function () {
   debugger;
   const tmpCalleeParam = o.x;
   $(tmpCalleeParam);

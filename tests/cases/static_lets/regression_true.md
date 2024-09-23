@@ -76,7 +76,7 @@ $(x);
 
 
 `````js filename=intro
-const oops = function (...$$0) {
+const oops /*:(unknown)=>*/ = function (...$$0) {
   const args = $$0;
   debugger;
   $(...args);

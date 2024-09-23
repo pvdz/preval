@@ -74,7 +74,7 @@ f();
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>*/ = function () {
   debugger;
   const tmpBinBothRhs = $(``);
   const x /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);

@@ -100,7 +100,7 @@ g(d);
 
 
 `````js filename=intro
-const d = function () {
+const d /*:()=>*/ = function () {
   debugger;
   $(`a`);
   $(`b`);

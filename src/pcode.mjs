@@ -48,7 +48,7 @@ const SO = 3; // "stack overflow" (or, max call depth exceeded)
 export const SO_MESSAGE = '<max pcode call depth exceeded>';
 
 /** @var {Set<string>} we need the func node because a let binding can have multiple funcs assigned to it. true means its a built-in we support */
-export const pcodeSupportedBuiltins = new Set([
+export const pcodeSupportedBuiltinFuncs = new Set([
   // global builtins (only include those that return a primitive we can transform into)
   //'clearInterval', // has side-effect. returns an object in nodejs
   //'clearTimeout', // has side-effect. returns an object in nodejs
@@ -264,7 +264,7 @@ function pcanCompileExpr(locals, calls, expr, fdata, stmt) {
             return false;
           }
           if (
-            pcodeSupportedBuiltins.has(method) &&
+            pcodeSupportedBuiltinFuncs.has(method) &&
             expr.arguments.every(anode => anode.type !== 'SpreadElement' && pcanCompileExpr(locals, calls, anode, fdata, stmt))
           ) {
             // This is a built-in method on a primitive literal
@@ -278,7 +278,7 @@ function pcanCompileExpr(locals, calls, expr, fdata, stmt) {
         if (expr.callee.object.type === 'Identifier') {
           const staticName = expr.callee.object.name + '.' + expr.callee.property.name;
           if (
-            pcodeSupportedBuiltins.has(staticName) && // ie. 'Math.pow'
+            pcodeSupportedBuiltinFuncs.has(staticName) && // ie. 'Math.pow'
             expr.arguments.every(anode => anode.type !== 'SpreadElement' && pcanCompileExpr(locals, calls, anode, fdata, stmt))
           ) {
             // This is a builtin that is a member expression of a static function that we can support
@@ -289,7 +289,7 @@ function pcanCompileExpr(locals, calls, expr, fdata, stmt) {
           const meta = fdata.globallyUniqueNamingRegistry.get(expr.callee.object.name);
           const method = meta.typing.mustBeType + '.' + expr.callee.property.name; // ie. `string.charCodeAt` (lower cased type)
           if (
-            pcodeSupportedBuiltins.has(method) && // ie `string.charAt` (note the lowercase class)
+            pcodeSupportedBuiltinFuncs.has(method) && // ie `string.charAt` (note the lowercase class)
             expr.arguments.every(anode => anode.type !== 'SpreadElement' && pcanCompileExpr(locals, calls, anode, fdata, stmt))
           ) {
             // This is a built-in method on a primitive value
@@ -344,7 +344,7 @@ function pcanCompileExpr(locals, calls, expr, fdata, stmt) {
     }
     case 'Literal': {
       // TODO: support regular expressions..?
-      return false;
+      return false; // Note: it's not a primitive
     }
     case 'AwaitExpression': {
       // There's probably a way to support this but it's tricky
@@ -525,7 +525,7 @@ function compileExpression(exprNode, regs, fdata, stmt, withAssign=false) {
         else if (exprNode.callee.object.type === 'Identifier') {
           // ie. 'Math.pow'
           const staticName = exprNode.callee.object.name + '.' + exprNode.callee.property.name;
-          if (pcodeSupportedBuiltins.has(staticName)) { // ie `Math.pow`
+          if (pcodeSupportedBuiltinFuncs.has(staticName)) { // ie `Math.pow`
             const opcode = ['call', staticName];
             for (let i=0; i<exprNode.arguments.length; ++i) {
               opcode.push(...compileExpression(exprNode.arguments[i], regs, fdata, stmt));
@@ -536,7 +536,7 @@ function compileExpression(exprNode, regs, fdata, stmt, withAssign=false) {
           const meta = fdata.globallyUniqueNamingRegistry.get(exprNode.callee.object.name);
           // ie. `string.charCodeAt` (lower cased type)
           const methodName = meta.typing.mustBeType + '.' + exprNode.callee.property.name;
-          if (pcodeSupportedBuiltins.has(methodName)) { // ie `string.charAt` (note the lowercase class)
+          if (pcodeSupportedBuiltinFuncs.has(methodName)) { // ie `string.charAt` (note the lowercase class)
             // This is a built-in method on an unknown primitive value
             // (First "arg" is context)
             const opcode = ['call', methodName, ...compileExpression(exprNode.callee.object, regs, fdata, stmt)];
@@ -818,7 +818,7 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
       for (let i=3; i<op.length; i+=2) {
         arr.push(prunVal(registers, op[i], op[i+1]))
       }
-      if (pcodeSupportedBuiltins.has(op[2])) {
+      if (pcodeSupportedBuiltinFuncs.has(op[2])) {
         switch (op[2]) {
           //case 'clearInterval': throw new Error('Do not call `clearInterval`');
           //case 'clearTimeout': throw new Error('Do not call `clearTimeout`');

@@ -78,7 +78,7 @@ f();
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>*/ = function () {
   debugger;
   let x = $(1);
   let tmpCalleeParam$1 /*:boolean*/ = false;

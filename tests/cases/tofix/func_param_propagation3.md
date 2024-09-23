@@ -77,7 +77,7 @@ $(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const f = function ($$0) {
+const f /*:(unknown)=>*/ = function ($$0) {
   const $dlr_$$0 = $$0;
   debugger;
   const tmpIfTest$1 /*:boolean*/ = $dlr_$$0 === undefined;

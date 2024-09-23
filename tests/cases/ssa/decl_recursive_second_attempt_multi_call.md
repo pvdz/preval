@@ -98,7 +98,7 @@ const tmpReturnArg = function () {
 const T = $(true);
 const F = $(false);
 if ($) {
-  let g = function ($$0) {
+  let g /*:(unknown)=>*/ = function ($$0) {
     const x = $$0;
     debugger;
     if (x) {

@@ -63,12 +63,12 @@ $(`nope`);
 With rename=true
 
 `````js filename=intro
-import { default as e from "xyz";
+import { default as e } from "xyz";
 $( e );
 `````
 
 `````js filename=xyz
-import { default as e from "xyz";
+import { default as e } from "xyz";
 $( e );
 `````
 

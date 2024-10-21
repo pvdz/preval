@@ -1,22 +1,21 @@
 # Preval test case
 
-# try_finally_return.md
+# return_return.md
 
-> Try > Finally > Try finally return
+> Try > Finally > Return return
 >
-> Finally transform checks
+>
 
 ## Input
 
 `````js filename=intro
-function f() {
+function f(){
   try {
-    return 'exit';
+    return 1;
   } finally {
-    $(2);
+    return 2;
   }
 }
-$(f);
 `````
 
 ## Pre Normal
@@ -34,22 +33,21 @@ let f = function () {
       try {
         {
           $finalStep = true;
-          $finalArg = `exit`;
+          $finalArg = 1;
           break $finally;
         }
       } catch ($finalImplicit) {
-        $(2);
-        throw $finalImplicit;
+        $implicitThrow = true;
+        $finalCatchArg = $finalImplicit;
       }
     }
     {
-      $(2);
+      return 2;
     }
     if ($implicitThrow) throw $finalCatchArg;
     else return $finalArg;
   }
 };
-$(f);
 `````
 
 ## Normalized
@@ -65,33 +63,22 @@ let f = function () {
   $finally: {
     try {
       $finalStep = true;
-      $finalArg = `exit`;
+      $finalArg = 1;
       break $finally;
     } catch ($finalImplicit) {
-      $(2);
-      throw $finalImplicit;
+      $implicitThrow = true;
+      $finalCatchArg = $finalImplicit;
     }
   }
-  $(2);
-  if ($implicitThrow) {
-    throw $finalCatchArg;
-  } else {
-    return $finalArg;
-  }
+  return 2;
 };
-$(f);
 `````
 
 ## Output
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
-  debugger;
-  $(2);
-  return `exit`;
-};
-$(f);
+
 `````
 
 ## PST Output
@@ -99,12 +86,7 @@ $(f);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  $( 2 );
-  return "exit";
-};
-$( a );
+
 `````
 
 ## Globals
@@ -114,7 +96,6 @@ None
 ## Result
 
 Should call `$` with:
- - 1: '<function>'
  - eval returned: undefined
 
 Pre normalization calls: Same

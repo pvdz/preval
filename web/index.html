@@ -318,45 +318,44 @@
     console.log('main:', preval);
     $input.value = `
 // Enter input code here. (Uses Tenko to parse and Preval to process, all in the browser)
+// ($ is an identity function that Preval treats as an unknown function)
 
-{ $('Inline a function:');
-  const abc = $;
-  function f() {
-    if (abc) {
-      let x = $(undefined);
-      // This assign should be SSA but all the refs in the rhs must keep the same name
-      x = [1, x, 2, x, 3, x, 4, x];
-      abc(x);
-      // This bit prevents other optimizations from eliminating the above entirely immediately
-      const g = function(){
-        // In the final output, this "if" can be dropped because it will be tested already and is a constant
-        if (abc) abc(x);
-      };
-      g();
-    }
+$('Inline a function:');
+const abc = $;
+function f() {
+  if (abc) {
+    let x = $(undefined);
+    // This assign should be SSA but all the refs in the rhs must keep the same name
+    x = [1, x, 2, x, 3, x, 4, x];
+    abc(x);
+    // This bit prevents other optimizations from eliminating the above entirely immediately
+    const g = function(){
+      // In the final output, this "if" can be dropped because it will be tested already and is a constant
+      if (abc) abc(x);
+    };
+    g();
   }
-  if (abc) f();
 }
+if (abc) f();
 
-{ $('Rotate an array:');
-  const arr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'];
-  while (true) {
-    $(arr[0]);
-    try {
-      const a = arr[0];
-      if (a === 'e') {
-        break;
-      } else {
-        const M = arr.shift();
-        arr.push(M);
-      }
-    } catch (P) {
-      const N = arr.shift();
-      arr.push(N);
+$('Rotate an array:');
+const arr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'];
+while (true) {
+  $(arr[0]);
+  try {
+    const a = arr[0];
+    if (a === 'e') {
+      break;
+    } else {
+      const M = arr.shift();
+      arr.push(M);
     }
+  } catch (P) {
+    const N = arr.shift();
+    arr.push(N);
   }
-  $(arr.slice(0));
 }
+$(arr.slice(0));
 
     `.trim();
 

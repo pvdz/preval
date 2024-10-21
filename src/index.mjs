@@ -256,7 +256,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
         const fdata = phase0(inputCode, fname);
         let firstAfterParse = true;
         let phaseLoop = 0;
-        options?.onAfterPhase(0, passes, phaseLoop, fdata, false, options);
+        options?.onAfterPhase?.(0, passes, phaseLoop, fdata, false, options);
         do {
           phaseLoop += 1;
           // Slow; serialize and parse to verify each cycle
@@ -270,7 +270,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           if (options.pcodeTest) freeFuncs(fdata, prng, !!options.prngSeed);
           contents.lastPhase1Ast = fdata.tenkoOutput.ast;
 
-          options?.onAfterPhase(1, passes, phaseLoop, fdata, false, options);
+          options?.onAfterPhase?.(1, passes, phaseLoop, fdata, false, options);
 
           if (options.refTest || options.pcodeTest) {
             // For refTest, the test runner only cares about the first pass up to here
@@ -281,16 +281,16 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           firstAfterParse = false;
 
           changed = phase2(program, fdata, resolve, req, passes, phase1s, verboseTracing, prng, {implicitThisIdent: options.implicitThisIdent, prngSeed: rngSeed});
-          options?.onAfterPhase(2, passes, phaseLoop, fdata, changed, options);
+          options?.onAfterPhase?.(2, passes, phaseLoop, fdata, changed, options);
           if (!changed) {
             // Force a normalize pass before moving to phase3. Loop if it changed anything anyways.
             changed = phaseNormalize(fdata, fname, prng,  { allowEval: options.allowEval, prngSeed: options.prngSeed });
-            options?.onAfterPhase(2.1, passes, phaseLoop, fdata, false, options);
+            options?.onAfterPhase?.(2.1, passes, phaseLoop, fdata, false, options);
             if (changed) vlog('The pre-phase3 normal did change something! starting from phase0');
           }
           if (!changed) {
             changed = phase3(program, fdata, resolve, req, {unrollLimit: options.unrollLimit});
-            options?.onAfterPhase(3, passes, phaseLoop, fdata, changed, options);
+            options?.onAfterPhase?.(3, passes, phaseLoop, fdata, changed, options);
           }
         } while (changed?.next === 'phase1');
 

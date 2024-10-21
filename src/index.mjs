@@ -12,7 +12,7 @@ import { phase1 } from './normalize/phase1.mjs';
 import { phase2 } from './normalize/phase2.mjs';
 import { phase3 } from './normalize/phase3.mjs';
 import { phase1_1 } from './normalize/phase1_1.mjs';
-import { ASSERT } from '../tests/utils.mjs';
+import { ASSERT } from './utils.mjs';
 import { freeFuncs } from './reduce_static/free_funcs.mjs';
 
 let rngSeed = 1;

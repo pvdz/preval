@@ -87,6 +87,12 @@ function _inlineOneTimeFunctions(fdata) {
       return;
     }
 
+    if (funcNode.id?.name === '$free') {
+      vlog('Constant is a $free function, bailing');
+      vgroupEnd();
+      return;
+    }
+
     if (funcNode.async || funcNode.generator) {
       vlog('Function is async or a generator, bailing');
       vgroupEnd();

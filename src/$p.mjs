@@ -66,5 +66,6 @@ export function $p() {
     // - paramVarDeclRef // for funcs, the local binding var decl for this param if present, available after phase1, { blockBody, blockIndex, name }
     // - isSimpleObject // for objlits, if the object has been checked not to escape and not be called as member expression. means the object can not spy when reading properties from it.
 
+    // - predictable // bool. in freeing only; statements only; tells you whether the statement is predictable or not. this obviously excludes the reference check, purely the statement itself (and any expressions referenced).
   };
 }

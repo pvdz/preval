@@ -1,5 +1,4 @@
 import walk from '../../lib/walk.mjs';
-
 import { VERBOSE_TRACING, RED, BLUE, DIM, RESET, setVerboseTracing } from '../constants.mjs';
 import {
   ASSERT,
@@ -497,9 +496,11 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         vlog('Final func commonReturn:', node.$p.commonReturn);
 
         if (node.id) {
-          const meta = globallyUniqueNamingRegistry.get(node.id.name);
-          ASSERT(meta, 'there should be a meta for this name', node.id.name);
-          meta.isImplicitGlobal = false;
+          ASSERT(node.id.name === '$free', 'the only function id that we should have left is the $free function');
+          //
+          //const meta = globallyUniqueNamingRegistry.get(node.id.name);
+          //ASSERT(meta, 'there should be a meta for this name', node.id.name);
+          //meta.isImplicitGlobal = false;
         }
 
         break;
@@ -580,6 +581,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           vlog('This is a special $$123 param "keyword" by Preval. Replacing ident with param node;', paramNode);
           if (parentIndex < 0) parentNode[parentProp] = paramNode;
           else parentNode[parentProp][parentIndex] = paramNode;
+        }
+        else if (name === '$free') {
+          vlog('Ignoring special $free case');
         }
         else if (kind !== 'none' && kind !== 'label') {
           ASSERT(kind === 'read' || kind === 'write', 'consider what to do if this check fails', kind, node);
@@ -736,7 +740,10 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
             } else {
               // exports? not sure what else, currently. since we dont do catch clause yet and normalize everything else.
               ASSERT(
-                parentNode.type === 'ImportSpecifier' || parentNode.type === 'CatchClause' || parentNode.type === 'ClassExpression', // meh. i'm allowing it for now.
+                parentNode.type === 'ImportSpecifier' ||
+                parentNode.type === 'CatchClause' ||
+                parentNode.type === 'ClassExpression' || // meh. i'm allowing it for now.
+                parentNode.type === 'FunctionExpression' || // $free functions
                 'assign is var, assign, import/export, or catch ... right?',
                 parentNode.type,
               );

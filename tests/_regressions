@@ -2,11 +2,10 @@
 
 // tests/cases/import/import_default_named_class.md -> ref tracking: exported let/const decls should get the same treatment as escaping closures (read any write)
 // tests/cases/bit_hacks/if_return_bit/base_16.md -> regressed when restoring options to phase3, so must be loop unroll related? before it would end with $(b)
+// tests/cases/array/static_props/escape.md should not inline the length there
 
 // TODO:
 
-// tests/cases/normalize/expressions/assignments/for_of_left/auto_ident_logic_and_and.md -> add test that prints a when it does not enter the for-loop body. (this was a fix that used to be broken)
-// tests/cases/normalize/expressions/assignments/for_c/auto_ident_logic_||_simple_complex.md -> rename file to eliminate the pipes?
 // while unroll transform does a `if (x) yes=1 else yes=0 if (yes) { while ...} else {}`. it should store the while in the if-branch.
 // Redundant write: try { $(); } catch (e) { e = 1; $(e); e = 1; $(e); }
 // tests/cases/testers/base.md -> consider the while(true) transient and then detect that x is only true once. then we can move one branch outside
@@ -20,19 +19,13 @@
 // tests/cases/while/const_test_true.md -> (but then not global) if a variable is not a closure and is tested twice in a row without writes in between then it must have the same boolean value. `if (x) { $(); if (x)` -> `if (x) $(); if (true)`. Trickier for globals I guess,
 // tests/cases/unwind_loops/separate_test/multi_loop_test_nested.md -> a counter that only increases can probably have its value inferred even if in a loop?
 // tests/cases/while/unobservable_ops_global.md -> `s |= 10` when `s` is not observable inside the loop nor escapes, is going to do the same thing no matter how often you do it
-// tests/cases/unroll_loop_with_true/obj_prop_key.md -> pst goes off the rails for computed property
 // in normalization, the label step that eliminates function toplevel labels should not use globallyUniqueLabelRegistry because it may be stale. it should walk and search for all breaks that target this label.
 // why is the jsfck case crashing?
 // is while-rotating sound when the body breaks more than once?
 // infinite loop tests are set to $LOOP_DONE_UNROLLING_ALWAYS_TRUE in reduce_static/infinite_loops.mjs but we should find a way in normalize instead
-// tests/cases/array/static_props/escape.md should not inline the length there
 // tests/cases/array/read_only/computed_prop.md -> we should be able to resolve array props until it escapes. especially when its not a closure.
 // tests/cases/normalize/expressions/statement/while/auto_ident_logic_or_or.md -> if a var declared above a label that doesnt escape is only used inside that label then it can be moved inside too, same rule as in the end of transformLabeledStatement but it needs to be phase2 due to scope tracking
-// tests/cases/continue/double.md -> has double label output
-// tests/cases/normalize/switch/simple_abrupt_cases/simple_unconditional_break.md -> implicit global case
 // tests/cases/normalize/expressions/assignments/for_b/auto_ident_nested_simple_member_assigns.md -> collapse object prop assignments when we know its a literal (we assume builtins are sound)
-// AST.isNumber -> AST.isNumberLiteral AST.isNumberValue
-// reduce_static/if_reduce_up.mjs -> need to inject a TDZ check before the hoist (maybe rename the rule too? if-hoisting or something? maybe)
 // verify whether $p.isPrimitive is correct to be set in phase1 (but probably?)
 // Support object literals in isSameExpressionExceptBool too
 // Support async and generator functions in inlineSimpleFuncCalls / reduce_static/simple_funcs.mjs
@@ -47,16 +40,27 @@
 // when a function does not use _this_ and is used in a $dotCall and we know which function it is, we dont need the dotcall
 // convert array.map etc to while loops using $forOf when we know the context is an array literal of sorts
 // Calling ! on a value known to be Boolean(x) should do !x directly because neither operation is observable at all. Normalization has a simple rule for this implemented that only looks at the previous statement (to eliminate a transform artifact).
-// Why is PST printer printing the a string as a var name for "".replace(x, y) ?
 // What about type assertions for params in a function header? `function f($$1) { const a = String($$1);` (or smth like $isString()) to indicate that we know the value of a will be a string. And if this param becomes unused, we would not keep this usage around, for all intentions and purposes it's a noop.
-// PST shouldnt print a space after ...
-// Is the PST not renaming vars inside templates?
 // Think some more about how to deal with optional chaining cases: tests/cases/normalize/optional/func_nested_var.md
 // PRNG math.random() round() trick -> tests/cases/math_random/floor_trick/rng3.md
 // tests/cases/normalize/expressions/statement/for_in_left/auto_ident_obj_pattern_assign.md the iterator .value is left as a statement. we know it's safe to drop this. some more love for $forIn/$forOf might be nice.
 // src/reduce_static/spyless_vars.mjs should also check if the thing being moved refers to any let-bindings because it currently doesn't really check for this and i think that's a small bug. let a = 1; const arr = [a]; a = 2; if ($) $(arr); would move the arr decl inside the if, but that's bad because by then a has changed
 // tests/cases/normalize/expressions/assignments/computed_prop_prop/auto_pattern_arr_c-seq.md we know the obj has no side effects so the member-expression-statement can be dropped safely
 // tests/cases/normalize/expressions/assignments/compound/auto_ident_c-opt_complex_complex_c-opt_complex_complex.md doesnt tmpClusterSSA_a invariably get NaN assigned ? We can resolve that.
-// rename complexNodeMightSpy to include "expression" for clarity
 // investigate return elimination... `return x` -> `let $r; $ret: { $r = x; break $ret; } return $r;`
 // add func return type and array type to meta.typing?
+// tests/cases/builtins_cases/encodeURIComponent/crash.md should not always report a changes
+// rename constValueRef to varDeclInitRef, and containerParent should be containerBlock to be more consistent with the rest
+// convert -Infinity to $Number_NEGATIVE_INFINITY and treat it as a built-in. Consider doing the same for NaN and Infinity.
+// sort out this mustBeValue primitiveValue stuff on bindings
+// We should make an effort not to inline floats and other dangerous numbers
+// tests/cases/array/static_props/method_call_call_unknown.md doing a .call on a builtin? surely we can catch a few of these cases
+// tests/cases/normalize/array/complex_args.md doing .length on certain builtins? is that worth it?
+// When assigning a const to another const and we already know the type, we can copy the type safely since the binding itself cannot mutate. const numbers cant suddenly become bools.
+// Math.exp(0) is 1
+// Doing string operations on templates when we know the result regardless of the template dynamic expression, we should support that -> `x{y}`.charAt(0) => 'x' in any world
+// Return of a $frfr should be considered a primitive if nothing better? And consider to never upgrade that to object/array/regex/etc?
+// If a $free is only called once and the $frfr passes on primitives then we can propagate and resolve them in the func
+// Do we want to eliminate regex literals in favor of strings? this would allow us to bundle up trivial .replace calls, for example. more involved regex usages can still use dynamic compilation. same end result.
+// tests/cases/normalize/expressions/assignments/template/auto_ident_delete_prop_c-seq.md -> in this case we do know the outcome of `delete`
+// in normalize.mjs, search for `//'number.toExponential',` and the likes and enable them by forcing the coercion. there are spy tests for this.

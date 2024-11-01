@@ -1,3 +1,4 @@
+    case 'LetStatement':
 import {ASSERT} from "../utils.mjs"
 import {memberRefExpression} from "./pst.mjs"
 
@@ -8,16 +9,26 @@ export function verifyPst(node) {
 
 function verifyPstNode(node) {
   switch (node.type) {
-    case 'ArrayLiteral': return verifyExpression(node);
-    case 'AssignmentComputedPropStatement': return verifyStatement(node);
-    case 'AssignmentRefStatement': return verifyStatement(node);
-    case 'AssignmentPropStatement': return verifyStatement(node);
-    case 'AwaitExpression': return verifyExpression(node);
-    case 'BinaryExpression': return verifyExpression(node);
-    case 'BlockStatement': return verifyStatement(node);
-    case 'BreakStatement': return verifyStatement(node);
-    case 'CallRefExpression': return verifyExpression(node);
-    case 'CallSimpleExpression': return verifyExpression(node);
+    case 'ArrayLiteral':
+      return verifyExpression(node);
+    case 'AssignmentComputedPropStatement':
+      return verifyStatement(node);
+    case 'AssignmentRefStatement':
+      return verifyStatement(node);
+    case 'AssignmentPropStatement':
+      return verifyStatement(node);
+    case 'AwaitExpression':
+      return verifyExpression(node);
+    case 'BinaryExpression':
+      return verifyExpression(node);
+    case 'BlockStatement':
+      return verifyStatement(node);
+    case 'BreakStatement':
+      return verifyStatement(node);
+    case 'CallRefExpression':
+      return verifyExpression(node);
+    case 'CallSimpleExpression':
+      return verifyExpression(node);
     case 'CallMethodExpression': return verifyExpression(node);
     case 'CallComputedMethodExpression': return verifyExpression(node);
     case 'ClassExpression': return verifyExpression(node);

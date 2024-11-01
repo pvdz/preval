@@ -1,4 +1,5 @@
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, before, assertNoDupeNodes } from '../utils.mjs';
+import { setPrintVarTyping } from "../../lib/printer.mjs";
 import {VERBOSE_TRACING} from '../constants.mjs';
 import { mergeTyping } from '../bindings.mjs';
 import { pruneEmptyFunctions } from '../reduce_static/empty_func.mjs';
@@ -95,6 +96,7 @@ import { unusedAssigns } from '../reduce_static/unused_assigns.mjs';
 import { recursiveFuncs } from '../reduce_static/recursive_funcs.mjs';
 import { freeFuncs } from '../reduce_static/free_funcs.mjs';
 import { arrMethodCall } from '../reduce_static/arr_method_call.mjs';
+import { freeing } from '../reduce_static/freeing.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
@@ -117,11 +119,20 @@ import { arrMethodCall } from '../reduce_static/arr_method_call.mjs';
 export function phase2(program, fdata, resolve, req, passes, phase1s, verboseTracing, prng, options) {
   const ast = fdata.tenkoOutput.ast;
   group('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
-  // Dont print this again when phase1 is printing almost nothing
-  if (!(!verboseTracing && (passes > 1 || phase1s > 1))) {
-    if (VERBOSE_TRACING) vlog('\nCurrent state (before phase2)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  if (verboseTracing) {
+    try {
+      setPrintVarTyping(true, fdata); // Handy typing details
+      const code = fmat(tmat(ast, true), true);
+      setPrintVarTyping(false);
+      console.log('\nCurrent typed state (start of phase2)\n--------------\n' + code + '\n--------------\n');
+    } catch (e) {
+      vlog('printing ast failed');
+      console.dir(ast, { depth: null });
+      throw e;
+    }
+    groupEnd();
+    group('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
   }
-  vlog('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
 
   {
     const {prngSeed, implicitThisIdent, ...rest} = options;
@@ -308,7 +319,9 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
     fakeDoWhile(fdata) ||
     unusedAssigns(fdata) ||
     objlitInlining(fdata) ||
-    arrMethodCall(fdata)
+    arrMethodCall(fdata) ||
+
+    freeing(fdata, prng, !!options.prngSeed) // Do this last. Let other tricks precede it.
 
 
     //// This one is very invasive and expands the code. Needs more work.

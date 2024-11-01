@@ -480,6 +480,10 @@ function runTestCase(
       return ((rngSeed >>> 0) % 0b1111111111111111) / 0b1111111111111111;
     }
 
+    function $frfr(func, ...args) {
+      return func(...args);
+    }
+
     const frameworkInjectedGlobals = {
       '$': $,
       [BUILTIN_REST_HANDLER_NAME]: objPatternRest,
@@ -496,6 +500,7 @@ function runTestCase(
       '$spy': $spy,
       [SYMBOL_COERCE]: $coerce,
       [SYMBOL_PRNG]: $prng,
+      $frfr: $frfr,
 
       $Array_isArray: Array.isArray,
       $Array_from: Array.from,

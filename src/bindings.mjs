@@ -884,6 +884,11 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
           return;
         }
 
+        if (name === '$free') {
+          vlog('  - Skipping special $free function ID');
+          return;
+        }
+
         const uniqueName = generateUniqueGlobalName(name, fdata);
         vlog('Adding', name, 'to globallyUniqueNamingRegistry -->', uniqueName);
         registerGlobalIdent(fdata, uniqueName, name);
@@ -1515,6 +1520,24 @@ function _inferNodeTyping(fdata, valueNode) {
             return createTypingObject({
               mustBeType: 'boolean',
               worstCaseValueSet: new Set([true, false]),
+              mustBePrimitive: true,
+            });
+          }
+          case '$frfr': {
+            const freeMeta = getMeta(valueNode.arguments[0].name, fdata);
+            if (freeMeta.typing.returns?.size === 1 && !freeMeta.typing.returns.has('?') && !freeMeta.typing.returns.has('primitive')) {
+              // It always returns this particular type. That's very helpful.
+              const mustbe = Array.from(freeMeta.typing.returns)[0];
+              return createTypingObject({
+                mustBeType: mustbe,
+                mustBePrimitive: ['undefined', 'null', 'boolean', 'number', 'string'].includes(mustbe),
+              });
+            }
+            // Either we don't know the return type at all (which is strange), or we don't know beyond it
+            // being a primitive (can happen), or have multiple concrete candidates. Whatever the case, we
+            // assert that $free functions always return a primitive of sorts, so of you go.
+            return createTypingObject({
+              mustBePrimitive: true,
             });
           }
           default: {

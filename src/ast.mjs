@@ -2883,3 +2883,10 @@ export function isStatementCallingFunc(stmtNode, funcName) {
   }
   return undefined;
 }
+
+export function getExpressionFromNormalizedStatement(stmtNode) {
+  if (stmtNode.type === 'VariableDeclaration') return stmtNode.declarations[0].init;
+  ASSERT(stmtNode.type === 'ExpressionStatement', 'in normalized code arbitrary expressions in statements must be var init, assign rhs, or just an expr statement', stmtNode.type);
+  if (stmtNode.expression.type === 'AssignmentExpression') return stmtNode.expression.right;
+  return stmtNode.expression;
+}

@@ -367,6 +367,8 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
           // Note: this could be a property write, but it's not a binding mutation.
           // Ignore: Preval special parameter name
           vlog('This is a special param "keyword" by Preval. Ignoring.');
+        } else if (node.name === '$free') {
+          vlog('This is the special case id of a function expression');
         } else if (kind !== 'none' && kind !== 'label') {
           ASSERT(!node.$p.uniqueName, 'dont do this twice');
           const uniqueName = findUniqueNameForBindingIdent(

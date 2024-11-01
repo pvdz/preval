@@ -1192,6 +1192,11 @@ export function phaseNormalize(fdata, fname, prng, options) {
       case 'Identifier': {
         vlog('- name: `' + node.name + '`');
 
+        if (node.name === '$free') {
+          ASSERT(parentNode.type === 'FunctionExpression' && parentNode.id === node, '$free is only allowed as function ids');
+          return;
+        }
+
         ASSERT(
           node.name !== SYMBOL_COERCE ||
           (parentNode.type === 'CallExpression' &&
@@ -4658,7 +4663,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           return true;
         }
 
-        if (rhs.type === 'FunctionExpression' && rhs.id) {
+        if (rhs.type === 'FunctionExpression' && rhs.id && rhs.id.name !== '$free') {
           // Note: this happens here (assignment) and in a var decl!
           // The id of a function expression is kind of special.
           // - It only exists inside the function
@@ -9125,7 +9130,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
       return true;
     }
 
-    if (dnode.init.type === 'FunctionExpression' && dnode.init.id) {
+    if (dnode.init.type === 'FunctionExpression' && dnode.init.id && dnode.init.id.name !== '$free') {
       // Note: this happens here (var decl) and in assignment!
       // The id of a function expression is kind of special.
       // - It only exists inside the function

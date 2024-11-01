@@ -27,11 +27,11 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
 
   group(
     '\n\n\n##################################\n## phase1.1 (first=' +
-      firstAfterParse +
-      ', refTest=' +
-      !!refTest +
-      ', pcodeTest=' +
-      !!pcodeTest +
+    firstAfterParse +
+    ', refTest=' +
+    !!refTest +
+    ', pcodeTest=' +
+    !!pcodeTest +
     ') ::  ' +
     fdata.fname +
     ', pass=' + passes + ', phase1s=', phase1s, ', len:', fdata.len, '\n##################################\n\n\n',
@@ -79,7 +79,8 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
   function handleCallExpression(callNode) {
     if (callNode.callee.type !== 'Identifier') return; // Ignore type stuff on methods for now
 
-    const calleeName = callNode.callee.name;
+    const isfrfr = callNode.callee.name === '$frfr';
+    const calleeName = isfrfr ? callNode.arguments[0].name : callNode.callee.name;
     ASSERT(typeof calleeName === 'string', 'for $frfr; the first arg must be an ident');
 
     const calleeMeta = fdata.globallyUniqueNamingRegistry.get(calleeName);
@@ -95,9 +96,9 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
 
     // Stash the arg nodes. We'll traverse them later in the big type loop.
     if (calledMetas.has(calleeMeta)) {
-      calledMetas.get(calleeMeta).push(callNode.arguments);
+      calledMetas.get(calleeMeta).push(isfrfr ? callNode.arguments.slice(1) : callNode.arguments);
     } else {
-      calledMetas.set(calleeMeta, [callNode.arguments]);
+      calledMetas.set(calleeMeta, [isfrfr ? callNode.arguments.slice(1) : callNode.arguments]);
     }
   }
 
@@ -238,7 +239,13 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
     // to extend this later to other cases as they present themselves.
     if (funcMeta.reads.some(read => {
       if (
-        (read.parentNode.type === 'CallExpression' && read.parentProp === 'callee')
+        (read.parentNode.type === 'CallExpression' && read.parentProp === 'callee') ||
+        (
+          read.parentNode.type === 'CallExpression' &&
+          read.parentNode.callee.type === 'Identifier' &&
+          read.parentNode.callee.name === '$frfr' &&
+          read.parentNode.arguments[0] === read.node
+        )
       ) {
         // Ok
         return false;

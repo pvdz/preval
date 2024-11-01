@@ -73,3 +73,20 @@ export const SYMBOL_THROW_TDZ_ERROR = '$throwTDZError';
  * The setup boilerplate does use it to replace Math.random inside eval.
  */
 export const SYMBOL_PRNG = '$prng';
+
+export const SYMBOL_FREE = '$free';
+export const SYMBOL_FRFR = '$frfr';
+
+export const GLOBAL_PREVAL_SYMBOLS = new Set([
+  '$',
+  BUILTIN_REST_HANDLER_NAME,
+  SYMBOL_DOTCALL,
+  SYMBOL_COERCE,
+  SYMBOL_FORIN,
+  SYMBOL_FOROF,
+  SYMBOL_MAX_LOOP_UNROLL,
+  SYMBOL_THROW_TDZ_ERROR,
+  SYMBOL_PRNG,
+  SYMBOL_FREE,
+  SYMBOL_FRFR,
+])

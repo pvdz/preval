@@ -18,6 +18,8 @@ function _andCases(fdata) {
 
   let found = 0;
 
+  oops();
+
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;

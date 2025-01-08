@@ -6,6 +6,12 @@ This project is intended to end up as some kind of compiler-esque tool for JS bu
 
 For the time being, it just replaces constant bindings with its constant value. Not very exciting. Possibly bugged.
 
+# REPL
+
+My website (should have a working build, regardless of repo state): http://pvdz.ee/project/preval 
+
+GitHub Pages: https://pvdz.github.io/preval/web/
+
 # Usage
 
 Run all tests and automatically update snapshots:

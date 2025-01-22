@@ -97,6 +97,7 @@ import { recursiveFuncs } from '../reduce_static/recursive_funcs.mjs';
 import { freeFuncs } from '../reduce_static/free_funcs.mjs';
 import { arrMethodCall } from '../reduce_static/arr_method_call.mjs';
 import { freeing } from '../reduce_static/freeing.mjs';
+import {buffer_base64} from "../reduce_static/buffer_base64.mjs"
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
@@ -320,6 +321,7 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
     unusedAssigns(fdata) ||
     objlitInlining(fdata) ||
     arrMethodCall(fdata) ||
+    buffer_base64(fdata) ||
 
     freeing(fdata, prng, !!options.prngSeed) // Do this last. Let other tricks precede it.
 

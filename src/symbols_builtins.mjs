@@ -363,6 +363,30 @@ export const BUILTIN_REGEXP_STATIC_SYMBOLS = Object.values(BUILTIN_REGEXP_STATIC
 
 
 /**
+ *      Buffer
+ */
+
+
+export const BUILTIN_BUFFER_PROTOTYPE = '$BufferPrototype';
+export const BUILTIN_BUFFER_STATIC_LOOKUP = {
+  prototype: BUILTIN_BUFFER_PROTOTYPE,
+  from: '$Buffer_from',
+  // etc
+};
+export const BUILTIN_BUFFER_METHOD_LOOKUP = {
+  toString: '$buffer_toString'
+  // etc
+};
+export const BUILTIN_BUFFER_METHOD_LOOKUP_REV = Object.keys(BUILTIN_BUFFER_METHOD_LOOKUP).reduce((obj, key) => { obj[BUILTIN_BUFFER_METHOD_LOOKUP[key]] = key; return obj; }, {})
+export const BUILTIN_BUFFER_METHODS_SUPPORTED = Object.keys(BUILTIN_BUFFER_METHOD_LOOKUP);
+export const BUILTIN_BUFFER_METHODS_SYMBOLS = Object.values(BUILTIN_BUFFER_METHOD_LOOKUP);
+export const BUILTIN_BUFFER_STATIC_LOOKUP_REV = Object.keys(BUILTIN_BUFFER_STATIC_LOOKUP).reduce((obj, key) => { obj[BUILTIN_BUFFER_STATIC_LOOKUP[key]] = key; return obj; }, {})
+export const BUILTIN_BUFFER_STATIC_SYMBOLS = Object.values(BUILTIN_BUFFER_STATIC_LOOKUP);
+
+
+
+
+/**
  *      Aggregates
  */
 
@@ -391,6 +415,8 @@ export const PREVAL_BUILTIN_SYMBOLS = [
   //BUILTIN_SET_METHODS_SYMBOLS,
   BUILTIN_MATH_STATIC_SYMBOLS,
   BUILTIN_JSON_STATIC_SYMBOLS,
+  BUILTIN_BUFFER_STATIC_SYMBOLS,
+  BUILTIN_BUFFER_METHODS_SYMBOLS,
 ].flat(Infinity);
 export const PREVAL_PROTO_SYMBOLS_TO_LOOKUP = {
   [BUILTIN_BOOLEAN_PROTOTYPE]: BUILTIN_BOOLEAN_METHOD_LOOKUP,
@@ -403,6 +429,7 @@ export const PREVAL_PROTO_SYMBOLS_TO_LOOKUP = {
   [BUILTIN_DATE_PROTOTYPE]: BUILTIN_DATE_METHOD_LOOKUP,
   //[BUILTIN_MAP_PROTOTYPE]: BUILTIN_MAP_METHOD_LOOKUP,
   //[BUILTIN_SET_PROTOTYPE]: BUILTIN_SET_METHOD_LOOKUP,
+  [BUILTIN_BUFFER_PROTOTYPE]: BUILTIN_BUFFER_METHOD_LOOKUP,
 }
 // Used for serialization; `''+[].flat()` -> `'function flat() { [native code] }'` -> obj[$string_charAt] -> 'charAt'
 export const BUILTIN_NAMESPACED_TO_FUNC_NAME = {
@@ -416,6 +443,7 @@ export const BUILTIN_NAMESPACED_TO_FUNC_NAME = {
   ...BUILTIN_DATE_METHOD_LOOKUP_REV,
   //...BUILTIN_MAP_METHOD_LOOKUP_REV,
   //...BUILTIN_SET_METHOD_LOOKUP_REV,
+  ...BUILTIN_BUFFER_METHOD_LOOKUP_REV,
 };
 
 // This converts an A.b to $A_b, like Math.pow to $Math_pow
@@ -442,4 +470,6 @@ export const QUALIFIED_NAME_TO_PREVAL_NAME = new Map([
   //...Object.keys(BUILTIN_SET_METHOD_LOOKUP).map(key => [`date.${key}`, BUILTIN_SET_METHOD_LOOKUP[key]]),
   ...Object.keys(BUILTIN_MATH_STATIC_LOOKUP).map(key => [`Math.${key}`, BUILTIN_MATH_STATIC_LOOKUP[key]]),
   ...Object.keys(BUILTIN_JSON_STATIC_LOOKUP).map(key => [`JSON.${key}`, BUILTIN_JSON_STATIC_LOOKUP[key]]),
+  ...Object.keys(BUILTIN_BUFFER_STATIC_LOOKUP).map(key => [`Buffer.${key}`, BUILTIN_BUFFER_STATIC_LOOKUP[key]]),
+  ...Object.keys(BUILTIN_BUFFER_METHOD_LOOKUP).map(key => [`buffer.${key}`, BUILTIN_BUFFER_METHOD_LOOKUP[key]]),
 ]);

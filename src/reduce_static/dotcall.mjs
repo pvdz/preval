@@ -32,6 +32,8 @@ import {
   BUILTIN_DATE_STATIC_SYMBOLS,
   BUILTIN_JSON_STATIC_LOOKUP_REV,
   BUILTIN_JSON_STATIC_SYMBOLS,
+  BUILTIN_BUFFER_STATIC_LOOKUP_REV,
+  BUILTIN_BUFFER_STATIC_SYMBOLS,
 } from '../symbols_builtins.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
@@ -300,6 +302,19 @@ function _dotCall(fdata) {
         before(read.blockBody[read.blockIndex]);
 
         const finalNode = AST.callExpression(AST.memberExpression(AST.identifier('JSON'), BUILTIN_JSON_STATIC_LOOKUP_REV[funcArg.name]), args);
+        if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
+        else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
+
+        after(read.blockBody[read.blockIndex]);
+        ++changed;
+        return;
+      }
+      if (BUILTIN_BUFFER_STATIC_LOOKUP_REV[funcArg.name] && BUILTIN_BUFFER_STATIC_SYMBOLS.includes(funcArg.name)) { // Note: __proto__ protection
+        rule('A dotCall with known Buffer function should be simplified to a method call');
+        example('$dotCall($Buffer_from, Buffer, "{}", "base64")', 'Buffer.from("x", "base64")');
+        before(read.blockBody[read.blockIndex]);
+
+        const finalNode = AST.callExpression(AST.memberExpression(AST.identifier('Buffer  '), BUILTIN_BUFFER_STATIC_LOOKUP_REV[funcArg.name]), args);
         if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
         else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
 

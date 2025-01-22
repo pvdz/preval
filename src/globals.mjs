@@ -67,6 +67,7 @@ const BUILTIN_GLOBAL_FUNCS = [
   ['unescape', 'function'],
   ['btoa', 'function'],
   ['atob', 'function'],
+  ['Buffer', 'function'],
 ];
 export const BUILTIN_GLOBAL_FUNC_NAMES = new Set(BUILTIN_GLOBAL_FUNCS.map(arr => arr[0]));
 
@@ -85,6 +86,7 @@ const globalNames = new Map([
   ['Worker', 'undefined'], // for the react build
   ['Node', 'undefined'], // for the react build
   ['global', 'object'], // for the react build
+  ['$Buffer_from', 'function'], // For $dot_call
   ['console', 'object'],
   // Note: these need to be added in the dotCall reverse transform
   ['$console_log', 'function'], // console.log support

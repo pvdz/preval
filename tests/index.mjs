@@ -1053,6 +1053,7 @@ function runTestCase(
       .join('\n')
     );
   }
+  else console.log('-- Skipping eval for input...');
 
   if (lastError && !isExpectingAnError) console.log('\n\nPreval crashed hard on test/file, skipped evals:', CONFIG.targetFile);
 

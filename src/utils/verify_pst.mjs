@@ -1,4 +1,3 @@
-    case 'LetStatement':
 import {ASSERT} from "../utils.mjs"
 import {memberRefExpression} from "./pst.mjs"
 

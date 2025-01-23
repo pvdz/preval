@@ -1,8 +1,8 @@
 # Preval test case
 
-# base.md
+# chained.md
 
-> Buffer base64 > Base
+> Buffer base64 > Chained
 >
 > Doing base64 decoding with Buffer
 
@@ -10,12 +10,10 @@
 
 `````js filename=intro
 function f(x) {
-  const tmp = Buffer.from(x, `base64`);
-  const tmp2 = tmp.toString(`utf8`);
-  return tmp2;
+  return Buffer.from(x, `base64`).toString(`utf8`);
 };
 $(f); // Do not inline the func
-$(f ("cGF0aA")); // path
+$(f("cGF0aA")); // path
 `````
 
 ## Pre Normal
@@ -25,9 +23,7 @@ $(f ("cGF0aA")); // path
 let f = function ($$0) {
   let x = $$0;
   debugger;
-  const tmp = Buffer.from(x, `base64`);
-  const tmp2 = tmp.toString(`utf8`);
-  return tmp2;
+  return Buffer.from(x, `base64`).toString(`utf8`);
 };
 $(f);
 $(f(`cGF0aA`));
@@ -40,9 +36,9 @@ $(f(`cGF0aA`));
 let f = function ($$0) {
   let x = $$0;
   debugger;
-  const tmp = Buffer.from(x, `base64`);
-  const tmp2 = tmp.toString(`utf8`);
-  return tmp2;
+  const tmpCallObj = Buffer.from(x, `base64`);
+  const tmpReturnArg = tmpCallObj.toString(`utf8`);
+  return tmpReturnArg;
 };
 $(f);
 const tmpCallCallee = $;
@@ -57,9 +53,9 @@ tmpCallCallee(tmpCalleeParam);
 const f /*:(unknown)=>?*/ = function ($$0) {
   const x = $$0;
   debugger;
-  const tmp = Buffer.from(x, `base64`);
-  const tmp2 = tmp.toString(`utf8`);
-  return tmp2;
+  const tmpCallObj = Buffer.from(x, `base64`);
+  const tmpReturnArg = tmpCallObj.toString(`utf8`);
+  return tmpReturnArg;
 };
 $(f);
 $(`path`);

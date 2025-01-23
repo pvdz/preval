@@ -1,8 +1,8 @@
 # Preval test case
 
-# base.md
+# with_global_assign.md
 
-> Buffer base64 > Base
+> Buffer base64 > With global assign
 >
 > Doing base64 decoding with Buffer
 
@@ -10,12 +10,14 @@
 
 `````js filename=intro
 function f(x) {
+  unknown = x; // This was found in the real world case and deterred the trick
+  Buffer; // This was the original case
   const tmp = Buffer.from(x, `base64`);
   const tmp2 = tmp.toString(`utf8`);
   return tmp2;
 };
 $(f); // Do not inline the func
-$(f ("cGF0aA")); // path
+$(f("cGF0aA")); // path
 `````
 
 ## Pre Normal
@@ -25,6 +27,8 @@ $(f ("cGF0aA")); // path
 let f = function ($$0) {
   let x = $$0;
   debugger;
+  unknown = x;
+  Buffer;
   const tmp = Buffer.from(x, `base64`);
   const tmp2 = tmp.toString(`utf8`);
   return tmp2;
@@ -40,6 +44,7 @@ $(f(`cGF0aA`));
 let f = function ($$0) {
   let x = $$0;
   debugger;
+  unknown = x;
   const tmp = Buffer.from(x, `base64`);
   const tmp2 = tmp.toString(`utf8`);
   return tmp2;
@@ -57,12 +62,14 @@ tmpCallCallee(tmpCalleeParam);
 const f /*:(unknown)=>?*/ = function ($$0) {
   const x = $$0;
   debugger;
+  unknown = x;
   const tmp = Buffer.from(x, `base64`);
   const tmp2 = tmp.toString(`utf8`);
   return tmp2;
 };
 $(f);
-$(`path`);
+const tmpCalleeParam = f(`cGF0aA`);
+$(tmpCalleeParam);
 `````
 
 ## PST Output
@@ -73,24 +80,27 @@ With rename=true
 const a = function($$0 ) {
   const b = c;
   debugger;
+  unknown = b;
   const d = Buffer.from( b, "base64" );
   const e = d.toString( "utf8" );
   return e;
 };
 $( a );
-$( "path" );
+const f = a( "cGF0aA" );
+$( f );
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+unknown
 
 ## Result
 
 Should call `$` with:
  - 1: '<function>'
- - 2: 'path'
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Pre normalization calls: Same
 

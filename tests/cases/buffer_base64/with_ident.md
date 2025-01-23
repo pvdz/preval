@@ -1,8 +1,8 @@
 # Preval test case
 
-# base.md
+# with_ident.md
 
-> Buffer base64 > Base
+> Buffer base64 > With ident
 >
 > Doing base64 decoding with Buffer
 
@@ -10,12 +10,14 @@
 
 `````js filename=intro
 function f(x) {
+  debugger;
+  Buffer; // This was the original case
   const tmp = Buffer.from(x, `base64`);
   const tmp2 = tmp.toString(`utf8`);
   return tmp2;
 };
 $(f); // Do not inline the func
-$(f ("cGF0aA")); // path
+$(f("cGF0aA")); // path
 `````
 
 ## Pre Normal
@@ -25,6 +27,7 @@ $(f ("cGF0aA")); // path
 let f = function ($$0) {
   let x = $$0;
   debugger;
+  Buffer;
   const tmp = Buffer.from(x, `base64`);
   const tmp2 = tmp.toString(`utf8`);
   return tmp2;

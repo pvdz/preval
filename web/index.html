@@ -53,7 +53,7 @@
       }
 
       .quarter { display: flex; flex-direction: column; width: 50%; height: 50%; max-width: 100%; min-width: 100%; }
-      .quarter-head { background-color: #eee; border: 1px solid black; box-sizing: border-box; padding: 5px; min-height: 30px; font-size: 14px; font-family: Verdana; }
+      .quarter-head { background-color: #eee; border: 1px solid black; box-sizing: border-box; padding: 5px; min-height: 35px; font-size: 14px; font-family: Verdana; }
       .quarter-body { flex-grow: 1; overflow: auto; }
 
       .top { margin: 5px; font-family: Verdana }
@@ -225,7 +225,7 @@
 <body>
   <div class="top">
     <b>Preval</b> REPL &mdash;
-    2020 ~ 2024 &mdash;
+    2020 ~ 2025 &mdash;
     &copy;&nbsp;<a href="https://pvdz.ee">Peter van der Zee</a>&nbsp;&mdash;&nbsp;
     <a href="https://github.com/pvdz/preval">Github</a>
     &nbsp;&nbsp; <small>(<i>This is a static analysis tool that will reduce standard JS code to a minimal subset of JS and tries to optimize it using only transforms</i>)</small>
@@ -245,7 +245,8 @@
             <span class="tab">-</span>
           </div>
           -->
-          <b>Input</b> <small>(Plain JS only)</small>
+          <b>Input</b> <small>(Plain JS only, can't do privates)</small>
+          <label style="float:right;">unroll limit: <input id="config_unroll" value="10" style="width: 40px; text-align: center;"/></label>
         </div>
 
         <div class="editor-wrapper quarter-body">
@@ -270,7 +271,14 @@
       </div>
 
       <div class="quarter">
-        <div class="quarter-head">Console <small>(Full trace output of Preval)</small></div>
+        <div class="quarter-head">
+          Console <small>(Full trace output of Preval)</small>
+          <span style="float:right">Verbose mode:
+            <label><input id="verbose-normal" name="verbosity" value="normal" type="radio" checked/> normal</label>
+            <label><input id="verbose-trace" name="verbosity" value="trace" type="radio"/> trace</label>
+            <label><input id="verbose-silent" name="verbosity" value="silent" type="radio"/> silent</label>
+          </span>
+        </div>
         <textarea
           id="$console"
           placeholder="unused"
@@ -286,7 +294,9 @@
     </div>
     <div class="half">
       <div class="quarter">
-        <div id="$lintheader" class="quarter-head">Normalized <small>(shows normalized output after first pass but before more complicated heuristics)</small></div>
+        <div id="$lintheader" class="quarter-head">
+          Normalized <small>(shows normalized output after first pass but before more complicated heuristics)</small>
+        </div>
         <div id="$normalized" class="quarter-body lints" style="white-space: pre;">
             Output shows here after successful run
         </div>
@@ -357,6 +367,14 @@ while (true) {
 }
 $(arr.slice(0));
 
+
+// $('Unroll limit');
+// let i = 0;
+// while (true) {
+//   if (i < 1000) console.log('i=', i);
+//   else break;
+//   i += 1;
+// }
     `.trim();
 
     let currentMapper = undefined; // mapper[fromFile][toFile] -> normalizedFile
@@ -458,6 +476,8 @@ $(arr.slice(0));
               //console.warn('Imprting', filename, 'but this file was not known... returning the empty string for it');
               //return '';
             },
+            verbose: !document.querySelector('#verbose-silent').checked,
+            verboseTracing: document.querySelector('#verbose-trace').checked,
             options: {
               onAfterFirstParse() {
                 console.log('web.onAfterFirstParse: After first parse...');
@@ -467,7 +487,8 @@ $(arr.slice(0));
               },
               onFinal() {
                 console.log('web.onFinal()');
-              }
+              },
+              unrollLimit: parseInt(document.querySelector('#config_unroll').value, 10) || 10.
             }
           });
 
@@ -490,7 +511,11 @@ $(arr.slice(0));
           return;
         } finally {
           console.log('store:', currentStore);
-          $console.value = 'Full trace of Preval:\n\n' + io.join('\n').replace(/\x1b\[.*?m/g, '');
+          if (!document.querySelector('#verbose-silent').checked) {
+            $console.value = 'Log output by Preval:\n\n' + io.join('\n').replace(/\x1b\[.*?m/g, '');
+          } else {
+            $console.value = '(Logging was disabled)';
+          }
         }
 
         // Only one-time stuff next. Finally call the general value-only-update function
@@ -876,7 +901,6 @@ $(arr.slice(0));
 
         updateWithProcessingDebounced($input.value);
     }, 10);
-
   </script>
 </body>
 </html>

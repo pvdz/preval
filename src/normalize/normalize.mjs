@@ -3390,6 +3390,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           // "foo".length -> 3
           // "foo"["2"] -> "foo"[2]
           // "foo"[2] -> "o"
+          // String.name -> "String"
 
           if (
             node.object.type === 'Identifier' &&
@@ -3405,6 +3406,23 @@ export function phaseNormalize(fdata, fname, prng, options) {
               before(body[i]);
               assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
+            }
+            if ((parentNode.type !== 'CallExpression' || parentProp !== 'callee') && !node.computed) {
+              switch (node.property.name) {
+                case 'name': {
+                  riskyRule('The name property on a built-in class resolves to a string with the name of that class');
+                  example('String.name', '"String"');
+                  before(body[i]);
+
+                  const finalNode = AST.templateLiteral(node.object.name); // "String" etc
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body[i] = finalParent;
+
+                  after(body[i]);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+              }
             }
           }
 

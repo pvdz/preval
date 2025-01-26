@@ -305,7 +305,7 @@ function convert(node) {
       if (node.expressions.length === 0) return PST.primitive(node.quasis[0].value.cooked);
       if (node.expressions.length === 1) return PST.stringConcat(node.quasis[0].value.cooked, convert(node.expressions[0]), node.quasis[1].value.cooked);
 
-      console.log('Broken template! FIXME');
+      console.log('Broken template! FIXME', node.expressions);
       return PST.stringConcat(node.quasis[0].value.cooked, convert(node.expressions[0]), node.quasis[1].value.cooked);
 
       console.log(node);

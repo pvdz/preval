@@ -182,6 +182,7 @@ export function before(node, parentNode = undefined, returnOnly = false, force =
     if (Array.isArray(node)) {
       return node.map((n, i) => before(n, i ? undefined : parentNode, returnOnly)).join('\n');
     }
+    ASSERT(node?.type, 'should receive a node...?', typeof node, node);
 
     const anon = node.type.includes('Function') && 'id' in node && !node.id;
     if (anon) node.id = { type: 'Identifier', name: 'anon' };

@@ -14,6 +14,8 @@ import { phase3 } from './normalize/phase3.mjs';
 import { phase1_1 } from './normalize/phase1_1.mjs';
 import { ASSERT } from './utils.mjs';
 import { freeFuncs } from './reduce_static/free_funcs.mjs';
+import { denorm } from './normalize/denorm.mjs';
+import { astToPst } from './utils/ast_to_pst.mjs';
 
 let rngSeed = 1;
 function prng() {
@@ -61,6 +63,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
         normalizedCode: '',
         specialCode: '',
         outputCode: '',
+        denormCode: '',
         fdata: undefined,
         reports: [],
       },
@@ -78,17 +81,20 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
 
   const contents = {
     // note: test runner will auto-Prettier the result. Perhaps this should be done here..? Or let the user take care of that?
-    // TODO: this is "final output". Rename it.
-    files: {},
     // After the first pass for one-time transforms
     pre: {},
     // For debug/testing
     normalized: {},
+    // TODO: this is "final output" after phase3. Rename it to `settled` and other usages of "output" that currently mean this as well.
+    files: {},
+    // After running denorm() on the final phase state
+    denormed: {},
     // Was used for discovering code that wasn't normalized. Currently unused.
     special: {},
-    lastAst: {todo: 'updateMe'},
     // Compiled function data per file, Record<fname, Map<pid, {name:string, pcode}>
     pcodeData: {},
+    // This is the PST converted from the AST as it was after Preval settled (but before denorm)
+    settledPst: {todo: 'updateMe'},
   };
 
   const normalizeQueue = [entryPoint]; // Order is not relevant in this phase
@@ -117,7 +123,6 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
     options.onAfterNormalizeOnce?.(preCode, preFdata, nextFname, queueFileCounter, options);
 
     const fdata = parseCode(preCode, nextFname);
-    contents.lastAst = fdata.tenkoOutput.ast;
     prepareNormalization(fdata, resolve, req, false, {unrollLimit: options.unrollLimit}); // I want a phase1 because I want the scope tracking set up for normalizing bindings
     phaseNormalize(fdata, nextFname, prng, { allowEval: options.allowEval, prngSeed: options.prngSeed });
 
@@ -155,6 +160,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           preCode: '',
           specialCode: '',
           outputCode: '',
+          denormCode: '',
           fdata: undefined,
           reports: [],
         });
@@ -329,7 +335,6 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           inputCode = tmat(fdata.tenkoOutput.ast, true);
 
           mod.reports.push(...fdata.reports)
-          contents.lastAst = fdata.tenkoOutput.ast;
         } else {
           // Report the implicit globals. Tests should explicitly declare the implicit globals so we can automatically verify
           // that none are accidentally left behind / partially eliminated.
@@ -366,6 +371,25 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
         }
       }
 
+      try {
+        // Create PST before denormalizing it because PST only works (safely) on normalized code
+        contents.settledPst = astToPst(mod.fdata.tenkoOutput.ast);
+      } catch (e) {
+        console.error('AST to PST conversion failed:', e);
+        contents.settledPst = {failure: true};
+      }
+
+      {
+        const fdata = mod.fdata;
+        ASSERT(fdata, 'The fdata object should be guaranteed to be created...');
+
+        denorm(fdata, resolve, req, {});
+        mod.denormCode = tmat(fdata.tenkoOutput.ast, true);
+        contents.denormed[fname] = mod.denormCode;
+        options?.onAfterPhase?.(-1, 999, 0, fdata, false, options);
+        options?.onAfterDenorm?.(fdata, options);
+      }
+
       log('\nPreval ran for', passes, 'passes');
     });
   }
@@ -374,7 +398,8 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
 
   if (VERBOSE_TRACING) {
     // Conditional to prevent the fmat call here
-    vlog('\nCurrent state, final\n--------------\n' + fmat(contents.files.intro) + '\n--------------\n');
+    const result = fmat(tmat(modules.get('intro').fdata.tenkoOutput.ast));
+    vlog('\nCurrent state, final\n--------------\n' + result.slice(0, 1000) + (result.length > 1000 ? '   ... <snip>' : '') + '\n--------------\n');
   }
 
   const reports = [];

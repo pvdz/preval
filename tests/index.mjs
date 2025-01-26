@@ -380,25 +380,32 @@ function runTestCase(
           }
         },
         onAfterPhase(phaseIndex, passIndex, phaseLoopIndex, fdata, changed, options) {
-          // After each phase (0=normalize), generally 1 is not interesting to print since that's just scanning
+          // After each phase (0=normalize, -1=denormalize), generally 1 is not interesting to print since that's just scanning
           // Changed is either falsy, or {action: string (name of plugin), changes: number, next: phase1 | normal}
           if (options.logPhases) {
             const now = Date.now();
+            const passString =
+              phaseIndex === -1
+              ? 'denormal'
+              : `pass ${passIndex}, loop ${phaseLoopIndex}, phase ${phaseIndex ? phaseIndex : 'normalize'}`
             if (passIndex >= options.logFrom) {
-              const f = path.join(options.logDir, `preval.pass.${passIndex}.loop.${phaseLoopIndex}.phase${phaseIndex}.log.js`);
-              if (phaseIndex >= 1) setPrintVarTyping(true, fdata);
+              const logFname = phaseIndex === -1
+                ? `preval.pass.denormalize.log.js`
+                : `preval.pass.${passIndex}.loop.${phaseLoopIndex}.phase${phaseIndex}.log.js`;
+              const f = path.join(options.logDir, logFname);
+              if (phaseIndex !== 0) setPrintVarTyping(true, fdata);
               const code = tmat(fdata.tenkoOutput.ast, true);
-              if (phaseIndex >= 1) setPrintVarTyping(false);
-              console.log(`--log: Logging state of pass ${passIndex}, loop ${phaseLoopIndex}, ${phaseIndex ? `phase ${phaseIndex}` : 'normal '} to disk:`, f, '(', code.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase 2/3: changed by ${changed.what}` : '');
+              if (phaseIndex !== 0) setPrintVarTyping(false);
+              console.log(`--log: Logging state of ${passString} to disk:`, f, '(', code.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase 2/3: changed by ${changed.what}` : '');
               lastWrite = now;
               fs.writeFileSync(f,
-                `// Resulting output at pass ${passIndex}, loop ${phaseLoopIndex}, phase ${phaseIndex} [${fname}]\n` +
+                `// Resulting output at ${passString} [${fname}]\n` +
                 `// Command: ${process.argv.join(' ')}\n` +
                 `// Last phase2/3 plugin result: ${changed ? JSON.stringify(changed) : '(none)'}\n` +
                 code
               );
             } else {
-              console.log(`--log: Not logging pass ${passIndex} loop ${phaseLoopIndex} phase ${phaseIndex} because logFrom is ${options.logFrom}`, lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase 2/3: changed by ${changed.what}` : '');
+              console.log(`--log: Not logging ${passString} because logFrom is ${options.logFrom}`, lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase 2/3: changed by ${changed.what}` : '');
             }
           }
         }
@@ -759,7 +766,7 @@ function runTestCase(
 
   // Test the input verbatim against pre-normal, normal, and output transforms.
   // Then also test while inverting bools and 0/1 inside $() calls, to try and catch a subset of untested logic branches/loops
-  const evalled = { $in: [], $pre: [], $norm: [], $out: [], $in_inv: [], $pre_inv: [], $norm_inv: [], $out_inv: [] };
+  const evalled = { $in: [], $pre: [], $norm: [], $settled: [], $denorm: [], $in_inv: [], $pre_inv: [], $norm_inv: [], $settled_inv: [], $denorm_inv: [] };
   function evaluate_inv(desc, fdata, stack) {
     return evaluate(desc, fdata, stack, true);
   }
@@ -978,8 +985,10 @@ function runTestCase(
   evalled.$norm = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalNormalized || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate('normalized', output?.normalized, evalled.$norm);
   evalled.$norm_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalNormalized || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate_inv('normalized', output?.normalized, evalled.$norm_inv);
   if (!CONFIG.onlyNormalized) {
-    evalled.$out = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalOutput || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate('output', output?.files, evalled.$out);
-    evalled.$out_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalOutput || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate_inv('output', output?.files, evalled.$out_inv);
+    evalled.$settled = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalOutput || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate('settled', output?.files, evalled.$settled);
+    evalled.$settled_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalOutput || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate_inv('output', output?.files, evalled.$settled_inv);
+    evalled.$denorm = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalDenorm || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate('denorm', output?.denormed, evalled.$denorm);
+    evalled.$denorm_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalDenorm || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate_inv('denorm', output?.denormed, evalled.$denorm_inv);
   }
 
   if (isPcodeTest && !CONFIG.fileVerbatim) {

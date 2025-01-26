@@ -103,6 +103,7 @@ export function fromMarkdownCase(md, fname, config) {
           case 'skipEvalPre':
           case 'skipEvalNormalized':
           case 'skipEvalOutput':
+          case 'skipEvalDenorm':
             value = true;
             break;
           case 'unroll':
@@ -146,6 +147,7 @@ export function fromMarkdownCase(md, fname, config) {
             !s.startsWith('Uniformed\n') &&
             !s.startsWith('Globals\n') &&
             !s.startsWith('PST Output\n') &&
+            !s.startsWith('Denormalized\n') &&
             !s.startsWith('Result\n'),
         )
         .map((s) => '## ' + s.trim()),
@@ -211,6 +213,7 @@ export function toNormalizedResult(obj) {
 
 export function toEvaluationResult(evalled, implicitGlobals, skipFinal) {
   function printStack(stack) {
+    ASSERT(stack, 'missing stack...?');
     return stack
       .map((s, i) => {
         let code = fmat('(' + s + ')').slice(0, -2); // drop newline and semi
@@ -224,27 +227,35 @@ export function toEvaluationResult(evalled, implicitGlobals, skipFinal) {
   const inputOutput = printStack(evalled.$in);
   const preOutput = printStack(evalled.$pre);
   const normalizedOutput = printStack(evalled.$norm);
-  const outputOutput = printStack(evalled.$out);
+  const settledOutput = printStack(evalled.$settled);
+  const denormOutput = printStack(evalled.$denorm);
 
   const preEvalResult = inputOutput === preOutput ? ' Same' : ' BAD!%\n' + inputOutput;
   const normalizedEvalResult = inputOutput === normalizedOutput ? ' Same' : ' BAD!?\n' + normalizedOutput;
   const finalEvalResult = skipFinal
     ? ''
-    : 'Final output calls:' + (inputOutput === outputOutput ? ' Same\n' : ' BAD!!\n' + outputOutput + '\n');
-  const hasError = !(inputOutput === preOutput && inputOutput === normalizedOutput && (skipFinal || inputOutput === outputOutput));
+    : 'Post settled calls:' + (inputOutput === settledOutput ? ' Same\n\n' : ' BAD!!\n' + settledOutput + '\n\n');
+  const denormEvalResult = skipFinal
+    ? ''
+    : 'Denormalized calls:' + (inputOutput === denormOutput ? ' Same\n' : ' BAD!!\n' + denormOutput + '\n');
+  const hasError = !(inputOutput === preOutput && inputOutput === normalizedOutput && (skipFinal || inputOutput === settledOutput) && (skipFinal || inputOutput === denormOutput));
 
   // Only show this when the transforms mismatch the input. Otherwise ignore.
   const input_invOutput = printStack(evalled.$in_inv);
   const pre_invOutput = printStack(evalled.$pre_inv);
   const normalized_invOutput = printStack(evalled.$norm_inv);
-  const output_invOutput = printStack(evalled.$out_inv);
+  const settled_invOutput = printStack(evalled.$settled_inv);
+  const denorm_invOutput = printStack(evalled.$denorm_inv);
   const result_pcode = evalled.$pcode;
 
   const preEvalResult_inv = input_invOutput !== pre_invOutput ? '\n\nPre normalization inverse calls: BAD!%\n' + inputOutput : '';
   const normalizedEvalResult_inv = input_invOutput !== normalized_invOutput ? '\n\nNormalization inverse calls: BAD!?\n' + normalizedOutput : '';
   const finalEvalResult_inv = skipFinal
     ? ''
-    : (input_invOutput !== output_invOutput ? '\n\nOutput inverse calls: BAD!!\n' + output_invOutput + '\n'  : '');
+    : (input_invOutput !== settled_invOutput ? '\n\nOutput inverse calls: BAD!!\n' + settled_invOutput + '\n\n'  : '');
+  const denormEvalResult_inv = skipFinal
+    ? ''
+    : (input_invOutput !== settled_invOutput ? '\n\nDenormalized inverse calls: BAD!!\n' + denorm_invOutput + '\n'  : '');
 
   return (
     '\n\n## Globals\n\n' +
@@ -262,6 +273,7 @@ export function toEvaluationResult(evalled, implicitGlobals, skipFinal) {
     normalizedEvalResult +
     '\n\n' +
     finalEvalResult +
+    denormEvalResult +
     (!hasError && (preEvalResult_inv || normalizedEvalResult_inv || finalEvalResult_inv) ?
       '\nInverse input result (there was at least one mismatch even though actual test evalled equal):\n' +
       input_invOutput
@@ -269,12 +281,14 @@ export function toEvaluationResult(evalled, implicitGlobals, skipFinal) {
     (!hasError ? preEvalResult_inv : '') +
     (!hasError ? normalizedEvalResult_inv : '') +
     (!hasError ? finalEvalResult_inv : '') +
+    (!hasError ? denormEvalResult_inv : '') +
     (result_pcode ? result_pcode : '') +
     ''
   );
 }
 
 export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, output, evalled, lastError, isExpectingAnError, leGlobalSymbols, pcodeData }, CONFIG) {
+  // Note: output = contents from tests/index.mjs
   if (lastError) {
     return mdHead + '\n\n' + mdChunks.join('\n\n').trim() + '\n\n## Output\n\nThrew expected error:' + '\n\n' + lastError.message + '\n';
   }
@@ -354,7 +368,7 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
         Object.keys(output.files)
         .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
         .map((key) => {
-          const pst = astToPst(output.lastAst); // TODO: -> output.files[key] ?
+          const pst = output.settledPst;
           //console.log('PST:');
           //console.dir(pst, {depth: null});
           verifyPst(pst);
@@ -366,6 +380,13 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
 
           return '`````js filename=' + key + '\n' + code.trim() + '\n`````';
         })
+        .join('\n\n')
+      )) +
+      (wasPcodeTest || wasRefTest ? '' : (
+        '\n\n## Denormalized\n\n(This ought to be the final result)\n\n\n' + // two empty lines. this way diff always captures this as the hunk header (with the default U3)
+        Object.keys(output.denormed)
+        .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
+        .map((key) => '`````js filename=' + key + '\n' + fmat(output.denormed[key]).trim() + '\n`````')
         .join('\n\n')
       )) +
       (

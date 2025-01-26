@@ -36,7 +36,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
   setRiskyRules(!!(options.risky ?? true));
 
   {
-    const { logDir, logPasses, logPhases, maxPass, cloneLimit, allowEval, unrollLimit, implicitThisIdent, refTest, pcodeTest, risky, prngSeed, ...rest } = options;
+    const { logDir, logPasses, logPhases, logFrom, maxPass, cloneLimit, allowEval, unrollLimit, implicitThisIdent, refTest, pcodeTest, risky, prngSeed, ...rest } = options;
     if (JSON.stringify(rest) !== '{}') throw new Error(`Preval: Unsupported options received: ${JSON.stringify(rest)}`);
   }
 

@@ -295,6 +295,7 @@ function runTestCase(
         logPasses: CONFIG.logPasses,
         logPhases: CONFIG.logPhases,
         logDir: CONFIG.logDir,
+        logFrom: CONFIG.logFrom,
         maxPass: CONFIG.maxPass ?? mdOptions?.maxPass,
         refTest: isRefTest,
         pcodeTest: isPcodeTest,
@@ -316,35 +317,48 @@ function runTestCase(
         },
         onAfterNormalize(fdata, passes, fi, options) {
           if (options.logPasses) {
-            const code = tmat(fdata.tenkoOutput.ast, true);
-            const f = path.join(options.logDir, 'preval.pass' + String(passes).padStart(4, '0') + '.f' + fi + '.normalized.log.js');
             const now = Date.now();
-            console.log('--log-passes: Logging normalized output to disk:', f, '(', code.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '');
-            lastWrite = now;
-            fs.writeFileSync(f, `// Normalized output after pass ${passes} [` + fname + ']\n// Command: ' + process.argv.join(' ') + '\n' + code);
+            if (passes >= options.logFrom) {
+              const code = tmat(fdata.tenkoOutput.ast, true);
+              const f = path.join(options.logDir, 'preval.pass' + String(passes).padStart(4, '0') + '.f' + fi + '.normalized.log.js');
+              console.log('--log-passes: Logging normalized output to disk:', f, '(', code.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '');
+              lastWrite = now;
+              fs.writeFileSync(f, `// Normalized output after pass ${passes} [` + fname + ']\n// Command: ' + process.argv.join(' ') + '\n' + code);
+            } else {
+              console.log(`--log-passes: Skipping normalized output because ${passes} < ${options.logFrom}, ${now - lastWrite}ms since last write`);
+            }
           }
         },
         onFirstPassEnd(contents, allFileNames, options) {
           if (options.logPasses) {
-            console.log('--log-passes: Logging first normalized state to disk...');
-            allFileNames.forEach((fname, i) => {
-              const f = path.join(options.logDir, 'preval.b.f' + i + '.firstpass.normalized.log.js');
-              console.log('-', f, '(', contents.normalized[fname].length, 'bytes) ->', fname);
-              fs.writeFileSync(f, '// Normalized output after one pass [' + fname + ']\n// Command: ' + process.argv.join(' ') + '\n' + contents.normalized[fname]);
-            });
+            if (options.logFrom === 0) {
+              console.log('--log-passes: Logging first normalized state to disk...');
+              allFileNames.forEach((fname, i) => {
+                const f = path.join(options.logDir, 'preval.b.f' + i + '.firstpass.normalized.log.js');
+                console.log('-', f, '(', contents.normalized[fname].length, 'bytes) ->', fname);
+                fs.writeFileSync(f, '// Normalized output after one pass [' + fname + ']\n// Command: ' + process.argv.join(' ') + '\n' + contents.normalized[fname]);
+              });
+            } else {
+              console.log('- (first pass not written because logFrom!=0) (', contents.normalized[fname].length, 'bytes) ->', fname);
+            }
           }
         },
         onPassEnd(outCode, passes, fi, options) {
           if (options.logPasses) {
-            const f = path.join(options.logDir, 'preval.pass' + String(passes).padStart(4, '0') + '.f' + fi + '.result.log.js');
             const now = Date.now();
-            console.log('--log-passes: Logging current result to disk:', f, '(', outCode.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '');
-            lastWrite = now;
-            fs.writeFileSync(f, '// Resulting output after one pass [' + fname + ']\n// Command: ' + process.argv.join(' ') + '\n' + outCode);
+            if (passes >= options.logFrom) {
+              const f = path.join(options.logDir, 'preval.pass' + String(passes).padStart(4, '0') + '.f' + fi + '.result.log.js');
+              console.log('--log-passes: Logging current result to disk:', f, '(', outCode.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '');
+              lastWrite = now;
+              fs.writeFileSync(f, '// Resulting output after one pass [' + fname + ']\n// Command: ' + process.argv.join(' ') + '\n' + outCode);
+            } else {
+              console.log(`--log-passes: Not writing pass to disk because ${passes} < ${options.logFrom}`, '(', outCode.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '');
+            }
           }
         },
         onFinal(outCode, passes, fi, options) {
           if (options.logPasses) {
+            // Write regardless of logFrom because most likely we'll want to see this one.
             const f = path.join(options.logDir, 'preval.pass' + String(passes).padStart(4, '0') + '.f' + fi + '.result.final.log.js');
             const now = Date.now();
             console.log('--log-passes: Logging final result after',passes,' passes to disk:', f, '(', outCode.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '');
@@ -369,19 +383,23 @@ function runTestCase(
           // After each phase (0=normalize), generally 1 is not interesting to print since that's just scanning
           // Changed is either falsy, or {action: string (name of plugin), changes: number, next: phase1 | normal}
           if (options.logPhases) {
-            const f = path.join(options.logDir, `preval.pass.${passIndex}.loop.${phaseLoopIndex}.phase${phaseIndex}.log.js`);
-            if (phaseIndex >= 1) setPrintVarTyping(true, fdata);
-            const code = tmat(fdata.tenkoOutput.ast, true);
-            if (phaseIndex >= 1) setPrintVarTyping(false);
             const now = Date.now();
-            console.log(`--log: Logging state of pass ${passIndex}, loop ${phaseLoopIndex}, ${phaseIndex ? `phase ${phaseIndex}` : 'normal '} to disk:`, f, '(', code.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase 2/3: changed by ${changed.what}` : '');
-            lastWrite = now;
-            fs.writeFileSync(f,
-              `// Resulting output at pass ${passIndex}, loop ${phaseLoopIndex}, phase ${phaseIndex} [${fname}]\n` +
-              `// Command: ${process.argv.join(' ')}\n` +
-              `// Last phase2/3 plugin result: ${changed ? JSON.stringify(changed) : '(none)'}\n` +
-              code
-            );
+            if (passIndex >= options.logFrom) {
+              const f = path.join(options.logDir, `preval.pass.${passIndex}.loop.${phaseLoopIndex}.phase${phaseIndex}.log.js`);
+              if (phaseIndex >= 1) setPrintVarTyping(true, fdata);
+              const code = tmat(fdata.tenkoOutput.ast, true);
+              if (phaseIndex >= 1) setPrintVarTyping(false);
+              console.log(`--log: Logging state of pass ${passIndex}, loop ${phaseLoopIndex}, ${phaseIndex ? `phase ${phaseIndex}` : 'normal '} to disk:`, f, '(', code.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase 2/3: changed by ${changed.what}` : '');
+              lastWrite = now;
+              fs.writeFileSync(f,
+                `// Resulting output at pass ${passIndex}, loop ${phaseLoopIndex}, phase ${phaseIndex} [${fname}]\n` +
+                `// Command: ${process.argv.join(' ')}\n` +
+                `// Last phase2/3 plugin result: ${changed ? JSON.stringify(changed) : '(none)'}\n` +
+                code
+              );
+            } else {
+              console.log(`--log: Not logging pass ${passIndex} loop ${phaseLoopIndex} phase ${phaseIndex} because logFrom is ${options.logFrom}`, lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase 2/3: changed by ${changed.what}` : '');
+            }
           }
         }
       },

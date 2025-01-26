@@ -1,6 +1,5 @@
 import fs from 'fs';
 import { isMainThread, workerData } from 'worker_threads';
-import { setRefTracing } from '../src/utils.mjs';
 
 export function parseTestArgs() {
   if (!isMainThread) {
@@ -16,6 +15,8 @@ export function parseTestArgs() {
     fileVerbatim: false,
     logPasses: false,
     logPhases: false,
+    logDir: '',
+    logFrom: 0,
     implicitThisIdent: undefined,
     noTrace: undefined, // Force set VERBOSE_TRACING=false regardless of input size? If undefined, defaults to verbose.
     maxPass: undefined,
@@ -115,6 +116,7 @@ export function parseTestArgs() {
         break;
       }
 
+      case '--logdir': // alias
       case '--logto': {
         config.logPhases = true;
         config.logDir = argv.shift();
@@ -125,6 +127,12 @@ export function parseTestArgs() {
       case '--log-passes': {
         config.logPasses = true;
         config.logDir = '';
+        config.skipEval = true;
+        break;
+      }
+
+      case '--log-from': {
+        config.logFrom = parseInt(argv.shift(), 10) || 0;
         config.skipEval = true;
         break;
       }

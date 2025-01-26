@@ -21,6 +21,8 @@ PARAM_FAST=''
 PARAM_THREADS='1'
 PARAM_LOG=''
 PARAM_LOGTO=''
+PARAM_LOG_FROM=''
+PARAM_LOG_FROM_N=''
 PARAM_MAXPASS=''
 PARAM_MAXPASS_COUNT=''
 PARAM_CLONELIMIT=''
@@ -80,6 +82,7 @@ Preval CLI Toolkit help:
  --log           Automatically write code after every phase executed to a log file. Defaults to .
  --logto <path>  Folder to dump log files to. Implies --log. Defaults to .
  --log-passes    Log per pass instead of after every individual phase. Less noisy.
+ --log-from      Only write log files from this pass onward
  --max-pass <n>  Stop processing after n passes.
  --clone-limit n How often can a function be cloned before it's considered recursion?
  --node-bin=path Use this node binary to run stuff
@@ -148,6 +151,11 @@ Preval CLI Toolkit help:
     --log)
       PARAM_LOG='--log'
       ;;
+    --logdir) # secret alias
+      PARAM_LOG='--logto'
+      shift
+      PARAM_LOGTO=$1
+      ;;
     --logto)
       PARAM_LOG='--logto'
       shift
@@ -155,6 +163,11 @@ Preval CLI Toolkit help:
       ;;
     --log-passes)
       PARAM_LOG='--log-passes'
+      ;;
+    --log-from)
+      PARAM_LOG_FROM='--log-from'
+      shift
+      PARAM_LOG_FROM_N=$1
       ;;
     --max-pass)
       PARAM_MAXPASS="--max-pass"
@@ -277,7 +290,7 @@ set -x
 case "${ACTION}" in
 
     *)
-      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}" -t "${PARAM_THREADS}" "${PARAM_LOG}" "${PARAM_LOGTO}" "${PARAM_MAXPASS}" "${PARAM_MAXPASS_COUNT}" "${PARAM_CLONELIMIT}" "${PARAM_CLONELIMIT_COUNT}" "${PARAM_TRIM_DOLLAR}" "${PARAM_ONLY_OUTPUT}" "${PARAM_TRACE}" "${PARAM_NO_TRACE}" "${PARAM_SILENT}" "${PARAM_SKIP_EVAL}" "${PARAM_UNROLL}" "${PARAM_UNROLL_VALUE}" "${PARAM_IMPTHIS}" "${PARAM_IMPTHIS_VALUE}" "${PARAM_RANDOMIZED}" "${PARAM_REFTEST}" "${PARAM_REF_TRACING}" "${PARAM_RISKY}" "${PARAM_PCODE}" "${PARAM_SEED}" "${PARAM_SEED_N}"
+      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}" -t "${PARAM_THREADS}" "${PARAM_LOG}" "${PARAM_LOGTO}" "${PARAM_LOG_FROM}" "${PARAM_LOG_FROM_N}" "${PARAM_MAXPASS}" "${PARAM_MAXPASS_COUNT}" "${PARAM_CLONELIMIT}" "${PARAM_CLONELIMIT_COUNT}" "${PARAM_TRIM_DOLLAR}" "${PARAM_ONLY_OUTPUT}" "${PARAM_TRACE}" "${PARAM_NO_TRACE}" "${PARAM_SILENT}" "${PARAM_SKIP_EVAL}" "${PARAM_UNROLL}" "${PARAM_UNROLL_VALUE}" "${PARAM_IMPTHIS}" "${PARAM_IMPTHIS_VALUE}" "${PARAM_RANDOMIZED}" "${PARAM_REFTEST}" "${PARAM_REF_TRACING}" "${PARAM_RISKY}" "${PARAM_PCODE}" "${PARAM_SEED}" "${PARAM_SEED_N}"
     ;;
 esac
 set +x

@@ -2,6 +2,7 @@ import {ASSERT} from "../utils.mjs"
 import {memberRefExpression} from "./pst.mjs"
 
 export function verifyPst(node) {
+  //console.dir(node, {depth: null})
   if (Array.isArray(node)) node.forEach(n => verifyPstNode(n));
   else verifyPstNode(node);
 }
@@ -324,6 +325,10 @@ function verifyExpression(node) {
       node.props.forEach(verifyPropertyOrSpread);
       return;
     }
+    case 'Param': {
+      verifyParam(node);
+      break;
+    }
     case 'Primitive': {
       expect(node.value === null || typeof node.name !== 'object', true, node);
       return;
@@ -418,13 +423,20 @@ function verifyFunction(node) {
   if (node.id) verifyRef(node.id);
   node.params.forEach(param => {
     if (param.type === 'Param') {
-      expect(param.name, '$$' + param.index, param);
+      verifyParam(param);
     } else {
       expect(param.type, 'RestParam', param);
       verifySimple(param.arg);
     }
   });
   node.body.body.forEach(node => verifyStatement(node));
+}
+
+function verifyParam(param) {
+  ASSERT(param, 'should have a node at all..');
+  expect(param.type, 'Param');
+  expect(param.name, '$$' + param.index, param);
+  expect(typeof param.rest, 'boolean');
 }
 
 function verifyClass(node) {

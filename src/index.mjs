@@ -383,7 +383,8 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
         const fdata = mod.fdata;
         ASSERT(fdata, 'The fdata object should be guaranteed to be created...');
 
-        denorm(fdata, resolve, req, {});
+        let limit = 1000;
+        while (denorm(fdata, resolve, req, {})) if (--limit <= 0) break;
         mod.denormCode = tmat(fdata.tenkoOutput.ast, true);
         contents.denormed[fname] = mod.denormCode;
         options?.onAfterPhase?.(-1, 999, 0, fdata, false, options);

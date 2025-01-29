@@ -12,7 +12,7 @@ import {
   BUILTIN_ARRAY_METHODS_SYMBOLS,
   BUILTIN_ARRAY_STATIC_SYMBOLS,
   BUILTIN_BOOLEAN_METHODS_SYMBOLS,
-  BUILTIN_BOOLEAN_STATIC_SYMBOLS,
+  BUILTIN_BOOLEAN_STATIC_SYMBOLS, BUILTIN_BUFFER_METHODS_SYMBOLS, BUILTIN_BUFFER_STATIC_SYMBOLS,
   BUILTIN_DATE_METHODS_SYMBOLS,
   BUILTIN_DATE_STATIC_SYMBOLS,
   BUILTIN_FUNCTION_METHODS_SYMBOLS,
@@ -35,42 +35,43 @@ export const MAX_UNROLL_TRUE_COUNT = 1000;
 
 // Don't add preval symbols here. It's used for pcode/$free too
 const BUILTIN_GLOBAL_FUNCS = [
-  ['clearInterval', 'function'],
-  ['clearTimeout', 'function'],
-  ['parseInt', 'function'],
-  ['parseFloat', 'function'],
+  ['clearInterval', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: undefined}],
+  ['clearTimeout', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: undefined}],
+  ['parseInt', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'number'}],
+  ['parseFloat', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'number'}],
   ['setInterval', 'function'],
   ['setTimeout', 'function'],
-  ['isNaN', 'function'],
+  ['isNaN', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean'}],
   ['eval', 'function'],
-  ['isFinite', 'function'],
+  ['isFinite', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean'}],
   ['Array', 'function'],
-  ['Boolean', 'function'],
+  ['Boolean', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean'}],
   ['Date', 'function'],
   ['Error', 'function'],
   ['JSON', 'object'],
   ['Math', 'object'],
   ['Map', 'function'],
-  ['Number', 'function'],
+  ['Number', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'number'}],
   ['Object', 'function'],
   ['RegExp', 'function'],
   ['Set', 'function'],
-  ['String', 'function'],
-  ['Function', 'function'],
+  ['String', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
+  ['Function', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'function'}],
 
   // NodeJS / Browser
-  ['encodeURI', 'function'],
-  ['decodeURI', 'function'],
-  ['encodeURIComponent', 'function'],
-  ['decodeURIComponent', 'function'],
-  ['escape', 'function'],
-  ['unescape', 'function'],
-  ['btoa', 'function'],
-  ['atob', 'function'],
+  ['encodeURI', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
+  ['decodeURI', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
+  ['encodeURIComponent', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
+  ['decodeURIComponent', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
+  ['escape', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
+  ['unescape', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
+  ['btoa', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
+  ['atob', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}],
   ['Buffer', 'function'],
 ];
 export const BUILTIN_GLOBAL_FUNC_NAMES = new Set(BUILTIN_GLOBAL_FUNCS.map(arr => arr[0]));
 
+/** @var {Map<string, MetaTypingObject | string>} The string maps to a default object **/
 const globalNames = new Map([
   ...BUILTIN_GLOBAL_FUNCS,
 
@@ -86,18 +87,17 @@ const globalNames = new Map([
   ['Worker', 'undefined'], // for the react build
   ['Node', 'undefined'], // for the react build
   ['global', 'object'], // for the react build
-  ['$Buffer_from', 'function'], // For $dot_call
   ['console', 'object'],
   // Note: these need to be added in the dotCall reverse transform
-  ['$console_log', 'function'], // console.log support
-  ['$console_warn', 'function'], // console.warn support
-  ['$console_error', 'function'], // console.error support
-  ['$console_dir', 'function'], // console.dir support
-  ['$console_debug', 'function'], // console.debug support
-  ['$console_time', 'function'], // console.time support
-  ['$console_timeEnd', 'function'], // console.timeEnd support
-  ['$console_group', 'function'], // console.group support
-  ['$console_groupEnd', 'function'], // console.groupEnd support
+  ['$console_log', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'undefined'}], // console.log support
+  ['$console_warn', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'undefined'}], // console.warn support
+  ['$console_error', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'undefined'}], // console.error support
+  ['$console_dir', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'undefined'}], // console.dir support
+  ['$console_debug', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'undefined'}], // console.debug support
+  ['$console_time', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'undefined'}], // console.time support
+  ['$console_timeEnd', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'undefined'}], // console.timeEnd support
+  ['$console_group', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'undefined'}], // console.group support
+  ['$console_groupEnd', {mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'undefined'}], // console.groupEnd support
 
   // browser
   ['window', 'undefined'], // for the react build
@@ -159,7 +159,7 @@ const globalNames = new Map([
     return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
   }),
   ...BUILTIN_FUNCTION_STATIC_SYMBOLS.map(name => {
-    if (name === 'prototype') return { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
+    if (name === 'prototype') return { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'function' };
     return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
   }),
   ...BUILTIN_FUNCTION_METHODS_SYMBOLS.map(name => {
@@ -186,6 +186,13 @@ const globalNames = new Map([
     return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
   }),
   ...BUILTIN_REGEXP_METHODS_SYMBOLS.map(name => {
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
+  ...BUILTIN_BUFFER_STATIC_SYMBOLS.map(name => {
+    if (name === 'prototype') return { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
+  ...BUILTIN_BUFFER_METHODS_SYMBOLS.map(name => {
     return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
   }),
 ]);

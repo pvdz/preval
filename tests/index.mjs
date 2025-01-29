@@ -184,8 +184,10 @@ let badFinal = 0; // evaluation of final output does not match input
 
 try {
   testCases.forEach((tc, i) => runTestCase({ ...tc, withOutput: testCases.length === 1 && !CONFIG.onlyNormalized }, i));
-} catch {
+} catch (e) {
   console.log(DIM + 'At least one test crashed hard.' + RESET);
+  // If you're not seeing a stack trace then it's probably happening in preval. Enable next line:
+  //console.log(e);
 }
 
 if (isMainThread) {
@@ -762,7 +764,7 @@ function runTestCase(
   }
   let leGlobalSymbols = Object.keys(createGlobalPrevalSymbols([], () => {}, () => {}));
 
-  if (withOutput && !lastError && !isRefTest && !isPcodeTest) console.log('Evaluating outcomes now for:', CONFIG.targetFile);
+  if (withOutput && !lastError && !isRefTest && !isPcodeTest && !CONFIG.skipEval) console.log('Evaluating outcomes now for:', CONFIG.targetFile);
 
   // Test the input verbatim against pre-normal, normal, and output transforms.
   // Then also test while inverting bools and 0/1 inside $() calls, to try and catch a subset of untested logic branches/loops
@@ -770,10 +772,11 @@ function runTestCase(
   function evaluate_inv(desc, fdata, stack) {
     return evaluate(desc, fdata, stack, true);
   }
-  function evaluate(desc, fdata, stack, inverse) {
+  function evaluate(desc, inputCodePerFile, stack, inverse) {
     // `inverse` means $(true) becomes $(false), $(false) becomes $(true), $(1) becomes $(0), and $(0) becomes $(1).
     //           Attempts to catch "the reverse logic" or break otherwise infinite loops for some cases.
-    if (!fdata) return stack.slice(0);
+    ASSERT(inputCodePerFile, 'this evaluate func should receive an object with serialized code for this particular step being tested, one key for each file, starting at `intro`', inputCodePerFile);
+    //console.log(inputCodePerFile)
 
     try {
       let before = true;
@@ -918,7 +921,7 @@ function runTestCase(
         ...Object.keys(frameworkInjectedGlobals),
         // Test code to execute/eval
         // Patch "global" arguments so we can detect it (it's the arguments of the Function we generate here) because they blow up test case results.
-        '"use strict"; arguments.$preval_isArguments = true; '+ (initialPrngSeed ? 'Math.random = '+SYMBOL_PRNG+';' : '') + ' ' + fdata.intro,
+        '"use strict"; arguments.$preval_isArguments = true; '+ (initialPrngSeed ? 'Math.random = '+SYMBOL_PRNG+';' : '') + ' ' + inputCodePerFile.intro,
       )(
         // The values of the injected globals
         ...Object.values(frameworkInjectedGlobals),
@@ -934,7 +937,7 @@ function runTestCase(
         console.log('\n\nEvaluated $ calls for ' + desc + ':', stack);
       }
     } catch (e) {
-      if (VERBOSE_TRACING) console.log('test case err:', e);
+      if (VERBOSE_TRACING) console.log('test case err [' + desc + ']:', e);
       const msg = String(e?.message ?? e)
         .replace(/^.*is not a constructor.*$/, '<ref> is not a constructor')
         .replace(/^.*is not iterable.*$/, '<ref> is not iterable')
@@ -979,19 +982,19 @@ function runTestCase(
   }
   const SKIPPED = '"<skipped by option>"';
   evalled.$in = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalInput || isRefTest || isPcodeTest ? [SKIPPED] : evaluate('input', fin, evalled.$in);
-  evalled.$in_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalInput || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate_inv('input', fin, evalled.$in_inv);
+  evalled.$in_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalInput || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate_inv('inv input', fin, evalled.$in_inv);
   evalled.$pre = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalPre || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate('pre normalization', fin, evalled.$pre);
-  evalled.$pre_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalPre || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate_inv('pre normalization', fin, evalled.$pre_inv);
+  evalled.$pre_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalPre || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate_inv('inv pre normalization', fin, evalled.$pre_inv);
   evalled.$norm = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalNormalized || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate('normalized', output?.normalized, evalled.$norm);
-  evalled.$norm_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalNormalized || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate_inv('normalized', output?.normalized, evalled.$norm_inv);
+  evalled.$norm_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalNormalized || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate_inv('inv normalized', output?.normalized, evalled.$norm_inv);
   if (!CONFIG.onlyNormalized) {
     evalled.$settled = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalOutput || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate('settled', output?.files, evalled.$settled);
-    evalled.$settled_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalOutput || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate_inv('output', output?.files, evalled.$settled_inv);
+    evalled.$settled_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalOutput || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate_inv('inv settled', output?.files, evalled.$settled_inv);
     evalled.$denorm = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalDenorm || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate('denorm', output?.denormed, evalled.$denorm);
-    evalled.$denorm_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalDenorm || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate_inv('denorm', output?.denormed, evalled.$denorm_inv);
+    evalled.$denorm_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalDenorm || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate_inv('inv denorm', output?.denormed, evalled.$denorm_inv);
   }
 
-  if (isPcodeTest && !CONFIG.fileVerbatim) {
+  if (isPcodeTest && !CONFIG.skipEval) {
     evalled.$pcode = [];
 
     // I want to evaluate the pcode and the actual code somehow
@@ -1080,7 +1083,7 @@ function runTestCase(
       .join('\n')
     );
   }
-  else console.log('-- Skipping eval for input...');
+  else log('-- Skipping pcode eval...');
 
   if (lastError && !isExpectingAnError) console.log('\n\nPreval crashed hard on test/file, skipped evals:', CONFIG.targetFile);
 

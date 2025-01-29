@@ -123,6 +123,7 @@ export function vgroup(...args) {
   if (VERBOSE_TRACING) group(...args);
 }
 export function vgroupEnd(...args) {
+  ASSERT(args.length === 0, 'vgroup does not accept args');
   if (VERBOSE_TRACING) groupEnd(...args);
 }
 

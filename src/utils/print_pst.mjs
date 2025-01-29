@@ -280,6 +280,9 @@ function printExpression(indent, config, node) {
       if (node.props.length === 1) return `{ ${node.props.map(s => printPropertyMethodOrSpread(indent, config, s)).join(',') } }`;
       return `{\n${node.props.map(s => `${indent}  ${printPropertyMethodOrSpread(`${indent}  `, config, s)},`).join('\n')}\n${indent}}`;
     }
+    case 'Param': {
+      return node.name;
+    }
     case 'Primitive': {
       return printPrimitive(indent, config, node);
     }

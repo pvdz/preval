@@ -1126,7 +1126,7 @@ function _inferNodeTyping(fdata, valueNode) {
           mustBeTruthy: true,
         });
       }
-      throw ASSERT(false, 'support me', valueNode);
+      throw ASSERT(false, 'support this literal kind', valueNode);
     }
     case 'TemplateLiteral': {
       ASSERT(
@@ -1802,6 +1802,7 @@ function _inferNodeTyping(fdata, valueNode) {
               mustBeTruthy: true,
 
               builtinTag: 'Number#' + valueNode.property.name,
+              returns: 'string',
             });
           }
 
@@ -1811,6 +1812,7 @@ function _inferNodeTyping(fdata, valueNode) {
               mustBeTruthy: true,
 
               builtinTag: 'String#' + valueNode.property.name,
+              returns: 'string',
             });
           }
 
@@ -1820,6 +1822,7 @@ function _inferNodeTyping(fdata, valueNode) {
               mustBeTruthy: true,
 
               builtinTag: 'Boolean#' + valueNode.property.name,
+              returns: 'string',
             });
           }
         }

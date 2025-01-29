@@ -155,7 +155,7 @@ function _inlineOneTimeFunctions(fdata) {
     // We should be able to inline this call
     queueForInlining(funcNode, funcName, read, write);
 
-    vgroupEnd(funcNode, funcName, read, write);
+    vgroupEnd();
   });
 
   function queueForInlining(funcNode, funcName, read, write) {

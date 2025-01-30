@@ -675,6 +675,9 @@ $(arr.slice(0));
       $gutter.scrollTop = $input.scrollTop;
     }, {passive: true});
 
+    // Update output when clicking recompile output checkbox
+    $attempt_recompile.onchange = () => $output.value = helpers.fmat($attempt_recompile.checked ? currentStore.denormed['web_input.mjs'] : currentStore.files['web_input.mjs'], true);
+
     //$normalized.onclick = e => {
     //  console.log(e.target);
     //  if (e.target.classList.contains('lint-loc')) {

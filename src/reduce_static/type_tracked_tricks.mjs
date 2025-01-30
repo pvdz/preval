@@ -1243,7 +1243,7 @@ function _typeTrackedTricks(fdata) {
                 break;
               }
               case 'string.concat': {
-                if (node.arguments.every(a => AST.isPrimitive(a))) {
+                if (isPrim && node.arguments.every(a => AST.isPrimitive(a))) {
                   // 'foo'.slice(0)
 
                   rule('Calling `concat` on a string with primitive args should resolve the call');
@@ -1266,7 +1266,7 @@ function _typeTrackedTricks(fdata) {
               }
               case 'string.indexOf': {
                 const arglen = node.arguments.length;
-                if (arglen === 0 || (AST.isPrimitive(node.arguments[0]) && (arglen === 1 || AST.isPrimitive(node.arguments[1])))) {
+                if (isPrim && (arglen === 0 || (AST.isPrimitive(node.arguments[0]) && (arglen === 1 || AST.isPrimitive(node.arguments[1]))))) {
                   // 'foo'.indexOf('o', 15)
 
                   rule('Calling `indexOf` on a string with primitive args should resolve the call');
@@ -1303,7 +1303,7 @@ function _typeTrackedTricks(fdata) {
               }
               case 'string.lastIndexOf': {
                 const arglen = node.arguments.length;
-                if (arglen === 0 || (AST.isPrimitive(node.arguments[0]) && (arglen === 1 || AST.isPrimitive(node.arguments[1])))) {
+                if (isPrim && (arglen === 0 || (AST.isPrimitive(node.arguments[0]) && (arglen === 1 || AST.isPrimitive(node.arguments[1]))))) {
                   // 'foo'.lastIndexOf('o', 15)
 
                   rule('Calling `lastIndexOf` on a string with primitive args should resolve the call');
@@ -1596,7 +1596,7 @@ function _typeTrackedTricks(fdata) {
               }
               case 'string.split': {
                 const arglen = node.arguments.length;
-                if (arglen === 0 || AST.isPrimitive(node.arguments[0])) {
+                if (isPrim && (arglen === 0 || AST.isPrimitive(node.arguments[0]))) {
                   // 'foo'.split()
                   // 'foo'.split('o')
 
@@ -1632,7 +1632,7 @@ function _typeTrackedTricks(fdata) {
                   break;
                 } else if (arglen > 0 && node.arguments[0].type === 'Identifier') {
                   const metaArg1 = fdata.globallyUniqueNamingRegistry.get(node.arguments[0].name);
-                  if (metaArg1 && metaArg1.typing.mustBeType === 'regex' && metaArg1.isConstant && AST.isRegexLiteral(metaArg1.constValueRef.node)) {
+                  if (isPrim && metaArg1 && metaArg1.typing.mustBeType === 'regex' && metaArg1.isConstant && AST.isRegexLiteral(metaArg1.constValueRef.node)) {
                     // 'foo'.split(/o/)
 
                     rule('Calling `split` on a string with a regex should resolve the call');

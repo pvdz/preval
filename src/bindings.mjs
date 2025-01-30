@@ -1188,6 +1188,10 @@ function _inferNodeTyping(fdata, valueNode) {
     case 'AwaitExpression': {
       return inferNodeTyping(fdata, valueNode.argument);
     }
+    case 'YieldExpression': {
+      // mmm the value of a yield is not the argument but the argument for the .next() call, which we won't know here. So we know nothing.
+      return createTypingObject({});
+    }
     case 'BinaryExpression': {
       switch (valueNode.operator) {
         case '===':

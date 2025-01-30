@@ -218,6 +218,17 @@ function _boolTrampolines(fdata) {
         return;
       }
 
+      if (rhs1.type === 'AwaitExpression' || rhs2.type === 'AwaitExpression') {
+        // We can totally do this when the new parent function is async. But we gotta check that first.
+        vlog('  - At least one rhs is `await`, bailing. TODO: confirm if new parent function is async and then do it anyways');
+        return false;
+      }
+      if (rhs1.type === 'YieldExpression' || rhs2.type === 'YieldExpression') {
+        // We can totally do this when the new parent function is generator. But we gotta check that first.
+        vlog('  - At least one rhs is `yield`, bailing. TODO: confirm if new parent function is generator and then do it anyways');
+        return false;
+      }
+
       // I think we're ready to call it. We can inline this case with the firstNode trampoline (and bool coercion).
 
       queue.push({

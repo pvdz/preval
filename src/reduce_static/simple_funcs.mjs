@@ -223,6 +223,16 @@ function processVar(stmt, ret, paramArgMapper, read, ri, funcNode, fdata, queue)
   const oldName = stmt.declarations[0].id.name;
   // Special case because we need to create a unique name for the binding
   const fail = { de: false };
+  if (stmt.declarations[0].init.type === 'AwaitExpression') {
+    // We can totally do this when the new parent function is async. But we gotta check that first.
+    vlog('  - Init is `await`, bailing. TODO: confirm if new parent function is async and then do it anyways');
+    return false;
+  }
+  if (stmt.declarations[0].init.type === 'YieldExpression') {
+    // We can totally do this when the new parent function is generator. But we gotta check that first.
+    vlog('  - Init is `yield`, bailing. TODO: confirm if new parent function is generator and then do it anyways');
+    return false;
+  }
   const newInit = AST.deepCloneForFuncInlining(stmt.declarations[0].init, paramArgMapper, fail);
   if (fail.ed) {
     vlog('  - Node contained a write to a param. Bailing');

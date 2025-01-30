@@ -1937,7 +1937,7 @@ export function _ssaFindIdentRefs(node, set = new Set()) {
   ASSERT(false, 'gottacatchemall 3', node);
 }
 
-export function deepCloneForFuncInlining(node, paramArgMapper, fail) {
+export function deepCloneForFuncInlining(node, paramArgMapper, fail, safeToAwaitYield = false) {
   // Assumes normalized input. Should output normalized code, even when fail.ed=true
   // Walk the node. Replace all occurrences of the read of an ident with the argument.
   // Bail if a write ident was part of the mapper
@@ -1946,15 +1946,15 @@ export function deepCloneForFuncInlining(node, paramArgMapper, fail) {
   switch (node.type) {
     case 'IfStatement': {
       return ifStatement(
-        deepCloneForFuncInlining(node.test, paramArgMapper, fail),
-        deepCloneForFuncInlining(node.consequent, paramArgMapper, fail),
-        deepCloneForFuncInlining(node.alternate, paramArgMapper, fail),
+        deepCloneForFuncInlining(node.test, paramArgMapper, fail, safeToAwaitYield),
+        deepCloneForFuncInlining(node.consequent, paramArgMapper, fail, safeToAwaitYield),
+        deepCloneForFuncInlining(node.alternate, paramArgMapper, fail, safeToAwaitYield),
       );
     }
     case 'WhileStatement': {
       return whileStatement(
-        deepCloneForFuncInlining(node.test, paramArgMapper, fail),
-        deepCloneForFuncInlining(node.body, paramArgMapper, fail),
+        deepCloneForFuncInlining(node.test, paramArgMapper, fail, safeToAwaitYield),
+        deepCloneForFuncInlining(node.body, paramArgMapper, fail, safeToAwaitYield),
       );
     }
     case 'EmptyStatement': {
@@ -1964,10 +1964,10 @@ export function deepCloneForFuncInlining(node, paramArgMapper, fail) {
       return debuggerStatement();
     }
     case 'ExpressionStatement': {
-      return expressionStatement(deepCloneForFuncInlining(node.expression, paramArgMapper, fail));
+      return expressionStatement(deepCloneForFuncInlining(node.expression, paramArgMapper, fail, safeToAwaitYield));
     }
     case 'BlockStatement': {
-      return blockStatement(node.body.map((n) => deepCloneForFuncInlining(n, paramArgMapper, fail)));
+      return blockStatement(node.body.map((n) => deepCloneForFuncInlining(n, paramArgMapper, fail, safeToAwaitYield)));
     }
     case 'VariableDeclaration': {
       return variableDeclaration(node.declarations[0].id.name, node.declarations[0].init, node.kind);
@@ -1992,10 +1992,10 @@ export function deepCloneForFuncInlining(node, paramArgMapper, fail) {
       //    $p: $p(),
       //  }
       return tryStatement(
-        deepCloneForFuncInlining(node.block, paramArgMapper, fail),
-        node.handler && node.handler.param && deepCloneForFuncInlining(node.handler.param, paramArgMapper, fail),
-        node.handler && deepCloneForFuncInlining(node.handler.body, paramArgMapper, fail),
-        node.finalizer && deepCloneForFuncInlining(node.finalizer, paramArgMapper, fail),
+        deepCloneForFuncInlining(node.block, paramArgMapper, fail, safeToAwaitYield),
+        node.handler && node.handler.param && deepCloneForFuncInlining(node.handler.param, paramArgMapper, fail, safeToAwaitYield),
+        node.handler && deepCloneForFuncInlining(node.handler.body, paramArgMapper, fail, safeToAwaitYield),
+        node.finalizer && deepCloneForFuncInlining(node.finalizer, paramArgMapper, fail, safeToAwaitYield),
       );
     }
 
@@ -2014,8 +2014,8 @@ export function deepCloneForFuncInlining(node, paramArgMapper, fail) {
     case 'BinaryExpression': {
       return binaryExpression(
         node.operator,
-        deepCloneForFuncInlining(node.left, paramArgMapper, fail),
-        deepCloneForFuncInlining(node.right, paramArgMapper, fail),
+        deepCloneForFuncInlining(node.left, paramArgMapper, fail, safeToAwaitYield),
+        deepCloneForFuncInlining(node.right, paramArgMapper, fail, safeToAwaitYield),
       );
     }
     case 'AssignmentExpression': {
@@ -2023,16 +2023,16 @@ export function deepCloneForFuncInlining(node, paramArgMapper, fail) {
       if (node.left.type === 'Identifier' && paramArgMapper.has(node.left.name)) {
         // Hack. But rather this than throwing...
         fail.ed = true;
-        return assignmentExpression(cloneSimple(node.left), deepCloneForFuncInlining(node.right, paramArgMapper, fail), '=');
+        return assignmentExpression(cloneSimple(node.left), deepCloneForFuncInlining(node.right, paramArgMapper, fail, safeToAwaitYield), '=');
       }
       return assignmentExpression(
-        deepCloneForFuncInlining(node.left, paramArgMapper, fail),
-        deepCloneForFuncInlining(node.right, paramArgMapper, fail),
+        deepCloneForFuncInlining(node.left, paramArgMapper, fail, safeToAwaitYield),
+        deepCloneForFuncInlining(node.right, paramArgMapper, fail, safeToAwaitYield),
         '=',
       );
     }
     case 'UnaryExpression': {
-      return unaryExpression(node.operator, deepCloneForFuncInlining(node.argument, paramArgMapper, fail));
+      return unaryExpression(node.operator, deepCloneForFuncInlining(node.argument, paramArgMapper, fail, safeToAwaitYield));
     }
     case 'ThisExpression': {
       return thisExpression();
@@ -2041,15 +2041,15 @@ export function deepCloneForFuncInlining(node, paramArgMapper, fail) {
       return thisExpression();
     }
     case 'ArrayExpression': {
-      return arrayExpression(node.elements.map((n) => n && deepCloneForFuncInlining(n, paramArgMapper, fail)));
+      return arrayExpression(node.elements.map((n) => n && deepCloneForFuncInlining(n, paramArgMapper, fail, safeToAwaitYield)));
     }
     case 'ObjectExpression': {
-      return objectExpression(node.properties.map((n) => deepCloneForFuncInlining(n, paramArgMapper, fail)));
+      return objectExpression(node.properties.map((n) => deepCloneForFuncInlining(n, paramArgMapper, fail, safeToAwaitYield)));
     }
     case 'Property': {
       return property(
-        node.computed ? deepCloneForFuncInlining(node.key, paramArgMapper, fail) : cloneSimple(node.key),
-        deepCloneForFuncInlining(node.value, paramArgMapper, fail),
+        node.computed ? deepCloneForFuncInlining(node.key, paramArgMapper, fail, safeToAwaitYield) : cloneSimple(node.key),
+        deepCloneForFuncInlining(node.value, paramArgMapper, fail, safeToAwaitYield),
         false,
         node.computed,
         node.kind,
@@ -2057,44 +2057,50 @@ export function deepCloneForFuncInlining(node, paramArgMapper, fail) {
       );
     }
     case 'SpreadElement': {
-      return spreadElement(deepCloneForFuncInlining(node.argument, paramArgMapper, fail));
+      return spreadElement(deepCloneForFuncInlining(node.argument, paramArgMapper, fail, safeToAwaitYield));
     }
     case 'CallExpression': {
       return callExpression(
-        deepCloneForFuncInlining(node.callee, paramArgMapper, fail),
-        node.arguments.map((n) => deepCloneForFuncInlining(n, paramArgMapper, fail)),
+        deepCloneForFuncInlining(node.callee, paramArgMapper, fail, safeToAwaitYield),
+        node.arguments.map((n) => deepCloneForFuncInlining(n, paramArgMapper, fail, safeToAwaitYield)),
       );
     }
     case 'MemberExpression': {
       return memberExpression(
-        deepCloneForFuncInlining(node.object, paramArgMapper, fail),
-        node.computed ? deepCloneForFuncInlining(node.property, paramArgMapper, fail) : cloneSimple(node.property),
+        deepCloneForFuncInlining(node.object, paramArgMapper, fail, safeToAwaitYield),
+        node.computed ? deepCloneForFuncInlining(node.property, paramArgMapper, fail, safeToAwaitYield) : cloneSimple(node.property),
         node.computed,
       );
     }
     case 'NewExpression': {
       return newExpression(
-        deepCloneForFuncInlining(node.callee, paramArgMapper, fail),
-        node.arguments.map((n) => deepCloneForFuncInlining(n, paramArgMapper, fail)),
+        deepCloneForFuncInlining(node.callee, paramArgMapper, fail, safeToAwaitYield),
+        node.arguments.map((n) => deepCloneForFuncInlining(n, paramArgMapper, fail, safeToAwaitYield)),
       );
     }
     case 'TemplateLiteral': {
       return templateLiteral(
         node.quasis.map((te) => te.value.cooked),
-        node.expressions.map((n) => deepCloneForFuncInlining(n, paramArgMapper, fail)),
+        node.expressions.map((n) => deepCloneForFuncInlining(n, paramArgMapper, fail, safeToAwaitYield)),
       );
     }
     case 'TemplateElement': {
       ASSERT(false, 'eh?');
       return templateElement(
-        deepCloneForFuncInlining(node.raw, paramArgMapper, fail),
+        deepCloneForFuncInlining(node.raw, paramArgMapper, fail, safeToAwaitYield),
         node.tail,
-        deepCloneForFuncInlining(node.cooked, paramArgMapper, fail),
+        deepCloneForFuncInlining(node.cooked, paramArgMapper, fail, safeToAwaitYield),
       );
     }
     case 'AwaitExpression': {
-      throw new Error('can only inline an await into an async function or syntax erorrs happen');
-      return awaitExpression(deepCloneForFuncInlining(node.argument, paramArgMapper, fail));
+      if (!safeToAwaitYield) throw new Error('can only inline an await into an async function, else syntax errors happen');
+      // If the caller checked that it's safe to yield/await then we're good to go here
+      return awaitExpression(deepCloneForFuncInlining(node.argument, paramArgMapper, fail, safeToAwaitYield));
+    }
+    case 'YieldExpression': {
+      if (!safeToAwaitYield) throw new Error('can only inline a yield into a generator function, else syntax errors happen');
+      // If the caller checked that it's safe to yield/await then we're good to go here
+      return yieldExpression(deepCloneForFuncInlining(node.argument, paramArgMapper, fail, safeToAwaitYield));
     }
 
     case 'ClassExpression': {
@@ -2108,10 +2114,10 @@ export function deepCloneForFuncInlining(node, paramArgMapper, fail) {
       throw TODO;
     }
     case 'ThrowStatement': {
-      return throwStatement(deepCloneForFuncInlining(node.argument, paramArgMapper, fail));
+      return throwStatement(deepCloneForFuncInlining(node.argument, paramArgMapper, fail, safeToAwaitYield));
     }
     case 'ReturnStatement': {
-      return returnStatement(deepCloneForFuncInlining(node.argument, paramArgMapper, fail));
+      return returnStatement(deepCloneForFuncInlining(node.argument, paramArgMapper, fail, safeToAwaitYield));
     }
     case 'FunctionExpression': {
       // We do not want to deep clone function expressions because it leads to difficult binding duplication issues.

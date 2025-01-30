@@ -164,7 +164,9 @@ function processAttempt(fdata, unrollLimit) {
       vlog('Attempting to clone loop body...')
 
       const fail = {};
-      const clone = deepCloneForFuncInlining(whileNode.body, new Map, fail);
+      // On await/yield: if the loop contained an `await` or `yield` expression then the owner
+      //                 function must be okay with it and unrolling does not change that.
+      const clone = deepCloneForFuncInlining(whileNode.body, new Map, fail, true);
       if (fail.ed) {
         vlog('  - bail: body cloning failed', fail);
         return;

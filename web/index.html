@@ -303,7 +303,12 @@
       </div>
 
       <div class="quarter">
-        <div class="quarter-head">Result <small>(When successful, this should show the final output of Preval)</small></div>
+        <div class="quarter-head">
+          Result <small>(When successful, this should show the final output of Preval)</small>
+          <span style="float:right">
+            <label title="Put things back together after preval settles with decompilation, might make it easier to read to some"><input id="$attempt_recompile" checked/> attempt to recompile</label>
+          </span>
+        </div>
         <textarea
           id="$output"
           placeholder="result goes here"
@@ -492,7 +497,7 @@ $(arr.slice(0));
             }
           });
 
-          $output.value = helpers.fmat(currentStore.files['web_input.mjs'], true);
+          $output.value = helpers.fmat($attempt_recompile.checked ? currentStore.denormed['web_input.mjs'] : currentStore.files['web_input.mjs'], true);
         } catch (e) {
           $normalized.innerHTML = '(crashed)\n > ' + e.message + '\n' + e.stack;
           $print.style.color = 'black';

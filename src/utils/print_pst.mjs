@@ -165,7 +165,7 @@ function printRef(indent, config, node) {
     if (['do', 'in', 'for', 'let', 'if', 'var'].includes(nextName)) {
       // This leads to a keyword and invalid code so inject a placeholder and move to the next index
       // Expand this list to include four letter keywords if necessary... or just all of them.
-      config.names.set('#SKIP', nextName);
+      config.names.set(nextName, '#SKIP');
       return printRef(indent, config, node);
     }
     config.names.set(node.name, nextName);

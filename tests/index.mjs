@@ -185,9 +185,9 @@ let badFinal = 0; // evaluation of final output does not match input
 try {
   testCases.forEach((tc, i) => runTestCase({ ...tc, withOutput: testCases.length === 1 && !CONFIG.onlyNormalized }, i));
 } catch (e) {
-  console.log(DIM + 'At least one test crashed hard.' + RESET);
+  console.log(RED + 'At least one test crashed hard.' + RESET);
   // If you're not seeing a stack trace then it's probably happening in preval. Enable next line:
-  //console.log(e);
+  console.log(e);
 }
 
 if (isMainThread) {

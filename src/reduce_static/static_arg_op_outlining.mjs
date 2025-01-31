@@ -1130,7 +1130,7 @@ function _staticArgOpOutlining(fdata) {
       'function f(a, b) { const x = b; g(a); return x; } f(1, 1 + 1); f("a" + 1);',
     );
     before(funcMeta.constValueRef.containerNode);
-    funcMeta.reads.forEach((read) => before(read.parentNode));
+    funcMeta.reads.forEach((read) => before(read.blockBody[read.blockIndex]));
 
     // We create a fresh param name and add it to the end
     // We replace the binary expression with the new param name
@@ -1146,8 +1146,13 @@ function _staticArgOpOutlining(fdata) {
     funcNode.params.push(newParamNode);
     const newLocalParamName = createFreshVar('tmpOutlinedParam', fdata);
     const newLocalParamNode = AST.variableDeclaration(newLocalParamName, newParamName, 'const');
-    funcNode.body.body.splice(funcNode.$p.bodyOffset - 1, 0, newLocalParamNode);
-    // Not sure if this needs anything else tbh.
+    // Need to queue the inject because injecting the arg in the body pushes all other statements down
+    queue.push({
+      index: funcNode.$p.bodyOffset - 1,
+      func: () => {
+        funcNode.body.body.splice(funcNode.$p.bodyOffset - 1, 0, newLocalParamNode);
+      },
+    });
 
     // Replace the expression that we're outlining... The target can only be one of three;
     // `var x = <y>`, `x = <y>`, or `<y>`. We replace the expression y with the new var because we'll outline it.
@@ -1247,11 +1252,13 @@ function _staticArgOpOutlining(fdata) {
 
           after(read.blockBody[read.blockIndex]);
           after(read.blockBody[read.blockIndex + 1]);
+          after(read.blockBody[read.blockIndex + 2]);
         },
       });
     });
 
     after(funcMeta.constValueRef.containerNode);
+    funcMeta.reads.forEach((read) => after(read.blockBody[read.blockIndex]));
     ++changes;
   }
 

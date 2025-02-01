@@ -42,23 +42,7 @@
 //
 
 import walk from '../../lib/walk.mjs';
-import {
-  ASSERT,
-  log,
-  group,
-  groupEnd,
-  vlog,
-  vgroup,
-  vgroupEnd,
-  fmat,
-  tmat,
-  rule,
-  example,
-  before,
-  source,
-  after,
-  findBodyOffset,
-} from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, todo } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import {
   BUILTIN_MATH_STATIC_LOOKUP,
@@ -785,8 +769,12 @@ function _collectFromExpression(node, declared, reffed) {
       if (node.expressions.length === 0) {
         break;
       }
-      ASSERT(node.expressions.length === 1, 'right?', node, node.expressions);
-      collectFromSimpleOrFail(node.expressions[0], reffed);
+      //ASSERT(node.expressions.length === 1, 'right?', node, node.expressions);
+      if (node.expressions.length > 1) todo('find test case where template ends up with multiple expressions');
+      // Guess it doesn't really matter. We just collect them all here.
+      for (let i=0; i<node.expressions.length; ++i) {
+        collectFromSimpleOrFail(node.expressions[i], reffed);
+      }
       break;
     }
     case 'Param': {

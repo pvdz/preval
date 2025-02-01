@@ -1,6 +1,6 @@
 import walk from '../lib/walk.mjs';
 import {walkStmt, WALK_NO_FURTHER, HARD_STOP} from '../lib/walk_stmt_norm.mjs';
-import {ASSERT, source, tmat, vlog, log} from './utils.mjs';
+import {ASSERT, source, tmat, vlog, log, todo} from './utils.mjs';
 import { $p } from './$p.mjs';
 import { createFreshVar } from './bindings.mjs';
 import { ARGLENGTH_ALIAS_BASE_NAME, ARGUMENTS_ALIAS_BASE_NAME, SYMBOL_COERCE, THIS_ALIAS_BASE_NAME } from './symbols_preval.mjs';
@@ -2596,7 +2596,7 @@ export function isSameFlatStatementExceptBool(nodeA, nodeB, collect) {
     case 'VariableDeclaration': {
       // TODO: when the nodes are equal other than bool or id then the decl can be hoisted. we just have to rename all usages of the second decl to the first.
       if (!isSameExpressionExceptBool(nodeA.declarations[0].init, nodeB.declarations[0].init, collect, nodeA.declarations[0], nodeB.declarations[0], 'init')) return false;
-      console.log('TODO: merge the consts tests/cases/if_merging/base_let_else.md');
+      todo('merge the consts tests/cases/if_merging/base_let_else.md');
       return false;
     }
 

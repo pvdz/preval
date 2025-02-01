@@ -3,7 +3,7 @@ import Prettier from '../lib/prettier.mjs';
 import { printer, setPrintPids } from '../lib/printer.mjs';
 import walk from '../lib/walk.mjs';
 
-import { VERBOSE_TRACING, setVerboseTracing, YELLOW, ORANGE_DIM, PURPLE, RESET, DIM, ORANGE } from './constants.mjs';
+import { VERBOSE_TRACING, setVerboseTracing, YELLOW, ORANGE_DIM, PURPLE, RESET, DIM, ORANGE, GREEN } from './constants.mjs';
 import { SYMBOL_MAX_LOOP_UNROLL } from './symbols_preval.mjs';
 
 /**
@@ -125,6 +125,10 @@ export function vgroup(...args) {
 export function vgroupEnd(...args) {
   ASSERT(args.length === 0, 'vgroup does not accept args');
   if (VERBOSE_TRACING) groupEnd(...args);
+}
+
+export function todo(...args) {
+  log(PURPLE + '[TODO]', ...args, RESET);
 }
 
 // Debugging

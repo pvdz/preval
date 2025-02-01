@@ -3,24 +3,7 @@
 // -> `const arr = [2, 3, 4]; f(1); f(arr)`
 
 import walk from '../../lib/walk.mjs';
-import {
-  ASSERT,
-  log,
-  group,
-  groupEnd,
-  vlog,
-  vgroup,
-  vgroupEnd,
-  rule,
-  example,
-  before,
-  source,
-  after,
-  fmat,
-  tmat,
-  coerce,
-  findBodyOffset,
-} from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, coerce, findBodyOffset, todo, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { mayBindingMutateBetweenRefs } from '../bindings.mjs';
 import {
@@ -236,9 +219,11 @@ function processAttempt(fdata) {
     //source(write.blockBody[write.blockIndex]);
     //source(nextRead.blockBody[nextRead.blockIndex]);
 
+    // Note: this check is to confirm if the array _might_ have changed between the decl and the read
     if (arrayMeta.writes.length === 1) {
       // We already verified that none of the reads escape.
-      // Observable side effects are moot here.
+      // Observable side effects are moot here because the only "use" is a property
+      // read. The arr is not passed on anywhere by reference so we don't need to worry about visibility.
       vlog('Array binding only has one write. No need to scan for observable side effects.');
     } else {
       let bstart = Date.now();
@@ -257,6 +242,13 @@ function processAttempt(fdata) {
         if (nextRead.parentNode.object === nextRead.node) {
           if (nextRead.isPropWrite) {
             vlog(' - Property write on the array:', nextRead.parentNode.property.name);
+
+            if (nextRead.grandNode.right.type === 'Identifier' && nextRead.grandNode.right.name === arrayName) {
+              // - `const arr = []; arr[0] = arr`
+              vlog('  - Assigning the array to one of its elements, recursion, EVIL, bailing');
+              return;
+            }
+
             if (AST.isPrimitive(nextRead.grandNode.right)) {
               vlog(' - RHS is a primitive');
               if (nextRead.parentNode.computed) {
@@ -272,7 +264,6 @@ function processAttempt(fdata) {
                     example('const arr = []; arr[0] = 100', 'const arr = [100]');
                     before(write.blockBody[write.blockIndex]);
                     before(nextRead.blockBody[nextRead.blockIndex]);
-
 
                     arrayLiteralNode.elements[value] = nextRead.grandNode.right;
                     nextRead.blockBody[nextRead.blockIndex] = AST.emptyStatement();
@@ -291,14 +282,164 @@ function processAttempt(fdata) {
                 ASSERT(nextRead.parentNode.property.type === 'Identifier', 'non-computed must have ident, yes?');
                 switch (nextRead.parentNode.property.name) {
                   case 'length': {
-                    // I think this is unsafe? What if code gets moved. TODO
-                    vlog(' - bail: not sure if array.length is safe to inline');
-                    return;
+                    // This is unsafe unless back to back. Maybe some other cases can be covered as well...
+                    if (write.blockBody === nextRead.blockBody && write.blockIndex+1 === nextRead.blockIndex) {
+                      // This assignment is back to back so this should be safe to do, provided the
+                      // len is not too excessive and we pop the elements and whatever.
+                      // I think, worst case, with normalized code, this could change which var triggers a TDZ?
+
+                      if (!AST.isNumberLiteral(nextRead.grandNode.right)) {
+                        vlog('  - not assigning a number to arr.length, bailing');
+                        return;
+                      }
+
+                      const value = AST.getPrimitiveValue(nextRead.grandNode.right);
+                      if (!(value >= 0) || !isFinite(value)) {
+                        vlog('  - assigning an impossible value to arr.length, bailing');
+                        return;
+                      }
+
+                      if (value === arrayLiteralNode.elements.length) {
+                        // Noop...? Not likely to happen but while we're here let's drop it...
+
+                        rule('Assigning the same len to an array.length immediately after decl is ... drop it');
+                        example('const arr = [1, 2, 3]; arr.length = 3;', 'const arr = [1, 2, 3];');
+                        before(write.blockBody[write.blockIndex]);
+                        before(nextRead.blockBody[nextRead.blockIndex]);
+
+                        nextRead.blockBody[nextRead.blockIndex] = AST.emptyStatement();
+
+                        after(write.blockBody[write.blockIndex]);
+                        after(nextRead.blockBody[nextRead.blockIndex]);
+
+                        updated += 1;
+                        break;
+                      }
+
+                      if (value < arrayLiteralNode.elements.length) {
+                        rule('Assigning a smaller len to arr.length right after its decl should shrink the decl');
+                        example('const arr = [1, 2, 3, 4, 5]; arr.length = 3;', '{ 4; 5; } const arr = [1, 2, 3];');
+                        before(write.blockBody[write.blockIndex]);
+                        before(nextRead.blockBody[nextRead.blockIndex]);
+
+                        // We do have to outline the remaining vars to preserve TDZ semantics
+                        // In this case we're in a unique position that we have two back to back statements.
+                        // So to prevent breaking indexes, we are going to replace the read with reads to
+                        // the pruned array elements. This should preserve TDZ order, not change TDZ semantics
+                        // and not mess with other index references until we go through phase1 again.
+
+                        nextRead.blockBody[nextRead.blockIndex] = AST.expressionStatement(AST.sequenceExpression(...arrayLiteralNode.elements.slice(value)));
+                        arrayLiteralNode.elements.length = value;
+
+                        after(write.blockBody[write.blockIndex]);
+                        after(nextRead.blockBody[nextRead.blockIndex]);
+
+                        updated += 1;
+                        addedSequence = true;
+                        break;
+                      }
+
+                      ASSERT(value >= arrayLiteralNode.elements.length, 'len should be extended now');
+                      if (value - arrayLiteralNode.elements.length < 10) {
+                        // 10 is an arbitrary limit. I'm not sure when this is actually relevant but ok we can so let's do it.
+
+                        rule('Assigning a bigger len to arr.length right after its decl should grow the decl');
+                        example('const arr = [1, 2]; arr.length = 4;', 'const arr = [1, 2, , ,];');
+                        before(write.blockBody[write.blockIndex]);
+                        before(nextRead.blockBody[nextRead.blockIndex]);
+
+                        // We do have to outline the remaining vars to preserve TDZ semantics
+                        // In this case we're in a unique position that we have two back to back statements.
+                        // So to prevent breaking indexes, we are going to replace the read with reads to
+                        // the pruned array elements. This should preserve TDZ order, not change TDZ semantics
+                        // and not mess with other index references until we go through phase1 again.
+
+                        for (let i=arrayLiteralNode.elements.length; i<value; ++i) {
+                          arrayLiteralNode.elements.push(null); // Gotta be nulls.
+                        }
+
+                        after(write.blockBody[write.blockIndex]);
+                        after(nextRead.blockBody[nextRead.blockIndex]);
+
+                        updated += 1;
+                        break;
+                      } else {
+                        vlog('  - Assigning a much bigger value to arr.lenth than the len, bailing');
+                        return;
+                      }
+                    } else {
+                      vlog('  - bail: not safe to line array.length assignment when not backtoback, bailing');
+                      return;
+                    }
                   }
                 }
               }
             } else {
-              vlog(' - RHS is NOT a primitive so this is more complicated, bailing for now');
+              vlog(' - RHS is NOT a primitive so this is more complicated');
+
+              // If the array is not a closure, not accessed between decl and write, and the rhs can be tracked, then it should be safe to inline
+              // We can start with the simple case: the write happens immediately after the decl
+              if (write.blockBody === nextRead.blockBody && write.blockIndex+1 === nextRead.blockIndex) {
+                // The read is on the next line from the decl so it must be safe to consolidate, regardless of rhs
+                // - `const arr = []; arr.foo = x`
+                // - `const arr = []; arr[foo] = x`
+
+                // One other case to consider is assigning to a numbered property that is "way" out of range `arr[1e100] = 1`, whatever "Way" is.
+
+                if (nextRead.parentNode.computed) {
+                  // - `const arr = []; arr[foo] = x`
+                  vlog(' - Computed property mutation with non-primitive rhs on the array. We can inline the rhs in some cases');
+                  if (AST.isPrimitive(nextRead.parentNode.property)) {
+                    const value = AST.getPrimitiveValue(nextRead.parentNode.property);
+                    vlog(' - The property is a primitive:', value);
+                    if (typeof value === 'number' && value >= 0 && value <= arrayLiteralNode.elements.length) {
+                      vlog(' - It is a number that is either in the current range of the array or one bigger:', value, '<=', arrayLiteralNode.elements.length);
+
+                      rule('Assignment of complex rhs to index properties of array immediately after declaring the array can be inlined');
+                      example('const arr = []; arr[0] = xyz', 'const arr = [xyz]');
+                      before(write.blockBody[write.blockIndex]);
+                      before(nextRead.blockBody[nextRead.blockIndex]);
+
+                      arrayLiteralNode.elements[value] = nextRead.grandNode.right;
+                      nextRead.blockBody[nextRead.blockIndex] = AST.emptyStatement();
+
+                      after(write.blockBody[write.blockIndex]);
+                      after(nextRead.blockBody[nextRead.blockIndex]);
+
+                      updated += 1;
+                      break;
+                    } else {
+                      // We only allow to write within range of declaration, or one above it
+                      // TODO: we could extend this by a couple and elide the rest. But where to draw the line?
+                      // - `const arr = []; arr[1e100] = bar;`
+                      // - `const arr = []; arr[3] = bar;`
+                      // - `const arr = []; arr[-1] = bar;`
+                      vlog('  - Assignment to array index that is oob; bailing');
+                      return;
+                    }
+                  } else {
+                    // - `arr[foo] = bar`
+                    // We don't know the concrete value of `foo` so we can't inline anything here.
+                    vlog('  - Assignment to property that is not primitive; bailing');
+                    return;
+                  }
+                } else {
+                  // - `arr.foo = x`
+                  // Note: even `arr.length = x` is not workable since we must know what x resolves to in order to apply it here
+                  vlog('  - Assignment of complex rhs to non-index property cant be inlined, bailing');
+                  return;
+                }
+              } else {
+                // This can work when:
+                // - the decl and read have same scope
+                // - the there's no loop/catch/if/else boundary between the decl and the write
+                // - no abrubt completions either (`const arr; break; arr[0] = 1;` unlikely but possible as a temporary artifact)
+                // - the rhs can be guaranteed to have no mutations/decls between the arr decl and the read
+                // - I think the above rules imply the array decl can read the rhs as well
+                // But it's a lot of work for a relatively edge case so ...
+                todo('arr_mutation: implement array inlining analysis stuff')
+                return;
+              }
             }
           } else {
             vlog(' - Property read on the array:', nextRead.parentNode.property.name);

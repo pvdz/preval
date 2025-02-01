@@ -1,8 +1,8 @@
 # Preval test case
 
-# arr_mutation_hard.md
+# arr_mutation_hard_base.md
 
-> Tofix > Arr mutation hard
+> Arr mutation > Arr mutation hard base
 >
 > There was a bug in arr_mutation where it would replace the
 > initial `[0]` with `[d]`, introducing a TDZ throw.
@@ -44,8 +44,7 @@ $(a);
 
 `````js filename=intro
 const d = $();
-const a /*:array*/ = [0];
-a[0] = d;
+const a /*:array*/ = [d];
 $(a);
 `````
 
@@ -55,9 +54,18 @@ With rename=true
 
 `````js filename=intro
 const a = $();
-const b = [ 0 ];
-b[0] = a;
+const b = [ a ];
 $( b );
+`````
+
+## Denormalized
+
+(This ought to be the final result)
+
+
+`````js filename=intro
+const d = $();
+$([d]);
 `````
 
 ## Globals
@@ -75,4 +83,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

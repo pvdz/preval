@@ -1243,20 +1243,22 @@ function _typeTrackedTricks(fdata) {
                 break;
               }
               case 'string.concat': {
-                if (isPrim && node.arguments.every(a => AST.isPrimitive(a))) {
-                  // 'foo'.slice(0)
+                // Calling .concat() on a known string is equal to `${context}${arg1}${arg2}${etc}`
+                // So if we know the number of args, not a splat, then we can transform this to a template
 
-                  rule('Calling `concat` on a string with primitive args should resolve the call');
-                  example('"hello, world".concat("!")', '"hello, world!"');
+                // Note: context does not need to be a string. we just need to be certain it is a string value.
+                if (node.arguments.every(a => a.type !== 'SpreadElement')) {
+                  rule('Calling `.concat` on a string literal should change the call expression into a template');
+                  example('"add".concat(a, "b", 200)', '`${"add"}${a}${"b"}${200}`');
                   before(parentNode);
 
-                  const ctxString = AST.getPrimitiveValue(node.callee.object);
-                  const args = node.arguments.map(e => AST.getPrimitiveValue(e));
+                  const newNode = AST.templateLiteral(
+                    ['', ''].concat(node.arguments.map(_ => '')), // TWo more string than args; the context is the base case
+                    [node.callee.object].concat(node.arguments), // The context and each arg becomes a quasi
+                  );
 
-                  const result = ctxString.concat(...args);
-
-                  if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
-                  else parentNode[parentProp][parentIndex] = AST.primitive(result);
+                  if (parentIndex < 0) parentNode[parentProp] = newNode;
+                  else parentNode[parentProp][parentIndex] = newNode;
 
                   after(parentNode);
                   ++changes;

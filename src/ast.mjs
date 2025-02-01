@@ -1238,7 +1238,7 @@ export function primitive(value) {
     return nul();
   }
 
-  ASSERT(false);
+  ASSERT(false, `unknown primitive value type: ${typeof value} [${value}]`);
 }
 
 export function isNoob(node, verbose) {

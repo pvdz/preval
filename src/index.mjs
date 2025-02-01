@@ -376,7 +376,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
         contents.settledPst = astToPst(mod.fdata.tenkoOutput.ast);
       } catch (e) {
         console.error('AST to PST conversion failed:', e);
-        contents.settledPst = {failure: true};
+        contents.settledPst = {failure: true, e};
       }
 
       {

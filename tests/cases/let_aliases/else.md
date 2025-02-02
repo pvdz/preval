@@ -119,6 +119,27 @@ else {
 $( a );
 `````
 
+## Denormalized
+
+(This ought to be the final result)
+
+
+`````js filename=intro
+let f = function () {
+  x = 2;
+  f = function () {
+    return x;
+  };
+  const tmpReturnArg = f();
+  return tmpReturnArg;
+};
+let x = $(1);
+if (!$) {
+  $(x, x);
+}
+$(f);
+`````
+
 ## Globals
 
 None
@@ -134,4 +155,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

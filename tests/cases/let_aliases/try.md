@@ -123,6 +123,29 @@ catch (d) {
 }
 `````
 
+## Denormalized
+
+(This ought to be the final result)
+
+
+`````js filename=intro
+let f = function () {
+  x = 2;
+  f = function () {
+    return x;
+  };
+  const tmpReturnArg = f();
+  return tmpReturnArg;
+};
+let x = $(1);
+try {
+  $(x, x);
+  $(f);
+} catch (e) {
+  $();
+}
+`````
+
 ## Globals
 
 None
@@ -139,4 +162,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

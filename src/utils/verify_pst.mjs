@@ -210,7 +210,11 @@ function verifySimple(node) {
       verifyPrimitive(node.arg);
       return;
     }
-    default: ASSERT(false, 'expected node to be a primitive', node);
+    case 'TemplateElement': {
+      // This will be a string. It won't have an expression.
+      return true;
+    }
+    default: ASSERT(false, 'expected node to be a primitive', typeof node, node);
   }
 }
 
@@ -344,6 +348,7 @@ function verifyExpression(node) {
       return;
     }
     case 'StringConcat': {
+      // Template with multiple expressions may not just be strings
       verifyString(node.left);
       verifySimple(node.middle);
       verifyString(node.right);

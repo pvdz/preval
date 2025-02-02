@@ -76,6 +76,20 @@ else {
 }
 `````
 
+## Denormalized
+
+(This ought to be the final result)
+
+
+`````js filename=intro
+if ($) {
+  $(`pass`);
+} else {
+  $(`fail`);
+  $(`fail`);
+}
+`````
+
 ## Globals
 
 None
@@ -90,4 +104,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

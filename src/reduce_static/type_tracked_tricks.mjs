@@ -1046,6 +1046,12 @@ function _typeTrackedTricks(fdata) {
             switch (mustBe + '.' + node.callee.property.name) {
               case 'array.shift': {
                 // This is done in another rule
+                // I think in arr_mutation?
+                break;
+              }
+              case 'array.join': {
+                // We can do this provided we can determine the concrete value of all elements of the array
+                // See the 'join' case in arr_mutation
                 break;
               }
               case 'boolean.toString': {

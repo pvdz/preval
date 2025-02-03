@@ -911,6 +911,58 @@ function processAttempt(fdata) {
 
                     // Should be one of three cases
                   }
+
+                  break;
+                }
+                case 'join': {
+                  // We can do this when:
+                  // - the array is read only once, or when we can guarantee it is not accessed between the decl and this read
+                  // - the first argument of the call can be fully resolved (we currently only support the trivial isPrimitive check)
+                  // - the concrete values of all elements of the array can be resolved
+
+                  if (
+                    (!nextRead.grandNode.arguments[0] || AST.isPrimitive(nextRead.grandNode.arguments[0])) &&
+                    arrayLiteralNode.elements.every(e => !e || AST.isPrimitive(e)) &&
+                    arrayMeta.writes.length === 1 &&
+                    arrayMeta.reads.length === 1 // TODO: do the alternative check...
+                  ) {
+                    rule('Calling array.join on an array that contains only primitives, with a known argument, can resolve to a string');
+                    example('[1, 2, "a", 3].join("yo")', '"1yo2yoayo3"');
+                    before(nextRead.blockBody[nextRead.blockIndex]);
+
+                    const str = arrayLiteralNode
+                      .elements
+                      .map(e => e ? AST.getPrimitiveValue(e) : '')
+                      .join(nextRead.grandNode.arguments[0] ? AST.getPrimitiveValue(nextRead.grandNode.arguments[0]) : ',');
+                    // Now replace the call with this string literal
+
+                    const newNode = AST.primitive(str);
+
+                    // Rare case where grandNode does not suffice; we need the parent of the grand node to replace the whole call.
+                    // In normalized code this can only be three things: expr stmt call, expr stmt assign call, var decl init call
+
+                    if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
+                      ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code, calls can not be nested so it must be the init');
+                      nextRead.blockBody[nextRead.blockIndex].declarations[0].init = newNode;
+                    } else {
+                      ASSERT(nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement');
+                      if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression') {
+                        ASSERT(nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode, 'in normalized code, if expr stmt assign, a call must be the rhs');
+                        nextRead.blockBody[nextRead.blockIndex].expression.right = newNode;
+                      } else {
+                        ASSERT(nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode, 'in normalized code, if expr stmt and not assign, then a call must be the expr itself');
+                        nextRead.blockBody[nextRead.blockIndex].expression = newNode;
+                      }
+                    }
+
+                    if (nextRead.grandIndex < 0) nextRead.grandNode[nextRead.grandProp] = newNode;
+                    else nextRead.grandNode[nextRead.grandProp][nextRead.grandIndex] = newNode;
+
+                    after(nextRead.blockBody[nextRead.blockIndex]);
+                    ++updated;
+                    return true;
+                  }
+                  break;
                 }
               }
             }

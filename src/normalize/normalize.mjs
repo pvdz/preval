@@ -6599,41 +6599,86 @@ export function phaseNormalize(fdata, fname, prng, options) {
         if (wrapKind === 'statement') {
           // Consider an array statements that only has simple spreads to be okay
           // For normalization purposes, we want one array with spread per statement
+          // Put everything else before/after it as expression statements.
 
-          let moved = 0;
-          let dropped = 0;
-          let n = 0;
-          for (const el of node.elements) {
-            if (!el || AST.isPrimitive(el)) {
-              rule('Array statements with elided elements can drop the elided elements');
-              example('[a, , b, 1];', '[a, b, 1];');
-              before(body[i + moved]);
+          let printedHead = false;
+          function printHead() {
+            if (printedHead) return;
 
-              node.elements.splice(n, 1);
-
-              after(body[i + moved]);
-              dropped += 1;
-            }
-            else if (el.type !== 'SpreadElement') {
-              rule('Array statements with identifiers should move idents to be statements');
-              example('[a, b, 1, c];', 'c; [a, b, 1];');
-              before(body[i + moved]);
-
-              body.splice(i + moved, 0, AST.expressionStatement(el));
-              node.elements.splice(n, 1);
-
-              after(body[i + moved]);
-              after(body[i + moved + 1]);
-              moved += 1;
-            }
-
-            n += 1;
+            printedHead = true;
           }
-          if (moved + dropped) {
-            vlog('Dropped', dropped, ' and moved', moved, 'elements');
-            if (moved) {
-              after(body.slice(i, i + moved + 1));
+
+          if (node.elements.length === 1) {
+            // May already be the base case (an array with a spread)
+            if (!node.elements[0]) {
+              rule('Array statements should be picked apart, eliminating primitives, one spread per array, and one statement per other element');
+              example('[a, , b, ...x, 1, ...y];', 'a; b; [...x]; [...y];');
+              before(body[i]);
+
+              body.splice(i, 1); // Drop the original array. It only contains an elided element.
+
+              after(AST.emptyStatement());
+              return true;
+            } else if (node.elements[0]?.type === 'SpreadElement') {
+              // This is normalized state. Keep.
+            } else {
+              rule('Array statements should be picked apart, eliminating primitives, one spread per array, and one statement per other element');
+              example('[a, , b, ...x, 1, ...y];', 'a; b; [...x]; [...y];');
+              before(body[i]);
+
+              body[i].expression = node.elements[0]; // Replace the array with its only element. Other rules will clean it up.
+
+              after(body[i]);
+              return true;
             }
+          } else {
+            rule('Array statements should be picked apart, eliminating primitives, one spread per array, and one statement per other element');
+            example('[a, , b, ...x, 1, ...y];', 'a; b; [...x]; [...y];');
+            before(body[i]);
+
+            body.splice(i, 1); // Remove the original array statement. We will drop it regardless.
+
+            let moved = 0;
+            let dropped = 0;
+
+            let bucket = [];
+            const buckets = [bucket];
+            for (const e of node.elements) {
+              if (!e || AST.isPrimitive(e)) {
+                // Drop it
+                dropped += 1;
+              } else if (e.type === 'SpreadElement') {
+                // Add it to the sets then add a new array
+                buckets.push(e);
+                bucket = [];
+                buckets.push(bucket);
+                moved += 1;
+              } else {
+                // Create statement for this. Dunno what it is exactly but not a primitive so it's potentially relevant to keep.
+                bucket.push(e);
+                moved += 1;
+              }
+            }
+
+            // Buckets should contain a zipped up set of nodes to statementify and then spread elements.
+            for (let i=0; i<buckets; ++i) {
+              if (i % 2 === 0) {
+                // List of elements to turn into statements
+                const bucket = buckets[i];
+                body.splice(i + moved, 0, bucket.map(e => AST.expressionStatement(e)));
+              } else {
+                // Spread element to stick to array
+                const spread = buckets[i];
+                body.splice(i + moved, 0, AST.arrayExpression(spread));
+              }
+            }
+
+            vlog('Dropped', dropped, ' and moved', moved, 'elements');
+
+            // We removed the original array statement, regardless because the base case is in the other code path
+            if (!moved) after(AST.emptyStatement());
+            else after(body.slice(i, i+moved));
+
             // Restart
             return true;
           }

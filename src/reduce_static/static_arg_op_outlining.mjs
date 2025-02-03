@@ -62,7 +62,7 @@ function _staticArgOpOutlining(fdata) {
     // The return value should indicate whether this is the needle (expression that contains a param and is
     // otherwise static) or an expression that has no side effects and is safe to scan past (like an
     // assignment of primitive or function or smth).
-    if (AST.isPrimitive(node.type)) {
+    if (AST.isPrimitive(node)) {
       // `5` is skippable
       return SKIP;
     }

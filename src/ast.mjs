@@ -1081,6 +1081,7 @@ export function getStringValue(node, allowLiteral = false) {
 }
 
 export function isPrimitive(node) {
+  ASSERT(typeof node !== 'string', 'send the node, not the .type');
   // isValue, isLiteral
   // A primitive is a literal boolean, number, string, or null, or an identifier NaN, Infinity, or undefined.
   // It's different from a literal since, for example, `undefined` is not a Literal node.
@@ -1238,7 +1239,7 @@ export function primitive(value) {
     return nul();
   }
 
-  ASSERT(false, `unknown primitive value type: ${typeof value} [${value}]`);
+  ASSERT(false, 'unknown primitive value type:', typeof value, value);
 }
 
 export function isNoob(node, verbose) {

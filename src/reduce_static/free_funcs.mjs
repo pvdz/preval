@@ -194,7 +194,7 @@ export function _freeFuncs(fdata, prng, usePrng) {
 
   if (changed) {
     log('Free func calls dropped:', changed, '. Restarting from phase1');
-    return {what: 'bitSetTests', changes: changed, next: 'phase1'};
+    return {what: 'freeFuncs', changes: changed, next: 'phase1'};
   }
 
   log('Free func calls dropped: 0.');

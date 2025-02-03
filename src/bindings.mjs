@@ -1013,7 +1013,7 @@ export function getCleanTypingObject() {
 
     isSimpleObject: undefined, // Is this an object literal that does not escape and without method calls? In that case a property read should not be able to spy. Checked during phase1.1
 
-    returns: undefined, // Set<'undefined' | 'null' | 'number' | 'string' | 'primitive' | '?'>, // Set for constant functions in phase1.1
+    returns: undefined, // Set<'undefined' | 'null' | 'boolean' | 'number' | 'string' | 'primitive' | '?'>, // Set for constant functions in phase1.1
   };
 }
 export function getUnknownTypingObject(toInit) {

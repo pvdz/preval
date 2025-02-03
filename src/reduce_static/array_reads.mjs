@@ -105,7 +105,7 @@ function _arrayReads(fdata) {
       vlog('- Statement', index, ';', next?.type);
       if (
         next.type === 'VariableDeclaration' &&
-        (next.declarations[0].init.type === 'Identifier' || AST.isPrimitive(next.declarations[0].init.type))
+        (next.declarations[0].init.type === 'Identifier' || AST.isPrimitive(next.declarations[0].init))
       ) {
         // This can't cause array changes, skip it
         vlog('  - Var decl with ident or primitive as init, skipping');
@@ -114,7 +114,7 @@ function _arrayReads(fdata) {
         next.type === 'ExpressionStatement' &&
         next.expression.type === 'AssignmentExpression' &&
         next.expression.left.type === 'Identifier' &&
-        (next.expression.right.type === 'Identifier' || AST.isPrimitive(next.expression.right.type))
+        (next.expression.right.type === 'Identifier' || AST.isPrimitive(next.expression.right))
       ) {
         // This can't cause array changes, skip it
         vlog('  - Assignment to ident with ident or primitive as init, skipping');

@@ -163,6 +163,31 @@ export const pcodeSupportedBuiltinFuncs = new Set([
   SYMBOL_COERCE, // Preval special func
 ]);
 
+export function runFreeWithPcode(funcNode, argNodes, fdata, freeFuncName, $prng, usePrng) {
+  source(funcNode, true);
+  const callsWhenCompiled = pcanCompile(funcNode, fdata, freeFuncName);
+  vlog('Can pcode body?', freeFuncName, callsWhenCompiled);
+  if (callsWhenCompiled) {
+    const pcode = pcompile(funcNode, fdata);
+    // Temp
+    fdata.pcodeOutput = new Map;
+    fdata.pcodeOutput.set(+funcNode.$p.pid, { pcode, funcNode, name: freeFuncName });
+    fdata.pcodeOutput.set(freeFuncName, { pcode, funcNode, name: freeFuncName });
+    vlog('pcode:', pcode);
+    vlog('Getting primitives from args:', argNodes);
+    const args = argNodes.map(anode => AST.getPrimitiveValue(anode));
+    vlog('Now running pcode with args:', args);
+    const out = runPcode(freeFuncName, args, fdata.pcodeOutput, fdata, $prng, usePrng);
+    vlog('Outcome:', out);
+    // Cleanup
+    fdata.pcodeOutput = undefined;
+
+    return AST.primitive(out);
+  }
+
+  return null;
+}
+
 /**
  * Given a FunctionExpression node (maybe more later), determine whether
  * its body can be compiled into pcode. It either returns a set of idents

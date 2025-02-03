@@ -58,18 +58,18 @@ import {
 } from '../symbols_builtins.mjs';
 import { createFreshVar, getMeta } from '../bindings.mjs';
 import { VERBOSE_TRACING } from '../constants.mjs';
-import { pcanCompile, pcodeSupportedBuiltinFuncs, pcompile, runPcode } from '../pcode.mjs';
+import { pcanCompile, pcodeSupportedBuiltinFuncs, pcompile, runFreeWithPcode, runPcode } from '../pcode.mjs';
 import { BUILTIN_GLOBAL_FUNC_NAMES } from '../globals.mjs';
 import { GLOBAL_PREVAL_SYMBOLS, SYMBOL_COERCE } from '../symbols_preval.mjs';
 import { getExpressionFromNormalizedStatement } from '../ast.mjs';
 
-export function freeing(fdata, $prng, prngSeed = 1) {
+export function freeing(fdata, $prng, usePrng = true) {
   group('\n\n\nSearching for free statements to collect\n');
-  const r = _freeing(fdata, $prng, prngSeed);
+  const r = _freeing(fdata, $prng, usePrng);
   groupEnd();
   return r;
 }
-function _freeing(fdata, $prng, prngSeed) {
+function _freeing(fdata, $prng, usePrng) {
   let changed = 0;
 
   const funcQueue = [];
@@ -82,6 +82,7 @@ function _freeing(fdata, $prng, prngSeed) {
       return true; // Do not visit $free functions at all
     }
     if (beforeWalk) return;
+
     if (blockNode.type !== 'BlockStatement' && blockNode.type !== 'Program') return; // Just process blocks
     return processBlock(blockNode, path);
   }
@@ -119,7 +120,7 @@ function _freeing(fdata, $prng, prngSeed) {
       } else {
         vlog('  == stmt[' + index + '] = NOT predictable');
         for (let i=lastStart; i<index; ++i) {
-          const updated = withPredictableStatements(blockNode.body, i, index - 1, fdata, funcQueue, $prng, prngSeed);
+          const updated = withPredictableStatements(blockNode.body, i, index - 1, fdata, funcQueue, $prng, usePrng);
           if (updated) {
             changed += 1;
             // Do not visit this block any further.
@@ -133,7 +134,7 @@ function _freeing(fdata, $prng, prngSeed) {
     }
     if (index - lastStart > 2) {
       for (let i=lastStart; i<index; ++i) {
-        const updated = withPredictableStatements(blockNode.body, i, index - 1, fdata, funcQueue, $prng, prngSeed);
+        const updated = withPredictableStatements(blockNode.body, i, index - 1, fdata, funcQueue, $prng, usePrng);
         if (updated) {
           changed += 1;
           // Do not visit this block any further.
@@ -141,7 +142,6 @@ function _freeing(fdata, $prng, prngSeed) {
         }
       }
     }
-
   }
 
   function processFreeFunction(funcNode, parentNode) {
@@ -364,7 +364,7 @@ function _freeing(fdata, $prng, prngSeed) {
     }
   }
 
-  function processFrfrCall(block, index, callNode, path) {
+  function processFrfrCall(block, index, frfrCallNode, path) {
     if (block[index].type === 'ExpressionStatement') {
       // The $frfr call is a statement. Since $free func calls are not observable, this must mean
       // the statement is moot and we can eliminate it. We should keep the ident args for tdz as usual
@@ -374,7 +374,7 @@ function _freeing(fdata, $prng, prngSeed) {
       before(block[index]);
 
       // Ideally we'd make this a sequence though but feh, this should get cleaned up by normalization as well
-      block[index].expression = AST.arrayExpression(callNode.arguments);
+      block[index].expression = AST.arrayExpression(frfrCallNode.arguments);
 
       after(block[index]);
       changed += 1;
@@ -383,19 +383,20 @@ function _freeing(fdata, $prng, prngSeed) {
 
     ASSERT(block[index].type === 'VariableDeclaration' || block[index].expression?.type === 'AssignmentExpression', 'one of three', block[index].type, block[index].expression?.type);
 
-    if (callNode.arguments.every((anode, i) => i === 0 || AST.isPrimitive(anode))) {
-      ASSERT(callNode.arguments?.[0]?.type === 'Identifier', '$frfr is controlled by us and first arg should be the free func ref');
-      const freeFuncName = callNode.arguments[0].name;
+    // Inline a $frfr call when all the args are primitives (first is the target $free func)
+    if (frfrCallNode.arguments.every((anode, i) => i === 0 || AST.isPrimitive(anode))) {
+      ASSERT(frfrCallNode.arguments?.[0]?.type === 'Identifier', '$frfr is controlled by us and first arg should be the free func ref');
+      const freeFuncName = frfrCallNode.arguments[0].name;
       const meta = fdata.globallyUniqueNamingRegistry.get(freeFuncName);
-      const funcNode = meta.constValueRef?.node;
-      ASSERT(meta.writes.length === 1 && funcNode && funcNode.id?.name === '$free', 'we defined this...', funcNode.id?.name, meta.writes.length);
+      const freeFuncNode = meta.constValueRef?.node;
+      ASSERT(meta.writes.length === 1 && freeFuncNode && freeFuncNode.id?.name === '$free', 'we created the free func and it should be a constant...', freeFuncNode.id?.name, meta.writes.length);
 
       // Check if it is using user globals. Those wouldn't become parameters but would block the following rule.
       vgroup('Searching for explicit globals used in the $free func');
       const declared = [];
       const reffed = [];
-      for (let i=funcNode.$p.bodyOffset; i<funcNode.body.body.length; ++i) {
-        walk(quickIdentScanner, funcNode.body.body[i], 'body');
+      for (let i=freeFuncNode.$p.bodyOffset; i<freeFuncNode.body.body.length; ++i) {
+        walk(quickIdentScanner, freeFuncNode.body.body[i], 'body');
       }
       function quickIdentScanner(node, beforeWalk, nodeType, path) {
         if (!beforeWalk) return; // only once, on the way up
@@ -430,7 +431,7 @@ function _freeing(fdata, $prng, prngSeed) {
 
       if (!hasExplicitGlobal) {
         // Attempt to resolve the $frfr call
-        const outNode = runFreeWithPcode(funcNode, callNode.arguments.slice(1), fdata, freeFuncName, $prng, prngSeed);
+        const outNode = runFreeWithPcode(freeFuncNode, frfrCallNode.arguments.slice(1), fdata, freeFuncName, $prng, usePrng);
         if (outNode) {
           rule('A $frfr that only receives primitives should be inlined so it can get resolved');
           example('const x = $frfr(f, 1, 2, 3);', 'const a = 1; const x = a + 2;');
@@ -458,7 +459,7 @@ function _freeing(fdata, $prng, prngSeed) {
       prev &&
       prev.type === 'VariableDeclaration' &&
       prev.kind === 'const' &&
-      callNode.arguments.some(anode => anode.type === 'Identifier' && anode.name === prev.declarations[0].id.name) &&
+      frfrCallNode.arguments.some(anode => anode.type === 'Identifier' && anode.name === prev.declarations[0].id.name) &&
       isFreeStatement(prev, fdata)
     ) {
       // Why are we letting unsafe vars through now
@@ -471,7 +472,7 @@ function _freeing(fdata, $prng, prngSeed) {
         vlog('We can merge statement', index, 'with the $frfr call');
 
         rule('A predictable statement before a $frfr call can be merged');
-        const updated = withPredictableStatements(block, index-1, index, fdata, funcQueue, $prng, prngSeed);
+        const updated = withPredictableStatements(block, index-1, index, fdata, funcQueue, $prng, usePrng);
         if (updated) {
           changed += 1;
           return true;
@@ -481,7 +482,7 @@ function _freeing(fdata, $prng, prngSeed) {
   }
 }
 
-function withPredictableStatements(body, firstIndex, lastIndex, fdata, funcQueue, $prng, prngSeed) {
+function withPredictableStatements(body, firstIndex, lastIndex, fdata, funcQueue, $prng, usePrng) {
   if (!(lastIndex > firstIndex)) { // Note: inclusive range
     return false;
   }
@@ -517,7 +518,7 @@ function withPredictableStatements(body, firstIndex, lastIndex, fdata, funcQueue
           // The variable was used outside of the given range. We cannot include it.
           // Try again with a smaller range. Note that we reduce the last index, not the first
           // index, because we will cover that later anyways.
-          return withPredictableStatements(body, firstIndex, stmtIndex, fdata, funcQueue, $prng, prngSeed);
+          return withPredictableStatements(body, firstIndex, stmtIndex, fdata, funcQueue, $prng, usePrng);
         }
       }
       // If it gets here then the variable name has no references outside of the targeted range. Good!
@@ -626,7 +627,7 @@ function withPredictableStatements(body, firstIndex, lastIndex, fdata, funcQueue
     // Note: One notable exception is math.random(). Are there any other exceptions like it?
     vlog('The function would receive no arguments. This means the output is constant and we should be able to resolve it immediately');
 
-    const outNode = runFreeWithPcode(func, [], fdata, 'tmp_free_func', $prng, prngSeed);
+    const outNode = runFreeWithPcode(func, [], fdata, 'tmp_free_func', $prng, usePrng);
     if (outNode) {
       rule('Two or more predictable statements that have no other vars can be resolved with pcode');
       example('const y = Math.floor(NaN); const z = y / 3; $(z);', '$(NaN);');
@@ -796,32 +797,6 @@ function collectFromSimpleOrFail(node, reffed) {
   ASSERT(node.type === 'Identifier', 'add support for anything else', node.type);
   vlog('  - collected:', node.name, node.$p.blockChain);
   reffed.push(node);
-}
-
-
-function runFreeWithPcode(funcNode, argNodes, fdata, freeFuncName, $prng, prngSeed) {
-  source(funcNode, true);
-  const callsWhenCompiled = pcanCompile(funcNode, fdata, freeFuncName);
-  vlog('Can pcode body?', freeFuncName, callsWhenCompiled);
-  if (callsWhenCompiled) {
-    const pcode = pcompile(funcNode, fdata);
-    // Temp
-    fdata.pcodeOutput = new Map;
-    fdata.pcodeOutput.set(+funcNode.$p.pid, { pcode, funcNode, name: freeFuncName });
-    fdata.pcodeOutput.set(freeFuncName, { pcode, funcNode, name: freeFuncName });
-    vlog('pcode:', pcode);
-    vlog('Getting primitives from args:', argNodes);
-    const args = argNodes.map(anode => AST.getPrimitiveValue(anode));
-    vlog('Now running pcode with args:', args);
-    const out = runPcode(freeFuncName, args, fdata.pcodeOutput, fdata, $prng, prngSeed);
-    vlog('Outcome:', out);
-    // Cleanup
-    fdata.pcodeOutput = undefined;
-
-    return AST.primitive(out);
-  }
-
-  return null;
 }
 
 function isFreeStatement(stmtNode, fdata) {

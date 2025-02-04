@@ -68,9 +68,8 @@ let a = { a: 999, b: 1000 };
 const tmp = $(100);
 if (tmp) {
   b = $(2);
-  const alias = b;
   a = b;
-  $(alias);
+  $(b);
 } else {
   $(tmp);
 }
@@ -90,14 +89,32 @@ let b = {
 const c = $( 100 );
 if (c) {
   a = $( 2 );
-  const d = a;
   b = a;
-  $( d );
+  $( a );
 }
 else {
   $( c );
 }
 $( b, a );
+`````
+
+## Denormalized
+
+(This ought to be the final result)
+
+
+`````js filename=intro
+let b = 1;
+let a = { a: 999, b: 1000 };
+const tmp = $(100);
+if (tmp) {
+  b = $(2);
+  a = b;
+  $(b);
+} else {
+  $(tmp);
+}
+$(a, b);
 `````
 
 ## Globals
@@ -117,4 +134,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

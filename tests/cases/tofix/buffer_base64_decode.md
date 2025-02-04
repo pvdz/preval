@@ -10,7 +10,7 @@
 
 `````js filename=intro
 const decodebase64 = function(arg) {
-  const tmpCallCompObj$3 = Buffer.from(arg, `base64`);
+  const buf = Buffer.from(arg, `base64`);
   const str = buf.toString(`ascii`);
   return str;
 };
@@ -25,7 +25,7 @@ $(x); // hello, world
 const decodebase64 = function ($$0) {
   let arg = $$0;
   debugger;
-  const tmpCallCompObj$3 = Buffer.from(arg, `base64`);
+  const buf = Buffer.from(arg, `base64`);
   const str = buf.toString(`ascii`);
   return str;
 };
@@ -40,7 +40,7 @@ $(x);
 const decodebase64 = function ($$0) {
   let arg = $$0;
   debugger;
-  const tmpCallCompObj$3 = Buffer.from(arg, `base64`);
+  const buf = Buffer.from(arg, `base64`);
   const str = buf.toString(`ascii`);
   return str;
 };
@@ -52,7 +52,7 @@ $(x);
 
 
 `````js filename=intro
-Buffer.from(`aGVsbG8sIHdvcmxk=`, `base64`);
+const buf = Buffer.from(`aGVsbG8sIHdvcmxk=`, `base64`);
 const str = buf.toString(`ascii`);
 $(str);
 `````
@@ -62,24 +62,34 @@ $(str);
 With rename=true
 
 `````js filename=intro
-Buffer.from( "aGVsbG8sIHdvcmxk=", "base64" );
-const a = buf.toString( "ascii" );
-$( a );
+const a = Buffer.from( "aGVsbG8sIHdvcmxk=", "base64" );
+const b = a.toString( "ascii" );
+$( b );
+`````
+
+## Denormalized
+
+(This ought to be the final result)
+
+
+`````js filename=intro
+$(Buffer.from(`aGVsbG8sIHdvcmxk=`, `base64`).toString(`ascii`));
 `````
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
-
-Buffer, buf
+None
 
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: 'hello, world'
+ - eval returned: undefined
 
 Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

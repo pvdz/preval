@@ -98,6 +98,8 @@ import { freeFuncs } from '../reduce_static/free_funcs.mjs';
 import { arrMethodCall } from '../reduce_static/arr_method_call.mjs';
 import { freeing } from '../reduce_static/freeing.mjs';
 import {buffer_base64} from "../reduce_static/buffer_base64.mjs"
+import { letAliasRedundant } from '../reduce_static/let_alias_redundant.mjs';
+import { freeLoops } from '../reduce_static/free_loops.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
@@ -314,6 +316,7 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
     selfAssignClosure(fdata) ||
     selfAssignNoop(fdata) ||
     letAliasing(fdata) ||
+    letAliasRedundant(fdata) ||
     testingAlias(fdata) ||
     aliasIfIf(fdata) ||
     ifUpdateTest(fdata) ||
@@ -322,6 +325,8 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
     objlitInlining(fdata) ||
     arrMethodCall(fdata) ||
     buffer_base64(fdata) ||
+
+    freeLoops(fdata, prng, !!options.prngSeed) || // Most other stuff should probably precede this?
 
     freeing(fdata, prng, !!options.prngSeed) // Do this last. Let other tricks precede it.
 

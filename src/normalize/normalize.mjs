@@ -40,6 +40,7 @@ import {
   after,
   riskyRule,
   useRiskyRules,
+  todo
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { SYMBOL_DOTCALL, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL } from '../symbols_preval.mjs';
@@ -1045,6 +1046,8 @@ export function phaseNormalize(fdata, fname, prng, options) {
       // Now verify that the last statmenet of the loop body is a while
       // Then verify that this while is the nearest loop for this break
       // In that case we can go ahead with the next rule
+
+      ASSERT(labelStmt && labelStmt.body,'break without label? hrm did we duplicate a break statement again? this messes up label tracking', parent, labelStatementParentNode)
 
       if (
         labelStmt.body.body.length &&
@@ -8052,20 +8055,21 @@ export function phaseNormalize(fdata, fname, prng, options) {
     // TODO: also skip statements without observable side effects
     if (i > 0 && body[i - 1].type === 'IfStatement') {
       const prev = body[i - 1];
-      const nCbody = node.consequent.body;
-      const nAbody = node.alternate.body;
-      const pCbody = prev.consequent.body;
-      const pAbody = prev.alternate.body;
-      vlog('back to back ifs, testing on', prev.test.name ?? '<nonident>', 'and', node.test.name ?? '<nonident>');
+      const currentConsequentBlock = node.consequent.body;
+      const currentAlternateBlock = node.alternate.body;
+      const prevConsequentBlock = prev.consequent.body;
+      const prevAlternateBlock = prev.alternate.body;
+      vlog('Back to back ifs, testing on', prev.test.name ?? '<nonident>', 'and', node.test.name ?? '<nonident>');
       if (node.test.type === 'Identifier' && prev.test.type === 'Identifier' && node.test.name === prev.test.name) {
+        vlog('Testing on the same ident, this could be merged...');
         if (
           // No children in consequent in either `if`
-          !nCbody.length &&
-          !pCbody.length
+          !currentConsequentBlock.length &&
+          !prevConsequentBlock.length
         ) {
           // There's nothing in the `true` branch that might change the value of the ident (the test itself is not observable)
           // so the second `if` should be moved to the back of the `else` branch instead.
-          rule('Back to back if statements testing on the same identifier when the first if has no if branch should be merged');
+          rule('Back to back if statements testing on the same identifier when neither has an `if` branch should be merged');
           example('if (x) { } else { f(); } if (x) { } else { g(); }', 'if (x) {} else { f(); if (x) { g(); } }');
           before(prev, parentNode);
           before(node);
@@ -8073,15 +8077,15 @@ export function phaseNormalize(fdata, fname, prng, options) {
           // Since parent visitor won't go back, we'll replace this `if` with the previous `if` so it will be revisited
           body[i - 1] = AST.emptyStatement();
           body[i] = prev;
-          pAbody.push(node);
+          prevAlternateBlock.push(node);
 
           after(body[i], parentNode);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         } else if (
           // No children or no alternate body in either `if`
-          !pAbody.length &&
-          !nAbody.length
+          !prevAlternateBlock.length &&
+          !currentAlternateBlock.length
         ) {
           // There's nothing in the `false` branch that might change the value of the ident (the test itself is not observable)
           // so the second `if` should be moved to the back of the `false` branch instead.
@@ -8093,15 +8097,15 @@ export function phaseNormalize(fdata, fname, prng, options) {
           // Since parent visitor won't go back, we'll replace this `if` with the previous `if` so it will be revisited
           body[i - 1] = AST.emptyStatement();
           body[i] = prev;
-          pCbody.push(node);
+          prevConsequentBlock.push(node);
 
           after(body[i], parentNode);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         } else if (
-          !pCbody.length &&
-          nCbody.length === 1 &&
-          ['ReturnStatement', 'BreakStatement', 'ThrowStatement'].includes(nCbody[0].type)
+          !prevConsequentBlock.length &&
+          currentConsequentBlock.length === 1 &&
+          ['ReturnStatement', 'BreakStatement', 'ThrowStatement'].includes(currentConsequentBlock[0].type)
         ) {
           // This leads to more statements by duplicating a return statement...
           // It might allow let bindings to become constants which could be very valuable
@@ -8113,30 +8117,39 @@ export function phaseNormalize(fdata, fname, prng, options) {
           before(prev, parentNode);
           before(node);
 
-          const target = nCbody[0];
+          const target = currentConsequentBlock[0];
           switch (target.type) {
             case 'ReturnStatement':
-              pCbody.push(AST.returnStatement(AST.cloneSimple(target.argument)));
+              prevConsequentBlock.push(AST.returnStatement(AST.cloneSimple(target.argument)));
               break;
-            case 'BreakStatement':
-              pCbody.push(AST.breakStatement(target.label && AST.cloneSimple(target.label)));
+            case 'BreakStatement': {
+              // This is unsafe due to label references. There's a test for this (tests/cases/switch/switch_case_case_default_break.md)
+              const newNode = AST.breakStatement(target.label ? AST.cloneSimple(target.label) : null);
+              prevConsequentBlock.push(newNode);
+              if (target.label) {
+                // Must also register that break node as targeting that label
+                fdata.globallyUniqueLabelRegistry.get(target.label.name).usages.push(
+                  {node: newNode.label, block: prevConsequentBlock, index: prevConsequentBlock.length - 1}
+                );
+              }
               break;
+            }
             case 'ThrowStatement':
-              pCbody.push(AST.throwStatement(AST.cloneSimple(target.argument)));
+              prevConsequentBlock.push(AST.throwStatement(AST.cloneSimple(target.argument)));
               break;
             default:
               ASSERT(false);
           }
-          pAbody.push(node);
+          prevAlternateBlock.push(node);
           body.splice(i, 1); // Drop the current node since we moved it into the previous node. It should be revisited when the parent gets revisited.
 
           after(body[i - 1], parentNode);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         } else if (
-          !pAbody.length &&
-          nAbody.length === 1 &&
-          ['ReturnStatement', 'BreakStatement', 'ThrowStatement'].includes(nAbody[0].type)
+          !prevAlternateBlock.length &&
+          currentAlternateBlock.length === 1 &&
+          ['ReturnStatement', 'BreakStatement', 'ThrowStatement'].includes(currentAlternateBlock[0].type)
         ) {
           // This leads to more statements by duplicating a return statement...
           // It might allow let bindings to become constants which could be very valuable
@@ -8148,32 +8161,40 @@ export function phaseNormalize(fdata, fname, prng, options) {
           before(prev, parentNode);
           before(node);
 
-          const target = nAbody[0];
+          const target = currentAlternateBlock[0];
           switch (target.type) {
             case 'ReturnStatement':
-              pAbody.push(AST.returnStatement(AST.cloneSimple(target.argument)));
+              prevAlternateBlock.push(AST.returnStatement(AST.cloneSimple(target.argument)));
               break;
-            case 'BreakStatement':
-              pAbody.push(AST.breakStatement(target.label && AST.cloneSimple(target.label)));
+            case 'BreakStatement': {
+              const newNode = AST.breakStatement(target.label ? AST.cloneSimple(target.label) : null);
+              prevAlternateBlock.push(newNode);
+              if (target.label) {
+                // Must also register that break node as targeting that label
+                fdata.globallyUniqueLabelRegistry.get(target.label.name).usages.push(
+                  {node: newNode.label, block: prevAlternateBlock, index: prevAlternateBlock.length - 1}
+                );
+              }
               break;
+            }
             case 'ThrowStatement':
-              pAbody.push(AST.throwStatement(AST.cloneSimple(target.argument)));
+              prevAlternateBlock.push(AST.throwStatement(AST.cloneSimple(target.argument)));
               break;
             default:
               ASSERT(false);
           }
-          pCbody.push(node);
+          prevConsequentBlock.push(node);
           body.splice(i, 1); // Drop the current node since we moved it into the previous node. It should be revisited when the parent gets revisited.
 
           after(body[i - 1], parentNode);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         } else if (
-          !pAbody.length &&
-          nAbody.length === 1 &&
+          !prevAlternateBlock.length &&
+          currentAlternateBlock.length === 1 &&
           // TODO: This limitation only exists because the simple clone algo is limited to some expressions
-          nAbody[0].type === 'ExpressionStatement' &&
-          nAbody[0].expression.type === 'CallExpression'
+          currentAlternateBlock[0].type === 'ExpressionStatement' &&
+          currentAlternateBlock[0].expression.type === 'CallExpression'
         ) {
           // When the first `if` has no else, the second `if` must still go for the else because nothing
           // could have changed. If the second else has one statement, we can choose to inline that into
@@ -8184,12 +8205,12 @@ export function phaseNormalize(fdata, fname, prng, options) {
           before(prev, parentNode);
           before(node);
 
-          pCbody.push(node);
-          pAbody.push(
+          prevConsequentBlock.push(node);
+          prevAlternateBlock.push(
             AST.expressionStatement(
               AST.callExpression(
-                AST.cloneSimple(nAbody[0].expression.callee),
-                nAbody[0].expression.arguments.map((anode) => AST.cloneSimple(anode)),
+                AST.cloneSimple(currentAlternateBlock[0].expression.callee),
+                currentAlternateBlock[0].expression.arguments.map((anode) => AST.cloneSimple(anode)),
               ),
             ),
           );
@@ -8199,11 +8220,11 @@ export function phaseNormalize(fdata, fname, prng, options) {
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         } else if (
-          !pCbody.length &&
-          nCbody.length === 1 &&
+          !prevConsequentBlock.length &&
+          currentConsequentBlock.length === 1 &&
           // TODO: This limitation only exists because the simple clone algo is limited to some expressions
-          nCbody[0].type === 'ExpressionStatement' &&
-          nCbody[0].expression.type === 'CallExpression'
+          currentConsequentBlock[0].type === 'ExpressionStatement' &&
+          currentConsequentBlock[0].expression.type === 'CallExpression'
         ) {
           // When the first `if` has no else, the second `if` must still go for the else because nothing
           // could have changed. If the second else has one statement, we can choose to inline that into
@@ -8214,12 +8235,12 @@ export function phaseNormalize(fdata, fname, prng, options) {
           before(prev, parentNode);
           before(node);
 
-          pAbody.push(node);
-          pCbody.push(
+          prevAlternateBlock.push(node);
+          prevConsequentBlock.push(
             AST.expressionStatement(
               AST.callExpression(
-                AST.cloneSimple(nCbody[0].expression.callee),
-                nCbody[0].expression.arguments.map((anode) => AST.cloneSimple(anode)),
+                AST.cloneSimple(currentConsequentBlock[0].expression.callee),
+                currentConsequentBlock[0].expression.arguments.map((anode) => AST.cloneSimple(anode)),
               ),
             ),
           );
@@ -8451,7 +8472,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
     ifelseStack.push(node);
     labelStack.push(node);
     const anyChange = transformBlock(node.body, undefined, -1, node, false, node);
-    labelStack.pop(node);
+    labelStack.pop();
     ifelseStack.pop();
     vlog('Changes?', anyChange);
 
@@ -8488,10 +8509,10 @@ export function phaseNormalize(fdata, fname, prng, options) {
       // If not, the body is a loop and we'll deal with that later.
 
       if (i === body.length - 1) {
-        rule('Labeled break as direct child of function with no code following. Drop the label.');
+        rule('Labeled statement as direct child of function with no code following, drop the label.');
         example(
           'function f() { before(); foo: { inside(); if (x) if (y) break foo; } } f();',
-          'function f(){ before(); foo: { inside(); if (x) if (y) return; } } f();',
+          'function f(){ before(); { inside(); if (x) if (y) break foo; } } f();',
         );
         before(node, body);
 
@@ -8502,25 +8523,36 @@ export function phaseNormalize(fdata, fname, prng, options) {
         // Remove the "labeled statement" and re-insert its body, which becomes a nested BlockStatement, which will be normalized later.
         body.splice(i, 1, node.body);
 
+        after(body, parentNode);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
+
+        // CURRENTLY IN AN INVALID STATE BECAUSE BREAKS ARE STILL TARGETING THAT LABEL. We do them next.
+
         // Replace all `break foo` cases pointing to this label with a return statement with `undefined`
-        // Note that there can't be any `continue` cases here because we transformed them.
+        // Note that there can't be any `continue` cases here because we transformed them already.
         ASSERT(fdata.globallyUniqueLabelRegistry.has(node.label.name), 'the label should be registered', node);
-        vgroup('Replacing breaks that have the label with return');
+
         const usages = fdata.globallyUniqueLabelRegistry.get(node.label.name).usages;
+        vgroup('Replacing', usages.length, 'breaks that have the label with return');
         usages.forEach((obj) => {
           ASSERT(typeof obj === 'object' && obj && obj.node && obj.block && obj.index >= 0, 'usages type should be good', obj);
           const { node, block, index } = obj;
-          const finalNode = AST.returnStatement(AST.identifier('undefined'));
-          ASSERT(block[index]?.type === 'BreakStatement' && block[index].label === node, 'should not be stale', obj);
+
+          rule('Labeled statement as direct child of function with no code following, replace breaks targeting that label with return.');
+          example(
+            'function f() { before(); { inside(); if (x) if (y) return undefined; } } f();',
+            'function f(){ before(); { inside(); if (x) if (y) return undefined; } } f();',
+          );
           before(block[index]);
+
+          const finalNode = AST.returnStatement(AST.identifier('undefined'));
+          ASSERT(block[index]?.type === 'BreakStatement' && block[index].label === node, 'should not be stale', obj, block[index], block[index].label, '==', node, block[index].label === node);
           block[index] = finalNode;
-          after(block[index]);
+
+          after(block[index], parentNode);
         });
         vgroupEnd();
         usages.length = 0;
-
-        after(body, parentNode);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
 
         return true;
       }

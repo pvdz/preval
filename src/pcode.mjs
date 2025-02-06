@@ -660,11 +660,18 @@ function compileExpression(exprNode, regs, fdata, stmt, withAssign=false) {
       const arr = ['`']; // the tick represents the template
       // .quasis.length should be .expressions.length+1
       for (let i=0; i<exprNode.expressions.length; ++i) {
-        ASSERT(exprNode.expressions[i].type === 'Identifier', 'I think all expressions are idents in normalized code...?', exprNode.expressions[i].length);
-        arr.push(
-          '', exprNode.quasis[i].value.cooked,
-          ...compileExpression(exprNode.expressions[i], regs, fdata, stmt)
-        );
+        if (AST.isPrimitive(exprNode.expressions[i])) {
+          arr.push(
+            '', exprNode.quasis[i].value.cooked,
+            '', AST.getPrimitiveValue(exprNode.expressions[i])
+          )
+        } else {
+          ASSERT(exprNode.expressions[i].type === 'Identifier', 'I think all expressions are idents or prims in normalized code...?', exprNode.expressions[i].length);
+          arr.push(
+            '', exprNode.quasis[i].value.cooked,
+            ...compileExpression(exprNode.expressions[i], regs, fdata, stmt)
+          );
+        }
       }
       // And the tail quasi
       arr.push('', exprNode.quasis[exprNode.quasis.length-1].value.cooked);
@@ -908,6 +915,10 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
     case '|': return prunVal(registers, op[2], op[3]) | prunVal(registers, op[4], op[5]);
     case '&': return prunVal(registers, op[2], op[3]) & prunVal(registers, op[4], op[5]);
     case '**': return prunVal(registers, op[2], op[3]) ** prunVal(registers, op[4], op[5]);
+
+    case '<<': return prunVal(registers, op[2], op[3]) << prunVal(registers, op[4], op[5]);
+    case '>>': return prunVal(registers, op[2], op[3]) << prunVal(registers, op[4], op[5]);
+    case '>>>': return prunVal(registers, op[2], op[3]) >>> prunVal(registers, op[4], op[5]);
 
     case 'call': {
       // If it throws I guess it actually throws...

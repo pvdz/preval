@@ -921,6 +921,7 @@ function processAttempt(fdata) {
                   // - the concrete values of all elements of the array can be resolved
 
                   if (
+                    nextRead.grandNode.type === 'CallExpression' &&
                     (!nextRead.grandNode.arguments[0] || AST.isPrimitive(nextRead.grandNode.arguments[0])) &&
                     arrayLiteralNode.elements.every(e => !e || AST.isPrimitive(e)) &&
                     arrayMeta.writes.length === 1 &&

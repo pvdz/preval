@@ -440,14 +440,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         node.$p.readsArgumentsLen = false;
         node.$p.readsArgumentsLenAt = -1;
 
-        // While we do not care about the contents of function statements, we do need to
-        // traverse it to reset pids and prevent dupe pid issues.
-        //if (parentNode.type === 'ExpressionStatement') {
-        //  vlog('Do not traverse function expression statement. I am not going to care about the contents.');
-        //  vgroupEnd();
-        //  return true;
-        //}
-
         blockIds.push(0); // Inject a zero to mark function boundaries
         ifIds.push(0);
         loopStack.push(null);
@@ -634,6 +626,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
             const blockNode = blockStack[blockStack.length - 1];
             // Note: this could be a property write, but it's not a binding mutation.
             // Note: this includes the write to a property, which does not read the property first, but which does not mutate the binding
+            ASSERT(currentScope.$p.pid, 'the scope should be set to something here...', currentScope.$p.pid);
             const blockBody = blockNode.body;
             const read
               = createReadRef({
@@ -674,6 +667,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
             const blockNode = blockStack[blockStack.length - 1];
             const blockBody = blockNode.body;
             vlog('- Parent block:', blockNode.type, blockNode.$p.pid);
+            ASSERT(currentScope.$p.pid, 'the scope should be set to something here...', currentScope.$p.pid);
 
             const write = createWriteRef({
               name,

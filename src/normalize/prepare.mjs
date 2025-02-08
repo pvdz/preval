@@ -30,6 +30,9 @@ import { addLabelReference, createUniqueGlobalLabel, registerGlobalLabel } from 
 // It sets up scope tracking, imports/exports tracking, return value analysis. That sort of thing.
 // It runs twice; once for actual input code and once on normalized code.
 
+// See also the normalize_once logic. TODO: move this to config.
+const HOIST_FUNC_STMTS = true;
+
 export function prepareNormalization(fdata, resolve, req, oncePass, options) {
   ASSERT(arguments.length > prepareNormalization.length - 1, 'invalid prepareNormalization arg count');
   const ast = fdata.tenkoOutput.ast;
@@ -83,6 +86,51 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
   if (!oncePass) {
     vlog('(Disabling verbose tracing for prepare after the first pass)');
     setVerboseTracing(false);
+  }
+
+  if (HOIST_FUNC_STMTS) {
+    // We have to do a pre-prepare-walk to fix function statements because the parser will
+    // record them in a lexical scope, not function scape (thank you, self), which could
+    // cause references to be mis-labeled as globals like in `{ f; { function f(){} } }`.
+    // We will hoist them proper but the parser has already made up its scoping mind and
+    // so here we are.
+    // Walk the tree, if we find any fun decls whose parent is not a block, go into the
+    // the scope and move the decl up to the function root (or program) layer.
+    // We also must do this before anything else because the global-labeling happens first.
+
+    log('Fixing function statement IDs');
+    let fsCount = 0;
+    walk(_fix_func_stmts, ast, 'ast');
+    function _fix_func_stmts(node, beforeWalk, nodeType, path) {
+      ASSERT(node, 'node should be truthy', node);
+
+      if (
+        beforeWalk &&
+        node.type === 'FunctionDeclaration' &&
+        (
+          path.nodes[path.nodes.length-2].type !== 'BlockStatement' ||
+          !['Program', 'FunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration'].includes(path.nodes[path.nodes.length-3].type)
+        )
+      ) {
+        vlog('- Found a "function statement"', node.id.name, ', moving the recording in its lexical record to the nearest var record instead');
+        ++fsCount;
+
+        const blockNode = path.nodes[path.nodes.length-2];
+        const funcNode = funcScopeStack[funcScopeStack.length - 1]; // or program. sure.
+        // We don't care about the reported var type so just keep whatever it is.
+        const n = blockNode.$scope.names.get(node.id.name)
+        blockNode.$scope.names.delete(node.id.name);
+        if (!funcNode.$scope.names) funcNode.$scope.names = new Map;
+        funcNode.$scope.names.set(node.id.name, n);
+      }
+      if (node.$scope) {
+        if (['Program', 'FunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
+          if (beforeWalk) funcScopeStack.push(node);
+          else funcScopeStack.pop();
+        }
+      }
+    }
+    log('- Done fixing function statement IDs: fixed', fsCount, '\n\n');
   }
 
 
@@ -285,13 +333,10 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
             // Track it so the normalization can drain this arr and immediately fix the hoisting, once.
             hoistedVars.push(['func', node, parentNode, parentProp, parentIndex]);
           } else if (parentNode.type === 'BlockStatement') {
+            // Treat this as a function declaration and explicitly hoist it to the top of the func/global
+            // There's at least this test: tests/cases/_tofix/dropping_the_d.md
             vlog('This is a function decl nested in a non-func-body block');
-            vlog('- Scheduling func decl `' + node.id.name + '` to be hoisted in block');
-            // TODO: this does slightly change the semantics because either we need to drop the name so it doesn't
-            //       shadow the binding but still make it mutable, or we keep the name but then the binding is
-            //       not mutable from within the function. Maybe the best course is to rename the function and its
-            //       refs and then restore the function name... But we maul the function names anyways for the sake
-            //       of using unique names, so maybe this is not a big deal for us.
+            vlog('- Scheduling func decl `' + node.id.name + '` to be hoisted in func');
             node.$p.isBlockFuncDecl = true;
             parentNode.$p.hasFuncDecl = true; // Prevents elimination of this block
           }

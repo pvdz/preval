@@ -1,0 +1,119 @@
+# Preval test case
+
+# dropping_the_d.md
+
+> Function statements > Dropping the d
+>
+> Investigate why the d() function is dropped
+
+Source: https://www.trickster.dev/post/javascript-obfuscation-techniques-by-example/
+
+Afterwards, check if the last example (jsfk) works now. Otherwise fix that too.
+
+--> function statements should be treated as decls and hoisted to the 
+top of their func owner scope before further treatment. spec be damned
+
+Note: THIS_IS_DA____ used to get renamed because preval would see the ident
+      already used as an implicit global, but would not consider it referencing
+      the declared func statement. So it renamed the func, as it would to dedupe.
+
+The fix was to make sure function statements got hoisted to the top of the func
+scope in the pre-normalization step.
+
+This is a webcompat thing. In nodejs this throws an error. In the browser it's fine.
+
+## Input
+
+`````js filename=intro
+
+{
+  {
+    function THIS_IS_DA____() {
+      $('hello');
+    }
+  }
+  $(THIS_IS_DA____());
+}
+`````
+
+## Pre Normal
+
+
+`````js filename=intro
+let THIS_IS_DA____ = function () {
+  debugger;
+  $(`hello`);
+};
+{
+  {
+  }
+  $(THIS_IS_DA____());
+}
+`````
+
+## Normalized
+
+
+`````js filename=intro
+let THIS_IS_DA____ = function () {
+  debugger;
+  $(`hello`);
+  return undefined;
+};
+const tmpCallCallee = $;
+const tmpCalleeParam = THIS_IS_DA____();
+tmpCallCallee(tmpCalleeParam);
+`````
+
+## Output
+
+
+`````js filename=intro
+$(`hello`);
+$(undefined);
+`````
+
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "hello" );
+$( undefined );
+`````
+
+## Denormalized
+
+(This ought to be the final result)
+
+
+`````js filename=intro
+$(`hello`);
+$(undefined);
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
+
+Normalized calls: BAD!?
+ - 1: 'hello'
+ - 2: undefined
+ - eval returned: undefined
+
+Post settled calls: BAD!!
+ - 1: 'hello'
+ - 2: undefined
+ - eval returned: undefined
+
+Denormalized calls: BAD!!
+ - 1: 'hello'
+ - 2: undefined
+ - eval returned: undefined

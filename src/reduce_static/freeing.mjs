@@ -255,7 +255,6 @@ function _freeing(fdata, $prng, usePrng) {
                 finalNode = AST.cloneSimpleOrTemplate(init);
                 break;
               }
-              ASSERT(init.expressions.length === 1, 'template literals have one expression');
               finalNode = AST.cloneSimpleOrTemplate(init);
               finalNode.expressions = [valueNodeToArgNode(init.expressions[0], funcNode, callNode)];
               break;

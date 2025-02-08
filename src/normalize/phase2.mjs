@@ -236,13 +236,13 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
     refTracked(fdata) ||
     // Do early because it can be expensive with many writes
     arr_mutation(fdata) ||
+    letHoisting(fdata) ||
     findThrowers(fdata) ||
     singleScopeTdz(fdata) || // Mostly superseded by the TDZ analysis in prepare or phase1 (but still for-in/of cases to fix first)
     constAssigns(fdata) ||
     constAliasing(fdata) ||
     aliasedGlobals(fdata) ||
     dotCall(fdata) ||
-    letHoisting(fdata) ||
     assignHoisting(fdata) ||
     ifFlipping(fdata) ||
     staticLets(fdata) ||

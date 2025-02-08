@@ -56,7 +56,9 @@ export function ASSERT(b, m = '', ...rest) {
       console.log(...(rest.length ? rest : ['<assert had no further args>']));
     }
     console.trace(n + '; ' + rest.join(', '));
-    throw new Error(`PREVAL ASSERT: ${n}; args: ${JSON.stringify(rest)}`);
+    let json;
+    try { json = JSON.stringify(rest) } catch { json = '<circular obj>'; }
+    throw new Error(`PREVAL ASSERT: ${n}; args: ${json}`);
   }
 }
 export function ASSERT_LOC(loc) {

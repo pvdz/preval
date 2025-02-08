@@ -49,6 +49,16 @@ $( 1 );
 $( 2 );
 `````
 
+## Denormalized
+
+(This ought to be the final result)
+
+
+`````js filename=intro
+$(1);
+$(2);
+`````
+
 ## Globals
 
 None
@@ -64,4 +74,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

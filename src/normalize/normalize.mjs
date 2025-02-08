@@ -8508,17 +8508,38 @@ export function phaseNormalize(fdata, fname, prng, options) {
       // This is a labeled statement that is the direct child of a function
       // If not, the body is a loop and we'll deal with that later.
 
-      if (i === body.length - 1) {
+      if (
+        i === body.length - 1 ||
+        (i === body.length - 2 && body[i + 1].type === 'ReturnStatement' && AST.isPrimitive(body[i + 1])) ||
+        (i === body.length - 2 && body[i + 1].type === 'ThrowStatement' && AST.isPrimitive(body[i + 1]))
+      ) {
+        // If the label was followed by `return undefined` or `return 50` then store the primitive
+        // value of that argument. Otherwise store `undefined`, which is the implicit return value.
+        const isRet = body[i + 1]?.type !== 'ThrowStatement';
+        const retValue = body[i + 1]?.argument ? AST.getPrimitiveValue(body[i + 1].argument) : undefined;
+
         rule('Labeled statement as direct child of function with no code following, drop the label.');
         example(
           'function f() { before(); foo: { inside(); if (x) if (y) break foo; } } f();',
           'function f(){ before(); { inside(); if (x) if (y) break foo; } } f();',
+          i === body.length - 1
+        );
+        example(
+          'function f() { before(); foo: { inside(); if (x) if (y) break foo; } return true; } f();',
+          'function f(){ before(); { inside(); if (x) if (y) return true; } return true; } f();',
+          i !== body.length - 1
+        );
+        example(
+          'function f() { before(); foo: { inside(); if (x) if (y) break foo; } throw true; } f();',
+          'function f(){ before(); { inside(); if (x) if (y) throw true; } throw true; } f();',
+          !isRet
         );
         before(node, body);
 
         // Because the label is the direct child of a function, and because there is no code following
-        // the label block, it means the function implicitly returns, therefor we can drop the label
-        // safely and any labeled breaks to it become implicit returns.
+        // the label block except maybe a return statement with primitive, it means the function
+        // implicitly returns, therefor we can drop the label safely and any labeled breaks to it
+        // become explicit returns with the same primitive value.
 
         // Remove the "labeled statement" and re-insert its body, which becomes a nested BlockStatement, which will be normalized later.
         body.splice(i, 1, node.body);
@@ -8545,7 +8566,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           );
           before(block[index]);
 
-          const finalNode = AST.returnStatement(AST.identifier('undefined'));
+          const finalNode = isRet ? AST.returnStatement(AST.primitive(retValue)) : AST.throwStatement(AST.primitive(retValue));
           ASSERT(block[index]?.type === 'BreakStatement' && block[index].label === node, 'should not be stale', obj, block[index], block[index].label, '==', node, block[index].label === node);
           block[index] = finalNode;
 

@@ -82,6 +82,15 @@ With rename=true
 s;
 `````
 
+## Denormalized
+
+(This ought to be the final result)
+
+
+`````js filename=intro
+s;
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:
@@ -97,4 +106,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

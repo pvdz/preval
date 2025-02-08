@@ -2135,8 +2135,8 @@ export function deepCloneForFuncInlining(node, paramArgMapper, fail, safeToAwait
 }
 
 export function complexExpressionNodeMightSpy(node, fdata) {
-  ASSERT(node, 'expecting node');
-  ASSERT(fdata, 'expecting fdata');
+  ASSERT(node, 'expecting node', node);
+  ASSERT(fdata, 'expecting fdata', fdata);
   // aka, "a node is user observable when"
   // Will also cover the simple cases
 
@@ -2183,11 +2183,12 @@ export function complexExpressionNodeMightSpy(node, fdata) {
           'isNaN', 'isFinite', 'parseFloat',
           'decodeURI', 'decodeURIComponent', 'encodeURI', 'encodeURIComponent', 'escape', 'unescape', 'btoa', 'atob',
         ].includes(node.callee.name)) {
-          return complexExpressionNodeMightSpy(node.arguments[0], fdata);
+          return !node.arguments[0] || complexExpressionNodeMightSpy(node.arguments[0], fdata);
         }
 
         // Funcs that may coerce (up to) two args
         if (node.callee.name === 'parseInt') {
+          if (!node.arguments[0]) return true;
           if (node.arguments[0] && complexExpressionNodeMightSpy(node.arguments[0], fdata)) return true;
           if (node.arguments[1] && complexExpressionNodeMightSpy(node.arguments[1], fdata)) return true;
           return false;

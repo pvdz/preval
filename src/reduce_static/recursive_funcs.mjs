@@ -24,7 +24,6 @@ import {
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { mayBindingMutateBetweenRefs } from '../bindings.mjs';
 
 export function recursiveFuncs(fdata) {
   group('\n\n\nChecking for recursive function decls stuffs');

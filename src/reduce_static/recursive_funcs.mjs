@@ -46,8 +46,6 @@ function _recursiveFuncs(fdata) {
 }
 
 function processAttempt(fdata, queue) {
-  // Find arrays which are constants and do not escape and where all member expressions are reads
-
   let updated = 0;
 
   fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
@@ -77,12 +75,22 @@ function processAttempt(fdata, queue) {
       return;
     }
 
+    // All writes assigned a function expr. Check if all reads are inside any of those. If so this is all dead.
+
+    vlog('Name:', name,' Have', funcs.length, '; checking if all of the', meta.reads.length, 'are inside any of the funcs');
     if (!meta.reads.every(read => {
       // Is this read the child of one of the assigned functions? In that case it's not
       // proof that the function is invoked anywhere from outside of the function itself.
-      return funcs.some(funcNode => read.funcChain.startsWith(funcNode.$p.funcChain));
+      // Note: append comma to the funcChain to prevent `1,5 prefix of 1,53` -> `1,5, is not prefix of 1,53,`
+      const chain = read.funcChain + ',';
+      vlog('Checking if read @', read.node.$p.pid, 'with funcChain', chain);
+      return funcs.some(funcNode => {
+        vlog('- func funcChain:', funcNode.$p.funcChain);
+        return read.funcChain.startsWith(funcNode.$p.funcChain + ',')
+      });
     })) {
       // There was at least one read that was not inside the function assigned to this binding
+      vlog('-- at least one read appears outside of itself, bail');
       return;
     }
 

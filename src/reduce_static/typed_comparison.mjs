@@ -20,6 +20,7 @@ import {
   fmat,
   tmat,
   findBodyOffset,
+  todo
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 
@@ -46,8 +47,10 @@ function _typedComparison(fdata) {
     const ipl = AST.isPrimitive(node.left);
     const ipr = AST.isPrimitive(node.right);
 
-    // If neither or both are primitive, bail. If both then another rule can resolve them completely.
-    if ((!ipl && !ipr) || (ipl && ipr)) return;
+    // If neither or both are primitive, bail.
+    if (!ipl && !ipr) return;
+    // If both then another rule can resolve them completely.
+    if (ipl && ipr) return;
 
     const identNode = ipl ? node.right : node.left;
 
@@ -79,7 +82,7 @@ function _typedComparison(fdata) {
     // First compare the falsy values
     switch (typeof pv + ':' + meta.typing.mustBeType) {
       case 'undefined:undefined':
-      case 'object:null': {
+      case 'object:null': { // (this is null:null)
         vlog('The other side must be undefined/null and so another rule will deal with it');
         return;
       }
@@ -144,7 +147,25 @@ function _typedComparison(fdata) {
       }
     }
 
-    ASSERT(meta.typing.mustBeType !== typeof pv, 'Can only reach this point if the primitive was compared to something that is known but not the same type. That ... is false.')
+    if (['object', 'array', 'function', 'map', 'set', 'regex', 'date'].includes(meta.typing.mustBeType)) {
+      rule('A strictly comparison of an object type with a primitive is always false');
+      example('const x = {}; const y = a + b; $(x === y)', 'const x = {}; const y = a + b; $(false)');
+      before(blockBody[blockIndex]);
+
+      // {} === 1 is false. The result is false when the operator is ===, the result is true when the operator is !==
+      if (parentIndex < 0) parentNode[parentProp] = AST.primitive(node.operator === '!==');
+      else parentNode[parentProp][parentIndex] = AST.primitive(node.operator === '!==');
+
+      after(blockBody[blockIndex]);
+      ++changed;
+      return;
+    }
+
+    if (!['undefined', 'null', 'boolean', 'number', 'string'].includes(meta.typing.mustBeType)) {
+      ASSERT(meta.typing.mustBeType !== typeof pv, 'Can only reach this point if the primitive was compared to something that is known but not the same type. That ... is false.', meta.typing, typeof pv, pv, 'nodes:\n', node.left, node.right)
+    } else {
+      todo('Missed a potential type value to add above:', meta.typing.mustBeType, node.left, node.right);
+    }
 
     // This case is already covered by another rule so we should not need to do it here ...
     //vlog('Type must not match so this must be false or true depending on the op');

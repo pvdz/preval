@@ -297,15 +297,15 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
   let loopi = 0;
   while (typingChanged && untypedConstDecls.size) {
     typingChanged = false;
-    vgroup('TypingLoop', loopi++,';', untypedConstDecls.size, 'vars and', funcNodesForSomething.size, 'funcs left');
+    vgroup('typingLoop', loopi++,';', untypedConstDecls.size, 'vars and', funcNodesForSomething.size, 'funcs left');
 
     vgroup(untypedConstDecls.size, 'const decls');
     let cdi = 0;
     untypedConstDecls.forEach((obj) => {
       const {node, meta} = obj;
-      vlog('- cdi', cdi++);
+      const name = node.declarations[0].id.name;
+      vlog('-- decl', cdi++, '::', name);
       if (!meta.typing?.mustBeType) {
-        const name = node.declarations[0].id.name;
         const init = node.declarations[0].init;
         vlog('Resolving .typing of `' + name + '` with the details of the rhs', init.type);
         const newTyping = inferNodeTyping(fdata, init);
@@ -327,11 +327,11 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
       }
     });
     vgroupEnd();
-    vgroup(funcNodesForSomething.size, 'funcs; return types');
+    vgroup(funcNodesForSomething.size, 'function return types');
     let fni = 0;
     funcNodesForSomething.forEach((obj) => {
       const {funcName, funcNode, funcMeta, parentNode} = obj;
-      vlog('- fni', fni++, '; "', funcName, '"');
+      vlog('-- func', fni++, '; "', funcName, '"');
       const types = new Set(funcNode.$p.returnNodes?.map(returnNode => {
         const arg = returnNode.argument;
         if (AST.isPrimitive(arg)) return AST.getPrimitiveType(arg);
@@ -368,7 +368,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
       }
     });
     vgroupEnd();
-    vgroup(calledMetas.size, 'funcs; calls');
+    vgroup(calledMetas.size, 'function calls');
     let cmi = 0;
     calledMetas.forEach((arrArgs, calleeMeta) => {
       // Note: callee verified not to escape above. If it's still in the list, we should have all calls to it.
@@ -378,7 +378,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
       const oldi = calleeMeta.tmpi;
       calleeMeta.callerArgs = undefined;
       calleeMeta.tmpi = loopi;
-      vgroup('- cmi', cmi++, '. Processing all', arrArgs.length, 'CallExpressions for "', calleeMeta.uniqueName, '", previous callerArgs:', oldi, oldCallerArgs);
+      vgroup('-- arg', cmi++, '. Processing all', arrArgs.length, 'CallExpressions for "', calleeMeta.uniqueName, '", previous callerArgs:', oldi, oldCallerArgs);
       arrArgs.every((args,ci) => {
         vlog('- Call', ci, '/', arrArgs.length);
         // Note: function escape analysis happens in the next block. Here we just track calls, regardless.
@@ -494,6 +494,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
           // Not yet determined so now we do
           vlog('  - param', i, '(', paramName, '); Ok! Marking param as:', funcMeta.callerArgs[i], ', writes:', m.writes.length);
           m.typing.mustBeType = funcMeta.callerArgs[i];
+          if (['object', 'array', 'regex', 'function', 'class'].includes(funcMeta.callerArgs[i])) m.typing.mustBeTruthy = true;
         }
         else if (m.typing.mustBeType !== false && m.typing.mustBeType !== funcMeta.callerArgs[i]) {
           // It was determined but different from this information. Not sure how I feel about that...
@@ -550,6 +551,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
         // Not yet determined so now we do
         vlog('  - param', i, '(', paramName, '); Ok! Marking param as:', funcMeta.callerArgs[i], ', writes:', m.writes.length);
         m.typing.mustBeType = funcMeta.callerArgs[i];
+        if (['object', 'array', 'regex', 'function', 'class'].includes(funcMeta.callerArgs[i])) m.typing.mustBeTruthy = true;
       }
       else if (m.typing.mustBeType !== false && m.typing.mustBeType !== funcMeta.callerArgs[i]) {
         // It was determined but different from this information. Not sure how I feel about that...

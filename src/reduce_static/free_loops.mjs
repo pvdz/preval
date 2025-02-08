@@ -28,8 +28,8 @@ import { SYMBOL_COERCE, SYMBOL_FRFR } from '../symbols_preval.mjs';
 const FAILURE_SYMBOL = {};
 const BREAK_SYMBOL = {};
 
-const SUPPORTED_GLOBAL_FUNCS = ['$frfr'];
-const SUPPORTED_METHODS = ['array.push', 'string.charAt'];
+const SUPPORTED_GLOBAL_FUNCS = [SYMBOL_FRFR, SYMBOL_COERCE, '$frfr', 'parseInt', 'parseFloat', 'isNaN', 'isFinite'];
+const SUPPORTED_METHODS = ['array.push', 'string.charAt', 'string.charCodeAt', 'String.fromCharCode'];
 
 export function freeLoops(fdata, prng, usePrng = true) {
   group('\n\n\nChecking for free loops to simulate and resolve\n');
@@ -69,25 +69,35 @@ export function _freeLoops(fdata, prng, usePrng) {
     const callTypes = new Map; // CallExpression node (obj instance) to qualified string name of func or method to be called
     const declaredNameTypes = new Map; // Binding name to mustBeType value
 
-    vlog('Checking isFree on `while` loop @', blockBody[whileIndex].$p.pid, '...');
+    vgroup('Checking isFree on `while` loop @', blockBody[whileIndex].$p.pid, '...');
+    vgroup('Scanning statements before the loop...');
     let fromIndex = whileIndex;
     while (fromIndex > 0) {
       fromIndex = fromIndex - 1;
+      vgroup('Statement', fromIndex, '(', blockBody[fromIndex].type, blockBody[fromIndex].declarations?.[0].init.type, ')');
       const r = isFree(blockBody[fromIndex], fdata, callTypes, declaredNameTypes, false);
       if (!r || r === FAILURE_SYMBOL) {
         vlog('Statement at index', fromIndex, 'is NOT free, ends the scan of pre-while-statements (', blockBody[fromIndex].type, blockBody[fromIndex].declarations?.[0].init.type, ')');
         fromIndex += 1; // Compensate.
+        vgroupEnd();
         break;
       } else {
-        vlog('Statement at index', fromIndex, 'is also free (', blockBody[fromIndex].type, blockBody[fromIndex].declarations?.[0].init.type, ')');
+        vlog('^ Statement at index', fromIndex, 'is free (', blockBody[fromIndex].type, blockBody[fromIndex].declarations?.[0].init.type, ')');
       }
+      vgroupEnd();
     }
+    vgroupEnd();
 
-    vlog('Now calling isFree() on the `while` node...');
+    vlog('Now calling isFree() on the `while` node... Including these idents before it:', Array.from(declaredNameTypes.keys()));
     for (let i=0; i<node.body.body.length; ++i) {
       const r = isFree(node.body.body[i], fdata, callTypes, declaredNameTypes, true)
-      if (!r || r === FAILURE_SYMBOL) return vlog('-- bail: While loop is not free\n\n');
+      if (!r || r === FAILURE_SYMBOL) {
+        vlog('-- bail: While loop is not free\n\n');
+        vgroupEnd();
+        return;
+      }
     }
+    vgroupEnd();
 
     // While loop must be free. Let's try to resolve it.
     vlog('\nOk. Resolving `while` loop @', blockBody[whileIndex].$p.pid, 'at block index', whileIndex,', starting from statement index', fromIndex,'\n');
@@ -146,37 +156,37 @@ export function _freeLoops(fdata, prng, usePrng) {
 // A node is "free" when it is fully predictable by preval.
 // For example, primitive operations are fully predictable.
 // But also, pushing a primitive into an array literal.
-function isFree(node, fdata, callTypes, declaredNameTypes, insideWhile = true) {
+function isFree(node, fdata, callTypes, declaredNameTypes, insideWhile) {
   ASSERT(node, 'should receive a node at least');
-  ASSERT((arguments.length === 4 && typeof declaredNameTypes !== 'boolean') || arguments.length === 5, 'arg count to isFree');
+  ASSERT(arguments.length === 5, 'arg count to isFree');
 
   if (AST.isPrimitive(node)) return true;
 
   switch (node.type) {
     case 'ArrayExpression': {
       // We can support some cases of spread but initially it won't
-      return node.elements.every(e => !e || (e.type !== 'SpreadElement' && isFree(e, fdata, callTypes, declaredNameTypes)));
+      return node.elements.every(e => !e || (e.type !== 'SpreadElement' && isFree(e, fdata, callTypes, declaredNameTypes, insideWhile)));
     }
     case 'AssignmentExpression': {
       if (node.left.type === 'Identifier') {
-        return isFree(node.left, fdata, callTypes, declaredNameTypes) && isFree(node.right, fdata, callTypes, declaredNameTypes);
+        return isFree(node.left, fdata, callTypes, declaredNameTypes, insideWhile) && isFree(node.right, fdata, callTypes, declaredNameTypes, insideWhile);
       } else if (node.left.type === 'MemberExpression') {
         if (node.left.computed) {
           // `arr[x] = y`
-          return isFree(node.left.object, fdata, callTypes, declaredNameTypes) &&  isFree(node.left.property, fdata, callTypes, declaredNameTypes) && isFree(node.right, fdata, callTypes, declaredNameTypes);
+          return isFree(node.left.object, fdata, callTypes, declaredNameTypes, insideWhile) &&  isFree(node.left.property, fdata, callTypes, declaredNameTypes, insideWhile) && isFree(node.right, fdata, callTypes, declaredNameTypes, insideWhile);
         } else {
           // `arr.x = y`
-          return isFree(node.left.object, fdata, callTypes, declaredNameTypes) && isFree(node.right, fdata, callTypes, declaredNameTypes);
+          return isFree(node.left.object, fdata, callTypes, declaredNameTypes, insideWhile) && isFree(node.right, fdata, callTypes, declaredNameTypes, insideWhile);
         }
       } else {
         todo('what else can we assign to?', node.left);
         return false;
       }
     }
-    case 'BinaryExpression': return isFree(node.left, fdata, callTypes, declaredNameTypes) && isFree(node.right, fdata, callTypes, declaredNameTypes);
+    case 'BinaryExpression': return isFree(node.left, fdata, callTypes, declaredNameTypes, insideWhile) && isFree(node.right, fdata, callTypes, declaredNameTypes, insideWhile);
     case 'BlockStatement': {
       for (let i=0; i<node.body.length; ++i) {
-        if (!isFree(node.body[i], fdata, callTypes, declaredNameTypes)) return false;
+        if (!isFree(node.body[i], fdata, callTypes, declaredNameTypes, insideWhile)) return false;
       }
       return true;
     }
@@ -193,39 +203,105 @@ function isFree(node, fdata, callTypes, declaredNameTypes, insideWhile = true) {
     case 'CallExpression': {
       // A call is free when it is predictable. That means it's a built-in or something we can track, initially just $frfr
       if (node.callee.type === 'Identifier') {
-        callTypes.set(node, '$coerce');
-        if (node.callee.name === SYMBOL_FRFR) {
-          // Special case: $frfr. We control this.
-          // The return type should be the return type of the func that is the first arg to this call.
-          ASSERT(node.arguments[0]?.type === 'Identifier');
-          const meta = fdata.globallyUniqueNamingRegistry.get(node.arguments[0].name);
-          const t = meta.typing.returns; // this is a Set. Or a string? dang I don't know.
-          if (!t || (typeof t === 'string' ? t === 'primitive' : (t.size !== 1 || t.has('?') || t.has('primitive')))) {
-            todo('Support $frfr that has multiple/no/generic returns type;', t);
-            return FAILURE_SYMBOL;
+        if (SUPPORTED_GLOBAL_FUNCS.includes(node.callee.name)) {
+          if (node.callee.name === SYMBOL_FRFR) {
+            // Special case: $frfr. We control this.
+            // The return type should be the return type of the func that is the first arg to this call.
+            ASSERT(node.arguments[0]?.type === 'Identifier');
+            const meta = fdata.globallyUniqueNamingRegistry.get(node.arguments[0].name);
+            const t = meta.typing.returns; // this is a Set. Or a string? dang I don't know.
+            if (!t || (typeof t === 'string' ? t === 'primitive' : (t.size !== 1 || t.has('?') || t.has('primitive')))) {
+              todo('Support $frfr that has multiple/no/generic returns type;', t);
+              return FAILURE_SYMBOL;
+            }
+            callTypes.set(node.call, t);
+            return true;
           }
-          callTypes.set(node.call, t);
-          return true;
-        }
-        if (node.callee.name === SYMBOL_COERCE) {
-          // Special case: $coerce
-          // We control this so we should have a string as second arg and unknown as first arg
-          if (AST.isPrimitive(node.arguments[0])) return true;
-          if (node.arguments[0].type === 'Identifier' && declaredNameTypes.has(node.arguments[0].name)) {
-            const t = declaredNameTypes.get(node.arguments[0].name);
-            return ['undefined', 'null', 'boolean', 'number', 'string'].includes(t);
+          if (node.callee.name === SYMBOL_COERCE) {
+            callTypes.set(node, '$coerce');
+            // Special case: $coerce
+            // We control this so we should have a string as second arg and unknown as first arg
+            if (AST.isPrimitive(node.arguments[0])) return true;
+            if (node.arguments[0].type === 'Identifier' && declaredNameTypes.has(node.arguments[0].name)) {
+              const t = declaredNameTypes.get(node.arguments[0].name);
+              return ['undefined', 'null', 'boolean', 'number', 'string'].includes(t);
+            }
+            // Technically it is possible for this to be an array or whatever. And even that could be supported.
+            todo('Support non-primitive in first arg to $coerce', node.arguments[0]);
+            return false;
           }
-          // Technically it is possible for this to be an array or whatever. And even that could be supported.
-          todo('Support non-primitive in first arg to $coerce', node.arguments[0]);
-          return false;
-        }
-        if (node.callee.name === 'isNaN') {
-          callTypes.set(node, 'isNaN');
-          return true;
-        }
-        if (node.callee.name === 'isFinite') {
-          callTypes.set(node, 'isFinite');
-          return true;
+          if (node.callee.name === 'isNaN') {
+            callTypes.set(node, 'isNaN');
+
+            if (!node.arguments[0]) return true;
+            if (AST.isPrimitive(node.arguments[0])) return true;
+            if (node.arguments[0].type === 'Identifier' && declaredNameTypes.has(node.arguments[0].name)) {
+              const t = declaredNameTypes.get(node.arguments[0].name);
+              return ['undefined', 'null', 'boolean', 'number', 'string'].includes(t);
+            }
+            // Technically it is possible for this to be an array or whatever. And even that could be supported.
+            todo('Support non-primitive in first arg to isNan', node.arguments[0]);
+            return false;
+          }
+          if (node.callee.name === 'isFinite') {
+            callTypes.set(node, 'isFinite');
+
+            if (!node.arguments[0]) return true;
+            if (AST.isPrimitive(node.arguments[0])) return true;
+            if (node.arguments[0].type === 'Identifier' && declaredNameTypes.has(node.arguments[0].name)) {
+              const t = declaredNameTypes.get(node.arguments[0].name);
+              return ['undefined', 'null', 'boolean', 'number', 'string'].includes(t);
+            }
+            // Technically it is possible for this to be an array or whatever. And even that could be supported.
+            todo('Support non-primitive in first arg to isFinite', node.arguments[0]);
+            return false;
+          }
+          if (node.callee.name === 'parseInt') {
+            callTypes.set(node, 'parseInt');
+
+            if (!node.arguments[0]) {}
+            else if (AST.isPrimitive(node.arguments[0])) {}
+            else if (
+              node.arguments[0].type === 'Identifier' &&
+              declaredNameTypes.has(node.arguments[0].name) &&
+              ['undefined', 'null', 'boolean', 'number', 'string'].includes(declaredNameTypes.get(node.arguments[0].name))
+            ) {}
+            else {
+              // Technically it is possible for this to be an array or whatever. And even that could be supported.
+              todo('Support non-primitive in first arg to parseInt', node.arguments[0]);
+              return false;
+            }
+
+            if (!node.arguments[1]) {}
+            else if (AST.isPrimitive(node.arguments[1])) {}
+            else if (
+              node.arguments[1].type === 'Identifier' &&
+              declaredNameTypes.has(node.arguments[1].name) &&
+              ['undefined', 'null', 'boolean', 'number', 'string'].includes(declaredNameTypes.get(node.arguments[1].name))
+            ) {}
+            else {
+              // Technically it is possible for this to be an array or whatever. And even that could be supported.
+              todo('Support non-primitive in second arg to parseInt', node.arguments[0]);
+              return false;
+            }
+
+            // kayy
+            return true;
+          }
+          if (node.callee.name === 'parseFloat') {
+            callTypes.set(node, 'parseFloat');
+
+            if (!node.arguments[0]) return true;
+            if (AST.isPrimitive(node.arguments[0])) return true;
+            if (node.arguments[0].type === 'Identifier' && declaredNameTypes.has(node.arguments[0].name)) {
+              const t = declaredNameTypes.get(node.arguments[0].name);
+              return ['undefined', 'null', 'boolean', 'number', 'string'].includes(t);
+            }
+            // Technically it is possible for this to be an array or whatever. And even that could be supported.
+            todo('Support non-primitive in first arg to parseFloat', node.arguments[0]);
+            return false;
+          }
+          ASSERT(false, 'should cover all supported idents', node.callee.name);
         }
         todo('Support this ident in isFree CallExpression:', node.callee.name);
         return false;
@@ -248,7 +324,7 @@ function isFree(node, fdata, callTypes, declaredNameTypes, insideWhile = true) {
           const objName = node.callee.object.name;
           const meta = fdata.globallyUniqueNamingRegistry.get(objName);
           // Is the ident a builtin or part of declaredNameTypes?
-          if (meta.isBuiltIn) {
+          if (meta.isBuiltin) {
             const staticMethod = objName + '.' + node.callee.property.name;
             if (SUPPORTED_METHODS.includes(staticMethod)) {
               // ie: Math.pow or String.fromCharCode
@@ -282,7 +358,7 @@ function isFree(node, fdata, callTypes, declaredNameTypes, insideWhile = true) {
                 return false;
               }
             } else {
-              todo('Calling a function that is not global and not recorded:', objName);
+              todo('Calling a static method on an ident that is not global and not recorded:', objName);
               return false;
             }
           }
@@ -296,7 +372,7 @@ function isFree(node, fdata, callTypes, declaredNameTypes, insideWhile = true) {
       }
       break;
     }
-    case 'ExpressionStatement': return isFree(node.expression, fdata, callTypes, declaredNameTypes);
+    case 'ExpressionStatement': return isFree(node.expression, fdata, callTypes, declaredNameTypes, insideWhile);
     case 'FunctionExpression': {
       // For now, don't include func exprs in this logic.
       return false;
@@ -313,23 +389,25 @@ function isFree(node, fdata, callTypes, declaredNameTypes, insideWhile = true) {
         todo('Support referencing this builtin in isFree:', node.name);
         return false;
       }
+      if (node.name === '$frfr') return true;
 
-      todo('Support referencing this var in isFree:', node.name);
+      todo('Support referencing this var in isFree (not a builtin, not already declared):', node.name, meta?.typing?.mustBeType);
       return false; // Maybe there are more valid cases but I don't know what that looks like right now
     }
     case 'IfStatement': {
-      return isFree(node.test, fdata, callTypes, declaredNameTypes) && isFree(node.consequent, fdata, callTypes, declaredNameTypes) && isFree(node.alternate, fdata, callTypes, declaredNameTypes);
+      return isFree(node.test, fdata, callTypes, declaredNameTypes, insideWhile) && isFree(node.consequent, fdata, callTypes, declaredNameTypes, insideWhile) && isFree(node.alternate, fdata, callTypes, declaredNameTypes, insideWhile);
     }
     case 'MemberExpression': {
       if (AST.isPrimitive(node.object)) {
         if (node.computed && AST.isNumberLiteral(node.property)) return true;
         // Should we be careful here with what we allow? Arbitrary property lookup seems like a recipe for unsafety.
         // Otoh, numbers are fine. In certain cases, regular properties are fine as well.
-        if (node.computed && declaredNameTypes.has(node.property.name)) {
-          if (declaredNameTypes.get(node.property.name) === 'number') {
+        const has = declaredNameTypes.get(node.property.name);
+        if (node.computed && has) {
+          if (has === 'number') {
             return true;
           }
-          todo('computed property access of a primitive on a non-number feels tricky;', node.property.name);
+          todo('computed property access of a primitive on a non-number feels tricky;', node.object.name, node.property.name, has);
           return false;
         }
         if (node.computed) {
@@ -340,15 +418,35 @@ function isFree(node, fdata, callTypes, declaredNameTypes, insideWhile = true) {
         return false;
       }
       if (node.object.type === 'Identifier') {
-        if (node.computed && declaredNameTypes.has(node.property.name)) {
-          if (declaredNameTypes.get(node.property.name) === 'number') {
-            return true; // Dont relaly think this can go wrong, even in NaN or Infinity cases...?
+        const has = declaredNameTypes.get(node.property.name);
+        if (node.computed) {
+          if (has) {
+            if (has === 'number') {
+              return true; // Dont relaly think this can go wrong, even in NaN or Infinity cases...?
+            }
+            todo('computed property access of an ident on a non-number feels tricky;', node.object.name, node.property.name, has);
+            return false;
           }
-          todo('computed property access of an ident on a non-number feels tricky;', node.property.name, declaredNameTypes.get(node.property.name));
+          todo('computed property access of an ident where the property ident is not recorded;', node.object.name, node.property.name, declaredNameTypes);
           return false;
         }
 
-        todo('regular property access of an ident feels tricky;', node.property.name);
+        if (has) {
+          // whatever. can't hurt on a primitive, right? or can it and should we restrict it to string.length?
+          return true;
+        }
+
+        // Check if it's an array reference. That's the main use case here.
+        // The array must be a local var though.
+        if (node.property.name === 'length' && declaredNameTypes.get(node.object.name)) {
+          const meta = fdata.globallyUniqueNamingRegistry.get(node.object.name);
+          if (meta.isConstant && meta.constValueRef.node.type === 'ArrayExpression') {
+            // Doing .length on an array ought to be safe?
+            return true;
+          }
+        }
+
+        todo('regular property access of an ident feels tricky;', node.property.name, has);
         return false;
       }
 
@@ -359,54 +457,52 @@ function isFree(node, fdata, callTypes, declaredNameTypes, insideWhile = true) {
       todo('objects in isFree check');
       return false;
     }
-    case 'UnaryExpression': return isFree(node.argument, fdata, callTypes, declaredNameTypes);
+    case 'UnaryExpression': return isFree(node.argument, fdata, callTypes, declaredNameTypes, insideWhile);
     case 'VariableDeclaration': {
-      log('- Recording free variable:', node.declarations[0].id.name);
+      vlog('- Var decl; Recording free variable:', [node.declarations[0].id.name]);
 
       const init = node.declarations[0].init;
-      if (!isFree(init, fdata, callTypes, declaredNameTypes)) {
-        todo('  - var decl the init', init.type, 'is not free :(');
+      if (init.type === 'FunctionExpression') {
+        vlog('  - Ignoring function expression as init. Also not recording var (', node.declarations[0].id.name,')');
+        // Ignore..? But don't record this var as accessible.
+        return true;
+      }
+      if (!isFree(init, fdata, callTypes, declaredNameTypes, insideWhile)) {
+        todo(`  - var decl; id=`, node.declarations[0].id.name, `init=`, init.type, 'is not free :(');
         return false;
       }
+      vlog('  - init isFree...');
 
       let t = '';
       if (AST.isPrimitive(init)) {
+        vlog('  - converting primitive init...');
         t = AST.getPrimitiveType(init);
-      } else {
+      }
+      else {
         switch (init.type) {
           case 'ArrayExpression': {
             t = 'array';
             break;
           }
           case 'BinaryExpression': {
+            // Must also validate the lhs/rhs, even if we don't care about their type as much
+            const lhs = isFree(init.left, fdata, callTypes, declaredNameTypes, insideWhile);
+            if (!lhs || lhs === FAILURE_SYMBOL) return lhs;
+            const rhs = isFree(init.right, fdata, callTypes, declaredNameTypes, insideWhile);
+            if (!rhs || rhs === FAILURE_SYMBOL) return rhs;
+
             if (['>', '<', '==', '===', '!=', '!==', '<=', '>='].includes(init.operator)) {
               t = 'boolean';
-            } else if (['%', '-', '/', '*', '^', '|', '&'].includes(init.operator)) {
+            } else if (['%', '-', '/', '*', '^', '|', '&', '<<', '>>', '>>>'].includes(init.operator)) {
               t = 'number';
             } else if (['+'].includes(init.operator)) {
-              const lhs =
-                AST.isPrimitive(init.left)
-                ? (AST.isNumberLiteral(init.left) ? 'number' : 'string')
-                : (init.left.type === 'Identifier' && declaredNameTypes.has(init.left.name))
-                ? declaredNameTypes.get(init.left.name)
-                : null;
-
-              const rhs =
-                AST.isPrimitive(init.left)
-                ? (AST.isNumberLiteral(init.left) ? 'number' : 'string')
-                : (init.left.type === 'Identifier' && declaredNameTypes.has(init.left.name))
-                ? declaredNameTypes.get(init.left.name)
-                : null;
-
               if (lhs === 'string' || rhs === 'string') {
+                // Any op with a string on either side result in a string
                 t = 'string';
               }
-              else if (lhs === 'number' && rhs === 'number') {
-                t = 'number';
-              }
               else {
-                todo('Tricky case of addition predicting depends on type of operands and we dont know? well probably we do but...', init.left.name, lhs, init.right.name, rhs);
-                return false;
+                // any non-string primitive with numeric op to another non-string primitive results in a number
+                t = 'number';
               }
             } else {
               todo('Support this binary expression operator:', init.operator);
@@ -428,13 +524,28 @@ function isFree(node, fdata, callTypes, declaredNameTypes, insideWhile = true) {
                 ASSERT(targetFreeFunc?.type === 'Identifier', '$frfr is controlled by us and the first arg should be the name of a $free function', targetFreeFunc);
                 const meta = fdata.globallyUniqueNamingRegistry.get(targetFreeFunc.name);
                 ASSERT(meta?.typing, 'The $free function should at least be known to return a primitive so typing should be set on it', meta);
-                ASSERT(meta.typing.returns, 'Should $free functions return a known primitive?', meta.returns);
+                //if (!meta.typing.returns) return false;
+                ASSERT(meta.typing.returns, 'Shouldnt the return types of $free functions be set?', targetFreeFunc.name, meta);
                 ASSERT(typeof meta.typing.returns === 'object', '.returns shouldnt be a string here i think', meta.typing.returns);
                 if (meta.typing.returns.size !== 1 || meta.typing.returns.has('?') || meta.typing.returns.has('primitive')) {
                   todo('$frfr returns a generic, unknown, or nothing at all type...', meta.typing.returns);
                   return false;
                 }
+
+                // Should also confirm all the frfr args. They may be primitives but if
+                // we can't predict their value it might as well be magic.
+                if (init.arguments.some((arg, i) => {
+                  if (!i) return false;
+                  const r = isFree(arg, fdata, callTypes, declaredNameTypes, insideWhile);
+                  if (!r || r === FAILURE_SYMBOL) return true;
+                  return false;
+                })) {
+                  vlog('- at least one of the frfr args was not isFree, bailing');
+                  return false;
+                }
+
                 t = Array.from(meta.typing.returns)[0];
+                ASSERT(typeof t === 'string', 'check into this case, we are expecting type strings here');
                 callTypes.set(init, t);
               } else {
                 todo('Support other kind of ident call as init', init);
@@ -444,7 +555,7 @@ function isFree(node, fdata, callTypes, declaredNameTypes, insideWhile = true) {
               todo('Support computed method call as init (lolno)', init);
               return false;
             } else {
-              if (!isFree(init, fdata, callTypes, declaredNameTypes)) {
+              if (!isFree(init, fdata, callTypes, declaredNameTypes, insideWhile)) {
                 todo('Support method call as init', init);
                 return false;
               }
@@ -452,6 +563,8 @@ function isFree(node, fdata, callTypes, declaredNameTypes, insideWhile = true) {
               // Now have to determine the return value of that call...
               switch (callTypes.get(init)) {
                 case 'string.charAt': t = 'string'; break;
+                case 'string.charCodeAt': t = 'number'; break;
+                case 'String.fromCharCode': t = 'string'; break;
                 case 'array.push': t = 'number'; break;
                 default: {
                   todo('Missing method type for init typing', callTypes.get(init));
@@ -462,9 +575,10 @@ function isFree(node, fdata, callTypes, declaredNameTypes, insideWhile = true) {
             break;
           }
           case 'FunctionExpression': {
-            // If this function is free then we can probably move it to global...?
-            t = 'function';
-            break;
+            // We ignore functions in the preamble. We should not encounter them in the loop.
+            return true;
+            //t = 'function';
+            //break;
           }
           case 'Literal': {
             if (init.raw[0] === '/') t = 'regex';
@@ -472,6 +586,12 @@ function isFree(node, fdata, callTypes, declaredNameTypes, insideWhile = true) {
             break;
           }
           case 'MemberExpression': {
+            const r = isFree(init.object, fdata, callTypes, declaredNameTypes, insideWhile);
+            if (!r || r === FAILURE_SYMBOL) return r;
+            if (node.computed) {
+              const t = isFree(init.property, fdata, callTypes, declaredNameTypes, insideWhile);
+              if (!t || t === FAILURE_SYMBOL) return t;
+            }
             t = 'member';
             todo('fix the member expression on array stuff. im going to hate myself for skipping this.');
             break;
@@ -481,17 +601,46 @@ function isFree(node, fdata, callTypes, declaredNameTypes, insideWhile = true) {
             t = 'object';
             break;
           }
+          case 'Identifier': {
+            // We can allow an identifier when we know it's a primitive and it is declared inside the preamble or inside the loop
+            // Because then it means that, at least inside a free loop, we can track its value, regardless of concrete primitive.
+            // (That's relevant when it comes from arr[x], which may always be `undefined` too)
+            const meta = fdata.globallyUniqueNamingRegistry.get(init.name);
+            if (!meta.typing?.mustBeType && !meta.typing?.mustBePrimitive) {
+              todo('Support an ident without mustBeType set, name=', init.name);
+              return false;
+            }
+
+            // TODO: I don't think we need to do a write check here:
+            //       - either the var is only mutated inside the loop, in which case we know the values assigned, or
+            //       - if it is a closure, we know it won't be invoked as that would reject the loop from being isFree, and
+            //       - we don't care about post-loop mutations (but .mustBeType and .mustBePrimitive do so that may be a sub-optimal signal)
+
+            // I guess?
+            t = meta.typing?.mustBeType || meta.typing?.mustBePrimitive;
+            ASSERT(typeof t === 'string', 'should be string so change the above?');
+            break;
+          }
           default: {
-            todo(`Support this node type as init in isFree:`, init.type);
+            todo(`Support this node type as init in isFree:`, init.type, init.name);
             return false;
           }
         }
         ASSERT(t, 'type should be known at this point');
       }
 
-      log('  - isa:', t);
+      vlog('  - ok! isa:', t);
       declaredNameTypes.set(node.declarations[0].id.name, t);
       return true;
+    }
+    case 'WhileStatement': {
+      if (insideWhile) {
+        // Gotta make sure these loop pid uses a single counter (or shared), otherwise they can explode
+        return true;
+      }
+
+      // Do not skip over previous loops in the same block. It leads to trouble. If they can be eliminated, they will be.
+      return false;
     }
     default: {
       todo(`Support this node type in isFree:`, node.type, node);
@@ -543,6 +692,7 @@ function runStatement(fdata, node, register, callTypes, prng, usePrng) {
     case 'VariableDeclaration': {
       // We'll only see let and const and I don't think it matters as we don't need to validate mutability.
       const init = node.declarations[0].init;
+      //console.log('var decl for: ' + node.declarations[0].id.name, 'total', Array.from(register.keys()).join(' '))
       if (init.type === 'ArrayExpression') {
         register.set(
           node.declarations[0].id.name,
@@ -665,6 +815,9 @@ function runExpression(fdata, node, register, callTypes, prng, usePrng) {
         case '^': return lhs ^ rhs;
         case '|': return lhs | rhs;
         case '&': return lhs & rhs;
+        case '<<': return lhs << rhs;
+        case '>>': return lhs >> rhs;
+        case '>>>': return lhs >>> rhs;
         case '+': return lhs + rhs;
         default: {
           todo('all ops here should have been checked by isFree so one was forgotten to get implemented', node.operator);
@@ -765,6 +918,26 @@ function runExpression(fdata, node, register, callTypes, prng, usePrng) {
             const ch = value.charAt(arg);
             return ch;
           }
+          case 'string.charCodeAt': {
+            const value = runExpression(fdata, node.callee.object, register, callTypes, prng, usePrng);
+            if (typeof value !== 'string') {
+              todo('The value was not a string but isFree should have guaranteed it was', node.callee.object);
+              return FAILURE_SYMBOL;
+            }
+            const arg = runExpression(fdata, node.arguments[0], register, callTypes, prng, usePrng);
+            if (typeof arg !== 'number') {
+              todo('The arg was not a number but isFree should have guaranteed it was', node.arguments[0]);
+              return FAILURE_SYMBOL;
+            }
+            const ch = value.charCodeAt(arg);
+            return ch;
+          }
+          case 'String.fromCharCode': {
+            // You can use any number of args here. Into the thousands. So we must take care here.
+            const args = node.arguments.map(a => runExpression(fdata, a, register, callTypes, prng, usePrng));
+            const str = String.fromCharCode.apply(null, args);
+            return str;
+          }
           case '$coerce': {
             const value = runExpression(fdata, node.arguments[0], register, callTypes, prng, usePrng);
             if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
@@ -784,7 +957,26 @@ function runExpression(fdata, node, register, callTypes, prng, usePrng) {
             if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
             return isFinite(value);
           }
+          case 'parseInt': {
+            const value = node.arguments[0] ? runExpression(fdata, node.arguments[0], register, callTypes, prng, usePrng) : undefined;
+            if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
+            const base = node.arguments[1] ? runExpression(fdata, node.arguments[1], register, callTypes, prng, usePrng) : undefined;
+            if (base === FAILURE_SYMBOL) return FAILURE_SYMBOL;
+            return parseInt(value, base);
+          }
+          case 'parseFloat': {
+            const value = node.arguments[0] ? runExpression(fdata, node.arguments[0], register, callTypes, prng, usePrng) : undefined;
+            if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
+            return parseFloat(value);
+          }
           default: {
+            if (
+              funcName.startsWith('string_') ||
+              funcName.startsWith('number_') ||
+              funcName.startsWith('boolean_') ||
+              funcName.startsWith('regex_') ||
+              funcName.startsWith('array_')
+            ) console.dir('free_loops may not have bailed if it implemented `' + funcName + '`');
             todo('Missing implementation for allowed function call to:', funcName);
             return FAILURE_SYMBOL;
           }
@@ -793,8 +985,16 @@ function runExpression(fdata, node, register, callTypes, prng, usePrng) {
 
       break;
     }
+    case 'FunctionExpression': {
+      // The only reason isFree would allow this is when it's in the preamble, to skip it
+      // So it should be safe to skip it. This variable is a noop for our current task.
+      return true;
+    }
     case 'Identifier': {
       // Resolve value, either a built-in or a local value from register
+
+      // undefined, NaN, Infinity
+      if (AST.isPrimitive(node)) return AST.getPrimitiveValue(node);
 
       const currInit = register.get(node.name);
       vlog('- eval ident', node.name, ':', currInit);
@@ -807,7 +1007,7 @@ function runExpression(fdata, node, register, callTypes, prng, usePrng) {
           return FAILURE_SYMBOL;
         }
       } else {
-        todo('Support global value for ident', node.name);
+        todo('Support global value for ident', node.name, node);
         return FAILURE_SYMBOL;
       }
     }
@@ -840,6 +1040,11 @@ function runExpression(fdata, node, register, callTypes, prng, usePrng) {
           todo('Array contents was not missing and not a primitive, fixme');
           return FAILURE_SYMBOL;
         }
+      } else if (node.property.name === 'length') {
+        // Then the context should be an array of sorts, and we can find it in the decl (or register)
+        const obj = register.get(node.object.name);
+        ASSERT(obj && obj.elements && obj.type === 'ArrayExpression', 'should get the array', node.object.name, obj, node);
+        return obj.elements.length;
       } else {
         todo('Support regular prop on ident');
         return FAILURE_SYMBOL;

@@ -318,7 +318,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
 
         changed = outCode !== inputCode;
         if (changed && (!maxPasses || passes < maxPasses) && !options.refTest) {
-          log('Something changed in phase2 so we will be rerolling it again');
+          log('Something changed in phase2 or phase3 so we will be rerolling it again');
           inputCode = outCode;
           log(
             '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n',

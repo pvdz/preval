@@ -306,7 +306,7 @@ function _freeing(fdata, $prng, usePrng) {
           const freeFuncName = expr.arguments[0].name;
           const meta = fdata.globallyUniqueNamingRegistry.get(freeFuncName);
           ASSERT(meta);
-          ASSERT(meta.constValueRef?.node?.type === 'FunctionExpression');
+          ASSERT(meta.constValueRef?.node?.type === 'FunctionExpression', 'expecting the first argument to $frfr to be a var decl whose init is a function', expr.arguments[0], ' init:', meta.constValueRef.node, stmt.declarations[0]);
           ASSERT(meta.constValueRef?.node?.id?.name === '$free', '$frfr should be calling $free functions');
 
           if (meta.reads.length === 1) {
@@ -356,7 +356,7 @@ function _freeing(fdata, $prng, usePrng) {
         return AST.cloneSimple(callNode.arguments[n+1]) || AST.identifier('undefined');
       } else {
         // Then this ought to be a global (builtin or explicit), which would not be passed in as an arg.
-        ASSERT(BUILTIN_GLOBAL_FUNC_NAMES.has(targetName) || fdata.globallyUniqueNamingRegistry.get(targetName)?.constValueRef?.node?.$p.blockChain === '1,', 'if there is no arg then the var must refer to a global of sorts');
+        ASSERT(targetName === '$' || BUILTIN_GLOBAL_FUNC_NAMES.has(targetName) || fdata.globallyUniqueNamingRegistry.get(targetName)?.constValueRef?.node?.$p.blockChain === '1,', 'if there is no arg then the var must refer to a global of sorts', targetName);
         return AST.identifier(targetName);
       }
     } else {

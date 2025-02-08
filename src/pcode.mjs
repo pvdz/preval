@@ -453,15 +453,25 @@ function pcanCompileExpr(locals, calls, expr, fdata, stmt) {
     }
     case 'TemplateLiteral': {
       // Templates are fine because all references should be primitives
-      return expr.expressions.every(enode => pcanCompileExpr(locals, calls, enode, fdata, stmt));
+      // Let's let them normalize to simple expressions though, and in particular no nested templates
+      return expr.expressions.every(enode => {
+        if (enode.type === 'TemplateLiteral') return false; // Normalize it first
+        if (AST.isPrimitive(enode)) return true;
+        ASSERT(enode.type === 'Identifier', 'I think all expressions are idents or prims (or nested templates) in normalized code...?', enode);
+        return pcanCompileExpr(locals, calls, enode, fdata, stmt)
+      });
     }
     case 'NewExpression': {
       // We can probably support some cases of this in the future. Especially for built-ins, but even userland.
       return false;
     }
+    case 'ClassExpression': {
+      // Too complex right now
+      return false;
+    }
   }
 
-  ASSERT(false, 'missing expr', expr, stmt);
+  ASSERT(false, 'missing expr type', expr, stmt);
 }
 
 /**
@@ -666,7 +676,7 @@ function compileExpression(exprNode, regs, fdata, stmt, withAssign=false) {
             '', AST.getPrimitiveValue(exprNode.expressions[i])
           )
         } else {
-          ASSERT(exprNode.expressions[i].type === 'Identifier', 'I think all expressions are idents or prims in normalized code...?', exprNode.expressions[i].length);
+          ASSERT(exprNode.expressions[i].type === 'Identifier', 'I think all expressions are idents or prims in normalized code...?', exprNode.expressions[i]);
           arr.push(
             '', exprNode.quasis[i].value.cooked,
             ...compileExpression(exprNode.expressions[i], regs, fdata, stmt)

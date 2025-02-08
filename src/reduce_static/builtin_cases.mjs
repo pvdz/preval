@@ -18,6 +18,7 @@ function _builtinCases(fdata) {
 
   changes += processArray(fdata);
   changes += process_encodeURIComponent(fdata);
+  changes += process_decodeURIComponent(fdata);
 
   if (changes) {
     log('Built-ins transformed:', changes, '. Restarting from phase1 to fix up read/write registry.');
@@ -46,6 +47,39 @@ function process_encodeURIComponent(fdata) {
 
       rule('A call to encodeURIComponent with a primitive that doesnt crash can be inlined');
       example('encodeURIComponent(true)', '"true"');
+      before(read.blockBody[read.blockIndex]);
+
+      if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(value);
+      else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(value);
+
+      after(read.blockBody[read.blockIndex]);
+      changes += 1;
+      return;
+    }
+  });
+
+  return changes;
+}
+
+function process_decodeURIComponent(fdata) {
+  const meta = fdata.globallyUniqueNamingRegistry.get('decodeURIComponent');
+  ASSERT(meta);
+  ASSERT(meta.isBuiltin);
+
+  let changes = 0;
+  meta.reads.forEach(read => {
+    if (read.parentNode.type !== 'CallExpression' || read.parentProp !== 'callee') return;
+
+    if (AST.isPrimitive(read.parentNode.arguments[0])) {
+      let value;
+      try {
+        value = decodeURIComponent(AST.getPrimitiveValue(read.parentNode.arguments[0]));
+      } catch {
+        return;
+      }
+
+      rule('A call to decodeURIComponent with a primitive that doesnt crash can be inlined');
+      example('decodeURIComponent("hello%20world")', 'hello world');
       before(read.blockBody[read.blockIndex]);
 
       if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(value);

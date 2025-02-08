@@ -259,7 +259,8 @@ function _typeTrackedTricks(fdata) {
                 case 'function':
                 case 'class':
                 case 'regex': {
-                  throw ASSERT(false, 'in case case testMeta.typing.mustBeTruthy must be true so this case should not be reachable...?');
+                  // Seen a problem trigger this assert where the arg was not always an array. Investigate when this assert raises its head.
+                  throw ASSERT(false, 'Potential issue! This is `if ([])` or smth? in this case of testMeta.typing.mustBeTruthy of an if-test there is no falsy counter part so the `if` should be removed entirely, this case should not be reachable, maybe a bug...?', node, testMeta.typing);
                 }
                 default:
                   ASSERT(false, 'support me', ttm);

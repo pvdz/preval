@@ -3859,15 +3859,15 @@ export function phaseNormalize(fdata, fname, prng, options) {
           useRiskyRules() &&
           node.object.type === 'Identifier' &&
           !node.computed &&
-          PREVAL_PROTO_SYMBOLS_TO_LOOKUP[node.object.name] &&
-          PREVAL_BUILTIN_SYMBOLS.includes(node.object.name) && // This check is __proto__ (etc) protection
-          PREVAL_PROTO_SYMBOLS_TO_LOOKUP[node.object.name][node.property.name]
+          PREVAL_PROTO_SYMBOLS_TO_LOOKUP.has(node.object.name) &&
+          PREVAL_PROTO_SYMBOLS_TO_LOOKUP.get(node.object.name)[node.property.name]
         ) {
           rule('Prototype property read of known builtin can be replaced with our own symbol');
           example('$($StringPrototype.toString)', '$($string_toString)');
           before(body[i]);
 
-          const prevalSymbol = PREVAL_PROTO_SYMBOLS_TO_LOOKUP[node.object.name][node.property.name];
+          const prevalSymbol = PREVAL_PROTO_SYMBOLS_TO_LOOKUP.get(node.object.name)[node.property.name];
+          ASSERT(typeof prevalSymbol === 'string' || typeof prevalSymbol === 'number', 'should not accidentally MISS and get a function or whatever', node.object.name, node.property.name);
 
           const finalNode = AST.identifier(prevalSymbol);
           const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);

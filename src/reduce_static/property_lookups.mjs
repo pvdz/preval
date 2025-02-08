@@ -297,7 +297,7 @@ function _propertyLookups(fdata) {
           if (useRiskyRules() && PREVAL_BUILTIN_SYMBOLS.includes(node.object.name)) {
             vlog(`    - ${node.object.name} is a known global`);
 
-            const knownAlias = PREVAL_PROTO_SYMBOLS_TO_LOOKUP[node.object.name]?.[node.property.name];
+            const knownAlias = PREVAL_PROTO_SYMBOLS_TO_LOOKUP.get(node.object.name)?.[node.property.name];
 
             if (parentNode.type === 'ExpressionStatement') {
               vlog(`    - this member expression is a statement so if we know it has no side effects it can be dropped`);

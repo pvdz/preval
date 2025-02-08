@@ -566,15 +566,18 @@ function runTestCase(
       $array_toString: Array.prototype.toString,
       $array_unshift: Array.prototype.unshift,
       $array_values: Array.prototype.values,
+      $array_valueOf: Array.prototype.valueOf,
 
       [BUILTIN_BOOLEAN_PROTOTYPE]: Boolean.prototype,
       $Boolean_toString: Boolean.prototype.toString,
+      $Boolean_valueOf: Boolean.prototype.valueOf,
 
       [BUILTIN_FUNCTION_PROTOTYPE]: Function.prototype,
       $function_apply: Function.prototype.apply,
       $function_call: Function.prototype.call,
       $function_bind: Function.prototype.bind,
       $function_toString: Function.prototype.toString,
+      $function_valueOf: Function.prototype.valueOf,
 
       $Number_EPSILON: Number.EPSILON,
       $Number_MAX_VALUE: Number.MAX_VALUE,
@@ -631,6 +634,8 @@ function runTestCase(
       $regexp_search: RegExp.prototype.search,
       $regexp_split: RegExp.prototype.split,
       $regexp_test: RegExp.prototype.test,
+      $regexp_toString: RegExp.prototype.toString,
+      $regexp_valueOf: RegExp.prototype.valueOf,
 
       $String_fromCharCode: String.fromCharCode,
       $String_fromCodePoint: String.fromCodePoint,
@@ -651,6 +656,7 @@ function runTestCase(
       $string_toString: String.prototype.toString,
       $string_toLowerCase: String.prototype.toLowerCase,
       $string_toUpperCase: String.prototype.toUpperCase,
+      $string_valueOf: String.prototype.valueOf,
 
       $Date_now: Date.now,
       $Date_parse: Date.parse,
@@ -736,6 +742,10 @@ function runTestCase(
 
       $JSON_parse: JSON.parse,
       $JSON_stringify: JSON.stringify,
+
+      $Buffer_from: (typeof Buffer !== 'undefined' ? Buffer : {})?.from, // eh.
+      $buffer_toString: (typeof Buffer !== 'undefined' ? Buffer : {})?.prototype.toString, // eh.
+      $buffer_valueOf: (typeof Buffer !== 'undefined' ? Buffer : {})?.prototype.valueOf, // eh.
 
       [SYMBOL_FORIN]: $forIn,
       [SYMBOL_FOROF]: $forOf,

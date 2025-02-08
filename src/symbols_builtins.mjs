@@ -18,6 +18,7 @@ export const BUILTIN_BOOLEAN_STATIC_LOOKUP = {
 };
 export const BUILTIN_BOOLEAN_METHOD_LOOKUP = {
   toString: '$Boolean_toString',
+  valueOf: '$Boolean_valueOf',
 };
 export const BUILTIN_BOOLEAN_METHOD_LOOKUP_REV = Object.keys(BUILTIN_BOOLEAN_METHOD_LOOKUP).reduce((obj, key) => { obj[BUILTIN_BOOLEAN_METHOD_LOOKUP[key]] = key; return obj; }, {})
 export const BUILTIN_BOOLEAN_METHODS_SUPPORTED = Object.keys(BUILTIN_BOOLEAN_METHOD_LOOKUP);
@@ -91,6 +92,7 @@ export const BUILTIN_STRING_METHOD_LOOKUP = {
   toString: '$string_toString',
   toLowerCase: '$string_toLowerCase',
   toUpperCase: '$string_toUpperCase',
+  valueOf: '$string_valueOf',
 };
 export const BUILTIN_STRING_METHOD_LOOKUP_REV = Object.keys(BUILTIN_STRING_METHOD_LOOKUP).reduce((obj, key) => { obj[BUILTIN_STRING_METHOD_LOOKUP[key]] = key; return obj; }, {})
 export const BUILTIN_STRING_METHODS_SUPPORTED = Object.keys(BUILTIN_STRING_METHOD_LOOKUP);
@@ -186,6 +188,7 @@ export const BUILTIN_ARRAY_METHOD_LOOKUP = {
   toString: '$array_toString',
   unshift: '$array_unshift',
   values: '$array_values',
+  valueOf: '$array_valueOf',
 };
 export const BUILTIN_ARRAY_METHOD_LOOKUP_REV = Object.keys(BUILTIN_ARRAY_METHOD_LOOKUP).reduce((obj, key) => { obj[BUILTIN_ARRAY_METHOD_LOOKUP[key]] = key; return obj; }, {})
 export const BUILTIN_ARRAY_METHODS_SUPPORTED = Object.keys(BUILTIN_ARRAY_METHOD_LOOKUP);
@@ -262,6 +265,7 @@ export const BUILTIN_FUNCTION_METHOD_LOOKUP = {
   call: '$function_call',
   bind: '$function_bind',
   toString: '$function_toString',
+  valueOf: '$function_valueOf',
 };
 export const BUILTIN_FUNCTION_METHOD_LOOKUP_REV = Object.keys(BUILTIN_FUNCTION_METHOD_LOOKUP).reduce((obj, key) => { obj[BUILTIN_FUNCTION_METHOD_LOOKUP[key]] = key; return obj; }, {})
 export const BUILTIN_FUNCTION_METHODS_SUPPORTED = Object.keys(BUILTIN_FUNCTION_METHOD_LOOKUP);
@@ -354,6 +358,8 @@ export const BUILTIN_REGEXP_METHOD_LOOKUP = {
   search: '$regexp_search',
   split: '$regexp_split',
   test: '$regexp_test',
+  toString: '$regexp_toString',
+  valueOf: '$regexp_valueOf',
   // lastIndex : No, this is a instance bound value, not a static global built-in
 };
 export const BUILTIN_REGEXP_METHOD_LOOKUP_REV = Object.keys(BUILTIN_REGEXP_METHOD_LOOKUP).reduce((obj, key) => { obj[BUILTIN_REGEXP_METHOD_LOOKUP[key]] = key; return obj; }, {})
@@ -374,7 +380,8 @@ export const BUILTIN_BUFFER_STATIC_LOOKUP = {
   // etc
 };
 export const BUILTIN_BUFFER_METHOD_LOOKUP = {
-  toString: '$buffer_toString'
+  toString: '$buffer_toString',
+  valueOf: '$buffer_valueOf',
   // etc
 };
 export const BUILTIN_BUFFER_METHOD_LOOKUP_REV = Object.keys(BUILTIN_BUFFER_METHOD_LOOKUP).reduce((obj, key) => { obj[BUILTIN_BUFFER_METHOD_LOOKUP[key]] = key; return obj; }, {})
@@ -418,19 +425,19 @@ export const PREVAL_BUILTIN_SYMBOLS = [
   BUILTIN_BUFFER_STATIC_SYMBOLS,
   BUILTIN_BUFFER_METHODS_SYMBOLS,
 ].flat(Infinity);
-export const PREVAL_PROTO_SYMBOLS_TO_LOOKUP = {
-  [BUILTIN_BOOLEAN_PROTOTYPE]: BUILTIN_BOOLEAN_METHOD_LOOKUP,
-  [BUILTIN_NUMBER_PROTOTYPE]: BUILTIN_NUMBER_METHOD_LOOKUP,
-  [BUILTIN_STRING_PROTOTYPE]: BUILTIN_STRING_METHOD_LOOKUP,
-  [BUILTIN_OBJECT_PROTOTYPE]: BUILTIN_OBJECT_METHOD_LOOKUP,
-  [BUILTIN_FUNCTION_PROTOTYPE]: BUILTIN_FUNCTION_METHOD_LOOKUP,
-  [BUILTIN_REGEXP_PROTOTYPE]: BUILTIN_REGEXP_METHOD_LOOKUP,
-  [BUILTIN_ARRAY_PROTOTYPE]: BUILTIN_ARRAY_METHOD_LOOKUP,
-  [BUILTIN_DATE_PROTOTYPE]: BUILTIN_DATE_METHOD_LOOKUP,
-  //[BUILTIN_MAP_PROTOTYPE]: BUILTIN_MAP_METHOD_LOOKUP,
-  //[BUILTIN_SET_PROTOTYPE]: BUILTIN_SET_METHOD_LOOKUP,
-  [BUILTIN_BUFFER_PROTOTYPE]: BUILTIN_BUFFER_METHOD_LOOKUP,
-}
+export const PREVAL_PROTO_SYMBOLS_TO_LOOKUP = new Map([
+  [BUILTIN_BOOLEAN_PROTOTYPE,  BUILTIN_BOOLEAN_METHOD_LOOKUP],
+  [BUILTIN_NUMBER_PROTOTYPE, BUILTIN_NUMBER_METHOD_LOOKUP],
+  [BUILTIN_STRING_PROTOTYPE, BUILTIN_STRING_METHOD_LOOKUP],
+  [BUILTIN_OBJECT_PROTOTYPE, BUILTIN_OBJECT_METHOD_LOOKUP],
+  [BUILTIN_FUNCTION_PROTOTYPE, BUILTIN_FUNCTION_METHOD_LOOKUP],
+  [BUILTIN_REGEXP_PROTOTYPE, BUILTIN_REGEXP_METHOD_LOOKUP],
+  [BUILTIN_ARRAY_PROTOTYPE, BUILTIN_ARRAY_METHOD_LOOKUP],
+  [BUILTIN_DATE_PROTOTYPE, BUILTIN_DATE_METHOD_LOOKUP],
+  //[BUILTIN_MAP_PROTOTYPE, BUILTIN_MAP_METHOD_LOOKUP],
+  //[BUILTIN_SET_PROTOTYPE, BUILTIN_SET_METHOD_LOOKUP],
+  [BUILTIN_BUFFER_PROTOTYPE, BUILTIN_BUFFER_METHOD_LOOKUP],
+]);
 // Used for serialization; `''+[].flat()` -> `'function flat() { [native code] }'` -> obj[$string_charAt] -> 'charAt'
 export const BUILTIN_NAMESPACED_TO_FUNC_NAME = {
   ...BUILTIN_BOOLEAN_METHOD_LOOKUP_REV,

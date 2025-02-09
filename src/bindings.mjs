@@ -15,7 +15,7 @@ import {
   BUILTIN_REGEXP_PROTOTYPE,
   BUILTIN_STRING_PROTOTYPE,
 } from './symbols_builtins.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, source, fmat, tmat } from './utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, source, fmat, tmat, todo } from './utils.mjs';
 import globals, {MAX_UNROLL_TRUE_COUNT} from './globals.mjs';
 import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
 import * as AST from './ast.mjs';
@@ -416,7 +416,7 @@ export function registerGlobalIdent(
     //constValueRef, // {node:init,containerNode,containerParent,containerIndex}. Set from phase1 in the var delc case, regardless of const/let. containerParent[containerIndex] === containerNode
     isCatchVar: false, // Set by phase1 TryStatement:after on catch vars
     isBuiltin, // Make a distinction between known builtins and unknown builtins.
-    bfuncNode: undefined, // Function scope where this binding was bound. Undefined for builtins/implicits. Should be set for anything else (which is only var decls after normalization).
+    bfuncNode: undefined, // Function scope where this binding was bound. Undefined for builtins/implicits/Program. Should be set for anything else (which is only var decls after normalization).
     rwOrder: undefined, // Array<read|write>. Sorted in DFS order ASC, once at the start of phase2
     singleScoped: undefined, // bool. Is there any reference inside a different scope from another ref? Set at the start of phase2.
     singleInner: undefined, // bool. Are all references of this binding in the same scope/catch?
@@ -523,7 +523,7 @@ export function createReadRef(obj) {
     pfuncNode, // Function/Program that is the nearest to this ref
     node,
     rwCounter,
-    scope,
+    scope, // pid of func scope node (or program)
     blockChain, // Always has trailing comma. You can do scope checks with something like `write.blockChain.startsWith(decl.blockChain + ',')` -> "can write reach decl?"
     blockIds, // Array of blockChain
     blockBodies, // arrays of statements that is block.body or program.body. 1:1 with blockIndexes
@@ -572,7 +572,7 @@ export function createReadRef(obj) {
     pfuncNode, // Function/Program that is the nearest to this ref
     node,
     rwCounter,
-    scope,
+    scope, // pid of func scope or program
     blockChain,
     blockIds,
     blockBodies,
@@ -695,6 +695,7 @@ export function findUniqueNameForBindingIdent(node, isFuncDeclId = false, fdata,
       );
     }
     if (lexScopeStack[index].$p.nameMapping.has(node.name)) {
+      vlog('  - found in', index)
       break;
     }
   }
@@ -993,6 +994,7 @@ export function getCleanTypingObject() {
   return {
     // string. If anything, this should then be the primitive type that this binding must be.
     // TODO: what if there are multiple options? Or even like bool/undefined/null? "falsy/truthy"
+    // TODO: add `date` as a first class type
     mustBeType: undefined, // undefined|false|enum. 'null', 'array' (lit), 'object' (plain), 'function', 'class', 'set', 'map', 'regex', <typeof primitive>. Undefined means undetermined. When false, the type can not be determined safely.
     mustBeFalsy: undefined, // undefined|bool: only true if value is known to be one of: false, null, undefined, 0, -0, '', NaN. When false, known not to (always) be falsy.
     mustBeTruthy: undefined, // undefined|bool: only true if known to be a value that is not one of the falsy ones :) When false, known not to (always) be truthy.
@@ -1970,15 +1972,6 @@ export function mergeTyping(from, into) {
     ASSERT(Object.keys(unknown).length === 0, 'add new .typing properties here as well (into)', unknown);
   }
 
-  if (from.mustBeType === undefined || into.mustBeType === false) {
-    // Noop. this value was not discovered or already determined to be indeterminable.
-  } else if (into.mustBeType === undefined) {
-    // Copy the value verbatim
-    into.mustBeType = from.mustBeType;
-  } else if (into.mustBeType !== from.mustBeType) {
-    // The typing differed so we don't have a single type.
-    into.mustBeType = false;
-  }
   ASSERT(
     [
       undefined,
@@ -2000,6 +1993,16 @@ export function mergeTyping(from, into) {
     into.mustBeType,
   );
 
+  if (from.mustBeType === undefined || into.mustBeType === false) {
+    // Noop. this value was not discovered or already determined to be indeterminable.
+  } else if (into.mustBeType === undefined) {
+    // Copy the value verbatim
+    into.mustBeType = from.mustBeType;
+  } else if (into.mustBeType !== from.mustBeType) {
+    // The typing differed so we don't have a single type.
+    into.mustBeType = false;
+  }
+
   if (from.mustBeFalsy === undefined || into.mustBeFalsy === false) {
     // Noop. Either the input was undetermined or the result was already known not to be certainly falsy.
   } else {
@@ -2015,6 +2018,13 @@ export function mergeTyping(from, into) {
     into.mustBeTruthy = from.mustBeTruthy;
   }
   ASSERT([undefined, true, false].includes(into.mustBeTruthy), 'typing.mustBeTruthy is an enum of undefined or bool', into.mustBeTruthy);
+
+  if (from.mustBePrimitive === undefined || into.mustBePrimitive === false) {
+    // Noop. Either the input was undetermined or the result was already known not to be certainly a primitive.
+  } else {
+    into.mustBePrimitive = from.mustBePrimitive;
+  }
+  ASSERT([undefined, true, false].includes(into.mustBeFalsy), 'typing.mustBeFalsy is an enum of undefined or bool', into.mustBeFalsy);
 
   if (from.mustBeValue === undefined || into.mustBeValue === null) {
     // Noop. Either the input was undetermined or the result was already known not to be certainly some value.
@@ -2239,15 +2249,21 @@ export function resolveNodeAgainstParams(node, callNode, funcNode) {
 //     - The only way for the binding to mutate is by an explicit write to that binding.
 //     - Observable side effects are irrelevant since those could only mutate the binding through a closure
 //   - The binding is used in a closure
-//     - A function with closure access escapes (not passed around directly, and transitively no function calling this function escapes)
+//     - A function with closure access escapes (passed around directly, or transitively a function calling this function escapes)
 //       - Any observable side effect might mutate it
-//     - Functions that have access under closure do not escape, recursively (any function calling this function does not escape etiher, etc)
-//       - Any observable side effect may end up mutating
+//     - Functions that have access under closure do not escape, recursively (any function calling this function does not escape either, etc)
+//       - Any observable side effect may still end up mutating it
 //     - The mutation can happen through a direct mutation or an observable side effect
 //       - Only observable side effects by local bindings might mutate the binding
 //       - The idea is that only local functions can mutate a closure. If the function did not escape then a binding that's not
 //         local can't possibly reference a function that does through call or getters/setters so we should be able to ignore it.
 export function mayBindingMutateBetweenRefs(meta, ref1, ref2, includeProperties = false) {
+  // Okay this stuff predates ref tracking and we should change it to use that instead.
+  // The catch is that it would skip on back-to-back refs that are also closures since in some cases those are still safe to assert.
+  // Cross that bridge when we get there?
+
+  todo('switch me to ref tracking');
+
   ASSERT(meta, 'should receive a meta...');
   vgroup(
     'mayBindingMutateBetweenRefs(checking if  `' + (typeof meta === 'string' ? meta : meta.uniqueName) + '` , was mutated between',
@@ -2279,8 +2295,10 @@ export function mayBindingMutateBetweenRefs(meta, ref1, ref2, includeProperties 
     return false;
   }
   ASSERT(meta.isImplicitGlobal || meta.bfuncNode, 'either its implicitly global or an explicitly defined binding now', meta);
-  const bindingScope = meta.isImplicitGlobal ? 1 : +meta.bfuncNode.$p.scope;
+  const bindingScope = meta.isImplicitGlobal ? 1 : +meta.bfuncNode.$p.pid;
+  ASSERT(bindingScope >= 0, 'should have a scope', meta.isImplicitGlobal, meta.bfuncNode);
   const onlyLocalUse = meta.rwOrder.every((ref) => +ref.scope === bindingScope);
+  vlog('Scopes: bindingScope:', bindingScope, ', ref scopes:', meta.rwOrder.map((ref) => ref.scope), '->', onlyLocalUse);
   const metaName = meta.uniqueName;
 
   const r = _mayBindingMutateBetweenRefs(metaName, ref1, ref2, includeProperties, !includeProperties && !!onlyLocalUse);
@@ -2295,22 +2313,21 @@ function _mayBindingMutateBetweenRefs(metaName, prev, curr, includeProperties, s
   // If the curr ref is not nested in the current statement, then the statement must be visited exhaustively (if/while/etc).
 
   ASSERT(prev?.action === 'read' || prev?.action === 'write', 'prev should be a ref', prev);
-  ASSERT(curr?.action === 'read' || curr?.action === 'write', 'prev should be a ref', curr);
-  ASSERT(curr.blockChain.startsWith(prev.blockChain), 'the previous ref should be reachable from the current ref');
+  ASSERT(curr?.action === 'read' || curr?.action === 'write', 'curr should be a ref', curr);
+  ASSERT(!singleScope || curr.blockChain.startsWith(prev.blockChain), 'in a single scope, the previous ref should be reachable from the current ref', metaName, prev.node.$p?.pid, prev.action, prev.blockChain, curr.node.$p?.pid, curr.action, curr.blockChain);
 
   // Start from the block and index of the prev ref.
   // If the prev is not an assignment, skip an index forward
   // As long as the statement containing the curr ref is not found,
   //   If the current statement is an assignment to meta, return true
-  //   If the current statement is a for-x with meta as the lhs, return true
-  //   Are there any other ways of mutating the binding? Catch can't go here.
+  //   Are there any other ways of mutating the binding? Catch can't go here. for-x is compiled out.
   // If the curr ref is a read inside a loop
   //   Scan forward in the loop
   //   If there is a forward write ref that can reach this read, return true
   //   (If there is no forward read then for any iteration of the loop the read should return the same value)
   // Must return false
 
-  let blockPointer = prev.blockBodies.length - 1;
+  let blockPointer = prev.blockBodies.length - 1; // index onto the blockBodies/blockIndexes arrays
   let blockBodies = curr.blockBodies;
   let blockIndexes = curr.blockIndexes;
 
@@ -2333,18 +2350,21 @@ function _mayBindingMutateBetweenRefs(metaName, prev, curr, includeProperties, s
     blockIndexes,
     ', blockPointer:',
     blockPointer,
-    ', lens:',
+    ', block lens:',
     blockBodies.map((a) => a.length),
   );
 
+  // Move forward from block[index] until you find the reference
   vlog('start index:', currentIndex, ', target index:', currentMax, ', total statements:', currentBody.length);
   while (true) {
     vgroup('- currentIndex:', currentIndex, ', currentMax:', currentMax, ', block len:', currentBody.length);
     if (currentBody === curr.blockBody && currentIndex === curr.blockIndex) {
       vlog('This is the targeted ref statement. All pass.');
-      vgroupEnd();
+      vgroupEnd(); // inner loop
       break;
-    } else if (currentIndex <= currentMax) {
+    }
+
+    if (currentIndex < currentMax) {
       // The target ref is not a descendant of this statement. Visit exhaustively before moving on to the next statement.
       const next = currentBody[currentIndex];
       vlog('Next statement:', next.type);
@@ -2354,32 +2374,31 @@ function _mayBindingMutateBetweenRefs(metaName, prev, curr, includeProperties, s
       if (nodeMightMutateNameUntrapped([next], metaName, includeProperties, singleScope).state === MUTATES) {
         vlog('Has observable side effects. bailing');
         source(next);
-        vgroupEnd();
-        vgroupEnd();
+        vgroupEnd(); // inner loop
+        vgroupEnd(); // outer loop
         return true;
       }
 
       vlog('Has no observable side effects. Okay. 3');
       ++currentIndex;
     } else {
-      vlog('End of current block.');
+      vlog('Checked all statements of current block, moving to the parent block.');
       ++blockPointer;
-      if (blockPointer >= blockIndexes) {
-        vlog('This may be a bug?');
-        ASSERT(false, 'not sure whether the pointer should ever exceed the block');
-        // This should be the end
-        vgroupEnd();
+      if (blockPointer >= blockIndexes.length) {
+        // This means we did not find the reference in this block or its parents.
+        // At this point not too worried about this appraoch as I'm replacing it so let's ignore it.
+        vgroupEnd(); // inner loop
         break;
       }
       vlog('Jumping into next block');
       currentBody = blockBodies[blockPointer];
-      currentMax = blockIndexes[blockPointer];
-      currentIndex = 0;
+      currentMax = currentBody.length;
+      currentIndex = 0; // I guess this would be blockIndexes[blockPointer] to move forward...
       vlog('This block has', currentBody.length, 'statements');
     }
-    vgroupEnd();
+    vgroupEnd(); // inner loop
   }
-  vgroupEnd();
+  vgroupEnd(); // outer loop
 
   return false;
 }

@@ -21,6 +21,8 @@ export const ORANGE = '\x1b[38;5;214m';
 export const GOOD = '\x1b[40m 🙂 \x1b[0m';
 export const BAD = '\x1b[41m 👎 \x1b[0m';
 
+const PRINT_DENORMALIZED = false;
+
 export function ASSERT(a, desc = '', ...rest) {
   if (!a) {
     console.log('ASSERT failed: ' + desc);
@@ -234,8 +236,8 @@ export function toEvaluationResult(evalled, implicitGlobals, skipFinal) {
   const normalizedEvalResult = inputOutput === normalizedOutput ? ' Same' : ' BAD!?\n' + normalizedOutput;
   const finalEvalResult = skipFinal
     ? ''
-    : 'Post settled calls:' + (inputOutput === settledOutput ? ' Same\n\n' : ' BAD!!\n' + settledOutput + '\n\n');
-  const denormEvalResult = skipFinal
+    : (PRINT_DENORMALIZED ? 'Post settled' : 'Final output') + ' calls:' + (inputOutput === settledOutput ? ' Same\n' + (PRINT_DENORMALIZED ? '\n' : '') : ' BAD!!\n' + settledOutput + '\n' + (PRINT_DENORMALIZED ? '\n' : ''));
+  const denormEvalResult = (skipFinal || !PRINT_DENORMALIZED)
     ? ''
     : 'Denormalized calls:' + (inputOutput === denormOutput ? ' Same\n' : ' BAD!!\n' + denormOutput + '\n');
   const hasError = !(inputOutput === preOutput && inputOutput === normalizedOutput && (skipFinal || inputOutput === settledOutput) && (skipFinal || inputOutput === denormOutput));
@@ -382,7 +384,7 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
         })
         .join('\n\n')
       )) +
-      (wasPcodeTest || wasRefTest ? '' : (
+      (!PRINT_DENORMALIZED || wasPcodeTest || wasRefTest ? '' : (
         '\n\n## Denormalized\n\n(This ought to be the final result)\n\n\n' + // two empty lines. this way diff always captures this as the hunk header (with the default U3)
         Object.keys(output.denormed)
         .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))

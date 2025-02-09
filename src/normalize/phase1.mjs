@@ -1010,6 +1010,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           'complex templates should have the same limitations as other complex expression nodes',
           parentNode,
         );
+        ASSERT(node.expressions.length+1 === node.quasis.length, 'one more quasi than ident', node);
         break;
       }
 

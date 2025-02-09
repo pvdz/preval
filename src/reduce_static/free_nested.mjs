@@ -223,7 +223,9 @@ function _freeNested(fdata, $prng, usePrng) {
                 break;
               }
               finalNode = AST.cloneSimpleOrTemplate(init);
-              finalNode.expressions = [valueNodeToArgNode(init.expressions[0], funcNode, callNode)];
+              finalNode.expressions = init.expressions.map(e => valueNodeToArgNode(e, funcNode, callNode));
+
+              ASSERT(finalNode.quasis.length === finalNode.expressions.length+1, 'quasi:expr ratio mismatch', finalNode.quasis, finalNode.expressions);
               break;
             }
             default: {
@@ -288,7 +290,7 @@ function _freeNested(fdata, $prng, usePrng) {
           const calledFreeMeta = fdata.globallyUniqueNamingRegistry.get(calledFreeFuncName);
           const calledFreeFuncNode = calledFreeMeta.constValueRef.node;
           ASSERT(calledFreeMeta);
-          ASSERT(calledFreeFuncNode?.type === 'FunctionExpression', 'expecting the first argument to $frfr to be a var decl whose init is a function', frfrCallArgs[0], ' init:', calledFreeMeta.constValueRef.node, stmt.declarations[0]);
+          ASSERT(calledFreeFuncNode?.type === 'FunctionExpression', 'expecting the first argument to $frfr to be a var decl whose init is a function', frfrCallArgs[0], ' init:', calledFreeMeta.constValueRef.node, stmt.declarations?.[0]);
           ASSERT(calledFreeFuncNode.id?.name === '$free', '$frfr should be calling $free functions');
 
           // The default value for param.$p.paramVarDeclRef is undefined. At the start of phase1
@@ -375,7 +377,7 @@ function _freeNested(fdata, $prng, usePrng) {
               // Find the parameter index, then get the argument at that index and move it here.
               // We asserted above that the param.$p.paramVarDeclRef is set
               ASSERT(init.index >= 0, 'param is as param do', init);
-              ASSERT(funcNode.params[init.index]?.index === init.index, 'index should refer to proper func param', init.index, funcNode.params[init.index]);
+              ASSERT(calledFreeFuncNode.params[init.index]?.index === init.index, 'index should refer to proper func param', init.index, calledFreeFuncNode.params);
 
               // Updating the init. Note that the frfr first arg is the function, so map the 1-offset.
               bnode.declarations[0].init = frfrCallArgs[init.index + 1];

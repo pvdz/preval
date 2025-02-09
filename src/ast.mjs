@@ -814,12 +814,6 @@ export function templateLiteral(cookedStrings, expressions) {
   } else {
     ASSERT(Array.isArray(cookedStrings) && Array.isArray(expressions), 'input must either be only a string or two arrays');
     ASSERT(
-      cookedStrings.length === expressions.length + 1,
-      'there should be exactly one more string than there are values',
-      cookedStrings.length,
-      expressions.length,
-    );
-    ASSERT(
       cookedStrings.every((str) => typeof str === 'string'),
       'the strings array should actually contain strings, not nodes',
     );

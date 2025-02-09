@@ -576,7 +576,7 @@ export function literal(value, yesnull = false) {
   } else {
     ASSERT(typeof value !== 'string', 'string literals should be TemplateLiterals');
     ASSERT(!(value instanceof RegExp), 'regex literal should call AST.regex() explicitly');
-    ASSERT(false, 'TODO', value);
+    ASSERT(false, 'TODO: unexpected literal kind', value);
   }
 }
 

@@ -2239,7 +2239,7 @@ export function resolveNodeAgainstParams(node, callNode, funcNode) {
 
   return [AST.cloneSimple(node), false, -1, false];
 }
-
+let once = false;
 // We often only care about one thing: might the binding possibly be mutated between two refs?
 // These are the situations;
 // - The binding is constant:
@@ -2262,7 +2262,7 @@ export function mayBindingMutateBetweenRefs(meta, ref1, ref2, includeProperties 
   // The catch is that it would skip on back-to-back refs that are also closures since in some cases those are still safe to assert.
   // Cross that bridge when we get there?
 
-  todo('switch me to ref tracking');
+  if (!once) { todo('switch me to ref tracking'); once = true }
 
   ASSERT(meta, 'should receive a meta...');
   vgroup(

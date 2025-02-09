@@ -94,7 +94,13 @@ export function denorm(fdata, resolve, req, options) {
             // Keep but skip (`const alias = this`).
           } else if (init.type === 'Identifier' && init.name === 'arguments') {
             // Keep but skip (`const alias = arguments`).
-          } else if (init.type === 'MemberExpression' && !init.computed && init.object.type === 'Identifier' && init.object.name === 'arguments' && init.object.property.name === 'length') {
+          } else if (
+            init.type === 'MemberExpression' &&
+            !init.computed &&
+            init.object.type === 'Identifier' &&
+            init.object.name === 'arguments' &&
+            init.property.name === 'length'
+          ) {
             // Keep but skip (`const alias = arguments.length`)
           } else {
             // We must have found the end of the header, or what's left of it.

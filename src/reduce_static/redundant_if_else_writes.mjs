@@ -39,7 +39,7 @@ function _redundantWrites(fdata) {
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
     if (meta.isConstant) return; // Can't have redundant writes if you can't have more than one
-    if (!meta.singleScoped) return; // TODO: we can go the hard way on this one?
+    if (!meta.singleScoped) return closureCases(meta, name, fdata);
     if (meta.writes.length === 1) return; // This rule doesn't apply at all
 
     vgroup('-- name: `' + name + '`, writes:', meta.writes.length, ', reads:', meta.reads.length);
@@ -184,6 +184,80 @@ function _redundantWrites(fdata) {
 
     vgroupEnd();
   });
+
+  function closureCases(meta, name, fdata) {
+    meta.writes.forEach(write => {
+      if (
+        write.blockIndex > 0 &&
+        write.blockBody[write.blockIndex].type === 'ExpressionStatement' && // Make sure it's an assign, not a var decl or whatever
+        write.blockBody[write.blockIndex-1].type === 'IfStatement'
+      ) {
+        const ifstmt = write.blockBody[write.blockIndex - 1];
+        const lastA = ifstmt.consequent.body[ifstmt.consequent.body.length - 1];
+        const lastB = ifstmt.alternate.body[ifstmt.alternate.body.length - 1];
+        if (
+          lastA?.type === 'ExpressionStatement' &&
+          lastA.expression.type === 'AssignmentExpression' &&
+          lastA.expression.left.type === 'Identifier' &&
+          lastA.expression.left.name === name
+        ) {
+          // Now we still have to make sure we're not inside a try/catch
+          // We already know it's a closure (that's why we're in the slow path) so that would prevent this rule.
+          let pointer = write.blockBodies.length - 1;
+          while (--pointer >= 0) {
+            const i = write.blockIndexes[pointer];
+            ASSERT(write.blockBodies[i]);
+            if (write.blockBodies[i].type === 'TryStatement') break; // bad
+            if (write.blockBodies[i].type === 'FunctionExpression') pointer = 0; // ok!
+          }
+          if (pointer < 0) {
+            // Looks like no parent is a try so we should be good to go here?
+
+            rule('When the last statement of an if assigns to the same var as the first statement after the ifelse, and the ifelse is not trapped, the assign is moot');
+            example('let x = 1; if (y) { x = 2; } x = 3;', 'let x = 1; if (y) { 2; } x = 3;');
+            before(lastA, ifstmt);
+            before(write.blockBody[write.blockIndex]);
+
+            lastA.expression = lastA.expression.right;
+
+            after(lastA, ifstmt);
+            after(write.blockBody[write.blockIndex]);
+            changes += 1;
+          }
+        }
+        if (
+          lastB?.type === 'ExpressionStatement' &&
+          lastB.expression.type === 'AssignmentExpression' &&
+          lastB.expression.left.type === 'Identifier' &&
+          lastB.expression.left.name === name
+        ) {
+          // Now we still have to make sure we're not inside a try/catch
+          // We already know it's a closure (that's why we're in the slow path) so that would prevent this rule.
+          let pointer = write.blockBodies.length - 1;
+          while (--pointer >= 0) {
+            const i = write.blockIndexes[pointer];
+            ASSERT(write.blockBodies[i]);
+            if (write.blockBodies[i].type === 'TryStatement') break; // bad
+            if (write.blockBodies[i].type === 'FunctionExpression') pointer = 0; // ok!
+          }
+          if (pointer < 0) {
+            // Looks like no parent is a `try` so we should be good to go here?
+
+            rule('When the last statement of an else assigns to the same var as the first statement after the ifelse, and the ifelse is not trapped, the assign is moot');
+            example('let x = 1; if (y) {} else { x = 2; } x = 3;', 'let x = 1; if (y) {} else { 2; } x = 3;');
+            before(lastB, ifstmt);
+            before(write.blockBody[write.blockIndex]);
+
+            lastB.expression = lastB.expression.right;
+
+            after(lastB, ifstmt);
+            after(write.blockBody[write.blockIndex]);
+            changes += 1;
+          }
+        }
+      }
+    });
+  }
 
   if (changes) {
 

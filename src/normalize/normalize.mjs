@@ -775,20 +775,20 @@ export function phaseNormalize(fdata, fname, prng, options) {
     return somethingChanged;
   }
 
-  function jumpTable(node, body, i, parent, funcNode, labelStatementParentNode) {
+  function jumpTable(node, body, i, parentBlock, funcNode, labelStatementParentNode) {
     vgroup(i, 'jumpTable', node.type);
     ASSERT(node.type, 'nodes have types oye?', node);
-    const r = _jumpTable(node, body, i, parent, funcNode, labelStatementParentNode);
+    const r = _jumpTable(node, body, i, parentBlock, funcNode, labelStatementParentNode);
     vgroupEnd();
     return r;
   }
 
-  function _jumpTable(node, body, i, parent, funcNode, labelStatementParentNode) {
+  function _jumpTable(node, body, i, parentBlock, funcNode, labelStatementParentNode) {
     switch (node.type) {
       case 'BlockStatement':
-        return transformBlock(node, body, i, parent, true);
+        return transformBlock(node, body, i, parentBlock, true);
       case 'BreakStatement':
-        return transformBreakStatement(node, body, i, parent, labelStatementParentNode);
+        return transformBreakStatement(node, body, i, parentBlock, labelStatementParentNode);
       case 'DebuggerStatement':
         return false;
       case 'EmptyStatement': {
@@ -798,27 +798,27 @@ export function phaseNormalize(fdata, fname, prng, options) {
         return true;
       }
       case 'ExportNamedDeclaration':
-        return transformExportNamedDeclaration(node, body, i, parent);
+        return transformExportNamedDeclaration(node, body, i, parentBlock);
       case 'ExpressionStatement':
         return transformExpression('statement', node.expression, body, i, node);
       case 'IfStatement':
-        return transformIfStatement(node, body, i, parent);
+        return transformIfStatement(node, body, i, parentBlock);
       case 'ImportDeclaration':
-        return transformImportDeclaration(node, body, i, parent);
+        return transformImportDeclaration(node, body, i, parentBlock);
       case 'LabeledStatement':
-        return transformLabeledStatement(node, body, i, parent);
+        return transformLabeledStatement(node, body, i, parentBlock);
       case 'MethodDefinition':
-        return transformMethodDefinition(node, body, i, parent);
+        return transformMethodDefinition(node, body, i, parentBlock);
       case 'ReturnStatement':
-        return transformReturnStatement(node, body, i, parent);
+        return transformReturnStatement(node, body, i, parentBlock);
       case 'ThrowStatement':
-        return transformThrowStatement(node, body, i, parent);
+        return transformThrowStatement(node, body, i, parentBlock);
       case 'TryStatement':
-        return transformTryStatement(node, body, i, parent);
+        return transformTryStatement(node, body, i, parentBlock);
       case 'VariableDeclaration':
-        return transformVariableDeclaration(node, body, i, parent, funcNode);
+        return transformVariableDeclaration(node, body, i, parentBlock, funcNode);
       case 'WhileStatement':
-        return transformWhileStatement(node, body, i, parent);
+        return transformWhileStatement(node, body, i, parentBlock);
 
       case 'Program':
         return ASSERT(false); // This should not be visited since it is the first thing to be called and the node should not occur again.
@@ -943,7 +943,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
     return true;
   }
 
-  function transformBlock(node, body, i, parent, isNested, labelStatementParentNode) {
+  function transformBlock(node, body, i, parentBlock, isNested, labelStatementParentNode) {
     // Note: isNested=false means this is a sub-statement (if () {}), otherwise it's a block inside a block/func/program node
     ASSERT(isNested ? body && i >= 0 : !body && i < 0, 'body and index are only given for nested blocks');
 
@@ -951,12 +951,12 @@ export function phaseNormalize(fdata, fname, prng, options) {
       if (isNested) {
         rule('Empty nested blocks should be eliminated');
         example('{ f(); { } g(); }', '{ f(); g(); }');
-        before(node, parent);
+        before(node, parentBlock);
 
         const newNode = AST.emptyStatement();
         body.splice(i, 1, newNode);
 
-        after(newNode, parent);
+        after(newNode, parentBlock);
         assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       } else {
@@ -966,25 +966,25 @@ export function phaseNormalize(fdata, fname, prng, options) {
     }
 
     ASSERT(!node.$p.hasFuncDecl);
-    if (parent.type === 'BlockStatement' && !node.$p.hasFuncDecl) {
+    if (parentBlock.type === 'BlockStatement' && !node.$p.hasFuncDecl) {
       rule('Nested blocks should be smooshed');
       example('{ a(); { b(); } c(); }', '{ a(); b(); c(); }');
-      before(parent);
+      before(parentBlock);
 
       body.splice(i, 1, ...node.body);
 
-      after(parent);
+      after(parentBlock);
       return true;
     }
 
-    if (parent.type === 'Program') {
+    if (parentBlock.type === 'Program') {
       rule('Top level blocks should be eliminated');
       example('a(); { b(); } c();', 'a(); b(); c();');
-      before(node, parent);
+      before(node, parentBlock);
 
       body.splice(i, 1, ...node.body);
 
-      after(parent);
+      after(parentBlock);
       return true;
     }
 
@@ -996,7 +996,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
       BLUE + 'block;returnBreakThrow?' + RESET,
       node.$p.returnBreakThrow ? 'yes; ' + node.$p.returnBreakThrow : 'no',
     );
-    parent.$p.returnBreakThrow = node.$p.returnBreakThrow;
+    parentBlock.$p.returnBreakThrow = node.$p.returnBreakThrow;
     if (isNested) {
       if (node.$p.returnBreakThrow && body.length > i + 1) {
         if (dce(body, i, 'after block')) {
@@ -1008,9 +1008,9 @@ export function phaseNormalize(fdata, fname, prng, options) {
     return false;
   }
 
-  function transformBreakStatement(node, body, i, parent, labelStatementParentNode) {
-    vlog(BLUE + 'Marking parent (' + parent.type + ') as breaking early' + RESET);
-    parent.$p.returnBreakThrow = 'break';
+  function transformBreakStatement(node, body, i, parentBlock, labelStatementParentNode) {
+    vlog(BLUE + 'Marking parent (' + parentBlock.type + ') as breaking early' + RESET);
+    parentBlock.$p.returnBreakThrow = 'break';
     if (node.label) {
       if (
         labelStatementParentNode?.type === 'LabeledStatement' &&
@@ -1047,7 +1047,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
       // Then verify that this while is the nearest loop for this break
       // In that case we can go ahead with the next rule
 
-      ASSERT(labelStmt && labelStmt.body,'break without label? hrm did we duplicate a break statement again? this messes up label tracking', parent, labelStatementParentNode)
+      ASSERT(labelStmt && labelStmt.body,'break without label? hrm did we duplicate a break statement again? this messes up label tracking', parentBlock, labelStatementParentNode)
 
       if (
         labelStmt.body.body.length &&
@@ -1168,7 +1168,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
     node, // this is not body[i] (!)
     body,
     i,
-    parentNode, // For var/assign, this is the entire node. For statement, this is the ExpressionStatement
+    parentNodeOrWhatever, // For var/assign, this is the entire node. For statement, this is the ExpressionStatement
     wrapLhs = false,
     varOrAssignKind = false, // If parent is var then this is var kind, if parent is assign, this is assign operator. else empty
     varInitAssignKind, // if body[i] is a var decl and this assignment is its init, then this is the kind of the var
@@ -1189,23 +1189,23 @@ export function phaseNormalize(fdata, fname, prng, options) {
     // This means all expressions should normalize to an atomic state by recursively transforming the decl init and expression statement
 
     vlog('transformExpression:', node.type);
-    ASSERT(parentNode, 'parent node?');
+    ASSERT(parentNodeOrWhatever, 'parent node?');
 
     switch (node.type) {
       case 'Identifier': {
         vlog('- name: `' + node.name + '`');
 
         if (node.name === '$free') {
-          ASSERT(parentNode.type === 'FunctionExpression' && parentNode.id === node, '$free is only allowed as function ids');
+          ASSERT(parentNodeOrWhatever.type === 'FunctionExpression' && parentNodeOrWhatever.id === node, '$free is only allowed as function ids');
           return;
         }
 
         ASSERT(
           node.name !== SYMBOL_COERCE ||
-          (parentNode.type === 'CallExpression' &&
-            parentNode.callee === node &&
-            parentNode.arguments.length === 2 &&
-            AST.isStringLiteral(parentNode.arguments[1])),
+          (parentNodeOrWhatever.type === 'CallExpression' &&
+            parentNodeOrWhatever.callee === node &&
+            parentNodeOrWhatever.arguments.length === 2 &&
+            AST.isStringLiteral(parentNodeOrWhatever.arguments[1])),
           'we control $coerce so it should always have a fixed form',
           node.parentNode,
         );
@@ -1229,7 +1229,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
             riskyRule('A statement can not just be an identifier');
             example('x;', ';');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             body[i] = AST.emptyStatement();
 
@@ -1312,7 +1312,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 'A statement that is an ident that is an implicit global can be eliminated if the same ident is evaluated first in the next statement as well',
               );
               example('x; x();', 'x();');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               body[i] = AST.emptyStatement();
 
@@ -1331,7 +1331,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         }
 
         if (
-          parentNode.type !== 'WhileStatement' &&
+          parentNodeOrWhatever.type !== 'WhileStatement' &&
           (node.name === SYMBOL_MAX_LOOP_UNROLL || node.name.startsWith(SYMBOL_LOOP_UNROLL))
         ) {
           rule('Any usage of the unroll constants that is not the while-test should become `true`');
@@ -1355,7 +1355,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           // Drop it
           rule('A statement can not just be a parameter reference');
           example('function f(a) { a; }', 'function f(a) {;}');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           body[i] = AST.emptyStatement();
 
@@ -1378,7 +1378,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           // There is an edge case regarding complex parameters, but that's a parse time error anyways.
           rule('A statement can not just be a literal');
           example('5;', ';');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           body[i] = AST.emptyStatement();
 
@@ -1391,7 +1391,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
       }
 
       case 'FunctionExpression': {
-        return transformFunctionExpression(wrapKind, node, body, i, parentNode);
+        return transformFunctionExpression(wrapKind, node, body, i, parentNodeOrWhatever);
       }
 
       case 'CallExpression': {
@@ -1439,7 +1439,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               // might trigger a getter, and we don't want to trigger a getter twice. We may choose to go with a custom func later.
               rule('Optional computed member call expression should be if-else');
               example('a()[b()]?.(c())', 'tmp = a(), tmp2 = b(), tmp3 = tmp[tmp2], (tmp3 != null ? tmp3.call(tmp, c()) : undefined)');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               const tmpNameObj = createFreshVar('tmpOptCallMemObj', fdata);
               const tmpNameProp = createFreshVar('tmpOptCallMemProp', fdata);
@@ -1466,7 +1466,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             } else {
               rule('Optional member call expression should be if-else');
               example('a().b?.(c())', 'tmp = a(), (tmp != null ? tmp.b(c()) : undefined)');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               const tmpNameObj = createFreshVar('tmpOptCallMemObj', fdata);
               const tmpNameFunc = createFreshVar('tmpOptCallMemFunc', fdata);
@@ -1495,7 +1495,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
           rule('Optional non-prop call expression should be if-else');
           example('a()?.(b())', 'tmp = a(), (tmp != null ? tmp(b()) : undefined)');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const tmpName = createFreshVar('tmpOptCallFunc', fdata);
           const newNodes = [AST.variableDeclaration(tmpName, callee, 'const')];
@@ -1571,7 +1571,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 rule('If certain builtin global funcs received a primitive value or none at all it can be resolved');
                 rule('isNaN("50foo");', ';');
                 rule('isFinite();', ';');
-                before(node, parentNode);
+                before(node, parentNodeOrWhatever);
 
                 // Note: for some funcs there's a difference between calling it with undefined or nothing (String() vs String(undefined))
                 const pv = args.length === 0 ? undefined : AST.getPrimitiveValue(args[0]);
@@ -1650,7 +1650,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 example('String();', ';');
                 example('String(100);', ';');
                 example('String(100, 300n);', ';');
-                before(node, parentNode);
+                before(node, parentNodeOrWhatever);
 
                 const finalNode = AST.primitive(
                   args.length === 0
@@ -1796,7 +1796,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 if (callee.name === 'Boolean') {
                   rule('A statement that is a call to Boolean() with arg can be replaced by the args themself');
                   example('Boolean(a, b, c);', 'a, b, c;');
-                  before(node, parentNode);
+                  before(node, parentNodeOrWhatever);
 
                   body.splice(i, 1, AST.expressionStatement(AST.sequenceExpression(args)));
 
@@ -1813,12 +1813,12 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 // Coerce the first arg to string
                 rule('`parseFloat` with one arg can be reduced');
                 example('parseFloat(a);', '""+a;');
-                before(node, parentNode);
+                before(node, parentNodeOrWhatever);
 
                 // The cases with args.length!=1 and where they can be spread are handled above
                 body.splice(i, 1, AST.expressionStatement(AST.binaryExpression('+', AST.templateLiteral(''), args[0])));
 
-                after(parentNode);
+                after(parentNodeOrWhatever);
                 assertNoDupeNodes(AST.blockStatement(body), 'body');
                 return true;
               }
@@ -1830,7 +1830,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                   // Move all args to individual statements. Coerce the first to number.
                   rule('A statement that is `Number(a)` should be replaced by a call to `$coerce` on "number" with one arg');
                   example('Number(a);', '$coerce(a, "number");');
-                  before(node, parentNode);
+                  before(node, parentNodeOrWhatever);
 
                   body.splice(i, 1, AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [args[0], AST.primitive('number')])));
 
@@ -1848,11 +1848,11 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 if (args.length === 1 && args[0].type !== 'SpreadElement') {
                   rule('A statement call to `String` with an arg should call `$coerce` with it');
                   example('String(a);', '$coerce(a, "string");');
-                  before(node, parentNode);
+                  before(node, parentNodeOrWhatever);
 
                   body.splice(i, 1, AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [args[0], AST.primitive('string')])));
 
-                  after(parentNode);
+                  after(parentNodeOrWhatever);
                   assertNoDupeNodes(AST.blockStatement(body), 'body');
                   return true;
                 }
@@ -1864,7 +1864,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
                   rule('A statement that is parseInt can be eliminated');
                   example('parseInt(a, b, c);', '""+a; +b; c;');
-                  before(node, parentNode);
+                  before(node, parentNodeOrWhatever);
 
                   const newNodes = [];
                   if (args.length > 0) {
@@ -1875,7 +1875,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                   }
                   body.splice(i, 1, ...newNodes);
 
-                  after(parentNode);
+                  after(parentNodeOrWhatever);
                   assertNoDupeNodes(AST.blockStatement(body), 'body');
                   return true;
                 }
@@ -1946,7 +1946,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
                   rule('Calling `isNaN` on a primitive should resolve');
                   example('isNaN("hello")', 'true'); // tests/cases/normalize/builtins/globals_with_primitives/isnan_500.md
-                  before(node, parentNode);
+                  before(node, parentNodeOrWhatever);
 
                   const finalNode = isNaN(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
                   const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -1961,7 +1961,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
                   rule('Calling `isFinite` on a primitive should resolve');
                   example('isFinite("hello")', 'false'); // tests/cases/normalize/builtins/globals_with_primitives/isfinite_500.md
-                  before(node, parentNode);
+                  before(node, parentNodeOrWhatever);
 
                   const finalNode = isFinite(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
                   const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -1976,7 +1976,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
                   rule('Calling `Boolean` on a primitive should resolve');
                   example('Boolean("hello")', 'true');
-                  before(node, parentNode);
+                  before(node, parentNodeOrWhatever);
 
                   const finalNode = Boolean(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
                   const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -2000,7 +2000,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
                       rule('Calling `parseFloat` on a primitive should resolve');
                       example('parseInt("50hello")', '50'); // tests/cases/normalize/builtins/globals_with_primitives/parseint_500.md
-                      before(node, parentNode);
+                      before(node, parentNodeOrWhatever);
 
                       const finalNode = AST.primitive(pvn);
                       const finalParent = wrapExpressionAs(
@@ -2041,7 +2041,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 if (node.arguments.length > 1 || node.arguments[0].type === 'SpreadElement') {
                   rule('A call to `parseFloat` with some args should call `$coerce` with one');
                   example('f(parseFloat(a, b, c));', 'const tmp = a; b; c; f(parseFloat(tmp));');
-                  before(node, parentNode);
+                  before(node, parentNodeOrWhatever);
 
                   const newNodes = [];
 
@@ -2110,7 +2110,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
                 rule('A call to `Number` with some args should call `$coerce` with one');
                 example('f(Number(a, b, c));', 'const tmp = a; b; c; f($coerce(a, "number"));');
-                before(node, parentNode);
+                before(node, parentNodeOrWhatever);
 
                 const newNodes = [];
 
@@ -2202,7 +2202,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
                 rule('A call to `String` with some args should call `$coerce` with one');
                 example('f(String(a, b, c));', 'const tmp = a; b; c; f($coerce(a, "string"));');
-                before(node, parentNode);
+                before(node, parentNodeOrWhatever);
 
                 const newNodes = [];
 
@@ -2279,7 +2279,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             rule('Call on optional chaining property must be if-else');
             example('a()?.b()', 'tmp = a(); tmp == null ? undefined : tmp.b();', () => !callee.computed);
             example('a()?.[b()]()', 'tmp = a(); tmp == null ? undefined : tmp[b()]();', () => callee.computed);
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             const newArgs = [];
             const tmpName = createFreshVar('tmpOptMemberCallObj', fdata);
@@ -2308,7 +2308,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
             rule('The arguments of a computed method call must all be simple');
             example('a()[b()](f())', 'tmp = a(), tmp2 = b(), tmp3 = tmp[tmp2], tmp4 = f(), tmp3.call(tmp2, tmp4)');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             const newArgs = [];
             const tmpNameObj = createFreshVar('tmpCallCompObj', fdata);
@@ -2349,7 +2349,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               // Move all args to individual statements. Drop the call.
               rule('A statement that is calling a built-in function without side effects should be replaced by its args as statements');
               example('Number.isFinite(300);', '300;');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               body.splice(
                 i,
@@ -2360,7 +2360,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 ),
               );
 
-              after(parentNode);
+              after(parentNodeOrWhatever);
               return true;
             }
 
@@ -2370,7 +2370,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               // Move all args to individual statements. Coerce the first to number. Drop the call.
               rule('A statement that is calling a built-in function without side effects should be replaced by its args as statements');
               example('Number.isFinite(300);', '300;');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               const newNodes = args.map((anode, ai) =>
                 // Make sure `Number.isNaN(...x)` properly becomes `[...x]` and let another rule deal with that mess.
@@ -2390,7 +2390,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               );
               body.splice(i, 1, ...newNodes);
 
-              after(parentNode);
+              after(parentNodeOrWhatever);
               return true;
             }
 
@@ -2400,7 +2400,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 // Coerce the first arg to string
                 rule('A statement that is Date.now can be eliminated');
                 example('Date.parse(300);', '"" + 300;');
-                before(node, parentNode);
+                before(node, parentNodeOrWhatever);
 
                 const newNodes = args.map((anode, ai) =>
                   // Make sure `Date.now(...x)` properly becomes `[...x]` and let another rule deal with that mess.
@@ -2422,7 +2422,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 );
                 body.splice(i, 1, ...newNodes);
 
-                after(parentNode);
+                after(parentNodeOrWhatever);
                 return true;
               }
 
@@ -2431,7 +2431,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 7)) {
                   rule('A statement that is Date.UTC can be eliminated');
                   example('Date.UTC(a, b, c);', '+a; +b; +c;');
-                  before(node, parentNode);
+                  before(node, parentNodeOrWhatever);
 
                   const newNodes = args.map((anode, ai) =>
                     // Make sure `Date.UTC(...x)` properly becomes `[...x]` and let another rule deal with that mess.
@@ -2442,7 +2442,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                   );
                   body.splice(i, 1, ...newNodes);
 
-                  after(parentNode);
+                  after(parentNodeOrWhatever);
                   return true;
                 }
                 break;
@@ -2455,7 +2455,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
                   rule('A Math statement with two args can be eliminated');
                   example('Math.pow(a, b);', '+a; +b;');
-                  before(node, parentNode);
+                  before(node, parentNodeOrWhatever);
 
                   const newNodes = args.map((anode, ai) =>
                     // Make sure `Math.pow(...x)` properly becomes `[...x]` and let another rule deal with that mess.
@@ -2466,7 +2466,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                   );
                   body.splice(i, 1, ...newNodes);
 
-                  after(parentNode);
+                  after(parentNodeOrWhatever);
                   return true;
                 }
                 break;
@@ -2481,7 +2481,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 if (args.every((anode, ai) => anode.type !== 'SpreadElement')) {
                   rule('A statement that is a builtin func call that coerces all its args to number can be eliminated');
                   example('Math.pow(a, b, c);', '+a; +b; +c;');
-                  before(node, parentNode);
+                  before(node, parentNodeOrWhatever);
 
                   const newNodes = args.map((anode, ai) =>
                     // Since the all the args need to be coerced, we won't be supporting the spread case here
@@ -2489,7 +2489,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                   );
                   body.splice(i, 1, ...newNodes);
 
-                  after(parentNode);
+                  after(parentNodeOrWhatever);
                   return true;
                 }
                 break;
@@ -2499,7 +2499,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
                   rule('A statement that is Number.parseInt can be eliminated');
                   example('Number.parseInt(a, b, c);', '""+a; +b; c;');
-                  before(node, parentNode);
+                  before(node, parentNodeOrWhatever);
 
                   const newNodes = args.map((anode, ai) =>
                     // Since the all the args need to be coerced, we won't be supporting the spread case here
@@ -2515,7 +2515,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                   );
                   body.splice(i, 1, ...newNodes);
 
-                  after(parentNode);
+                  after(parentNodeOrWhatever);
                   return true;
                 }
                 break;
@@ -2537,7 +2537,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
               rule('The arguments of a builtin call must all be simple');
               example('Math.sin(f())', 'tmp = f(), Math.sin(tmp)');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               const newArgs = [];
               const newNodes = [];
@@ -2560,7 +2560,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
               rule('The arguments of a method call must all be simple');
               example('a().b(f())', 'tmp = a(), tmp2 = tmp.b, tmp3 = f(), tmp2.call(tmp, tmp3)');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               const newArgs = [];
               const tmpNameObj = createFreshVar('tmpCallObj', fdata);
@@ -2594,7 +2594,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             // Do computed first because that requires caching the object anyways, saving us an extra var
             rule('The property of a computed method call must be simple');
             example('a()[b()]()', 'tmp = a(), tmp2 = b(), tmp[tmp2]()');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             const tmpNameObj = createFreshVar('tmpCallCompObj', fdata);
             const tmpNameProp = createFreshVar('tmpCallCompProp', fdata);
@@ -2617,7 +2617,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             rule('The object of a method call must be simple');
             example('a().b()', 'tmp = a(), tmp.b()', () => !callee.computed);
             example('a()[b]()', 'tmp = a(), tmp[b]()', () => callee.computed);
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             const tmpName = createFreshVar('tmpCallObj', fdata);
             const newNodes = [AST.variableDeclaration(tmpName, callee.object, 'const')];
@@ -2711,7 +2711,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                     ) {
                       rule('Inline Math.pow with primitive args');
                       example('Math.pow(2, 4)', '16');
-                      before(node, parentNode);
+                      before(node, parentNodeOrWhatever);
 
                       const finalNode = AST.primitive(result);
                       const finalParent = wrapExpressionAs(
@@ -2866,7 +2866,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                   ASSERT(node.arguments.length === 0, 'meh just a silly hack, no full support');
                   rule('A call to `fontcolor` on a string should be inlined');
                   example('"blue".fontcolor()', '\'<font color="undefined">blue</font>\'');
-                  before(node, parentNode);
+                  before(node, parentNodeOrWhatever);
 
                   const s = AST.getStringValue(callee.object, true);
                   const finalNode = AST.primitive('<font color="undefined">' + s + '</font>');
@@ -2881,7 +2881,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                   ASSERT(node.arguments.length === 0, 'meh just a silly hack, no full support');
                   rule('A call to `italics` on a string should be inlined');
                   example('"blue".italics()', '"<i>blue</i>"');
-                  before(node, parentNode);
+                  before(node, parentNodeOrWhatever);
 
                   const s = AST.getStringValue(callee.object, true);
                   const finalNode = AST.primitive('<i>' + s + '</i>');
@@ -3080,7 +3080,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
             rule('The arg of $coerce must allways be simple');
             example('$coerce(f(), "string")', 'tmp = f(), $coerce(tmp2, "string")');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             const tmpName = createFreshVar('tmpCallCallee', fdata);
             const varNode = AST.variableDeclaration(tmpName, args[0], 'const');
@@ -3088,7 +3088,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             body.splice(i, 0, varNode);
 
             after(varNode);
-            after(parentNode, body[i + 1]);
+            after(parentNodeOrWhatever, body[i + 1]);
             assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           } else {
@@ -3097,7 +3097,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             rule('The arguments of a call must all be simple');
             example('a(f())', 'tmp = a(), tmp2 = f(), tmp(tmp2)', () => callee.type === 'Identifier');
             example('a()(f())', 'tmp = a(), tmp2 = f(), tmp(tmp2)', () => callee.type !== 'Identifier');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             const newArgs = [];
             const newNodes = [];
@@ -3123,7 +3123,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
           rule('The callee of a call must all be simple or simple member expression');
           example('a()(x, y)', 'tmp = a(), tmp(x, y)');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const tmpName = createFreshVar('tmpCallComplexCallee', fdata);
           const newNodes = [AST.variableDeclaration(tmpName, callee, 'const')];
@@ -3205,7 +3205,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             rule('Calling an uncallable primitive must crash');
             example('50(a, b, c);', '50(); throw error;');
             example('null(a, b, c);', 'null(); throw error;');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             // Drop any references. They shouldn't trigger a crash and are not needed to trigger the crash.
             // Perhaps this is more of a dead code branch and it leads to fewer references to bindings.
@@ -3267,7 +3267,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           rule('The arguments of a new must all be simple');
           example('new a(f())', 'tmp = a(), tmp2 = f(), new tmp(tmp2)', () => callee.type === 'Identifier');
           example('new (a())(f())', 'tmp = a(), tmp2 = f(), new tmp(tmp2)', () => callee.type !== 'Identifier');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const newArgs = [];
           const tmpName = createFreshVar('tmpNewCallee', fdata);
@@ -3288,7 +3288,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
           rule('The callee of a new must all be simple');
           example('new (a())(x, y)', 'tmp = a(), new tmp(x, y)');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const tmpName = createFreshVar('tmpNewCallee', fdata);
           const newNodes = [AST.variableDeclaration(tmpName, callee, 'const')];
@@ -3309,7 +3309,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 if (AST.isPrimitive(node.arguments[0]) && (node.arguments.length === 1 || AST.isPrimitive(node.arguments[1]))) {
                   rule('new RegExp with primitives can be changed to a literal');
                   example('new RegExp("foo", "g")', '/foo/g');
-                  before(node, parentNode);
+                  before(node, parentNodeOrWhatever);
 
                   const pattern = AST.getPrimitiveValue(node.arguments[0]);
                   vlog('pattern:', pattern);
@@ -3320,7 +3320,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                   const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                   body.splice(i, 1, finalParent);
 
-                  after(finalNode, parentNode);
+                  after(finalNode, parentNodeOrWhatever);
                   assertNoDupeNodes(AST.blockStatement(body), 'body');
                   return true;
                 }
@@ -3367,7 +3367,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           rule('Optional member expression should be if-else');
           example('a()?.b', 'tmp = a(), (tmp != null ? tmp.b : undefined)', () => !node.computed);
           example('a()?[b()]', 'tmp = a(), (tmp != null ? tmp[b()] : undefined)', () => node.computed);
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const tmpNameObj = createFreshVar('tmpOptObj', fdata);
           const newNodes = [AST.variableDeclaration(tmpNameObj, node.object, 'const')];
@@ -3410,7 +3410,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             }
-            if ((parentNode.type !== 'CallExpression' || parentProp !== 'callee') && !node.computed) {
+            if ((parentNodeOrWhatever.type !== 'CallExpression' || parentProp !== 'callee') && !node.computed) {
               switch (node.property.name) {
                 case 'name': {
                   riskyRule('The name property on a built-in class resolves to a string with the name of that class');
@@ -3435,7 +3435,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               if (AST.isNumberLiteral(node.property)) {
                 rule('Array access on string should be the actual character being accessed');
                 example('"Hello!"[1]', '"e"');
-                before(node, parentNode);
+                before(node, parentNodeOrWhatever);
 
                 const v = AST.getStringValue(node.object, true)[node.property.value]; // OOB yields undefined.
                 const finalNode = v === undefined ? AST.identifier('undefined') : AST.templateLiteral(v);
@@ -3456,11 +3456,11 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 if (String(n) === v) {
                   rule('Computed index property access on a string should be a number');
                   example('f("hello"["3"]);', 'f("hello"[3]);');
-                  before(node, parentNode);
+                  before(node, parentNodeOrWhatever);
 
                   node.property = AST.primitive(n);
 
-                  after(node, parentNode);
+                  after(node, parentNodeOrWhatever);
                   assertNoDupeNodes(AST.blockStatement(body), 'body');
                   return true;
                 }
@@ -3472,7 +3472,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                   // "foo".length
                   rule('The `length` property on a string is a static expression');
                   example('"foo".length', '3');
-                  before(node, parentNode);
+                  before(node, parentNodeOrWhatever);
 
                   const finalNode = AST.primitive(AST.getStringValue(node.object, true).length);
                   const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -3591,7 +3591,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             // This should not happen frequently :p But after some passes it might. More likely once we do value tracking.
             rule('The `length` directly on an array literal should be replaced with the count of elements in that array');
             example('[10, 20, 30].length', '3');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             const finalNode = AST.literal(node.object.elements.length); // Node: elided elements still count so this is ok
             const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -3689,13 +3689,13 @@ export function phaseNormalize(fdata, fname, prng, options) {
             rule('Computed property on `null` or `undefined` should be replaced with a regular prop');
             example('null[foo]', 'null.eliminatedComputedProp');
             example('undefined[foo]', 'undefined.eliminatedComputedProp');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             body.splice(i, 0, AST.expressionStatement(node.property));
             node.computed = false;
             node.property = AST.identifier('eliminatedComputedProp'); // This does change the error message slightly...
 
-            after(node, parentNode);
+            after(node, parentNodeOrWhatever);
             assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true; // Very unlikely that we don't also want to do the next one but one step at a time.
           }
@@ -3710,12 +3710,12 @@ export function phaseNormalize(fdata, fname, prng, options) {
             rule('Property on `null` or `undefined` must lead to an exception');
             example('null.foo;', 'null.foo; throw "must crash";', () => node.object.type !== 'Identifier');
             example('undefined.foo;', 'undefined.foo; throw "must crash";', () => node.object.type === 'Identifier');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             const finalNode = AST.throwStatement(AST.templateLiteral(DCE_ERROR_MSG));
             body.splice(i + 1, 0, finalNode);
 
-            after(finalNode, parentNode);
+            after(finalNode, parentNodeOrWhatever);
             assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
@@ -3724,7 +3724,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         if (node.computed && AST.isComplexNode(node.property)) {
           rule('Computed member expression must have simple property');
           example('a()[b()]', 'tmp = a(), tmp2 = b(), a[b]');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const tmpNameObj = createFreshVar('tmpCompObj', fdata);
           const tmpNameProp = createFreshVar('tmpCompProp', fdata);
@@ -3745,7 +3745,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         if (AST.isComplexNode(node.object)) {
           rule('Member expression object must be simple');
           example('f().x', 'tmp = f(), tmp.x');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const tmpNameObj = createFreshVar('tmpCompObj', fdata);
           const newNodes = [AST.variableDeclaration(tmpNameObj, node.object, 'const')];
@@ -3764,13 +3764,13 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
           rule('Computed property that is valid ident must be member expression; prop');
           example('a["foo"]', 'a.foo');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           vlog('- Name: `' + str + '`');
 
           node.computed = false;
           node.property = AST.identifier(str, true);
-          after(node, parentNode);
+          after(node, parentNodeOrWhatever);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
@@ -3786,14 +3786,14 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
           rule('Computed property that true/false/null/undefined should be string key');
           example('a[true]', 'a.true');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           vlog('- key is "', key, '"');
 
           node.computed = false;
           node.property = AST.identifier(key, true);
 
-          after(node, parentNode);
+          after(node, parentNodeOrWhatever);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
@@ -3819,8 +3819,8 @@ export function phaseNormalize(fdata, fname, prng, options) {
           node.object.type === 'Identifier' &&
           node.object.name === 'console' &&
           ['log', 'warn', 'error', 'dir', 'debug', 'time', 'timeEnd', 'group', 'groupEnd'].includes(node.property.name) &&
-          (parentNode.type !== 'CallExpression' || parentNode.callee !== node) &&
-          parentNode.type !== 'NewExpression' // umm, I guess.
+          (parentNodeOrWhatever.type !== 'CallExpression' || parentNodeOrWhatever.callee !== node) &&
+          parentNodeOrWhatever.type !== 'NewExpression' // umm, I guess.
         ) {
           // Some built-in support for the pseudo standard console stuff
           const meta = fdata.globallyUniqueNamingRegistry.get('console');
@@ -3884,7 +3884,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
       case 'SequenceExpression': {
         rule('Sequence statements must be series of statements');
         example('(a, b, c);', 'a; b; c;');
-        before(node, parentNode);
+        before(node, parentNodeOrWhatever);
 
         const newNodes = node.expressions.slice(0, -1).map((e, i) => AST.expressionStatement(e));
         const finalNode = node.expressions[node.expressions.length - 1];
@@ -3912,7 +3912,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           if (newBindings.length) {
             rule('Assignment obj patterns not allowed');
             example('({x} = y())', 'tmp = y(), x = tmp.x, tmp');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             // Replace this assignment node with a sequence
             // Contents of the sequence is the stuff in newBindings. Map them into assignments.
@@ -3936,7 +3936,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
           rule('Assignment obj patterns not allowed, empty');
           example('({} = y())', 'y()');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const finalNode = rhs;
           const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -3957,7 +3957,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           if (newBindings.length) {
             rule('Assignment arr patterns not allowed, non-empty');
             example('[x] = y()', '(tmp = y(), tmp1 = [...tmp], x = tmp1[0], tmp)');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             // Replace this assignment node with a sequence
             // Contents of the sequence is the stuff in newBindings. Map them into assignments.
@@ -3982,7 +3982,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
           rule('Assignment arr patterns not allowed, empty');
           example('[] = y()', 'y()'); // TODO: Does it have to be spreaded anyways? Do I care?
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const finalNode = rhs;
           const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -4012,14 +4012,14 @@ export function phaseNormalize(fdata, fname, prng, options) {
             const str = AST.getStringValue(mem.property, true);
             rule('Computed property that is valid ident must be member expression; assign rhs');
             example('a["foo"]', 'a.foo');
-            before(mem, parentNode);
+            before(mem, parentNodeOrWhatever);
 
             vlog('- Name: `' + str + '`');
 
             mem.computed = false;
             mem.property = AST.identifier(str);
 
-            after(mem, parentNode);
+            after(mem, parentNodeOrWhatever);
             assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
@@ -4028,7 +4028,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             // Note: resulting node must remain assignment to member expression (because it may be an assignment target)
             rule('Assignment to computed property must have simple property node');
             example('a[b()] = c()', '(tmp = a, tmp2 = b(), tmp[tmp2] = c())');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             const tmpNameObj = createFreshVar('tmpAssignComMemLhsObj', fdata);
             const tmpNameProp = createFreshVar('tmpAssignComMemLhsProp', fdata);
@@ -4057,7 +4057,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             example('a()[b()] = c()', '(tmp = a(), tmp2[b()] = c())', () => node.computed && node.operator === '=');
             example('a().b += c()', '(tmp = a(), tmp2.b += c())', () => !node.computed && node.operator !== '=');
             example('a()[b()] += c()', '(tmp = a(), tmp2[b()] += c())', () => node.computed && node.operator !== '=');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             const tmpNameObj = createFreshVar('tmpAssignMemLhsObj', fdata);
             const newNodes = [
@@ -4084,7 +4084,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             rule('Compound assignment to property must be regular assignment');
             example('a.b += c()', 'tmp = a.b, tmp.b = tmp + c()', () => !mem.computed);
             example('a[b] += c()', 'tmp = a[b], tmp[b] = tmp + c()', () => mem.computed);
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             const tmpNameLhs = createFreshVar('tmpCompoundAssignLhs', fdata);
             // tmp = a.b, or tmp = a[b]
@@ -4110,7 +4110,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             // Note: a and b must be simple at this point but c() could still mutate them so we cache them anyways
             rule('Assignment to computed property must have simple object, property expression, and rhs');
             example('a[b] = c()', 'tmp = a, tmp2 = b, tmp3 = c(), tmp[tmp2] = tmp3');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             const tmpNameObj = createFreshVar('tmpAssignComputedObj', fdata);
             const tmpNameProp = createFreshVar('tmpAssignComputedProp', fdata);
@@ -4137,7 +4137,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             // Note: a must be simple at this point but c() could still mutate it so we cache it anyways
             rule('Assignment to member expression must have simple lhs and rhs');
             example('a.b = c()', '(tmp = a, tmp2 = c(), tmp).b = tmp2');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             const tmpNameObj = createFreshVar('tmpAssignMemLhsObj', fdata);
             const tmpNameRhs = createFreshVar('tmpAssignMemRhs', fdata);
@@ -4219,7 +4219,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           example('a *= c()', 'a = a * c()', () => lhs.type === 'Identifier');
           example('a.b *= c()', 'a.b = a.b * c()', () => lhs.type !== 'Identifier' && !lhs.computed);
           example('a[b] *= c()', 'a[b] = a[b] * c()', () => lhs.type !== 'Identifier' && lhs.computed);
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const finalNode = AST.assignmentExpression(
             AST.cloneSimple(lhs),
@@ -4267,7 +4267,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               // This is a = b *= c() with simple a and ident b
               rule('Nested compound assignment must not be compound');
               example('a = b *= c()', 'tmp = b, a = b = tmp * c()');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               const tmpName = createFreshVar('tmpNestedCompoundLhs', fdata);
               // tmp = b
@@ -4292,7 +4292,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               // With simple a and ident b
               rule('The rhs.rhs of a nested assignment must be simple');
               example('a = b = c()', 'tmp = c(), a = b = tmp');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               const tmpName = createFreshVar('tmpNestedComplexRhs', fdata);
               const newNodes = [AST.variableDeclaration(tmpName, c, 'const')];
@@ -4309,7 +4309,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             // This is `a = b = c` with all idents (or, `x = a = b = c` or `let x = a = b = c`)
             rule('Nested assignment with all idents must be split');
             example('a = b = c', 'b = c, a = c');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             const newNodes = [AST.expressionStatement(AST.assignmentExpression(b, AST.cloneSimple(c)))];
             const finalNode = AST.assignmentExpression(a, AST.cloneSimple(c));
@@ -4339,7 +4339,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               rule('The computed property of a nested assignment must be a simple node');
               example('a = b[c()] = d()', 'tmp = b, tmp2 = c(), a = tmp[tmp2] = d', () => rhs.operator === '=');
               example('a = b[c()] *= d()', 'tmp = b, tmp2 = c(), a = tmp[tmp2] = d', () => rhs.operator !== '=');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               const tmpNameObj = createFreshVar('tmpNestedAssignComMemberObj', fdata);
               const tmpNameProp = createFreshVar('tmpNestedAssignComMemberProp', fdata);
@@ -4364,7 +4364,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               rule('The object of a nested property assignment must be a simple node');
               example('a = b().c = d', 'tmp = b(), a = tmp.c = d()', () => !rhsLhs.computed);
               example('a = b()[c] = d', 'tmp = b(), a = tmp[c] = d()', () => rhsLhs.computed);
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               const tmpName = createFreshVar('tmpNestedAssignObj', fdata);
               const newNodes = [AST.variableDeclaration(tmpName, b, 'const')];
@@ -4387,7 +4387,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             if (rhs.operator !== '=') {
               rule('Nested compound prop assignment with all simple parts must be split');
               example('a = b.c *= d()', 'tmp = b.c * d(), a = b.c = tmp');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               const tmpName = createFreshVar('tmpNestedPropCompoundComplexRhs', fdata);
               const newNodes = [
@@ -4413,7 +4413,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               rule('The rhs of a nested assignment to a computed property must be simple');
               example('a = b.c = d()', 'tmp = d(), a = b.c = tmp', () => !rhsLhs.computed);
               example('a = b[c] = d()', 'tmp = d(), a = b[c] = tmp', () => rhsLhs.computed);
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               const tmpNameRhs = createFreshVar('tmpNestedAssignPropRhs', fdata);
               const newNodes = [
@@ -4445,7 +4445,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               // We must cache d because the b.c setter may otherwise change it. Redundant steps ought to be cleaned up trivially.
               rule('Nested assignment to property where all nodes are simple must be split up');
               example('a = b.c = d', 'tmp = d, b.c = tmp, a = tmp');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               const tmpName = createFreshVar('tmpNestedPropAssignRhs', fdata);
               const newNodes = [
@@ -4474,7 +4474,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             if (newBindings.length) {
               rule('Nested assignment obj patterns not allowed');
               example('a = ({x} = y())', 'tmp = y(), x = tmp.x, a = tmp');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               // Replace this assignment node with a sequence
               // Contents of the sequence is the stuff in newBindings. Map them into assignments.
@@ -4498,7 +4498,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
             rule('Assignment obj patterns not allowed, empty');
             example('a = {} = y()', 'a = y()');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             const finalNode = AST.assignmentExpression(a, rhsRhs);
             const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -4520,7 +4520,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             if (newBindings.length) {
               rule('Nested assignment arr patterns not allowed, non-empty');
               example('a = [x] = y()', '(tmp = y(), tmp1 = [...tmp], x = tmp1[0], a = tmp)');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               // Replace this assignment node with a sequence
               // Contents of the sequence is the stuff in newBindings. Map them into assignments.
@@ -4544,7 +4544,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
             rule('Assignment arr patterns not allowed, empty');
             example('a = [] = y()', 'a = y()'); // TODO: Does it have to be spreaded anyways? Do I care?
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             const finalNode = AST.assignmentExpression(a, rhsRhs);
             const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -4561,7 +4561,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         if (rhs.type === 'SequenceExpression') {
           rule('Assignment rhs must not be sequence');
           example('a = (b, c)', '(b, a = c)');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const seq = rhs;
           const exprs = seq.expressions.slice(0); // Last one will replace the sequence
@@ -4582,7 +4582,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             rule('Nested assignment rhs can not be optional chaining');
             example('x = a = b?.c', 'tmp = b; if (tmp) a = tmp.c; else a = undefined;', () => !rhs.computed);
             example('x = a = b?.[c()]', 'tmp = b; if (tmp) a = tmp[c()]; else a = undefined;', () => rhs.computed);
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             const tmpNameObj = createFreshVar('tmpAssignOptMem', fdata);
             const tmpNameVal = createFreshVar('tmpAssignOptVal', fdata);
@@ -4607,7 +4607,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           if (rhs.computed && AST.isComplexNode(rhs.property)) {
             rule('Assignment rhs member expression must have simple object and computed property');
             example('a = b()[c()]', 'tmp = b(), tmp2 = c(), a = tmp[tmp2]');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             const tmpNameObj = createFreshVar('tmpAssignRhsCompObj', fdata);
             const tmpNameProp = createFreshVar('tmpAssignRhsCompProp', fdata);
@@ -4632,7 +4632,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             rule('Assignment rhs member expression must have simple object; prop already simple');
             example('a = b().c', 'tmp = b(), a = tmp.c', () => !rhs.computed);
             example('a = b()[c]', 'tmp = b(), a = tmp[c]', () => rhs.computed);
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             const tmpName = createFreshVar('tmpAssignRhsProp', fdata);
             // const tmp = b()
@@ -4653,14 +4653,14 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
             rule('Computed property that is valid ident must be member expression; assign rhs');
             example('a["foo"]', 'a.foo');
-            before(rhs, parentNode);
+            before(rhs, parentNodeOrWhatever);
 
             vlog('- Name: `' + str + '`');
 
             rhs.computed = false;
             rhs.property = AST.identifier(str);
 
-            after(rhs, parentNode);
+            after(rhs, parentNodeOrWhatever);
             assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
@@ -4706,7 +4706,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           node.right = AST.identifier(funcNode.id.name);
           funcNode.id = null;
 
-          after(funcNode, parentNode);
+          after(funcNode, parentNodeOrWhatever);
           return true;
         }
 
@@ -4755,7 +4755,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           if (['===', '!=='].includes(node.operator)) {
             rule('Binary expression without coercion as statement must be split');
             example('a + b;', 'a; b;');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             const newNodes = [AST.expressionStatement(node.left)];
             const finalNode = node.right;
@@ -4874,7 +4874,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         if (AST.isComplexNode(node.right)) {
           rule('Binary expression must have simple nodes; rhs is complex');
           example('a * f()', 'tmp = a, tmp2 = f(), tmp * tmp2');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const tmpNameLhs = createFreshVar('tmpBinBothLhs', fdata);
           const tmpNameRhs = createFreshVar('tmpBinBothRhs', fdata);
@@ -4895,7 +4895,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         if (AST.isComplexNode(node.left)) {
           rule('Binary expression must have simple nodes; lhs is complex');
           example('f() * a', 'tmp = f(), tmp * a');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const tmpNameLhs = createFreshVar('tmpBinLhs', fdata);
           const newNodes = [AST.variableDeclaration(tmpNameLhs, node.left, 'const')];
@@ -4929,7 +4929,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         if (lp && rp) {
           rule('Binary operation on two builtin primitives or values should be statically resolved');
           example('1 + null', '1');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const lhs = AST.getPrimitiveValue(node.left);
           const rhs = AST.getPrimitiveValue(node.right);
@@ -5497,7 +5497,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               rule('Arg of delete statement cannot be optional chaining');
               example('delete a?.b;', 'tmp = a; if (a) delete a.b;', () => !mem.computed);
               example('delete a?.[b()];', 'tmp = a; if (a) delete a[b()];', () => mem.computed);
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               const tmpName = createFreshVar('tmpDeleteOpt', fdata);
               const newNodes = [AST.variableDeclaration(tmpName, mem.object, 'const')];
@@ -5517,7 +5517,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               rule('Arg of var init delete cannot be optional chaining');
               example('let x = delete a?.b;', 'tmp = a; let x = true; if (a) x = delete a.b;', () => !mem.computed);
               example('let x = delete a?.[b()];', 'tmp = a; let x = true; if (a) x = delete a[b()];', () => mem.computed);
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               const tmpName = createFreshVar('tmpDeleteOpt', fdata);
               const newNodes = [
@@ -5545,7 +5545,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               rule('Arg of assign delete cannot be optional chaining');
               example('x = delete a?.b;', 'tmp = a; if (a) x = delete a.b; else x = true;', () => !mem.computed);
               example('x = delete a?.[b()];', 'tmp = a; if (a) x = delete a[b()]; else x = true;', () => mem.computed);
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               const tmpName = createFreshVar('tmpDeleteOpt', fdata);
               const newNodes = [AST.variableDeclaration(tmpName, mem.object, 'const')];
@@ -5578,14 +5578,14 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
                 rule('Computed property that is valid ident must be member expression; delete');
                 example('a["foo"]', 'a.foo');
-                before(arg, parentNode);
+                before(arg, parentNodeOrWhatever);
 
                 vlog('- Name: `' + str + '`');
 
                 arg.computed = false;
                 arg.property = AST.identifier(str);
 
-                after(arg, parentNode);
+                after(arg, parentNodeOrWhatever);
                 assertNoDupeNodes(AST.blockStatement(body), 'body');
                 return true;
               }
@@ -5593,7 +5593,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               if (AST.isComplexNode(arg.object) || AST.isComplexNode(arg.property)) {
                 rule('Argument of delete must be simple computed member expression with simple property');
                 example('delete f()[g()]', 'tmp = f(), tmp2 = g(), delete tmp[tmp2]', () => arg.computed);
-                before(node, parentNode);
+                before(node, parentNodeOrWhatever);
 
                 const tmpNameObj = createFreshVar('tmpDeleteCompObj', fdata);
                 const tmpNameProp = createFreshVar('tmpDeleteCompProp', fdata);
@@ -5618,7 +5618,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             if (AST.isComplexNode(arg.object)) {
               rule('Argument of delete must be simple member expression');
               example('delete f().x', 'tmp = f(), delete tmp.x');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               const tmpName = createFreshVar('tmpDeleteObj', fdata);
               const newNodes = [AST.variableDeclaration(tmpName, arg.object, 'const')];
@@ -5641,7 +5641,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           // Since `delete` returns whether or not the property exists after the operation, the result must be `true`
           rule('Delete argument must be a member expression');
           example('delete f()', 'f(), true');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const newNodes = [AST.expressionStatement(node.argument)];
           const finalNode = AST.tru();
@@ -5658,7 +5658,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           if (wrapKind === 'statement') {
             rule('Void as a statement should be the arg');
             example('void x;', 'x;');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             body[i] = AST.expressionStatement(node.argument);
 
@@ -5669,7 +5669,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
           rule('Void must be replaced by a sequence');
           example('void x', 'x, undefined');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const finalNode = AST.sequenceExpression(node.argument, AST.identifier('undefined'));
           const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -5703,7 +5703,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             // regex etc
             rule('Unary negative on a primitive as statement should be dropped');
             example('+10;', ';');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             body[i] = AST.emptyStatement();
 
@@ -5719,7 +5719,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               example('+-x', '-x', () => node.operator === '-');
               example('+~x', '~x', () => node.operator === '~');
               example('+(+x)', '+x', () => node.operator === '+');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               const finalNode = node.argument;
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -5772,7 +5772,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             // regex etc
             rule('Unary minus number as statement should be dropped');
             example('-10;', ';');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             body[i] = AST.emptyStatement();
 
@@ -5788,7 +5788,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               // Can't blindly eliminate because coercion. If this can be eliminated another rule will pick it up.
               rule('Double negative operator is same as single positive operator');
               example('--x', '+x');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               const finalNode = AST.unaryExpression('+', node.argument.argument);
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -5802,7 +5802,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             if (node.argument.operator === '+') {
               rule('Negative operator on a positive operator means negative operator');
               example('-+x', '-x');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               const finalNode = AST.unaryExpression('-', node.argument.argument);
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -5833,7 +5833,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           if (wrapKind === 'statement') {
             rule('Unary invert statement should reduce to the arg since the invert cannot be observed');
             example('!10;', '10;');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             body[i] = AST.expressionStatement(node.argument);
 
@@ -5865,7 +5865,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               // Probably never hits a real world case but at least there's a test
               rule('Inverting the result of `typeof` always results in false');
               example('!typeof x', 'false');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               const finalNode = AST.fals();
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -5898,7 +5898,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           if (wrapKind === 'statement') {
             rule('Unary `~` statement should be replaced by `+`');
             example('+10;', '10;');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             body[i] = AST.expressionStatement(AST.unaryExpression('+', node.argument));
 
@@ -5913,7 +5913,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               // Probably never hits a real world case but at least there's a test
               rule('Applying `~` to the result of `typeof` always results in `-1`');
               example('~typeof x', '-1');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               const finalNode = AST.primitive(-1);
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -5930,7 +5930,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             // Typeof is unique insofar that it never triggers implicit global errors. But it can trigger TDZ errors.
             rule('Unary `typeof` statement should not be observable (but can trigger TDZ)');
             example('typeof x;', 'x;');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             body[i] = AST.expressionStatement(node.argument);
 
@@ -5973,7 +5973,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           if (node.argument.type === 'Identifier' && globals.has(node.argument.name)) {
             rule('Typeof of a builtin global can be statically resolved');
             example('typeof setTimeout', '"function";');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             const v = globals.get(node.argument.name);
             const finalNode = AST.templateLiteral(typeof v === 'string' ? v : v.mustBeType);
@@ -5997,7 +5997,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               example('typeof -x', '-x, "number"', () => node.argument.operator === '-');
               example('typeof +x', '+x, "number"', () => node.argument.operator === '+');
               example('typeof ~x', '~x, "number"', () => node.argument.operator === '~');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               // Preserve the arg in case it has a side effect. Other rules may eliminate it anyways.
               const newNodes = [AST.expressionStatement(node.argument)];
@@ -6014,7 +6014,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               // I mean, this'll never happen :)
               rule('Typeof typeof always returns a string');
               example('typeof typeof x', 'typeof x, "string"');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               // Must preserve the argument since the argument might have an effect.
               // We're not going to hash out the details here since `typeof x` is fine even if `x` doesn't actually exist while
@@ -6034,7 +6034,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               rule('Typeof delete or ! always returns a boolean');
               example('typeof !x()', '!x(), "boolean"', () => node.argument.operator === '!');
               example('typeof delete x().y', 'delete x().y, "boolean"', () => node.argument.operator === 'delete');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               // Must preserve the argument since it (obviously) has an effect. The result is just always a bool.
               const newNodes = [AST.expressionStatement(node.argument)];
@@ -6051,7 +6051,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               // I mean, this'll never happen :)
               rule('Typeof void always returns a undefined');
               example('typeof void x()', 'x(), "undefined"');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               // Must preserve the argument since it (obviously) has an effect. The result is just always a bool.
               const newNodes = [AST.expressionStatement(node.argument)];
@@ -6070,7 +6070,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           rule('Unary argument cannot be sequence');
           example('!(a, b)', 'a, !b');
           example('-(1 + 2, 3 + 4)', '(1 + 2, -(3 + 4))');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const exprs = node.argument.expressions;
           const newNodes = [...exprs.slice(0, -1).map((e) => AST.expressionStatement(e))];
@@ -6087,7 +6087,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         if (AST.isComplexNode(node.argument)) {
           rule('Unary argument cannot be complex');
           example('!f()', 'tmp = f(), !tmp');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const tmpName = createFreshVar('tmpUnaryArg', fdata);
           const newNodes = [AST.variableDeclaration(tmpName, node.argument, 'const')];
@@ -6160,7 +6160,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         if (AST.isComplexNode(node.argument)) {
           rule('Await argument cannot be complex');
           example('await f()', '(tmp = f(), await tmp)');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const tmpName = createFreshVar('tmpAwaitArg', fdata);
           const newNodes = [AST.variableDeclaration(tmpName, node.argument, 'const')];
@@ -6206,7 +6206,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           if (wrapKind === 'statement') {
             rule('Nullish coalescing statement should be normalized away');
             example('a() ?? b()', 'if (a() == null) b();');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             const finalParent = AST.ifStatement(
               AST.binaryExpression('==', node.left, AST.nul()),
@@ -6228,7 +6228,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           } else {
             ASSERT(false);
           }
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const finalParent = [
             wrapExpressionAs(
@@ -6257,7 +6257,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           if (wrapKind === 'statement') {
             rule('Logical OR statement must be if-else');
             example('a() || b();', 'if (a()); else b();');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             const finalParent = AST.ifStatement(node.left, AST.emptyStatement(), AST.expressionStatement(node.right));
             body[i] = finalParent;
@@ -6276,7 +6276,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           } else {
             ASSERT(false);
           }
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const finalParent = [
             wrapExpressionAs(
@@ -6306,7 +6306,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           if (wrapKind === 'statement') {
             rule('Logical OR statement must be if-else');
             example('a() && b();', 'if (a()) b();');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             const finalParent = AST.ifStatement(node.left, AST.expressionStatement(node.right));
             body[i] = finalParent;
@@ -6359,7 +6359,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         if (wrapKind === 'statement') {
           rule('Conditional expression statement should be if-else');
           example('a() ? b() : c();', 'if (a()) b(); else c();');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const finalParent = AST.ifStatement(node.test, AST.expressionStatement(node.consequent), AST.expressionStatement(node.alternate));
           body[i] = finalParent;
@@ -6372,7 +6372,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         if (wrapKind === 'var') {
           rule('Conditional expression var init should be if-else');
           example('let x = a() ? b() : c();', 'let x; if (a()) x = b(); else x = c();');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const newNodes = [
             // No init. Prevent a future where we'd make a distinction betwene no init and init to undefined.
@@ -6401,7 +6401,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         if (wrapKind === 'assign') {
           rule('Conditional expression assign should be if-else');
           example('x = a() ? x = b() : x = c();', 'if (a()) x = b(); else x = c();');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const finalParent = [
             AST.ifStatement(
@@ -6437,7 +6437,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           rule('Prefix update expression must be compound assignment');
           example('++f()[g()]', 'f()[g()] += 1', () => node.operator === '++');
           example('--f()[g()]', 'f()[g()] -= 1', () => node.operator === '--');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const finalNode = AST.assignmentExpression(arg, AST.one(), node.operator === '++' ? '+=' : '-=');
           const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -6456,7 +6456,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           rule('Postfix ident update expression must be compound assignment that returns before-value');
           example('a++', 'tmp = a, a = a + 1, tmp', () => node.operator === '++');
           example('a--', 'tmp = a, a = a - 1, tmp', () => node.operator === '--');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const tmpName = createFreshVar('tmpPostUpdArgIdent', fdata);
           const newNodes = [
@@ -6482,7 +6482,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           rule('Postfix computed prop update expression must be compound assignment that returns before-value');
           example('f()[g()]++', 'tmp = f(), tmp2 = g(), tmp3 = tmp[tmp2], tmp[tmp2] = tmp3 + 1, tmp3', () => node.operator === '++');
           example('f()[g()]--', 'tmp = f(), tmp2 = g(), tmp3 = tmp[tmp2], tmp[tmp2] = tmp3 - 1, tmp3', () => node.operator === '--');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const tmpNameObj = createFreshVar('tmpPostUpdArgComObj', fdata);
           const tmpNameProp = createFreshVar('tmpPostUpdArgComProp', fdata);
@@ -6517,7 +6517,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         rule('Postfix prop update expression must be compound assignment that returns before-value');
         example('f().x++', 'tmp = f(), tmp3 = tmp.x, tmp.x = tmp2 + 1, tmp2', () => node.operator === '++');
         example('f().x--', 'tmp = f(), tmp3 = tmp.x, tmp.x = tmp2 - 1, tmp2', () => node.operator === '--');
-        before(node, parentNode);
+        before(node, parentNodeOrWhatever);
 
         const tmpNameObj = createFreshVar('tmpPostUpdArgObj', fdata);
         const tmpNameVal = createFreshVar('tmpPostUpdArgVal', fdata);
@@ -6710,7 +6710,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           rule('Array statements are only allowed if they have exactly one spread with a simple arg');
           example('[a, b()];', 'a; b();');
           example('[...a(), ...b];', 'const tmp = a(); [...tmp]; [...b];');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           vlog('Replacing the spreads...');
           const newNodes = [];
@@ -6741,9 +6741,9 @@ export function phaseNormalize(fdata, fname, prng, options) {
           body.splice(i, 1, ...newNodes);
           vlog('and done with the body');
 
-          after(newNodes, parentNode);
+          after(newNodes, parentNodeOrWhatever);
           after(newNodes);
-          after(parentNode);
+          after(parentNodeOrWhatever);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
@@ -6774,7 +6774,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         if (last >= 0) {
           rule('Elements of array literals must be simple');
           example('[a, b(), c]', 'tmp = a, tmp2 = b(), [tmp, tmp2, c]');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const newNodes = [];
           const newNames = [];
@@ -6829,7 +6829,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 // This actually adds new properties
                 rule('A string primitive that is spread into an object adds each char individually as index props');
                 example('({..."foo"});', '({0: "f", 1: "o", 2: "o"});');
-                before(node, parentNode);
+                before(node, parentNodeOrWhatever);
 
                 node.properties.splice(
                   pi,
@@ -6840,17 +6840,17 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 );
 
                 changes = true;
-                after(node, parentNode);
+                after(node, parentNodeOrWhatever);
               } else {
                 // This is a noop
                 rule('A non-string primitive that is spread into an object can be deleted');
                 example('({...10});', '({});');
-                before(node, parentNode);
+                before(node, parentNodeOrWhatever);
 
                 node.properties.splice(pi, 1);
 
                 changes = true;
-                after(node, parentNode);
+                after(node, parentNodeOrWhatever);
               }
             } else {
               ++hasSpread;
@@ -6864,21 +6864,21 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
               rule('Object literal computed key that is ident must be ident');
               example('{["x"]: y}', '{x: y}');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               pnode.computed = false;
               pnode.key = AST.identifier(str);
 
-              after(node, parentNode);
+              after(node, parentNodeOrWhatever);
               changes = true;
             } else if (pnode.key.type === 'literal' && typeof pnode.key.value === 'string') {
               rule('Property keys that are strings should be templates internally, even if that is technically invalid');
               example('x = {"a": foo}', 'x = {`a`: foo}');
-              before(node, parentNode);
+              before(node, parentNodeOrWhatever);
 
               pnode.key = AST.templateLiteral(pnode.key);
 
-              after(parentNode);
+              after(parentNodeOrWhatever);
               changes = true;
             }
 
@@ -6889,12 +6889,12 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 if (known.has(pnode.key.name)) {
                   rule('Object literals with duplicate ident keys should not have those dupes');
                   example('const x = {a: 1, a: 2};', 'const x = {a: 2};');
-                  before(parentNode);
+                  before(parentNodeOrWhatever);
 
                   node.properties.splice(pi, 1);
                   toOutline.unshift(AST.expressionStatement(pnode.value));
 
-                  after(parentNode);
+                  after(parentNodeOrWhatever);
                   changes = true;
                 } else {
                   known.add(pnode.key.name);
@@ -6905,12 +6905,12 @@ export function phaseNormalize(fdata, fname, prng, options) {
                   rule('Object literals with duplicate string or number keys should not have those dupes');
                   example('const x = {"hello world": 1, "hello world": 2};', 'const x = {"hello world": 2};');
                   example('const x = {500: 1, 500: 2};', 'const x = {500: 2};');
-                  before(parentNode);
+                  before(parentNodeOrWhatever);
 
                   node.properties.splice(pi, 1);
                   toOutline.unshift(AST.expressionStatement(pnode.value));
 
-                  after(parentNode);
+                  after(parentNodeOrWhatever);
                   changes = true;
                 } else {
                   known.add(pv);
@@ -6967,7 +6967,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           example('({x: a, [y()]: b(), c, ...d()});', 'a; y(); b(); c; const tmp = d(); ({...tmp});', () => hasSpread);
           example('({x: a, [y()]: b(), c});', 'a; y(); b(); c;', () => !hasSpread);
           example('({...d()});', 'const tmp = d(); ({...tmp});', () => hasSpread && !hasNonSpread);
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           const finalParent = [];
           node.properties.forEach((pnode) => {
@@ -7024,7 +7024,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           if (last >= 0) {
             rule('Properties of object literals must be simple');
             example('{x: a, y: b(), z: c}', 'tmp = a, tmp2 = b(), {x: tmp, y: tmp2, z: c}');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             vlog('Walking through', node.properties.length, 'props,', 0, ' to ', last);
             const newNodes = [];
@@ -7085,23 +7085,23 @@ export function phaseNormalize(fdata, fname, prng, options) {
         if (wrapKind === 'statement') {
           rule('Statement that is an arrow should be dropped');
           example('()=>{};', ';');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           body.splice(i, 1);
 
-          after(AST.emptyStatement(), parentNode);
+          after(AST.emptyStatement(), parentNodeOrWhatever);
           return true;
         }
 
         if (node.expression) {
           rule('Arrow body must be block');
           example('() => x', '() => { return x; }');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           node.body = AST.blockStatement(AST.returnStatement(node.body));
           node.expression = false;
 
-          after(node, parentNode);
+          after(node, parentNodeOrWhatever);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
@@ -7116,7 +7116,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
         rule('Arrows should be function expressions after this/arguments are transformed');
         example('const x = () => {};', 'const x = function(){}');
-        before(node, parentNode);
+        before(node, parentNodeOrWhatever);
 
         // May not be normalized. That's probably going to cause me some problems later eh.
         const finalNode = AST.functionExpression(node.params, node.body, { async: node.async, normalized: false });
@@ -7162,7 +7162,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           );
         }
 
-        before(node, parentNode);
+        before(node, parentNodeOrWhatever);
 
         let lastObj;
         let prevObj;
@@ -7314,7 +7314,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         if (wrapKind === 'statement') {
           rule('Eliminate a this statement');
           example('this;', ';');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           body[i] = AST.emptyStatement();
 
@@ -7345,12 +7345,12 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
             rule('Class computed key that is ident must be ident');
             example('class x = {["x"](){}}', 'class {x(){}}');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             methodNode.computed = false;
             methodNode.key = AST.identifier(str);
 
-            after(node, parentNode);
+            after(node, parentNodeOrWhatever);
             changes = true;
             return;
           }
@@ -7358,11 +7358,11 @@ export function phaseNormalize(fdata, fname, prng, options) {
           if (methodNode.key.type === 'literal' && typeof methodNode.key.value === 'string') {
             rule('Class keys that are strings should be templates internally, even if that is technically invalid');
             example('class x {"a"(){}}', 'class x {`a`(){}}');
-            before(node, parentNode);
+            before(node, parentNodeOrWhatever);
 
             methodNode.key = AST.templateLiteral(methodNode.key);
 
-            after(parentNode);
+            after(parentNodeOrWhatever);
             return true;
           }
         });
@@ -7433,7 +7433,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         if (wrapKind === 'statement') {
           rule('Class expressions that are statements should be outlined and dropped');
           example('(class{});', 'undefined;');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           body[i] = AST.expressionStatement(AST.identifier('undefined'));
 
@@ -7461,11 +7461,11 @@ export function phaseNormalize(fdata, fname, prng, options) {
           rule('Template literals that are statements should be dropped');
           example('`foo`;', ';');
           example('`fo${x}o`;', ';');
-          before(node, parentNode);
+          before(node, parentNodeOrWhatever);
 
           body[i] = AST.emptyStatement();
 
-          after(AST.emptyStatement(), parentNode);
+          after(AST.emptyStatement(), parentNodeOrWhatever);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
@@ -7606,7 +7606,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
     return postBodyFunctionTransform(node, body, i, parentNode);
   }
 
-  function postBodyFunctionTransform(node, body, i, parentNode) {
+  function postBodyFunctionTransform(node, body, i, parentBlock) {
     // Node can be: FunctionExpression, MethoDefinition
 
     if (!node.body.body.length) {
@@ -7685,7 +7685,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
     return false;
   }
 
-  function transformIfStatement(node, body, i, parentNode) {
+  function transformIfStatement(node, body, i, parentBlock) {
     if (!node.alternate) {
       rule('The else branch must exist');
       example('if (x) y();', 'if (x) y(); else {}');
@@ -7979,13 +7979,13 @@ export function phaseNormalize(fdata, fname, prng, options) {
         vlog('The body of both branches have one element and it is a return statement that returns the same identifier');
         rule('When both branches of an `if` return the same ident, the if is redundant');
         example('if (x) { return undefined; } else { return undefined; }', 'x; return undefined;');
-        before(node, parentNode);
+        before(node, parentBlock);
 
         // Note: keep the test condition around because it may trigger TDZ or unknown global errors
 
         body.splice(i, 1, AST.expressionStatement(node.test), node.consequent.body[0]);
 
-        after(body[i], parentNode);
+        after(body[i], parentBlock);
         assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
@@ -7999,13 +7999,13 @@ export function phaseNormalize(fdata, fname, prng, options) {
         vlog('The body of both branches have one element and it is a return statement that returns the same literal');
         rule('When both branches of an `if` return the same literal, the if is redundant');
         example('if (x) { return 512; } else { return 512; }', 'x; return 512;');
-        before(node, parentNode);
+        before(node, parentBlock);
 
         // Note: keep the test condition around because it may trigger TDZ or unknown global errors
 
         body.splice(i, 1, AST.expressionStatement(node.test), node.consequent.body[0]);
 
-        after(body[i], parentNode);
+        after(body[i], parentBlock);
         assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
@@ -8018,13 +8018,13 @@ export function phaseNormalize(fdata, fname, prng, options) {
           vlog('The body of both branches have one element and it is a return statement that returns the same identifier');
           rule('When both branches of an `if` return the same ident, the if is redundant');
           example('if (x) { return undefined; } else { return undefined; }', 'x; return undefined;');
-          before(node, parentNode);
+          before(node, parentBlock);
 
           // Note: keep the test condition around because it may trigger TDZ or unknown global errors
 
           body.splice(i, 1, AST.expressionStatement(node.test), node.consequent.body[0]);
 
-          after(body[i], parentNode);
+          after(body[i], parentBlock);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
@@ -8038,13 +8038,13 @@ export function phaseNormalize(fdata, fname, prng, options) {
           vlog('The body of both branches have one element and it is a return statement that returns the same literal');
           rule('When both branches of an `if` return the same literal, the if is redundant');
           example('if (x) { return 512; } else { return 512; }', 'x; return 512;');
-          before(node, parentNode);
+          before(node, parentBlock);
 
           // Note: keep the test condition around because it may trigger TDZ or unknown global errors
 
           body.splice(i, 1, AST.expressionStatement(node.test), node.consequent.body[0]);
 
-          after(body[i], parentNode);
+          after(body[i], parentBlock);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
@@ -8071,7 +8071,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           // so the second `if` should be moved to the back of the `else` branch instead.
           rule('Back to back if statements testing on the same identifier when neither has an `if` branch should be merged');
           example('if (x) { } else { f(); } if (x) { } else { g(); }', 'if (x) {} else { f(); if (x) { g(); } }');
-          before(prev, parentNode);
+          before(prev, parentBlock);
           before(node);
 
           // Since parent visitor won't go back, we'll replace this `if` with the previous `if` so it will be revisited
@@ -8079,7 +8079,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           body[i] = prev;
           prevAlternateBlock.push(node);
 
-          after(body[i], parentNode);
+          after(body[i], parentBlock);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         } else if (
@@ -8091,7 +8091,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           // so the second `if` should be moved to the back of the `false` branch instead.
           rule('Back to back if statements testing on the same identifier when the first if has no else branch should be merged');
           example('if (x) { f(); } if (x) { g(); }', 'if (x) { f(); if (x) { g(); } }');
-          before(prev, parentNode);
+          before(prev, parentBlock);
           before(node);
 
           // Since parent visitor won't go back, we'll replace this `if` with the previous `if` so it will be revisited
@@ -8099,7 +8099,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           body[i] = prev;
           prevConsequentBlock.push(node);
 
-          after(body[i], parentNode);
+          after(body[i], parentBlock);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         } else if (
@@ -8114,7 +8114,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             'if (x) {} else { x = f(); } if (x) { return x; } else { g(); }',
             'if (x) { return x; } else { x = f(); if (x) { return x; } else { g(); } }',
           );
-          before(prev, parentNode);
+          before(prev, parentBlock);
           before(node);
 
           const target = currentConsequentBlock[0];
@@ -8143,7 +8143,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           prevAlternateBlock.push(node);
           body.splice(i, 1); // Drop the current node since we moved it into the previous node. It should be revisited when the parent gets revisited.
 
-          after(body[i - 1], parentNode);
+          after(body[i - 1], parentBlock);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         } else if (
@@ -8158,7 +8158,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             'if (x) { x = f(); } else { } if (x) { g(); } else { return x; }',
             'if (x) { x = f(); if (x) { g(); } else { return x; } } else { return x; }',
           );
-          before(prev, parentNode);
+          before(prev, parentBlock);
           before(node);
 
           const target = currentAlternateBlock[0];
@@ -8186,7 +8186,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           prevConsequentBlock.push(node);
           body.splice(i, 1); // Drop the current node since we moved it into the previous node. It should be revisited when the parent gets revisited.
 
-          after(body[i - 1], parentNode);
+          after(body[i - 1], parentBlock);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         } else if (
@@ -8202,7 +8202,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
           rule('Back to back ifs, first else empty, second else one statement, should be inlined');
           example('if (x) f(); else {} if (x) g(); else h();', 'if (x) { f(); if (x) g() else h(); } else { h(); }');
-          before(prev, parentNode);
+          before(prev, parentBlock);
           before(node);
 
           prevConsequentBlock.push(node);
@@ -8216,7 +8216,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           );
           body.splice(i, 1); // Drop the second if. It was moved.
 
-          after(body[i - 1], parentNode);
+          after(body[i - 1], parentBlock);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         } else if (
@@ -8232,7 +8232,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
           rule('Back to back ifs, first if empty, second if one statement, should be inlined');
           example('if (x) {} else f(); if (x) g(); else h();', 'if (x) { g(); } else { f(); if (x) g() else h(); }');
-          before(prev, parentNode);
+          before(prev, parentBlock);
           before(node);
 
           prevAlternateBlock.push(node);
@@ -8246,7 +8246,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           );
           body.splice(i, 1); // Drop the second if. It was moved.
 
-          after(body[i - 1], parentNode);
+          after(body[i - 1], parentBlock);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
@@ -8307,7 +8307,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         node.alternate.body.push(...remainder);
 
         after(body[i]);
-        assertNoDupeNodes(AST.blockStatement(parentNode), 'body');
+        assertNoDupeNodes(AST.blockStatement(parentBlock), 'body');
         return true;
       }
 
@@ -8316,13 +8316,13 @@ export function phaseNormalize(fdata, fname, prng, options) {
         // Inline the remainder of the parent block into the if branch
         rule('If the else-branch returns the remainder of the parent block goes into the if-branch');
         example('if (x) f(); else return; g();', 'if (x) { f(); g(); } else { return; }');
-        before(node, parentNode);
+        before(node, parentBlock);
 
         const remainder = body.splice(i + 1, statementCountToHoist);
         node.consequent.body.push(...remainder);
 
-        after(parentNode);
-        assertNoDupeNodes(AST.blockStatement(parentNode), 'body');
+        after(parentBlock);
+        assertNoDupeNodes(AST.blockStatement(parentBlock), 'body');
         return true;
       }
     }
@@ -8338,7 +8338,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
     if (node.consequent.$p.returnBreakThrow && node.alternate.$p.returnBreakThrow) {
       // Both branches broke flow early so any statements that follow this statement are effectively dead
       node.$p.returnBreakThrow = node.consequent.$p.returnBreakThrow + '+' + node.alternate.$p.returnBreakThrow;
-      parentNode.$p.returnBreakThrow = node.$p.returnBreakThrow;
+      parentBlock.$p.returnBreakThrow = node.$p.returnBreakThrow;
 
       if (body.length > i + 1) {
         if (dce(body, i, 'after if-else')) {
@@ -8393,7 +8393,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
     return false;
   }
 
-  function transformImportDeclaration(node, body, i, parentNode) {
+  function transformImportDeclaration(node, body, i, parentBlock) {
     if (node.source.type === 'Literal') {
       ASSERT(typeof node.source.value === 'string', 'right?', node.source);
 
@@ -8444,7 +8444,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
     return false;
   }
 
-  function transformLabeledStatement(node, body, i, parentNode) {
+  function transformLabeledStatement(node, body, i, parentBlock) {
     // Note: in regular JS, labeled loop statements are tricky due to continue statements. However, we've
     //       eliminated `continue` and so this restriction is not relevant to us.
     vlog('Label: `' + node.label.name + '`');
@@ -8544,7 +8544,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         // Remove the "labeled statement" and re-insert its body, which becomes a nested BlockStatement, which will be normalized later.
         body.splice(i, 1, node.body);
 
-        after(body, parentNode);
+        after(body, parentBlock);
         assertNoDupeNodes(AST.blockStatement(body), 'body');
 
         // CURRENTLY IN AN INVALID STATE BECAUSE BREAKS ARE STILL TARGETING THAT LABEL. We do them next.
@@ -8570,7 +8570,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           ASSERT(block[index]?.type === 'BreakStatement' && block[index].label === node, 'should not be stale', obj, block[index], block[index].label, '==', node, block[index].label === node);
           block[index] = finalNode;
 
-          after(block[index], parentNode);
+          after(block[index], parentBlock);
         });
         vgroupEnd();
         usages.length = 0;
@@ -8653,7 +8653,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
     return anyChange;
   }
 
-  function transformMethodDefinition(methodNode, body, i, parentNode) {
+  function transformMethodDefinition(methodNode, body, i, parentBlock) {
     // This will be an anonymous function expression.
     // For now, do the same as with functions
 
@@ -8670,7 +8670,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
     ifelseStack.pop();
     funcStack.pop();
 
-    return postBodyFunctionTransform(node, body, i, parentNode);
+    return postBodyFunctionTransform(node, body, i, parentBlock);
   }
 
   function transformProgram(node) {
@@ -8680,7 +8680,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
     return false;
   }
 
-  function transformReturnStatement(node, body, i, parentNode) {
+  function transformReturnStatement(node, body, i, parentBlock) {
     if (!node.argument) {
       rule('Return argument must exist');
       example('return;', 'return undefined;');
@@ -8741,11 +8741,11 @@ export function phaseNormalize(fdata, fname, prng, options) {
     if (node.argument.type === 'Literal' && typeof node.argument.value === 'string') {
       rule('Return values that are strings should be templates');
       example('return "foo";', 'return `foo`;');
-      before(node.argument, parentNode);
+      before(node.argument, parentBlock);
 
       node.argument = AST.templateLiteral(node.argument.value);
 
-      after(node.argument, parentNode);
+      after(node.argument, parentBlock);
       assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
@@ -8797,14 +8797,14 @@ export function phaseNormalize(fdata, fname, prng, options) {
       // Constant folding does something like this generically, but this particular trampoline also works with `let`
       rule('Return var trampoline should eliminate the var');
       example('const x = f; return x;', 'return f;');
-      before(body[i - 1], parentNode);
+      before(body[i - 1], parentBlock);
       before(node);
 
       node.argument = body[i - 1].declarations[0].init;
       body[i - 1] = AST.emptyStatement();
 
       after(body[i - 1]);
-      after(node, parentNode);
+      after(node, parentBlock);
       assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
@@ -8823,8 +8823,8 @@ export function phaseNormalize(fdata, fname, prng, options) {
       return true;
     }
 
-    vlog(BLUE + 'Marking parent (' + parentNode.type + ') as returning early' + RESET);
-    parentNode.$p.returnBreakThrow = 'return';
+    vlog(BLUE + 'Marking parent (' + parentBlock.type + ') as returning early' + RESET);
+    parentBlock.$p.returnBreakThrow = 'return';
     if (body.length > i + 1) {
       if (dce(body, i, 'after return')) {
         return true;
@@ -8833,7 +8833,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
     return false;
   }
 
-  function transformThrowStatement(node, body, i, parent) {
+  function transformThrowStatement(node, body, i, parentBlock) {
     if (AST.isComplexNode(node.argument)) {
       rule('Throw argument must be simple');
       example('throw $()', 'let tmp = $(); throw tmp;');
@@ -8861,8 +8861,8 @@ export function phaseNormalize(fdata, fname, prng, options) {
       return true;
     }
 
-    vlog(BLUE + 'Marking parent (' + parent.type + ') as throwing early' + RESET);
-    parent.$p.returnBreakThrow = 'throw';
+    vlog(BLUE + 'Marking parent (' + parentBlock.type + ') as throwing early' + RESET);
+    parentBlock.$p.returnBreakThrow = 'throw';
 
     if (body.length > i + 1) {
       if (dce(body, i, 'after throw')) {
@@ -8887,7 +8887,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
     return false;
   }
 
-  function transformTryStatement(node, body, i, parent) {
+  function transformTryStatement(node, body, i, parentBlock) {
     transformBlock(node.block, undefined, -1, node, false);
     anyBlock(node.block);
 
@@ -8971,7 +8971,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
     return false;
   }
 
-  function transformVariableDeclaration(node, body, i, parentNode, funcNode) {
+  function transformVariableDeclaration(node, body, i, parentBlock, funcNode) {
     if (node.declarations.length !== 1) {
       rule('Var binding decls must introduce one binding');
       example('var a = 1, b = 2', 'var a = 1; var b = 2', () => node.kind === 'var');
@@ -9027,7 +9027,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
     if (dnode.id.type === 'ObjectPattern') {
       rule('Binding object patterns not allowed');
       example('var {x} = y()', 'var tmp = y(), x = obj.x');
-      before(node, parentNode);
+      before(node, parentBlock);
 
       const bindingPatternRootName = createFreshVar('bindingPatternObjRoot', fdata);
       const nameStack = [bindingPatternRootName];
@@ -9091,7 +9091,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         if (dnode.init.operator !== '=') {
           rule('Var inits can not be compound assignments to ident');
           example('let x = y *= z()', 'let x = y = y * z();');
-          before(node, parentNode);
+          before(node, parentBlock);
 
           dnode.init = AST.assignmentExpression(
             dnode.init.left,
@@ -9109,7 +9109,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
         rule('Var inits can not be assignments; lhs ident');
         example('let x = y = z()', 'y = z; let x = y;');
-        before(node, parentNode);
+        before(node, parentBlock);
 
         const newNodes = [
           AST.expressionStatement(dnode.init),
@@ -9127,7 +9127,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           ASSERT(dnode.id.type === 'Identifier');
           rule('Var inits can not be assignments; lhs computed complex prop');
           example('let x = a()[b()] = z()', 'tmp = a(), tmp2 = b(), tmp3 = z(), tmp[tmp2] = tmp3; let x = tmp3;');
-          before(node, parentNode);
+          before(node, parentBlock);
 
           const tmpNameObj = createFreshVar('varInitAssignLhsComputedObj', fdata);
           const tmpNameProp = createFreshVar('varInitAssignLhsComputedProp', fdata);
@@ -9165,7 +9165,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             'tmp = a(); let x = tmp[b] *= z();',
             () => dnode.init.operator !== '=' && dnode.init.left.computed,
           );
-          before(node, parentNode);
+          before(node, parentBlock);
 
           const tmpNameObj = createFreshVar('varInitAssignLhsComputedObj', fdata);
           const newNodes = [
@@ -9214,7 +9214,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         ASSERT(dnode.id.type === 'Identifier');
         rule('Var inits can not be assignments; lhs simple member');
         example('let x = a()[b()] = z()', 'tmp = a(), tmp2 = b(), tmp3 = z(), tmp[tmp2] = tmp3; let x = tmp3;');
-        before(node, parentNode);
+        before(node, parentBlock);
 
         const tmpNameRhs = createFreshVar('varInitAssignLhsComputedRhs', fdata);
         const newNodes = [
@@ -9233,7 +9233,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
       rule('Var inits can not be assignments; pattern lhs');
       example('let x = [y] = z()', 'let x, x = [y] = z()');
-      before(node, parentNode);
+      before(node, parentBlock);
 
       const newNodes = [
         AST.variableDeclaration(AST.cloneSimple(dnode.id)),
@@ -9268,7 +9268,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
       dnode.init = AST.identifier(funcNode.id.name);
       funcNode.id = null;
 
-      after(funcNode, parentNode);
+      after(funcNode, parentBlock);
       assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
@@ -9276,11 +9276,11 @@ export function phaseNormalize(fdata, fname, prng, options) {
     if (dnode.init.type === 'Literal' && typeof dnode.init.value === 'string') {
       rule('Var inits that are strings should be templates');
       example('const x = "foo";', 'const x = `foo`;');
-      before(dnode.init, parentNode);
+      before(dnode.init, parentBlock);
 
       dnode.init = AST.templateLiteral(dnode.init.value);
 
-      after(dnode.init, parentNode);
+      after(dnode.init, parentBlock);
       return true;
     }
 
@@ -9341,7 +9341,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
     return false;
   }
 
-  function transformWhileStatement(node, body, i, parentNode) {
+  function transformWhileStatement(node, body, i, parentBlock) {
     if (AST.isPrimitive(node.test)) {
       const pv = AST.getPrimitiveValue(node.test);
       if (pv !== true) {

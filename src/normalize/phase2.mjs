@@ -75,11 +75,11 @@ import { implicitThis } from '../reduce_static/implicit_this.mjs';
 import { expandoSplitting } from '../reduce_static/expando_splitting.mjs';
 import { selfAssignClosure } from '../reduce_static/self_assign_closure.mjs';
 import { selfAssignNoop } from '../reduce_static/self_assign_noop.mjs';
-import {letAliasing} from '../reduce_static/let_aliase.mjs';
-import {aliasedGlobals} from '../reduce_static/aliasing_globals.mjs';
-import {dotCall} from '../reduce_static/dotcall.mjs';
-import {testingAlias} from '../reduce_static/testing_alias.mjs';
-import {aliasIfIf} from '../reduce_static/alias_if_if.mjs';
+import { letAliasing } from '../reduce_static/let_aliase.mjs';
+import { aliasedGlobals } from '../reduce_static/aliasing_globals.mjs';
+import { dotCall } from '../reduce_static/dotcall.mjs';
+import { testingAlias } from '../reduce_static/testing_alias.mjs';
+import { aliasIfIf } from '../reduce_static/alias_if_if.mjs';
 import { removeUnusedConstants } from '../reduce_static/remove_unused_constants.mjs';
 import { writeOnly } from '../reduce_static/write_only.mjs';
 import { fakeDoWhile } from '../reduce_static/fake_do_while.mjs';
@@ -97,7 +97,7 @@ import { recursiveFuncs } from '../reduce_static/recursive_funcs.mjs';
 import { freeFuncs } from '../reduce_static/free_funcs.mjs';
 import { arrMethodCall } from '../reduce_static/arr_method_call.mjs';
 import { freeing } from '../reduce_static/freeing.mjs';
-import {buffer_base64} from "../reduce_static/buffer_base64.mjs"
+import { buffer_base64 } from "../reduce_static/buffer_base64.mjs"
 import { letAliasRedundant } from '../reduce_static/let_alias_redundant.mjs';
 import { freeLoops } from '../reduce_static/free_loops.mjs';
 import { freeNested } from '../reduce_static/free_nested.mjs';
@@ -331,7 +331,6 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
     freeLoops(fdata, prng, !!options.prngSeed) || // Most other stuff should probably precede this?
 
     freeing(fdata, prng, !!options.prngSeed) // Do this last. Let other tricks precede it.
-
 
     //// This one is very invasive and expands the code. Needs more work.
     //phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit) ||

@@ -100,6 +100,7 @@ import { freeing } from '../reduce_static/freeing.mjs';
 import {buffer_base64} from "../reduce_static/buffer_base64.mjs"
 import { letAliasRedundant } from '../reduce_static/let_alias_redundant.mjs';
 import { freeLoops } from '../reduce_static/free_loops.mjs';
+import { freeNested } from '../reduce_static/free_nested.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
@@ -242,6 +243,7 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
     constAssigns(fdata) ||
     constAliasing(fdata) ||
     aliasedGlobals(fdata) ||
+    freeNested(fdata, prng, !!options.prngSeed) || // I think it's fine to do this early
     dotCall(fdata) ||
     assignHoisting(fdata) ||
     ifFlipping(fdata) ||

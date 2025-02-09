@@ -457,6 +457,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           parentNode,
         );
 
+        // Init/reset to "not used". This walker will update these when they are used. This way we know the params are at least processed by phase1.
+        node.params.forEach(param => param.$p.paramVarDeclRef = false);
+
         if (parentNode.type === 'VariableDeclarator' && pathNodes[pathNodes.length - 3].kind === 'const') {
           vlog('Bound as a constant as: `' + parentNode.id.name + '`');
           node.$p.uniqueName = parentNode.id.name;

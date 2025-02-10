@@ -120,46 +120,26 @@ With rename=true
 
 `````js filename=intro
 const a = function b($$0,$$1 ) {
-  const c = $$0;
-  const d = $$1;
+  const c = d;
+  const e = f;
   debugger;
-  const e = c + 71046;
-  const f = "".charCodeAt( d );
-  const g = e ^ f;
-  return g;
+  const g = c + 71046;
+  const h = "".charCodeAt( e );
+  const i = g ^ h;
+  return i;
 };
 $( a );
-const h = function() {
+const j = function() {
   debugger;
   $coerce( tmpBinBothRhs$32, "string" );
   $coerce( tmpClusterSSA_r$2027, "string" );
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const i = j( a, $, $ );
-    p$171 = p$171 + i;
+    const k = l( a, $, $ );
+    p$171 = p$171 + k;
   }
   return undefined;
 };
-$( h );
-`````
-
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-const tmpFree$1 = function $free(cs$1, g$147) {
-  const tmpCalleeParam$9457 = (cs$1 + 71046) ^ ``.charCodeAt(g$147);
-  return tmpCalleeParam$9457;
-};
-$(tmpFree$1);
-$(function () {
-  $coerce(tmpBinBothRhs$32, `string`);
-  $coerce(tmpClusterSSA_r$2027, `string`);
-  while (true) {
-    p$171 = p$171 + $frfr(tmpFree$1, $, $);
-  }
-});
+$( j );
 `````
 
 ## Globals
@@ -179,6 +159,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
-
-Denormalized calls: Same
+Final output calls: Same

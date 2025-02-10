@@ -79,18 +79,16 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
+    let tmpAssignMemLhsObj = undefined;
     const tmpIfTest$1 = $(30);
-    let tmpAssignMemLhsObj$1 = undefined;
     if (tmpIfTest$1) {
-      const tmpClusterSSA_tmpAssignMemLhsObj = $(60);
-      tmpAssignMemLhsObj$1 = tmpClusterSSA_tmpAssignMemLhsObj;
+      tmpAssignMemLhsObj = $(60);
     } else {
       const tmpCalleeParam$3 = $(100);
-      const tmpClusterSSA_tmpAssignMemLhsObj$1 = $(tmpCalleeParam$3);
-      tmpAssignMemLhsObj$1 = tmpClusterSSA_tmpAssignMemLhsObj$1;
+      tmpAssignMemLhsObj = $(tmpCalleeParam$3);
     }
     const tmpAssignMemRhs = tmpForOfNext.value;
-    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -112,26 +110,24 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
   else {
-    const f = $( 30 );
-    let g = undefined;
-    if (f) {
-      const h = $( 60 );
-      g = h;
+    let f = undefined;
+    const g = $( 30 );
+    if (g) {
+      f = $( 60 );
     }
     else {
-      const i = $( 100 );
-      const j = $( i );
-      g = j;
+      const h = $( 100 );
+      f = $( h );
     }
-    const k = d.value;
-    g.x = k;
+    const i = d.value;
+    f.x = i;
   }
 }
-const l = {
+const j = {
   a: 999,
   b: 1000,
 };
-$( l );
+$( j );
 `````
 
 ## Globals

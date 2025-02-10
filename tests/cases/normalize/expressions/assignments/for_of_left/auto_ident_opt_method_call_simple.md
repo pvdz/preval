@@ -85,8 +85,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    a = undefined;
     const tmpChainElementCall = b.c(1);
+    a = tmpChainElementCall;
     const tmpAssignMemRhs = tmpForOfNext.value;
     tmpChainElementCall.x = tmpAssignMemRhs;
   }
@@ -114,8 +114,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
   else {
-    a = undefined;
     const h = e.c( 1 );
+    a = h;
     const i = f.value;
     h.x = i;
   }

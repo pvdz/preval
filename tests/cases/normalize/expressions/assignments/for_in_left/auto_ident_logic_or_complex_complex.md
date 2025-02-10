@@ -83,16 +83,13 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     const tmpCalleeParam$3 = $(0);
     a = $(tmpCalleeParam$3);
-    let tmpAssignMemLhsObj = undefined;
     if (a) {
-      tmpAssignMemLhsObj = a;
     } else {
       const tmpCalleeParam$5 = $(2);
-      const tmpClusterSSA_a = $(tmpCalleeParam$5);
-      tmpAssignMemLhsObj = tmpClusterSSA_a;
+      a = $(tmpCalleeParam$5);
     }
     const tmpAssignMemRhs = tmpForInNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    a.x = tmpAssignMemRhs;
   }
 }
 $(a);
@@ -119,17 +116,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   else {
     const g = $( 0 );
     a = $( g );
-    let h = undefined;
     if (a) {
-      h = a;
+
     }
     else {
-      const i = $( 2 );
-      const j = $( i );
-      h = j;
+      const h = $( 2 );
+      a = $( h );
     }
-    const k = e.value;
-    h.x = k;
+    const i = e.value;
+    a.x = i;
   }
 }
 $( a );

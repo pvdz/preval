@@ -34,10 +34,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpBinBothLhs /*:object*/ = {};
-const tmpBinBothRhs /*:object*/ = {};
-const tmpCalleeParam /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
-$(tmpCalleeParam);
+$(false);
 `````
 
 ## PST Output
@@ -45,10 +42,7 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = {};
-const b = {};
-const c = a === b;
-$( c );
+$( false );
 `````
 
 ## Globals

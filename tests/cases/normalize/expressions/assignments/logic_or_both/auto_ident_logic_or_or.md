@@ -76,33 +76,34 @@ $(a);
 const tmpCalleeParam$1 = $(0);
 let a = $(tmpCalleeParam$1);
 if (a) {
+  $(a);
 } else {
   const tmpCalleeParam$3 = $(1);
   a = $(tmpCalleeParam$3);
   if (a) {
+    $(a);
   } else {
     const tmpCalleeParam$5 = $(2);
     a = $(tmpCalleeParam$5);
-  }
-}
-const tmpCalleeParam = a;
-if (a) {
-  $(tmpCalleeParam);
-} else {
-  const tmpCalleeParam$7 = $(0);
-  let tmpNestedComplexRhs = $(tmpCalleeParam$7);
-  if (tmpNestedComplexRhs) {
-  } else {
-    const tmpCalleeParam$9 = $(1);
-    tmpNestedComplexRhs = $(tmpCalleeParam$9);
-    if (tmpNestedComplexRhs) {
+    if (a) {
+      $(a);
     } else {
-      const tmpCalleeParam$11 = $(2);
-      tmpNestedComplexRhs = $(tmpCalleeParam$11);
+      const tmpCalleeParam$7 = $(0);
+      let tmpNestedComplexRhs = $(tmpCalleeParam$7);
+      if (tmpNestedComplexRhs) {
+      } else {
+        const tmpCalleeParam$9 = $(1);
+        tmpNestedComplexRhs = $(tmpCalleeParam$9);
+        if (tmpNestedComplexRhs) {
+        } else {
+          const tmpCalleeParam$11 = $(2);
+          tmpNestedComplexRhs = $(tmpCalleeParam$11);
+        }
+      }
+      a = tmpNestedComplexRhs;
+      $(tmpNestedComplexRhs);
     }
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 }
 $(a);
 `````
@@ -115,42 +116,41 @@ With rename=true
 const a = $( 0 );
 let b = $( a );
 if (b) {
-
+  $( b );
 }
 else {
   const c = $( 1 );
   b = $( c );
   if (b) {
-
+    $( b );
   }
   else {
     const d = $( 2 );
     b = $( d );
-  }
-}
-const e = b;
-if (b) {
-  $( e );
-}
-else {
-  const f = $( 0 );
-  let g = $( f );
-  if (g) {
-
-  }
-  else {
-    const h = $( 1 );
-    g = $( h );
-    if (g) {
-
+    if (b) {
+      $( b );
     }
     else {
-      const i = $( 2 );
-      g = $( i );
+      const e = $( 0 );
+      let f = $( e );
+      if (f) {
+
+      }
+      else {
+        const g = $( 1 );
+        f = $( g );
+        if (f) {
+
+        }
+        else {
+          const h = $( 2 );
+          f = $( h );
+        }
+      }
+      b = f;
+      $( f );
     }
   }
-  b = g;
-  $( g );
 }
 $( b );
 `````

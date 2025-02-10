@@ -48,11 +48,11 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs$1 = $(1);
 const tmpBinBothRhs$1 = $(2);
-const a /*:primitive*/ = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+tmpBinBothLhs$1 + tmpBinBothRhs$1;
 const tmpBinBothLhs$3 = $(1);
 const tmpBinBothRhs$3 = $(2);
 const tmpClusterSSA_a /*:primitive*/ = tmpBinBothLhs$3 + tmpBinBothRhs$3;
-const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
+const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
@@ -64,13 +64,13 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = $( 2 );
-const c = a + b;
-const d = $( 1 );
-const e = $( 2 );
-const f = d + e;
-const g = c + f;
-$( g );
+a + b;
+const c = $( 1 );
+const d = $( 2 );
+const e = c + d;
+const f = e + e;
 $( f );
+$( e );
 `````
 
 ## Globals

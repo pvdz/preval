@@ -53,14 +53,13 @@ $(a, x);
 `````js filename=intro
 const tmpUnaryArg = $(1);
 let a = typeof tmpUnaryArg;
-const tmpCalleeParam = a;
 if (a) {
   const tmpUnaryArg$1 = $(1);
   const tmpNestedComplexRhs /*:string*/ = typeof tmpUnaryArg$1;
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
-  $(tmpCalleeParam);
+  $(a);
 }
 $(a, 1);
 `````
@@ -72,15 +71,14 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 let b = typeof a;
-const c = b;
 if (b) {
-  const d = $( 1 );
-  const e = typeof d;
-  b = e;
-  $( e );
+  const c = $( 1 );
+  const d = typeof c;
+  b = d;
+  $( d );
 }
 else {
-  $( c );
+  $( b );
 }
 $( b, 1 );
 `````

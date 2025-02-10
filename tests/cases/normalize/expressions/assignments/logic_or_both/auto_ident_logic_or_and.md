@@ -78,6 +78,7 @@ $(a);
 const tmpCalleeParam$1 = $(0);
 let a = $(tmpCalleeParam$1);
 if (a) {
+  $(a);
 } else {
   const tmpCalleeParam$3 = $(1);
   a = $(tmpCalleeParam$3);
@@ -86,25 +87,24 @@ if (a) {
     a = $(tmpCalleeParam$5);
   } else {
   }
-}
-const tmpCalleeParam = a;
-if (a) {
-  $(tmpCalleeParam);
-} else {
-  const tmpCalleeParam$7 = $(0);
-  let tmpNestedComplexRhs = $(tmpCalleeParam$7);
-  if (tmpNestedComplexRhs) {
+  if (a) {
+    $(a);
   } else {
-    const tmpCalleeParam$9 = $(1);
-    tmpNestedComplexRhs = $(tmpCalleeParam$9);
+    const tmpCalleeParam$7 = $(0);
+    let tmpNestedComplexRhs = $(tmpCalleeParam$7);
     if (tmpNestedComplexRhs) {
-      const tmpCalleeParam$11 = $(2);
-      tmpNestedComplexRhs = $(tmpCalleeParam$11);
     } else {
+      const tmpCalleeParam$9 = $(1);
+      tmpNestedComplexRhs = $(tmpCalleeParam$9);
+      if (tmpNestedComplexRhs) {
+        const tmpCalleeParam$11 = $(2);
+        tmpNestedComplexRhs = $(tmpCalleeParam$11);
+      } else {
+      }
     }
+    a = tmpNestedComplexRhs;
+    $(tmpNestedComplexRhs);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 }
 $(a);
 `````
@@ -117,7 +117,7 @@ With rename=true
 const a = $( 0 );
 let b = $( a );
 if (b) {
-
+  $( b );
 }
 else {
   const c = $( 1 );
@@ -126,27 +126,26 @@ else {
     const d = $( 2 );
     b = $( d );
   }
-}
-const e = b;
-if (b) {
-  $( e );
-}
-else {
-  const f = $( 0 );
-  let g = $( f );
-  if (g) {
-
+  if (b) {
+    $( b );
   }
   else {
-    const h = $( 1 );
-    g = $( h );
-    if (g) {
-      const i = $( 2 );
-      g = $( i );
+    const e = $( 0 );
+    let f = $( e );
+    if (f) {
+
     }
+    else {
+      const g = $( 1 );
+      f = $( g );
+      if (f) {
+        const h = $( 2 );
+        f = $( h );
+      }
+    }
+    b = f;
+    $( f );
   }
-  b = g;
-  $( g );
 }
 $( b );
 `````

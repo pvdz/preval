@@ -36,8 +36,7 @@ $(arr);
 
 
 `````js filename=intro
-const arr /*:array*/ = [1, 2, 3];
-arr.length = 1;
+const arr /*:array*/ = [1];
 $(arr);
 `````
 
@@ -46,8 +45,7 @@ $(arr);
 With rename=true
 
 `````js filename=intro
-const a = [ 1, 2, 3 ];
-a.length = 1;
+const a = [ 1 ];
 $( a );
 `````
 

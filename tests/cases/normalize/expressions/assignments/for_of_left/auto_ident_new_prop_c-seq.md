@@ -83,9 +83,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpCompObj = $(b);
     const tmpNewCallee = tmpCompObj.$;
     a = new tmpNewCallee(1);
-    const tmpAssignMemLhsObj = a;
     const tmpAssignMemRhs = tmpForOfNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    a.x = tmpAssignMemRhs;
   }
 }
 $(a);
@@ -114,9 +113,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const h = $( e );
     const i = h.$;
     a = new i( 1 );
-    const j = a;
-    const k = f.value;
-    j.x = k;
+    const j = f.value;
+    a.x = j;
   }
 }
 $( a );

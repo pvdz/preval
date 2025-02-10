@@ -28,7 +28,6 @@ $(`the end`);
 
 `````js filename=intro
 const x = [1, 2, 3];
-[...x];
 $(`the end`);
 `````
 

@@ -96,9 +96,8 @@ if (tmpIfTest$1) {
     tmpNestedComplexRhs = tmpChainElementObject$1;
   }
 }
-const tmpClusterSSA_a = tmpNestedComplexRhs;
 $(undefined);
-$(tmpClusterSSA_a);
+$(tmpNestedComplexRhs);
 `````
 
 ## PST Output
@@ -127,9 +126,8 @@ else {
     a = j;
   }
 }
-const k = a;
 $( undefined );
-$( k );
+$( a );
 `````
 
 ## Globals

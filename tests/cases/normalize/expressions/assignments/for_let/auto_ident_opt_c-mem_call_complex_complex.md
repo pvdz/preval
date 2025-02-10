@@ -84,9 +84,8 @@ if (tmpIfTest) {
     a = tmpChainElementCall$1;
   }
 }
-const xyz = a;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(xyz);
+  $(a);
   $(1);
 }
 `````
@@ -116,9 +115,8 @@ else {
     a = i;
   }
 }
-const j = a;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( j );
+  $( a );
   $( 1 );
 }
 `````

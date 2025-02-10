@@ -108,10 +108,10 @@ tmpCallCallee$7(tmpCalleeParam$15, tmpCalleeParam$17);
 
 
 `````js filename=intro
-const g = function ($$0) {
+const g /*:(number)=>function*/ = function ($$0) {
   const a /*:number*/ = $$0;
   debugger;
-  const f = function () {
+  const f /*:()=>number*/ = function () {
     debugger;
     $(a, `inner`);
     return a;
@@ -122,23 +122,23 @@ const g = function ($$0) {
     $(tmpCalleeParam, `init`);
   } else {
   }
-  const tmpReturnArg = function () {
+  const tmpReturnArg /*:()=>number*/ = function () {
     debugger;
     $(a, `inner`);
     return a;
   };
   return tmpReturnArg;
 };
-const tmpCallComplexCallee = g(1);
+const tmpCallComplexCallee /*:function*/ = g(1);
 const tmpCalleeParam$3 = tmpCallComplexCallee();
 $(tmpCalleeParam$3, `outer`);
-const tmpCallComplexCallee$1 = g(2);
+const tmpCallComplexCallee$1 /*:function*/ = g(2);
 const tmpCalleeParam$7 = tmpCallComplexCallee$1();
 $(tmpCalleeParam$7, `outer`);
-const tmpCallComplexCallee$3 = g(3);
+const tmpCallComplexCallee$3 /*:function*/ = g(3);
 const tmpCalleeParam$11 = tmpCallComplexCallee$3();
 $(tmpCalleeParam$11, `outer`);
-const tmpCallComplexCallee$5 = g(4);
+const tmpCallComplexCallee$5 /*:function*/ = g(4);
 const tmpCalleeParam$15 = tmpCallComplexCallee$5();
 $(tmpCalleeParam$15, `outer`);
 `````

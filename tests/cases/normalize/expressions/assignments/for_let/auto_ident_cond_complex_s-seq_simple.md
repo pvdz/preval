@@ -53,16 +53,15 @@ while (true) {
 
 
 `````js filename=intro
+let a = 60;
 const tmpIfTest = $(1);
-let xyz = 60;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam = $(100);
-  const tmpClusterSSA_a = $(tmpCalleeParam);
-  xyz = tmpClusterSSA_a;
+  a = $(tmpCalleeParam);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(xyz);
+  $(a);
   $(1);
 }
 `````
@@ -72,18 +71,17 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-let b = 60;
-if (a) {
+let a = 60;
+const b = $( 1 );
+if (b) {
 
 }
 else {
   const c = $( 100 );
-  const d = $( c );
-  b = d;
+  a = $( c );
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( b );
+  $( a );
   $( 1 );
 }
 `````

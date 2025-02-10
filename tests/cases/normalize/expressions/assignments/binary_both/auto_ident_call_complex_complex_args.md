@@ -55,12 +55,12 @@ $(a);
 const tmpCallCallee$1 = $($);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-const a = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
+tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 const tmpCallCallee$3 = $($);
 const tmpCalleeParam$5 = $(1);
 const tmpCalleeParam$7 = $(2);
 const tmpClusterSSA_a = tmpCallCallee$3(tmpCalleeParam$5, tmpCalleeParam$7);
-const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
+const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
@@ -73,14 +73,14 @@ With rename=true
 const a = $( $ );
 const b = $( 1 );
 const c = $( 2 );
-const d = a( b, c );
-const e = $( $ );
-const f = $( 1 );
-const g = $( 2 );
-const h = e( f, g );
-const i = d + h;
-$( i );
+a( b, c );
+const d = $( $ );
+const e = $( 1 );
+const f = $( 2 );
+const g = d( e, f );
+const h = g + g;
 $( h );
+$( g );
 `````
 
 ## Globals

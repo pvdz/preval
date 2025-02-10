@@ -101,7 +101,6 @@ if (tmpIfTest) {
     a = tmpChainElementCall$1;
   }
 }
-const tmpCalleeParam = a;
 if (a) {
   let tmpNestedComplexRhs = undefined;
   const tmpChainElementCall$3 = $(b);
@@ -121,7 +120,7 @@ if (a) {
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
-  $(tmpCalleeParam);
+  $(a);
 }
 $(a);
 `````
@@ -151,32 +150,31 @@ else {
     a = i;
   }
 }
-const j = a;
 if (a) {
-  let k = undefined;
-  const l = $( b );
-  const m = l == null;
-  if (m) {
+  let j = undefined;
+  const k = $( b );
+  const l = k == null;
+  if (l) {
 
   }
   else {
-    const n = $( "$" );
-    const o = l[ n ];
-    const p = o == null;
-    if (p) {
+    const m = $( "$" );
+    const n = k[ m ];
+    const o = n == null;
+    if (o) {
 
     }
     else {
-      const q = $( 1 );
-      const r = $dotCall( o, l, q );
-      k = r;
+      const p = $( 1 );
+      const q = $dotCall( n, k, p );
+      j = q;
     }
   }
-  a = k;
-  $( k );
+  a = j;
+  $( j );
 }
 else {
-  $( j );
+  $( a );
 }
 $( a );
 `````

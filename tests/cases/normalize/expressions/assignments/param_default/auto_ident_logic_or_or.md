@@ -85,9 +85,8 @@ if (tmpNestedComplexRhs) {
     tmpNestedComplexRhs = $(tmpCalleeParam$3);
   }
 }
-const tmpClusterSSA_a = tmpNestedComplexRhs;
 $(undefined);
-$(tmpClusterSSA_a);
+$(tmpNestedComplexRhs);
 `````
 
 ## PST Output
@@ -111,9 +110,8 @@ else {
     b = $( d );
   }
 }
-const e = b;
 $( undefined );
-$( e );
+$( b );
 `````
 
 ## Globals

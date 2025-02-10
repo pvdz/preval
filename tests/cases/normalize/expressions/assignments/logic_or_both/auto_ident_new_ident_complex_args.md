@@ -58,9 +58,8 @@ $(a);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
 let a = new $(tmpCalleeParam$1, tmpCalleeParam$3);
-const tmpCalleeParam = a;
 if (a) {
-  $(tmpCalleeParam);
+  $(a);
 } else {
   const tmpCalleeParam$5 = $(1);
   const tmpCalleeParam$7 = $(2);
@@ -79,16 +78,15 @@ With rename=true
 const a = $( 1 );
 const b = $( 2 );
 let c = new $( a, b );
-const d = c;
 if (c) {
-  $( d );
+  $( c );
 }
 else {
-  const e = $( 1 );
-  const f = $( 2 );
-  const g = new $( e, f );
-  c = g;
-  $( g );
+  const d = $( 1 );
+  const e = $( 2 );
+  const f = new $( d, e );
+  c = f;
+  $( f );
 }
 $( c );
 `````

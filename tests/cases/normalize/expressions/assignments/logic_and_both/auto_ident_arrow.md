@@ -62,16 +62,15 @@ let a /*:()=>*/ = function () {
   debugger;
   return undefined;
 };
-const tmpCalleeParam = a;
 if (a) {
-  const tmpNestedComplexRhs /*:()=>undefined*/ = function () {
+  const tmpNestedComplexRhs /*:()=>*/ = function () {
     debugger;
     return undefined;
   };
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
-  $(tmpCalleeParam);
+  $(a);
 }
 $(a);
 `````
@@ -85,17 +84,16 @@ let a = function() {
   debugger;
   return undefined;
 };
-const b = a;
 if (a) {
-  const c = function() {
+  const b = function() {
     debugger;
     return undefined;
   };
-  a = c;
-  $( c );
+  a = b;
+  $( b );
 }
 else {
-  $( b );
+  $( a );
 }
 $( a );
 `````

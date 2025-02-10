@@ -110,9 +110,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
         a = tmpChainElementObject$1;
       }
     }
-    const tmpAssignMemLhsObj = a;
     const tmpAssignMemRhs = tmpForOfNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    a.x = tmpAssignMemRhs;
   }
 }
 $(a);
@@ -158,9 +157,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
         a = o;
       }
     }
-    const p = a;
-    const q = g.value;
-    p.x = q;
+    const p = g.value;
+    a.x = p;
   }
 }
 $( a );

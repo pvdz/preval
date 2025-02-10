@@ -79,9 +79,8 @@ if (tmpIfTest) {
     a = tmpChainElementCall$1;
   }
 }
-const tmpBinBothLhs = a;
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);
 `````
@@ -111,10 +110,9 @@ else {
     a = i;
   }
 }
-const j = a;
-const k = $( 100 );
-const l = j + k;
-$( l );
+const j = $( 100 );
+const k = a + j;
+$( k );
 $( a );
 `````
 

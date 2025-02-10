@@ -393,7 +393,7 @@ const d /*:()=>object*/ = function () {
   c = 43;
   return objd;
 };
-let e = 12345;
+let e /*:primitive*/ = 12345;
 const varInitAssignLhsComputedObj = a();
 const varInitAssignLhsComputedProp = tmp(`a`);
 const varInitAssignLhsComputedObj$1 = b();

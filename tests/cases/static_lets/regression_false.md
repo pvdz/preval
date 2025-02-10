@@ -84,7 +84,7 @@ const oops /*:(unknown)=>undefined*/ = function (...$$0) {
   x = `fail`;
   return undefined;
 };
-let x = 5;
+let x /*:primitive*/ = 5;
 $(5);
 const tmpIfTest = $(false);
 if (tmpIfTest) {

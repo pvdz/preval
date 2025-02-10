@@ -72,7 +72,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-let x = undefined;
+let x /*:primitive*/ = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpIfTest$1 = $(2);

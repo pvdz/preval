@@ -56,12 +56,11 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   b = $(2);
-  const tmpNestedComplexRhs = b;
   a = b;
-  $(tmpNestedComplexRhs);
+  $(b);
 } else {
-  const tmpClusterSSA_tmpCalleeParam = $(200);
-  $(tmpClusterSSA_tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
 $(a, b);
 `````
@@ -79,13 +78,12 @@ let b = {
 const c = $( 1 );
 if (c) {
   a = $( 2 );
-  const d = a;
   b = a;
-  $( d );
+  $( a );
 }
 else {
-  const e = $( 200 );
-  $( e );
+  const d = $( 200 );
+  $( d );
 }
 $( b, a );
 `````

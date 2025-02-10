@@ -130,48 +130,28 @@ With rename=true
 
 `````js filename=intro
 const a = function b($$0,$$1 ) {
-  const c = $$0;
-  const d = $$1;
+  const c = d;
+  const e = f;
   debugger;
-  const e = c * 20;
-  const f = d * 40;
-  const g = e + f;
-  const h = g * 10;
-  const i = h > 40;
-  if (i) {
-    const j = h * 10;
-    return j;
+  const g = c * 20;
+  const h = e * 40;
+  const i = g + h;
+  const j = i * 10;
+  const k = j > 40;
+  if (k) {
+    const l = j * 10;
+    return l;
   }
   else {
-    return h;
+    return j;
   }
 };
-const k = $( 100 );
-const l = k * 1;
-const m = $( 200 );
+const m = $( 100 );
 const n = m * 1;
-const o = p( a, l, n );
-$( o );
-`````
-
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-const g = function $free(n, o) {
-  const p = n * 20;
-  const d = (p + o * 40) * 10;
-  if (d > 40) {
-    const tmpReturnArg = d * 10;
-    return tmpReturnArg;
-  } else {
-    return d;
-  }
-};
-const x = $(100) * 1;
-$($frfr(g, x, $(200) * 1));
+const o = $( 200 );
+const p = o * 1;
+const q = r( a, n, p );
+$( q );
 `````
 
 ## Globals
@@ -190,6 +170,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
-
-Denormalized calls: Same
+Final output calls: Same

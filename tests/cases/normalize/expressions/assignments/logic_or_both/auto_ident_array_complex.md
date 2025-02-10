@@ -54,9 +54,8 @@ $(a);
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
 let a = [tmpArrElement, 2, tmpArrElement$3];
-const tmpCalleeParam = a;
 if (a) {
-  $(tmpCalleeParam);
+  $(a);
 } else {
   const tmpArrElement$5 = $(1);
   const tmpArrElement$9 = $(3);
@@ -75,16 +74,15 @@ With rename=true
 const a = $( 1 );
 const b = $( 3 );
 let c = [ a, 2, b ];
-const d = c;
 if (c) {
-  $( d );
+  $( c );
 }
 else {
-  const e = $( 1 );
-  const f = $( 3 );
-  const g = [ e, 2, f ];
-  c = g;
-  $( g );
+  const d = $( 1 );
+  const e = $( 3 );
+  const f = [ d, 2, e ];
+  c = f;
+  $( f );
 }
 $( c );
 `````

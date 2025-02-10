@@ -95,7 +95,7 @@ if (x) {
 
 
 `````js filename=intro
-const tmpFree$2 /*:(string)=>string*/ = function $free($$0) {
+const tmpFree /*:(string)=>string*/ = function $free($$0) {
   const somestr /*:string*/ = $$0;
   debugger;
   const extra$1 /*:string*/ = `${somestr}x`;
@@ -110,7 +110,7 @@ const x /*:number*/ = +tmpUnaryArg;
 if (x) {
   const unknown = $(`abc`);
   const somestr$1 /*:string*/ = $coerce(unknown, `string`);
-  const tmpIfTest$5 /*:string*/ = $frfr(tmpFree$2, somestr$1);
+  const tmpIfTest$5 /*:string*/ = $frfr(tmpFree, somestr$1);
   if (tmpIfTest$5) {
     $(`it is 58`);
   } else {

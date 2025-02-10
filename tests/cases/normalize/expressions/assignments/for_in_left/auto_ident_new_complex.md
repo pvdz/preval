@@ -76,9 +76,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     const tmpNewCallee = $($);
     a = new tmpNewCallee(1);
-    const tmpAssignMemLhsObj = a;
     const tmpAssignMemRhs = tmpForInNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    a.x = tmpAssignMemRhs;
   }
 }
 $(a);
@@ -105,9 +104,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   else {
     const g = $( $ );
     a = new g( 1 );
-    const h = a;
-    const i = e.value;
-    h.x = i;
+    const h = e.value;
+    a.x = h;
   }
 }
 $( a );

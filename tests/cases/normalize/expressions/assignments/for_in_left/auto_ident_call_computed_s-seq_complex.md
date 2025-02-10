@@ -82,9 +82,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     const tmpCallCompProp = $(`\$`);
     a = b[tmpCallCompProp](1);
-    const tmpAssignMemLhsObj = a;
     const tmpAssignMemRhs = tmpForInNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    a.x = tmpAssignMemRhs;
   }
 }
 $(a);
@@ -112,9 +111,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   else {
     const h = $( "$" );
     a = e[ h ]( 1 );
-    const i = a;
-    const j = f.value;
-    i.x = j;
+    const i = f.value;
+    a.x = i;
   }
 }
 $( a );

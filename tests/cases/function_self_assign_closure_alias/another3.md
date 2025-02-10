@@ -67,18 +67,9 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const tmpssa2_a$11 /*:array*/ = [1, 2, 3];
-const tmpssa2_a$9 /*:array*/ = [1, 2, 3];
-const tmpCalleeParam /*:boolean*/ = tmpssa2_a$11 === tmpssa2_a$9;
-$(tmpCalleeParam);
-const tmpssa2_a$7 /*:array*/ = [1, 2, 3];
-const tmpssa2_a$5 /*:array*/ = [1, 2, 3];
-const tmpCalleeParam$1 /*:boolean*/ = tmpssa2_a$7 !== tmpssa2_a$5;
-$(tmpCalleeParam$1);
-const tmpssa2_a$3 /*:array*/ = [1, 2, 3];
-const tmpssa2_a$1 /*:array*/ = [1, 2, 3];
-const tmpCalleeParam$3 /*:boolean*/ = tmpssa2_a$3 === tmpssa2_a$1;
-$(tmpCalleeParam$3);
+$(false);
+$(true);
+$(false);
 `````
 
 ## PST Output
@@ -86,18 +77,9 @@ $(tmpCalleeParam$3);
 With rename=true
 
 `````js filename=intro
-const a = [ 1, 2, 3 ];
-const b = [ 1, 2, 3 ];
-const c = a === b;
-$( c );
-const d = [ 1, 2, 3 ];
-const e = [ 1, 2, 3 ];
-const f = d !== e;
-$( f );
-const g = [ 1, 2, 3 ];
-const h = [ 1, 2, 3 ];
-const i = g === h;
-$( i );
+$( false );
+$( true );
+$( false );
 `````
 
 ## Globals

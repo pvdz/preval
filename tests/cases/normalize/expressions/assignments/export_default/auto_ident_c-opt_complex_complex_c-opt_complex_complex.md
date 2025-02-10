@@ -76,8 +76,7 @@ if (tmpIfTest) {
     a = tmpChainElementObject$1;
   }
 }
-const tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a);
 `````
 
@@ -107,8 +106,7 @@ else {
     a = j;
   }
 }
-const k = a;
-export { k as default };
+export { a as default };
 $( a );
 `````
 

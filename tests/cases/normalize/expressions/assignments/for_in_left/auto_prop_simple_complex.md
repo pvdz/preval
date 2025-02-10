@@ -81,14 +81,12 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     const tmpObjLitVal = $(1);
     a = { b: tmpObjLitVal };
-    const tmpAssignMemLhsObj = a;
     const tmpAssignMemRhs = tmpForInNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    a.x = tmpAssignMemRhs;
   }
 }
-const tmpAssignMemLhsObj$3 = a;
 const tmpAssignMemRhs$1 = $(2);
-tmpAssignMemLhsObj$3.b = tmpAssignMemRhs$1;
+a.b = tmpAssignMemRhs$1;
 $(a);
 `````
 
@@ -113,14 +111,12 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   else {
     const g = $( 1 );
     a = { b: g };
-    const h = a;
-    const i = e.value;
-    h.x = i;
+    const h = e.value;
+    a.x = h;
   }
 }
-const j = a;
-const k = $( 2 );
-j.b = k;
+const i = $( 2 );
+a.b = i;
 $( a );
 `````
 

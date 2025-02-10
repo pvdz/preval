@@ -37,13 +37,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpIfTest /*:boolean*/ = parseInt == null;
-if (tmpIfTest) {
-  foo;
-  $(foo);
-} else {
-  $(parseInt);
-}
+$(parseInt);
 `````
 
 ## PST Output
@@ -51,21 +45,12 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = parseInt == null;
-if (a) {
-  foo;
-  $( foo );
-}
-else {
-  $( parseInt );
-}
+$( parseInt );
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-foo
+None
 
 ## Result
 

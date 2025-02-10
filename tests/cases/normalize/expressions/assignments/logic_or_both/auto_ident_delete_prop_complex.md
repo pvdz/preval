@@ -54,9 +54,8 @@ $(a, arg);
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj = $(arg);
 let tmpClusterSSA_a = delete tmpDeleteObj.y;
-const tmpCalleeParam = tmpClusterSSA_a;
 if (tmpClusterSSA_a) {
-  $(tmpCalleeParam);
+  $(tmpClusterSSA_a);
 } else {
   const tmpDeleteObj$1 = $(arg);
   const tmpNestedComplexRhs /*:boolean*/ = delete tmpDeleteObj$1.y;
@@ -74,15 +73,14 @@ With rename=true
 const a = { y: 1 };
 const b = $( a );
 let c = delete b.y;
-const d = c;
 if (c) {
-  $( d );
+  $( c );
 }
 else {
-  const e = $( a );
-  const f = delete e.y;
-  c = f;
-  $( f );
+  const d = $( a );
+  const e = delete d.y;
+  c = e;
+  $( e );
 }
 $( c, a );
 `````

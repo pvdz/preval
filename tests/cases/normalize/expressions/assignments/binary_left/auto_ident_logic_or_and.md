@@ -67,9 +67,8 @@ if (a) {
   } else {
   }
 }
-const tmpBinBothLhs = a;
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);
 `````
@@ -92,10 +91,9 @@ else {
     b = $( d );
   }
 }
-const e = b;
-const f = $( 100 );
-const g = e + f;
-$( g );
+const e = $( 100 );
+const f = b + e;
+$( f );
 $( b );
 `````
 

@@ -62,10 +62,15 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
+const tmpFree /*:()=>boolean*/ = function $free() {
+  debugger;
+  const tmpIfTest /*:number*/ = x & 10;
+  const tmpRet /*:boolean*/ = tmpIfTest === 10;
+  return tmpRet;
+};
 const tmpUnaryArg = $spy(40);
 const x /*:number*/ = +tmpUnaryArg;
-const tmpIfTest /*:number*/ = x & 10;
-const tmpIfTest$1 /*:boolean*/ = tmpIfTest === 10;
+const tmpIfTest$1 /*:boolean*/ = $frfr(tmpFree);
 if (tmpIfTest$1) {
   const tmpIfTest$3 /*:number*/ = x & 32;
   if (tmpIfTest$3) {
@@ -81,13 +86,18 @@ if (tmpIfTest$1) {
 With rename=true
 
 `````js filename=intro
-const a = $spy( 40 );
-const b = +a;
-const c = b & 10;
-const d = c === 10;
-if (d) {
-  const e = b & 32;
-  if (e) {
+const a = function b() {
+  debugger;
+  const c = d & 10;
+  const e = c === 10;
+  return e;
+};
+const f = $spy( 40 );
+const d = +f;
+const g = h( a );
+if (g) {
+  const i = d & 32;
+  if (i) {
     $( "it is 42" );
   }
 }

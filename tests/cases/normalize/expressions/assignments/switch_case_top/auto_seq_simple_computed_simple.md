@@ -70,9 +70,8 @@ if (tmpIfTest) {
 } else {
 }
 $(1);
-const tmpAssignMemLhsObj = a;
 const tmpAssignMemRhs = $(2);
-tmpAssignMemLhsObj.b = tmpAssignMemRhs;
+a.b = tmpAssignMemRhs;
 $(a);
 `````
 
@@ -93,9 +92,8 @@ if (d) {
   a = { b: e };
 }
 $( 1 );
-const f = a;
-const g = $( 2 );
-f.b = g;
+const f = $( 2 );
+a.b = f;
 $( a );
 `````
 

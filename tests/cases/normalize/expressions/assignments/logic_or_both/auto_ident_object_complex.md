@@ -54,9 +54,8 @@ $(a);
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
 let a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-const tmpCalleeParam = a;
 if (a) {
-  $(tmpCalleeParam);
+  $(a);
 } else {
   const tmpObjLitVal$5 = $(1);
   const tmpObjLitVal$9 = $(3);
@@ -79,20 +78,19 @@ let c = {
   y: 2,
   z: b,
 };
-const d = c;
 if (c) {
-  $( d );
+  $( c );
 }
 else {
-  const e = $( 1 );
-  const f = $( 3 );
-  const g = {
-    x: e,
+  const d = $( 1 );
+  const e = $( 3 );
+  const f = {
+    x: d,
     y: 2,
-    z: f,
+    z: e,
   };
-  c = g;
-  $( g );
+  c = f;
+  $( f );
 }
 $( c );
 `````

@@ -54,14 +54,19 @@ $(a, b);
 
 
 `````js filename=intro
+const tmpFree /*:()=>string*/ = function $free() {
+  debugger;
+  const tmpBinBothRhs /*:string*/ = $coerce(tmpNestedPropCompoundComplexRhs, `string`);
+  const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+  return tmpRet;
+};
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam$1 = $(b);
 const tmpNestedAssignObj = $(tmpCalleeParam$1);
 const tmpBinLhs$1 = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs$1 + 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-const tmpBinBothRhs /*:string*/ = $coerce(tmpNestedPropCompoundComplexRhs, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+const tmpCalleeParam /*:string*/ = $frfr(tmpFree);
 $(tmpCalleeParam);
 $(tmpNestedPropCompoundComplexRhs, b);
 `````
@@ -71,16 +76,21 @@ $(tmpNestedPropCompoundComplexRhs, b);
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = $( a );
-const c = $( b );
-const d = c.x;
-const e = d + 1;
-c.x = e;
-const f = $coerce( e, "string" );
-const g = `before  ${f}  after`;
-$( g );
-$( e, a );
+const a = function b() {
+  debugger;
+  const c = $coerce( d, "string" );
+  const e = `before  ${c}  after`;
+  return e;
+};
+const f = { x: 1 };
+const g = $( f );
+const h = $( g );
+const i = h.x;
+const d = i + 1;
+h.x = d;
+const j = k( a );
+$( j );
+$( d, f );
 `````
 
 ## Globals

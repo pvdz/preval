@@ -79,9 +79,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpArrElement = $(1);
     const tmpArrElement$3 = $(3);
     a = [tmpArrElement, 2, tmpArrElement$3];
-    const tmpAssignMemLhsObj = a;
     const tmpAssignMemRhs = tmpForOfNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    a.x = tmpAssignMemRhs;
   }
 }
 $(a);
@@ -109,9 +108,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const g = $( 1 );
     const h = $( 3 );
     a = [ g, 2, h ];
-    const i = a;
-    const j = e.value;
-    i.x = j;
+    const i = e.value;
+    a.x = i;
   }
 }
 $( a );

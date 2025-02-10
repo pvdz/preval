@@ -53,15 +53,15 @@ while (true) {
 
 
 `````js filename=intro
-let xyz = undefined;
+let a = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall = $(1);
-  xyz = tmpChainElementCall;
+  a = tmpChainElementCall;
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(xyz);
+  $(a);
   $(1);
 }
 `````

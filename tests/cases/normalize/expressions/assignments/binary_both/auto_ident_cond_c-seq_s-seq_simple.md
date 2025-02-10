@@ -61,22 +61,19 @@ $(a);
 `````js filename=intro
 let a = 60;
 const tmpIfTest = $(30);
-let tmpBinBothLhs = 60;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam$1 = $(100);
-  const tmpClusterSSA_a = $(tmpCalleeParam$1);
-  tmpBinBothLhs = tmpClusterSSA_a;
+  $(tmpCalleeParam$1);
 }
 const tmpIfTest$1 = $(30);
 if (tmpIfTest$1) {
-  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + 60;
-  $(tmpClusterSSA_tmpCalleeParam);
+  $(120);
 } else {
   const tmpCalleeParam$3 = $(100);
   a = $(tmpCalleeParam$3);
-  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + a;
-  $(tmpClusterSSA_tmpCalleeParam$1);
+  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = a + a;
+  $(tmpClusterSSA_tmpCalleeParam);
 }
 $(a);
 `````
@@ -88,25 +85,22 @@ With rename=true
 `````js filename=intro
 let a = 60;
 const b = $( 30 );
-let c = 60;
 if (b) {
 
 }
 else {
-  const d = $( 100 );
-  const e = $( d );
-  c = e;
+  const c = $( 100 );
+  $( c );
 }
-const f = $( 30 );
-if (f) {
-  const g = c + 60;
-  $( g );
+const d = $( 30 );
+if (d) {
+  $( 120 );
 }
 else {
-  const h = $( 100 );
-  a = $( h );
-  const i = c + a;
-  $( i );
+  const e = $( 100 );
+  a = $( e );
+  const f = a + a;
+  $( f );
 }
 $( a );
 `````

@@ -84,9 +84,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpCalleeParam$3 = $(1);
     const tmpCalleeParam$5 = $(2);
     a = new tmpNewCallee(tmpCalleeParam$3, tmpCalleeParam$5);
-    const tmpAssignMemLhsObj = a;
     const tmpAssignMemRhs = tmpForInNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    a.x = tmpAssignMemRhs;
   }
 }
 $(a);
@@ -115,9 +114,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const h = $( 1 );
     const i = $( 2 );
     a = new g( h, i );
-    const j = a;
-    const k = e.value;
-    j.x = k;
+    const j = e.value;
+    a.x = j;
   }
 }
 $( a );

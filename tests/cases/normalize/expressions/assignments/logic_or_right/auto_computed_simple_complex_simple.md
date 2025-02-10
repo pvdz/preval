@@ -60,9 +60,8 @@ if (tmpCalleeParam) {
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }
-const tmpAssignComMemLhsObj = a;
 const tmpAssignComMemLhsProp = $(`b`);
-tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
+a[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````
 
@@ -85,9 +84,8 @@ else {
   a = d;
   $( d );
 }
-const e = a;
-const f = $( "b" );
-e[f] = 2;
+const e = $( "b" );
+a[e] = 2;
 $( a );
 `````
 

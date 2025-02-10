@@ -82,9 +82,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       debugger;
       return undefined;
     };
-    const tmpAssignMemLhsObj = a;
     const tmpAssignMemRhs = tmpForInNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    a.x = tmpAssignMemRhs;
   }
 }
 $(a);
@@ -113,9 +112,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       debugger;
       return undefined;
     };
-    const g = a;
-    const h = e.value;
-    g.x = h;
+    const g = e.value;
+    a.x = g;
   }
 }
 $( a );

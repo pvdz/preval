@@ -57,9 +57,8 @@ const b /*:object*/ = { $: $ };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $(`\$`);
 let tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
-const tmpCalleeParam = tmpClusterSSA_a;
 if (tmpClusterSSA_a) {
-  $(tmpCalleeParam);
+  $(tmpClusterSSA_a);
 } else {
   const tmpCallCompObj$1 = $(b);
   const tmpCallCompProp$1 = $(`\$`);
@@ -79,16 +78,15 @@ const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
 let d = b[ c ]( 1 );
-const e = d;
 if (d) {
-  $( e );
+  $( d );
 }
 else {
-  const f = $( a );
-  const g = $( "$" );
-  const h = f[ g ]( 1 );
-  d = h;
-  $( h );
+  const e = $( a );
+  const f = $( "$" );
+  const g = e[ f ]( 1 );
+  d = g;
+  $( g );
 }
 $( d );
 `````

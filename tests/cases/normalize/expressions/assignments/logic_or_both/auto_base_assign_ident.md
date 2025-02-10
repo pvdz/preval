@@ -59,9 +59,8 @@ if (tmpNestedComplexRhs) {
   $(tmpNestedComplexRhs);
 } else {
   b = $(2);
-  const tmpNestedComplexRhs$1 = b;
   a = b;
-  $(tmpNestedComplexRhs$1);
+  $(b);
 }
 $(a, b);
 `````
@@ -79,9 +78,8 @@ if (a) {
 }
 else {
   b = $( 2 );
-  const d = b;
   c = b;
-  $( d );
+  $( b );
 }
 $( c, b );
 `````

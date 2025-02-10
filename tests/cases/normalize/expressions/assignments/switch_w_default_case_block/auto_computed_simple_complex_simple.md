@@ -122,9 +122,8 @@ if (tmpIfTest$5) {
 } else {
 }
 $(`fail2`);
-const tmpAssignComMemLhsObj = a;
 const tmpAssignComMemLhsProp = $(`b`);
-tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
+a[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````
 
@@ -160,9 +159,8 @@ if (i) {
   $( "fail1" );
 }
 $( "fail2" );
-const j = a;
-const k = $( "b" );
-j[k] = 2;
+const j = $( "b" );
+a[j] = 2;
 $( a );
 `````
 

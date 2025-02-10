@@ -81,9 +81,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     const tmpDeleteObj = $(arg);
     a = delete tmpDeleteObj.y;
-    const tmpAssignMemLhsObj = a;
     const tmpAssignMemRhs = tmpForOfNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    a.x = tmpAssignMemRhs;
   }
 }
 $(a, arg);
@@ -111,9 +110,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   else {
     const h = $( e );
     a = delete h.y;
-    const i = a;
-    const j = f.value;
-    i.x = j;
+    const i = f.value;
+    a.x = i;
   }
 }
 $( a, e );

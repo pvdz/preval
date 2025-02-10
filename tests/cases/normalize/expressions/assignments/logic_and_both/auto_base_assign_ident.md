@@ -57,9 +57,8 @@ let b = tmpNestedComplexRhs;
 let a = tmpNestedComplexRhs;
 if (tmpNestedComplexRhs) {
   b = $(2);
-  const tmpNestedComplexRhs$1 = b;
   a = b;
-  $(tmpNestedComplexRhs$1);
+  $(b);
 } else {
   $(tmpNestedComplexRhs);
 }
@@ -76,9 +75,8 @@ let b = a;
 let c = a;
 if (a) {
   b = $( 2 );
-  const d = b;
   c = b;
-  $( d );
+  $( b );
 }
 else {
   $( a );

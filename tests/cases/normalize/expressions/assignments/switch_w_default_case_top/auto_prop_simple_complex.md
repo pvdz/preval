@@ -119,9 +119,8 @@ if (tmpIfTest$5) {
 } else {
 }
 $(`fail2`);
-const tmpAssignMemLhsObj = a;
 const tmpAssignMemRhs = $(2);
-tmpAssignMemLhsObj.b = tmpAssignMemRhs;
+a.b = tmpAssignMemRhs;
 $(a);
 `````
 
@@ -157,9 +156,8 @@ if (i) {
   $( "fail1" );
 }
 $( "fail2" );
-const j = a;
-const k = $( 2 );
-j.b = k;
+const j = $( 2 );
+a.b = j;
 $( a );
 `````
 

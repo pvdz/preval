@@ -51,16 +51,13 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 = $(0);
 let a = $(tmpCalleeParam$1);
-let tmpBinBothLhs = undefined;
 if (a) {
-  tmpBinBothLhs = a;
 } else {
   const tmpCalleeParam$3 = $(2);
   a = $(tmpCalleeParam$3);
-  tmpBinBothLhs = a;
 }
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);
 `````
@@ -72,18 +69,16 @@ With rename=true
 `````js filename=intro
 const a = $( 0 );
 let b = $( a );
-let c = undefined;
 if (b) {
-  c = b;
+
 }
 else {
-  const d = $( 2 );
-  b = $( d );
-  c = b;
+  const c = $( 2 );
+  b = $( c );
 }
-const e = $( 100 );
-const f = c + e;
-$( f );
+const d = $( 100 );
+const e = b + d;
+$( e );
 $( b );
 `````
 

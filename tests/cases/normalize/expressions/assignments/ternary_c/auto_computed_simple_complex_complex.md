@@ -66,10 +66,9 @@ if (tmpIfTest) {
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }
-const tmpAssignComMemLhsObj = a;
 const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
-tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);
 `````
 
@@ -93,10 +92,9 @@ else {
   a = e;
   $( e );
 }
-const f = a;
-const g = $( "b" );
-const h = $( 2 );
-f[g] = h;
+const f = $( "b" );
+const g = $( 2 );
+a[f] = g;
 $( a );
 `````
 

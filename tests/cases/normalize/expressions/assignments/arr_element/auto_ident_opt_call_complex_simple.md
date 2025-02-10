@@ -60,23 +60,20 @@ $(a);
 `````js filename=intro
 const tmpChainElementCall = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let tmpBinBothLhs = undefined;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
-  tmpBinBothLhs = tmpChainElementCall$1;
+  $dotCall(tmpChainElementCall, $, 1);
 }
 let tmpClusterSSA_a = undefined;
 const tmpChainElementCall$3 = $($);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall$3 == null;
 if (tmpIfTest$1) {
-  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + undefined;
-  $(tmpClusterSSA_tmpCalleeParam);
+  $(NaN);
 } else {
   const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, $, 1);
   tmpClusterSSA_a = tmpChainElementCall$5;
-  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpChainElementCall$5;
-  $(tmpClusterSSA_tmpCalleeParam$1);
+  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpChainElementCall$5 + tmpChainElementCall$5;
+  $(tmpClusterSSA_tmpCalleeParam);
 }
 $(tmpClusterSSA_a);
 `````
@@ -88,28 +85,25 @@ With rename=true
 `````js filename=intro
 const a = $( $ );
 const b = a == null;
-let c = undefined;
 if (b) {
 
 }
 else {
-  const d = $dotCall( a, $, 1 );
-  c = d;
+  $dotCall( a, $, 1 );
 }
-let e = undefined;
-const f = $( $ );
-const g = f == null;
-if (g) {
-  const h = c + undefined;
-  $( h );
+let c = undefined;
+const d = $( $ );
+const e = d == null;
+if (e) {
+  $( NaN );
 }
 else {
-  const i = $dotCall( f, $, 1 );
-  e = i;
-  const j = c + i;
-  $( j );
+  const f = $dotCall( d, $, 1 );
+  c = f;
+  const g = f + f;
+  $( g );
 }
-$( e );
+$( c );
 `````
 
 ## Globals

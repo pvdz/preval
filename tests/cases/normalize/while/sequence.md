@@ -53,11 +53,10 @@ while (true) {
 `````js filename=intro
 let tmpClusterSSA_x = NaN.x;
 let tmpIfTest = false;
-const tmpChainRootProp = tmpClusterSSA_x;
 const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_x == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementCall = tmpChainRootProp.x(tmpClusterSSA_x);
+  const tmpChainElementCall = tmpClusterSSA_x.x(tmpClusterSSA_x);
   tmpIfTest = tmpChainElementCall;
 }
 if (tmpIfTest) {
@@ -65,11 +64,10 @@ if (tmpIfTest) {
     tmpClusterSSA_x ** 0;
     tmpClusterSSA_x = NaN.x;
     let tmpIfTest$2 = false;
-    const tmpChainRootProp$1 = tmpClusterSSA_x;
     const tmpIfTest$4 /*:boolean*/ = tmpClusterSSA_x == null;
     if (tmpIfTest$4) {
     } else {
-      const tmpChainElementCall$1 = tmpChainRootProp$1.x(tmpClusterSSA_x);
+      const tmpChainElementCall$1 = tmpClusterSSA_x.x(tmpClusterSSA_x);
       tmpIfTest$2 = tmpChainElementCall$1;
     }
     if (tmpIfTest$2) {
@@ -88,30 +86,28 @@ With rename=true
 `````js filename=intro
 let a = NaN.x;
 let b = false;
-const c = a;
-const d = a == null;
-if (d) {
+const c = a == null;
+if (c) {
 
 }
 else {
-  const e = c.x( a );
-  b = e;
+  const d = a.x( a );
+  b = d;
 }
 if (b) {
   while ($LOOP_UNROLL_10) {
     a ** 0;
     a = NaN.x;
-    let f = false;
-    const g = a;
-    const h = a == null;
-    if (h) {
+    let e = false;
+    const f = a == null;
+    if (f) {
 
     }
     else {
-      const i = g.x( a );
-      f = i;
+      const g = a.x( a );
+      e = g;
     }
-    if (f) {
+    if (e) {
 
     }
     else {

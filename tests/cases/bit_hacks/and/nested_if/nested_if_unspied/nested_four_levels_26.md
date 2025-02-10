@@ -70,13 +70,23 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
+const tmpFree$1 /*:()=>boolean*/ = function $free() {
+  debugger;
+  const tmpIfTest /*:number*/ = x & 10;
+  const tmpRet$1 /*:boolean*/ = tmpIfTest === 10;
+  return tmpRet$1;
+};
+const tmpFree /*:()=>boolean*/ = function $free() {
+  debugger;
+  const tmpIfTest$3 /*:number*/ = x & 48;
+  const tmpRet /*:boolean*/ = tmpIfTest$3 === 48;
+  return tmpRet;
+};
 const tmpUnaryArg = $spy(26);
 const x /*:number*/ = +tmpUnaryArg;
-const tmpIfTest /*:number*/ = x & 10;
-const tmpIfTest$1 /*:boolean*/ = tmpIfTest === 10;
+const tmpIfTest$1 /*:boolean*/ = $frfr(tmpFree$1);
 if (tmpIfTest$1) {
-  const tmpIfTest$3 /*:number*/ = x & 48;
-  const tmpIfTest$5 /*:boolean*/ = tmpIfTest$3 === 48;
+  const tmpIfTest$5 /*:boolean*/ = $frfr(tmpFree);
   if (tmpIfTest$5) {
     $(`it is 58`);
   } else {
@@ -90,14 +100,24 @@ if (tmpIfTest$1) {
 With rename=true
 
 `````js filename=intro
-const a = $spy( 26 );
-const b = +a;
-const c = b & 10;
-const d = c === 10;
-if (d) {
-  const e = b & 48;
-  const f = e === 48;
-  if (f) {
+const a = function b() {
+  debugger;
+  const c = d & 10;
+  const e = c === 10;
+  return e;
+};
+const f = function b() {
+  debugger;
+  const g = d & 48;
+  const h = g === 48;
+  return h;
+};
+const i = $spy( 26 );
+const d = +i;
+const j = k( a );
+if (j) {
+  const l = k( f );
+  if (l) {
     $( "it is 58" );
   }
 }

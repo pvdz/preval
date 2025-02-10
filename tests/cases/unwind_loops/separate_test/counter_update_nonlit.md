@@ -54,7 +54,7 @@ const tmpClusterSSA_i /*:primitive*/ = 0 + max;
 const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_i < 10;
 if (tmpIfTest$1) {
   $(tmpClusterSSA_i);
-  let tmpClusterSSA_i$1 = tmpClusterSSA_i + max;
+  let tmpClusterSSA_i$1 /*:primitive*/ = tmpClusterSSA_i + max;
   while ($LOOP_UNROLL_9) {
     const tmpIfTest$2 /*:boolean*/ = tmpClusterSSA_i$1 < 10;
     if (tmpIfTest$2) {

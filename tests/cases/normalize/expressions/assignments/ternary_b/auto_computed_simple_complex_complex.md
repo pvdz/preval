@@ -66,10 +66,9 @@ if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam = $(200);
   $(tmpClusterSSA_tmpCalleeParam);
 }
-const tmpAssignComMemLhsObj = a;
 const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
-tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);
 `````
 
@@ -93,10 +92,9 @@ else {
   const e = $( 200 );
   $( e );
 }
-const f = a;
-const g = $( "b" );
-const h = $( 2 );
-f[g] = h;
+const f = $( "b" );
+const g = $( 2 );
+a[f] = g;
 $( a );
 `````
 

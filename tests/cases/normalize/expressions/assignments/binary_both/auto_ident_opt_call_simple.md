@@ -56,23 +56,20 @@ $(a);
 
 
 `````js filename=intro
-let tmpBinBothLhs = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall = $(1);
-  tmpBinBothLhs = tmpChainElementCall;
+  $(1);
 }
 let tmpClusterSSA_a = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
-  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + undefined;
-  $(tmpClusterSSA_tmpCalleeParam);
+  $(NaN);
 } else {
   const tmpChainElementCall$1 = $(1);
   tmpClusterSSA_a = tmpChainElementCall$1;
-  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpChainElementCall$1;
-  $(tmpClusterSSA_tmpCalleeParam$1);
+  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpChainElementCall$1 + tmpChainElementCall$1;
+  $(tmpClusterSSA_tmpCalleeParam);
 }
 $(tmpClusterSSA_a);
 `````
@@ -82,28 +79,25 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $ == null;
-if (b) {
+const a = $ == null;
+if (a) {
 
 }
 else {
-  const c = $( 1 );
-  a = c;
+  $( 1 );
 }
-let d = undefined;
-const e = $ == null;
-if (e) {
-  const f = a + undefined;
-  $( f );
+let b = undefined;
+const c = $ == null;
+if (c) {
+  $( NaN );
 }
 else {
-  const g = $( 1 );
-  d = g;
-  const h = a + g;
-  $( h );
+  const d = $( 1 );
+  b = d;
+  const e = d + d;
+  $( e );
 }
-$( d );
+$( b );
 `````
 
 ## Globals

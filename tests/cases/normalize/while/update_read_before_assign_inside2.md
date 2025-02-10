@@ -44,7 +44,7 @@ while (true) {
 
 
 `````js filename=intro
-let x = true;
+let x /*:primitive*/ = true;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(x);
   x = 2;

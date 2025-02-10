@@ -67,15 +67,20 @@ $(maxed);
 
 
 `````js filename=intro
+const tmpFree /*:()=>number*/ = function $free() {
+  debugger;
+  const twoten /*:number*/ = Math.pow(2, ten);
+  const zero /*:number*/ = 0 * twoten;
+  const divvy /*:number*/ = zero / 695;
+  const sinned /*:number*/ = Math.sin(divvy);
+  const lottasin /*:number*/ = 1000000 * sinned;
+  const minned /*:number*/ = Math.min(10000, lottasin);
+  const tmpRet /*:number*/ = Math.max(-10000, minned);
+  return tmpRet;
+};
 const tmpBinLhs = $(120);
 const ten /*:number*/ = tmpBinLhs / 12;
-const twoten /*:number*/ = Math.pow(2, ten);
-const zero /*:number*/ = 0 * twoten;
-const divvy /*:number*/ = zero / 695;
-const sinned /*:number*/ = Math.sin(divvy);
-const lottasin /*:number*/ = 1000000 * sinned;
-const minned /*:number*/ = Math.min(10000, lottasin);
-const maxed /*:number*/ = Math.max(-10000, minned);
+const maxed /*:number*/ = $frfr(tmpFree);
 $(maxed);
 `````
 
@@ -84,16 +89,21 @@ $(maxed);
 With rename=true
 
 `````js filename=intro
-const a = $( 120 );
-const b = a / 12;
-const c = Math.pow( 2, b );
-const d = 0 * c;
-const e = d / 695;
-const f = Math.sin( e );
-const g = 1000000 * f;
-const h = Math.min( 10000, g );
-const i = Math.max( -10000, h );
-$( i );
+const a = function b() {
+  debugger;
+  const c = Math.pow( 2, d );
+  const e = 0 * c;
+  const f = e / 695;
+  const g = Math.sin( f );
+  const h = 1000000 * g;
+  const i = Math.min( 10000, h );
+  const j = Math.max( -10000, i );
+  return j;
+};
+const k = $( 120 );
+const d = k / 12;
+const l = m( a );
+$( l );
 `````
 
 ## Globals

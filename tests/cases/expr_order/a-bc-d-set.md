@@ -75,7 +75,7 @@ let b = {
     return 7;
   },
 };
-let d = 3;
+let d /*:primitive*/ = 3;
 b.c = 3;
 $(3, b, d);
 `````

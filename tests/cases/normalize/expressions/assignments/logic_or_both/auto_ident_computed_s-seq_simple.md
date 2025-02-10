@@ -56,9 +56,8 @@ $(a, b);
 const tmpAssignRhsCompProp = $(`c`);
 const b /*:object*/ = { c: 1 };
 let a = b[tmpAssignRhsCompProp];
-const tmpCalleeParam = a;
 if (a) {
-  $(tmpCalleeParam);
+  $(a);
 } else {
   const tmpCompProp = $(`c`);
   const tmpNestedComplexRhs = b[tmpCompProp];
@@ -76,15 +75,14 @@ With rename=true
 const a = $( "c" );
 const b = { c: 1 };
 let c = b[ a ];
-const d = c;
 if (c) {
-  $( d );
+  $( c );
 }
 else {
-  const e = $( "c" );
-  const f = b[ e ];
-  c = f;
-  $( f );
+  const d = $( "c" );
+  const e = b[ d ];
+  c = e;
+  $( e );
 }
 $( c, b );
 `````

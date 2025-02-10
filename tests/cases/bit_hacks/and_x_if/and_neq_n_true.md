@@ -40,10 +40,15 @@ $(z);
 
 
 `````js filename=intro
+const tmpFree /*:()=>boolean*/ = function $free() {
+  debugger;
+  const y /*:number*/ = x & 32768;
+  const tmpRet /*:boolean*/ = !y;
+  return tmpRet;
+};
 const tmpUnaryArg = $(1);
 const x /*:number*/ = +tmpUnaryArg;
-const y /*:number*/ = x & 32768;
-const z /*:boolean*/ = !y;
+const z /*:boolean*/ = $frfr(tmpFree);
 $(z);
 `````
 
@@ -52,11 +57,16 @@ $(z);
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-const b = +a;
-const c = b & 32768;
-const d = !c;
-$( d );
+const a = function b() {
+  debugger;
+  const c = d & 32768;
+  const e = !c;
+  return e;
+};
+const f = $( 1 );
+const d = +f;
+const g = h( a );
+$( g );
 `````
 
 ## Globals

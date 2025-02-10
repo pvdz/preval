@@ -82,9 +82,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     const tmpAssignRhsCompProp = $(`c`);
     a = b[tmpAssignRhsCompProp];
-    const tmpAssignMemLhsObj = a;
     const tmpAssignMemRhs = tmpForOfNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    a.x = tmpAssignMemRhs;
   }
 }
 $(a, b);
@@ -112,9 +111,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   else {
     const h = $( "c" );
     a = e[ h ];
-    const i = a;
-    const j = f.value;
-    i.x = j;
+    const i = f.value;
+    a.x = i;
   }
 }
 $( a, e );

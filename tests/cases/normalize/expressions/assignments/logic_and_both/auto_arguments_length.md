@@ -45,13 +45,12 @@ $(a);
 
 `````js filename=intro
 let a = arguments;
-const tmpCalleeParam = a;
-if (a) {
+if (arguments) {
   a = arguments;
   arguments;
   $(arguments);
 } else {
-  $(tmpCalleeParam);
+  $(a);
 }
 $(a);
 `````
@@ -62,14 +61,13 @@ With rename=true
 
 `````js filename=intro
 let a = arguments;
-const b = a;
-if (a) {
+if (arguments) {
   a = arguments;
   arguments;
   $( arguments );
 }
 else {
-  $( b );
+  $( a );
 }
 $( a );
 `````

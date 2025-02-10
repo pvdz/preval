@@ -63,24 +63,16 @@ $(blob);
 
 
 `````js filename=intro
-let blob /*:object*/ = { thing: `woop`, xyz: 0 };
-const tmpAssignMemLhsObj = blob;
-const tmpBinLhs = blob.xyz;
-const tmpAssignMemRhs /*:primitive*/ = tmpBinLhs + 1;
-tmpAssignMemLhsObj.xyz = tmpAssignMemRhs;
+let blob /*:object*/ = { thing: `woop`, xyz: 1 };
 $(blob);
 const tmpBinLhs$1 = blob.xyz;
 const tmpIfTest /*:boolean*/ = tmpBinLhs$1 < 10;
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
-    blob = { thing: `woop`, xyz: 0 };
-    const tmpAssignMemLhsObj$1 = blob;
-    const tmpBinLhs$2 = blob.xyz;
-    const tmpAssignMemRhs$1 /*:primitive*/ = tmpBinLhs$2 + 1;
-    tmpAssignMemLhsObj$1.xyz = tmpAssignMemRhs$1;
+    blob = { thing: `woop`, xyz: 1 };
     $(blob);
-    const tmpBinLhs$4 = blob.xyz;
-    const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$4 < 10;
+    const tmpBinLhs$2 = blob.xyz;
+    const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$2 < 10;
     if (tmpIfTest$1) {
     } else {
       break;
@@ -98,29 +90,21 @@ With rename=true
 `````js filename=intro
 let a = {
   thing: "woop",
-  xyz: 0,
+  xyz: 1,
 };
-const b = a;
-const c = a.xyz;
-const d = c + 1;
-b.xyz = d;
 $( a );
-const e = a.xyz;
-const f = e < 10;
-if (f) {
+const b = a.xyz;
+const c = b < 10;
+if (c) {
   while ($LOOP_UNROLL_10) {
     a = {
       thing: "woop",
-      xyz: 0,
+      xyz: 1,
     };
-    const g = a;
-    const h = a.xyz;
-    const i = h + 1;
-    g.xyz = i;
     $( a );
-    const j = a.xyz;
-    const k = j < 10;
-    if (k) {
+    const d = a.xyz;
+    const e = d < 10;
+    if (e) {
 
     }
     else {

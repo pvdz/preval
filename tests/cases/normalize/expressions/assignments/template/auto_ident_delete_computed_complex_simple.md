@@ -49,11 +49,16 @@ $(a, arg);
 
 
 `````js filename=intro
+const tmpFree /*:()=>string*/ = function $free() {
+  debugger;
+  const tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
+  const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+  return tmpRet;
+};
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj = $(arg);
 const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
-const tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+const tmpCalleeParam /*:string*/ = $frfr(tmpFree);
 $(tmpCalleeParam);
 $(tmpClusterSSA_a, arg);
 `````
@@ -63,13 +68,18 @@ $(tmpClusterSSA_a, arg);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-const b = $( a );
-const c = delete b.y;
-const d = $coerce( c, "string" );
-const e = `before  ${d}  after`;
-$( e );
-$( c, a );
+const a = function b() {
+  debugger;
+  const c = $coerce( d, "string" );
+  const e = `before  ${c}  after`;
+  return e;
+};
+const f = { y: 1 };
+const g = $( f );
+const d = delete g.y;
+const h = i( a );
+$( h );
+$( d, f );
 `````
 
 ## Globals

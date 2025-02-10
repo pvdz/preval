@@ -255,49 +255,49 @@ With rename=true
 
 `````js filename=intro
 const a = function b($$0,$$1 ) {
-  const c = $$0;
-  const d = $$1;
+  const c = d;
+  const e = f;
   debugger;
-  const e = c + 71046;
-  const f = "xyz".charCodeAt( d );
-  const g = e ^ f;
-  const h = String.fromCharCode( g );
-  return h;
+  const g = c + 71046;
+  const h = "xyz".charCodeAt( e );
+  const i = g ^ h;
+  const j = String.fromCharCode( i );
+  return j;
 };
-const i = function() {
+const k = function() {
   debugger;
-  let j = tmpSSA_Tu();
-  if (j) {
-    tmpSSA_wu( j );
+  let l = tmpSSA_Tu();
+  if (l) {
+    tmpSSA_wu( l );
   }
   else {
-    j = tmpSSA_Su();
-    tmpSSA_wu( j );
+    l = tmpSSA_Su();
+    tmpSSA_wu( l );
   }
-  if (j) {
-    tmpSSA__u_t( j );
+  if (l) {
+    tmpSSA__u_t( l );
   }
   tmpCallObj$3807.toString( 36 );
-  const k = /^0./;
-  const l = tmpCallObj$3811.replace( k, "" );
+  const m = /^0./;
+  const n = tmpCallObj$3811.replace( m, "" );
   $coerce( tmpBinBothRhs$32, "string" );
-  $coerce( l, "string" );
-  const m = tmpSSA_Tu();
-  if (m) {
-    tmpClusterSSA_tmpssa3_c$245 = m;
+  $coerce( n, "string" );
+  const o = tmpSSA_Tu();
+  if (o) {
+    tmpClusterSSA_tmpssa3_c$245 = o;
   }
   else {
-    const n = tmpSSA_Su();
-    if (n) {
-      tmpClusterSSA_tmpssa3_c$245 = n;
+    const p = tmpSSA_Su();
+    if (p) {
+      tmpClusterSSA_tmpssa3_c$245 = p;
     }
   }
   if (tmpIfTest$5467) {
-    let o = p( a, $, $ );
+    let q = r( a, $, $ );
     while ($LOOP_UNROLL_10) {
       if (tmpIfTest$5467) {
-        const q = p( a, $, $ );
-        o = o + q;
+        const s = r( a, $, $ );
+        q = q + s;
       }
       else {
         break;
@@ -309,55 +309,7 @@ const i = function() {
     return undefined;
   }
 };
-$( i );
-`````
-
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-const tmpFree$1 = function $free($dlr_$$0, $dlr_$$1) {
-  const tmpBinBothLhs$3633 = $dlr_$$0 + 71046;
-  const tmpRet$1 = String.fromCharCode(tmpBinBothLhs$3633 ^ `xyz`.charCodeAt($dlr_$$1));
-  return tmpRet$1;
-};
-$(function () {
-  let t$3391 = tmpSSA_Tu();
-  if (t$3391) {
-    tmpSSA_wu(t$3391);
-  } else {
-    t$3391 = tmpSSA_Su();
-    tmpSSA_wu(t$3391);
-  }
-  if (t$3391) {
-    tmpSSA__u_t(t$3391);
-  }
-  tmpCallObj$3807.toString(36);
-  const tmpClusterSSA_r$2027 = tmpCallObj$3811.replace(/^0./, ``);
-  $coerce(tmpBinBothRhs$32, `string`);
-  $coerce(tmpClusterSSA_r$2027, `string`);
-  const tmpClusterSSA_t$9 = tmpSSA_Tu();
-  if (tmpClusterSSA_t$9) {
-    tmpClusterSSA_tmpssa3_c$245 = tmpClusterSSA_t$9;
-  } else {
-    const tmpClusterSSA_t$11 = tmpSSA_Su();
-    if (tmpClusterSSA_t$11) {
-      tmpClusterSSA_tmpssa3_c$245 = tmpClusterSSA_t$11;
-    }
-  }
-  if (tmpIfTest$5467) {
-    let tmpClusterSSA_p$171 = $frfr(tmpFree$1, $, $);
-    while (true) {
-      if (tmpIfTest$5467) {
-        tmpClusterSSA_p$171 = tmpClusterSSA_p$171 + $frfr(tmpFree$1, $, $);
-      } else {
-        break;
-      }
-    }
-  }
-});
+$( k );
 `````
 
 ## Globals
@@ -376,6 +328,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
-
-Denormalized calls: Same
+Final output calls: Same

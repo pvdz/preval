@@ -66,15 +66,15 @@ $(a);
 
 
 `````js filename=intro
-let tmpClusterSSA_a = undefined;
+let tmpNestedComplexRhs = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
   const tmpChainElementCall = $(1);
-  tmpClusterSSA_a = tmpChainElementCall;
+  tmpNestedComplexRhs = tmpChainElementCall;
 }
 $(undefined);
-$(tmpClusterSSA_a);
+$(tmpNestedComplexRhs);
 `````
 
 ## PST Output

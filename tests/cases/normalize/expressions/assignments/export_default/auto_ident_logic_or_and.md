@@ -65,8 +65,7 @@ if (a) {
   } else {
   }
 }
-const tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
+export { a as default };
 $(a);
 `````
 
@@ -88,8 +87,7 @@ else {
     b = $( d );
   }
 }
-const e = b;
-export { e as default };
+export { b as default };
 $( b );
 `````
 

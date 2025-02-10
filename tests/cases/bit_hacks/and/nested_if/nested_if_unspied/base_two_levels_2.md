@@ -50,10 +50,15 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
+const tmpFree /*:()=>boolean*/ = function $free() {
+  debugger;
+  const tmpIfTest /*:number*/ = x & 10;
+  const tmpRet /*:boolean*/ = tmpIfTest === 10;
+  return tmpRet;
+};
 const tmpUnaryArg = $spy(2);
 const x /*:number*/ = +tmpUnaryArg;
-const tmpIfTest /*:number*/ = x & 10;
-const tmpIfTest$1 /*:boolean*/ = tmpIfTest === 10;
+const tmpIfTest$1 /*:boolean*/ = $frfr(tmpFree);
 if (tmpIfTest$1) {
   $(`it is ten`);
 } else {
@@ -65,11 +70,16 @@ if (tmpIfTest$1) {
 With rename=true
 
 `````js filename=intro
-const a = $spy( 2 );
-const b = +a;
-const c = b & 10;
-const d = c === 10;
-if (d) {
+const a = function b() {
+  debugger;
+  const c = d & 10;
+  const e = c === 10;
+  return e;
+};
+const f = $spy( 2 );
+const d = +f;
+const g = h( a );
+if (g) {
   $( "it is ten" );
 }
 `````

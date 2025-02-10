@@ -59,7 +59,7 @@ $(a);
 $(100);
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-let a = tmpBinBothLhs + tmpBinBothRhs;
+let a /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(100);

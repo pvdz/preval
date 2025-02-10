@@ -80,16 +80,13 @@ if (tmpNestedComplexRhs) {
   tmpNestedComplexRhs = $(tmpCalleeParam$1);
 } else {
 }
-let tmpClusterSSA_a = undefined;
 if (tmpNestedComplexRhs) {
-  tmpClusterSSA_a = tmpNestedComplexRhs;
 } else {
   const tmpCalleeParam$3 = $(2);
-  const tmpClusterSSA_tmpNestedComplexRhs = $(tmpCalleeParam$3);
-  tmpClusterSSA_a = tmpClusterSSA_tmpNestedComplexRhs;
+  tmpNestedComplexRhs = $(tmpCalleeParam$3);
 }
 $(undefined);
-$(tmpClusterSSA_a);
+$(tmpNestedComplexRhs);
 `````
 
 ## PST Output
@@ -103,17 +100,15 @@ if (b) {
   const c = $( 1 );
   b = $( c );
 }
-let d = undefined;
 if (b) {
-  d = b;
+
 }
 else {
-  const e = $( 2 );
-  const f = $( e );
-  d = f;
+  const d = $( 2 );
+  b = $( d );
 }
 $( undefined );
-$( d );
+$( b );
 `````
 
 ## Globals

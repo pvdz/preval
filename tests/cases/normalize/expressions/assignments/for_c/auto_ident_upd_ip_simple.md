@@ -58,13 +58,12 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   b = 2;
-  a = 1;
+  a = 2;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
-      const tmpPostUpdArgIdent$1 = b;
       b = b + 1;
-      a = tmpPostUpdArgIdent$1;
+      a = b;
     } else {
       break;
     }
@@ -87,13 +86,12 @@ let b = {
 const c = $( 1 );
 if (c) {
   a = 2;
-  b = 1;
+  b = 2;
   while ($LOOP_UNROLL_10) {
     const d = $( 1 );
     if (d) {
-      const e = a;
       a = a + 1;
-      b = e;
+      b = a;
     }
     else {
       break;

@@ -84,9 +84,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $(1);
     $(2);
     a = delete arg.y;
-    const tmpAssignMemLhsObj = a;
     const tmpAssignMemRhs = tmpForInNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    a.x = tmpAssignMemRhs;
   }
 }
 $(a, arg);
@@ -115,9 +114,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $( 1 );
     $( 2 );
     a = delete e.y;
-    const h = a;
-    const i = f.value;
-    h.x = i;
+    const h = f.value;
+    a.x = h;
   }
 }
 $( a, e );

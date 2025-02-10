@@ -63,9 +63,8 @@ if (tmpCalleeParam) {
   $(tmpCalleeParam);
 }
 $(1);
-const tmpAssignMemLhsObj = a;
 const tmpAssignMemRhs = $(2);
-tmpAssignMemLhsObj.b = tmpAssignMemRhs;
+a.b = tmpAssignMemRhs;
 $(a);
 `````
 
@@ -89,9 +88,8 @@ else {
   $( b );
 }
 $( 1 );
-const e = a;
-const f = $( 2 );
-e.b = f;
+const e = $( 2 );
+a.b = e;
 $( a );
 `````
 

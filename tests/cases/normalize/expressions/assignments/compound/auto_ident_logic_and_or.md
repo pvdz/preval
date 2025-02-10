@@ -62,7 +62,7 @@ if (tmpBinBothRhs) {
   tmpBinBothRhs = $(tmpCalleeParam$3);
 } else {
 }
-let tmpClusterSSA_a = undefined;
+let tmpClusterSSA_a /*:primitive*/ = undefined;
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpBinBothRhs) {
   tmpClusterSSA_a = a * tmpBinBothRhs;

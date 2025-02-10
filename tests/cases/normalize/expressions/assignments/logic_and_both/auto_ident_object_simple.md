@@ -46,13 +46,12 @@ $(a);
 
 `````js filename=intro
 let a = { x: 1, y: 2, z: 3 };
-const tmpCalleeParam = a;
 if (a) {
   const tmpNestedComplexRhs /*:object*/ = { x: 1, y: 2, z: 3 };
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
-  $(tmpCalleeParam);
+  $(a);
 }
 $(a);
 `````
@@ -67,18 +66,17 @@ let a = {
   y: 2,
   z: 3,
 };
-const b = a;
 if (a) {
-  const c = {
+  const b = {
     x: 1,
     y: 2,
     z: 3,
   };
-  a = c;
-  $( c );
+  a = b;
+  $( b );
 }
 else {
-  $( b );
+  $( a );
 }
 $( a );
 `````

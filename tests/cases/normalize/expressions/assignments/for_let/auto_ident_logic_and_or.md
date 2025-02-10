@@ -67,16 +67,13 @@ if (a) {
   a = $(tmpCalleeParam$1);
 } else {
 }
-let xyz = undefined;
 if (a) {
-  xyz = a;
 } else {
   const tmpCalleeParam$3 = $(2);
-  const tmpClusterSSA_a = $(tmpCalleeParam$3);
-  xyz = tmpClusterSSA_a;
+  a = $(tmpCalleeParam$3);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(xyz);
+  $(a);
   $(1);
 }
 `````
@@ -92,17 +89,15 @@ if (b) {
   const c = $( 1 );
   b = $( c );
 }
-let d = undefined;
 if (b) {
-  d = b;
+
 }
 else {
-  const e = $( 2 );
-  const f = $( e );
-  d = f;
+  const d = $( 2 );
+  b = $( d );
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( d );
+  $( b );
   $( 1 );
 }
 `````

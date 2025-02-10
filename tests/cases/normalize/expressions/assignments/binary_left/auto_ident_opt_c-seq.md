@@ -56,15 +56,13 @@ let a = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainRootProp = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
-let tmpBinBothLhs = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;
   a = tmpChainElementObject;
-  tmpBinBothLhs = tmpChainElementObject;
 }
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);
 `````
@@ -78,18 +76,16 @@ let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 const d = c == null;
-let e = undefined;
 if (d) {
 
 }
 else {
-  const f = c.x;
-  a = f;
-  e = f;
+  const e = c.x;
+  a = e;
 }
-const g = $( 100 );
-const h = e + g;
-$( h );
+const f = $( 100 );
+const g = a + f;
+$( g );
 $( a );
 `````
 

@@ -72,19 +72,18 @@ tmpCallCallee(tmpCalleeParam);
 let b = undefined;
 const tmpChainRootProp = $(2);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
-let tmpChainRootProp$1 = undefined;
+let tmpIfTest$1 /*:boolean*/ = true;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = tmpChainRootProp.toString;
   b = tmpChainElementObject;
-  tmpChainRootProp$1 = tmpChainElementObject;
+  tmpIfTest$1 = tmpChainElementObject == null;
 }
-const tmpIfTest$1 /*:boolean*/ = b == null;
 if (tmpIfTest$1) {
   const tmpClusterSSA_tmpReturnArg = $(undefined);
   $(tmpClusterSSA_tmpReturnArg);
 } else {
-  const tmpChainElementObject$1 = tmpChainRootProp$1.length;
+  const tmpChainElementObject$1 = b.length;
   const tmpClusterSSA_tmpReturnArg$1 = $(tmpChainElementObject$1);
   $(tmpClusterSSA_tmpReturnArg$1);
 }
@@ -98,24 +97,23 @@ With rename=true
 let a = undefined;
 const b = $( 2 );
 const c = b == null;
-let d = undefined;
+let d = true;
 if (c) {
 
 }
 else {
   const e = b.toString;
   a = e;
-  d = e;
+  d = e == null;
 }
-const f = a == null;
-if (f) {
-  const g = $( undefined );
-  $( g );
+if (d) {
+  const f = $( undefined );
+  $( f );
 }
 else {
-  const h = d.length;
-  const i = $( h );
-  $( i );
+  const g = a.length;
+  const h = $( g );
+  $( h );
 }
 `````
 

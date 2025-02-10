@@ -58,17 +58,17 @@ while (true) {
 
 
 `````js filename=intro
+let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let xyz = undefined;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam$3 = $(1);
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
-  xyz = tmpChainElementCall$1;
+  a = tmpChainElementCall$1;
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(xyz);
+  $(a);
   $(1);
 }
 `````
@@ -78,19 +78,19 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 With rename=true
 
 `````js filename=intro
-const a = $( $ );
-const b = a == null;
-let c = undefined;
-if (b) {
+let a = undefined;
+const b = $( $ );
+const c = b == null;
+if (c) {
 
 }
 else {
   const d = $( 1 );
-  const e = $dotCall( a, $, d );
-  c = e;
+  const e = $dotCall( b, $, d );
+  a = e;
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( c );
+  $( a );
   $( 1 );
 }
 `````

@@ -59,7 +59,6 @@ const tmpNewCallee = $($);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
 let a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
-const tmpCalleeParam = a;
 if (a) {
   const tmpNewCallee$1 = $($);
   const tmpCalleeParam$5 = $(1);
@@ -68,7 +67,7 @@ if (a) {
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
-  $(tmpCalleeParam);
+  $(a);
 }
 $(a);
 `````
@@ -82,17 +81,16 @@ const a = $( $ );
 const b = $( 1 );
 const c = $( 2 );
 let d = new a( b, c );
-const e = d;
 if (d) {
-  const f = $( $ );
-  const g = $( 1 );
-  const h = $( 2 );
-  const i = new f( g, h );
-  d = i;
-  $( i );
+  const e = $( $ );
+  const f = $( 1 );
+  const g = $( 2 );
+  const h = new e( f, g );
+  d = h;
+  $( h );
 }
 else {
-  $( e );
+  $( d );
 }
 $( d );
 `````

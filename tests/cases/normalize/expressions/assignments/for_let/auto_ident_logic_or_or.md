@@ -72,9 +72,8 @@ if (a) {
     a = $(tmpCalleeParam$3);
   }
 }
-const xyz = a;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(xyz);
+  $(a);
   $(1);
 }
 `````
@@ -100,9 +99,8 @@ else {
     b = $( d );
   }
 }
-const e = b;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( e );
+  $( b );
   $( 1 );
 }
 `````

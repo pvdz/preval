@@ -63,9 +63,8 @@ if (tmpIfTest) {
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }
-const tmpAssignMemLhsObj = a;
 const tmpAssignMemRhs = $(2);
-tmpAssignMemLhsObj.b = tmpAssignMemRhs;
+a.b = tmpAssignMemRhs;
 $(a);
 `````
 
@@ -89,9 +88,8 @@ else {
   a = e;
   $( e );
 }
-const f = a;
-const g = $( 2 );
-f.b = g;
+const f = $( 2 );
+a.b = f;
 $( a );
 `````
 

@@ -72,10 +72,9 @@ if (tmpIfTest) {
   }
 } else {
 }
-const tmpAssignComMemLhsObj = a;
 const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
-tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);
 `````
 
@@ -103,10 +102,9 @@ if (b) {
     }
   }
 }
-const f = a;
-const g = $( "b" );
-const h = $( 2 );
-f[g] = h;
+const f = $( "b" );
+const g = $( 2 );
+a[f] = g;
 $( a );
 `````
 

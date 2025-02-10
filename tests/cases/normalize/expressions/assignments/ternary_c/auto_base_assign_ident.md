@@ -59,9 +59,8 @@ if (tmpIfTest) {
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   b = $(2);
-  const tmpNestedComplexRhs = b;
   a = b;
-  $(tmpNestedComplexRhs);
+  $(b);
 }
 $(a, b);
 `````
@@ -83,9 +82,8 @@ if (c) {
 }
 else {
   a = $( 2 );
-  const e = a;
   b = a;
-  $( e );
+  $( a );
 }
 $( b, a );
 `````

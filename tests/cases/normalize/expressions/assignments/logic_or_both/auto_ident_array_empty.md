@@ -46,9 +46,8 @@ $(a);
 
 `````js filename=intro
 let a = [];
-const tmpCalleeParam = a;
 if (a) {
-  $(tmpCalleeParam);
+  $(a);
 } else {
   const tmpNestedComplexRhs /*:array*/ = [];
   a = tmpNestedComplexRhs;
@@ -63,14 +62,13 @@ With rename=true
 
 `````js filename=intro
 let a = [];
-const b = a;
 if (a) {
-  $( b );
+  $( a );
 }
 else {
-  const c = [];
-  a = c;
-  $( c );
+  const b = [];
+  a = b;
+  $( b );
 }
 $( a );
 `````

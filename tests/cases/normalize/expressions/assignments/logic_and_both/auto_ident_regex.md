@@ -46,13 +46,12 @@ $(a);
 
 `````js filename=intro
 let a = /foo/;
-const tmpCalleeParam = a;
 if (a) {
   const tmpNestedComplexRhs /*:regex*/ = /foo/;
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
-  $(tmpCalleeParam);
+  $(a);
 }
 $(a);
 `````
@@ -63,14 +62,13 @@ With rename=true
 
 `````js filename=intro
 let a = /foo/;
-const b = a;
 if (a) {
-  const c = /foo/;
-  a = c;
-  $( c );
+  const b = /foo/;
+  a = b;
+  $( b );
 }
 else {
-  $( b );
+  $( a );
 }
 $( a );
 `````

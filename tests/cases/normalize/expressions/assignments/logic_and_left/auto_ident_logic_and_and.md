@@ -65,16 +65,17 @@ if (a) {
   if (a) {
     const tmpCalleeParam$5 = $(2);
     a = $(tmpCalleeParam$5);
+    if (a) {
+      const tmpClusterSSA_tmpCalleeParam = $(100);
+      $(tmpClusterSSA_tmpCalleeParam);
+    } else {
+      $(a);
+    }
   } else {
+    $(a);
   }
 } else {
-}
-const tmpCalleeParam = a;
-if (a) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
-} else {
-  $(tmpCalleeParam);
+  $(a);
 }
 $(a);
 `````
@@ -92,15 +93,20 @@ if (b) {
   if (b) {
     const d = $( 2 );
     b = $( d );
+    if (b) {
+      const e = $( 100 );
+      $( e );
+    }
+    else {
+      $( b );
+    }
+  }
+  else {
+    $( b );
   }
 }
-const e = b;
-if (b) {
-  const f = $( 100 );
-  $( f );
-}
 else {
-  $( e );
+  $( b );
 }
 $( b );
 `````

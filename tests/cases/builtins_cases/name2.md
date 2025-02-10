@@ -4,7 +4,7 @@
 
 > Builtins cases > Name2
 >
-> 
+>
 
 ## Input
 

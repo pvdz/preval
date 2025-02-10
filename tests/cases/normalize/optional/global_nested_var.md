@@ -58,18 +58,17 @@ $(c);
 let b = undefined;
 const tmpChainRootProp = $(2);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
-let tmpChainRootProp$1 = undefined;
+let tmpIfTest$1 /*:boolean*/ = true;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = tmpChainRootProp.toString;
   b = tmpChainElementObject;
-  tmpChainRootProp$1 = tmpChainElementObject;
+  tmpIfTest$1 = tmpChainElementObject == null;
 }
-const tmpIfTest$1 /*:boolean*/ = b == null;
 if (tmpIfTest$1) {
   $(undefined);
 } else {
-  const tmpChainElementObject$1 = tmpChainRootProp$1.length;
+  const tmpChainElementObject$1 = b.length;
   $(tmpChainElementObject$1);
 }
 `````
@@ -82,22 +81,21 @@ With rename=true
 let a = undefined;
 const b = $( 2 );
 const c = b == null;
-let d = undefined;
+let d = true;
 if (c) {
 
 }
 else {
   const e = b.toString;
   a = e;
-  d = e;
+  d = e == null;
 }
-const f = a == null;
-if (f) {
+if (d) {
   $( undefined );
 }
 else {
-  const g = d.length;
-  $( g );
+  const f = a.length;
+  $( f );
 }
 `````
 

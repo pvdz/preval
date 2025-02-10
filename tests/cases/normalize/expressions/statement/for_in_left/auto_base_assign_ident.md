@@ -78,9 +78,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     b = $(2);
-    const tmpAssignMemLhsObj = b;
     const tmpAssignMemRhs = tmpForInNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    b.x = tmpAssignMemRhs;
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -104,16 +103,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   }
   else {
     a = $( 2 );
-    const g = a;
-    const h = e.value;
-    g.x = h;
+    const g = e.value;
+    a.x = g;
   }
 }
-const i = {
+const h = {
   a: 999,
   b: 1000,
 };
-$( i, a );
+$( h, a );
 `````
 
 ## Globals

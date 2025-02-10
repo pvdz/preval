@@ -60,7 +60,6 @@ $(2);
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj = $(arg);
 let tmpClusterSSA_a = delete tmpDeleteObj.y;
-const tmpCalleeParam = tmpClusterSSA_a;
 if (tmpClusterSSA_a) {
   $(1);
   $(2);
@@ -69,7 +68,7 @@ if (tmpClusterSSA_a) {
   tmpClusterSSA_a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
-  $(tmpCalleeParam);
+  $(tmpClusterSSA_a);
 }
 $(tmpClusterSSA_a, arg);
 `````
@@ -84,17 +83,16 @@ $( 2 );
 const a = { y: 1 };
 const b = $( a );
 let c = delete b.y;
-const d = c;
 if (c) {
   $( 1 );
   $( 2 );
-  const e = $( a );
-  const f = delete e.y;
-  c = f;
-  $( f );
+  const d = $( a );
+  const e = delete d.y;
+  c = e;
+  $( e );
 }
 else {
-  $( d );
+  $( c );
 }
 $( c, a );
 `````

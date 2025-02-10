@@ -44,9 +44,9 @@ $(a);
 
 
 `````js filename=intro
-const a = $(60);
+$(60);
 const tmpClusterSSA_a = $(60);
-const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
+const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
@@ -56,11 +56,11 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
+$( 60 );
 const a = $( 60 );
-const b = $( 60 );
-const c = a + b;
-$( c );
+const b = a + a;
 $( b );
+$( a );
 `````
 
 ## Globals

@@ -63,9 +63,8 @@ if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam = $(200);
   $(tmpClusterSSA_tmpCalleeParam);
 }
-const tmpAssignMemLhsObj = a;
 const tmpAssignMemRhs = $(2);
-tmpAssignMemLhsObj.b = tmpAssignMemRhs;
+a.b = tmpAssignMemRhs;
 $(a);
 `````
 
@@ -89,9 +88,8 @@ else {
   const e = $( 200 );
   $( e );
 }
-const f = a;
-const g = $( 2 );
-f.b = g;
+const f = $( 2 );
+a.b = f;
 $( a );
 `````
 

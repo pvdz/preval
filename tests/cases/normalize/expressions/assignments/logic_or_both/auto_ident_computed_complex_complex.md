@@ -57,9 +57,8 @@ const b /*:object*/ = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $(`c`);
 let tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-const tmpCalleeParam = tmpClusterSSA_a;
 if (tmpClusterSSA_a) {
-  $(tmpCalleeParam);
+  $(tmpClusterSSA_a);
 } else {
   const tmpCompObj = $(b);
   const tmpCompProp = $(`c`);
@@ -79,16 +78,15 @@ const a = { c: 1 };
 const b = $( a );
 const c = $( "c" );
 let d = b[ c ];
-const e = d;
 if (d) {
-  $( e );
+  $( d );
 }
 else {
-  const f = $( a );
-  const g = $( "c" );
-  const h = f[ g ];
-  d = h;
-  $( h );
+  const e = $( a );
+  const f = $( "c" );
+  const g = e[ f ];
+  d = g;
+  $( g );
 }
 $( d, a );
 `````

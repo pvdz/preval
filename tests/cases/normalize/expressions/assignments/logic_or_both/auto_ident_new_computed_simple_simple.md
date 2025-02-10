@@ -52,9 +52,8 @@ $(a);
 
 `````js filename=intro
 let tmpClusterSSA_a = new $(1);
-const tmpCalleeParam = tmpClusterSSA_a;
 if (tmpClusterSSA_a) {
-  $(tmpCalleeParam);
+  $(tmpClusterSSA_a);
 } else {
   const tmpNestedComplexRhs /*:object*/ = new $(1);
   tmpClusterSSA_a = tmpNestedComplexRhs;
@@ -69,14 +68,13 @@ With rename=true
 
 `````js filename=intro
 let a = new $( 1 );
-const b = a;
 if (a) {
-  $( b );
+  $( a );
 }
 else {
-  const c = new $( 1 );
-  a = c;
-  $( c );
+  const b = new $( 1 );
+  a = b;
+  $( b );
 }
 $( a );
 `````

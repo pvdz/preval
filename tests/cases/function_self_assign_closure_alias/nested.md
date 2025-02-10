@@ -91,28 +91,18 @@ tmpCallCallee$7(tmpCalleeParam$7);
 
 
 `````js filename=intro
-const g = function () {
+const g /*:()=>array*/ = function () {
   debugger;
-  const tmpssa2_a$13 /*:array*/ = [1, 2, 3];
-  const tmpssa2_a$11 /*:array*/ = [1, 2, 3];
-  const tmpCalleeParam /*:boolean*/ = tmpssa2_a$13 === tmpssa2_a$11;
-  $(tmpCalleeParam);
-  const tmpssa2_a$9 /*:array*/ = [1, 2, 3];
-  const tmpssa2_a$7 /*:array*/ = [1, 2, 3];
-  const tmpCalleeParam$1 /*:boolean*/ = tmpssa2_a$9 !== tmpssa2_a$7;
-  $(tmpCalleeParam$1);
-  const tmpssa2_a$5 /*:array*/ = [1, 2, 3];
-  const tmpssa2_a$3 /*:array*/ = [1, 2, 3];
-  const tmpCalleeParam$3 /*:boolean*/ = tmpssa2_a$5 === tmpssa2_a$3;
-  $(tmpCalleeParam$3);
+  $(false);
+  $(true);
+  $(false);
   const tmpssa2_a$1 /*:array*/ = [1, 2, 3];
   return tmpssa2_a$1;
 };
-const tmpBinBothLhs$5 = g();
-const tmpBinBothRhs$5 = g();
-const tmpCalleeParam$5 /*:boolean*/ = tmpBinBothLhs$5 === tmpBinBothRhs$5;
-$(tmpCalleeParam$5);
-const tmpCalleeParam$7 = g();
+g();
+g();
+$(false);
+const tmpCalleeParam$7 /*:array*/ = g();
 $(tmpCalleeParam$7);
 `````
 
@@ -123,27 +113,17 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
+  $( false );
+  $( true );
+  $( false );
   const b = [ 1, 2, 3 ];
-  const c = [ 1, 2, 3 ];
-  const d = b === c;
-  $( d );
-  const e = [ 1, 2, 3 ];
-  const f = [ 1, 2, 3 ];
-  const g = e !== f;
-  $( g );
-  const h = [ 1, 2, 3 ];
-  const i = [ 1, 2, 3 ];
-  const j = h === i;
-  $( j );
-  const k = [ 1, 2, 3 ];
-  return k;
+  return b;
 };
-const l = a();
-const m = a();
-const n = l === m;
-$( n );
-const o = a();
-$( o );
+a();
+a();
+$( false );
+const c = a();
+$( c );
 `````
 
 ## Globals

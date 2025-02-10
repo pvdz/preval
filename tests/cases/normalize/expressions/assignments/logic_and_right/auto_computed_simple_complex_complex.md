@@ -63,10 +63,9 @@ if (tmpCalleeParam) {
 } else {
   $(tmpCalleeParam);
 }
-const tmpAssignComMemLhsObj = a;
 const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
-tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);
 `````
 
@@ -89,10 +88,9 @@ if (b) {
 else {
   $( b );
 }
-const e = a;
-const f = $( "b" );
-const g = $( 2 );
-e[f] = g;
+const e = $( "b" );
+const f = $( 2 );
+a[e] = f;
 $( a );
 `````
 

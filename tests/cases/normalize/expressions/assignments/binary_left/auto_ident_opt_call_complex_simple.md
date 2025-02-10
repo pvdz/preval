@@ -52,15 +52,13 @@ $(a);
 let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let tmpBinBothLhs = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
   a = tmpChainElementCall$1;
-  tmpBinBothLhs = tmpChainElementCall$1;
 }
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);
 `````
@@ -73,18 +71,16 @@ With rename=true
 let a = undefined;
 const b = $( $ );
 const c = b == null;
-let d = undefined;
 if (c) {
 
 }
 else {
-  const e = $dotCall( b, $, 1 );
-  a = e;
-  d = e;
+  const d = $dotCall( b, $, 1 );
+  a = d;
 }
-const f = $( 100 );
-const g = d + f;
-$( g );
+const e = $( 100 );
+const f = a + e;
+$( f );
 $( a );
 `````
 

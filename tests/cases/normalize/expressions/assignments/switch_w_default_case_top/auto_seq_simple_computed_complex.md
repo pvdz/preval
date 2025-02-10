@@ -124,10 +124,9 @@ if (tmpIfTest$5) {
 }
 $(`fail2`);
 $(1);
-const tmpAssignComMemLhsObj = a;
 const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
-tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);
 `````
 
@@ -164,10 +163,9 @@ if (i) {
 }
 $( "fail2" );
 $( 1 );
-const j = a;
-const k = $( "b" );
-const l = $( 2 );
-j[k] = l;
+const j = $( "b" );
+const k = $( 2 );
+a[j] = k;
 $( a );
 `````
 

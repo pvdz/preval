@@ -57,7 +57,7 @@ $(x);
 `````js filename=intro
 const x = $(3);
 $(x);
-let tmpClusterSSA_x = x + 1;
+let tmpClusterSSA_x /*:primitive*/ = x + 1;
 $(tmpClusterSSA_x);
 const tmpIfTest /*:boolean*/ = tmpClusterSSA_x > 5;
 if (tmpIfTest) {

@@ -47,9 +47,9 @@ $(a, arg);
 
 `````js filename=intro
 const arg /*:object*/ = { y: 1 };
-const a /*:boolean*/ = delete arg.y;
+delete arg.y;
 const tmpClusterSSA_a /*:boolean*/ = delete arg.y;
-const tmpCalleeParam /*:number*/ = a + tmpClusterSSA_a;
+const tmpCalleeParam /*:number*/ = tmpClusterSSA_a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a, arg);
 `````
@@ -60,11 +60,11 @@ With rename=true
 
 `````js filename=intro
 const a = { y: 1 };
+delete a.y;
 const b = delete a.y;
-const c = delete a.y;
-const d = b + c;
-$( d );
-$( c, a );
+const c = b + b;
+$( c );
+$( b, a );
 `````
 
 ## Globals

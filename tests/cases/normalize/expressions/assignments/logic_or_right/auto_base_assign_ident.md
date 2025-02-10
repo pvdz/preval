@@ -56,9 +56,8 @@ if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {
   b = $(2);
-  const tmpNestedComplexRhs = b;
   a = b;
-  $(tmpNestedComplexRhs);
+  $(b);
 }
 $(a, b);
 `````
@@ -79,9 +78,8 @@ if (c) {
 }
 else {
   a = $( 2 );
-  const d = a;
   b = a;
-  $( d );
+  $( a );
 }
 $( b, a );
 `````

@@ -387,16 +387,16 @@ function runTestCase(
         onAfterPhase(phaseIndex, passIndex, phaseLoopIndex, fdata, changed, options, fi) {
           // After each phase (0=normalize, -1=denormalize), generally 1 is not interesting to print since that's just scanning
           // Changed is either falsy, or {action: string (name of plugin), changes: number, next: phase1 | normal}
+          const now = Date.now();
+          const passString =
+            phaseIndex === -1
+            ? 'denormal'
+            : `pass ${passIndex}, loop ${phaseLoopIndex}, phase ${phaseIndex ? phaseIndex : 'normalize'}`
+          if (phaseIndex !== 0) setPrintVarTyping(true, fdata);
+          const code = tmat(fdata.tenkoOutput.ast, true);
+          if (phaseIndex !== 0) setPrintVarTyping(false);
           if (options.logPhases) {
-            const now = Date.now();
-            const passString =
-              phaseIndex === -1
-              ? 'denormal'
-              : `pass ${passIndex}, loop ${phaseLoopIndex}, phase ${phaseIndex ? phaseIndex : 'normalize'}`
             const fstr = fi ? `f${fi}.` : '';
-            if (phaseIndex !== 0) setPrintVarTyping(true, fdata);
-            const code = tmat(fdata.tenkoOutput.ast, true);
-            if (phaseIndex !== 0) setPrintVarTyping(false);
             if (passIndex >= options.logFrom) {
               const logFname = phaseIndex === -1
                 ? `preval.pass.denormalize.${fstr}log.js`
@@ -412,8 +412,10 @@ function runTestCase(
             } else {
               console.log(`--log: Not logging ${passString} (${code.length} bytes) because logFrom is ${options.logFrom}`, lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase ${phaseIndex}/3: changed by ${changed.what}` : '');
             }
-            lastWrite = now;
+          } else if (!CONFIG.targetDir) {
+            console.log(`-- ${passString} (${code.length} bytes)`, lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase ${phaseIndex}/3: changed by ${changed.what}` : '');
           }
+          lastWrite = now;
         }
       },
     });

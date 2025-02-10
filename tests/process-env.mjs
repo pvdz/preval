@@ -30,6 +30,7 @@ export function parseTestArgs() {
     riskyRules: true, // Enable risky rules. May not be 100% sound but should be ok in most cases and lead to much better results.
     skipEval: false, // Do not run the eval checks afterwards
     targetFile: undefined,
+    targetDir: undefined,
     threadIndex: 0, // ... and this will be that thread
     threads: 1, // By default, only run one thread (only useful for multiple files)
     trace: undefined, // Force set VERBOSE_TRACING=true regardless of input size? If undefined, defaults to verbose.

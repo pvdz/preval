@@ -46,15 +46,6 @@ const a = document.body;
 a.removeChild( s );
 `````
 
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-document.body.removeChild(s);
-`````
-
 ## Globals
 
 BAD@! Found 1 implicit global bindings:
@@ -70,6 +61,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
-
-Denormalized calls: Same
+Final output calls: Same

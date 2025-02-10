@@ -76,15 +76,6 @@ const a = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
 $( a );
 `````
 
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-$([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]);
-`````
-
 ## Globals
 
 None
@@ -99,6 +90,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
-
-Denormalized calls: Same
+Final output calls: Same

@@ -41,8 +41,7 @@ $(a);
 
 `````js filename=intro
 const d = $();
-const a /*:array*/ = [0];
-a[0] = d;
+const a /*:array*/ = [d];
 $(a);
 `````
 
@@ -52,8 +51,7 @@ With rename=true
 
 `````js filename=intro
 const a = $();
-const b = [ 0 ];
-b[0] = a;
+const b = [ a ];
 $( b );
 `````
 

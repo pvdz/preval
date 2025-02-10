@@ -60,18 +60,6 @@ a.length = 100;
 $( a );
 `````
 
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-$();
-const a = [1, 2, 3, 4, 5];
-a.length = 100;
-$(a);
-`````
-
 ## Globals
 
 None
@@ -189,6 +177,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
-
-Denormalized calls: Same
+Final output calls: Same

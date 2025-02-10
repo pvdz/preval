@@ -89,21 +89,6 @@ if (expires) {
 }
 `````
 
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-if (expires) {
-  const date = new Date();
-  const time = date.getTime();
-  $dotCall($date_setTime, date, time + expires * 1000);
-  a8.expires = date;
-  unknown = date;
-}
-`````
-
 ## Globals
 
 BAD@! Found 3 implicit global bindings:
@@ -119,6 +104,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
-
-Denormalized calls: Same
+Final output calls: Same

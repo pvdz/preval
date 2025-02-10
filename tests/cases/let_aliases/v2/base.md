@@ -69,18 +69,7 @@ $(arr);
 
 
 `````js filename=intro
-let counter /*:number*/ = 0;
-const arr /*:array*/ = [];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest /*:boolean*/ = counter < 5;
-  if (tmpIfTest) {
-    const chr /*:string*/ = `abcdef`.charAt(counter);
-    arr[counter] = chr;
-    counter = counter + 1;
-  } else {
-    break;
-  }
-}
+const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`];
 $(arr);
 `````
 
@@ -89,40 +78,8 @@ $(arr);
 With rename=true
 
 `````js filename=intro
-let a = 0;
-const b = [];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const c = a < 5;
-  if (c) {
-    const d = "abcdef".charAt( a );
-    b[a] = d;
-    a = a + 1;
-  }
-  else {
-    break;
-  }
-}
-$( b );
-`````
-
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-let counter = 0;
-const arr = [];
-while (true) {
-  if (counter < 5) {
-    const chr = `abcdef`.charAt(counter);
-    arr[counter] = chr;
-    counter = counter + 1;
-  } else {
-    break;
-  }
-}
-$(arr);
+const a = [ "a", "b", "c", "d", "e" ];
+$( a );
 `````
 
 ## Globals
@@ -139,6 +96,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
-
-Denormalized calls: Same
+Final output calls: Same

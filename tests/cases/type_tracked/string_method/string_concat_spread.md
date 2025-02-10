@@ -44,15 +44,6 @@ const a = "foo".concat( a, ...b );
 $( a );
 `````
 
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-$(`foo`.concat(a, ...b));
-`````
-
 ## Globals
 
 BAD@! Found 2 implicit global bindings:
@@ -68,6 +59,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
-
-Denormalized calls: Same
+Final output calls: Same

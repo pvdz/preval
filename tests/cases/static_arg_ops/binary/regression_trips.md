@@ -81,32 +81,17 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0,$$1 ) {
-  const b = $$0;
-  const c = $$1;
+  const b = c;
+  const d = e;
   debugger;
-  const d = $( b, c );
-  $( d );
+  const f = $( b, d );
+  $( f );
   return undefined;
 };
 a( 112, 1562 );
 a( 859, 1690 );
 $( undefined );
 $( undefined );
-`````
-
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-const _0x2751bd$3 = function (_0x1a6934, tmpOutlinedParam) {
-  $($(_0x1a6934, tmpOutlinedParam));
-};
-_0x2751bd$3(112, 1562);
-_0x2751bd$3(859, 1690);
-$(undefined);
-$(undefined);
 `````
 
 ## Globals
@@ -128,6 +113,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
-
-Denormalized calls: Same
+Final output calls: Same

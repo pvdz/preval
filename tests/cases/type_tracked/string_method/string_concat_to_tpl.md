@@ -46,15 +46,6 @@ const a = `foo${a}`;
 $( a );
 `````
 
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-$(`foo${a}${b}`);
-`````
-
 ## Globals
 
 BAD@! Found 2 implicit global bindings:
@@ -70,6 +61,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
-
-Denormalized calls: Same
+Final output calls: Same

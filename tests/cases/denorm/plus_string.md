@@ -68,15 +68,6 @@ const d = c + e;
 $( d );
 `````
 
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-$(`; ${tmpForInNext.value}` + e);
-`````
-
 ## Globals
 
 BAD@! Found 2 implicit global bindings:
@@ -92,6 +83,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
-
-Denormalized calls: Same
+Final output calls: Same

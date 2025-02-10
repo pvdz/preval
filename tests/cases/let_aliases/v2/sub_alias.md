@@ -2,7 +2,7 @@
 
 # sub_alias.md
 
-> Tofix > Sub alias
+> Let aliases > V2 > Sub alias
 >
 > Normalization of assignments should work the same everywhere they are
 
@@ -98,25 +98,6 @@ else {
 $( b, a );
 `````
 
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-const tmp = $(100);
-if (tmp) {
-  b = $(2);
-  a = b;
-  $(b);
-} else {
-  $(tmp);
-}
-$(a, b);
-`````
-
 ## Globals
 
 None
@@ -134,6 +115,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
-
-Denormalized calls: Same
+Final output calls: Same

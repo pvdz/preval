@@ -77,18 +77,6 @@ if (c) {
 }
 `````
 
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-const stuff = document.cookie.match(/x/);
-if (stuff) {
-  unknown = decodeURIComponent(stuff[1]);
-}
-`````
-
 ## Globals
 
 BAD@! Found 1 implicit global bindings:
@@ -104,6 +92,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
-
-Denormalized calls: Same
+Final output calls: Same

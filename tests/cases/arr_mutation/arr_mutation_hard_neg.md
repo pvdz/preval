@@ -60,18 +60,6 @@ b[-1] = a;
 $( b );
 `````
 
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-const d = $();
-const a = [0];
-a[-1] = d;
-$(a);
-`````
-
 ## Globals
 
 None
@@ -87,6 +75,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
-
-Denormalized calls: Same
+Final output calls: Same

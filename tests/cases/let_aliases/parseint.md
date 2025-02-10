@@ -128,29 +128,6 @@ const g = f / 33;
 $( g );
 `````
 
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-let f = function () {
-  the_let_binding = 2;
-  f = function () {
-    return the_let_binding;
-  };
-  const tmpReturnArg = f();
-  return tmpReturnArg;
-};
-const n = $(`1`);
-let the_let_binding = $(1);
-const a = the_let_binding;
-const m = parseInt(n);
-$(a, a);
-$(f);
-$(m / 33);
-`````
-
 ## Globals
 
 None
@@ -169,6 +146,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
-
-Denormalized calls: Same
+Final output calls: Same

@@ -123,30 +123,6 @@ const e = d.x;
 $dotCall( c, b, e );
 `````
 
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-const tmpReturnArg = function () {
-  $(`call`);
-};
-const spy = {
-  get x() {
-    $(`x1`);
-    return tmpReturnArg;
-  },
-};
-spy.x(
-  {
-    get x() {
-      $(`x2`);
-    },
-  }.x,
-);
-`````
-
 ## Globals
 
 None
@@ -163,6 +139,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
-
-Denormalized calls: Same
+Final output calls: Same

@@ -331,17 +331,6 @@ $( "//À
 (function(j,o){var _fix_ios6=j;for(var b,a,h,m,f,k,l,n,e,g,c=0,d=[],p=[35,48,72,128];c<j.length;)a=j.charCode" );
 `````
 
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-$(`//À
-
-(function(j,o){var _fix_ios6=j;for(var b,a,h,m,f,k,l,n,e,g,c=0,d=[],p=[35,48,72,128];c<j.length;)a=j.charCode`);
-`````
-
 ## Globals
 
 None
@@ -356,6 +345,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
-
-Denormalized calls: Same
+Final output calls: Same

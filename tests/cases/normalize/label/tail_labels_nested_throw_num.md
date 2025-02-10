@@ -91,19 +91,6 @@ $( "inside" );
 throw 500;
 `````
 
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-$(true);
-$(true);
-$(`before`);
-$(`inside`);
-throw 500;
-`````
-
 ## Globals
 
 None
@@ -121,6 +108,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
-
-Denormalized calls: Same
+Final output calls: Same

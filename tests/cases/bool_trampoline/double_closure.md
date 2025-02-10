@@ -82,7 +82,7 @@ const f /*:()=>*/ = function () {
   return y;
 };
 let x = undefined;
-let y = undefined;
+let y /*:primitive*/ = undefined;
 $(f);
 $(f);
 f();

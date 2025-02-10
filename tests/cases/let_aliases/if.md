@@ -87,9 +87,8 @@ let f /*:()=>*/ = function () {
   return tmpReturnArg;
 };
 let x = $(1);
-const a = x;
 if ($) {
-  $(a, x);
+  $(x, x);
 } else {
 }
 $(f);
@@ -111,33 +110,10 @@ let a = function() {
   return c;
 };
 let b = $( 1 );
-const d = b;
 if ($) {
-  $( d, b );
+  $( b, b );
 }
 $( a );
-`````
-
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-let f = function () {
-  x = 2;
-  f = function () {
-    return x;
-  };
-  const tmpReturnArg = f();
-  return tmpReturnArg;
-};
-let x = $(1);
-const a = x;
-if ($) {
-  $(a, x);
-}
-$(f);
 `````
 
 ## Globals
@@ -156,6 +132,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
-
-Denormalized calls: Same
+Final output calls: Same

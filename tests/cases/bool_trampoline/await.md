@@ -105,26 +105,6 @@ else {
 }
 `````
 
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-const f = async function ($$0) {
-  const tmpClusterSSA_x = $(0);
-  const y = await tmpClusterSSA_x;
-  return y;
-};
-$(f);
-$(f);
-if (f()) {
-  $(`pass`);
-} else {
-  $(`fail`);
-}
-`````
-
 ## Globals
 
 None
@@ -142,6 +122,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
-
-Denormalized calls: Same
+Final output calls: Same

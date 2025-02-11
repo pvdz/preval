@@ -82,6 +82,7 @@ $(a);
 
 
 `````js filename=intro
+let a = undefined;
 const b /*:object*/ = { $: $ };
 const tmpChainElementCall = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
@@ -93,9 +94,11 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
   } else {
     const tmpCalleeParam$5 = $(1);
-    $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$5);
+    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$5);
+    a = tmpChainElementCall$1;
   }
 }
+const tmpBinBothLhs = a;
 let tmpClusterSSA_a = undefined;
 const tmpChainElementCall$3 = $(b);
 const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$3 == null;
@@ -111,7 +114,7 @@ if (tmpIfTest$3) {
     tmpClusterSSA_a = tmpChainElementCall$5;
   }
 }
-const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a;
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
@@ -121,46 +124,49 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-const a = { $: $ };
-const b = $( a );
-const c = b == null;
-if (c) {
+let a = undefined;
+const b = { $: $ };
+const c = $( b );
+const d = c == null;
+if (d) {
 
 }
 else {
-  const d = $( "$" );
-  const e = b[ d ];
-  const f = e == null;
-  if (f) {
+  const e = $( "$" );
+  const f = c[ e ];
+  const g = f == null;
+  if (g) {
 
   }
   else {
-    const g = $( 1 );
-    $dotCall( e, b, g );
+    const h = $( 1 );
+    const i = $dotCall( f, c, h );
+    a = i;
   }
 }
-let h = undefined;
-const i = $( a );
-const j = i == null;
-if (j) {
+const j = a;
+let k = undefined;
+const l = $( b );
+const m = l == null;
+if (m) {
 
 }
 else {
-  const k = $( "$" );
-  const l = i[ k ];
-  const m = l == null;
-  if (m) {
+  const n = $( "$" );
+  const o = l[ n ];
+  const p = o == null;
+  if (p) {
 
   }
   else {
-    const n = $( 1 );
-    const o = $dotCall( l, i, n );
-    h = o;
+    const q = $( 1 );
+    const r = $dotCall( o, l, q );
+    k = r;
   }
 }
-const p = h + h;
-$( p );
-$( h );
+const s = j + k;
+$( s );
+$( k );
 `````
 
 ## Globals

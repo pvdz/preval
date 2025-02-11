@@ -74,23 +74,26 @@ if ($) {
 
 
 `````js filename=intro
-if ($) {
+const f /*:()=>undefined*/ = function () {
+  debugger;
   let g /*:(unknown)=>*/ = function ($$0) {
     const x = $$0;
     debugger;
     if (x) {
-      const tmpCallCallee = g;
       const tmpCalleeParam = $(false);
-      tmpCallCallee(tmpCalleeParam);
+      g(tmpCalleeParam);
       const tmpReturnArg = $(100);
       return tmpReturnArg;
     } else {
       return undefined;
     }
   };
-  const tmpCallCallee$1 = g;
   const tmpCalleeParam$1 = $(true);
-  g = tmpCallCallee$1(tmpCalleeParam$1);
+  g = g(tmpCalleeParam$1);
+  return undefined;
+};
+if ($) {
+  f();
 } else {
 }
 `````
@@ -100,14 +103,14 @@ if ($) {
 With rename=true
 
 `````js filename=intro
-if ($) {
-  let a = function($$0 ) {
-    const b = c;
+const a = function() {
+  debugger;
+  let b = function($$0 ) {
+    const c = d;
     debugger;
-    if (b) {
-      const d = a;
+    if (c) {
       const e = $( false );
-      d( e );
+      b( e );
       const f = $( 100 );
       return f;
     }
@@ -115,9 +118,12 @@ if ($) {
       return undefined;
     }
   };
-  const g = a;
-  const h = $( true );
-  a = g( h );
+  const g = $( true );
+  b = b( g );
+  return undefined;
+};
+if ($) {
+  a();
 }
 `````
 

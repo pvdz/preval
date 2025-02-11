@@ -52,13 +52,13 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-let x /*:number*/ = 1;
+let tmpBinBothLhs /*:number*/ = 1;
 if ($) {
 } else {
-  x = 2;
+  tmpBinBothLhs = 2;
 }
 const tmpBinBothRhs = $(`prevent inlining`);
-const tmpCalleeParam /*:primitive*/ = x + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 `````
 

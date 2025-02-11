@@ -56,7 +56,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpIfTest = false;
+let tmpIfTest = undefined;
 const tmpIfTest$1 = $(30);
 if (tmpIfTest$1) {
   tmpIfTest = $(60);
@@ -83,7 +83,7 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = false;
+let a = undefined;
 const b = $( 30 );
 if (b) {
   a = $( 60 );

@@ -56,8 +56,8 @@ const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
-  arguments;
-  $(arguments);
+  const tmpClusterSSA_a = arguments;
+  $(tmpClusterSSA_a);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a);
@@ -73,15 +73,15 @@ const a = $( 1 );
 const b = $( 1 );
 const c = a === b;
 if (c) {
-  arguments;
-  $( arguments );
+  const d = arguments;
+  $( d );
 }
 else {
-  const d = {
+  const e = {
     a: 999,
     b: 1000,
   };
-  $( d );
+  $( e );
 }
 `````
 

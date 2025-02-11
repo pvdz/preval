@@ -45,8 +45,8 @@ const tmpCompObj = $ObjectPrototype.b;
 const tmpCalleeParam = tmpCompObj.c;
 const tmpIfTest /*:boolean*/ = tmpCalleeParam == null;
 if (tmpIfTest) {
-  d;
-  $(d);
+  const tmpClusterSSA_tmpCalleeParam = d;
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   $(tmpCalleeParam);
 }
@@ -61,7 +61,7 @@ const a = $ObjectPrototype.b;
 const b = a.c;
 const c = b == null;
 if (c) {
-  d;
+  const d = d;
   $( d );
 }
 else {

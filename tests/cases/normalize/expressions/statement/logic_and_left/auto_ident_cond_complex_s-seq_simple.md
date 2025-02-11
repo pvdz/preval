@@ -48,7 +48,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpIfTest = true;
+let tmpIfTest = 60;
 const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
 } else {
@@ -68,7 +68,7 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = true;
+let a = 60;
 const b = $( 1 );
 if (b) {
 

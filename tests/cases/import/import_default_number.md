@@ -65,13 +65,13 @@ export { tmpAnonDefaultExport as default };
 With rename=true
 
 `````js filename=intro
-const a = 100;
-export { a as default };
+import { default as x } from "x";
+$( x );
 `````
 
 `````js filename=x
-const a = 100;
-export { a as default };
+import { default as x } from "x";
+$( x );
 `````
 
 ## Globals

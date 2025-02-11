@@ -79,10 +79,13 @@ if (a) {
   a = $(tmpCalleeParam$3);
 } else {
 }
+let tmpBinBothLhs = undefined;
 if (a) {
+  tmpBinBothLhs = a;
 } else {
   const tmpCalleeParam$5 = $(2);
-  $(tmpCalleeParam$5);
+  const tmpClusterSSA_a$1 = $(tmpCalleeParam$5);
+  tmpBinBothLhs = tmpClusterSSA_a$1;
 }
 const tmpCalleeParam$7 = $(1);
 let tmpClusterSSA_a = $(tmpCalleeParam$7);
@@ -92,12 +95,12 @@ if (tmpClusterSSA_a) {
 } else {
 }
 if (tmpClusterSSA_a) {
-  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a;
+  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpCalleeParam$11 = $(2);
   tmpClusterSSA_a = $(tmpCalleeParam$11);
-  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a;
+  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
   $(tmpClusterSSA_tmpCalleeParam$1);
 }
 $(tmpClusterSSA_a);
@@ -114,30 +117,32 @@ if (b) {
   const c = $( 1 );
   b = $( c );
 }
+let d = undefined;
 if (b) {
-
+  d = b;
 }
 else {
-  const d = $( 2 );
-  $( d );
+  const e = $( 2 );
+  const f = $( e );
+  d = f;
 }
-const e = $( 1 );
-let f = $( e );
-if (f) {
-  const g = $( 1 );
-  f = $( g );
+const g = $( 1 );
+let h = $( g );
+if (h) {
+  const i = $( 1 );
+  h = $( i );
 }
-if (f) {
-  const h = f + f;
-  $( h );
-}
-else {
-  const i = $( 2 );
-  f = $( i );
-  const j = f + f;
+if (h) {
+  const j = d + h;
   $( j );
 }
-$( f );
+else {
+  const k = $( 2 );
+  h = $( k );
+  const l = d + h;
+  $( l );
+}
+$( h );
 `````
 
 ## Globals

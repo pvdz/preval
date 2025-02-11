@@ -67,9 +67,9 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-tmpObjLitVal$1.e(1);
+const tmpChainElementCall = tmpObjLitVal$1.e(1);
 const tmpChainElementCall$1 = tmpObjLitVal$1.e(1);
-const tmpCalleeParam /*:primitive*/ = tmpChainElementCall$1 + tmpChainElementCall$1;
+const tmpCalleeParam /*:primitive*/ = tmpChainElementCall + tmpChainElementCall$1;
 $(tmpCalleeParam);
 $(tmpChainElementCall$1);
 `````
@@ -80,11 +80,11 @@ With rename=true
 
 `````js filename=intro
 const a = { e: $ };
-a.e( 1 );
 const b = a.e( 1 );
-const c = b + b;
+const c = a.e( 1 );
+const d = b + c;
+$( d );
 $( c );
-$( b );
 `````
 
 ## Globals

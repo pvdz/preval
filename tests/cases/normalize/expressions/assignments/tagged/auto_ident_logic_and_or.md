@@ -61,13 +61,16 @@ if (a) {
   a = $(tmpCalleeParam$5);
 } else {
 }
+let tmpCalleeParam$1 = undefined;
 if (a) {
+  tmpCalleeParam$1 = a;
 } else {
   const tmpCalleeParam$7 = $(2);
   a = $(tmpCalleeParam$7);
+  tmpCalleeParam$1 = a;
 }
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, a);
+$(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 
@@ -82,15 +85,17 @@ if (b) {
   const c = $( 1 );
   b = $( c );
 }
+let d = undefined;
 if (b) {
-
+  d = b;
 }
 else {
-  const d = $( 2 );
-  b = $( d );
+  const e = $( 2 );
+  b = $( e );
+  d = b;
 }
-const e = [ "before ", " after" ];
-$( e, b );
+const f = [ "before ", " after" ];
+$( f, d );
 $( b );
 `````
 

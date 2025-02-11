@@ -87,7 +87,7 @@ $(a);
 
 
 `````js filename=intro
-let maybegx = false;
+let maybegx = undefined;
 const b /*:object*/ = { x: 1 };
 const g = $(b);
 const same /*:boolean*/ = g == null;
@@ -100,7 +100,7 @@ if (same) {
 if (maybegx) {
   while ($LOOP_UNROLL_10) {
     $(1);
-    let maybegx$1 = false;
+    let maybegx$1 = undefined;
     const g$1 = $(b);
     const same$1 /*:boolean*/ = g$1 == null;
     if (same$1) {
@@ -125,7 +125,7 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = false;
+let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 const d = c == null;
@@ -140,7 +140,7 @@ else {
 if (a) {
   while ($LOOP_UNROLL_10) {
     $( 1 );
-    let g = false;
+    let g = undefined;
     const h = $( b );
     const i = h == null;
     if (i) {

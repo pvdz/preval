@@ -99,7 +99,7 @@ let a = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainRootProp = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
-let tmpIfTest /*:boolean*/ = false;
+let tmpIfTest /*:primitive*/ = undefined;
 if (tmpIfTest$1) {
   tmpIfTest = undefined === tmpSwitchValue;
 } else {
@@ -136,7 +136,7 @@ let c = undefined;
 const d = { x: 1 };
 const e = $( d );
 const f = e == null;
-let g = false;
+let g = undefined;
 if (f) {
   g = undefined === a;
 }

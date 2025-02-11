@@ -53,13 +53,14 @@ while (true) {
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-let a = $(tmpCalleeParam);
+const a = $(tmpCalleeParam);
+let xyz = 2;
 if (a) {
-  a = 2;
 } else {
+  xyz = a;
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````
@@ -70,12 +71,16 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = $( a );
+const b = $( a );
+let c = 2;
 if (b) {
-  b = 2;
+
+}
+else {
+  c = b;
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( b );
+  $( c );
   $( 1 );
 }
 `````

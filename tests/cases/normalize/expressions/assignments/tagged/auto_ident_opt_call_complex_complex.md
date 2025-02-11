@@ -55,14 +55,16 @@ $(a);
 let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+let tmpCalleeParam$1 = undefined;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam$7 = $(1);
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$7);
   a = tmpChainElementCall$1;
+  tmpCalleeParam$1 = tmpChainElementCall$1;
 }
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, a);
+$(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 
@@ -74,16 +76,18 @@ With rename=true
 let a = undefined;
 const b = $( $ );
 const c = b == null;
+let d = undefined;
 if (c) {
 
 }
 else {
-  const d = $( 1 );
-  const e = $dotCall( b, $, d );
-  a = e;
+  const e = $( 1 );
+  const f = $dotCall( b, $, e );
+  a = f;
+  d = f;
 }
-const f = [ "before ", " after" ];
-$( f, a );
+const g = [ "before ", " after" ];
+$( g, d );
 $( a );
 `````
 

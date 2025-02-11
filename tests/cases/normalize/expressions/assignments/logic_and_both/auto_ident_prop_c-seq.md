@@ -54,13 +54,14 @@ $(a, b);
 const b /*:object*/ = { c: 1 };
 const tmpAssignRhsProp = $(b);
 let tmpClusterSSA_a = tmpAssignRhsProp.c;
+const tmpCalleeParam = tmpClusterSSA_a;
 if (tmpClusterSSA_a) {
   const tmpCompObj = $(b);
   const tmpNestedComplexRhs = tmpCompObj.c;
   tmpClusterSSA_a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
-  $(tmpClusterSSA_a);
+  $(tmpCalleeParam);
 }
 $(tmpClusterSSA_a, b);
 `````
@@ -73,14 +74,15 @@ With rename=true
 const a = { c: 1 };
 const b = $( a );
 let c = b.c;
+const d = c;
 if (c) {
-  const d = $( a );
-  const e = d.c;
-  c = e;
-  $( e );
+  const e = $( a );
+  const f = e.c;
+  c = f;
+  $( f );
 }
 else {
-  $( c );
+  $( d );
 }
 $( c, a );
 `````

@@ -46,9 +46,9 @@ while (true) {
 
 
 `````js filename=intro
-arguments;
+const a = arguments;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(arguments);
+  $(a);
   $(1);
 }
 `````
@@ -58,9 +58,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 With rename=true
 
 `````js filename=intro
-arguments;
+const a = arguments;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( arguments );
+  $( a );
   $( 1 );
 }
 `````

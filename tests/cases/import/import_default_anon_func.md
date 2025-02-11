@@ -74,7 +74,7 @@ $(tmpCalleeParam$1);
 `````
 
 `````js filename=x
-const tmpAnonDefaultExport = function () {
+const tmpAnonDefaultExport /*:()=>*/ = function () {
   debugger;
   return 100;
 };
@@ -86,7 +86,7 @@ export { tmpAnonDefaultExport as default };
 With rename=true
 
 `````js filename=intro
-import { default as x from "x";
+import { default as x } from "x";
 const a = x();
 $( a );
 const b = x.name;
@@ -94,7 +94,7 @@ $( b );
 `````
 
 `````js filename=x
-import { default as x from "x";
+import { default as x } from "x";
 const a = x();
 $( a );
 const b = x.name;

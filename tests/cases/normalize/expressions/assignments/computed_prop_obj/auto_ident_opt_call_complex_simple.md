@@ -52,12 +52,14 @@ $(a);
 let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+let tmpCompObj = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
   a = tmpChainElementCall$1;
+  tmpCompObj = tmpChainElementCall$1;
 }
-a.a;
+tmpCompObj.a;
 $(a);
 `````
 
@@ -69,14 +71,16 @@ With rename=true
 let a = undefined;
 const b = $( $ );
 const c = b == null;
+let d = undefined;
 if (c) {
 
 }
 else {
-  const d = $dotCall( b, $, 1 );
-  a = d;
+  const e = $dotCall( b, $, 1 );
+  a = e;
+  d = e;
 }
-a.a;
+d.a;
 $( a );
 `````
 

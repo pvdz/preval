@@ -67,7 +67,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpIfTest = false;
+let tmpIfTest = undefined;
 const tmpObjLitVal /*:object*/ = { y: 1 };
 const b /*:object*/ = { x: tmpObjLitVal };
 const tmpChainElementCall = $(b);
@@ -87,7 +87,7 @@ if (tmpIfTest$1) {
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(1);
-    let tmpIfTest$2 = false;
+    let tmpIfTest$2 = undefined;
     const tmpChainElementCall$1 = $(b);
     const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$1 == null;
     if (tmpIfTest$4) {
@@ -118,7 +118,7 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = false;
+let a = undefined;
 const b = { y: 1 };
 const c = { x: b };
 const d = $( c );
@@ -142,7 +142,7 @@ else {
 if (a) {
   while ($LOOP_UNROLL_10) {
     $( 1 );
-    let k = false;
+    let k = undefined;
     const l = $( c );
     const m = l == null;
     if (m) {

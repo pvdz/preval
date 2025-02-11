@@ -88,12 +88,13 @@ $(a, s);
 
 `````js filename=intro
 let s /*:string*/ = ``;
-let a = 0;
+let a /*:primitive*/ = 0;
 const tmpAssignMemRhs /*:object*/ = new Date(12345);
 const obj /*:object*/ = {
   get x() {
     debugger;
-    s = `${s}read;`;
+    const tmpStringConcatR = s;
+    s = `${tmpStringConcatR}read;`;
     return a;
   },
   set x($$0) {
@@ -122,17 +123,18 @@ const c = new Date( 12345 );
 const d = {
   get x() {
     debugger;
-    a = `${a}read;`;
+    const e = a;
+    a = `${e}read;`;
     return b;
   },
   set x( $$0 ) {
-    const e = f;
+    const f = g;
     debugger;
-    const g = a;
-    const h = $coerce( e, "plustr" );
-    const i = `write[${h}];`;
-    a = g + i;
-    b = b + e;
+    const h = a;
+    const i = $coerce( f, "plustr" );
+    const j = `write[${i}];`;
+    a = h + j;
+    b = b + f;
     return b;
   },
 };

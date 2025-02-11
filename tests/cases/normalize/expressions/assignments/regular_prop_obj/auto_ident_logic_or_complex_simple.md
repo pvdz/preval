@@ -49,11 +49,13 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = $(0);
 let a = $(tmpCalleeParam);
+let tmpCompObj = 2;
 if (a) {
+  tmpCompObj = a;
 } else {
   a = 2;
 }
-a.a;
+tmpCompObj.a;
 $(a);
 `````
 
@@ -64,13 +66,14 @@ With rename=true
 `````js filename=intro
 const a = $( 0 );
 let b = $( a );
+let c = 2;
 if (b) {
-
+  c = b;
 }
 else {
   b = 2;
 }
-b.a;
+c.a;
 $( b );
 `````
 

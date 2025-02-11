@@ -57,13 +57,15 @@ let a = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainRootProp = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
+let tmpCompProp = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;
   a = tmpChainElementObject;
+  tmpCompProp = tmpChainElementObject;
 }
 const obj /*:object*/ = {};
-obj[a];
+obj[tmpCompProp];
 $(a);
 `````
 
@@ -76,15 +78,17 @@ let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 const d = c == null;
+let e = undefined;
 if (d) {
 
 }
 else {
-  const e = c.x;
-  a = e;
+  const f = c.x;
+  a = f;
+  e = f;
 }
-const f = {};
-f[ a ];
+const g = {};
+g[ e ];
 $( a );
 `````
 

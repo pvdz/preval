@@ -64,14 +64,17 @@ $(a);
 let a /*:object*/ = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
+let tmpAssignMemLhsObj = undefined;
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpObjLitVal = $(1);
   a = { b: tmpObjLitVal };
+  tmpAssignMemLhsObj = a;
 } else {
+  tmpAssignMemLhsObj = a;
 }
 const tmpAssignMemRhs = $(2);
-a.b = tmpAssignMemRhs;
+tmpAssignMemLhsObj.b = tmpAssignMemRhs;
 $(a);
 `````
 
@@ -86,13 +89,18 @@ let a = {
 };
 const b = $( 1 );
 const c = $( 1 );
-const d = b === c;
-if (d) {
-  const e = $( 1 );
-  a = { b: e };
+let d = undefined;
+const e = b === c;
+if (e) {
+  const f = $( 1 );
+  a = { b: f };
+  d = a;
 }
-const f = $( 2 );
-a.b = f;
+else {
+  d = a;
+}
+const g = $( 2 );
+d.b = g;
 $( a );
 `````
 

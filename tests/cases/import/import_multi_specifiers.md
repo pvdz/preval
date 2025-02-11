@@ -82,25 +82,15 @@ export { tmpAnonDefaultExport as default };
 With rename=true
 
 `````js filename=intro
-const a = 10;
-export { a as a };
-const b = 20;
-export { b as b };
-const c = 30;
-export { c as c };
-const a = 100;
-export { a as default };
+import { default as a } from "d";
+import { b as b } from "d";
+import { c as c } from "d";
 `````
 
 `````js filename=d
-const a = 10;
-export { a as a };
-const b = 20;
-export { b as b };
-const c = 30;
-export { c as c };
-const a = 100;
-export { a as default };
+import { default as a } from "d";
+import { b as b } from "d";
+import { c as c } from "d";
 `````
 
 ## Globals

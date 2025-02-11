@@ -45,10 +45,10 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-+tmpUnaryArg;
+const a /*:number*/ = +tmpUnaryArg;
 const tmpUnaryArg$1 = $(100);
 const tmpClusterSSA_a /*:number*/ = +tmpUnaryArg$1;
-const tmpCalleeParam /*:number*/ = tmpClusterSSA_a + tmpClusterSSA_a;
+const tmpCalleeParam /*:number*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
@@ -59,12 +59,12 @@ With rename=true
 
 `````js filename=intro
 const a = $( 100 );
-+a;
-const b = $( 100 );
-const c = +b;
-const d = c + c;
+const b = +a;
+const c = $( 100 );
+const d = +c;
+const e = b + d;
+$( e );
 $( d );
-$( c );
 `````
 
 ## Globals

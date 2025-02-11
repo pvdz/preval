@@ -51,12 +51,14 @@ $(a);
 let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+let tmpObjLitVal = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
   a = tmpChainElementCall$1;
+  tmpObjLitVal = tmpChainElementCall$1;
 }
-const tmpCalleeParam /*:object*/ = { x: a };
+const tmpCalleeParam /*:object*/ = { x: tmpObjLitVal };
 $(tmpCalleeParam);
 $(a);
 `````
@@ -69,15 +71,17 @@ With rename=true
 let a = undefined;
 const b = $( $ );
 const c = b == null;
+let d = undefined;
 if (c) {
 
 }
 else {
-  const d = $dotCall( b, $, 1 );
-  a = d;
+  const e = $dotCall( b, $, 1 );
+  a = e;
+  d = e;
 }
-const e = { x: a };
-$( e );
+const f = { x: d };
+$( f );
 $( a );
 `````
 

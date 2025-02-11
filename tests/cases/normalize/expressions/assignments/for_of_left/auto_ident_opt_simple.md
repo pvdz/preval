@@ -84,7 +84,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    a = 1;
+    a = undefined;
     const tmpAssignMemRhs = tmpForOfNext.value;
     (1).x = tmpAssignMemRhs;
   }
@@ -111,7 +111,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
   else {
-    a = 1;
+    a = undefined;
     const g = e.value;
     1.x = g;
   }

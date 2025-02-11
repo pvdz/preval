@@ -55,6 +55,12 @@ $(p);
 
 
 `````js filename=intro
+const tmpSSA_e = function () {
+  debugger;
+  $(2);
+  tmpBinBothLhs = tmpSSA_e();
+  return tmpBinBothLhs;
+};
 $(``);
 `````
 
@@ -63,12 +69,20 @@ $(``);
 With rename=true
 
 `````js filename=intro
+const a = function() {
+  debugger;
+  $( 2 );
+  tmpBinBothLhs = a();
+  return tmpBinBothLhs;
+};
 $( "" );
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+tmpBinBothLhs
 
 ## Result
 

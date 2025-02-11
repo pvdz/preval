@@ -39,10 +39,10 @@ $(f());
 
 `````js filename=intro
 let f = function () {
-  debugger;
-  let a = { a: 999, b: 1000 };
   $(1);
   $(3);
+  debugger;
+  let a = { a: 999, b: 1000 };
   $(a);
   return undefined;
 };

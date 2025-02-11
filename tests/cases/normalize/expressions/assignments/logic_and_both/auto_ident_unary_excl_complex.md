@@ -49,13 +49,14 @@ $(a);
 `````js filename=intro
 const tmpUnaryArg = $(100);
 let a = !tmpUnaryArg;
-if (tmpUnaryArg) {
-  $(a);
-} else {
+const tmpCalleeParam = a;
+if (a) {
   const tmpUnaryArg$1 = $(100);
   const tmpNestedComplexRhs /*:boolean*/ = !tmpUnaryArg$1;
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
+} else {
+  $(tmpCalleeParam);
 }
 $(a);
 `````
@@ -67,14 +68,15 @@ With rename=true
 `````js filename=intro
 const a = $( 100 );
 let b = !a;
-if (a) {
-  $( b );
+const c = b;
+if (b) {
+  const d = $( 100 );
+  const e = !d;
+  b = e;
+  $( e );
 }
 else {
-  const c = $( 100 );
-  const d = !c;
-  b = d;
-  $( d );
+  $( c );
 }
 $( b );
 `````

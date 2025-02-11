@@ -61,12 +61,12 @@ $(1);
 $(2);
 const tmpDeleteCompProp = $(`y`);
 const arg /*:object*/ = { y: 1 };
-delete arg[tmpDeleteCompProp];
+const a /*:boolean*/ = delete arg[tmpDeleteCompProp];
 $(1);
 $(2);
 const tmpDeleteCompProp$1 = $(`y`);
 const tmpClusterSSA_a /*:boolean*/ = delete arg[tmpDeleteCompProp$1];
-const tmpCalleeParam /*:number*/ = tmpClusterSSA_a + tmpClusterSSA_a;
+const tmpCalleeParam /*:number*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a, arg);
 `````
@@ -80,14 +80,14 @@ $( 1 );
 $( 2 );
 const a = $( "y" );
 const b = { y: 1 };
-delete b[ a ];
+const c = delete b[ a ];
 $( 1 );
 $( 2 );
-const c = $( "y" );
-const d = delete b[ c ];
-const e = d + d;
-$( e );
-$( d, b );
+const d = $( "y" );
+const e = delete b[ d ];
+const f = c + e;
+$( f );
+$( e, b );
 `````
 
 ## Globals

@@ -75,7 +75,7 @@ $(y);
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f /*:()=>primitive*/ = function () {
   debugger;
   x = $(100);
   y = Boolean(x);
@@ -86,7 +86,8 @@ let y /*:primitive*/ = undefined;
 $(f);
 $(f);
 f();
-if (y) {
+const tmpIfTest = y;
+if (tmpIfTest) {
   $(`pass`);
 } else {
   $(`fail`);
@@ -111,7 +112,8 @@ let c = undefined;
 $( a );
 $( a );
 a();
-if (c) {
+const d = c;
+if (d) {
   $( "pass" );
 }
 else {

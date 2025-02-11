@@ -61,12 +61,15 @@ if (a) {
   a = $(tmpCalleeParam$3);
 } else {
 }
+let tmpObjSpread = undefined;
 if (a) {
+  tmpObjSpread = a;
 } else {
   const tmpCalleeParam$5 = $(2);
   a = $(tmpCalleeParam$5);
+  tmpObjSpread = a;
 }
-const tmpCalleeParam /*:object*/ = { ...a };
+const tmpCalleeParam /*:object*/ = { ...tmpObjSpread };
 $(tmpCalleeParam);
 $(a);
 `````
@@ -82,15 +85,17 @@ if (b) {
   const c = $( 1 );
   b = $( c );
 }
+let d = undefined;
 if (b) {
-
+  d = b;
 }
 else {
-  const d = $( 2 );
-  b = $( d );
+  const e = $( 2 );
+  b = $( e );
+  d = b;
 }
-const e = { ... b };
-$( e );
+const f = { ... d };
+$( f );
 $( b );
 `````
 

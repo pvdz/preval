@@ -39,10 +39,10 @@ $(a, b, c);
 
 
 `````js filename=intro
-unknown1;
-unknown2;
-unknown3;
-$(unknown1, unknown2, unknown3);
+const a = unknown1;
+const b = unknown2;
+const c = unknown3;
+$(a, b, c);
 `````
 
 ## PST Output
@@ -50,10 +50,10 @@ $(unknown1, unknown2, unknown3);
 With rename=true
 
 `````js filename=intro
-unknown1;
-unknown2;
-unknown3;
-$( unknown1, unknown2, unknown3 );
+const a = unknown1;
+const b = unknown2;
+const c = unknown3;
+$( a, b, c );
 `````
 
 ## Globals

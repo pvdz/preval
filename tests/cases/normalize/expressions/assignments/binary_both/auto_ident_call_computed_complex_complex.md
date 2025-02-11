@@ -53,11 +53,11 @@ $(a);
 const b /*:object*/ = { $: $ };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $(`\$`);
-tmpCallCompObj[tmpCallCompProp](1);
+const tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
 const tmpCallCompObj$1 = $(b);
 const tmpCallCompProp$1 = $(`\$`);
 const tmpClusterSSA_a$1 = tmpCallCompObj$1[tmpCallCompProp$1](1);
-const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a$1 + tmpClusterSSA_a$1;
+const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a$1;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a$1);
 `````
@@ -70,13 +70,13 @@ With rename=true
 const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
-b[ c ]( 1 );
-const d = $( a );
-const e = $( "$" );
-const f = d[ e ]( 1 );
-const g = f + f;
+const d = b[ c ]( 1 );
+const e = $( a );
+const f = $( "$" );
+const g = e[ f ]( 1 );
+const h = d + g;
+$( h );
 $( g );
-$( f );
 `````
 
 ## Globals

@@ -29,14 +29,16 @@ const y = $spy(`b`);
 `````js filename=intro
 const x = $spy(`a`);
 const y = $spy(`b`);
+(200).toString(x, y);
 `````
 
 ## Output
 
 
 `````js filename=intro
-$spy(`a`);
-$spy(`b`);
+const x = $spy(`a`);
+const y = $spy(`b`);
+(200).toString(x, y);
 `````
 
 ## PST Output
@@ -44,8 +46,9 @@ $spy(`b`);
 With rename=true
 
 `````js filename=intro
-$spy( "a" );
-$spy( "b" );
+const a = $spy( "a" );
+const b = $spy( "b" );
+200.toString( a, b );
 `````
 
 ## Globals
@@ -62,12 +65,6 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: BAD!?
- - 1: 'Creating spy', 1, 1, ['a', 'a']
- - 2: 'Creating spy', 2, 1, ['b', 'b']
- - eval returned: undefined
+Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: 'Creating spy', 1, 1, ['a', 'a']
- - 2: 'Creating spy', 2, 1, ['b', 'b']
- - eval returned: undefined
+Final output calls: Same

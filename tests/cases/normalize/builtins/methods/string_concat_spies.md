@@ -36,9 +36,8 @@ const y = $spy(`b`);
 
 
 `````js filename=intro
-const x = $spy(`a`);
-const y = $spy(`b`);
-``.concat(x, y);
+$spy(`a`);
+$spy(`b`);
 `````
 
 ## PST Output
@@ -46,9 +45,8 @@ const y = $spy(`b`);
 With rename=true
 
 `````js filename=intro
-const a = $spy( "a" );
-const b = $spy( "b" );
-"".concat( a, b );
+$spy( "a" );
+$spy( "b" );
 `````
 
 ## Globals
@@ -68,4 +66,7 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 'Creating spy', 1, 1, ['a', 'a']
+ - 2: 'Creating spy', 2, 1, ['b', 'b']
+ - eval returned: undefined

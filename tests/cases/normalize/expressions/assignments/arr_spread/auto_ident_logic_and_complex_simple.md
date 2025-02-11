@@ -48,11 +48,13 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
 let a = $(tmpCalleeParam$1);
+let tmpArrSpread = 2;
 if (a) {
   a = 2;
 } else {
+  tmpArrSpread = a;
 }
-const tmpCalleeParam /*:array*/ = [...a];
+const tmpCalleeParam /*:array*/ = [...tmpArrSpread];
 $(tmpCalleeParam);
 $(a);
 `````
@@ -64,11 +66,15 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 let b = $( a );
+let c = 2;
 if (b) {
   b = 2;
 }
-const c = [ ...b ];
-$( c );
+else {
+  c = b;
+}
+const d = [ ...c ];
+$( d );
 $( b );
 `````
 

@@ -45,15 +45,15 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+let tmpThrowArg = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
-  a = tmpChainElementCall$1;
+  tmpThrowArg = tmpChainElementCall$1;
 }
-throw a;
+throw tmpThrowArg;
 `````
 
 ## PST Output
@@ -61,17 +61,17 @@ throw a;
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( $ );
-const c = b == null;
-if (c) {
+const a = $( $ );
+const b = a == null;
+let c = undefined;
+if (b) {
 
 }
 else {
-  const d = $dotCall( b, $, 1 );
-  a = d;
+  const d = $dotCall( a, $, 1 );
+  c = d;
 }
-throw a;
+throw c;
 `````
 
 ## Globals

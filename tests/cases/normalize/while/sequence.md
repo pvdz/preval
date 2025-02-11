@@ -52,7 +52,7 @@ while (true) {
 
 `````js filename=intro
 let tmpClusterSSA_x = NaN.x;
-let tmpIfTest = false;
+let tmpIfTest = undefined;
 const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_x == null;
 if (tmpIfTest$1) {
 } else {
@@ -63,7 +63,7 @@ if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     tmpClusterSSA_x ** 0;
     tmpClusterSSA_x = NaN.x;
-    let tmpIfTest$2 = false;
+    let tmpIfTest$2 = undefined;
     const tmpIfTest$4 /*:boolean*/ = tmpClusterSSA_x == null;
     if (tmpIfTest$4) {
     } else {
@@ -85,7 +85,7 @@ With rename=true
 
 `````js filename=intro
 let a = NaN.x;
-let b = false;
+let b = undefined;
 const c = a == null;
 if (c) {
 
@@ -98,7 +98,7 @@ if (b) {
   while ($LOOP_UNROLL_10) {
     a ** 0;
     a = NaN.x;
-    let e = false;
+    let e = undefined;
     const f = a == null;
     if (f) {
 

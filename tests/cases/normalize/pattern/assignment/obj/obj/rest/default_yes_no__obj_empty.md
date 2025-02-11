@@ -49,16 +49,17 @@ $(y);
 
 `````js filename=intro
 const objPatternBeforeDefault = $ObjectPrototype.x;
-let objPatternAfterDefault = undefined;
+let tmpCalleeParam$1 = undefined;
 const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCalleeParam /*:object*/ = { a: `pass` };
-  objPatternAfterDefault = $(tmpCalleeParam);
+  const tmpClusterSSA_objPatternAfterDefault = $(tmpCalleeParam);
+  tmpCalleeParam$1 = tmpClusterSSA_objPatternAfterDefault;
 } else {
-  objPatternAfterDefault = objPatternBeforeDefault;
+  tmpCalleeParam$1 = objPatternBeforeDefault;
 }
 const tmpCalleeParam$3 /*:array*/ = [];
-y = objPatternRest(objPatternAfterDefault, tmpCalleeParam$3, undefined);
+y = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
 $(y);
 `````
 
@@ -72,13 +73,14 @@ let b = undefined;
 const c = a === undefined;
 if (c) {
   const d = { a: "pass" };
-  b = $( d );
+  const e = $( d );
+  b = e;
 }
 else {
   b = a;
 }
-const e = [];
-y = objPatternRest( b, e, undefined );
+const f = [];
+y = objPatternRest( b, f, undefined );
 $( y );
 `````
 

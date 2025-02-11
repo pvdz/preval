@@ -87,9 +87,11 @@ let f /*:()=>*/ = function () {
   return tmpReturnArg;
 };
 let x = $(1);
+const a = x;
 if ($) {
 } else {
-  $(x, x);
+  const c = x;
+  $(a, c);
 }
 $(f);
 `````
@@ -110,11 +112,13 @@ let a = function() {
   return c;
 };
 let b = $( 1 );
+const d = b;
 if ($) {
 
 }
 else {
-  $( b, b );
+  const e = b;
+  $( d, e );
 }
 $( a );
 `````

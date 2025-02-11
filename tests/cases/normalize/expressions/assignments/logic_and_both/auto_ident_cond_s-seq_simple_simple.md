@@ -63,12 +63,13 @@ $(a);
 
 `````js filename=intro
 let a = $(2);
+const tmpCalleeParam = a;
 if (a) {
   const tmpNestedComplexRhs = $(2);
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
-  $(a);
+  $(tmpCalleeParam);
 }
 $(a);
 `````
@@ -79,13 +80,14 @@ With rename=true
 
 `````js filename=intro
 let a = $( 2 );
+const b = a;
 if (a) {
-  const b = $( 2 );
-  a = b;
-  $( b );
+  const c = $( 2 );
+  a = c;
+  $( c );
 }
 else {
-  $( a );
+  $( b );
 }
 $( a );
 `````

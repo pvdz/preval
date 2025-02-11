@@ -52,8 +52,8 @@ if (tmpIfTest) {
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   a = arguments;
-  arguments;
-  $(arguments);
+  const tmpClusterSSA_tmpCalleeParam$1 = arguments;
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
 $(a);
 `````
@@ -74,8 +74,8 @@ if (b) {
 }
 else {
   a = arguments;
-  arguments;
-  $( arguments );
+  const d = arguments;
+  $( d );
 }
 $( a );
 `````

@@ -56,12 +56,12 @@ const b /*:object*/ = { $: $ };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`\$`);
 const tmpNewCallee = tmpCompObj[tmpCompProp];
-new tmpNewCallee(1);
+const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
 const tmpCompObj$1 = $(b);
 const tmpCompProp$1 = $(`\$`);
 const tmpNewCallee$1 = tmpCompObj$1[tmpCompProp$1];
 const tmpClusterSSA_a$1 /*:object*/ = new tmpNewCallee$1(1);
-const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a$1 + tmpClusterSSA_a$1;
+const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a$1;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a$1);
 `````
@@ -75,14 +75,14 @@ const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
 const d = b[ c ];
-new d( 1 );
-const e = $( a );
-const f = $( "$" );
-const g = e[ f ];
-const h = new g( 1 );
-const i = h + h;
+const e = new d( 1 );
+const f = $( a );
+const g = $( "$" );
+const h = f[ g ];
+const i = new h( 1 );
+const j = e + i;
+$( j );
 $( i );
-$( h );
 `````
 
 ## Globals

@@ -132,11 +132,11 @@ if ($implicitThrow$1) {
 
 
 `````js filename=intro
-const f /*:()=>?,undefined*/ = function () {
+const f /*:()=>primitive,undefined*/ = function () {
   debugger;
   let x /*:number*/ = 1;
   let $finalStep /*:boolean*/ = false;
-  let $finalArg = undefined;
+  let $finalArg /*:primitive*/ = undefined;
   try {
     const tmpIfTest = $();
     if (tmpIfTest) {

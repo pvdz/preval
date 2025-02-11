@@ -90,8 +90,9 @@ let f /*:()=>*/ = function () {
   return tmpReturnArg;
 };
 let x = $(1);
+const a = x;
 try {
-  $(x, x);
+  $(a, a);
   $(f);
 } catch (e) {
   $();
@@ -114,11 +115,12 @@ let a = function() {
   return c;
 };
 let b = $( 1 );
+const d = b;
 try {
-  $( b, b );
+  $( d, d );
   $( a );
 }
-catch (d) {
+catch (e) {
   $();
 }
 `````

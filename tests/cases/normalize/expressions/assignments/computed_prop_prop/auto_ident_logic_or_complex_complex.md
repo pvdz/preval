@@ -52,13 +52,16 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = $(0);
 let a = $(tmpCalleeParam);
+let tmpCompProp = undefined;
 if (a) {
+  tmpCompProp = a;
 } else {
   const tmpCalleeParam$1 = $(2);
   a = $(tmpCalleeParam$1);
+  tmpCompProp = a;
 }
 const obj /*:object*/ = {};
-obj[a];
+obj[tmpCompProp];
 $(a);
 `````
 
@@ -69,15 +72,17 @@ With rename=true
 `````js filename=intro
 const a = $( 0 );
 let b = $( a );
+let c = undefined;
 if (b) {
-
+  c = b;
 }
 else {
-  const c = $( 2 );
-  b = $( c );
+  const d = $( 2 );
+  b = $( d );
+  c = b;
 }
-const d = {};
-d[ b ];
+const e = {};
+e[ c ];
 $( b );
 `````
 

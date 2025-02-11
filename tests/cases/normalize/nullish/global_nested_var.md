@@ -54,17 +54,18 @@ $(c);
 const b = $(2);
 const tmpIfTest /*:boolean*/ = b == null;
 let c = undefined;
-let tmpIfTest$1 /*:boolean*/ = false;
+let tmpIfTest$1 /*:primitive*/ = undefined;
 if (tmpIfTest) {
-  c = toString;
-  tmpIfTest$1 = c == null;
+  const tmpClusterSSA_b = toString;
+  c = tmpClusterSSA_b;
+  tmpIfTest$1 = tmpClusterSSA_b == null;
 } else {
   c = b;
   tmpIfTest$1 = b == null;
 }
 if (tmpIfTest$1) {
-  length;
-  $(length);
+  const tmpClusterSSA_c = length;
+  $(tmpClusterSSA_c);
 } else {
   $(c);
 }
@@ -78,18 +79,19 @@ With rename=true
 const a = $( 2 );
 const b = a == null;
 let c = undefined;
-let d = false;
+let d = undefined;
 if (b) {
-  c = toString;
-  d = c == null;
+  const e = toString;
+  c = e;
+  d = e == null;
 }
 else {
   c = a;
   d = a == null;
 }
 if (d) {
-  length;
-  $( length );
+  const f = length;
+  $( f );
 }
 else {
   $( c );

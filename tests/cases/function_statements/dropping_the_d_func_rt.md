@@ -48,35 +48,42 @@ $(f);
 
 `````filename=intro
 let f___4__ = function () /*6*/ {
-  let THIS_IS_DA_______10__ = function () /*12*/ {
+  debugger;
+  let THIS_IS_DA____$1___10__ = function () /*12*/ {
+    debugger;
     $(`hello`);
+    return undefined___21__;
   };
-  $(THIS_IS_DA_______30__());
+  const tmpCallCallee___24__ = $;
+  const tmpCalleeParam___28__ = THIS_IS_DA_______30__();
+  tmpCallCallee___33__(tmpCalleeParam___34__);
+  return undefined___37__;
 };
 let g___40__ = function () /*42*/ {
+  debugger;
   $(`always here`);
+  return undefined___51__;
 };
 $(f___55__);
 `````
 
 Ref tracking result:
 
-                   | reads      | read by     | overWrites     | overwritten by
+                     | reads      | read by     | overWrites     | overwritten by
 f:
   - w @4       | ########## | 55          | none           | none
   - r @55      | 4
 
-THIS_IS_DA____:
-  - w @10          | ########## | 30          | none           | none
-  - r @30          | 10
+THIS_IS_DA____$1:
+  - w @10            | ########## | not read    | none           | none
 
 tmpCallCallee:
-  - w @24          | ########## | 33          | none           | none
-  - r @33          | 24
+  - w @24            | ########## | 33          | none           | none
+  - r @33            | 24
 
 tmpCalleeParam:
-  - w @28          | ########## | 34          | none           | none
-  - r @34          | 28
+  - w @28            | ########## | 34          | none           | none
+  - r @34            | 28
 
 g:
-  - w @40          | ########## | not read    | none           | none
+  - w @40            | ########## | not read    | none           | none

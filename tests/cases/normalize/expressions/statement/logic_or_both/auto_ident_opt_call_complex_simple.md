@@ -54,7 +54,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpIfTest = false;
+let tmpIfTest = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
@@ -80,7 +80,7 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = false;
+let a = undefined;
 const b = $( $ );
 const c = b == null;
 if (c) {

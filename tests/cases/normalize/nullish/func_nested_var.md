@@ -68,17 +68,18 @@ tmpCallCallee(tmpCalleeParam);
 const b = $(2);
 const tmpIfTest /*:boolean*/ = b == null;
 let c = undefined;
-let tmpIfTest$1 /*:boolean*/ = false;
+let tmpIfTest$1 /*:primitive*/ = undefined;
 if (tmpIfTest) {
-  c = toString;
-  tmpIfTest$1 = c == null;
+  const tmpClusterSSA_b = toString;
+  c = tmpClusterSSA_b;
+  tmpIfTest$1 = tmpClusterSSA_b == null;
 } else {
   c = b;
   tmpIfTest$1 = b == null;
 }
 if (tmpIfTest$1) {
-  length;
-  const tmpClusterSSA_tmpReturnArg = $(length);
+  const tmpClusterSSA_c = length;
+  const tmpClusterSSA_tmpReturnArg = $(tmpClusterSSA_c);
   $(tmpClusterSSA_tmpReturnArg);
 } else {
   const tmpClusterSSA_tmpReturnArg$1 = $(c);
@@ -94,23 +95,24 @@ With rename=true
 const a = $( 2 );
 const b = a == null;
 let c = undefined;
-let d = false;
+let d = undefined;
 if (b) {
-  c = toString;
-  d = c == null;
+  const e = toString;
+  c = e;
+  d = e == null;
 }
 else {
   c = a;
   d = a == null;
 }
 if (d) {
-  length;
-  const e = $( length );
-  $( e );
+  const f = length;
+  const g = $( f );
+  $( g );
 }
 else {
-  const f = $( c );
-  $( f );
+  const h = $( c );
+  $( h );
 }
 `````
 

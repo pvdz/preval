@@ -78,7 +78,8 @@ let f /*:()=>*/ = function () {
   return tmpReturnArg;
 };
 let x = $(1);
-$(x, x);
+const a = x;
+$(x, a);
 $(f);
 `````
 
@@ -98,7 +99,8 @@ let a = function() {
   return c;
 };
 let b = $( 1 );
-$( b, b );
+const d = b;
+$( b, d );
 $( a );
 `````
 

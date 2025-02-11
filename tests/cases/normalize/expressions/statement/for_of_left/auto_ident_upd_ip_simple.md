@@ -78,9 +78,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
+    const tmpPostUpdArgIdent = b;
     b = b + 1;
     const tmpAssignMemRhs = tmpForOfNext.value;
-    b.x = tmpAssignMemRhs;
+    tmpPostUpdArgIdent.x = tmpAssignMemRhs;
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -103,16 +104,17 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
   else {
+    const g = a;
     a = a + 1;
-    const g = e.value;
-    a.x = g;
+    const h = e.value;
+    g.x = h;
   }
 }
-const h = {
+const i = {
   a: 999,
   b: 1000,
 };
-$( h, a );
+$( i, a );
 `````
 
 ## Globals

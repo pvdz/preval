@@ -58,12 +58,15 @@ if (a) {
   a = $(tmpCalleeParam$1);
 } else {
 }
+let tmpThrowArg = undefined;
 if (a) {
+  tmpThrowArg = a;
 } else {
   const tmpCalleeParam$3 = $(2);
-  a = $(tmpCalleeParam$3);
+  const tmpClusterSSA_a = $(tmpCalleeParam$3);
+  tmpThrowArg = tmpClusterSSA_a;
 }
-throw a;
+throw tmpThrowArg;
 `````
 
 ## PST Output
@@ -77,14 +80,16 @@ if (b) {
   const c = $( 1 );
   b = $( c );
 }
+let d = undefined;
 if (b) {
-
+  d = b;
 }
 else {
-  const d = $( 2 );
-  b = $( d );
+  const e = $( 2 );
+  const f = $( e );
+  d = f;
 }
-throw b;
+throw d;
 `````
 
 ## Globals

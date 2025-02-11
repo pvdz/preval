@@ -105,12 +105,12 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-log;
+const tmpCallCallee = log;
 if (a) {
 } else {
   b;
 }
-log(3);
+tmpCallCallee(3);
 `````
 
 ## PST Output
@@ -118,14 +118,14 @@ log(3);
 With rename=true
 
 `````js filename=intro
-log;
+const a = log;
 if (a) {
 
 }
 else {
   b;
 }
-log( 3 );
+a( 3 );
 `````
 
 ## Globals

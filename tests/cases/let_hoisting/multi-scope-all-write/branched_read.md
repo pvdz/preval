@@ -99,7 +99,7 @@ if ($) {
 
 
 `````js filename=intro
-const f = function ($$0) {
+const f /*:(unknown)=>boolean*/ = function ($$0) {
   const s = $$0;
   debugger;
   const promoMe /*:boolean*/ = s === ``;

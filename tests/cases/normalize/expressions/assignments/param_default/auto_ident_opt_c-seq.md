@@ -70,17 +70,17 @@ $(a);
 
 
 `````js filename=intro
-let tmpNestedComplexRhs = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainRootProp = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
+let tmpClusterSSA_a = undefined;
 if (tmpIfTest$1) {
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;
-  tmpNestedComplexRhs = tmpChainElementObject;
+  tmpClusterSSA_a = tmpChainElementObject;
 }
 $(undefined);
-$(tmpNestedComplexRhs);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output
@@ -88,19 +88,19 @@ $(tmpNestedComplexRhs);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { x: 1 };
-const c = $( b );
-const d = c == null;
-if (d) {
+const a = { x: 1 };
+const b = $( a );
+const c = b == null;
+let d = undefined;
+if (c) {
 
 }
 else {
-  const e = c.x;
-  a = e;
+  const e = b.x;
+  d = e;
 }
 $( undefined );
-$( a );
+$( d );
 `````
 
 ## Globals

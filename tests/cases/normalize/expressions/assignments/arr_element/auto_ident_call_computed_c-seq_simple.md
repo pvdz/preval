@@ -50,10 +50,10 @@ $(a);
 `````js filename=intro
 const b /*:object*/ = { $: $ };
 const tmpCallObj = $(b);
-tmpCallObj.$(1);
+const tmpClusterSSA_a = tmpCallObj.$(1);
 const tmpCallObj$1 = $(b);
 const tmpClusterSSA_a$1 = tmpCallObj$1.$(1);
-const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a$1 + tmpClusterSSA_a$1;
+const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a$1;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a$1);
 `````
@@ -65,12 +65,12 @@ With rename=true
 `````js filename=intro
 const a = { $: $ };
 const b = $( a );
-b.$( 1 );
-const c = $( a );
-const d = c.$( 1 );
-const e = d + d;
+const c = b.$( 1 );
+const d = $( a );
+const e = d.$( 1 );
+const f = c + e;
+$( f );
 $( e );
-$( d );
 `````
 
 ## Globals

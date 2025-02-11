@@ -10,15 +10,15 @@
 try {
   $(1);
   throw 'foo';
-} catch (a) {
+} catch (err) {
   function f(b) {
-    b = a;
-    $(a, b);
+    b = err;
+    $(err, b);
   };
 
   f(11);
   f(12);
-  $(a);
+  $(err);
 }
 $(3);
 `````
@@ -30,16 +30,16 @@ $(3);
 try {
   $(1);
   throw `foo`;
-} catch (a) {
+} catch (err) {
   let f = function ($$0) {
     let b = $$0;
     debugger;
-    b = a;
-    $(a, b);
+    b = err;
+    $(err, b);
   };
   f(11);
   f(12);
-  $(a);
+  $(err);
 }
 $(3);
 `````
@@ -51,17 +51,17 @@ $(3);
 try {
   $(1);
   throw `foo`;
-} catch (a) {
+} catch (err) {
   let f = function ($$0) {
     let b = $$0;
     debugger;
-    b = a;
-    $(a, b);
+    b = err;
+    $(err, b);
     return undefined;
   };
   f(11);
   f(12);
-  $(a);
+  $(err);
 }
 $(3);
 `````
@@ -73,10 +73,16 @@ $(3);
 try {
   $(1);
   throw `foo`;
-} catch (a) {
-  $(a, a);
-  $(a, a);
-  $(a);
+} catch (err) {
+  const f /*:()=>undefined*/ = function () {
+    debugger;
+    const tmpClusterSSA_b = err;
+    $(err, tmpClusterSSA_b);
+    return undefined;
+  };
+  f();
+  f();
+  $(err);
 }
 $(3);
 `````
@@ -91,8 +97,14 @@ try {
   throw "foo";
 }
 catch (a) {
-  $( a, a );
-  $( a, a );
+  const b = function() {
+    debugger;
+    const c = a;
+    $( a, c );
+    return undefined;
+  };
+  b();
+  b();
   $( a );
 }
 $( 3 );

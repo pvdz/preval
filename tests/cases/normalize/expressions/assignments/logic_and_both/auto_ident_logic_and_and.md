@@ -81,29 +81,28 @@ if (a) {
   if (a) {
     const tmpCalleeParam$5 = $(2);
     a = $(tmpCalleeParam$5);
-    if (a) {
-      const tmpCalleeParam$7 = $(1);
-      let tmpNestedComplexRhs = $(tmpCalleeParam$7);
-      if (tmpNestedComplexRhs) {
-        const tmpCalleeParam$9 = $(1);
-        tmpNestedComplexRhs = $(tmpCalleeParam$9);
-        if (tmpNestedComplexRhs) {
-          const tmpCalleeParam$11 = $(2);
-          tmpNestedComplexRhs = $(tmpCalleeParam$11);
-        } else {
-        }
-      } else {
-      }
-      a = tmpNestedComplexRhs;
-      $(tmpNestedComplexRhs);
-    } else {
-      $(a);
-    }
   } else {
-    $(a);
   }
 } else {
-  $(a);
+}
+const tmpCalleeParam = a;
+if (a) {
+  const tmpCalleeParam$7 = $(1);
+  let tmpNestedComplexRhs = $(tmpCalleeParam$7);
+  if (tmpNestedComplexRhs) {
+    const tmpCalleeParam$9 = $(1);
+    tmpNestedComplexRhs = $(tmpCalleeParam$9);
+    if (tmpNestedComplexRhs) {
+      const tmpCalleeParam$11 = $(2);
+      tmpNestedComplexRhs = $(tmpCalleeParam$11);
+    } else {
+    }
+  } else {
+  }
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+} else {
+  $(tmpCalleeParam);
 }
 $(a);
 `````
@@ -121,30 +120,25 @@ if (b) {
   if (b) {
     const d = $( 2 );
     b = $( d );
-    if (b) {
-      const e = $( 1 );
-      let f = $( e );
-      if (f) {
-        const g = $( 1 );
-        f = $( g );
-        if (f) {
-          const h = $( 2 );
-          f = $( h );
-        }
-      }
-      b = f;
-      $( f );
-    }
-    else {
-      $( b );
-    }
-  }
-  else {
-    $( b );
   }
 }
+const e = b;
+if (b) {
+  const f = $( 1 );
+  let g = $( f );
+  if (g) {
+    const h = $( 1 );
+    g = $( h );
+    if (g) {
+      const i = $( 2 );
+      g = $( i );
+    }
+  }
+  b = g;
+  $( g );
+}
 else {
-  $( b );
+  $( e );
 }
 $( b );
 `````

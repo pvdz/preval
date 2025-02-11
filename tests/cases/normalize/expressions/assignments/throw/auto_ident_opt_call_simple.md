@@ -44,14 +44,14 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-let a = undefined;
+let tmpThrowArg = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall = $(1);
-  a = tmpChainElementCall;
+  tmpThrowArg = tmpChainElementCall;
 }
-throw a;
+throw tmpThrowArg;
 `````
 
 ## PST Output

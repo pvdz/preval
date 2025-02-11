@@ -61,7 +61,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpIfTest = false;
+let tmpIfTest = undefined;
 const tmpIfTest$3 /*:boolean*/ = $ == null;
 if (tmpIfTest$3) {
 } else {
@@ -83,7 +83,7 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = false;
+let a = undefined;
 const b = $ == null;
 if (b) {
 

@@ -49,14 +49,17 @@ $(a);
 `````js filename=intro
 let a = 1;
 const tmpIfTest = $(30);
+let tmpCalleeParam$1 = undefined;
 if (tmpIfTest) {
   a = $(2);
+  tmpCalleeParam$1 = a;
 } else {
   const tmpCalleeParam$3 = $(100);
   a = $(tmpCalleeParam$3);
+  tmpCalleeParam$1 = a;
 }
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, a);
+$(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 
@@ -67,15 +70,18 @@ With rename=true
 `````js filename=intro
 let a = 1;
 const b = $( 30 );
+let c = undefined;
 if (b) {
   a = $( 2 );
+  c = a;
 }
 else {
-  const c = $( 100 );
-  a = $( c );
+  const d = $( 100 );
+  a = $( d );
+  c = a;
 }
-const d = [ "before ", " after" ];
-$( d, a );
+const e = [ "before ", " after" ];
+$( e, c );
 $( a );
 `````
 

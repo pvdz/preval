@@ -70,17 +70,13 @@ export { X };
 With rename=true
 
 `````js filename=intro
-const a = class   {
-
-};
-export { a as X };
+import { default as x } from "x";
+$( x );
 `````
 
 `````js filename=x
-const a = class   {
-
-};
-export { a as X };
+import { default as x } from "x";
+$( x );
 `````
 
 ## Globals

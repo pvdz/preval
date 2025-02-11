@@ -190,10 +190,6 @@ x ** 0;
 const tmpArrElement$35 /*:number*/ = 0 ^ x;
 const tmpArrElement$37 /*:number*/ = 0 | x;
 const tmpArrElement$7 /*:string*/ = `function String() { [native code] }${tmpStringConcatL}`;
-const tmpArrElement$25 /*:boolean*/ = String === x;
-const tmpArrElement$27 /*:boolean*/ = String !== x;
-const tmpArrElement$29 /*:boolean*/ = String === x;
-const tmpArrElement$31 /*:boolean*/ = String !== x;
 const arr /*:array*/ = [
   NaN,
   NaN,
@@ -208,10 +204,10 @@ const arr /*:array*/ = [
   tmpArrElement$19,
   tmpArrElement$21,
   tmpArrElement$23,
-  tmpArrElement$25,
-  tmpArrElement$27,
-  tmpArrElement$29,
-  tmpArrElement$31,
+  false,
+  true,
+  false,
+  true,
   0,
   tmpArrElement$35,
   tmpArrElement$37,
@@ -257,16 +253,12 @@ a ** 0;
 const k = 0 ^ a;
 const l = 0 | a;
 const m = `function String() { [native code] }${c}`;
-const n = String === a;
-const o = String !== a;
-const p = String === a;
-const q = String !== a;
-const r = [ NaN, NaN, NaN, NaN, m, NaN, d, e, f, g, h, i, j, n, o, p, q, 0, k, l ];
-$( r );
-const s = String in a;
-const t = String instanceof a;
-const u = [ s, t ];
-$( u );
+const n = [ NaN, NaN, NaN, NaN, m, NaN, d, e, f, g, h, i, j, false, true, false, true, 0, k, l ];
+$( n );
+const o = String in a;
+const p = String instanceof a;
+const q = [ o, p ];
+$( q );
 `````
 
 ## Globals

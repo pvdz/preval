@@ -49,13 +49,16 @@ $(a);
 `````js filename=intro
 let a = 1;
 const tmpIfTest = $(30);
+let tmpObjLitVal = undefined;
 if (tmpIfTest) {
   a = $(2);
+  tmpObjLitVal = a;
 } else {
   const tmpCalleeParam$1 = $(100);
   a = $(tmpCalleeParam$1);
+  tmpObjLitVal = a;
 }
-const tmpCalleeParam /*:object*/ = { x: a };
+const tmpCalleeParam /*:object*/ = { x: tmpObjLitVal };
 $(tmpCalleeParam);
 $(a);
 `````
@@ -67,15 +70,18 @@ With rename=true
 `````js filename=intro
 let a = 1;
 const b = $( 30 );
+let c = undefined;
 if (b) {
   a = $( 2 );
+  c = a;
 }
 else {
-  const c = $( 100 );
-  a = $( c );
+  const d = $( 100 );
+  a = $( d );
+  c = a;
 }
-const d = { x: a };
-$( d );
+const e = { x: c };
+$( e );
 $( a );
 `````
 

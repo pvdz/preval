@@ -52,7 +52,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpIfTest = false;
+let tmpIfTest = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainRootProp = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
@@ -75,7 +75,7 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = false;
+let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 const d = c == null;

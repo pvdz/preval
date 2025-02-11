@@ -42,8 +42,9 @@ $(a);
 
 
 `````js filename=intro
+const a /*:object*/ = { x: 1, y: 2, z: 3 };
 const tmpClusterSSA_a /*:object*/ = { x: 1, y: 2, z: 3 };
-const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a;
+const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
@@ -58,9 +59,14 @@ const a = {
   y: 2,
   z: 3,
 };
-const b = a + a;
+const b = {
+  x: 1,
+  y: 2,
+  z: 3,
+};
+const c = a + b;
+$( c );
 $( b );
-$( a );
 `````
 
 ## Globals

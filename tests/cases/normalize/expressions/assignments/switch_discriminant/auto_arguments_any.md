@@ -47,9 +47,9 @@ $(a);
 
 
 `````js filename=intro
-arguments;
+const a = arguments;
 $(100);
-$(arguments);
+$(a);
 `````
 
 ## PST Output
@@ -57,9 +57,9 @@ $(arguments);
 With rename=true
 
 `````js filename=intro
-arguments;
+const a = arguments;
 $( 100 );
-$( arguments );
+$( a );
 `````
 
 ## Globals

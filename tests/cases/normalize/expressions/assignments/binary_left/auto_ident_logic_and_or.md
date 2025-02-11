@@ -62,13 +62,16 @@ if (a) {
   a = $(tmpCalleeParam$3);
 } else {
 }
+let tmpBinBothLhs = undefined;
 if (a) {
+  tmpBinBothLhs = a;
 } else {
   const tmpCalleeParam$5 = $(2);
   a = $(tmpCalleeParam$5);
+  tmpBinBothLhs = a;
 }
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);
 `````
@@ -84,16 +87,18 @@ if (b) {
   const c = $( 1 );
   b = $( c );
 }
+let d = undefined;
 if (b) {
-
+  d = b;
 }
 else {
-  const d = $( 2 );
-  b = $( d );
+  const e = $( 2 );
+  b = $( e );
+  d = b;
 }
-const e = $( 100 );
-const f = b + e;
-$( f );
+const f = $( 100 );
+const g = d + f;
+$( g );
 $( b );
 `````
 

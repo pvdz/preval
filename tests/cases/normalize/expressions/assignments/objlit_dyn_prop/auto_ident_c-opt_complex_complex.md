@@ -58,13 +58,15 @@ let a = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+let tmpObjLitPropKey = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   a = tmpChainElementObject;
+  tmpObjLitPropKey = tmpChainElementObject;
 }
-const tmpCalleeParam /*:object*/ = { [a]: 10 };
+const tmpCalleeParam /*:object*/ = { [tmpObjLitPropKey]: 10 };
 $(tmpCalleeParam);
 $(a);
 `````
@@ -78,16 +80,18 @@ let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 const d = c == null;
+let e = undefined;
 if (d) {
 
 }
 else {
-  const e = $( "x" );
-  const f = c[ e ];
-  a = f;
+  const f = $( "x" );
+  const g = c[ f ];
+  a = g;
+  e = g;
 }
-const g = { [ a ]: 10 };
-$( g );
+const h = { [ e ]: 10 };
+$( h );
 $( a );
 `````
 

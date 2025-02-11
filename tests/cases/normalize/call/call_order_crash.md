@@ -34,11 +34,11 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 
 
 `````js filename=intro
-crash;
+const tmpCallCallee = crash;
 const tmpCalleeParam = $spy(`a`);
 const tmpCalleeParam$1 = $spy(`b`);
 const tmpCalleeParam$3 = $spy(`c`);
-crash(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 `````
 
 ## PST Output
@@ -46,11 +46,11 @@ crash(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 With rename=true
 
 `````js filename=intro
-crash;
-const a = $spy( "a" );
-const b = $spy( "b" );
-const c = $spy( "c" );
-crash( a, b, c );
+const a = crash;
+const b = $spy( "a" );
+const c = $spy( "b" );
+const d = $spy( "c" );
+a( b, c, d );
 `````
 
 ## Globals

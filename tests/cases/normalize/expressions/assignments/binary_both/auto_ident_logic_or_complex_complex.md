@@ -60,20 +60,23 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 = $(0);
 const a = $(tmpCalleeParam$1);
+let tmpBinBothLhs = undefined;
 if (a) {
+  tmpBinBothLhs = a;
 } else {
   const tmpCalleeParam$3 = $(2);
-  $(tmpCalleeParam$3);
+  const tmpClusterSSA_a$1 = $(tmpCalleeParam$3);
+  tmpBinBothLhs = tmpClusterSSA_a$1;
 }
 const tmpCalleeParam$5 = $(0);
 let tmpClusterSSA_a = $(tmpCalleeParam$5);
 if (tmpClusterSSA_a) {
-  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a;
+  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpCalleeParam$7 = $(2);
   tmpClusterSSA_a = $(tmpCalleeParam$7);
-  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a;
+  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
   $(tmpClusterSSA_tmpCalleeParam$1);
 }
 $(tmpClusterSSA_a);
@@ -86,26 +89,28 @@ With rename=true
 `````js filename=intro
 const a = $( 0 );
 const b = $( a );
+let c = undefined;
 if (b) {
-
+  c = b;
 }
 else {
-  const c = $( 2 );
-  $( c );
+  const d = $( 2 );
+  const e = $( d );
+  c = e;
 }
-const d = $( 0 );
-let e = $( d );
-if (e) {
-  const f = e + e;
-  $( f );
-}
-else {
-  const g = $( 2 );
-  e = $( g );
-  const h = e + e;
+const f = $( 0 );
+let g = $( f );
+if (g) {
+  const h = c + g;
   $( h );
 }
-$( e );
+else {
+  const i = $( 2 );
+  g = $( i );
+  const j = c + g;
+  $( j );
+}
+$( g );
 `````
 
 ## Globals

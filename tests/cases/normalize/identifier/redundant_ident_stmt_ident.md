@@ -58,11 +58,11 @@ $(y);
 
 `````js filename=intro
 drop1;
-drop2;
-$(drop2);
+const x = drop2;
+$(x);
 $();
-drop3;
-$(drop3);
+const y = drop3;
+$(y);
 `````
 
 ## PST Output
@@ -71,11 +71,11 @@ With rename=true
 
 `````js filename=intro
 drop1;
-drop2;
-$( drop2 );
+const a = drop2;
+$( a );
 $();
-drop3;
-$( drop3 );
+const b = drop3;
+$( b );
 `````
 
 ## Globals

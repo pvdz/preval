@@ -52,10 +52,10 @@ $(a);
 `````js filename=intro
 const tmpCallCompProp = $(`\$`);
 const b /*:object*/ = { $: $ };
-b[tmpCallCompProp](1);
+const a = b[tmpCallCompProp](1);
 const tmpCallCompProp$1 = $(`\$`);
 const tmpClusterSSA_a = b[tmpCallCompProp$1](1);
-const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a;
+const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
@@ -67,12 +67,12 @@ With rename=true
 `````js filename=intro
 const a = $( "$" );
 const b = { $: $ };
-b[ a ]( 1 );
-const c = $( "$" );
-const d = b[ c ]( 1 );
-const e = d + d;
+const c = b[ a ]( 1 );
+const d = $( "$" );
+const e = b[ d ]( 1 );
+const f = c + e;
+$( f );
 $( e );
-$( d );
 `````
 
 ## Globals

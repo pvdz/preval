@@ -89,13 +89,14 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     a = undefined;
     const tmpChainElementCall = $(b);
     const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
+    let tmpAssignMemLhsObj = undefined;
     if (tmpIfTest$1) {
     } else {
       const tmpChainElementObject = tmpChainElementCall.x;
-      a = tmpChainElementObject;
+      tmpAssignMemLhsObj = tmpChainElementObject;
     }
     const tmpAssignMemRhs = tmpForInNext.value;
-    a.x = tmpAssignMemRhs;
+    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   }
 }
 $(a);
@@ -124,15 +125,16 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     a = undefined;
     const h = $( e );
     const i = h == null;
+    let j = undefined;
     if (i) {
 
     }
     else {
-      const j = h.x;
-      a = j;
+      const k = h.x;
+      j = k;
     }
-    const k = f.value;
-    a.x = k;
+    const l = f.value;
+    j.x = l;
   }
 }
 $( a );

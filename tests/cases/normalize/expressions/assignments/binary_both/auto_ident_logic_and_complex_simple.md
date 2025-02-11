@@ -55,15 +55,21 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
-$(tmpCalleeParam$1);
+const a = $(tmpCalleeParam$1);
+let tmpBinBothLhs = 2;
+if (a) {
+} else {
+  tmpBinBothLhs = a;
+}
 const tmpCalleeParam$3 = $(1);
 let tmpClusterSSA_a = $(tmpCalleeParam$3);
 if (tmpClusterSSA_a) {
   tmpClusterSSA_a = 2;
-  $(4);
-} else {
-  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a;
+  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + 2;
   $(tmpClusterSSA_tmpCalleeParam);
+} else {
+  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
 $(tmpClusterSSA_a);
 `````
@@ -74,18 +80,26 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-$( a );
-const b = $( 1 );
-let c = $( b );
-if (c) {
-  c = 2;
-  $( 4 );
+const b = $( a );
+let c = 2;
+if (b) {
+
 }
 else {
-  const d = c + c;
-  $( d );
+  c = b;
 }
-$( c );
+const d = $( 1 );
+let e = $( d );
+if (e) {
+  e = 2;
+  const f = c + 2;
+  $( f );
+}
+else {
+  const g = c + e;
+  $( g );
+}
+$( e );
 `````
 
 ## Globals

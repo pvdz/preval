@@ -87,12 +87,18 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
+const tmpFree /*:(unknown)=>number*/ = function $free($$0) {
+  const a = $$0;
+  debugger;
+  const b /*:number*/ = parseInt(a);
+  const tmpRet /*:number*/ = b / 1;
+  return tmpRet;
+};
 const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const a /*:primitive*/ = arr[2];
-  $(a);
-  const b /*:number*/ = parseInt(a);
-  const c /*:number*/ = b / 1;
+  const a$1 /*:primitive*/ = arr[2];
+  $(a$1);
+  const c /*:number*/ = $frfr(tmpFree, a$1);
   if (c) {
     break;
   } else {
@@ -109,22 +115,28 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k" ];
+const a = function b($$0 ) {
+  const c = d;
+  debugger;
+  const e = parseInt( c );
+  const f = e / 1;
+  return f;
+};
+const g = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k" ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const b = a[ 2 ];
-  $( b );
-  const c = parseInt( b );
-  const d = c / 1;
-  if (d) {
+  const h = g[ 2 ];
+  $( h );
+  const i = j( a, h );
+  if (i) {
     break;
   }
   else {
-    const e = a.shift();
-    a.push( e );
+    const k = g.shift();
+    g.push( k );
   }
 }
-const f = a[ 1 ];
-$( f );
+const l = g[ 1 ];
+$( l );
 `````
 
 ## Globals

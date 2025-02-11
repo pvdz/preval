@@ -41,8 +41,8 @@ $(y);
 const y = $();
 const tmpIfTest /*:boolean*/ = y == null;
 if (tmpIfTest) {
-  foo;
-  $(foo);
+  const tmpClusterSSA_y = foo;
+  $(tmpClusterSSA_y);
 } else {
   $(y);
 }
@@ -56,8 +56,8 @@ With rename=true
 const a = $();
 const b = a == null;
 if (b) {
-  foo;
-  $( foo );
+  const c = foo;
+  $( c );
 }
 else {
   $( a );

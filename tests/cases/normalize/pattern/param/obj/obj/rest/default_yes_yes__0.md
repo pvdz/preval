@@ -72,16 +72,17 @@ tmpCallCallee$5(tmpCalleeParam$9);
 
 `````js filename=intro
 const objPatternBeforeDefault = (0).x;
-let objPatternAfterDefault = undefined;
+let tmpCalleeParam$3 = undefined;
 const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   const tmpCalleeParam$1 /*:object*/ = { a: `pass` };
-  objPatternAfterDefault = $(tmpCalleeParam$1);
+  const tmpClusterSSA_objPatternAfterDefault = $(tmpCalleeParam$1);
+  tmpCalleeParam$3 = tmpClusterSSA_objPatternAfterDefault;
 } else {
-  objPatternAfterDefault = objPatternBeforeDefault;
+  tmpCalleeParam$3 = objPatternBeforeDefault;
 }
 const tmpCalleeParam$5 /*:array*/ = [];
-const y = objPatternRest(objPatternAfterDefault, tmpCalleeParam$5, undefined);
+const y = objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
 $(y);
 `````
 
@@ -95,14 +96,15 @@ let b = undefined;
 const c = a === undefined;
 if (c) {
   const d = { a: "pass" };
-  b = $( d );
+  const e = $( d );
+  b = e;
 }
 else {
   b = a;
 }
-const e = [];
-const f = objPatternRest( b, e, undefined );
-$( f );
+const f = [];
+const g = objPatternRest( b, f, undefined );
+$( g );
 `````
 
 ## Globals

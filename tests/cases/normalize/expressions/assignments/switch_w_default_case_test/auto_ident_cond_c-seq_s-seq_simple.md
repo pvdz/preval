@@ -93,7 +93,7 @@ let a = 60;
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const tmpIfTest$1 = $(30);
-let tmpIfTest /*:boolean*/ = false;
+let tmpIfTest /*:primitive*/ = undefined;
 if (tmpIfTest$1) {
   tmpIfTest = 60 === tmpSwitchValue;
 } else {
@@ -128,7 +128,7 @@ let a = 60;
 const b = $( 1 );
 let c = 1;
 const d = $( 30 );
-let e = false;
+let e = undefined;
 if (d) {
   e = 60 === b;
 }

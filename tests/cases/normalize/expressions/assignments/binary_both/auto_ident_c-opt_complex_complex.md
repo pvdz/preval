@@ -67,22 +67,25 @@ $(a);
 const b /*:object*/ = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+let tmpBinBothLhs = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainRootComputed = $(`x`);
-  tmpChainElementCall[tmpChainRootComputed];
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  tmpBinBothLhs = tmpChainElementObject;
 }
 let tmpClusterSSA_a = undefined;
 const tmpChainElementCall$1 = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall$1 == null;
 if (tmpIfTest$1) {
-  $(NaN);
+  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + undefined;
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpChainRootComputed$1 = $(`x`);
   const tmpChainElementObject$1 = tmpChainElementCall$1[tmpChainRootComputed$1];
   tmpClusterSSA_a = tmpChainElementObject$1;
-  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpChainElementObject$1 + tmpChainElementObject$1;
-  $(tmpClusterSSA_tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpChainElementObject$1;
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
 $(tmpClusterSSA_a);
 `````
@@ -95,27 +98,30 @@ With rename=true
 const a = { x: 1 };
 const b = $( a );
 const c = b == null;
+let d = undefined;
 if (c) {
 
 }
 else {
-  const d = $( "x" );
-  b[ d ];
+  const e = $( "x" );
+  const f = b[ e ];
+  d = f;
 }
-let e = undefined;
-const f = $( a );
-const g = f == null;
-if (g) {
-  $( NaN );
-}
-else {
-  const h = $( "x" );
-  const i = f[ h ];
-  e = i;
-  const j = i + i;
+let g = undefined;
+const h = $( a );
+const i = h == null;
+if (i) {
+  const j = d + undefined;
   $( j );
 }
-$( e );
+else {
+  const k = $( "x" );
+  const l = h[ k ];
+  g = l;
+  const m = d + l;
+  $( m );
+}
+$( g );
 `````
 
 ## Globals

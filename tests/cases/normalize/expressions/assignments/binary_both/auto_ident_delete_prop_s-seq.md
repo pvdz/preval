@@ -55,11 +55,11 @@ $(a, arg);
 $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
-delete arg.y;
+const a /*:boolean*/ = delete arg.y;
 $(1);
 $(2);
 const tmpClusterSSA_a /*:boolean*/ = delete arg.y;
-const tmpCalleeParam /*:number*/ = tmpClusterSSA_a + tmpClusterSSA_a;
+const tmpCalleeParam /*:number*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a, arg);
 `````
@@ -72,13 +72,13 @@ With rename=true
 $( 1 );
 $( 2 );
 const a = { y: 1 };
-delete a.y;
+const b = delete a.y;
 $( 1 );
 $( 2 );
-const b = delete a.y;
-const c = b + b;
-$( c );
-$( b, a );
+const c = delete a.y;
+const d = b + c;
+$( d );
+$( c, a );
 `````
 
 ## Globals

@@ -142,7 +142,8 @@ if (tmpIfTest$45) {
 if (tmpIfTest$45) {
   tmpCalleeParam$127;
   tmpSSA__0x2d5594;
-  tmpReturnArg$39(e, d);
+  const h = tmpReturnArg$39;
+  h(e, d);
   getParameterByName();
   unknown(297);
   alsoUnknown(310);
@@ -160,12 +161,13 @@ With rename=true
 if (tmpIfTest$45) {
   tmpCalleeParam$127;
   tmpSSA__0x2d5594;
-  tmpReturnArg$39( e, d );
+  const a = tmpReturnArg$39;
+  a( e, d );
   getParameterByName();
   unknown( 297 );
   alsoUnknown( 310 );
-  const a = $dotCall( a, document, b );
-  $( a );
+  const b = $dotCall( a, document, b );
+  $( b );
 }
 `````
 

@@ -62,12 +62,15 @@ if (a) {
   a = $(tmpCalleeParam$1);
 } else {
 }
+let tmpCompObj = undefined;
 if (a) {
+  tmpCompObj = a;
 } else {
   const tmpCalleeParam$3 = $(2);
   a = $(tmpCalleeParam$3);
+  tmpCompObj = a;
 }
-a.a;
+tmpCompObj.a;
 $(a);
 `````
 
@@ -82,14 +85,16 @@ if (b) {
   const c = $( 1 );
   b = $( c );
 }
+let d = undefined;
 if (b) {
-
+  d = b;
 }
 else {
-  const d = $( 2 );
-  b = $( d );
+  const e = $( 2 );
+  b = $( e );
+  d = b;
 }
-b.a;
+d.a;
 $( b );
 `````
 

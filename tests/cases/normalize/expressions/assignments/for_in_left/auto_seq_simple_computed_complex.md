@@ -90,9 +90,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   }
 }
 $(1);
+const tmpAssignComMemLhsObj = a;
 const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
-a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);
 `````
 
@@ -122,9 +123,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   }
 }
 $( 1 );
-const i = $( "b" );
-const j = $( 2 );
-a[i] = j;
+const i = a;
+const j = $( "b" );
+const k = $( 2 );
+i[j] = k;
 $( a );
 `````
 

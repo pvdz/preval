@@ -50,10 +50,11 @@ if (atest) {
 const x = $(1);
 const tmpBinBothRhs = $(1);
 const a /*:number*/ = x & tmpBinBothRhs;
-if (a) {
-  $(`b`);
-} else {
+const atest /*:boolean*/ = a === 0;
+if (atest) {
   $(`a`);
+} else {
+  $(`b`);
 }
 `````
 
@@ -65,11 +66,12 @@ With rename=true
 const a = $( 1 );
 const b = $( 1 );
 const c = a & b;
-if (c) {
-  $( "b" );
+const d = c === 0;
+if (d) {
+  $( "a" );
 }
 else {
-  $( "a" );
+  $( "b" );
 }
 `````
 

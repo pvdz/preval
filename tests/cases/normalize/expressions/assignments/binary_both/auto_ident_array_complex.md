@@ -48,12 +48,13 @@ $(a);
 
 
 `````js filename=intro
-$(1);
-$(3);
+const tmpArrElement = $(1);
+const tmpArrElement$3 = $(3);
 const tmpArrElement$5 = $(1);
 const tmpArrElement$9 = $(3);
+const a /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
 const tmpClusterSSA_a /*:array*/ = [tmpArrElement$5, 2, tmpArrElement$9];
-const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a;
+const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
@@ -63,14 +64,15 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-$( 1 );
-$( 3 );
 const a = $( 1 );
 const b = $( 3 );
-const c = [ a, 2, b ];
-const d = c + c;
-$( d );
-$( c );
+const c = $( 1 );
+const d = $( 3 );
+const e = [ a, 2, b ];
+const f = [ c, 2, d ];
+const g = e + f;
+$( g );
+$( f );
 `````
 
 ## Globals

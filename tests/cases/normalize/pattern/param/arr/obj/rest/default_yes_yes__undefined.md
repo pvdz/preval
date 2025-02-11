@@ -77,16 +77,17 @@ const tmpCalleeParam /*:array*/ = [tmpArrElement];
 const bindingPatternArrRoot = $(tmpCalleeParam);
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-let arrPatternStep = undefined;
+let tmpCalleeParam$3 = undefined;
 const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   const tmpCalleeParam$1 /*:object*/ = { a: `fail` };
-  arrPatternStep = $(tmpCalleeParam$1);
+  const tmpClusterSSA_arrPatternStep = $(tmpCalleeParam$1);
+  tmpCalleeParam$3 = tmpClusterSSA_arrPatternStep;
 } else {
-  arrPatternStep = arrPatternBeforeDefault;
+  tmpCalleeParam$3 = arrPatternBeforeDefault;
 }
 const tmpCalleeParam$5 /*:array*/ = [];
-const x = objPatternRest(arrPatternStep, tmpCalleeParam$5, undefined);
+const x = objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
 $(x);
 `````
 
@@ -104,14 +105,15 @@ let f = undefined;
 const g = e === undefined;
 if (g) {
   const h = { a: "fail" };
-  f = $( h );
+  const i = $( h );
+  f = i;
 }
 else {
   f = e;
 }
-const i = [];
-const j = objPatternRest( f, i, undefined );
-$( j );
+const j = [];
+const k = objPatternRest( f, j, undefined );
+$( k );
 `````
 
 ## Globals

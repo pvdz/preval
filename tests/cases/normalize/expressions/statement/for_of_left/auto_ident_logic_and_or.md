@@ -92,13 +92,16 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       tmpAssignMemLhsObj = $(tmpCalleeParam$5);
     } else {
     }
+    let tmpAssignMemLhsObj$1 = undefined;
     if (tmpAssignMemLhsObj) {
+      tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
     } else {
       const tmpCalleeParam$7 = $(2);
-      tmpAssignMemLhsObj = $(tmpCalleeParam$7);
+      const tmpClusterSSA_tmpAssignMemLhsObj = $(tmpCalleeParam$7);
+      tmpAssignMemLhsObj$1 = tmpClusterSSA_tmpAssignMemLhsObj;
     }
     const tmpAssignMemRhs = tmpForOfNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -126,22 +129,24 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       const h = $( 1 );
       g = $( h );
     }
+    let i = undefined;
     if (g) {
-
+      i = g;
     }
     else {
-      const i = $( 2 );
-      g = $( i );
+      const j = $( 2 );
+      const k = $( j );
+      i = k;
     }
-    const j = d.value;
-    g.x = j;
+    const l = d.value;
+    i.x = l;
   }
 }
-const k = {
+const m = {
   a: 999,
   b: 1000,
 };
-$( k );
+$( m );
 `````
 
 ## Globals

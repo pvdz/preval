@@ -59,7 +59,7 @@ tmpCallCallee$5(tmpCalleeParam$5);
 
 
 `````js filename=intro
-const f = function ($$0) {
+const f /*:(number)=>undefined*/ = function ($$0) {
   const a /*:number*/ = $$0;
   debugger;
   $(a);

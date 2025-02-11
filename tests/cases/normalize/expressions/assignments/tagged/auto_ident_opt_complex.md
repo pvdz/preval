@@ -56,13 +56,15 @@ let a = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+let tmpCalleeParam$1 = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = tmpChainElementCall.x;
   a = tmpChainElementObject;
+  tmpCalleeParam$1 = tmpChainElementObject;
 }
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, a);
+$(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 
@@ -75,15 +77,17 @@ let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 const d = c == null;
+let e = undefined;
 if (d) {
 
 }
 else {
-  const e = c.x;
-  a = e;
+  const f = c.x;
+  a = f;
+  e = f;
 }
-const f = [ "before ", " after" ];
-$( f, a );
+const g = [ "before ", " after" ];
+$( g, e );
 $( a );
 `````
 

@@ -105,7 +105,7 @@ if (a) {
   a = $(tmpCalleeParam$1);
 } else {
 }
-let tmpIfTest /*:boolean*/ = false;
+let tmpIfTest /*:primitive*/ = undefined;
 if (a) {
   tmpIfTest = a === tmpSwitchValue;
 } else {
@@ -144,7 +144,7 @@ if (d) {
   const e = $( 1 );
   d = $( e );
 }
-let f = false;
+let f = undefined;
 if (d) {
   f = d === a;
 }

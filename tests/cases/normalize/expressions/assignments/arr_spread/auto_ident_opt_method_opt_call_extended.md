@@ -61,14 +61,16 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
+let tmpArrSpread = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
   a = tmpChainElementCall;
+  tmpArrSpread = tmpChainElementCall;
 }
-const tmpCalleeParam /*:array*/ = [...a];
+const tmpCalleeParam /*:array*/ = [...tmpArrSpread];
 $(tmpCalleeParam);
 $(a);
 `````
@@ -79,17 +81,19 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-const b = $ == null;
-if (b) {
+let b = undefined;
+const c = $ == null;
+if (c) {
 
 }
 else {
-  const c = { e: $ };
-  const d = $dotCall( $, c, 1 );
-  a = d;
+  const d = { e: $ };
+  const e = $dotCall( $, d, 1 );
+  a = e;
+  b = e;
 }
-const e = [ ...a ];
-$( e );
+const f = [ ...b ];
+$( f );
 $( a );
 `````
 

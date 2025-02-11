@@ -49,16 +49,16 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-let a = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+let tmpThrowArg = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = tmpChainElementCall.x;
-  a = tmpChainElementObject;
+  tmpThrowArg = tmpChainElementObject;
 }
-throw a;
+throw tmpThrowArg;
 `````
 
 ## PST Output
@@ -66,18 +66,18 @@ throw a;
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { x: 1 };
-const c = $( b );
-const d = c == null;
-if (d) {
+const a = { x: 1 };
+const b = $( a );
+const c = b == null;
+let d = undefined;
+if (c) {
 
 }
 else {
-  const e = c.x;
-  a = e;
+  const e = b.x;
+  d = e;
 }
-throw a;
+throw d;
 `````
 
 ## Globals

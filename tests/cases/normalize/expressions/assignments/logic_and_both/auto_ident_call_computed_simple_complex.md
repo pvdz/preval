@@ -56,13 +56,14 @@ $(a);
 const tmpCallCompProp = $(`\$`);
 const b /*:object*/ = { $: $ };
 let a = b[tmpCallCompProp](1);
+const tmpCalleeParam = a;
 if (a) {
   const tmpCallCompProp$1 = $(`\$`);
   const tmpNestedComplexRhs = b[tmpCallCompProp$1](1);
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
-  $(a);
+  $(tmpCalleeParam);
 }
 $(a);
 `````
@@ -75,14 +76,15 @@ With rename=true
 const a = $( "$" );
 const b = { $: $ };
 let c = b[ a ]( 1 );
+const d = c;
 if (c) {
-  const d = $( "$" );
-  const e = b[ d ]( 1 );
-  c = e;
-  $( e );
+  const e = $( "$" );
+  const f = b[ e ]( 1 );
+  c = f;
+  $( f );
 }
 else {
-  $( c );
+  $( d );
 }
 $( c );
 `````

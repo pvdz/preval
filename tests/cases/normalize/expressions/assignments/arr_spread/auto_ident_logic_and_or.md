@@ -61,12 +61,15 @@ if (a) {
   a = $(tmpCalleeParam$3);
 } else {
 }
+let tmpArrSpread = undefined;
 if (a) {
+  tmpArrSpread = a;
 } else {
   const tmpCalleeParam$5 = $(2);
   a = $(tmpCalleeParam$5);
+  tmpArrSpread = a;
 }
-const tmpCalleeParam /*:array*/ = [...a];
+const tmpCalleeParam /*:array*/ = [...tmpArrSpread];
 $(tmpCalleeParam);
 $(a);
 `````
@@ -82,15 +85,17 @@ if (b) {
   const c = $( 1 );
   b = $( c );
 }
+let d = undefined;
 if (b) {
-
+  d = b;
 }
 else {
-  const d = $( 2 );
-  b = $( d );
+  const e = $( 2 );
+  b = $( e );
+  d = b;
 }
-const e = [ ...b ];
-$( e );
+const f = [ ...d ];
+$( f );
 $( b );
 `````
 

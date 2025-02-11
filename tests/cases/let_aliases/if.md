@@ -87,8 +87,10 @@ let f /*:()=>*/ = function () {
   return tmpReturnArg;
 };
 let x = $(1);
+const a = x;
 if ($) {
-  $(x, x);
+  const b = x;
+  $(a, b);
 } else {
 }
 $(f);
@@ -110,8 +112,10 @@ let a = function() {
   return c;
 };
 let b = $( 1 );
+const d = b;
 if ($) {
-  $( b, b );
+  const e = b;
+  $( d, e );
 }
 $( a );
 `````

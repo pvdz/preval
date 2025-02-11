@@ -100,7 +100,7 @@ $(a);
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const tmpIfTest$1 = $(1);
-let tmpIfTest /*:boolean*/ = false;
+let tmpIfTest /*:primitive*/ = undefined;
 if (tmpIfTest$1) {
   const tmpClusterSSA_tmpBinLhs = $(60);
   tmpIfTest = tmpClusterSSA_tmpBinLhs === tmpSwitchValue;
@@ -140,7 +140,7 @@ With rename=true
 const a = $( 1 );
 let b = 1;
 const c = $( 1 );
-let d = false;
+let d = undefined;
 if (c) {
   const e = $( 60 );
   d = e === a;

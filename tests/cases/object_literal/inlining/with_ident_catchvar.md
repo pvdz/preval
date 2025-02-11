@@ -62,7 +62,8 @@ try {
   } else {
   }
 } catch (e) {
-  $(e);
+  const tmpCalleeParam = e;
+  $(tmpCalleeParam);
 }
 `````
 
@@ -78,7 +79,8 @@ try {
   }
 }
 catch (b) {
-  $( b );
+  const c = b;
+  $( c );
 }
 `````
 

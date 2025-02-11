@@ -244,14 +244,6 @@ const tmpBinBothRhs$35 /*:object*/ = {};
 const tmpArrElement$35 /*:number*/ = x ^ tmpBinBothRhs$35;
 const tmpBinBothRhs$37 /*:object*/ = {};
 const tmpArrElement$37 /*:number*/ = x | tmpBinBothRhs$37;
-const tmpBinBothRhs$25 /*:object*/ = {};
-const tmpBinBothRhs$27 /*:object*/ = {};
-const tmpBinBothRhs$29 /*:object*/ = {};
-const tmpBinBothRhs$31 /*:object*/ = {};
-const tmpArrElement$25 /*:boolean*/ = x === tmpBinBothRhs$25;
-const tmpArrElement$27 /*:boolean*/ = x !== tmpBinBothRhs$27;
-const tmpArrElement$29 /*:boolean*/ = x === tmpBinBothRhs$29;
-const tmpArrElement$31 /*:boolean*/ = x !== tmpBinBothRhs$31;
 const arr /*:array*/ = [
   tmpArrElement,
   tmpArrElement$1,
@@ -266,10 +258,10 @@ const arr /*:array*/ = [
   tmpArrElement$19,
   tmpArrElement$21,
   tmpArrElement$23,
-  tmpArrElement$25,
-  tmpArrElement$27,
-  tmpArrElement$29,
-  tmpArrElement$31,
+  false,
+  true,
+  false,
+  true,
   tmpArrElement$33,
   tmpArrElement$35,
   tmpArrElement$37,
@@ -332,22 +324,14 @@ const be = {};
 const bf = a ^ be;
 const bg = {};
 const bh = a | bg;
-const bi = {};
+const bi = [ d, f, h, j, l, n, p, r, t, v, x, z, bb, false, true, false, true, bd, bf, bh ];
+$( bi );
 const bj = {};
 const bk = {};
-const bl = {};
-const bm = a === bi;
-const bn = a !== bj;
-const bo = a === bk;
-const bp = a !== bl;
-const bq = [ d, f, h, j, l, n, p, r, t, v, x, z, bb, bm, bn, bo, bp, bd, bf, bh ];
-$( bq );
-const br = {};
-const bs = {};
-const bt = a in br;
-const bu = a instanceof bs;
-const bv = [ bt, bu ];
-$( bv );
+const bl = a in bj;
+const bm = a instanceof bk;
+const bn = [ bl, bm ];
+$( bn );
 `````
 
 ## Globals

@@ -44,15 +44,17 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-let a = 1;
 const tmpIfTest = $(30);
+let tmpThrowArg = undefined;
 if (tmpIfTest) {
-  a = $(60);
+  const tmpClusterSSA_a = $(60);
+  tmpThrowArg = tmpClusterSSA_a;
 } else {
   const tmpCalleeParam = $(100);
-  a = $(tmpCalleeParam);
+  const tmpClusterSSA_a$1 = $(tmpCalleeParam);
+  tmpThrowArg = tmpClusterSSA_a$1;
 }
-throw a;
+throw tmpThrowArg;
 `````
 
 ## PST Output
@@ -60,16 +62,18 @@ throw a;
 With rename=true
 
 `````js filename=intro
-let a = 1;
-const b = $( 30 );
-if (b) {
-  a = $( 60 );
+const a = $( 30 );
+let b = undefined;
+if (a) {
+  const c = $( 60 );
+  b = c;
 }
 else {
-  const c = $( 100 );
-  a = $( c );
+  const d = $( 100 );
+  const e = $( d );
+  b = e;
 }
-throw a;
+throw b;
 `````
 
 ## Globals

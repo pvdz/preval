@@ -35,23 +35,26 @@ top of their func owner scope before further treatment. spec be damned
 (Annotated with pids)
 
 `````filename=intro
-let THIS_IS_DA_______4__ = function () /*6*/ {
+let THIS_IS_DA____$1___4__ = function () /*6*/ {
+  debugger;
   $(`hello`);
+  return undefined___15__;
 };
-$(THIS_IS_DA_______24__());
+const tmpCallCallee___18__ = $;
+const tmpCalleeParam___22__ = THIS_IS_DA_______24__();
+tmpCallCallee___27__(tmpCalleeParam___28__);
 `````
 
 Ref tracking result:
 
-                   | reads      | read by     | overWrites     | overwritten by
-THIS_IS_DA____:
-  - w @4           | ########## | 24          | none           | none
-  - r @24          | 4
+                     | reads      | read by     | overWrites     | overwritten by
+THIS_IS_DA____$1:
+  - w @4             | ########## | not read    | none           | none
 
 tmpCallCallee:
-  - w @18          | ########## | 27          | none           | none
-  - r @27          | 18
+  - w @18            | ########## | 27          | none           | none
+  - r @27            | 18
 
 tmpCalleeParam:
-  - w @22          | ########## | 28          | none           | none
-  - r @28          | 22
+  - w @22            | ########## | 28          | none           | none
+  - r @28            | 22

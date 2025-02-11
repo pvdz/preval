@@ -44,10 +44,15 @@ $(a);
 
 
 `````js filename=intro
+const tmpFree /*:()=>string*/ = function $free() {
+  debugger;
+  const tmpBinBothRhs /*:string*/ = $coerce(tmpCallCallee$1, `string`);
+  const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+  return tmpRet;
+};
 const tmpUnaryArg = $(100);
 const tmpCallCallee$1 /*:number*/ = -tmpUnaryArg;
-const tmpBinBothRhs /*:string*/ = $coerce(tmpCallCallee$1, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+const tmpCalleeParam /*:string*/ = $frfr(tmpFree);
 $(tmpCalleeParam);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -58,16 +63,21 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = $( 100 );
-const b = -a;
-const c = $coerce( b, "string" );
-const d = `before  ${c}  after`;
-$( d );
-const e = {
+const a = function b() {
+  debugger;
+  const c = $coerce( d, "string" );
+  const e = `before  ${c}  after`;
+  return e;
+};
+const f = $( 100 );
+const d = -f;
+const g = h( a );
+$( g );
+const i = {
   a: 999,
   b: 1000,
 };
-$( e );
+$( i );
 `````
 
 ## Globals

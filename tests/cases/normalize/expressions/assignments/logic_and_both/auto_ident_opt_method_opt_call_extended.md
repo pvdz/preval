@@ -80,12 +80,14 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
+let tmpCalleeParam = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
 if (tmpIfTest$1) {
 } else {
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
   a = tmpChainElementCall;
+  tmpCalleeParam = tmpChainElementCall;
 }
 if (a) {
   let tmpNestedComplexRhs = undefined;
@@ -99,7 +101,7 @@ if (a) {
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
-  $(a);
+  $(tmpCalleeParam);
 }
 $(a);
 `````
@@ -110,31 +112,33 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-const b = $ == null;
-const c = { e: $ };
-if (b) {
+let b = undefined;
+const c = $ == null;
+const d = { e: $ };
+if (c) {
 
 }
 else {
-  const d = $dotCall( $, c, 1 );
-  a = d;
+  const e = $dotCall( $, d, 1 );
+  a = e;
+  b = e;
 }
 if (a) {
-  let e = undefined;
-  const f = c.e;
-  const g = f == null;
-  if (g) {
+  let f = undefined;
+  const g = d.e;
+  const h = g == null;
+  if (h) {
 
   }
   else {
-    const h = $dotCall( f, c, 1 );
-    e = h;
+    const i = $dotCall( g, d, 1 );
+    f = i;
   }
-  a = e;
-  $( e );
+  a = f;
+  $( f );
 }
 else {
-  $( a );
+  $( b );
 }
 $( a );
 `````

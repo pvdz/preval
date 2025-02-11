@@ -74,7 +74,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>number*/ = function () {
   debugger;
   const x = $spy();
   const t /*:number*/ = x & 8192;
@@ -85,11 +85,11 @@ const f = function () {
     return r;
   }
 };
-const tmpCalleeParam = f();
+const tmpCalleeParam /*:number*/ = f();
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = f();
+const tmpCalleeParam$1 /*:number*/ = f();
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f();
+const tmpCalleeParam$3 /*:number*/ = f();
 $(tmpCalleeParam$3);
 `````
 

@@ -49,8 +49,8 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   a = arguments;
-  arguments;
-  $(arguments);
+  const tmpClusterSSA_tmpCalleeParam = arguments;
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpClusterSSA_tmpCalleeParam$1 = $(200);
   $(tmpClusterSSA_tmpCalleeParam$1);
@@ -70,12 +70,12 @@ let a = {
 const b = $( 1 );
 if (b) {
   a = arguments;
-  arguments;
-  $( arguments );
+  const c = arguments;
+  $( c );
 }
 else {
-  const c = $( 200 );
-  $( c );
+  const d = $( 200 );
+  $( d );
 }
 $( a );
 `````

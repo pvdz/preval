@@ -65,20 +65,23 @@ $(a);
 const b /*:object*/ = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+let tmpBinBothLhs = undefined;
 if (tmpIfTest) {
 } else {
-  tmpChainElementCall.x;
+  const tmpChainElementObject = tmpChainElementCall.x;
+  tmpBinBothLhs = tmpChainElementObject;
 }
 let tmpClusterSSA_a = undefined;
 const tmpChainElementCall$1 = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall$1 == null;
 if (tmpIfTest$1) {
-  $(NaN);
+  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + undefined;
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpChainElementObject$1 = tmpChainElementCall$1.x;
   tmpClusterSSA_a = tmpChainElementObject$1;
-  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpChainElementObject$1 + tmpChainElementObject$1;
-  $(tmpClusterSSA_tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpChainElementObject$1;
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
 $(tmpClusterSSA_a);
 `````
@@ -91,25 +94,28 @@ With rename=true
 const a = { x: 1 };
 const b = $( a );
 const c = b == null;
+let d = undefined;
 if (c) {
 
 }
 else {
-  b.x;
+  const e = b.x;
+  d = e;
 }
-let d = undefined;
-const e = $( a );
-const f = e == null;
-if (f) {
-  $( NaN );
+let f = undefined;
+const g = $( a );
+const h = g == null;
+if (h) {
+  const i = d + undefined;
+  $( i );
 }
 else {
-  const g = e.x;
-  d = g;
-  const h = g + g;
-  $( h );
+  const j = g.x;
+  f = j;
+  const k = d + j;
+  $( k );
 }
-$( d );
+$( f );
 `````
 
 ## Globals

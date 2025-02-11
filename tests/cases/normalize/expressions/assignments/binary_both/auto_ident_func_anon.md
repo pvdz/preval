@@ -55,11 +55,15 @@ $(a);
 
 
 `````js filename=intro
+const a /*:()=>undefined*/ = function () {
+  debugger;
+  return undefined;
+};
 const tmpClusterSSA_a /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
-const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a;
+const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
@@ -73,9 +77,13 @@ const a = function() {
   debugger;
   return undefined;
 };
-const b = a + a;
+const b = function() {
+  debugger;
+  return undefined;
+};
+const c = a + b;
+$( c );
 $( b );
-$( a );
 `````
 
 ## Globals

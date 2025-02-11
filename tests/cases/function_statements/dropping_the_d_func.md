@@ -44,11 +44,11 @@ $(f);
 `````js filename=intro
 let f = function () {
   debugger;
-  let THIS_IS_DA____ = function () {
-    debugger;
-    $(`hello`);
-  };
   {
+    let THIS_IS_DA____$1 = function () {
+      debugger;
+      $(`hello`);
+    };
   }
   $(THIS_IS_DA____());
 };
@@ -65,7 +65,7 @@ $(f);
 `````js filename=intro
 let f = function () {
   debugger;
-  let THIS_IS_DA____ = function () {
+  let THIS_IS_DA____$1 = function () {
     debugger;
     $(`hello`);
     return undefined;
@@ -87,10 +87,10 @@ $(f);
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f /*:()=>undefined*/ = function () {
   debugger;
-  $(`hello`);
-  $(undefined);
+  const tmpCalleeParam = THIS_IS_DA____();
+  $(tmpCalleeParam);
   return undefined;
 };
 $(f);
@@ -103,28 +103,18 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  $( "hello" );
-  $( undefined );
+  const b = THIS_IS_DA____();
+  $( b );
   return undefined;
 };
 $( a );
 `````
 
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-$(function () {
-  $(`hello`);
-  $(undefined);
-});
-`````
-
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+THIS_IS_DA____
 
 ## Result
 
@@ -136,6 +126,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
-
-Denormalized calls: Same
+Final output calls: Same

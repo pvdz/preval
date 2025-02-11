@@ -40,12 +40,12 @@ This is a webcompat thing. In nodejs this throws an error. In the browser it's f
 
 
 `````js filename=intro
-let THIS_IS_DA____ = function () {
-  debugger;
-  $(`hello`);
-};
 {
   {
+    let THIS_IS_DA____$1 = function () {
+      debugger;
+      $(`hello`);
+    };
   }
   $(THIS_IS_DA____());
 }
@@ -55,7 +55,7 @@ let THIS_IS_DA____ = function () {
 
 
 `````js filename=intro
-let THIS_IS_DA____ = function () {
+let THIS_IS_DA____$1 = function () {
   debugger;
   $(`hello`);
   return undefined;
@@ -69,8 +69,8 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-$(`hello`);
-$(undefined);
+const tmpCalleeParam = THIS_IS_DA____();
+$(tmpCalleeParam);
 `````
 
 ## PST Output
@@ -78,23 +78,15 @@ $(undefined);
 With rename=true
 
 `````js filename=intro
-$( "hello" );
-$( undefined );
-`````
-
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-$(`hello`);
-$(undefined);
+const a = THIS_IS_DA____();
+$( a );
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+THIS_IS_DA____
 
 ## Result
 
@@ -103,17 +95,6 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: BAD!?
- - 1: 'hello'
- - 2: undefined
- - eval returned: undefined
+Normalized calls: Same
 
-Post settled calls: BAD!!
- - 1: 'hello'
- - 2: undefined
- - eval returned: undefined
-
-Denormalized calls: BAD!!
- - 1: 'hello'
- - 2: undefined
- - eval returned: undefined
+Final output calls: Same

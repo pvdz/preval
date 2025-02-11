@@ -49,16 +49,17 @@ $(`bad`);
 
 `````js filename=intro
 const objPatternBeforeDefault = (1).x;
-let objPatternAfterDefault = undefined;
+let tmpCalleeParam$1 = undefined;
 const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCalleeParam /*:object*/ = { a: `fail` };
-  objPatternAfterDefault = $(tmpCalleeParam);
+  const tmpClusterSSA_objPatternAfterDefault = $(tmpCalleeParam);
+  tmpCalleeParam$1 = tmpClusterSSA_objPatternAfterDefault;
 } else {
-  objPatternAfterDefault = objPatternBeforeDefault;
+  tmpCalleeParam$1 = objPatternBeforeDefault;
 }
 const tmpCalleeParam$3 /*:array*/ = [];
-objPatternRest(objPatternAfterDefault, tmpCalleeParam$3, undefined);
+objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
 $(`bad`);
 `````
 
@@ -72,13 +73,14 @@ let b = undefined;
 const c = a === undefined;
 if (c) {
   const d = { a: "fail" };
-  b = $( d );
+  const e = $( d );
+  b = e;
 }
 else {
   b = a;
 }
-const e = [];
-objPatternRest( b, e, undefined );
+const f = [];
+objPatternRest( b, f, undefined );
 $( "bad" );
 `````
 

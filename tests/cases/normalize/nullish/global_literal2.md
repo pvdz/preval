@@ -42,8 +42,8 @@ tmpCallCallee(tmpCalleeParam);
 const tmpCalleeParam = unknown;
 const tmpIfTest /*:boolean*/ = tmpCalleeParam == null;
 if (tmpIfTest) {
-  length;
-  $(length);
+  const tmpClusterSSA_tmpCalleeParam = length;
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   $(tmpCalleeParam);
 }
@@ -57,8 +57,8 @@ With rename=true
 const a = unknown;
 const b = a == null;
 if (b) {
-  length;
-  $( length );
+  const c = length;
+  $( c );
 }
 else {
   $( a );

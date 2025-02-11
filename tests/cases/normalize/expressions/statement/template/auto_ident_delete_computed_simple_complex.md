@@ -49,11 +49,16 @@ $(a, arg);
 
 
 `````js filename=intro
+const tmpFree /*:()=>string*/ = function $free() {
+  debugger;
+  const tmpBinBothRhs /*:string*/ = $coerce(tmpCallCallee$1, `string`);
+  const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+  return tmpRet;
+};
 const tmpDeleteCompProp = $(`y`);
 const arg /*:object*/ = { y: 1 };
 const tmpCallCallee$1 /*:boolean*/ = delete arg[tmpDeleteCompProp];
-const tmpBinBothRhs /*:string*/ = $coerce(tmpCallCallee$1, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+const tmpCalleeParam /*:string*/ = $frfr(tmpFree);
 $(tmpCalleeParam);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, arg);
@@ -64,17 +69,22 @@ $(a, arg);
 With rename=true
 
 `````js filename=intro
-const a = $( "y" );
-const b = { y: 1 };
-const c = delete b[ a ];
-const d = $coerce( c, "string" );
-const e = `before  ${d}  after`;
-$( e );
-const f = {
+const a = function b() {
+  debugger;
+  const c = $coerce( d, "string" );
+  const e = `before  ${c}  after`;
+  return e;
+};
+const f = $( "y" );
+const g = { y: 1 };
+const d = delete g[ f ];
+const h = i( a );
+$( h );
+const j = {
   a: 999,
   b: 1000,
 };
-$( f, b );
+$( j, g );
 `````
 
 ## Globals

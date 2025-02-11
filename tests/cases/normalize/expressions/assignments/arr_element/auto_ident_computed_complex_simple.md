@@ -50,10 +50,10 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
 const tmpAssignRhsProp = $(b);
-tmpAssignRhsProp.c;
+const tmpClusterSSA_a = tmpAssignRhsProp.c;
 const tmpAssignRhsProp$1 = $(b);
 const tmpClusterSSA_a$1 = tmpAssignRhsProp$1.c;
-const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a$1 + tmpClusterSSA_a$1;
+const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a$1;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a$1, b);
 `````
@@ -65,12 +65,12 @@ With rename=true
 `````js filename=intro
 const a = { c: 1 };
 const b = $( a );
-b.c;
-const c = $( a );
-const d = c.c;
-const e = d + d;
-$( e );
-$( d, a );
+const c = b.c;
+const d = $( a );
+const e = d.c;
+const f = c + e;
+$( f );
+$( e, a );
 `````
 
 ## Globals

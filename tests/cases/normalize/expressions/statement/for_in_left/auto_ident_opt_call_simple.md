@@ -78,15 +78,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    let tmpAssignMemLhsObj = undefined;
+    let tmpAssignMemLhsObj$1 = undefined;
     const tmpIfTest$1 /*:boolean*/ = $ == null;
     if (tmpIfTest$1) {
     } else {
       const tmpChainElementCall = $(1);
-      tmpAssignMemLhsObj = tmpChainElementCall;
+      tmpAssignMemLhsObj$1 = tmpChainElementCall;
     }
     const tmpAssignMemRhs = tmpForInNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };

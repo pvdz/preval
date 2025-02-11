@@ -52,6 +52,13 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
+const f /*:(unknown)=>?*/ = function ($$0) {
+  const n = $$0;
+  debugger;
+  const tmpCalleeParam /*:primitive*/ = n + 1;
+  const tmpReturnArg = f(tmpCalleeParam);
+  return tmpReturnArg;
+};
 throw `<max pcode call depth exceeded>; calling \`const tmpCalleeParam\$1 = f(0);\``;
 `````
 
@@ -60,6 +67,13 @@ throw `<max pcode call depth exceeded>; calling \`const tmpCalleeParam\$1 = f(0)
 With rename=true
 
 `````js filename=intro
+const a = function($$0 ) {
+  const b = c;
+  debugger;
+  const d = b + 1;
+  const e = a( d );
+  return e;
+};
 throw "<max pcode call depth exceeded>; calling `const tmpCalleeParam$1 = f(0);`";
 `````
 

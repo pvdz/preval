@@ -77,6 +77,7 @@ $(a);
 
 
 `````js filename=intro
+let a = undefined;
 const tmpObjLitVal /*:object*/ = { y: 1 };
 const b /*:object*/ = { x: tmpObjLitVal };
 const tmpChainElementCall = $(b);
@@ -89,9 +90,11 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
   } else {
     const tmpChainRootComputed$1 = $(`y`);
-    tmpChainElementObject[tmpChainRootComputed$1];
+    const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+    a = tmpChainElementObject$1;
   }
 }
+const tmpBinBothLhs = a;
 let tmpClusterSSA_a = undefined;
 const tmpChainElementCall$1 = $(b);
 const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$1 == null;
@@ -107,7 +110,7 @@ if (tmpIfTest$3) {
     tmpClusterSSA_a = tmpChainElementObject$5;
   }
 }
-const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a;
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
@@ -117,47 +120,50 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-const b = { x: a };
-const c = $( b );
-const d = c == null;
-if (d) {
+let a = undefined;
+const b = { y: 1 };
+const c = { x: b };
+const d = $( c );
+const e = d == null;
+if (e) {
 
 }
 else {
-  const e = $( "x" );
-  const f = c[ e ];
-  const g = f == null;
-  if (g) {
+  const f = $( "x" );
+  const g = d[ f ];
+  const h = g == null;
+  if (h) {
 
   }
   else {
-    const h = $( "y" );
-    f[ h ];
+    const i = $( "y" );
+    const j = g[ i ];
+    a = j;
   }
 }
-let i = undefined;
-const j = $( b );
-const k = j == null;
-if (k) {
+const k = a;
+let l = undefined;
+const m = $( c );
+const n = m == null;
+if (n) {
 
 }
 else {
-  const l = $( "x" );
-  const m = j[ l ];
-  const n = m == null;
-  if (n) {
+  const o = $( "x" );
+  const p = m[ o ];
+  const q = p == null;
+  if (q) {
 
   }
   else {
-    const o = $( "y" );
-    const p = m[ o ];
-    i = p;
+    const r = $( "y" );
+    const s = p[ r ];
+    l = s;
   }
 }
-const q = i + i;
-$( q );
-$( i );
+const t = k + l;
+$( t );
+$( l );
 `````
 
 ## Globals

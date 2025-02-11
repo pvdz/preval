@@ -62,12 +62,15 @@ if (a) {
   a = $(tmpCalleeParam$3);
 } else {
 }
+let tmpObjLitPropKey = undefined;
 if (a) {
+  tmpObjLitPropKey = a;
 } else {
   const tmpCalleeParam$5 = $(2);
   a = $(tmpCalleeParam$5);
+  tmpObjLitPropKey = a;
 }
-const tmpCalleeParam /*:object*/ = { [a]: 10 };
+const tmpCalleeParam /*:object*/ = { [tmpObjLitPropKey]: 10 };
 $(tmpCalleeParam);
 $(a);
 `````
@@ -83,15 +86,17 @@ if (b) {
   const c = $( 1 );
   b = $( c );
 }
+let d = undefined;
 if (b) {
-
+  d = b;
 }
 else {
-  const d = $( 2 );
-  b = $( d );
+  const e = $( 2 );
+  b = $( e );
+  d = b;
 }
-const e = { [ b ]: 10 };
-$( e );
+const f = { [ d ]: 10 };
+$( f );
 $( b );
 `````
 

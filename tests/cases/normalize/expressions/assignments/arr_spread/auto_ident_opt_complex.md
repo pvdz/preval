@@ -56,12 +56,14 @@ let a = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+let tmpArrSpread = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = tmpChainElementCall.x;
   a = tmpChainElementObject;
+  tmpArrSpread = tmpChainElementObject;
 }
-const tmpCalleeParam /*:array*/ = [...a];
+const tmpCalleeParam /*:array*/ = [...tmpArrSpread];
 $(tmpCalleeParam);
 $(a);
 `````
@@ -75,15 +77,17 @@ let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 const d = c == null;
+let e = undefined;
 if (d) {
 
 }
 else {
-  const e = c.x;
-  a = e;
+  const f = c.x;
+  a = f;
+  e = f;
 }
-const f = [ ...a ];
-$( f );
+const g = [ ...e ];
+$( g );
 $( a );
 `````
 

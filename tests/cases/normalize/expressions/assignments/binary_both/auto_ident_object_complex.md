@@ -48,12 +48,13 @@ $(a);
 
 
 `````js filename=intro
-$(1);
-$(3);
+const tmpObjLitVal = $(1);
+const tmpObjLitVal$3 = $(3);
 const tmpObjLitVal$5 = $(1);
 const tmpObjLitVal$9 = $(3);
+const a /*:object*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 const tmpClusterSSA_a /*:object*/ = { x: tmpObjLitVal$5, y: 2, z: tmpObjLitVal$9 };
-const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a;
+const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
@@ -63,18 +64,23 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-$( 1 );
-$( 3 );
 const a = $( 1 );
 const b = $( 3 );
-const c = {
+const c = $( 1 );
+const d = $( 3 );
+const e = {
   x: a,
   y: 2,
   z: b,
 };
-const d = c + c;
-$( d );
-$( c );
+const f = {
+  x: c,
+  y: 2,
+  z: d,
+};
+const g = e + f;
+$( g );
+$( f );
 `````
 
 ## Globals

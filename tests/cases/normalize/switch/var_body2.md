@@ -67,7 +67,7 @@ $(x);
 
 
 `````js filename=intro
-let x = undefined;
+let x /*:primitive*/ = undefined;
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;

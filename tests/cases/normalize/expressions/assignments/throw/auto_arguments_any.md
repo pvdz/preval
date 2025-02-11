@@ -37,8 +37,8 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-arguments;
-throw arguments;
+const a = arguments;
+throw a;
 `````
 
 ## PST Output
@@ -46,8 +46,8 @@ throw arguments;
 With rename=true
 
 `````js filename=intro
-arguments;
-throw arguments;
+const a = arguments;
+throw a;
 `````
 
 ## Globals

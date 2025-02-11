@@ -55,8 +55,8 @@ tmpCallCallee(tmpCalleeParam);
 const y = $();
 const tmpIfTest /*:boolean*/ = y == null;
 if (tmpIfTest) {
-  foo;
-  const tmpClusterSSA_tmpReturnArg = $(foo);
+  const tmpClusterSSA_y = foo;
+  const tmpClusterSSA_tmpReturnArg = $(tmpClusterSSA_y);
   $(tmpClusterSSA_tmpReturnArg);
 } else {
   const tmpClusterSSA_tmpReturnArg$1 = $(y);
@@ -72,13 +72,13 @@ With rename=true
 const a = $();
 const b = a == null;
 if (b) {
-  foo;
-  const c = $( foo );
-  $( c );
+  const c = foo;
+  const d = $( c );
+  $( d );
 }
 else {
-  const d = $( a );
-  $( d );
+  const e = $( a );
+  $( e );
 }
 `````
 

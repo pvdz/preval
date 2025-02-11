@@ -57,15 +57,15 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-let a = undefined;
+let tmpThrowArg = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
-  a = tmpChainElementCall;
+  tmpThrowArg = tmpChainElementCall;
 }
-throw a;
+throw tmpThrowArg;
 `````
 
 ## PST Output

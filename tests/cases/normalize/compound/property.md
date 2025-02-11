@@ -89,11 +89,12 @@ $(a, s);
 
 `````js filename=intro
 let s /*:string*/ = ``;
-let a = 0;
+let a /*:primitive*/ = 0;
 const obj /*:object*/ = {
   get x() {
     debugger;
-    s = `${s}read;`;
+    const tmpStringConcatR = s;
+    s = `${tmpStringConcatR}read;`;
     return a;
   },
   set x($$0) {
@@ -123,23 +124,24 @@ let b = 0;
 const c = {
   get x() {
     debugger;
-    a = `${a}read;`;
+    const d = a;
+    a = `${d}read;`;
     return b;
   },
   set x( $$0 ) {
-    const d = e;
+    const e = f;
     debugger;
-    const f = a;
-    const g = $coerce( d, "plustr" );
-    const h = `write[${g}];`;
-    a = f + h;
-    b = b + d;
+    const g = a;
+    const h = $coerce( e, "plustr" );
+    const i = `write[${h}];`;
+    a = g + i;
+    b = b + e;
     return b;
   },
 };
-const i = c.x;
-const j = i + 5;
-c.x = j;
+const j = c.x;
+const k = j + 5;
+c.x = k;
 $( b, a );
 `````
 

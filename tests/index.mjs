@@ -412,7 +412,7 @@ function runTestCase(
             } else {
               console.log(`--log: Not logging ${passString} (${code.length} bytes) because logFrom is ${options.logFrom}`, lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase ${phaseIndex}/3: changed by ${changed.what}` : '');
             }
-          } else if (!CONFIG.targetDir) {
+          } else if (!CONFIG.targetDir && !CONFIG.updateSnapshots) {
             console.log(`-- ${passString} (${code.length} bytes)`, lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase ${phaseIndex}/3: changed by ${changed.what}` : '');
           }
           lastWrite = now;

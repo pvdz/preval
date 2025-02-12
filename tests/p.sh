@@ -77,6 +77,7 @@ Preval CLI Toolkit help:
  u               Run all test files and just write output
  U               Run all test files and force write output (ignores ASSERT failures)
  m               Run all tests and ask for update one-by-one
+ A <path>        Alias for `rm -r out && mkdirp out && ./p F <path> --logto out --silent`
  fast            Omit many of the expression variation tests (ignores about 18k auto generated tests). Use -fast for the inverse.
 
  --log           Automatically write code after every phase executed to a log file. Defaults to .
@@ -146,6 +147,17 @@ Preval CLI Toolkit help:
     m)
       # Run all files and ask for any test case that needs updating (slower)
       ACTION='-q -U'
+      ;;
+    A)
+      # Force update all test files with their current output
+      rm -r out
+      mkdir out
+      ACTION='-F'
+      shift
+      ACTION_ARG=$1
+      PARAM_LOG='--logto'
+      PARAM_LOGTO='out'
+      PARAM_SILENT='--silent'
       ;;
 
     --log)

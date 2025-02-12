@@ -50,6 +50,10 @@ function _testing_only(fdata) {
         vlog('At least one write was not the var or an assign, bailing');
         return true;
       }
+      if (write.kind === 'assign' && !AST.isPrimitive(write.parentNode.right)) {
+        vlog('At least one assignment wasnt a primitive, bailing');
+        return true;
+      }
     })) {
       return
     }
@@ -90,26 +94,26 @@ function _testing_only(fdata) {
         return;
       }
 
-      rule('An assignment of a determined booly value to a binding only used in bool-test cases can be replaced by an actual bool')
-      example('let x = "foo"; if (x) { x = null; }', 'let x = true; if (x) { x = false; }')
-      before(write.blockBody[write.blockIndex])
+      queue.push({
+        index: write.blockIndex,
+        func: () => {
+          rule('An assignment of a determined booly value to a binding only used in bool-test cases can be replaced by an actual bool')
+          example('let x = "foo"; if (x) { x = null; }', 'let x = true; if (x) { x = false; }')
+          before(write.blockBody[write.blockIndex])
 
-      // Now we should have an rhs whose truthy value is in `bool`. Apply it.
-      if (write.kind === 'var') write.parentNode.init = AST.primitive(bool);
-      else write.parentNode.right = AST.primitive(bool);
+          // Now we should have an rhs whose truthy value is in `bool`. Apply it.
+          if (write.kind === 'var') write.parentNode.init = AST.primitive(bool);
+          else write.parentNode.right = AST.primitive(bool);
 
-      if (!AST.isPrimitive(expr)) {
-        // Move the expression to a statement. Need to queue this.
-        queue.push({
-          index: write.blockIndex,
-          func: () => {
+          // Move the expression to a statement. Need to queue this.
+          if (!AST.isPrimitive(expr)) {
             write.blockBody.splice(write.blockIndex, 0, AST.expressionStatement(expr));
           }
-        });
-      }
 
-      after(write.blockBody[write.blockIndex])
-    })
+          after(write.blockBody[write.blockIndex])
+        }
+      });
+    });
   });
 
   if (queue.length) {
@@ -117,10 +121,10 @@ function _testing_only(fdata) {
     queue.sort(({ index: a }, { index: b }) => (a < b ? 1 : a > b ? -1 : 0));
     queue.forEach(({ index, func }) => func());
 
-    log('Functions unlocked:', queue.length, '. Restarting from phase1 to fix up read/write registry.');
+    log('Unobservable bool tests fixed:', queue.length, '. Restarting from phase1 to fix up read/write registry.');
     return {what: 'testing_only', changes: queue.length, next: 'phase1'};
   }
 
-  log('Functions unlocked: 0.');
+  log('Unobservable bool tests fixed: 0.');
   return false;
 }

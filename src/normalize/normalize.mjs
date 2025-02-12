@@ -519,7 +519,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         // -> `function f(obj) { const tmp = obj.a; const b = objPatternRest(tmp, ['a']); return b; }
         // Object spread will actually be quite hard to emulate... Let's use something like `$objPatternRest` as DSL for it.
 
-        ASSERT(propNode.argument.type === 'Identifier', 'TODO: non ident rest keys?', propNode);
+        ASSERT(propNode.argument.type === 'Identifier', 'TODO: non ident rest keys?', propNode, ', prop index:', i, ', parent:', node);
 
         const restName = propNode.argument.name;
 
@@ -538,7 +538,22 @@ export function phaseNormalize(fdata, fname, prng, options) {
         return;
       }
 
-      ASSERT(propNode.key.type === 'Identifier', 'TODO: non ident keys?', propNode);
+      if (propNode.computed) {
+        // - `let { [a + b]: c } = x;`    // this means `var c = x[a+b]`
+        // Pre-normalization should ensure that num/string keys also become computed
+        // - `let { "a b": c} = x;`
+        // - `let { 200: c} = x;`
+        const keyVarName = createFreshVar('dynKey', fdata);
+        newBindings.push([
+          keyVarName,
+          FRESH,
+          propNode.key
+        ]);
+        propNode.key = AST.identifier(keyVarName);
+      } else {
+        // Pre-normalization should ensure that num/string keys also become computed so the only non-computed things left are idents
+        ASSERT(propNode.key.type === 'Identifier', 'TODO: non ident keys?', propNode, ', prop index:', i, ', parent:', node);
+      }
 
       let valueNode = propNode.value;
       if (propNode.value.type === 'AssignmentPattern') {
@@ -594,7 +609,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
         newBindings.push([
           paramNameWithoutDefault,
           valueNode.type === 'Identifier' ? OLD : FRESH,
-          AST.memberExpression(cacheNameStack[cacheNameStack.length - 2], propNode.key.name),
+          AST.memberExpression(cacheNameStack[cacheNameStack.length - 2], propNode.key.name, propNode.computed),
         ]);
       }
 
@@ -849,7 +864,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
       case 'FunctionDeclaration':
       case 'SwitchStatement':
       case 'SwitchCase':
-        throw ASSERT(false, 'this node type should have been eliminated in the norm_once step');
+        throw ASSERT(false, 'this node type should have been eliminated in the norm_once step', node.type);
     }
 
     log(RED + 'Missed stmt:', node.type, RESET);
@@ -965,7 +980,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
       }
     }
 
-    ASSERT(!node.$p.hasFuncDecl);
+    //ASSERT(!node.$p.hasFuncDecl);
     if (parentBlock.type === 'BlockStatement' && !node.$p.hasFuncDecl) {
       rule('Nested blocks should be smooshed');
       example('{ a(); { b(); } c(); }', '{ a(); b(); c(); }');
@@ -6614,8 +6629,8 @@ export function phaseNormalize(fdata, fname, prng, options) {
           if (node.elements.length === 1) {
             // May already be the base case (an array with a spread)
             if (!node.elements[0]) {
-              rule('Array statements should be picked apart, eliminating primitives, one spread per array, and one statement per other element');
-              example('[a, , b, ...x, 1, ...y];', 'a; b; [...x]; [...y];');
+              rule('Array statements when the array has a single elided element can be dropped');
+              example('[,,];', ';');
               before(body[i]);
 
               body.splice(i, 1); // Drop the original array. It only contains an elided element.
@@ -6625,8 +6640,8 @@ export function phaseNormalize(fdata, fname, prng, options) {
             } else if (node.elements[0]?.type === 'SpreadElement') {
               // This is normalized state. Keep.
             } else {
-              rule('Array statements should be picked apart, eliminating primitives, one spread per array, and one statement per other element');
-              example('[a, , b, ...x, 1, ...y];', 'a; b; [...x]; [...y];');
+              rule('Array statements with a single value should be a statement without the array');
+              example('[a];', 'a;');
               before(body[i]);
 
               body[i].expression = node.elements[0]; // Replace the array with its only element. Other rules will clean it up.
@@ -6664,15 +6679,16 @@ export function phaseNormalize(fdata, fname, prng, options) {
             }
 
             // Buckets should contain a zipped up set of nodes to statementify and then spread elements.
-            for (let i=0; i<buckets; ++i) {
+            // We removed the original statement, by walking the buckets backwards we should be able to inject them at index=i
+            for (let i=buckets.length-1; i>=0; --i) {
               if (i % 2 === 0) {
                 // List of elements to turn into statements
                 const bucket = buckets[i];
-                body.splice(i + moved, 0, bucket.map(e => AST.expressionStatement(e)));
+                body.splice(i, 0, ...bucket.map(e => AST.expressionStatement(e)));
               } else {
                 // Spread element to stick to array
                 const spread = buckets[i];
-                body.splice(i + moved, 0, AST.arrayExpression(spread));
+                body.splice(i, 0, AST.expressionStatement(AST.arrayExpression(spread)));
               }
             }
 

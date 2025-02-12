@@ -115,14 +115,16 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
   unknown = b;
-  const d = Buffer.from( b, "base64" );
-  const e = d.toString( "utf8" );
-  return e;
+  const c = Buffer.from( b, "base64" );
+  const d = c.toString( "utf8" );
+  return d;
 };
 $( a );
+const e = a( "cGF0aA" );
+$( e );
 const f = a( "cGF0aA" );
 $( f );
 const g = a( "cGF0aA" );
@@ -133,8 +135,6 @@ const i = a( "cGF0aA" );
 $( i );
 const j = a( "cGF0aA" );
 $( j );
-const k = a( "cGF0aA" );
-$( k );
 `````
 
 ## Globals

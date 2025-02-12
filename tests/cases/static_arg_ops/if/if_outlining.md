@@ -245,36 +245,36 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0,$$1 ) {
-  const b = c;
-  const d = e;
+  const b = $$0;
+  const c = $$1;
   debugger;
   $inlinedFunction: {
-    const f = b.length;
-    const g = f > 0;
-    b.push( d );
-    if (g) {
-      const h = f - 1;
-      const i = h >>> 1;
-      const j = b[ i ];
-      const k = compare( j, d );
-      const l = k > 0;
-      if (l) {
-        b[i] = d;
-        b[f] = j;
-        let m = i;
-        let n = i > 0;
+    const d = b.length;
+    const e = d > 0;
+    b.push( c );
+    if (e) {
+      const f = d - 1;
+      const g = f >>> 1;
+      const h = b[ g ];
+      const i = compare( h, c );
+      const j = i > 0;
+      if (j) {
+        b[g] = c;
+        b[d] = h;
+        let k = g;
+        let l = g > 0;
         while ($LOOP_UNROLL_100) {
-          if (n) {
-            const o = m - 1;
-            const p = o >>> 1;
-            const q = b[ p ];
-            const r = compare( q, d );
-            const s = r > 0;
-            if (s) {
-              b[p] = d;
-              b[m] = q;
-              m = p;
-              n = p > 0;
+          if (l) {
+            const m = k - 1;
+            const n = m >>> 1;
+            const o = b[ n ];
+            const p = compare( o, c );
+            const q = p > 0;
+            if (q) {
+              b[n] = c;
+              b[k] = o;
+              k = n;
+              l = n > 0;
             }
             else {
               break $inlinedFunction;

@@ -106,20 +106,20 @@ With rename=true
 const a = function() {
   debugger;
   let b = function($$0 ) {
-    const c = d;
+    const c = $$0;
     debugger;
     if (c) {
-      const e = $( false );
-      b( e );
-      const f = $( 100 );
-      return f;
+      const d = $( false );
+      b( d );
+      const e = $( 100 );
+      return e;
     }
     else {
       return undefined;
     }
   };
-  const g = $( true );
-  b = b( g );
+  const f = $( true );
+  b = b( f );
   return undefined;
 };
 if ($) {

@@ -88,25 +88,25 @@ With rename=true
 `````js filename=intro
 const a = function($$0 ) {
   const b = this;
-  const c = d;
+  const c = $$0;
   debugger;
-  const e = b.y;
-  $( c, e );
+  const d = b.y;
+  $( c, d );
   return undefined;
 };
-const f = {
+const e = {
   x: a,
   y: 100,
 };
-const g = $( f );
-const h = $( "x" );
-const i = g[ h ];
-const j = i == null;
-if (j) {
+const f = $( e );
+const g = $( "x" );
+const h = f[ g ];
+const i = h == null;
+if (i) {
 
 }
 else {
-  $dotCall( i, g, 1, 2, 3 );
+  $dotCall( h, f, 1, 2, 3 );
 }
 `````
 

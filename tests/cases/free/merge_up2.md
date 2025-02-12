@@ -125,22 +125,22 @@ With rename=true
 
 `````js filename=intro
 const a = function b($$0 ) {
-  const c = d;
+  const c = $$0;
   debugger;
-  const e = c.charAt( 1 );
-  const f = g & 48;
-  const h = f === 48;
-  const i = h + e;
-  const j = i + e;
-  return j;
+  const d = c.charAt( 1 );
+  const e = f & 48;
+  const g = e === 48;
+  const h = g + d;
+  const i = h + d;
+  return i;
 };
-const k = $spy( 1 );
-const g = +k;
-if (g) {
-  const l = $( "abc" );
-  const m = $coerce( l, "string" );
-  const n = o( a, m );
-  if (n) {
+const j = $spy( 1 );
+const f = +j;
+if (f) {
+  const k = $( "abc" );
+  const l = $coerce( k, "string" );
+  const m = n( a, l );
+  if (m) {
     $( "it is 58" );
   }
 }

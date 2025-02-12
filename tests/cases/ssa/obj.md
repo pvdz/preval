@@ -86,12 +86,12 @@ With rename=true
 `````js filename=intro
 if ($) {
   const a = function($$0 ) {
-    const b = c;
+    const b = $$0;
     debugger;
-    d.bla = b;
+    c.bla = b;
     return undefined;
   };
-  const d = { selfRef: a };
+  const c = { selfRef: a };
   $( undefined );
 }
 `````

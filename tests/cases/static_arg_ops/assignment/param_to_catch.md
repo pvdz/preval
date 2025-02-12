@@ -101,7 +101,7 @@ try {
 }
 catch (a) {
   const b = function($$0 ) {
-    const c = d;
+    const c = $$0;
     debugger;
     a = c;
     $( "filler" );

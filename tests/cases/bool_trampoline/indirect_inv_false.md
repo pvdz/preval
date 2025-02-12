@@ -89,16 +89,16 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
-  const d = $( b );
-  const e = !d;
-  return e;
+  const c = $( b );
+  const d = !c;
+  return d;
 };
 $( a );
 $( a );
-const f = $( 0 );
-if (f) {
+const e = $( 0 );
+if (e) {
   $( "fail" );
 }
 else {

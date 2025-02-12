@@ -255,49 +255,49 @@ With rename=true
 
 `````js filename=intro
 const a = function b($$0,$$1 ) {
-  const c = d;
-  const e = f;
+  const c = $$0;
+  const d = $$1;
   debugger;
-  const g = c + 71046;
-  const h = "xyz".charCodeAt( e );
-  const i = g ^ h;
-  const j = String.fromCharCode( i );
-  return j;
+  const e = c + 71046;
+  const f = "xyz".charCodeAt( d );
+  const g = e ^ f;
+  const h = String.fromCharCode( g );
+  return h;
 };
-const k = function() {
+const i = function() {
   debugger;
-  let l = tmpSSA_Tu();
-  if (l) {
-    tmpSSA_wu( l );
+  let j = tmpSSA_Tu();
+  if (j) {
+    tmpSSA_wu( j );
   }
   else {
-    l = tmpSSA_Su();
-    tmpSSA_wu( l );
+    j = tmpSSA_Su();
+    tmpSSA_wu( j );
   }
-  if (l) {
-    tmpSSA__u_t( l );
+  if (j) {
+    tmpSSA__u_t( j );
   }
   tmpCallObj$3807.toString( 36 );
-  const m = /^0./;
-  const n = tmpCallObj$3811.replace( m, "" );
+  const k = /^0./;
+  const l = tmpCallObj$3811.replace( k, "" );
   $coerce( tmpBinBothRhs$32, "string" );
-  $coerce( n, "string" );
-  const o = tmpSSA_Tu();
-  if (o) {
-    tmpClusterSSA_tmpssa3_c$245 = o;
+  $coerce( l, "string" );
+  const m = tmpSSA_Tu();
+  if (m) {
+    tmpClusterSSA_tmpssa3_c$245 = m;
   }
   else {
-    const p = tmpSSA_Su();
-    if (p) {
-      tmpClusterSSA_tmpssa3_c$245 = p;
+    const n = tmpSSA_Su();
+    if (n) {
+      tmpClusterSSA_tmpssa3_c$245 = n;
     }
   }
   if (tmpIfTest$5467) {
-    let q = r( a, $, $ );
+    let o = p( a, $, $ );
     while ($LOOP_UNROLL_10) {
       if (tmpIfTest$5467) {
-        const s = r( a, $, $ );
-        q = q + s;
+        const q = p( a, $, $ );
+        o = o + q;
       }
       else {
         break;
@@ -309,7 +309,7 @@ const k = function() {
     return undefined;
   }
 };
-$( k );
+$( i );
 `````
 
 ## Globals

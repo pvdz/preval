@@ -128,24 +128,24 @@ const f = function b() {
   return i;
 };
 const j = function($$0 ) {
-  const k = l;
+  const k = $$0;
   debugger;
-  const m = k + b2;
-  outputstr = $coerce( m, "plustr" );
+  const l = k + b2;
+  outputstr = $coerce( l, "plustr" );
   return outputstr;
 };
-const n = $( "co_rn" );
-const h = $coerce( n, "string" );
-const o = p( f );
+const m = $( "co_rn" );
+const h = $coerce( m, "string" );
+const n = o( f );
 h.charAt( 1 );
-const q = j( o );
-$( q );
-const r = $( "m#az#e" );
-const d = $coerce( r, "string" );
-const s = p( a );
+const p = j( n );
+$( p );
+const q = $( "m#az#e" );
+const d = $coerce( q, "string" );
+const r = o( a );
 d.charAt( 1 );
-const t = j( s );
-$( t );
+const s = j( r );
+$( s );
 `````
 
 ## Globals

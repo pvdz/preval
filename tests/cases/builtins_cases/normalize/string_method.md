@@ -152,41 +152,41 @@ With rename=true
 
 `````js filename=intro
 const a = function b($$0 ) {
-  const c = d;
+  const c = $$0;
   debugger;
-  const e = c.charAt( 0 );
-  const f = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( e );
-  const g = c.charAt( 1 );
-  const h = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( g );
-  const i = c.charAt( 2 );
-  "dropme".indexOf( i );
-  const j = f + h;
-  const k = $coerce( j, "string" );
-  return k;
+  const d = c.charAt( 0 );
+  const e = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( d );
+  const f = c.charAt( 1 );
+  const g = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( f );
+  const h = c.charAt( 2 );
+  "dropme".indexOf( h );
+  const i = e + g;
+  const j = $coerce( i, "string" );
+  return j;
 };
-const l = function($$0 ) {
-  const m = d;
+const k = function($$0 ) {
+  const l = $$0;
   debugger;
-  const n = /[^A-Za-z0-9\+\/\=]/g;
-  const o = m.replace( n, "" );
-  const p = o.length;
-  const q = 0 < p;
-  if (q) {
-    const r = s( a, o );
-    return r;
+  const m = /[^A-Za-z0-9\+\/\=]/g;
+  const n = l.replace( m, "" );
+  const o = n.length;
+  const p = 0 < o;
+  if (p) {
+    const q = r( a, n );
+    return q;
   }
   else {
     return "";
   }
 };
-const t = $( "co_rn" );
-const u = $coerce( t, "string" );
-const v = l( u );
-$( v );
-const w = $( "m#az#e" );
-const x = $coerce( w, "string" );
-const y = l( x );
-$( y );
+const s = $( "co_rn" );
+const t = $coerce( s, "string" );
+const u = k( t );
+$( u );
+const v = $( "m#az#e" );
+const w = $coerce( v, "string" );
+const x = k( w );
+$( x );
 `````
 
 ## Globals

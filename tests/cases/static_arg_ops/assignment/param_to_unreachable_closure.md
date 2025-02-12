@@ -84,7 +84,7 @@ With rename=true
 $();
 let a = 1;
 const b = function($$0 ) {
-  const c = d;
+  const c = $$0;
   debugger;
   $( c );
   $( a );

@@ -109,17 +109,17 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0,$$1,$$2,$$3,$$4,$$5 ) {
-  const b = c;
-  const d = e;
-  const f = g;
-  const h = i;
-  const j = k;
-  const l = m;
+  const b = $$5;
+  const c = $$4;
+  const d = $$3;
+  const e = $$0;
+  const f = $$1;
+  const g = $$2;
   debugger;
-  $( h, l, j );
-  $( h, l, f );
-  $( h, l, d );
-  $( h, l, b );
+  $( e, g, f );
+  $( e, g, d );
+  $( e, g, c );
+  $( e, g, b );
   return undefined;
 };
 a( "first1", 1, "last1", 2, "hi", parseInt );

@@ -90,7 +90,7 @@ With rename=true
 `````js filename=intro
 const a = $( "50" );
 const b = function($$0 ) {
-  const c = d;
+  const c = $$0;
   debugger;
   $( 1 );
   $( 2 );
@@ -99,10 +99,10 @@ const b = function($$0 ) {
 };
 $coerce( a, "number" );
 b( 3 );
-const e = $coerce( a, "number" );
+const d = $coerce( a, "number" );
 b( 4 );
 $( a );
-$( e );
+$( d );
 `````
 
 ## Globals

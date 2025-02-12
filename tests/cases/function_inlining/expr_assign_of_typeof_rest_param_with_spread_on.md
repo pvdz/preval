@@ -93,14 +93,14 @@ With rename=true
 `````js filename=intro
 let a = 0;
 const b = function($$0,$$1 ) {
-  const c = d;
+  const c = $$1;
   debugger;
   a = typeof c;
   return undefined;
 };
-const e = [ 1, 2 ];
-const f = $( e );
-b( 10, ...f, 20, 30, 40, 50, 60 );
+const d = [ 1, 2 ];
+const e = $( d );
+b( 10, ...e, 20, 30, 40, 50, 60 );
 $( a );
 `````
 

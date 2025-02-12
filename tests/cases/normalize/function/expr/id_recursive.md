@@ -83,21 +83,21 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
-  const d = b > 100;
-  if (d) {
+  const c = b > 100;
+  if (c) {
     return 10;
   }
   else {
-    const e = b + 1;
-    const f = a( e );
-    return f;
+    const d = b + 1;
+    const e = a( d );
+    return e;
   }
 };
-const g = $( 10 );
-const h = a( g );
-$( h );
+const f = $( 10 );
+const g = a( f );
+$( g );
 `````
 
 ## Globals

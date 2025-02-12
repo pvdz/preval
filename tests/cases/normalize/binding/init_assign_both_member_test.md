@@ -139,28 +139,28 @@ const a = {
     return 20;
   },
   set x( $$0 ) {
-    const b = c;
+    const b = $$0;
     debugger;
     $( 4, b );
     return undefined;
   },
 };
-const d = a.x;
-const e = {
+const c = a.x;
+const d = {
   get x() {
     debugger;
     $( 1 );
     return 10;
   },
   set x( $$0 ) {
-    const f = c;
+    const e = $$0;
     debugger;
-    $( 2, f );
+    $( 2, e );
     return undefined;
   },
 };
-e.x = d;
-$( 5, d );
+d.x = c;
+$( 5, c );
 `````
 
 ## Globals

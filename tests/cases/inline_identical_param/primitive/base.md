@@ -90,11 +90,11 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0,$$1 ) {
-  const b = c;
-  const d = e;
+  const b = $$0;
+  const c = $$1;
   debugger;
   if ($) {
-    $( b, 2, d, "hopefully b is a literal afterwards" );
+    $( b, 2, c, "hopefully b is a literal afterwards" );
     return undefined;
   }
   else {

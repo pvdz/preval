@@ -498,122 +498,122 @@ With rename=true
 
 `````js filename=intro
 const a = function b($$0,$$1 ) {
-  const c = d;
-  const e = f;
+  const c = $$0;
+  const d = $$1;
   debugger;
-  const g = c << 11;
-  const h = g | e;
-  return h;
+  const e = c << 11;
+  const f = e | d;
+  return f;
 };
-let i = 0;
-let j = undefined;
-let k = 4;
-let l = 0;
-const m = [ 0, 1, 2, 3, 47, 47, 192, 13, 10, 40, 31337, 221, 218, 39, 1, 5, 2, 13 ];
-const n = [ 35, 48, 72, 128 ];
-const o = [];
+let g = 0;
+let h = undefined;
+let i = 4;
+let j = 0;
+const k = [ 0, 1, 2, 3, 47, 47, 192, 13, 10, 40, 31337, 221, 218, 39, 1, 5, 2, 13 ];
+const l = [ 35, 48, 72, 128 ];
+const m = [];
 while (true) {
-  const p = k < 92;
-  if (p) {
-    const q = k;
-    k = k + 1;
-    const r = m[ q ];
-    let s = r === 0;
-    if (s) {
+  const n = i < 92;
+  if (n) {
+    const o = i;
+    i = i + 1;
+    const p = k[ o ];
+    let q = p === 0;
+    if (q) {
 
     }
     else {
-      s = r === 1;
-      if (s) {
+      q = p === 1;
+      if (q) {
 
       }
       else {
-        s = r === 2;
-        if (s) {
+        q = p === 2;
+        if (q) {
 
         }
         else {
-          s = r === 3;
+          q = p === 3;
         }
       }
     }
-    if (s) {
-      const t = k;
-      k = k + 1;
-      const u = m[ t ];
-      if (u) {
-        const v = r === 0;
-        if (v) {
-          j = u & 31;
-          const w = k + 1;
-          const x = m[ k ];
-          k = w + 1;
-          const y = m[ w ];
-          const z = u & 224;
-          const ba = bb;
-          const bc = x << 8;
-          const bd = ba( a, z, bc );
-          const be = bd | y;
-          i = be + 2056;
+    if (q) {
+      const r = i;
+      i = i + 1;
+      const s = k[ r ];
+      if (s) {
+        const t = p === 0;
+        if (t) {
+          h = s & 31;
+          const u = i + 1;
+          const v = k[ i ];
+          i = u + 1;
+          const w = k[ u ];
+          const x = s & 224;
+          const y = z;
+          const ba = v << 8;
+          const bb = y( a, x, ba );
+          const bc = bb | w;
+          g = bc + 2056;
         }
         else {
-          const bf = r === 1;
-          if (bf) {
-            j = u & 31;
-            const bg = k;
-            k = k + 1;
-            const bh = m[ bg ];
-            const bi = u & 224;
-            const bj = bi << 3;
-            const bk = bj | bh;
-            i = bk + 8;
+          const bd = p === 1;
+          if (bd) {
+            h = s & 31;
+            const be = i;
+            i = i + 1;
+            const bf = k[ be ];
+            const bg = s & 224;
+            const bh = bg << 3;
+            const bi = bh | bf;
+            g = bi + 8;
           }
           else {
-            const bl = r === 2;
-            if (bl) {
-              const bm = u >> 6;
-              j = bm + 1;
-              const bn = u & 63;
-              i = bn + 8;
+            const bj = p === 2;
+            if (bj) {
+              const bk = s >> 6;
+              h = bk + 1;
+              const bl = s & 63;
+              g = bl + 8;
             }
             else {
-              j = u & 31;
-              const bo = u >> 5;
-              i = bo + 1;
+              h = s & 31;
+              const bm = s >> 5;
+              g = bm + 1;
             }
           }
         }
-        const bp = j < 28;
-        let bq = false;
-        if (bp) {
-          j = j + 2;
-          bq = 0 < j;
+        const bn = h < 28;
+        let bo = false;
+        if (bn) {
+          h = h + 2;
+          bo = 0 < h;
         }
         else {
-          const br = j - 28;
-          j = n[ br ];
-          bq = 0 < j;
+          const bp = h - 28;
+          h = l[ bp ];
+          bo = 0 < h;
         }
-        if (bq) {
-          const bs = l - i;
-          const bt = o[ bs ];
-          o[l] = bt;
-          l = l + 1;
-          const bu = 1 < j;
-          if (bu) {
-            const bv = l - i;
-            const bw = o[ bv ];
-            o[l] = bw;
-            l = l + 1;
-            let bx = 2;
+        if (bo) {
+          const bq = j - g;
+          const br = m[ bq ];
+          m[j] = br;
+          j = j + 1;
+          const bs = 1 < h;
+          if (bs) {
+            const bt = j - g;
+            const bu = m[ bt ];
+            m[j] = bu;
+            j = j + 1;
+            let bv = 2;
             while ($LOOP_UNROLL_10) {
-              const by = bx < j;
-              if (by) {
-                const bz = l - i;
-                const ca = o[ bz ];
-                o[l] = ca;
-                l = l + 1;
-                bx = bx + 1;
+              const bw = bv < h;
+              if (bw) {
+                const bx = j - g;
+                const by = m[ bx ];
+                m[j] = by;
+                j = j + 1;
+                bv = bv + 1;
               }
               else {
                 break;
@@ -623,23 +623,23 @@ while (true) {
         }
       }
       else {
-        const cb = l;
-        l = l + 1;
-        o[cb] = r;
+        const bz = j;
+        j = j + 1;
+        m[bz] = p;
       }
     }
     else {
-      const cc = l;
-      l = l + 1;
-      o[cc] = r;
+      const ca = j;
+      j = j + 1;
+      m[ca] = p;
     }
   }
   else {
     break;
   }
 }
-const cd = o.join( "" );
-$( cd );
+const cb = m.join( "" );
+$( cb );
 `````
 
 ## Globals

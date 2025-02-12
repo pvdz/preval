@@ -110,22 +110,22 @@ With rename=true
 const a = function() {
   debugger;
   let b = function($$0 ) {
-    const c = d;
+    const c = $$0;
     debugger;
     if (c) {
-      b( e );
-      const f = $( 100 );
-      return f;
+      b( d );
+      const e = $( 100 );
+      return e;
     }
     else {
       return undefined;
     }
   };
-  b = b( g );
+  b = b( f );
   return undefined;
 };
-const g = $( true );
-const e = $( false );
+const f = $( true );
+const d = $( false );
 if ($) {
   a();
 }

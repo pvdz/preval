@@ -82,17 +82,17 @@ With rename=true
 `````js filename=intro
 const a = $( "50" );
 const b = function($$0 ) {
-  const c = d;
+  const c = $$0;
   debugger;
   $( 1 );
   $( 2 );
   $( c );
   return undefined;
 };
-const e = $coerce( a, "number" );
+const d = $coerce( a, "number" );
 b( 3 );
 b( 4 );
-$( e );
+$( d );
 `````
 
 ## Globals

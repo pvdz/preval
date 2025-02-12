@@ -149,37 +149,37 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
-  const d = function() {
+  const c = function() {
     debugger;
     $( b, "inner" );
     return b;
   };
   if ($) {
-    d.foo = b;
-    const e = d.foo;
-    $( e, "init" );
+    c.foo = b;
+    const d = c.foo;
+    $( d, "init" );
   }
-  const f = function() {
+  const e = function() {
     debugger;
     $( b, "inner" );
     return b;
   };
-  return f;
+  return e;
 };
-const g = a( 1 );
-const h = g();
-$( h, "outer" );
-const i = a( 2 );
-const j = i();
-$( j, "outer" );
-const k = a( 3 );
-const l = k();
-$( l, "outer" );
-const m = a( 4 );
-const n = m();
-$( n, "outer" );
+const f = a( 1 );
+const g = f();
+$( g, "outer" );
+const h = a( 2 );
+const i = h();
+$( i, "outer" );
+const j = a( 3 );
+const k = j();
+$( k, "outer" );
+const l = a( 4 );
+const m = l();
+$( m, "outer" );
 `````
 
 ## Globals

@@ -115,36 +115,36 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0,$$1 ) {
-  const b = c;
-  const d = e;
+  const b = $$0;
+  const c = $$1;
   debugger;
-  let f = "foo";
-  const g = b === undefined;
+  let d = "foo";
+  const e = b === undefined;
+  if (e) {
+
+  }
+  else {
+    d = b;
+  }
+  let f = "bar";
+  const g = c === undefined;
   if (g) {
 
   }
   else {
-    f = b;
+    f = c;
   }
-  let h = "bar";
-  const i = d === undefined;
-  if (i) {
-
-  }
-  else {
-    h = d;
-  }
-  const j = [ f, h ];
-  return j;
+  const h = [ d, f ];
+  return h;
 };
-const k = a();
+const i = a();
+$( i );
+const j = a( "x" );
+$( j );
+const k = a( undefined, "y" );
 $( k );
-const l = a( "x" );
+const l = a( "x", "y" );
 $( l );
-const m = a( undefined, "y" );
-$( m );
-const n = a( "x", "y" );
-$( n );
 `````
 
 ## Globals

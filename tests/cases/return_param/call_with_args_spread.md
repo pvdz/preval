@@ -157,7 +157,7 @@ const a = function() {
   return undefined;
 };
 const b = function($$0 ) {
-  const c = d;
+  const c = $$0;
   debugger;
   $( "pass1", c );
   return undefined;
@@ -165,23 +165,23 @@ const b = function($$0 ) {
 a();
 b( 1, "two", null, NaN );
 $( undefined );
-const e = function($$0 ) {
-  const f = d;
+const d = function($$0 ) {
+  const e = $$0;
   debugger;
-  $( "pass2", f );
+  $( "pass2", e );
   return undefined;
 };
 a();
-e( 1, "two", null, NaN );
+d( 1, "two", null, NaN );
 $( undefined );
-const g = function($$0 ) {
-  const h = d;
+const f = function($$0 ) {
+  const g = $$0;
   debugger;
-  $( "pass3", h );
+  $( "pass3", g );
   return undefined;
 };
 a();
-g( 1, "two", null, NaN );
+f( 1, "two", null, NaN );
 $( undefined );
 `````
 

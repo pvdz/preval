@@ -160,43 +160,43 @@ With rename=true
 
 `````js filename=intro
 const a = function b($$0 ) {
-  const c = d;
+  const c = $$0;
   debugger;
-  const e = c.charAt( 0 );
-  const f = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( e );
-  const g = c.charAt( 1 );
-  const h = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( g );
-  const i = c.charAt( 2 );
+  const d = c.charAt( 0 );
+  const e = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( d );
+  const f = c.charAt( 1 );
+  const g = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( f );
+  const h = c.charAt( 2 );
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( h );
+  const i = c.charAt( 3 );
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( i );
-  const j = c.charAt( 3 );
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( j );
-  const k = f + h;
-  const l = $coerce( k, "string" );
-  return l;
+  const j = e + g;
+  const k = $coerce( j, "string" );
+  return k;
 };
-const m = function($$0 ) {
-  const n = d;
+const l = function($$0 ) {
+  const m = $$0;
   debugger;
-  const o = /[^A-Za-z0-9\+\/\=]/g;
-  const p = n.replace( o, "" );
-  const q = p.length;
-  const r = 0 < q;
-  if (r) {
-    const s = t( a, p );
-    return s;
+  const n = /[^A-Za-z0-9\+\/\=]/g;
+  const o = m.replace( n, "" );
+  const p = o.length;
+  const q = 0 < p;
+  if (q) {
+    const r = s( a, o );
+    return r;
   }
   else {
     return "";
   }
 };
-const u = $( "co_rn" );
-const v = $coerce( u, "string" );
-const w = m( v );
-$( w );
-const x = $( "m#az#e" );
-const y = $coerce( x, "string" );
-const z = m( y );
-$( z );
+const t = $( "co_rn" );
+const u = $coerce( t, "string" );
+const v = l( u );
+$( v );
+const w = $( "m#az#e" );
+const x = $coerce( w, "string" );
+const y = l( x );
+$( y );
 `````
 
 ## Globals

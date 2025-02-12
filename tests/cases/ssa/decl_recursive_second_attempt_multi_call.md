@@ -129,7 +129,7 @@ const b = $( true );
 const c = $( false );
 if ($) {
   let d = function($$0 ) {
-    const e = f;
+    const e = $$0;
     debugger;
     if (e) {
       d( c );

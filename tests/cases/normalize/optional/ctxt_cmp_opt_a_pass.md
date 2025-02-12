@@ -101,27 +101,27 @@ With rename=true
 `````js filename=intro
 const a = function($$0 ) {
   const b = this;
-  const c = d;
+  const c = $$0;
   debugger;
-  const e = $( c );
-  $( e, b );
-  const f = c[ 0 ];
-  return f;
+  const d = $( c );
+  $( d, b );
+  const e = c[ 0 ];
+  return e;
 };
-const g = { c: a };
-const h = { b: g };
-const i = $( h );
-const j = i == null;
-if (j) {
+const f = { c: a };
+const g = { b: f };
+const h = $( g );
+const i = h == null;
+if (i) {
   $( undefined );
 }
 else {
-  const k = $( "b" );
-  const l = i[ k ];
-  const m = $( "c" );
-  const n = l[ m ];
-  const o = $dotCall( n, l, 100 );
-  $( o );
+  const j = $( "b" );
+  const k = h[ j ];
+  const l = $( "c" );
+  const m = k[ l ];
+  const n = $dotCall( m, k, 100 );
+  $( n );
 }
 `````
 

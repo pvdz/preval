@@ -293,38 +293,38 @@ With rename=true
 
 `````js filename=intro
 const a = function b($$0,$$1,$$2,$$3,$$4,$$5,$$6,$$7 ) {
-  const c = d;
-  const e = f;
-  const g = h;
-  const i = j;
-  const k = l;
-  const m = n;
-  const o = p;
-  const q = r;
+  const c = $$0;
+  const d = $$1;
+  const e = $$2;
+  const f = $$3;
+  const g = $$4;
+  const h = $$5;
+  const i = $$6;
+  const j = $$7;
   debugger;
-  const s = parseInt( c );
-  const t = -e;
-  const u = -g;
-  const v = t / 2;
-  const w = u / 3;
-  const x = i / 1;
-  const y = v * w;
-  const z = -k;
-  const ba = x + y;
-  const bb = z / 4;
-  const bc = ba + bb;
-  const bd = m / 5;
+  const k = parseInt( c );
+  const l = -d;
+  const m = -e;
+  const n = l / 2;
+  const o = m / 3;
+  const p = f / 1;
+  const q = n * o;
+  const r = -g;
+  const s = p + q;
+  const t = r / 4;
+  const u = s + t;
+  const v = h / 5;
+  const w = u + v;
+  const x = i / 6;
+  const y = -j;
+  const z = w + x;
+  const ba = y / 7;
+  const bb = -k;
+  const bc = z + ba;
+  const bd = bb / 8;
   const be = bc + bd;
-  const bf = o / 6;
-  const bg = -q;
-  const bh = be + bf;
-  const bi = bg / 7;
-  const bj = -s;
-  const bk = bh + bi;
-  const bl = bj / 8;
-  const bm = bk + bl;
-  const bn = bm === 644244;
-  return bn;
+  const bf = be === 644244;
+  return bf;
 };
 $( "a" );
 $( "b" );
@@ -337,36 +337,36 @@ $( "h" );
 $( "i" );
 $( "j" );
 $( "k" );
-const bo = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k" ];
+const bg = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k" ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const bp = bo[ 0 ];
-  $( bp );
-  const bq = bo[ 286 ];
+  const bh = bg[ 0 ];
+  $( bh );
+  const bi = bg[ 286 ];
+  const bj = parseInt( bi );
+  const bk = bg[ 181 ];
+  const bl = parseInt( bk );
+  const bm = bg[ 308 ];
+  const bn = parseInt( bm );
+  const bo = bg[ 32 ];
+  const bp = parseInt( bo );
+  const bq = bg[ 86 ];
   const br = parseInt( bq );
-  const bs = bo[ 181 ];
+  const bs = bg[ 87 ];
   const bt = parseInt( bs );
-  const bu = bo[ 308 ];
+  const bu = bg[ 30 ];
   const bv = parseInt( bu );
-  const bw = bo[ 32 ];
-  const bx = parseInt( bw );
-  const by = bo[ 86 ];
-  const bz = parseInt( by );
-  const ca = bo[ 87 ];
-  const cb = parseInt( ca );
-  const cc = bo[ 30 ];
-  const cd = parseInt( cc );
-  const ce = bo[ 356 ];
-  const cf = cg( a, ce, bt, bv, br, bx, bz, cb, cd );
-  if (cf) {
+  const bw = bg[ 356 ];
+  const bx = by( a, bw, bl, bn, bj, bp, br, bt, bv );
+  if (bx) {
     break;
   }
   else {
-    const ch = bo.shift();
-    bo.push( ch );
+    const bz = bg.shift();
+    bg.push( bz );
   }
 }
-const ci = bo[ 0 ];
-$( ci );
+const ca = bg[ 0 ];
+$( ca );
 `````
 
 ## Globals

@@ -79,16 +79,16 @@ const a = {
   b: 2,
 };
 const b = function($$0 ) {
-  const c = d;
+  const c = $$0;
   debugger;
+  const d = a[ c ];
+  $( c, d );
   const e = a[ c ];
-  $( c, e );
-  const f = a[ c ];
-  return f;
+  return e;
 };
-const g = /\w.*\w/g;
-const h = "a is not b".replace( g, b );
-$( h );
+const f = /\w.*\w/g;
+const g = "a is not b".replace( f, b );
+$( g );
 `````
 
 ## Globals

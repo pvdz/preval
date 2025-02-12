@@ -120,26 +120,26 @@ With rename=true
 
 `````js filename=intro
 const a = function b($$0,$$1 ) {
-  const c = d;
-  const e = f;
+  const c = $$0;
+  const d = $$1;
   debugger;
-  const g = c + 71046;
-  const h = "".charCodeAt( e );
-  const i = g ^ h;
-  return i;
+  const e = c + 71046;
+  const f = "".charCodeAt( d );
+  const g = e ^ f;
+  return g;
 };
 $( a );
-const j = function() {
+const h = function() {
   debugger;
   $coerce( tmpBinBothRhs$32, "string" );
   $coerce( tmpClusterSSA_r$2027, "string" );
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const k = l( a, $, $ );
-    p$171 = p$171 + k;
+    const i = j( a, $, $ );
+    p$171 = p$171 + i;
   }
   return undefined;
 };
-$( j );
+$( h );
 `````
 
 ## Globals

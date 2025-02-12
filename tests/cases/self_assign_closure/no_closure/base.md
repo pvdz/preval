@@ -118,25 +118,25 @@ With rename=true
 `````js filename=intro
 const a = [ "2175510YjCZON", "10TAFtVj", "11526394DNqxUn", "60YWJuYY", "794766IkrVMo", "348105xrUwtS" ];
 let b = function($$0,$$1 ) {
-  const c = d;
-  const e = f;
+  const c = $$0;
+  const d = $$1;
   debugger;
   b = function($$0,$$1 ) {
-    const g = d;
+    const e = $$0;
     debugger;
-    const h = g - 427;
-    const i = a[ h ];
-    return i;
+    const f = e - 427;
+    const g = a[ f ];
+    return g;
   };
-  const j = b( c, e );
-  return j;
+  const h = b( c, d );
+  return h;
 };
-const k = b( 430 );
+const i = b( 430 );
+$( i );
+const j = b( 431 );
+$( j );
+const k = b( 432 );
 $( k );
-const l = b( 431 );
-$( l );
-const m = b( 432 );
-$( m );
 $( b );
 `````
 

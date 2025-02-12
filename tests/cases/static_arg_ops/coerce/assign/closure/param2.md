@@ -113,7 +113,7 @@ const b = { valueOf: a };
 const c = $( b );
 $coerce( c, "number" );
 const d = function($$0 ) {
-  const e = f;
+  const e = $$0;
   debugger;
   $( 1 );
   $( 2 );

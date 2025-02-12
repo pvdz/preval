@@ -89,10 +89,10 @@ let a = {
 };
 const b = function($$0 ) {
   const c = d;
-  const e = f;
+  const e = $$0;
   debugger;
-  const g = e === undefined;
-  if (g) {
+  const f = e === undefined;
+  if (f) {
     a = c;
     return undefined;
   }

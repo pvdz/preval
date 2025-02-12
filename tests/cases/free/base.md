@@ -101,26 +101,26 @@ With rename=true
 
 `````js filename=intro
 const a = function b($$0 ) {
-  const c = d;
+  const c = $$0;
   debugger;
-  const e = Math.pow( c, 2 );
-  const f = e / 2;
-  const g = $coerce( f, "string" );
-  return g;
+  const d = Math.pow( c, 2 );
+  const e = d / 2;
+  const f = $coerce( e, "string" );
+  return f;
 };
-let h = 0;
+let g = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const i = $( h );
-  const j = i * 1;
-  const k = l( a, j );
-  $( h, k );
-  h = h + 1;
-  const m = h > 10;
-  if (m) {
+  const h = $( g );
+  const i = h * 1;
+  const j = k( a, i );
+  $( g, j );
+  g = g + 1;
+  const l = g > 10;
+  if (l) {
     break;
   }
 }
-$( h );
+$( g );
 `````
 
 ## Globals

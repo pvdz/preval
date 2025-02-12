@@ -61,12 +61,12 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
   return b;
 };
-const d = a( 1, 2, 3 );
-$( d );
+const c = a( 1, 2, 3 );
+$( c );
 `````
 
 ## Globals

@@ -66,13 +66,13 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
   return b;
 };
-const d = f();
-const e = $( d );
-export { e as x };
+const c = f();
+const d = $( c );
+export { d as x };
 export { a as g };
 `````
 

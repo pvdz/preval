@@ -124,7 +124,7 @@ const a = function() {
   return b;
 };
 let c = function($$0 ) {
-  const d = e;
+  const d = $$0;
   debugger;
   if (d) {
     $( 1, "true" );
@@ -139,8 +139,8 @@ let c = function($$0 ) {
   }
 };
 c = c( false );
-const f = c();
-$( f );
+const e = c();
+$( e );
 `````
 
 ## Globals

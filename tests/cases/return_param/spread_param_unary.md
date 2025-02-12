@@ -92,20 +92,20 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
   $( "no" );
   $( "inlining" );
   $( "please" );
-  const d = ~b;
-  return d;
+  const c = ~b;
+  return c;
 };
-const e = a( 1 );
+const d = a( 1 );
+$( d );
+const e = a( 2 );
 $( e );
-const f = a( 2 );
+const f = a( "three" );
 $( f );
-const g = a( "three" );
-$( g );
 `````
 
 ## Globals

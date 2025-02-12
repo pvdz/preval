@@ -75,15 +75,15 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
   $( "hello", b );
-  const d = b + 1;
-  return d;
+  const c = b + 1;
+  return c;
 };
-const e = [ 1, 2, 3 ];
-const f = e.map( a );
-$( f );
+const d = [ 1, 2, 3 ];
+const e = d.map( a );
+$( e );
 `````
 
 ## Globals

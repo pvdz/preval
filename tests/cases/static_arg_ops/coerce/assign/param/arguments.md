@@ -84,7 +84,7 @@ With rename=true
 $( "50" );
 const a = function($$0,$$1 ) {
   const b = c;
-  const d = e;
+  const d = $$1;
   debugger;
   $coerce( b, "number" );
   $( 1 );

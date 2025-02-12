@@ -118,10 +118,10 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
-  const d = `purpleRule:reset "${b}"`;
-  $( d );
+  const c = `purpleRule:reset "${b}"`;
+  $( c );
   return undefined;
 };
 a( "I want it my way" );

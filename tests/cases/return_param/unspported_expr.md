@@ -123,29 +123,29 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
   $( "no" );
   $( "inlining" );
   $( "please" );
-  const d = $( 1 );
-  const e = b + d;
-  const f = $( true );
-  if (f) {
+  const c = $( 1 );
+  const d = b + c;
+  const e = $( true );
+  if (e) {
     $( "a" );
-    return e;
+    return d;
   }
   else {
     $( "b" );
-    return e;
+    return d;
   }
 };
-const g = a( 1 );
+const f = a( 1 );
+$( f );
+const g = a( 2 );
 $( g );
-const h = a( 2 );
+const h = a( "three" );
 $( h );
-const i = a( "three" );
-$( i );
 `````
 
 ## Globals

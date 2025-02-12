@@ -266,57 +266,57 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0,$$1 ) {
-  const b = c;
-  const d = e;
+  const b = $$0;
+  const c = $$1;
   debugger;
-  const f = b.length;
-  const g = f > 0;
-  b.push( d );
-  if (g) {
-    const h = f - 1;
-    const i = h >>> 1;
-    j( b, d, f, i );
-    const k = f - 1;
+  const d = b.length;
+  const e = d > 0;
+  b.push( c );
+  if (e) {
+    const f = d - 1;
+    const g = f >>> 1;
+    h( b, c, d, g );
+    const i = d - 1;
+    const j = i >>> 1;
+    h( b, c, d, j );
+    const k = d - 1;
     const l = k >>> 1;
-    j( b, d, f, l );
-    const m = f - 1;
+    h( b, c, d, l );
+    const m = d - 1;
     const n = m >>> 1;
-    j( b, d, f, n );
-    const o = f - 1;
-    const p = o >>> 1;
-    j( b, d, f, p );
+    h( b, c, d, n );
     return undefined;
   }
   else {
     return undefined;
   }
 };
-const j = function($$0,$$1,$$2,$$3 ) {
-  const q = c;
-  const r = e;
-  const s = t;
-  const u = v;
+const h = function($$0,$$1,$$2,$$3 ) {
+  const o = $$0;
+  const p = $$1;
+  const q = $$2;
+  const r = $$3;
   debugger;
-  const w = q[ u ];
-  const x = compare( w, r );
-  const y = x > 0;
-  if (y) {
-    q[u] = r;
-    q[s] = w;
-    let z = u;
-    let ba = u > 0;
+  const s = o[ r ];
+  const t = compare( s, p );
+  const u = t > 0;
+  if (u) {
+    o[r] = p;
+    o[q] = s;
+    let v = r;
+    let w = r > 0;
     while ($LOOP_UNROLL_100) {
-      if (ba) {
-        const bb = z - 1;
-        const bc = bb >>> 1;
-        const bd = q[ bc ];
-        const be = compare( bd, r );
-        const bf = be > 0;
-        if (bf) {
-          q[bc] = r;
-          q[z] = bd;
-          z = bc;
-          ba = bc > 0;
+      if (w) {
+        const x = v - 1;
+        const y = x >>> 1;
+        const z = o[ y ];
+        const ba = compare( z, p );
+        const bb = ba > 0;
+        if (bb) {
+          o[y] = p;
+          o[v] = z;
+          v = y;
+          w = y > 0;
         }
         else {
           return undefined;

@@ -100,15 +100,15 @@ With rename=true
 `````js filename=intro
 let a = 0;
 const b = function($$0,$$1,$$2,$$3,$$4 ) {
-  const c = d;
-  const e = f;
+  const c = $$0;
+  const d = $$1;
   debugger;
-  a = c + e;
+  a = c + d;
   return undefined;
 };
-const g = [ 1, 2 ];
-const h = $( g );
-b( 10, 20, ...h, 30, 40, 50 );
+const e = [ 1, 2 ];
+const f = $( e );
+b( 10, 20, ...f, 30, 40, 50 );
 $( a );
 `````
 

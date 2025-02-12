@@ -140,7 +140,7 @@ With rename=true
 if ($) {
   let a = 0;
   const b = function($$0 ) {
-    const c = d;
+    const c = $$0;
     debugger;
     if (c) {
       a = a + 1;

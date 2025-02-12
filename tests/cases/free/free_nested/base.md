@@ -112,21 +112,21 @@ With rename=true
 
 `````js filename=intro
 const a = function b($$0,$$1 ) {
-  const c = d;
-  const e = f;
+  const c = $$0;
+  const d = $$1;
   debugger;
-  const g = c * 20;
-  const h = e * 40;
-  const i = g + h;
-  const j = i * 10;
-  return j;
+  const e = c * 20;
+  const f = d * 40;
+  const g = e + f;
+  const h = g * 10;
+  return h;
 };
-const k = $( 100 );
+const i = $( 100 );
+const j = i * 1;
+const k = $( 200 );
 const l = k * 1;
-const m = $( 200 );
-const n = m * 1;
-const o = p( a, l, n );
-$( o );
+const m = n( a, j, l );
+$( m );
 `````
 
 ## Globals

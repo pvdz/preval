@@ -260,37 +260,37 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0,$$1 ) {
-  const b = c;
-  const d = e;
+  const b = $$0;
+  const c = $$1;
   debugger;
-  const f = b.length;
-  f ** 0;
-  b.push( d );
-  const g = f - 1;
-  const h = g >>> 1;
-  i( b, d, f, h );
-  const j = f - 1;
-  const k = j >>> 1;
-  i( b, d, f, k );
-  l( b, d, f );
-  l( b, d, f );
+  const d = b.length;
+  d ** 0;
+  b.push( c );
+  const e = d - 1;
+  const f = e >>> 1;
+  g( b, c, d, f );
+  const h = d - 1;
+  const i = h >>> 1;
+  g( b, c, d, i );
+  j( b, c, d );
+  j( b, c, d );
   return undefined;
 };
-const i = function($$0,$$1,$$2,$$3 ) {
-  const m = c;
-  const n = e;
-  const o = p;
-  const q = r;
+const g = function($$0,$$1,$$2,$$3 ) {
+  const k = $$0;
+  const l = $$1;
+  const m = $$2;
+  const n = $$3;
   debugger;
-  const s = m[ q ];
-  const t = $( s, n );
-  const u = t > 0;
-  if (u) {
-    m[q] = n;
-    m[o] = s;
+  const o = k[ n ];
+  const p = $( o, l );
+  const q = p > 0;
+  if (q) {
+    k[n] = l;
+    k[m] = o;
     while ($LOOP_UNROLL_100) {
-      const v = q > 0;
-      if (v) {
+      const r = n > 0;
+      if (r) {
         $( 123 );
       }
       else {
@@ -303,14 +303,14 @@ const i = function($$0,$$1,$$2,$$3 ) {
     return undefined;
   }
 };
-const l = function($$0,$$1,$$2 ) {
-  const w = c;
-  const x = e;
-  const y = p;
+const j = function($$0,$$1,$$2 ) {
+  const s = $$0;
+  const t = $$1;
+  const u = $$2;
   debugger;
-  w[y] = x;
-  const z = y > 0;
-  if (z) {
+  s[u] = t;
+  const v = u > 0;
+  if (v) {
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       $( 123 );
     }

@@ -81,11 +81,11 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
-  const d = /[^A-Za-z0-9\+\/\=]/g;
-  const e = b.replace( d, "" );
-  $( e );
+  const c = /[^A-Za-z0-9\+\/\=]/g;
+  const d = b.replace( c, "" );
+  $( d );
   return undefined;
 };
 a( "a!bc" );

@@ -74,11 +74,11 @@ With rename=true
 `````js filename=intro
 const a = function($$0,$$1,$$2 ) {
   const b = c;
-  const d = e;
-  const f = g;
+  const d = $$0;
+  const e = $$2;
   debugger;
-  const h = Boolean( b );
-  $( h, d, f );
+  const f = Boolean( b );
+  $( f, d, e );
   return undefined;
 };
 a();

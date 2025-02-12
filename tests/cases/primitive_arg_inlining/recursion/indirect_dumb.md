@@ -80,11 +80,11 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
-  const d = b + 1;
-  const e = a( d );
-  return e;
+  const c = b + 1;
+  const d = a( c );
+  return d;
 };
 throw "<max pcode call depth exceeded>; calling `const tmpCalleeParam$1 = g(0);`";
 `````

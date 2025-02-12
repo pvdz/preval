@@ -102,17 +102,17 @@ const a = function() {
   return b;
 };
 const c = function($$0 ) {
-  const d = e;
+  const d = $$0;
   debugger;
   return d;
 };
-const f = class   {
+const e = class   {
 
 };
-export { f as c };
-const g = $( 1 );
-const h = $( g );
-export { h as x };
+export { e as c };
+const f = $( 1 );
+const g = $( f );
+export { g as x };
 export { a as f };
 export { c as g };
 `````

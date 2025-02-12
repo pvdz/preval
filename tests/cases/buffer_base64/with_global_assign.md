@@ -78,16 +78,16 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
   unknown = b;
-  const d = Buffer.from( b, "base64" );
-  const e = d.toString( "utf8" );
-  return e;
+  const c = Buffer.from( b, "base64" );
+  const d = c.toString( "utf8" );
+  return d;
 };
 $( a );
-const f = a( "cGF0aA" );
-$( f );
+const e = a( "cGF0aA" );
+$( e );
 `````
 
 ## Globals

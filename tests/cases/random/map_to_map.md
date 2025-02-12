@@ -114,25 +114,25 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
-  const d = [ b, b ];
-  return d;
+  const c = [ b, b ];
+  return c;
 };
-const e = [ "clearInterval", "global.clearInterval" ];
-const f = [ "clearTimeout", "global.clearTimeout" ];
-const g = [ "console", "global.console" ];
-const h = [ "false", "boolean" ];
-const i = [ "null", "null" ];
-const j = [ "$", "$" ];
-const k = [ e, f, g, h, i, j ];
-const l = new Map( k );
-const m = l.keys();
-const n = [ ...m, "module" ];
-const o = n.map( a );
-const p = new Map( o );
-const q = p.get( "$" );
-$( q );
+const d = [ "clearInterval", "global.clearInterval" ];
+const e = [ "clearTimeout", "global.clearTimeout" ];
+const f = [ "console", "global.console" ];
+const g = [ "false", "boolean" ];
+const h = [ "null", "null" ];
+const i = [ "$", "$" ];
+const j = [ d, e, f, g, h, i ];
+const k = new Map( j );
+const l = k.keys();
+const m = [ ...l, "module" ];
+const n = m.map( a );
+const o = new Map( n );
+const p = o.get( "$" );
+$( p );
 `````
 
 ## Globals

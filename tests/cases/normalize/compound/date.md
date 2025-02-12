@@ -128,12 +128,12 @@ const d = {
     return b;
   },
   set x( $$0 ) {
-    const f = g;
+    const f = $$0;
     debugger;
-    const h = a;
-    const i = $coerce( f, "plustr" );
-    const j = `write[${i}];`;
-    a = h + j;
+    const g = a;
+    const h = $coerce( f, "plustr" );
+    const i = `write[${h}];`;
+    a = g + i;
     b = b + f;
     return b;
   },

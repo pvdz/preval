@@ -187,50 +187,50 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
   $( "no" );
   $( "inlining" );
   $( "please" );
-  const d = b( 1, "two", foo, NaN );
-  return d;
+  const c = b( 1, "two", foo, NaN );
+  return c;
 };
-const e = function($$0,$$1,$$2,$$3,$$4 ) {
-  const f = c;
-  const g = h;
-  const i = j;
-  const k = l;
-  const m = n;
+const d = function($$0,$$1,$$2,$$3,$$4 ) {
+  const e = $$0;
+  const f = $$1;
+  const g = $$2;
+  const h = $$3;
+  const i = $$4;
   debugger;
-  $( "pass1", f, g, i, k, m );
+  $( "pass1", e, f, g, h, i );
   return undefined;
 };
-const o = a( e );
-$( o );
-const p = function($$0,$$1,$$2,$$3,$$4 ) {
-  const q = c;
-  const r = h;
-  const s = j;
-  const t = l;
-  const u = n;
+const j = a( d );
+$( j );
+const k = function($$0,$$1,$$2,$$3,$$4 ) {
+  const l = $$0;
+  const m = $$1;
+  const n = $$2;
+  const o = $$3;
+  const p = $$4;
   debugger;
-  $( "pass2", q, r, s, t, u );
+  $( "pass2", l, m, n, o, p );
   return undefined;
 };
-const v = a( p );
-$( v );
-const w = function($$0,$$1,$$2,$$3,$$4 ) {
-  const x = c;
-  const y = h;
-  const z = j;
-  const ba = l;
-  const bb = n;
+const q = a( k );
+$( q );
+const r = function($$0,$$1,$$2,$$3,$$4 ) {
+  const s = $$0;
+  const t = $$1;
+  const u = $$2;
+  const v = $$3;
+  const w = $$4;
   debugger;
-  $( "pass3", x, y, z, ba, bb );
+  $( "pass3", s, t, u, v, w );
   return undefined;
 };
-const bc = a( w );
-$( bc );
+const x = a( r );
+$( x );
 `````
 
 ## Globals

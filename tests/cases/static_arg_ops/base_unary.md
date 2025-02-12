@@ -83,12 +83,12 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0,$$1,$$2 ) {
-  const b = c;
-  const d = e;
-  const f = g;
+  const b = $$0;
+  const c = $$1;
+  const d = $$2;
   debugger;
-  $( f );
-  $( b, 2, d );
+  $( d );
+  $( b, 2, c );
   return undefined;
 };
 a( 1, 3, -2 );

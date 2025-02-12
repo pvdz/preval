@@ -95,24 +95,24 @@ With rename=true
 `````js filename=intro
 const a = function($$0 ) {
   const b = this;
-  const c = d;
+  const c = $$0;
   debugger;
-  const e = $( c );
-  $( e, b );
-  const f = c[ 0 ];
-  return f;
+  const d = $( c );
+  $( d, b );
+  const e = c[ 0 ];
+  return e;
 };
-const g = { c: a };
-const h = { b: g };
-const i = $( h );
-const j = i == null;
-if (j) {
+const f = { c: a };
+const g = { b: f };
+const h = $( g );
+const i = h == null;
+if (i) {
   $( undefined );
 }
 else {
-  const k = i.b;
-  const l = k.c( 100 );
-  $( l );
+  const j = h.b;
+  const k = j.c( 100 );
+  $( k );
 }
 `````
 

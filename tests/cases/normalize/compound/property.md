@@ -129,19 +129,19 @@ const c = {
     return b;
   },
   set x( $$0 ) {
-    const e = f;
+    const e = $$0;
     debugger;
-    const g = a;
-    const h = $coerce( e, "plustr" );
-    const i = `write[${h}];`;
-    a = g + i;
+    const f = a;
+    const g = $coerce( e, "plustr" );
+    const h = `write[${g}];`;
+    a = f + h;
     b = b + e;
     return b;
   },
 };
-const j = c.x;
-const k = j + 5;
-c.x = k;
+const i = c.x;
+const j = i + 5;
+c.x = j;
 $( b, a );
 `````
 

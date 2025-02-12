@@ -124,34 +124,34 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0,$$1 ) {
-  const b = c;
-  const d = e;
+  const b = $$0;
+  const c = $$1;
   debugger;
-  const f = b === undefined;
-  if (f) {
+  const d = b === undefined;
+  if (d) {
     throw "Preval: TDZ triggered for this read: ((tmpParamBare === undefined)? b : tmpParamBare)";
   }
   else {
-    let g = "bar";
-    const h = d === undefined;
-    if (h) {
+    let e = "bar";
+    const f = c === undefined;
+    if (f) {
 
     }
     else {
-      g = d;
+      e = c;
     }
-    const i = [ b, g ];
-    return i;
+    const g = [ b, e ];
+    return g;
   }
 };
-const j = a();
+const h = a();
+$( h );
+const i = a( "x" );
+$( i );
+const j = a( undefined, "y" );
 $( j );
-const k = a( "x" );
+const k = a( "x", "y" );
 $( k );
-const l = a( undefined, "y" );
-$( l );
-const m = a( "x", "y" );
-$( m );
 `````
 
 ## Globals

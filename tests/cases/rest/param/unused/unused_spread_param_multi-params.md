@@ -78,18 +78,18 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0,$$1 ) {
-  const b = c;
-  const d = e;
+  const b = $$0;
+  const c = $$1;
   debugger;
-  const f = [];
-  $( b, d, f );
+  const d = [];
+  $( b, c, d );
   return undefined;
 };
 a( 1, 2 );
 a( "a", "b" );
-const g = $spy();
-const h = $spy();
-a( g, h );
+const e = $spy();
+const f = $spy();
+a( e, f );
 `````
 
 ## Globals

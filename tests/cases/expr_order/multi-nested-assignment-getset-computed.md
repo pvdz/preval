@@ -496,149 +496,149 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
-  const d = [ "$:", b, e, f, g, h, i, j, k, l, m, "::", ...b ];
-  $( d );
-  const n = b[ 0 ];
-  return n;
+  const c = [ "$:", b, d, e, f, g, h, i, j, k, l, "::", ...b ];
+  $( c );
+  const m = b[ 0 ];
+  return m;
 };
-const i = {
+const h = {
   get a() {
     debugger;
     a( "a.get" );
     return 110;
   },
   set a( $$0 ) {
-    const o = c;
+    const n = $$0;
     debugger;
-    a( "a.set", o );
+    a( "a.set", n );
     return 1000;
   },
 };
-const j = {
+const i = {
   get b() {
     debugger;
     a( "b.get" );
-    p = 210;
+    o = 210;
     return 100;
   },
   set b( $$0 ) {
-    const q = c;
+    const p = $$0;
     debugger;
-    a( "b.set", q );
-    p = 2100;
+    a( "b.set", p );
+    o = 2100;
     return 2000;
   },
 };
-const k = {
+const j = {
   get c() {
     debugger;
     a( "c.get" );
-    p = 310;
-    e = 320;
+    o = 310;
+    d = 320;
     return 100;
   },
   set c( $$0 ) {
-    const r = c;
+    const q = $$0;
     debugger;
-    a( "c.set", r );
-    p = 3100;
-    e = 3200;
+    a( "c.set", q );
+    o = 3100;
+    d = 3200;
     return 3000;
   },
 };
-const l = {
+const k = {
   get d() {
     debugger;
     a( "d.get" );
-    p = 410;
-    e = 420;
-    f = 430;
+    o = 410;
+    d = 420;
+    e = 430;
     return 100;
   },
   set d( $$0 ) {
-    const s = c;
+    const r = $$0;
     debugger;
-    a( "d.set", s );
-    p = 4100;
-    e = 4200;
-    f = 4300;
+    a( "d.set", r );
+    o = 4100;
+    d = 4200;
+    e = 4300;
     return 4000;
   },
 };
-const m = {
+const l = {
   get e() {
     debugger;
     a( "e.get" );
-    p = 510;
-    e = 520;
-    f = 530;
-    g = 540;
+    o = 510;
+    d = 520;
+    e = 530;
+    f = 540;
     return 100;
   },
   set e( $$0 ) {
-    const t = c;
+    const s = $$0;
     debugger;
-    a( "e.set", t );
-    p = 5100;
-    e = 5200;
-    f = 5300;
-    g = 5400;
+    a( "e.set", s );
+    o = 5100;
+    d = 5200;
+    e = 5300;
+    f = 5400;
     return 5000;
   },
 };
-let p = function() {
+let o = function() {
   debugger;
   a( "a" );
+  return h;
+};
+let d = function() {
+  debugger;
+  a( "b" );
+  o = 21;
   return i;
 };
 let e = function() {
   debugger;
-  a( "b" );
-  p = 21;
+  a( "c" );
+  o = 31;
+  d = 32;
   return j;
 };
 let f = function() {
   debugger;
-  a( "c" );
-  p = 31;
-  e = 32;
+  a( "d" );
+  o = 41;
+  d = 42;
+  e = 43;
   return k;
 };
-let g = function() {
-  debugger;
-  a( "d" );
-  p = 41;
-  e = 42;
-  f = 43;
-  return l;
-};
-const h = function() {
+const g = function() {
   debugger;
   a( "e" );
-  p = 51;
-  e = 52;
-  f = 53;
-  g = 54;
-  return m;
+  o = 51;
+  d = 52;
+  e = 53;
+  f = 54;
+  return l;
 };
-const u = p();
-const v = a( "a" );
-const w = e();
-const x = a( "b" );
-const y = f();
-const z = a( "c" );
-const ba = g();
-const bb = a( "d" );
-h();
-ba[bb] = m;
-y[z] = m;
-w[x] = m;
-u[v] = m;
-a( m );
-a( p, e, f, g, h );
-a( i, j, k, l, m );
+const t = o();
+const u = a( "a" );
+const v = d();
+const w = a( "b" );
+const x = e();
+const y = a( "c" );
+const z = f();
+const ba = a( "d" );
+g();
+z[ba] = l;
+x[y] = l;
+v[w] = l;
+t[u] = l;
+a( l );
+a( o, d, e, f, g );
+a( h, i, j, k, l );
 `````
 
 ## Globals

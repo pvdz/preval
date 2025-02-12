@@ -98,13 +98,13 @@ With rename=true
 `````js filename=intro
 const a = function($$0,$$1,$$2,$$3 ) {
   const b = c.length;
-  const d = e;
-  const f = g;
-  const h = i;
-  const j = k;
+  const d = $$0;
+  const e = $$1;
+  const f = $$2;
+  const g = $$3;
   debugger;
   if ($) {
-    $( d, f, h, j, b, "hopefully b is a literal afterwards" );
+    $( d, e, f, g, b, "hopefully b is a literal afterwards" );
     return undefined;
   }
   else {

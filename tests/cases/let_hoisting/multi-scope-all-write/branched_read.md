@@ -129,19 +129,19 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
-  const d = b === "";
-  if (d) {
+  const c = b === "";
+  if (c) {
     return true;
   }
   else {
-    const e = $( "." );
-    const f = e === ".";
-    if (f) {
-      const g = $( "" );
-      const h = g !== ".";
-      return h;
+    const d = $( "." );
+    const e = d === ".";
+    if (e) {
+      const f = $( "" );
+      const g = f !== ".";
+      return g;
     }
     else {
       return false;

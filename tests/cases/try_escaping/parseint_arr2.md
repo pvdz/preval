@@ -116,27 +116,27 @@ With rename=true
 
 `````js filename=intro
 const a = function b($$0 ) {
-  const c = d;
+  const c = $$0;
   debugger;
-  const e = parseInt( c );
-  const f = e / 1;
-  return f;
+  const d = parseInt( c );
+  const e = d / 1;
+  return e;
 };
-const g = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k" ];
+const f = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k" ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const h = g[ 2 ];
-  $( h );
-  const i = j( a, h );
-  if (i) {
+  const g = f[ 2 ];
+  $( g );
+  const h = i( a, g );
+  if (h) {
     break;
   }
   else {
-    const k = g.shift();
-    g.push( k );
+    const j = f.shift();
+    f.push( j );
   }
 }
-const l = g[ 1 ];
-$( l );
+const k = f[ 1 ];
+$( k );
 `````
 
 ## Globals

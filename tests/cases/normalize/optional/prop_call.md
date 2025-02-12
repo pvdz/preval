@@ -86,24 +86,24 @@ With rename=true
 `````js filename=intro
 const a = function($$0 ) {
   const b = this;
-  const c = d;
+  const c = $$0;
   debugger;
-  const e = b.y;
-  $( c, e );
+  const d = b.y;
+  $( c, d );
   return undefined;
 };
-const f = {
+const e = {
   x: a,
   y: 100,
 };
-const g = $( f );
-const h = g.x;
-const i = h == null;
-if (i) {
+const f = $( e );
+const g = f.x;
+const h = g == null;
+if (h) {
 
 }
 else {
-  $dotCall( h, g, 1, 2, 3 );
+  $dotCall( g, f, 1, 2, 3 );
 }
 `````
 

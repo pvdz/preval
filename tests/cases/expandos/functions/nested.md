@@ -108,17 +108,17 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
-  const d = function() {
+  const c = function() {
     debugger;
     $( b );
     return undefined;
   };
   if ($) {
-    d.foo = b;
-    const e = d.foo;
-    $( e );
+    c.foo = b;
+    const d = c.foo;
+    $( d );
     return undefined;
   }
   else {

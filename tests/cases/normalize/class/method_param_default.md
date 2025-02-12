@@ -87,21 +87,21 @@ With rename=true
 `````js filename=intro
 const a = class   {
 y( $$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
-  const d = b === undefined;
-  if (d) {
-    const e = $( 10, "default" );
-    return e;
+  const c = b === undefined;
+  if (c) {
+    const d = $( 10, "default" );
+    return d;
   }
   else {
     return b;
   }
 }
 };
-const f = new a();
-const g = f.y();
-$( g );
+const e = new a();
+const f = e.y();
+$( f );
 `````
 
 ## Globals

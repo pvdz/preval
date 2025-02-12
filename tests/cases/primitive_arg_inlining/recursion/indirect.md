@@ -107,21 +107,21 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
-  const d = b + 1;
-  const e = $( d );
-  const f = e > 1000;
-  if (f) {
-    return d;
+  const c = b + 1;
+  const d = $( c );
+  const e = d > 1000;
+  if (e) {
+    return c;
   }
   else {
-    const g = a( d );
-    return g;
+    const f = a( c );
+    return f;
   }
 };
-const h = a( 0 );
-$( h );
+const g = a( 0 );
+$( g );
 `````
 
 ## Globals

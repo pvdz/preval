@@ -75,13 +75,13 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
-  const d = $( b, "g" );
-  return d;
+  const c = $( b, "g" );
+  return c;
 };
-const e = new a( 10 );
-$( e, "outer" );
+const d = new a( 10 );
+$( d, "outer" );
 `````
 
 ## Globals

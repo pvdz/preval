@@ -121,18 +121,18 @@ With rename=true
 let a = true;
 const b = function($$0,$$1,$$2 ) {
   const c = this;
-  const d = e;
-  const f = g;
-  const h = i;
+  const d = $$0;
+  const e = $$1;
+  const f = $$2;
   debugger;
-  $( "call me once", c, d, f, h );
+  $( "call me once", c, d, e, f );
   return undefined;
 };
-const j = function() {
+const g = function() {
   debugger;
   if (a) {
-    const k = {};
-    b.call( k, 1, 2, 3 );
+    const h = {};
+    b.call( h, 1, 2, 3 );
     a = false;
     return undefined;
   }
@@ -140,9 +140,9 @@ const j = function() {
     throw "Preval: cannot call a locked function (binding overwritten with non-func)";
   }
 };
-j();
+g();
 $( undefined );
-j();
+g();
 $( undefined );
 `````
 

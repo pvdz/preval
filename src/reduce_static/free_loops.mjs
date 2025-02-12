@@ -157,6 +157,12 @@ export function _freeLoops(fdata, prng, usePrng) {
 // For example, primitive operations are fully predictable.
 // But also, pushing a primitive into an array literal.
 function isFree(node, fdata, callTypes, declaredNameTypes, insideWhile) {
+  vgroup('isFree(', node.type, ')');
+  const r = _isFree(node, fdata, callTypes, declaredNameTypes, insideWhile);
+  vgroupEnd();
+  return r;
+}
+function _isFree(node, fdata, callTypes, declaredNameTypes, insideWhile) {
   ASSERT(node, 'should receive a node at least');
   ASSERT(arguments.length === 5, 'arg count to isFree');
 
@@ -636,7 +642,7 @@ function isFree(node, fdata, callTypes, declaredNameTypes, insideWhile) {
     case 'WhileStatement': {
       if (insideWhile) {
         // Gotta make sure these loop pid uses a single counter (or shared), otherwise they can explode
-        return true;
+        return isFree(node.body, fdata, callTypes, declaredNameTypes, insideWhile);
       }
 
       // Do not skip over previous loops in the same block. It leads to trouble. If they can be eliminated, they will be.

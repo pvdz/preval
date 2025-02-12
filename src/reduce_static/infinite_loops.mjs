@@ -59,17 +59,24 @@ function _infiniteLoops(fdata) {
           const parentNode = path.nodes[path.nodes.length - 2];
           const parentProp = path.props[path.props.length - 1];
           const parentIndex = path.indexes[path.indexes.length - 1];
-          if ((parentNode.type === 'BlockStatement' || parentNode.type === 'Program') && parentProp === 'body' && parentNode.body[parentIndex + 1]?.type !== 'ThrowStatement') {
+          if (
+            (parentNode.type === 'BlockStatement' || parentNode.type === 'Program') &&
+            parentProp === 'body' &&
+            parentNode.body[parentIndex + 1]?.type !== 'ThrowStatement'
+          ) {
+            if (node.test.type === 'Identifier' && node.test.name === SYMBOL_MAX_LOOP_UNROLL) {
+              // Already good
+            } else {
+              rule('An infinite loop should never be unrolled');
+              example('while (true) {}', 'while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {}');
+              before(node);
 
-            rule('An infinite loop should never be unrolled');
-            example('while (true) {}', 'while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {}');
-            before(node);
+              node.test = AST.identifier(SYMBOL_MAX_LOOP_UNROLL);
 
-            node.test = AST.identifier(SYMBOL_MAX_LOOP_UNROLL);
-
-            after(node);
-            // I don't think this really changes much so it doesn't require a loop restart...? a rare case indeed
-            //++changed;
+              after(node);
+              // I don't think this really changes much so it doesn't require a loop restart...? a rare case indeed
+              //++changed;
+            }
           }
         }
 

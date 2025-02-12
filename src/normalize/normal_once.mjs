@@ -47,7 +47,7 @@ import { cloneSortOfSimple, isSortOfSimpleNode, normalizeFunction, transformFunc
 import { SYMBOL_FORIN, SYMBOL_FOROF, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_COERCE } from '../symbols_preval.mjs';
 
 // See also the prepare logic. TODO: move this to config.
-const HOIST_FUNC_STMTS = true;
+const HOIST_FUNC_STMTS = false;
 
 export function phaseNormalOnce(fdata) {
   const ast = fdata.tenkoOutput.ast;
@@ -219,6 +219,56 @@ export function phaseNormalOnce(fdata) {
         break;
       }
       case 'BlockStatement:before': {
+        if (!HOIST_FUNC_STMTS) {
+          if (node.$p.hasFuncDecl) {
+            vlog('Should find at least one func decl in this block...');
+          }
+          const funcsToHoist = []; // Note: these are block scoped var decls.
+          for (let i = 0; i < node.body.length; ++i) {
+            const enode = node.body[i];
+            if (enode.type === 'FunctionDeclaration') {
+              if (enode.$p.isBlockFuncDecl) {
+                ASSERT(node.$p.hasFuncDecl, 'parent block should be marked as having a func decl', node);
+                vlog('- Found a func decl');
+                // Hoist it to the top of the block as a var statement...
+                funcsToHoist.push(enode);
+                node.body.splice(i, 1);
+                --i;
+              }
+            }
+          }
+
+          if (funcsToHoist.length) {
+            rule('Hoist block scoped var decls to the top of the block, sort them, and convert them to `let` decls');
+            example('{ f(); function f(){} }', '{ let f = function(){}; f(); }');
+            before(node);
+
+            funcsToHoist.sort(({ id: a }, { id: b }) => (a < b ? -1 : a > b ? 1 : 0));
+            const newNodes = funcsToHoist.map((enode) => {
+              group();
+              before(enode);
+
+              const decl = AST.variableDeclaration(enode.id, enode, 'let'); // If we did not have strict mode then this would be var. But import code is strict so this is let, probably even const.
+              enode.type = 'FunctionExpression';
+              enode.id = null;
+              enode.$p.isBlockFuncDecl = false;
+
+              after(decl);
+              groupEnd();
+              return decl;
+            });
+
+            // This is a block and that may still be the body of a function, or not. Try to find the debugger
+            // statement, which is our function header marker, and start after its index if it exists, zero otherwise.
+            let bodyOffset = findBodyOffsetExpensiveMaybe(node.body);
+            if (bodyOffset < 0) bodyOffset = 0;
+            node.body.splice(bodyOffset, 0, ...newNodes);
+
+            node.$p.hasFuncDecl = false;
+
+            after(node);
+          }
+        }
         break;
       }
       case 'BlockStatement:after': {
@@ -242,7 +292,7 @@ export function phaseNormalOnce(fdata) {
             }
           }
           if (funcStmtsToHoist.length) {
-            let where = path.nodes.length - 3;
+            let where = path.nodes.length - 2;
             let scopeNode = path.nodes[where];
             while (scopeNode.type !== 'FunctionExpression' && scopeNode.type !== 'FunctionDeclaration' && scopeNode.type !== 'Program') {
               ASSERT(where > 0, 'should always find the func/global scope');

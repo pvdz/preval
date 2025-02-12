@@ -166,15 +166,17 @@ export const pcodeSupportedBuiltinFuncs = new Set([
 export function runFreeWithPcode(funcNode, argNodes, fdata, freeFuncName, $prng, usePrng) {
   source(funcNode, true);
   const callsWhenCompiled = pcanCompile(funcNode, fdata, freeFuncName);
-  vlog('Can pcode body?', freeFuncName, callsWhenCompiled);
+  vlog('Can pcode body?', freeFuncName, !!callsWhenCompiled, callsWhenCompiled ? 'Proceeding with compile and run...' : 'Not compiling or running...');
   if (callsWhenCompiled) {
+    vgroup('Compiling:');
     const pcode = pcompile(funcNode, fdata);
+    vgroupEnd();
     // Temp
     fdata.pcodeOutput = new Map;
-    fdata.pcodeOutput.set(+funcNode.$p.pid, { pcode, funcNode, name: freeFuncName });
-    fdata.pcodeOutput.set(freeFuncName, { pcode, funcNode, name: freeFuncName });
-    vlog('pcode:', pcode);
-    vlog('Getting primitives from args:', argNodes);
+    fdata.pcodeOutput.set(+funcNode.$p.pid, { pcode, funcNode, name: freeFuncName, bytecode: pcode });
+    fdata.pcodeOutput.set(freeFuncName, { pcode, funcNode, name: freeFuncName, bytecode: pcode });
+    vlog('Compiled pcode:', pcode);
+    vlog('Getting primitives from args:', argNodes, argNodes);
     const args = argNodes.map(anode => AST.getPrimitiveValue(anode));
     vlog('Now running pcode with args:', args);
     const out = runPcode(freeFuncName, args, fdata.pcodeOutput, fdata, $prng, usePrng);
@@ -224,7 +226,7 @@ export function pcanCompile(funcNode, fdata, funcNameForDebug) {
   const calls = new Set; // Track which idents are called. We must verify them separately.
   const locals = new Map;
   if (pcanCompileBody(locals, calls, funcNode.body.body, fdata)) {
-    vlog('- ok:');
+    vlog('- pcode can compile body:');
     vlog('  - the func calls:', calls);
     vlog('  - the local regs:', locals);
     return calls;
@@ -757,10 +759,10 @@ export function runPcode(funcName, args, pcodeData, fdata, prng, usePrng, depth 
     vgroup();
     vgroup();
     vgroup();
-    vgroup('Bytecode not found. Compiling now...');
+    vgroup('Bytecode not found for', funcName,'. Compiling now...');
     bytecode = obj.bytecode = pcompile(obj.funcNode, fdata);
     vgroupEnd();
-    vlog('Compilation finished. Running', funcName, 'now...');
+    vlog('Compilation finished for', funcName,'. Running', funcName, 'now...');
     vgroupEnd();
     vgroupEnd();
     vgroupEnd();

@@ -927,7 +927,7 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
     case '**': return prunVal(registers, op[2], op[3]) ** prunVal(registers, op[4], op[5]);
 
     case '<<': return prunVal(registers, op[2], op[3]) << prunVal(registers, op[4], op[5]);
-    case '>>': return prunVal(registers, op[2], op[3]) << prunVal(registers, op[4], op[5]);
+    case '>>': return prunVal(registers, op[2], op[3]) >> prunVal(registers, op[4], op[5]);
     case '>>>': return prunVal(registers, op[2], op[3]) >>> prunVal(registers, op[4], op[5]);
 
     case 'call': {

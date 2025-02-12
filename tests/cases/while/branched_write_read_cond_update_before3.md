@@ -81,7 +81,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 let x = $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpIfTest /*:number*/ = x % 3;
-  let thisisanumber /*:primitive*/ = false;
+  let thisisanumber /*:number*/ = 0;
   if (tmpIfTest) {
     x = $(10, `ten`);
     thisisanumber = x % 2;
@@ -105,7 +105,7 @@ With rename=true
 let a = $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const b = a % 3;
-  let c = false;
+  let c = 0;
   if (b) {
     a = $( 10, "ten" );
     c = a % 2;

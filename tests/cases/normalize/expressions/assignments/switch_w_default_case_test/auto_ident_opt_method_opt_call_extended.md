@@ -105,7 +105,7 @@ $(a);
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 let a = undefined;
-let tmpIfTest /*:primitive*/ = undefined;
+let tmpIfTest /*:boolean*/ = false;
 const tmpIfTest$3 /*:boolean*/ = $ == null;
 if (tmpIfTest$3) {
   tmpIfTest = undefined === tmpSwitchValue;
@@ -141,7 +141,7 @@ With rename=true
 const a = $( 1 );
 let b = 1;
 let c = undefined;
-let d = undefined;
+let d = false;
 const e = $ == null;
 if (e) {
   d = undefined === a;

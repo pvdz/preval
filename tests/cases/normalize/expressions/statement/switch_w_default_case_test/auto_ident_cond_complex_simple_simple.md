@@ -100,7 +100,7 @@ $(a);
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const tmpIfTest$1 = $(1);
-let tmpIfTest /*:primitive*/ = undefined;
+let tmpIfTest /*:boolean*/ = false;
 if (tmpIfTest$1) {
   tmpIfTest = 2 === tmpSwitchValue;
 } else {
@@ -139,7 +139,7 @@ With rename=true
 const a = $( 1 );
 let b = 1;
 const c = $( 1 );
-let d = undefined;
+let d = false;
 if (c) {
   d = 2 === a;
 }

@@ -367,7 +367,7 @@ const tmpFree /*:(unknown, unknown)=>number*/ = function $free($$0, $$1) {
   const tmpRet /*:number*/ = tmpBinLhs | tmpBinBothRhs$5;
   return tmpRet;
 };
-let a /*:primitive*/ = undefined;
+let a /*:number*/ = 0;
 let hoezithetmetdezeb = undefined;
 let counter_a /*:number*/ = 4;
 let counter_b /*:number*/ = 0;
@@ -437,7 +437,7 @@ while (true) {
           }
         }
         const tmpIfTest$7 /*:boolean*/ = hoezithetmetdezeb < 28;
-        let tmpIfTest$10 /*:primitive*/ = undefined;
+        let tmpIfTest$10 /*:boolean*/ = false;
         if (tmpIfTest$7) {
           hoezithetmetdezeb = hoezithetmetdezeb + 2;
           tmpIfTest$10 = 0 < hoezithetmetdezeb;
@@ -505,7 +505,7 @@ const a = function b($$0,$$1 ) {
   const h = g | e;
   return h;
 };
-let i = undefined;
+let i = 0;
 let j = undefined;
 let k = 4;
 let l = 0;
@@ -584,7 +584,7 @@ while (true) {
           }
         }
         const bp = j < 28;
-        let bq = undefined;
+        let bq = false;
         if (bp) {
           j = j + 2;
           bq = 0 < j;

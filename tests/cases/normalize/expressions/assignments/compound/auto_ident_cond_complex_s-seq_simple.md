@@ -50,7 +50,7 @@ $(a);
 
 `````js filename=intro
 const tmpIfTest = $(1);
-let tmpClusterSSA_a /*:primitive*/ = undefined;
+let tmpClusterSSA_a /*:number*/ = 0;
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   tmpClusterSSA_a = a * 60;
@@ -70,7 +70,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = undefined;
+let b = 0;
 const c = {
   a: 999,
   b: 1000,

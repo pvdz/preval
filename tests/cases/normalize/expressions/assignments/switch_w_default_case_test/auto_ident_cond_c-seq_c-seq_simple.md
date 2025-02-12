@@ -89,11 +89,11 @@ $(a);
 
 
 `````js filename=intro
-let a = 1;
+let a = undefined;
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const tmpIfTest$1 = $(30);
-let tmpIfTest /*:primitive*/ = undefined;
+let tmpIfTest /*:boolean*/ = false;
 if (tmpIfTest$1) {
   a = $(60);
   tmpIfTest = a === tmpSwitchValue;
@@ -125,11 +125,11 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = 1;
+let a = undefined;
 const b = $( 1 );
 let c = 1;
 const d = $( 30 );
-let e = undefined;
+let e = false;
 if (d) {
   a = $( 60 );
   e = a === b;

@@ -112,7 +112,7 @@ if (tmpBinLhs) {
   tmpBinLhs = $(tmpCalleeParam$1);
 } else {
 }
-let tmpIfTest /*:primitive*/ = undefined;
+let tmpIfTest /*:boolean*/ = false;
 if (tmpBinLhs) {
   tmpIfTest = tmpBinLhs === tmpSwitchValue;
 } else {
@@ -156,7 +156,7 @@ if (d) {
   const e = $( 1 );
   d = $( e );
 }
-let f = undefined;
+let f = false;
 if (d) {
   f = d === a;
 }

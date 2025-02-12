@@ -51,7 +51,7 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
 const tmpBinBothRhs = $(tmpCalleeParam$1);
-let tmpClusterSSA_a /*:primitive*/ = undefined;
+let tmpClusterSSA_a /*:number*/ = 0;
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpBinBothRhs) {
   const tmpCalleeParam$3 = $(2);
@@ -72,7 +72,7 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = $( a );
-let c = undefined;
+let c = 0;
 const d = {
   a: 999,
   b: 1000,

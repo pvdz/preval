@@ -112,3 +112,12 @@ Output inverse calls: BAD!!
  - 3: 0
  - 4: 2
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+
+
+
+Denormalized inverse calls: BAD!!
+ - 1: { b: '"<$>"' }
+ - 2: ''
+ - 3: 0
+ - 4: 2
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')

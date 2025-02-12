@@ -55,7 +55,7 @@ $(a, b);
 
 
 `````js filename=intro
-let a = 1;
+let a = undefined;
 $(1);
 $(1);
 $(1);
@@ -85,7 +85,7 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-let a = 1;
+let a = undefined;
 $( 1 );
 $( 1 );
 $( 1 );

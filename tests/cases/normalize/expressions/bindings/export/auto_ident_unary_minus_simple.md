@@ -39,7 +39,7 @@ $(a, arg);
 
 
 `````js filename=intro
-const a /*:number*/ = -1;
+const a /*:undefined*/ = undefined;
 export { a };
 $(-1, 1);
 `````
@@ -49,7 +49,7 @@ $(-1, 1);
 With rename=true
 
 `````js filename=intro
-const a = -1;
+const a = undefined;
 export { a as a };
 $( -1, 1 );
 `````

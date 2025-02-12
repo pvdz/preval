@@ -50,7 +50,7 @@ $(a);
 
 `````js filename=intro
 const tmpIfTest = $(30);
-let tmpClusterSSA_a /*:primitive*/ = undefined;
+let tmpClusterSSA_a /*:number*/ = 0;
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpClusterSSA_tmpBinBothRhs = $(60);
@@ -71,7 +71,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 30 );
-let b = undefined;
+let b = 0;
 const c = {
   a: 999,
   b: 1000,

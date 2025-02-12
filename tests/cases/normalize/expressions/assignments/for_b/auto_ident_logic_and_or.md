@@ -62,7 +62,7 @@ $(a);
 
 
 `````js filename=intro
-let a = 1;
+let a = undefined;
 loopStop: {
   const tmpCalleeParam = $(1);
   let tmpClusterSSA_a = $(tmpCalleeParam);
@@ -291,7 +291,7 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = 1;
+let a = undefined;
 loopStop: {
   const b = $( 1 );
   let c = $( b );

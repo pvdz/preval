@@ -51,11 +51,14 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
+const tmpCompObj = $(b);
+const tmpNewCallee = tmpCompObj.$;
+new tmpNewCallee(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCompObj = $(b);
-  const tmpNewCallee = tmpCompObj.$;
-  new tmpNewCallee(1);
   $(100);
+  const tmpCompObj$1 = $(b);
+  const tmpNewCallee$1 = tmpCompObj$1.$;
+  new tmpNewCallee$1(1);
 }
 `````
 
@@ -65,11 +68,14 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
+const b = $( a );
+const c = b.$;
+new c( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const b = $( a );
-  const c = b.$;
-  new c( 1 );
   $( 100 );
+  const d = $( a );
+  const e = d.$;
+  new e( 1 );
 }
 `````
 

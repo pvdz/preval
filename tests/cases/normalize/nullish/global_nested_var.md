@@ -54,7 +54,7 @@ $(c);
 const b = $(2);
 const tmpIfTest /*:boolean*/ = b == null;
 let c = undefined;
-let tmpIfTest$1 /*:primitive*/ = undefined;
+let tmpIfTest$1 /*:boolean*/ = false;
 if (tmpIfTest) {
   const tmpClusterSSA_b = toString;
   c = tmpClusterSSA_b;
@@ -79,7 +79,7 @@ With rename=true
 const a = $( 2 );
 const b = a == null;
 let c = undefined;
-let d = undefined;
+let d = false;
 if (b) {
   const e = toString;
   c = e;

@@ -48,7 +48,7 @@ $(a);
 
 
 `````js filename=intro
-let a = 1;
+let a = undefined;
 const tmpBinBothLhs = $(100);
 const tmpIfTest = $(30);
 if (tmpIfTest) {
@@ -69,7 +69,7 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = 1;
+let a = undefined;
 const b = $( 100 );
 const c = $( 30 );
 if (c) {

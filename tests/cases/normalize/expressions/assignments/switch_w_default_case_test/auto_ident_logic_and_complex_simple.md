@@ -92,7 +92,7 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const tmpCalleeParam = $(1);
 let a = $(tmpCalleeParam);
-let tmpIfTest /*:primitive*/ = undefined;
+let tmpIfTest /*:boolean*/ = false;
 if (a) {
   a = 2;
   tmpIfTest = 2 === tmpSwitchValue;
@@ -126,7 +126,7 @@ const a = $( 1 );
 let b = 1;
 const c = $( 1 );
 let d = $( c );
-let e = undefined;
+let e = false;
 if (d) {
   d = 2;
   e = 2 === a;

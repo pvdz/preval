@@ -63,7 +63,7 @@ if (itooamanumberjack) {
 
 
 `````js filename=intro
-let itooamanumberjack /*:primitive*/ = false;
+let itooamanumberjack /*:number*/ = 0;
 if (imanumberandilovethrees) {
   const tmpBinLhs = $(1);
   itooamanumberjack = tmpBinLhs % 2;
@@ -83,7 +83,7 @@ if (itooamanumberjack) {
 With rename=true
 
 `````js filename=intro
-let a = false;
+let a = 0;
 if (imanumberandilovethrees) {
   const b = $( 1 );
   a = b % 2;

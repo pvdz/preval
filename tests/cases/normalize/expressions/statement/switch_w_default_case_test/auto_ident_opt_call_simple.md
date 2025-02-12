@@ -98,7 +98,7 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
-let tmpIfTest /*:primitive*/ = undefined;
+let tmpIfTest /*:boolean*/ = false;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
   tmpIfTest = undefined === tmpSwitchValue;
@@ -136,7 +136,7 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 let b = 1;
-let c = undefined;
+let c = false;
 const d = $ == null;
 if (d) {
   c = undefined === a;

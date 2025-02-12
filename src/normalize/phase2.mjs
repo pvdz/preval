@@ -101,6 +101,7 @@ import { buffer_base64 } from "../reduce_static/buffer_base64.mjs"
 import { letAliasRedundant } from '../reduce_static/let_alias_redundant.mjs';
 import { freeLoops } from '../reduce_static/free_loops.mjs';
 import { freeNested } from '../reduce_static/free_nested.mjs';
+import { redundantInit } from '../reduce_static/redundant_init.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
@@ -227,6 +228,7 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
   });
 
   const action = (
+    redundantInit(fdata) ||
     freeFuncs(fdata, prng, !!options.prngSeed) || // Do this first...?
 
     coercials(fdata) ||
@@ -330,11 +332,11 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
 
     freeLoops(fdata, prng, !!options.prngSeed) || // Most other stuff should probably precede this?
 
-    freeing(fdata, prng, !!options.prngSeed) // Do this last. Let other tricks precede it.
+    freeing(fdata, prng, !!options.prngSeed) || // Do this last. Let other tricks precede it.
 
     //// This one is very invasive and expands the code. Needs more work.
     //phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit) ||
-  );
+  undefined);
 
   ASSERT(action === undefined || (action && typeof action === 'object'), 'plugins must return an object or undefined', action);
   if (!action) {

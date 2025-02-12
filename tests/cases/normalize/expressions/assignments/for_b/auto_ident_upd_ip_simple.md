@@ -55,7 +55,7 @@ $(a, b);
 
 `````js filename=intro
 let b /*:number*/ = 12;
-let a = 1;
+let a = undefined;
 $(1);
 $(1);
 $(1);
@@ -85,7 +85,7 @@ With rename=true
 
 `````js filename=intro
 let a = 12;
-let b = 1;
+let b = undefined;
 $( 1 );
 $( 1 );
 $( 1 );

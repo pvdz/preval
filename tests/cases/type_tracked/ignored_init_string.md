@@ -63,7 +63,7 @@ if (itooamanumberjack) {
 
 
 `````js filename=intro
-let itooamanumberjack /*:primitive*/ = false;
+let itooamanumberjack /*:string*/ = ``;
 if (imanumberandilovethrees) {
   const tmpStringFirstArg = $(1);
   itooamanumberjack = $coerce(tmpStringFirstArg, `string`);
@@ -83,7 +83,7 @@ if (itooamanumberjack) {
 With rename=true
 
 `````js filename=intro
-let a = false;
+let a = "";
 if (imanumberandilovethrees) {
   const b = $( 1 );
   a = $coerce( b, "string" );

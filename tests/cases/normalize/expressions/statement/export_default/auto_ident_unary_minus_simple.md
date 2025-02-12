@@ -42,7 +42,7 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport /*:number*/ = -1;
+const tmpAnonDefaultExport /*:undefined*/ = undefined;
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, 1);
@@ -53,7 +53,7 @@ $(a, 1);
 With rename=true
 
 `````js filename=intro
-const a = -1;
+const a = undefined;
 export { a as default };
 const b = {
   a: 999,

@@ -105,7 +105,7 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const tmpChainElementCall = $($);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
-let tmpIfTest /*:primitive*/ = undefined;
+let tmpIfTest /*:boolean*/ = false;
 if (tmpIfTest$1) {
   tmpIfTest = undefined === tmpSwitchValue;
 } else {
@@ -145,7 +145,7 @@ const a = $( 1 );
 let b = 1;
 const c = $( $ );
 const d = c == null;
-let e = undefined;
+let e = false;
 if (d) {
   e = undefined === a;
 }

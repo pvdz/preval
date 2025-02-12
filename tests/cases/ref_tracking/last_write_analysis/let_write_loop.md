@@ -62,7 +62,7 @@ $(simplifyMe);
 
 `````js filename=intro
 new $(1);
-let simplifyMe = 1;
+let simplifyMe = undefined;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   const tmp = $(1);
@@ -81,7 +81,7 @@ With rename=true
 
 `````js filename=intro
 new $( 1 );
-let a = 1;
+let a = undefined;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
   const b = $( 1 );

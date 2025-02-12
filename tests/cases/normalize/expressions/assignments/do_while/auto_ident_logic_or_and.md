@@ -68,7 +68,7 @@ $(a);
 
 
 `````js filename=intro
-let a = 1;
+let a = undefined;
 loopStop: {
   $(100);
   const tmpCalleeParam = $(0);
@@ -297,7 +297,7 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = 1;
+let a = undefined;
 loopStop: {
   $( 100 );
   const b = $( 0 );

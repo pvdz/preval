@@ -67,7 +67,7 @@ if (itooamanumberjack) {
 
 
 `````js filename=intro
-let itooamanumberjack /*:primitive*/ = 0;
+let itooamanumberjack /*:boolean*/ = false;
 if (imanumberandilovethrees) {
   const tmpCalleeParam = $(true);
   itooamanumberjack = Boolean(tmpCalleeParam);
@@ -87,7 +87,7 @@ if (itooamanumberjack) {
 With rename=true
 
 `````js filename=intro
-let a = 0;
+let a = false;
 if (imanumberandilovethrees) {
   const b = $( true );
   a = Boolean( b );

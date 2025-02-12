@@ -100,7 +100,7 @@ let a = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
-let tmpIfTest /*:primitive*/ = undefined;
+let tmpIfTest /*:boolean*/ = false;
 if (tmpIfTest$1) {
   tmpIfTest = undefined === tmpSwitchValue;
 } else {
@@ -137,7 +137,7 @@ let c = undefined;
 const d = { x: 1 };
 const e = $( d );
 const f = e == null;
-let g = undefined;
+let g = false;
 if (f) {
   g = undefined === a;
 }

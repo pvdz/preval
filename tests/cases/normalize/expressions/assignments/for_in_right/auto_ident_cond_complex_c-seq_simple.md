@@ -65,7 +65,7 @@ $(a);
 
 
 `````js filename=intro
-let a = 1;
+let a = undefined;
 const tmpIfTest = $(1);
 let tmpForInGen = undefined;
 if (tmpIfTest) {
@@ -93,7 +93,7 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = 1;
+let a = undefined;
 const b = $( 1 );
 let c = undefined;
 if (b) {

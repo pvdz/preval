@@ -52,9 +52,19 @@ $(a);
 
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(100);
+let a = undefined;
+while (true) {
+  a = function () {
+    debugger;
+    return undefined;
+  };
+  if (a) {
+    $(100);
+  } else {
+    break;
+  }
 }
+$(a);
 `````
 
 ## PST Output
@@ -62,9 +72,20 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 With rename=true
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( 100 );
+let a = undefined;
+while (true) {
+  a = function() {
+    debugger;
+    return undefined;
+  };
+  if (a) {
+    $( 100 );
+  }
+  else {
+    break;
+  }
 }
+$( a );
 `````
 
 ## Globals

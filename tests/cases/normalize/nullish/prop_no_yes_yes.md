@@ -47,7 +47,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 let tmpCalleeParam = $ObjectPrototype.b;
 const tmpIfTest /*:boolean*/ = tmpCalleeParam == null;
-let tmpIfTest$1 /*:primitive*/ = undefined;
+let tmpIfTest$1 /*:boolean*/ = false;
 if (tmpIfTest) {
   tmpCalleeParam = c;
   tmpIfTest$1 = tmpCalleeParam == null;
@@ -69,7 +69,7 @@ With rename=true
 `````js filename=intro
 let a = $ObjectPrototype.b;
 const b = a == null;
-let c = undefined;
+let c = false;
 if (b) {
   a = c;
   c = a == null;

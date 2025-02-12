@@ -379,7 +379,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
         contents.settledPst = {failure: true, e};
       }
 
-      {
+      if (!options.refTest && !options.pcodeTest) {
         const fdata = mod.fdata;
         ASSERT(fdata, 'The fdata object should be guaranteed to be created...');
 

@@ -42,46 +42,11 @@
 //
 
 import walk from '../../lib/walk.mjs';
-import {
-  ASSERT,
-  log,
-  group,
-  groupEnd,
-  vlog,
-  vgroup,
-  vgroupEnd,
-  fmat,
-  tmat,
-  rule,
-  example,
-  before,
-  source,
-  after,
-  findBodyOffset,
-  todo,
-  assertNoDupeNodes,
-} from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, todo, assertNoDupeNodes } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import {
-  BUILTIN_MATH_STATIC_LOOKUP,
-  BUILTIN_MATH_STATIC_LOOKUP_REV,
-  BUILTIN_NUMBER_METHOD_LOOKUP,
-  BUILTIN_NUMBER_METHOD_LOOKUP_REV,
-  BUILTIN_NUMBER_STATIC_LOOKUP,
-  BUILTIN_NUMBER_STATIC_LOOKUP_REV,
-  BUILTIN_STRING_METHOD_LOOKUP,
-  BUILTIN_STRING_METHOD_LOOKUP_REV,
-  BUILTIN_STRING_STATIC_LOOKUP,
-  BUILTIN_STRING_STATIC_LOOKUP_REV,
-} from '../symbols_builtins.mjs';
-import { createFreshVar, getMeta } from '../bindings.mjs';
-import { VERBOSE_TRACING } from '../constants.mjs';
-import { pcanCompile, pcodeSupportedBuiltinFuncs, pcompile, runFreeWithPcode, runPcode } from '../pcode.mjs';
 import { BUILTIN_GLOBAL_FUNC_NAMES } from '../globals.mjs';
-import { GLOBAL_PREVAL_SYMBOLS, SYMBOL_COERCE } from '../symbols_preval.mjs';
 import { cloneSimple, getExpressionFromNormalizedStatement } from '../ast.mjs';
 import { createFreshLabelStatement } from '../labels.mjs';
-import { setPrintPids } from '../../lib/printer.mjs';
 
 export function freeNested(fdata, $prng, usePrng = true) {
   group('\n\n\nSearching for nested free calls to flatten\n');

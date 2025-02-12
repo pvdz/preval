@@ -1,19 +1,6 @@
 import walk from '../../lib/walk.mjs';
 import { VERBOSE_TRACING, RED, BLUE, DIM, RESET, setVerboseTracing } from '../constants.mjs';
-import {
-  ASSERT,
-  log,
-  group,
-  groupEnd,
-  vlog,
-  vgroup,
-  vgroupEnd,
-  tmat,
-  fmat,
-  source,
-  REF_TRACK_TRACING,
-  assertNoDupeNodes,
-} from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, REF_TRACK_TRACING, assertNoDupeNodes } from '../utils.mjs';
 import { $p, resetUid, getUid } from '../$p.mjs';
 import * as AST from '../ast.mjs';
 import {
@@ -1120,7 +1107,10 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         };
 
         if (node.declarations[0].init.type !== 'Param') {
-          vlog('Resolving .typing details of the init');
+          // If this write is not read (ie `let x=1;if(a)x=2;else x=3`) then the typing is irrelevant.
+          // But we won't know that until after this entire phase so that's not helpful. We have to
+          // incude all writes for now.
+          vlog('Resolving .typing details of the non-param init');
           const newTyping = inferNodeTyping(fdata, node.declarations[0].init);
           vlog('Results in', newTyping, 'which we will inject into', meta.typing);
           mergeTyping(newTyping, meta.typing);

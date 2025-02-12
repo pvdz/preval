@@ -38,7 +38,7 @@ function _dealiasing(fdata) {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
     if (meta.isExport) return; // Exports are "live" bindings so any update to it might be observable in strange ways
-    if (meta.constValueRef.containerNode.type !== 'VariableDeclaration') return; // catch, for-x, ???
+    if (meta.kind !== 'var') return;
     if (!meta.isConstant) return; // I don't think this really matters. But perhaps in that case we should just skip the lets...
 
     vgroup('- Considering whether `' + name + '` is an unnecessary alias,', meta.reads.length, meta.writes.length);
@@ -67,31 +67,28 @@ function _dealiasing(fdata) {
 
     // Note: it's not just the alias we need to check. We must also confirm that the aliased ident is in fact not updated (!)
     const realName = write.parentNode.init.name;
-    if (realName === 'arguments' && write.pfuncNode.type === 'FunctionExpression') {
+    if (realName === 'arguments') {
       vlog('Skipping `arguments` alias');
       return;
     }
 
-    ASSERT(
-      realName !== 'arguments' || write.pfuncNode.type === 'Program',
-      'the only meta named `arguments` must be an implicit global',
-      write,
-    );
-    if (realName !== 'arguments') {
-      const originalMeta = fdata.globallyUniqueNamingRegistry.get(realName);
-      ASSERT(originalMeta || realName === 'arguments', 'the meta for the init ident should be available...', originalMeta, realName);
+    const originalMeta = fdata.globallyUniqueNamingRegistry.get(realName);
+    ASSERT(originalMeta || realName === 'arguments', 'the meta for the init ident should be available...', originalMeta, realName);
 
-      // Technically correct but for now I'm going to let this go. It will mess up with errors triggered by implicit globals that don't exist
-      //if (originalMeta.isImplicitGlobal) {
-      //  vlog('the init is an implicit global. Cannot safely continue because it may prevent a crash');
-      //  return;
-      //}
+    // Technically correct but for now I'm going to let this go. It will mess up with errors triggered by implicit globals that don't exist
+    //if (originalMeta.isImplicitGlobal) {
+    //  vlog('the init is an implicit global. Cannot safely continue because it may prevent a crash');
+    //  return;
+    //}
 
-      vlog('Checking if it could have been mutated between write and read');
-      if (mayBindingMutateBetweenRefs(originalMeta || realName, write, read)) {
-        vlog('  - yes, bailing');
-        return;
-      }
+    vlog('Checking if it could have been mutated between write and read');
+    if (
+      !originalMeta.isBuiltin &&
+      !originalMeta.isConstant &&
+      mayBindingMutateBetweenRefs(originalMeta || realName, write, read)
+    ) {
+      vlog('  - yes, bailing');
+      return;
     }
 
     vlog('It seems `' + name + '` was an unnecessary alias for `' + realName + '`. Renaming it now.');

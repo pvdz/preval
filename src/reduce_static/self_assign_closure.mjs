@@ -23,25 +23,8 @@
 // It's vital that we ensure the original semantics are retained.
 
 import walk from '../../lib/walk.mjs';
-import {
-  ASSERT,
-  log,
-  group,
-  groupEnd,
-  vlog,
-  vgroup,
-  vgroupEnd,
-  rule,
-  example,
-  before,
-  source,
-  after,
-  fmat,
-  tmat,
-  findBodyOffset, findBodyOffsetExpensiveMaybe, assertNoDupeNodes,
-} from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, findBodyOffset, findBodyOffsetExpensiveMaybe, assertNoDupeNodes } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import {expressionHasNoObservableSideEffect} from "../ast.mjs"
 
 export function selfAssignClosure(fdata) {
   group('\n\n\nChecking for self-assigning funcs returning their own closures');
@@ -99,6 +82,12 @@ function processAttempt(fdata) {
   // (to be optimized after that)
   // The invariant to hold is that `f() === f()`
 
+  // This is a special case where we try to smoke out the above case at the start of some
+  // code but where the soundness is harder to prove generically.
+
+  const found = findInitSealer(fdata);
+  if (found) return 1;
+
   fdata.globallyUniqueNamingRegistry.forEach(function (meta, targetName) {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
@@ -114,6 +103,166 @@ function processAttempt(fdata) {
   });
 
   return updated;
+}
+
+function findInitSealer(fdata) {
+  return findInit(fdata.tenkoOutput.ast.body, fdata);
+}
+function findInit(body, fdata) {
+  ASSERT(arguments.length === findInit.length);
+  ASSERT(!body.type, 'should receive an array, not a BlockStatement', body);
+
+  vgroup('findInit');
+  const r = _findInit(body, fdata);
+  vgroupEnd();
+  return r;
+}
+function _findInit(body, fdata) {
+  let i = 0;
+  for (; i<body.length; ++i) {
+    const stmt = body[i];
+    if (stmt.type === 'VariableDeclaration') {
+      const init = stmt.declarations[0].init;
+      if (init.type === 'FunctionExpression') continue; // noop
+      if (AST.isPrimitive(init)) continue; // noop
+      if (init.type === 'ArrayExpression') {
+        if (init.elements.every(e => !e || AST.isPrimitive(e))) return; // noop. but not when there are idents in the array.
+      }
+      break; // the end
+    }
+    else if (stmt.type === 'LabeledStatement') {
+      return findInit(stmt.body.body, fdata);
+    }
+    else {
+      // unknown, not safe to assume
+      break;
+    }
+  }
+
+  // Now looking for a specific pattern of `const x = f; const y = g; const z = x()`
+
+  // const x = f;
+  if (body[i]?.type !== 'VariableDeclaration') return;
+  if (body[i].declarations[0].init.type !== 'Identifier') return;
+  // const y = g;    (it doesn't matter if that is f, actually)
+  if (body[i+1]?.type !== 'VariableDeclaration') return;
+  if (body[i+1].declarations[0].init.type !== 'Identifier') return; // TODO: it's also fine if this is another kind of noop like func, prim, obj, or arr
+  // const z = x;
+  if (body[i+2]?.type !== 'VariableDeclaration') return;
+  if (body[i+2].declarations[0].init.type !== 'CallExpression') return;
+  if (body[i+2].declarations[0].init.callee.type !== 'Identifier') return;
+  if (body[i+2].declarations[0].init.callee.name !== body[i].declarations[0].id.name) return;
+
+  const x = body[i].declarations[0];
+  //const xname = x.id.name;
+  const xinit = x.init;
+  //const y = body[i].declarations[0];
+  //const yname = y.id.name;
+  //const yinit = y.init;
+  //const z = body[i].declarations[0];
+  //const zname = z.id.name;
+  //const zinit = z.init;
+
+  // Verify that x is an alias for a function
+  const meta = fdata.globallyUniqueNamingRegistry.get(xinit.name);
+  if (meta.isBuiltin) return;
+  if (meta.isImplicitGlobal) return;
+  if (meta.isConstant) return;
+  if (meta.writes.length !== 2) return;
+
+  const decl = meta.writes[0].kind === 'var' ? meta.writes[0] : meta.writes[1];
+  const assign = meta.writes[0].kind === 'assign' ? meta.writes[0] : meta.writes[1];
+  if (!decl || !assign) return;
+
+  if (decl.parentNode.init.type !== 'FunctionExpression') return;
+  if (decl.blockBody[decl.blockIndex].kind !== 'let') return; // I think this check is unnecessary.
+
+  const func = decl.parentNode.init;
+  const funcBody = func.body.body;
+
+  // Now verify if this function matches the pattern
+  // Note: param count doesn't really matter, we assert that the first statament is Debugger so any param is unused.
+  if (funcBody.length !== 5) return; // Looking for: `debugger; const x = []; self = func; const x = self(); return x`
+  if (funcBody[0].type !== 'DebuggerStatement') return;
+  if (funcBody[1].type !== 'VariableDeclaration') return; // arr
+  if (funcBody[1].declarations[0].init.type !== 'ArrayExpression') return;
+  if (!funcBody[1].declarations[0].init.elements.every(e => !e || AST.isPrimitive(e))) return; // we can support _some_ idents too, but...
+  if (funcBody[2].type !== 'ExpressionStatement') return;
+  if (funcBody[2].expression.type !== 'AssignmentExpression') return;
+  if (funcBody[2].expression.left.type !== 'Identifier') return;
+  if (funcBody[2].expression.left.name !== xinit.name) return;
+  if (funcBody[2].expression.right.type !== 'FunctionExpression') return;
+  if (funcBody[2].expression.right.body.body.length !== 2) return; // nested func has debugger and then returns the arr
+  if (funcBody[2].expression.right.body.body[0].type !== 'DebuggerStatement') return;
+  if (funcBody[2].expression.right.body.body[1].type !== 'ReturnStatement') return;
+  if (funcBody[2].expression.right.body.body[1].argument.name !== funcBody[1].declarations[0].id.name) return; // return arr
+  if (funcBody[3].type !== 'VariableDeclaration') return;
+  if (funcBody[3].declarations[0].init.type !== 'CallExpression') return;
+  if (funcBody[3].declarations[0].init.callee.type !== 'Identifier') return;
+  if (funcBody[3].declarations[0].init.callee.name !== xinit.name) return;
+  if (funcBody[3].declarations[0].init.arguments.length > 0) return; // There shouldn't be any args. It shouldn't matter. So we're going to ignore it. Most likely another transform will eliminate them anyways and then this rule will pass...
+  if (funcBody[4].type !== 'ReturnStatement') return;
+  if (funcBody[4].argument.type !== 'Identifier') return;
+  if (funcBody[4].argument.name !== funcBody[3].declarations[0].id.name) return;
+
+  // xinit is the self-sealing pattern.
+  // In that case y is truly noop since the rhs can not have been referenced in this pattern
+  // In that case z is calling xinit as the first operation of the script and we are go for takeoff.
+
+  // So:
+  // - We know the func is called immediately as the first action of this script
+  // - We know it will create a closure over the array and then self-seal
+  // - We know it has further references, though none of them matter much
+  // It should be safe to move the array to the owner scope of the function
+  // Then, it should be safe to replace the body of the function with a simple return of that constant array ident
+  // What follows is that the function becomes a const and trampoline transforms will replace all calls with the array ident
+  // And that's the first step of unfolding this pattern; eliminating this self sealing data func
+
+  // ```
+  // let func = function() {
+  //   const arr = [];
+  //   func = function() {
+  //     return arr;
+  //   };
+  //   const r = func();
+  //   return r;
+  // };
+  // ```
+
+  // -->
+
+  // ```
+  // const arr = [];
+  // let func = function() {
+  //   return arr;
+  // };
+  // ```
+
+  rule('Special self-sealing function can be sealed immediately');
+  example(
+    'let func = function(){ const arr = []; func = function(){ return arr; }; const r = func(); return r; } $(func());',
+    'const arr = []; const func = function(){ return arr; } $(func());',
+  );
+  before(decl.blockBody[decl.blockIndex]);
+  before(body[i]);
+  before(body[i+1]);
+  before(body[i+2]);
+
+  // Replace the func with one that just returns the arr
+  decl.blockBody[decl.blockIndex].declarations[0].init = AST.functionExpression([], [
+    AST.debuggerStatement(),
+    AST.returnStatement(funcBody[1].declarations[0].id.name) // return arr
+  ]);
+  // We should have eliminated the only other write so it's now a const. We also could omit this step and let other rules deal with it.
+  decl.blockBody[decl.blockIndex].kind = 'const';
+  // return arr
+  decl.blockBody.splice(decl.blockIndex, 0, funcBody[1]);
+
+  after(decl.blockBody[decl.blockIndex]);
+  after(decl.blockBody[decl.blockIndex+1]);
+
+  // Now it must just restart from phase1 immediately, don't bother with the rest.
+  return true;
 }
 
 function process(fdata, meta, targetName) {

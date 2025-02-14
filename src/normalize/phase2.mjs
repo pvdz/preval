@@ -102,6 +102,7 @@ import { letAliasRedundant } from '../reduce_static/let_alias_redundant.mjs';
 import { freeLoops } from '../reduce_static/free_loops.mjs';
 import { freeNested } from '../reduce_static/free_nested.mjs';
 import { redundantInit } from '../reduce_static/redundant_init.mjs';
+import { staticIfOutlining } from '../reduce_static/static_if_outlining.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
@@ -310,6 +311,7 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
     infiniteLoops(fdata) || // Make sure to do this before loop unrolling
     arrayReads(fdata) ||
     staticArgOpOutlining(fdata) ||
+    staticIfOutlining(fdata) || // Maybe even lower since this duplicates functions? Or maybe higher i dunno.
     functionLocks(fdata) ||
     readOnce(fdata) ||
     testing_only(fdata) ||

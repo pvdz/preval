@@ -6,28 +6,10 @@
 // TODO: Bonus points if the op regards two args rather than a literal
 // TODO: Bonus points for outlining assignments to closures in the same way
 
-import {
-  ASSERT,
-  log,
-  group,
-  groupEnd,
-  vlog,
-  vgroup,
-  vgroupEnd,
-  rule,
-  example,
-  before,
-  source,
-  after,
-  fmat,
-  tmat,
-  coerce,
-  findBodyOffset,
-  assertNoDupeNodes,
-} from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, coerce, findBodyOffset, assertNoDupeNodes, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
-import { cloneSimple, cloneSortOfSimple, functionExpressionNormalized, isSimpleNodeOrSimpleMember, normalizeFunction } from '../ast.mjs';
+import { cloneSimple, isSimpleNodeOrSimpleMember } from '../ast.mjs';
 import { SYMBOL_COERCE } from '../symbols_preval.mjs';
 
 export function staticArgOpOutlining(fdata) {
@@ -349,7 +331,8 @@ function _staticArgOpOutlining(fdata) {
     // Check if first statement is a regular assignment to a closure. Would be cool if we could outline that.
     const firstStmt = funcNode.body.body[stmtOffset];
 
-    vlog('\nWas unable to find a target statement to inline an op. Now checking the assignment case. First statement is', firstStmt);
+    vlog('- Was unable to find a target statement to inline an op.');
+    vlog('- Now checking the assignment case. First statement is', firstStmt.type, '...');
 
     if (
       firstStmt.type === 'ExpressionStatement' &&
@@ -549,171 +532,6 @@ function _staticArgOpOutlining(fdata) {
         ++changes;
         return;
       }
-    }
-
-    if (
-      funcNode.body.body.length-1 === stmtOffset && // Body has 1 statement? with more than one we risk blowing up the size too much.
-      firstStmt.type === 'IfStatement' &&
-      firstStmt.test.type === 'Identifier' &&
-      funcNode.$p.paramNames.includes(firstStmt.test.name)
-    ) {
-      // Function starts with an if/else.
-      // Test of the If is a param
-      // We can try to outline it. It's slightly trickier due to const scoping of parent.
-      // We can take two routes
-      // - move the `if` to the call site
-      //   -   `f(a); function f(b) { if (b) $(x) else {} }`
-      //   ->  `if (a) f(a); function f(b) { $(x) }`
-      //   -   `const r = f(a); function f(b) { if (b) $(x) else {} }`
-      //   ->  `if (a) const r = f(a); function f(b) { $(x) }` , oops
-      //   - also, this won't work if both branches have code, which leads us to the next option
-      // - we split the function and update the callsite where possible
-      //   - `f(a); function f(b) { if (b) $(x) else $(y) }`
-      //   - `f2(a); function f(b) { if (b) f1(b); else f2(b); } function f1(b) { $(x) } function f2(b) { $(y) }`
-      //     - risk of bouncy transform recursion
-      //   - `f2(false); function f1(b) { $(x) } function f2(b) { $(y) }`
-      // - we split the function and compile an `if` at callsite
-      //   - `f(a); function f(b) { if (b) $(x) else $(y) }`
-      //   - `if (a) f1(a); else f2(a); function f1(b) { $(x) } function f2(b) { $(y) }`
-      //   - this has the same binding scope issues as before, of course
-      // For the scope issues, we could also detect the binding case and create a let binding above the if
-      // - this kind of feels like a step back since we aim to create constants
-      // - `let r; if (a) r = f(a); function f(b) { $(x) }`
-      // - still, may be best?
-
-      vlog('- First and only statement is an If');
-
-      const paramIndex = funcNode.$p.paramNameToIndex.get(firstStmt.test.name);
-      ASSERT(paramIndex >= 0 && paramIndex < funcNode.params.length, 'map should be legit and cache should not be stale');
-
-      const f1 = AST.functionExpressionNormalized(
-        funcNode.params.map((_, i) => funcNode.$p.paramIndexToName.get(i) ?? '_'),
-          firstStmt.consequent.body,
-        {generator: funcNode.generator, async: funcNode.async}
-      );
-      const f2 = AST.functionExpressionNormalized(
-        funcNode.params.map((_, i) => funcNode.$p.paramIndexToName.get(i) ?? '_'),
-        firstStmt.alternate.body,
-        {generator: funcNode.generator, async: funcNode.async}
-      );
-
-      const funcName1 = createFreshVar(`${funcName}_t`, fdata);
-      const funcName2 = createFreshVar(`${funcName}_f`, fdata);
-
-      const fbody = funcRef.containerParent;
-      const findex = funcRef.containerIndex;
-
-      rule('Outline the first If in a function when conditions are met; step 1/2, split function');
-      example('function f(a) { if (a) $(1); else $(s); } f(0); f(1);', 'function f1(a) { $(1); } function f2(a) { $(2); } if (0) f1(0); else f2(0); if (1) f1(1); else f2(1);')
-      before(fbody[findex]);
-
-      fbody[findex] = AST.blockStatement(
-        AST.variableDeclaration(funcName1, f1, 'const'),
-        AST.variableDeclaration(funcName2, f2, 'const'),
-        //fbody[findex]
-      );
-      queue.push({index: findex, func: () => {
-        fbody.splice(findex, 1, ...fbody[findex].body);
-      }});
-
-      after(fbody[findex]);
-
-      // Now convert all call sites
-      funcMeta.reads.forEach(read => {
-        const cblock = read.blockBody;
-        const cindex = read.blockIndex;
-
-        rule('Outline the first If in a function when conditions are met; step 2/2, wrap callers in if/else');
-        example('function f(a) { if (a) $(1); else $(s); } f(0); f(1);', 'function f1(a) { $(1); } function f2(a) { $(2); } if (0) f1(0); else f2(0); if (1) f1(1); else f2(1);')
-        before(cblock[cindex]);
-
-        const block1 = AST.blockStatement();
-        const block2 = AST.blockStatement();
-
-        if (cblock[cindex].type === 'ExpressionStatement') {
-          if (cblock[cindex].expression.type === 'CallExpression') {
-            // Statement is just the call to the function. Easiest case.
-            block1.body.push(
-              AST.expressionStatement(
-                AST.callExpression(funcName1, read.parentNode.arguments.map(node => AST.cloneSimple(node)))
-              )
-            );
-            block2.body.push(
-              AST.expressionStatement(
-                AST.callExpression(funcName2, read.parentNode.arguments.map(node => AST.cloneSimple(node)))
-              )
-            );
-          }
-          else if (cblock[cindex].expression.type === 'AssignmentExpression') {
-            // Statement is assigning the call to the function. Simple case
-            block1.body.push(
-              AST.expressionStatement(
-                AST.assignmentExpression(
-                  AST.cloneSimple(cblock[cindex].expression.left),
-                  AST.callExpression(funcName1, read.parentNode.arguments.map(node => AST.cloneSimple(node)))
-                )
-              )
-            );
-            block2.body.push(
-              AST.expressionStatement(
-                AST.assignmentExpression(
-                  AST.cloneSimple(cblock[cindex].expression.left),
-                  AST.callExpression(funcName2, read.parentNode.arguments.map(node => AST.cloneSimple(node)))
-                )
-              )
-            );
-          }
-          else {
-            ASSERT(false, 'in normalized code, a call would be a statement expression, rhs of an assignment, or init of var decl. this is an expression so it must be one of the two and wasnt');
-          }
-
-          cblock[cindex] = AST.ifStatement(
-            AST.cloneSimple(read.parentNode.arguments[paramIndex] ?? AST.isUndefined()),
-            block1, block2
-          )
-        }
-        else if (cblock[cindex].type === 'VariableDeclaration') {
-          // Meh.
-          // We replace the decl with the if and prepend a let decl instead. Let other rules clean that up.
-          const declName = cblock[cindex].declarations[0].id.name;
-          block1.body.push(
-            AST.expressionStatement(
-              AST.assignmentExpression(
-                AST.identifier(declName),
-                AST.callExpression(funcName1, read.parentNode.arguments.map(node => AST.cloneSimple(node)))
-              )
-            )
-          );
-          block2.body.push(
-            AST.expressionStatement(
-              AST.assignmentExpression(
-                AST.identifier(declName),
-                AST.callExpression(funcName2, read.parentNode.arguments.map(node => AST.cloneSimple(node)))
-              )
-            )
-          );
-
-          // Replace decl with a let, init to undefined
-          cblock[cindex] = AST.variableDeclaration(declName, AST.identifier('undefined'), 'let');
-          // Wrap decl in a block and append the If statement
-          cblock[cindex] = AST.blockStatement(
-            cblock[cindex],
-            AST.ifStatement(
-              AST.cloneSimple(read.parentNode.arguments[paramIndex] ?? AST.isUndefined()),
-              block1, block2
-            )
-          );
-          queue.push({index: cindex, func: () => {
-            cblock.splice(cindex, 1, ...cblock[cindex].body);
-          }});
-        }
-
-        after(cblock[cindex]);
-      });
-
-
-      ++changes;
-      return;
     }
 
     if (
@@ -1117,6 +935,8 @@ function _staticArgOpOutlining(fdata) {
       vlog('  - Arg is not an ident or param (', arg.type, '), bailing');
       return;
     }
+
+    vlog('  - nope.');
   }
   function inlineOp(funcMeta, funcNode, paramIndex, paramCount, stmt, stmtIndex) {
     const names = funcNode.$p.paramNames;
@@ -1180,6 +1000,7 @@ function _staticArgOpOutlining(fdata) {
       queue.push({
         index: read.blockIndex,
         func: () => {
+          vlog('For', funcMeta.uniqueName);
           rule('Part 2: add a new arg in calls to the function, replacing param for arg in same index');
           example('f(a);', 'let tmp = a + 1; f(a, tmp);');
           before(read.blockBody[read.blockIndex]);

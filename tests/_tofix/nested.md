@@ -98,25 +98,15 @@ $(z);
 `````js filename=intro
 const g /*:()=>array*/ = function () {
   debugger;
-  const a /*:array*/ = [1, 2, 3];
-  const b /*:array*/ = [1, 2, 3];
-  const ab /*:boolean*/ = a === b;
-  $(ab);
-  const c /*:array*/ = [1, 2, 3];
-  const d /*:array*/ = [1, 2, 3];
-  const cd /*:boolean*/ = c !== d;
-  $(cd);
-  const e /*:array*/ = [1, 2, 3];
-  const f /*:array*/ = [1, 2, 3];
-  const ef /*:boolean*/ = e === f;
-  $(ef);
+  $(false);
+  $(true);
+  $(false);
   const g$1 /*:array*/ = [1, 2, 3];
   return g$1;
 };
-const x /*:array*/ = g();
-const y /*:array*/ = g();
-const xy /*:boolean*/ = x === y;
-$(xy);
+g();
+g();
+$(false);
 const z /*:array*/ = g();
 $(z);
 `````
@@ -128,27 +118,17 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
+  $( false );
+  $( true );
+  $( false );
   const b = [ 1, 2, 3 ];
-  const c = [ 1, 2, 3 ];
-  const d = b === c;
-  $( d );
-  const e = [ 1, 2, 3 ];
-  const f = [ 1, 2, 3 ];
-  const g = e !== f;
-  $( g );
-  const h = [ 1, 2, 3 ];
-  const i = [ 1, 2, 3 ];
-  const j = h === i;
-  $( j );
-  const k = [ 1, 2, 3 ];
-  return k;
+  return b;
 };
-const l = a();
-const m = a();
-const n = l === m;
-$( n );
-const o = a();
-$( o );
+a();
+a();
+$( false );
+const c = a();
+$( c );
 `````
 
 ## Globals

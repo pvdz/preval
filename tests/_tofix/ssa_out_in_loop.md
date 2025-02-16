@@ -139,13 +139,13 @@ if ($) {
 if ($) {
   let B = `jhayon.vercel.app`;
   const ex = $(`x`);
-  const tmpClusterSSA_A = ex.length;
-  const first = tmpClusterSSA_A[0];
+  const A = ex.length;
+  const first = A[0];
   const isdot /*:boolean*/ = first === `.`;
   if (isdot) {
-    B = tmpClusterSSA_A.slice(1);
+    B = A.slice(1);
   } else {
-    B = tmpClusterSSA_A;
+    B = A;
   }
   const tmpClusterSSA__0x26b289 = $(`abc`);
   const len = tmpClusterSSA__0x26b289.length;
@@ -158,7 +158,7 @@ if ($) {
     const tmpClusterSSA__0x5dc746$1 /*:boolean*/ = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
     if (tmpClusterSSA__0x5dc746$1) {
       tmpClusterSSA__0x26b289.length;
-      tmpClusterSSA_A.length;
+      A.length;
     } else {
     }
   }

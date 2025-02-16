@@ -59,8 +59,8 @@ if (tmpIfTest) {
   const tmpClusterSSA_val /*:object*/ = {};
   $(tmpClusterSSA_val);
 } else {
-  arg;
-  $(arg);
+  const tmpClusterSSA_val$1 = arg;
+  $(tmpClusterSSA_val$1);
 }
 `````
 
@@ -75,22 +75,8 @@ if (a) {
   $( b );
 }
 else {
-  arg;
-  $( arg );
-}
-`````
-
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-if (arg === undefined) {
-  $({});
-} else {
-  arg;
-  $(arg);
+  const c = arg;
+  $( c );
 }
 `````
 
@@ -109,6 +95,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
-
-Denormalized calls: Same
+Final output calls: Same

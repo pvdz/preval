@@ -118,23 +118,23 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
-  let d = false;
+  let c = false;
+  let d = undefined;
   let e = undefined;
-  let f = undefined;
   try {
-    f = b();
+    e = b();
   }
-  catch (g) {
-    d = true;
-    e = g;
+  catch (f) {
+    c = true;
+    d = f;
   }
-  if (d) {
-    throw e;
+  if (c) {
+    throw d;
   }
   else {
-    return f;
+    return e;
   }
 };
 $( a );

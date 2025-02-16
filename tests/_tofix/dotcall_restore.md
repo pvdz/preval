@@ -68,11 +68,11 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
-  const d = /[^0-9]/g;
-  const e = b.replace( d, "" );
-  return e;
+  const c = /[^0-9]/g;
+  const d = b.replace( c, "" );
+  return d;
 };
 $( a );
 `````

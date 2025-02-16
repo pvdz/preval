@@ -1,25 +1,25 @@
 # Preval test case
 
-# func_param_propagation3.md
+# func_param_propagation2.md
 
-> Tofix > Func param propagation3
+> Tofix > Func param propagation2
 >
-> If we can resolve that `===` at call time and pass in a boolean for it ... then we can eliminate this whole function
+> If we would move that tail return trampo into both if-branches then it would remove the b...
 
 ## Input
 
 `````js filename=intro
 const f = function ($$0) {
-  const $dlr_$$0 = $$0;
+  const tmpParamBare$1 = $$0;
   debugger;
-  const tmpIfTest$1 = $dlr_$$0 === undefined;
+  let b = `bar`;
+  const tmpIfTest$1 = tmpParamBare$1 === undefined;
   if (tmpIfTest$1) {
-    const c = [`x`, `bar`];
-    return c;
   } else {
-    const d = [`x`, $dlr_$$0];
-    return d;
+    b = tmpParamBare$1;
   }
+  const tmpReturnArg = [`x`, b];
+  return tmpReturnArg;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
@@ -34,15 +34,15 @@ $(tmpCalleeParam$1);
 const f = function ($$0) {
   let $dlr_$$0 = $$0;
   debugger;
-  const $dlr_$$1 = $dlr_$$0;
-  const tmpIfTest$1 = $dlr_$$1 === undefined;
+  const tmpParamBare$1 = $dlr_$$0;
+  let b = `bar`;
+  const tmpIfTest$1 = tmpParamBare$1 === undefined;
   if (tmpIfTest$1) {
-    const c = [`x`, `bar`];
-    return c;
   } else {
-    const d = [`x`, $dlr_$$1];
-    return d;
+    b = tmpParamBare$1;
   }
+  const tmpReturnArg = [`x`, b];
+  return tmpReturnArg;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
@@ -57,15 +57,15 @@ $(tmpCalleeParam$1);
 const f = function ($$0) {
   let $dlr_$$0 = $$0;
   debugger;
-  const $dlr_$$1 = $dlr_$$0;
-  const tmpIfTest$1 = $dlr_$$1 === undefined;
+  const tmpParamBare$1 = $dlr_$$0;
+  let b = `bar`;
+  const tmpIfTest$1 = tmpParamBare$1 === undefined;
   if (tmpIfTest$1) {
-    const c = [`x`, `bar`];
-    return c;
   } else {
-    const d = [`x`, $dlr_$$1];
-    return d;
+    b = tmpParamBare$1;
   }
+  const tmpReturnArg = [`x`, b];
+  return tmpReturnArg;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
@@ -80,14 +80,14 @@ $(tmpCalleeParam$1);
 const f /*:(unknown)=>array*/ = function ($$0) {
   const $dlr_$$0 = $$0;
   debugger;
+  let b = `bar`;
   const tmpIfTest$1 /*:boolean*/ = $dlr_$$0 === undefined;
   if (tmpIfTest$1) {
-    const c /*:array*/ = [`x`, `bar`];
-    return c;
   } else {
-    const d /*:array*/ = [`x`, $dlr_$$0];
-    return d;
+    b = $dlr_$$0;
   }
+  const tmpReturnArg /*:array*/ = [`x`, b];
+  return tmpReturnArg;
 };
 const tmpCalleeParam /*:array*/ = f();
 $(tmpCalleeParam);
@@ -101,22 +101,23 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
+  let c = "bar";
   const d = b === undefined;
   if (d) {
-    const e = [ "x", "bar" ];
-    return e;
+
   }
   else {
-    const f = [ "x", b ];
-    return f;
+    c = b;
   }
+  const e = [ "x", c ];
+  return e;
 };
-const g = a();
+const f = a();
+$( f );
+const g = a( "y" );
 $( g );
-const h = a( "y" );
-$( h );
 `````
 
 ## Globals

@@ -129,27 +129,27 @@ With rename=true
 `````js filename=intro
 const a = [ 1, 2, 3, 4 ];
 let b = function($$0,$$1 ) {
-  const c = d;
-  const e = f;
+  const c = $$0;
+  const d = $$1;
   debugger;
   b = function($$0,$$1 ) {
-    const g = d;
+    const e = $$0;
     debugger;
-    const h = g - 427;
-    const i = a[ h ];
-    return i;
+    const f = e - 427;
+    const g = a[ f ];
+    return g;
   };
-  const j = b( c, e );
-  return j;
+  const h = b( c, d );
+  return h;
 };
-const k = b;
-const l = b( 428 );
-$( l );
-const m = b( 429 );
-$( m );
-const n = b( 430 );
-$( n );
+const i = b;
+const j = b( 428 );
+$( j );
+const k = b( 429 );
 $( k );
+const l = b( 430 );
+$( l );
+$( i );
 `````
 
 ## Globals

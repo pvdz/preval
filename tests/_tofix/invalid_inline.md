@@ -64,13 +64,13 @@ $(cTmp);
 
 
 `````js filename=intro
-$fail;
+const cTail = $fail;
 if ($) {
   $(`keep`);
   const tmpClusterSSA_cTmp = $($);
   $(tmpClusterSSA_cTmp);
 } else {
-  $($fail);
+  $(cTail);
 }
 `````
 
@@ -79,14 +79,14 @@ if ($) {
 With rename=true
 
 `````js filename=intro
-$fail;
+const a = $fail;
 if ($) {
   $( "keep" );
-  const a = $( $ );
-  $( a );
+  const b = $( $ );
+  $( b );
 }
 else {
-  $( $fail );
+  $( a );
 }
 `````
 

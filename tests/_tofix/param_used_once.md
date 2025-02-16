@@ -2902,50 +2902,48 @@ $(TP$cloneX2$cloneX1);
 
 
 `````js filename=intro
-const fooCalleeParamX11238 = function ($$0) {
+const fooCalleeParamX11238 /*:(unknown)=>?*/ = function ($$0) {
   const nCeX401 = $$0;
   debugger;
   return nCeX401;
 };
-const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
+const TP$cloneX2$cloneX1 /*:(unknown, unknown, unknown, unknown, unknown)=>?,function,undefined*/ = function ($$0, $$1, $$2, $$3, $$4) {
   const mNeX765 = $$1;
   const gNeX352 = $$3;
   const yNeX272 = $$4;
   debugger;
-  const fooReturnArgX5632 = function ($$0) {
+  const fooReturnArgX5632 /*:(unknown)=>?*/ = function ($$0) {
     const nCeX418 = $$0;
     debugger;
     const fooCalleeParamX11334 /*:array*/ = [5, SSA_xNeX108, nCeX418];
     const fooReturnArgX5633 = RP$cloneX5(SSA_bNeX94, $, fooCalleeParamX11334, QNeX102);
     return fooReturnArgX5633;
   };
-  const fooReturnArgX5630 = function ($$0) {
+  const fooReturnArgX5630 /*:(unknown)=>?*/ = function ($$0) {
     const nCeX417 = $$0;
     debugger;
-    const fooCalleeParamX11330 = SSA_bNeX94;
-    const fooArrElementX3282 = SSA_xNeX108;
     const fooArrElementX3284 = $yX2(Iq, nCeX417);
-    const fooCalleeParamX11331 /*:array*/ = [4, fooArrElementX3282, fooArrElementX3284];
-    const fooReturnArgX5631 = RP$cloneX5(fooCalleeParamX11330, $, fooCalleeParamX11331, KNeX38);
+    const fooCalleeParamX11331 /*:array*/ = [4, SSA_xNeX108, fooArrElementX3284];
+    const fooReturnArgX5631 = RP$cloneX5(SSA_bNeX94, $, fooCalleeParamX11331, KNeX38);
     return fooReturnArgX5631;
   };
-  const fooReturnArgX5628 = function () {
+  const fooReturnArgX5628 /*:()=>?*/ = function () {
     debugger;
     const fooReturnArgX5629 = RP$cloneX5(SSA_bNeX94, $, ZNeX45, HNeX48);
     return fooReturnArgX5629;
   };
-  const fooReturnArgX5622 = function ($$0) {
+  const fooReturnArgX5622 /*:(unknown)=>?*/ = function ($$0) {
     const nCeX414 = $$0;
     debugger;
     const fooCalleeParamX11326 /*:array*/ = [6, SSA_xNeX108, nCeX414];
     const fooReturnArgX5623 = RP$cloneX5(SSA_bNeX94, $, fooCalleeParamX11326, XNeX77);
     return fooReturnArgX5623;
   };
-  const fooReturnArgX5619 = function ($$0, $$1) {
+  const fooReturnArgX5619 /*:(unknown, unknown)=>?*/ = function ($$0, $$1) {
     const nCeX413 = $$0;
     const rCeX221 = $$1;
     debugger;
-    const fooArrElementX3269 = function ($$0) {
+    const fooArrElementX3269 /*:(unknown)=>?*/ = function ($$0) {
       const sCeX131 = $$0;
       debugger;
       const fooReturnArgX5621 = YE(nCeX413, sCeX131, rCeX221);
@@ -2956,7 +2954,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
     return fooReturnArgX5620;
   };
   let BNeX51 = undefined;
-  const fooReturnArgX5617 = function ($$0) {
+  const fooReturnArgX5617 /*:(unknown)=>?*/ = function ($$0) {
     const nCeX412 = $$0;
     debugger;
     const rCeX220 = nCeX412[1];
@@ -2967,24 +2965,22 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
     const fooBinBothRhsX4246 /*:string*/ = typeof fooUnaryArgX395;
     const fooIfTestX13192 /*:boolean*/ = `number` == fooBinBothRhsX4246;
     if (fooIfTestX13192) {
-      const fooCalleeParamX11317 = SSA_bNeX94;
-      const fooCalleeParamX11318 = SSA_xNeX108;
       const fooCalleeParamX11319 = sCeX130[1];
       const fooCalleeParamX11321 = ZE(fooCalleeParamX11319, VNeX53);
-      const fooReturnArgX5618 = RP$cloneX5(fooCalleeParamX11317, $, fooCalleeParamX11318, fooCalleeParamX11321);
+      const fooReturnArgX5618 = RP$cloneX5(SSA_bNeX94, $, SSA_xNeX108, fooCalleeParamX11321);
       return fooReturnArgX5618;
     } else {
       throw JAe;
     }
   };
-  const fooReturnArgX5615 = function () {
+  const fooReturnArgX5615 /*:()=>?*/ = function () {
     debugger;
     const fooCalleeParamX11313 /*:array*/ = [4, SSA_xNeX108, FNeX55];
     const fooReturnArgX5616 = RP$cloneX5(SSA_bNeX94, $, fooCalleeParamX11313, MNeX63);
     return fooReturnArgX5616;
   };
   let DNeX65 = undefined;
-  const fooReturnArgX5613 = function ($$0) {
+  const fooReturnArgX5613 /*:(unknown)=>?*/ = function ($$0) {
     const nCeX411 = $$0;
     debugger;
     let rCeX219 = undefined;
@@ -2997,127 +2993,98 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
     const fooReturnArgX5614 = RP$cloneX5(SSA_bNeX94, $, fooCalleeParamX11310, DNeX65);
     return fooReturnArgX5614;
   };
-  const fooReturnArgX5598 = function ($$0, $$1) {
+  const fooReturnArgX5598 /*:(unknown, unknown)=>?*/ = function ($$0, $$1) {
     const nCeX410 = $$0;
     const rCeX218 = $$1;
     debugger;
-    const fooCalleeParamX11304 = SSA_bNeX94;
-    const fooArrElementX3252 = SSA_xNeX108;
-    const fooCalleeParamX11305 = jNeX68;
     const fooCalleeParamX11306 = SP(kNeX164, RNeX72, rCeX218);
-    const fooArrElementX3254 = UA(fooCalleeParamX11305, nCeX410, fooCalleeParamX11306);
-    const fooCalleeParamX11307 /*:array*/ = [4, fooArrElementX3252, fooArrElementX3254];
-    const fooReturnArgX5612 = RP$cloneX5(fooCalleeParamX11304, $, fooCalleeParamX11307, PNeX191);
+    const fooArrElementX3254 = UA(jNeX68, nCeX410, fooCalleeParamX11306);
+    const fooCalleeParamX11307 /*:array*/ = [4, SSA_xNeX108, fooArrElementX3254];
+    const fooReturnArgX5612 = RP$cloneX5(SSA_bNeX94, $, fooCalleeParamX11307, PNeX191);
     return fooReturnArgX5612;
   };
-  const tmpClusterSSA_fooReturnArgX5609$1 = function ($$0, $$1, $$2) {
+  const tmpClusterSSA_fooReturnArgX5609$1 /*:(unknown, unknown, unknown)=>?*/ = function ($$0, $$1, $$2) {
     const nCeX409 = $$0;
     const rCeX217 = $$1;
     const sCeX129 = $$2;
     debugger;
-    const fooCalleeParamX11299 = SSA_bNeX94;
-    const fooArrElementX3247 = SSA_xNeX108;
-    const fooCalleeParamX11300 = jNeX68;
     const fooCalleeParamX11301 = SP(kNeX164, rCeX217, sCeX129);
-    const fooArrElementX3249 = UA(fooCalleeParamX11300, nCeX409, fooCalleeParamX11301);
-    const fooCalleeParamX11302 /*:array*/ = [4, fooArrElementX3247, fooArrElementX3249];
-    const fooReturnArgX5611 = RP$cloneX5(fooCalleeParamX11299, $, fooCalleeParamX11302, PNeX191);
+    const fooArrElementX3249 = UA(jNeX68, nCeX409, fooCalleeParamX11301);
+    const fooCalleeParamX11302 /*:array*/ = [4, SSA_xNeX108, fooArrElementX3249];
+    const fooReturnArgX5611 = RP$cloneX5(SSA_bNeX94, $, fooCalleeParamX11302, PNeX191);
     return fooReturnArgX5611;
   };
-  const tmpClusterSSA_fooReturnArgX5609 = function ($$0, $$1) {
+  const tmpClusterSSA_fooReturnArgX5609 /*:(unknown, unknown)=>?*/ = function ($$0, $$1) {
     const nCeX408 = $$0;
     const rCeX216 = $$1;
     debugger;
-    const fooCalleeParamX11294 = SSA_bNeX94;
-    const fooArrElementX3242 = SSA_xNeX108;
-    const fooCalleeParamX11295 = jNeX68;
     const fooCalleeParamX11296 = SP(kNeX164, zAe, rCeX216);
-    const fooArrElementX3244 = UA(fooCalleeParamX11295, nCeX408, fooCalleeParamX11296);
-    const fooCalleeParamX11297 /*:array*/ = [4, fooArrElementX3242, fooArrElementX3244];
-    const fooReturnArgX5610 = RP$cloneX5(fooCalleeParamX11294, $, fooCalleeParamX11297, PNeX191);
+    const fooArrElementX3244 = UA(jNeX68, nCeX408, fooCalleeParamX11296);
+    const fooCalleeParamX11297 /*:array*/ = [4, SSA_xNeX108, fooArrElementX3244];
+    const fooReturnArgX5610 = RP$cloneX5(SSA_bNeX94, $, fooCalleeParamX11297, PNeX191);
     return fooReturnArgX5610;
   };
-  const fooReturnArgX5604 = function ($$0) {
+  const fooReturnArgX5604 /*:(unknown)=>?*/ = function ($$0) {
     const nCeX407 = $$0;
     debugger;
-    const fooCalleeParamX11288 = SSA_bNeX94;
-    const fooArrElementX3237 = SSA_xNeX108;
-    const fooCalleeParamX11289 = LNeX86;
-    const fooCalleeParamX11290 = wNeX70;
     const fooCalleeParamX11291 = SP(kNeX164, INeX72, nCeX407);
-    const fooArrElementX3239 = UA(fooCalleeParamX11289, fooCalleeParamX11290, fooCalleeParamX11291);
-    const fooCalleeParamX11292 /*:array*/ = [4, fooArrElementX3237, fooArrElementX3239];
-    const fooReturnArgX5608 = RP$cloneX5(fooCalleeParamX11288, $, fooCalleeParamX11292, PNeX191);
+    const fooArrElementX3239 = UA(LNeX86, wNeX70, fooCalleeParamX11291);
+    const fooCalleeParamX11292 /*:array*/ = [4, SSA_xNeX108, fooArrElementX3239];
+    const fooReturnArgX5608 = RP$cloneX5(SSA_bNeX94, $, fooCalleeParamX11292, PNeX191);
     return fooReturnArgX5608;
   };
-  const tmpClusterSSA_fooReturnArgX5605$1 = function ($$0, $$1) {
+  const tmpClusterSSA_fooReturnArgX5605$1 /*:(unknown, unknown)=>?*/ = function ($$0, $$1) {
     const nCeX406 = $$0;
     const rCeX215 = $$1;
     debugger;
-    const fooCalleeParamX11282 = SSA_bNeX94;
-    const fooArrElementX3232 = SSA_xNeX108;
-    const fooCalleeParamX11283 = LNeX86;
-    const fooCalleeParamX11284 = wNeX70;
     const fooCalleeParamX11285 = SP(kNeX164, nCeX406, rCeX215);
-    const fooArrElementX3234 = UA(fooCalleeParamX11283, fooCalleeParamX11284, fooCalleeParamX11285);
-    const fooCalleeParamX11286 /*:array*/ = [4, fooArrElementX3232, fooArrElementX3234];
-    const fooReturnArgX5607 = RP$cloneX5(fooCalleeParamX11282, $, fooCalleeParamX11286, PNeX191);
+    const fooArrElementX3234 = UA(LNeX86, wNeX70, fooCalleeParamX11285);
+    const fooCalleeParamX11286 /*:array*/ = [4, SSA_xNeX108, fooArrElementX3234];
+    const fooReturnArgX5607 = RP$cloneX5(SSA_bNeX94, $, fooCalleeParamX11286, PNeX191);
     return fooReturnArgX5607;
   };
-  const tmpClusterSSA_fooReturnArgX5605 = function ($$0) {
+  const tmpClusterSSA_fooReturnArgX5605 /*:(unknown)=>?*/ = function ($$0) {
     const nCeX405 = $$0;
     debugger;
-    const fooCalleeParamX11276 = SSA_bNeX94;
-    const fooArrElementX3227 = SSA_xNeX108;
-    const fooCalleeParamX11277 = LNeX86;
-    const fooCalleeParamX11278 = wNeX70;
     const fooCalleeParamX11279 = SP(kNeX164, zAe, nCeX405);
-    const fooArrElementX3229 = UA(fooCalleeParamX11277, fooCalleeParamX11278, fooCalleeParamX11279);
-    const fooCalleeParamX11280 /*:array*/ = [4, fooArrElementX3227, fooArrElementX3229];
-    const fooReturnArgX5606 = RP$cloneX5(fooCalleeParamX11276, $, fooCalleeParamX11280, PNeX191);
+    const fooArrElementX3229 = UA(LNeX86, wNeX70, fooCalleeParamX11279);
+    const fooCalleeParamX11280 /*:array*/ = [4, SSA_xNeX108, fooArrElementX3229];
+    const fooReturnArgX5606 = RP$cloneX5(SSA_bNeX94, $, fooCalleeParamX11280, PNeX191);
     return fooReturnArgX5606;
   };
-  const fooReturnArgX5599 = function ($$0) {
+  const fooReturnArgX5599 /*:(unknown)=>?*/ = function ($$0) {
     const nCeX404 = $$0;
     debugger;
-    const fooCalleeParamX11273 = SSA_bNeX94;
-    const fooArrElementX3223 = SSA_xNeX108;
     const fooArrElementX3225 = SP(kNeX164, vNeX134, nCeX404);
-    const fooCalleeParamX11274 /*:array*/ = [4, fooArrElementX3223, fooArrElementX3225];
-    const fooReturnArgX5603 = RP$cloneX5(fooCalleeParamX11273, $, fooCalleeParamX11274, PNeX191);
+    const fooCalleeParamX11274 /*:array*/ = [4, SSA_xNeX108, fooArrElementX3225];
+    const fooReturnArgX5603 = RP$cloneX5(SSA_bNeX94, $, fooCalleeParamX11274, PNeX191);
     return fooReturnArgX5603;
   };
-  const tmpClusterSSA_fooReturnArgX5600$1 = function ($$0, $$1) {
+  const tmpClusterSSA_fooReturnArgX5600$1 /*:(unknown, unknown)=>?*/ = function ($$0, $$1) {
     const nCeX403 = $$0;
     const rCeX214 = $$1;
     debugger;
-    const fooCalleeParamX11270 = SSA_bNeX94;
-    const fooArrElementX3219 = SSA_xNeX108;
     const fooArrElementX3221 = SP(kNeX164, nCeX403, rCeX214);
-    const fooCalleeParamX11271 /*:array*/ = [4, fooArrElementX3219, fooArrElementX3221];
-    const fooReturnArgX5602 = RP$cloneX5(fooCalleeParamX11270, $, fooCalleeParamX11271, PNeX191);
+    const fooCalleeParamX11271 /*:array*/ = [4, SSA_xNeX108, fooArrElementX3221];
+    const fooReturnArgX5602 = RP$cloneX5(SSA_bNeX94, $, fooCalleeParamX11271, PNeX191);
     return fooReturnArgX5602;
   };
-  const tmpClusterSSA_fooReturnArgX5600 = function ($$0) {
+  const tmpClusterSSA_fooReturnArgX5600 /*:(unknown)=>?*/ = function ($$0) {
     const nCeX402 = $$0;
     debugger;
-    const fooCalleeParamX11267 = SSA_bNeX94;
-    const fooArrElementX3215 = SSA_xNeX108;
     const fooArrElementX3217 = SP(kNeX164, zAe, nCeX402);
-    const fooCalleeParamX11268 /*:array*/ = [4, fooArrElementX3215, fooArrElementX3217];
-    const fooReturnArgX5601 = RP$cloneX5(fooCalleeParamX11267, $, fooCalleeParamX11268, PNeX191);
+    const fooCalleeParamX11268 /*:array*/ = [4, SSA_xNeX108, fooArrElementX3217];
+    const fooReturnArgX5601 = RP$cloneX5(SSA_bNeX94, $, fooCalleeParamX11268, PNeX191);
     return fooReturnArgX5601;
   };
-  const fooReturnArgX5596 = function ($$0) {
+  const fooReturnArgX5596 /*:(unknown)=>?*/ = function ($$0) {
     const nCeX400 = $$0;
     debugger;
-    const fooCalleeParamX11231 = SSA_bNeX94;
-    const fooArrElementX3211 = SSA_xNeX108;
     const fooCalleeParamX11232 = XT(nCeX400);
-    Jq;
-    const fooArrElementX3213 = __(fooCalleeParamX11232, Jq);
-    const fooCalleeParamX11234 /*:array*/ = [4, fooArrElementX3211, fooArrElementX3213];
-    const fooReturnArgX5597 = RP$cloneX5(fooCalleeParamX11231, $, fooCalleeParamX11234, TNeX211);
+    const fooCalleeParamX11233 = Jq;
+    const fooArrElementX3213 = __(fooCalleeParamX11232, fooCalleeParamX11233);
+    const fooCalleeParamX11234 /*:array*/ = [4, SSA_xNeX108, fooArrElementX3213];
+    const fooReturnArgX5597 = RP$cloneX5(SSA_bNeX94, $, fooCalleeParamX11234, TNeX211);
     return fooReturnArgX5597;
   };
   let ENeX311 = undefined;
@@ -3137,7 +3104,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
   let VNeX53 = undefined;
   let XNeX77 = undefined;
   let ZNeX45 = undefined;
-  const fooReturnArgX5594 = function ($$0) {
+  const fooReturnArgX5594 /*:(unknown)=>?*/ = function ($$0) {
     const nCeX399 = $$0;
     debugger;
     const fooCalleeParamX11229 /*:array*/ = [5, SSA_xNeX108, nCeX399];
@@ -3297,34 +3264,22 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
           } else {
             const fooIfTestX13139 /*:boolean*/ = fooSwitchCaseToStartX352 <= 3;
             if (fooIfTestX13139) {
-              const fooCalleeParamX11239 = SSA_bNeX94;
-              const fooCalleeParamX11240 = SSA_xNeX108;
               const fooCalleeParamX11241 = SSA_SNeX76[2];
               const fooCalleeParamX11242 = SSA_SNeX76[1];
-              const SSA_fooReturnArgX139 = NP$cloneX2$clone(
-                $,
-                fooCalleeParamX11239,
-                $,
-                fooCalleeParamX11240,
-                fooCalleeParamX11241,
-                fooCalleeParamX11242,
-                WA,
-              );
+              const SSA_fooReturnArgX139 = NP$cloneX2$clone($, SSA_bNeX94, $, SSA_xNeX108, fooCalleeParamX11241, fooCalleeParamX11242, WA);
               return SSA_fooReturnArgX139;
             } else {
               const fooIfTestX13140 /*:boolean*/ = fooSwitchCaseToStartX352 <= 4;
               if (fooIfTestX13140) {
-                const fooCalleeParamX11243 = SSA_bNeX94;
-                const fooCalleeParamX11244 = SSA_xNeX108;
                 const fooCalleeParamX11245 = SSA_SNeX76[4];
                 const fooCalleeParamX11246 = SSA_SNeX76[2];
                 const fooCalleeParamX11247 = SSA_SNeX76[3];
                 const fooCalleeParamX11248 = SSA_SNeX76[1];
                 const SSA_fooReturnArgX140 = LP$cloneX2$clone(
                   $,
-                  fooCalleeParamX11243,
+                  SSA_bNeX94,
                   $,
-                  fooCalleeParamX11244,
+                  SSA_xNeX108,
                   fooCalleeParamX11245,
                   fooCalleeParamX11246,
                   fooCalleeParamX11247,
@@ -3335,17 +3290,15 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
               } else {
                 const fooIfTestX13141 /*:boolean*/ = fooSwitchCaseToStartX352 <= 5;
                 if (fooIfTestX13141) {
-                  const fooCalleeParamX11249 = SSA_bNeX94;
-                  const fooCalleeParamX11250 = SSA_xNeX108;
                   const fooCalleeParamX11251 = SSA_SNeX76[4];
                   const fooCalleeParamX11252 = SSA_SNeX76[2];
                   const fooCalleeParamX11253 = SSA_SNeX76[3];
                   const fooCalleeParamX11254 = SSA_SNeX76[1];
                   const SSA_fooReturnArgX141 = LP$cloneX2$clone(
                     $,
-                    fooCalleeParamX11249,
+                    SSA_bNeX94,
                     $,
-                    fooCalleeParamX11250,
+                    SSA_xNeX108,
                     fooCalleeParamX11251,
                     fooCalleeParamX11252,
                     fooCalleeParamX11253,
@@ -3356,17 +3309,15 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                 } else {
                   const fooIfTestX13142 /*:boolean*/ = fooSwitchCaseToStartX352 <= 6;
                   if (fooIfTestX13142) {
-                    const fooCalleeParamX11255 = SSA_bNeX94;
-                    const fooCalleeParamX11256 = SSA_xNeX108;
                     const fooCalleeParamX11257 = SSA_SNeX76[4];
                     const fooCalleeParamX11258 = SSA_SNeX76[2];
                     const fooCalleeParamX11259 = SSA_SNeX76[3];
                     const fooCalleeParamX11260 = SSA_SNeX76[1];
                     const SSA_fooReturnArgX142 = LP$cloneX2$clone(
                       $,
-                      fooCalleeParamX11255,
+                      SSA_bNeX94,
                       $,
-                      fooCalleeParamX11256,
+                      SSA_xNeX108,
                       fooCalleeParamX11257,
                       fooCalleeParamX11258,
                       fooCalleeParamX11259,
@@ -3377,17 +3328,15 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                   } else {
                     const fooIfTestX13143 /*:boolean*/ = fooSwitchCaseToStartX352 <= 7;
                     if (fooIfTestX13143) {
-                      const fooCalleeParamX11261 = SSA_bNeX94;
-                      const fooCalleeParamX11262 = SSA_xNeX108;
                       const fooCalleeParamX11263 = SSA_SNeX76[4];
                       const fooCalleeParamX11264 = SSA_SNeX76[2];
                       const fooCalleeParamX11265 = SSA_SNeX76[3];
                       const fooCalleeParamX11266 = SSA_SNeX76[1];
                       const SSA_fooReturnArgX143 = LP$cloneX2$clone(
                         $,
-                        fooCalleeParamX11261,
+                        SSA_bNeX94,
                         $,
-                        fooCalleeParamX11262,
+                        SSA_xNeX108,
                         fooCalleeParamX11263,
                         fooCalleeParamX11264,
                         fooCalleeParamX11265,
@@ -3467,16 +3416,14 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                           } else {
                             const fooIfTestX13147 /*:boolean*/ = fooSwitchCaseToStartX352 <= 11;
                             if (fooIfTestX13147) {
-                              const fooArrElementX3257 = SSA_xNeX108;
                               const fooArrElementX3259 = SSA_SNeX76[1];
-                              SSA_xNeX108 = [2, fooArrElementX3257, fooArrElementX3259];
+                              SSA_xNeX108 = [2, SSA_xNeX108, fooArrElementX3259];
                               SSA_SNeX76 = SSA_SNeX76[2];
                             } else {
                               const fooIfTestX13148 /*:boolean*/ = fooSwitchCaseToStartX352 <= 12;
                               if (fooIfTestX13148) {
-                                const fooArrElementX3262 = SSA_xNeX108;
                                 const fooArrElementX3264 = SSA_SNeX76[1];
-                                SSA_xNeX108 = [3, fooArrElementX3262, fooArrElementX3264];
+                                SSA_xNeX108 = [3, SSA_xNeX108, fooArrElementX3264];
                                 SSA_SNeX76 = SSA_SNeX76[2];
                               } else {
                                 const fooIfTestX13149 /*:boolean*/ = fooSwitchCaseToStartX352 <= 13;
@@ -3506,14 +3453,13 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                       } else {
                                         const fooIfTestX13153 /*:boolean*/ = fooSwitchCaseToStartX352 <= 17;
                                         if (fooIfTestX13153) {
-                                          const fooArrElementX3272 = SSA_xNeX108;
                                           const fooArrElementX3274 = SSA_SNeX76[1];
-                                          SSA_xNeX108 = [0, fooArrElementX3272, fooArrElementX3274];
+                                          SSA_xNeX108 = [0, SSA_xNeX108, fooArrElementX3274];
                                           SSA_SNeX76 = SSA_SNeX76[2];
                                         } else {
                                           const fooIfTestX13154 /*:boolean*/ = fooSwitchCaseToStartX352 <= 18;
                                           if (fooIfTestX13154) {
-                                            const fooReturnArgX5626 = function ($$0, $$1) {
+                                            const fooReturnArgX5626 /*:(unknown, unknown)=>?*/ = function ($$0, $$1) {
                                               const iCeX155 = $$0;
                                               const oCeX144 = $$1;
                                               debugger;
@@ -3522,7 +3468,7 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                               const fooReturnArgX5627 = RP(rCeX222, iCeX155, fooCalleeParamX11329, qNeX60);
                                               return fooReturnArgX5627;
                                             };
-                                            const fooReturnArgX5624 = function ($$0, $$1) {
+                                            const fooReturnArgX5624 /*:(unknown, unknown)=>?*/ = function ($$0, $$1) {
                                               const iCeX154 = $$0;
                                               const oCeX143 = $$1;
                                               debugger;
@@ -3791,14 +3737,12 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                                       } else {
                                                                         const fooIfTestX13213 /*:boolean*/ = fooSwitchCaseToStartX354 <= 8;
                                                                         if (fooIfTestX13213) {
-                                                                          const fooCalleeParamX11360 = SSA_bNeX94;
-                                                                          const fooCalleeParamX11361 = SSA_xNeX108;
                                                                           const fooCalleeParamX11362 = eCeX71[2];
                                                                           const SSA_fooReturnArgX156 = _P$cloneX4$clone(
                                                                             $,
-                                                                            fooCalleeParamX11360,
+                                                                            SSA_bNeX94,
                                                                             $,
-                                                                            fooCalleeParamX11361,
+                                                                            SSA_xNeX108,
                                                                             fooCalleeParamX11362,
                                                                             $NeX101,
                                                                           );
@@ -3825,15 +3769,13 @@ const TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                     } else {
                                                       const tCeX65 = SSA_SNeX76[3];
                                                       const aCeX130 = SSA_SNeX76[1];
-                                                      const fooCalleeParamX11367 = SSA_bNeX94;
-                                                      const fooCalleeParamX11368 = SSA_xNeX108;
                                                       const fooCalleeParamX11369 = SSA_SNeX76[2];
                                                       const fooCalleeParamX11370 = OE$clone(fooCalleeParamX11369, $);
                                                       const SSA_fooReturnArgX159 = IP$cloneX3$cloneX1(
                                                         $,
-                                                        fooCalleeParamX11367,
+                                                        SSA_bNeX94,
                                                         $,
-                                                        fooCalleeParamX11368,
+                                                        SSA_xNeX108,
                                                         tCeX65,
                                                         aCeX130,
                                                         fooCalleeParamX11370,
@@ -3876,382 +3818,349 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
   return b;
 };
-const d = function($$0,$$1,$$2,$$3,$$4 ) {
-  const e = f;
-  const g = h;
-  const i = j;
+const c = function($$0,$$1,$$2,$$3,$$4 ) {
+  const d = $$1;
+  const e = $$3;
+  const f = $$4;
   debugger;
-  const k = function($$0 ) {
-    const l = c;
+  const g = function($$0 ) {
+    const h = $$0;
     debugger;
-    const m = [ 5, n, l ];
-    const o = RP$cloneX5( p, $, m, q );
-    return o;
+    const i = [ 5, j, h ];
+    const k = RP$cloneX5( l, $, i, m );
+    return k;
   };
-  const r = function($$0 ) {
-    const s = c;
+  const n = function($$0 ) {
+    const o = $$0;
     debugger;
-    const t = p;
-    const u = n;
-    const v = $yX2( Iq, s );
-    const w = [ 4, u, v ];
-    const x = RP$cloneX5( t, $, w, y );
-    return x;
+    const p = $yX2( Iq, o );
+    const q = [ 4, j, p ];
+    const r = RP$cloneX5( l, $, q, s );
+    return r;
   };
-  const z = function() {
+  const t = function() {
     debugger;
-    const ba = RP$cloneX5( p, $, bb, bc );
+    const u = RP$cloneX5( l, $, v, w );
+    return u;
+  };
+  const x = function($$0 ) {
+    const y = $$0;
+    debugger;
+    const z = [ 6, j, y ];
+    const ba = RP$cloneX5( l, $, z, bb );
     return ba;
   };
-  const bd = function($$0 ) {
-    const be = c;
+  const bc = function($$0,$$1 ) {
+    const bd = $$0;
+    const be = $$1;
     debugger;
-    const bf = [ 6, n, be ];
-    const bg = RP$cloneX5( p, $, bf, bh );
-    return bg;
-  };
-  const bi = function($$0,$$1 ) {
-    const bj = c;
-    const bk = f;
-    debugger;
-    const bl = function($$0 ) {
-      const bm = c;
+    const bf = function($$0 ) {
+      const bg = $$0;
       debugger;
-      const bn = YE( bj, bm, bk );
-      return bn;
+      const bh = YE( bd, bg, be );
+      return bh;
     };
-    const bo = [ 6, n, bl ];
-    const bp = RP$cloneX5( p, $, bo, bq );
-    return bp;
+    const bi = [ 6, j, bf ];
+    const bj = RP$cloneX5( l, $, bi, bk );
+    return bj;
   };
-  let br = undefined;
-  const bs = function($$0 ) {
-    const bt = c;
+  let bl = undefined;
+  const bm = function($$0 ) {
+    const bn = $$0;
     debugger;
-    const bu = bt[ 1 ];
-    const bv = PA( br );
-    const bw = WE( bv );
-    const bx = YA( bu, bw );
-    const by = bx[ 2 ];
-    const bz = typeof by;
-    const ca = "number" == bz;
-    if (ca) {
-      const cb = p;
-      const cc = n;
-      const cd = bx[ 1 ];
-      const ce = ZE( cd, cf );
-      const cg = RP$cloneX5( cb, $, cc, ce );
-      return cg;
+    const bo = bn[ 1 ];
+    const bp = PA( bl );
+    const bq = WE( bp );
+    const br = YA( bo, bq );
+    const bs = br[ 2 ];
+    const bt = typeof bs;
+    const bu = "number" == bt;
+    if (bu) {
+      const bv = br[ 1 ];
+      const bw = ZE( bv, bx );
+      const by = RP$cloneX5( l, $, j, bw );
+      return by;
     }
     else {
       throw JAe;
     }
   };
-  const ch = function() {
+  const bz = function() {
     debugger;
-    const ci = [ 4, n, cj ];
-    const ck = RP$cloneX5( p, $, ci, cl );
-    return ck;
+    const ca = [ 4, j, cb ];
+    const cc = RP$cloneX5( l, $, ca, cd );
+    return cc;
   };
-  let cm = undefined;
-  const cn = function($$0 ) {
-    const co = c;
+  let ce = undefined;
+  const cf = function($$0 ) {
+    const cg = $$0;
     debugger;
-    let cp = undefined;
-    if (co) {
-      cp = TU;
+    let ch = undefined;
+    if (cg) {
+      ch = TU;
     }
     else {
-      cp = _U;
+      ch = _U;
     }
-    const cq = [ 4, n, cp ];
-    const cr = RP$cloneX5( p, $, cq, cm );
-    return cr;
+    const ci = [ 4, j, ch ];
+    const cj = RP$cloneX5( l, $, ci, ce );
+    return cj;
   };
-  const cs = function($$0,$$1 ) {
-    const ct = c;
-    const cu = f;
+  const ck = function($$0,$$1 ) {
+    const cl = $$0;
+    const cm = $$1;
     debugger;
-    const cv = p;
-    const cw = n;
-    const cx = cy;
-    const cz = SP( da, db, cu );
-    const dc = UA( cx, ct, cz );
-    const dd = [ 4, cw, dc ];
-    const de = RP$cloneX5( cv, $, dd, df );
-    return de;
+    const cn = SP( co, cp, cm );
+    const cq = UA( cr, cl, cn );
+    const cs = [ 4, j, cq ];
+    const ct = RP$cloneX5( l, $, cs, cu );
+    return ct;
   };
-  const dg = function($$0,$$1,$$2 ) {
-    const dh = c;
-    const di = f;
-    const dj = dk;
+  const cv = function($$0,$$1,$$2 ) {
+    const cw = $$0;
+    const cx = $$1;
+    const cy = $$2;
     debugger;
-    const dl = p;
-    const dm = n;
-    const dn = cy;
-    const do = SP( da, di, dj );
-    const dp = UA( dn, dh, do );
-    const dq = [ 4, dm, dp ];
-    const dr = RP$cloneX5( dl, $, dq, df );
-    return dr;
+    const cz = SP( co, cx, cy );
+    const da = UA( cr, cw, cz );
+    const db = [ 4, j, da ];
+    const dc = RP$cloneX5( l, $, db, cu );
+    return dc;
   };
-  const ds = function($$0,$$1 ) {
-    const dt = c;
-    const du = f;
+  const dd = function($$0,$$1 ) {
+    const de = $$0;
+    const df = $$1;
     debugger;
-    const dv = p;
-    const dw = n;
-    const dx = cy;
-    const dy = SP( da, zAe, du );
-    const dz = UA( dx, dt, dy );
-    const ea = [ 4, dw, dz ];
-    const eb = RP$cloneX5( dv, $, ea, df );
-    return eb;
+    const dg = SP( co, zAe, df );
+    const dh = UA( cr, de, dg );
+    const di = [ 4, j, dh ];
+    const dj = RP$cloneX5( l, $, di, cu );
+    return dj;
   };
-  const ec = function($$0 ) {
-    const ed = c;
+  const dk = function($$0 ) {
+    const dl = $$0;
     debugger;
-    const ee = p;
-    const ef = n;
-    const eg = eh;
-    const ei = ej;
-    const ek = SP( da, el, ed );
-    const em = UA( eg, ei, ek );
-    const en = [ 4, ef, em ];
-    const eo = RP$cloneX5( ee, $, en, df );
-    return eo;
+    const dm = SP( co, dn, dl );
+    const dp = UA( dq, dr, dm );
+    const ds = [ 4, j, dp ];
+    const dt = RP$cloneX5( l, $, ds, cu );
+    return dt;
   };
-  const ep = function($$0,$$1 ) {
-    const eq = c;
-    const er = f;
+  const du = function($$0,$$1 ) {
+    const dv = $$0;
+    const dw = $$1;
     debugger;
-    const es = p;
-    const et = n;
-    const eu = eh;
-    const ev = ej;
-    const ew = SP( da, eq, er );
-    const ex = UA( eu, ev, ew );
-    const ey = [ 4, et, ex ];
-    const ez = RP$cloneX5( es, $, ey, df );
-    return ez;
+    const dx = SP( co, dv, dw );
+    const dy = UA( dq, dr, dx );
+    const dz = [ 4, j, dy ];
+    const ea = RP$cloneX5( l, $, dz, cu );
+    return ea;
   };
-  const fa = function($$0 ) {
-    const fb = c;
+  const eb = function($$0 ) {
+    const ec = $$0;
     debugger;
-    const fc = p;
-    const fd = n;
-    const fe = eh;
-    const ff = ej;
-    const fg = SP( da, zAe, fb );
-    const fh = UA( fe, ff, fg );
-    const fi = [ 4, fd, fh ];
-    const fj = RP$cloneX5( fc, $, fi, df );
-    return fj;
+    const ed = SP( co, zAe, ec );
+    const ee = UA( dq, dr, ed );
+    const ef = [ 4, j, ee ];
+    const eg = RP$cloneX5( l, $, ef, cu );
+    return eg;
   };
-  const fk = function($$0 ) {
-    const fl = c;
+  const eh = function($$0 ) {
+    const ei = $$0;
     debugger;
-    const fm = p;
-    const fn = n;
-    const fo = SP( da, fp, fl );
-    const fq = [ 4, fn, fo ];
-    const fr = RP$cloneX5( fm, $, fq, df );
-    return fr;
+    const ej = SP( co, ek, ei );
+    const el = [ 4, j, ej ];
+    const em = RP$cloneX5( l, $, el, cu );
+    return em;
   };
-  const fs = function($$0,$$1 ) {
-    const ft = c;
-    const fu = f;
+  const en = function($$0,$$1 ) {
+    const eo = $$0;
+    const ep = $$1;
     debugger;
-    const fv = p;
-    const fw = n;
-    const fx = SP( da, ft, fu );
-    const fy = [ 4, fw, fx ];
-    const fz = RP$cloneX5( fv, $, fy, df );
-    return fz;
+    const eq = SP( co, eo, ep );
+    const er = [ 4, j, eq ];
+    const es = RP$cloneX5( l, $, er, cu );
+    return es;
   };
-  const ga = function($$0 ) {
-    const gb = c;
+  const et = function($$0 ) {
+    const eu = $$0;
     debugger;
-    const gc = p;
-    const gd = n;
-    const ge = SP( da, zAe, gb );
-    const gf = [ 4, gd, ge ];
-    const gg = RP$cloneX5( gc, $, gf, df );
-    return gg;
+    const ev = SP( co, zAe, eu );
+    const ew = [ 4, j, ev ];
+    const ex = RP$cloneX5( l, $, ew, cu );
+    return ex;
   };
-  const gh = function($$0 ) {
-    const gi = c;
+  const ey = function($$0 ) {
+    const ez = $$0;
     debugger;
-    const gj = p;
-    const gk = n;
-    const gl = XT( gi );
-    Jq;
-    const gm = __( gl, Jq );
-    const gn = [ 4, gk, gm ];
-    const go = RP$cloneX5( gj, $, gn, gp );
-    return go;
+    const fa = XT( ez );
+    const fb = Jq;
+    const fc = __( fa, fb );
+    const fd = [ 4, j, fc ];
+    const fe = RP$cloneX5( l, $, fd, ff );
+    return fe;
   };
-  let gq = undefined;
-  let cj = undefined;
-  let bc = undefined;
-  let el = undefined;
-  let y = undefined;
-  let eh = undefined;
-  let cl = undefined;
-  let df = undefined;
-  let q = undefined;
-  let db = undefined;
-  let p = e;
-  let n = g;
-  let gp = undefined;
-  let bq = undefined;
-  let cf = undefined;
-  let bh = undefined;
+  let fg = undefined;
+  let cb = undefined;
+  let w = undefined;
+  let dn = undefined;
+  let s = undefined;
+  let dq = undefined;
+  let cd = undefined;
+  let cu = undefined;
+  let m = undefined;
+  let cp = undefined;
+  let l = d;
+  let j = e;
+  let ff = undefined;
+  let bk = undefined;
+  let bx = undefined;
   let bb = undefined;
-  const gr = function($$0 ) {
-    const gs = c;
+  let v = undefined;
+  const fh = function($$0 ) {
+    const fi = $$0;
     debugger;
-    const gt = [ 5, n, gs ];
-    const gu = RP$cloneX5( p, $, gt, gq );
-    return gu;
+    const fj = [ 5, j, fi ];
+    const fk = RP$cloneX5( l, $, fj, fg );
+    return fk;
   };
-  let cy = undefined;
-  let da = undefined;
-  let fp = undefined;
-  let ej = undefined;
-  let gv = i;
+  let cr = undefined;
+  let co = undefined;
+  let ek = undefined;
+  let dr = undefined;
+  let fl = f;
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const gw = typeof gv;
-    const gx = "number" == gw;
-    if (gx) {
-      const gy = YE$cloneX5( p, $, n );
-      return gy;
+    const fm = typeof fl;
+    const fn = "number" == fm;
+    if (fn) {
+      const fo = YE$cloneX5( l, $, j );
+      return fo;
     }
     else {
-      const gz = gv[ 0 ];
-      let ha = 24;
-      const hb = 0 === gz;
-      if (hb) {
-        ha = 0;
+      const fp = fl[ 0 ];
+      let fq = 24;
+      const fr = 0 === fp;
+      if (fr) {
+        fq = 0;
       }
       else {
-        const hc = 1 === gz;
-        if (hc) {
-          ha = 1;
+        const fs = 1 === fp;
+        if (fs) {
+          fq = 1;
         }
         else {
-          const hd = 2 === gz;
-          if (hd) {
-            ha = 2;
+          const ft = 2 === fp;
+          if (ft) {
+            fq = 2;
           }
           else {
-            const he = 3 === gz;
-            if (he) {
-              ha = 3;
+            const fu = 3 === fp;
+            if (fu) {
+              fq = 3;
             }
             else {
-              const hf = 4 === gz;
-              if (hf) {
-                ha = 4;
+              const fv = 4 === fp;
+              if (fv) {
+                fq = 4;
               }
               else {
-                const hg = 5 === gz;
-                if (hg) {
-                  ha = 5;
+                const fw = 5 === fp;
+                if (fw) {
+                  fq = 5;
                 }
                 else {
-                  const hh = 6 === gz;
-                  if (hh) {
-                    ha = 6;
+                  const fx = 6 === fp;
+                  if (fx) {
+                    fq = 6;
                   }
                   else {
-                    const hi = 7 === gz;
-                    if (hi) {
-                      ha = 7;
+                    const fy = 7 === fp;
+                    if (fy) {
+                      fq = 7;
                     }
                     else {
-                      const hj = 8 === gz;
-                      if (hj) {
-                        ha = 8;
+                      const fz = 8 === fp;
+                      if (fz) {
+                        fq = 8;
                       }
                       else {
-                        const hk = 9 === gz;
-                        if (hk) {
-                          ha = 9;
+                        const ga = 9 === fp;
+                        if (ga) {
+                          fq = 9;
                         }
                         else {
-                          const hl = 10 === gz;
-                          if (hl) {
-                            ha = 10;
+                          const gb = 10 === fp;
+                          if (gb) {
+                            fq = 10;
                           }
                           else {
-                            const hm = 11 === gz;
-                            if (hm) {
-                              ha = 11;
+                            const gc = 11 === fp;
+                            if (gc) {
+                              fq = 11;
                             }
                             else {
-                              const hn = 12 === gz;
-                              if (hn) {
-                                ha = 12;
+                              const gd = 12 === fp;
+                              if (gd) {
+                                fq = 12;
                               }
                               else {
-                                const ho = 13 === gz;
-                                if (ho) {
-                                  ha = 13;
+                                const ge = 13 === fp;
+                                if (ge) {
+                                  fq = 13;
                                 }
                                 else {
-                                  const hp = 14 === gz;
-                                  if (hp) {
-                                    ha = 14;
+                                  const gf = 14 === fp;
+                                  if (gf) {
+                                    fq = 14;
                                   }
                                   else {
-                                    const hq = 15 === gz;
-                                    if (hq) {
-                                      ha = 15;
+                                    const gg = 15 === fp;
+                                    if (gg) {
+                                      fq = 15;
                                     }
                                     else {
-                                      const hr = 16 === gz;
-                                      if (hr) {
-                                        ha = 16;
+                                      const gh = 16 === fp;
+                                      if (gh) {
+                                        fq = 16;
                                       }
                                       else {
-                                        const hs = 17 === gz;
-                                        if (hs) {
-                                          ha = 17;
+                                        const gi = 17 === fp;
+                                        if (gi) {
+                                          fq = 17;
                                         }
                                         else {
-                                          const ht = 18 === gz;
-                                          if (ht) {
-                                            ha = 18;
+                                          const gj = 18 === fp;
+                                          if (gj) {
+                                            fq = 18;
                                           }
                                           else {
-                                            const hu = 19 === gz;
-                                            if (hu) {
-                                              ha = 19;
+                                            const gk = 19 === fp;
+                                            if (gk) {
+                                              fq = 19;
                                             }
                                             else {
-                                              const hv = 20 === gz;
-                                              if (hv) {
-                                                ha = 20;
+                                              const gl = 20 === fp;
+                                              if (gl) {
+                                                fq = 20;
                                               }
                                               else {
-                                                const hw = 21 === gz;
-                                                if (hw) {
-                                                  ha = 21;
+                                                const gm = 21 === fp;
+                                                if (gm) {
+                                                  fq = 21;
                                                 }
                                                 else {
-                                                  const hx = 22 === gz;
-                                                  if (hx) {
-                                                    ha = 22;
+                                                  const gn = 22 === fp;
+                                                  if (gn) {
+                                                    fq = 22;
                                                   }
                                                   else {
-                                                    const hy = 23 === gz;
-                                                    if (hy) {
-                                                      ha = 23;
+                                                    const go = 23 === fp;
+                                                    if (go) {
+                                                      fq = 23;
                                                     }
                                                   }
                                                 }
@@ -4276,394 +4185,381 @@ const d = function($$0,$$1,$$2,$$3,$$4 ) {
           }
         }
       }
-      const hz = ha <= 0;
-      if (hz) {
-        gq = gv[ 1 ];
-        return gr;
+      const gp = fq <= 0;
+      if (gp) {
+        fg = fl[ 1 ];
+        return fh;
       }
       else {
-        const ia = ha <= 1;
-        if (ia) {
-          gp = gv[ 1 ];
-          return gh;
+        const gq = fq <= 1;
+        if (gq) {
+          ff = fl[ 1 ];
+          return ey;
         }
         else {
-          const ib = ha <= 2;
-          if (ib) {
-            const ic = gv[ 2 ];
-            const id = gv[ 1 ];
-            const ie = NP$cloneX2$clone( $, p, $, n, ic, id, a );
-            return ie;
+          const gr = fq <= 2;
+          if (gr) {
+            const gs = fl[ 2 ];
+            const gt = fl[ 1 ];
+            const gu = NP$cloneX2$clone( $, l, $, j, gs, gt, a );
+            return gu;
           }
           else {
-            const if = ha <= 3;
-            if (if) {
-              const ig = p;
-              const ih = n;
-              const ii = gv[ 2 ];
-              const ij = gv[ 1 ];
-              const ik = NP$cloneX2$clone( $, ig, $, ih, ii, ij, WA );
-              return ik;
+            const gv = fq <= 3;
+            if (gv) {
+              const gw = fl[ 2 ];
+              const gx = fl[ 1 ];
+              const gy = NP$cloneX2$clone( $, l, $, j, gw, gx, WA );
+              return gy;
             }
             else {
-              const il = ha <= 4;
-              if (il) {
-                const im = p;
-                const in = n;
-                const io = gv[ 4 ];
-                const ip = gv[ 2 ];
-                const iq = gv[ 3 ];
-                const ir = gv[ 1 ];
-                const is = LP$cloneX2$clone( $, im, $, in, io, ip, iq, ZA, ir );
-                return is;
+              const gz = fq <= 4;
+              if (gz) {
+                const ha = fl[ 4 ];
+                const hb = fl[ 2 ];
+                const hc = fl[ 3 ];
+                const hd = fl[ 1 ];
+                const he = LP$cloneX2$clone( $, l, $, j, ha, hb, hc, ZA, hd );
+                return he;
               }
               else {
-                const it = ha <= 5;
-                if (it) {
-                  const iu = p;
-                  const iv = n;
-                  const iw = gv[ 4 ];
-                  const ix = gv[ 2 ];
-                  const iy = gv[ 3 ];
-                  const iz = gv[ 1 ];
-                  const ja = LP$cloneX2$clone( $, iu, $, iv, iw, ix, iy, KA, iz );
-                  return ja;
+                const hf = fq <= 5;
+                if (hf) {
+                  const hg = fl[ 4 ];
+                  const hh = fl[ 2 ];
+                  const hi = fl[ 3 ];
+                  const hj = fl[ 1 ];
+                  const hk = LP$cloneX2$clone( $, l, $, j, hg, hh, hi, KA, hj );
+                  return hk;
                 }
                 else {
-                  const jb = ha <= 6;
-                  if (jb) {
-                    const jc = p;
-                    const jd = n;
-                    const je = gv[ 4 ];
-                    const jf = gv[ 2 ];
-                    const jg = gv[ 3 ];
-                    const jh = gv[ 1 ];
-                    const ji = LP$cloneX2$clone( $, jc, $, jd, je, jf, jg, QA, jh );
-                    return ji;
+                  const hl = fq <= 6;
+                  if (hl) {
+                    const hm = fl[ 4 ];
+                    const hn = fl[ 2 ];
+                    const ho = fl[ 3 ];
+                    const hp = fl[ 1 ];
+                    const hq = LP$cloneX2$clone( $, l, $, j, hm, hn, ho, QA, hp );
+                    return hq;
                   }
                   else {
-                    const jj = ha <= 7;
-                    if (jj) {
-                      const jk = p;
-                      const jl = n;
-                      const jm = gv[ 4 ];
-                      const jn = gv[ 2 ];
-                      const jo = gv[ 3 ];
-                      const jp = gv[ 1 ];
-                      const jq = LP$cloneX2$clone( $, jk, $, jl, jm, jn, jo, $A, jp );
-                      return jq;
+                    const hr = fq <= 7;
+                    if (hr) {
+                      const hs = fl[ 4 ];
+                      const ht = fl[ 2 ];
+                      const hu = fl[ 3 ];
+                      const hv = fl[ 1 ];
+                      const hw = LP$cloneX2$clone( $, l, $, j, hs, ht, hu, $A, hv );
+                      return hw;
                     }
                     else {
-                      const jr = ha <= 8;
-                      if (jr) {
-                        df = gv[ 4 ];
-                        const js = gv[ 3 ];
-                        const jt = gv[ 2 ];
-                        da = gv[ 1 ];
-                        const ju = typeof jt;
-                        const jv = "number" == ju;
-                        if (jv) {
-                          const jw = typeof js;
-                          const jx = "number" == jw;
-                          if (jx) {
-                            const jy = 0 === js;
-                            if (jy) {
-                              return ga;
+                      const hx = fq <= 8;
+                      if (hx) {
+                        cu = fl[ 4 ];
+                        const hy = fl[ 3 ];
+                        const hz = fl[ 2 ];
+                        co = fl[ 1 ];
+                        const ia = typeof hz;
+                        const ib = "number" == ia;
+                        if (ib) {
+                          const ic = typeof hy;
+                          const id = "number" == ic;
+                          if (id) {
+                            const ie = 0 === hy;
+                            if (ie) {
+                              return et;
                             }
                             else {
-                              return fs;
+                              return en;
                             }
                           }
                           else {
-                            fp = js[ 1 ];
-                            return fk;
+                            ek = hy[ 1 ];
+                            return eh;
                           }
                         }
                         else {
-                          const jz = jt[ 0 ];
-                          const ka = 0 === jz;
-                          if (ka) {
-                            ej = jt[ 2 ];
-                            eh = jt[ 1 ];
-                            const kb = typeof js;
-                            const kc = "number" == kb;
-                            if (kc) {
-                              const kd = 0 === js;
-                              if (kd) {
-                                return fa;
+                          const ig = hz[ 0 ];
+                          const ih = 0 === ig;
+                          if (ih) {
+                            dr = hz[ 2 ];
+                            dq = hz[ 1 ];
+                            const ii = typeof hy;
+                            const ij = "number" == ii;
+                            if (ij) {
+                              const ik = 0 === hy;
+                              if (ik) {
+                                return eb;
                               }
                               else {
-                                return ep;
+                                return du;
                               }
                             }
                             else {
-                              el = js[ 1 ];
-                              return ec;
+                              dn = hy[ 1 ];
+                              return dk;
                             }
                           }
                           else {
-                            cy = jt[ 1 ];
-                            const ke = typeof js;
-                            const kf = "number" == ke;
-                            if (kf) {
-                              const kg = 0 === js;
-                              if (kg) {
-                                return ds;
+                            cr = hz[ 1 ];
+                            const il = typeof hy;
+                            const im = "number" == il;
+                            if (im) {
+                              const io = 0 === hy;
+                              if (io) {
+                                return dd;
                               }
                               else {
-                                return dg;
+                                return cv;
                               }
                             }
                             else {
-                              db = js[ 1 ];
-                              return cs;
+                              cp = hy[ 1 ];
+                              return ck;
                             }
                           }
                         }
                       }
                       else {
-                        const kh = ha <= 9;
-                        if (kh) {
-                          cm = gv[ 1 ];
-                          return cn;
+                        const ip = fq <= 9;
+                        if (ip) {
+                          ce = fl[ 1 ];
+                          return cf;
                         }
                         else {
-                          const ki = ha <= 10;
-                          if (ki) {
-                            n = [ 7, n ];
-                            gv = gv[ 1 ];
+                          const iq = fq <= 10;
+                          if (iq) {
+                            j = [ 7, j ];
+                            fl = fl[ 1 ];
                           }
                           else {
-                            const kj = ha <= 11;
-                            if (kj) {
-                              const kk = n;
-                              const kl = gv[ 1 ];
-                              n = [ 2, kk, kl ];
-                              gv = gv[ 2 ];
+                            const ir = fq <= 11;
+                            if (ir) {
+                              const is = fl[ 1 ];
+                              j = [ 2, j, is ];
+                              fl = fl[ 2 ];
                             }
                             else {
-                              const km = ha <= 12;
-                              if (km) {
-                                const kn = n;
-                                const ko = gv[ 1 ];
-                                n = [ 3, kn, ko ];
-                                gv = gv[ 2 ];
+                              const it = fq <= 12;
+                              if (it) {
+                                const iu = fl[ 1 ];
+                                j = [ 3, j, iu ];
+                                fl = fl[ 2 ];
                               }
                               else {
-                                const kp = ha <= 13;
-                                if (kp) {
-                                  cl = gv[ 3 ];
-                                  const kq = gv[ 2 ];
-                                  const kr = Q_$clone( $ );
-                                  _A( kr, kq );
-                                  cj = TA( kr );
-                                  return ch;
+                                const iv = fq <= 13;
+                                if (iv) {
+                                  cd = fl[ 3 ];
+                                  const iw = fl[ 2 ];
+                                  const ix = Q_$clone( $ );
+                                  _A( ix, iw );
+                                  cb = TA( ix );
+                                  return bz;
                                 }
                                 else {
-                                  const ks = ha <= 14;
-                                  if (ks) {
-                                    cf = gv[ 3 ];
-                                    br = gv[ 2 ];
-                                    return bs;
+                                  const iy = fq <= 14;
+                                  if (iy) {
+                                    bx = fl[ 3 ];
+                                    bl = fl[ 2 ];
+                                    return bm;
                                   }
                                   else {
-                                    const kt = ha <= 15;
-                                    if (kt) {
-                                      bq = gv[ 1 ];
-                                      return bi;
+                                    const iz = fq <= 15;
+                                    if (iz) {
+                                      bk = fl[ 1 ];
+                                      return bc;
                                     }
                                     else {
-                                      const ku = ha <= 16;
-                                      if (ku) {
-                                        bh = gv[ 1 ];
-                                        return bd;
+                                      const ja = fq <= 16;
+                                      if (ja) {
+                                        bb = fl[ 1 ];
+                                        return x;
                                       }
                                       else {
-                                        const kv = ha <= 17;
-                                        if (kv) {
-                                          const kw = n;
-                                          const kx = gv[ 1 ];
-                                          n = [ 0, kw, kx ];
-                                          gv = gv[ 2 ];
+                                        const jb = fq <= 17;
+                                        if (jb) {
+                                          const jc = fl[ 1 ];
+                                          j = [ 0, j, jc ];
+                                          fl = fl[ 2 ];
                                         }
                                         else {
-                                          const ky = ha <= 18;
-                                          if (ky) {
-                                            const kz = function($$0,$$1 ) {
-                                              const la = c;
-                                              const lb = f;
+                                          const jd = fq <= 18;
+                                          if (jd) {
+                                            const je = function($$0,$$1 ) {
+                                              const jf = $$0;
+                                              const jg = $$1;
                                               debugger;
-                                              const lc = [ 1, lb ];
-                                              const ld = [ 1, le, lc ];
-                                              const lf = RP( lg, la, ld, lh );
-                                              return lf;
+                                              const jh = [ 1, jg ];
+                                              const ji = [ 1, jj, jh ];
+                                              const jk = RP( jl, jf, ji, jm );
+                                              return jk;
                                             };
-                                            const li = function($$0,$$1 ) {
-                                              const lj = c;
-                                              const lk = f;
+                                            const jn = function($$0,$$1 ) {
+                                              const jo = $$0;
+                                              const jp = $$1;
                                               debugger;
-                                              const ll = [ 0, lk ];
-                                              const lm = [ 1, le, ll ];
-                                              const ln = RP( lg, lj, lm, lh );
-                                              return ln;
+                                              const jq = [ 0, jp ];
+                                              const jr = [ 1, jj, jq ];
+                                              const js = RP( jl, jo, jr, jm );
+                                              return js;
                                             };
-                                            const lo = gv[ 1 ];
-                                            const lp = lo[ 0 ];
-                                            const lh = gv[ 2 ];
-                                            const lq = lo[ 1 ];
-                                            const lr = lq[ 1 ];
-                                            const le = n;
-                                            const lg = p;
-                                            const ls = 0 === lp;
-                                            if (ls) {
-                                              p = li;
-                                              n = 0;
-                                              gv = lr;
+                                            const jt = fl[ 1 ];
+                                            const ju = jt[ 0 ];
+                                            const jm = fl[ 2 ];
+                                            const jv = jt[ 1 ];
+                                            const jw = jv[ 1 ];
+                                            const jj = j;
+                                            const jl = l;
+                                            const jx = 0 === ju;
+                                            if (jx) {
+                                              l = jn;
+                                              j = 0;
+                                              fl = jw;
                                             }
                                             else {
-                                              p = kz;
-                                              n = 0;
-                                              gv = lr;
+                                              l = je;
+                                              j = 0;
+                                              fl = jw;
                                             }
                                           }
                                           else {
-                                            const lt = ha <= 19;
-                                            if (lt) {
-                                              const lu = [ 0, WB, Rq ];
-                                              throw lu;
+                                            const jy = fq <= 19;
+                                            if (jy) {
+                                              const jz = [ 0, WB, Rq ];
+                                              throw jz;
                                             }
                                             else {
-                                              const lv = ha <= 20;
-                                              if (lv) {
-                                                bc = gv[ 3 ];
-                                                bb = [ 8, n, Mq ];
-                                                return z;
+                                              const ka = fq <= 20;
+                                              if (ka) {
+                                                w = fl[ 3 ];
+                                                v = [ 8, j, Mq ];
+                                                return t;
                                               }
                                               else {
-                                                const lw = ha <= 21;
-                                                if (lw) {
-                                                  y = gv[ 2 ];
-                                                  return r;
+                                                const kb = fq <= 21;
+                                                if (kb) {
+                                                  s = fl[ 2 ];
+                                                  return n;
                                                 }
                                                 else {
-                                                  const lx = ha <= 22;
-                                                  if (lx) {
-                                                    q = gv[ 1 ];
-                                                    return k;
+                                                  const kc = fq <= 22;
+                                                  if (kc) {
+                                                    m = fl[ 1 ];
+                                                    return g;
                                                   }
                                                   else {
-                                                    const ly = ha <= 23;
-                                                    if (ly) {
-                                                      const lz = gv[ 2 ];
-                                                      const ma = gv[ 1 ];
-                                                      const mb = typeof ma;
-                                                      const mc = "number" == mb;
-                                                      if (mc) {
-                                                        let md = 4;
-                                                        const me = 0 === ma;
-                                                        if (me) {
-                                                          md = 0;
+                                                    const kd = fq <= 23;
+                                                    if (kd) {
+                                                      const ke = fl[ 2 ];
+                                                      const kf = fl[ 1 ];
+                                                      const kg = typeof kf;
+                                                      const kh = "number" == kg;
+                                                      if (kh) {
+                                                        let ki = 4;
+                                                        const kj = 0 === kf;
+                                                        if (kj) {
+                                                          ki = 0;
                                                         }
                                                         else {
-                                                          const mf = 1 === ma;
-                                                          if (mf) {
-                                                            md = 1;
+                                                          const kk = 1 === kf;
+                                                          if (kk) {
+                                                            ki = 1;
                                                           }
                                                           else {
-                                                            const mg = 2 === ma;
-                                                            if (mg) {
-                                                              md = 2;
+                                                            const kl = 2 === kf;
+                                                            if (kl) {
+                                                              ki = 2;
                                                             }
                                                             else {
-                                                              const mh = 3 === ma;
-                                                              if (mh) {
-                                                                md = 3;
+                                                              const km = 3 === kf;
+                                                              if (km) {
+                                                                ki = 3;
                                                               }
                                                             }
                                                           }
                                                         }
-                                                        const mi = md <= 0;
-                                                        if (mi) {
-                                                          const mj = PP$cloneX3$clone( $, p, $, n, lz );
-                                                          return mj;
+                                                        const kn = ki <= 0;
+                                                        if (kn) {
+                                                          const ko = PP$cloneX3$clone( $, l, $, j, ke );
+                                                          return ko;
                                                         }
                                                         else {
-                                                          const mk = md <= 1;
-                                                          if (mk) {
-                                                            const ml = PP$cloneX3$clone( $, p, $, n, lz );
-                                                            return ml;
+                                                          const kp = ki <= 1;
+                                                          if (kp) {
+                                                            const kq = PP$cloneX3$clone( $, l, $, j, ke );
+                                                            return kq;
                                                           }
                                                           else {
-                                                            const mm = md <= 2;
-                                                            if (mm) {
-                                                              const mn = PP$cloneX3$clone( $, p, $, n, lz );
-                                                              return mn;
+                                                            const kr = ki <= 2;
+                                                            if (kr) {
+                                                              const ks = PP$cloneX3$clone( $, l, $, j, ke );
+                                                              return ks;
                                                             }
                                                             else {
-                                                              const mo = md <= 3;
-                                                              if (mo) {
-                                                                const mp = [ 0, WB, Oq ];
-                                                                throw mp;
+                                                              const kt = ki <= 3;
+                                                              if (kt) {
+                                                                const ku = [ 0, WB, Oq ];
+                                                                throw ku;
                                                               }
                                                               else {
-                                                                const mq = PP$cloneX3$clone( $, p, $, n, lz );
-                                                                return mq;
+                                                                const kv = PP$cloneX3$clone( $, l, $, j, ke );
+                                                                return kv;
                                                               }
                                                             }
                                                           }
                                                         }
                                                       }
                                                       else {
-                                                        const mr = ma[ 0 ];
-                                                        let ms = 10;
-                                                        const mt = 0 === mr;
-                                                        if (mt) {
-                                                          ms = 0;
+                                                        const kw = kf[ 0 ];
+                                                        let kx = 10;
+                                                        const ky = 0 === kw;
+                                                        if (ky) {
+                                                          kx = 0;
                                                         }
                                                         else {
-                                                          const mu = 1 === mr;
-                                                          if (mu) {
-                                                            ms = 1;
+                                                          const kz = 1 === kw;
+                                                          if (kz) {
+                                                            kx = 1;
                                                           }
                                                           else {
-                                                            const mv = 2 === mr;
-                                                            if (mv) {
-                                                              ms = 2;
+                                                            const la = 2 === kw;
+                                                            if (la) {
+                                                              kx = 2;
                                                             }
                                                             else {
-                                                              const mw = 3 === mr;
-                                                              if (mw) {
-                                                                ms = 3;
+                                                              const lb = 3 === kw;
+                                                              if (lb) {
+                                                                kx = 3;
                                                               }
                                                               else {
-                                                                const mx = 4 === mr;
-                                                                if (mx) {
-                                                                  ms = 4;
+                                                                const lc = 4 === kw;
+                                                                if (lc) {
+                                                                  kx = 4;
                                                                 }
                                                                 else {
-                                                                  const my = 5 === mr;
-                                                                  if (my) {
-                                                                    ms = 5;
+                                                                  const ld = 5 === kw;
+                                                                  if (ld) {
+                                                                    kx = 5;
                                                                   }
                                                                   else {
-                                                                    const mz = 6 === mr;
-                                                                    if (mz) {
-                                                                      ms = 6;
+                                                                    const le = 6 === kw;
+                                                                    if (le) {
+                                                                      kx = 6;
                                                                     }
                                                                     else {
-                                                                      const na = 7 === mr;
-                                                                      if (na) {
-                                                                        ms = 7;
+                                                                      const lf = 7 === kw;
+                                                                      if (lf) {
+                                                                        kx = 7;
                                                                       }
                                                                       else {
-                                                                        const nb = 8 === mr;
-                                                                        if (nb) {
-                                                                          ms = 8;
+                                                                        const lg = 8 === kw;
+                                                                        if (lg) {
+                                                                          kx = 8;
                                                                         }
                                                                         else {
-                                                                          const nc = 9 === mr;
-                                                                          if (nc) {
-                                                                            ms = 9;
+                                                                          const lh = 9 === kw;
+                                                                          if (lh) {
+                                                                            kx = 9;
                                                                           }
                                                                         }
                                                                       }
@@ -4674,65 +4570,63 @@ const d = function($$0,$$1,$$2,$$3,$$4 ) {
                                                             }
                                                           }
                                                         }
-                                                        const nd = ms <= 0;
-                                                        if (nd) {
-                                                          const ne = PP$cloneX3$clone( $, p, $, n, lz );
-                                                          return ne;
+                                                        const li = kx <= 0;
+                                                        if (li) {
+                                                          const lj = PP$cloneX3$clone( $, l, $, j, ke );
+                                                          return lj;
                                                         }
                                                         else {
-                                                          const nf = ms <= 1;
-                                                          if (nf) {
-                                                            const ng = PP$cloneX3$clone( $, p, $, n, lz );
-                                                            return ng;
+                                                          const lk = kx <= 1;
+                                                          if (lk) {
+                                                            const ll = PP$cloneX3$clone( $, l, $, j, ke );
+                                                            return ll;
                                                           }
                                                           else {
-                                                            const nh = ms <= 2;
-                                                            if (nh) {
-                                                              const ni = PP$cloneX3$clone( $, p, $, n, lz );
-                                                              return ni;
+                                                            const lm = kx <= 2;
+                                                            if (lm) {
+                                                              const ln = PP$cloneX3$clone( $, l, $, j, ke );
+                                                              return ln;
                                                             }
                                                             else {
-                                                              const nj = ms <= 3;
-                                                              if (nj) {
-                                                                const nk = PP$cloneX3$clone( $, p, $, n, lz );
-                                                                return nk;
+                                                              const lo = kx <= 3;
+                                                              if (lo) {
+                                                                const lp = PP$cloneX3$clone( $, l, $, j, ke );
+                                                                return lp;
                                                               }
                                                               else {
-                                                                const nl = ms <= 4;
-                                                                if (nl) {
-                                                                  const nm = PP$cloneX3$clone( $, p, $, n, lz );
-                                                                  return nm;
+                                                                const lq = kx <= 4;
+                                                                if (lq) {
+                                                                  const lr = PP$cloneX3$clone( $, l, $, j, ke );
+                                                                  return lr;
                                                                 }
                                                                 else {
-                                                                  const nn = ms <= 5;
-                                                                  if (nn) {
-                                                                    const no = PP$cloneX3$clone( $, p, $, n, lz );
-                                                                    return no;
+                                                                  const ls = kx <= 5;
+                                                                  if (ls) {
+                                                                    const lt = PP$cloneX3$clone( $, l, $, j, ke );
+                                                                    return lt;
                                                                   }
                                                                   else {
-                                                                    const np = ms <= 6;
-                                                                    if (np) {
-                                                                      const nq = PP$cloneX3$clone( $, p, $, n, lz );
-                                                                      return nq;
+                                                                    const lu = kx <= 6;
+                                                                    if (lu) {
+                                                                      const lv = PP$cloneX3$clone( $, l, $, j, ke );
+                                                                      return lv;
                                                                     }
                                                                     else {
-                                                                      const nr = ms <= 7;
-                                                                      if (nr) {
-                                                                        const ns = PP$cloneX3$clone( $, p, $, n, lz );
-                                                                        return ns;
+                                                                      const lw = kx <= 7;
+                                                                      if (lw) {
+                                                                        const lx = PP$cloneX3$clone( $, l, $, j, ke );
+                                                                        return lx;
                                                                       }
                                                                       else {
-                                                                        const nt = ms <= 8;
-                                                                        if (nt) {
-                                                                          const nu = p;
-                                                                          const nv = n;
-                                                                          const nw = ma[ 2 ];
-                                                                          const nx = _P$cloneX4$clone( $, nu, $, nv, nw, lz );
-                                                                          return nx;
+                                                                        const ly = kx <= 8;
+                                                                        if (ly) {
+                                                                          const lz = kf[ 2 ];
+                                                                          const ma = _P$cloneX4$clone( $, l, $, j, lz, ke );
+                                                                          return ma;
                                                                         }
                                                                         else {
-                                                                          const ny = PP$cloneX3$clone( $, p, $, n, lz );
-                                                                          return ny;
+                                                                          const mb = PP$cloneX3$clone( $, l, $, j, ke );
+                                                                          return mb;
                                                                         }
                                                                       }
                                                                     }
@@ -4745,14 +4639,12 @@ const d = function($$0,$$1,$$2,$$3,$$4 ) {
                                                       }
                                                     }
                                                     else {
-                                                      const nz = gv[ 3 ];
-                                                      const oa = gv[ 1 ];
-                                                      const ob = p;
-                                                      const oc = n;
-                                                      const od = gv[ 2 ];
-                                                      const oe = OE$clone( od, $ );
-                                                      const of = IP$cloneX3$cloneX1( $, ob, $, oc, nz, oa, oe );
-                                                      return of;
+                                                      const mc = fl[ 3 ];
+                                                      const md = fl[ 1 ];
+                                                      const me = fl[ 2 ];
+                                                      const mf = OE$clone( me, $ );
+                                                      const mg = IP$cloneX3$cloneX1( $, l, $, j, mc, md, mf );
+                                                      return mg;
                                                     }
                                                   }
                                                 }
@@ -4781,7 +4673,7 @@ const d = function($$0,$$1,$$2,$$3,$$4 ) {
   }
   return undefined;
 };
-$( d );
+$( c );
 `````
 
 ## Globals

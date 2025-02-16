@@ -88,15 +88,15 @@ With rename=true
 
 `````js filename=intro
 const a = async function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
-  const d = fetchFromStore( b );
-  const e = (await (d));
-  const f = e[ 0 ];
-  const g = f.dataValues;
-  const h = g.bucket;
-  const i = JSON.parse( h );
-  return i;
+  const c = fetchFromStore( b );
+  const d = (await (c));
+  const e = d[ 0 ];
+  const f = e.dataValues;
+  const g = f.bucket;
+  const h = JSON.parse( g );
+  return h;
 };
 $( a );
 `````

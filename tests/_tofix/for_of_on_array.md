@@ -91,23 +91,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-const tmpForOfGen = $forOf([1, 2, 3]);
-while (true) {
-  const tmpForOfNext = tmpForOfGen.next();
-  if (tmpForOfNext.done) {
-    break;
-  } else {
-    $(tmpForOfNext.value);
-  }
-}
-`````
-
 ## Globals
 
 None
@@ -124,6 +107,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
-
-Denormalized calls: Same
+Final output calls: Same

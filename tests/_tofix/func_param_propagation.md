@@ -101,23 +101,23 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
-  let d = "bar";
-  const e = b === undefined;
-  if (e) {
+  let c = "bar";
+  const d = b === undefined;
+  if (d) {
 
   }
   else {
-    d = b;
+    c = b;
   }
-  const f = [ "x", d ];
-  return f;
+  const e = [ "x", c ];
+  return e;
 };
-const g = a();
+const f = a();
+$( f );
+const g = a( "y" );
 $( g );
-const h = a( "y" );
-$( h );
 `````
 
 ## Globals

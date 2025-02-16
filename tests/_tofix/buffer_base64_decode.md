@@ -67,15 +67,6 @@ const b = a.toString( "ascii" );
 $( b );
 `````
 
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-$(Buffer.from(`aGVsbG8sIHdvcmxk=`, `base64`).toString(`ascii`));
-`````
-
 ## Globals
 
 None
@@ -90,6 +81,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
-
-Denormalized calls: Same
+Final output calls: Same

@@ -151,25 +151,6 @@ const k = $spy();
 f( k );
 `````
 
-## Denormalized
-
-(This ought to be the final result)
-
-
-`````js filename=intro
-const tmpFree = function $free(arg) {
-  const tmpRet = $coerce(arg / arg, `string`);
-  return tmpRet;
-};
-const f = function (arg$1) {
-  $frfr(tmpFree, arg$1).length;
-  $(arg$1 + 1);
-};
-f(500);
-f(`thing`);
-f($spy());
-`````
-
 ## Globals
 
 None
@@ -190,17 +171,7 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: BAD!!
- - 1: 501
- - 2: 'thing1'
- - 3: 'Creating spy', 1, 0, ['spy', 12345]
- - 4: '$spy[1].valueOf()'
- - 5: '$spy[1].valueOf()'
- - 6: '$spy[1].valueOf()'
- - 7: 12346
- - eval returned: undefined
-
-Denormalized calls: BAD!!
+Final output calls: BAD!!
  - 1: 501
  - 2: 'thing1'
  - 3: 'Creating spy', 1, 0, ['spy', 12345]

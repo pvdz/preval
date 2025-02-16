@@ -87,11 +87,11 @@ With rename=true
 
 `````js filename=intro
 const a = function($$0 ) {
-  const b = c;
+  const b = $$0;
   debugger;
   if (b) {
-    const d = { xyz: b };
-    $( b, d );
+    const c = { xyz: b };
+    $( b, c );
   }
   $( "end" );
   return undefined;

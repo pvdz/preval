@@ -20,7 +20,7 @@ $('done');
 
 
 `````js filename=intro
-const obj = { expires: expires };
+const obj = { x: 1, y: `two` };
 {
   let tmpForInGen = $forIn(obj);
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -42,7 +42,7 @@ $(`done`);
 
 
 `````js filename=intro
-const obj = { expires: expires };
+const obj = { x: 1, y: `two` };
 let tmpForInGen = $forIn(obj);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForInNext = tmpForInGen.next();
@@ -61,7 +61,7 @@ $(`done`);
 
 
 `````js filename=intro
-const obj /*:object*/ = { expires: expires };
+const obj /*:object*/ = { x: 1, y: `two` };
 const tmpForInGen = $forIn(obj);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext = tmpForInGen.next();
@@ -81,7 +81,10 @@ $(`done`);
 With rename=true
 
 `````js filename=intro
-const a = { expires: expires };
+const a = {
+  x: 1,
+  y: "two",
+};
 const b = $forIn( a );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const c = b.next();
@@ -99,14 +102,15 @@ $( "done" );
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-expires
+None
 
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: 'key', 'x'
+ - 2: 'key', 'y'
+ - 3: 'done'
+ - eval returned: undefined
 
 Pre normalization calls: Same
 

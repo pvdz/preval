@@ -150,7 +150,7 @@ Preval CLI Toolkit help:
       ;;
     A)
       # Force update all test files with their current output
-      rm -r out
+      rm -rf out
       mkdir out
       ACTION='-F'
       shift

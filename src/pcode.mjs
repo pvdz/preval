@@ -40,7 +40,6 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, b
 import * as AST from './ast.mjs';
 import { VERBOSE_TRACING, setVerboseTracing, YELLOW, ORANGE_DIM, PURPLE, RESET, DIM, ORANGE } from './constants.mjs';
 import { SYMBOL_COERCE } from './symbols_preval.mjs';
-import { BUILTIN_NUMBER_PROTOTYPE, BUILTIN_STRING_PROTOTYPE } from './symbols_builtins.mjs';
 
 const NONE = 0;
 const RETURN = 1;

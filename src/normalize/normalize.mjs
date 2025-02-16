@@ -12,13 +12,7 @@ import {
   BLUE,
   RESET,
 } from '../constants.mjs';
-import {
-  BUILTIN_NUMBER_PROTOTYPE,
-  BUILTIN_NAMESPACED_TO_FUNC_NAME,
-  QUALIFIED_NAME_TO_PREVAL_NAME,
-  PREVAL_PROTO_SYMBOLS_TO_LOOKUP,
-  PREVAL_BUILTIN_SYMBOLS,
-} from '../symbols_builtins.mjs';
+import { BUILTIN_SYMBOLS, symbo } from '../symbols_builtins.mjs';
 import {
   BUILTIN_REST_HANDLER_NAME, SYMBOL_COERCE, SYMBOL_THROW_TDZ_ERROR,
 } from '../symbols_preval.mjs';
@@ -3513,10 +3507,10 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 case 'toString': {
                   // Found this in jsf*ck code... So why not.
                   rule('`str.toString should resolve to `String.prototype.toString`');
-                  example('f("foo".toString)', 'f($StringPrototype.toString)');
+                  example('f("foo".toString)', `f(${symbo('String', 'prototype')}.toString)`);
                   before(node, body[i]);
 
-                  node.object = AST.identifier(BUILTIN_NUMBER_PROTOTYPE);
+                  node.object = AST.identifier(symbo('Number', 'prototype'));
 
                   after(body[i]);
                   return true;
@@ -3557,11 +3551,11 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 return true;
               }
               else if (node.property.name === 'toString') {
-                rule('`bool.toString should resolve to `$Boolean_toString`');
-                example('true.toString("bar")', '$Boolean_toString("bar")');
+                rule(`\`bool.toString should resolve to \`${symbo('boolean', 'toString')}\``);
+                example('true.toString("bar")', `${symbo('boolean', 'toString')}("bar")`);
                 before(node, body[i]);
 
-                const finalNode = AST.identifier('$Boolean_toString');
+                const finalNode = AST.identifier(symbo('boolean', 'toString'));
                 const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                 body.splice(i, 1, finalParent);
 
@@ -3585,10 +3579,10 @@ export function phaseNormalize(fdata, fname, prng, options) {
               if (node.property.name === 'toString') {
                 // Found this in jsf*ck code... So why not.
                 rule('`num.toString` should resolve to `Number.prototype.toString`');
-                example('f(600..toString)', 'f($NumberPrototype.toString)');
+                example('f(600..toString)', `f(${symbo('Number', 'prototype')}.toString)`);
                 before(node, body[i]);
 
-                node.object = AST.identifier(BUILTIN_NUMBER_PROTOTYPE);
+                node.object = AST.identifier(symbo('Number', 'prototype'));
 
                 after(body[i]);
                 return true;
@@ -3617,14 +3611,11 @@ export function phaseNormalize(fdata, fname, prng, options) {
             return true;
           }
 
-          if (!node.computed && node.object.type === 'Identifier') {
-            const qualifiedName = node.object.name + '.' + node.property.name;
+          if (!node.computed && node.object.type === 'Identifier')
+          {
 
             // Drop statements that are static function calls when we know they are not observable otherwise
-            if (
-              wrapKind === 'statement' &&
-              QUALIFIED_NAME_TO_PREVAL_NAME.has(qualifiedName)
-            ) {
+            if (wrapKind === 'statement' && BUILTIN_SYMBOLS.has(symbo(node.object.name, node.property.name))) {
               rule('A statement that is a built-in constant value or built-in static call should be eliminated');
               example('Number.NEGATIVE_INFINITY;', 'undefined;');
               before(node, body[i]);
@@ -3684,18 +3675,78 @@ export function phaseNormalize(fdata, fname, prng, options) {
               }
             }
 
-            if (QUALIFIED_NAME_TO_PREVAL_NAME.has(qualifiedName)) {
-              rule('A statement that is a built-in constant value or built-in static call should be eliminated');
-              example('Number.NEGATIVE_INFINITY;', 'undefined;');
+            if (BUILTIN_SYMBOLS.has(symbo(node.object.name, node.property.name))) {
+              rule('A builtin member expression can be replaced by its preval symbol');
+              example('Number.NEGATIVE_INFINITY;', `${symbo('Number', 'NEGATIVE_INFINITY')}`);
               before(node, body[i]);
 
-              const finalNode = AST.identifier(QUALIFIED_NAME_TO_PREVAL_NAME.get(qualifiedName));
+              const finalNode = AST.identifier(symbo(node.object.name, node.property.name));
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body.splice(i, 1, finalParent);
 
               after(body[i]);
               return true;
             }
+          }
+
+          if (
+            node.object.type === 'Identifier' &&
+            !node.computed &&
+            BUILTIN_SYMBOLS.has(node.object.name) && // $String_prototype, left by another transform
+            BUILTIN_SYMBOLS.has(symbo(node.object.name, node.property.name)) // $String_prototype.toString -> $string_toString
+          ) {
+            rule('Prototype property read of known builtin can be replaced with our own symbol');
+            example(`$(${symbo('String', 'prototype')}.toString)`, `$(${symbo('String', 'toString')})`);
+            before(body[i]);
+
+            const prevalSymbol = symbo(node.object.name, node.property.name);
+            const finalNode = AST.identifier(prevalSymbol);
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body.splice(i, 1, finalParent);
+
+            after(body[i]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+
+          if (
+            node.object.type === 'Identifier' &&
+            !node.computed &&
+            BUILTIN_SYMBOLS.has(node.object.name) && // $String_prototype, left by another transform
+            node.property.name === 'name' // $String_replace.name -> "replace" (is that super generic? where does it stop)
+          ) {
+            riskyRule('Prototype property read of known builtin can be replaced with our own symbol');
+            example(`$(${symbo('String', 'prototype')}.toString)`, `$(${symbo('String', 'toString')})`);
+            before(body[i]);
+
+            const prevalSymbol = BUILTIN_SYMBOLS.get(node.object.name).prop;
+            const finalNode = AST.templateLiteral(prevalSymbol);
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body.splice(i, 1, finalParent);
+
+            after(body[i]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+
+          if (
+            node.object.type === 'Identifier' &&
+            node.object.name === symbo('Array', 'prototype') &&
+            !node.computed &&
+            node.property.name === 'length'
+          ) {
+            // A bit exotic and slightly risky but the builtin Array.prototype is itself also an array
+            riskyRule('Array.prototype.length is zero');
+            example(`$(Array.prototype.length)`, `$(0)`);
+            before(body[i]);
+
+            const finalNode = AST.primitive(0);
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body.splice(i, 1, finalParent);
+
+            after(body[i]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
           }
         }
 
@@ -3867,29 +3918,6 @@ export function phaseNormalize(fdata, fname, prng, options) {
           body[i] = finalParent;
 
           after(body[i]);
-          return true;
-        }
-
-        if (
-          useRiskyRules() &&
-          node.object.type === 'Identifier' &&
-          !node.computed &&
-          PREVAL_PROTO_SYMBOLS_TO_LOOKUP.has(node.object.name) &&
-          PREVAL_PROTO_SYMBOLS_TO_LOOKUP.get(node.object.name)[node.property.name]
-        ) {
-          rule('Prototype property read of known builtin can be replaced with our own symbol');
-          example('$($StringPrototype.toString)', '$($string_toString)');
-          before(body[i]);
-
-          const prevalSymbol = PREVAL_PROTO_SYMBOLS_TO_LOOKUP.get(node.object.name)[node.property.name];
-          ASSERT(typeof prevalSymbol === 'string' || typeof prevalSymbol === 'number', 'should not accidentally MISS and get a function or whatever', node.object.name, node.property.name);
-
-          const finalNode = AST.identifier(prevalSymbol);
-          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-          body.splice(i, 1, finalParent);
-
-          after(body[i]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
@@ -5342,23 +5370,23 @@ export function phaseNormalize(fdata, fname, prng, options) {
             return true;
           }
 
-          if (BUILTIN_NAMESPACED_TO_FUNC_NAME[node.left.name] || BUILTIN_NAMESPACED_TO_FUNC_NAME[node.right.name]) {
-            rule('Binary expr with known built-in function can serialize function');
+          const lsym = BUILTIN_SYMBOLS.get(node.left.name);
+          const rsym = BUILTIN_SYMBOLS.get(node.right.name);
+          if (lsym?.typings.mustBeType === 'function' || rsym?.typings.mustBeType === 'function') {
+            riskyRule('Binary expr with known built-in function can serialize function');
             example('true + $array_flat', 'true + "function flat() { [native code] }"');
             before(node, body[i]);
 
-            if (BUILTIN_NAMESPACED_TO_FUNC_NAME[node.left.name]) {
-              node.left = AST.primitive('function ' + BUILTIN_NAMESPACED_TO_FUNC_NAME[node.left.name] + '() { [native code] }');
+            if (lsym) {
+              node.left = AST.primitive('function ' + lsym.prop + '() { [native code] }');
             }
-            if (BUILTIN_NAMESPACED_TO_FUNC_NAME[node.right.name]) {
-              node.right = AST.primitive('function ' + BUILTIN_NAMESPACED_TO_FUNC_NAME[node.right.name] + '() { [native code] }');
+            if (rsym) {
+              node.right = AST.primitive('function ' + rsym.prop + '() { [native code] }');
             }
 
             after(body[i]);
             return true;
           }
-
-
         }
 
         if (

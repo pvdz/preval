@@ -40,7 +40,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam = $ObjectPrototype.b;
+const tmpCalleeParam = $Object_prototype.b;
 const tmpIfTest /*:boolean*/ = tmpCalleeParam == null;
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam = c.d;
@@ -55,7 +55,7 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = $ObjectPrototype.b;
+const a = $Object_prototype.b;
 const b = a == null;
 if (b) {
   const c = c.d;

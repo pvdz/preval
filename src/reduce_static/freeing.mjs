@@ -44,24 +44,12 @@
 import walk from '../../lib/walk.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, todo } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import {
-  BUILTIN_MATH_STATIC_LOOKUP,
-  BUILTIN_MATH_STATIC_LOOKUP_REV,
-  BUILTIN_NUMBER_METHOD_LOOKUP,
-  BUILTIN_NUMBER_METHOD_LOOKUP_REV,
-  BUILTIN_NUMBER_STATIC_LOOKUP,
-  BUILTIN_NUMBER_STATIC_LOOKUP_REV,
-  BUILTIN_STRING_METHOD_LOOKUP,
-  BUILTIN_STRING_METHOD_LOOKUP_REV,
-  BUILTIN_STRING_STATIC_LOOKUP,
-  BUILTIN_STRING_STATIC_LOOKUP_REV,
-} from '../symbols_builtins.mjs';
+import { MATH, NUMBER, STRING, symbo } from '../symbols_builtins.mjs';
 import { createFreshVar, getMeta } from '../bindings.mjs';
 import { VERBOSE_TRACING } from '../constants.mjs';
-import { pcanCompile, pcodeSupportedBuiltinFuncs, pcompile, runFreeWithPcode, runPcode } from '../pcode.mjs';
+import { pcodeSupportedBuiltinFuncs, runFreeWithPcode } from '../pcode.mjs';
 import { BUILTIN_GLOBAL_FUNC_NAMES } from '../globals.mjs';
 import { GLOBAL_PREVAL_SYMBOLS, SYMBOL_COERCE } from '../symbols_preval.mjs';
-import { getExpressionFromNormalizedStatement } from '../ast.mjs';
 
 export function freeing(fdata, $prng, usePrng = true) {
   group('\n\n\nSearching for free statements to collect\n');
@@ -667,8 +655,8 @@ function isFreeExpression(exprNode, fdata) {
         if (['parseInt', 'parseFloat', 'isNaN', 'isFinite', ].includes(exprNode.callee.name)) {
           return true; // Ok as long as args are ok
         }
-        if (BUILTIN_MATH_STATIC_LOOKUP_REV[exprNode.callee.name] && BUILTIN_MATH_STATIC_LOOKUP[BUILTIN_MATH_STATIC_LOOKUP_REV[exprNode.callee.name]]) {
-          return true; // Ok as long as args are ok
+        if (MATH.get(exprNode.callee.name)) { // No instance props so no prefix check
+          return true; // Calls to Math.prop are ok as long as args are ok
         }
         if (exprNode.callee.name === SYMBOL_COERCE) {
           const meta = getMeta(exprNode.arguments[0].name, fdata);
@@ -685,28 +673,15 @@ function isFreeExpression(exprNode, fdata) {
         if (exprNode.callee.object.type === 'Identifier') {
           const objName = exprNode.callee.object.name;
           const propName = exprNode.callee.property.name;
-          if (
-            objName === 'Math' &&
-            propName !== 'random' &&
-            BUILTIN_MATH_STATIC_LOOKUP[propName] &&
-            BUILTIN_MATH_STATIC_LOOKUP_REV[BUILTIN_MATH_STATIC_LOOKUP[propName]]
-          ) {
+          if (objName === 'Math' && propName !== 'random' && MATH.has(symbo('Math', propName))) {
             vlog('  - Static Math functions ok');
             return true; // ok, Math.abs with predictable args
           }
-          if (
-            objName === 'String' &&
-            BUILTIN_STRING_STATIC_LOOKUP[propName] &&
-            BUILTIN_STRING_STATIC_LOOKUP_REV[BUILTIN_STRING_STATIC_LOOKUP[propName]]
-          ) {
+          if (objName === 'String' && STRING.has(symbo('String', propName))) {
             vlog('  - Static String functions ok');
             return true;
           }
-          if (
-            objName === 'Number' &&
-            BUILTIN_NUMBER_STATIC_LOOKUP[propName] &&
-            BUILTIN_NUMBER_STATIC_LOOKUP_REV[BUILTIN_NUMBER_STATIC_LOOKUP[propName]]
-          ) {
+          if (objName === 'Number' && NUMBER.has(symbo('Number', propName))) {
             vlog('  - Static Number functions ok');
             return true;
           }
@@ -715,21 +690,16 @@ function isFreeExpression(exprNode, fdata) {
           const meta = fdata.globallyUniqueNamingRegistry.get(objName);
           switch (meta.typing?.mustBeType) {
             case 'number': {
-              if (
-                BUILTIN_NUMBER_METHOD_LOOKUP[propName] &&
-                BUILTIN_NUMBER_METHOD_LOOKUP_REV[BUILTIN_NUMBER_METHOD_LOOKUP[propName]]
-              ) {
+              if (NUMBER.has(symbo('number', propName))) {
                 return true;
               }
               break;
             }
             case 'string': {
-              if (
-                BUILTIN_STRING_METHOD_LOOKUP[propName] &&
-                BUILTIN_STRING_METHOD_LOOKUP_REV[BUILTIN_STRING_METHOD_LOOKUP[propName]]
-              ) {
+              if (STRING.has(symbo('string', propName))) {
                 return true;
               }
+              break;
             }
           }
         }

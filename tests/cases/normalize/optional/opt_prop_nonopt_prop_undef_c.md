@@ -44,7 +44,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpChainElementObject$1 = $ObjectPrototype.c;
+const tmpChainElementObject$1 = $Object_prototype.c;
 $(tmpChainElementObject$1);
 `````
 
@@ -53,7 +53,7 @@ $(tmpChainElementObject$1);
 With rename=true
 
 `````js filename=intro
-const a = $ObjectPrototype.c;
+const a = $Object_prototype.c;
 $( a );
 `````
 

@@ -24,7 +24,7 @@ $([...true.toString.name]);
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCompObj = $Boolean_toString;
+const tmpCompObj = $boolean_toString;
 const tmpArrSpread = tmpCompObj.name;
 const tmpCalleeParam = [...tmpArrSpread];
 tmpCallCallee(tmpCalleeParam);
@@ -34,8 +34,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpArrSpread = $Boolean_toString.name;
-const tmpCalleeParam /*:array*/ = [...tmpArrSpread];
+const tmpCalleeParam /*:array*/ = [`t`, `o`, `S`, `t`, `r`, `i`, `n`, `g`];
 $(tmpCalleeParam);
 `````
 
@@ -44,9 +43,8 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = $Boolean_toString.name;
-const b = [ ...a ];
-$( b );
+const a = [ "t", "o", "S", "t", "r", "i", "n", "g" ];
+$( a );
 `````
 
 ## Globals

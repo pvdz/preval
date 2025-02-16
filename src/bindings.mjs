@@ -1,24 +1,10 @@
-import {
-  VERBOSE_TRACING,
-  BLUE,
-  RESET,
-} from './constants.mjs';
-import {
-  IMPLICIT_GLOBAL_PREFIX, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_COERCE,
-} from './symbols_preval.mjs';
-import {
-  BUILTIN_ARRAY_PROTOTYPE,
-  BUILTIN_BOOLEAN_PROTOTYPE,
-  BUILTIN_FUNCTION_PROTOTYPE,
-  BUILTIN_NUMBER_PROTOTYPE,
-  BUILTIN_OBJECT_PROTOTYPE,
-  BUILTIN_REGEXP_PROTOTYPE,
-  BUILTIN_STRING_PROTOTYPE,
-} from './symbols_builtins.mjs';
+import { VERBOSE_TRACING, BLUE, RESET, } from './constants.mjs';
+import { IMPLICIT_GLOBAL_PREFIX, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_COERCE, } from './symbols_preval.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, source, fmat, tmat, todo } from './utils.mjs';
 import globals, {MAX_UNROLL_TRUE_COUNT} from './globals.mjs';
 import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
 import * as AST from './ast.mjs';
+import { BUILTIN_SYMBOLS, symbo } from './symbols_builtins.mjs';
 
 const NONE = 'NONE';
 const MUTATES = 'MUTATES';
@@ -1002,6 +988,7 @@ export function getCleanTypingObject() {
     bang: undefined, // undefined|bool. Was this explicitly the result of applying `!x`? When false, known not to always be the case.
 
     builtinTag: undefined, // string. When builtin, this string represents a unique id for the built-in resource (like `Number.parseInt` or `Array#slice`). There's a lot to implement here, sigh.
+    sym: undefined, // -> symbol, like $string_replace
 
     oneBitAnded: undefined, // number. If set, this value is the result of applying the bitwise AND operator and this single bit value to an arbitrary value. In other words, either this bit is set or unset on this value.
     anded: undefined, // number. If set, this value is the result of bitwise AND an arbitrary value with this value
@@ -1029,6 +1016,7 @@ export function getUnknownTypingObject(toInit) {
     bang: false,
 
     builtinTag: false,
+    sym: false,
 
     oneBitAnded: false,
     anded: false,
@@ -1052,6 +1040,7 @@ export function createTypingObject({
   bang = false,
 
   builtinTag = false,
+  sym = false,
 
   oneBitAnded = false,
   anded = false,
@@ -1077,6 +1066,7 @@ export function createTypingObject({
     bang,
 
     builtinTag,
+    sym,
 
     oneBitAnded,
     anded,
@@ -1730,110 +1720,17 @@ function _inferNodeTyping(fdata, valueNode) {
     case 'MemberExpression': {
       if (!valueNode.computed) {
         // Resolve some builtins...
-        switch (valueNode.object.name + '.' + valueNode.property.name) {
-          case 'Math.E':
-          case 'Math.LN10':
-          case 'Math.LN2':
-          case 'Math.LOG10E':
-          case 'Math.LOG2E':
-          case 'Math.PI':
-          case 'Math.SQRT1_2':
-          case 'Math.SQRT2': {
-            // We can't inline these due to loss of precision
-            const v = Math[valueNode.property.name];
-            ASSERT(v);
-            return createTypingObject({
-              mustBeType: 'number',
-              mustBeTruthy: true,
-              mustBeValue: v,
 
-              worstCaseValueSet: new Set([v]),
-              mustBePrimitive: true,
-              primitiveValue: v,
-            });
-          }
-
-          case 'Number.EPSILON': // We keep this as is
-          case 'Number.MAX_VALUE': // We keep this as is
-          case 'Number.MIN_VALUE': // We keep this as is
-          case 'Number.NEGATIVE_INFINITY': // Is -Infinity
-          case 'Number.POSITIVE_INFINITY': {
-            // Is Infinity
-            // Note: the values that could be inlined should be handled by normalization.
-            const v = Number[valueNode.property.name];
-            ASSERT(v, 'this math value should be known and truthy, right?', valueNode.property.name, v);
-            return createTypingObject({
-              mustBeType: 'number',
-              mustBeTruthy: true,
-              mustBeValue: v,
-
-              worstCaseValueSet: new Set([v]),
-              mustBePrimitive: true,
-              primitiveValue: v,
-            });
-          }
-
-          case 'Number.NaN': {
-            // is global NaN
-            // Note: the values that could be inlined should be handled by normalization.
-            const v = Math[valueNode.property.name];
-            ASSERT(v);
-            return createTypingObject({
-              mustBeType: 'number',
-              mustBeFalsy: true,
-              mustBeValue: NaN,
-
-              worstCaseValueSet: new Set([NaN]),
-            });
-          }
-
-          case BUILTIN_ARRAY_PROTOTYPE + '.push':
-          case BUILTIN_ARRAY_PROTOTYPE + '.pop':
-          case BUILTIN_ARRAY_PROTOTYPE + '.shift':
-          case BUILTIN_ARRAY_PROTOTYPE + '.unshift':
-          case BUILTIN_ARRAY_PROTOTYPE + '.filter':
-          case BUILTIN_ARRAY_PROTOTYPE + '.flat':
-          case BUILTIN_ARRAY_PROTOTYPE + '.concat': {
-            return createTypingObject({
-              mustBeType: 'function',
-              mustBeTruthy: true,
-
-              builtinTag: 'Array#' + valueNode.property.name,
-            });
-          }
-
-          case BUILTIN_NUMBER_PROTOTYPE + '.toString': {
-            return createTypingObject({
-              mustBeType: 'function',
-              mustBeTruthy: true,
-
-              builtinTag: 'Number#' + valueNode.property.name,
-              returns: 'string',
-            });
-          }
-
-          case BUILTIN_STRING_PROTOTYPE + '.toString': {
-            return createTypingObject({
-              mustBeType: 'function',
-              mustBeTruthy: true,
-
-              builtinTag: 'String#' + valueNode.property.name,
-              returns: 'string',
-            });
-          }
-
-          case BUILTIN_BOOLEAN_PROTOTYPE + '.toString': {
-            return createTypingObject({
-              mustBeType: 'function',
-              mustBeTruthy: true,
-
-              builtinTag: 'Boolean#' + valueNode.property.name,
-              returns: 'string',
-            });
-          }
+        if (
+          ['Boolean', 'Number', 'String', 'Object', 'Array', 'Function', 'RegExp', 'Math', 'JSON', 'Buffer', 'Map', 'Set', 'Date'].includes(valueNode.object.name) &&
+          BUILTIN_SYMBOLS.has(symbo(valueNode.object.name, valueNode.property.name))
+        ) {
+          // The typing of a builtin is globally available
+          return createTypingObject(BUILTIN_SYMBOLS.get(symbo(valueNode.object.name, valueNode.property.name)).typings);
         }
 
         if (AST.isPrimitive(valueNode)) {
+          // Not very useful because this will get resolved... that's kind of the point here... but ok
           if (AST.getPrimitiveType(valueNode) === 'string' && valueNode.property.name === 'length') {
             const str = AST.getPrimitiveValue(valueNode);
             return createTypingObject({
@@ -1935,6 +1832,7 @@ export function mergeTyping(from, into) {
       mustBeValue,
       bang,
       builtinTag,
+      sym,
       oneBitAnded,
       anded,
       orredWith,
@@ -1957,6 +1855,7 @@ export function mergeTyping(from, into) {
       mustBeValue,
       bang,
       builtinTag,
+      sym,
       oneBitAnded,
       anded,
       orredWith,
@@ -1988,6 +1887,7 @@ export function mergeTyping(from, into) {
       'set',
       'map',
       'regex',
+      'buffer',
     ].includes(into.mustBeType),
     'typing.mustBeType is an enum of `undefined`, `false`, or one of a fixed set of strings',
     into.mustBeType,
@@ -2157,6 +2057,8 @@ export function mergeTyping(from, into) {
 
   // If from is not a primitive (or unknown) then into can not be either. Otherwise it's whatever into was.
   if (!from.mustBePrimitive) into.mustBePrimitive = from.mustBePrimitive;
+
+  if (from.sym !== into.sym) into.sym = false;
 }
 
 export function resolveNodeAgainstParams(node, callNode, funcNode) {

@@ -35,7 +35,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam = $ObjectPrototype.null;
+const tmpCalleeParam = $Object_prototype.null;
 $(tmpCalleeParam);
 `````
 
@@ -44,7 +44,7 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = $ObjectPrototype.null;
+const a = $Object_prototype.null;
 $( a );
 `````
 

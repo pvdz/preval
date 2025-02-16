@@ -59,7 +59,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
   const identNameSuffixOffset = new Map(); // <name, int>
   fdata.identNameSuffixOffset = identNameSuffixOffset;
   globals.forEach((_, name) => {
-    ASSERT(name);
+    ASSERT(name, 'there should be a name for every element of global?', _, name);
     registerGlobalIdent(fdata, name, name, { isExport: false, isImplicitGlobal: false, isBuiltin: true });
   });
 

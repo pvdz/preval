@@ -60,7 +60,7 @@ $(problem2);
 
 
 `````js filename=intro
-$ObjectPrototype.now;
+$Object_prototype.now;
 const tmpClusterSSA_problem2 /*:object*/ = {};
 $(tmpClusterSSA_problem2);
 `````
@@ -70,7 +70,7 @@ $(tmpClusterSSA_problem2);
 With rename=true
 
 `````js filename=intro
-$ObjectPrototype.now;
+$Object_prototype.now;
 const a = {};
 $( a );
 `````

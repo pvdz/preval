@@ -37,7 +37,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCompObj$1 = $ObjectPrototype.b;
+const tmpCompObj$1 = $Object_prototype.b;
 const tmpCompObj = tmpCompObj$1.c;
 const tmpCalleeParam = tmpCompObj.d;
 $(tmpCalleeParam);
@@ -48,7 +48,7 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = $ObjectPrototype.b;
+const a = $Object_prototype.b;
 const b = a.c;
 const c = b.d;
 $( c );

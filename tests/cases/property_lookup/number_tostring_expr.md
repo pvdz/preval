@@ -7,7 +7,7 @@
 ## Input
 
 `````js filename=intro
-const x = $NumberPrototype.toString;
+const x = $Number_prototype.toString;
 $(x);
 `````
 
@@ -15,7 +15,7 @@ $(x);
 
 
 `````js filename=intro
-const x = $NumberPrototype.toString;
+const x = $Number_prototype.toString;
 $(x);
 `````
 
@@ -23,7 +23,7 @@ $(x);
 
 
 `````js filename=intro
-const x = $number_toString;
+const x = $Number_prototype.toString;
 $(x);
 `````
 

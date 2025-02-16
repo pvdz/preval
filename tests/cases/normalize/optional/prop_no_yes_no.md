@@ -44,7 +44,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpChainElementObject = $ObjectPrototype.b;
+const tmpChainElementObject = $Object_prototype.b;
 const tmpIfTest /*:boolean*/ = tmpChainElementObject == null;
 if (tmpIfTest) {
   $(undefined);
@@ -60,7 +60,7 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = $ObjectPrototype.b;
+const a = $Object_prototype.b;
 const b = a == null;
 if (b) {
   $( undefined );

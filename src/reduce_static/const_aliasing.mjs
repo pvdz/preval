@@ -11,6 +11,9 @@
 //        const x = this; const y = x; $(x, y);
 // ->     const x = this; const y = x; $(x, x);
 //
+//        const x = $array_toString; $(x);
+// ->     $($array_toString);
+//
 
 
 import {
@@ -49,15 +52,14 @@ function _constAliasing(fdata) {
     if (meta.isImplicitGlobal) return;
     if (meta.isExport) return; // Exports are "live" bindings so any update to it might be observable in strange ways
     if (!meta.isConstant) return;
-    if (meta.constValueRef?.containerNode.type !== 'VariableDeclaration') return; // catch, ???
+    if (meta.writes[0].kind !== 'var') return; // catch or smth
     if (meta.constValueRef.containerNode.declarations[0].init.type !== 'Identifier') return;
 
     const rhsName = meta.constValueRef.containerNode.declarations[0].init.name;
+    vlog('- Testing:', [lhsName], 'with', [rhsName]);
     if (rhsName === lhsName) return; // TDZ but not my problem
     if (rhsName === 'arguments') return;
     const meta2 = fdata.globallyUniqueNamingRegistry.get(rhsName);
-    if (meta2.isImplicitGlobal) return;
-    if (meta2.isExport) return; // Exports are "live" bindings so any update to it might be observable in strange ways
     if (meta2.isBuiltin) {
       // special case aliasing a known builtin global. `const f = Array;`
 
@@ -88,6 +90,9 @@ function _constAliasing(fdata) {
 
       return
     }
+
+    if (meta2.isImplicitGlobal) return;
+    if (meta2.isExport) return; // Exports are "live" bindings so any update to it might be observable in strange ways
 
     if (meta2.isConstant) {
       // Main case we target here. `const x = 1; const y = x;`

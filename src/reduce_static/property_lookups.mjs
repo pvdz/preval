@@ -1,37 +1,8 @@
 // Find properties that we can inline. Use type inference or whatever.
 
 import walk from '../../lib/walk.mjs';
-import {
-  ASSERT,
-  log,
-  group,
-  groupEnd,
-  vlog,
-  vgroup,
-  vgroupEnd,
-  fmat,
-  tmat,
-  rule,
-  example,
-  before,
-  source,
-  after,
-  findBodyOffset, riskyRule, useRiskyRules,
-} from '../utils.mjs';
-import {
-  BUILTIN_ARRAY_METHOD_LOOKUP,
-  BUILTIN_ARRAY_METHODS_SUPPORTED,
-  BUILTIN_STRING_METHODS_SUPPORTED,
-  BUILTIN_STRING_METHOD_LOOKUP,
-  BUILTIN_FUNCTION_METHODS_SUPPORTED,
-  BUILTIN_NUMBER_METHODS_SUPPORTED,
-  BUILTIN_NUMBER_METHOD_LOOKUP,
-  BUILTIN_REGEXP_METHODS_SUPPORTED,
-  BUILTIN_REGEXP_METHOD_LOOKUP,
-  PREVAL_BUILTIN_SYMBOLS,
-  PREVAL_PROTO_SYMBOLS_TO_LOOKUP,
-  BUILTIN_FUNCTION_METHOD_LOOKUP,
-} from '../symbols_builtins.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, riskyRule, useRiskyRules } from '../utils.mjs';
+import { BUILTIN_SYMBOLS, NUMBER, STRING, FUNCTION, REGEXP, symbo, ARRAY } from '../symbols_builtins.mjs';
 import * as AST from '../ast.mjs';
 import {getPrimitiveType} from "../ast.mjs"
 
@@ -74,20 +45,20 @@ function _propertyLookups(fdata) {
       //const meta = fdata.globallyUniqueNamingRegistry.get(node.object.name);
       vlog('  -', node.computed ? node.object.name + '[' + node.property.type + ']' : node.object.name + '.' + node.property.name);
       vlog('    - typing for obj is::', mustBe);
+
       if (mustBe === 'array') {
         ASSERT(node.property.type === 'Identifier');
         const prop = node.property.name;
-        if (BUILTIN_ARRAY_METHODS_SUPPORTED.includes(prop)) {
+        if (ARRAY.has(symbo('array', prop))) {
           // Add to the list here: Array#filter, Array#flat, Array#concat, Array#push, Array#pop, Array#shift, Array#unshift
           if (useRiskyRules()) {
             // jsf*ck specific support
             // This is Function#flat ...
             riskyRule('Fetching but not calling a method from Array.prototype should do this explicitly');
-            example('f([].flat)', 'f(' + BUILTIN_ARRAY_METHOD_LOOKUP['flat'] + ')');
+            example('f([].flat)', 'f(' + symbo('array', 'flat') + ')');
             before(node, grandNode);
 
-            ASSERT(BUILTIN_ARRAY_METHOD_LOOKUP[prop], 'missing array method name should have constant', prop); // just add it.
-            const newNode = AST.identifier(BUILTIN_ARRAY_METHOD_LOOKUP[prop]);
+            const newNode = AST.identifier(symbo('array', 'flat'));
             if (parentIndex < 0) parentNode[parentProp] = newNode;
             else parentNode[parentProp][parentIndex] = newNode;
 
@@ -116,16 +87,15 @@ function _propertyLookups(fdata) {
       else if (mustBe === 'function') {
         ASSERT(node.property.type === 'Identifier');
         const prop = node.property.name;
-        if (BUILTIN_FUNCTION_METHODS_SUPPORTED.includes(prop)) {
+        if (FUNCTION.has(symbo('function', prop))) {
           if (useRiskyRules()) {
             // jsf*ck specific support
             // This is Function#flat ...
             riskyRule('Fetching but not calling a method from Function.prototype should do this explicitly');
-            example('f(f.call)', 'f(' + BUILTIN_FUNCTION_METHOD_LOOKUP['call'] + ')');
+            example('f(f.call)', 'f(' + symbo('function', 'call') + ')');
             before(node, grandNode);
 
-            ASSERT(BUILTIN_FUNCTION_METHOD_LOOKUP[prop], 'missing Function method name should have constant', prop); // just add it.
-            const newNode = AST.identifier(BUILTIN_FUNCTION_METHOD_LOOKUP[prop]);
+            const newNode = AST.identifier(symbo('function', prop));
             if (parentIndex < 0) parentNode[parentProp] = newNode;
             else parentNode[parentProp][parentIndex] = newNode;
 
@@ -175,16 +145,15 @@ function _propertyLookups(fdata) {
       else if (mustBe === 'number') {
         ASSERT(node.property.type === 'Identifier');
         const prop = node.property.name;
-        if (BUILTIN_NUMBER_METHODS_SUPPORTED.includes(prop)) {
+        if (NUMBER.has(symbo('number', prop))) {
           if (useRiskyRules()) {
             // jsf*ck specific support
             // This is Function#flat ...
             riskyRule('Fetching but not calling a method from Function.prototype should do this explicitly');
-            example('f(NaN.toString)', 'f(' + BUILTIN_NUMBER_METHOD_LOOKUP['toString'] + ')');
+            example('f(NaN.toString)', 'f(' + symbo('number', 'toString') + ')');
             before(node, grandNode);
 
-            ASSERT(BUILTIN_NUMBER_METHOD_LOOKUP[prop], 'missing Function method name should have constant', prop); // just add it.
-            const newNode = AST.identifier(BUILTIN_NUMBER_METHOD_LOOKUP[prop]);
+            const newNode = AST.identifier(symbo('number', prop));
             if (parentIndex < 0) parentNode[parentProp] = newNode;
             else parentNode[parentProp][parentIndex] = newNode;
 
@@ -213,17 +182,16 @@ function _propertyLookups(fdata) {
       else if (mustBe === 'string') {
         ASSERT(node.property.type === 'Identifier');
         const prop = node.property.name;
-        if (BUILTIN_STRING_METHODS_SUPPORTED.includes(prop)) {
+        if (STRING.has(symbo('string', prop))) {
           // Add to the list here: String#toString
           if (useRiskyRules()) {
             // jsf*ck specific support
             // This is String#toString ...
             riskyRule('Fetching but not calling a method from String.prototype should do this explicitly');
-            example('f("foo".toString)', 'f(' + BUILTIN_STRING_METHOD_LOOKUP['toString'] + ')');
+            example('f("foo".toString)', 'f(' + symbo('string', 'toString') + ')');
             before(node, grandNode);
 
-            ASSERT(BUILTIN_STRING_METHOD_LOOKUP[prop], 'props should be an object.keys() so this should work');
-            const finalNode = AST.identifier(BUILTIN_STRING_METHOD_LOOKUP[prop]);
+            const finalNode = AST.identifier(symbo('string', prop));
             if (parentIndex < 0) parentNode[parentProp] = finalNode;
             else parentNode[parentProp][parentIndex] = finalNode;
 
@@ -252,17 +220,16 @@ function _propertyLookups(fdata) {
       else if (mustBe === 'regex') {
         ASSERT(node.property.type === 'Identifier');
         const prop = node.property.name;
-        if (BUILTIN_REGEXP_METHODS_SUPPORTED.includes(prop)) {
+        if (REGEXP.has(symbo('regex', prop))) {
           // Add to the list here: String#toString
           if (useRiskyRules()) {
             // jsf*ck specific support
             // This is String#toString ...
             riskyRule('Fetching but not calling a method from String.prototype should do this explicitly');
-            example('f(/foo/.test)', 'f(' + BUILTIN_REGEXP_METHOD_LOOKUP['test'] + ')');
+            example('f(/foo/.test)', 'f(' + symbo('regex', 'test') + ')');
             before(node, grandNode);
 
-            ASSERT(BUILTIN_REGEXP_METHOD_LOOKUP[prop], 'props should be an object.keys() so this should work');
-            const finalNode = AST.identifier(BUILTIN_REGEXP_METHOD_LOOKUP[prop]);
+            const finalNode = AST.identifier(symbo('regex', prop));
             if (parentIndex < 0) parentNode[parentProp] = finalNode;
             else parentNode[parentProp][parentIndex] = finalNode;
 
@@ -294,16 +261,53 @@ function _propertyLookups(fdata) {
         // Technically expandos could cause observable side effects for accessing them. But aren't you just really trying at that point?
 
         if (!isPrimitive && !node.computed) {
-          if (useRiskyRules() && PREVAL_BUILTIN_SYMBOLS.includes(node.object.name)) {
-            vlog(`    - ${node.object.name} is a known global`);
+          // `$String_prototype.replace`
+          // `$string_replace.toString` -> `$function_toString`
+          const targetSymbol = node.object.name;
+          const symbolDetails = BUILTIN_SYMBOLS.get(targetSymbol);
+          if (useRiskyRules() && symbolDetails) {
+            vlog(`    - ${targetSymbol} is a known preval builtin symbol`);
 
-            const knownAlias = PREVAL_PROTO_SYMBOLS_TO_LOOKUP.get(node.object.name)?.[node.property.name];
+            // `$String_prototype.replace` -> `$string_replace`
+            // `$string_replace.toString` -> `$function_toString`
+            const newSymbol =
+              symbo('Number', 'prototype') === targetSymbol
+              ? symbo('number', node.property.name)
+              : symbo('String', 'prototype') === targetSymbol
+              ? symbo('string', node.property.name)
+              : symbo('Boolean', 'prototype') === targetSymbol
+              ? symbo('boolean', node.property.name)
+              : symbo('RegExp', 'prototype') === targetSymbol
+              ? symbo('regex', node.property.name)
+              : symbo('Object', 'prototype') === targetSymbol
+              ? symbo('object', node.property.name)
+              : symbo('Buffer', 'prototype') === targetSymbol
+              ? symbo('buffer', node.property.name)
+              : symbo('Array', 'prototype') === targetSymbol
+              ? symbo('array', node.property.name)
+              : symbo('Map', 'prototype') === targetSymbol
+              ? symbo('map', node.property.name)
+              : symbo('Set', 'prototype') === targetSymbol
+              ? symbo('set', node.property.name)
+              : symbo('Date', 'prototype') === targetSymbol
+              ? symbo('date', node.property.name)
+              : symbo('Function', 'prototype') === targetSymbol
+              ? symbo('function', node.property.name)
+              : symbolDetails.typings.mustBeType !== 'object'
+              ? symbo(symbolDetails.typings.mustBeType, node.property.name) // Prevent defaulting to object.toString when you actually need number.toString for example.
+              : false;
+            const newSymbol2 = (newSymbol && !BUILTIN_SYMBOLS.has(newSymbol))
+              ? symbo('object', node.property.name)
+              : newSymbol;
 
-            if (parentNode.type === 'ExpressionStatement') {
-              vlog(`    - this member expression is a statement so if we know it has no side effects it can be dropped`);
-              if (knownAlias) {
-                rule('Known property of built-in prototype that is a statement can be eliminated safely');
-                example('f(); $NumberPrototype.toString; g();', 'f(); ; g();');
+            // We should follow the prototype chain though, for example, toString is not defined on regexp but uses $object_toString
+            // Other than Error, are there any multi-step builtins? Array -> Object, String -> Object, etc
+            // So if we did find a newSymbol then the context was a builtin, then we should try to find the method on object.
+            if (newSymbol && BUILTIN_SYMBOLS.has(newSymbol2)) {
+              if (parentNode.type === 'ExpressionStatement') {
+                vlog(`    - this member expression is a statement so if we know it then has no side effects it can be dropped`);
+                riskyRule('Known property of built-in symbol as a statement can be eliminated safely');
+                example(`f(); ${symbo('Number', 'prototype')}.toString; g();`, 'f(); ; g();');
                 before(grandNode[grandProp][grandIndex]);
 
                 grandNode[grandProp][grandIndex] = AST.emptyStatement();
@@ -311,19 +315,18 @@ function _propertyLookups(fdata) {
                 after(grandNode[grandProp][grandIndex]);
                 ++changes;
                 return;
+              } else {
+                riskyRule('Known property of built-in symbol should be a special alias');
+                example(`f(${symbo('Number', 'prototype')}.toString)`, `f(${symbo('number', 'toString')})`);
+                before(grandNode[grandProp]);
+
+                if (parentIndex < 0) parentNode[parentProp] = AST.identifier(newSymbol2);
+                else parentNode[parentProp][parentIndex] = AST.identifier(newSymbol2);
+
+                after(grandNode[grandProp]);
+                ++changes;
+                return;
               }
-              // TODO: another case is more risky but accessing a property of an object literal should be fine
-            } else if (knownAlias) {
-              rule('Known property of built-in prototype object should be a special alias');
-              example('f(Number.toString)', 'f($number_toString)');
-              before(grandNode[grandProp]);
-
-              if (parentIndex < 0) parentNode[parentProp] = AST.identifier(knownAlias);
-              else parentNode[parentProp][parentIndex] = AST.identifier(knownAlias);
-
-              after(grandNode[grandProp]);
-              ++changes;
-              return;
             }
           }
         }

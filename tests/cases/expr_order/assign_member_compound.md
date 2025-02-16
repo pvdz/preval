@@ -41,7 +41,7 @@ tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 
 
 `````js filename=intro
-const tmpCompoundAssignLhs = $ObjectPrototype.foo;
+const tmpCompoundAssignLhs = $Object_prototype.foo;
 const tmpClusterSSA_a = $();
 tmpCompoundAssignLhs + tmpClusterSSA_a;
 `````
@@ -51,7 +51,7 @@ tmpCompoundAssignLhs + tmpClusterSSA_a;
 With rename=true
 
 `````js filename=intro
-const a = $ObjectPrototype.foo;
+const a = $Object_prototype.foo;
 const b = $();
 a + b;
 `````

@@ -7,7 +7,7 @@
 ## Input
 
 `````js filename=intro
-const x = $StringPrototype.lastIndexOf;
+const x = $String_prototype.lastIndexOf;
 $( x );
 `````
 
@@ -15,7 +15,7 @@ $( x );
 
 
 `````js filename=intro
-const x = $StringPrototype.lastIndexOf;
+const x = $String_prototype.lastIndexOf;
 $(x);
 `````
 
@@ -23,7 +23,7 @@ $(x);
 
 
 `````js filename=intro
-const x = $string_lastIndexOf;
+const x = $String_prototype.lastIndexOf;
 $(x);
 `````
 

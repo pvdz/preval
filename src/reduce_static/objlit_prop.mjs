@@ -3,27 +3,11 @@
 // - If we can resolve it to not exist, we should replace it with a prototype if we can
 // - If we can resolve writes then we should update the associated object literal
 
-import {
-  ASSERT,
-  log,
-  group,
-  groupEnd,
-  vlog,
-  vgroup,
-  vgroupEnd,
-  rule,
-  example,
-  before,
-  source,
-  after,
-  fmat,
-  tmat,
-  findBodyOffset,
-} from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, findBodyOffset, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar, mayBindingMutateBetweenRefs } from '../bindings.mjs';
 import { SYMBOL_DOTCALL } from '../symbols_preval.mjs';
-import { BUILTIN_OBJECT_PROTOTYPE } from '../symbols_builtins.mjs';
+import { symbo } from '../symbols_builtins.mjs';
 
 export function objlitPropAccess(fdata) {
   group('\n\n\nChecking for object literals whose props are accessed immediately');
@@ -384,13 +368,13 @@ function processAttempt(fdata, queue) {
             // The only potential problem with this rule is if the global `Object` is somehow replaced with a different
             // value. But I believe that value is read-only in global, anyways. Beyond that, objlits should read from proto.
             rule('An object literal method lookup when the obj has no such prop must read from the prototype');
-            example('let obj = {}; let x = obj.toString();', 'let obj = {}; let x = $dotCall(Object.prototype.toString, obj);');
+            example('let obj = {}; let x = obj.toString();', `let obj = {}; let x = $dotCall(${symbo('Object', 'prototype')}.toString, obj);`);
             before(writeRef.blockBody[writeRef.blockIndex]);
             before(readRef.blockBody[readRef.blockIndex]);
 
             ASSERT(!readRef.parentNode.property.computed, 'checked before getting here, right?');
             const tmpNameMethod = createFreshVar('tmpObjectMethod', fdata);
-            const methodNode = AST.memberExpression(BUILTIN_OBJECT_PROTOTYPE, readRef.parentNode.property.name, false);
+            const methodNode = AST.memberExpression(symbo('Object', 'prototype'), readRef.parentNode.property.name, false);
             const methodVarNode = AST.variableDeclaration(tmpNameMethod, methodNode, 'const');
 
             // `$dotCall(tmpNameMethod, obj, ...args)`
@@ -433,13 +417,13 @@ function processAttempt(fdata, queue) {
             // The only potential problem with this rule is if the global `Object` is somehow replaced with a different
             // value. But I believe that value is read-only in global, anyways. Beyond that, objlits should read from proto.
             rule('An object literal prop lookup when the obj has no such prop must read from the prototype');
-            example('let obj = {}; let x = obj.x;', 'let obj = {}; let x = Object.prototype.x;');
+            example('let obj = {}; let x = obj.x;', `let obj = {}; let x = ${symbo('Object', 'prototype')}.x;`);
             before(writeRef.blockBody[writeRef.blockIndex]);
             before(readRef.blockBody[readRef.blockIndex]);
 
             ASSERT(!readRef.parentNode.property.computed, 'checked before getting here, right?');
 
-            const finalNode = AST.memberExpression(BUILTIN_OBJECT_PROTOTYPE, readRef.parentNode.property.name, false);
+            const finalNode = AST.memberExpression(symbo('Object', 'prototype'), readRef.parentNode.property.name, false);
             if (readRef.grandIndex < 0) readRef.grandNode[readRef.grandProp] = finalNode;
             else readRef.grandNode[readRef.grandProp][readRef.grandIndex] = AST.identifier('undefined'); // FIXME: broken?? shouldnt this be finalNode?
 

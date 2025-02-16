@@ -4,7 +4,7 @@
 
 > Builtins cases > Name2
 >
->
+> Function(eval())()
 
 ## Input
 
@@ -18,7 +18,7 @@ const tmpStringConcatL$2/*:string*/ = $coerce(tmpBinBothRhs$141, `plustr`);
 const tmpCalleeParam$1/*:string*/ = `return e${tmpStringConcatL$2}al`;
 const tmpCallComplexCallee= Function(tmpCalleeParam$1);
 const tmpCallCallee= tmpCallComplexCallee();
-tmpCallCallee(`alert(1)`);
+tmpCallCallee(`$('win')`);
 `````
 
 ## Pre Normal
@@ -34,7 +34,7 @@ const tmpStringConcatL$2 = $coerce(tmpBinBothRhs$141, `plustr`);
 const tmpCalleeParam$1 = `return e` + $coerce(tmpStringConcatL$2, `string`) + `al`;
 const tmpCallComplexCallee = Function(tmpCalleeParam$1);
 const tmpCallCallee = tmpCallComplexCallee();
-tmpCallCallee(`alert(1)`);
+tmpCallCallee(`$('win')`);
 `````
 
 ## Normalized
@@ -57,14 +57,14 @@ const tmpStringConcatR = $coerce(tmpBinLhs$1, `plustr`);
 const tmpCalleeParam$1 = `${tmpStringConcatR}al`;
 const tmpCallComplexCallee = Function(tmpCalleeParam$1);
 const tmpCallCallee = tmpCallComplexCallee();
-tmpCallCallee(`alert(1)`);
+tmpCallCallee(`$('win')`);
 `````
 
 ## Output
 
 
 `````js filename=intro
-eval(`alert(1)`);
+eval(`$('win')`);
 `````
 
 ## PST Output
@@ -72,7 +72,7 @@ eval(`alert(1)`);
 With rename=true
 
 `````js filename=intro
-eval( "alert(1)" );
+eval( "$('win')" );
 `````
 
 ## Globals
@@ -88,4 +88,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 'win'
+ - eval returned: undefined

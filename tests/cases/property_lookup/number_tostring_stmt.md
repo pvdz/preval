@@ -7,7 +7,7 @@
 ## Input
 
 `````js filename=intro
-$NumberPrototype.toString; // dropme
+$Number_prototype.toString; // dropme
 $( "3.48" );
 `````
 
@@ -15,7 +15,7 @@ $( "3.48" );
 
 
 `````js filename=intro
-$NumberPrototype.toString;
+$Number_prototype.toString;
 $(`3.48`);
 `````
 
@@ -23,6 +23,7 @@ $(`3.48`);
 
 
 `````js filename=intro
+$Number_prototype.toString;
 $(`3.48`);
 `````
 

@@ -26,7 +26,7 @@ $([5 + 5, $(), Array.prototype.length]);
 const tmpCallCallee = $;
 const tmpArrElement = 10;
 const tmpArrElement$1 = $();
-const tmpCompObj = $ArrayPrototype;
+const tmpCompObj = $Array_prototype;
 const tmpArrElement$3 = tmpCompObj.length;
 const tmpCalleeParam = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
 tmpCallCallee(tmpCalleeParam);
@@ -37,8 +37,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpArrElement$1 = $();
-const tmpArrElement$3 = $ArrayPrototype.length;
-const tmpCalleeParam /*:array*/ = [10, tmpArrElement$1, tmpArrElement$3];
+const tmpCalleeParam /*:array*/ = [10, tmpArrElement$1, 0];
 $(tmpCalleeParam);
 `````
 
@@ -48,9 +47,8 @@ With rename=true
 
 `````js filename=intro
 const a = $();
-const b = $ArrayPrototype.length;
-const c = [ 10, a, b ];
-$( c );
+const b = [ 10, a, 0 ];
+$( b );
 `````
 
 ## Globals

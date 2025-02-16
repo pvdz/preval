@@ -5,36 +5,7 @@
 // In general we prefer this form but it is not always the same, in particular when the own property .call was set
 // For certain values and builtins we can assert what they're doing, though.
 
-import {
-  BUILTIN_ARRAY_METHODS_SYMBOLS,
-  BUILTIN_ARRAY_METHOD_LOOKUP_REV,
-  BUILTIN_BOOLEAN_METHODS_SYMBOLS,
-  BUILTIN_BOOLEAN_METHOD_LOOKUP_REV,
-  BUILTIN_FUNCTION_METHODS_SYMBOLS,
-  BUILTIN_FUNCTION_METHOD_LOOKUP_REV,
-  BUILTIN_NUMBER_METHOD_LOOKUP_REV,
-  BUILTIN_NUMBER_METHODS_SYMBOLS,
-  BUILTIN_REGEXP_METHOD_LOOKUP_REV,
-  BUILTIN_REGEXP_METHODS_SYMBOLS,
-  BUILTIN_STRING_METHOD_LOOKUP_REV,
-  BUILTIN_STRING_METHODS_SYMBOLS,
-  BUILTIN_MATH_STATIC_SYMBOLS,
-  BUILTIN_MATH_STATIC_LOOKUP_REV,
-  BUILTIN_ARRAY_STATIC_SYMBOLS,
-  BUILTIN_NUMBER_STATIC_SYMBOLS,
-  BUILTIN_OBJECT_STATIC_SYMBOLS,
-  BUILTIN_OBJECT_STATIC_LOOKUP_REV,
-  BUILTIN_NUMBER_STATIC_LOOKUP_REV,
-  BUILTIN_ARRAY_STATIC_LOOKUP_REV,
-  BUILTIN_STRING_STATIC_LOOKUP_REV,
-  BUILTIN_STRING_STATIC_SYMBOLS,
-  BUILTIN_DATE_STATIC_LOOKUP_REV,
-  BUILTIN_DATE_STATIC_SYMBOLS,
-  BUILTIN_JSON_STATIC_LOOKUP_REV,
-  BUILTIN_JSON_STATIC_SYMBOLS,
-  BUILTIN_BUFFER_STATIC_LOOKUP_REV,
-  BUILTIN_BUFFER_STATIC_SYMBOLS,
-} from '../symbols_builtins.mjs';
+import { NUMBER, BOOLEAN, STRING, OBJECT, ARRAY, DATE, FUNCTION, $JSON, MATH, REGEXP, symbo, sym_prefix, BUFFER, } from '../symbols_builtins.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import globalNames from '../globals.mjs';
@@ -82,13 +53,14 @@ function _dotCall(fdata) {
       case 'boolean': {
         source(read.grandNode);
         // This is okay. The `true` and `false` primitive values have a prototype
-        if (BUILTIN_BOOLEAN_METHODS_SYMBOLS.includes(funcArg.name)) {
+        if (BOOLEAN.has(funcArg.name) && funcArg.name.startsWith(sym_prefix('boolean', true))) {
           rule('A dotCall with known func and guaranteed context type should be simplified to a method call');
-          example('$dotCall($Boolean_toString, true)', 'true.toString()');
+          example(`$dotCall(${symbo('boolean', 'toString')}, true)`, 'true.toString()');
           before(read.blockBody[read.blockIndex]);
 
-          if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.callExpression(AST.memberExpression(context, BUILTIN_BOOLEAN_METHOD_LOOKUP_REV[funcArg.name]), args);
-          else read.grandNode[read.grandProp][read.grandIndex] = AST.callExpression(AST.memberExpression(context, BUILTIN_BOOLEAN_METHOD_LOOKUP_REV[funcArg.name]), args);
+          const prop = BOOLEAN.get(funcArg.name).prop;
+          if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.callExpression(AST.memberExpression(context, prop), args);
+          else read.grandNode[read.grandProp][read.grandIndex] = AST.callExpression(AST.memberExpression(context, prop), args);
 
           after(read.blockBody[read.blockIndex]);
           ++changed;
@@ -97,13 +69,14 @@ function _dotCall(fdata) {
         break;
       }
       case 'number': {
-        if (BUILTIN_NUMBER_METHODS_SYMBOLS.includes(funcArg.name)) {
-          rule('A dotCall with known func and guaranteed context type should be simplified to a method call');
-          example('$dotCall($number_toString, NaN)', 'NaN.toString()');
+        if (NUMBER.has(funcArg.name) && funcArg.name.startsWith(sym_prefix('number', true))) {
+          rule('A dotCall with known builtin func symbol and guaranteed context type should be simplified to a method call');
+          example(`$dotCall(${symbo('number', 'toString')}, NaN)`, 'NaN.toString()');
           before(read.blockBody[read.blockIndex]);
 
-          if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.callExpression(AST.memberExpression(context, BUILTIN_NUMBER_METHOD_LOOKUP_REV[funcArg.name]), args);
-          else read.grandNode[read.grandProp][read.grandIndex] = AST.callExpression(AST.memberExpression(context, BUILTIN_NUMBER_METHOD_LOOKUP_REV[funcArg.name]), args);
+          const prop = NUMBER.get(funcArg.name).prop;
+          if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.callExpression(AST.memberExpression(context, prop), args);
+          else read.grandNode[read.grandProp][read.grandIndex] = AST.callExpression(AST.memberExpression(context, prop), args);
 
           after(read.blockBody[read.blockIndex]);
           ++changed;
@@ -112,13 +85,14 @@ function _dotCall(fdata) {
         break;
       }
       case 'string': {
-        if (BUILTIN_STRING_METHODS_SYMBOLS.includes(funcArg.name)) {
+        if (STRING.has(funcArg.name) && funcArg.name.startsWith(sym_prefix('string', true))) {
           rule('A dotCall with known func and guaranteed context type should be simplified to a method call');
-          example('$dotCall($string_concat, "foo", "bar")', '"foo".concat("bar")');
+          example(`$dotCall(${symbo('string', 'concat')}, "foo", "bar")`, '"foo".concat("bar")');
           before(read.blockBody[read.blockIndex]);
 
-          if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.callExpression(AST.memberExpression(context, BUILTIN_STRING_METHOD_LOOKUP_REV[funcArg.name]), args);
-          else read.grandNode[read.grandProp][read.grandIndex] = AST.callExpression(AST.memberExpression(context, BUILTIN_STRING_METHOD_LOOKUP_REV[funcArg.name]), args);
+          const prop = STRING.get(funcArg.name).prop;
+          if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.callExpression(AST.memberExpression(context, prop), args);
+          else read.grandNode[read.grandProp][read.grandIndex] = AST.callExpression(AST.memberExpression(context, prop), args);
 
           after(read.blockBody[read.blockIndex]);
           ++changed;
@@ -127,13 +101,14 @@ function _dotCall(fdata) {
         break;
       }
       case 'array': {
-        if (BUILTIN_ARRAY_METHODS_SYMBOLS.includes(funcArg.name)) {
+        if (ARRAY.has(funcArg.name) && funcArg.name.startsWith(sym_prefix('array', true))) {
           rule('A dotCall with known func and guaranteed context type should be simplified to a method call');
-          example('const arr = []; $dotCall($array_push, arr, "arf")', 'arr.push("arf")');
+          example(`const arr = []; $dotCall(${symbo('array', 'push')}, arr, "arf")`, 'arr.push("arf")');
           before(read.blockBody[read.blockIndex]);
 
-          if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.callExpression(AST.memberExpression(context, BUILTIN_ARRAY_METHOD_LOOKUP_REV[funcArg.name]), args);
-          else read.grandNode[read.grandProp][read.grandIndex] = AST.callExpression(AST.memberExpression(context, BUILTIN_ARRAY_METHOD_LOOKUP_REV[funcArg.name]), args);
+          const prop = ARRAY.get(funcArg.name).prop;
+          if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.callExpression(AST.memberExpression(context, prop), args);
+          else read.grandNode[read.grandProp][read.grandIndex] = AST.callExpression(AST.memberExpression(context, prop), args);
 
           after(read.blockBody[read.blockIndex]);
           ++changed;
@@ -142,13 +117,14 @@ function _dotCall(fdata) {
         break;
       }
       case 'regex': {
-        if (BUILTIN_REGEXP_METHODS_SYMBOLS.includes(funcArg.name)) {
+        if (REGEXP.has(funcArg.name) && funcArg.name.startsWith(sym_prefix('regex', true))) {
           rule('A dotCall with known func and guaranteed context type should be simplified to a method call');
-          example('$dotCall($regexp_test, /woof/, "arf")', '/woof/.test("arf")');
+          example(`$dotCall(${symbo('regex', 'test')}, /woof/, "arf")`, '/woof/.test("arf")');
           before(read.blockBody[read.blockIndex]);
 
-          if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.callExpression(AST.memberExpression(context, BUILTIN_REGEXP_METHOD_LOOKUP_REV[funcArg.name]), args);
-          else read.grandNode[read.grandProp][read.grandIndex] = AST.callExpression(AST.memberExpression(context, BUILTIN_REGEXP_METHOD_LOOKUP_REV[funcArg.name]), args);
+          const prop = REGEXP.get(funcArg.name).prop;
+          if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.callExpression(AST.memberExpression(context, prop), args);
+          else read.grandNode[read.grandProp][read.grandIndex] = AST.callExpression(AST.memberExpression(context, prop), args);
 
           after(read.blockBody[read.blockIndex]);
           ++changed;
@@ -157,13 +133,14 @@ function _dotCall(fdata) {
         break;
       }
       case 'function': {
-        if (BUILTIN_FUNCTION_METHODS_SYMBOLS.includes(funcArg.name)) {
+        if (FUNCTION.has(funcArg.name) && funcArg.name.startsWith(sym_prefix('function', true))) {
           rule('A dotCall with known func and guaranteed context type should be simplified to a method call');
-          example('$dotCall($function_apply, f, args)', 'f.apply(args)');
+          example(`$dotCall(${symbo('function', 'apply')}, f, args)`, 'f.apply(args)');
           before(read.blockBody[read.blockIndex]);
 
-          if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.callExpression(AST.memberExpression(context, BUILTIN_FUNCTION_METHOD_LOOKUP_REV[funcArg.name]), args);
-          else read.grandNode[read.grandProp][read.grandIndex] = AST.callExpression(AST.memberExpression(context, BUILTIN_FUNCTION_METHOD_LOOKUP_REV[funcArg.name]), args);
+          const prop = FUNCTION.get(funcArg.name).prop;
+          if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.callExpression(AST.memberExpression(context, prop), args);
+          else read.grandNode[read.grandProp][read.grandIndex] = AST.callExpression(AST.memberExpression(context, prop), args);
 
           after(read.blockBody[read.blockIndex]);
           ++changed;
@@ -216,12 +193,13 @@ function _dotCall(fdata) {
       // Unfortunately we can't point-blank simplify this for the builtins that are context
       // sensitive (like most methods) so we have to do this on a step-by-step basis
 
-      if (BUILTIN_ARRAY_STATIC_LOOKUP_REV[funcArg.name] && BUILTIN_ARRAY_STATIC_SYMBOLS.includes(funcArg.name)) { // Note: __proto__ protection
+      if (ARRAY.has(funcArg.name) && context.name === 'Array' && funcArg.name.startsWith(sym_prefix('Array'))) { // Make sure to dodge `$dotCall($number_toFixed, Number)` kinds of cases
         rule('A dotCall with known Array function should be simplified to a method call');
-        example('$dotCall($Array_from, Array, 2, 3)', 'Array.from(2, 3)');
+        example(`$dotCall(${symbo('Array', 'from')}, Array, 2, 3)`, 'Array.from(2, 3)');
         before(read.blockBody[read.blockIndex]);
 
-        const finalNode = AST.callExpression(AST.memberExpression(AST.identifier('Array'), BUILTIN_ARRAY_STATIC_LOOKUP_REV[funcArg.name]), args);
+        const prop = ARRAY.get(funcArg.name).prop;
+        const finalNode = AST.callExpression(AST.memberExpression(AST.identifier('Array'), prop), args);
         if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
         else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
 
@@ -229,12 +207,13 @@ function _dotCall(fdata) {
         ++changed;
         return;
       }
-      if (BUILTIN_NUMBER_STATIC_LOOKUP_REV[funcArg.name] && BUILTIN_NUMBER_STATIC_SYMBOLS.includes(funcArg.name)) { // Note: __proto__ protection
+      if (NUMBER.has(funcArg.name) && context.name === 'Number' && funcArg.name.startsWith(sym_prefix('Number'))) { // Make sure to dodge `$dotCall($number_toFixed, Number)`
         rule('A dotCall with known Number function should be simplified to a method call');
-        example('$dotCall($Number_isSafeInteger, Number, 2, 3)', 'Number.isSafeInteger(2, 3)');
+        example(`$dotCall(${symbo('Number', 'isSafeInteger')}, Number, 2, 3)`, 'Number.isSafeInteger(2, 3)');
         before(read.blockBody[read.blockIndex]);
 
-        const finalNode = AST.callExpression(AST.memberExpression(AST.identifier('Number'), BUILTIN_NUMBER_STATIC_LOOKUP_REV[funcArg.name]), args);
+        const prop = NUMBER.get(funcArg.name).prop;
+        const finalNode = AST.callExpression(AST.memberExpression(AST.identifier('Number'), prop), args);
         if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
         else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
 
@@ -242,12 +221,13 @@ function _dotCall(fdata) {
         ++changed;
         return;
       }
-      if (BUILTIN_OBJECT_STATIC_LOOKUP_REV[funcArg.name] && BUILTIN_OBJECT_STATIC_SYMBOLS.includes(funcArg.name)) { // Note: __proto__ protection
+      if (OBJECT.has(funcArg.name) && context.name === 'Object' && funcArg.name.startsWith(sym_prefix('Object'))) { // Make sure to dodge `$dotCall($number_toFixed, Number)` kinds of cases
         rule('A dotCall with known Object function should be simplified to a method call');
-        example('$dotCall($Object_keys, Object, obj)', 'Object.keys(obj)');
+        example(`$dotCall(${symbo('Object', 'keys')}, Object, obj)`, 'Object.keys(obj)');
         before(read.blockBody[read.blockIndex]);
 
-        const finalNode = AST.callExpression(AST.memberExpression(AST.identifier('Object'), BUILTIN_OBJECT_STATIC_LOOKUP_REV[funcArg.name]), args);
+        const prop = OBJECT.get(funcArg.name).prop;
+        const finalNode = AST.callExpression(AST.memberExpression(AST.identifier('Object'), prop), args);
         if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
         else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
 
@@ -255,12 +235,13 @@ function _dotCall(fdata) {
         ++changed;
         return;
       }
-      if (BUILTIN_STRING_STATIC_LOOKUP_REV[funcArg.name] && BUILTIN_STRING_STATIC_SYMBOLS.includes(funcArg.name)) { // Note: __proto__ protection
+      if (STRING.has(funcArg.name) && context.name === 'String' && funcArg.name.startsWith(sym_prefix('String'))) { // Make sure to dodge `$dotCall($number_toFixed, Number)` sort of case
         rule('A dotCall with known String function should be simplified to a method call');
-        example('$dotCall($String_fromCharCode, String, 2, 3)', 'String.fromCharCode(2, 3)');
+        example(`$dotCall(${symbo('String', 'fromCharCode')}, String, 2, 3)`, 'String.fromCharCode(2, 3)');
         before(read.blockBody[read.blockIndex]);
 
-        const finalNode = AST.callExpression(AST.memberExpression(AST.identifier('String'), BUILTIN_STRING_STATIC_LOOKUP_REV[funcArg.name]), args);
+        const prop = STRING.get(funcArg.name).prop;
+        const finalNode = AST.callExpression(AST.memberExpression(AST.identifier('String'), prop), args);
         if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
         else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
 
@@ -268,12 +249,13 @@ function _dotCall(fdata) {
         ++changed;
         return;
       }
-      if (BUILTIN_DATE_STATIC_LOOKUP_REV[funcArg.name] && BUILTIN_DATE_STATIC_SYMBOLS.includes(funcArg.name)) { // Note: __proto__ protection
+      if (DATE.has(funcArg.name) && context.name === 'Date' && funcArg.name.startsWith(sym_prefix('Date'))) { // Make sure to dodge `$dotCall($number_toFixed, Number)` sort of case
         rule('A dotCall with known Date function should be simplified to a method call');
-        example('$dotCall($Date_now, String)', 'Date.now()');
+        example(`$dotCall(${symbo('Date', 'now')}, String)`, 'Date.now()');
         before(read.blockBody[read.blockIndex]);
 
-        const finalNode = AST.callExpression(AST.memberExpression(AST.identifier('Date'), BUILTIN_DATE_STATIC_LOOKUP_REV[funcArg.name]), args);
+        const prop = DATE.get(funcArg.name).prop;
+        const finalNode = AST.callExpression(AST.memberExpression(AST.identifier('Date'), prop), args);
         if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
         else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
 
@@ -281,14 +263,15 @@ function _dotCall(fdata) {
         ++changed;
         return;
       }
-      if (BUILTIN_MATH_STATIC_LOOKUP_REV[funcArg.name] && BUILTIN_MATH_STATIC_SYMBOLS.includes(funcArg.name)) { // Note: __proto__ protection
+      if (MATH.has(funcArg.name) && context.name === 'Math' && funcArg.name.startsWith(sym_prefix('Math'))) { // Make sure to dodge `$dotCall($number_toFixed, Number)` sort of case
         // Note: none of the Math functions are context sensitive so we don't care much for the
         // context here. We should preserve it as a statement though, just in case.
         rule('A dotCall with known Math function should be simplified to a method call');
-        example('$dotCall($Math_pow, Math, 2, 3)', 'Math.pow(2, 3)');
+        example(`$dotCall(${symbo('Math', 'pow')}, Math, 2, 3)`, 'Math.pow(2, 3)');
         before(read.blockBody[read.blockIndex]);
 
-        const finalNode = AST.callExpression(AST.memberExpression(AST.identifier('Math'), BUILTIN_MATH_STATIC_LOOKUP_REV[funcArg.name]), args);
+        const prop = MATH.get(funcArg.name).prop;
+        const finalNode = AST.callExpression(AST.memberExpression(AST.identifier('Math'), prop), args);
         if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
         else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
 
@@ -296,12 +279,13 @@ function _dotCall(fdata) {
         ++changed;
         return;
       }
-      if (BUILTIN_JSON_STATIC_LOOKUP_REV[funcArg.name] && BUILTIN_JSON_STATIC_SYMBOLS.includes(funcArg.name)) { // Note: __proto__ protection
+      if ($JSON.has(funcArg.name) && context.name === 'JSON' && funcArg.name.startsWith(sym_prefix('JSON'))) { // Make sure to dodge `$dotCall($number_toFixed, Number)` sort of case
         rule('A dotCall with known JSON function should be simplified to a method call');
-        example('$dotCall($JSON_parse, JSON, "{}")', 'JSON.parse("{}")');
+        example(`$dotCall(${symbo('JSON', 'parse')}, JSON, "{}")`, 'JSON.parse("{}")');
         before(read.blockBody[read.blockIndex]);
 
-        const finalNode = AST.callExpression(AST.memberExpression(AST.identifier('JSON'), BUILTIN_JSON_STATIC_LOOKUP_REV[funcArg.name]), args);
+        const prop = $JSON.get(funcArg.name).prop;
+        const finalNode = AST.callExpression(AST.memberExpression(AST.identifier('JSON'), prop), args);
         if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
         else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
 
@@ -309,12 +293,13 @@ function _dotCall(fdata) {
         ++changed;
         return;
       }
-      if (BUILTIN_BUFFER_STATIC_LOOKUP_REV[funcArg.name] && BUILTIN_BUFFER_STATIC_SYMBOLS.includes(funcArg.name)) { // Note: __proto__ protection
+      if (BUFFER.has(funcArg.name) && context.name === 'Buffer' && funcArg.name.startsWith(sym_prefix('Buffer'))) { // Make sure to dodge `$dotCall($number_toFixed, Number)` sort of case
         rule('A dotCall with known Buffer function should be simplified to a method call');
-        example('$dotCall($Buffer_from, Buffer, "{}", "base64")', 'Buffer.from("x", "base64")');
+        example(`$dotCall(${symbo('Buffer', 'from')}, Buffer, "{}", "base64")`, 'Buffer.from("x", "base64")');
         before(read.blockBody[read.blockIndex]);
 
-        const finalNode = AST.callExpression(AST.memberExpression(AST.identifier('Buffer  '), BUILTIN_BUFFER_STATIC_LOOKUP_REV[funcArg.name]), args);
+        const prop = BUFFER.get(funcArg.name).prop;
+        const finalNode = AST.callExpression(AST.memberExpression(AST.identifier('Buffer  '), prop), args);
         if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
         else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
 

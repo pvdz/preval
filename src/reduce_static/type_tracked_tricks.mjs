@@ -18,6 +18,7 @@ import {
   after,
   findBodyOffset,
   assertNoDupeNodes,
+  todo,
 } from '../utils.mjs';
 import {
   ARGUMENTS_ALIAS_BASE_NAME,
@@ -26,10 +27,7 @@ import {
   SYMBOL_LOOP_UNROLL,
   SYMBOL_MAX_LOOP_UNROLL,
 } from '../symbols_preval.mjs';
-import {
-  BUILTIN_FUNCTION_METHOD_LOOKUP,
-  BUILTIN_REGEXP_METHOD_LOOKUP, BUILTIN_STRING_METHOD_LOOKUP,
-} from '../symbols_builtins.mjs';
+import { BUILTIN_SYMBOLS, symbo } from '../symbols_builtins.mjs';
 import * as AST from '../ast.mjs';
 import { getRegexFromLiteralNode } from '../ast.mjs';
 
@@ -894,7 +892,7 @@ function _typeTrackedTricks(fdata) {
                     ++changes;
                     break;
                   }
-                  case '$FunctionApply': {
+                  case symbo('Function', 'apply'): {
                     // If the context is known to be a function, reconstruct it into a regular method call
                     if (contextNode.type === 'Identifier') {
                       const meta = fdata.globallyUniqueNamingRegistry.get(contextNode.name);
@@ -916,7 +914,7 @@ function _typeTrackedTricks(fdata) {
                     }
                     break;
                   }
-                  case '$FunctionCall': {
+                  case symbo('Function', 'call'): {
                     // If the context is known to be a function, reconstruct it into a regular method call
                     if (node.arguments[1].type === 'Identifier') {
                       const meta = fdata.globallyUniqueNamingRegistry.get(node.arguments[1].name);
@@ -937,7 +935,7 @@ function _typeTrackedTricks(fdata) {
                     }
                     break;
                   }
-                  case '$RegExpTest': {
+                  case symbo('regex', 'test'): {
                     // If the context is known to be a regex, reconstruct it into a regular method call
                     if (node.arguments[1].type === 'Identifier') {
                       const meta = fdata.globallyUniqueNamingRegistry.get(node.arguments[1].name);
@@ -958,6 +956,11 @@ function _typeTrackedTricks(fdata) {
                     }
                     break;
                   }
+                  default: {
+                    if (BUILTIN_SYMBOLS.has(funcRefNode.name)) {
+                      todo('Missed opportunity to inline a type tracked trick for', [funcRefNode.name], '?');
+                    }
+                  }
                 }
 
                 // Resolve builtin functions when we somehow know they're being cached
@@ -974,7 +977,7 @@ function _typeTrackedTricks(fdata) {
                     // (Additionally, we could verify that the value is an array, but I believe we don't need to?)
 
                     rule('A $dotCall with builtin methods can be a regular method call');
-                    example('$dotCall($ArrayPush, arr, arg1, arg2, arg3);', 'arr.push(arg1, arg2, arg3);');
+                    example(`$dotCall(${symbo('array', 'push')}, arr, arg1, arg2, arg3);`, 'arr.push(arg1, arg2, arg3);');
                     before(node, blockBody[blockIndex]);
 
                     const methodName = refMeta.typing.builtinTag.slice(refMeta.typing.builtinTag.indexOf('#') + 1);
@@ -1722,89 +1725,29 @@ function _typeTrackedTricks(fdata) {
           !node.computed &&
           node.object.type === 'Identifier' &&
           node.object.name !== 'arguments' &&
-          ((parentNode.type === 'AssignmentExpression' && parentProp === 'right') ||
-            (parentNode.type === 'VariableDeclarator' && parentProp === 'init')) // The init check is redundant
+          (
+            (parentNode.type === 'AssignmentExpression' && parentProp === 'right') ||
+            (parentNode.type === 'VariableDeclarator' && parentProp === 'init') // The init check is redundant
+          )
         ) {
           const meta = fdata.globallyUniqueNamingRegistry.get(node.object.name);
-          if (meta.isConstant) {
-            if (meta.typing.mustBeType) {
-              // Note: member expression calls go above
-              switch (meta.typing.mustBeType + '.' + node.property.name) {
-                // This is incorrect: function.prototype will return that function's prototype, not to be confused with func.__proto__ which would be Function.prototype
-                //case 'function.prototype': {
-                //  rule('Reading .prototype from something that must be a function should yield $FunctionPrototype');
-                //  example('const x = parseInt.prototype;', 'const x = $FunctionPrototype;');
-                //  before(node, blockBody[blockIndex]);
-                //  if (parentNode.type === 'AssignmentExpression') {
-                //    parentNode.right = AST.identifier(BUILTIN_FUNCTION_PROTOTYPE);
-                //  } else {
-                //    parentNode.init = AST.identifier(BUILTIN_FUNCTION_PROTOTYPE);
-                //  }
-                //
-                //  after(node, blockBody[blockIndex]);
-                //  ++changes;
-                //  break;
-                //}
-                case 'function.apply': {
-                  rule('Reading .apply from something that must be a function should yield $FunctionApply');
-                  example('const x = parseInt.apply;', 'const x = $FunctionApply;');
-                  before(node, blockBody[blockIndex]);
-                  if (parentNode.type === 'AssignmentExpression') {
-                    parentNode.right = AST.identifier(BUILTIN_FUNCTION_METHOD_LOOKUP.apply);
-                  } else {
-                    parentNode.init = AST.identifier(BUILTIN_FUNCTION_METHOD_LOOKUP.apply);
-                  }
+          if (meta.isConstant && meta.typing.mustBeType) {
+            // This is assignment with just the member expression as rhs. There's some obfuscation techniques that do this.
+            // Note: Member expression calls go above.
 
-                  after(node, blockBody[blockIndex]);
-                  ++changes;
-                  break;
-                }
-                case 'function.call': {
-                  rule('Reading .call from something that must be a function should yield $FunctionCall');
-                  example('const x = parseInt.call;', 'const x = $FunctionCall;');
-                  before(node, blockBody[blockIndex]);
+            if (BUILTIN_SYMBOLS.has(symbo(meta.typing.mustBeType,  node.property.name))) {
+              rule('Reading a builtin method property of a builtin type should change to a preval builtin symbol');
+              example('const x = parseInt.apply;', `const x = ${symbo('function', 'apply')};`);
+              before(blockBody[blockIndex]);
 
-                  if (parentNode.type === 'AssignmentExpression') {
-                    parentNode.right = AST.identifier(BUILTIN_FUNCTION_METHOD_LOOKUP.call);
-                  } else {
-                    parentNode.init = AST.identifier(BUILTIN_FUNCTION_METHOD_LOOKUP.call);
-                  }
-
-                  after(node, blockBody[blockIndex]);
-                  ++changes;
-                  break;
-                }
-                case 'regex.test': {
-                  rule('Reading .test from something that must be a regex should yield $RegExpTest');
-                  example('const x = /foo/.test;', 'const x = $RegExpTest;');
-                  before(node, blockBody[blockIndex]);
-
-                  if (parentNode.type === 'AssignmentExpression') {
-                    parentNode.right = AST.identifier(BUILTIN_REGEXP_METHOD_LOOKUP.test);
-                  } else {
-                    parentNode.init = AST.identifier(BUILTIN_REGEXP_METHOD_LOOKUP.test);
-                  }
-
-                  after(node, blockBody[blockIndex]);
-                  ++changes;
-                  break;
-                }
-                case 'string.charAt': {
-                  rule('Reading .charAt from something that must be a string should yield $string_charAt');
-                  example('const x = "xyz".charAt;', 'const x = $string_charAt;');
-                  before(node, blockBody[blockIndex]);
-
-                  if (parentNode.type === 'AssignmentExpression') {
-                    parentNode.right = AST.identifier(BUILTIN_STRING_METHOD_LOOKUP.charAt);
-                  } else {
-                    parentNode.init = AST.identifier(BUILTIN_STRING_METHOD_LOOKUP.charAt);
-                  }
-
-                  after(node, blockBody[blockIndex]);
-                  ++changes;
-                  break;
-                }
+              if (parentNode.type === 'AssignmentExpression') {
+                parentNode.right = AST.identifier(symbo(meta.typing.mustBeType,  node.property.name));
+              } else {
+                parentNode.init = AST.identifier(symbo(meta.typing.mustBeType,  node.property.name));
               }
+
+              after(blockBody[blockIndex]);
+              ++changes;
             }
           }
         }

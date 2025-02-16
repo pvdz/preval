@@ -1,33 +1,7 @@
 // Built-in symbol names and their `typeof` result
 
-import {
-  SYMBOL_FORIN,
-  SYMBOL_FOROF,
-  SYMBOL_DOTCALL,
-  BUILTIN_REST_HANDLER_NAME,
-  SYMBOL_LOOP_UNROLL,
-  SYMBOL_MAX_LOOP_UNROLL, SYMBOL_COERCE,
-} from './symbols_preval.mjs';
-import {
-  BUILTIN_ARRAY_METHODS_SYMBOLS,
-  BUILTIN_ARRAY_STATIC_SYMBOLS,
-  BUILTIN_BOOLEAN_METHODS_SYMBOLS,
-  BUILTIN_BOOLEAN_STATIC_SYMBOLS, BUILTIN_BUFFER_METHODS_SYMBOLS, BUILTIN_BUFFER_STATIC_SYMBOLS,
-  BUILTIN_DATE_METHODS_SYMBOLS,
-  BUILTIN_DATE_STATIC_SYMBOLS,
-  BUILTIN_FUNCTION_METHODS_SYMBOLS,
-  BUILTIN_FUNCTION_STATIC_SYMBOLS,
-  BUILTIN_JSON_STATIC_SYMBOLS,
-  BUILTIN_MATH_STATIC_SYMBOLS,
-  BUILTIN_NUMBER_METHODS_SYMBOLS,
-  BUILTIN_NUMBER_STATIC_SYMBOLS,
-  BUILTIN_OBJECT_METHODS_SYMBOLS,
-  BUILTIN_OBJECT_STATIC_SYMBOLS,
-  BUILTIN_REGEXP_METHODS_SYMBOLS,
-  BUILTIN_REGEXP_STATIC_SYMBOLS,
-  BUILTIN_STRING_METHODS_SYMBOLS,
-  BUILTIN_STRING_STATIC_SYMBOLS,
-} from './symbols_builtins.mjs';
+import { SYMBOL_FORIN, SYMBOL_FOROF, SYMBOL_DOTCALL, BUILTIN_REST_HANDLER_NAME, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_COERCE, } from './symbols_preval.mjs';
+import { $JSON, ARRAY, BOOLEAN, BUFFER, DATE, FUNCTION, MATH, NUMBER, OBJECT, REGEXP, STRING, } from './symbols_builtins.mjs';
 
 // We have to set a max of unrolling infinite loops because we have to predefine their global constant value here.
 // It's fine to up but would have to be upped in code. Can't pass this as an argument. Well. Not without changing smoe logic around first.
@@ -113,88 +87,17 @@ const globalNames = new Map([
   [SYMBOL_FORIN, SYMBOL_FORIN],
   [SYMBOL_FOROF, SYMBOL_FOROF],
 
-  ...BUILTIN_BOOLEAN_STATIC_SYMBOLS.map(name => {
-    if (name === 'prototype') return { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
-  ...BUILTIN_BOOLEAN_METHODS_SYMBOLS.map(name => {
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
-  ...BUILTIN_NUMBER_STATIC_SYMBOLS.map(name => {
-    switch (name) {
-      // TODO: not sure we should set the mustBeValue for these. We should not inline floats and dangerous numbers.
-      case 'EPSILON': return { mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: Number.EPSILON };
-      case 'MAX_SAFE_INTEGER': return { mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: Number.MAX_SAFE_INTEGER };
-      case 'MAX_VALUE': return { mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: Number.MAX_VALUE };
-      case 'MIN_SAFE_INTEGER': return { mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: Number.MIN_SAFE_INTEGER };
-      case 'MIN_VALUE': return { mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: Number.MIN_VALUE };
-      case 'NaN': return { mustBeType: 'number', mustBeFalsy: true, mustBeTruthy: false, mustBePrimitive: true, mustBeValue: Number.NaN };
-      case 'NEGATIVE_INFINITY': return { mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: Number.NEGATIVE_INFINITY };
-      case 'POSITIVE_INFINITY': return { mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: Number.POSITIVE_INFINITY };
-    }
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
-  ...BUILTIN_NUMBER_METHODS_SYMBOLS.map(name => {
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
-  ...BUILTIN_STRING_STATIC_SYMBOLS.map(name => {
-    if (name === 'prototype') return { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
-  ...BUILTIN_STRING_METHODS_SYMBOLS.map(name => {
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
-  ...BUILTIN_OBJECT_STATIC_SYMBOLS.map(name => {
-    if (name === 'prototype') return { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
-  ...BUILTIN_OBJECT_METHODS_SYMBOLS.map(name => {
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
-  ...BUILTIN_ARRAY_STATIC_SYMBOLS.map(name => {
-    if (name === 'prototype') return { mustBeType: 'array', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
-  ...BUILTIN_ARRAY_METHODS_SYMBOLS.map(name => {
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
-  ...BUILTIN_FUNCTION_STATIC_SYMBOLS.map(name => {
-    if (name === 'prototype') return { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'function' };
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
-  ...BUILTIN_FUNCTION_METHODS_SYMBOLS.map(name => {
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
-  ...BUILTIN_DATE_STATIC_SYMBOLS.map(name => {
-    if (name === 'prototype') return { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
-  ...BUILTIN_DATE_METHODS_SYMBOLS.map(name => {
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
-  ...BUILTIN_JSON_STATIC_SYMBOLS.map(name => {
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
-  ...BUILTIN_MATH_STATIC_SYMBOLS.map(name => {
-    if (['E', 'LN10', 'LN2', 'LOG10E', 'LOG2E', 'PI', 'SQRT1_2', 'SQRT2'].includes(name)) {
-      return [name, { mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true, mustBeValue: Math[name] }];
-    }
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
-  ...BUILTIN_REGEXP_STATIC_SYMBOLS.map(name => {
-    if (name === 'prototype') return { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
-  ...BUILTIN_REGEXP_METHODS_SYMBOLS.map(name => {
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
-  ...BUILTIN_BUFFER_STATIC_SYMBOLS.map(name => {
-    if (name === 'prototype') return { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false };
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
-  ...BUILTIN_BUFFER_METHODS_SYMBOLS.map(name => {
-    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
-  }),
+  ...Array.from(BOOLEAN.values()).map(obj => [obj.typings.sym, {...obj.typings}]),
+  ...Array.from(NUMBER.values()).map(obj => [obj.typings.sym, {...obj.typings}]),
+  ...Array.from(STRING.values()).map(obj => [obj.typings.sym, {...obj.typings}]),
+  ...Array.from(OBJECT.values()).map(obj => [obj.typings.sym, {...obj.typings}]),
+  ...Array.from(ARRAY.values()).map(obj => [obj.typings.sym, {...obj.typings}]),
+  ...Array.from(DATE.values()).map(obj => [obj.typings.sym, {...obj.typings}]),
+  ...Array.from(FUNCTION.values()).map(obj => [obj.typings.sym, {...obj.typings}]),
+  ...Array.from($JSON.values()).map(obj => [obj.typings.sym, {...obj.typings}]),
+  ...Array.from(MATH.values()).map(obj => [obj.typings.sym, {...obj.typings}]),
+  ...Array.from(REGEXP.values()).map(obj => [obj.typings.sym, {...obj.typings}]),
+  ...Array.from(BUFFER.values()).map(obj => [obj.typings.sym, {...obj.typings}]),
 ]);
 
 for (let i=0; i<=MAX_UNROLL_TRUE_COUNT; ++i) {

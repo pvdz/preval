@@ -63,7 +63,7 @@ const f /*:(number)=>undefined*/ = function ($$0) {
   const a /*:number*/ = $$0;
   debugger;
   $(a);
-  const tmpCalleeParam$1 = $ObjectPrototype.b;
+  const tmpCalleeParam$1 = $Object_prototype.b;
   $(tmpCalleeParam$1);
   return undefined;
 };
@@ -80,7 +80,7 @@ const a = function($$0 ) {
   const b = $$0;
   debugger;
   $( b );
-  const c = $ObjectPrototype.b;
+  const c = $Object_prototype.b;
   $( c );
   return undefined;
 };

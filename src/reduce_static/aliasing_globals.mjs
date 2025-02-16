@@ -5,6 +5,7 @@
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import globalNames from "../globals.mjs"
+import { symbo } from '../symbols_builtins.mjs';
 
 export function aliasedGlobals(fdata) {
   group('\n\n\nInlining implicit globals assigned to constants\n');
@@ -41,7 +42,7 @@ function _aliasedGlobals(fdata) {
     const reads = aliasMeta.reads;
 
     rule('Assigning known implicit globals to constants should eliminate the constant in favor of the global');
-    example('const x = $array_push; $(x);', '$($array_push)');
+    example(`const x = ${symbo('array', 'push')}; $(x);`, `$(${symbo('array', 'push')})`);
     before(write.blockBody[write.blockIndex]);
 
     // Drop decl

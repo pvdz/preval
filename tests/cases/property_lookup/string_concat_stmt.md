@@ -7,7 +7,7 @@
 ## Input
 
 `````js filename=intro
-$StringPrototype.lastIndexOf; // dropme
+$String_prototype.lastIndexOf; // dropme
 $( "3.48" );
 `````
 
@@ -15,7 +15,7 @@ $( "3.48" );
 
 
 `````js filename=intro
-$StringPrototype.lastIndexOf;
+$String_prototype.lastIndexOf;
 $(`3.48`);
 `````
 
@@ -23,6 +23,7 @@ $(`3.48`);
 
 
 `````js filename=intro
+$String_prototype.lastIndexOf;
 $(`3.48`);
 `````
 

@@ -1,18 +1,19 @@
 # Preval test case
 
-# complex.md
+# complex2.md
 
-> Regex > Dotcall > Complex
+> Regex > Dotcall > Complex2
 >
 > Trying to prevent $dotCall for regex method calls
 
 ## Input
 
 `````js filename=intro
-const arg = $('give food');
-const regex = /foo/;
-const f = regex.test;
-$dotCall(f, regex, arg, {some: 'stuff'});
+const arg = $(`give food`);
+const f = $regex_test;
+const regex /*:regex*/ = /foo/;
+const tmpCalleeParam$5 /*:object*/ = { some: `stuff` };
+$dotCall(f, regex, arg, tmpCalleeParam$5);
 `````
 
 ## Pre Normal
@@ -20,9 +21,10 @@ $dotCall(f, regex, arg, {some: 'stuff'});
 
 `````js filename=intro
 const arg = $(`give food`);
+const f = $regex_test;
 const regex = /foo/;
-const f = regex.test;
-$dotCall(f, regex, arg, { some: `stuff` });
+const tmpCalleeParam$5 = { some: `stuff` };
+$dotCall(f, regex, arg, tmpCalleeParam$5);
 `````
 
 ## Normalized
@@ -30,14 +32,10 @@ $dotCall(f, regex, arg, { some: `stuff` });
 
 `````js filename=intro
 const arg = $(`give food`);
-const regex = /foo/;
 const f = $regex_test;
-const tmpCallCallee = $dotCall;
-const tmpCalleeParam = f;
-const tmpCalleeParam$1 = regex;
-const tmpCalleeParam$3 = arg;
+const regex = /foo/;
 const tmpCalleeParam$5 = { some: `stuff` };
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
+$dotCall(f, regex, arg, tmpCalleeParam$5);
 `````
 
 ## Output

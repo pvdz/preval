@@ -45,7 +45,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const tmpChainElementObject$1 = $ObjectPrototype.c;
+const tmpChainElementObject$1 = $Object_prototype.c;
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject$1 == null;
 if (tmpIfTest$1) {
 } else {
@@ -59,7 +59,7 @@ if (tmpIfTest$1) {
 With rename=true
 
 `````js filename=intro
-const a = $ObjectPrototype.c;
+const a = $Object_prototype.c;
 const b = a == null;
 if (b) {
 

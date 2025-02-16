@@ -1,25 +1,8 @@
 // Find all cases of $coerce and use type information to check whether their arg is already a known primitive of any kind.
 
-import {
-  ASSERT,
-  log,
-  group,
-  groupEnd,
-  vlog,
-  vgroup,
-  vgroupEnd,
-  rule,
-  example,
-  before,
-  source,
-  after,
-  fmat,
-  tmat,
-  coerce,
-  findBodyOffset,
-} from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, coerce, findBodyOffset, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { BUILTIN_NAMESPACED_TO_FUNC_NAME } from '../symbols_builtins.mjs';
+import { BUILTIN_SYMBOLS, symbo } from '../symbols_builtins.mjs';
 import { getSerializableArrayParts } from '../ast.mjs';
 import { SYMBOL_COERCE } from '../symbols_preval.mjs';
 
@@ -113,12 +96,15 @@ function core(fdata) {
       }
     }
 
-    if (BUILTIN_NAMESPACED_TO_FUNC_NAME[argName]) {
+    if (BUILTIN_SYMBOLS.has(argName)) {
+      // TODO: what about arrays? any other special cases?
       rule('$coerce on a namespaced preval built-in symbol should become a string'); // kind of regardless. even if NaN later.
-      example('$coerce($array_flat, "plustr")', '"function flat() { [native code] }"');
+      example(`$coerce(${symbo('array', 'flat')}, "plustr")`, '"function flat() { [native code] }"');
       before(read.blockBody[read.blockIndex]);
 
-      const finalNode = AST.primitive('function ' + BUILTIN_NAMESPACED_TO_FUNC_NAME[argName] + '() { [native code] }');
+      // Let's hope this approach works universally...
+      const prop = BUILTIN_SYMBOLS.get(argName).prop;
+      const finalNode = AST.primitive('function ' + prop + '() { [native code] }');
       if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
       else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
 

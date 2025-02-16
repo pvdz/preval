@@ -48,7 +48,7 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-$ObjectPrototype.a;
+$Object_prototype.a;
 const a /*:object*/ = { b: tmpObjLitVal };
 const tmpAssignComMemLhsObj = $(a);
 const tmpAssignComMemLhsProp = $(`b`);
@@ -62,7 +62,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-$ObjectPrototype.a;
+$Object_prototype.a;
 const b = { b: a };
 const c = $( b );
 const d = $( "b" );

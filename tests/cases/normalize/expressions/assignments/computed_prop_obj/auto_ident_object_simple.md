@@ -41,7 +41,7 @@ $(a);
 
 
 `````js filename=intro
-$ObjectPrototype.a;
+$Object_prototype.a;
 const a /*:object*/ = { x: 1, y: 2, z: 3 };
 $(a);
 `````
@@ -51,7 +51,7 @@ $(a);
 With rename=true
 
 `````js filename=intro
-$ObjectPrototype.a;
+$Object_prototype.a;
 const a = {
   x: 1,
   y: 2,

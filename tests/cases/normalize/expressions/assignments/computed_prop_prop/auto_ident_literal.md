@@ -42,7 +42,7 @@ $(a);
 
 
 `````js filename=intro
-$ObjectPrototype.foo;
+$Object_prototype.foo;
 $(`foo`);
 `````
 
@@ -51,7 +51,7 @@ $(`foo`);
 With rename=true
 
 `````js filename=intro
-$ObjectPrototype.foo;
+$Object_prototype.foo;
 $( "foo" );
 `````
 

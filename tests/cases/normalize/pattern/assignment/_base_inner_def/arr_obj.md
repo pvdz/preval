@@ -50,7 +50,7 @@ $(x, a);
 
 
 `````js filename=intro
-const objPatternBeforeDefault = $ObjectPrototype.x;
+const objPatternBeforeDefault = $Object_prototype.x;
 const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   $(100, 100);
@@ -64,7 +64,7 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = $ObjectPrototype.x;
+const a = $Object_prototype.x;
 const b = a === undefined;
 if (b) {
   $( 100, 100 );

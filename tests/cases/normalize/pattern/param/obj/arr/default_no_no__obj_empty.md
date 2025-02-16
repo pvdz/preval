@@ -54,7 +54,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const objPatternNoDefault = $ObjectPrototype.x;
+const objPatternNoDefault = $Object_prototype.x;
 [...objPatternNoDefault];
 $(`bad`);
 `````
@@ -64,7 +64,7 @@ $(`bad`);
 With rename=true
 
 `````js filename=intro
-const a = $ObjectPrototype.x;
+const a = $Object_prototype.x;
 [ ...a ];
 $( "bad" );
 `````

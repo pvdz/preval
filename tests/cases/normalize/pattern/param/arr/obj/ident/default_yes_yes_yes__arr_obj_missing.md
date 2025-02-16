@@ -80,7 +80,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const objPatternBeforeDefault = $ObjectPrototype.x;
+const objPatternBeforeDefault = $Object_prototype.x;
 const tmpIfTest$3 /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest$3) {
   const tmpClusterSSA_x = $(`pass`);
@@ -95,7 +95,7 @@ if (tmpIfTest$3) {
 With rename=true
 
 `````js filename=intro
-const a = $ObjectPrototype.x;
+const a = $Object_prototype.x;
 const b = a === undefined;
 if (b) {
   const c = $( "pass" );

@@ -37,7 +37,7 @@ $(`bad`);
 
 
 `````js filename=intro
-const objPatternNoDefault = $ObjectPrototype.x;
+const objPatternNoDefault = $Object_prototype.x;
 y = objPatternNoDefault.y;
 $(`bad`);
 `````
@@ -47,7 +47,7 @@ $(`bad`);
 With rename=true
 
 `````js filename=intro
-const a = $ObjectPrototype.x;
+const a = $Object_prototype.x;
 y = a.y;
 $( "bad" );
 `````

@@ -67,7 +67,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-$ObjectPrototype.x;
+$Object_prototype.x;
 $(undefined);
 `````
 
@@ -76,7 +76,7 @@ $(undefined);
 With rename=true
 
 `````js filename=intro
-$ObjectPrototype.x;
+$Object_prototype.x;
 $( undefined );
 `````
 

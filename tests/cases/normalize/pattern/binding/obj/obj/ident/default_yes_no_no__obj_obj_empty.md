@@ -45,7 +45,7 @@ $(y);
 
 
 `````js filename=intro
-const objPatternBeforeDefault = $ObjectPrototype.y;
+const objPatternBeforeDefault = $Object_prototype.y;
 const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpClusterSSA_y = $(`pass`);
@@ -60,7 +60,7 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = $ObjectPrototype.y;
+const a = $Object_prototype.y;
 const b = a === undefined;
 if (b) {
   const c = $( "pass" );

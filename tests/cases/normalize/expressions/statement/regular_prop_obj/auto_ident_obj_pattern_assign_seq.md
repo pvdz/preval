@@ -59,7 +59,7 @@ $(1);
 $(2);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
-$ObjectPrototype.a;
+$Object_prototype.a;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpObjLitVal, tmpObjLitVal$1);
 `````
@@ -73,7 +73,7 @@ $( 1 );
 $( 2 );
 const a = $( 3 );
 const b = $( 4 );
-$ObjectPrototype.a;
+$Object_prototype.a;
 const c = {
   a: 999,
   b: 1000,

@@ -48,7 +48,7 @@ $(a);
 
 `````js filename=intro
 $(1);
-$ObjectPrototype.a;
+$Object_prototype.a;
 const tmpAssignMemRhs = $(2);
 const a /*:object*/ = { b: tmpAssignMemRhs };
 $(a);
@@ -60,7 +60,7 @@ With rename=true
 
 `````js filename=intro
 $( 1 );
-$ObjectPrototype.a;
+$Object_prototype.a;
 const a = $( 2 );
 const b = { b: a };
 $( b );

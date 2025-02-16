@@ -45,7 +45,7 @@ $(a, arg);
 
 
 `````js filename=intro
-$ObjectPrototype.false;
+$Object_prototype.false;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, 1);
 `````
@@ -55,7 +55,7 @@ $(a, 1);
 With rename=true
 
 `````js filename=intro
-$ObjectPrototype.false;
+$Object_prototype.false;
 const a = {
   a: 999,
   b: 1000,

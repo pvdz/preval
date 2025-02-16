@@ -55,7 +55,7 @@ $(a, x, y);
 `````js filename=intro
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
-$ObjectPrototype.a;
+$Object_prototype.a;
 const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 $(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 `````
@@ -67,7 +67,7 @@ With rename=true
 `````js filename=intro
 const a = $( 3 );
 const b = $( 4 );
-$ObjectPrototype.a;
+$Object_prototype.a;
 const c = {
   x: a,
   y: b,

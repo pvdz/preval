@@ -79,7 +79,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const objPatternBeforeDefault = $ObjectPrototype.x;
+const objPatternBeforeDefault = $Object_prototype.x;
 let objPatternAfterDefault = undefined;
 let objPatternCrashTest /*:boolean*/ = false;
 const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
@@ -106,7 +106,7 @@ $(`ok`);
 With rename=true
 
 `````js filename=intro
-const a = $ObjectPrototype.x;
+const a = $Object_prototype.x;
 let b = undefined;
 let c = false;
 const d = a === undefined;

@@ -44,7 +44,7 @@ $(`bad`);
 
 
 `````js filename=intro
-const objPatternNoDefault = $ObjectPrototype.x;
+const objPatternNoDefault = $Object_prototype.x;
 const arrPatternSplat /*:array*/ = [...objPatternNoDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 const tmpIfTest /*:boolean*/ = arrPatternBeforeDefault === undefined;
@@ -61,7 +61,7 @@ $(`bad`);
 With rename=true
 
 `````js filename=intro
-const a = $ObjectPrototype.x;
+const a = $Object_prototype.x;
 const b = [ ...a ];
 const c = b[ 0 ];
 const d = c === undefined;

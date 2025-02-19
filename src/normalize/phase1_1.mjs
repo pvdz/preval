@@ -16,9 +16,10 @@ import {
   assertNoDupeNodes,
 } from '../utils.mjs';
 import { getMeta, inferNodeTyping, mergeTyping } from '../bindings.mjs';
+import { SYMBOL_COERCE, SYMBOL_FRFR } from '../symbols_preval.mjs';
 
 // This phase walks the AST a few times to discover things for which it needs phase1 to complete
-// Currently it discovers call args (for which it needs the meta.typing data) and propagated mustBeType cases
+// Currently it discovers call arg types (for which it needs the meta.typing data) and propagated mustBeType cases
 
 export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, refTest, pcodeTest, verboseTracing) {
   const ast = fdata.tenkoOutput.ast;
@@ -231,7 +232,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
   funcNodesForParams.forEach(obj => {
     const {funcNode, funcMeta, funcName, parentNode} = obj;
 
-    vlog('- Verify whether func "', funcName, '" escapes...');
+    vlog('- Verify whether func', [funcName], 'escapes...');
     // We have to do escape analysis first. We must assert the function always gets called.
     // Writes are not relevant. We're only tracking how it gets called. So if
     // you're something like `let f = function(){}; f(); f = 1; f();` so be it.
@@ -241,9 +242,17 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
       if (
         (read.parentNode.type === 'CallExpression' && read.parentProp === 'callee') ||
         (
+          // It's fine to escape into a frfr since we control that; it won't get called
           read.parentNode.type === 'CallExpression' &&
           read.parentNode.callee.type === 'Identifier' &&
-          read.parentNode.callee.name === '$frfr' &&
+          read.parentNode.callee.name === SYMBOL_FRFR &&
+          read.parentNode.arguments[0] === read.node
+        ) ||
+        (
+          // It's fine to escape into a $coerce since we control that; it won't get called
+          read.parentNode.type === 'CallExpression' &&
+          read.parentNode.callee.type === 'Identifier' &&
+          read.parentNode.callee.name === SYMBOL_COERCE &&
           read.parentNode.arguments[0] === read.node
         )
       ) {
@@ -251,7 +260,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
         return false;
       }
 
-      vlog('  - Found a case where it was not a call nor a $frfr:', read.parentNode.type);
+      vlog('  - Found a case where it was not a call nor a $frfr/$coerce:', read.parentNode.type, read.parentProp);
       // Hmmm
       // At least one read was not callee of a call expression and not the first arg of a $frfr
       // There's one thing we'll try to salvage: an alias where the alias always gets called.
@@ -285,13 +294,13 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
       funcNodesForParams.delete(obj);
       return;
     }
-    vlog('- Ok, function only called as callee or with $frfr');
+    vlog('- Ok, function only called as callee or with $frfr/$coerce');
   });
   log('Walked AST to type params, in', Date.now() - now3, 'ms');
   groupEnd();
 
   vlog('');
-  vgroup('Trying to resolve a mustBeType of', untypedConstDecls.size, 'var decls, ', funcNodesForSomething.size, 'free funcs, and the callerArgs for', calledMetas.size, 'funcs');
+  vgroup('Trying to resolve a mustBeType of', untypedConstDecls.size, 'var decls, ', funcNodesForSomething.size, 'funcs, and the callerArgs for', calledMetas.size, 'funcs');
   let typingUpdated = 0;
   let typingChanged = true;
   let loopi = 0;
@@ -380,26 +389,26 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
       calleeMeta.tmpi = loopi;
       vgroup('-- arg', cmi++, '. Processing all', arrArgs.length, 'CallExpressions for "', calleeMeta.uniqueName, '", previous callerArgs:', oldi, oldCallerArgs);
       arrArgs.every((args,ci) => {
-        vlog('- Call', ci, '/', arrArgs.length);
+        vlog('- Call', ci+1, '/', arrArgs.length);
         // Note: function escape analysis happens in the next block. Here we just track calls, regardless.
         if (calleeMeta.callerArgs) {
           args.forEach((anode, i) => {
             if (AST.isPrimitive(anode)) {
               const seen = AST.getPrimitiveType(anode);
               if (seen !== calleeMeta.callerArgs[i]) {
-                vlog('- bail', calleeName, ', index', i, ': at least one call had a different type than another', seen, calleeMeta.callerArgs[i]);
+                vlog('- bail "', calleeName, '", index', i, ': at least one call had a different type than another', seen, calleeMeta.callerArgs[i]);
                 calleeMeta.callerArgs[i] = undefined;
               }
             }
             else if (anode.type === 'Identifier') {
               const argMeta = getMeta(anode.name, fdata);
               if (!argMeta.typing.mustBeType || argMeta.typing.mustBeType !== calleeMeta.callerArgs[i]) {
-                vlog('- bail', calleeName, ', index', i, ': at least one call had a different mustBeType than another or none at all', argMeta.typing.mustBeType, calleeMeta.callerArgs[i]);
+                vlog('- bail"', calleeName, '", index', i, ': at least one call had a different mustBeType than another or none at all', argMeta.typing.mustBeType, calleeMeta.callerArgs[i]);
                 calleeMeta.callerArgs[i] = undefined;
               }
             }
             else {
-              vlog('- bail', calleeName, ', index', i, ': unexpected arg type', anode.type);
+              vlog('- bail"', calleeName, '", index', i, ': unexpected arg type', anode.type);
               calleeMeta.callerArgs[i] = undefined;
             }
             // ok
@@ -419,17 +428,18 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
           calleeMeta.callerArgs = args.map((anode, i) => {
             if (AST.isPrimitive(anode)) {
               const seen = AST.getPrimitiveType(anode);
-              vlog('- first:', calleeName, ', arg index', i, ': found arg as primitive:', seen);
+              vlog('- first: "', calleeName, '", arg index', i, ': found arg as primitive:', seen);
               return seen;
             }
             if (anode.type === 'Identifier') {
               const argMeta = getMeta(anode.name, fdata);
-              vlog('- first:', calleeName, ', arg index', i, ': ident "', anode.name, '" with mustBeType:', argMeta.typing.mustBeType, ', and mustBePrimitive:', argMeta.typing.mustBePrimitive);
+              vlog('- first: "', calleeName, '", arg index', i, ': ident "', anode.name, '" with mustBeType:', argMeta.typing.mustBeType, ', and mustBePrimitive:', argMeta.typing.mustBePrimitive);
               if (argMeta.typing.mustBeType) return argMeta.typing.mustBeType;
+              if (argMeta.typing.mustBePrimitive) return 'primitive';
               return undefined;
             }
             else {
-              vlog('- bail:', calleeName, ', arg index', i, ': not a primitive and not an identifier:', anode.type);
+              vlog('- bail: "', calleeName, '", arg index', i, ': not a primitive and not an identifier:', anode.type);
               return undefined;
             }
           });
@@ -441,12 +451,6 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
           typingUpdated += 1;
         }
 
-        if (calleeMeta.callerArgs?.some(x => x)) {
-          // FIXME
-          // FIXME
-          // FIXME
-          //return true;
-        }
         vlog('All args are undefined or no args found at all. stopping this loop', calleeMeta.callerArgs);
         return false;
       });

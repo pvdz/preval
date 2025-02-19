@@ -84,8 +84,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const g /*:(unknown)=>primitive,?*/ = function ($$0) {
-  const n$1 = $$0;
+const g /*:(primitive)=>primitive,?*/ = function ($$0) {
+  const n$1 /*:primitive*/ = $$0;
   debugger;
   const tmpCalleeParam /*:primitive*/ = n$1 + 1;
   const tmpBinLhs = $(tmpCalleeParam);

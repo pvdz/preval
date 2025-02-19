@@ -52,8 +52,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const f /*:(unknown)=>?*/ = function ($$0) {
-  const n = $$0;
+const f /*:(primitive)=>?*/ = function ($$0) {
+  const n /*:primitive*/ = $$0;
   debugger;
   const tmpCalleeParam /*:primitive*/ = n + 1;
   const tmpReturnArg = f(tmpCalleeParam);

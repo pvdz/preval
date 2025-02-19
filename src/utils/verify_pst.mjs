@@ -106,6 +106,10 @@ function verifyStatement(node) {
     case 'DebuggerStatement': {
       return;
     }
+    case 'EmptyStatement': {
+      // There are cases where an empty statement is mandatory so PST must condone it
+      return;
+    }
     case 'ExportNamed': {
       expect(Array.isArray(node.pairs), true, node);
       node.pairs.forEach(pair => {

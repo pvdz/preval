@@ -31,6 +31,7 @@ function printPstNode(node, indent, config) {
     case 'DebuggerStatement': return printStatement(indent, config, node);
     case 'ExportNamed': return printStatement(indent, config, node);
     case 'ExpressionStatement': return printStatement(indent, config, node);
+    case 'EmptyStatement': return printStatement(indent, config, node);
     case 'FunctionExpression': return printExpression(indent, config, node);
     case 'Getter': return printObjectMethod(indent, config, node);
     case 'Ref': return printExpression(indent, config, node);
@@ -94,6 +95,9 @@ function _printStatement(indent, config, node) {
     }
     case 'DebuggerStatement': {
       return 'debugger;';
+    }
+    case 'EmptyStatement': {
+      return ';';
     }
     case 'ExportNamed': {
       return `export { ${node.pairs.map(pair => `${printRef(indent, config, pair[0])} as ${pair[1]}`).join(',')} }${node.source ? ` } from "${node.source}"` : ''};`;

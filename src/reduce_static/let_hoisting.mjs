@@ -30,6 +30,7 @@ import {
 import * as AST from '../ast.mjs';
 import { createFreshVar, mayBindingMutateBetweenRefs } from '../bindings.mjs';
 import {RESET, GREEN, VERBOSE_TRACING} from '../constants.mjs';
+import { SYMBOL_FRFR } from '../symbols_preval.mjs';
 
 export function letHoisting(fdata) {
   group('\n\n\nChecking for let decls to move up');
@@ -78,9 +79,9 @@ function processAttempt1MoveVarDeclAboveClosure(fdata) {
 
     let declWrite = undefined;
     let declIndex = -1;
-    rwOrder.some((ref, i) => {
-      if (ref.action === 'write' && ref.kind === 'var') {
-        declWrite = ref;
+    meta.writes.some((write, i) => {
+      if (write.kind === 'var') {
+        declWrite = write;
         declIndex = i;
         return true;
       }
@@ -95,7 +96,7 @@ function processAttempt1MoveVarDeclAboveClosure(fdata) {
     }
 
     if (declWrite === rwOrder[0]) {
-      vlog('- Binding is already first ref');
+      vlog('- Binding decl is already first ref');
       vgroupEnd();
       return;
     }
@@ -137,8 +138,35 @@ function processAttempt1MoveVarDeclAboveClosure(fdata) {
       vlog('- curr is not a var. Do not move up.');
       return false;
     }
+
     if (prev.type !== 'VariableDeclaration') {
-      vlog('- prev is not a var. Do not move up.');
+      vlog('- prev is not a var. testing other cases');
+      // We're now basically doing AST.nodeHasNoObservableSideEffectNorStatements checks or whatever it is
+      if (prev.type === 'ExpressionStatement') {
+        if (
+          prev.expression.type === 'CallExpression' &&
+          prev.expression.callee.type === 'MemberExpression' &&
+          prev.expression.callee.object.type === 'Identifier' &&
+          prev.expression.callee.object.name === 'console' &&
+          !prev.expression.callee.computed &&
+          ['log', 'warn', 'error', 'info', 'debug', 'group', 'groupEnd', 'trace'].includes(prev.expression.callee.property.name) &&
+          prev.expression.arguments.every(e => !e || AST.isPrimitive(e))
+        ) {
+          // This is a statement level `console.log(a,b,c)` with only primitive values as args
+          // It can't spy on the state of the code, other than the stack trace of course
+          return true;
+        }
+        if (
+          prev.expression.type === 'CallExpression' &&
+          prev.expression.callee.type === 'Identifier' &&
+          prev.expression.callee.name === SYMBOL_FRFR
+        ) {
+          // This is a statement level `frfr`. That's going to be eliminated.
+          // It can't spy on the state of the code, other than the stack trace of course
+          return true;
+        }
+      }
+
       return false;
     }
 
@@ -154,7 +182,7 @@ function processAttempt1MoveVarDeclAboveClosure(fdata) {
       return false;
     } else if (AST.isPrimitive(curr)) {
       vlog('- curr is primitive, move up');
-      // Since prev was not primitive and curr is, we want curr on top
+      // Since prev was not primitive and curr is (or curr should be above prev if they are both primitives), we want curr on top
       return true;
     }
 

@@ -61,9 +61,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const f /*:(unknown)=>undefined*/ = function ($$0) {
+const f /*:(undefined)=>undefined*/ = function ($$0) {
   const tmpPrevalAliasArgumentsAny = arguments;
-  const tmpParamBare = $$0;
+  const tmpParamBare /*:undefined*/ = $$0;
   debugger;
   const tmpIfTest /*:boolean*/ = tmpParamBare === undefined;
   if (tmpIfTest) {

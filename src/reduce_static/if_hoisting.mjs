@@ -94,6 +94,22 @@ function _ifHoisting(fdata) {
         },
       });
     } else {
+      // Confirm that this is not an assignment that mutates the `if` test value. There's a test case.
+      if (
+        node.test.type === 'Identifier' &&
+        firstThen.type === 'ExpressionStatement' &&
+        firstThen.expression.type === 'AssignmentExpression' &&
+        firstThen.expression.left.type === 'Identifier' &&
+        firstThen.expression.left.name === node.test.name
+      ) {
+        // Catches this case:
+        // `let x = $(); while (true) if (x) x = 1; else x = 1;`
+        // When the statement is mutating the if-test itself it may change the outcome which it shouldn't be doing.
+
+        vlog('- Bail: statement is mutating the test value');
+        return;
+      }
+
       queue.push({
         pid: +node.$p.pid,
         func: () => {

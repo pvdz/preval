@@ -90,16 +90,16 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const f /*:(number)=>number*/ = function ($$0) {
-  const x /*:number*/ = $$0;
+const f /*:(primitive)=>number*/ = function ($$0) {
+  const x /*:primitive*/ = $$0;
   debugger;
   $(`no`);
   $(`inlining`);
   $(`please`);
+  const y /*:number*/ = ~x;
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     $(`a`);
-    const y /*:number*/ = ~x;
     return y;
   } else {
     $(`b`);
@@ -125,11 +125,11 @@ const a = function($$0 ) {
   $( "no" );
   $( "inlining" );
   $( "please" );
-  const c = $( true );
-  if (c) {
+  const c = ~b;
+  const d = $( true );
+  if (d) {
     $( "a" );
-    const d = ~b;
-    return d;
+    return c;
   }
   else {
     $( "b" );

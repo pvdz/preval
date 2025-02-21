@@ -67,8 +67,8 @@ f(`three`);
 
 
 `````js filename=intro
-const f /*:(number)=>number*/ = function ($$0) {
-  const x /*:number*/ = $$0;
+const f /*:(primitive)=>number*/ = function ($$0) {
+  const x /*:primitive*/ = $$0;
   debugger;
   $(`no`);
   $(`inlining`);

@@ -15,7 +15,7 @@ import {
   REF_TRACK_TRACING,
   assertNoDupeNodes,
 } from '../utils.mjs';
-import { getMeta, inferNodeTyping, mergeTyping } from '../bindings.mjs';
+import { createTypingObject, getCleanTypingObject, getMeta, inferNodeTyping, mergeTyping } from '../bindings.mjs';
 import { SYMBOL_COERCE, SYMBOL_FRFR } from '../symbols_preval.mjs';
 
 // This phase walks the AST a few times to discover things for which it needs phase1 to complete
@@ -53,7 +53,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
   vlog('\n\n\n#################################################################### phase1.1 [',passes,'::', phase1s, ']\n\n\n');
 
   const tracingValueBefore = VERBOSE_TRACING;
-  if (!verboseTracing && (passes > 1 || phase1s > 1)) {
+  if (!verboseTracing /*&& (passes > 1 || phase1s > 1)*/) {
     vlog('(Disabling verbose tracing for phase 1 after the first pass)');
     setVerboseTracing(false);
   }
@@ -182,8 +182,8 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
     const declName = declNode.declarations[0].id.name;
     if (declNode.kind === 'const') {
       const meta = getMeta(declName, fdata);
-      if (!meta.typing.mustBeType) {
-        vlog('## queued type resolving for decl of', declName, '(', meta.typing.mustBeType, ',', meta.typing.mustBePrimitive, ')');
+      if (!meta.typing.mustBeType || meta.typing.mustBeType === 'primitive') {
+        vlog('## queued type resolving for decl of', declName, '(mustbetype:', meta.typing.mustBeType, ', isprimitive:', meta.typing.mustBePrimitive, ')');
         untypedConstDecls.add({node: declNode, meta});
       } else {
         vlog('## decl for', declName, 'already has typing;', meta.typing.mustBeType, meta.typing.mustBePrimitive)
@@ -300,42 +300,47 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
   groupEnd();
 
   vlog('');
-  vgroup('Trying to resolve a mustBeType of', untypedConstDecls.size, 'var decls, ', funcNodesForSomething.size, 'funcs, and the callerArgs for', calledMetas.size, 'funcs');
+  vgroup('Trying to resolve a mustBeType for', untypedConstDecls.size, 'var decls, ', funcNodesForSomething.size, 'funcs, and the callerArgs for', calledMetas.size, 'funcs');
   let typingUpdated = 0;
   let typingChanged = true;
   let loopi = 0;
   while (typingChanged && untypedConstDecls.size) {
     typingChanged = false;
-    vgroup('typingLoop', loopi++,';', untypedConstDecls.size, 'vars and', funcNodesForSomething.size, 'funcs left');
+    group('typingLoop', loopi++,';', untypedConstDecls.size, 'vars and', funcNodesForSomething.size, 'funcs left');
 
     vgroup(untypedConstDecls.size, 'const decls');
     let cdi = 0;
     untypedConstDecls.forEach((obj) => {
       const {node, meta} = obj;
       const name = node.declarations[0].id.name;
-      vlog('-- decl', cdi++, '::', name);
-      if (!meta.typing?.mustBeType) {
+      vgroup('-- decl', cdi++, '::', name);
+      if (!meta.typing?.mustBeType || meta.typing?.mustBeType === 'primitive') {
         const init = node.declarations[0].init;
-        vlog('Resolving .typing of `' + name + '` with the details of the rhs', init.type);
+        vlog('Resolving .typing of `' + name + '` with the details of the rhs', init.type, 'whose mustBeType was:', meta.typing?.mustBeType);
         const newTyping = inferNodeTyping(fdata, init);
-        vlog('++ Results in', newTyping?.mustBeType, newTyping?.mustBePrimitive, 'which we will inject');
-        if (newTyping?.mustBeType) {
+        vlog('++ Results in', newTyping?.mustBeType, '(mustbeprimitive:', newTyping?.mustBePrimitive, ') which we will inject');
+        ASSERT(newTyping?.mustBeType === 'primitive' ? newTyping.mustBePrimitive : true, 'if mustbetype is primitive then isprimitive must be set too', newTyping);
+        if (newTyping?.mustBeType && newTyping.mustBeType !== 'primitive') {
+          vlog('  - We have a mustBeType (', newTyping.mustBeType, '), typingChanged=true');
           meta.typing = newTyping; // Is there any reason we shouldn't overwrite it anyways? It may have discovered other typing things?
           typingChanged = true;
           typingUpdated += 1;
           untypedConstDecls.delete(obj);
         }
         else if (newTyping?.mustBePrimitive && !meta.typing?.mustBePrimitive) {
+          vlog('  - We have a mustBePrimitive, typingChanged=true');
           meta.typing = newTyping; // Is there any reason we shouldn't overwrite it anyways? It may have discovered other typing things?
           typingChanged = true;
           typingUpdated += 1;
           // Primitive is better than nothing but we'd still like to get to a more concrete type if we can
-          //untypedConstDecls.delete(obj); // Don't delete
+          //untypedConstDecls.delete(obj); // Don't delete. Maybe we can push it further to the concrete primitive type.
         }
         vlog('---- Typing:', meta.typing.mustBeType, meta.typing.mustBePrimitive);
       }
+      vgroupEnd();
     });
     vgroupEnd();
+
     vgroup(funcNodesForSomething.size, 'function return types');
     let fni = 0;
     funcNodesForSomething.forEach((obj) => {
@@ -351,115 +356,206 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
         return '?';
       }));
       vlog('  - types:', types);
-      if (types.has('?')) {
-        // Return type is not certain to be a primitive yet
+      if (types.size === 0) {
+        vlog('No types, no change');
+      }
+      else if (!funcMeta.typing.returns?.size) {
+        vlog('Have types now where we had none before, this must be an improvement, typingChanged = true');
+        typingChanged = true;
+        typingUpdated += 1;
+        funcMeta.typing.returns = types;
+      }
+      else if (types.has('?')) {
+        // Return type is not settled yet
         funcMeta.typing.returns = types; // This is always the current status quo, so always update it.
         vlog('  - Has an unknown type :(');
       }
-      else if (types.size > 1 || types.has('primitive')) {
-        vlog('  - Has a primitive type :|');
-        // Return type is certain to be a primitive, but there are two or more options.
-        if (!funcMeta.typing.returns || funcMeta.typing.returns.has('?')) {
-          // This was an improvement because there is no more '?' now
-          typingChanged = true;
-          typingUpdated += 1;
-          vlog('  - This was an improvement :)');
-        }
-        funcMeta.typing.returns = types; // This is always the current status quo, so always update it.
-      }
-      else {
-        // We've resolve the return type to a mustBeType, yay.
-        funcMeta.typing.returns = types; // This is always the current status quo, so always update it.
+      else if (types.has('primitive') && !funcMeta.typing.returns.has('primitive')) {
+        vlog('The new types have no unknowns and no "primitive" while the old types did so this must be an improvement, typingChanged = true');
         typingChanged = true;
         typingUpdated += 1;
-        funcNodesForSomething.delete(obj);
-        vlog('  - Resolved return type for "', funcName, '" to a mustBeType :D', types);
+        funcMeta.typing.returns = types;
+      }
+      else if (types.has('primitive')) {
+        vlog('The new types have a "primitive" while the old types did not, this is worse, discarding result, no change.');
+      }
+      else if (funcMeta.typing.returns.has('?') || funcMeta.typing.returns.has('primitive')) {
+        vlog('The old types had unknown or "primitive" and the new one did not so this must be better, typingChanged = true');
+        typingChanged = true;
+        typingUpdated += 1;
+        funcMeta.typing.returns = types;
+      }
+      else if (types.size < funcMeta.typing.returns.size) {
+        // This was an improvement because there are fewer options now
+        vlog('  - There were fewer types to choose from so this is an improvement, typingChanged = true')
+        typingChanged = true;
+        typingUpdated += 1;
+        funcMeta.typing.returns = types;
+        if (types.size === 1) {
+          vlog('The type has been resolved to a concrete type, this param is finished!');
+          funcNodesForSomething.delete(obj);
+        }
+      }
+      else {
+        vlog('No change or no improvement');
       }
     });
     vgroupEnd();
-    vgroup(calledMetas.size, 'function calls');
+
+    vgroup(calledMetas.size, 'functions to process calls to distill param types from');
     let cmi = 0;
-    calledMetas.forEach((arrArgs, calleeMeta) => {
+    calledMetas.forEach((arrArrCallArgNodes, calleeMeta) => {
       // Note: callee verified not to escape above. If it's still in the list, we should have all calls to it.
       const calleeName = calleeMeta.uniqueName;
-      const oldCallerArgs = calleeMeta.callerArgs?.slice(0);
+      // Caller args is an array of mustBeTypes. If an element is `undefined` (not a string) then the param
+      // is burned and we have to ignore it. If all elements are `undefined`, we can't distill any of its params
+      const oldCallerArgTypes = calleeMeta.callerArgs?.slice(0);
       const oldcopy = calleeMeta.callerArgs?.slice(0);
       const oldi = calleeMeta.tmpi;
-      calleeMeta.callerArgs = undefined;
-      calleeMeta.tmpi = loopi;
-      vgroup('-- arg', cmi++, '. Processing all', arrArgs.length, 'CallExpressions for "', calleeMeta.uniqueName, '", previous callerArgs:', oldi, oldCallerArgs);
-      arrArgs.every((args,ci) => {
-        vlog('- Call', ci+1, '/', arrArgs.length);
-        // Note: function escape analysis happens in the next block. Here we just track calls, regardless.
-        if (calleeMeta.callerArgs) {
-          args.forEach((anode, i) => {
-            if (AST.isPrimitive(anode)) {
-              const seen = AST.getPrimitiveType(anode);
-              if (seen !== calleeMeta.callerArgs[i]) {
-                vlog('- bail "', calleeName, '", index', i, ': at least one call had a different type than another', seen, calleeMeta.callerArgs[i]);
-                calleeMeta.callerArgs[i] = undefined;
-              }
-            }
-            else if (anode.type === 'Identifier') {
-              const argMeta = getMeta(anode.name, fdata);
-              if (!argMeta.typing.mustBeType || argMeta.typing.mustBeType !== calleeMeta.callerArgs[i]) {
-                vlog('- bail"', calleeName, '", index', i, ': at least one call had a different mustBeType than another or none at all', argMeta.typing.mustBeType, calleeMeta.callerArgs[i]);
-                calleeMeta.callerArgs[i] = undefined;
-              }
-            }
-            else {
-              vlog('- bail"', calleeName, '", index', i, ': unexpected arg type', anode.type);
-              calleeMeta.callerArgs[i] = undefined;
-            }
-            // ok
-            return true;
-          });
 
-          if (args.length < calleeMeta.callerArgs.length) {
-            vlog('-', calleeName, ' was called with fewer args than the previous calls, marking the remaining args as `undefined` from index', args.length, 'onward');
-            for (let i=args.length; i<calleeMeta.callerArgs.length; ++i) {
-              if (calleeMeta.callerArgs[i] !== 'undefined') {
-                vlog('- bail', calleeName, ', index', i, ': was not type="undefined" so cant use it');
-                calleeMeta.callerArgs[i] = undefined;
+      // If an element is `false` then no type is known yet
+      // If an element is `true` then we've seen an ident for it without type and we can't find a type this loop, but hopefully next. dont set to unknown.
+      // If an element is `undefined` then there was a collision or unknown type and we give up
+      // Otherwise, each element is a mustBeType string
+
+      let newCallerArgTypes = new Array(calleeMeta.constValueRef?.node.params?.length ?? arrArrCallArgNodes?.[0].length ?? 0).fill(false);
+      calleeMeta.tmpi = loopi; // TODO: remove this? or keep?
+
+      //source(calleeMeta.constValueRef.containerNode, true)
+      vgroup('-- func', cmi++, '. Processing all', arrArrCallArgNodes.length, 'CallExpressions for "', calleeMeta.uniqueName, '", previous callerArgs:', oldi, oldCallerArgTypes, ', starting with', newCallerArgTypes.length, 'param types');
+      arrArrCallArgNodes.every((args, ci) => {
+        vgroup('- Call', ci+1, '/', arrArrCallArgNodes.length, ', args:', args.map(n => n.type).join(', '), 'len now:', args.length, ', len known:', newCallerArgTypes.length);
+
+        if (args.length < newCallerArgTypes.length) {
+          vgroup('This call had fewer args than before so reducing the size of newCallerArgTypes from', newCallerArgTypes.length, 'to', args.length);
+          for (let i=args.length; i<newCallerArgTypes.length; ++i) {
+            if (newCallerArgTypes[i] === false) {
+              // resolve to 'undefined' type now
+              vlog('Setting param', i, 'to "undefined"');
+              newCallerArgTypes[i] = 'undefined';
+            } else if (newCallerArgTypes[i] === false) {
+              vlog('Ignoring param', i, 'because it was set to "true"');
+            } else if (newCallerArgTypes[i] !== 'undefined') {
+              // colliding types for param
+              if (['undefined', 'boolean', 'number', 'string', 'primitive'].includes(newCallerArgTypes[i])) {
+                if (newCallerArgTypes[i] === 'primitive') {
+                  vlog('Param', i, 'has colliding types ( "undefined" !== ', newCallerArgTypes[i], ') but both primitives, already primitive, no change');
+                } else {
+                  vlog('Param', i, 'has colliding types ( "undefined" !== ', newCallerArgTypes[i], ') but both primitives, setting to primitive, change');
+                  newCallerArgTypes[i] = 'primitive';
+                }
+              } else {
+                vlog('Param', i, 'has colliding types ( "undefined" !== ', newCallerArgTypes[i], '), setting to undefined');
+                newCallerArgTypes[i] = undefined;
               }
             }
           }
-        } else {
-          calleeMeta.callerArgs = args.map((anode, i) => {
-            if (AST.isPrimitive(anode)) {
-              const seen = AST.getPrimitiveType(anode);
-              vlog('- first: "', calleeName, '", arg index', i, ': found arg as primitive:', seen);
-              return seen;
-            }
-            if (anode.type === 'Identifier') {
-              const argMeta = getMeta(anode.name, fdata);
-              vlog('- first: "', calleeName, '", arg index', i, ': ident "', anode.name, '" with mustBeType:', argMeta.typing.mustBeType, ', and mustBePrimitive:', argMeta.typing.mustBePrimitive);
-              if (argMeta.typing.mustBeType) return argMeta.typing.mustBeType;
-              if (argMeta.typing.mustBePrimitive) return 'primitive';
-              return undefined;
-            }
-            else {
-              vlog('- bail: "', calleeName, '", arg index', i, ': not a primitive and not an identifier:', anode.type);
-              return undefined;
-            }
-          });
-        }
-        vlog('-', calleeName, ': callerArgs after call step =', calleeMeta.tmpi, 'old clone:', calleeMeta.callerArgs, 'old ref:', oldcopy);
-        if (!oldCallerArgs || oldCallerArgs.length !== calleeMeta.callerArgs.length || oldCallerArgs.some((_,i) => oldCallerArgs[i] !== calleeMeta.callerArgs[i])) {
-          vlog('At least one param was changed!', !oldCallerArgs, oldCallerArgs?.length, calleeMeta.callerArgs.length, (oldCallerArgs?.length !== calleeMeta.callerArgs.length), oldCallerArgs && oldCallerArgs.map((_,i) => oldCallerArgs[i] !== calleeMeta.callerArgs[i]));
-          typingChanged = true;
-          typingUpdated += 1;
+          vgroupEnd();
         }
 
-        vlog('All args are undefined or no args found at all. stopping this loop', calleeMeta.callerArgs);
-        return false;
+        // Note: function escape analysis happens in the next block. Here we just track calls, regardless.
+        vgroup(args.length ? 'Now processing args (' + args.length + 'x):' : 'No further args to process for this call instance');
+        args.forEach((anode, i) => {
+          if (newCallerArgTypes[i] === undefined) {
+            // unable to do this param
+            vlog('Param', i, '; already undefined, skipping to next');
+            return;
+          }
+          if (newCallerArgTypes[i] === true) {
+            // unable to do this param this round because there's an unresolved ident
+            vlog('Param', i, '; already undefined, skipping to next');
+            return;
+          }
+
+          // Note: inferNodeTyping will skip idents
+          if (AST.isPrimitive(anode)) {
+            const seen = AST.getPrimitiveType(anode);
+            if (newCallerArgTypes[i] === false) {
+              vlog('Param', i, '; setting to', seen);
+              newCallerArgTypes[i] = seen;
+            } else if (seen !== newCallerArgTypes[i]) {
+              if (
+                ['undefined', 'boolean', 'number', 'string', 'primitive'].includes(seen) &&
+                ['undefined', 'boolean', 'number', 'string', 'primitive'].includes(newCallerArgTypes[i])
+              ) {
+                if (newCallerArgTypes[i] === 'primitive') {
+                  vlog('Param', i, 'has colliding types (', seen, ' !== ', newCallerArgTypes[i], ') but both primitives, already primitive, no change');
+                } else {
+                  vlog('Param', i, 'has colliding types (', seen, ' !== ', newCallerArgTypes[i], ') but both primitives, setting to primitive, change');
+                  newCallerArgTypes[i] = 'primitive';
+                }
+              } else {
+                vlog('Param', i, 'has colliding types (', seen, ' !== ', newCallerArgTypes[i], '), setting to undefined');
+                newCallerArgTypes[i] = undefined;
+              }
+            }
+          }
+          else if (anode.type === 'Identifier') {
+            const argMeta = getMeta(anode.name, fdata);
+            if (!argMeta.typing.mustBeType) {
+              vlog('Param', i, '; ident', anode.name, 'has no mustBeType, unable to resolve param');
+              newCallerArgTypes[i] = true; // Mark as skip-to-next-loop
+            } else if (newCallerArgTypes[i] === false) {
+              vlog('Param', i,', setting to mustBeType of ident:', argMeta.typing.mustBeType);
+              newCallerArgTypes[i] = argMeta.typing.mustBeType;
+            } else if (argMeta.typing.mustBeType !== newCallerArgTypes[i]) {
+              vlog('Param', i, '; ident had different type as seen before, too bad');
+              newCallerArgTypes[i] = undefined;
+            } else {
+              vlog('Param', i, '; ident has same type as before, no change');
+            }
+          }
+          else {
+            const inf = inferNodeTyping(fdata, anode).mustBeType;
+            vlog('Param', i, '; type so far:', newCallerArgTypes[i] ?? '<not yet>', ', inferred now:', JSON.stringify(inf));
+            if (newCallerArgTypes[i] === undefined) {
+              vlog('Param', i, '; did not have a type before, updating');
+              newCallerArgTypes[i] = inf.mustBetype;
+            }
+            else if (newCallerArgTypes[i] !== inf.mustBeType) {
+              vlog('Param', i, '; previous call had different type (', newCallerArgTypes[i], '), so burning this param index');
+              newCallerArgTypes[i] = false;
+            }
+            else {
+              // same type, no change
+              vlog('Param', i, '; assigned same type as seen before, no change');
+            }
+          }
+        });
+        vgroupEnd();
+        vlog('Param types after processing all calls:', newCallerArgTypes, ', was:', oldCallerArgTypes);
+
+        vgroupEnd();
+        return true;
       });
+      vlog('All calls for this function processed');
       vgroupEnd();
+
+
+      newCallerArgTypes.forEach((t,i) => {
+        if (t === true) newCallerArgTypes[i] = false;
+      });
+
+      if (!calleeMeta.callerArgs) {
+        vlog('Had no param typing before, using it now;', newCallerArgTypes, ', typingChanged = true');
+        calleeMeta.callerArgs = newCallerArgTypes;
+        typingChanged = true;
+        typingUpdated += 1;
+      } else {
+        if (JSON.stringify(calleeMeta.callerArgs) !== JSON.stringify(newCallerArgTypes)) {
+          vlog('The callerArgs resolved differently, updating, typingChanged = true');
+          calleeMeta.callerArgs = newCallerArgTypes;
+          typingChanged = true;
+          typingUpdated += 1;
+        } else {
+          vlog('Looks like no param types changed, no change');
+        }
+      }
     });
     vgroupEnd();
 
     vlog('');
-    group('Applying type information to params such that hopefully next loop more stuff is discovered');
+    vgroup('Applying type information to params such that hopefully next loop more stuff is discovered');
     // Note: do not change callerArgs (by reference) this loop. Apply that afterwards (!)
     const now2 = Date.now();
     funcNodesForParams.forEach(obj => {
@@ -499,20 +595,43 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
           vlog('  - param', i, '(', paramName, '); Ok! Marking param as:', funcMeta.callerArgs[i], ', writes:', m.writes.length);
           m.typing.mustBeType = funcMeta.callerArgs[i];
           if (['object', 'array', 'regex', 'function', 'class'].includes(funcMeta.callerArgs[i])) m.typing.mustBeTruthy = true;
+          else if (['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(funcMeta.callerArgs[i])) m.typing.mustBePrimitive = true;
+        }
+        else if (m.typing.mustBeType === 'primitive' && ['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(funcMeta.callerArgs[i])) {
+          // Ok, keep it.
+          vlog('  - param', i, '(', paramName, '); Caller arg was some kind of primitive and mustBeType already set to primitive; noop');
+        }
+        else if (funcMeta.callerArgs[i] === 'primitive' && ['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(m.typing.mustBeType)) {
+          // Demote type to a generic primitive. Clear anything else we may know about the type.
+          vlog('  - param', i, '(', paramName, '); Caller arg was a primitive while arg was but mustBeType was set to', m.typing.mustBeType, '; demoting it to a primitive');
+          const updated = createTypingObject({
+            mustBeType: 'primitive',
+            mustBePrimitive: true,
+          });
+          mergeTyping(updated, m.typing);
+          nogtechecken
+        }
+        else if (m.typing.mustBeType === false) {
+          vlog('  - param', i, '(', paramName, '); Couldnt figure it out before so copy what we found now:', funcMeta.callerArgs[i]);
+          m.typing.mustBeType = funcMeta.callerArgs[i];
+          if (['object', 'array', 'regex', 'function', 'class'].includes(funcMeta.callerArgs[i])) m.typing.mustBeTruthy = true;
+          else if (['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(funcMeta.callerArgs[i])) m.typing.mustBePrimitive = true;
         }
         else if (m.typing.mustBeType !== false && m.typing.mustBeType !== funcMeta.callerArgs[i]) {
           // It was determined but different from this information. Not sure how I feel about that...
           // This does happen legit when there's an assignment to the param, so that can happen.
-          ASSERT(m.writes.length > 1, 'this is a bad omen. unless the param was assigned to, it means the heuristic was incorrect...');
           vlog('  - param', i, '(', paramName, '); Caller arg was', funcMeta.callerArgs[i], 'but mustBeType was already set to', m.typing.mustBeType, '; setting it to false now');
+          ASSERT(m.writes.length > 1, 'this is a bad omen. unless the param was assigned to, it means the heuristic was incorrect...', m.typing.mustBeType, funcMeta.callerArgs[i]);
           m.typing.mustBeType = false;
+        } else {
+          vlog('  - param', i, '(', paramName, '); Caller arg was same type as already known:', m.typing.mustBeType);
         }
       });
     });
-    log('Updated param types in', Date.now() - now2, 'ms');
-    groupEnd();
-
+    vlog('Updated param types in', Date.now() - now2, 'ms');
     vgroupEnd();
+
+    groupEnd();
   }
   vlog('All typing settled now..., updated', typingUpdated, 'times. Still have', untypedConstDecls.size, 'decls without a mustBeType, sadge');
   vgroupEnd();
@@ -556,6 +675,21 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
         vlog('  - param', i, '(', paramName, '); Ok! Marking param as:', funcMeta.callerArgs[i], ', writes:', m.writes.length);
         m.typing.mustBeType = funcMeta.callerArgs[i];
         if (['object', 'array', 'regex', 'function', 'class'].includes(funcMeta.callerArgs[i])) m.typing.mustBeTruthy = true;
+        else if (['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(funcMeta.callerArgs[i])) m.typing.mustBePrimitive = true;
+      }
+      else if (m.typing.mustBeType === 'primitive' && ['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(funcMeta.callerArgs[i])) {
+        // Ok, keep it.
+        vlog('  - param', i, '(', paramName, '); Caller arg was some kind of primitive and mustBeType already set to primitive; noop');
+      }
+      else if (funcMeta.callerArgs[i] === 'primitive' && ['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(m.typing.mustBeType)) {
+        // Demote type to a generic primitive. Clear anything else we may know about the type.
+        vlog('  - param', i, '(', paramName, '); Caller arg was a primitive while arg was but mustBeType was set to', m.typing.mustBeType, '; demoting it to a primitive');
+        const updated = createTypingObject({
+          mustBeType: 'primitive',
+          mustBePrimitive: true,
+        });
+        mergeTyping(updated, m.typing);
+        nogtechecken
       }
       else if (m.typing.mustBeType !== false && m.typing.mustBeType !== funcMeta.callerArgs[i]) {
         // It was determined but different from this information. Not sure how I feel about that...
@@ -563,6 +697,8 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
         ASSERT(m.writes.length > 1, 'this is a bad omen. unless the param was assigned to, it means the heuristic was incorrect...');
         vlog('  - param', i, '(', paramName, '); Caller arg was', funcMeta.callerArgs[i], 'but mustBeType was already set to', m.typing.mustBeType, '; setting it to false now');
         m.typing.mustBeType = false;
+      } else {
+        vlog('  - param', i, '(', paramName, '); Caller arg was same type as already known:', m.typing.mustBeType);
       }
     });
     vlog('- Caller args after update:', funcMeta.callerArgs);
@@ -592,6 +728,10 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
   assertNoDupeNodes(ast, 'body');
 
   setVerboseTracing(tracingValueBefore);
+
+  fdata.globallyUniqueNamingRegistry.forEach(meta => {
+    ASSERT(meta.typing.mustBeType === false || !['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(meta.typing.mustBeType) === !meta.typing.mustBePrimitive, 'if it must be a primitive then mustbeprimitive', meta);
+  });
 
   log('\n\nEnd of phase 1.1, walker took', Date.now() - start, 'ms');
 

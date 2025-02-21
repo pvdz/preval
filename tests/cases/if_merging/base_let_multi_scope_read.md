@@ -103,7 +103,7 @@ const f /*:()=>undefined*/ = function () {
   $(x);
   return undefined;
 };
-let x = undefined;
+let x /*:primitive*/ = undefined;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   const tmpUnaryArg = $(true);

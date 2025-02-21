@@ -92,8 +92,8 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const f /*:(number)=>primitive*/ = function ($$0) {
-  const x /*:number*/ = $$0;
+const f /*:(primitive)=>primitive*/ = function ($$0) {
+  const x /*:primitive*/ = $$0;
   debugger;
   $(`no`);
   $(`inlining`);

@@ -86,8 +86,13 @@ $(f);
 const f /*:()=>*/ = function () {
   debugger;
   $($);
-  $($);
-  return undefined;
+  if ($) {
+    $($);
+    return undefined;
+  } else {
+    $(undefined);
+    return undefined;
+  }
 };
 $(f);
 `````
@@ -100,8 +105,14 @@ With rename=true
 const a = function() {
   debugger;
   $( $ );
-  $( $ );
-  return undefined;
+  if ($) {
+    $( $ );
+    return undefined;
+  }
+  else {
+    $( undefined );
+    return undefined;
+  }
 };
 $( a );
 `````

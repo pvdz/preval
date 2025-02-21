@@ -62,6 +62,22 @@ function _ifTestMerging(fdata) {
     const firstThen = node.consequent.body[0];
     const firstElse = node.alternate.body[0];
 
+    // Confirm that this is not an assignment that mutates the `if` test value. There's a test case.
+    if (
+      node.test.type === 'Identifier' &&
+      firstThen.type === 'ExpressionStatement' &&
+      firstThen.expression.type === 'AssignmentExpression' &&
+      firstThen.expression.left.type === 'Identifier' &&
+      firstThen.expression.left.name === node.test.name
+    ) {
+      // Catches this case:
+      // `let x = $(); while (true) if (x) x = 1; else x = 1;`
+      // When the statement is mutating the if-test itself it may change the outcome which it shouldn't be doing.
+
+      vlog('- Bail: statement is mutating the test value');
+      return;
+    }
+
     const collect = []; // Capture the occurrences of mismatching bools
     if (!isSameFlatStatementExceptBool(firstThen, firstElse, collect)) return;
 

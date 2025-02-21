@@ -3,7 +3,13 @@ import {walkStmt, WALK_NO_FURTHER, HARD_STOP} from '../lib/walk_stmt_norm.mjs';
 import {ASSERT, source, tmat, vlog, log, todo} from './utils.mjs';
 import { $p } from './$p.mjs';
 import { createFreshVar } from './bindings.mjs';
-import { ARGLENGTH_ALIAS_BASE_NAME, ARGUMENTS_ALIAS_BASE_NAME, SYMBOL_COERCE, THIS_ALIAS_BASE_NAME } from './symbols_preval.mjs';
+import {
+  ARGLENGTH_ALIAS_BASE_NAME,
+  ARGUMENTS_ALIAS_BASE_NAME,
+  SYMBOL_COERCE,
+  SYMBOL_FRFR,
+  THIS_ALIAS_BASE_NAME,
+} from './symbols_preval.mjs';
 
 export function cloneSimple(node) {
   if (node.type === 'Identifier') {
@@ -1497,6 +1503,8 @@ export function expressionHasNoObservableSideEffect(node, noDelete) {
   // explicit action of the node. For example, property access may trigger getters, addition may
   // trigger coercion (valueOf/toString), that sort of thing. We assume built-ins don't do this beyond
   // the things in the spec (like array length) so primitives are generally safe.
+  // One exception: a console.log (and family) is true when the arguments are all primitives: it cannot
+  // spy on the state of the source.
 
   // In this context, the creation of a binding is an observable side effect because
   // it may change whether or not TDZ errors trigger.
@@ -1554,6 +1562,10 @@ export function expressionHasNoObservableSideEffect(node, noDelete) {
     if (node.operator === 'typeof') {
       return !isComplexNode(node.argument);
     }
+    if (node.operator === '!') {
+      // The invert does not apply coercion so if the arg is simple, then this can't spy
+      return !isComplexNode(node.argument);
+    }
     if (node.operator === 'delete') {
       if (noDelete) {
         // Something that wants to use properties should be aware of this expression
@@ -1580,6 +1592,29 @@ export function expressionHasNoObservableSideEffect(node, noDelete) {
   if (node.type === 'YieldExpression') {
     // The yield triggers a pause
     return false;
+  }
+  if (node.type === 'CallExpression') {
+    // Calls to frfr have no side effects. That's their whole point.
+    if (
+      node.callee.type === 'MemberExpression' &&
+      node.callee.object.type === 'Identifier' &&
+      node.callee.object.name === SYMBOL_FRFR
+    ) {
+      return true;
+    }
+    // Kind of an edge case but `console.log(a,b,c)` with only primitive values as args, can't spy on the source code state
+    if (
+      node.callee.type === 'MemberExpression' &&
+      node.callee.object.type === 'Identifier' &&
+      node.callee.object.name === 'console' &&
+      !node.callee.computed &&
+      ['log', 'warn', 'error', 'info', 'debug', 'group', 'groupEnd', 'trace'].includes(node.callee.property.name) &&
+      node.arguments.every(e => !e || isPrimitive(e))
+    ) {
+      return true;
+    }
+    // Most calls, probably false.
+    return undefined;
   }
 
   // Don't know about this node

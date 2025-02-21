@@ -6,6 +6,8 @@
 >
 >
 
+This generates a free with closure access :(
+
 ## Input
 
 `````js filename=intro

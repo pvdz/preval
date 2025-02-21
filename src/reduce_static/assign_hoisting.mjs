@@ -1,6 +1,23 @@
 // If a decl is followed by a ref and has no observable side effects in between then the assignment is the actual decl init.
 // This transform attempts to find these cases and promote the assignments likewise.
-// This tackles the problem of `let x = undefined; const f = function(){ $(x); }; x = fetch();`, allow x to be a constant.
+//
+// ```
+// let x = undefined;
+// const f = function(){ $(x); };    // ^^^
+// x = fetch();
+// ```
+// ->
+// ```
+// const f = function(){ $(x); };
+// let x = undefined;
+// x = fetch();
+// ```
+// ->
+// ```
+// const f = function(){ $(x); };
+// const x = fetch();
+// ```
+//
 
 import {
   ASSERT,

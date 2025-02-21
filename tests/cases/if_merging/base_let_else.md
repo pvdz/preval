@@ -74,7 +74,7 @@ if (x) {
 
 
 `````js filename=intro
-let x = 0;
+let x /*:primitive*/ = 0;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   const tmpUnaryArg = $(true);

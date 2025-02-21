@@ -80,9 +80,9 @@ export const NUMBER = new Map([
 export const STRING = new Map([
   [symbo('String', 'prototype'), {prop: 'prototype', isProto: false, typings: { sym: symbo('String', 'prototype'), mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }}],
 
-  [symbo('String', 'fromCharCode'),   {prop: 'fromCharCode',  isProto: false, typings: { sym: symbo('String', 'fromCharCode'),  mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
-  [symbo('String', 'fromCodePoint'),  {prop: 'fromCodePoint', isProto: false, typings: { sym: symbo('String', 'fromCodePoint'), mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'fromCodePoint' }}],
-  [symbo('String', 'raw'),            {prop: 'raw',           isProto: false, typings: { sym: symbo('String', 'raw'),           mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('String', 'fromCharCode'),   {prop: 'fromCharCode',  isProto: false, typings: { sym: symbo('String', 'fromCharCode'),  mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('String', 'fromCodePoint'),  {prop: 'fromCodePoint', isProto: false, typings: { sym: symbo('String', 'fromCodePoint'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'fromCodePoint' }}],
+  [symbo('String', 'raw'),            {prop: 'raw',           isProto: false, typings: { sym: symbo('String', 'raw'),           mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
 
   [symbo('string', 'at'),            {prop: 'at',            isProto: true,  typings: { sym: symbo('string', 'at'),            mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
   [symbo('string', 'charAt'),        {prop: 'charAt',        isProto: true,  typings: { sym: symbo('string', 'charAt'),        mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
@@ -161,12 +161,12 @@ export const OBJECT = new Map([
   [symbo('Object', 'setPrototypeOf'),            {prop: 'setPrototypeOf',            isProto: false, typings: { sym: symbo('Object', 'setPrototypeOf'),            mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'object' }}],
   [symbo('Object', 'values'),                    {prop: 'values',                    isProto: false, typings: { sym: symbo('Object', 'values'),                    mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'array' }}],
 
-  [symbo('object', 'hasOwnProperty'),       {prop: 'hasOwnProperty',       isProto: true, typings: { sym: symbo('object', 'hasOwnProperty'),       mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean' }}],
-  [symbo('object', 'isPrototypeOf'),        {prop: 'isPrototypeOf',        isProto: true, typings: { sym: symbo('object', 'isPrototypeOf'),        mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean' }}],
-  [symbo('object', 'propertyIsEnumerable'), {prop: 'propertyIsEnumerable', isProto: true, typings: { sym: symbo('object', 'propertyIsEnumerable'), mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean' }}],
-  [symbo('object', 'toLocaleString'),       {prop: 'toLocaleString',       isProto: true, typings: { sym: symbo('object', 'toLocaleString'),       mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
-  [symbo('object', 'toString'),             {prop: 'toString',             isProto: true, typings: { sym: symbo('object', 'toString'),             mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
-  [symbo('object', 'valueOf'),              {prop: 'valueOf',              isProto: true, typings: { sym: symbo('object', 'valueOf'),              mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'object' }}],
+  [symbo('object', 'hasOwnProperty'),       {prop: 'hasOwnProperty',       isProto: true, typings: { sym: symbo('object', 'hasOwnProperty'),       mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean' }}],
+  [symbo('object', 'isPrototypeOf'),        {prop: 'isPrototypeOf',        isProto: true, typings: { sym: symbo('object', 'isPrototypeOf'),        mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean' }}],
+  [symbo('object', 'propertyIsEnumerable'), {prop: 'propertyIsEnumerable', isProto: true, typings: { sym: symbo('object', 'propertyIsEnumerable'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean' }}],
+  [symbo('object', 'toLocaleString'),       {prop: 'toLocaleString',       isProto: true, typings: { sym: symbo('object', 'toLocaleString'),       mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('object', 'toString'),             {prop: 'toString',             isProto: true, typings: { sym: symbo('object', 'toString'),             mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('object', 'valueOf'),              {prop: 'valueOf',              isProto: true, typings: { sym: symbo('object', 'valueOf'),              mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'object' }}],
 ]);
 
 

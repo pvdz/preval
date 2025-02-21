@@ -191,17 +191,19 @@ function _typedComparison(fdata) {
       return;
     }
 
-    // We know the result must be false
-    rule('A primitive to and an ident with different mustBeType is always strictly inequal');
-    example('const x = $() * 1; $(x === "foo");', 'const x = $() * 1; $(false);');
-    example('const x = $() * 1; $(x !== "foo");', 'const x = $() * 1; $(true);');
-    before(blockBody[blockIndex]);
+    if (['undefined', 'null', 'boolean', 'number', 'string'].includes(meta.typing.mustBeType)) {
+      // We know the result must be false
+      rule('A primitive to and an ident with different mustBeType is always strictly inequal');
+      example('const x = $() * 1; $(x === "foo");', 'const x = $() * 1; $(false);');
+      example('const x = $() * 1; $(x !== "foo");', 'const x = $() * 1; $(true);');
+      before(blockBody[blockIndex]);
 
-    if (parentIndex < 0) parentNode[parentProp] = AST.primitive(op === '!==');
-    else parentNode[parentProp][parentIndex] = AST.primitive(op === '!==');
+      if (parentIndex < 0) parentNode[parentProp] = AST.primitive(op === '!==');
+      else parentNode[parentProp][parentIndex] = AST.primitive(op === '!==');
 
-    after(blockBody[blockIndex]);
-    ++changed;
+      after(blockBody[blockIndex]);
+      ++changed;
+    }
   }
   function processLitLit(node1, node2, op, fdata, blockBody, blockIndex, parentNode, parentProp, parentIndex) {
     ASSERT(arguments.length === processLitLit.length);
@@ -252,7 +254,7 @@ function _typedComparison(fdata) {
     if (litNode.type === 'TemplateLiteral') {
       const meta = fdata.globallyUniqueNamingRegistry.get(identNode.name);
       vlog('  - one side is a string, the mustBeType of the other side is:', meta.typing.mustBeType);
-      if (!meta.typing.mustBeType) return; // This might be a string that's equal to the literal so we can't predict inequality
+      if (!meta.typing.mustBeType || meta.typing.mustBeType === 'primitive') return; // This might be a string that's equal to the literal so we can't predict inequality
     } else {
       vlog('  - the literal is not a string (must be regex) so it shouldnt matter what the other side is');
     }
@@ -276,9 +278,9 @@ function _typedComparison(fdata) {
     vlog('- processIdentIdent(', node1.type, node2.name, ')');
 
     const meta1 = fdata.globallyUniqueNamingRegistry.get(node1.name);
-    if (!meta1.typing.mustBeType) return; // This might be a string that's equal to the literal so we can't predict inequality
+    if (!meta1.typing.mustBeType || meta1.typing.mustBeType === 'primitive') return; // This might be a string that's equal to the literal so we can't predict inequality
     const meta2 = fdata.globallyUniqueNamingRegistry.get(node2.name);
-    if (!meta2.typing.mustBeType) return; // This might be a string that's equal to the literal so we can't predict inequality
+    if (!meta2.typing.mustBeType || meta2.typing.mustBeType === 'primitive') return; // This might be a string that's equal to the literal so we can't predict inequality
 
     if (meta1.typing.mustBeType === meta2.mustBeType) return; // if types match then we can't predict inequality for unknown values
 

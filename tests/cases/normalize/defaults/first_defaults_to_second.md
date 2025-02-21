@@ -90,21 +90,21 @@ tmpCallCallee$5(tmpCalleeParam$5);
 
 
 `````js filename=intro
-const f /*:(unknown, unknown)=>array*/ = function ($$0, $$1) {
-  const tmpParamBare = $$0;
-  const tmpParamBare$1 = $$1;
+const f /*:(primitive, primitive)=>array*/ = function ($$0, $$1) {
+  const tmpParamBare$1 /*:primitive*/ = $$0;
+  const tmpParamBare$3 /*:primitive*/ = $$1;
   debugger;
-  const tmpIfTest /*:boolean*/ = tmpParamBare === undefined;
+  const tmpIfTest /*:boolean*/ = tmpParamBare$1 === undefined;
   if (tmpIfTest) {
     throw `Preval: TDZ triggered for this read: ((tmpParamBare === undefined)? b : tmpParamBare)`;
   } else {
     let b = `bar`;
-    const tmpIfTest$1 /*:boolean*/ = tmpParamBare$1 === undefined;
+    const tmpIfTest$1 /*:boolean*/ = tmpParamBare$3 === undefined;
     if (tmpIfTest$1) {
     } else {
-      b = tmpParamBare$1;
+      b = tmpParamBare$3;
     }
-    const tmpReturnArg /*:array*/ = [tmpParamBare, b];
+    const tmpReturnArg /*:array*/ = [tmpParamBare$1, b];
     return tmpReturnArg;
   }
 };

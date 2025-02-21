@@ -60,8 +60,8 @@ $(x);
 
 
 `````js filename=intro
-const r /*:(primitive)=>number,?*/ = function ($$0) {
-  const n /*:primitive*/ = $$0;
+const r /*:(unknown)=>number,?*/ = function ($$0) {
+  const n = $$0;
   debugger;
   const tmpIfTest /*:boolean*/ = n > 100;
   if (tmpIfTest) {

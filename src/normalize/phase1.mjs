@@ -175,7 +175,13 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       fdata.flatNodeMap.set(node.$p.pid, node);
     }
 
+    if (before && parentNode?.type === 'IfStatement' && parentProp !== 'test') {
+      vlog(BLUE + (parentProp === 'consequent' ? 'If' : 'Else') + `:before:: ${DIM}@${parentNode.$p.pid}${RESET}`);
+    }
     vgroup(BLUE + nodeType + ':' + (before ? 'before' : 'after'), `:: ${DIM}@${node.$p.pid}${RESET}`);
+    if (!before && parentNode?.type === 'IfStatement' && parentProp !== 'test') {
+      vlog(BLUE + (parentProp === 'consequent' ? 'If' : 'Else') + `:after:: ${DIM}@${parentNode.$p.pid}${RESET}`);
+    }
 
     const key = nodeType + ':' + (before ? 'before' : 'after');
 
@@ -199,7 +205,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         if (node.left.type === 'Identifier') {
           const meta = fdata.globallyUniqueNamingRegistry.get(node.left.name);
           ASSERT(meta);
-          vlog('Resolving .typing of `' + node.left.name + '` with the details of the rhs', node.right.type);
+          vlog('Resolving the .typing of `' + node.left.name + '` with the details of the rhs', node.right.type);
           const newTyping = inferNodeTyping(fdata, node.right);
           vlog('-- Results in', newTyping, 'which we will inject into', meta.typing);
           mergeTyping(newTyping, meta.typing);
@@ -493,7 +499,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
         const currentScope = funcStack[funcStack.length - 1];
         const name = node.name;
-        vlog(`Ident: \`${name}\``);
+        vlog('Ident:', [name]);
         ASSERT(name, 'idents must have valid non-empty names...', node);
         const kind = getIdentUsageKind(parentNode, parentProp);
         vlog(`- Ident kind: "${kind}"`);
@@ -510,7 +516,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
         vlog(
           '- Parent: `' + parentNode.type + '.' + parentProp + '`',
-          parentNode.type === 'MemberExpression' && node.computed ? 'computed' : 'regular',
+          parentNode.type === 'MemberExpression' && (parentNode.computed ? 'computed member' : `regular member (${parentNode.property.name})`),
         );
 
         if (kind === 'read' && name === 'arguments' && thisStack.length) {

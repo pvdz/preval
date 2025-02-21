@@ -80,9 +80,9 @@ tmpCallCallee$5(tmpCalleeParam$5);
 
 
 `````js filename=intro
-const f /*:(unknown, unknown)=>array*/ = function ($$0, $$1) {
-  const tmpParamBare = $$0;
-  const tmpParamBare$1 = $$1;
+const f /*:(primitive, primitive)=>array*/ = function ($$0, $$1) {
+  const tmpParamBare /*:primitive*/ = $$0;
+  const tmpParamBare$1 /*:primitive*/ = $$1;
   debugger;
   let a = `foo`;
   const tmpIfTest /*:boolean*/ = tmpParamBare === undefined;

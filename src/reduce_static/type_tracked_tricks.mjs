@@ -108,7 +108,8 @@ function _typeTrackedTricks(fdata) {
 
               after(node.test, node);
               ++changes;
-            } else if (truthy) {
+            }
+            else if (truthy) {
               // Covered by tests/cases/excl/regex.md tests/cases/ifelse/harder/if_new.md
               rule('An `if` test with a falsy value should be replaced with `false`');
               example('if (0) {}', 'if (false) {}');
@@ -119,7 +120,8 @@ function _typeTrackedTricks(fdata) {
 
               after(node.test, node);
               ++changes;
-            } else if ((testMeta.isConstant || testMeta.isBuiltin) && testMeta.typing.mustBeType) {
+            }
+            else if ((testMeta.isConstant || testMeta.isBuiltin) && testMeta.typing.mustBeType) {
               const ttm = testMeta.typing.mustBeType;
               vlog('Found an `if` testing constant `' + node.test.name + '` with mustBeType:', ttm);
               // Cases in this switch will inline the test value if they appear in either branch of an `if`
@@ -252,6 +254,11 @@ function _typeTrackedTricks(fdata) {
                   break;
                 }
 
+                case 'primitive': {
+                  // eh.
+                  break;
+                }
+
                 case 'array':
                 case 'object':
                 case 'function':
@@ -273,6 +280,10 @@ function _typeTrackedTricks(fdata) {
         const arg = node.argument;
         if (node.argument.type !== 'Identifier') break;
         const argMeta = fdata.globallyUniqueNamingRegistry.get(node.argument.name);
+        if (parentNode.type === 'ExpressionStatement' && (argMeta.typing.mustBePrimitive || argMeta.typing.mustBeType === 'primitive')) {
+
+          parentNode.expression = AST.identifier('undefined');
+        }
         switch (node.operator) {
           case '!': {
             if (argMeta.typing.mustBeFalsy) {
@@ -287,7 +298,8 @@ function _typeTrackedTricks(fdata) {
 
               after(AST.tru(), parentNode);
               ++changes;
-            } else if (argMeta.typing.mustBeTruthy) {
+            }
+            else if (argMeta.typing.mustBeTruthy) {
               // Covered by tests/cases/excl/regex.md
               rule('Inverting a truthy value must yield `false`');
               example('![]', 'false');
@@ -298,7 +310,8 @@ function _typeTrackedTricks(fdata) {
 
               after(AST.tru(), parentNode);
               ++changes;
-            } else if (argMeta.typing.mustBeType === 'boolean') {
+            }
+            else if (argMeta.typing.mustBeType === 'boolean') {
               ASSERT(
                 typeof argMeta.typing.mustBeValue !== 'boolean',
                 'if it wasnt falsy or truthy then we must not know the actual bool value...',
@@ -450,6 +463,10 @@ function _typeTrackedTricks(fdata) {
                 break;
               }
 
+              case 'primitive': {
+                break; // cant predict
+              }
+
               case undefined:
               case false:
                 break;
@@ -493,25 +510,13 @@ function _typeTrackedTricks(fdata) {
               );
 
               if ((leftMeta.isConstant || leftMeta.isBuiltin) && (rightMeta.isConstant || rightMeta.isBuiltin)) {
-                if (lt && rt && lt !== rt) {
-                  rule('Strict n/equal comparison between two idents when rhs is known to be undefined or null depends on the lhs');
-                  example(
-                    'const a = $(undefined); const b = $(undefined); a === b;',
-                    'const a = $(undefined); const b = $(undefined); true;',
-                  );
-                  vlog('left mustBeType:', lt, ', right mustBeType:', rt);
-                  mustBeValue = false; // Note: we're acting as if op is ===
-                } else if (
-                  leftMeta.typing.mustBeType &&
-                  rightMeta.typing.mustBeType &&
-                  leftMeta.typing.mustBeType !== rightMeta.typing.mustBeType
-                ) {
+                if (lt && lt !== 'primitive' && rt && rt !== 'primitive' && lt !== rt) {
                   rule('Strict n/equal comparison between two idents when we know they must be different types can be resolved');
                   example(
                     'const a = $(undefined); const b = $(undefined); a === b;',
                     'const a = $(undefined); const b = $(undefined); true;',
                   );
-                  vlog('left mustBeType:', lt, ', right mustBeType:', rt);
+                  vlog('left mustBeType:', lt, ', right mustBeType:', rt, ', op:', node.operator, ', result:', node.operator === '!==');
                   mustBeValue = node.operator === '!=='; // When op is !==, return true because typing mismatch. When ===, return false.
                 }
               } else {
@@ -520,7 +525,8 @@ function _typeTrackedTricks(fdata) {
                 // - we don't have type information about the left or right ident, or
                 // - their type matches (in which case we can't predict anything)
               }
-            } else if (left.type === 'Identifier' && rp) {
+            }
+            else if (left.type === 'Identifier' && rp) {
               // Left ident, right a primitive node
               const leftMeta = fdata.globallyUniqueNamingRegistry.get(left.name);
               const lt = leftMeta.typing.mustBeType;
@@ -528,40 +534,34 @@ function _typeTrackedTricks(fdata) {
               // Note that the rhs is a primitive so no need to check explicitly for class.
               // We do explicitly check for `null` just in case, even though that case may never reach here.
               const rt = right.$p.primitiveValue === null ? 'null' : typeof right.$p.primitiveValue;
-              if ((leftMeta.isConstant || leftMeta.isBuiltin) && lt && lt !== rt) {
+              if ((leftMeta.isConstant || leftMeta.isBuiltin) && lt && lt !== 'primitive' && lt !== rt) {
                 // Covered: tests/cases/bit_hacks/and_eq_bad.md
                 rule('Strict n/equal comparison between an ident and a primitive depends on their type');
                 example('const x = 1 * f(2); g(x === "");', 'const x = 1 * f(2); g(false);');
-                mustBeValue = false; // Note: we're acting as if op is ===
+                mustBeValue = node.operator === '!==';
               } else {
                 // The typing for left is not known or does not match the type of the primitive to the right.
               }
-            } else if (right.type === 'Identifier' && lp) {
+            }
+            else if (right.type === 'Identifier' && lp) {
               // Right ident, left a primitive node
               const rightMeta = fdata.globallyUniqueNamingRegistry.get(right.name);
               const rt = rightMeta.typing.mustBeType;
               // Note that the rhs is a primitive so no need to check explicitly for class.
               // We do explicitly check for `null`
               const lt = left.$p.primitiveValue === null ? 'null' : typeof left.$p.primitiveValue;
-              if ((rightMeta.isConstant || rightMeta.isBuiltin) && rt && rt !== lt) {
+              if ((rightMeta.isConstant || rightMeta.isBuiltin) && rt && rt !== 'primitive' && rt !== lt) {
                 // Covered: tests/cases/bit_hacks/and_eq_bad.md
                 rule('Strict n/equal comparison between a primitive and an ident depends on their type');
                 example('const x = 1 * f(2); g("" === x);', 'const x = 1 * f(2); g(false);');
-                mustBeValue = false; // Note: we're acting as if op is ===
+                mustBeValue = node.operator === '!=='; // Note: we're acting as if op is ===
               } else {
                 // The typing for right is not known or does not match the type of the primitive to the left.
               }
-            } else {
+            }
+            else {
               // Either left or right was not an ident and neither was an ident and primitive pair.
               // Normalization can take care of the double primitive case here.
-            }
-
-            if (node.operator === '!==') {
-              if (mustBeValue === true) {
-                mustBeValue = false;
-              } else if (mustBeValue === false) {
-                mustBeValue = true;
-              }
             }
 
             break;
@@ -581,7 +581,7 @@ function _typeTrackedTricks(fdata) {
               // We can assert a few cases using the .typing data
               const meta = fdata.globallyUniqueNamingRegistry.get(node.right.name);
               if (meta.isConstant || meta.isBuiltin) {
-                if (pv == null && meta.typing.mustBeType) {
+                if (pv == null && meta.typing.mustBeType && meta.typing.mustBeType !== 'primitive') {
                   ASSERT(
                     meta.typing.mustBeType !== 'undefined' && meta.typing.mustBeType !== 'null',
                     'already confirmed not to be a primitive',
@@ -598,7 +598,7 @@ function _typeTrackedTricks(fdata) {
               // We can assert a few cases using the .typing data
               const meta = fdata.globallyUniqueNamingRegistry.get(node.left.name);
               if (meta.isConstant || meta.isBuiltin) {
-                if (pv == null && meta.typing.mustBeType) {
+                if (pv == null && meta.typing.mustBeType && meta.typing.mustBeType !== 'primitive') {
                   ASSERT(
                     meta.typing.mustBeType !== 'undefined' && meta.typing.mustBeType !== 'null',
                     'already confirmed not to be a primitive',
@@ -776,6 +776,7 @@ function _typeTrackedTricks(fdata) {
           }
         }
 
+        vlog('mustBeValue is:', mustBeValue);
         if (mustBeValue === true) {
           before(node, grandNode);
 

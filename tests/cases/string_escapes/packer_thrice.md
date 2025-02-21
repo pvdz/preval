@@ -198,8 +198,8 @@ const tmpFree$1 /*:(number)=>string*/ = function $free($$0) {
   const tmpRet$1 /*:string*/ = String.fromCharCode(tmpCalleeParam$17);
   return tmpRet$1;
 };
-const tmpFree /*:(unknown)=>number*/ = function $free($$0) {
-  const c$1 = $$0;
+const tmpFree /*:(number)=>number*/ = function $free($$0) {
+  const c$1 /*:number*/ = $$0;
   debugger;
   const tmpCalleeParam$15 /*:number*/ = c$1 / 45;
   const tmpRet /*:number*/ = parseInt(tmpCalleeParam$15);
@@ -207,7 +207,7 @@ const tmpFree /*:(unknown)=>number*/ = function $free($$0) {
 };
 const tmpCalleeParam$11 /*:object*/ = {};
 let tmpSSA_e /*:(number)=>*/ = function ($$0) {
-  const c$2 = $$0;
+  const c$2 /*:number*/ = $$0;
   debugger;
   let tmpBinBothLhs = ``;
   const tmpIfTest /*:boolean*/ = c$2 < 45;

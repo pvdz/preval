@@ -65,7 +65,6 @@ const varInitAssignLhsComputedObj$1 = $(tmpCalleeParam$1);
 const tmpBinLhs$1 = varInitAssignLhsComputedObj$1.x;
 const varInitAssignLhsComputedRhs$1 /*:primitive*/ = tmpBinLhs$1 + 1;
 varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedRhs + varInitAssignLhsComputedRhs$1;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
@@ -86,7 +85,6 @@ const g = $( f );
 const h = g.x;
 const i = h + 1;
 g.x = i;
-e + i;
 const j = {
   a: 999,
   b: 1000,

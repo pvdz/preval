@@ -46,7 +46,7 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule
 import * as AST from '../ast.mjs';
 import { MATH, NUMBER, STRING, symbo } from '../symbols_builtins.mjs';
 import { createFreshVar, getMeta } from '../bindings.mjs';
-import { VERBOSE_TRACING } from '../constants.mjs';
+import { PRIMITIVE_TYPE_NAMES_PREVAL, VERBOSE_TRACING } from '../constants.mjs';
 import { pcodeSupportedBuiltinFuncs, runFreeWithPcode } from '../pcode.mjs';
 import { BUILTIN_GLOBAL_FUNC_NAMES } from '../globals.mjs';
 import { GLOBAL_PREVAL_SYMBOLS, SYMBOL_COERCE } from '../symbols_preval.mjs';
@@ -733,7 +733,7 @@ function isFreeExpression(exprNode, fdata) {
       }
       const meta = fdata.globallyUniqueNamingRegistry.get(exprNode.name);
       vlog('  - Ident "', exprNode.name, '", meta typing:', JSON.stringify(meta.typing));
-      if (['undefined', 'null', 'boolean', 'number', 'string'].includes(meta.typing.mustBeType) || meta.typing.mustBePrimitive) {
+      if (PRIMITIVE_TYPE_NAMES_PREVAL.has(meta.typing.mustBeType) || meta.typing.mustBePrimitive) {
         vlog('    - =ok');
         return true;
       }

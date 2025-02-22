@@ -27,6 +27,7 @@ import {
   findBodyOffset, riskyRule, useRiskyRules, assertNoDupeNodes,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
+import { PRIMITIVE_TYPE_NAMES_PREVAL } from '../constants.mjs';
 
 export function tryEscaping(fdata) {
   group('\n\n\nFind Try statements which start with statements that cannot throw and elevate them\n');
@@ -582,10 +583,11 @@ function cantThrow(node, fdata, skipPrimitiveCheck) {
       return true;
     }
 
-    if (['undefined', 'null', 'boolean', 'number', 'string', 'regex', 'function', 'class'].includes(meta.typing.mustBeType)) {
+    if (PRIMITIVE_TYPE_NAMES_PREVAL.has(meta.typing.mustBeType) || ['regex', 'function', 'class'].includes(meta.typing.mustBeType)) {
       // ok. I'm not sure about set/map and yeah, func/class/regex are edge cases for sure
       return true;
     }
+    if (['promise', 'map', 'set'].includes(meta.typing.mustBeType)) todo('Confirm whether promise,map,set and whatever are safe here');
 
     // Going to ignore the option of checking step-by-step if this ref can reach the const
     // - implicit globals may trip TDZ error

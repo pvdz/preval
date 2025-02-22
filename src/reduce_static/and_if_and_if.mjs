@@ -22,9 +22,10 @@ import {
   before,
   source,
   after,
-  findBodyOffset,
+  findBodyOffset, todo,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
+import { PRIMITIVE_TYPE_NAMES_PREVAL } from '../constants.mjs';
 
 export function andIfAndIf(fdata) {
   group('\n\n\nSearching for and-if-and-if\n');
@@ -70,7 +71,8 @@ function _andIfAndIf(fdata) {
     // Can only do this on values that do not spy... because otherwise the transform is kind of moot in order to maintain observable side effects.
     const identMeta = fdata.globallyUniqueNamingRegistry.get(identNode.name);
     ASSERT(identMeta);
-    if (!['undefined', 'null', 'boolean', 'number', 'string', 'regex', 'array'].includes(identMeta.typing.mustBeType)) return;
+    if (identMeta.typing.mustBeType === 'array') todo('Are we sure array is safe here without testing its contents? Find test case and confirm');
+    if (!PRIMITIVE_TYPE_NAMES_PREVAL.has(identMeta.typing.mustBeType) && !['regex', 'array', 'promise', 'class'].includes(identMeta.typing.mustBeType)) return;
 
     // This rule is looking for this pattern: `if (x & 8 && x & 16) {}`
     // In normalized code that is `const t; if (t) { const t2; if (t2) {} else {} } else { <empty> }`

@@ -10,6 +10,7 @@ import {
   SYMBOL_FRFR,
   THIS_ALIAS_BASE_NAME,
 } from './symbols_preval.mjs';
+import { PRIMITIVE_TYPE_NAMES_PREVAL } from './constants.mjs';
 
 export function cloneSimple(node) {
   if (node.type === 'Identifier') {
@@ -2351,9 +2352,10 @@ function simpleNodeMightSpy(node, fdata) {
   if (meta.isBuiltin) return name === 'undefined' || name === 'NaN' || name === 'Infinity'; // TODO: perhaps this is `true` in all cases?
   if (!meta.isConstant) return true;
   if (meta.isImplicitGlobal) return true;
+  if (!meta.typing.mustBeType) return true; // if we don't know the type we don't know anything
 
   // If this is a primitive then the user cannot observe this action
-  return !['undefined', 'null', 'boolean', 'number', 'string'].includes(meta.typing.mustBeType);
+  return !PRIMITIVE_TYPE_NAMES_PREVAL.has(meta.typing.mustBeType);
 }
 
 export function hasObservableSideEffectsBetweenRefs(fromRef, toRef, mayMiss = false, dbg) {

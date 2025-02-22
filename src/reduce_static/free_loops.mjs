@@ -24,6 +24,7 @@ import * as AST from '../ast.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, REF_TRACK_TRACING, assertNoDupeNodes, rule, example, before, after, todo } from '../utils.mjs';
 import { runFreeWithPcode } from '../pcode.mjs';
 import { SYMBOL_COERCE, SYMBOL_FRFR } from '../symbols_preval.mjs';
+import { PRIMITIVE_TYPE_NAMES_PREVAL, PRIMITIVE_TYPE_NAMES_TYPEOF } from '../constants.mjs';
 
 const FAILURE_SYMBOL = {};
 const BREAK_SYMBOL = {};
@@ -232,11 +233,11 @@ function _isFree(node, fdata, callTypes, declaredNameTypes, insideWhile) {
             if (AST.isPrimitive(node.arguments[0])) return true;
             if (node.arguments[0].type === 'Identifier' && declaredNameTypes.has(node.arguments[0].name)) {
               const t = declaredNameTypes.get(node.arguments[0].name);
-              return ['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(t);
+              return PRIMITIVE_TYPE_NAMES_PREVAL.has(t);
             }
             // Technically it is possible for this to be an array or whatever. And even that could be supported.
             const t = declaredNameTypes.get(node.arguments[0].name);
-            if (['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(t)) {
+            if (PRIMITIVE_TYPE_NAMES_PREVAL.has(t)) {
               return true;
             }
             todo('Support non-primitive in first arg to $coerce', node.arguments[0]);
@@ -249,11 +250,11 @@ function _isFree(node, fdata, callTypes, declaredNameTypes, insideWhile) {
             if (AST.isPrimitive(node.arguments[0])) return true;
             if (node.arguments[0].type === 'Identifier' && declaredNameTypes.has(node.arguments[0].name)) {
               const t = declaredNameTypes.get(node.arguments[0].name);
-              return ['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(t);
+              return PRIMITIVE_TYPE_NAMES_PREVAL.has(t);
             }
             // Technically it is possible for this to be an array or whatever. And even that could be supported.
             const t = declaredNameTypes.get(node.arguments[0].name);
-            if (['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(t)) {
+            if (PRIMITIVE_TYPE_NAMES_PREVAL.has(t)) {
               return true;
             }
             todo('Support non-primitive in first arg to isNan', node.arguments[0]);
@@ -266,11 +267,11 @@ function _isFree(node, fdata, callTypes, declaredNameTypes, insideWhile) {
             if (AST.isPrimitive(node.arguments[0])) return true;
             if (node.arguments[0].type === 'Identifier' && declaredNameTypes.has(node.arguments[0].name)) {
               const t = declaredNameTypes.get(node.arguments[0].name);
-              return ['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(t);
+              return PRIMITIVE_TYPE_NAMES_PREVAL.has(t);
             }
             // Technically it is possible for this to be an array or whatever. And even that could be supported.
             const t = declaredNameTypes.get(node.arguments[0].name);
-            if (['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(t)) {
+            if (PRIMITIVE_TYPE_NAMES_PREVAL.has(t)) {
               return true;
             }
             todo('Support non-primitive in first arg to isFinite', node.arguments[0]);
@@ -284,12 +285,12 @@ function _isFree(node, fdata, callTypes, declaredNameTypes, insideWhile) {
             else if (
               node.arguments[0].type === 'Identifier' &&
               declaredNameTypes.has(node.arguments[0].name) &&
-              ['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(declaredNameTypes.get(node.arguments[0].name))
+              PRIMITIVE_TYPE_NAMES_PREVAL.has(declaredNameTypes.get(node.arguments[0].name))
             ) {}
             else {
               // Technically it is possible for this to be an array or whatever. And even that could be supported.
               const t = declaredNameTypes.get(node.arguments[0].name);
-              if (['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(t)) {
+              if (PRIMITIVE_TYPE_NAMES_PREVAL.has(t)) {
                 return true;
               }
               todo('Support non-primitive ident-ref in first arg to parseInt', node.arguments[0], '~>', declaredNameTypes.get(node.arguments[0].name));
@@ -301,11 +302,11 @@ function _isFree(node, fdata, callTypes, declaredNameTypes, insideWhile) {
             else if (
               node.arguments[1].type === 'Identifier' &&
               declaredNameTypes.has(node.arguments[1].name) &&
-              ['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(declaredNameTypes.get(node.arguments[1].name))
+              PRIMITIVE_TYPE_NAMES_PREVAL.has(declaredNameTypes.get(node.arguments[1].name))
             ) {}
             else {
               const t = declaredNameTypes.get(node.arguments[1].name);
-              if (['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(t)) {
+              if (PRIMITIVE_TYPE_NAMES_PREVAL.has(t)) {
                 return true;
               }
               // Technically it is possible for this to be an array or whatever. And even that could be supported.
@@ -323,7 +324,7 @@ function _isFree(node, fdata, callTypes, declaredNameTypes, insideWhile) {
             if (AST.isPrimitive(node.arguments[0])) return true;
             if (node.arguments[0].type === 'Identifier' && declaredNameTypes.has(node.arguments[0].name)) {
               const t = declaredNameTypes.get(node.arguments[0].name);
-              return ['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(t);
+              return PRIMITIVE_TYPE_NAMES_PREVAL.has(t);
             }
             // Technically it is possible for this to be an array or whatever. And even that could be supported.
             todo('Support non-primitive ident-ref in first arg to parseFloat', node.arguments[0], '~>', declaredNameTypes.get(node.arguments[0].name));
@@ -682,7 +683,7 @@ function _isFree(node, fdata, callTypes, declaredNameTypes, insideWhile) {
                   if (meta.constValueRef.node.elements.every((e,i) => {
                     if (!e) return true; // returns undefined so that's ok
                     else if (AST.isPrimitive(e)) return true;
-                    else if (e.type === 'Identifier' && declaredNameTypes.has(e.name)) return ['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(declaredNameTypes.get(e.name));
+                    else if (e.type === 'Identifier' && declaredNameTypes.has(e.name)) return PRIMITIVE_TYPE_NAMES_PREVAL.has(declaredNameTypes.get(e.name));
                     // Ok so the element is not elided, not ap primitive node, and not an ident we know to be primitive. Just use member.
                     vlog('- array contains an element with unknown type', e);
                     return false;
@@ -832,7 +833,7 @@ function _runStatement(fdata, node, register, callTypes, prng, usePrng) {
       } else {
         const value = runExpression(fdata, node.declarations[0].init, register, callTypes, prng, usePrng);
         if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
-        ASSERT(['undefined', 'null', 'boolean', 'number', 'string'].includes(value === null ? 'null' : typeof value), 'var decl init runexpr should yield a primitive?', node.declarations[0].init, value);
+        ASSERT(PRIMITIVE_TYPE_NAMES_TYPEOF.has(value === null ? 'null' : typeof value), 'var decl init runexpr should yield a primitive?', node.declarations[0].init, value);
 
         register.set(
           node.declarations[0].id.name,
@@ -878,7 +879,7 @@ function runExpression(fdata, node, register, callTypes, prng, usePrng) {
       const value = runExpression(fdata, node.right, register, callTypes, prng, usePrng);
       if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
 
-      ASSERT(['undefined', 'null', 'boolean', 'number', 'string'].includes(value === null ? 'null' : typeof value), 'I guess assignment should expect primitives back?', node.right, value);
+      ASSERT(PRIMITIVE_TYPE_NAMES_TYPEOF.has(value === null ? 'null' : typeof value), 'I guess assignment should expect primitives back?', node.right, value);
 
       if (node.left.type === 'Identifier') {
         const init = register.get(node.left.name);

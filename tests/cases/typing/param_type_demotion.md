@@ -73,11 +73,11 @@ tmpCallCallee(tmpCalleeParam$1);
 const calling_this_func /*:(primitive)=>undefined*/ = function ($$0) {
   const $dlr_$$0 /*:primitive*/ = $$0;
   debugger;
-  const tmpCalleeParam /*:primitive*/ = $dlr_$$0 + 1;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     return undefined;
   } else {
+    const tmpCalleeParam /*:primitive*/ = $dlr_$$0 + 1;
     calling_this_func(tmpCalleeParam);
     return undefined;
   }
@@ -94,13 +94,13 @@ With rename=true
 const a = function($$0 ) {
   const b = $$0;
   debugger;
-  const c = b + 1;
-  const d = $( 1 );
-  if (d) {
+  const c = $( 1 );
+  if (c) {
     return undefined;
   }
   else {
-    a( c );
+    const d = b + 1;
+    a( d );
     return undefined;
   }
 };

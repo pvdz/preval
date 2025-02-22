@@ -44,11 +44,10 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs$1 = $(1);
 const tmpBinBothRhs$1 = $(2);
-const tmpBinBothLhs /*:primitive*/ = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+tmpBinBothLhs$1 + tmpBinBothRhs$1;
 const tmpBinBothLhs$3 = $(1);
 const tmpBinBothRhs$3 = $(2);
-const tmpBinBothRhs /*:primitive*/ = tmpBinBothLhs$3 + tmpBinBothRhs$3;
-tmpBinBothLhs + tmpBinBothRhs;
+tmpBinBothLhs$3 + tmpBinBothRhs$3;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -60,16 +59,15 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = $( 2 );
-const c = a + b;
-const d = $( 1 );
-const e = $( 2 );
-const f = d + e;
-c + f;
-const g = {
+a + b;
+const c = $( 1 );
+const d = $( 2 );
+c + d;
+const e = {
   a: 999,
   b: 1000,
 };
-$( g );
+$( e );
 `````
 
 ## Globals

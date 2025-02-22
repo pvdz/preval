@@ -9,6 +9,7 @@
 import walk from '../../lib/walk.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, findBodyOffset, todo } from '../utils.mjs';
 import * as AST from '../ast.mjs';
+import { PRIMITVE_TYPE_NAMES_NOT_STRING } from '../constants.mjs';
 
 export function typedComparison(fdata) {
   group('\n\n\nChecking for predictable strict type comparisons');
@@ -191,7 +192,7 @@ function _typedComparison(fdata) {
       return;
     }
 
-    if (['undefined', 'null', 'boolean', 'number', 'string'].includes(meta.typing.mustBeType)) {
+    if (PRIMITVE_TYPE_NAMES_NOT_STRING.has(meta.typing.mustBeType)) {
       // We know the result must be false
       rule('A primitive to and an ident with different mustBeType is always strictly inequal');
       example('const x = $() * 1; $(x === "foo");', 'const x = $() * 1; $(false);');

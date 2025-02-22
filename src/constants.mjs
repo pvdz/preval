@@ -34,3 +34,16 @@ export const DIM = colorLess ? '' : '\x1b[30;1m';
 export const BOLD = colorLess ? '' : '\x1b[;1;1m';
 export const TRIBE = colorLess ? '' : '\x1b[36;1m';
 export const WHITE_BLACK = colorLess ? '' : '\x1b[30;47m';
+
+// TODO: bigint? symbol? unknown?
+// TODO: plustr (it's narrower than "primitive" but does that really help us?
+export const PRIMITVE_TYPE_NAMES_NOT_STRING = new Set(['undefined', 'null', 'boolean', 'number']);
+export const PRIMITIVE_TYPE_NAMES_TYPEOF = new Set(['undefined', 'null', 'boolean', 'number', 'string']);
+export const PRIMITIVE_TYPE_NAMES_PREVAL = new Set(['undefined', 'null', 'boolean', 'number', 'string', 'primitive']); // plustr?
+export const ALL_NON_PRIMITIVE_TYPE_NAMES = new Set(['object', 'array', 'regex', 'function', 'class', 'promise', 'map', 'set']);
+export const ALL_PREVAL_TYPE_NAMES = new Set(
+  ['unknown', 'bigint', 'symbol'].concat(
+    Array.from(PRIMITIVE_TYPE_NAMES_PREVAL),
+    Array.from(ALL_NON_PRIMITIVE_TYPE_NAMES)
+  )
+);

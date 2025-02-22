@@ -1,4 +1,11 @@
-import { VERBOSE_TRACING, BLUE, RESET, } from './constants.mjs';
+import {
+  VERBOSE_TRACING,
+  BLUE,
+  RESET,
+  PRIMITVE_TYPE_NAMES_NOT_STRING,
+  PRIMITIVE_TYPE_NAMES_PREVAL,
+  ALL_PREVAL_TYPE_NAMES,
+} from './constants.mjs';
 import { IMPLICIT_GLOBAL_PREFIX, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_COERCE, } from './symbols_preval.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, source, fmat, tmat, todo } from './utils.mjs';
 import globals, {MAX_UNROLL_TRUE_COUNT} from './globals.mjs';
@@ -1376,7 +1383,7 @@ function _inferNodeTyping(fdata, valueNode) {
                 });
               }
 
-              if (['undefined', 'null', 'boolean', 'number'].includes(rightMeta.typing.mustBeType)) {
+              if (PRIMITVE_TYPE_NAMES_NOT_STRING.has(rightMeta.typing.mustBeType)) {
                 // Note: we know the LHS value is a primitive and not a string.
                 // This will coerce to a number (even if that is NaN)
                 vlog('- lhs a primitive, rhs neither string nor object type, so the result is a number');
@@ -1416,7 +1423,7 @@ function _inferNodeTyping(fdata, valueNode) {
                 });
               }
 
-              if (['undefined', 'null', 'boolean', 'number'].includes(leftMeta.typing.mustBeType)) {
+              if (PRIMITVE_TYPE_NAMES_NOT_STRING.has(leftMeta.typing.mustBeType)) {
                 // Note: we know the RHS value is a primitive and not a string.
                 // This will coerce to a number (even if that is NaN)
                 vlog('- lhs a primitive, rhs neither string nor object type, so the result is a number');
@@ -1459,8 +1466,8 @@ function _inferNodeTyping(fdata, valueNode) {
             }
 
             if (
-              ['undefined', 'null', 'boolean', 'number'].includes(leftMeta.typing.mustBeType) &&
-              ['undefined', 'null', 'boolean', 'number'].includes(rightMeta.typing.mustBeType)
+              PRIMITVE_TYPE_NAMES_NOT_STRING.has(leftMeta.typing.mustBeType) &&
+              PRIMITVE_TYPE_NAMES_NOT_STRING.has(rightMeta.typing.mustBeType)
             ) {
               vlog('- left and right are neither string nor object types, result must be a number');
               return createTypingObject({
@@ -1558,7 +1565,7 @@ function _inferNodeTyping(fdata, valueNode) {
               const mustbe = Array.from(freeMeta.typing.returns)[0];
               return createTypingObject({
                 mustBeType: mustbe,
-                mustBePrimitive: ['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(mustbe),
+                mustBePrimitive: PRIMITIVE_TYPE_NAMES_PREVAL.has(mustbe),
               });
             }
             // Either we don't know the return type at all (which is strange), or we don't know beyond it
@@ -1575,7 +1582,7 @@ function _inferNodeTyping(fdata, valueNode) {
               const mustbe = Array.from(calleeMeta.typing.returns)[0];
               return createTypingObject({
                 mustBeType: mustbe,
-                mustBePrimitive: ['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(mustbe),
+                mustBePrimitive: PRIMITIVE_TYPE_NAMES_PREVAL.has(mustbe),
               });
             }
             // Maybe we just know that it returns a primitive (`a+b`), or have multiple concrete candidates
@@ -1924,24 +1931,7 @@ export function mergeTyping(from, into) {
   }
 
   ASSERT(
-    [
-      undefined,
-      false,
-      'undefined',
-      'null',
-      'boolean',
-      'number',
-      'string',
-      'array',
-      'object',
-      'function',
-      'class',
-      'set',
-      'map',
-      'regex',
-      'buffer',
-      'primitive'
-    ].includes(into.mustBeType),
+    !into.mustBeType || ALL_PREVAL_TYPE_NAMES.has(into.mustBeType),
     'typing.mustBeType is an enum of `undefined`, `false`, or one of a fixed set of strings',
     into.mustBeType,
   );
@@ -1989,7 +1979,7 @@ export function mergeTyping(from, into) {
     into.mustBeValue = null;
   }
   ASSERT(
-    ['undefined', 'boolean', 'number', 'string'].includes(typeof into.mustBeValue) || into.mustBeValue === null,
+    !into.mustBeValue || PRIMITIVE_TYPE_NAMES_PREVAL.has(typeof into.mustBeValue),
     'typing.mustBeValue must be a primitive',
     into.mustBeValue,
   );

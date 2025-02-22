@@ -1,6 +1,6 @@
 import walk from '../../lib/walk.mjs';
 import * as AST from '../ast.mjs';
-import { VERBOSE_TRACING, RED, BLUE, DIM, RESET, setVerboseTracing } from '../constants.mjs';
+import { VERBOSE_TRACING, RED, BLUE, DIM, RESET, setVerboseTracing, PRIMITIVE_TYPE_NAMES_PREVAL } from '../constants.mjs';
 import {
   ASSERT,
   log,
@@ -448,7 +448,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
               vlog('Ignoring param', i, 'because it was set to "true"');
             } else if (newCallerArgTypes[i] !== 'undefined') {
               // colliding types for param
-              if (['undefined', 'boolean', 'number', 'string', 'primitive'].includes(newCallerArgTypes[i])) {
+              if (PRIMITIVE_TYPE_NAMES_PREVAL.has(newCallerArgTypes[i])) {
                 if (newCallerArgTypes[i] === 'primitive') {
                   vlog('Param', i, 'has colliding types ( "undefined" !== ', newCallerArgTypes[i], ') but both primitives, already primitive, no change');
                 } else {
@@ -485,10 +485,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
               vlog('Param', i, '; setting to', seen);
               newCallerArgTypes[i] = seen;
             } else if (seen !== newCallerArgTypes[i]) {
-              if (
-                ['undefined', 'boolean', 'number', 'string', 'primitive'].includes(seen) &&
-                ['undefined', 'boolean', 'number', 'string', 'primitive'].includes(newCallerArgTypes[i])
-              ) {
+              if (PRIMITIVE_TYPE_NAMES_PREVAL.has(seen) && PRIMITIVE_TYPE_NAMES_PREVAL.has(newCallerArgTypes[i])) {
                 if (newCallerArgTypes[i] === 'primitive') {
                   vlog('Param', i, 'has colliding types (', seen, ' !== ', newCallerArgTypes[i], ') but both primitives, already primitive, no change');
                 } else {
@@ -609,16 +606,16 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
           vlog('  - param', i, '(', paramName, '); Ok! Had no type before, marking param as:', funcMeta.callerArgs[i], ', writes:', m.writes.length);
           m.typing.mustBeType = funcMeta.callerArgs[i];
           if (['object', 'array', 'regex', 'function', 'class'].includes(funcMeta.callerArgs[i])) m.typing.mustBeTruthy = true;
-          else if (['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(funcMeta.callerArgs[i])) m.typing.mustBePrimitive = true;
+          else if (PRIMITIVE_TYPE_NAMES_PREVAL.has(funcMeta.callerArgs[i])) m.typing.mustBePrimitive = true;
         }
         else if (m.typing.mustBeType === false) {
           vlog('  - param', i, '(', paramName, '); Couldnt figure it out before so copy what we found now:', funcMeta.callerArgs[i]);
           m.typing.mustBeType = funcMeta.callerArgs[i];
           if (['object', 'array', 'regex', 'function', 'class'].includes(funcMeta.callerArgs[i])) m.typing.mustBeTruthy = true;
-          else if (['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(funcMeta.callerArgs[i])) m.typing.mustBePrimitive = true;
+          else if (PRIMITIVE_TYPE_NAMES_PREVAL.has(funcMeta.callerArgs[i])) m.typing.mustBePrimitive = true;
         }
-        else if (['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(funcMeta.callerArgs[i])) {
-          if (['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(m.typing.mustBeType)) {
+        else if (PRIMITIVE_TYPE_NAMES_PREVAL.has(funcMeta.callerArgs[i])) {
+          if (PRIMITIVE_TYPE_NAMES_PREVAL.has(m.typing.mustBeType)) {
             // If it _was_ already a primitive type
             // We conclude a primitive but the type was more narrow or different.
             // Demote type to a generic primitive. Clear anything else we may know about the type.
@@ -698,19 +695,19 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
         vlog('  - param', i, '(', paramName, '); Ok! Marking param as:', funcMeta.callerArgs[i], ', writes:', m.writes.length);
         m.typing.mustBeType = funcMeta.callerArgs[i];
         if (['object', 'array', 'regex', 'function', 'class', 'promise'].includes(funcMeta.callerArgs[i])) m.typing.mustBeTruthy = true;
-        else if (['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(funcMeta.callerArgs[i])) m.typing.mustBePrimitive = true;
+        else if (PRIMITIVE_TYPE_NAMES_PREVAL.has(funcMeta.callerArgs[i])) m.typing.mustBePrimitive = true;
       }
       else if (m.typing.mustBeType === false) {
         vlog('  - param', i, '(', paramName, '); Couldnt figure it out before so copy what we found now:', funcMeta.callerArgs[i]);
         m.typing.mustBeType = funcMeta.callerArgs[i];
         if (['object', 'array', 'regex', 'function', 'class', 'promise'].includes(funcMeta.callerArgs[i])) m.typing.mustBeTruthy = true;
-        else if (['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(funcMeta.callerArgs[i])) m.typing.mustBePrimitive = true;
+        else if (PRIMITIVE_TYPE_NAMES_PREVAL.has(funcMeta.callerArgs[i])) m.typing.mustBePrimitive = true;
       }
-      else if (m.typing.mustBeType === 'primitive' && ['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(funcMeta.callerArgs[i])) {
+      else if (m.typing.mustBeType === 'primitive' && PRIMITIVE_TYPE_NAMES_PREVAL.has(funcMeta.callerArgs[i])) {
         // Ok, keep it.
         vlog('  - param', i, '(', paramName, '); Caller arg was some kind of primitive and mustBeType already set to "primitive"; noop');
       }
-      else if (funcMeta.callerArgs[i] === 'primitive' && ['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(m.typing.mustBeType)) {
+      else if (funcMeta.callerArgs[i] === 'primitive' && PRIMITIVE_TYPE_NAMES_PREVAL.has(m.typing.mustBeType)) {
         // Demote type to a generic primitive. Clear anything else we may know about the type.
         vlog('  - param', i, '(', paramName, '); Caller arg was a primitive while arg was but mustBeType was set to', m.typing.mustBeType, '; demoting it to a primitive');
         const updated = createTypingObject({
@@ -758,7 +755,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
   setVerboseTracing(tracingValueBefore);
 
   fdata.globallyUniqueNamingRegistry.forEach(meta => {
-    ASSERT(meta.typing.mustBeType === false || !['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(meta.typing.mustBeType) === !meta.typing.mustBePrimitive, 'if it must be a primitive then mustbeprimitive', meta);
+    ASSERT(meta.typing.mustBeType === false || !PRIMITIVE_TYPE_NAMES_PREVAL.has(meta.typing.mustBeType) === !meta.typing.mustBePrimitive, 'if it must be a primitive then mustbeprimitive', meta);
   });
 
   log('\n\nEnd of phase 1.1, walker took', Date.now() - start, 'ms');

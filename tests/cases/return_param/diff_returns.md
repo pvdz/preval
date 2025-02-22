@@ -96,10 +96,10 @@ const f /*:(primitive)=>number*/ = function ($$0) {
   $(`no`);
   $(`inlining`);
   $(`please`);
-  const y /*:number*/ = ~x;
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     $(`a`);
+    const y /*:number*/ = ~x;
     return y;
   } else {
     $(`b`);
@@ -125,11 +125,11 @@ const a = function($$0 ) {
   $( "no" );
   $( "inlining" );
   $( "please" );
-  const c = ~b;
-  const d = $( true );
-  if (d) {
+  const c = $( true );
+  if (c) {
     $( "a" );
-    return c;
+    const d = ~b;
+    return d;
   }
   else {
     $( "b" );

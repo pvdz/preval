@@ -25,6 +25,7 @@ import {
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
+import { PRIMITIVE_TYPE_NAMES_PREVAL, PRIMITVE_TYPE_NAMES_NOT_STRING } from '../constants.mjs';
 
 export function binExprStmt(fdata) {
   group('\n\n\nFinding dead binary expression statements\n');
@@ -191,17 +192,15 @@ function replaceBinarySide(node, action) {
 }
 
 function isStatic(mustBeType) {
+  if (PRIMITIVE_TYPE_NAMES_PREVAL.has(mustBeType)) return true;
+
+  // For the rest, note that it's only relevant to know whether it can have observable side effects. These can't as a decl node.
   return [
-    'undefined',
-    'null',
-    'boolean',
-    'number',
-    'string',
-    // For the rest, note that it's only relevant to know whether it can have observable side effects. These can't.
     'regex',
     'function',
     'class',
-    'set',
-    'map',
+    //'promise'
+    //'set',
+    //'map',
   ].includes(mustBeType);
 }

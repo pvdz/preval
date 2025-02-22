@@ -74,11 +74,11 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-const tmpClusterSSA_p = $(tmpCalleeParam);
-if (tmpClusterSSA_p) {
+const p = $(tmpCalleeParam);
+if (p) {
   const tmpCalleeParam$1 = $(1);
-  const tmpClusterSSA_p$1 = $(tmpCalleeParam$1);
-  if (tmpClusterSSA_p$1) {
+  const tmpClusterSSA_p = $(tmpCalleeParam$1);
+  if (tmpClusterSSA_p) {
     const tmpCalleeParam$3 = $(2);
     $(tmpCalleeParam$3);
   } else {

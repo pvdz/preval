@@ -155,6 +155,17 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
       const funcMeta = getMeta(parentNode.id.name, fdata);
       if (funcMeta.typing.returns) return; // Skip if already set. This must have been a built-in. Return type won't change.
 
+      if (funcNode.async) {
+        vlog('This is an async function, it will always and only return a promise');
+        funcMeta.typing.returns = new Set(['promise']);
+        return;
+      }
+      if (funcNode.generator) {
+        vlog('This is a generator function, it will always and only return an object');
+        funcMeta.typing.returns = new Set(['object']);
+        return;
+      }
+
       const funcName = parentNode.id.name;
 
       if (path.nodes[path.nodes.length - 3].kind === 'const') {

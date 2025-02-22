@@ -43,7 +43,7 @@ f();
 
 
 `````js filename=intro
-const f /*:()=>undefined*/ = async function () {
+const f /*:()=>promise*/ = async function () {
   debugger;
   const tmpAwaitArg = $();
   await tmpAwaitArg;

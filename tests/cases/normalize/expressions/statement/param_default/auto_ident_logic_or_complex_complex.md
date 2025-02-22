@@ -67,8 +67,8 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(0);
-const tmpClusterSSA_p = $(tmpCalleeParam);
-if (tmpClusterSSA_p) {
+const p = $(tmpCalleeParam);
+if (p) {
 } else {
   const tmpCalleeParam$1 = $(2);
   $(tmpCalleeParam$1);

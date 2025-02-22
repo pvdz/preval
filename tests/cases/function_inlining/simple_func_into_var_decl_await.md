@@ -53,13 +53,13 @@ $(p, q);
 
 
 `````js filename=intro
-const f /*:()=>undefined*/ = async function () {
+const f /*:()=>promise*/ = async function () {
   debugger;
   await 20;
   return undefined;
 };
-const p /*:undefined*/ = f();
-const q /*:undefined*/ = f();
+const p /*:promise*/ = f();
+const q /*:promise*/ = f();
 $(p, q);
 `````
 

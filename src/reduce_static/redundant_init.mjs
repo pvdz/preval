@@ -1,3 +1,13 @@
+// - Search for inits that are unused, simplify them based on the type of other writes.
+// - Search for vars that are unused, drop them
+// - Search for vars that are mustBeType undefined/null
+//
+//
+// `let x = a; ...; x = b;` -> `let x = undefined; ...; x = b;`
+//
+// `let x /*: undefined */ = a;` -> `let x = undefined` and change `a` to be undefined as well
+//
+
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { setPrintVarTyping } from "../../lib/printer.mjs";
@@ -18,11 +28,36 @@ function _redundantInit(fdata) {
 
 
   vgroup('Trying to refine the typing where feasible');
-  let uptyped = false;
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
-    if (meta.isConstant) return;
+
+    if (meta.typing.mustBeType === 'undefined' && meta.writes[0]?.kind === 'var') {
+      const write = meta.writes[0];
+      const init = write.blockBody[write.blockIndex].declarations[0].init;
+      if (init.type !== 'Identifier' || init.name !== 'undefined') {
+        queue.push({
+          index: write.blockIndex,
+          func: () => {
+            rule('A var that mustBeType undefined is undefined');
+            example('const x /*: undefined */ = a;', 'a; const x = undefined');
+            before(write.blockBody[write.blockIndex]);
+
+            write.blockBody[write.blockIndex].declarations[0].init = AST.identifier('undefined');
+            if (init.type !== 'Param' && !AST.isPrimitive(init)) {
+              write.blockBody.splice(write.blockIndex, 0, AST.expressionStatement(init));
+            }
+
+            after(write.blockBody[write.blockIndex]);
+            after(write.blockBody[write.blockIndex+1]);
+          }
+        });
+        changes += 1;
+        return vlog('- Updated queued to set to undefined');
+      }
+    }
+
+    if (meta.isConstant) return; // The rest is about `let`
     if (!meta.writes.length) return; // when?
     if (!meta.singleScoped) return;
 

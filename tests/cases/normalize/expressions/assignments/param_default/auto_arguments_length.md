@@ -63,15 +63,9 @@ $(a);
 let a = { a: 999, b: 1000 };
 const f /*:(undefined)=>undefined*/ = function ($$0) {
   const tmpPrevalAliasArgumentsAny = arguments;
-  const tmpParamBare /*:undefined*/ = $$0;
   debugger;
-  const tmpIfTest /*:boolean*/ = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    a = tmpPrevalAliasArgumentsAny;
-    return undefined;
-  } else {
-    return undefined;
-  }
+  a = tmpPrevalAliasArgumentsAny;
+  return undefined;
 };
 f();
 $(undefined);
@@ -89,16 +83,9 @@ let a = {
 };
 const b = function($$0 ) {
   const c = d;
-  const e = $$0;
   debugger;
-  const f = e === undefined;
-  if (f) {
-    a = c;
-    return undefined;
-  }
-  else {
-    return undefined;
-  }
+  a = c;
+  return undefined;
 };
 b();
 $( undefined );

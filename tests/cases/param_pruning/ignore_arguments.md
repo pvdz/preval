@@ -57,11 +57,9 @@ f();
 `````js filename=intro
 const f /*:(undefined, undefined, undefined)=>undefined*/ = function ($$0, $$1, $$2) {
   const tmpPrevalAliasArgumentsAny = arguments;
-  const x /*:undefined*/ = $$0;
-  const z /*:undefined*/ = $$2;
   debugger;
   const tmpCalleeParam /*:boolean*/ = Boolean(tmpPrevalAliasArgumentsAny);
-  $(tmpCalleeParam, x, z);
+  $(tmpCalleeParam, undefined, undefined);
   return undefined;
 };
 f();
@@ -74,11 +72,9 @@ With rename=true
 `````js filename=intro
 const a = function($$0,$$1,$$2 ) {
   const b = c;
-  const d = $$0;
-  const e = $$2;
   debugger;
-  const f = Boolean( b );
-  $( f, d, e );
+  const d = Boolean( b );
+  $( d, undefined, undefined );
   return undefined;
 };
 a();

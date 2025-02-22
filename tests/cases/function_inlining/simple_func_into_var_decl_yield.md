@@ -53,13 +53,13 @@ $(p, q);
 
 
 `````js filename=intro
-const f /*:()=>undefined*/ = function* () {
+const f /*:()=>object*/ = function* () {
   debugger;
   yield 20;
   return undefined;
 };
-const p /*:undefined*/ = f();
-const q /*:undefined*/ = f();
+const p /*:object*/ = f();
+const q /*:object*/ = f();
 $(p, q);
 `````
 

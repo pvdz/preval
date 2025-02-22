@@ -64,12 +64,11 @@ f(4);
 $(`50`);
 const f /*:(number, undefined)=>undefined*/ = function ($$0, $$1) {
   const tmpPrevalAliasArgumentsAny = arguments;
-  const d /*:undefined*/ = $$1;
   debugger;
   $coerce(tmpPrevalAliasArgumentsAny, `number`);
   $(1);
   $(2);
-  $(d);
+  $(undefined);
   return undefined;
 };
 f(3);
@@ -84,12 +83,11 @@ With rename=true
 $( "50" );
 const a = function($$0,$$1 ) {
   const b = c;
-  const d = $$1;
   debugger;
   $coerce( b, "number" );
   $( 1 );
   $( 2 );
-  $( d );
+  $( undefined );
   return undefined;
 };
 a( 3 );

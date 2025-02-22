@@ -1,6 +1,5 @@
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, before, assertNoDupeNodes } from '../utils.mjs';
 import { setPrintVarTyping } from "../../lib/printer.mjs";
-import {VERBOSE_TRACING} from '../constants.mjs';
 import { mergeTyping } from '../bindings.mjs';
 import { pruneEmptyFunctions } from '../reduce_static/empty_func.mjs';
 import { pruneTrampolineFunctions } from '../reduce_static/trampoline.mjs';

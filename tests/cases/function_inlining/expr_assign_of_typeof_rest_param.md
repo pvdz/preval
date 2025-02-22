@@ -73,17 +73,9 @@ $(x);
 
 
 `````js filename=intro
-let x /*:primitive*/ = 0;
-const g /*:(unknown)=>undefined*/ = function (...$$0) {
-  const b = $$0;
-  debugger;
-  x = typeof b;
-  return undefined;
-};
 const tmpCalleeParam /*:array*/ = [1, 2];
 $(tmpCalleeParam);
-g(20, 30, 40, 50, 60);
-$(x);
+$(`object`);
 `````
 
 ## PST Output
@@ -91,17 +83,9 @@ $(x);
 With rename=true
 
 `````js filename=intro
-let a = 0;
-const b = function($$0 ) {
-  const c = $$0;
-  debugger;
-  a = typeof c;
-  return undefined;
-};
-const d = [ 1, 2 ];
-$( d );
-b( 20, 30, 40, 50, 60 );
+const a = [ 1, 2 ];
 $( a );
+$( "object" );
 `````
 
 ## Globals

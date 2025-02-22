@@ -46,12 +46,12 @@ $(r);
 
 
 `````js filename=intro
-const f /*:(unknown)=>?*/ = function (...$$0) {
-  const x = $$0;
+const f /*:(unknown)=>array*/ = function (...$$0) {
+  const x /*:array*/ = $$0;
   debugger;
   return x;
 };
-const r = f(1, 2, 3);
+const r /*:array*/ = f(1, 2, 3);
 $(r);
 `````
 

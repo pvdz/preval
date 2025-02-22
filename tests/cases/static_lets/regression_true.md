@@ -77,7 +77,7 @@ $(x);
 
 `````js filename=intro
 const oops /*:(unknown)=>undefined*/ = function (...$$0) {
-  const args = $$0;
+  const args /*:array*/ = $$0;
   debugger;
   $(...args);
   x = `fail`;

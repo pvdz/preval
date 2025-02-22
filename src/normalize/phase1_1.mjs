@@ -150,6 +150,33 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
     // Collect the nodes so we can do return type analysis on them later, in the loop where we try to resolve the mustBeType
     // We'll use the collected funcNode.$p.returnNodes and try to determine the return type(s)
 
+    if (funcNode.params.length && funcNode.params[funcNode.params.length - 1].rest) {
+      vlog('  - Last param of function was rest param so setting mustBeType of param to "array"');
+      const pnode = funcNode.params[funcNode.params.length - 1];
+      const paramName = pnode.$p.paramVarDeclRef?.name;
+      if (!paramName) {
+        vlog('  - looks like the rest param is not actually used. Maybe we should drop it.');
+        todo('drop unused rest param?');
+      } else {
+        const m = fdata.globallyUniqueNamingRegistry.get(paramName);
+        if (m.writes.length > 1) {
+          vlog('  - param', funcNode.params.length-1, '(', paramName, '); Bail: it may be a rest but it gets overwritten later');
+          todo('we may still be able to support some of these rest-overwrite cases');
+        } else {
+          m.typing = createTypingObject({
+            mustBeType: 'array',
+            mustBePrimitive: false,
+            mustBeTruthy: true,
+            mustBeFalsy: false,
+          });
+
+          // We should update caller args but I'm not sure what makes sense.
+          // Do we want to track what type the param is (array) or what types are going to be assigned due to the func calls (Array<string> or whatever)
+          // For now we can hack around it by patching the printer to detect a rest and replacing the value with "array"... meh.
+        }
+      }
+    }
+
     const parentNode = path.nodes[path.nodes.length - 2];
     if (parentNode.type === 'VariableDeclarator') {
       const funcMeta = getMeta(parentNode.id.name, fdata);
@@ -357,6 +384,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
     funcNodesForSomething.forEach((obj) => {
       const {funcName, funcNode, funcMeta, parentNode} = obj;
       vlog('-- func', fni++, '; "', funcName, '"');
+
       const types = new Set(funcNode.$p.returnNodes?.map(returnNode => {
         const arg = returnNode.argument;
         if (AST.isPrimitive(arg)) return AST.getPrimitiveType(arg);

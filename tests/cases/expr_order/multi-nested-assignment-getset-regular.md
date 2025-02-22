@@ -342,7 +342,7 @@ tmp(obja, objb, objc, objd, obje);
 
 `````js filename=intro
 const tmp /*:(unknown)=>undefined*/ = function (...$$0) {
-  const a$1 = $$0;
+  const a$1 /*:array*/ = $$0;
   debugger;
   const tmpCalleeParam /*:array*/ = [`\$:`, a$1, b, c, d, e, obja, objb, objc, objd, obje, `::`, ...a$1];
   const tmpCalleeParam$1 /*:object*/ = { depth: null };

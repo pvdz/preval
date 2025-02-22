@@ -70,7 +70,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 `````js filename=intro
 const f /*:(unknown)=>primitive*/ = function (...$$0) {
-  const x = $$0;
+  const x /*:array*/ = $$0;
   debugger;
   $(`no`);
   $(`inlining`);

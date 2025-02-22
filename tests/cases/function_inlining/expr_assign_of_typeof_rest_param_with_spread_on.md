@@ -74,15 +74,14 @@ $(x);
 
 `````js filename=intro
 let x /*:primitive*/ = 0;
-const g /*:(unknown, unknown)=>undefined*/ = function ($$0, ...$$1) {
-  const b = $$1;
+const g /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
   debugger;
-  x = typeof b;
+  x = `object`;
   return undefined;
 };
 const tmpCalleeParam /*:array*/ = [1, 2];
 const arr = $(tmpCalleeParam);
-g(10, ...arr, 20, 30, 40, 50, 60);
+g(10, ...arr, 20);
 $(x);
 `````
 
@@ -93,14 +92,13 @@ With rename=true
 `````js filename=intro
 let a = 0;
 const b = function($$0,$$1 ) {
-  const c = $$1;
   debugger;
-  a = typeof c;
+  a = "object";
   return undefined;
 };
-const d = [ 1, 2 ];
-const e = $( d );
-b( 10, ...e, 20, 30, 40, 50, 60 );
+const c = [ 1, 2 ];
+const d = $( c );
+b( 10, ...d, 20 );
 $( a );
 `````
 

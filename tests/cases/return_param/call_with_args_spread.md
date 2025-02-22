@@ -116,7 +116,7 @@ const f /*:()=>undefined*/ = function () {
   return undefined;
 };
 const tmpCalleeParam$1 /*:(unknown)=>undefined*/ = function (...$$0) {
-  const args = $$0;
+  const args /*:array*/ = $$0;
   debugger;
   $(`pass1`, args);
   return undefined;
@@ -125,7 +125,7 @@ f();
 tmpCalleeParam$1(1, `two`, null, NaN);
 $(undefined);
 const tmpCalleeParam$5 /*:(unknown)=>undefined*/ = function (...$$0) {
-  const args$1 = $$0;
+  const args$1 /*:array*/ = $$0;
   debugger;
   $(`pass2`, args$1);
   return undefined;
@@ -134,7 +134,7 @@ f();
 tmpCalleeParam$5(1, `two`, null, NaN);
 $(undefined);
 const tmpCalleeParam$9 /*:(unknown)=>undefined*/ = function (...$$0) {
-  const args$3 = $$0;
+  const args$3 /*:array*/ = $$0;
   debugger;
   $(`pass3`, args$3);
   return undefined;

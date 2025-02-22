@@ -1610,8 +1610,9 @@ function _inferNodeTyping(fdata, valueNode) {
               case 'Array.from': {
                 return createTypingObject({
                   mustBeType: 'array',
-                  mustBeTruthy: true,
                   mustBePrimitive: false,
+                  mustBeTruthy: true,
+                  mustBeFalsy: false,
                 });
               }
               case 'Array.isArray': {
@@ -1626,8 +1627,9 @@ function _inferNodeTyping(fdata, valueNode) {
                 // Normalization can replace this with array literals in many-if-not-all cases
                 return createTypingObject({
                   mustBeType: 'array',
-                  mustBeTruthy: true,
                   mustBePrimitive: false,
+                  mustBeTruthy: true,
+                  mustBeFalsy: false,
                 });
               }
               case 'Date.now': {
@@ -1817,6 +1819,7 @@ function _inferNodeTyping(fdata, valueNode) {
         mustBeType: 'array',
         mustBePrimitive: false,
         mustBeTruthy: true,
+        mustBeFalsy: false,
       });
     }
     case 'ObjectExpression': {

@@ -78,7 +78,7 @@ f(e, drop3);
 
 `````js filename=intro
 const f /*:(unknown)=>undefined*/ = function (...$$0) {
-  const args = $$0;
+  const args /*:array*/ = $$0;
   debugger;
   $(...args);
   return undefined;

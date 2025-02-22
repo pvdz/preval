@@ -20,7 +20,7 @@ $(r);
 
 
 `````js filename=intro
-const f = function (...$$0) {
+const f = function (...$$0 /*:array*/) {
   let x = $$0;
   debugger;
   return x;
@@ -33,7 +33,7 @@ $(r);
 
 
 `````js filename=intro
-const f = function (...$$0) {
+const f = function (...$$0 /*:array*/) {
   let x = $$0;
   debugger;
   return x;
@@ -46,7 +46,7 @@ $(r);
 
 
 `````js filename=intro
-const f /*:(unknown)=>array*/ = function (...$$0) {
+const f /*:(array)=>array*/ = function (...$$0 /*:array*/) {
   const x /*:array*/ = $$0;
   debugger;
   return x;

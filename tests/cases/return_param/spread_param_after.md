@@ -27,7 +27,7 @@ $(f('three'));
 
 
 `````js filename=intro
-let f = function ($$0, ...$$1) {
+let f = function ($$0, ...$$1 /*:array*/) {
   let x = $$0;
   let rest = $$1;
   debugger;
@@ -46,7 +46,7 @@ $(f(`three`));
 
 
 `````js filename=intro
-let f = function ($$0, ...$$1) {
+let f = function ($$0, ...$$1 /*:array*/) {
   let x = $$0;
   let rest = $$1;
   debugger;

@@ -19,7 +19,7 @@ $($(a)?.b.c(100));
 `````js filename=intro
 const a = {
   b: {
-    c: function (...$$0) {
+    c: function (...$$0 /*:array*/) {
       const tmpPrevalAliasThis = this;
       let a$1 = $$0;
       debugger;
@@ -35,7 +35,7 @@ $($(a)?.b.c(100));
 
 
 `````js filename=intro
-const tmpObjLitVal$1 = function (...$$0) {
+const tmpObjLitVal$1 = function (...$$0 /*:array*/) {
   const tmpPrevalAliasThis = this;
   let a$1 = $$0;
   debugger;
@@ -66,7 +66,7 @@ tmpCallCallee$1(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const tmpObjLitVal$1 /*:(unknown)=>?*/ = function (...$$0) {
+const tmpObjLitVal$1 /*:(array)=>?*/ = function (...$$0 /*:array*/) {
   const tmpPrevalAliasThis /*:object*/ = this;
   const a$1 /*:array*/ = $$0;
   debugger;

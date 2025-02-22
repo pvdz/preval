@@ -56,7 +56,7 @@ f();
 let f = function () {
   debugger;
   let x = `fail`;
-  const tmpLabeledBlockFunc = function ($$0, ...$$1) {
+  const tmpLabeledBlockFunc = function ($$0, ...$$1 /*:array*/) {
     let $dlr_$$0 = $$0;
     let $dlr_$$1 = $$1;
     debugger;
@@ -105,7 +105,7 @@ f();
 let f = function () {
   debugger;
   let x = `fail`;
-  const tmpLabeledBlockFunc = function ($$0, ...$$1) {
+  const tmpLabeledBlockFunc = function ($$0, ...$$1 /*:array*/) {
     let $dlr_$$0 = $$0;
     let $dlr_$$1 = $$1;
     debugger;

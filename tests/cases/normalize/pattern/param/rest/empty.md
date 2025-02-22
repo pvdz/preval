@@ -19,7 +19,7 @@ $(f());
 
 
 `````js filename=intro
-let f = function (...$$0) {
+let f = function (...$$0 /*:array*/) {
   let x = $$0;
   debugger;
   return x;
@@ -31,7 +31,7 @@ $(f());
 
 
 `````js filename=intro
-let f = function (...$$0) {
+let f = function (...$$0 /*:array*/) {
   let x = $$0;
   debugger;
   return x;

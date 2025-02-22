@@ -17,7 +17,7 @@ $(f?.(1, 2, 3));
 
 
 `````js filename=intro
-let f = function (...$$0) {
+let f = function (...$$0 /*:array*/) {
   let args = $$0;
   debugger;
   $(`f`, args);
@@ -29,7 +29,7 @@ $(f?.(1, 2, 3));
 
 
 `````js filename=intro
-let f = function (...$$0) {
+let f = function (...$$0 /*:array*/) {
   let args = $$0;
   debugger;
   $(`f`, args);
@@ -51,7 +51,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f /*:(unknown)=>undefined*/ = function (...$$0) {
+const f /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
   const args /*:array*/ = $$0;
   debugger;
   $(`f`, args);

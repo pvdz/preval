@@ -27,7 +27,7 @@ $(f('three'));
 
 
 `````js filename=intro
-let f = function (...$$0) {
+let f = function (...$$0 /*:array*/) {
   let x = $$0;
   debugger;
   $(`no`);
@@ -45,7 +45,7 @@ $(f(`three`));
 
 
 `````js filename=intro
-let f = function (...$$0) {
+let f = function (...$$0 /*:array*/) {
   let x = $$0;
   debugger;
   $(`no`);
@@ -69,7 +69,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const f /*:(unknown)=>primitive*/ = function (...$$0) {
+const f /*:(array)=>primitive*/ = function (...$$0 /*:array*/) {
   const x /*:array*/ = $$0;
   debugger;
   $(`no`);

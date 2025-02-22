@@ -37,7 +37,7 @@ f(e, drop3);
 
 
 `````js filename=intro
-let f = function (...$$0) {
+let f = function (...$$0 /*:array*/) {
   let args = $$0;
   debugger;
   $(...args);
@@ -57,7 +57,7 @@ f(e, drop3);
 
 
 `````js filename=intro
-let f = function (...$$0) {
+let f = function (...$$0 /*:array*/) {
   let args = $$0;
   debugger;
   $(...args);
@@ -77,7 +77,7 @@ f(e, drop3);
 
 
 `````js filename=intro
-const f /*:(unknown)=>undefined*/ = function (...$$0) {
+const f /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
   const args /*:array*/ = $$0;
   debugger;
   $(...args);

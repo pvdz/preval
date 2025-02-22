@@ -19,7 +19,7 @@ f();
 
 
 `````js filename=intro
-let f = function (...$$0) {
+let f = function (...$$0 /*:array*/) {
   let rest = $$0;
   debugger;
   return $(`fwep`);
@@ -31,7 +31,7 @@ f();
 
 
 `````js filename=intro
-let f = function (...$$0) {
+let f = function (...$$0 /*:array*/) {
   let rest = $$0;
   debugger;
   const tmpReturnArg = $(`fwep`);

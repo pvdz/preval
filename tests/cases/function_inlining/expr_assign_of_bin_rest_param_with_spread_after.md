@@ -31,7 +31,7 @@ $(x);
 `````js filename=intro
 let f = function () {
   debugger;
-  let g = function ($$0, ...$$1) {
+  let g = function ($$0, ...$$1 /*:array*/) {
     let a = $$0;
     let b = $$1;
     debugger;
@@ -51,7 +51,7 @@ $(x);
 `````js filename=intro
 let f = function () {
   debugger;
-  let g = function ($$0, ...$$1) {
+  let g = function ($$0, ...$$1 /*:array*/) {
     let a = $$0;
     let b = $$1;
     debugger;
@@ -74,7 +74,7 @@ $(x);
 
 `````js filename=intro
 let x /*:primitive*/ = 0;
-const g /*:(unknown, unknown)=>undefined*/ = function ($$0, ...$$1) {
+const g /*:(unknown, array)=>undefined*/ = function ($$0, ...$$1 /*:array*/) {
   const a = $$0;
   const b /*:array*/ = $$1;
   debugger;

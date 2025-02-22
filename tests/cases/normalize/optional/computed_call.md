@@ -21,7 +21,7 @@ $(a)[$('x')]?.(1, 2, 3);
 
 `````js filename=intro
 const a = {
-  x: function (...$$0) {
+  x: function (...$$0 /*:array*/) {
     const tmpPrevalAliasThis = this;
     let args = $$0;
     debugger;
@@ -36,7 +36,7 @@ $(a)[$(`x`)]?.(1, 2, 3);
 
 
 `````js filename=intro
-const tmpObjLitVal = function (...$$0) {
+const tmpObjLitVal = function (...$$0 /*:array*/) {
   const tmpPrevalAliasThis = this;
   let args = $$0;
   debugger;
@@ -62,7 +62,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const tmpObjLitVal /*:(unknown)=>undefined*/ = function (...$$0) {
+const tmpObjLitVal /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
   const tmpPrevalAliasThis /*:object*/ = this;
   const args /*:array*/ = $$0;
   debugger;

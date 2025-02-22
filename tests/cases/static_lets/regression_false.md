@@ -31,7 +31,7 @@ $(x);
 
 
 `````js filename=intro
-const oops = function (...$$0) {
+const oops = function (...$$0 /*:array*/) {
   let args = $$0;
   debugger;
   $(...args);
@@ -53,7 +53,7 @@ $(x);
 
 
 `````js filename=intro
-const oops = function (...$$0) {
+const oops = function (...$$0 /*:array*/) {
   let args = $$0;
   debugger;
   $(...args);
@@ -77,7 +77,7 @@ $(x);
 
 
 `````js filename=intro
-const oops /*:(unknown)=>undefined*/ = function (...$$0) {
+const oops /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
   const args /*:array*/ = $$0;
   debugger;
   $(...args);

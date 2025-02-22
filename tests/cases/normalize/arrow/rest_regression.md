@@ -29,7 +29,7 @@ $(a);
 
 
 `````js filename=intro
-const a = function (...$$0) {
+const a = function (...$$0 /*:array*/) {
   let arg = $$0;
   debugger;
   return x;

@@ -19,7 +19,7 @@ f($spy(), $spy());
 
 
 `````js filename=intro
-let f = function ($$0, $$1, ...$$2) {
+let f = function ($$0, $$1, ...$$2 /*:array*/) {
   let a = $$0;
   let b = $$1;
   let rest = $$2;
@@ -33,7 +33,7 @@ f($spy(), $spy());
 
 
 `````js filename=intro
-let f = function ($$0, $$1, ...$$2) {
+let f = function ($$0, $$1, ...$$2 /*:array*/) {
   let a = $$0;
   let b = $$1;
   let rest = $$2;

@@ -43,7 +43,7 @@ let objb = undefined;
 let objc = undefined;
 let objd = undefined;
 let obje = undefined;
-let tmp = function (...$$0) {
+let tmp = function (...$$0 /*:array*/) {
   let a$1 = $$0;
   debugger;
   $([`\$:`, a$1, b, c, d, e, obja, objb, objc, objd, obje, `::`, ...a$1], { depth: null });
@@ -188,7 +188,7 @@ let objb = undefined;
 let objc = undefined;
 let objd = undefined;
 let obje = undefined;
-let tmp = function (...$$0) {
+let tmp = function (...$$0 /*:array*/) {
   let a$1 = $$0;
   debugger;
   const tmpCallCallee = $;
@@ -341,7 +341,7 @@ tmp(obja, objb, objc, objd, obje);
 
 
 `````js filename=intro
-const tmp /*:(unknown)=>undefined*/ = function (...$$0) {
+const tmp /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
   const a$1 /*:array*/ = $$0;
   debugger;
   const tmpCalleeParam /*:array*/ = [`\$:`, a$1, b, c, d, e, obja, objb, objc, objd, obje, `::`, ...a$1];

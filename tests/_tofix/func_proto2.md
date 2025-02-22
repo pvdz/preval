@@ -2,7 +2,7 @@
 
 # func_proto2.md
 
-> Tofix > Func proto2
+> Tests > Tofix > Func proto2
 >
 > We know it gets the proto from a function tho. Same for array regex etc?
 

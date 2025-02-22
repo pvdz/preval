@@ -1,0 +1,122 @@
+# Preval test case
+
+# coercing_arguments.md
+
+> Tests > Tofix > Coercing arguments
+
+(this is a test case)
+
+Coercing arguments always results in `[object Arguments]` and is in itself
+not observable. Probably an edge case (red herring in obfuscation?).
+
+## Input
+
+`````js filename=intro
+let x = $('50');
+const f = function (c, d) {
+  $coerce(arguments, 'number');
+  $(1);
+  $(2);
+  $(d);
+};
+f(3);
+f(4);
+`````
+
+## Pre Normal
+
+
+`````js filename=intro
+let x = $(`50`);
+const f = function ($$0, $$1) {
+  const tmpPrevalAliasArgumentsAny = arguments;
+  let c = $$0;
+  let d = $$1;
+  debugger;
+  $coerce(tmpPrevalAliasArgumentsAny, `number`);
+  $(1);
+  $(2);
+  $(d);
+};
+f(3);
+f(4);
+`````
+
+## Normalized
+
+
+`````js filename=intro
+let x = $(`50`);
+const f = function ($$0, $$1) {
+  const tmpPrevalAliasArgumentsAny = arguments;
+  let c = $$0;
+  let d = $$1;
+  debugger;
+  $coerce(tmpPrevalAliasArgumentsAny, `number`);
+  $(1);
+  $(2);
+  $(d);
+  return undefined;
+};
+f(3);
+f(4);
+`````
+
+## Output
+
+
+`````js filename=intro
+$(`50`);
+const f /*:(number, undefined)=>undefined*/ = function ($$0, $$1) {
+  const tmpPrevalAliasArgumentsAny = arguments;
+  debugger;
+  $coerce(tmpPrevalAliasArgumentsAny, `number`);
+  $(1);
+  $(2);
+  $(undefined);
+  return undefined;
+};
+f(3);
+f(4);
+`````
+
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "50" );
+const a = function($$0,$$1 ) {
+  const b = c;
+  debugger;
+  $coerce( b, "number" );
+  $( 1 );
+  $( 2 );
+  $( undefined );
+  return undefined;
+};
+a( 3 );
+a( 4 );
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: '50'
+ - 2: 1
+ - 3: 2
+ - 4: undefined
+ - 5: 1
+ - 6: 2
+ - 7: undefined
+ - eval returned: undefined
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

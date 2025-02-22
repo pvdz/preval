@@ -2,7 +2,7 @@
 
 # array_reverse.md
 
-> Tofix > Array reverse
+> Tests > Tofix > Array reverse
 >
 > Simple case
 

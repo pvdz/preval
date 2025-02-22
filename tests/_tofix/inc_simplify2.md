@@ -2,7 +2,7 @@
 
 # inc_simplify2.md
 
-> Tofix > Inc simplify2
+> Tests > Tofix > Inc simplify2
 >
 > This case is from a regular loop with ++b condition.
 > But the way we transform `a=++x` is `tmp=x; x=x+1; a=tmp`

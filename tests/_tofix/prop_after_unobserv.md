@@ -2,7 +2,7 @@
 
 # prop_after_unobserv.md
 
-> Tofix > Prop after unobserv
+> Tests > Tofix > Prop after unobserv
 >
 
 Property read of tmpObjLitVal.y should be inliend and not be blocked by intermediate statements if they are unobservable.

@@ -2,7 +2,7 @@
 
 # booly.md
 
-> Tofix > Booly
+> Tests > Tofix > Booly
 >
 > Assignment that cannot be observed should be dropped
 

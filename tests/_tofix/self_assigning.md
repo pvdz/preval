@@ -2,7 +2,7 @@
 
 # self_assigning.md
 
-> Tofix > Self assigning
+> Tests > Tofix > Self assigning
 
 Point is that this function is called and immediately overrides itself, then calls itself again.
 

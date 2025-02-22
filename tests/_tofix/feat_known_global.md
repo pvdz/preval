@@ -2,7 +2,7 @@
 
 # feat_known_global.md
 
-> Tofix > Feat known global
+> Tests > Tofix > Feat known global
 >
 > A simple check for all the (supported) builtins and whether Preval's type inference properly picks up on their return value.
 

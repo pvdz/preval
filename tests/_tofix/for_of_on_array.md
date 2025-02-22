@@ -2,7 +2,7 @@
 
 # for_of_on_array.md
 
-> Tofix > For of on array
+> Tests > Tofix > For of on array
 
 We can extrapolate and unroll a `for-of` on an array literal (or anything where we can predict the iterator behavior).
 That means we can simplify the next to $(1) $(2) $(3). ymmv on how explosive that unroll would be with a huge while body, though.

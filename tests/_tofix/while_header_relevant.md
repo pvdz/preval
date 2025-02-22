@@ -2,7 +2,7 @@
 
 # while_header_relevant.md
 
-> Tofix > While header relevant
+> Tests > Tofix > While header relevant
 >
 > While elimination should keep while condition.
 > This was a regression where the while condition would throw but because it

@@ -2,7 +2,7 @@
 
 # ssa_out_in_loop.md
 
-> Tofix > Ssa out in loop
+> Tests > Tofix > Ssa out in loop
 >
 > A and B should be SSA'd and their first occurrence should be removed
 > because they're never read. But the loop is making that harder.

@@ -2,7 +2,7 @@
 
 # callhoist.md
 
-> Tofix > Callhoist
+> Tests > Tofix > Callhoist
 
 The $(a); can be hoisted into the if-else and then the if-branch gets $(0)
 while the else-branch gets the const a decl.

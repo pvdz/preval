@@ -2,7 +2,7 @@
 
 # throwing_loop.md
 
-> Tofix > Throwing loop
+> Tests > Tofix > Throwing loop
 >
 > One of the fake loops; a loop that always throws is not a loop
 

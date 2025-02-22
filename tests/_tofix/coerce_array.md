@@ -2,7 +2,7 @@
 
 # coerce_array.md
 
-> Tofix > Coerce array
+> Tests > Tofix > Coerce array
 >
 > We can do this kind of contrived cases tho
 

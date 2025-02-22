@@ -2,7 +2,7 @@
 
 # loop_dce.md
 
-> Tofix > Loop dce
+> Tests > Tofix > Loop dce
 
 The call with "fail" is unreachable because the break jumps over it.
 We should detect unreachable statements and prune them.

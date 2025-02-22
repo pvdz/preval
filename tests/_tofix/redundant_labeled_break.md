@@ -2,7 +2,7 @@
 
 # redundant_labeled_break.md
 
-> Tofix > Redundant labeled break
+> Tests > Tofix > Redundant labeled break
 >
 > The X: { try { break X } catch {} } case could be simplified
 > and that's relevant with the elimination of finally.

@@ -2,7 +2,7 @@
 
 # func_param_propagation2.md
 
-> Tofix > Func param propagation2
+> Tests > Tofix > Func param propagation2
 >
 > If we would move that tail return trampo into both if-branches then it would remove the b...
 
@@ -77,8 +77,8 @@ $(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const f /*:(unknown)=>array*/ = function ($$0) {
-  const $dlr_$$0 = $$0;
+const f /*:(primitive)=>array*/ = function ($$0) {
+  const $dlr_$$0 /*:primitive*/ = $$0;
   debugger;
   let b = `bar`;
   const tmpIfTest$1 /*:boolean*/ = $dlr_$$0 === undefined;

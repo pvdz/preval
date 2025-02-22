@@ -2,7 +2,7 @@
 
 # func_param_propagation.md
 
-> Tofix > Func param propagation
+> Tests > Tofix > Func param propagation
 >
 > New rule
 > Primitives could be propagated through a func call and determine outside values
@@ -77,8 +77,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const f /*:(unknown)=>array*/ = function ($$0) {
-  const tmpParamBare$1 = $$0;
+const f /*:(primitive)=>array*/ = function ($$0) {
+  const tmpParamBare$1 /*:primitive*/ = $$0;
   debugger;
   let b = `bar`;
   const tmpIfTest$1 /*:boolean*/ = tmpParamBare$1 === undefined;

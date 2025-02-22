@@ -2,7 +2,7 @@
 
 # tdz_collapse.md
 
-> Tofix > Tdz collapse
+> Tests > Tofix > Tdz collapse
 >
 > We should collapse TDZ ident statements when we can see the next statement will test it too
 > (There are cases where this doesn't happen...)

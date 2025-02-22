@@ -2,7 +2,7 @@
 
 # tdz_pattern.md
 
-> Tofix > Tdz pattern
+> Tests > Tofix > Tdz pattern
 >
 > Tricky TDZ case
 > Note that block normalization causes the tdz var to be defined inside a

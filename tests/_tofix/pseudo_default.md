@@ -2,7 +2,7 @@
 
 # pseudo_default.md
 
-> Tofix > Pseudo default
+> Tests > Tofix > Pseudo default
 
 Consider this pattern to be in a function that tests if an arg is `undefined`, defaulting to an empty object.
 We can easily support this particular case to default to arg first.

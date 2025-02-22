@@ -2,7 +2,7 @@
 
 # buffer_base64_decode.md
 
-> Tofix > Buffer base64 decode
+> Tests > Tofix > Buffer base64 decode
 >
 > Found in a deobfuscator. With a slightly different payload.
 

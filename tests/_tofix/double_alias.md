@@ -2,7 +2,7 @@
 
 # double_alias.md
 
-> Tofix > Double alias
+> Tests > Tofix > Double alias
 >
 > First arr[0] is updated and then it is read again. Knowing this is an array we can fold that up safely.
 

@@ -2,7 +2,7 @@
 
 # go_away.md
 
-> Tofix > Go away
+> Tests > Tofix > Go away
 >
 > we can simplify this surely
 

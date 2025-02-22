@@ -2,7 +2,7 @@
 
 # simple_context.md
 
-> Tofix > Simple context
+> Tests > Tofix > Simple context
 >
 > Inlining $dotCall cases when we know what they are actually doing
 

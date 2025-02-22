@@ -2,7 +2,7 @@
 
 # func_param_propagation3.md
 
-> Tofix > Func param propagation3
+> Tests > Tofix > Func param propagation3
 >
 > If we can resolve that `===` at call time and pass in a boolean for it ... then we can eliminate this whole function
 
@@ -77,8 +77,8 @@ $(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const f /*:(unknown)=>array*/ = function ($$0) {
-  const $dlr_$$0 = $$0;
+const f /*:(primitive)=>array*/ = function ($$0) {
+  const $dlr_$$0 /*:primitive*/ = $$0;
   debugger;
   const tmpIfTest$1 /*:boolean*/ = $dlr_$$0 === undefined;
   if (tmpIfTest$1) {

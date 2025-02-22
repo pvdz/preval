@@ -2,7 +2,7 @@
 
 # denorm_globals_too.md
 
-> Tofix > Denorm globals too
+> Tests > Tofix > Denorm globals too
 >
 > denormalization should restore preval symbols with JS code where possible. as a bonus: the .name there can be resolved. $frfr can be inlined. $coerce is reverted i think.
 

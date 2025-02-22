@@ -2,7 +2,7 @@
 
 # param_used_once.md
 
-> Tofix > Param used once
+> Tests > Tofix > Param used once
 >
 > A parameter that is used once in an assignment to another variable should be eliminated or whatever.
 

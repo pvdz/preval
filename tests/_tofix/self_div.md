@@ -2,7 +2,7 @@
 
 # self_div.md
 
-> Tofix > Self div
+> Tests > Tofix > Self div
 
 - fix the current test outcome; settled side $() effects are not same as input
 - can we do better to predict the arg/arg ?
@@ -102,26 +102,29 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpFree /*:(number)=>string*/ = function $free($$0) {
-  const arg /*:number*/ = $$0;
+const f_f /*:(unknown)=>undefined*/ = function ($$0) {
+  const arg$1 = $$0;
   debugger;
-  const one /*:number*/ = arg / arg;
-  const tmpRet /*:string*/ = $coerce(one, `string`);
-  return tmpRet;
-};
-const f /*:(number)=>undefined*/ = function ($$0) {
-  const arg$1 /*:number*/ = $$0;
-  debugger;
-  const onestr /*:string*/ = $frfr(tmpFree, arg$1);
-  onestr.length;
-  const argup /*:number*/ = arg$1 + 1;
+  const one /*:number*/ = arg$1 / arg$1;
+  const onestr /*:string*/ = $coerce(one, `string`);
+  const len /*:number*/ = onestr.length;
+  const isone /*:boolean*/ = len === 1;
+  if (isone) {
+    arg$1 % 0;
+  } else {
+  }
+  const argup /*:primitive*/ = arg$1 + 1;
   $(argup);
   return undefined;
 };
-f(500);
-f(`thing`);
+f_f(500);
 const tmpCalleeParam = $spy();
-f(tmpCalleeParam);
+const tmpSaooB /*:string*/ = typeof tmpCalleeParam;
+const tmpSaooB$1 /*:boolean*/ = tmpSaooB === `string`;
+if (tmpSaooB$1) {
+} else {
+  f_f(tmpCalleeParam);
+}
 `````
 
 ## PST Output
@@ -129,26 +132,30 @@ f(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
+const a = function($$0 ) {
+  const b = $$0;
   debugger;
-  const d = c / c;
-  const e = $coerce( d, "string" );
-  return e;
-};
-const f = function($$0 ) {
-  const g = $$0;
-  debugger;
-  const h = i( a, g );
-  h.length;
-  const j = g + 1;
-  $( j );
+  const c = b / b;
+  const d = $coerce( c, "string" );
+  const e = d.length;
+  const f = e === 1;
+  if (f) {
+    b % 0;
+  }
+  const g = b + 1;
+  $( g );
   return undefined;
 };
-f( 500 );
-f( "thing" );
-const k = $spy();
-f( k );
+a( 500 );
+const h = $spy();
+const i = typeof h;
+const j = i === "string";
+if (j) {
+
+}
+else {
+  a( h );
+}
 `````
 
 ## Globals
@@ -171,12 +178,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: 501
- - 2: 'thing1'
- - 3: 'Creating spy', 1, 0, ['spy', 12345]
- - 4: '$spy[1].valueOf()'
- - 5: '$spy[1].valueOf()'
- - 6: '$spy[1].valueOf()'
- - 7: 12346
- - eval returned: undefined
+Final output calls: Same

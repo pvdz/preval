@@ -2,7 +2,7 @@
 
 # json_parse.md
 
-> Tofix > Json parse
+> Tests > Tofix > Json parse
 >
 > Make global and undo dotcall for json.parse
 
@@ -68,7 +68,7 @@ $(getMessages);
 
 
 `````js filename=intro
-const getMessages /*:(unknown)=>?*/ = async function ($$0) {
+const getMessages = async function ($$0) {
   const $dlr_$$0 = $$0;
   debugger;
   const tmpAwaitArg = fetchFromStore($dlr_$$0);

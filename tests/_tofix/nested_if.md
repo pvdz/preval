@@ -2,7 +2,7 @@
 
 # nested_if.md
 
-> Tofix > Nested if
+> Tests > Tofix > Nested if
 >
 > Seems this case is not handled. The nested lock check should fold up.
 

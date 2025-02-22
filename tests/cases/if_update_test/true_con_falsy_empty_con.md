@@ -54,14 +54,9 @@ if (x) {
 
 
 `````js filename=intro
-let x /*:boolean*/ = true;
 if ($) {
-  x = false;
-} else {
-}
-if (x) {
-} else {
   $(3);
+} else {
 }
 `````
 
@@ -70,14 +65,7 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-let a = true;
 if ($) {
-  a = false;
-}
-if (a) {
-
-}
-else {
   $( 3 );
 }
 `````

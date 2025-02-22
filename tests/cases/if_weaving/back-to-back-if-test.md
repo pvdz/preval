@@ -6,10 +6,6 @@
 >
 > In this case $(c) is unreachable because $(d) is invariably visited.
 
-(existing test case)
-
-We can do better here
-
 ## Input
 
 `````js filename=intro

@@ -3,8 +3,11 @@
 //      const x = !y; if (x) { a } else { b }
 // ->
 //      const x = !y; if (y) { b } else { a }
+// ->
+//      let x = true; if (y) { x = false; b } else { x = true; a }
 //
 // Doesn't matter if that's a const or a let or even a regular assignment as long as there is no observable in between
+// There is some overlap with the if_flip transform; it will subsume this one in some cases.
 
 import walk from '../../lib/walk.mjs';
 import {
@@ -68,10 +71,16 @@ function _ifTestInvIdent(fdata) {
         if (init.type === 'UnaryExpression' && init.operator === '!' && init.argument.type === 'Identifier') {
           // It should be safe to make the transform
           rule('An `if` that tests the result of inverting an ident can test for that ident instead');
-          example('const x = !y; if (x) a; else b;', 'const x = !y; if (y) b; else a;');
+          example('const x = !y; if (x) a; else b;', 'let x = !y; if (y) { x = false; b; } else { x = true; a; }');
           before(prev);
           before(node);
 
+          // Add x=true or x=false now. Note that we swap branches afterwards.
+          prev.kind = 'let';
+          node.consequent.body.unshift(AST.expressionStatement(AST.assignmentExpression(node.test.name, AST.tru())));
+          node.alternate.body.unshift(AST.expressionStatement(AST.assignmentExpression(node.test.name, AST.fals())));
+
+          prev.declarations[0].init = AST.tru(); // Or false, shouldn't matter..?
           node.test = AST.identifier(init.argument.name);
           const tmp = node.alternate;
           node.alternate = node.consequent;
@@ -97,6 +106,11 @@ function _ifTestInvIdent(fdata) {
           example('x = !y; if (x) a; else b;', 'const x = !y; if (y) b; else a;');
           before(prev);
           before(node);
+
+          // Add x=true or x=false now. Note that we swap branches afterwards.
+          prev.kind = 'let';
+          node.consequent.body.unshift(AST.expressionStatement(AST.assignmentExpression(node.test.name, AST.tru())));
+          node.alternate.body.unshift(AST.expressionStatement(AST.assignmentExpression(node.test.name, AST.fals())));
 
           node.test = AST.identifier(right.argument.name);
           const tmp = node.alternate;

@@ -1,19 +1,15 @@
 # Preval test case
 
-# back-to-back-if-test.md
+# back-to-back-if-test5.md
 
-> If weaving > Back-to-back-if-test
+> If weaving > Back-to-back-if-test5
 >
 > In this case $(c) is unreachable because $(d) is invariably visited.
-
-(existing test case)
-
-We can do better here
 
 ## Input
 
 `````js filename=intro
-x = !tmpUnaryArg;
+let x = !tmpUnaryArg;
 if (x) {
   $(`a`);
 } else {
@@ -31,7 +27,7 @@ if (x) {
 
 
 `````js filename=intro
-x = !tmpUnaryArg;
+let x = !tmpUnaryArg;
 if (x) {
   $(`a`);
 } else {
@@ -49,7 +45,7 @@ if (x) {
 
 
 `````js filename=intro
-x = !tmpUnaryArg;
+let x = !tmpUnaryArg;
 if (x) {
   $(`a`);
 } else {
@@ -67,20 +63,12 @@ if (x) {
 
 
 `````js filename=intro
-x = !tmpUnaryArg;
-const tmpBool /*:boolean*/ = !tmpUnaryArg;
-x = tmpBool;
 if (tmpUnaryArg) {
   $(`b`);
-  x = true;
 } else {
   $(`a`);
 }
-if (x) {
-  $(`d`);
-} else {
-  $(`c`);
-}
+$(`d`);
 `````
 
 ## PST Output
@@ -88,29 +76,20 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-x = !tmpUnaryArg;
-const a = !tmpUnaryArg;
-x = a;
 if (tmpUnaryArg) {
   $( "b" );
-  x = true;
 }
 else {
   $( "a" );
 }
-if (x) {
-  $( "d" );
-}
-else {
-  $( "c" );
-}
+$( "d" );
 `````
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
+BAD@! Found 1 implicit global bindings:
 
-tmpUnaryArg, x
+tmpUnaryArg
 
 ## Result
 

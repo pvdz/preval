@@ -94,13 +94,17 @@ if ($tmpLoopUnrollCheck) {
 
 
 `````js filename=intro
-let tmpLoopRetCode /*:boolean*/ = !$;
 if ($) {
 } else {
+  let tmpClusterSSA_tmpLoopRetCode /*:boolean*/ = true;
+  if ($) {
+    tmpClusterSSA_tmpLoopRetCode = false;
+  } else {
+  }
   while ($LOOP_UNROLL_9) {
-    if (tmpLoopRetCode) {
+    if (tmpClusterSSA_tmpLoopRetCode) {
       if ($) {
-        tmpLoopRetCode = false;
+        tmpClusterSSA_tmpLoopRetCode = false;
       } else {
       }
     } else {
@@ -115,11 +119,14 @@ if ($) {
 With rename=true
 
 `````js filename=intro
-let a = !$;
 if ($) {
 
 }
 else {
+  let a = true;
+  if ($) {
+    a = false;
+  }
   while ($LOOP_UNROLL_9) {
     if (a) {
       if ($) {

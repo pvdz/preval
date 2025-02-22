@@ -50,20 +50,18 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-let a /*:boolean*/ = !tmpUnaryArg;
 if (tmpUnaryArg) {
 } else {
   while ($LOOP_UNROLL_10) {
     $(1);
     const tmpUnaryArg$1 = $(100);
-    a = !tmpUnaryArg$1;
     if (tmpUnaryArg$1) {
       break;
     } else {
     }
   }
 }
-$(a);
+$(false);
 `````
 
 ## PST Output
@@ -72,21 +70,19 @@ With rename=true
 
 `````js filename=intro
 const a = $( 100 );
-let b = !a;
 if (a) {
 
 }
 else {
   while ($LOOP_UNROLL_10) {
     $( 1 );
-    const c = $( 100 );
-    b = !c;
-    if (c) {
+    const b = $( 100 );
+    if (b) {
       break;
     }
   }
 }
-$( b );
+$( false );
 `````
 
 ## Globals

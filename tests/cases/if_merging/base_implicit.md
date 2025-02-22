@@ -48,12 +48,9 @@ if (x) {
 `````js filename=intro
 if (unknown) {
   $(`b`);
-} else {
-  $(`a`);
-}
-if (unknown) {
   $(`c`);
 } else {
+  $(`a`);
   $(`d`);
 }
 `````
@@ -65,14 +62,10 @@ With rename=true
 `````js filename=intro
 if (unknown) {
   $( "b" );
-}
-else {
-  $( "a" );
-}
-if (unknown) {
   $( "c" );
 }
 else {
+  $( "a" );
   $( "d" );
 }
 `````

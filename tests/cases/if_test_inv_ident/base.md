@@ -99,8 +99,8 @@ if (c) {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $(100);
     const d = $(100);
-    a = !d;
     if (d) {
+      a = false;
       break;
     } else {
     }
@@ -124,8 +124,8 @@ else {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $( 100 );
     const c = $( 100 );
-    b = !c;
     if (c) {
+      b = false;
       break;
     }
   }

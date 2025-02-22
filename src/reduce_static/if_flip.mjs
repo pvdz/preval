@@ -192,15 +192,21 @@ function _ifFlipping(fdata) {
         rule(
           'When an `if` test is an inverted `let` alias and there were no statements between the var decl and the `if`, the alias is redundant',
         );
-        example('let x = !y; if (x) f(); else g();', 'let x = !y; if (y) g(); else f();');
+        example('let x = !y; if (x) f(); else g();', 'let x = true; if (y) { x = false; g(); } else { x = true; f(); }');
         before(prevNode);
         before(node);
 
+        node.consequent.body.unshift(AST.expressionStatement(AST.assignmentExpression(node.test.name, AST.tru())));
+        node.alternate.body.unshift(AST.expressionStatement(AST.assignmentExpression(node.test.name, AST.fals())));
+
         node.test = AST.cloneSimple(prevNode.declarations[0].init.argument);
+        prevNode.kind = 'let';
+        prevNode.declarations[0].init = AST.fals(); // or true; shouldn't matter?
         const bak = node.consequent;
         node.consequent = node.alternate;
         node.alternate = bak;
 
+        before(prevNode);
         after(node);
         ++changed;
         meta.tainted = true;
@@ -219,11 +225,16 @@ function _ifFlipping(fdata) {
         rule(
           'When an `if` test is a Boolean() `let` alias and there were no statements between the var decl and the `if`, the alias is redundant',
         );
-        example('let x = Boolean(y); if (x) f(); else g();', 'let x = !y; if (y) g(); else f();');
+        example('let x = Boolean(y); if (x) f(); else g();', 'let x = false; if (y) { x = false; g(); } else { x = true; f(); }');
         before(prevNode);
         before(node);
 
+        node.consequent.body.unshift(AST.expressionStatement(AST.assignmentExpression(node.test.name, AST.tru())));
+        node.alternate.body.unshift(AST.expressionStatement(AST.assignmentExpression(node.test.name, AST.fals())));
+
         node.test = AST.cloneSimple(prevNode.declarations[0].init.arguments[0] ?? AST.identifier('undefined'));
+        prevNode.kind = 'let';
+        prevNode.declarations[0].init = AST.fals(); // or true; shouldn't matter?
 
         after(node);
         ++changed;

@@ -1,22 +1,25 @@
 # Preval test case
 
-# false_alt_truthy_empty_alt.md
+# back-to-back-if-test2.md
 
-> If update test > False alt truthy empty alt
+> If weaving > Back-to-back-if-test2
 >
-> Fold up back-to-back Ifs when the first mutate the tests of the second
+> In this case $(c) is unreachable because $(d) is invariably visited.
 
 ## Input
 
 `````js filename=intro
-let x = false;
-if ($) {
+let x = !$();
+if (x) {
+  $(`a`);
 } else {
+  $(`b`);
   x = true;
 }
 if (x) {
-  $(3);
+  $(`d`);
 } else {
+  $(`c`);
 }
 `````
 
@@ -24,14 +27,17 @@ if (x) {
 
 
 `````js filename=intro
-let x = false;
-if ($) {
+let x = !$();
+if (x) {
+  $(`a`);
 } else {
+  $(`b`);
   x = true;
 }
 if (x) {
-  $(3);
+  $(`d`);
 } else {
+  $(`c`);
 }
 `````
 
@@ -39,14 +45,18 @@ if (x) {
 
 
 `````js filename=intro
-let x = false;
-if ($) {
+const tmpUnaryArg = $();
+let x = !tmpUnaryArg;
+if (x) {
+  $(`a`);
 } else {
+  $(`b`);
   x = true;
 }
 if (x) {
-  $(3);
+  $(`d`);
 } else {
+  $(`c`);
 }
 `````
 
@@ -54,10 +64,13 @@ if (x) {
 
 
 `````js filename=intro
-if ($) {
+const tmpUnaryArg = $();
+if (tmpUnaryArg) {
+  $(`b`);
 } else {
-  $(3);
+  $(`a`);
 }
+$(`d`);
 `````
 
 ## PST Output
@@ -65,12 +78,14 @@ if ($) {
 With rename=true
 
 `````js filename=intro
-if ($) {
-
+const a = $();
+if (a) {
+  $( "b" );
 }
 else {
-  $( 3 );
+  $( "a" );
 }
+$( "d" );
 `````
 
 ## Globals
@@ -80,6 +95,9 @@ None
 ## Result
 
 Should call `$` with:
+ - 1: 
+ - 2: 'a'
+ - 3: 'd'
  - eval returned: undefined
 
 Pre normalization calls: Same

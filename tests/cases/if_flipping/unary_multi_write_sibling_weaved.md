@@ -12,7 +12,7 @@
 const a = $(1);
 const b = $(2);
 let y = !a;
-if (y) { // This should become x, with the branches flipped
+if (y) { // This should become a, with the branches flipped
   $('if1');
 } else {
   y = !b;
@@ -72,16 +72,16 @@ if (y) {
 `````js filename=intro
 const a = $(1);
 const b = $(2);
-let y = a;
+let y /*:boolean*/ = true;
 if (a) {
-  y = b;
+  y = !b;
 } else {
   $(`if1`);
 }
 if (y) {
-  $(`else1`);
-} else {
   $(`if2`);
+} else {
+  $(`else1`);
 }
 `````
 
@@ -92,18 +92,18 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = $( 2 );
-let c = a;
+let c = true;
 if (a) {
-  c = b;
+  c = !b;
 }
 else {
   $( "if1" );
 }
 if (c) {
-  $( "else1" );
+  $( "if2" );
 }
 else {
-  $( "if2" );
+  $( "else1" );
 }
 `````
 

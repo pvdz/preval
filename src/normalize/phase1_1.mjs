@@ -13,7 +13,7 @@ import {
   fmat,
   source,
   REF_TRACK_TRACING,
-  assertNoDupeNodes,
+  assertNoDupeNodes, todo,
 } from '../utils.mjs';
 import { createTypingObject, getCleanTypingObject, getMeta, inferNodeTyping, mergeTyping } from '../bindings.mjs';
 import { SYMBOL_COERCE, SYMBOL_FRFR } from '../symbols_preval.mjs';
@@ -601,26 +601,15 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
         }
 
         // This is where we actually update the params, one way or another
-        if (m.typing.mustBeType === undefined) {
+        if (m.typing.mustBeType === funcMeta.callerArgs[i]) {
+          vlog('  - param', i, '(', paramName, '); discovered type was same as before; no change');
+        }
+        else if (m.typing.mustBeType === undefined) {
           // Not yet determined so now we do
-          vlog('  - param', i, '(', paramName, '); Ok! Marking param as:', funcMeta.callerArgs[i], ', writes:', m.writes.length);
+          vlog('  - param', i, '(', paramName, '); Ok! Had no type before, marking param as:', funcMeta.callerArgs[i], ', writes:', m.writes.length);
           m.typing.mustBeType = funcMeta.callerArgs[i];
           if (['object', 'array', 'regex', 'function', 'class'].includes(funcMeta.callerArgs[i])) m.typing.mustBeTruthy = true;
           else if (['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(funcMeta.callerArgs[i])) m.typing.mustBePrimitive = true;
-        }
-        else if (m.typing.mustBeType === 'primitive' && ['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(funcMeta.callerArgs[i])) {
-          // Ok, keep it.
-          vlog('  - param', i, '(', paramName, '); Caller arg was some kind of primitive and mustBeType already set to primitive; noop');
-        }
-        else if (funcMeta.callerArgs[i] === 'primitive' && ['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(m.typing.mustBeType)) {
-          // Demote type to a generic primitive. Clear anything else we may know about the type.
-          vlog('  - param', i, '(', paramName, '); Caller arg was a primitive while arg was but mustBeType was set to', m.typing.mustBeType, '; demoting it to a primitive');
-          const updated = createTypingObject({
-            mustBeType: 'primitive',
-            mustBePrimitive: true,
-          });
-          mergeTyping(updated, m.typing);
-          nogtechecken
         }
         else if (m.typing.mustBeType === false) {
           vlog('  - param', i, '(', paramName, '); Couldnt figure it out before so copy what we found now:', funcMeta.callerArgs[i]);
@@ -628,14 +617,34 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
           if (['object', 'array', 'regex', 'function', 'class'].includes(funcMeta.callerArgs[i])) m.typing.mustBeTruthy = true;
           else if (['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(funcMeta.callerArgs[i])) m.typing.mustBePrimitive = true;
         }
-        else if (m.typing.mustBeType !== false && m.typing.mustBeType !== funcMeta.callerArgs[i]) {
-          // It was determined but different from this information. Not sure how I feel about that...
-          // This does happen legit when there's an assignment to the param, so that can happen.
-          vlog('  - param', i, '(', paramName, '); Caller arg was', funcMeta.callerArgs[i], 'but mustBeType was already set to', m.typing.mustBeType, '; setting it to false now');
-          ASSERT(m.writes.length > 1, 'this is a bad omen. unless the param was assigned to, it means the heuristic was incorrect...', m.typing.mustBeType, funcMeta.callerArgs[i]);
-          m.typing.mustBeType = false;
+        else if (['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(funcMeta.callerArgs[i])) {
+          if (['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(m.typing.mustBeType)) {
+            // If it _was_ already a primitive type
+            // We conclude a primitive but the type was more narrow or different.
+            // Demote type to a generic primitive. Clear anything else we may know about the type.
+            vlog('  - param', i, '(', paramName, '); Caller arg was determined to some sort of primitive but different than we found now, demote to primitive');
+            const updated = createTypingObject({
+              mustBeType: 'primitive',
+              mustBePrimitive: true,
+            });
+            mergeTyping(updated, m.typing);
+            todo('Record this phase1.1 as a test case, please (A)');
+          }
+          else {
+            ASSERT(m.typing.mustBeType !== funcMeta.callerArgs[i], 'we found some kind of primitive but before we had a non-primitive', m.typing.mustBeType, funcMeta.callerArgs[i]);
+            // If it _was_ determined to be a different type (but not primitive cause thats checked above)
+            // It was determined but different from this information. Not sure how I feel about that...
+            // This does happen legit when there's an assignment to the param, so that can happen.
+            vlog('  - param', i, '(', paramName, '); Caller arg was', funcMeta.callerArgs[i], 'but mustBeType was already set to', m.typing.mustBeType, '; setting it to false now');
+            ASSERT(m.writes.length > 1, 'this is a bad omen. unless the param was assigned to, it means the heuristic was incorrect...', m.typing.mustBeType, funcMeta.callerArgs[i]);
+            m.typing.mustBeType = false;
+            todo('Record this phase1.1 as a test case, please (B)');
+          }
         } else {
+          ASSERT(m.typing.mustBeType !== funcMeta.callerArgs[i], 'we found some kind of non-primitive and before we had a non-primitive', m.typing.mustBeType, funcMeta.callerArgs[i]);
           vlog('  - param', i, '(', paramName, '); Caller arg was same type as already known:', m.typing.mustBeType);
+          m.typing.mustBeType = false;
+          todo('Record this phase1.1 as a test case, please (C)');
         }
       });
     });
@@ -681,16 +690,25 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
         // This param is assigned to multiple times. Risky and we should bail for now.
         funcMeta.callerArgs[i] = undefined; // seal
       }
+      else if (m.typing.mustBeType === funcMeta.callerArgs[i]) {
+        vlog('  - param', i, '(', paramName, '); discovered type was same as before; no change');
+      }
       else if (m.typing.mustBeType === undefined) {
         // Not yet determined so now we do
         vlog('  - param', i, '(', paramName, '); Ok! Marking param as:', funcMeta.callerArgs[i], ', writes:', m.writes.length);
         m.typing.mustBeType = funcMeta.callerArgs[i];
-        if (['object', 'array', 'regex', 'function', 'class'].includes(funcMeta.callerArgs[i])) m.typing.mustBeTruthy = true;
+        if (['object', 'array', 'regex', 'function', 'class', 'promise'].includes(funcMeta.callerArgs[i])) m.typing.mustBeTruthy = true;
+        else if (['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(funcMeta.callerArgs[i])) m.typing.mustBePrimitive = true;
+      }
+      else if (m.typing.mustBeType === false) {
+        vlog('  - param', i, '(', paramName, '); Couldnt figure it out before so copy what we found now:', funcMeta.callerArgs[i]);
+        m.typing.mustBeType = funcMeta.callerArgs[i];
+        if (['object', 'array', 'regex', 'function', 'class', 'promise'].includes(funcMeta.callerArgs[i])) m.typing.mustBeTruthy = true;
         else if (['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(funcMeta.callerArgs[i])) m.typing.mustBePrimitive = true;
       }
       else if (m.typing.mustBeType === 'primitive' && ['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(funcMeta.callerArgs[i])) {
         // Ok, keep it.
-        vlog('  - param', i, '(', paramName, '); Caller arg was some kind of primitive and mustBeType already set to primitive; noop');
+        vlog('  - param', i, '(', paramName, '); Caller arg was some kind of primitive and mustBeType already set to "primitive"; noop');
       }
       else if (funcMeta.callerArgs[i] === 'primitive' && ['undefined', 'null', 'boolean', 'number', 'string', 'primitive'].includes(m.typing.mustBeType)) {
         // Demote type to a generic primitive. Clear anything else we may know about the type.
@@ -700,16 +718,15 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
           mustBePrimitive: true,
         });
         mergeTyping(updated, m.typing);
-        nogtechecken
+        todo('Record this phase1.1 as a test case, please (D)');
       }
-      else if (m.typing.mustBeType !== false && m.typing.mustBeType !== funcMeta.callerArgs[i]) {
+      else {
         // It was determined but different from this information. Not sure how I feel about that...
         // This does happen legit when there's an assignment to the param, so that can happen.
+        ASSERT(m.typing.mustBeType !== funcMeta.callerArgs[i], 'not a primitive, not the same, was already found, so must be inequal', m.typing.mustBeType, funcMeta.callerArgs[i]);
         ASSERT(m.writes.length > 1, 'this is a bad omen. unless the param was assigned to, it means the heuristic was incorrect...');
         vlog('  - param', i, '(', paramName, '); Caller arg was', funcMeta.callerArgs[i], 'but mustBeType was already set to', m.typing.mustBeType, '; setting it to false now');
         m.typing.mustBeType = false;
-      } else {
-        vlog('  - param', i, '(', paramName, '); Caller arg was same type as already known:', m.typing.mustBeType);
       }
     });
     vlog('- Caller args after update:', funcMeta.callerArgs);

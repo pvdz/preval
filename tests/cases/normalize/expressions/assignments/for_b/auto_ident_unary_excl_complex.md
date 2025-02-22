@@ -57,9 +57,9 @@ if (tmpUnaryArg) {
     $(1);
     const tmpUnaryArg$1 = $(100);
     a = !tmpUnaryArg$1;
-    if (a) {
-    } else {
+    if (tmpUnaryArg$1) {
       break;
+    } else {
     }
   }
 }
@@ -81,10 +81,7 @@ else {
     $( 1 );
     const c = $( 100 );
     b = !c;
-    if (b) {
-
-    }
-    else {
+    if (c) {
       break;
     }
   }

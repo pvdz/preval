@@ -6,7 +6,7 @@
 
 (this is a test)
 
-The b param is going to be an array regardless. Typing should know.
+The b param is going to be an number regardless. Typing should know.
 
 ## Input
 

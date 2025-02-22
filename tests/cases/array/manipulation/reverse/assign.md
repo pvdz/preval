@@ -1,16 +1,19 @@
 # Preval test case
 
-# array_reverse.md
+# assign.md
 
-> Tests > Tofix > Array reverse
+> Array > Manipulation > Reverse > Assign
 >
 > Simple case
 
 ## Input
 
 `````js filename=intro
-const arr = [1, 2];
+let arr = [1, 2];
 const rra = arr.reverse();
+if ($) {
+  arr = $
+}
 $(rra);
 `````
 
@@ -18,8 +21,11 @@ $(rra);
 
 
 `````js filename=intro
-const arr = [1, 2];
+let arr = [1, 2];
 const rra = arr.reverse();
+if ($) {
+  arr = $;
+}
 $(rra);
 `````
 
@@ -27,8 +33,12 @@ $(rra);
 
 
 `````js filename=intro
-const arr = [1, 2];
+let arr = [1, 2];
 const rra = arr.reverse();
+if ($) {
+  arr = $;
+} else {
+}
 $(rra);
 `````
 
@@ -36,9 +46,8 @@ $(rra);
 
 
 `````js filename=intro
-const arr /*:array*/ = [1, 2];
-const rra = arr.reverse();
-$(rra);
+const arr /*:array*/ = [2, 1];
+$(arr);
 `````
 
 ## PST Output
@@ -46,9 +55,8 @@ $(rra);
 With rename=true
 
 `````js filename=intro
-const a = [ 1, 2 ];
-const b = a.reverse();
-$( b );
+const a = [ 2, 1 ];
+$( a );
 `````
 
 ## Globals

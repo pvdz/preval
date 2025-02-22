@@ -235,7 +235,7 @@ function processAttempt(fdata) {
       }
     }
 
-    vlog(' - ok. Determine how the array is being used and try to inline it');
+    vlog(' - ok, array _binding_ is guaranteed to be an array. Determine how the array is being used and try to inline it');
 
     switch (nextRead.parentNode.type) {
       case 'MemberExpression': {
@@ -441,13 +441,15 @@ function processAttempt(fdata) {
                 return;
               }
             }
-          } else {
+          }
+          else {
             vlog(' - Property read on the array:', nextRead.parentNode.property.name);
             if (nextRead.parentNode.computed) {
               // `arr[foo]`
               vlog(' - Computed property read on the array. We can inline certain literals');
               //TODO
-            } else {
+            }
+            else {
               // `arr.foo`
               ASSERT(nextRead.parentNode.property.type === 'Identifier', 'non-computed must have ident, yes?');
               switch (nextRead.parentNode.property.name) {
@@ -457,6 +459,8 @@ function processAttempt(fdata) {
                   return;
                 }
                 case 'pop': {
+                  // Note: if `pop` logic fails here, also fix `reverse` below.
+
                   if (nextRead.grandNode.type === 'CallExpression') {
                     // These are a bit annoying because we need to reach to the grand-grand parent
                     // node to replace the call and we don't store that by default.
@@ -465,7 +469,7 @@ function processAttempt(fdata) {
                     const arrNode = write.parentNode.init;
                     if (arrNode.elements.length === 0) {
                       rule('Calling .pop on an empty array literal resolves to undefined');
-                      example('const arr = []; arr.pop();', 'const arr = [1, 2, 3]; undefined;');
+                      example('const arr = []; arr.pop();', 'const arr = []; undefined;');
                       before(write.blockBody[write.blockIndex]);
                       before(nextRead.blockBody[nextRead.blockIndex]);
 
@@ -494,7 +498,8 @@ function processAttempt(fdata) {
                       updated += 1;
                       if (nextRead.grandNode.arguments.length) addedSequence = true; // Eliminated useless .pop() args
                       return;
-                    } else {
+                    }
+                    else {
                       rule('Calling .pop on an array literal we can fully track can be resolved');
                       example('const arr = [1, 2, 3]; arr.pop();', 'const arr = [1, 2]; 3;');
                       before(write.blockBody[write.blockIndex]);
@@ -529,7 +534,8 @@ function processAttempt(fdata) {
                       if (nextRead.grandNode.arguments.length) addedSequence = true; // Eliminated useless .pop() args
                       return;
                     }
-                  } else {
+                  }
+                  else {
                     vlog('- bail: Read .pop but did not call it');
                     // TODO: replace it with $array_pop
                     return;
@@ -964,6 +970,84 @@ function processAttempt(fdata) {
                     return true;
                   }
                   break;
+                }
+                case 'reverse': {
+                  // Logic is same as `pop` above. If this breaks, fix that too.
+
+                  if (nextRead.grandNode.type === 'CallExpression') {
+                    // These are a bit annoying because we need to reach to the grand-grand parent
+                    // node to replace the call and we don't store that by default.
+                    // Instead, for now, we'll check some cases on the statement level.
+
+                    const arrNode = write.parentNode.init;
+                    if (arrNode.elements.length === 0) {
+                      rule('Calling .reverse on an empty array literal is a noop');
+                      example('const arr = []; const y = arr.reverse();', 'const arr = []; const y = arr;');
+                      before(write.blockBody[write.blockIndex]);
+                      before(nextRead.blockBody[nextRead.blockIndex]);
+
+                      // .reverse() returns the array it mutated so we should be able to leave the context
+
+                      // Rare case where grandNode does not suffice; we need the parent of the grand node to replace the whole call.
+                      // In normalized code this can only be three things: expr stmt call, expr stmt assign call, var decl init call
+
+                      if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
+                        ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code, calls can not be nested so it must be the init');
+                        nextRead.blockBody[nextRead.blockIndex].declarations[0].init = nextRead.parentNode.object;
+                      } else {
+                        ASSERT(nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement');
+                        if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression') {
+                          ASSERT(nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode, 'in normalized code, if expr stmt assign, a call must be the rhs');
+                          nextRead.blockBody[nextRead.blockIndex].expression.right = nextRead.parentNode.object;
+                        } else {
+                          ASSERT(nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode, 'in normalized code, if expr stmt and not assign, then a call must be the expr itself');
+                          nextRead.blockBody[nextRead.blockIndex].expression = nextRead.parentNode.object;
+                        }
+                      }
+
+                      after(write.blockBody[write.blockIndex]);
+                      after(nextRead.blockBody[nextRead.blockIndex]);
+                      updated += 1;
+                      return;
+                    }
+                    else {
+                      rule('Calling .reverse on an array literal without changes in between can be resolved');
+                      example('const arr = [1, 2, 3]; const y = arr.reverse();', 'const arr = [3, 2, 1]; const y = arr;');
+                      before(write.blockBody[write.blockIndex]);
+                      before(nextRead.blockBody[nextRead.blockIndex]);
+
+                      // .reverse() returns the array it mutated so we should be able to leave the context
+
+                      // Rare case where grandNode does not suffice; we need the parent of the grand node to replace the whole call.
+                      // In normalized code this can only be three things: expr stmt call, expr stmt assign call, var decl init call
+
+                      if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
+                        ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code, calls can not be nested so it must be the init');
+                        nextRead.blockBody[nextRead.blockIndex].declarations[0].init = nextRead.parentNode.object;
+                      } else {
+                        ASSERT(nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement');
+                        if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression') {
+                          ASSERT(nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode, 'in normalized code, if expr stmt assign, a call must be the rhs');
+                          nextRead.blockBody[nextRead.blockIndex].expression.right = nextRead.parentNode.object;
+                        } else {
+                          ASSERT(nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode, 'in normalized code, if expr stmt and not assign, then a call must be the expr itself');
+                          nextRead.blockBody[nextRead.blockIndex].expression = nextRead.parentNode.object;
+                        }
+                      }
+
+                      arrayLiteralNode.elements.reverse();
+
+                      after(write.blockBody[write.blockIndex]);
+                      after(nextRead.blockBody[nextRead.blockIndex]);
+                      updated += 1;
+                      return;
+                    }
+                  }
+                  else {
+                    vlog('- bail: Read .pop but did not call it');
+                    // TODO: replace it with $array_pop
+                    return;
+                  }
                 }
               }
             }

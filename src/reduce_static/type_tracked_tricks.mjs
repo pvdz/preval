@@ -1077,6 +1077,10 @@ function _typeTrackedTricks(fdata) {
                 // See the 'join' case in arr_mutation
                 break;
               }
+              case 'array.reverse': {
+                // See the 'reverse' case in arr_mutation
+                break;
+              }
               case 'boolean.toString': {
                 // `true.toString()`
                 // `false.toString()`

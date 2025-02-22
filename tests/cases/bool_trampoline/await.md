@@ -67,7 +67,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const f /*:(unknown)=>?*/ = async function ($$0) {
+const f /*:(undefined)=>promise*/ = async function ($$0) {
   debugger;
   const tmpClusterSSA_x = $(0);
   const y = await tmpClusterSSA_x;
@@ -75,12 +75,8 @@ const f /*:(unknown)=>?*/ = async function ($$0) {
 };
 $(f);
 $(f);
-const tmpIfTest = f();
-if (tmpIfTest) {
-  $(`pass`);
-} else {
-  $(`fail`);
-}
+f();
+$(`pass`);
 `````
 
 ## PST Output
@@ -96,13 +92,8 @@ const a = async function($$0 ) {
 };
 $( a );
 $( a );
-const d = a();
-if (d) {
-  $( "pass" );
-}
-else {
-  $( "fail" );
-}
+a();
+$( "pass" );
 `````
 
 ## Globals

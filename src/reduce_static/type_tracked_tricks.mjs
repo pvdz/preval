@@ -263,9 +263,27 @@ function _typeTrackedTricks(fdata) {
                 case 'object':
                 case 'function':
                 case 'class':
+                case 'promise':
                 case 'regex': {
-                  // Seen a problem trigger this assert where the arg was not always an array. Investigate when this assert raises its head.
-                  throw ASSERT(false, 'Potential issue! This is `if ([])` or smth? in this case of testMeta.typing.mustBeTruthy of an if-test there is no falsy counter part so the `if` should be removed entirely, this case should not be reachable, maybe a bug...?', node, testMeta.typing);
+                  // One example is `function *f(){} const x = f(); if (x) {}`, in which x is an object here (iterator)
+                  // I guess in most cases other rules will have eliminated this case long before reaching this point.
+
+                  queue.push({
+                    index: parentIndex,
+                    func: () => {
+                      // Covered by tests/cases/type_tracked/if/base_bool_unknown_false.md
+                      rule('When an `if` test is an object type, the test is always truthy');
+                      example(`function *f(){}; const x = f(); if (x) $(x); else $('nope')`, 'function *f(){} const x = f(); $(x)');
+                      before(node, parentNode);
+
+                      // Since we've asserted the value to be truthy, we should be able to simply use the consequent block and drop the rest.
+                      parentNode[parentProp].splice(parentIndex, 1, ...node.consequent.body);
+
+                      after(parentNode[parentProp][parentIndex], parentNode);
+                    }
+                  })
+                  ++changes;
+                  break;
                 }
                 default:
                   ASSERT(false, 'support me', ttm);

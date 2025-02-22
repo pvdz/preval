@@ -18,9 +18,9 @@ $(encodeURIComponent("\uDFFF"));
 
 
 `````js filename=intro
-$(encodeURIComponent(`𐏿`));
-$(encodeURIComponent(`�`));
-$(encodeURIComponent(`�`));
+$(encodeURIComponent(`\ud800\udfff`));
+$(encodeURIComponent(`\ud800`));
+$(encodeURIComponent(`\udfff`));
 `````
 
 ## Normalized
@@ -28,13 +28,13 @@ $(encodeURIComponent(`�`));
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = encodeURIComponent(`𐏿`);
+const tmpCalleeParam = encodeURIComponent(`\ud800\udfff`);
 tmpCallCallee(tmpCalleeParam);
 const tmpCallCallee$1 = $;
-const tmpCalleeParam$1 = encodeURIComponent(`�`);
+const tmpCalleeParam$1 = encodeURIComponent(`\ud800`);
 tmpCallCallee$1(tmpCalleeParam$1);
 const tmpCallCallee$3 = $;
-const tmpCalleeParam$3 = encodeURIComponent(`�`);
+const tmpCalleeParam$3 = encodeURIComponent(`\udfff`);
 tmpCallCallee$3(tmpCalleeParam$3);
 `````
 
@@ -43,9 +43,9 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 `````js filename=intro
 $(`%F0%90%8F%BF`);
-const tmpCalleeParam$1 = encodeURIComponent(`�`);
+const tmpCalleeParam$1 = encodeURIComponent(`\ud800`);
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 = encodeURIComponent(`�`);
+const tmpCalleeParam$3 = encodeURIComponent(`\udfff`);
 $(tmpCalleeParam$3);
 `````
 
@@ -55,9 +55,9 @@ With rename=true
 
 `````js filename=intro
 $( "%F0%90%8F%BF" );
-const a = encodeURIComponent( "�" );
+const a = encodeURIComponent( "\ud800" );
 $( a );
-const b = encodeURIComponent( "�" );
+const b = encodeURIComponent( "\udfff" );
 $( b );
 `````
 

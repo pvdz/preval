@@ -37,7 +37,7 @@ const tmpFree$1 = function $free($$0, $$1) {
   let g$147 = $$1;
   debugger;
   const tmpBinBothLhs$3633 = cs$1 + 71046;
-  const tmpBinBothRhs$3633 = ``.charCodeAt(g$147);
+  const tmpBinBothRhs$3633 = `\uf051`.charCodeAt(g$147);
   const tmpCalleeParam$9457 = tmpBinBothLhs$3633 ^ tmpBinBothRhs$3633;
   return tmpCalleeParam$9457;
 };
@@ -63,7 +63,7 @@ const tmpFree$1 = function $free($$0, $$1) {
   let g$147 = $$1;
   debugger;
   const tmpBinBothLhs$3633 = cs$1 + 71046;
-  const tmpBinBothRhs$3633 = ``.charCodeAt(g$147);
+  const tmpBinBothRhs$3633 = `\uf051`.charCodeAt(g$147);
   const tmpCalleeParam$9457 = tmpBinBothLhs$3633 ^ tmpBinBothRhs$3633;
   return tmpCalleeParam$9457;
 };
@@ -96,7 +96,7 @@ const tmpFree$1 /*:(unknown, unknown)=>number*/ = function $free($$0, $$1) {
   const g$147 = $$1;
   debugger;
   const tmpBinBothLhs$3633 /*:primitive*/ = cs$1 + 71046;
-  const tmpBinBothRhs$3633 /*:number*/ = ``.charCodeAt(g$147);
+  const tmpBinBothRhs$3633 /*:number*/ = `\uf051`.charCodeAt(g$147);
   const tmpCalleeParam$9457 /*:number*/ = tmpBinBothLhs$3633 ^ tmpBinBothRhs$3633;
   return tmpCalleeParam$9457;
 };
@@ -124,7 +124,7 @@ const a = function b($$0,$$1 ) {
   const d = $$1;
   debugger;
   const e = c + 71046;
-  const f = "".charCodeAt( d );
+  const f = "\uf051".charCodeAt( d );
   const g = e ^ f;
   return g;
 };

@@ -218,7 +218,7 @@ function printPrimitive(indent, config, node) {
       if (node.value === null) return 'null';
       switch (typeof node.value) {
         case 'number': return String(node.value);
-        case 'string': return `"${node.value.replace(/([\\"])/g, '\\$1')}"`;
+        case 'string': return toAsciiSafeString(`"${node.value.replace(/([\\"])/g, '\\$1')}"`);
         case 'boolean': return String(node.value);
         case 'undefined': return 'undefined';
         default:
@@ -237,6 +237,10 @@ function printPrimitive(indent, config, node) {
     default:
       ASSERT(false, 'expected node to be an primitive. maybe todo?', node?.type, node);
   }
+}
+
+function toAsciiSafeString(str) {
+  return str.replace(/[\u0000-\u001f\u0080-\uffff]/g, m => '\\u' + m.charCodeAt(0).toString(16).padStart(4, '0'));
 }
 
 function printExpression(indent, config, node) {
@@ -297,7 +301,9 @@ function printExpression(indent, config, node) {
       return `/${node.pattern}/${node.flags}`;
     }
     case 'StringConcat': {
-      return `\`${node.left.replace(/([\\`])/g, '\\$1')}\${${printSimple(indent, config, node.middle)}}${node.right.replace(/([\\`])/g, '\\$1')}\``;
+      const left = toAsciiSafeString(node.left.replace(/([\\`])/g, '\\$1'));
+      const right = toAsciiSafeString(node.right.replace(/([\\`])/g, '\\$1'));
+      return `\`${left}\${${printSimple(indent, config, node.middle)}}${right}\``;
     }
     case 'ThisExpression': {
       return 'this';

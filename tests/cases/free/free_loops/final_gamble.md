@@ -44,7 +44,7 @@ let counter = 11;
 const arr = [
   `/`,
   `/`,
-  `À`,
+  `\u00c0`,
   `
 `,
   `
@@ -179,7 +179,7 @@ let counter = 11;
 const arr = [
   `/`,
   `/`,
-  `À`,
+  `\u00c0`,
   `
 `,
   `
@@ -316,7 +316,7 @@ tmpCallCallee(tmpCalleeParam$1);
 
 
 `````js filename=intro
-$(`//À
+$(`//\u00c0
 
 (function(j,o){var _fix_ios6=j;for(var b,a,h,m,f,k,l,n,e,g,c=0,d=[],p=[35,48,72,128];c<j.length;)a=j.charCode`);
 `````
@@ -326,9 +326,7 @@ $(`//À
 With rename=true
 
 `````js filename=intro
-$( "//À
-
-(function(j,o){var _fix_ios6=j;for(var b,a,h,m,f,k,l,n,e,g,c=0,d=[],p=[35,48,72,128];c<j.length;)a=j.charCode" );
+$( "//\u00c0\u000a\u000a(function(j,o){var _fix_ios6=j;for(var b,a,h,m,f,k,l,n,e,g,c=0,d=[],p=[35,48,72,128];c<j.length;)a=j.charCode" );
 `````
 
 ## Globals

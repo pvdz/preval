@@ -46,13 +46,15 @@ if (x) {
 
 
 `````js filename=intro
-const x /*:boolean*/ = !unknown;
-if (x) {
-  $(`a`);
-  $(`d`);
-} else {
+if (unknown) {
   $(`b`);
+} else {
+  $(`a`);
+}
+if (unknown) {
   $(`c`);
+} else {
+  $(`d`);
 }
 `````
 
@@ -61,14 +63,17 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-const a = !unknown;
-if (a) {
-  $( "a" );
-  $( "d" );
+if (unknown) {
+  $( "b" );
 }
 else {
-  $( "b" );
+  $( "a" );
+}
+if (unknown) {
   $( "c" );
+}
+else {
+  $( "d" );
 }
 `````
 

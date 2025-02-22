@@ -103,6 +103,7 @@ import { freeNested } from '../reduce_static/free_nested.mjs';
 import { redundantInit } from '../reduce_static/redundant_init.mjs';
 import { staticIfOutlining } from '../reduce_static/static_if_outlining.mjs';
 import { dotcallSelfAssigning } from '../reduce_static/dotcall_self_assigning.mjs';
+import { ifTestInvIdent } from '../reduce_static/if_test_inv_ident.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
@@ -279,6 +280,7 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
     inlineIdenticalParam(fdata) ||
     returnClosure(fdata) ||
     returnArg(fdata) ||
+    ifTestInvIdent(fdata) ||
     typeTrackedTricks(fdata) ||
     arrSpreads(fdata) ||
     conditionalTyping(fdata) ||

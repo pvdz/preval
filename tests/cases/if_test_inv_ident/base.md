@@ -1,11 +1,11 @@
 # Preval test case
 
-# al_invert.md
+# base.md
 
-> Tests > Tofix > Al invert
+> If test inv ident > Base
 >
-> If a binding only has !x in all writes, can't we instead apply ! to the
-> reads? And is that helpful?
+> Doing an if-test on a value that was !-inverted means we can just invert
+> the if-else and use the invert-arg for it instead.
 
 ## Input
 
@@ -22,8 +22,8 @@ if (b) {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $(100);
     const d = $(100);
-    a = !d;
-    if (a) {
+    a = !d;                   // <--
+    if (a) {                  // <--
     } else {
       break;
     }
@@ -100,9 +100,9 @@ if (c) {
     $(100);
     const d = $(100);
     a = !d;
-    if (a) {
-    } else {
+    if (d) {
       break;
+    } else {
     }
   }
 }
@@ -125,10 +125,7 @@ else {
     $( 100 );
     const c = $( 100 );
     b = !c;
-    if (b) {
-
-    }
-    else {
+    if (c) {
       break;
     }
   }

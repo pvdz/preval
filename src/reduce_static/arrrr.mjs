@@ -24,7 +24,7 @@ import {
   fmat,
   tmat,
   coerce,
-  findBodyOffset,
+  findBodyOffset, todo,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { mayBindingMutateBetweenRefs } from '../bindings.mjs';
@@ -175,21 +175,17 @@ function processAttempt(fdata, queue) {
       }
     }
 
+
+
     const write = meta.writes[0];
 
     // Find all reads and confirm that they are member expressions which are reads, not writes
-    vlog('Check whether all access is either numeric or a handful of names that do not mutate the array');
-    meta.rwOrder.forEach((read, i) => {
-      if (failed) return;
-      if (meta.tainted) return;
-      if (sawMutatedOnce) return;
-
-      if (read.action === 'write') {
-        if (read.kind !== 'var') {
-          sawMutatedOnce = true;
-        }
-        return;
-      }
+    // We must take care of loops and try/catch cases, where mutations may or may not appear in order.
+    vgroup('Check whether all access is either numeric or a handful of names that do not mutate the array');
+    meta.rwOrder.some((read, i) => {
+      if (failed) return true;
+      if (meta.tainted) return true;
+      if (sawMutatedOnce) return true;
 
       vlog(
         '- read',
@@ -204,17 +200,29 @@ function processAttempt(fdata, queue) {
         '<read>',
       );
 
+      if (read.action === 'write') {
+        if (read.kind !== 'var') {
+          vlog(' - Non-var-decl write; bail');
+          sawMutatedOnce = true;
+        } else {
+          vlog(' - Found the var decl');
+        }
+        return;
+      }
+
       if (read.parentNode.type === 'MemberExpression' && read.grandNode.type === 'AssignmentExpression' && read.grandProp !== 'right') {
-        vlog('At least one read was part of a property write, array mutates, bailing');
+        vlog(' - At least one read was part of a property write, array mutates, bailing');
         sawMutatedOnce = true;
         return;
       }
       else if (read.parentNode.type === 'MemberExpression') {
+        vlog(' - Used in a member expression; node property:', [read.parentProp], ', computed:', read.parentNode.computed);
         const mem = read.parentNode;
 
         // Edge case. Solve the jsf*ck case `[][[]]` -> `undefined`
         // Note: `({"":"pass"}[[]])` -> `"pass"` (not undefined)
         // Note: `({0:"pass"}[[0]])` -> `"pass"` (not undefined)
+        // (Is `const o = {0:"pass"}; const a = [0]; o[a];`)
         if (read.parentProp === 'property' && read.parentNode.computed && arrNode.elements.every((enode) => !enode || AST.isPrimitive(enode))) {
           if (arrNode.elements.length === 0) {
             rule('The empty array literal that is used as a computed property name is the empty string');
@@ -602,6 +610,7 @@ function processAttempt(fdata, queue) {
         return;
       }
     });
+    vgroupEnd();
 
     if (meta.tainted) {
       // Something was mutated. We already logged out for this.

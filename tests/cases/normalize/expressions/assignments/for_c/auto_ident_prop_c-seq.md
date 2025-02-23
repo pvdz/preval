@@ -52,16 +52,16 @@ $(a, b);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
 const b /*:object*/ = { c: 1 };
 if (tmpIfTest) {
-  const tmpAssignRhsProp = $(b);
+  const tmpAssignRhsProp /*:unknown*/ = $(b);
   a = tmpAssignRhsProp.c;
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpAssignRhsProp$1 = $(b);
+      const tmpAssignRhsProp$1 /*:unknown*/ = $(b);
       a = tmpAssignRhsProp$1.c;
     } else {
       break;

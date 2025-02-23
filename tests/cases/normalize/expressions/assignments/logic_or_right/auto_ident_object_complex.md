@@ -47,13 +47,13 @@ $(a);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = $(100);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {
-  const tmpObjLitVal = $(1);
-  const tmpObjLitVal$3 = $(3);
+  const tmpObjLitVal /*:unknown*/ = $(1);
+  const tmpObjLitVal$3 /*:unknown*/ = $(3);
   const tmpNestedComplexRhs /*:object*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);

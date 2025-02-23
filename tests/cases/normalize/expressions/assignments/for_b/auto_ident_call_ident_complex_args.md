@@ -55,14 +55,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-const tmpCalleeParam$1 = $(2);
-let a = $(tmpCalleeParam, tmpCalleeParam$1);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpCalleeParam$1 /*:unknown*/ = $(2);
+let a /*:unknown*/ = $(tmpCalleeParam, tmpCalleeParam$1);
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(1);
-    const tmpCalleeParam$2 = $(1);
-    const tmpCalleeParam$4 = $(2);
+    const tmpCalleeParam$2 /*:unknown*/ = $(1);
+    const tmpCalleeParam$4 /*:unknown*/ = $(2);
     a = $(tmpCalleeParam$2, tmpCalleeParam$4);
     if (a) {
     } else {

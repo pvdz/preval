@@ -52,14 +52,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 = $(0);
-let a = $(tmpCalleeParam$1);
+const tmpCalleeParam$1 /*:unknown*/ = $(0);
+let a /*:unknown*/ = $(tmpCalleeParam$1);
 if (a) {
   const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
   const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  const tmpCalleeParam$3 = $(2);
+  const tmpCalleeParam$3 /*:unknown*/ = $(2);
   a = $(tmpCalleeParam$3);
   const tmpClusterSSA_tmpBinBothRhs$1 /*:string*/ = $coerce(a, `string`);
   const tmpClusterSSA_tmpCalleeParam$1 /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs$1}  after`;

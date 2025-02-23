@@ -42,11 +42,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(100);
+const tmpIfTest /*:unknown*/ = $(100);
 if (tmpIfTest) {
 } else {
-  const tmpBinBothLhs = $(1);
-  const tmpBinBothRhs = $(2);
+  const tmpBinBothLhs /*:unknown*/ = $(1);
+  const tmpBinBothRhs /*:unknown*/ = $(2);
   tmpBinBothLhs + tmpBinBothRhs;
 }
 const a /*:object*/ = { a: 999, b: 1000 };

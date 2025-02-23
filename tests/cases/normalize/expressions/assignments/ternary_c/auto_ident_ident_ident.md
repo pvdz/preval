@@ -55,10 +55,10 @@ $(a, b, c);
 
 `````js filename=intro
 let b /*:number*/ = 1;
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(0);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   b = 2;

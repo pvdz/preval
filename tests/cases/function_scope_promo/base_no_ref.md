@@ -123,7 +123,7 @@ if ($) {
   }
 } else {
 }
-const tmpReturnArg = $(10);
+const tmpReturnArg /*:unknown*/ = $(10);
 $(tmpReturnArg);
 `````
 

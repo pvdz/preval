@@ -58,8 +58,8 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 
 `````js filename=intro
 const f /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
-  const a = $$0;
-  const b = $$1;
+  const a /*:unknown*/ = $$0;
+  const b /*:unknown*/ = $$1;
   debugger;
   const rest /*:array*/ = [];
   $(a, b, rest);
@@ -67,8 +67,8 @@ const f /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
 };
 f(1, 2);
 f(`a`, `b`);
-const tmpCalleeParam = $spy();
-const tmpCalleeParam$1 = $spy();
+const tmpCalleeParam /*:unknown*/ = $spy();
+const tmpCalleeParam$1 /*:unknown*/ = $spy();
 f(tmpCalleeParam, tmpCalleeParam$1);
 `````
 

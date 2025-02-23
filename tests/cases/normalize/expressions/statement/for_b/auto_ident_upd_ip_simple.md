@@ -66,7 +66,7 @@ $(1);
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
-  const tmpPostUpdArgIdent$1 = b;
+  const tmpPostUpdArgIdent$1 /*:unknown*/ = b;
   b = b + 1;
   if (tmpPostUpdArgIdent$1) {
   } else {

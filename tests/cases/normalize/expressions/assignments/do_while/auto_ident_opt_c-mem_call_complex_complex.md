@@ -76,37 +76,37 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
+let a /*:unknown*/ = undefined;
 $(100);
 const b /*:object*/ = { $: $ };
-const tmpChainElementCall = $(b);
+const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainRootComputed = $(`\$`);
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  const tmpChainRootComputed /*:unknown*/ = $(`\$`);
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$3) {
   } else {
-    const tmpCalleeParam$3 = $(1);
-    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
+    const tmpCalleeParam$3 /*:unknown*/ = $(1);
+    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
     a = tmpChainElementCall$1;
   }
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpChainElementCall$2 = $(b);
+    const tmpChainElementCall$2 /*:unknown*/ = $(b);
     const tmpIfTest$2 /*:boolean*/ = tmpChainElementCall$2 == null;
     if (tmpIfTest$2) {
     } else {
-      const tmpChainRootComputed$1 = $(`\$`);
-      const tmpChainElementObject$1 = tmpChainElementCall$2[tmpChainRootComputed$1];
+      const tmpChainRootComputed$1 /*:unknown*/ = $(`\$`);
+      const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$2[tmpChainRootComputed$1];
       const tmpIfTest$4 /*:boolean*/ = tmpChainElementObject$1 == null;
       if (tmpIfTest$4) {
       } else {
-        const tmpCalleeParam$1 = $(1);
-        const tmpChainElementCall$4 = $dotCall(tmpChainElementObject$1, tmpChainElementCall$2, tmpCalleeParam$1);
+        const tmpCalleeParam$1 /*:unknown*/ = $(1);
+        const tmpChainElementCall$4 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementCall$2, tmpCalleeParam$1);
         a = tmpChainElementCall$4;
       }
     }

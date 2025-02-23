@@ -65,16 +65,16 @@ arrPatternSplat[0];
 $(10);
 $(20);
 const tmpCalleeParam$1 /*:array*/ = [1, 2];
-const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
+const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
 const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-let tmpClusterSSA_a = arrPatternSplat$1[0];
+let tmpClusterSSA_a /*:unknown*/ = arrPatternSplat$1[0];
 if (tmpNestedAssignArrPatternRhs) {
   $(tmpNestedAssignArrPatternRhs);
 } else {
   $(10);
   $(20);
   const tmpCalleeParam$3 /*:array*/ = [1, 2];
-  const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$3);
+  const tmpNestedAssignArrPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$3);
   const arrPatternSplat$3 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
   tmpClusterSSA_a = arrPatternSplat$3[0];
   $(tmpNestedAssignArrPatternRhs$1);

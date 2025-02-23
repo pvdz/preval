@@ -49,15 +49,15 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 let tmpClusterSSA_a /*:number*/ = 0;
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   tmpClusterSSA_a = a * 2;
   $(tmpClusterSSA_a);
 } else {
-  const tmpCalleeParam$1 = $(100);
-  const tmpClusterSSA_tmpBinBothRhs = $(tmpCalleeParam$1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(100);
+  const tmpClusterSSA_tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam$1);
   tmpClusterSSA_a = a * tmpClusterSSA_tmpBinBothRhs;
   $(tmpClusterSSA_a);
 }

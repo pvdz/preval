@@ -49,12 +49,12 @@ $(a, b);
 
 `````js filename=intro
 let a /*:number*/ = 2;
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
 } else {
   a = 3;
 }
-const tmpIfTest$1 = $(0);
+const tmpIfTest$1 /*:unknown*/ = $(0);
 if (tmpIfTest$1) {
   $(a, 4);
 } else {

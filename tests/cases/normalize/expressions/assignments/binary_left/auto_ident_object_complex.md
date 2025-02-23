@@ -44,9 +44,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
-const tmpObjLitVal$3 = $(3);
-const tmpBinBothRhs = $(100);
+const tmpObjLitVal /*:unknown*/ = $(1);
+const tmpObjLitVal$3 /*:unknown*/ = $(3);
+const tmpBinBothRhs /*:unknown*/ = $(100);
 const a /*:object*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpCalleeParam);

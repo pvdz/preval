@@ -53,143 +53,143 @@ $(a);
 
 `````js filename=intro
 loopStop: {
-  const tmpCalleeParam = $(0);
-  const tmpIfTest = $(tmpCalleeParam);
+  const tmpCalleeParam /*:unknown*/ = $(0);
+  const tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
   if (tmpIfTest) {
     $(100);
   } else {
-    const tmpCalleeParam$1 = $(2);
-    const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam$1);
+    const tmpCalleeParam$1 /*:unknown*/ = $(2);
+    const tmpClusterSSA_tmpIfTest /*:unknown*/ = $(tmpCalleeParam$1);
     if (tmpClusterSSA_tmpIfTest) {
       $(100);
     } else {
       break loopStop;
     }
   }
-  const tmpCalleeParam$2 = $(0);
-  const tmpIfTest$1 = $(tmpCalleeParam$2);
+  const tmpCalleeParam$2 /*:unknown*/ = $(0);
+  const tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$2);
   if (tmpIfTest$1) {
     $(100);
   } else {
-    const tmpCalleeParam$4 = $(2);
-    const tmpClusterSSA_tmpIfTest$1 = $(tmpCalleeParam$4);
+    const tmpCalleeParam$4 /*:unknown*/ = $(2);
+    const tmpClusterSSA_tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$4);
     if (tmpClusterSSA_tmpIfTest$1) {
       $(100);
     } else {
       break loopStop;
     }
   }
-  const tmpCalleeParam$3 = $(0);
-  const tmpIfTest$2 = $(tmpCalleeParam$3);
+  const tmpCalleeParam$3 /*:unknown*/ = $(0);
+  const tmpIfTest$2 /*:unknown*/ = $(tmpCalleeParam$3);
   if (tmpIfTest$2) {
     $(100);
   } else {
-    const tmpCalleeParam$5 = $(2);
-    const tmpClusterSSA_tmpIfTest$2 = $(tmpCalleeParam$5);
+    const tmpCalleeParam$5 /*:unknown*/ = $(2);
+    const tmpClusterSSA_tmpIfTest$2 /*:unknown*/ = $(tmpCalleeParam$5);
     if (tmpClusterSSA_tmpIfTest$2) {
       $(100);
     } else {
       break loopStop;
     }
   }
-  const tmpCalleeParam$6 = $(0);
-  const tmpIfTest$3 = $(tmpCalleeParam$6);
+  const tmpCalleeParam$6 /*:unknown*/ = $(0);
+  const tmpIfTest$3 /*:unknown*/ = $(tmpCalleeParam$6);
   if (tmpIfTest$3) {
     $(100);
   } else {
-    const tmpCalleeParam$8 = $(2);
-    const tmpClusterSSA_tmpIfTest$3 = $(tmpCalleeParam$8);
+    const tmpCalleeParam$8 /*:unknown*/ = $(2);
+    const tmpClusterSSA_tmpIfTest$3 /*:unknown*/ = $(tmpCalleeParam$8);
     if (tmpClusterSSA_tmpIfTest$3) {
       $(100);
     } else {
       break loopStop;
     }
   }
-  const tmpCalleeParam$7 = $(0);
-  const tmpIfTest$4 = $(tmpCalleeParam$7);
+  const tmpCalleeParam$7 /*:unknown*/ = $(0);
+  const tmpIfTest$4 /*:unknown*/ = $(tmpCalleeParam$7);
   if (tmpIfTest$4) {
     $(100);
   } else {
-    const tmpCalleeParam$9 = $(2);
-    const tmpClusterSSA_tmpIfTest$4 = $(tmpCalleeParam$9);
+    const tmpCalleeParam$9 /*:unknown*/ = $(2);
+    const tmpClusterSSA_tmpIfTest$4 /*:unknown*/ = $(tmpCalleeParam$9);
     if (tmpClusterSSA_tmpIfTest$4) {
       $(100);
     } else {
       break loopStop;
     }
   }
-  const tmpCalleeParam$10 = $(0);
-  const tmpIfTest$5 = $(tmpCalleeParam$10);
+  const tmpCalleeParam$10 /*:unknown*/ = $(0);
+  const tmpIfTest$5 /*:unknown*/ = $(tmpCalleeParam$10);
   if (tmpIfTest$5) {
     $(100);
   } else {
-    const tmpCalleeParam$12 = $(2);
-    const tmpClusterSSA_tmpIfTest$5 = $(tmpCalleeParam$12);
+    const tmpCalleeParam$12 /*:unknown*/ = $(2);
+    const tmpClusterSSA_tmpIfTest$5 /*:unknown*/ = $(tmpCalleeParam$12);
     if (tmpClusterSSA_tmpIfTest$5) {
       $(100);
     } else {
       break loopStop;
     }
   }
-  const tmpCalleeParam$11 = $(0);
-  const tmpIfTest$6 = $(tmpCalleeParam$11);
+  const tmpCalleeParam$11 /*:unknown*/ = $(0);
+  const tmpIfTest$6 /*:unknown*/ = $(tmpCalleeParam$11);
   if (tmpIfTest$6) {
     $(100);
   } else {
-    const tmpCalleeParam$13 = $(2);
-    const tmpClusterSSA_tmpIfTest$6 = $(tmpCalleeParam$13);
+    const tmpCalleeParam$13 /*:unknown*/ = $(2);
+    const tmpClusterSSA_tmpIfTest$6 /*:unknown*/ = $(tmpCalleeParam$13);
     if (tmpClusterSSA_tmpIfTest$6) {
       $(100);
     } else {
       break loopStop;
     }
   }
-  const tmpCalleeParam$14 = $(0);
-  const tmpIfTest$7 = $(tmpCalleeParam$14);
+  const tmpCalleeParam$14 /*:unknown*/ = $(0);
+  const tmpIfTest$7 /*:unknown*/ = $(tmpCalleeParam$14);
   if (tmpIfTest$7) {
     $(100);
   } else {
-    const tmpCalleeParam$16 = $(2);
-    const tmpClusterSSA_tmpIfTest$7 = $(tmpCalleeParam$16);
+    const tmpCalleeParam$16 /*:unknown*/ = $(2);
+    const tmpClusterSSA_tmpIfTest$7 /*:unknown*/ = $(tmpCalleeParam$16);
     if (tmpClusterSSA_tmpIfTest$7) {
       $(100);
     } else {
       break loopStop;
     }
   }
-  const tmpCalleeParam$15 = $(0);
-  const tmpIfTest$8 = $(tmpCalleeParam$15);
+  const tmpCalleeParam$15 /*:unknown*/ = $(0);
+  const tmpIfTest$8 /*:unknown*/ = $(tmpCalleeParam$15);
   if (tmpIfTest$8) {
     $(100);
   } else {
-    const tmpCalleeParam$17 = $(2);
-    const tmpClusterSSA_tmpIfTest$8 = $(tmpCalleeParam$17);
+    const tmpCalleeParam$17 /*:unknown*/ = $(2);
+    const tmpClusterSSA_tmpIfTest$8 /*:unknown*/ = $(tmpCalleeParam$17);
     if (tmpClusterSSA_tmpIfTest$8) {
       $(100);
     } else {
       break loopStop;
     }
   }
-  const tmpCalleeParam$18 = $(0);
-  const tmpIfTest$9 = $(tmpCalleeParam$18);
+  const tmpCalleeParam$18 /*:unknown*/ = $(0);
+  const tmpIfTest$9 /*:unknown*/ = $(tmpCalleeParam$18);
   if (tmpIfTest$9) {
     $(100);
   } else {
-    const tmpCalleeParam$20 = $(2);
-    const tmpClusterSSA_tmpIfTest$9 = $(tmpCalleeParam$20);
+    const tmpCalleeParam$20 /*:unknown*/ = $(2);
+    const tmpClusterSSA_tmpIfTest$9 /*:unknown*/ = $(tmpCalleeParam$20);
     if (tmpClusterSSA_tmpIfTest$9) {
       $(100);
     } else {
       break loopStop;
     }
   }
-  const tmpCalleeParam$19 = $(0);
-  const tmpIfTest$10 = $(tmpCalleeParam$19);
+  const tmpCalleeParam$19 /*:unknown*/ = $(0);
+  const tmpIfTest$10 /*:unknown*/ = $(tmpCalleeParam$19);
   if (tmpIfTest$10) {
     $(100);
   } else {
-    const tmpCalleeParam$21 = $(2);
-    const tmpClusterSSA_tmpIfTest$10 = $(tmpCalleeParam$21);
+    const tmpCalleeParam$21 /*:unknown*/ = $(2);
+    const tmpClusterSSA_tmpIfTest$10 /*:unknown*/ = $(tmpCalleeParam$21);
     if (tmpClusterSSA_tmpIfTest$10) {
       $(100);
     } else {
@@ -197,13 +197,13 @@ loopStop: {
     }
   }
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const tmpCalleeParam$22 = $(0);
-    const tmpIfTest$11 = $(tmpCalleeParam$22);
+    const tmpCalleeParam$22 /*:unknown*/ = $(0);
+    const tmpIfTest$11 /*:unknown*/ = $(tmpCalleeParam$22);
     if (tmpIfTest$11) {
       $(100);
     } else {
-      const tmpCalleeParam$24 = $(2);
-      const tmpClusterSSA_tmpIfTest$11 = $(tmpCalleeParam$24);
+      const tmpCalleeParam$24 /*:unknown*/ = $(2);
+      const tmpClusterSSA_tmpIfTest$11 /*:unknown*/ = $(tmpCalleeParam$24);
       if (tmpClusterSSA_tmpIfTest$11) {
         $(100);
       } else {

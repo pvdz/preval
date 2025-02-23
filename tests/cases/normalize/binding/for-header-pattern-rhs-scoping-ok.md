@@ -70,16 +70,16 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const y /*:object*/ = {};
 const tmpCalleeParam /*:array*/ = [y];
-const tmpForInGen = $forIn(tmpCalleeParam);
+const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
   } else {
-    const bindingPatternArrRoot = tmpForInNext.value;
+    const bindingPatternArrRoot /*:unknown*/ = tmpForInNext.value;
     const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-    const x$1 = arrPatternSplat[0];
+    const x$1 /*:unknown*/ = arrPatternSplat[0];
     $(x$1);
   }
 }

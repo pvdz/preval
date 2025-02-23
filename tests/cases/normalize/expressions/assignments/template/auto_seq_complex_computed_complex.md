@@ -54,15 +54,15 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
+const tmpObjLitVal /*:unknown*/ = $(1);
 const a /*:object*/ = { b: tmpObjLitVal };
 const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(1);
-const tmpAssignComMemLhsObj = $(a);
-const tmpAssignComMemLhsProp = $(`b`);
-const tmpAssignComputedRhs = $(2);
+const tmpAssignComMemLhsObj /*:unknown*/ = $(a);
+const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
+const tmpAssignComputedRhs /*:unknown*/ = $(2);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);
 `````

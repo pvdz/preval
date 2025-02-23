@@ -66,18 +66,18 @@ $(a, b, c, d);
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const tmpAssignComMemLhsObj = $(b);
-const tmpAssignComMemLhsProp = $(`x`);
+const tmpAssignComMemLhsObj /*:unknown*/ = $(b);
+const tmpAssignComMemLhsProp /*:unknown*/ = $(`x`);
 const c /*:object*/ = { y: 2 };
-const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $(`y`);
-const varInitAssignLhsComputedRhs = $(3);
+const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
+const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+const varInitAssignLhsComputedRhs /*:unknown*/ = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = varInitAssignLhsComputedRhs;
-const tmpIfTest = $(0);
+const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(0);
+    const tmpIfTest$1 /*:unknown*/ = $(0);
     if (tmpIfTest$1) {
     } else {
       break;

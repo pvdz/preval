@@ -89,7 +89,7 @@ const f /*:()=>undefined*/ = function () {
     x = $(tmpCalleeParam);
     return undefined;
   };
-  let x = 0;
+  let x /*:unknown*/ = 0;
   g();
   $(x);
   g();

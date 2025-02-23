@@ -50,14 +50,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const tmpCalleeParam = $(1);
-const tmpCalleeParam$1 = $(2);
-const tmpIfTest = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpCallCallee /*:unknown*/ = $($);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpCalleeParam$1 /*:unknown*/ = $(2);
+const tmpIfTest /*:unknown*/ = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 if (tmpIfTest) {
-  const tmpCallCallee$1 = $($);
-  const tmpCalleeParam$3 = $(1);
-  const tmpCalleeParam$5 = $(2);
+  const tmpCallCallee$1 /*:unknown*/ = $($);
+  const tmpCalleeParam$3 /*:unknown*/ = $(1);
+  const tmpCalleeParam$5 /*:unknown*/ = $(2);
   tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
 } else {
 }

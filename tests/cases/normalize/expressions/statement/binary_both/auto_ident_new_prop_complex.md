@@ -47,11 +47,11 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCompObj = $(b);
-const tmpNewCallee = tmpCompObj.$;
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
 const tmpBinBothLhs /*:object*/ = new tmpNewCallee(1);
-const tmpCompObj$1 = $(b);
-const tmpNewCallee$1 = tmpCompObj$1.$;
+const tmpCompObj$1 /*:unknown*/ = $(b);
+const tmpNewCallee$1 /*:unknown*/ = tmpCompObj$1.$;
 const tmpBinBothRhs /*:object*/ = new tmpNewCallee$1(1);
 tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };

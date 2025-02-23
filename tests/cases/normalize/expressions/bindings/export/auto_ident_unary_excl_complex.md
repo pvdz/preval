@@ -36,7 +36,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpUnaryArg = $(100);
+const tmpUnaryArg /*:unknown*/ = $(100);
 const a /*:boolean*/ = !tmpUnaryArg;
 export { a };
 $(a);

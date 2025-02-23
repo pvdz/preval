@@ -58,11 +58,11 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
-const tmpIfTest = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(0);
+const tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
 if (tmpIfTest) {
 } else {
-  const tmpCalleeParam$1 = $(2);
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
   $(tmpCalleeParam$1);
 }
 const a /*:object*/ = { a: 999, b: 1000 };

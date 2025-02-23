@@ -65,12 +65,12 @@ $(a, b, c);
 
 
 `````js filename=intro
-const tmpSwitchDisc = $(`a`);
-const tmpBinBothRhs = $(`a`);
+const tmpSwitchDisc /*:unknown*/ = $(`a`);
+const tmpBinBothRhs /*:unknown*/ = $(`a`);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 const b /*:object*/ = { x: 2 };
 if (tmpIfTest) {
-  const tmpNestedAssignObj = $(b);
+  const tmpNestedAssignObj /*:unknown*/ = $(b);
   tmpNestedAssignObj.x = 7;
 } else {
 }

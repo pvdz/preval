@@ -47,11 +47,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-let a = $(tmpCalleeParam);
-let tmpAnonDefaultExport = undefined;
+const tmpCalleeParam /*:unknown*/ = $(1);
+let a /*:unknown*/ = $(tmpCalleeParam);
+let tmpAnonDefaultExport /*:unknown*/ = undefined;
 if (a) {
-  const tmpCalleeParam$1 = $(2);
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
   a = $(tmpCalleeParam$1);
   tmpAnonDefaultExport = a;
 } else {

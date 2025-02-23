@@ -56,16 +56,16 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
-const tmpForOfGen = $forOf(tmpCalleeParam);
+const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
   } else {
-    const bindingPatternArrRoot = tmpForOfNext.value;
+    const bindingPatternArrRoot /*:unknown*/ = tmpForOfNext.value;
     const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-    const x = arrPatternSplat[0];
+    const x /*:unknown*/ = arrPatternSplat[0];
     $(x);
   }
 }

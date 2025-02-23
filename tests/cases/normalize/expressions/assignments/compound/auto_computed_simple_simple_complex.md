@@ -47,12 +47,12 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
+const tmpObjLitVal /*:unknown*/ = $(1);
 const a /*:object*/ = { a: 999, b: 1000 };
 const tmpBinBothRhs /*:object*/ = { b: tmpObjLitVal };
 const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
 $(tmpClusterSSA_a);
-const tmpAssignMemRhs = $(2);
+const tmpAssignMemRhs /*:unknown*/ = $(2);
 tmpClusterSSA_a.b = tmpAssignMemRhs;
 $(tmpClusterSSA_a);
 `````

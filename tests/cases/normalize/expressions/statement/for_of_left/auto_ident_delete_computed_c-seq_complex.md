@@ -71,21 +71,21 @@ $(a, arg);
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:object*/ = { x: 1 };
-const tmpCalleeParam = $(tmpCalleeParam$1);
-const tmpForOfGen = $forOf(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
 const arg /*:object*/ = { y: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
   } else {
     $(1);
     $(2);
-    const tmpDeleteCompObj = $(arg);
-    const tmpDeleteCompProp = $(`y`);
+    const tmpDeleteCompObj /*:unknown*/ = $(arg);
+    const tmpDeleteCompProp /*:unknown*/ = $(`y`);
     const tmpAssignMemLhsObj /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
-    const tmpAssignMemRhs = tmpForOfNext.value;
+    const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   }
 }

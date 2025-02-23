@@ -48,10 +48,10 @@ $(a, b, c);
 
 
 `````js filename=intro
-const varInitAssignLhsComputedProp = $(`x`);
-const varInitAssignLhsComputedObj$1 = $(3);
-const varInitAssignLhsComputedProp$1 = $(`y`);
-const varInitAssignLhsComputedRhs$1 = $(4);
+const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(3);
+const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
+const varInitAssignLhsComputedRhs$1 /*:unknown*/ = $(4);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 const b /*:object*/ = { x: 2 };
 b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;

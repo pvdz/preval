@@ -65,14 +65,14 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpSwitchDisc = $(1);
-const tmpBinBothRhs = $(1);
+const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest) {
-  const tmpCalleeParam = $(b);
-  const tmpAssignMemLhsObj = $(tmpCalleeParam);
-  const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
+  const tmpCalleeParam /*:unknown*/ = $(b);
+  const tmpAssignMemLhsObj /*:unknown*/ = $(tmpCalleeParam);
+  const tmpCompoundAssignLhs /*:unknown*/ = tmpAssignMemLhsObj.x;
   const tmpAssignMemRhs /*:number*/ = tmpCompoundAssignLhs - 1;
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 } else {

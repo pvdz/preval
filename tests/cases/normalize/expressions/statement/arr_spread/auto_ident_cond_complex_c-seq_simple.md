@@ -45,12 +45,12 @@ $(a);
 
 
 `````js filename=intro
-let tmpArrElToSpread = undefined;
-const tmpIfTest = $(1);
+let tmpArrElToSpread /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   tmpArrElToSpread = $(60);
 } else {
-  const tmpCalleeParam = $(100);
+  const tmpCalleeParam /*:unknown*/ = $(100);
   tmpArrElToSpread = $(tmpCalleeParam);
 }
 [...tmpArrElToSpread];

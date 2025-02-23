@@ -63,26 +63,26 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
+let a /*:unknown*/ = undefined;
 const b /*:object*/ = { x: 1 };
-const tmpChainRootProp = $(b);
+const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
-let tmpCalleeParam = undefined;
+let tmpCalleeParam /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject = tmpChainRootProp.x;
+  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
   a = tmpChainElementObject;
   tmpCalleeParam = tmpChainElementObject;
 }
 if (a) {
   $(tmpCalleeParam);
 } else {
-  let tmpNestedComplexRhs = undefined;
-  const tmpChainRootProp$1 = $(b);
+  let tmpNestedComplexRhs /*:unknown*/ = undefined;
+  const tmpChainRootProp$1 /*:unknown*/ = $(b);
   const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp$1 == null;
   if (tmpIfTest$1) {
   } else {
-    const tmpChainElementObject$1 = tmpChainRootProp$1.x;
+    const tmpChainElementObject$1 /*:unknown*/ = tmpChainRootProp$1.x;
     tmpNestedComplexRhs = tmpChainElementObject$1;
   }
   a = tmpNestedComplexRhs;

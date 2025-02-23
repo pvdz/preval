@@ -43,7 +43,7 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
-const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
+const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 tmpNestedAssignObjPatternRhs.a;
 throw tmpNestedAssignObjPatternRhs;
 `````

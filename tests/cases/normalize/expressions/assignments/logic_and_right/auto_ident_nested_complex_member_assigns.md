@@ -80,22 +80,22 @@ $(a, b, c);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = $(100);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpCalleeParam /*:unknown*/ = $(100);
 const b /*:object*/ = { x: 1 };
 if (tmpCalleeParam) {
-  const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedProp = $(`x`);
-  const varInitAssignLhsComputedObj$1 = $(b);
-  const varInitAssignLhsComputedProp$1 = $(`x`);
-  const varInitAssignLhsComputedObj$3 = $(b);
-  const varInitAssignLhsComputedProp$3 = $(`x`);
-  const varInitAssignLhsComputedObj$5 = $(b);
-  const varInitAssignLhsComputedProp$5 = $(`x`);
-  const varInitAssignLhsComputedObj$7 = $(b);
-  const varInitAssignLhsComputedProp$7 = $(`x`);
-  const varInitAssignLhsComputedObj$9 = $(b);
-  const varInitAssignLhsComputedProp$9 = $(`x`);
+  const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
+  const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+  const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(b);
+  const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`x`);
+  const varInitAssignLhsComputedObj$3 /*:unknown*/ = $(b);
+  const varInitAssignLhsComputedProp$3 /*:unknown*/ = $(`x`);
+  const varInitAssignLhsComputedObj$5 /*:unknown*/ = $(b);
+  const varInitAssignLhsComputedProp$5 /*:unknown*/ = $(`x`);
+  const varInitAssignLhsComputedObj$7 /*:unknown*/ = $(b);
+  const varInitAssignLhsComputedProp$7 /*:unknown*/ = $(`x`);
+  const varInitAssignLhsComputedObj$9 /*:unknown*/ = $(b);
+  const varInitAssignLhsComputedProp$9 /*:unknown*/ = $(`x`);
   varInitAssignLhsComputedObj$9[varInitAssignLhsComputedProp$9] = 3;
   varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = 3;
   varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;

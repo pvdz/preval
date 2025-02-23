@@ -50,8 +50,8 @@ $(a, arg);
 
 `````js filename=intro
 const arg /*:object*/ = { y: 1 };
-let a = delete arg.y;
-const tmpCalleeParam = a;
+let a /*:unknown*/ = delete arg.y;
+const tmpCalleeParam /*:unknown*/ = a;
 if (a) {
   const tmpNestedComplexRhs /*:boolean*/ = delete arg.y;
   a = tmpNestedComplexRhs;

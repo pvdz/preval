@@ -65,11 +65,11 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpIfTest = $(true);
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   $(2);
-  const varInitAssignLhsComputedObj = $(3);
-  const varInitAssignLhsComputedRhs = $(3);
+  const varInitAssignLhsComputedObj /*:unknown*/ = $(3);
+  const varInitAssignLhsComputedRhs /*:unknown*/ = $(3);
   varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs, 2, 3);
 } else {

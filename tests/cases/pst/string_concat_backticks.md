@@ -36,7 +36,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const here = $(`here`);
+const here /*:unknown*/ = $(`here`);
 const tmpStringConcatL /*:string*/ = $coerce(here, `plustr`);
 const tmpCalleeParam /*:string*/ = `this \`thing\`${tmpStringConcatL}is \`quoted\``;
 $(tmpCalleeParam);

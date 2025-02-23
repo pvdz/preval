@@ -63,7 +63,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 if ($) {
   $(1);
-  const tmpReturnArg = $(`ok`);
+  const tmpReturnArg /*:unknown*/ = $(`ok`);
   $(tmpReturnArg);
 } else {
   throw `\$ should be defined`;

@@ -36,8 +36,8 @@ const y = $spy(`b`);
 
 
 `````js filename=intro
-const x = $spy(`a`);
-const y = $spy(`b`);
+const x /*:unknown*/ = $spy(`a`);
+const y /*:unknown*/ = $spy(`b`);
 ``.indexOf(x, y);
 `````
 

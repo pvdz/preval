@@ -62,27 +62,27 @@ $(a, x, y);
 
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let x /*:unknown*/ = 1;
+let y /*:unknown*/ = 2;
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   $(1);
   $(2);
-  const tmpArrElement = $(3);
-  const tmpArrElement$1 = $(4);
+  const tmpArrElement /*:unknown*/ = $(3);
+  const tmpArrElement$1 /*:unknown*/ = $(4);
   const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
   const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
   a = tmpNestedAssignArrPatternRhs;
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       $(x);
       $(y);
-      const tmpArrElement$2 = $(3);
-      const tmpArrElement$4 = $(4);
+      const tmpArrElement$2 /*:unknown*/ = $(3);
+      const tmpArrElement$4 /*:unknown*/ = $(4);
       const tmpNestedAssignArrPatternRhs$1 /*:array*/ = [tmpArrElement$2, tmpArrElement$4];
       const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
       x = arrPatternSplat$1[0];

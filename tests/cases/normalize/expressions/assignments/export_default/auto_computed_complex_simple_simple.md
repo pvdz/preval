@@ -44,11 +44,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
+const tmpObjLitVal /*:unknown*/ = $(1);
 const a /*:object*/ = { b: tmpObjLitVal };
-const tmpAnonDefaultExport = a;
+const tmpAnonDefaultExport /*:unknown*/ = a;
 export { tmpAnonDefaultExport as default };
-const tmpAssignMemLhsObj = $(a);
+const tmpAssignMemLhsObj /*:unknown*/ = $(a);
 tmpAssignMemLhsObj.b = 2;
 $(a);
 `````

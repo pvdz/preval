@@ -55,9 +55,9 @@ $(a, b);
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const tmpCalleeParam$1 = $(b);
-const tmpPostUpdArgObj = $(tmpCalleeParam$1);
-const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+const tmpCalleeParam$1 /*:unknown*/ = $(b);
+const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs /*:primitive*/ = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
 const tmpBinBothRhs /*:string*/ = $coerce(tmpPostUpdArgVal, `string`);

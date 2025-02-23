@@ -51,7 +51,7 @@ if (set) {
 
 
 `````js filename=intro
-const v = $(1);
+const v /*:unknown*/ = $(1);
 const and /*:number*/ = v & 65;
 const set /*:boolean*/ = and === 65;
 if (set) {

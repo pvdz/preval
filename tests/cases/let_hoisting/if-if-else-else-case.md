@@ -126,9 +126,9 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const test = $(1);
+  const test /*:unknown*/ = $(1);
   if (test) {
-    const tmpClusterSSA_tmpIfelseifelse = $(1);
+    const tmpClusterSSA_tmpIfelseifelse /*:unknown*/ = $(1);
     if (tmpClusterSSA_tmpIfelseifelse) {
       $(`A`);
     } else {

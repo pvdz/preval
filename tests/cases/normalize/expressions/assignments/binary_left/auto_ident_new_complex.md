@@ -42,9 +42,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpNewCallee = $($);
+const tmpNewCallee /*:unknown*/ = $($);
 const a /*:object*/ = new tmpNewCallee(1);
-const tmpBinBothRhs = $(100);
+const tmpBinBothRhs /*:unknown*/ = $(100);
 const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);

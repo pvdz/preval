@@ -66,17 +66,17 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:object*/ = { x: 1 };
-const tmpCalleeParam = $(tmpCalleeParam$1);
-const tmpForOfGen = $forOf(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
   } else {
-    const tmpArrElement = $(1);
-    const tmpArrElement$3 = $(3);
-    const tmpAssignMemRhs = tmpForOfNext.value;
+    const tmpArrElement /*:unknown*/ = $(1);
+    const tmpArrElement$3 /*:unknown*/ = $(3);
+    const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
     const tmpAssignMemLhsObj /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   }

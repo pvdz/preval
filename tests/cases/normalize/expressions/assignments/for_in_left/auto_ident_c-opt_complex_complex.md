@@ -76,28 +76,28 @@ $(a);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpCalleeParam$1 /*:object*/ = { x: 1 };
-const tmpCalleeParam = $(tmpCalleeParam$1);
-const tmpForInGen = $forIn(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
 const b /*:object*/ = { x: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
   } else {
     a = undefined;
-    const tmpChainElementCall = $(b);
+    const tmpChainElementCall /*:unknown*/ = $(b);
     const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
-    let tmpAssignMemLhsObj = undefined;
+    let tmpAssignMemLhsObj /*:unknown*/ = undefined;
     if (tmpIfTest$1) {
     } else {
-      const tmpChainRootComputed = $(`x`);
-      const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+      const tmpChainRootComputed /*:unknown*/ = $(`x`);
+      const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
       tmpAssignMemLhsObj = tmpChainElementObject;
     }
-    const tmpAssignMemRhs = tmpForInNext.value;
+    const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   }
 }

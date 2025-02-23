@@ -66,10 +66,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const tmpCalleeParam = $(1);
-const tmpCalleeParam$1 = $(2);
-const tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpCallCallee /*:unknown*/ = $($);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpCalleeParam$1 /*:unknown*/ = $(2);
+const tmpNestedComplexRhs /*:unknown*/ = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(undefined);
 $(tmpNestedComplexRhs);
 `````

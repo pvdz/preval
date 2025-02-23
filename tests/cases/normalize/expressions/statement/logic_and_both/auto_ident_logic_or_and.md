@@ -68,27 +68,27 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
-let tmpIfTest = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(0);
+let tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
 if (tmpIfTest) {
 } else {
-  const tmpCalleeParam$1 = $(1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
   tmpIfTest = $(tmpCalleeParam$1);
   if (tmpIfTest) {
-    const tmpCalleeParam$3 = $(2);
+    const tmpCalleeParam$3 /*:unknown*/ = $(2);
     tmpIfTest = $(tmpCalleeParam$3);
   } else {
   }
 }
 if (tmpIfTest) {
-  const tmpCalleeParam$5 = $(0);
-  const tmpIfTest$1 = $(tmpCalleeParam$5);
+  const tmpCalleeParam$5 /*:unknown*/ = $(0);
+  const tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$5);
   if (tmpIfTest$1) {
   } else {
-    const tmpCalleeParam$7 = $(1);
-    const tmpIfTest$3 = $(tmpCalleeParam$7);
+    const tmpCalleeParam$7 /*:unknown*/ = $(1);
+    const tmpIfTest$3 /*:unknown*/ = $(tmpCalleeParam$7);
     if (tmpIfTest$3) {
-      const tmpCalleeParam$9 = $(2);
+      const tmpCalleeParam$9 /*:unknown*/ = $(2);
       $(tmpCalleeParam$9);
     } else {
     }

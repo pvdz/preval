@@ -131,25 +131,25 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
+let tmpCalleeParam /*:unknown*/ = undefined;
 $inlinedFunction: {
-  const tmpSwitchValue = $(7);
+  const tmpSwitchValue /*:unknown*/ = $(7);
   let tmpSwitchCaseToStart /*:number*/ = 4;
   const tmpIfTest /*:boolean*/ = 0 === tmpSwitchValue;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   } else {
-    const tmpBinLhs = $(1);
+    const tmpBinLhs /*:unknown*/ = $(1);
     const tmpIfTest$1 /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 1;
     } else {
-      const tmpBinLhs$1 = $(4);
+      const tmpBinLhs$1 /*:unknown*/ = $(4);
       const tmpIfTest$3 /*:boolean*/ = tmpBinLhs$1 === tmpSwitchValue;
       if (tmpIfTest$3) {
         tmpSwitchCaseToStart = 2;
       } else {
-        const tmpBinLhs$3 = $(7);
+        const tmpBinLhs$3 /*:unknown*/ = $(7);
         const tmpIfTest$5 /*:boolean*/ = tmpBinLhs$3 === tmpSwitchValue;
         if (tmpIfTest$5) {
           tmpSwitchCaseToStart = 3;
@@ -170,7 +170,7 @@ $inlinedFunction: {
     const tmpIfTest$11 /*:boolean*/ = tmpSwitchCaseToStart <= 2;
     if (tmpIfTest$11) {
       $(5);
-      const tmpReturnArg = $(6);
+      const tmpReturnArg /*:unknown*/ = $(6);
       tmpCalleeParam = tmpReturnArg;
       break $inlinedFunction;
     } else {

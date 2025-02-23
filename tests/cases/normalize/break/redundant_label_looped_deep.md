@@ -79,12 +79,12 @@ exit: {
 
 `````js filename=intro
 exit: {
-  let x = $(2);
+  let x /*:unknown*/ = $(2);
   while (true) {
     if (x) {
       while (true) {
         $(1);
-        const tmpIfTest = $(1);
+        const tmpIfTest /*:unknown*/ = $(1);
         if (tmpIfTest) {
           x = $(3);
         } else {

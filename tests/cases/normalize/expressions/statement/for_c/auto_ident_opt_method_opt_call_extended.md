@@ -65,7 +65,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpIfTest$3 /*:boolean*/ = $ == null;
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
@@ -74,9 +74,9 @@ if (tmpIfTest) {
     $dotCall($, tmpObjLitVal$1, 1);
   }
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpChainElementObject$1 = tmpObjLitVal$1.e;
+      const tmpChainElementObject$1 /*:unknown*/ = tmpObjLitVal$1.e;
       const tmpIfTest$4 /*:boolean*/ = tmpChainElementObject$1 == null;
       if (tmpIfTest$4) {
       } else {

@@ -81,19 +81,19 @@ $(a, x, y);
 
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-const z = $(3);
-const test = $(z);
+let x /*:unknown*/ = 1;
+let y /*:unknown*/ = 2;
+const z /*:unknown*/ = $(3);
+const test /*:unknown*/ = $(z);
 if (test) {
-  const p = $(3);
+  const p /*:unknown*/ = $(3);
   $(4);
   x = p;
   y = z;
   while ($LOOP_UNROLL_10) {
-    const test$1 = $(0);
+    const test$1 /*:unknown*/ = $(0);
     if (test$1) {
-      const p$1 = $(3);
+      const p$1 /*:unknown*/ = $(3);
       $(4);
       x = p$1;
       y = 0;

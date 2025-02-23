@@ -89,24 +89,24 @@ $(f);
 `````js filename=intro
 const arr /*:array*/ = [`2175510YjCZON`, `10TAFtVj`, `11526394DNqxUn`, `60YWJuYY`, `794766IkrVMo`, `348105xrUwtS`];
 let f /*:(unknown, unknown)=>*/ = function ($$0, $$1) {
-  const a = $$0;
-  const b = $$1;
+  const a /*:unknown*/ = $$0;
+  const b /*:unknown*/ = $$1;
   debugger;
   f = function ($$0, $$1) {
-    const c = $$0;
+    const c /*:unknown*/ = $$0;
     debugger;
     const tmp /*:number*/ = c - 427;
-    const Co$1 = arr[tmp];
+    const Co$1 /*:unknown*/ = arr[tmp];
     return Co$1;
   };
-  const tmpReturnArg$23 = f(a, b);
+  const tmpReturnArg$23 /*:unknown*/ = f(a, b);
   return tmpReturnArg$23;
 };
-const tmpCalleeParam = f(430);
+const tmpCalleeParam /*:unknown*/ = f(430);
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = f(431);
+const tmpCalleeParam$1 /*:unknown*/ = f(431);
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f(432);
+const tmpCalleeParam$3 /*:unknown*/ = f(432);
 $(tmpCalleeParam$3);
 $(f);
 `````

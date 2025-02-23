@@ -59,18 +59,18 @@ $(a, x, y);
 
 
 `````js filename=intro
-const tmpArrElement = $(3);
-const tmpArrElement$1 = $(4);
+const tmpArrElement /*:unknown*/ = $(3);
+const tmpArrElement$1 /*:unknown*/ = $(4);
 const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 arrPatternSplat[0];
 arrPatternSplat[1];
-const tmpArrElement$3 = $(3);
-const tmpArrElement$5 = $(4);
+const tmpArrElement$3 /*:unknown*/ = $(3);
+const tmpArrElement$5 /*:unknown*/ = $(4);
 const tmpNestedAssignArrPatternRhs$1 /*:array*/ = [tmpArrElement$3, tmpArrElement$5];
 const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
-const tmpClusterSSA_x = arrPatternSplat$1[0];
-const tmpClusterSSA_y = arrPatternSplat$1[1];
+const tmpClusterSSA_x /*:unknown*/ = arrPatternSplat$1[0];
+const tmpClusterSSA_y /*:unknown*/ = arrPatternSplat$1[1];
 tmpNestedAssignArrPatternRhs + tmpNestedAssignArrPatternRhs$1;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_x, tmpClusterSSA_y);

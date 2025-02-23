@@ -57,22 +57,22 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
-const tmpIfTest = $(1);
+let a /*:unknown*/ = arrPatternSplat[0];
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   $(10);
   $(20);
   const tmpCalleeParam /*:array*/ = [1, 2];
-  const arrAssignPatternRhs = $(tmpCalleeParam);
+  const arrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
   const arrPatternSplat$1 /*:array*/ = [...arrAssignPatternRhs];
   a = arrPatternSplat$1[0];
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       $(10);
       $(20);
       const tmpCalleeParam$1 /*:array*/ = [1, 2];
-      const arrAssignPatternRhs$1 = $(tmpCalleeParam$1);
+      const arrAssignPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
       const arrPatternSplat$2 /*:array*/ = [...arrAssignPatternRhs$1];
       a = arrPatternSplat$2[0];
     } else {

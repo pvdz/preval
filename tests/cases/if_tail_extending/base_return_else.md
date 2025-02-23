@@ -70,7 +70,7 @@ f();
 
 
 `````js filename=intro
-const x = $();
+const x /*:unknown*/ = $();
 if (x) {
   $(1);
   if ($) {

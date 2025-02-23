@@ -57,7 +57,7 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { c: $ };
-const tmpChainElementCall = b.c(1);
+const tmpChainElementCall /*:unknown*/ = b.c(1);
 if (tmpChainElementCall) {
   b.c(1);
 } else {

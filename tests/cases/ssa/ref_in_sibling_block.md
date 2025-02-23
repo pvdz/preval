@@ -80,7 +80,7 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  let x = $(1);
+  let x /*:unknown*/ = $(1);
   if ($) {
     if (a) {
       x = $(2);

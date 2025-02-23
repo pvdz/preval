@@ -65,11 +65,11 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { x: `pass2` };
-const bindingPatternObjRoot = $(tmpCalleeParam);
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
+const bindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
+const objPatternBeforeDefault /*:unknown*/ = bindingPatternObjRoot.x;
 const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
-  const tmpClusterSSA_x = $(`fail`);
+  const tmpClusterSSA_x /*:unknown*/ = $(`fail`);
   $(tmpClusterSSA_x);
 } else {
   $(objPatternBeforeDefault);

@@ -80,7 +80,7 @@ $(x, a, b, `final`);
 
 
 `````js filename=intro
-let x = $(10);
+let x /*:unknown*/ = $(10);
 const b /*:object*/ = {
   set x($$0) {
     debugger;
@@ -89,7 +89,7 @@ const b /*:object*/ = {
   },
   get x() {
     debugger;
-    const tmpReturnArg = $(40, `from get`);
+    const tmpReturnArg /*:unknown*/ = $(40, `from get`);
     return tmpReturnArg;
   },
 };

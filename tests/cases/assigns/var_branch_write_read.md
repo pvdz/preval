@@ -47,10 +47,10 @@ $(x, `final`);
 
 
 `````js filename=intro
-const x = $(1, `before`);
-const tmpIfTest = $(2, `if`);
+const x /*:unknown*/ = $(1, `before`);
+const tmpIfTest /*:unknown*/ = $(2, `if`);
 if (tmpIfTest) {
-  const tmpClusterSSA_x = $(3, `then`);
+  const tmpClusterSSA_x /*:unknown*/ = $(3, `then`);
   $(tmpClusterSSA_x, `final`);
 } else {
   $(x, `final`);

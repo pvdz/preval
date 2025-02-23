@@ -98,7 +98,7 @@ const g /*:(boolean)=>undefined*/ = function ($$0) {
   $(arg);
   return undefined;
 };
-const tmpCalleeParam = $(1);
+const tmpCalleeParam /*:unknown*/ = $(1);
 const b /*:boolean*/ = tmpCalleeParam === 10;
 if (b) {
   $(`a`, true);

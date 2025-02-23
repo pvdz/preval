@@ -65,9 +65,9 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpIfTest = $(true);
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
-  const varInitAssignLhsComputedProp = $(`x`);
+  const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
   const b /*:object*/ = { x: 2 };
   b[varInitAssignLhsComputedProp] = 3;
   $(3, b, 3);

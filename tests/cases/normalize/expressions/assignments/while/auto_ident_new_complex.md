@@ -45,11 +45,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpNewCallee = $($);
+const tmpNewCallee /*:unknown*/ = $($);
 new tmpNewCallee(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpNewCallee$1 = $($);
+  const tmpNewCallee$1 /*:unknown*/ = $($);
   new tmpNewCallee$1(1);
 }
 `````

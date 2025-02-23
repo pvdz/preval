@@ -48,7 +48,7 @@ while (true) {
 
 
 `````js filename=intro
-const max = $(10);
+const max /*:unknown*/ = $(10);
 $(0);
 const tmpClusterSSA_i /*:primitive*/ = 0 + max;
 const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_i < 10;

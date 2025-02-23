@@ -64,7 +64,7 @@ $(0);
 $(0);
 $(0);
 $(0);
-const tmpCalleeParam = $(0);
+const tmpCalleeParam /*:unknown*/ = $(0);
 $(tmpCalleeParam);
 `````
 

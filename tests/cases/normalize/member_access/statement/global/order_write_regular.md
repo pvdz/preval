@@ -63,7 +63,7 @@ tmpAssignMemLhsObj.x = 30;
 const obj /*:object*/ = {
   get x() {
     debugger;
-    const tmpReturnArg = $(10);
+    const tmpReturnArg /*:unknown*/ = $(10);
     return tmpReturnArg;
   },
   set x($$0) {
@@ -72,7 +72,7 @@ const obj /*:object*/ = {
     return undefined;
   },
 };
-const tmpAssignMemLhsObj = $(obj);
+const tmpAssignMemLhsObj /*:unknown*/ = $(obj);
 tmpAssignMemLhsObj.x = 30;
 `````
 

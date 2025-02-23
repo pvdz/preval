@@ -52,7 +52,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCompProp = $(`\$`);
+const tmpCallCompProp /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
 b[tmpCallCompProp](1);
 $(100);

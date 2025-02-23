@@ -65,7 +65,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const tmpIfTest = $(false);
+const tmpIfTest /*:unknown*/ = $(false);
 if (tmpIfTest) {
   throw `Preval: TDZ triggered for this read: \$(x)`;
 } else {

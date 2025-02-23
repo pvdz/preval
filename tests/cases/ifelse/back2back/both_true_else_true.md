@@ -63,7 +63,7 @@ if (x) {
 
 
 `````js filename=intro
-let x = $(1);
+let x /*:unknown*/ = $(1);
 if (x) {
   $(x, `A`);
   x = $(1);

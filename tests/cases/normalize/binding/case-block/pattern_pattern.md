@@ -73,10 +73,10 @@ $(a, b, x, y, z);
 
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-const tmpSwitchDisc = $(`a`);
-const tmpBinBothRhs = $(`a`);
+let x /*:unknown*/ = 1;
+let y /*:unknown*/ = 2;
+const tmpSwitchDisc /*:unknown*/ = $(`a`);
+const tmpBinBothRhs /*:unknown*/ = $(`a`);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 const z /*:array*/ = [10, 20, 30];
 if (tmpIfTest) {

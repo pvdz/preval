@@ -121,16 +121,16 @@ $(_0x4a09);
 
 `````js filename=intro
 let _0x4a09 /*:(unknown, unknown)=>*/ = function ($$0, $$1) {
-  let _0x5796ef = $$0;
-  const _0x26241c = $$1;
+  let _0x5796ef /*:unknown*/ = $$0;
+  const _0x26241c /*:unknown*/ = $$1;
   debugger;
   _0x4a09 = function ($$0, $$1) {
-    const tmpPrevalAliasArgumentsAny$1 = arguments;
-    const _0x6bfd63 = $$0;
+    const tmpPrevalAliasArgumentsAny$1 /*:arguments*/ = arguments;
+    const _0x6bfd63 /*:unknown*/ = $$0;
     debugger;
     const tmpClusterSSA__0x6bfd63 /*:number*/ = _0x6bfd63 - 208;
-    const _0x34cc82 = _0x4157[tmpClusterSSA__0x6bfd63];
-    const tmpBinLhs = _0x4a09.NCZorg;
+    const _0x34cc82 /*:unknown*/ = _0x4157[tmpClusterSSA__0x6bfd63];
+    const tmpBinLhs /*:unknown*/ = _0x4a09.NCZorg;
     const tmpIfTest /*:boolean*/ = tmpBinLhs === undefined;
     if (tmpIfTest) {
       _0x4a09.YBuklE = tmpClusterSSA__0x36fe1d;
@@ -138,18 +138,18 @@ let _0x4a09 /*:(unknown, unknown)=>*/ = function ($$0, $$1) {
       _0x4a09.NCZorg = true;
     } else {
     }
-    const tmpBinBothRhs = _0x4157[0];
+    const tmpBinBothRhs /*:unknown*/ = _0x4157[0];
     const _0x3ccddd /*:primitive*/ = tmpClusterSSA__0x6bfd63 + tmpBinBothRhs;
-    const _0x3ffbb4 = _0x5796ef[_0x3ccddd];
+    const _0x3ffbb4 /*:unknown*/ = _0x5796ef[_0x3ccddd];
     if (_0x3ffbb4) {
       return _0x3ffbb4;
     } else {
-      const tmpClusterSSA__0x34cc82 = _0x4a09.YBuklE(_0x34cc82);
+      const tmpClusterSSA__0x34cc82 /*:unknown*/ = _0x4a09.YBuklE(_0x34cc82);
       _0x5796ef[_0x3ccddd] = tmpClusterSSA__0x34cc82;
       return tmpClusterSSA__0x34cc82;
     }
   };
-  const tmpReturnArg$3 = _0x4a09(_0x5796ef, _0x26241c);
+  const tmpReturnArg$3 /*:unknown*/ = _0x4a09(_0x5796ef, _0x26241c);
   return tmpReturnArg$3;
 };
 $(_0x4a09);

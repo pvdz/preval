@@ -68,14 +68,14 @@ $(a, b, c, d);
 
 
 `````js filename=intro
-const tmpSwitchDisc = $(`a`);
-const tmpBinBothRhs = $(`a`);
+const tmpSwitchDisc /*:unknown*/ = $(`a`);
+const tmpBinBothRhs /*:unknown*/ = $(`a`);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 const b /*:object*/ = { x: 2 };
 if (tmpIfTest) {
-  const tmpNestedAssignObj = $(b);
-  const varInitAssignLhsComputedObj = $(3);
-  const varInitAssignLhsComputedRhs = $(4);
+  const tmpNestedAssignObj /*:unknown*/ = $(b);
+  const varInitAssignLhsComputedObj /*:unknown*/ = $(3);
+  const varInitAssignLhsComputedRhs /*:unknown*/ = $(4);
   varInitAssignLhsComputedObj.y = varInitAssignLhsComputedRhs;
   tmpNestedAssignObj.x = varInitAssignLhsComputedRhs;
 } else {

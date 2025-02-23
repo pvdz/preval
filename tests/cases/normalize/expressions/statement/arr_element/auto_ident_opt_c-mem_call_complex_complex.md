@@ -78,34 +78,34 @@ $(a);
 
 
 `````js filename=intro
-let tmpBinBothLhs = undefined;
+let tmpBinBothLhs /*:unknown*/ = undefined;
 const b /*:object*/ = { $: $ };
-const tmpChainElementCall = $(b);
+const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainRootComputed = $(`\$`);
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  const tmpChainRootComputed /*:unknown*/ = $(`\$`);
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$1) {
   } else {
-    const tmpCalleeParam$3 = $(1);
-    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
+    const tmpCalleeParam$3 /*:unknown*/ = $(1);
+    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
     tmpBinBothLhs = tmpChainElementCall$1;
   }
 }
-let tmpBinBothRhs = undefined;
-const tmpChainElementCall$3 = $(b);
+let tmpBinBothRhs /*:unknown*/ = undefined;
+const tmpChainElementCall$3 /*:unknown*/ = $(b);
 const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$3 == null;
 if (tmpIfTest$3) {
 } else {
-  const tmpChainRootComputed$1 = $(`\$`);
-  const tmpChainElementObject$1 = tmpChainElementCall$3[tmpChainRootComputed$1];
+  const tmpChainRootComputed$1 /*:unknown*/ = $(`\$`);
+  const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$3[tmpChainRootComputed$1];
   const tmpIfTest$5 /*:boolean*/ = tmpChainElementObject$1 == null;
   if (tmpIfTest$5) {
   } else {
-    const tmpCalleeParam$9 = $(1);
-    const tmpChainElementCall$5 = $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, tmpCalleeParam$9);
+    const tmpCalleeParam$9 /*:unknown*/ = $(1);
+    const tmpChainElementCall$5 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, tmpCalleeParam$9);
     tmpBinBothRhs = tmpChainElementCall$5;
   }
 }

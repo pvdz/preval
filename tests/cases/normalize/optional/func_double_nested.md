@@ -69,8 +69,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const tmpObjLitVal$3 = $();
-const tmpClusterSSA_tmpReturnArg = $(tmpObjLitVal$3);
+const tmpObjLitVal$3 /*:unknown*/ = $();
+const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(tmpObjLitVal$3);
 $(tmpClusterSSA_tmpReturnArg);
 `````
 

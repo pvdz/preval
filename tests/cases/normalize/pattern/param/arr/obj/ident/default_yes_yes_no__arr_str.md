@@ -70,10 +70,10 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const objPatternBeforeDefault = `abc`.x;
+const objPatternBeforeDefault /*:unknown*/ = `abc`.x;
 const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
-  const tmpClusterSSA_x = $(`pass`);
+  const tmpClusterSSA_x /*:unknown*/ = $(`pass`);
   $(tmpClusterSSA_x);
 } else {
   $(objPatternBeforeDefault);

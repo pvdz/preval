@@ -46,15 +46,15 @@ $(a);
 
 
 `````js filename=intro
-let tmpBinBothLhs = undefined;
-const tmpIfTest = $(1);
+let tmpBinBothLhs /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   tmpBinBothLhs = $(60);
 } else {
-  const tmpCalleeParam = $(100);
+  const tmpCalleeParam /*:unknown*/ = $(100);
   tmpBinBothLhs = $(tmpCalleeParam);
 }
-const tmpBinBothRhs = $(100);
+const tmpBinBothRhs /*:unknown*/ = $(100);
 tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

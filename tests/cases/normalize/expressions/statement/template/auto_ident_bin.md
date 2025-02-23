@@ -51,8 +51,8 @@ const tmpFree /*:()=>string*/ = function $free() {
   const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
   return tmpRet;
 };
-const tmpBinBothLhs$1 = $(1);
-const tmpBinBothRhs$1 = $(2);
+const tmpBinBothLhs$1 /*:unknown*/ = $(1);
+const tmpBinBothRhs$1 /*:unknown*/ = $(2);
 const tmpCallCallee$1 /*:primitive*/ = tmpBinBothLhs$1 + tmpBinBothRhs$1;
 const tmpCalleeParam /*:string*/ = $frfr(tmpFree);
 $(tmpCalleeParam);

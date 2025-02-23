@@ -59,14 +59,14 @@ $(a, b);
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const tmpCalleeParam$1 = $(b);
-const tmpNestedAssignObj = $(tmpCalleeParam$1);
-const tmpBinLhs = tmpNestedAssignObj.x;
+const tmpCalleeParam$1 /*:unknown*/ = $(b);
+const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs + 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-const tmpCalleeParam$3 = $(b);
-const tmpNestedAssignObj$1 = $(tmpCalleeParam$3);
-const tmpBinLhs$1 = tmpNestedAssignObj$1.x;
+const tmpCalleeParam$3 /*:unknown*/ = $(b);
+const tmpNestedAssignObj$1 /*:unknown*/ = $(tmpCalleeParam$3);
+const tmpBinLhs$1 /*:unknown*/ = tmpNestedAssignObj$1.x;
 const tmpNestedPropCompoundComplexRhs$1 /*:primitive*/ = tmpBinLhs$1 + 1;
 tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
 const tmpCalleeParam /*:primitive*/ = tmpNestedPropCompoundComplexRhs + tmpNestedPropCompoundComplexRhs$1;

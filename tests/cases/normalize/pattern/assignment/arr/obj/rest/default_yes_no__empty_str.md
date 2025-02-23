@@ -50,7 +50,7 @@ $(x);
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { a: `pass` };
-const arrPatternStep = $(tmpCalleeParam);
+const arrPatternStep /*:unknown*/ = $(tmpCalleeParam);
 const tmpCalleeParam$3 /*:array*/ = [];
 x = objPatternRest(arrPatternStep, tmpCalleeParam$3, undefined);
 $(x);

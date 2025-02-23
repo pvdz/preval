@@ -80,25 +80,25 @@ $(a, b, c);
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $(`x`);
-const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $(`x`);
-const varInitAssignLhsComputedObj$1 = $(b);
-const varInitAssignLhsComputedProp$1 = $(`x`);
-const varInitAssignLhsComputedObj$3 = $(b);
-const varInitAssignLhsComputedProp$3 = $(`x`);
-const varInitAssignLhsComputedObj$5 = $(b);
-const varInitAssignLhsComputedProp$5 = $(`x`);
-const varInitAssignLhsComputedObj$7 = $(b);
-const varInitAssignLhsComputedProp$7 = $(`x`);
+const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
+const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
+const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
+const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(b);
+const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`x`);
+const varInitAssignLhsComputedObj$3 /*:unknown*/ = $(b);
+const varInitAssignLhsComputedProp$3 /*:unknown*/ = $(`x`);
+const varInitAssignLhsComputedObj$5 /*:unknown*/ = $(b);
+const varInitAssignLhsComputedProp$5 /*:unknown*/ = $(`x`);
+const varInitAssignLhsComputedObj$7 /*:unknown*/ = $(b);
+const varInitAssignLhsComputedProp$7 /*:unknown*/ = $(`x`);
 varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = 3;
 varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
 varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-const tmpCalleeParam = $(100);
+const tmpCalleeParam /*:unknown*/ = $(100);
 $(tmpCalleeParam);
 $(3, b, 3);
 `````

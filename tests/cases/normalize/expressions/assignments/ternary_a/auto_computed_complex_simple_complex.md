@@ -52,12 +52,12 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
-const tmpClusterSSA_tmpCalleeParam = $(100);
+const tmpObjLitVal /*:unknown*/ = $(1);
+const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
 $(tmpClusterSSA_tmpCalleeParam);
 const a /*:object*/ = { b: tmpObjLitVal };
-const tmpAssignMemLhsObj = $(a);
-const tmpAssignMemRhs = $(2);
+const tmpAssignMemLhsObj /*:unknown*/ = $(a);
+const tmpAssignMemRhs /*:unknown*/ = $(2);
 tmpAssignMemLhsObj.b = tmpAssignMemRhs;
 $(a);
 `````

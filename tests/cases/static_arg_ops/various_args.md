@@ -80,13 +80,13 @@ $(y);
 
 
 `````js filename=intro
-const a = $(100);
+const a /*:unknown*/ = $(100);
 $(a);
-const b = $(100);
+const b /*:unknown*/ = $(100);
 $(b);
-const c = $(100);
+const c /*:unknown*/ = $(100);
 $(c);
-const d = $(100);
+const d /*:unknown*/ = $(100);
 $(d);
 $(-2);
 `````

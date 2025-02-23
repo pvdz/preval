@@ -46,9 +46,9 @@ const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 arrPatternSplat[0];
 const tmpCalleeParam /*:array*/ = [1, 2];
-const arrAssignPatternRhs = $(tmpCalleeParam);
+const arrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const arrPatternSplat$1 /*:array*/ = [...arrAssignPatternRhs];
-const tmpClusterSSA_a = arrPatternSplat$1[0];
+const tmpClusterSSA_a /*:unknown*/ = arrPatternSplat$1[0];
 $(tmpClusterSSA_a);
 `````
 

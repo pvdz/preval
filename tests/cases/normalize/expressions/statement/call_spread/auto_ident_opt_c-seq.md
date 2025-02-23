@@ -50,12 +50,12 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const tmpChainRootProp = $(b);
+const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest) {
   $(...undefined);
 } else {
-  const tmpChainElementObject = tmpChainRootProp.x;
+  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
   $(...tmpChainElementObject);
 }
 const a /*:object*/ = { a: 999, b: 1000 };

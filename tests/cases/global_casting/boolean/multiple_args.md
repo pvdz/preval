@@ -43,8 +43,8 @@ $(y);
 
 
 `````js filename=intro
-const a = $(`a`);
-const b = $(`b`);
+const a /*:unknown*/ = $(`a`);
+const b /*:unknown*/ = $(`b`);
 const x /*:boolean*/ = a === b;
 $(x);
 `````

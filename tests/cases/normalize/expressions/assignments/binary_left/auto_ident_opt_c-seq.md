@@ -52,18 +52,18 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
+let a /*:unknown*/ = undefined;
 const b /*:object*/ = { x: 1 };
-const tmpChainRootProp = $(b);
+const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
-let tmpBinBothLhs = undefined;
+let tmpBinBothLhs /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject = tmpChainRootProp.x;
+  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
   a = tmpChainElementObject;
   tmpBinBothLhs = tmpChainElementObject;
 }
-const tmpBinBothRhs = $(100);
+const tmpBinBothRhs /*:unknown*/ = $(100);
 const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);

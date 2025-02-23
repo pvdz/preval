@@ -70,7 +70,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const x = $(1);
+  const x /*:unknown*/ = $(1);
   if (x) {
     const tmpCalleeParam /*:primitive*/ = arr[0];
     try {

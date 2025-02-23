@@ -59,13 +59,13 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const tmpIfTest = $(30);
+const tmpIfTest /*:unknown*/ = $(30);
 if (tmpIfTest) {
-  const tmpClusterSSA_a = $(60);
+  const tmpClusterSSA_a /*:unknown*/ = $(60);
   $(tmpClusterSSA_a);
 } else {
-  const tmpCalleeParam = $(100);
-  const tmpClusterSSA_a$1 = $(tmpCalleeParam);
+  const tmpCalleeParam /*:unknown*/ = $(100);
+  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam);
   $(tmpClusterSSA_a$1);
 }
 $(undefined);

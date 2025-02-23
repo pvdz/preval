@@ -59,12 +59,12 @@ $(a, arg);
 `````js filename=intro
 $(1);
 $(2);
-const tmpDeleteCompProp = $(`y`);
+const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 const arg /*:object*/ = { y: 1 };
 const a /*:boolean*/ = delete arg[tmpDeleteCompProp];
 $(1);
 $(2);
-const tmpDeleteCompProp$1 = $(`y`);
+const tmpDeleteCompProp$1 /*:unknown*/ = $(`y`);
 const tmpClusterSSA_a /*:boolean*/ = delete arg[tmpDeleteCompProp$1];
 const tmpCalleeParam /*:number*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);

@@ -55,14 +55,14 @@ $(a, b);
 
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
-const tmpAssignRhsCompObj = $(b);
-const tmpAssignRhsCompProp = $(`c`);
-let tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+const tmpAssignRhsCompObj /*:unknown*/ = $(b);
+const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
+let tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 if (tmpClusterSSA_a) {
   while ($LOOP_UNROLL_10) {
     $(1);
-    const tmpAssignRhsCompObj$1 = $(b);
-    const tmpAssignRhsCompProp$1 = $(`c`);
+    const tmpAssignRhsCompObj$1 /*:unknown*/ = $(b);
+    const tmpAssignRhsCompProp$1 /*:unknown*/ = $(`c`);
     tmpClusterSSA_a = tmpAssignRhsCompObj$1[tmpAssignRhsCompProp$1];
     if (tmpClusterSSA_a) {
     } else {

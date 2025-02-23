@@ -57,11 +57,11 @@ $(a);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(0);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
 } else {
-  const one = $(1);
+  const one /*:unknown*/ = $(1);
   const obj /*:object*/ = { b: one };
   a = obj;
 }

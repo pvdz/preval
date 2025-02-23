@@ -36,10 +36,10 @@ while (true) {
 
 
 `````js filename=intro
-const tmpIfTest = $();
+const tmpIfTest /*:unknown*/ = $();
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $();
+    const tmpIfTest$1 /*:unknown*/ = $();
     if (tmpIfTest$1) {
     } else {
       break;

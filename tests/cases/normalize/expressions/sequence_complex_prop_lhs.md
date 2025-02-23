@@ -47,8 +47,8 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal /*:object*/ = { y: 10 };
-const tmpCompObj = $(tmpObjLitVal);
-const tmpBinLhs = tmpCompObj.y;
+const tmpCompObj /*:unknown*/ = $(tmpObjLitVal);
+const tmpBinLhs /*:unknown*/ = tmpCompObj.y;
 const tmpClusterSSA_a /*:boolean*/ = tmpBinLhs === `Identifier`;
 $(tmpClusterSSA_a);
 `````

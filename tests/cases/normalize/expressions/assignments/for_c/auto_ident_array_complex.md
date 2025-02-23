@@ -50,17 +50,17 @@ $(a);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpArrElement = $(1);
-  const tmpArrElement$3 = $(3);
+  const tmpArrElement /*:unknown*/ = $(1);
+  const tmpArrElement$3 /*:unknown*/ = $(3);
   a = [tmpArrElement, 2, tmpArrElement$3];
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpArrElement$1 = $(1);
-      const tmpArrElement$4 = $(3);
+      const tmpArrElement$1 /*:unknown*/ = $(1);
+      const tmpArrElement$4 /*:unknown*/ = $(3);
       a = [tmpArrElement$1, 2, tmpArrElement$4];
     } else {
       break;

@@ -66,23 +66,23 @@ $(a, b, c, d);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 const b /*:object*/ = { x: 1 };
 const c /*:object*/ = { y: 2 };
 if (tmpIfTest) {
-  const tmpAssignComMemLhsObj = $(b);
-  const tmpAssignComMemLhsProp = $(`x`);
-  const varInitAssignLhsComputedObj = $(c);
-  const varInitAssignLhsComputedProp = $(`y`);
+  const tmpAssignComMemLhsObj /*:unknown*/ = $(b);
+  const tmpAssignComMemLhsProp /*:unknown*/ = $(`x`);
+  const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
+  const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpAssignComMemLhsObj$1 = $(b);
-      const tmpAssignComMemLhsProp$1 = $(`x`);
-      const varInitAssignLhsComputedObj$1 = $(c);
-      const varInitAssignLhsComputedProp$1 = $(`y`);
+      const tmpAssignComMemLhsObj$1 /*:unknown*/ = $(b);
+      const tmpAssignComMemLhsProp$1 /*:unknown*/ = $(`x`);
+      const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
+      const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
       varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
       tmpAssignComMemLhsObj$1[tmpAssignComMemLhsProp$1] = 3;
     } else {

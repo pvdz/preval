@@ -107,7 +107,7 @@ $(f);
 const f /*:()=>undefined*/ = function () {
   debugger;
   $(`a`);
-  const tmpIfTest = x.y;
+  const tmpIfTest /*:unknown*/ = x.y;
   if (tmpIfTest) {
     $(`yeeting`);
     delete x.y;
@@ -132,7 +132,7 @@ f();
 x.y = 10;
 f();
 $(x);
-const tmpCalleeParam$5 = x.y;
+const tmpCalleeParam$5 /*:unknown*/ = x.y;
 $(tmpCalleeParam$5);
 $(f);
 `````

@@ -54,7 +54,7 @@ while ($LOOP_UNROLL_10) {
 let x /*:regex*/ = /foo/;
 x.foo = `object`;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmp = x.foo;
+  const tmp /*:unknown*/ = x.foo;
   $(tmp);
   x = /foo/;
   x.foo = `object`;

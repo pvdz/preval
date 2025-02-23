@@ -55,11 +55,11 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { c: $ };
-const tmpChainElementCall = b.c(1);
+const tmpChainElementCall /*:unknown*/ = b.c(1);
 if (tmpChainElementCall) {
   $(tmpChainElementCall);
 } else {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 }
 $(tmpChainElementCall);

@@ -54,24 +54,24 @@ $(a);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpIfTest$1 = $(1);
+  const tmpIfTest$1 /*:unknown*/ = $(1);
   if (tmpIfTest$1) {
     a = 60;
   } else {
-    const tmpCalleeParam = $(100);
+    const tmpCalleeParam /*:unknown*/ = $(100);
     $(tmpCalleeParam);
   }
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$2 = $(1);
+    const tmpIfTest$2 /*:unknown*/ = $(1);
     if (tmpIfTest$2) {
-      const tmpIfTest$4 = $(1);
+      const tmpIfTest$4 /*:unknown*/ = $(1);
       if (tmpIfTest$4) {
         a = 60;
       } else {
-        const tmpCalleeParam$1 = $(100);
+        const tmpCalleeParam$1 /*:unknown*/ = $(100);
         $(tmpCalleeParam$1);
       }
     } else {

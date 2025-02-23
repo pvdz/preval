@@ -65,19 +65,19 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
-let tmpForOfGen = undefined;
+const tmpIfTest /*:unknown*/ = $(1);
+let tmpForOfGen /*:unknown*/ = undefined;
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam = $(60);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(60);
   tmpForOfGen = $forOf(tmpClusterSSA_tmpCalleeParam);
 } else {
-  const tmpCalleeParam$1 = $(100);
-  const tmpClusterSSA_tmpCalleeParam$1 = $(tmpCalleeParam$1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(100);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$1);
   tmpForOfGen = $forOf(tmpClusterSSA_tmpCalleeParam$1);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest$1 = tmpForOfNext.done;
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest$1) {
     break;
   } else {

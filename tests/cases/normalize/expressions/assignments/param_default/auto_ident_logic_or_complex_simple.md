@@ -65,9 +65,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
-const tmpNestedComplexRhs = $(tmpCalleeParam);
-let tmpClusterSSA_a = 2;
+const tmpCalleeParam /*:unknown*/ = $(0);
+const tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam);
+let tmpClusterSSA_a /*:unknown*/ = 2;
 if (tmpNestedComplexRhs) {
   tmpClusterSSA_a = tmpNestedComplexRhs;
 } else {

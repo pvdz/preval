@@ -40,7 +40,7 @@ $(x);
 
 
 `````js filename=intro
-const objPatternBeforeDefault = $Object_prototype.x;
+const objPatternBeforeDefault /*:unknown*/ = $Object_prototype.x;
 const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   x = $(`pass`);

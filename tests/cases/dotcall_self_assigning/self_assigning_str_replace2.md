@@ -92,12 +92,12 @@ let count /*:number*/ = 77;
 let str /*:string*/ = `var 44=["\\13\\17\\31\\8\\12\\29\\21\\22\\7\\16\\8\\7\\9`;
 const arr /*:array*/ = [``, ``, ``, ``, ``, ``, ``, `x5C`, `x35`, `x36`, ``, `x31`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpPostUpdArgIdent$1 = count;
+  const tmpPostUpdArgIdent$1 /*:unknown*/ = count;
   count = count - 1;
   if (tmpPostUpdArgIdent$1) {
-    const chr = arr[count];
+    const chr /*:unknown*/ = arr[count];
     if (chr) {
-      const chr2 = arr[count];
+      const chr2 /*:unknown*/ = arr[count];
       const regex /*:regex*/ = /xyz/g;
       str = str.replace(regex, chr2);
     } else {

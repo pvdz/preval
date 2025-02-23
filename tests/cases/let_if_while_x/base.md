@@ -89,9 +89,9 @@ $(`after`);
 
 `````js filename=intro
 $(`before`);
-const tmpBinBothRhs = $(5);
+const tmpBinBothRhs /*:unknown*/ = $(5);
 const x /*:boolean*/ = 0 < tmpBinBothRhs;
-let tmpClusterSSA_flag = x;
+let tmpClusterSSA_flag /*:unknown*/ = x;
 if (x) {
   $(`inner`, 0);
   let tmpClusterSSA_n /*:number*/ = 1;

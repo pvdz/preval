@@ -77,30 +77,30 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:object*/ = { x: 1 };
-const tmpCalleeParam = $(tmpCalleeParam$1);
-const tmpForOfGen = $forOf(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
   } else {
-    const tmpCalleeParam$3 = $(1);
-    let tmpAssignMemLhsObj = $(tmpCalleeParam$3);
+    const tmpCalleeParam$3 /*:unknown*/ = $(1);
+    let tmpAssignMemLhsObj /*:unknown*/ = $(tmpCalleeParam$3);
     if (tmpAssignMemLhsObj) {
-      const tmpCalleeParam$5 = $(1);
+      const tmpCalleeParam$5 /*:unknown*/ = $(1);
       tmpAssignMemLhsObj = $(tmpCalleeParam$5);
     } else {
     }
-    let tmpAssignMemLhsObj$1 = undefined;
+    let tmpAssignMemLhsObj$1 /*:unknown*/ = undefined;
     if (tmpAssignMemLhsObj) {
       tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
     } else {
-      const tmpCalleeParam$7 = $(2);
-      const tmpClusterSSA_tmpAssignMemLhsObj = $(tmpCalleeParam$7);
+      const tmpCalleeParam$7 /*:unknown*/ = $(2);
+      const tmpClusterSSA_tmpAssignMemLhsObj /*:unknown*/ = $(tmpCalleeParam$7);
       tmpAssignMemLhsObj$1 = tmpClusterSSA_tmpAssignMemLhsObj;
     }
-    const tmpAssignMemRhs = tmpForOfNext.value;
+    const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
     tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   }
 }

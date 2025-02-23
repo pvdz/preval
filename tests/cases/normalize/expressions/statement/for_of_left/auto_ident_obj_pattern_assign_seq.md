@@ -77,21 +77,21 @@ $(a, x, y);
 
 
 `````js filename=intro
-let x = 1;
-let y = 2;
+let x /*:unknown*/ = 1;
+let y /*:unknown*/ = 2;
 const tmpCalleeParam$1 /*:object*/ = { x: 1 };
-const tmpCalleeParam = $(tmpCalleeParam$1);
-const tmpForOfGen = $forOf(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
   } else {
     $(x);
     $(y);
-    const tmpObjLitVal = $(3);
-    const tmpObjLitVal$1 = $(4);
+    const tmpObjLitVal /*:unknown*/ = $(3);
+    const tmpObjLitVal$1 /*:unknown*/ = $(4);
     x = tmpObjLitVal;
     y = tmpObjLitVal$1;
     tmpForOfNext.value;

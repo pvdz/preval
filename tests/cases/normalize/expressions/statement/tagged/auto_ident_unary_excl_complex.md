@@ -40,7 +40,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpUnaryArg = $(100);
+const tmpUnaryArg /*:unknown*/ = $(100);
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 const tmpCalleeParam$1 /*:boolean*/ = !tmpUnaryArg;
 $(tmpCalleeParam, tmpCalleeParam$1);

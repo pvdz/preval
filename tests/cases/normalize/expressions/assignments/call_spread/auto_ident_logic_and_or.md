@@ -53,17 +53,17 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-let a = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+let a /*:unknown*/ = $(tmpCalleeParam);
 if (a) {
-  const tmpCalleeParam$1 = $(1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
   a = $(tmpCalleeParam$1);
 } else {
 }
 if (a) {
   $(...a);
 } else {
-  const tmpCalleeParam$3 = $(2);
+  const tmpCalleeParam$3 /*:unknown*/ = $(2);
   a = $(tmpCalleeParam$3);
   const tmpIfTest /*:boolean*/ = a === ``;
   if (tmpIfTest) {

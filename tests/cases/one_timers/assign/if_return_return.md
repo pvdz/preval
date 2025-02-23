@@ -83,9 +83,9 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const x = $(100);
+const x /*:unknown*/ = $(100);
 $(x);
-const tmpIfTest = $();
+const tmpIfTest /*:unknown*/ = $();
 if (tmpIfTest) {
   $(1);
 } else {

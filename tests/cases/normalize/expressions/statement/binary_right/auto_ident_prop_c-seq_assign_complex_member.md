@@ -47,12 +47,12 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpBinBothLhs = $(100);
+const tmpBinBothLhs /*:unknown*/ = $(100);
 const b /*:object*/ = { c: 10, d: 20 };
-const varInitAssignLhsComputedObj = $(b);
-const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpCompProp /*:unknown*/ = $(`d`);
+const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 tmpBinBothLhs + varInitAssignLhsComputedRhs;
 const a /*:object*/ = { a: 999, b: 1000 };

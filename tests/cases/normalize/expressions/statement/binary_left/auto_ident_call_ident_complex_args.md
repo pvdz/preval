@@ -45,10 +45,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-const tmpCalleeParam$1 = $(2);
-const tmpBinBothLhs = $(tmpCalleeParam, tmpCalleeParam$1);
-const tmpBinBothRhs = $(100);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpCalleeParam$1 /*:unknown*/ = $(2);
+const tmpBinBothLhs /*:unknown*/ = $(tmpCalleeParam, tmpCalleeParam$1);
+const tmpBinBothRhs /*:unknown*/ = $(100);
 tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

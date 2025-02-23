@@ -52,11 +52,11 @@ while (true) {
 
 
 `````js filename=intro
-let xyz = undefined;
+let xyz /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall = $(1);
+  const tmpChainElementCall /*:unknown*/ = $(1);
   xyz = tmpChainElementCall;
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

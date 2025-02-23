@@ -44,7 +44,7 @@ const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 arrPatternSplat[0];
 const tmpCalleeParam /*:array*/ = [1, 2];
-const tmpThrowArg = $(tmpCalleeParam);
+const tmpThrowArg /*:unknown*/ = $(tmpCalleeParam);
 throw tmpThrowArg;
 `````
 

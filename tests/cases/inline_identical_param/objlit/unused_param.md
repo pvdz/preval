@@ -63,8 +63,8 @@ tmpCallCallee$1(tmpCalleeParam$5, tmpCalleeParam$7, tmpCalleeParam$9);
 
 `````js filename=intro
 const f /*:(unknown, unused, unknown)=>undefined*/ = function ($$0, $$1, $$2) {
-  const x = $$0;
-  const y = $$2;
+  const x /*:unknown*/ = $$0;
+  const y /*:unknown*/ = $$2;
   debugger;
   $(x, y);
   return undefined;

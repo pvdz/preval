@@ -44,7 +44,7 @@ $(c);
 
 `````js filename=intro
 $(1);
-const tmpCompProp = $(`length`);
+const tmpCompProp /*:unknown*/ = $(`length`);
 `foo`[tmpCompProp];
 $(1);
 `````

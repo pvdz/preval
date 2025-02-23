@@ -66,24 +66,24 @@ $(a);
 
 `````js filename=intro
 $(100);
-let tmpIfTest = undefined;
+let tmpIfTest /*:unknown*/ = undefined;
 const b /*:object*/ = { x: 1 };
-const tmpChainElementCall = $(b);
+const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementObject = tmpChainElementCall.x;
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
   tmpIfTest = tmpChainElementObject;
 }
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    let tmpIfTest$2 = undefined;
-    const tmpChainElementCall$1 = $(b);
+    let tmpIfTest$2 /*:unknown*/ = undefined;
+    const tmpChainElementCall$1 /*:unknown*/ = $(b);
     const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$1 == null;
     if (tmpIfTest$4) {
     } else {
-      const tmpChainElementObject$1 = tmpChainElementCall$1.x;
+      const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$1.x;
       tmpIfTest$2 = tmpChainElementObject$1;
     }
     if (tmpIfTest$2) {

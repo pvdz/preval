@@ -57,20 +57,20 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest) {
-  const tmpCalleeParam = $(b);
-  const tmpPostUpdArgObj = $(tmpCalleeParam);
-  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+  const tmpCalleeParam /*:unknown*/ = $(b);
+  const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam);
+  const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
   const tmpAssignMemRhs /*:number*/ = tmpPostUpdArgVal - 1;
   tmpPostUpdArgObj.x = tmpAssignMemRhs;
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpCalleeParam$1 = $(b);
-      const tmpPostUpdArgObj$1 = $(tmpCalleeParam$1);
-      const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
+      const tmpCalleeParam$1 /*:unknown*/ = $(b);
+      const tmpPostUpdArgObj$1 /*:unknown*/ = $(tmpCalleeParam$1);
+      const tmpPostUpdArgVal$1 /*:unknown*/ = tmpPostUpdArgObj$1.x;
       const tmpAssignMemRhs$1 /*:number*/ = tmpPostUpdArgVal$1 - 1;
       tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
     } else {

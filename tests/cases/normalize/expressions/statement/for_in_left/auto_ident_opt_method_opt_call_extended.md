@@ -83,24 +83,24 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:object*/ = { x: 1 };
-const tmpCalleeParam = $(tmpCalleeParam$1);
-const tmpForInGen = $forIn(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
   } else {
-    const tmpChainElementObject$3 = tmpObjLitVal$1.e;
+    const tmpChainElementObject$3 /*:unknown*/ = tmpObjLitVal$1.e;
     const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject$3 == null;
-    let tmpAssignMemLhsObj$1 = undefined;
+    let tmpAssignMemLhsObj$1 /*:unknown*/ = undefined;
     if (tmpIfTest$3) {
     } else {
-      const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpObjLitVal$1, 1);
+      const tmpChainElementCall /*:unknown*/ = $dotCall(tmpChainElementObject$3, tmpObjLitVal$1, 1);
       tmpAssignMemLhsObj$1 = tmpChainElementCall;
     }
-    const tmpAssignMemRhs = tmpForInNext.value;
+    const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
     tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   }
 }

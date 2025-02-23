@@ -52,14 +52,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const b /*:object*/ = { x: 1 };
-  const tmpChainElementCall = $(b);
+  const tmpChainElementCall /*:unknown*/ = $(b);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$1) {
   } else {
-    const tmpChainRootComputed = $(`x`);
+    const tmpChainRootComputed /*:unknown*/ = $(`x`);
     tmpChainElementCall[tmpChainRootComputed];
   }
 } else {

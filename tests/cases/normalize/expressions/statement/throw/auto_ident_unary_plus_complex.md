@@ -37,7 +37,7 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-const tmpUnaryArg = $(100);
+const tmpUnaryArg /*:unknown*/ = $(100);
 const tmpThrowArg /*:number*/ = +tmpUnaryArg;
 throw tmpThrowArg;
 `````

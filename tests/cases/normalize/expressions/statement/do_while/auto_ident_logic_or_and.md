@@ -70,15 +70,15 @@ $(a);
 `````js filename=intro
 loopStop: {
   $(100);
-  const tmpCalleeParam = $(0);
-  const tmpIfTest = $(tmpCalleeParam);
+  const tmpCalleeParam /*:unknown*/ = $(0);
+  const tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
   if (tmpIfTest) {
   } else {
-    const tmpCalleeParam$1 = $(1);
-    const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam$1);
+    const tmpCalleeParam$1 /*:unknown*/ = $(1);
+    const tmpClusterSSA_tmpIfTest /*:unknown*/ = $(tmpCalleeParam$1);
     if (tmpClusterSSA_tmpIfTest) {
-      const tmpCalleeParam$3 = $(2);
-      const tmpClusterSSA_tmpIfTest$1 = $(tmpCalleeParam$3);
+      const tmpCalleeParam$3 /*:unknown*/ = $(2);
+      const tmpClusterSSA_tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$3);
       if (tmpClusterSSA_tmpIfTest$1) {
       } else {
         break loopStop;
@@ -88,15 +88,15 @@ loopStop: {
     }
   }
   $(100);
-  const tmpCalleeParam$2 = $(0);
-  const tmpIfTest$1 = $(tmpCalleeParam$2);
+  const tmpCalleeParam$2 /*:unknown*/ = $(0);
+  const tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$2);
   if (tmpIfTest$1) {
   } else {
-    const tmpCalleeParam$4 = $(1);
-    const tmpClusterSSA_tmpIfTest$2 = $(tmpCalleeParam$4);
+    const tmpCalleeParam$4 /*:unknown*/ = $(1);
+    const tmpClusterSSA_tmpIfTest$2 /*:unknown*/ = $(tmpCalleeParam$4);
     if (tmpClusterSSA_tmpIfTest$2) {
-      const tmpCalleeParam$6 = $(2);
-      const tmpClusterSSA_tmpIfTest$4 = $(tmpCalleeParam$6);
+      const tmpCalleeParam$6 /*:unknown*/ = $(2);
+      const tmpClusterSSA_tmpIfTest$4 /*:unknown*/ = $(tmpCalleeParam$6);
       if (tmpClusterSSA_tmpIfTest$4) {
       } else {
         break loopStop;
@@ -106,15 +106,15 @@ loopStop: {
     }
   }
   $(100);
-  const tmpCalleeParam$5 = $(0);
-  const tmpIfTest$2 = $(tmpCalleeParam$5);
+  const tmpCalleeParam$5 /*:unknown*/ = $(0);
+  const tmpIfTest$2 /*:unknown*/ = $(tmpCalleeParam$5);
   if (tmpIfTest$2) {
   } else {
-    const tmpCalleeParam$7 = $(1);
-    const tmpClusterSSA_tmpIfTest$3 = $(tmpCalleeParam$7);
+    const tmpCalleeParam$7 /*:unknown*/ = $(1);
+    const tmpClusterSSA_tmpIfTest$3 /*:unknown*/ = $(tmpCalleeParam$7);
     if (tmpClusterSSA_tmpIfTest$3) {
-      const tmpCalleeParam$9 = $(2);
-      const tmpClusterSSA_tmpIfTest$5 = $(tmpCalleeParam$9);
+      const tmpCalleeParam$9 /*:unknown*/ = $(2);
+      const tmpClusterSSA_tmpIfTest$5 /*:unknown*/ = $(tmpCalleeParam$9);
       if (tmpClusterSSA_tmpIfTest$5) {
       } else {
         break loopStop;
@@ -124,15 +124,15 @@ loopStop: {
     }
   }
   $(100);
-  const tmpCalleeParam$8 = $(0);
-  const tmpIfTest$3 = $(tmpCalleeParam$8);
+  const tmpCalleeParam$8 /*:unknown*/ = $(0);
+  const tmpIfTest$3 /*:unknown*/ = $(tmpCalleeParam$8);
   if (tmpIfTest$3) {
   } else {
-    const tmpCalleeParam$10 = $(1);
-    const tmpClusterSSA_tmpIfTest$6 = $(tmpCalleeParam$10);
+    const tmpCalleeParam$10 /*:unknown*/ = $(1);
+    const tmpClusterSSA_tmpIfTest$6 /*:unknown*/ = $(tmpCalleeParam$10);
     if (tmpClusterSSA_tmpIfTest$6) {
-      const tmpCalleeParam$12 = $(2);
-      const tmpClusterSSA_tmpIfTest$8 = $(tmpCalleeParam$12);
+      const tmpCalleeParam$12 /*:unknown*/ = $(2);
+      const tmpClusterSSA_tmpIfTest$8 /*:unknown*/ = $(tmpCalleeParam$12);
       if (tmpClusterSSA_tmpIfTest$8) {
       } else {
         break loopStop;
@@ -142,15 +142,15 @@ loopStop: {
     }
   }
   $(100);
-  const tmpCalleeParam$11 = $(0);
-  const tmpIfTest$4 = $(tmpCalleeParam$11);
+  const tmpCalleeParam$11 /*:unknown*/ = $(0);
+  const tmpIfTest$4 /*:unknown*/ = $(tmpCalleeParam$11);
   if (tmpIfTest$4) {
   } else {
-    const tmpCalleeParam$13 = $(1);
-    const tmpClusterSSA_tmpIfTest$7 = $(tmpCalleeParam$13);
+    const tmpCalleeParam$13 /*:unknown*/ = $(1);
+    const tmpClusterSSA_tmpIfTest$7 /*:unknown*/ = $(tmpCalleeParam$13);
     if (tmpClusterSSA_tmpIfTest$7) {
-      const tmpCalleeParam$15 = $(2);
-      const tmpClusterSSA_tmpIfTest$9 = $(tmpCalleeParam$15);
+      const tmpCalleeParam$15 /*:unknown*/ = $(2);
+      const tmpClusterSSA_tmpIfTest$9 /*:unknown*/ = $(tmpCalleeParam$15);
       if (tmpClusterSSA_tmpIfTest$9) {
       } else {
         break loopStop;
@@ -160,15 +160,15 @@ loopStop: {
     }
   }
   $(100);
-  const tmpCalleeParam$14 = $(0);
-  const tmpIfTest$5 = $(tmpCalleeParam$14);
+  const tmpCalleeParam$14 /*:unknown*/ = $(0);
+  const tmpIfTest$5 /*:unknown*/ = $(tmpCalleeParam$14);
   if (tmpIfTest$5) {
   } else {
-    const tmpCalleeParam$16 = $(1);
-    const tmpClusterSSA_tmpIfTest$10 = $(tmpCalleeParam$16);
+    const tmpCalleeParam$16 /*:unknown*/ = $(1);
+    const tmpClusterSSA_tmpIfTest$10 /*:unknown*/ = $(tmpCalleeParam$16);
     if (tmpClusterSSA_tmpIfTest$10) {
-      const tmpCalleeParam$18 = $(2);
-      const tmpClusterSSA_tmpIfTest$12 = $(tmpCalleeParam$18);
+      const tmpCalleeParam$18 /*:unknown*/ = $(2);
+      const tmpClusterSSA_tmpIfTest$12 /*:unknown*/ = $(tmpCalleeParam$18);
       if (tmpClusterSSA_tmpIfTest$12) {
       } else {
         break loopStop;
@@ -178,15 +178,15 @@ loopStop: {
     }
   }
   $(100);
-  const tmpCalleeParam$17 = $(0);
-  const tmpIfTest$6 = $(tmpCalleeParam$17);
+  const tmpCalleeParam$17 /*:unknown*/ = $(0);
+  const tmpIfTest$6 /*:unknown*/ = $(tmpCalleeParam$17);
   if (tmpIfTest$6) {
   } else {
-    const tmpCalleeParam$19 = $(1);
-    const tmpClusterSSA_tmpIfTest$11 = $(tmpCalleeParam$19);
+    const tmpCalleeParam$19 /*:unknown*/ = $(1);
+    const tmpClusterSSA_tmpIfTest$11 /*:unknown*/ = $(tmpCalleeParam$19);
     if (tmpClusterSSA_tmpIfTest$11) {
-      const tmpCalleeParam$21 = $(2);
-      const tmpClusterSSA_tmpIfTest$13 = $(tmpCalleeParam$21);
+      const tmpCalleeParam$21 /*:unknown*/ = $(2);
+      const tmpClusterSSA_tmpIfTest$13 /*:unknown*/ = $(tmpCalleeParam$21);
       if (tmpClusterSSA_tmpIfTest$13) {
       } else {
         break loopStop;
@@ -196,15 +196,15 @@ loopStop: {
     }
   }
   $(100);
-  const tmpCalleeParam$20 = $(0);
-  const tmpIfTest$7 = $(tmpCalleeParam$20);
+  const tmpCalleeParam$20 /*:unknown*/ = $(0);
+  const tmpIfTest$7 /*:unknown*/ = $(tmpCalleeParam$20);
   if (tmpIfTest$7) {
   } else {
-    const tmpCalleeParam$22 = $(1);
-    const tmpClusterSSA_tmpIfTest$14 = $(tmpCalleeParam$22);
+    const tmpCalleeParam$22 /*:unknown*/ = $(1);
+    const tmpClusterSSA_tmpIfTest$14 /*:unknown*/ = $(tmpCalleeParam$22);
     if (tmpClusterSSA_tmpIfTest$14) {
-      const tmpCalleeParam$24 = $(2);
-      const tmpClusterSSA_tmpIfTest$16 = $(tmpCalleeParam$24);
+      const tmpCalleeParam$24 /*:unknown*/ = $(2);
+      const tmpClusterSSA_tmpIfTest$16 /*:unknown*/ = $(tmpCalleeParam$24);
       if (tmpClusterSSA_tmpIfTest$16) {
       } else {
         break loopStop;
@@ -214,15 +214,15 @@ loopStop: {
     }
   }
   $(100);
-  const tmpCalleeParam$23 = $(0);
-  const tmpIfTest$8 = $(tmpCalleeParam$23);
+  const tmpCalleeParam$23 /*:unknown*/ = $(0);
+  const tmpIfTest$8 /*:unknown*/ = $(tmpCalleeParam$23);
   if (tmpIfTest$8) {
   } else {
-    const tmpCalleeParam$25 = $(1);
-    const tmpClusterSSA_tmpIfTest$15 = $(tmpCalleeParam$25);
+    const tmpCalleeParam$25 /*:unknown*/ = $(1);
+    const tmpClusterSSA_tmpIfTest$15 /*:unknown*/ = $(tmpCalleeParam$25);
     if (tmpClusterSSA_tmpIfTest$15) {
-      const tmpCalleeParam$27 = $(2);
-      const tmpClusterSSA_tmpIfTest$17 = $(tmpCalleeParam$27);
+      const tmpCalleeParam$27 /*:unknown*/ = $(2);
+      const tmpClusterSSA_tmpIfTest$17 /*:unknown*/ = $(tmpCalleeParam$27);
       if (tmpClusterSSA_tmpIfTest$17) {
       } else {
         break loopStop;
@@ -232,15 +232,15 @@ loopStop: {
     }
   }
   $(100);
-  const tmpCalleeParam$26 = $(0);
-  const tmpIfTest$9 = $(tmpCalleeParam$26);
+  const tmpCalleeParam$26 /*:unknown*/ = $(0);
+  const tmpIfTest$9 /*:unknown*/ = $(tmpCalleeParam$26);
   if (tmpIfTest$9) {
   } else {
-    const tmpCalleeParam$28 = $(1);
-    const tmpClusterSSA_tmpIfTest$18 = $(tmpCalleeParam$28);
+    const tmpCalleeParam$28 /*:unknown*/ = $(1);
+    const tmpClusterSSA_tmpIfTest$18 /*:unknown*/ = $(tmpCalleeParam$28);
     if (tmpClusterSSA_tmpIfTest$18) {
-      const tmpCalleeParam$30 = $(2);
-      const tmpClusterSSA_tmpIfTest$20 = $(tmpCalleeParam$30);
+      const tmpCalleeParam$30 /*:unknown*/ = $(2);
+      const tmpClusterSSA_tmpIfTest$20 /*:unknown*/ = $(tmpCalleeParam$30);
       if (tmpClusterSSA_tmpIfTest$20) {
       } else {
         break loopStop;
@@ -250,15 +250,15 @@ loopStop: {
     }
   }
   $(100);
-  const tmpCalleeParam$29 = $(0);
-  const tmpIfTest$10 = $(tmpCalleeParam$29);
+  const tmpCalleeParam$29 /*:unknown*/ = $(0);
+  const tmpIfTest$10 /*:unknown*/ = $(tmpCalleeParam$29);
   if (tmpIfTest$10) {
   } else {
-    const tmpCalleeParam$31 = $(1);
-    const tmpClusterSSA_tmpIfTest$19 = $(tmpCalleeParam$31);
+    const tmpCalleeParam$31 /*:unknown*/ = $(1);
+    const tmpClusterSSA_tmpIfTest$19 /*:unknown*/ = $(tmpCalleeParam$31);
     if (tmpClusterSSA_tmpIfTest$19) {
-      const tmpCalleeParam$33 = $(2);
-      const tmpClusterSSA_tmpIfTest$21 = $(tmpCalleeParam$33);
+      const tmpCalleeParam$33 /*:unknown*/ = $(2);
+      const tmpClusterSSA_tmpIfTest$21 /*:unknown*/ = $(tmpCalleeParam$33);
       if (tmpClusterSSA_tmpIfTest$21) {
       } else {
         break loopStop;
@@ -269,15 +269,15 @@ loopStop: {
   }
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $(100);
-    const tmpCalleeParam$32 = $(0);
-    const tmpIfTest$11 = $(tmpCalleeParam$32);
+    const tmpCalleeParam$32 /*:unknown*/ = $(0);
+    const tmpIfTest$11 /*:unknown*/ = $(tmpCalleeParam$32);
     if (tmpIfTest$11) {
     } else {
-      const tmpCalleeParam$34 = $(1);
-      const tmpClusterSSA_tmpIfTest$22 = $(tmpCalleeParam$34);
+      const tmpCalleeParam$34 /*:unknown*/ = $(1);
+      const tmpClusterSSA_tmpIfTest$22 /*:unknown*/ = $(tmpCalleeParam$34);
       if (tmpClusterSSA_tmpIfTest$22) {
-        const tmpCalleeParam$36 = $(2);
-        const tmpClusterSSA_tmpIfTest$24 = $(tmpCalleeParam$36);
+        const tmpCalleeParam$36 /*:unknown*/ = $(2);
+        const tmpClusterSSA_tmpIfTest$24 /*:unknown*/ = $(tmpCalleeParam$36);
         if (tmpClusterSSA_tmpIfTest$24) {
         } else {
           break;

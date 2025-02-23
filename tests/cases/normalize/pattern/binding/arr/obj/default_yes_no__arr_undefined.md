@@ -51,7 +51,7 @@ $(`ok`);
 
 
 `````js filename=intro
-const arrPatternStep = $(`fail`);
+const arrPatternStep /*:unknown*/ = $(`fail`);
 let objPatternCrashTest /*:boolean*/ = arrPatternStep === undefined;
 if (objPatternCrashTest) {
 } else {

@@ -53,14 +53,14 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpAssignRhsCompProp = $(`c`);
+const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
-let a = b[tmpAssignRhsCompProp];
+let a /*:unknown*/ = b[tmpAssignRhsCompProp];
 if (a) {
   $(a);
 } else {
-  const tmpCompProp = $(`c`);
-  const tmpNestedComplexRhs = b[tmpCompProp];
+  const tmpCompProp /*:unknown*/ = $(`c`);
+  const tmpNestedComplexRhs /*:unknown*/ = b[tmpCompProp];
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }

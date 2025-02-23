@@ -51,16 +51,16 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const tmpCalleeParam = $(1);
-const tmpCalleeParam$1 = $(2);
-let a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpCallCallee /*:unknown*/ = $($);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpCalleeParam$1 /*:unknown*/ = $(2);
+let a /*:unknown*/ = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpCallCallee$1 = $($);
-    const tmpCalleeParam$2 = $(1);
-    const tmpCalleeParam$4 = $(2);
+    const tmpCallCallee$1 /*:unknown*/ = $($);
+    const tmpCalleeParam$2 /*:unknown*/ = $(1);
+    const tmpCalleeParam$4 /*:unknown*/ = $(2);
     a = tmpCallCallee$1(tmpCalleeParam$2, tmpCalleeParam$4);
     if (a) {
     } else {

@@ -212,7 +212,7 @@ const tmpFree /*:(unknown, number, number, number, number, number, number, numbe
   $$6,
   $$7,
 ) {
-  const F = $$0;
+  const F /*:unknown*/ = $$0;
   const e /*:number*/ = $$1;
   const i /*:number*/ = $$2;
   const b /*:number*/ = $$3;
@@ -279,7 +279,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (L$1) {
     break;
   } else {
-    const M$1 = arr.shift();
+    const M$1 /*:unknown*/ = arr.shift();
     arr.push(M$1);
   }
 }

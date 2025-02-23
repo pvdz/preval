@@ -50,7 +50,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const tmpBinLhs = $(1);
+const tmpBinLhs /*:unknown*/ = $(1);
 const x /*:number*/ = tmpBinLhs & 1;
 if (x) {
   $(`pass`);

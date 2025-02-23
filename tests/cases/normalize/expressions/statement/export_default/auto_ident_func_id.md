@@ -48,7 +48,7 @@ const f /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
-const tmpAnonDefaultExport = f;
+const tmpAnonDefaultExport /*:unknown*/ = f;
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

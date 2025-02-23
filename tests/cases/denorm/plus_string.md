@@ -49,7 +49,7 @@ $(d);
 
 
 `````js filename=intro
-const a = tmpForInNext.value;
+const a /*:unknown*/ = tmpForInNext.value;
 const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
 const tmpBinLhs /*:string*/ = `; ${tmpBinBothRhs}`;
 const d /*:string*/ = tmpBinLhs + e;

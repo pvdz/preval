@@ -53,7 +53,7 @@ $(a, x);
 `````js filename=intro
 $(1);
 $(2);
-const tmpCalleeParam = $(100);
+const tmpCalleeParam /*:unknown*/ = $(100);
 $(tmpCalleeParam);
 $(1, 1);
 `````

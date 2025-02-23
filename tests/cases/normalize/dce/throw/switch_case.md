@@ -63,11 +63,11 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpSwitchDisc = $(1, `disc`);
-const tmpBinBothRhs = $(1, `case`);
+const tmpSwitchDisc /*:unknown*/ = $(1, `disc`);
+const tmpBinBothRhs /*:unknown*/ = $(1, `case`);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
-  const tmpThrowArg = $(2, `ret`);
+  const tmpThrowArg /*:unknown*/ = $(2, `ret`);
   throw tmpThrowArg;
 } else {
   $(undefined);

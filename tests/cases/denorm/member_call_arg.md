@@ -39,8 +39,8 @@ $(c);
 
 
 `````js filename=intro
-const a = inline.value;
-const b = encodeURIComponent(a);
+const a /*:unknown*/ = inline.value;
+const b /*:unknown*/ = encodeURIComponent(a);
 const c /*:string*/ = $coerce(b, `plustr`);
 $(c);
 `````

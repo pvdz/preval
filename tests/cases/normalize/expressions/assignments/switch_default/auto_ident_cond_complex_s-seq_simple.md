@@ -54,12 +54,12 @@ $(a);
 
 `````js filename=intro
 $(1);
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   $(60);
 } else {
-  const tmpCalleeParam = $(100);
-  const tmpClusterSSA_a = $(tmpCalleeParam);
+  const tmpCalleeParam /*:unknown*/ = $(100);
+  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
   $(tmpClusterSSA_a);
 }
 `````

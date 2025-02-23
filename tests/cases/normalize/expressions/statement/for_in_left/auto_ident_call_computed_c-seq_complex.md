@@ -69,19 +69,19 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:object*/ = { x: 1 };
-const tmpCalleeParam = $(tmpCalleeParam$1);
-const tmpForInGen = $forIn(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
 const b /*:object*/ = { $: $ };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
   } else {
-    const tmpCallCompObj = $(b);
-    const tmpCallCompProp = $(`\$`);
-    const tmpAssignMemLhsObj = tmpCallCompObj[tmpCallCompProp](1);
-    const tmpAssignMemRhs = tmpForInNext.value;
+    const tmpCallCompObj /*:unknown*/ = $(b);
+    const tmpCallCompProp /*:unknown*/ = $(`\$`);
+    const tmpAssignMemLhsObj /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
+    const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   }
 }

@@ -43,7 +43,7 @@ $(a);
 
 
 `````js filename=intro
-const d = $();
+const d /*:unknown*/ = $();
 const a /*:array*/ = [0];
 a[NaN] = d;
 $(a);

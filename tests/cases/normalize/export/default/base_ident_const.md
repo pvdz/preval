@@ -36,8 +36,8 @@ export { tmpAnonDefaultExport as default };
 
 
 `````js filename=intro
-const FOO = $(1);
-const tmpAnonDefaultExport = FOO;
+const FOO /*:unknown*/ = $(1);
+const tmpAnonDefaultExport /*:unknown*/ = FOO;
 export { tmpAnonDefaultExport as default };
 `````
 

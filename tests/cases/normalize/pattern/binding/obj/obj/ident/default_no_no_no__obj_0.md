@@ -37,7 +37,7 @@ $(y);
 
 
 `````js filename=intro
-const y = (0).y;
+const y /*:unknown*/ = (0).y;
 $(y);
 `````
 

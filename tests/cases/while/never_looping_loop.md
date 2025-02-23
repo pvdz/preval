@@ -149,27 +149,27 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  let B = `jhayon.vercel.app`;
-  const x = $(`x`);
-  const A = x.length;
-  const tmpBinBothLhs$30 = A[0];
+  let B /*:unknown*/ = `jhayon.vercel.app`;
+  const x /*:unknown*/ = $(`x`);
+  const A /*:unknown*/ = x.length;
+  const tmpBinBothLhs$30 /*:unknown*/ = A[0];
   const tmpIfTest$10 /*:boolean*/ = tmpBinBothLhs$30 === `.`;
   if (tmpIfTest$10) {
     B = A.slice(1);
   } else {
     B = A;
   }
-  const len = $.length;
-  const len2 = B.length;
+  const len /*:unknown*/ = $.length;
+  const len2 /*:unknown*/ = B.length;
   const diff /*:number*/ = len - len2;
-  const pos = $.indexOf(B, diff);
+  const pos /*:unknown*/ = $.indexOf(B, diff);
   const isnot /*:boolean*/ = pos === -1;
   if (isnot) {
   } else {
     const tmpClusterSSA_isnot /*:boolean*/ = pos === diff;
     if (tmpClusterSSA_isnot) {
-      const len3 = $.length;
-      const lena2 = A.length;
+      const len3 /*:unknown*/ = $.length;
+      const lena2 /*:unknown*/ = A.length;
       const isa2 /*:boolean*/ = len3 === lena2;
       if (isa2) {
       } else {

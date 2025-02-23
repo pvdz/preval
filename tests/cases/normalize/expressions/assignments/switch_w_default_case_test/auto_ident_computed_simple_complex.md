@@ -88,11 +88,11 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpSwitchValue = $(1);
+const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
-const tmpAssignRhsCompProp = $(`c`);
+const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
-const a = b[tmpAssignRhsCompProp];
+const a /*:unknown*/ = b[tmpAssignRhsCompProp];
 const tmpIfTest /*:boolean*/ = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

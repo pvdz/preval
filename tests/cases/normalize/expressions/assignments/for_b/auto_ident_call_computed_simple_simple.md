@@ -53,7 +53,7 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-let a = b.$(1);
+let a /*:unknown*/ = b.$(1);
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(1);

@@ -52,7 +52,7 @@ if (x) {
 
 
 `````js filename=intro
-const tmpBinBothRhs = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(1);
 const x /*:number*/ = 1 * tmpBinBothRhs;
 const tmpBool /*:boolean*/ = !x;
 $(tmpBool);

@@ -87,9 +87,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpSwitchValue = $(1);
+const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
-const tmpObjLitVal = $(1);
+const tmpObjLitVal /*:unknown*/ = $(1);
 const a /*:object*/ = { b: tmpObjLitVal };
 const tmpIfTest /*:boolean*/ = a === tmpSwitchValue;
 if (tmpIfTest) {
@@ -107,7 +107,7 @@ if (tmpIfTest$5) {
 } else {
 }
 $(`fail2`);
-const tmpAssignMemLhsObj = $(a);
+const tmpAssignMemLhsObj /*:unknown*/ = $(a);
 tmpAssignMemLhsObj.b = 2;
 $(a);
 `````

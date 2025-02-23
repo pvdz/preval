@@ -64,13 +64,13 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpAssignRhsCompProp = $(`c`);
+const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
-const a = b[tmpAssignRhsCompProp];
-const tmpForInGen = $forIn(a);
+const a /*:unknown*/ = b[tmpAssignRhsCompProp];
+const tmpForInGen /*:unknown*/ = $forIn(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
   } else {

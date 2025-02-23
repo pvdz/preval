@@ -400,30 +400,30 @@ const a /*:array*/ = [
 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`loop`);
-  const _0x5e349d$19 = a[369];
+  const _0x5e349d$19 /*:unknown*/ = a[369];
   try {
     const tmpUnaryArg$65 /*:number*/ = parseInt(_0x5e349d$19);
-    const _0x5e349d$17 = a[89];
+    const _0x5e349d$17 /*:unknown*/ = a[89];
     const tmpBinLhs$155 /*:number*/ = parseInt(_0x5e349d$17);
-    const _0x5e349d$15 = a[504];
+    const _0x5e349d$15 /*:unknown*/ = a[504];
     const tmpUnaryArg$67 /*:number*/ = parseInt(_0x5e349d$15);
-    const _0x5e349d$13 = a[334];
+    const _0x5e349d$13 /*:unknown*/ = a[334];
     const tmpBinLhs$162 /*:number*/ = parseInt(_0x5e349d$13);
-    const _0x5e349d$11 = a[254];
+    const _0x5e349d$11 /*:unknown*/ = a[254];
     const tmpUnaryArg$69 /*:number*/ = parseInt(_0x5e349d$11);
-    const _0x5e349d$9 = a[112];
+    const _0x5e349d$9 /*:unknown*/ = a[112];
     const tmpBinLhs$166 /*:number*/ = parseInt(_0x5e349d$9);
-    const tmpCallCallee$11 = $frfr;
-    const tmpCalleeParam$11 = tmpFree$3;
-    const _0x5e349d$7 = a[179];
+    const tmpCallCallee$11 /*:unknown*/ = $frfr;
+    const tmpCalleeParam$11 /*:unknown*/ = tmpFree$3;
+    const _0x5e349d$7 /*:unknown*/ = a[179];
     const tmpCalleeParam$23 /*:number*/ = parseInt(_0x5e349d$7);
-    const _0x5e349d$5 = a[119];
+    const _0x5e349d$5 /*:unknown*/ = a[119];
     const tmpCalleeParam$27 /*:number*/ = parseInt(_0x5e349d$5);
-    const _0x5e349d$3 = a[326];
+    const _0x5e349d$3 /*:unknown*/ = a[326];
     const tmpCalleeParam$29 /*:number*/ = parseInt(_0x5e349d$3);
-    const _0x5e349d$1 = a[41];
+    const _0x5e349d$1 /*:unknown*/ = a[41];
     const tmpCalleeParam$31 /*:number*/ = parseInt(_0x5e349d$1);
-    const tmpIfTest = tmpCallCallee$11(
+    const tmpIfTest /*:unknown*/ = tmpCallCallee$11(
       tmpCalleeParam$11,
       tmpUnaryArg$65,
       tmpBinLhs$155,
@@ -439,11 +439,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     if (tmpIfTest) {
       break;
     } else {
-      const tmpCalleeParam$41 = a.shift();
+      const tmpCalleeParam$41 /*:unknown*/ = a.shift();
       a.push(tmpCalleeParam$41);
     }
   } catch (_0x4f54af$22) {
-    const tmpCalleeParam$43 = a.shift();
+    const tmpCalleeParam$43 /*:unknown*/ = a.shift();
     a.push(tmpCalleeParam$43);
   }
 }

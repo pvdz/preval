@@ -69,9 +69,9 @@ tmpCallCallee(tmpCalleeParam);
 const f /*:()=>arguments,undefined*/ = function () {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
   debugger;
-  const tmpIfTest = $(1);
+  const tmpIfTest /*:unknown*/ = $(1);
   if (tmpIfTest) {
-    const tmpIfTest$1 = $(2);
+    const tmpIfTest$1 /*:unknown*/ = $(2);
     if (tmpIfTest$1) {
       return tmpPrevalAliasArgumentsAny;
     } else {
@@ -81,7 +81,7 @@ const f /*:()=>arguments,undefined*/ = function () {
     return undefined;
   }
 };
-const tmpCalleeParam = f();
+const tmpCalleeParam /*:unknown*/ = f();
 $(tmpCalleeParam);
 `````
 

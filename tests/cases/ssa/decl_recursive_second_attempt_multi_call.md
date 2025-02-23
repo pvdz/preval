@@ -95,11 +95,11 @@ const tmpReturnArg /*:()=>undefined*/ = function () {
   $(`new`);
   return undefined;
 };
-const T = $(true);
-const F = $(false);
+const T /*:unknown*/ = $(true);
+const F /*:unknown*/ = $(false);
 if ($) {
   let g /*:(unknown)=>*/ = function ($$0) {
-    const x = $$0;
+    const x /*:unknown*/ = $$0;
     debugger;
     if (x) {
       g(F);

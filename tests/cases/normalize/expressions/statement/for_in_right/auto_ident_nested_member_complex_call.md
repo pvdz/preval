@@ -76,18 +76,18 @@ $(a, b, c, d);
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $(`x`);
+const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
+const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
 const c /*:object*/ = { y: 2 };
-const varInitAssignLhsComputedObj$1 = $(c);
-const varInitAssignLhsComputedProp$1 = $(`y`);
-const varInitAssignLhsComputedRhs$1 = $(3);
+const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
+const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
+const varInitAssignLhsComputedRhs$1 /*:unknown*/ = $(3);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
-const tmpForInGen = $forIn(varInitAssignLhsComputedRhs$1);
+const tmpForInGen /*:unknown*/ = $forIn(varInitAssignLhsComputedRhs$1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
   } else {

@@ -58,16 +58,16 @@ $(a, arg);
 $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
-const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = $(`y`);
+const tmpDeleteCompObj /*:unknown*/ = $(arg);
+const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 const tmpIfTest /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(1);
     $(1);
     $(2);
-    const tmpDeleteCompObj$1 = $(arg);
-    const tmpDeleteCompProp$1 = $(`y`);
+    const tmpDeleteCompObj$1 /*:unknown*/ = $(arg);
+    const tmpDeleteCompProp$1 /*:unknown*/ = $(`y`);
     const tmpIfTest$1 /*:boolean*/ = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
     if (tmpIfTest$1) {
     } else {

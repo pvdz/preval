@@ -55,9 +55,9 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { c: $ };
-const tmpChainElementCall = b.c(1);
+const tmpChainElementCall /*:unknown*/ = b.c(1);
 if (tmpChainElementCall) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   $(tmpChainElementCall);

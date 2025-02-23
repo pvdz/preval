@@ -80,7 +80,7 @@ const f /*:()=>undefined*/ = function () {
 };
 f();
 const tmpCalleeParam$1 /*:array*/ = [1, 2, 3];
-const tmpCalleeParam = tmpCalleeParam$1.toString();
+const tmpCalleeParam /*:unknown*/ = tmpCalleeParam$1.toString();
 $(tmpCalleeParam);
 f();
 $(`300`);

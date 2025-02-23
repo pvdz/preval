@@ -69,7 +69,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const x = $spy(26);
+const x /*:unknown*/ = $spy(26);
 const tmpIfTest /*:number*/ = x & 8;
 if (tmpIfTest) {
   const tmpIfTest$1 /*:number*/ = x & 2;

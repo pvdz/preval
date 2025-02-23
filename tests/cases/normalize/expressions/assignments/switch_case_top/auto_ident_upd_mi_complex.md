@@ -62,14 +62,14 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpSwitchDisc = $(1);
-const tmpBinBothRhs = $(1);
+const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest) {
-  const tmpCalleeParam = $(b);
-  const tmpNestedAssignObj = $(tmpCalleeParam);
-  const tmpBinLhs = tmpNestedAssignObj.x;
+  const tmpCalleeParam /*:unknown*/ = $(b);
+  const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam);
+  const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
   const tmpNestedPropCompoundComplexRhs /*:number*/ = tmpBinLhs - 1;
   tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
   $(tmpNestedPropCompoundComplexRhs, b);

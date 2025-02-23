@@ -85,7 +85,7 @@ if (tmpIfTest$7) {
 
 
 `````js filename=intro
-const a = $(60);
+const a /*:unknown*/ = $(60);
 $(a);
 $(`fail1`);
 $(`fail2`);

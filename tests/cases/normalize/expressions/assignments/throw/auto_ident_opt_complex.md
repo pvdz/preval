@@ -50,12 +50,12 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const tmpChainElementCall = $(b);
+const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let tmpThrowArg = undefined;
+let tmpThrowArg /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject = tmpChainElementCall.x;
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
   tmpThrowArg = tmpChainElementObject;
 }
 throw tmpThrowArg;

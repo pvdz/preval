@@ -47,10 +47,10 @@ $(a, b);
 
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
-const tmpCompObj = $(b);
-const tmpIfTest = tmpCompObj.c;
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpIfTest /*:unknown*/ = tmpCompObj.c;
 if (tmpIfTest) {
-  const tmpCompObj$1 = $(b);
+  const tmpCompObj$1 /*:unknown*/ = $(b);
   tmpCompObj$1.c;
 } else {
 }

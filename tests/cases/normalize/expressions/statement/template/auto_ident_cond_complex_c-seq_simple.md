@@ -51,15 +51,15 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpCallCallee$1 = $(60);
+  const tmpClusterSSA_tmpCallCallee$1 /*:unknown*/ = $(60);
   const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_tmpCallCallee$1, `string`);
   const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  const tmpCalleeParam$1 = $(100);
-  const tmpClusterSSA_tmpCallCallee$2 = $(tmpCalleeParam$1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(100);
+  const tmpClusterSSA_tmpCallCallee$2 /*:unknown*/ = $(tmpCalleeParam$1);
   const tmpClusterSSA_tmpBinBothRhs$1 /*:string*/ = $coerce(tmpClusterSSA_tmpCallCallee$2, `string`);
   const tmpClusterSSA_tmpCalleeParam$1 /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs$1}  after`;
   $(tmpClusterSSA_tmpCalleeParam$1);

@@ -63,8 +63,8 @@ $(a);
 const b /*:object*/ = { $: $ };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpCompProp = $(`\$`);
-  const tmpNewCallee = b[tmpCompProp];
+  const tmpCompProp /*:unknown*/ = $(`\$`);
+  const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
   new tmpNewCallee(1);
 }
 `````

@@ -49,14 +49,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCompProp = $(`\$`);
+const tmpCallCompProp /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpIfTest = b[tmpCallCompProp](1);
+const tmpIfTest /*:unknown*/ = b[tmpCallCompProp](1);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpCallCompProp$1 = $(`\$`);
-    const tmpIfTest$1 = b[tmpCallCompProp$1](1);
+    const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
+    const tmpIfTest$1 /*:unknown*/ = b[tmpCallCompProp$1](1);
     if (tmpIfTest$1) {
     } else {
       break;

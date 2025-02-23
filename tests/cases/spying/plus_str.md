@@ -33,7 +33,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpBinLhs = $spy();
+const tmpBinLhs /*:unknown*/ = $spy();
 const tmpCalleeParam /*:string*/ = $coerce(tmpBinLhs, `plustr`);
 $(tmpCalleeParam);
 `````

@@ -50,8 +50,8 @@ $();
 
 
 `````js filename=intro
-const tmpSwitchDisc = $(1);
-const tmpBinBothRhs = $spy(0);
+const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $spy(0);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
 } else {

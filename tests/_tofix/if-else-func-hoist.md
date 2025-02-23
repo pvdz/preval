@@ -118,11 +118,11 @@ $(repeat);
 
 
 `````js filename=intro
-let closure_cond = false;
+let closure_cond /*:unknown*/ = false;
 const repeat /*:(unknown)=>undefined*/ = function ($$0) {
-  const arg = $$0;
+  const arg /*:unknown*/ = $$0;
   debugger;
-  let inline_me = undefined;
+  let inline_me /*:unknown*/ = undefined;
   if (closure_cond) {
     inline_me = function () {
       debugger;

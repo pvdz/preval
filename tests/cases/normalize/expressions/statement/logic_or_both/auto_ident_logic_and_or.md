@@ -68,29 +68,29 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-let tmpIfTest = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+let tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
 if (tmpIfTest) {
-  const tmpCalleeParam$1 = $(1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
   tmpIfTest = $(tmpCalleeParam$1);
 } else {
 }
 if (tmpIfTest) {
 } else {
-  const tmpCalleeParam$3 = $(2);
-  const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam$3);
+  const tmpCalleeParam$3 /*:unknown*/ = $(2);
+  const tmpClusterSSA_tmpIfTest /*:unknown*/ = $(tmpCalleeParam$3);
   if (tmpClusterSSA_tmpIfTest) {
   } else {
-    const tmpCalleeParam$5 = $(1);
-    let tmpClusterSSA_tmpIfTest$1 = $(tmpCalleeParam$5);
+    const tmpCalleeParam$5 /*:unknown*/ = $(1);
+    let tmpClusterSSA_tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$5);
     if (tmpClusterSSA_tmpIfTest$1) {
-      const tmpCalleeParam$7 = $(1);
+      const tmpCalleeParam$7 /*:unknown*/ = $(1);
       tmpClusterSSA_tmpIfTest$1 = $(tmpCalleeParam$7);
     } else {
     }
     if (tmpClusterSSA_tmpIfTest$1) {
     } else {
-      const tmpCalleeParam$9 = $(2);
+      const tmpCalleeParam$9 /*:unknown*/ = $(2);
       $(tmpCalleeParam$9);
     }
   }

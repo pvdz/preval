@@ -54,16 +54,16 @@ $(a, x, y);
 
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-const tmpIfTest = $(0);
+let x /*:unknown*/ = 1;
+let y /*:unknown*/ = 2;
+const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
   $(1);
   $(2);
-  const tmpObjLitVal = $(3);
-  const tmpObjLitVal$1 = $(4);
+  const tmpObjLitVal /*:unknown*/ = $(3);
+  const tmpObjLitVal$1 /*:unknown*/ = $(4);
   x = tmpObjLitVal;
   y = tmpObjLitVal$1;
 }

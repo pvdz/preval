@@ -47,7 +47,7 @@ $(a);
 
 `````js filename=intro
 $(100);
-const tmpCalleeParam = $(200);
+const tmpCalleeParam /*:unknown*/ = $(200);
 $(tmpCalleeParam);
 $(undefined);
 `````

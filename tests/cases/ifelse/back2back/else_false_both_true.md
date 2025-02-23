@@ -61,12 +61,12 @@ if (x) {
 
 
 `````js filename=intro
-const x = $(false, `a`);
+const x /*:unknown*/ = $(false, `a`);
 if (x) {
   $(x, `one`);
 } else {
   $(x, `pass`);
-  const tmpClusterSSA_x = $(true, `b`);
+  const tmpClusterSSA_x /*:unknown*/ = $(true, `b`);
   if (tmpClusterSSA_x) {
     $(tmpClusterSSA_x, `one`);
   } else {

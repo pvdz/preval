@@ -76,8 +76,8 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const objPatternBeforeDefault = (0).x;
-let objPatternAfterDefault = undefined;
+const objPatternBeforeDefault /*:unknown*/ = (0).x;
+let objPatternAfterDefault /*:unknown*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   const tmpCalleeParam$1 /*:array*/ = [`pass2`];
@@ -86,7 +86,7 @@ if (tmpIfTest$1) {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const arrPatternSplat /*:array*/ = [...objPatternAfterDefault];
-const arrPatternBeforeDefault = arrPatternSplat[0];
+const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
 const tmpIfTest$3 /*:boolean*/ = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$3) {
   $(`fail`);

@@ -45,8 +45,8 @@ $(a, b, c);
 
 
 `````js filename=intro
-const tmpNestedAssignObj = $(3);
-const tmpNestedAssignPropRhs = $(4);
+const tmpNestedAssignObj /*:unknown*/ = $(3);
+const tmpNestedAssignPropRhs /*:unknown*/ = $(4);
 tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
 $(tmpNestedAssignPropRhs, tmpNestedAssignPropRhs, 3);
 `````

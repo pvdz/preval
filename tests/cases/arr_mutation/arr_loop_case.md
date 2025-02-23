@@ -99,7 +99,7 @@ const arr /*:array*/ = [`two`, `three`, `four`, `five`, `one`];
 try {
   $(tmpCalleeParam);
 } catch (e) {
-  const v = arr.shift();
+  const v /*:unknown*/ = arr.shift();
   arr.push(v);
 }
 $(1);
@@ -107,13 +107,13 @@ const tmpBinLhs$1 /*:primitive*/ = arr[2];
 const test$1 /*:boolean*/ = tmpBinLhs$1 === 820304;
 if (test$1) {
 } else {
-  const next$1 = arr.shift();
+  const next$1 /*:unknown*/ = arr.shift();
   arr.push(next$1);
-  const tmpCalleeParam$2 = arr.slice(0);
+  const tmpCalleeParam$2 /*:unknown*/ = arr.slice(0);
   try {
     $(tmpCalleeParam$2);
   } catch (e$1) {
-    const v$1 = arr.shift();
+    const v$1 /*:unknown*/ = arr.shift();
     arr.push(v$1);
   }
   while ($LOOP_UNROLL_9) {
@@ -123,19 +123,19 @@ if (test$1) {
     if (test$2) {
       break;
     } else {
-      const next$2 = arr.shift();
+      const next$2 /*:unknown*/ = arr.shift();
       arr.push(next$2);
-      const tmpCalleeParam$3 = arr.slice(0);
+      const tmpCalleeParam$3 /*:unknown*/ = arr.slice(0);
       try {
         $(tmpCalleeParam$3);
       } catch (e$2) {
-        const v$2 = arr.shift();
+        const v$2 /*:unknown*/ = arr.shift();
         arr.push(v$2);
       }
     }
   }
 }
-const tmpCalleeParam$1 = arr.slice(0, 3);
+const tmpCalleeParam$1 /*:unknown*/ = arr.slice(0, 3);
 $(tmpCalleeParam$1);
 `````
 

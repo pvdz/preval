@@ -79,7 +79,7 @@ $(x);
 `````js filename=intro
 const g /*:()=>undefined*/ = function () {
   debugger;
-  const tmpIfTest = $(1);
+  const tmpIfTest /*:unknown*/ = $(1);
   if (tmpIfTest) {
     $(`a`);
     g();

@@ -56,10 +56,10 @@ if (tmpIfTest) {
 } else {
   $(1);
 }
-const tmpIfTest$1 = $(0);
+const tmpIfTest$1 /*:unknown*/ = $(0);
 if (tmpIfTest$1) {
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$2 = $(0);
+    const tmpIfTest$2 /*:unknown*/ = $(0);
     if (tmpIfTest$2) {
     } else {
       break;

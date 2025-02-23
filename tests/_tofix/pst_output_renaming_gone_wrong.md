@@ -77,14 +77,14 @@ $(x);
 `````js filename=intro
 let x /*:number*/ = 20;
 $(a);
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 $(20);
 if (tmpIfTest) {
   x = 30;
   $(30);
 } else {
 }
-const tmpIfTest$1 = $(2);
+const tmpIfTest$1 /*:unknown*/ = $(2);
 $(x);
 if (tmpIfTest$1) {
   $(40);

@@ -54,17 +54,17 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(100);
+const tmpIfTest /*:unknown*/ = $(100);
 if (tmpIfTest) {
 } else {
-  const tmpCalleeParam = $(0);
-  const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam);
+  const tmpCalleeParam /*:unknown*/ = $(0);
+  const tmpClusterSSA_tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
   if (tmpClusterSSA_tmpIfTest) {
   } else {
-    const tmpCalleeParam$1 = $(1);
-    const tmpIfTest$1 = $(tmpCalleeParam$1);
+    const tmpCalleeParam$1 /*:unknown*/ = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$1);
     if (tmpIfTest$1) {
-      const tmpCalleeParam$3 = $(2);
+      const tmpCalleeParam$3 /*:unknown*/ = $(2);
       $(tmpCalleeParam$3);
     } else {
     }

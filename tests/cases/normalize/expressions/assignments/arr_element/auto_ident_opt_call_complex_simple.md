@@ -58,22 +58,22 @@ $(a);
 
 
 `````js filename=intro
-const tmpChainElementCall = $($);
+const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let tmpBinBothLhs = undefined;
+let tmpBinBothLhs /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, 1);
   tmpBinBothLhs = tmpChainElementCall$1;
 }
-let tmpClusterSSA_a = undefined;
-const tmpChainElementCall$3 = $($);
+let tmpClusterSSA_a /*:unknown*/ = undefined;
+const tmpChainElementCall$3 /*:unknown*/ = $($);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall$3 == null;
 if (tmpIfTest$1) {
   const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + undefined;
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, $, 1);
+  const tmpChainElementCall$5 /*:unknown*/ = $dotCall(tmpChainElementCall$3, $, 1);
   tmpClusterSSA_a = tmpChainElementCall$5;
   const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpChainElementCall$5;
   $(tmpClusterSSA_tmpCalleeParam$1);

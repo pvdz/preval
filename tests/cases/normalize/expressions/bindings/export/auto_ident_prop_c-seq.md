@@ -41,8 +41,8 @@ $(a, b);
 
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
-const tmpCompObj = $(b);
-const a = tmpCompObj.c;
+const tmpCompObj /*:unknown*/ = $(b);
+const a /*:unknown*/ = tmpCompObj.c;
 export { a };
 $(a, b);
 `````

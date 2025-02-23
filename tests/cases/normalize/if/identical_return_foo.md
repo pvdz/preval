@@ -75,7 +75,7 @@ if ($) {
 
 
 `````js filename=intro
-const foo = $();
+const foo /*:unknown*/ = $();
 if ($) {
   $(foo);
 } else {

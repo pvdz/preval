@@ -60,23 +60,23 @@ $(a);
 
 
 `````js filename=intro
-let tmpBinBothLhs = undefined;
+let tmpBinBothLhs /*:unknown*/ = undefined;
 const b /*:object*/ = { x: 1 };
-const tmpChainElementCall = $(b);
+const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainRootComputed = $(`x`);
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  const tmpChainRootComputed /*:unknown*/ = $(`x`);
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   tmpBinBothLhs = tmpChainElementObject;
 }
-let tmpBinBothRhs = undefined;
-const tmpChainElementCall$1 = $(b);
+let tmpBinBothRhs /*:unknown*/ = undefined;
+const tmpChainElementCall$1 /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall$1 == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainRootComputed$1 = $(`x`);
-  const tmpChainElementObject$1 = tmpChainElementCall$1[tmpChainRootComputed$1];
+  const tmpChainRootComputed$1 /*:unknown*/ = $(`x`);
+  const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$1[tmpChainRootComputed$1];
   tmpBinBothRhs = tmpChainElementObject$1;
 }
 tmpBinBothLhs + tmpBinBothRhs;

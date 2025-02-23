@@ -56,7 +56,7 @@ const f /*:(primitive)=>?*/ = function ($$0) {
   const n /*:primitive*/ = $$0;
   debugger;
   const tmpCalleeParam /*:primitive*/ = n + 1;
-  const tmpReturnArg = f(tmpCalleeParam);
+  const tmpReturnArg /*:unknown*/ = f(tmpCalleeParam);
   return tmpReturnArg;
 };
 throw `<max pcode call depth exceeded>; calling \`const tmpCalleeParam\$1 = f(0);\``;

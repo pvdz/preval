@@ -52,18 +52,18 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-let tmpCalleeParamSpread = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+let tmpCalleeParamSpread /*:unknown*/ = $(tmpCalleeParam);
 if (tmpCalleeParamSpread) {
-  const tmpCalleeParam$1 = $(1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
   tmpCalleeParamSpread = $(tmpCalleeParam$1);
 } else {
 }
 if (tmpCalleeParamSpread) {
   $(...tmpCalleeParamSpread);
 } else {
-  const tmpCalleeParam$3 = $(2);
-  const tmpClusterSSA_tmpCalleeParamSpread = $(tmpCalleeParam$3);
+  const tmpCalleeParam$3 /*:unknown*/ = $(2);
+  const tmpClusterSSA_tmpCalleeParamSpread /*:unknown*/ = $(tmpCalleeParam$3);
   $(...tmpClusterSSA_tmpCalleeParamSpread);
 }
 const a /*:object*/ = { a: 999, b: 1000 };

@@ -61,7 +61,7 @@ tmpCallCallee$1(tmpCalleeParam$5);
 `````js filename=intro
 const tmpObjLitVal /*:object*/ = {};
 const tmpCalleeParam$1 /*:array*/ = [];
-const y = objPatternRest(tmpObjLitVal, tmpCalleeParam$1, undefined);
+const y /*:unknown*/ = objPatternRest(tmpObjLitVal, tmpCalleeParam$1, undefined);
 $(y);
 `````
 

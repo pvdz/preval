@@ -79,14 +79,14 @@ $(x, y);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(true);
+const tmpCalleeParam /*:unknown*/ = $(true);
 let x /*:number*/ = 0;
-const tmpBinBothLhs = e$661;
+const tmpBinBothLhs /*:unknown*/ = e$661;
 if (tmpCalleeParam) {
-  const tmpBinBothRhs = $(tmpFree$105, tmpClusterSSA_n$63);
+  const tmpBinBothRhs /*:unknown*/ = $(tmpFree$105, tmpClusterSSA_n$63);
   x = tmpBinBothLhs & tmpBinBothRhs;
 } else {
-  const tmpBinBothRhs$1 = $(tmpFree$107, tmpClusterSSA_n$63);
+  const tmpBinBothRhs$1 /*:unknown*/ = $(tmpFree$107, tmpClusterSSA_n$63);
   x = tmpBinBothLhs & tmpBinBothRhs$1;
 }
 if (i$399) {
@@ -94,7 +94,7 @@ if (i$399) {
   const tmpClusterSSA_y /*:number*/ = x >>> tmpBinBothRhs$3;
   $(x, tmpClusterSSA_y);
 } else {
-  const tmpBinBothRhs$5 = $(tmpFree$109, tmpClusterSSA_n$63);
+  const tmpBinBothRhs$5 /*:unknown*/ = $(tmpFree$109, tmpClusterSSA_n$63);
   const tmpClusterSSA_y$1 /*:number*/ = x >>> tmpBinBothRhs$5;
   $(x, tmpClusterSSA_y$1);
 }

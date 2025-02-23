@@ -50,19 +50,19 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
-const tmpIfTest = $(30);
-let tmpCalleeParam = undefined;
+let a /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(30);
+let tmpCalleeParam /*:unknown*/ = undefined;
 if (tmpIfTest) {
   a = $(60);
   tmpCalleeParam = a;
 } else {
-  const tmpCalleeParam$1 = $(100);
+  const tmpCalleeParam$1 /*:unknown*/ = $(100);
   a = $(tmpCalleeParam$1);
   tmpCalleeParam = a;
 }
 if (a) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   $(tmpCalleeParam);

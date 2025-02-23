@@ -45,8 +45,8 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpNestedComplexRhs = $(2);
-const tmpAnonDefaultExport = tmpNestedComplexRhs;
+const tmpNestedComplexRhs /*:unknown*/ = $(2);
+const tmpAnonDefaultExport /*:unknown*/ = tmpNestedComplexRhs;
 export { tmpAnonDefaultExport as default };
 $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````

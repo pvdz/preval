@@ -49,7 +49,7 @@ if (t) {
 
 
 `````js filename=intro
-const x = $(100);
+const x /*:unknown*/ = $(100);
 const t /*:boolean*/ = x <= 100;
 $(t);
 `````

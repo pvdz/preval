@@ -75,7 +75,7 @@ const tmpCalleeParam /*:()=>undefined,function*/ = function () {
   const incorrectlyhoisted$3 /*:()=>undefined*/ = function () {
     debugger;
     const tmpCalleeParam$1 /*:object*/ = {};
-    const C = $(tmpCalleeParam$1);
+    const C /*:unknown*/ = $(tmpCalleeParam$1);
     C.innerHTML = wheredoyougoto;
     return undefined;
   };
@@ -83,7 +83,7 @@ const tmpCalleeParam /*:()=>undefined,function*/ = function () {
     return undefined;
   } else {
   }
-  const wheredoyougoto = $();
+  const wheredoyougoto /*:unknown*/ = $();
   return incorrectlyhoisted$3;
 };
 $(tmpCalleeParam);

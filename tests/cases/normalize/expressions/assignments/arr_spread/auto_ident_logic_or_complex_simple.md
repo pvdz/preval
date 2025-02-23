@@ -46,9 +46,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 = $(0);
-let a = $(tmpCalleeParam$1);
-let tmpArrSpread = 2;
+const tmpCalleeParam$1 /*:unknown*/ = $(0);
+let a /*:unknown*/ = $(tmpCalleeParam$1);
+let tmpArrSpread /*:unknown*/ = 2;
 if (a) {
   tmpArrSpread = a;
 } else {

@@ -45,11 +45,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(100);
+const tmpIfTest /*:unknown*/ = $(100);
 if (tmpIfTest) {
 } else {
   const b /*:object*/ = { $: $ };
-  const tmpCallObj = $(b);
+  const tmpCallObj /*:unknown*/ = $(b);
   tmpCallObj.$(1);
 }
 const a /*:object*/ = { a: 999, b: 1000 };

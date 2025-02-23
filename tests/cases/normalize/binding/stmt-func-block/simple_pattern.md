@@ -68,12 +68,12 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpIfTest = $(true);
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   const z /*:array*/ = [10, 20, 30];
   const arrPatternSplat /*:array*/ = [...z];
-  const tmpClusterSSA_x = arrPatternSplat[0];
-  const tmpClusterSSA_y = arrPatternSplat[1];
+  const tmpClusterSSA_x /*:unknown*/ = arrPatternSplat[0];
+  const tmpClusterSSA_y /*:unknown*/ = arrPatternSplat[1];
   $(z, tmpClusterSSA_x, tmpClusterSSA_y, z);
 } else {
 }

@@ -119,15 +119,15 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
-const tmpSwitchValue = $(1, `disc`);
+let tmpCalleeParam /*:unknown*/ = undefined;
+const tmpSwitchValue /*:unknown*/ = $(1, `disc`);
 let tmpSwitchCaseToStart /*:number*/ = 2;
-const tmpBinLhs = $(0);
+const tmpBinLhs /*:unknown*/ = $(0);
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpBinLhs$1 = $(1);
+  const tmpBinLhs$1 /*:unknown*/ = $(1);
   const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$1 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
@@ -143,7 +143,7 @@ if (tmpIfTest$3) {
     $(`keep, eval`);
   } else {
     $(`keep, do not eval`);
-    const tmpReturnArg = $(2, `ret`);
+    const tmpReturnArg /*:unknown*/ = $(2, `ret`);
     tmpCalleeParam = tmpReturnArg;
   }
 }

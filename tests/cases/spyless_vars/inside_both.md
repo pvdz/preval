@@ -52,7 +52,7 @@ if ($) {
 
 
 `````js filename=intro
-const tmpUnaryArg = $(`1`);
+const tmpUnaryArg /*:unknown*/ = $(`1`);
 const a /*:number*/ = +tmpUnaryArg;
 const x /*:number*/ = a * 2;
 if ($) {

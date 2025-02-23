@@ -46,10 +46,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(100);
+const tmpIfTest /*:unknown*/ = $(100);
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall = $($);
+  const tmpChainElementCall /*:unknown*/ = $($);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$1) {
   } else {

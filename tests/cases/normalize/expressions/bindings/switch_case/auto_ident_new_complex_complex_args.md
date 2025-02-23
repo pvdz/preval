@@ -58,9 +58,9 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const tmpNewCallee = $($);
-const tmpCalleeParam = $(1);
-const tmpCalleeParam$1 = $(2);
+const tmpNewCallee /*:unknown*/ = $($);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpCalleeParam$1 /*:unknown*/ = $(2);
 const a /*:object*/ = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````

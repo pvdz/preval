@@ -64,10 +64,10 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const bindingPatternArrRoot = $(`pass2`);
+const bindingPatternArrRoot /*:unknown*/ = $(`pass2`);
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let arrPatternStep = undefined;
+const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
+let arrPatternStep /*:unknown*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   arrPatternStep = $(`fail`);
@@ -75,7 +75,7 @@ if (tmpIfTest$1) {
   arrPatternStep = arrPatternBeforeDefault;
 }
 const arrPatternSplat$1 /*:array*/ = [...arrPatternStep];
-const x = arrPatternSplat$1.slice(0);
+const x /*:unknown*/ = arrPatternSplat$1.slice(0);
 $(x);
 `````
 

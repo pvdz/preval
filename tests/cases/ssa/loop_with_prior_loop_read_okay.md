@@ -76,7 +76,7 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const x = $(1);
+  const x /*:unknown*/ = $(1);
   $(x);
   if ($) {
   } else {
@@ -89,7 +89,7 @@ if ($) {
     }
   }
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const tmpClusterSSA_x = $(2);
+    const tmpClusterSSA_x /*:unknown*/ = $(2);
     $(tmpClusterSSA_x);
   }
 } else {

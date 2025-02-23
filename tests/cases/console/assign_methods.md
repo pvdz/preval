@@ -74,7 +74,7 @@ tmpCallCallee(
 
 
 `````js filename=intro
-const tmpCalleeParam$17 = console.foo;
+const tmpCalleeParam$17 /*:unknown*/ = console.foo;
 $(
   $console_log,
   $console_warn,

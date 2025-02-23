@@ -98,10 +98,10 @@ $(a, b);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
-const tmpBinLhs = $(1);
+const tmpBinLhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -115,9 +115,9 @@ if (tmpIfTest) {
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest$3) {
-  const tmpCalleeParam = $(b);
-  const tmpPostUpdArgObj = $(tmpCalleeParam);
-  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+  const tmpCalleeParam /*:unknown*/ = $(b);
+  const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam);
+  const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
   const tmpAssignMemRhs /*:number*/ = tmpPostUpdArgVal - 1;
   tmpPostUpdArgObj.x = tmpAssignMemRhs;
   a = tmpPostUpdArgVal;

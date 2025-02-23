@@ -59,11 +59,11 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { c: $ };
-const tmpChainElementCall = b.c(1);
+const tmpChainElementCall /*:unknown*/ = b.c(1);
 if (tmpChainElementCall) {
   while ($LOOP_UNROLL_10) {
     $(1);
-    const tmpChainElementCall$1 = b.c(1);
+    const tmpChainElementCall$1 /*:unknown*/ = b.c(1);
     if (tmpChainElementCall$1) {
     } else {
       break;

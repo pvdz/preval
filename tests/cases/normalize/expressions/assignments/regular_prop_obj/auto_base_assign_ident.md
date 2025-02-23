@@ -47,7 +47,7 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpNestedComplexRhs = $(2);
+const tmpNestedComplexRhs /*:unknown*/ = $(2);
 tmpNestedComplexRhs.a;
 $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````

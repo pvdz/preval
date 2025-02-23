@@ -42,9 +42,9 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpBinBothRhs = $(2);
+const tmpBinBothRhs /*:unknown*/ = $(2);
 tmpBinBothRhs ** 0;
-const tmpBinBothRhs$1 = $(2);
+const tmpBinBothRhs$1 /*:unknown*/ = $(2);
 $coerce(tmpBinBothRhs$1, `plustr`);
 $(false);
 `````

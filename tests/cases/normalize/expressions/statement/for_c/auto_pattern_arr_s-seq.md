@@ -52,13 +52,13 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const a = arrPatternSplat[0];
-const tmpIfTest = $(1);
+const a /*:unknown*/ = arrPatternSplat[0];
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(10);
     $(20);
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
     } else {
       break;

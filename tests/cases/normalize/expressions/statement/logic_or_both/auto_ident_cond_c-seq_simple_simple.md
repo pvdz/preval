@@ -55,21 +55,21 @@ $(a);
 
 
 `````js filename=intro
-let tmpIfTest = undefined;
-const tmpIfTest$1 = $(30);
+let tmpIfTest /*:unknown*/ = undefined;
+const tmpIfTest$1 /*:unknown*/ = $(30);
 if (tmpIfTest$1) {
   tmpIfTest = $(2);
 } else {
-  const tmpCalleeParam = $(100);
+  const tmpCalleeParam /*:unknown*/ = $(100);
   tmpIfTest = $(tmpCalleeParam);
 }
 if (tmpIfTest) {
 } else {
-  const tmpIfTest$3 = $(30);
+  const tmpIfTest$3 /*:unknown*/ = $(30);
   if (tmpIfTest$3) {
     $(2);
   } else {
-    const tmpCalleeParam$1 = $(100);
+    const tmpCalleeParam$1 /*:unknown*/ = $(100);
     $(tmpCalleeParam$1);
   }
 }

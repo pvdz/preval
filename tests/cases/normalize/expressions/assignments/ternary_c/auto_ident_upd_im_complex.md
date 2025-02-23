@@ -57,16 +57,16 @@ $(a, b);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(0);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(0);
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  const tmpCalleeParam$1 = $(b);
-  const tmpPostUpdArgObj = $(tmpCalleeParam$1);
-  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+  const tmpCalleeParam$1 /*:unknown*/ = $(b);
+  const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam$1);
+  const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
   const tmpAssignMemRhs /*:number*/ = tmpPostUpdArgVal - 1;
   tmpPostUpdArgObj.x = tmpAssignMemRhs;
   a = tmpPostUpdArgVal;

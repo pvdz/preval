@@ -72,9 +72,9 @@ arrPatternSplat$1[0];
 $(10);
 $(20);
 const tmpCalleeParam /*:array*/ = [1, 2];
-const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
+const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_a = arrPatternSplat[0];
+const tmpClusterSSA_a /*:unknown*/ = arrPatternSplat[0];
 $(undefined);
 $(tmpClusterSSA_a);
 `````

@@ -47,14 +47,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam$1 = $(60);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(60);
   $(tmpCalleeParam, tmpClusterSSA_tmpCalleeParam$1);
 } else {
-  const tmpCalleeParam$3 = $(100);
-  const tmpClusterSSA_tmpCalleeParam$2 = $(tmpCalleeParam$3);
+  const tmpCalleeParam$3 /*:unknown*/ = $(100);
+  const tmpClusterSSA_tmpCalleeParam$2 /*:unknown*/ = $(tmpCalleeParam$3);
   $(tmpCalleeParam, tmpClusterSSA_tmpCalleeParam$2);
 }
 const a /*:object*/ = { a: 999, b: 1000 };

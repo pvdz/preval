@@ -61,12 +61,12 @@ while (true) {
 $(10);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(20);
-  const tmpIfTest = $(true);
+  const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
   } else {
     while ($LOOP_UNROLL_10) {
       $(20);
-      const tmpIfTest$1 = $(true);
+      const tmpIfTest$1 /*:unknown*/ = $(true);
       if (tmpIfTest$1) {
         break;
       } else {

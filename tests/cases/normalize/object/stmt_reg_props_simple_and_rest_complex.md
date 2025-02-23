@@ -32,7 +32,7 @@ const tmpObjSpreadArg = { a: tmpObjLitVal };
 
 
 `````js filename=intro
-const tmpObjLitVal = $(10);
+const tmpObjLitVal /*:unknown*/ = $(10);
 const tmpObjSpreadArg /*:object*/ = { a: tmpObjLitVal };
 ({ ...tmpObjSpreadArg });
 `````

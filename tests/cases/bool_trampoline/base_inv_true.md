@@ -67,13 +67,13 @@ if (tmpIfTest) {
 `````js filename=intro
 const f /*:()=>boolean*/ = function () {
   debugger;
-  const x = $(100);
+  const x /*:unknown*/ = $(100);
   const y /*:boolean*/ = !x;
   return y;
 };
 $(f);
 $(f);
-const tmpBoolTrampoline = $(100);
+const tmpBoolTrampoline /*:unknown*/ = $(100);
 if (tmpBoolTrampoline) {
   $(`pass`);
 } else {

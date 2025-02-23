@@ -65,10 +65,10 @@ if (itooamanumberjack) {
 `````js filename=intro
 let itooamanumberjack /*:number*/ = 0;
 if (imanumberandilovethrees) {
-  const tmpBinLhs = $(1);
+  const tmpBinLhs /*:unknown*/ = $(1);
   itooamanumberjack = tmpBinLhs % 2;
 } else {
-  const tmpBinLhs$1 = $(2);
+  const tmpBinLhs$1 /*:unknown*/ = $(2);
   itooamanumberjack = tmpBinLhs$1 % 2;
 }
 if (itooamanumberjack) {

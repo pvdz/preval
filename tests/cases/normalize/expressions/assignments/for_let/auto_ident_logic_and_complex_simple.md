@@ -52,9 +52,9 @@ while (true) {
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-const a = $(tmpCalleeParam);
-let xyz = 2;
+const tmpCalleeParam /*:unknown*/ = $(1);
+const a /*:unknown*/ = $(tmpCalleeParam);
+let xyz /*:unknown*/ = 2;
 if (a) {
 } else {
   xyz = a;

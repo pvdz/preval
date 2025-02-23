@@ -48,11 +48,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
+const tmpObjLitVal /*:unknown*/ = $(1);
 const obj /*:object*/ = {};
 const a /*:object*/ = { b: tmpObjLitVal };
 obj[a];
-const tmpAssignComMemLhsProp = $(`b`);
+const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
 a[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````

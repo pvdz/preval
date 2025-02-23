@@ -52,7 +52,7 @@ while (true) {
 
 `````js filename=intro
 const arg /*:object*/ = { y: 1 };
-const tmpDeleteObj = $(arg);
+const tmpDeleteObj /*:unknown*/ = $(arg);
 const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpClusterSSA_a);

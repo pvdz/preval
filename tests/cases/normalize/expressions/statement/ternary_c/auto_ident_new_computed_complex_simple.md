@@ -47,13 +47,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(0);
+const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
   const b /*:object*/ = { $: $ };
-  const tmpCompObj = $(b);
-  const tmpNewCallee = tmpCompObj.$;
+  const tmpCompObj /*:unknown*/ = $(b);
+  const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
   new tmpNewCallee(1);
 }
 const a /*:object*/ = { a: 999, b: 1000 };

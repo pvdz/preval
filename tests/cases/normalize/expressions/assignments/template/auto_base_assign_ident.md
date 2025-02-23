@@ -50,7 +50,7 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpNestedComplexRhs = $(2);
+const tmpNestedComplexRhs /*:unknown*/ = $(2);
 const tmpBinBothRhs /*:string*/ = $coerce(tmpNestedComplexRhs, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);

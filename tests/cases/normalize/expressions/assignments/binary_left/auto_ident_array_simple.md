@@ -41,7 +41,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpBinBothRhs = $(100);
+const tmpBinBothRhs /*:unknown*/ = $(100);
 const tmpStringConcatL /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
 const tmpCalleeParam /*:string*/ = `1,2,3${tmpStringConcatL}`;
 $(tmpCalleeParam);

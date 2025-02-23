@@ -44,7 +44,7 @@ while (true) {
 
 
 `````js filename=intro
-const tmpNewCallee = $($);
+const tmpNewCallee /*:unknown*/ = $($);
 new tmpNewCallee(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);

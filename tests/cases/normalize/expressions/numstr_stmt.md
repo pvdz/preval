@@ -33,7 +33,7 @@ $coerce(tmpBinLhs, `plustr`);
 
 
 `````js filename=intro
-const tmpBinLhs = $spy();
+const tmpBinLhs /*:unknown*/ = $spy();
 $coerce(tmpBinLhs, `plustr`);
 `````
 

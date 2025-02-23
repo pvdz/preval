@@ -58,13 +58,13 @@ while (true) {
 
 
 `````js filename=intro
-const tmpChainElementCall = $($);
+const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let xyz = undefined;
+let xyz /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
-  const tmpCalleeParam$3 = $(1);
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
+  const tmpCalleeParam$3 /*:unknown*/ = $(1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
   xyz = tmpChainElementCall$1;
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

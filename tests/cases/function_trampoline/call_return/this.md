@@ -59,7 +59,7 @@ $(q);
 
 
 `````js filename=intro
-const q = $(undefined);
+const q /*:unknown*/ = $(undefined);
 $(q);
 `````
 

@@ -37,9 +37,9 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCompObj$1 = $Object_prototype.b;
-const tmpCompObj = tmpCompObj$1.c;
-const tmpCalleeParam = tmpCompObj.d;
+const tmpCompObj$1 /*:unknown*/ = $Object_prototype.b;
+const tmpCompObj /*:unknown*/ = tmpCompObj$1.c;
+const tmpCalleeParam /*:unknown*/ = tmpCompObj.d;
 $(tmpCalleeParam);
 `````
 

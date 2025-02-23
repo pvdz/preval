@@ -46,7 +46,7 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
-const tmpIfTest = $(tmpCalleeParam);
+const tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };

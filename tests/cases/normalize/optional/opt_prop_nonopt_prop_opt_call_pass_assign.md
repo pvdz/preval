@@ -58,7 +58,7 @@ if (tmpIfTest$1) {
   $(undefined);
 } else {
   const tmpObjLitVal /*:object*/ = { c: $ };
-  const tmpChainElementCall = $dotCall($, tmpObjLitVal, 1);
+  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal, 1);
   $(tmpChainElementCall);
 }
 `````

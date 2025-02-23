@@ -51,12 +51,12 @@ $(a);
 
 
 `````js filename=intro
-let a = 2;
-const tmpIfTest = $(1);
+let a /*:unknown*/ = 2;
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   $(`before  2  after`);
 } else {
-  const tmpCalleeParam$1 = $(100);
+  const tmpCalleeParam$1 /*:unknown*/ = $(100);
   a = $(tmpCalleeParam$1);
   const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
   const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;

@@ -48,11 +48,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$3 = $(1);
-let a = $(tmpCalleeParam$3);
-let tmpCalleeParam$1 = undefined;
+const tmpCalleeParam$3 /*:unknown*/ = $(1);
+let a /*:unknown*/ = $(tmpCalleeParam$3);
+let tmpCalleeParam$1 /*:unknown*/ = undefined;
 if (a) {
-  const tmpCalleeParam$5 = $(2);
+  const tmpCalleeParam$5 /*:unknown*/ = $(2);
   a = $(tmpCalleeParam$5);
   tmpCalleeParam$1 = a;
 } else {

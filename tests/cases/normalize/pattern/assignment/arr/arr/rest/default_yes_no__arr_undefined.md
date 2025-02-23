@@ -44,7 +44,7 @@ $(x);
 
 
 `````js filename=intro
-const arrPatternStep = $(`pass`);
+const arrPatternStep /*:unknown*/ = $(`pass`);
 const arrPatternSplat$1 /*:array*/ = [...arrPatternStep];
 x = arrPatternSplat$1.slice(0);
 $(x);

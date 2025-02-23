@@ -50,7 +50,7 @@ let y = arrPatternSplat[1];
 $(1);
 $(2);
 const z /*:array*/ = [10, 20, 30];
-const bindingPatternArrRoot = $(z);
+const bindingPatternArrRoot /*:unknown*/ = $(z);
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 arrPatternSplat[0];
 arrPatternSplat[1];

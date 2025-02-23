@@ -61,12 +61,12 @@ $(a);
 
 `````js filename=intro
 $(100);
-const tmpCalleeParam = $(1);
-let a = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+let a /*:unknown*/ = $(tmpCalleeParam);
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpCalleeParam$1 = $(1);
+    const tmpCalleeParam$1 /*:unknown*/ = $(1);
     a = $(tmpCalleeParam$1);
     if (a) {
     } else {

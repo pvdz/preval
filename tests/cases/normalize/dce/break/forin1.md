@@ -76,24 +76,24 @@ $(`after`);
 
 
 `````js filename=intro
-const tmpIfTest = $(true);
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
-  const tmpForInGen = $forIn(tmpCalleeParam);
-  const tmpForInNext = tmpForInGen.next();
-  const tmpIfTest$1 = tmpForInNext.done;
+  const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest$1) {
   } else {
     tmpForInNext.value;
   }
   while ($LOOP_UNROLL_10) {
     $(`keep`);
-    const tmpIfTest$2 = $(true);
+    const tmpIfTest$2 /*:unknown*/ = $(true);
     if (tmpIfTest$2) {
       const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
-      const tmpForInGen$1 = $forIn(tmpCalleeParam$1);
-      const tmpForInNext$1 = tmpForInGen$1.next();
-      const tmpIfTest$4 = tmpForInNext$1.done;
+      const tmpForInGen$1 /*:unknown*/ = $forIn(tmpCalleeParam$1);
+      const tmpForInNext$1 /*:unknown*/ = tmpForInGen$1.next();
+      const tmpIfTest$4 /*:unknown*/ = tmpForInNext$1.done;
       if (tmpIfTest$4) {
       } else {
         tmpForInNext$1.value;

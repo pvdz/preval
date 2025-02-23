@@ -44,7 +44,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const tmpIfTest = $(`if`);
+const tmpIfTest /*:unknown*/ = $(`if`);
 if (tmpIfTest) {
   $(10);
 } else {

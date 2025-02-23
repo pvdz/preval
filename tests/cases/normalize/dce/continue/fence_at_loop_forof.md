@@ -88,18 +88,18 @@ $(`after (not invoked)`);
 
 `````js filename=intro
 while (true) {
-  const tmpIfTest = $(true);
+  const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
     $(`loop`);
     const tmpCalleeParam /*:array*/ = [1, 2];
-    const tmpForOfGen = $forOf(tmpCalleeParam);
+    const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      const tmpForOfNext = tmpForOfGen.next();
-      const tmpIfTest$1 = tmpForOfNext.done;
+      const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+      const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
       if (tmpIfTest$1) {
         break;
       } else {
-        const x = tmpForOfNext.value;
+        const x /*:unknown*/ = tmpForOfNext.value;
         $(`loop`, x);
       }
     }

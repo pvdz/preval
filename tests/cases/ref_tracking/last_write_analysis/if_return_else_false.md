@@ -69,12 +69,12 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpIfTest = $(false);
+const tmpIfTest /*:unknown*/ = $(false);
 if (tmpIfTest) {
-  const tmpClusterSSA_x = $(2, `prevent optim`);
+  const tmpClusterSSA_x /*:unknown*/ = $(2, `prevent optim`);
   $(tmpClusterSSA_x);
 } else {
-  const tmpClusterSSA_x$1 = $(3, `prevent optim`);
+  const tmpClusterSSA_x$1 /*:unknown*/ = $(3, `prevent optim`);
   $(`prevent return hoisting`);
   $(tmpClusterSSA_x$1);
 }

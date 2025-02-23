@@ -57,7 +57,7 @@ const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 arrPatternSplat[0];
 const tmpCalleeParam /*:array*/ = [1, 2];
-const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
+const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 arrPatternSplat$1[0];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

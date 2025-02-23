@@ -93,26 +93,26 @@ $(g);
 
 
 `````js filename=intro
-const g /*:(unknown, unknown, unknown)=>undefined*/ = function ($$0, $$1, $$2) {
+const g /*:(unused, unused, unused)=>undefined*/ = function ($$0, $$1, $$2) {
   debugger;
   const f /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
     const tmpPrevalAliasThis /*:object*/ = this;
-    const t$987 = $$0;
-    const e$767 = $$1;
+    const t$987 /*:unknown*/ = $$0;
+    const e$767 /*:unknown*/ = $$1;
     debugger;
     const tmpAssignMemRhs /*:array*/ = [];
     tmpPrevalAliasThis._pairs = tmpAssignMemRhs;
     if (t$987) {
-      const tmpCalleeParam = i$441.a;
-      const tmpCallComplexCallee$25 = Object(tmpCalleeParam);
+      const tmpCalleeParam /*:unknown*/ = i$441.a;
+      const tmpCallComplexCallee$25 /*:unknown*/ = Object(tmpCalleeParam);
       tmpCallComplexCallee$25(t$987, tmpPrevalAliasThis, e$767);
       return undefined;
     } else {
       return undefined;
     }
   };
-  const i$441 = $(`e467`);
-  const o$233 = f.prototype;
+  const i$441 /*:unknown*/ = $(`e467`);
+  const o$233 /*:unknown*/ = f.prototype;
   $(o$233);
   return undefined;
 };

@@ -99,22 +99,22 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-let tmpCalleeParam$1 = undefined;
+let tmpCalleeParam$1 /*:unknown*/ = undefined;
 $inlinedFunction: {
   while (true) {
-    const tmpIfTest = $(true);
+    const tmpIfTest /*:unknown*/ = $(true);
     if (tmpIfTest) {
       $(`loop`);
       const tmpCalleeParam /*:array*/ = [1, 2];
-      const tmpForOfGen = $forOf(tmpCalleeParam);
-      const tmpForOfNext = tmpForOfGen.next();
-      const tmpIfTest$1 = tmpForOfNext.done;
+      const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+      const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+      const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
       if (tmpIfTest$1) {
         $(`unreachable2 (but keep because the for body may not be visited...)`);
       } else {
-        const x = tmpForOfNext.value;
+        const x /*:unknown*/ = tmpForOfNext.value;
         $(`loop`, x);
-        const tmpReturnArg = $(100, `return`);
+        const tmpReturnArg /*:unknown*/ = $(100, `return`);
         tmpCalleeParam$1 = tmpReturnArg;
         break $inlinedFunction;
       }

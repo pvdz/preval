@@ -55,7 +55,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const tmpClusterSSA_a = $(1);
+const tmpClusterSSA_a /*:unknown*/ = $(1);
 $(tmpClusterSSA_a, 1);
 `````
 

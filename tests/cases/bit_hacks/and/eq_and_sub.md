@@ -49,7 +49,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const a = $(33);
+const a /*:unknown*/ = $(33);
 const tmpIfTest /*:boolean*/ = a === 32;
 if (tmpIfTest) {
   $(`pass`);

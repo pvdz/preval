@@ -80,7 +80,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:object*/ = { x: `pass` };
-const objPatternAfterDefault = $(tmpCalleeParam$1);
+const objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam$1);
 let tmpClusterSSA_objPatternCrashTest /*:boolean*/ = objPatternAfterDefault === undefined;
 if (tmpClusterSSA_objPatternCrashTest) {
 } else {

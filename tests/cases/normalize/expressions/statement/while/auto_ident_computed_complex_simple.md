@@ -49,13 +49,13 @@ $(a, b);
 
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
-const tmpCompObj = $(b);
-const tmpIfTest = tmpCompObj.c;
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpIfTest /*:unknown*/ = tmpCompObj.c;
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpCompObj$1 = $(b);
-    const tmpIfTest$1 = tmpCompObj$1.c;
+    const tmpCompObj$1 /*:unknown*/ = $(b);
+    const tmpIfTest$1 /*:unknown*/ = tmpCompObj$1.c;
     if (tmpIfTest$1) {
     } else {
       break;

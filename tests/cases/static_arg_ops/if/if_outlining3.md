@@ -194,10 +194,10 @@ $(push);
 
 `````js filename=intro
 const push /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
-  const heap = $$0;
-  const node$1 = $$1;
+  const heap /*:unknown*/ = $$0;
+  const node$1 /*:unknown*/ = $$1;
   debugger;
-  const index$1 = heap.length;
+  const index$1 /*:unknown*/ = heap.length;
   index$1 ** 0;
   heap.push(node$1);
   const tmpSaooB$1 /*:number*/ = index$1 - 1;
@@ -211,13 +211,13 @@ const push /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
   return undefined;
 };
 const siftUp_t /*:(unknown, unknown, unknown, number)=>undefined*/ = function ($$0, $$1, $$2, $$3) {
-  const heap$1 = $$0;
-  const node = $$1;
-  const i = $$2;
+  const heap$1 /*:unknown*/ = $$0;
+  const node /*:unknown*/ = $$1;
+  const i /*:unknown*/ = $$2;
   const tmpOutlinedParam$1 /*:number*/ = $$3;
   debugger;
-  const parent = heap$1[tmpOutlinedParam$1];
-  const lhs = $(parent, node);
+  const parent /*:unknown*/ = heap$1[tmpOutlinedParam$1];
+  const lhs /*:unknown*/ = $(parent, node);
   const test /*:boolean*/ = lhs > 0;
   if (test) {
     heap$1[tmpOutlinedParam$1] = node;
@@ -236,9 +236,9 @@ const siftUp_t /*:(unknown, unknown, unknown, number)=>undefined*/ = function ($
   }
 };
 const siftUp_f /*:(unknown, unknown, unknown)=>undefined*/ = function ($$0, $$1, $$2) {
-  const heap$2 = $$0;
-  const node$2 = $$1;
-  const i$1 = $$2;
+  const heap$2 /*:unknown*/ = $$0;
+  const node$2 /*:unknown*/ = $$1;
+  const i$1 /*:unknown*/ = $$2;
   debugger;
   heap$2[i$1] = node$2;
   const parentIndex$1 /*:boolean*/ = i$1 > 0;

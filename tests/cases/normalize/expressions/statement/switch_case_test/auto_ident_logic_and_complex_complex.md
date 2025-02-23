@@ -55,10 +55,10 @@ $(a);
 
 `````js filename=intro
 $(1);
-const tmpCalleeParam = $(1);
-const tmpBinBothRhs = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam);
 if (tmpBinBothRhs) {
-  const tmpCalleeParam$1 = $(2);
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
   $(tmpCalleeParam$1);
 } else {
 }

@@ -46,7 +46,7 @@ $(x);
 
 
 `````js filename=intro
-const x = $(3);
+const x /*:unknown*/ = $(3);
 const y /*:number*/ = x | 32;
 if (y) {
   const tmpClusterSSA_x /*:number*/ = x ^ 32;

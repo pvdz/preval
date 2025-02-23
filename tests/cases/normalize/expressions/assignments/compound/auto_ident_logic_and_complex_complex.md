@@ -49,13 +49,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 = $(1);
-const tmpBinBothRhs = $(tmpCalleeParam$1);
+const tmpCalleeParam$1 /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam$1);
 let tmpClusterSSA_a /*:number*/ = 0;
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpBinBothRhs) {
-  const tmpCalleeParam$3 = $(2);
-  const tmpClusterSSA_tmpBinBothRhs = $(tmpCalleeParam$3);
+  const tmpCalleeParam$3 /*:unknown*/ = $(2);
+  const tmpClusterSSA_tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam$3);
   tmpClusterSSA_a = a * tmpClusterSSA_tmpBinBothRhs;
   $(tmpClusterSSA_a);
 } else {

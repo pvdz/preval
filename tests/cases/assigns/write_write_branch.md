@@ -40,10 +40,10 @@ $(x);
 
 
 `````js filename=intro
-const x = $(1);
-const tmpIfTest = $(10);
+const x /*:unknown*/ = $(1);
+const tmpIfTest /*:unknown*/ = $(10);
 if (tmpIfTest) {
-  const tmpClusterSSA_x = $(2);
+  const tmpClusterSSA_x /*:unknown*/ = $(2);
   $(tmpClusterSSA_x);
 } else {
   $(x);

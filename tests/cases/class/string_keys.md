@@ -53,12 +53,12 @@ tmpCallCallee(tmpCalleeParam);
 const x /*:class*/ = class {
   [`very stringy`]() {
     debugger;
-    const tmpReturnArg = $(1);
+    const tmpReturnArg /*:unknown*/ = $(1);
     return tmpReturnArg;
   }
 };
 const tmpCallObj /*:object*/ = new x();
-const tmpCalleeParam = tmpCallObj[`very stringy`]();
+const tmpCalleeParam /*:unknown*/ = tmpCallObj[`very stringy`]();
 $(tmpCalleeParam);
 `````
 

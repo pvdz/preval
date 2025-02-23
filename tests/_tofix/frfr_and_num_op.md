@@ -73,13 +73,13 @@ while (true) {
 `````js filename=intro
 const freeFunc1 /*:(number, unknown)=>number*/ = function $free($$0, $$1) {
   const x /*:number*/ = $$0;
-  const y = $$1;
+  const y /*:unknown*/ = $$1;
   debugger;
   const tmpBinBothRhs /*:number*/ = x + 287;
   const tmpReturnArg /*:number*/ = y * tmpBinBothRhs;
   return tmpReturnArg;
 };
-let limiter = 0;
+let limiter /*:unknown*/ = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const a /*:number*/ = $frfr(freeFunc1, 1, limiter);
   const b /*:number*/ = limiter % 41344;

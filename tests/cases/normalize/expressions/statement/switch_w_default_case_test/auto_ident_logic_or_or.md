@@ -103,17 +103,17 @@ $(a);
 
 
 `````js filename=intro
-const tmpSwitchValue = $(1);
+const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
-const tmpCalleeParam = $(0);
-let tmpBinLhs = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(0);
+let tmpBinLhs /*:unknown*/ = $(tmpCalleeParam);
 if (tmpBinLhs) {
 } else {
-  const tmpCalleeParam$1 = $(1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
   tmpBinLhs = $(tmpCalleeParam$1);
   if (tmpBinLhs) {
   } else {
-    const tmpCalleeParam$3 = $(2);
+    const tmpCalleeParam$3 /*:unknown*/ = $(2);
     tmpBinLhs = $(tmpCalleeParam$3);
   }
 }

@@ -96,13 +96,13 @@ tmpCallCallee$5(tmpCalleeParam$5);
 
 `````js filename=intro
 const f /*:(unknown)=>number*/ = function ($$0) {
-  const x = $$0;
+  const x /*:unknown*/ = $$0;
   debugger;
   $(`no`);
   $(`inlining`);
   $(`please`);
   const y /*:number*/ = ~x;
-  const tmpIfTest = $(true);
+  const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
     $(`a`);
     return y;
@@ -115,7 +115,7 @@ const tmpCalleeParam /*:number*/ = f(1);
 $(tmpCalleeParam);
 const tmpCalleeParam$1 /*:number*/ = f(2);
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f.length;
+const tmpCalleeParam$3 /*:unknown*/ = f.length;
 $(tmpCalleeParam$3);
 const tmpCalleeParam$5 /*:number*/ = f(`three`);
 $(tmpCalleeParam$5);

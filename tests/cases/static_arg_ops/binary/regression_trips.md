@@ -65,7 +65,7 @@ const _0x2751bd$3 /*:(number, number)=>undefined*/ = function ($$0, $$1) {
   const _0x1a6934 /*:number*/ = $$0;
   const tmpOutlinedParam /*:number*/ = $$1;
   debugger;
-  const tmpReturnArg$489 = $(_0x1a6934, tmpOutlinedParam);
+  const tmpReturnArg$489 /*:unknown*/ = $(_0x1a6934, tmpOutlinedParam);
   $(tmpReturnArg$489);
   return undefined;
 };

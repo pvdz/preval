@@ -111,15 +111,15 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [10, 20, 30, 40];
-const SSA_SNe$596 = $(tmpCalleeParam);
+const SSA_SNe$596 /*:unknown*/ = $(tmpCalleeParam);
 if (tmpIfTest$32854) {
-  const tmpCalleeParam$36039 = $(1);
-  const tmpCalleeParam$36040 = $(2);
-  const tmpCalleeParam$36041 = SSA_SNe$596[4];
-  const tmpCalleeParam$36042 = SSA_SNe$596[2];
-  const tmpCalleeParam$36043 = SSA_SNe$596[3];
-  const tmpCalleeParam$36044 = SSA_SNe$596[1];
-  const tmpReturnArg$21651 = $(
+  const tmpCalleeParam$36039 /*:unknown*/ = $(1);
+  const tmpCalleeParam$36040 /*:unknown*/ = $(2);
+  const tmpCalleeParam$36041 /*:unknown*/ = SSA_SNe$596[4];
+  const tmpCalleeParam$36042 /*:unknown*/ = SSA_SNe$596[2];
+  const tmpCalleeParam$36043 /*:unknown*/ = SSA_SNe$596[3];
+  const tmpCalleeParam$36044 /*:unknown*/ = SSA_SNe$596[1];
+  const tmpReturnArg$21651 /*:unknown*/ = $(
     100,
     tmpCalleeParam$36039,
     101,

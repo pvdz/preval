@@ -56,7 +56,7 @@ if (x) {
 
 
 `````js filename=intro
-const spy = $spy();
+const spy /*:unknown*/ = $spy();
 const x /*:number*/ = spy & 32;
 if (x) {
   $(`fail`, false);

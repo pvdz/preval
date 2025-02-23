@@ -92,7 +92,7 @@ $(x);
 `````js filename=intro
 let flag /*:boolean*/ = true;
 $(`before`);
-const x = $(`what`);
+const x /*:unknown*/ = $(`what`);
 if (x) {
   $(`inner`, 0);
   let tmpClusterSSA_n /*:number*/ = 1;

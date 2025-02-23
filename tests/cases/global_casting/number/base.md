@@ -40,7 +40,7 @@ $(y);
 
 
 `````js filename=intro
-const a = $(`a`);
+const a /*:unknown*/ = $(`a`);
 const x /*:number*/ = +a;
 $(x);
 `````

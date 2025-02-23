@@ -74,7 +74,7 @@ const f /*:(primitive)=>number*/ = function ($$0) {
   debugger;
   $(`no`);
   $(`inlining`);
-  const bad = $(`please`);
+  const bad /*:unknown*/ = $(`please`);
   const y /*:number*/ = x | bad;
   return y;
 };

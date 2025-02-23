@@ -45,7 +45,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const tmpChainElementObject$1 = $Object_prototype.c;
+const tmpChainElementObject$1 /*:unknown*/ = $Object_prototype.c;
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject$1 == null;
 if (tmpIfTest$1) {
 } else {

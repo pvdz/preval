@@ -46,7 +46,7 @@ const tmpFree /*:()=>boolean*/ = function $free() {
   const tmpRet /*:boolean*/ = !y;
   return tmpRet;
 };
-const tmpUnaryArg = $(1);
+const tmpUnaryArg /*:unknown*/ = $(1);
 const x /*:number*/ = +tmpUnaryArg;
 const z /*:boolean*/ = $frfr(tmpFree);
 $(z);

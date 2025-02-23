@@ -73,11 +73,11 @@ if (condition) {
 
 
 `````js filename=intro
-const condition = $(true);
+const condition /*:unknown*/ = $(true);
 if (condition) {
   $(`a`);
 } else {
-  const tmpClusterSSA_tmpIfelseifelse = $(false);
+  const tmpClusterSSA_tmpIfelseifelse /*:unknown*/ = $(false);
   if (tmpClusterSSA_tmpIfelseifelse) {
     $(`a`);
   } else {

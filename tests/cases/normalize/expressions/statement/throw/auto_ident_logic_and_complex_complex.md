@@ -44,10 +44,10 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-let tmpThrowArg = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+let tmpThrowArg /*:unknown*/ = $(tmpCalleeParam);
 if (tmpThrowArg) {
-  const tmpCalleeParam$1 = $(2);
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
   tmpThrowArg = $(tmpCalleeParam$1);
 } else {
 }

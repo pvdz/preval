@@ -92,7 +92,7 @@ if (tmpIfTest$9) {
 
 
 `````js filename=intro
-const a = $(2);
+const a /*:unknown*/ = $(2);
 $(a);
 $(`fail1`);
 $(`fail2`);

@@ -51,7 +51,7 @@ if (set) {
 
 
 `````js filename=intro
-const v = $(1);
+const v /*:unknown*/ = $(1);
 const and /*:number*/ = v & 64;
 if (and) {
   $(`fail`);

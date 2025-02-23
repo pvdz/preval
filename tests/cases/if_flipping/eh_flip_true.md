@@ -42,7 +42,7 @@ if (x) {
 
 
 `````js filename=intro
-const y = $(1);
+const y /*:unknown*/ = $(1);
 if (y) {
   $(`else`);
 } else {

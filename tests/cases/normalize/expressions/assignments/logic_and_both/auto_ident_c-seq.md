@@ -55,12 +55,12 @@ $(a, x);
 `````js filename=intro
 $(1);
 $(2);
-let a = $(1);
-const tmpCalleeParam = a;
+let a /*:unknown*/ = $(1);
+const tmpCalleeParam /*:unknown*/ = a;
 if (a) {
   $(1);
   $(2);
-  const tmpNestedComplexRhs = $(1);
+  const tmpNestedComplexRhs /*:unknown*/ = $(1);
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {

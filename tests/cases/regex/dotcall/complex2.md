@@ -42,7 +42,7 @@ $dotCall(f, regex, arg, tmpCalleeParam$5);
 
 
 `````js filename=intro
-const arg = $(`give food`);
+const arg /*:unknown*/ = $(`give food`);
 const regex /*:regex*/ = /foo/;
 const tmpCalleeParam$5 /*:object*/ = { some: `stuff` };
 regex.test(arg, tmpCalleeParam$5);

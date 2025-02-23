@@ -51,15 +51,15 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
-const tmpObjLitVal$1 = $(1);
+const tmpObjLitVal /*:unknown*/ = $(1);
+const tmpObjLitVal$1 /*:unknown*/ = $(1);
 const a /*:object*/ = { b: tmpObjLitVal };
 const tmpClusterSSA_a /*:object*/ = { b: tmpObjLitVal$1 };
 const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(1);
-const tmpAssignMemLhsObj = $(tmpClusterSSA_a);
-const tmpAssignMemRhs = $(2);
+const tmpAssignMemLhsObj /*:unknown*/ = $(tmpClusterSSA_a);
+const tmpAssignMemRhs /*:unknown*/ = $(2);
 tmpAssignMemLhsObj.b = tmpAssignMemRhs;
 $(tmpClusterSSA_a);
 `````

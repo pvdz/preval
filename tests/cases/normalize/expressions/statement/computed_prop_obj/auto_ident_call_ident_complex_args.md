@@ -47,9 +47,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-const tmpCalleeParam$1 = $(2);
-const tmpCompObj = $(tmpCalleeParam, tmpCalleeParam$1);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpCalleeParam$1 /*:unknown*/ = $(2);
+const tmpCompObj /*:unknown*/ = $(tmpCalleeParam, tmpCalleeParam$1);
 tmpCompObj.a;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

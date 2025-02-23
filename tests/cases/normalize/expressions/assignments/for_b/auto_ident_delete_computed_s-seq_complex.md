@@ -58,7 +58,7 @@ $(a, arg);
 `````js filename=intro
 $(1);
 $(2);
-const tmpDeleteCompProp = $(`y`);
+const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 const arg /*:object*/ = { y: 1 };
 let a /*:boolean*/ = delete arg[tmpDeleteCompProp];
 if (a) {
@@ -66,7 +66,7 @@ if (a) {
     $(1);
     $(1);
     $(2);
-    const tmpDeleteCompProp$1 = $(`y`);
+    const tmpDeleteCompProp$1 /*:unknown*/ = $(`y`);
     a = delete arg[tmpDeleteCompProp$1];
     if (a) {
     } else {

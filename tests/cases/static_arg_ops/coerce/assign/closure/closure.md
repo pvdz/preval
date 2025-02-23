@@ -66,7 +66,7 @@ $(y);
 
 
 `````js filename=intro
-const x = $(`50`);
+const x /*:unknown*/ = $(`50`);
 const f /*:(number)=>undefined*/ = function ($$0) {
   const c /*:number*/ = $$0;
   debugger;

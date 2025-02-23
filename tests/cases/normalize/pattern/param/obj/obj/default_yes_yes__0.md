@@ -76,8 +76,8 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const objPatternBeforeDefault = (0).x;
-let objPatternAfterDefault = undefined;
+const objPatternBeforeDefault /*:unknown*/ = (0).x;
+let objPatternAfterDefault /*:unknown*/ = undefined;
 let objPatternCrashTest /*:boolean*/ = false;
 const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {

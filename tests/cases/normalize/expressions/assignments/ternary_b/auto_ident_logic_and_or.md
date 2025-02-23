@@ -60,25 +60,25 @@ $(a);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpCalleeParam$1 = $(1);
-  let tmpNestedComplexRhs = $(tmpCalleeParam$1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
+  let tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$1);
   if (tmpNestedComplexRhs) {
-    const tmpCalleeParam$3 = $(1);
+    const tmpCalleeParam$3 /*:unknown*/ = $(1);
     tmpNestedComplexRhs = $(tmpCalleeParam$3);
   } else {
   }
   if (tmpNestedComplexRhs) {
   } else {
-    const tmpCalleeParam$5 = $(2);
+    const tmpCalleeParam$5 /*:unknown*/ = $(2);
     tmpNestedComplexRhs = $(tmpCalleeParam$5);
   }
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
-  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(200);
   $(tmpClusterSSA_tmpCalleeParam$1);
 }
 $(a);

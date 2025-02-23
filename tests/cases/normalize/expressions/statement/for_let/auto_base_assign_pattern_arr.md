@@ -56,9 +56,9 @@ while (true) {
 
 
 `````js filename=intro
-const tmpArrElement = $(2);
+const tmpArrElement /*:unknown*/ = $(2);
 const tmpCalleeParam /*:array*/ = [tmpArrElement];
-const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
+const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 arrPatternSplat[0];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

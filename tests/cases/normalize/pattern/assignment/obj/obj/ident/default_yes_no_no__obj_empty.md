@@ -43,8 +43,8 @@ $(`bad`);
 
 
 `````js filename=intro
-const objPatternNoDefault = $Object_prototype.x;
-const objPatternBeforeDefault = objPatternNoDefault.y;
+const objPatternNoDefault /*:unknown*/ = $Object_prototype.x;
+const objPatternBeforeDefault /*:unknown*/ = objPatternNoDefault.y;
 const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   y = $(`fail`);

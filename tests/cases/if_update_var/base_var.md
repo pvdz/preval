@@ -60,7 +60,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpBinBothRhs = $(`prevent inlining`);
+const tmpBinBothRhs /*:unknown*/ = $(`prevent inlining`);
 const tmpCalleeParam /*:primitive*/ = 0 + tmpBinBothRhs;
 $(tmpCalleeParam);
 `````

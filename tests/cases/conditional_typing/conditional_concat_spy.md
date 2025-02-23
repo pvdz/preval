@@ -78,8 +78,8 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const lastType = $(2097173);
-const tmpBinBothRhs = $spy();
+const lastType /*:unknown*/ = $(2097173);
+const tmpBinBothRhs /*:unknown*/ = $spy();
 const tmpStringConcatL /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
 const tmpIfTest$1787 /*:boolean*/ = lastType === 2097173;
 if (tmpIfTest$1787) {

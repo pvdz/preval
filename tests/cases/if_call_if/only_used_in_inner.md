@@ -103,9 +103,9 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const outerTest = $(0);
+  const outerTest /*:unknown*/ = $(0);
   if (outerTest) {
-    const tmpClusterSSA_innerTest = $(3);
+    const tmpClusterSSA_innerTest /*:unknown*/ = $(3);
     if (tmpClusterSSA_innerTest) {
     } else {
       $(2);

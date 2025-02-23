@@ -52,7 +52,7 @@ $(a, arg);
 $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
-const tmpDeleteObj = $(arg);
+const tmpDeleteObj /*:unknown*/ = $(arg);
 const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
 const obj /*:object*/ = {};
 obj[tmpClusterSSA_a];

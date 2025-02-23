@@ -60,11 +60,11 @@ tmpCallCallee$1(tmpCalleeParam$5);
 
 
 `````js filename=intro
-const tmpChainElementCall = $($);
+const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpCalleeParam$3 = $(1);
+  const tmpCalleeParam$3 /*:unknown*/ = $(1);
   $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
 }
 const a /*:object*/ = { a: 999, b: 1000 };

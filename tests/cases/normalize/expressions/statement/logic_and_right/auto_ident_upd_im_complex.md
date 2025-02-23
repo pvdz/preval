@@ -50,12 +50,12 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpIfTest = $(100);
+const tmpIfTest /*:unknown*/ = $(100);
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest) {
-  const tmpCalleeParam = $(b);
-  const tmpPostUpdArgObj = $(tmpCalleeParam);
-  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+  const tmpCalleeParam /*:unknown*/ = $(b);
+  const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam);
+  const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
   const tmpAssignMemRhs /*:number*/ = tmpPostUpdArgVal - 1;
   tmpPostUpdArgObj.x = tmpAssignMemRhs;
 } else {

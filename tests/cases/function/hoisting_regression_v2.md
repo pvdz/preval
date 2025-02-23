@@ -83,7 +83,7 @@ const inner /*:()=>undefined*/ = function () {
 };
 const outer /*:()=>undefined*/ = function () {
   debugger;
-  const tmpIfTest = $();
+  const tmpIfTest /*:unknown*/ = $();
   if (tmpIfTest) {
     return undefined;
   } else {

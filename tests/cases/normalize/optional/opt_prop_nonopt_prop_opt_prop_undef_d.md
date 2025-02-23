@@ -50,7 +50,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpChainElementObject$3 = $Object_prototype.d;
+const tmpChainElementObject$3 /*:unknown*/ = $Object_prototype.d;
 $(tmpChainElementObject$3);
 `````
 

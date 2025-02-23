@@ -133,7 +133,7 @@ $(x);
 `````js filename=intro
 let x /*:number*/ = 1;
 let $finalAbruptAction /*:number*/ = 0;
-let $finalCatchArg = undefined;
+let $finalCatchArg /*:unknown*/ = undefined;
 try {
   if ($) {
     x = 2;

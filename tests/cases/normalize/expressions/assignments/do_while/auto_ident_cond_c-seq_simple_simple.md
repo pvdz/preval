@@ -61,23 +61,23 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
+let a /*:unknown*/ = undefined;
 $(100);
-const tmpIfTest$1 = $(30);
+const tmpIfTest$1 /*:unknown*/ = $(30);
 if (tmpIfTest$1) {
   a = $(2);
 } else {
-  const tmpCalleeParam = $(100);
+  const tmpCalleeParam /*:unknown*/ = $(100);
   a = $(tmpCalleeParam);
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpIfTest$2 = $(30);
+    const tmpIfTest$2 /*:unknown*/ = $(30);
     if (tmpIfTest$2) {
       a = $(2);
     } else {
-      const tmpCalleeParam$1 = $(100);
+      const tmpCalleeParam$1 /*:unknown*/ = $(100);
       a = $(tmpCalleeParam$1);
     }
     if (a) {

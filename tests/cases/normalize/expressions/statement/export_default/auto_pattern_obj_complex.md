@@ -42,7 +42,7 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
-const tmpAnonDefaultExport = $(tmpCalleeParam);
+const tmpAnonDefaultExport /*:unknown*/ = $(tmpCalleeParam);
 export { tmpAnonDefaultExport as default };
 $(999);
 `````

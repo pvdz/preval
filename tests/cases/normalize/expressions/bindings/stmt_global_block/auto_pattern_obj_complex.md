@@ -41,8 +41,8 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
-const bindingPatternObjRoot = $(tmpCalleeParam);
-const a = bindingPatternObjRoot.a;
+const bindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
+const a /*:unknown*/ = bindingPatternObjRoot.a;
 $(a);
 `````
 

@@ -60,7 +60,7 @@ outer: {
 
 
 `````js filename=intro
-const b = $(3);
+const b /*:unknown*/ = $(3);
 if (b) {
 } else {
   $(`the_problem`);

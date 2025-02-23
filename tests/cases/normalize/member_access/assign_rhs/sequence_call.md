@@ -41,8 +41,8 @@ $(x);
 
 `````js filename=intro
 $(1);
-const tmpAssignRhsProp = $(2);
-const x = tmpAssignRhsProp.toString;
+const tmpAssignRhsProp /*:unknown*/ = $(2);
+const x /*:unknown*/ = tmpAssignRhsProp.toString;
 $(x);
 `````
 

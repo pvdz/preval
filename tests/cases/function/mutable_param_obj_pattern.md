@@ -53,7 +53,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const a = $(10);
+const a /*:unknown*/ = $(10);
 $(a);
 `````
 

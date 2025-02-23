@@ -35,7 +35,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam = wat;
+const tmpCalleeParam /*:unknown*/ = wat;
 $(tmpCalleeParam);
 `````
 

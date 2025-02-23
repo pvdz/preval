@@ -69,18 +69,18 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const tmpChainRootProp = $(b);
+const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
-let tmpForOfGen = undefined;
+let tmpForOfGen /*:unknown*/ = undefined;
 if (tmpIfTest) {
   tmpForOfGen = $forOf(undefined);
 } else {
-  const tmpChainElementObject = tmpChainRootProp.x;
+  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
   tmpForOfGen = $forOf(tmpChainElementObject);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest$1 = tmpForOfNext.done;
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest$1) {
     break;
   } else {

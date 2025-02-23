@@ -57,7 +57,7 @@ if ($) {
 } else {
   tmpBinBothLhs = 1;
 }
-const tmpBinBothRhs = $(`prevent inlining`);
+const tmpBinBothRhs /*:unknown*/ = $(`prevent inlining`);
 const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 `````

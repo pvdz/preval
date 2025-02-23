@@ -40,8 +40,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallComplexCallee = $($);
-const tmpCalleeParam$1 = tmpCallComplexCallee(1);
+const tmpCallComplexCallee /*:unknown*/ = $($);
+const tmpCalleeParam$1 /*:unknown*/ = tmpCallComplexCallee(1);
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, tmpCalleeParam$1);
 const a /*:object*/ = { a: 999, b: 1000 };

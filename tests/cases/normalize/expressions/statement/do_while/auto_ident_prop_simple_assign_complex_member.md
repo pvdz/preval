@@ -63,16 +63,16 @@ $(a, b);
 `````js filename=intro
 $(100);
 const b /*:object*/ = { c: 10, d: 20 };
-const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpCompProp /*:unknown*/ = $(`d`);
+const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
 b.c = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpCompObj$1 = $(b);
-    const tmpCompProp$1 = $(`d`);
-    const varInitAssignLhsComputedRhs$1 = tmpCompObj$1[tmpCompProp$1];
+    const tmpCompObj$1 /*:unknown*/ = $(b);
+    const tmpCompProp$1 /*:unknown*/ = $(`d`);
+    const varInitAssignLhsComputedRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
     b.c = varInitAssignLhsComputedRhs$1;
     if (varInitAssignLhsComputedRhs$1) {
     } else {

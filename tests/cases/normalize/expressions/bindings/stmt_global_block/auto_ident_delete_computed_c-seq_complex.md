@@ -48,8 +48,8 @@ $(a, arg);
 $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
-const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = $(`y`);
+const tmpDeleteCompObj /*:unknown*/ = $(arg);
+const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 const a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
 $(a, arg);
 `````

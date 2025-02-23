@@ -78,17 +78,17 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { x: 100 };
-const tmpForInGen = $forIn(tmpCalleeParam);
+const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
   } else {
     tmpForInNext.value;
-    const checkme = $(1);
+    const checkme /*:unknown*/ = $(1);
     if (checkme) {
-      const tmpClusterSSA_checkme = $(2);
+      const tmpClusterSSA_checkme /*:unknown*/ = $(2);
       if (tmpClusterSSA_checkme) {
         $(3);
       } else {

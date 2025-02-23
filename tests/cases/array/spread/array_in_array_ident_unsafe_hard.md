@@ -45,7 +45,7 @@ $(y);
 
 
 `````js filename=intro
-const a = $(10);
+const a /*:unknown*/ = $(10);
 if ($) {
   $(20);
 } else {

@@ -69,10 +69,10 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 = $(1, 2);
+const tmpCalleeParam$1 /*:unknown*/ = $(1, 2);
 $(tmpCalleeParam$1);
-const tmpCalleeParam = $(1, 2);
-const tmpReturnArg$1 = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1, 2);
+const tmpReturnArg$1 /*:unknown*/ = $(tmpCalleeParam);
 $(tmpReturnArg$1);
 `````
 

@@ -50,19 +50,19 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
-let tmpCalleeParam = undefined;
+let a /*:unknown*/ = undefined;
+let tmpCalleeParam /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall = $(1);
+  const tmpChainElementCall /*:unknown*/ = $(1);
   a = tmpChainElementCall;
   tmpCalleeParam = tmpChainElementCall;
 }
 if (a) {
   $(tmpCalleeParam);
 } else {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 }
 $(a);

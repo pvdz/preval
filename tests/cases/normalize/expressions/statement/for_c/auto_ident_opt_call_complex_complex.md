@@ -57,23 +57,23 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpChainElementCall = $($);
+  const tmpChainElementCall /*:unknown*/ = $($);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$1) {
   } else {
-    const tmpCalleeParam$3 = $(1);
+    const tmpCalleeParam$3 /*:unknown*/ = $(1);
     $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
   }
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$2 = $(1);
+    const tmpIfTest$2 /*:unknown*/ = $(1);
     if (tmpIfTest$2) {
-      const tmpChainElementCall$1 = $($);
+      const tmpChainElementCall$1 /*:unknown*/ = $($);
       const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$1 == null;
       if (tmpIfTest$4) {
       } else {
-        const tmpCalleeParam$1 = $(1);
+        const tmpCalleeParam$1 /*:unknown*/ = $(1);
         $dotCall(tmpChainElementCall$1, $, tmpCalleeParam$1);
       }
     } else {

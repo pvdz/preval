@@ -45,14 +45,14 @@ $(a);
 
 
 `````js filename=intro
-let tmpBinBothLhs = undefined;
+let tmpBinBothLhs /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall = $(1);
+  const tmpChainElementCall /*:unknown*/ = $(1);
   tmpBinBothLhs = tmpChainElementCall;
 }
-const tmpBinBothRhs = $(100);
+const tmpBinBothRhs /*:unknown*/ = $(100);
 tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

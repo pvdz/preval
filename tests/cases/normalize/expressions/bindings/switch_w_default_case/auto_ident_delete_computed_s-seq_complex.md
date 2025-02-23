@@ -97,7 +97,7 @@ if (tmpIfTest$7) {
 `````js filename=intro
 $(1);
 $(2);
-const tmpDeleteCompProp = $(`y`);
+const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 const arg /*:object*/ = { y: 1 };
 const a /*:boolean*/ = delete arg[tmpDeleteCompProp];
 $(a, arg);

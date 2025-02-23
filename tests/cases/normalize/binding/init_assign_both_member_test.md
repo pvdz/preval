@@ -103,13 +103,13 @@ const c /*:object*/ = {
     return 20;
   },
   set x($$0) {
-    const n$1 = $$0;
+    const n$1 /*:unknown*/ = $$0;
     debugger;
     $(4, n$1);
     return undefined;
   },
 };
-const tmpNestedAssignPropRhs = c.x;
+const tmpNestedAssignPropRhs /*:unknown*/ = c.x;
 const b /*:object*/ = {
   get x() {
     debugger;
@@ -117,7 +117,7 @@ const b /*:object*/ = {
     return 10;
   },
   set x($$0) {
-    const n = $$0;
+    const n /*:unknown*/ = $$0;
     debugger;
     $(2, n);
     return undefined;

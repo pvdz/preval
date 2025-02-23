@@ -48,7 +48,7 @@ $(x);
 
 `````js filename=intro
 let x /*:primitive*/ = undefined;
-const tmpIfTest = $(`if`);
+const tmpIfTest /*:unknown*/ = $(`if`);
 if (tmpIfTest) {
   x = 10;
   $(10);

@@ -50,11 +50,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCompProp = $(`\$`);
+const tmpCallCompProp /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const a = b[tmpCallCompProp](1);
-const tmpCallCompProp$1 = $(`\$`);
-const tmpClusterSSA_a = b[tmpCallCompProp$1](1);
+const a /*:unknown*/ = b[tmpCallCompProp](1);
+const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
+const tmpClusterSSA_a /*:unknown*/ = b[tmpCallCompProp$1](1);
 const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);

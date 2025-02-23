@@ -126,31 +126,31 @@ $(a, b, c, 3);
 `````js filename=intro
 $(100);
 const b /*:object*/ = { x: 1 };
-const B = $(b);
-const X = $(`x`);
+const B /*:unknown*/ = $(b);
+const X /*:unknown*/ = $(`x`);
 const c /*:object*/ = { y: 2 };
-const calt = $(c);
-const Y = $(`y`);
-const three = $(3);
+const calt /*:unknown*/ = $(c);
+const Y /*:unknown*/ = $(`y`);
+const three /*:unknown*/ = $(3);
 calt[Y] = three;
 B[X] = three;
 if (three) {
   $(100);
-  const B$1 = $(b);
-  const X$1 = $(`x`);
-  const C = $(c);
-  const Y$1 = $(`y`);
-  const T = $(3);
+  const B$1 /*:unknown*/ = $(b);
+  const X$1 /*:unknown*/ = $(`x`);
+  const C /*:unknown*/ = $(c);
+  const Y$1 /*:unknown*/ = $(`y`);
+  const T /*:unknown*/ = $(3);
   C[Y$1] = T;
   B$1[X$1] = T;
   if (T) {
     while ($LOOP_UNROLL_10) {
       $(100);
-      const B$2 = $(b);
-      const X$2 = $(`x`);
-      const C$1 = $(c);
-      const Y$2 = $(`y`);
-      const T$1 = $(3);
+      const B$2 /*:unknown*/ = $(b);
+      const X$2 /*:unknown*/ = $(`x`);
+      const C$1 /*:unknown*/ = $(c);
+      const Y$2 /*:unknown*/ = $(`y`);
+      const T$1 /*:unknown*/ = $(3);
       C$1[Y$2] = T$1;
       B$2[X$2] = T$1;
       if (T$1) {

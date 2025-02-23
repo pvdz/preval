@@ -119,14 +119,14 @@ const a$1 /*:object*/ = {
     return a$1;
   },
 };
-const tmpChainElementObject = a$1.b;
+const tmpChainElementObject /*:unknown*/ = a$1.b;
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
 if (tmpIfTest$1) {
   $(undefined);
 } else {
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, a$1);
-  const tmpChainElementCall$3 = tmpChainElementCall$1.c();
-  const tmpChainElementObject$3 = tmpChainElementCall$3.d;
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, a$1);
+  const tmpChainElementCall$3 /*:unknown*/ = tmpChainElementCall$1.c();
+  const tmpChainElementObject$3 /*:unknown*/ = tmpChainElementCall$3.d;
   $(tmpChainElementObject$3);
 }
 `````

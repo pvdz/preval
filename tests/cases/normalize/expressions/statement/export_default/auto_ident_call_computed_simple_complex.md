@@ -44,9 +44,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCompProp = $(`\$`);
+const tmpCallCompProp /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpAnonDefaultExport = b[tmpCallCompProp](1);
+const tmpAnonDefaultExport /*:unknown*/ = b[tmpCallCompProp](1);
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

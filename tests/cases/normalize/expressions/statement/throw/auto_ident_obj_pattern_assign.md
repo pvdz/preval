@@ -49,8 +49,8 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-const tmpObjLitVal = $(3);
-const tmpObjLitVal$1 = $(4);
+const tmpObjLitVal /*:unknown*/ = $(3);
+const tmpObjLitVal$1 /*:unknown*/ = $(4);
 const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 throw tmpNestedAssignObjPatternRhs;
 `````

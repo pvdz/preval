@@ -58,8 +58,8 @@ $(a, arg);
 $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
-let a = delete arg.y;
-const tmpCalleeParam = a;
+let a /*:unknown*/ = delete arg.y;
+const tmpCalleeParam /*:unknown*/ = a;
 if (a) {
   $(1);
   $(2);

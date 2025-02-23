@@ -49,10 +49,10 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpObjLitVal = $(2);
+const tmpObjLitVal /*:unknown*/ = $(2);
 const tmpCalleeParam$3 /*:object*/ = { b: tmpObjLitVal };
-const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$3);
-const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
+const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$3);
+const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, tmpNestedAssignObjPatternRhs);
 const a /*:object*/ = { a: 999, b: 1000 };

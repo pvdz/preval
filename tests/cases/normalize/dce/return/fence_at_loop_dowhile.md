@@ -83,12 +83,12 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
-const tmpIfTest = $(true);
+let tmpCalleeParam /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   $(`loop`);
   $(`loop`);
-  const tmpReturnArg = $(100, `return`);
+  const tmpReturnArg /*:unknown*/ = $(100, `return`);
   tmpCalleeParam = tmpReturnArg;
 } else {
   $(`after (not invoked)`);

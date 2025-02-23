@@ -100,16 +100,16 @@ if ($) {
 
 `````js filename=intro
 const f /*:(unknown)=>boolean*/ = function ($$0) {
-  const s = $$0;
+  const s /*:unknown*/ = $$0;
   debugger;
   const promoMe /*:boolean*/ = s === ``;
   if (promoMe) {
     return true;
   } else {
-    const r = $(`.`);
+    const r /*:unknown*/ = $(`.`);
     const tmpssa2_promoMe /*:boolean*/ = r === `.`;
     if (tmpssa2_promoMe) {
-      const t = $(``);
+      const t /*:unknown*/ = $(``);
       const tmpClusterSSA_tmpssa2_promoMe /*:boolean*/ = t !== `.`;
       return tmpClusterSSA_tmpssa2_promoMe;
     } else {

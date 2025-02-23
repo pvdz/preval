@@ -67,10 +67,10 @@ const f /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
-const tmpForOfGen = $forOf(f);
+const tmpForOfGen /*:unknown*/ = $forOf(f);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
   } else {

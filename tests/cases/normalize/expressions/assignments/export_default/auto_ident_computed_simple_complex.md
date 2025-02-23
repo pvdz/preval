@@ -45,10 +45,10 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpAssignRhsCompProp = $(`c`);
+const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
-const a = b[tmpAssignRhsCompProp];
-const tmpAnonDefaultExport = a;
+const a /*:unknown*/ = b[tmpAssignRhsCompProp];
+const tmpAnonDefaultExport /*:unknown*/ = a;
 export { tmpAnonDefaultExport as default };
 $(a, b);
 `````

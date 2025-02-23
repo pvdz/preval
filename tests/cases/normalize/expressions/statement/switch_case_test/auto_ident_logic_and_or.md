@@ -61,16 +61,16 @@ $(a);
 
 `````js filename=intro
 $(1);
-const tmpCalleeParam = $(1);
-let tmpBinBothRhs = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+let tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam);
 if (tmpBinBothRhs) {
-  const tmpCalleeParam$1 = $(1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
   tmpBinBothRhs = $(tmpCalleeParam$1);
 } else {
 }
 if (tmpBinBothRhs) {
 } else {
-  const tmpCalleeParam$3 = $(2);
+  const tmpCalleeParam$3 /*:unknown*/ = $(2);
   $(tmpCalleeParam$3);
 }
 const a /*:object*/ = { a: 999, b: 1000 };

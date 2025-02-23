@@ -37,8 +37,8 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpBinBothLhs = $(1);
-const tmpBinBothRhs = $(1);
+const tmpBinBothLhs /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(1);
 const x /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 $(x);
 `````

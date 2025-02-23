@@ -64,12 +64,12 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const tmpChainElementCall = $(b);
+const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
   $(undefined);
 } else {
-  const tmpChainElementObject = tmpChainElementCall.x;
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
   $(tmpChainElementObject);
 }
 `````

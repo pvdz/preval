@@ -50,13 +50,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
+const tmpObjLitVal /*:unknown*/ = $(1);
 const a /*:object*/ = { a: 999, b: 1000 };
 const tmpBinBothRhs /*:object*/ = { b: tmpObjLitVal };
 const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
 $(tmpClusterSSA_a);
-const tmpAssignComMemLhsProp = $(`b`);
-const tmpAssignComputedRhs = $(2);
+const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
+const tmpAssignComputedRhs /*:unknown*/ = $(2);
 tmpClusterSSA_a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(tmpClusterSSA_a);
 `````

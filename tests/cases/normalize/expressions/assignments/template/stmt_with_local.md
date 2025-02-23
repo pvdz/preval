@@ -39,7 +39,7 @@ $(x);
 
 
 `````js filename=intro
-const x = $(1);
+const x /*:unknown*/ = $(1);
 $coerce(x, `string`);
 $(x);
 `````

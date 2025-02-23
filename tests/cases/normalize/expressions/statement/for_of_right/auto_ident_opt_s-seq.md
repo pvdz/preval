@@ -68,10 +68,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_tmpForOfGen = $forOf(1);
+const tmpClusterSSA_tmpForOfGen /*:unknown*/ = $forOf(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext = tmpClusterSSA_tmpForOfGen.next();
-  const tmpIfTest$1 = tmpForOfNext.done;
+  const tmpForOfNext /*:unknown*/ = tmpClusterSSA_tmpForOfGen.next();
+  const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest$1) {
     break;
   } else {

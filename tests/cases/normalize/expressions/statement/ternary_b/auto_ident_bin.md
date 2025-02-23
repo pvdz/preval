@@ -43,10 +43,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpBinBothLhs = $(1);
-  const tmpBinBothRhs = $(2);
+  const tmpBinBothLhs /*:unknown*/ = $(1);
+  const tmpBinBothRhs /*:unknown*/ = $(2);
   tmpBinBothLhs + tmpBinBothRhs;
 } else {
   $(200);

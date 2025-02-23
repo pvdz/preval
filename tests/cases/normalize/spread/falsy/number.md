@@ -45,7 +45,7 @@ if (x) {
 
 
 `````js filename=intro
-const x = $(1);
+const x /*:unknown*/ = $(1);
 if (x) {
   $(`truthy`, ...x);
 } else {

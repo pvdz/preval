@@ -44,10 +44,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpArrElement = $(1);
-const tmpArrElement$3 = $(3);
-const tmpArrElement$5 = $(1);
-const tmpArrElement$9 = $(3);
+const tmpArrElement /*:unknown*/ = $(1);
+const tmpArrElement$3 /*:unknown*/ = $(3);
+const tmpArrElement$5 /*:unknown*/ = $(1);
+const tmpArrElement$9 /*:unknown*/ = $(3);
 const tmpBinBothLhs /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
 const tmpBinBothRhs /*:array*/ = [tmpArrElement$5, 2, tmpArrElement$9];
 tmpBinBothLhs + tmpBinBothRhs;

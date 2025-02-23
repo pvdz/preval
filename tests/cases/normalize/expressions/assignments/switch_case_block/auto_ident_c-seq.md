@@ -61,13 +61,13 @@ $(a, x);
 
 
 `````js filename=intro
-const tmpSwitchDisc = $(1);
-const tmpBinBothRhs = $(1);
+const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   $(1);
   $(2);
-  const tmpClusterSSA_a = $(1);
+  const tmpClusterSSA_a /*:unknown*/ = $(1);
   $(tmpClusterSSA_a, 1);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };

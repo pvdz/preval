@@ -67,7 +67,7 @@ tmpLabeledBlockFunc();
 
 
 `````js filename=intro
-const tmpIfTest$3 = $(false);
+const tmpIfTest$3 /*:unknown*/ = $(false);
 if (tmpIfTest$3) {
   $(`fail`);
 } else {

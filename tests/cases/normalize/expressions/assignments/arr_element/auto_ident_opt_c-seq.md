@@ -61,22 +61,22 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const tmpChainRootProp = $(b);
+const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
-let tmpBinBothLhs = undefined;
+let tmpBinBothLhs /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject = tmpChainRootProp.x;
+  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
   tmpBinBothLhs = tmpChainElementObject;
 }
-let tmpClusterSSA_a = undefined;
-const tmpChainRootProp$1 = $(b);
+let tmpClusterSSA_a /*:unknown*/ = undefined;
+const tmpChainRootProp$1 /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp$1 == null;
 if (tmpIfTest$1) {
   const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + undefined;
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  const tmpChainElementObject$1 = tmpChainRootProp$1.x;
+  const tmpChainElementObject$1 /*:unknown*/ = tmpChainRootProp$1.x;
   tmpClusterSSA_a = tmpChainElementObject$1;
   const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpChainElementObject$1;
   $(tmpClusterSSA_tmpCalleeParam$1);

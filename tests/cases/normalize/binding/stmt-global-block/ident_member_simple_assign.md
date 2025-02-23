@@ -53,10 +53,10 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const tmpIfTest = $(true);
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
-  const varInitAssignLhsComputedObj = $(3);
-  const varInitAssignLhsComputedRhs$1 = $(4);
+  const varInitAssignLhsComputedObj /*:unknown*/ = $(3);
+  const varInitAssignLhsComputedRhs$1 /*:unknown*/ = $(4);
   varInitAssignLhsComputedObj.y = varInitAssignLhsComputedRhs$1;
   const b /*:object*/ = { x: varInitAssignLhsComputedRhs$1 };
   $(varInitAssignLhsComputedRhs$1, b, 3);

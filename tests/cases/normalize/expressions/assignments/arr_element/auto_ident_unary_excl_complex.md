@@ -44,8 +44,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpUnaryArg = $(100);
-const tmpUnaryArg$1 = $(100);
+const tmpUnaryArg /*:unknown*/ = $(100);
+const tmpUnaryArg$1 /*:unknown*/ = $(100);
 const a /*:boolean*/ = !tmpUnaryArg;
 const tmpClusterSSA_a /*:boolean*/ = !tmpUnaryArg$1;
 const tmpCalleeParam /*:number*/ = a + tmpClusterSSA_a;

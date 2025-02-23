@@ -42,12 +42,12 @@ $(x);
 
 
 `````js filename=intro
-let x = undefined;
-const tmpIfTest = $(true);
+let x /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     x = $(10);
-    const tmpIfTest$1 = $(true);
+    const tmpIfTest$1 /*:unknown*/ = $(true);
     if (tmpIfTest$1) {
     } else {
       break;

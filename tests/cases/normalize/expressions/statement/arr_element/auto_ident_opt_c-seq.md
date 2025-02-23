@@ -56,21 +56,21 @@ $(a);
 
 
 `````js filename=intro
-let tmpBinBothLhs = undefined;
+let tmpBinBothLhs /*:unknown*/ = undefined;
 const b /*:object*/ = { x: 1 };
-const tmpChainRootProp = $(b);
+const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject = tmpChainRootProp.x;
+  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
   tmpBinBothLhs = tmpChainElementObject;
 }
-let tmpBinBothRhs = undefined;
-const tmpChainRootProp$1 = $(b);
+let tmpBinBothRhs /*:unknown*/ = undefined;
+const tmpChainRootProp$1 /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp$1 == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementObject$1 = tmpChainRootProp$1.x;
+  const tmpChainElementObject$1 /*:unknown*/ = tmpChainRootProp$1.x;
   tmpBinBothRhs = tmpChainElementObject$1;
 }
 tmpBinBothLhs + tmpBinBothRhs;

@@ -53,7 +53,7 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const tmpChainRootProp = $(b);
+const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 let tmpClusterSSA_a /*:number*/ = NaN;
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -61,7 +61,7 @@ if (tmpIfTest) {
   a ** 0;
   $(NaN);
 } else {
-  const tmpChainElementObject = tmpChainRootProp.x;
+  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
   tmpClusterSSA_a = a * tmpChainElementObject;
   $(tmpClusterSSA_a);
 }

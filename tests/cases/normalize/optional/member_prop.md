@@ -42,7 +42,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpChainElementObject = (10).length;
+const tmpChainElementObject /*:unknown*/ = (10).length;
 $(tmpChainElementObject);
 `````
 

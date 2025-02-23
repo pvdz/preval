@@ -89,16 +89,16 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
-const tmpSwitchValue = $(1);
+let a /*:unknown*/ = undefined;
+const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
-const tmpIfTest$1 = $(1);
+const tmpIfTest$1 /*:unknown*/ = $(1);
 let tmpIfTest /*:boolean*/ = false;
 if (tmpIfTest$1) {
   a = $(60);
   tmpIfTest = a === tmpSwitchValue;
 } else {
-  const tmpCalleeParam = $(100);
+  const tmpCalleeParam /*:unknown*/ = $(100);
   a = $(tmpCalleeParam);
   tmpIfTest = a === tmpSwitchValue;
 }

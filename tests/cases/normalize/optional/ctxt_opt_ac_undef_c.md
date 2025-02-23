@@ -50,19 +50,19 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
+let tmpCalleeParam /*:unknown*/ = undefined;
 const tmpObjLitVal /*:object*/ = {};
 const a /*:object*/ = { b: tmpObjLitVal };
-const tmpChainElementCall = $(a);
+const tmpChainElementCall /*:unknown*/ = $(a);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject = tmpChainElementCall.b;
-  const tmpChainElementObject$1 = tmpChainElementObject.c;
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.b;
+  const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject.c;
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject$1 == null;
   if (tmpIfTest$1) {
   } else {
-    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, tmpChainElementObject, 100);
+    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementObject, 100);
     tmpCalleeParam = tmpChainElementCall$1;
   }
 }

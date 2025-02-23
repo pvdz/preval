@@ -83,11 +83,11 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpIfTest = $(true);
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   $(`loop`);
   $(`loop`);
-  const tmpThrowArg = $(7, `throw`);
+  const tmpThrowArg /*:unknown*/ = $(7, `throw`);
   throw tmpThrowArg;
 } else {
   $(`after (not invoked)`);

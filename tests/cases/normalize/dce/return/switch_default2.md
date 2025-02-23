@@ -88,14 +88,14 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
-const tmpSwitchValue = $(1, `disc`);
-const tmpBinLhs = $(0);
+let tmpCalleeParam /*:unknown*/ = undefined;
+const tmpSwitchValue /*:unknown*/ = $(1, `disc`);
+const tmpBinLhs /*:unknown*/ = $(0);
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   $(`keep, do not eval`);
 } else {
-  const tmpReturnArg = $(2, `ret`);
+  const tmpReturnArg /*:unknown*/ = $(2, `ret`);
   tmpCalleeParam = tmpReturnArg;
 }
 $(tmpCalleeParam);

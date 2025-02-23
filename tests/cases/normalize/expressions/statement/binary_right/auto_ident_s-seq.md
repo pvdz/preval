@@ -44,7 +44,7 @@ $(a, x);
 
 
 `````js filename=intro
-const tmpBinBothLhs = $(100);
+const tmpBinBothLhs /*:unknown*/ = $(100);
 $(1);
 $(2);
 tmpBinBothLhs + 0;

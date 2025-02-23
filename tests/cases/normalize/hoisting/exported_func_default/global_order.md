@@ -73,22 +73,22 @@ export { g };
 `````js filename=intro
 const f /*:()=>?*/ = function () {
   debugger;
-  const tmpReturnArg = $();
+  const tmpReturnArg /*:unknown*/ = $();
   return tmpReturnArg;
 };
 const g /*:()=>?*/ = function () {
   debugger;
-  const tmpReturnArg$1 = $();
+  const tmpReturnArg$1 /*:unknown*/ = $();
   return tmpReturnArg$1;
 };
 const h /*:()=>?*/ = function () {
   debugger;
-  const tmpReturnArg$3 = $();
+  const tmpReturnArg$3 /*:unknown*/ = $();
   return tmpReturnArg$3;
 };
-const tmpCalleeParam = $();
-const tmpCalleeParam$1 = $();
-const tmpCalleeParam$3 = $();
+const tmpCalleeParam /*:unknown*/ = $();
+const tmpCalleeParam$1 /*:unknown*/ = $();
+const tmpCalleeParam$3 /*:unknown*/ = $();
 $(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 export { f };
 export { h as default };

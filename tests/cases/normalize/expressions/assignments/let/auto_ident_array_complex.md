@@ -43,8 +43,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpArrElement = $(1);
-const tmpArrElement$3 = $(3);
+const tmpArrElement /*:unknown*/ = $(1);
+const tmpArrElement$3 /*:unknown*/ = $(3);
 const a /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
 $(a);
 $(a);

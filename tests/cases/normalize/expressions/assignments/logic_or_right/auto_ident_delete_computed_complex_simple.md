@@ -49,13 +49,13 @@ $(a, arg);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = $(100);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpCalleeParam /*:unknown*/ = $(100);
 const arg /*:object*/ = { y: 1 };
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {
-  const tmpDeleteObj = $(arg);
+  const tmpDeleteObj /*:unknown*/ = $(arg);
   const tmpNestedComplexRhs /*:boolean*/ = delete tmpDeleteObj.y;
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);

@@ -57,19 +57,19 @@ $(a, b);
 
 
 `````js filename=intro
-let b = [];
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let b /*:unknown*/ = [];
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpArrElement = $(2);
+  const tmpArrElement /*:unknown*/ = $(2);
   const tmpCalleeParam$1 /*:array*/ = [tmpArrElement];
-  const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
+  const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
   const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
   b = arrPatternSplat[0];
   a = tmpNestedAssignArrPatternRhs;
   $(tmpNestedAssignArrPatternRhs);
 } else {
-  const tmpClusterSSA_tmpCalleeParam = $(200);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
   $(tmpClusterSSA_tmpCalleeParam);
 }
 $(a, b);

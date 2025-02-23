@@ -40,10 +40,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallComplexCallee = $($);
-const tmpBinBothLhs = tmpCallComplexCallee(1);
-const tmpCallComplexCallee$1 = $($);
-const tmpBinBothRhs = tmpCallComplexCallee$1(1);
+const tmpCallComplexCallee /*:unknown*/ = $($);
+const tmpBinBothLhs /*:unknown*/ = tmpCallComplexCallee(1);
+const tmpCallComplexCallee$1 /*:unknown*/ = $($);
+const tmpBinBothRhs /*:unknown*/ = tmpCallComplexCallee$1(1);
 tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

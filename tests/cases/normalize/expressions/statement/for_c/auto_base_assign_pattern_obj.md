@@ -55,19 +55,19 @@ $(a, b);
 
 
 `````js filename=intro
-let b = {};
-const tmpIfTest = $(1);
+let b /*:unknown*/ = {};
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpObjLitVal = $(2);
+  const tmpObjLitVal /*:unknown*/ = $(2);
   const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
-  const tmpAssignObjPatternRhs = $(tmpCalleeParam);
+  const tmpAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
   b = tmpAssignObjPatternRhs.b;
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpObjLitVal$1 = $(2);
+      const tmpObjLitVal$1 /*:unknown*/ = $(2);
       const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal$1 };
-      const tmpAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
+      const tmpAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
       b = tmpAssignObjPatternRhs$1.b;
     } else {
       break;

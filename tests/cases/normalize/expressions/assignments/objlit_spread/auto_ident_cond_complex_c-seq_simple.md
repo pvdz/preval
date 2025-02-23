@@ -47,14 +47,14 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
-const tmpIfTest = $(1);
-let tmpObjSpread = undefined;
+let a /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(1);
+let tmpObjSpread /*:unknown*/ = undefined;
 if (tmpIfTest) {
   a = $(60);
   tmpObjSpread = a;
 } else {
-  const tmpCalleeParam$1 = $(100);
+  const tmpCalleeParam$1 /*:unknown*/ = $(100);
   a = $(tmpCalleeParam$1);
   tmpObjSpread = a;
 }

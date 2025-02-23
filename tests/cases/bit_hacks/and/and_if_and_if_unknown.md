@@ -69,7 +69,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
+const tmpCalleeParam /*:unknown*/ = $(1);
 const x /*:number*/ = tmpCalleeParam & 1;
 if (x) {
   const y /*:number*/ = tmpCalleeParam & 4;

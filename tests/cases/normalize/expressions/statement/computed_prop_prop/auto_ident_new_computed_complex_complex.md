@@ -49,9 +49,9 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCompObj$1 = $(b);
-const tmpCompProp$1 = $(`\$`);
-const tmpNewCallee = tmpCompObj$1[tmpCompProp$1];
+const tmpCompObj$1 /*:unknown*/ = $(b);
+const tmpCompProp$1 /*:unknown*/ = $(`\$`);
+const tmpNewCallee /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
 const tmpCompProp /*:object*/ = new tmpNewCallee(1);
 const obj /*:object*/ = {};
 obj[tmpCompProp];

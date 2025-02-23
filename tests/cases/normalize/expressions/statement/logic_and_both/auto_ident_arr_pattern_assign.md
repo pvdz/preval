@@ -61,8 +61,8 @@ $(a, x, y);
 `````js filename=intro
 $(3);
 $(4);
-const tmpArrElement$3 = $(3);
-const tmpArrElement$5 = $(4);
+const tmpArrElement$3 /*:unknown*/ = $(3);
+const tmpArrElement$5 /*:unknown*/ = $(4);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpArrElement$3, tmpArrElement$5);
 `````

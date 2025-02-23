@@ -74,12 +74,12 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const tmpAssignComMemLhsObj = $(b);
-const tmpAssignComMemLhsProp = $(`x`);
+const tmpAssignComMemLhsObj /*:unknown*/ = $(b);
+const tmpAssignComMemLhsProp /*:unknown*/ = $(`x`);
 const c /*:object*/ = { y: 2 };
-const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $(`y`);
-const varInitAssignLhsComputedRhs = $(3);
+const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
+const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+const varInitAssignLhsComputedRhs /*:unknown*/ = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = varInitAssignLhsComputedRhs;
 const a /*:object*/ = { a: 999, b: 1000 };

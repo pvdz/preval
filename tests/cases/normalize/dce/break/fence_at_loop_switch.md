@@ -89,11 +89,11 @@ $(`after (not invoked)`);
 
 
 `````js filename=intro
-const tmpIfTest = $(true);
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   $(`loop`);
-  const tmpSwitchDisc = $(true, `dis`);
-  const tmpBinBothRhs = $(true, `case`);
+  const tmpSwitchDisc /*:unknown*/ = $(true, `dis`);
+  const tmpBinBothRhs /*:unknown*/ = $(true, `case`);
   const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
   if (tmpIfTest$1) {
     $(`case`);
@@ -102,11 +102,11 @@ if (tmpIfTest) {
   }
   while ($LOOP_UNROLL_10) {
     $(`infiloop, do not eliminate`);
-    const tmpIfTest$2 = $(true);
+    const tmpIfTest$2 /*:unknown*/ = $(true);
     if (tmpIfTest$2) {
       $(`loop`);
-      const tmpSwitchDisc$1 = $(true, `dis`);
-      const tmpBinBothRhs$1 = $(true, `case`);
+      const tmpSwitchDisc$1 /*:unknown*/ = $(true, `dis`);
+      const tmpBinBothRhs$1 /*:unknown*/ = $(true, `case`);
       const tmpIfTest$4 /*:boolean*/ = tmpSwitchDisc$1 === tmpBinBothRhs$1;
       if (tmpIfTest$4) {
         $(`case`);

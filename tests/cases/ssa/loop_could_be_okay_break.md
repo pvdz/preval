@@ -70,12 +70,12 @@ if ($) {
 `````js filename=intro
 if ($) {
   $(1);
-  const tmpClusterSSA_x = $(2);
+  const tmpClusterSSA_x /*:unknown*/ = $(2);
   $(tmpClusterSSA_x);
   if ($) {
   } else {
     while ($LOOP_UNROLL_10) {
-      const tmpClusterSSA_x$1 = $(2);
+      const tmpClusterSSA_x$1 /*:unknown*/ = $(2);
       $(tmpClusterSSA_x$1);
       if ($) {
         break;

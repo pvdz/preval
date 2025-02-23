@@ -54,13 +54,13 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpAssignRhsCompProp = $(`c`);
+const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
-let a = b[tmpAssignRhsCompProp];
+let a /*:unknown*/ = b[tmpAssignRhsCompProp];
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(1);
-    const tmpAssignRhsCompProp$1 = $(`c`);
+    const tmpAssignRhsCompProp$1 /*:unknown*/ = $(`c`);
     a = b[tmpAssignRhsCompProp$1];
     if (a) {
     } else {

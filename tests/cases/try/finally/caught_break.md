@@ -89,7 +89,7 @@ if ($implicitThrow) {
 try {
   $(1);
   $(2);
-  const tmpIfTest = $(3);
+  const tmpIfTest /*:unknown*/ = $(3);
   if (tmpIfTest) {
   } else {
     $(4);

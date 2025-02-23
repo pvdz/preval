@@ -134,16 +134,16 @@ $(8);
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   nestedLoop: {
-    const tmpIfTest = $(1);
+    const tmpIfTest /*:unknown*/ = $(1);
     if (tmpIfTest) {
-      const tmpIfTest$1 = $(2);
+      const tmpIfTest$1 /*:unknown*/ = $(2);
       if (tmpIfTest$1) {
         break nestedLoop;
       } else {
       }
     } else {
     }
-    const tmpIfTest$3 = $(3);
+    const tmpIfTest$3 /*:unknown*/ = $(3);
     if (tmpIfTest$3) {
       break;
     } else {
@@ -152,11 +152,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 $(4);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest$5 = $(5);
+  const tmpIfTest$5 /*:unknown*/ = $(5);
   if (tmpIfTest$5) {
-    const tmpIfTest$7 = $(6);
+    const tmpIfTest$7 /*:unknown*/ = $(6);
     if (tmpIfTest$7) {
-      const tmpIfTest$9 = $(7);
+      const tmpIfTest$9 /*:unknown*/ = $(7);
       if (tmpIfTest$9) {
         break;
       } else {

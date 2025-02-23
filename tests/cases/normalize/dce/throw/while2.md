@@ -63,9 +63,9 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpIfTest = $(true);
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
-  const tmpThrowArg = $(1, `throw`);
+  const tmpThrowArg /*:unknown*/ = $(1, `throw`);
   throw tmpThrowArg;
 } else {
   $(`keep, do not eval`);

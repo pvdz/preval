@@ -87,12 +87,12 @@ const g /*:()=>undefined*/ = function () {
   return undefined;
 };
 const tmpCalleeParam /*:array*/ = [g];
-const t = $(tmpCalleeParam);
+const t /*:unknown*/ = $(tmpCalleeParam);
 if ($) {
   $(1);
 } else {
 }
-const xyz = $();
+const xyz /*:unknown*/ = $();
 t[0]();
 $(xyz, `g`);
 $(undefined);

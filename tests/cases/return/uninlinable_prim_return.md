@@ -101,9 +101,9 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const g /*:()=>number,undefined*/ = function () {
   debugger;
-  const tmpIfTest$1 = $(1);
+  const tmpIfTest$1 /*:unknown*/ = $(1);
   $(`abc`);
-  const tmpIfTest = $(1);
+  const tmpIfTest /*:unknown*/ = $(1);
   if (tmpIfTest) {
     $(`def`);
   } else {

@@ -114,19 +114,19 @@ $(arr);
 `````js filename=intro
 const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCalleeParam = arr[0];
+  const tmpCalleeParam /*:unknown*/ = arr[0];
   $(tmpCalleeParam);
-  const a = arr[286];
+  const a /*:unknown*/ = arr[286];
   try {
     const b /*:number*/ = parseInt(a);
     if (b) {
       break;
     } else {
-      const M = arr.shift();
+      const M /*:unknown*/ = arr.shift();
       arr.push(M);
     }
   } catch (P) {
-    const N = arr.shift();
+    const N /*:unknown*/ = arr.shift();
     arr.push(N);
   }
 }

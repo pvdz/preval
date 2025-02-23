@@ -46,12 +46,12 @@ $(a);
 
 
 `````js filename=intro
-let tmpAnonDefaultExport = undefined;
-const tmpIfTest = $(30);
+let tmpAnonDefaultExport /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(30);
 if (tmpIfTest) {
   tmpAnonDefaultExport = $(2);
 } else {
-  const tmpCalleeParam = $(100);
+  const tmpCalleeParam /*:unknown*/ = $(100);
   tmpAnonDefaultExport = $(tmpCalleeParam);
 }
 export { tmpAnonDefaultExport as default };

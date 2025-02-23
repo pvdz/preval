@@ -37,8 +37,8 @@ $(x);
 
 
 `````js filename=intro
-const tmpAssignRhsProp = $(`foo`);
-const x = tmpAssignRhsProp.length;
+const tmpAssignRhsProp /*:unknown*/ = $(`foo`);
+const x /*:unknown*/ = tmpAssignRhsProp.length;
 $(x);
 `````
 

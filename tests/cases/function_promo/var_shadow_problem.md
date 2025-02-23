@@ -105,10 +105,10 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const x = $(1);
+  const x /*:unknown*/ = $(1);
   if ($) {
     $(x, `keep me a closure`);
-    const x$1 = $();
+    const x$1 /*:unknown*/ = $();
     if ($) {
       $(x$1, `keep me inner local`);
     } else {

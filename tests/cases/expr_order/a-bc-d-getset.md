@@ -81,7 +81,7 @@ $(a, b, d);
 
 
 `````js filename=intro
-let b = {
+let b /*:unknown*/ = {
   get c() {
     debugger;
     $(`b.get`);

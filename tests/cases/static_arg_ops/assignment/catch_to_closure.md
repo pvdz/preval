@@ -78,7 +78,7 @@ try {
 try {
   $();
 } catch (e) {
-  let a = $(1);
+  let a /*:unknown*/ = $(1);
   const f /*:()=>*/ = function () {
     debugger;
     a = e;

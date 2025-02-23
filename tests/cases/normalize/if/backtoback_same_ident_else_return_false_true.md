@@ -73,12 +73,12 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
-const x = $(0);
+let tmpCalleeParam /*:unknown*/ = undefined;
+const x /*:unknown*/ = $(0);
 if (x) {
-  const tmpClusterSSA_x = $(1);
+  const tmpClusterSSA_x /*:unknown*/ = $(1);
   if (tmpClusterSSA_x) {
-    const tmpReturnArg = $(3);
+    const tmpReturnArg /*:unknown*/ = $(3);
     tmpCalleeParam = tmpReturnArg;
   } else {
     tmpCalleeParam = tmpClusterSSA_x;

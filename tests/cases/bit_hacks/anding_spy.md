@@ -39,7 +39,7 @@ $(x, y, z);
 
 
 `````js filename=intro
-const x = $spy(1234);
+const x /*:unknown*/ = $spy(1234);
 const y /*:number*/ = x & 200;
 const z /*:number*/ = y & 8;
 $(x, y, z);

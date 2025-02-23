@@ -50,7 +50,7 @@ $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
 const a /*:boolean*/ = delete arg.y;
-const tmpAnonDefaultExport = a;
+const tmpAnonDefaultExport /*:unknown*/ = a;
 export { tmpAnonDefaultExport as default };
 $(a, arg);
 `````

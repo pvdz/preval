@@ -51,18 +51,18 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
-let a = { b: tmpObjLitVal };
-const tmpCalleeParam = a;
+const tmpObjLitVal /*:unknown*/ = $(1);
+let a /*:unknown*/ = { b: tmpObjLitVal };
+const tmpCalleeParam /*:unknown*/ = a;
 if (a) {
-  const tmpObjLitVal$1 = $(1);
+  const tmpObjLitVal$1 /*:unknown*/ = $(1);
   const tmpNestedComplexRhs /*:object*/ = { b: tmpObjLitVal$1 };
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
 }
-const tmpAssignMemLhsObj = $(a);
+const tmpAssignMemLhsObj /*:unknown*/ = $(a);
 tmpAssignMemLhsObj.b = 2;
 $(a);
 `````

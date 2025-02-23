@@ -58,7 +58,7 @@ while (true) {
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest = $(false);
+  const tmpIfTest /*:unknown*/ = $(false);
   if (tmpIfTest) {
     $(`uhoh`);
   } else {

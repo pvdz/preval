@@ -89,7 +89,7 @@ $(f);
 `````js filename=intro
 const f /*:()=>undefined*/ = function () {
   debugger;
-  const tmpCalleeParam = THIS_IS_DA____();
+  const tmpCalleeParam /*:unknown*/ = THIS_IS_DA____();
   $(tmpCalleeParam);
   return undefined;
 };

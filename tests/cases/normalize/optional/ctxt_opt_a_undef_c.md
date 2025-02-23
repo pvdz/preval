@@ -47,13 +47,13 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpObjLitVal /*:object*/ = {};
 const a /*:object*/ = { b: tmpObjLitVal };
-const tmpChainElementCall = $(a);
+const tmpChainElementCall /*:unknown*/ = $(a);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
   $(undefined);
 } else {
-  const tmpChainElementObject = tmpChainElementCall.b;
-  const tmpChainElementCall$1 = tmpChainElementObject.c(100);
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.b;
+  const tmpChainElementCall$1 /*:unknown*/ = tmpChainElementObject.c(100);
   $(tmpChainElementCall$1);
 }
 `````

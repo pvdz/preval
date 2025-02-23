@@ -84,13 +84,13 @@ const f /*:(primitive, primitive)=>array*/ = function ($$0, $$1) {
   const tmpParamBare /*:primitive*/ = $$0;
   const tmpParamBare$1 /*:primitive*/ = $$1;
   debugger;
-  let a = `foo`;
+  let a /*:unknown*/ = `foo`;
   const tmpIfTest /*:boolean*/ = tmpParamBare === undefined;
   if (tmpIfTest) {
   } else {
     a = tmpParamBare;
   }
-  let b = `bar`;
+  let b /*:unknown*/ = `bar`;
   const tmpIfTest$1 /*:boolean*/ = tmpParamBare$1 === undefined;
   if (tmpIfTest$1) {
   } else {

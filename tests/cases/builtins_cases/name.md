@@ -44,7 +44,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 `````js filename=intro
 $(`String`);
 $(`Array`);
-const tmpCalleeParam$3 = parseInt.name;
+const tmpCalleeParam$3 /*:unknown*/ = parseInt.name;
 $(tmpCalleeParam$3);
 `````
 

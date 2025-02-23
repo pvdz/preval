@@ -52,14 +52,14 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const y = $();
+const y /*:unknown*/ = $();
 const tmpIfTest /*:boolean*/ = y == null;
 if (tmpIfTest) {
-  const tmpClusterSSA_y = foo;
-  const tmpClusterSSA_tmpReturnArg = $(tmpClusterSSA_y);
+  const tmpClusterSSA_y /*:unknown*/ = foo;
+  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(tmpClusterSSA_y);
   $(tmpClusterSSA_tmpReturnArg);
 } else {
-  const tmpClusterSSA_tmpReturnArg$1 = $(y);
+  const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(y);
   $(tmpClusterSSA_tmpReturnArg$1);
 }
 `````

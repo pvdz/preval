@@ -70,7 +70,7 @@ $(arr1);
 
 
 `````js filename=intro
-const max = $(10);
+const max /*:unknown*/ = $(10);
 const test /*:boolean*/ = 2 < max;
 const arr1 /*:array*/ = [];
 if (test) {
@@ -81,7 +81,7 @@ if (test) {
   while ($LOOP_UNROLL_10) {
     if (tmpClusterSSA_test) {
       const x$1 /*:number*/ = tmpClusterSSA_counter - 2;
-      const y$1 = arr2[tmpClusterSSA_counter];
+      const y$1 /*:unknown*/ = arr2[tmpClusterSSA_counter];
       arr1[x$1] = y$1;
       tmpClusterSSA_counter = tmpClusterSSA_counter + 1;
       tmpClusterSSA_test = tmpClusterSSA_counter < max;

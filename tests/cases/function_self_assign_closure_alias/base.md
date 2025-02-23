@@ -107,7 +107,7 @@ let a /*:()=>*/ = function () {
   $();
   return undefined;
 };
-const c = a;
+const c /*:unknown*/ = a;
 a();
 c();
 a();

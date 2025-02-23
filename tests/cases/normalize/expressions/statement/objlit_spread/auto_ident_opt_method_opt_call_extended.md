@@ -57,12 +57,12 @@ $(a);
 
 
 `````js filename=intro
-let tmpObjSpreadArg = undefined;
+let tmpObjSpreadArg /*:unknown*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
+  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, 1);
   tmpObjSpreadArg = tmpChainElementCall;
 }
 ({ ...tmpObjSpreadArg });

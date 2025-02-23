@@ -59,13 +59,13 @@ while (true) {
 `````js filename=intro
 $(10);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let tmpClusterSSA_x = $(20);
-  const tmpIfTest = $(true);
+  let tmpClusterSSA_x /*:unknown*/ = $(20);
+  const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
   } else {
     while ($LOOP_UNROLL_10) {
       tmpClusterSSA_x = $(20);
-      const tmpIfTest$1 = $(true);
+      const tmpIfTest$1 /*:unknown*/ = $(true);
       if (tmpIfTest$1) {
         break;
       } else {

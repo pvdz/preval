@@ -59,12 +59,12 @@ while (true) {
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const tmpChainElementCall = $(b);
+const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let xyz = undefined;
+let xyz /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject = tmpChainElementCall.x;
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
   xyz = tmpChainElementObject;
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

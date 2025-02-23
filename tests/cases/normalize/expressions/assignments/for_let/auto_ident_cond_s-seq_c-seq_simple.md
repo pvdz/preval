@@ -53,7 +53,7 @@ while (true) {
 
 
 `````js filename=intro
-const a = $(60);
+const a /*:unknown*/ = $(60);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(a);
   $(1);

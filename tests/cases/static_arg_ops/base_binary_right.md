@@ -63,7 +63,7 @@ f(8, 2, 9);
 const f /*:(number)=>undefined*/ = function ($$0) {
   const a /*:number*/ = $$0;
   debugger;
-  const tmpBinLhs = $(1);
+  const tmpBinLhs /*:unknown*/ = $(1);
   const tmpCalleeParam /*:primitive*/ = tmpBinLhs + a;
   $(tmpCalleeParam);
   return undefined;

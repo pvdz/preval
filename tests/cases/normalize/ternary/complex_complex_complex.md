@@ -48,19 +48,19 @@ $(a, b);
 
 
 `````js filename=intro
-let a = undefined;
-const tmpIfTest = $(1);
+let a /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   a = $(2);
 } else {
   a = $(3);
 }
-const tmpIfTest$1 = $(0);
+const tmpIfTest$1 /*:unknown*/ = $(0);
 if (tmpIfTest$1) {
-  const tmpClusterSSA_b = $(4);
+  const tmpClusterSSA_b /*:unknown*/ = $(4);
   $(a, tmpClusterSSA_b);
 } else {
-  const tmpClusterSSA_b$1 = $(5);
+  const tmpClusterSSA_b$1 /*:unknown*/ = $(5);
   $(a, tmpClusterSSA_b$1);
 }
 `````

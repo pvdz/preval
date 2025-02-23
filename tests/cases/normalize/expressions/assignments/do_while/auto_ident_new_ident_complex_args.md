@@ -62,13 +62,13 @@ $(a);
 
 `````js filename=intro
 $(100);
-const tmpCalleeParam = $(1);
-const tmpCalleeParam$1 = $(2);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpCalleeParam$1 /*:unknown*/ = $(2);
 new $(tmpCalleeParam, tmpCalleeParam$1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpCalleeParam$2 = $(1);
-  const tmpCalleeParam$4 = $(2);
+  const tmpCalleeParam$2 /*:unknown*/ = $(1);
+  const tmpCalleeParam$4 /*:unknown*/ = $(2);
   new $(tmpCalleeParam$2, tmpCalleeParam$4);
 }
 `````

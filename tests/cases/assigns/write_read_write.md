@@ -42,9 +42,9 @@ x = $(`redundant`);
 
 
 `````js filename=intro
-const x = $(1);
+const x /*:unknown*/ = $(1);
 $(x);
-const tmpClusterSSA_x = $(2);
+const tmpClusterSSA_x /*:unknown*/ = $(2);
 $(tmpClusterSSA_x);
 $(`redundant`);
 `````

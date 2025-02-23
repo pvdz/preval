@@ -101,12 +101,12 @@ f();
 `````js filename=intro
 $(1);
 let tmpLoopRetCode /*:boolean*/ = true;
-const tmpssa2_x = $(2);
+const tmpssa2_x /*:unknown*/ = $(2);
 $(tmpssa2_x);
 if ($) {
 } else {
   while ($LOOP_UNROLL_10) {
-    const tmpssa2_x$1 = $(2);
+    const tmpssa2_x$1 /*:unknown*/ = $(2);
     $(tmpssa2_x$1);
     if ($) {
       tmpLoopRetCode = false;

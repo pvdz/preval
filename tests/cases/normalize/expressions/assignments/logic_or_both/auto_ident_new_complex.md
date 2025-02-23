@@ -47,12 +47,12 @@ $(a);
 
 
 `````js filename=intro
-const tmpNewCallee = $($);
-let a = new tmpNewCallee(1);
+const tmpNewCallee /*:unknown*/ = $($);
+let a /*:unknown*/ = new tmpNewCallee(1);
 if (a) {
   $(a);
 } else {
-  const tmpNewCallee$1 = $($);
+  const tmpNewCallee$1 /*:unknown*/ = $($);
   const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee$1(1);
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);

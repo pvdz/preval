@@ -52,9 +52,9 @@ $(a, b);
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const tmpCalleeParam$3 = $(b);
-const tmpPostUpdArgObj = $(tmpCalleeParam$3);
-const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+const tmpCalleeParam$3 /*:unknown*/ = $(b);
+const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam$3);
+const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs /*:number*/ = tmpPostUpdArgVal - 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];

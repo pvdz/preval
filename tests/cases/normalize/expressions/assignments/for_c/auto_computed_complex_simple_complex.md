@@ -55,14 +55,14 @@ $(a);
 
 `````js filename=intro
 let a /*:object*/ = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpObjLitVal = $(1);
+  const tmpObjLitVal /*:unknown*/ = $(1);
   a = { b: tmpObjLitVal };
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpObjLitVal$1 = $(1);
+      const tmpObjLitVal$1 /*:unknown*/ = $(1);
       a = { b: tmpObjLitVal$1 };
     } else {
       break;
@@ -70,8 +70,8 @@ if (tmpIfTest) {
   }
 } else {
 }
-const tmpAssignMemLhsObj = $(a);
-const tmpAssignMemRhs = $(2);
+const tmpAssignMemLhsObj /*:unknown*/ = $(a);
+const tmpAssignMemRhs /*:unknown*/ = $(2);
 tmpAssignMemLhsObj.b = tmpAssignMemRhs;
 $(a);
 `````

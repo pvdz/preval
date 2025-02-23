@@ -53,11 +53,11 @@ const obj /*:object*/ = {
   foo() {
     debugger;
     const tmpCalleeParam /*:object*/ = { x: 1 };
-    const tmpReturnArg = $(tmpCalleeParam);
+    const tmpReturnArg /*:unknown*/ = $(tmpCalleeParam);
     return tmpReturnArg;
   },
 };
-const tmpObjSpread = obj.foo();
+const tmpObjSpread /*:unknown*/ = obj.foo();
 const tmpCalleeParam$1 /*:object*/ = { ...tmpObjSpread };
 $(tmpCalleeParam$1);
 `````

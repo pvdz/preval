@@ -95,8 +95,8 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const a = arrPatternSplat[0];
-const tmpSwitchValue = $(1);
+const a /*:unknown*/ = arrPatternSplat[0];
+const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 $(10);
 $(20);

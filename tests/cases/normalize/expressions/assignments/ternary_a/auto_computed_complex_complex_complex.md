@@ -54,13 +54,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
-const tmpClusterSSA_tmpCalleeParam = $(100);
+const tmpObjLitVal /*:unknown*/ = $(1);
+const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
 $(tmpClusterSSA_tmpCalleeParam);
 const a /*:object*/ = { b: tmpObjLitVal };
-const tmpAssignComMemLhsObj = $(a);
-const tmpAssignComMemLhsProp = $(`b`);
-const tmpAssignComputedRhs = $(2);
+const tmpAssignComMemLhsObj /*:unknown*/ = $(a);
+const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
+const tmpAssignComputedRhs /*:unknown*/ = $(2);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);
 `````

@@ -61,9 +61,9 @@ const tmpFree /*:()=>string*/ = function $free() {
   return tmpRet;
 };
 const b /*:object*/ = { x: 1 };
-const tmpCalleeParam$1 = $(b);
-const tmpNestedAssignObj = $(tmpCalleeParam$1);
-const tmpBinLhs$1 = tmpNestedAssignObj.x;
+const tmpCalleeParam$1 /*:unknown*/ = $(b);
+const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpBinLhs$1 /*:unknown*/ = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs$1 + 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
 const tmpCalleeParam /*:string*/ = $frfr(tmpFree);

@@ -49,13 +49,13 @@ $(a);
 
 
 `````js filename=intro
-let tmpObjSpreadArg = undefined;
+let tmpObjSpreadArg /*:unknown*/ = undefined;
 const b /*:object*/ = { x: 1 };
-const tmpChainElementCall = $(b);
+const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject = tmpChainElementCall.x;
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
   tmpObjSpreadArg = tmpChainElementObject;
 }
 ({ ...tmpObjSpreadArg });

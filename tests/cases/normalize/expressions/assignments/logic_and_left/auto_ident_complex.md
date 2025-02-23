@@ -47,9 +47,9 @@ $(a, b);
 
 
 `````js filename=intro
-const a = $(1);
+const a /*:unknown*/ = $(1);
 if (a) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   $(a);

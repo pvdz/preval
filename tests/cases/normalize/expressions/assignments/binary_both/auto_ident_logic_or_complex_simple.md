@@ -54,15 +54,15 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 = $(0);
-const a = $(tmpCalleeParam$1);
-let tmpBinBothLhs = 2;
+const tmpCalleeParam$1 /*:unknown*/ = $(0);
+const a /*:unknown*/ = $(tmpCalleeParam$1);
+let tmpBinBothLhs /*:unknown*/ = 2;
 if (a) {
   tmpBinBothLhs = a;
 } else {
 }
-const tmpCalleeParam$3 = $(0);
-let tmpClusterSSA_a = $(tmpCalleeParam$3);
+const tmpCalleeParam$3 /*:unknown*/ = $(0);
+let tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$3);
 if (tmpClusterSSA_a) {
   const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
   $(tmpClusterSSA_tmpCalleeParam);

@@ -45,8 +45,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
-const xyz = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(0);
+const xyz /*:unknown*/ = $(tmpCalleeParam);
 if (xyz) {
   $(xyz);
 } else {

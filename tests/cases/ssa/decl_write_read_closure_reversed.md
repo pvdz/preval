@@ -84,7 +84,7 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  let tmpCalleeParam = undefined;
+  let tmpCalleeParam /*:unknown*/ = undefined;
   if ($) {
     let x /*:number*/ = 5;
     if ($) {

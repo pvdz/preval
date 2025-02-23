@@ -38,7 +38,7 @@ $(`bad`);
 
 
 `````js filename=intro
-const objPatternNoDefault = ``.x;
+const objPatternNoDefault /*:unknown*/ = ``.x;
 const arrPatternSplat /*:array*/ = [...objPatternNoDefault];
 y = arrPatternSplat[0];
 $(`bad`);

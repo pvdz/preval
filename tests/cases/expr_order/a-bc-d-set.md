@@ -66,7 +66,7 @@ $(a, b, d);
 
 
 `````js filename=intro
-let b = {
+let b /*:unknown*/ = {
   set c($$0) {
     debugger;
     $(`b.set`);

@@ -52,7 +52,7 @@ $(a);
 $(1);
 $Object_prototype.a;
 $(1);
-const tmpAssignMemRhs = $(2);
+const tmpAssignMemRhs /*:unknown*/ = $(2);
 const a /*:object*/ = { b: tmpAssignMemRhs };
 $(a);
 `````

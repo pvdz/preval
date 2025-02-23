@@ -62,8 +62,8 @@ f();
 
 
 `````js filename=intro
-const x = $(1);
-const q = $(x);
+const x /*:unknown*/ = $(1);
+const q /*:unknown*/ = $(x);
 $(q);
 `````
 

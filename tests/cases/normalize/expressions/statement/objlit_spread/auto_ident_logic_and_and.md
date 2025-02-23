@@ -51,13 +51,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-let tmpObjSpreadArg = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+let tmpObjSpreadArg /*:unknown*/ = $(tmpCalleeParam);
 if (tmpObjSpreadArg) {
-  const tmpCalleeParam$1 = $(1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
   tmpObjSpreadArg = $(tmpCalleeParam$1);
   if (tmpObjSpreadArg) {
-    const tmpCalleeParam$3 = $(2);
+    const tmpCalleeParam$3 /*:unknown*/ = $(2);
     tmpObjSpreadArg = $(tmpCalleeParam$3);
   } else {
   }

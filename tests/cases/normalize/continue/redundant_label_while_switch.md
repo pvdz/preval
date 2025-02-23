@@ -135,16 +135,16 @@ while (true) {
 
 
 `````js filename=intro
-let x = $(2);
+let x /*:unknown*/ = $(2);
 if (x) {
   $(1);
-  const tmpIfTest = $(1);
+  const tmpIfTest /*:unknown*/ = $(1);
   if (tmpIfTest) {
     x = $(3);
   } else {
   }
   if (x) {
-    const tmpSwitchValue = $(1);
+    const tmpSwitchValue /*:unknown*/ = $(1);
     let tmpSwitchCaseToStart /*:number*/ = 3;
     const tmpIfTest$1 /*:boolean*/ = 0 === tmpSwitchValue;
     if (tmpIfTest$1) {
@@ -182,13 +182,13 @@ if (x) {
   while ($LOOP_UNROLL_10) {
     if (x) {
       $(1);
-      const tmpIfTest$2 = $(1);
+      const tmpIfTest$2 /*:unknown*/ = $(1);
       if (tmpIfTest$2) {
         x = $(3);
       } else {
       }
       if (x) {
-        const tmpSwitchValue$1 = $(1);
+        const tmpSwitchValue$1 /*:unknown*/ = $(1);
         let tmpSwitchCaseToStart$1 /*:number*/ = 3;
         const tmpIfTest$4 /*:boolean*/ = 0 === tmpSwitchValue$1;
         if (tmpIfTest$4) {

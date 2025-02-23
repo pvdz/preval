@@ -47,7 +47,7 @@ if (x) {
 
 
 `````js filename=intro
-const tmpBinBothRhs = $(``);
+const tmpBinBothRhs /*:unknown*/ = $(``);
 const x /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
 if (x) {
   $(x, `false`);

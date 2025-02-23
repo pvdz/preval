@@ -51,8 +51,8 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
-const tmpCalleeParam = $(100);
+let a /*:unknown*/ = arrPatternSplat[0];
+const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {

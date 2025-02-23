@@ -40,7 +40,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 $(1);
-const tmpCalleeParam = $Object_prototype.x;
+const tmpCalleeParam /*:unknown*/ = $Object_prototype.x;
 $(tmpCalleeParam);
 `````
 

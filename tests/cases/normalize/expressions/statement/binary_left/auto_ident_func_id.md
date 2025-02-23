@@ -48,7 +48,7 @@ const f /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
-const tmpBinBothRhs = $(100);
+const tmpBinBothRhs /*:unknown*/ = $(100);
 f + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

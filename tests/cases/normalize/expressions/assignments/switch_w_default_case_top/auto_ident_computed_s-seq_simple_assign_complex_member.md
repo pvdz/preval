@@ -98,10 +98,10 @@ $(a, b);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
-const tmpBinLhs = $(1);
+const tmpBinLhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -115,10 +115,10 @@ if (tmpIfTest) {
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 const b /*:object*/ = { c: 10, d: 20 };
 if (tmpIfTest$3) {
-  const tmpNestedAssignComMemberProp = $(`c`);
-  const tmpCompObj = $(b);
-  const tmpCompProp = $(`d`);
-  const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+  const tmpNestedAssignComMemberProp /*:unknown*/ = $(`c`);
+  const tmpCompObj /*:unknown*/ = $(b);
+  const tmpCompProp /*:unknown*/ = $(`d`);
+  const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
   b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
   a = tmpNestedAssignPropRhs;
 } else {

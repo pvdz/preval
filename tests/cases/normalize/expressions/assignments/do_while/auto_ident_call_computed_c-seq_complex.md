@@ -62,14 +62,14 @@ $(a);
 `````js filename=intro
 $(100);
 const b /*:object*/ = { $: $ };
-const tmpCallCompObj = $(b);
-const tmpCallCompProp = $(`\$`);
-let tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
+const tmpCallCompObj /*:unknown*/ = $(b);
+const tmpCallCompProp /*:unknown*/ = $(`\$`);
+let tmpClusterSSA_a /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
 if (tmpClusterSSA_a) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpCallCompObj$1 = $(b);
-    const tmpCallCompProp$1 = $(`\$`);
+    const tmpCallCompObj$1 /*:unknown*/ = $(b);
+    const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
     tmpClusterSSA_a = tmpCallCompObj$1[tmpCallCompProp$1](1);
     if (tmpClusterSSA_a) {
     } else {

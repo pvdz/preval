@@ -72,7 +72,7 @@ $(a, b);
 
 
 `````js filename=intro
-let flag = true;
+let flag /*:unknown*/ = true;
 let b /*:number*/ = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (flag) {

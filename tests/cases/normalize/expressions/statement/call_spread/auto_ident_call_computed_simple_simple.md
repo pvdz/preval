@@ -43,7 +43,7 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCalleeParamSpread = b.$(1);
+const tmpCalleeParamSpread /*:unknown*/ = b.$(1);
 $(...tmpCalleeParamSpread);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

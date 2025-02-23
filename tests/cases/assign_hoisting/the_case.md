@@ -135,9 +135,9 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const a = $(1);
-  const b = $(2);
-  const c = $(3);
+  const a /*:unknown*/ = $(1);
+  const b /*:unknown*/ = $(2);
+  const c /*:unknown*/ = $(3);
   if ($) {
     $(a);
     if ($) {

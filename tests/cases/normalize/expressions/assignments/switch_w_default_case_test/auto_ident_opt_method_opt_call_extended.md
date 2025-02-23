@@ -102,16 +102,16 @@ $(a);
 
 
 `````js filename=intro
-const tmpSwitchValue = $(1);
+const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
-let a = undefined;
+let a /*:unknown*/ = undefined;
 let tmpIfTest /*:boolean*/ = false;
 const tmpIfTest$3 /*:boolean*/ = $ == null;
 if (tmpIfTest$3) {
   tmpIfTest = undefined === tmpSwitchValue;
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
+  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, 1);
   a = tmpChainElementCall;
   tmpIfTest = tmpChainElementCall === tmpSwitchValue;
 }

@@ -55,7 +55,7 @@ $(a, b);
 
 `````js filename=intro
 let b /*:number*/ = 12;
-let a = undefined;
+let a /*:unknown*/ = undefined;
 $(1);
 $(1);
 $(1);
@@ -68,7 +68,7 @@ $(1);
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
-  const tmpPostUpdArgIdent$1 = b;
+  const tmpPostUpdArgIdent$1 /*:unknown*/ = b;
   b = b + 1;
   a = tmpPostUpdArgIdent$1;
   if (tmpPostUpdArgIdent$1) {

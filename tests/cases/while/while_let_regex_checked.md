@@ -73,7 +73,7 @@ while (true) {
 `````js filename=intro
 let x /*:regex*/ = /foo/;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCalleeParam = x.foo;
+  const tmpCalleeParam /*:unknown*/ = x.foo;
   $(tmpCalleeParam);
   x = /foo/;
   x.foo = `object`;

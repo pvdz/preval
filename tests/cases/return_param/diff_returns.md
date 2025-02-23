@@ -96,7 +96,7 @@ const f /*:(primitive)=>number*/ = function ($$0) {
   $(`no`);
   $(`inlining`);
   $(`please`);
-  const tmpIfTest = $(true);
+  const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
     $(`a`);
     const y /*:number*/ = ~x;

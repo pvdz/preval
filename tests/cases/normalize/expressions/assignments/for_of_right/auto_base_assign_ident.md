@@ -64,11 +64,11 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpNestedComplexRhs = $(2);
-const tmpForOfGen = $forOf(tmpNestedComplexRhs);
+const tmpNestedComplexRhs /*:unknown*/ = $(2);
+const tmpForOfGen /*:unknown*/ = $forOf(tmpNestedComplexRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
   } else {

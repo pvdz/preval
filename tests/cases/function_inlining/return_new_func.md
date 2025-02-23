@@ -60,9 +60,9 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 
 `````js filename=intro
 const g /*:(unknown)=>?*/ = function ($$0) {
-  const a = $$0;
+  const a /*:unknown*/ = $$0;
   debugger;
-  const tmpReturnArg$1 = $(a, `g`);
+  const tmpReturnArg$1 /*:unknown*/ = $(a, `g`);
   return tmpReturnArg$1;
 };
 const tmpReturnArg /*:object*/ = new g(10);

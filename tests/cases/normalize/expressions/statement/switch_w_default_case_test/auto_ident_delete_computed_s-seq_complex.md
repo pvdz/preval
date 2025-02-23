@@ -97,11 +97,11 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpSwitchValue = $(1);
+const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 $(1);
 $(2);
-const tmpDeleteCompProp = $(`y`);
+const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 const arg /*:object*/ = { y: 1 };
 const tmpBinLhs /*:boolean*/ = delete arg[tmpDeleteCompProp];
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;

@@ -50,14 +50,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpBinBothLhs = $(100);
-let tmpBinBothRhs = undefined;
+const tmpBinBothLhs /*:unknown*/ = $(100);
+let tmpBinBothRhs /*:unknown*/ = undefined;
 const b /*:object*/ = { x: 1 };
-const tmpChainElementCall = $(b);
+const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject = tmpChainElementCall.x;
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
   tmpBinBothRhs = tmpChainElementObject;
 }
 tmpBinBothLhs + tmpBinBothRhs;

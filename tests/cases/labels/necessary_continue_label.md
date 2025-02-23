@@ -68,12 +68,12 @@ while (true) {
 `````js filename=intro
 $(1, `outer`);
 $(1, `inner`);
-const tmpIfTest = $(false);
+const tmpIfTest /*:unknown*/ = $(false);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(1, `outer`);
     $(1, `inner`);
-    const tmpIfTest$1 = $(false);
+    const tmpIfTest$1 /*:unknown*/ = $(false);
     if (tmpIfTest$1) {
     } else {
       break;

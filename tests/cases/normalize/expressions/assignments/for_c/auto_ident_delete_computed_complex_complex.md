@@ -53,18 +53,18 @@ $(a, arg);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
 const arg /*:object*/ = { y: 1 };
 if (tmpIfTest) {
-  const tmpDeleteCompObj = $(arg);
-  const tmpDeleteCompProp = $(`y`);
+  const tmpDeleteCompObj /*:unknown*/ = $(arg);
+  const tmpDeleteCompProp /*:unknown*/ = $(`y`);
   a = delete tmpDeleteCompObj[tmpDeleteCompProp];
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpDeleteCompObj$1 = $(arg);
-      const tmpDeleteCompProp$1 = $(`y`);
+      const tmpDeleteCompObj$1 /*:unknown*/ = $(arg);
+      const tmpDeleteCompProp$1 /*:unknown*/ = $(`y`);
       a = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
     } else {
       break;

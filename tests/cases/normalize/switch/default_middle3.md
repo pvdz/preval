@@ -110,19 +110,19 @@ if (tmpIfTest$11) {
 
 
 `````js filename=intro
-const tmpSwitchValue = $(30);
+const tmpSwitchValue /*:unknown*/ = $(30);
 let tmpSwitchCaseToStart /*:number*/ = 1;
-const tmpBinLhs = $(30);
+const tmpBinLhs /*:unknown*/ = $(30);
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpBinLhs$1 = $(31);
+  const tmpBinLhs$1 /*:unknown*/ = $(31);
   const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$1 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
   } else {
-    const tmpBinLhs$3 = $(32);
+    const tmpBinLhs$3 /*:unknown*/ = $(32);
     const tmpIfTest$3 /*:boolean*/ = tmpBinLhs$3 === tmpSwitchValue;
     if (tmpIfTest$3) {
       tmpSwitchCaseToStart = 3;

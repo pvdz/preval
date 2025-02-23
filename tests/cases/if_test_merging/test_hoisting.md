@@ -80,9 +80,9 @@ $(repeat);
 
 
 `````js filename=intro
-let closure_cond = false;
+let closure_cond /*:unknown*/ = false;
 const repeat /*:(unknown)=>undefined*/ = function ($$0) {
-  const $dlr_$$0 = $$0;
+  const $dlr_$$0 /*:unknown*/ = $$0;
   debugger;
   if (closure_cond) {
     closure_cond = [];

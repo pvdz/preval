@@ -49,13 +49,13 @@ $(a);
 
 
 `````js filename=intro
-let tmpArrElToSpread = undefined;
-const tmpChainElementCall = $($);
+let tmpArrElToSpread /*:unknown*/ = undefined;
+const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpCalleeParam$3 = $(1);
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
+  const tmpCalleeParam$3 /*:unknown*/ = $(1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
   tmpArrElToSpread = tmpChainElementCall$1;
 }
 [...tmpArrElToSpread];

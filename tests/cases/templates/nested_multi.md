@@ -85,8 +85,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const a = $(`x`);
-const b = $(`y`);
+const a /*:unknown*/ = $(`x`);
+const b /*:unknown*/ = $(`y`);
 const tmpBinBothRhs$1 /*:string*/ = $coerce(a, `string`);
 const tmpBinBothRhs /*:string*/ = $coerce(b, `string`);
 const tmpCalleeParam /*:string*/ = `A${tmpBinBothRhs$1}B${tmpBinBothRhs}C`;

@@ -62,10 +62,10 @@ if (tmpIfTest$209) {
 
 
 `````js filename=intro
-const c$19 = a$41(tmpCalleeParam$285);
+const c$19 /*:unknown*/ = a$41(tmpCalleeParam$285);
 if (c$19) {
-  const tmpCallCallee = i$71;
-  const tmpCalleeParam$3 = tmpCalleeParam$293;
+  const tmpCallCallee /*:unknown*/ = i$71;
+  const tmpCalleeParam$3 /*:unknown*/ = tmpCalleeParam$293;
   const tmpCalleeParam$5 /*:object*/ = { unsafe: true };
   tmpCallCallee($RegExp_prototype, `toString`, tmpCalleeParam$3, tmpCalleeParam$5);
 } else {

@@ -62,11 +62,11 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const tmpChainElementCall = $(b);
+const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainRootComputed = $(`x`);
+  const tmpChainRootComputed /*:unknown*/ = $(`x`);
   tmpChainElementCall[tmpChainRootComputed];
 }
 const a /*:object*/ = { a: 999, b: 1000 };

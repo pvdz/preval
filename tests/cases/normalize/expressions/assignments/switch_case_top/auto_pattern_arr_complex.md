@@ -60,15 +60,15 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const a = arrPatternSplat[0];
-const tmpSwitchDisc = $(1);
-const tmpBinBothRhs = $(1);
+const a /*:unknown*/ = arrPatternSplat[0];
+const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpCalleeParam /*:array*/ = [1, 2];
-  const arrAssignPatternRhs = $(tmpCalleeParam);
+  const arrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
   const arrPatternSplat$1 /*:array*/ = [...arrAssignPatternRhs];
-  const tmpClusterSSA_a = arrPatternSplat$1[0];
+  const tmpClusterSSA_a /*:unknown*/ = arrPatternSplat$1[0];
   $(tmpClusterSSA_a);
 } else {
   $(a);

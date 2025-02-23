@@ -92,7 +92,7 @@ if (tmpIfTest$7) {
 
 
 `````js filename=intro
-const tmpUnaryArg = $(1);
+const tmpUnaryArg /*:unknown*/ = $(1);
 const a /*:string*/ = typeof tmpUnaryArg;
 $(a, 1);
 $(`fail1`);

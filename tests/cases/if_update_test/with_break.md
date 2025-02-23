@@ -58,7 +58,7 @@ while (true) {
 
 
 `````js filename=intro
-const chk = $(true);
+const chk /*:unknown*/ = $(true);
 if (chk) {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $(`inside`);

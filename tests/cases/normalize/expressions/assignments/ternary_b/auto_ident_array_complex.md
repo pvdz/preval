@@ -49,16 +49,16 @@ $(a);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpArrElement = $(1);
-  const tmpArrElement$3 = $(3);
+  const tmpArrElement /*:unknown*/ = $(1);
+  const tmpArrElement$3 /*:unknown*/ = $(3);
   const tmpNestedComplexRhs /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
-  const tmpClusterSSA_tmpCalleeParam = $(200);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
   $(tmpClusterSSA_tmpCalleeParam);
 }
 $(a);

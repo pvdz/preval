@@ -45,8 +45,8 @@ $(a);
 
 
 `````js filename=intro
-let a = {};
-const tmpCalleeParam = a;
+let a /*:unknown*/ = {};
+const tmpCalleeParam /*:unknown*/ = a;
 if (a) {
   const tmpNestedComplexRhs /*:object*/ = {};
   a = tmpNestedComplexRhs;

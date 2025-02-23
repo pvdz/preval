@@ -70,8 +70,8 @@ $(z);
 
 
 `````js filename=intro
-const s = $(`s`);
-const t = $(`t`);
+const s /*:unknown*/ = $(`s`);
+const t /*:unknown*/ = $(`t`);
 if (t) {
   const tmpStringConcatL /*:string*/ = $coerce(t, `plustr`);
   const tmpClusterSSA_z /*:string*/ = `abcdef${tmpStringConcatL}`;

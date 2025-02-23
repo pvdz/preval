@@ -33,7 +33,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpArrSpread = $(`foo`);
+const tmpArrSpread /*:unknown*/ = $(`foo`);
 const tmpCalleeParam /*:array*/ = [...tmpArrSpread];
 $(tmpCalleeParam);
 `````

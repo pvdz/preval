@@ -50,10 +50,10 @@ $(n$1);
 
 
 `````js filename=intro
-const n$3 = $(10);
+const n$3 /*:unknown*/ = $(10);
 $(n$3);
 $(n);
-const n$1 = $(10);
+const n$1 /*:unknown*/ = $(10);
 $(n$1);
 `````
 

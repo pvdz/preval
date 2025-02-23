@@ -79,21 +79,21 @@ if (itooamanumberjack) {
 
 
 `````js filename=intro
-let itooamanumberjack = undefined;
+let itooamanumberjack /*:unknown*/ = undefined;
 if (imanumberandilovethrees) {
-  const tmpChainElementCall = $(1);
+  const tmpChainElementCall /*:unknown*/ = $(1);
   const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest) {
   } else {
-    const tmpChainElementObject = tmpChainElementCall.x;
+    const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
     itooamanumberjack = tmpChainElementObject;
   }
 } else {
-  const tmpChainElementCall$1 = $(2);
+  const tmpChainElementCall$1 /*:unknown*/ = $(2);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall$1 == null;
   if (tmpIfTest$1) {
   } else {
-    const tmpChainElementObject$1 = tmpChainElementCall$1.x;
+    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$1.x;
     itooamanumberjack = tmpChainElementObject$1;
   }
 }

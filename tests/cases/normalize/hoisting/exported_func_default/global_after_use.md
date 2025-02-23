@@ -46,10 +46,10 @@ export { f as default };
 `````js filename=intro
 const f /*:()=>?*/ = function () {
   debugger;
-  const tmpReturnArg = $(2);
+  const tmpReturnArg /*:unknown*/ = $(2);
   return tmpReturnArg;
 };
-const tmpCalleeParam = $(2);
+const tmpCalleeParam /*:unknown*/ = $(2);
 $(tmpCalleeParam);
 export { f as default };
 `````

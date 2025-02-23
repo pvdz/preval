@@ -91,11 +91,11 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpReturnArg /*:()=>?*/ = function () {
   debugger;
-  const tmpReturnArg$1 = $(2, `false`);
+  const tmpReturnArg$1 /*:unknown*/ = $(2, `false`);
   return tmpReturnArg$1;
 };
 let f /*:(unknown)=>*/ = function ($$0) {
-  const bool = $$0;
+  const bool /*:unknown*/ = $$0;
   debugger;
   if (bool) {
     $(1, `true`);
@@ -109,7 +109,7 @@ let f /*:(unknown)=>*/ = function ($$0) {
   }
 };
 f = f(false);
-const tmpCalleeParam = f();
+const tmpCalleeParam /*:unknown*/ = f();
 $(tmpCalleeParam);
 `````
 

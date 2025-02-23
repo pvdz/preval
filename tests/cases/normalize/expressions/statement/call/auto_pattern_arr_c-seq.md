@@ -46,11 +46,11 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const a = arrPatternSplat[0];
+const a /*:unknown*/ = arrPatternSplat[0];
 $(10);
 $(20);
 const tmpCalleeParam$1 /*:array*/ = [1, 2];
-const tmpCalleeParam = $(tmpCalleeParam$1);
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
 $(tmpCalleeParam);
 $(a);
 `````

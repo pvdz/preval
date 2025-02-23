@@ -73,16 +73,16 @@ if (tmpIfTest) {
 
 `````js filename=intro
 let x /*:primitive*/ = undefined;
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpIfTest$1 = $(2);
+  const tmpIfTest$1 /*:unknown*/ = $(2);
   if (tmpIfTest$1) {
     x = 10;
   } else {
   }
-  const tmpIfTest$3 = $(3);
+  const tmpIfTest$3 /*:unknown*/ = $(3);
   if (tmpIfTest$3) {
-    const tmpIfTest$5 = $(4);
+    const tmpIfTest$5 /*:unknown*/ = $(4);
     if (tmpIfTest$5) {
       $(x);
     } else {

@@ -225,7 +225,7 @@ $(a, b, c, d, e);
 
 
 `````js filename=intro
-let obj = {
+let obj /*:unknown*/ = {
   get c() {
     debugger;
     $(`get`);
@@ -273,12 +273,12 @@ const e /*:()=>?*/ = function () {
   d = 54;
   return obj;
 };
-const tmpAssignMemLhsObj = a();
-const varInitAssignLhsComputedObj = b();
-const varInitAssignLhsComputedObj$1 = c();
-const varInitAssignLhsComputedObj$3 = d();
+const tmpAssignMemLhsObj /*:unknown*/ = a();
+const varInitAssignLhsComputedObj /*:unknown*/ = b();
+const varInitAssignLhsComputedObj$1 /*:unknown*/ = c();
+const varInitAssignLhsComputedObj$3 /*:unknown*/ = d();
 e();
-const varInitAssignLhsComputedRhs$3 = obj;
+const varInitAssignLhsComputedRhs$3 /*:unknown*/ = obj;
 varInitAssignLhsComputedObj$3.x = varInitAssignLhsComputedRhs$3;
 varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$3;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$3;

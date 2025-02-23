@@ -72,21 +72,21 @@ $(a, b);
 
 
 `````js filename=intro
-let b = {};
+let b /*:unknown*/ = {};
 const tmpCalleeParam$1 /*:object*/ = { x: 1 };
-const tmpCalleeParam = $(tmpCalleeParam$1);
-const tmpForInGen = $forIn(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
   } else {
-    const tmpObjLitVal = $(2);
+    const tmpObjLitVal /*:unknown*/ = $(2);
     const tmpCalleeParam$3 /*:object*/ = { b: tmpObjLitVal };
-    const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$3);
+    const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$3);
     b = tmpNestedAssignObjPatternRhs.b;
-    const tmpAssignMemRhs = tmpForInNext.value;
+    const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
     tmpNestedAssignObjPatternRhs.x = tmpAssignMemRhs;
   }
 }

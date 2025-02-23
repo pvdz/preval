@@ -44,13 +44,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
-let tmpBinBothLhs = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(0);
+let tmpBinBothLhs /*:unknown*/ = $(tmpCalleeParam);
 if (tmpBinBothLhs) {
 } else {
   tmpBinBothLhs = 2;
 }
-const tmpBinBothRhs = $(100);
+const tmpBinBothRhs /*:unknown*/ = $(100);
 tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

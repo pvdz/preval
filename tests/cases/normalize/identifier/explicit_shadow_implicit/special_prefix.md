@@ -41,7 +41,7 @@ $($implicit$foo);
 
 
 `````js filename=intro
-const $implicit$foo$1 = $(1);
+const $implicit$foo$1 /*:unknown*/ = $(1);
 $($implicit$foo$1);
 $($implicit$foo);
 `````

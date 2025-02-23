@@ -69,7 +69,7 @@ $(a, arg);
 $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
-const tmpDeleteObj = $(arg);
+const tmpDeleteObj /*:unknown*/ = $(arg);
 const tmpNestedComplexRhs /*:boolean*/ = delete tmpDeleteObj.y;
 $(undefined);
 $(tmpNestedComplexRhs, arg);

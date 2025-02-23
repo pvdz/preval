@@ -81,12 +81,12 @@ const f /*:()=>primitive*/ = function () {
   y = Boolean(x);
   return y;
 };
-let x = undefined;
+let x /*:unknown*/ = undefined;
 let y /*:primitive*/ = undefined;
 $(f);
 $(f);
 f();
-const tmpIfTest = y;
+const tmpIfTest /*:unknown*/ = y;
 if (tmpIfTest) {
   $(`pass`);
 } else {

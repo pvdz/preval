@@ -45,12 +45,12 @@ $(a);
 
 
 `````js filename=intro
-let tmpObjSpreadArg = undefined;
-const tmpIfTest = $(30);
+let tmpObjSpreadArg /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(30);
 if (tmpIfTest) {
   tmpObjSpreadArg = $(60);
 } else {
-  const tmpCalleeParam = $(100);
+  const tmpCalleeParam /*:unknown*/ = $(100);
   tmpObjSpreadArg = $(tmpCalleeParam);
 }
 ({ ...tmpObjSpreadArg });

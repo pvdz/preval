@@ -82,7 +82,7 @@ const f /*:()=>undefined,function*/ = function () {
     return undefined;
   } else {
   }
-  const thisrefgetslost = $();
+  const thisrefgetslost /*:unknown*/ = $();
   return incorrectlyhoisted;
 };
 $(f);

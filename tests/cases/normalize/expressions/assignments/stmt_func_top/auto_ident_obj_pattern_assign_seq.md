@@ -66,8 +66,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 $(1);
 $(2);
-const tmpObjLitVal = $(3);
-const tmpObjLitVal$1 = $(4);
+const tmpObjLitVal /*:unknown*/ = $(3);
+const tmpObjLitVal$1 /*:unknown*/ = $(4);
 const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 $(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 $(undefined);

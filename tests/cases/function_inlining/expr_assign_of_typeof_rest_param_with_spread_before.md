@@ -80,7 +80,7 @@ const g /*:(unused, unused)=>undefined*/ = function ($$0, $$1) {
   return undefined;
 };
 const tmpCalleeParam /*:array*/ = [1, 2];
-const arr = $(tmpCalleeParam);
+const arr /*:unknown*/ = $(tmpCalleeParam);
 g(...arr, 10, 20);
 $(x);
 `````

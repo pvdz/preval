@@ -74,38 +74,38 @@ $(a);
 
 `````js filename=intro
 $(100);
-let tmpIfTest = undefined;
+let tmpIfTest /*:unknown*/ = undefined;
 const tmpObjLitVal /*:object*/ = { y: 1 };
 const b /*:object*/ = { x: tmpObjLitVal };
-const tmpChainElementCall = $(b);
+const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainRootComputed = $(`x`);
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  const tmpChainRootComputed /*:unknown*/ = $(`x`);
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$3) {
   } else {
-    const tmpChainRootComputed$1 = $(`y`);
-    const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+    const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
+    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
     tmpIfTest = tmpChainElementObject$1;
   }
 }
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    let tmpIfTest$2 = undefined;
-    const tmpChainElementCall$1 = $(b);
+    let tmpIfTest$2 /*:unknown*/ = undefined;
+    const tmpChainElementCall$1 /*:unknown*/ = $(b);
     const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$1 == null;
     if (tmpIfTest$4) {
     } else {
-      const tmpChainRootComputed$2 = $(`x`);
-      const tmpChainElementObject$2 = tmpChainElementCall$1[tmpChainRootComputed$2];
+      const tmpChainRootComputed$2 /*:unknown*/ = $(`x`);
+      const tmpChainElementObject$2 /*:unknown*/ = tmpChainElementCall$1[tmpChainRootComputed$2];
       const tmpIfTest$6 /*:boolean*/ = tmpChainElementObject$2 == null;
       if (tmpIfTest$6) {
       } else {
-        const tmpChainRootComputed$4 = $(`y`);
-        const tmpChainElementObject$4 = tmpChainElementObject$2[tmpChainRootComputed$4];
+        const tmpChainRootComputed$4 /*:unknown*/ = $(`y`);
+        const tmpChainElementObject$4 /*:unknown*/ = tmpChainElementObject$2[tmpChainRootComputed$4];
         tmpIfTest$2 = tmpChainElementObject$4;
       }
     }

@@ -101,10 +101,10 @@ $(a, b);
 
 
 `````js filename=intro
-let b = [];
-const tmpSwitchValue = $(1);
+let b /*:unknown*/ = [];
+const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
-const tmpBinLhs = $(1);
+const tmpBinLhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -117,9 +117,9 @@ if (tmpIfTest) {
 }
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
-  const tmpArrElement = $(2);
+  const tmpArrElement /*:unknown*/ = $(2);
   const tmpCalleeParam /*:array*/ = [tmpArrElement];
-  const arrAssignPatternRhs = $(tmpCalleeParam);
+  const arrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
   const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
   b = arrPatternSplat[0];
 } else {

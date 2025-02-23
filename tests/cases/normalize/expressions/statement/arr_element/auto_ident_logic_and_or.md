@@ -66,28 +66,28 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-let tmpBinBothLhs = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+let tmpBinBothLhs /*:unknown*/ = $(tmpCalleeParam);
 if (tmpBinBothLhs) {
-  const tmpCalleeParam$1 = $(1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
   tmpBinBothLhs = $(tmpCalleeParam$1);
 } else {
 }
 if (tmpBinBothLhs) {
 } else {
-  const tmpCalleeParam$3 = $(2);
+  const tmpCalleeParam$3 /*:unknown*/ = $(2);
   tmpBinBothLhs = $(tmpCalleeParam$3);
 }
-const tmpCalleeParam$5 = $(1);
-let tmpBinBothRhs = $(tmpCalleeParam$5);
+const tmpCalleeParam$5 /*:unknown*/ = $(1);
+let tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam$5);
 if (tmpBinBothRhs) {
-  const tmpCalleeParam$7 = $(1);
+  const tmpCalleeParam$7 /*:unknown*/ = $(1);
   tmpBinBothRhs = $(tmpCalleeParam$7);
 } else {
 }
 if (tmpBinBothRhs) {
 } else {
-  const tmpCalleeParam$9 = $(2);
+  const tmpCalleeParam$9 /*:unknown*/ = $(2);
   tmpBinBothRhs = $(tmpCalleeParam$9);
 }
 tmpBinBothLhs + tmpBinBothRhs;

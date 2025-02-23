@@ -70,7 +70,7 @@ B();
 
 
 `````js filename=intro
-const x = $(true);
+const x /*:unknown*/ = $(true);
 if (x) {
   $(`inner`);
 } else {

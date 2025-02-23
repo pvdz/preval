@@ -56,19 +56,19 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const b /*:object*/ = { x: 1 };
-  const tmpChainRootProp = $(b);
+  const tmpChainRootProp /*:unknown*/ = $(b);
   const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
   if (tmpIfTest$1) {
   } else {
     tmpChainRootProp.x;
   }
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$2 = $(1);
+    const tmpIfTest$2 /*:unknown*/ = $(1);
     if (tmpIfTest$2) {
-      const tmpChainRootProp$1 = $(b);
+      const tmpChainRootProp$1 /*:unknown*/ = $(b);
       const tmpIfTest$4 /*:boolean*/ = tmpChainRootProp$1 == null;
       if (tmpIfTest$4) {
       } else {

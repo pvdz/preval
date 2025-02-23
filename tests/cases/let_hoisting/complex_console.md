@@ -71,10 +71,10 @@ $(x);
 
 
 `````js filename=intro
-const f = console.log(`ok`);
+const f /*:unknown*/ = console.log(`ok`);
 if ($) {
   $(f);
-  const tmpClusterSSA_x = $(`do not inline me`);
+  const tmpClusterSSA_x /*:unknown*/ = $(`do not inline me`);
   $(tmpClusterSSA_x);
 } else {
   $(undefined);

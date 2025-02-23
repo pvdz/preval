@@ -59,16 +59,16 @@ $(a, arg);
 $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
-const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = $(`y`);
+const tmpDeleteCompObj /*:unknown*/ = $(arg);
+const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 let tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
 if (tmpClusterSSA_a) {
   while ($LOOP_UNROLL_10) {
     $(1);
     $(1);
     $(2);
-    const tmpDeleteCompObj$1 = $(arg);
-    const tmpDeleteCompProp$1 = $(`y`);
+    const tmpDeleteCompObj$1 /*:unknown*/ = $(arg);
+    const tmpDeleteCompProp$1 /*:unknown*/ = $(`y`);
     tmpClusterSSA_a = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
     if (tmpClusterSSA_a) {
     } else {

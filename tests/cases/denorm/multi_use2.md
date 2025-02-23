@@ -51,7 +51,7 @@ if (expires) {
 `````js filename=intro
 if (expires) {
   const date /*:object*/ = new Date();
-  const time = date.getTime();
+  const time /*:unknown*/ = date.getTime();
   $(time);
   unknown = date;
 } else {

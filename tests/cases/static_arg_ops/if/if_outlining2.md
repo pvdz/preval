@@ -195,10 +195,10 @@ $(push);
 
 `````js filename=intro
 const push /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
-  const heap = $$0;
-  const node$1 = $$1;
+  const heap /*:unknown*/ = $$0;
+  const node$1 /*:unknown*/ = $$1;
   debugger;
-  const index$1 = heap.length;
+  const index$1 /*:unknown*/ = heap.length;
   const tmpSaooB$1 /*:boolean*/ = index$1 > 0;
   heap.push(node$1);
   if (tmpSaooB$1) {
@@ -220,25 +220,25 @@ const push /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
   }
 };
 const siftUp_t /*:(unknown, unknown, unknown, number)=>undefined*/ = function ($$0, $$1, $$2, $$3) {
-  const heap$5 = $$0;
-  const node$3 = $$1;
-  const i$13 = $$2;
+  const heap$5 /*:unknown*/ = $$0;
+  const node$3 /*:unknown*/ = $$1;
+  const i$13 /*:unknown*/ = $$2;
   const tmpOutlinedParam$1 /*:number*/ = $$3;
   debugger;
-  const tmpClusterSSA_parent = heap$5[tmpOutlinedParam$1];
-  const tmpBinLhs$263 = compare(tmpClusterSSA_parent, node$3);
+  const tmpClusterSSA_parent /*:unknown*/ = heap$5[tmpOutlinedParam$1];
+  const tmpBinLhs$263 /*:unknown*/ = compare(tmpClusterSSA_parent, node$3);
   const tmpIfTest$369 /*:boolean*/ = tmpBinLhs$263 > 0;
   if (tmpIfTest$369) {
     heap$5[tmpOutlinedParam$1] = node$3;
     heap$5[i$13] = tmpClusterSSA_parent;
-    let tmpClusterSSA_index$3 = tmpOutlinedParam$1;
+    let tmpClusterSSA_index$3 /*:unknown*/ = tmpOutlinedParam$1;
     let tmpClusterSSA_tmpIfTest$367 /*:boolean*/ = tmpOutlinedParam$1 > 0;
     while ($LOOP_UNROLL_100) {
       if (tmpClusterSSA_tmpIfTest$367) {
         const tmpBinLhs$1 /*:number*/ = tmpClusterSSA_index$3 - 1;
         const tmpClusterSSA_parentIndex$1 /*:number*/ = tmpBinLhs$1 >>> 1;
-        const tmpClusterSSA_parent$1 = heap$5[tmpClusterSSA_parentIndex$1];
-        const tmpBinLhs$3 = compare(tmpClusterSSA_parent$1, node$3);
+        const tmpClusterSSA_parent$1 /*:unknown*/ = heap$5[tmpClusterSSA_parentIndex$1];
+        const tmpBinLhs$3 /*:unknown*/ = compare(tmpClusterSSA_parent$1, node$3);
         const tmpIfTest$2 /*:boolean*/ = tmpBinLhs$3 > 0;
         if (tmpIfTest$2) {
           heap$5[tmpClusterSSA_parentIndex$1] = node$3;

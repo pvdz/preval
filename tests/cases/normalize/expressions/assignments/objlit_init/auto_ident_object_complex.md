@@ -43,8 +43,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal$1 = $(1);
-const tmpObjLitVal$5 = $(3);
+const tmpObjLitVal$1 /*:unknown*/ = $(1);
+const tmpObjLitVal$5 /*:unknown*/ = $(3);
 const a /*:object*/ = { x: tmpObjLitVal$1, y: 2, z: tmpObjLitVal$5 };
 const tmpCalleeParam /*:object*/ = { x: a };
 $(tmpCalleeParam);

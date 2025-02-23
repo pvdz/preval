@@ -77,28 +77,28 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:object*/ = { x: 1 };
-const tmpCalleeParam = $(tmpCalleeParam$1);
-const tmpForInGen = $forIn(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
   } else {
-    const tmpCalleeParam$3 = $(0);
-    let tmpAssignMemLhsObj = $(tmpCalleeParam$3);
+    const tmpCalleeParam$3 /*:unknown*/ = $(0);
+    let tmpAssignMemLhsObj /*:unknown*/ = $(tmpCalleeParam$3);
     if (tmpAssignMemLhsObj) {
     } else {
-      const tmpCalleeParam$5 = $(1);
+      const tmpCalleeParam$5 /*:unknown*/ = $(1);
       tmpAssignMemLhsObj = $(tmpCalleeParam$5);
       if (tmpAssignMemLhsObj) {
       } else {
-        const tmpCalleeParam$7 = $(2);
+        const tmpCalleeParam$7 /*:unknown*/ = $(2);
         tmpAssignMemLhsObj = $(tmpCalleeParam$7);
       }
     }
-    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-    const tmpAssignMemRhs = tmpForInNext.value;
+    const tmpAssignMemLhsObj$1 /*:unknown*/ = tmpAssignMemLhsObj;
+    const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
     tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   }
 }

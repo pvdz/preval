@@ -47,12 +47,12 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
-let tmpObjLitVal = undefined;
+let a /*:unknown*/ = undefined;
+let tmpObjLitVal /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall = $(1);
+  const tmpChainElementCall /*:unknown*/ = $(1);
   a = tmpChainElementCall;
   tmpObjLitVal = tmpChainElementCall;
 }

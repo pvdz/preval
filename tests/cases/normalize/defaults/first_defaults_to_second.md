@@ -98,7 +98,7 @@ const f /*:(primitive, primitive)=>array*/ = function ($$0, $$1) {
   if (tmpIfTest) {
     throw `Preval: TDZ triggered for this read: ((tmpParamBare === undefined)? b : tmpParamBare)`;
   } else {
-    let b = `bar`;
+    let b /*:unknown*/ = `bar`;
     const tmpIfTest$1 /*:boolean*/ = tmpParamBare$3 === undefined;
     if (tmpIfTest$1) {
     } else {

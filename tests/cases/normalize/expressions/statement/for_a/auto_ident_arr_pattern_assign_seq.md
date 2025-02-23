@@ -62,12 +62,12 @@ $(a, x, y);
 `````js filename=intro
 $(1);
 $(2);
-const tmpArrElement = $(3);
-const tmpArrElement$1 = $(4);
-const tmpIfTest = $(0);
+const tmpArrElement /*:unknown*/ = $(3);
+const tmpArrElement$1 /*:unknown*/ = $(4);
+const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(0);
+    const tmpIfTest$1 /*:unknown*/ = $(0);
     if (tmpIfTest$1) {
     } else {
       break;

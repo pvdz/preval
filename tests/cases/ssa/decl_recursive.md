@@ -77,18 +77,18 @@ if ($) {
 const f /*:()=>undefined*/ = function () {
   debugger;
   let g /*:(unknown)=>*/ = function ($$0) {
-    const x = $$0;
+    const x /*:unknown*/ = $$0;
     debugger;
     if (x) {
-      const tmpCalleeParam = $(false);
+      const tmpCalleeParam /*:unknown*/ = $(false);
       g(tmpCalleeParam);
-      const tmpReturnArg = $(100);
+      const tmpReturnArg /*:unknown*/ = $(100);
       return tmpReturnArg;
     } else {
       return undefined;
     }
   };
-  const tmpCalleeParam$1 = $(true);
+  const tmpCalleeParam$1 /*:unknown*/ = $(true);
   g = g(tmpCalleeParam$1);
   return undefined;
 };

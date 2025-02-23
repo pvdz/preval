@@ -98,7 +98,7 @@ $(x);
 
 
 `````js filename=intro
-let x = $(1);
+let x /*:unknown*/ = $(1);
 try {
   $(x);
   x = $(2);

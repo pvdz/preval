@@ -58,18 +58,18 @@ $(a);
 
 
 `````js filename=intro
-let tmpIfTest = undefined;
+let tmpIfTest /*:unknown*/ = undefined;
 const b /*:object*/ = { x: 1 };
-const tmpChainElementCall = $(b);
+const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementObject = tmpChainElementCall.x;
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
   tmpIfTest = tmpChainElementObject;
 }
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall$1 = $(b);
+  const tmpChainElementCall$1 /*:unknown*/ = $(b);
   const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$1 == null;
   if (tmpIfTest$3) {
   } else {

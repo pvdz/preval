@@ -44,7 +44,7 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-const a = $(60);
+const a /*:unknown*/ = $(60);
 throw a;
 `````
 

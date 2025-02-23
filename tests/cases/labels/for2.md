@@ -57,10 +57,10 @@ $(2);
 
 `````js filename=intro
 $(0);
-const tmpIfTest = $(true);
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(true);
+    const tmpIfTest$1 /*:unknown*/ = $(true);
     if (tmpIfTest$1) {
     } else {
       break;

@@ -48,9 +48,9 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpAssignRhsCompProp = $(`c`);
+const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
-const a = b[tmpAssignRhsCompProp];
+const a /*:unknown*/ = b[tmpAssignRhsCompProp];
 const obj /*:object*/ = {};
 obj[a];
 $(a, b);

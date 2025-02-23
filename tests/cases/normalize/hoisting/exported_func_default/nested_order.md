@@ -83,9 +83,9 @@ export { f as default };
 `````js filename=intro
 const f /*:()=>undefined*/ = function () {
   debugger;
-  const tmpCalleeParam = $();
-  const tmpCalleeParam$1 = $();
-  const tmpCalleeParam$3 = $();
+  const tmpCalleeParam /*:unknown*/ = $();
+  const tmpCalleeParam$1 /*:unknown*/ = $();
+  const tmpCalleeParam$3 /*:unknown*/ = $();
   $(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
   return undefined;
 };

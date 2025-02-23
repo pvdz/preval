@@ -32,7 +32,7 @@ export { tmpAnonDefaultExport as default };
 
 
 `````js filename=intro
-const tmpAnonDefaultExport = $(1);
+const tmpAnonDefaultExport /*:unknown*/ = $(1);
 export { tmpAnonDefaultExport as default };
 `````
 

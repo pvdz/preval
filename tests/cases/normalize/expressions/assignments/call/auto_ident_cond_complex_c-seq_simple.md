@@ -46,13 +46,13 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
-const tmpIfTest = $(1);
+let a /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   a = $(60);
   $(a);
 } else {
-  const tmpCalleeParam$1 = $(100);
+  const tmpCalleeParam$1 /*:unknown*/ = $(100);
   a = $(tmpCalleeParam$1);
   $(a);
 }

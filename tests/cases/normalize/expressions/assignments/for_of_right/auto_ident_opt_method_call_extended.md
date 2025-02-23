@@ -74,11 +74,11 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall = tmpObjLitVal$1.e(1);
-const tmpClusterSSA_tmpForOfGen = $forOf(tmpChainElementCall);
+const tmpChainElementCall /*:unknown*/ = tmpObjLitVal$1.e(1);
+const tmpClusterSSA_tmpForOfGen /*:unknown*/ = $forOf(tmpChainElementCall);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext = tmpClusterSSA_tmpForOfGen.next();
-  const tmpIfTest$1 = tmpForOfNext.done;
+  const tmpForOfNext /*:unknown*/ = tmpClusterSSA_tmpForOfGen.next();
+  const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest$1) {
     break;
   } else {

@@ -50,7 +50,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpThrowArg = $(7, `throw`);
+const tmpThrowArg /*:unknown*/ = $(7, `throw`);
 throw tmpThrowArg;
 `````
 

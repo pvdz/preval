@@ -68,19 +68,19 @@ $(a);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpSwitchDisc = $(1);
-const tmpBinBothRhs = $(1);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   a = undefined;
   const b /*:object*/ = { x: 1 };
-  const tmpChainElementCall = $(b);
+  const tmpChainElementCall /*:unknown*/ = $(b);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$1) {
   } else {
-    const tmpChainRootComputed = $(`x`);
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+    const tmpChainRootComputed /*:unknown*/ = $(`x`);
+    const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
     a = tmpChainElementObject;
   }
 } else {

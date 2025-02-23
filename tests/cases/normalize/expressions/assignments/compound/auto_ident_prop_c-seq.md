@@ -47,8 +47,8 @@ $(a, b);
 
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
-const tmpCompObj = $(b);
-const tmpBinBothRhs = tmpCompObj.c;
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpBinBothRhs /*:unknown*/ = tmpCompObj.c;
 const a /*:object*/ = { a: 999, b: 1000 };
 const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
 $(tmpClusterSSA_a);

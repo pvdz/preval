@@ -55,7 +55,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
-  const end = $();
+  const end /*:unknown*/ = $();
   if (end) {
     break;
   } else {

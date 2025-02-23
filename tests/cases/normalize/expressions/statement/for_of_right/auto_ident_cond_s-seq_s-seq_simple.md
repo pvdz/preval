@@ -65,10 +65,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpForOfGen = $forOf(60);
+const tmpForOfGen /*:unknown*/ = $forOf(60);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest$1 = tmpForOfNext.done;
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest$1) {
     break;
   } else {

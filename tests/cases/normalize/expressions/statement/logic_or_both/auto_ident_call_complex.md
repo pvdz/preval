@@ -42,11 +42,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallComplexCallee = $($);
-const tmpIfTest = tmpCallComplexCallee(1);
+const tmpCallComplexCallee /*:unknown*/ = $($);
+const tmpIfTest /*:unknown*/ = tmpCallComplexCallee(1);
 if (tmpIfTest) {
 } else {
-  const tmpCallComplexCallee$1 = $($);
+  const tmpCallComplexCallee$1 /*:unknown*/ = $($);
   tmpCallComplexCallee$1(1);
 }
 const a /*:object*/ = { a: 999, b: 1000 };

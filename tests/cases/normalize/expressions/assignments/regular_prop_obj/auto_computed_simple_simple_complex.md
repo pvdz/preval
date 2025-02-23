@@ -49,7 +49,7 @@ $(a);
 `````js filename=intro
 $(1);
 $Object_prototype.a;
-const tmpAssignMemRhs = $(2);
+const tmpAssignMemRhs /*:unknown*/ = $(2);
 const a /*:object*/ = { b: tmpAssignMemRhs };
 $(a);
 `````

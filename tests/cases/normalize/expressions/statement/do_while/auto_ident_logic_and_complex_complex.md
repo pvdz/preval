@@ -63,19 +63,19 @@ $(a);
 
 `````js filename=intro
 $(100);
-const tmpCalleeParam = $(1);
-const tmpIfTest = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
 if (tmpIfTest) {
-  const tmpCalleeParam$1 = $(2);
-  const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam$1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
+  const tmpClusterSSA_tmpIfTest /*:unknown*/ = $(tmpCalleeParam$1);
   if (tmpClusterSSA_tmpIfTest) {
     while ($LOOP_UNROLL_10) {
       $(100);
-      const tmpCalleeParam$2 = $(1);
-      const tmpIfTest$1 = $(tmpCalleeParam$2);
+      const tmpCalleeParam$2 /*:unknown*/ = $(1);
+      const tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$2);
       if (tmpIfTest$1) {
-        const tmpCalleeParam$4 = $(2);
-        const tmpClusterSSA_tmpIfTest$1 = $(tmpCalleeParam$4);
+        const tmpCalleeParam$4 /*:unknown*/ = $(2);
+        const tmpClusterSSA_tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$4);
         if (tmpClusterSSA_tmpIfTest$1) {
         } else {
           break;

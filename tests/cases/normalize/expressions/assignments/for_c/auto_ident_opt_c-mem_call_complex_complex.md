@@ -69,37 +69,37 @@ $(a);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   a = undefined;
   const b /*:object*/ = { $: $ };
-  const tmpChainElementCall = $(b);
+  const tmpChainElementCall /*:unknown*/ = $(b);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$1) {
   } else {
-    const tmpChainRootComputed = $(`\$`);
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+    const tmpChainRootComputed /*:unknown*/ = $(`\$`);
+    const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
     const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
     if (tmpIfTest$3) {
     } else {
-      const tmpCalleeParam$3 = $(1);
+      const tmpCalleeParam$3 /*:unknown*/ = $(1);
       $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
     }
   }
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$2 = $(1);
+    const tmpIfTest$2 /*:unknown*/ = $(1);
     if (tmpIfTest$2) {
-      const tmpChainElementCall$1 = $(b);
+      const tmpChainElementCall$1 /*:unknown*/ = $(b);
       const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$1 == null;
       if (tmpIfTest$4) {
       } else {
-        const tmpChainRootComputed$1 = $(`\$`);
-        const tmpChainElementObject$1 = tmpChainElementCall$1[tmpChainRootComputed$1];
+        const tmpChainRootComputed$1 /*:unknown*/ = $(`\$`);
+        const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$1[tmpChainRootComputed$1];
         const tmpIfTest$6 /*:boolean*/ = tmpChainElementObject$1 == null;
         if (tmpIfTest$6) {
         } else {
-          const tmpCalleeParam$1 = $(1);
+          const tmpCalleeParam$1 /*:unknown*/ = $(1);
           $dotCall(tmpChainElementObject$1, tmpChainElementCall$1, tmpCalleeParam$1);
         }
       }

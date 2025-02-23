@@ -72,9 +72,9 @@ if (y) {
 
 
 `````js filename=intro
-const a = $(1);
-const b = $(2);
-const c = $(3);
+const a /*:unknown*/ = $(1);
+const b /*:unknown*/ = $(2);
+const c /*:unknown*/ = $(3);
 let y /*:boolean*/ = a === b;
 if (y) {
   y = a === c;

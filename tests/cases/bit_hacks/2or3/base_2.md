@@ -51,7 +51,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const x = $(2);
+const x /*:unknown*/ = $(2);
 const tmpIfTest /*:boolean*/ = x === 2;
 if (tmpIfTest) {
   $(`pass`);

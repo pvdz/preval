@@ -47,11 +47,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(0);
+const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpCallCompProp = $(`\$`);
+  const tmpCallCompProp /*:unknown*/ = $(`\$`);
   const b /*:object*/ = { $: $ };
   b[tmpCallCompProp](1);
 }

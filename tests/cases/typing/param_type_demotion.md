@@ -73,7 +73,7 @@ tmpCallCallee(tmpCalleeParam$1);
 const calling_this_func /*:(primitive)=>undefined*/ = function ($$0) {
   const $dlr_$$0 /*:primitive*/ = $$0;
   debugger;
-  const tmpIfTest = $(1);
+  const tmpIfTest /*:unknown*/ = $(1);
   if (tmpIfTest) {
     return undefined;
   } else {

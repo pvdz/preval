@@ -65,13 +65,13 @@ $(blob);
 `````js filename=intro
 let blob /*:object*/ = { thing: `woop`, xyz: 1 };
 $(blob);
-const tmpBinLhs$1 = blob.xyz;
+const tmpBinLhs$1 /*:unknown*/ = blob.xyz;
 const tmpIfTest /*:boolean*/ = tmpBinLhs$1 < 10;
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     blob = { thing: `woop`, xyz: 1 };
     $(blob);
-    const tmpBinLhs$2 = blob.xyz;
+    const tmpBinLhs$2 /*:unknown*/ = blob.xyz;
     const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$2 < 10;
     if (tmpIfTest$1) {
     } else {

@@ -50,10 +50,10 @@ $(a, arg);
 $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
-const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = $(`y`);
+const tmpDeleteCompObj /*:unknown*/ = $(arg);
+const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
-const tmpAnonDefaultExport = tmpClusterSSA_a;
+const tmpAnonDefaultExport /*:unknown*/ = tmpClusterSSA_a;
 export { tmpAnonDefaultExport as default };
 $(tmpClusterSSA_a, arg);
 `````

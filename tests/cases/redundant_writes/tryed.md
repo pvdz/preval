@@ -57,9 +57,9 @@ $(n);
 
 
 `````js filename=intro
-let n = 1;
+let n /*:unknown*/ = 1;
 try {
-  const tmpIfTest = $(true);
+  const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
     n = $(`throws 2`);
   } else {

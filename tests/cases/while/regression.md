@@ -60,10 +60,10 @@ $(cTmp);
 
 
 `````js filename=intro
-const cTail = c;
+const cTail /*:unknown*/ = c;
 if ($) {
   $(`keep`);
-  const tmpClusterSSA_cTmp = $($);
+  const tmpClusterSSA_cTmp /*:unknown*/ = $($);
   $(tmpClusterSSA_cTmp);
 } else {
   $(cTail);

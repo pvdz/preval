@@ -51,7 +51,7 @@ $(x);
 
 
 `````js filename=intro
-const objPatternBeforeDefault = ``.x;
+const objPatternBeforeDefault /*:unknown*/ = ``.x;
 const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   x = $(`pass`);

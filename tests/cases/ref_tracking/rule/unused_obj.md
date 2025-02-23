@@ -87,8 +87,8 @@ $(a, b);
 
 
 `````js filename=intro
-let b = 1;
-let a = undefined;
+let b /*:unknown*/ = 1;
+let a /*:unknown*/ = undefined;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
   const sum /*:number*/ = b + 1;

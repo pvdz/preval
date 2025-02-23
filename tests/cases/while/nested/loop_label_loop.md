@@ -72,13 +72,13 @@ while (true) {
 `````js filename=intro
 let x /*:number*/ = 10;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const t = $(x);
+  const t /*:unknown*/ = $(x);
   if (t) {
   } else {
     x = 20;
     while ($LOOP_UNROLL_10) {
       $(20);
-      const t$1 = $(20);
+      const t$1 /*:unknown*/ = $(20);
       if (t$1) {
         break;
       } else {

@@ -76,10 +76,10 @@ while (true) {
 
 
 `````js filename=intro
-let x = $(2);
+let x /*:unknown*/ = $(2);
 if (x) {
   $(1);
-  const tmpIfTest = $(1);
+  const tmpIfTest /*:unknown*/ = $(1);
   if (tmpIfTest) {
     x = $(3);
   } else {
@@ -91,7 +91,7 @@ if (x) {
   while ($LOOP_UNROLL_10) {
     if (x) {
       $(1);
-      const tmpIfTest$1 = $(1);
+      const tmpIfTest$1 /*:unknown*/ = $(1);
       if (tmpIfTest$1) {
         x = $(3);
       } else {

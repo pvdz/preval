@@ -37,7 +37,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpArrElToSpread = $(1);
+const tmpArrElToSpread /*:unknown*/ = $(1);
 [...tmpArrElToSpread];
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

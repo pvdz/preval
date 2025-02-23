@@ -54,13 +54,13 @@ while (true) {
 
 
 `````js filename=intro
-const test = $(`first`);
+const test /*:unknown*/ = $(`first`);
 $(`second`);
 if (test) {
 } else {
   while ($LOOP_UNROLL_10) {
     $(`third`);
-    const test$1 = $(`first`);
+    const test$1 /*:unknown*/ = $(`first`);
     $(`second`);
     if (test$1) {
       break;

@@ -61,12 +61,12 @@ $(a, b);
 `````js filename=intro
 $(100);
 const b /*:object*/ = { c: 1 };
-const tmpAssignRhsProp = $(b);
-let tmpClusterSSA_a = tmpAssignRhsProp.c;
+const tmpAssignRhsProp /*:unknown*/ = $(b);
+let tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsProp.c;
 if (tmpClusterSSA_a) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpAssignRhsProp$1 = $(b);
+    const tmpAssignRhsProp$1 /*:unknown*/ = $(b);
     tmpClusterSSA_a = tmpAssignRhsProp$1.c;
     if (tmpClusterSSA_a) {
     } else {

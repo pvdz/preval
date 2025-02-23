@@ -60,7 +60,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [`pass2`];
-const arrPatternStep = $(tmpCalleeParam);
+const arrPatternStep /*:unknown*/ = $(tmpCalleeParam);
 [...arrPatternStep];
 $(`ok`);
 `````

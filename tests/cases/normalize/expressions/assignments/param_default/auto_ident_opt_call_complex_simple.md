@@ -67,12 +67,12 @@ $(a);
 
 
 `````js filename=intro
-const tmpChainElementCall = $($);
+const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
-let tmpClusterSSA_a = undefined;
+let tmpClusterSSA_a /*:unknown*/ = undefined;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, 1);
   tmpClusterSSA_a = tmpChainElementCall$1;
 }
 $(undefined);

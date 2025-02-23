@@ -53,12 +53,12 @@ while (true) {
 
 
 `````js filename=intro
-const tmpIfTest = $(30);
-let xyz = 60;
+const tmpIfTest /*:unknown*/ = $(30);
+let xyz /*:unknown*/ = 60;
 if (tmpIfTest) {
 } else {
-  const tmpCalleeParam = $(100);
-  const tmpClusterSSA_a = $(tmpCalleeParam);
+  const tmpCalleeParam /*:unknown*/ = $(100);
+  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
   xyz = tmpClusterSSA_a;
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

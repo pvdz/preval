@@ -48,7 +48,7 @@ if (x) {
 
 
 `````js filename=intro
-const a = $(true);
+const a /*:unknown*/ = $(true);
 const x /*:boolean*/ = a === true;
 if (x) {
   $(true, `pass`);

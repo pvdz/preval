@@ -87,26 +87,26 @@ $(a);
 
 
 `````js filename=intro
-let maybegx = undefined;
+let maybegx /*:unknown*/ = undefined;
 const b /*:object*/ = { x: 1 };
-const g = $(b);
+const g /*:unknown*/ = $(b);
 const same /*:boolean*/ = g == null;
 if (same) {
 } else {
-  const x = $(`x`);
-  const gx = g[x];
+  const x /*:unknown*/ = $(`x`);
+  const gx /*:unknown*/ = g[x];
   maybegx = gx;
 }
 if (maybegx) {
   while ($LOOP_UNROLL_10) {
     $(1);
-    let maybegx$1 = undefined;
-    const g$1 = $(b);
+    let maybegx$1 /*:unknown*/ = undefined;
+    const g$1 /*:unknown*/ = $(b);
     const same$1 /*:boolean*/ = g$1 == null;
     if (same$1) {
     } else {
-      const x$1 = $(`x`);
-      const gx$1 = g$1[x$1];
+      const x$1 /*:unknown*/ = $(`x`);
+      const gx$1 /*:unknown*/ = g$1[x$1];
       maybegx$1 = gx$1;
     }
     if (maybegx$1) {

@@ -147,16 +147,16 @@ f();
 $(`-------- start`);
 $(`-------- bound`);
 $(`-------- let 1`);
-const tmpNestedAssignPropRhs = $(6);
+const tmpNestedAssignPropRhs /*:unknown*/ = $(6);
 const b /*:object*/ = {
   get foo() {
     debugger;
-    const tmpReturnArg = $(2);
+    const tmpReturnArg /*:unknown*/ = $(2);
     return tmpReturnArg;
   },
   set foo($$0) {
     debugger;
-    const tmpReturnArg$1 = $(3);
+    const tmpReturnArg$1 /*:unknown*/ = $(3);
     return tmpReturnArg$1;
   },
 };
@@ -165,7 +165,7 @@ $(tmpNestedAssignPropRhs);
 $(`-------- test case`);
 $(tmpNestedAssignPropRhs);
 $(`-------- a`);
-const tmpCalleeParam$1 = b.foo;
+const tmpCalleeParam$1 /*:unknown*/ = b.foo;
 $(tmpCalleeParam$1);
 $(`-------- a.foo`);
 b.foo = 4;

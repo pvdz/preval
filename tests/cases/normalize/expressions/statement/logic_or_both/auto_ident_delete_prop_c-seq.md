@@ -53,13 +53,13 @@ $(a, arg);
 $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
-const tmpDeleteObj = $(arg);
+const tmpDeleteObj /*:unknown*/ = $(arg);
 const tmpIfTest /*:boolean*/ = delete tmpDeleteObj.y;
 if (tmpIfTest) {
 } else {
   $(1);
   $(2);
-  const tmpDeleteObj$1 = $(arg);
+  const tmpDeleteObj$1 /*:unknown*/ = $(arg);
   delete tmpDeleteObj$1.y;
 }
 const a /*:object*/ = { a: 999, b: 1000 };

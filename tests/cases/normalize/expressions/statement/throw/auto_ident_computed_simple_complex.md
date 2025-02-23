@@ -42,9 +42,9 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-const tmpCompProp = $(`c`);
+const tmpCompProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
-const tmpThrowArg = b[tmpCompProp];
+const tmpThrowArg /*:unknown*/ = b[tmpCompProp];
 throw tmpThrowArg;
 `````
 

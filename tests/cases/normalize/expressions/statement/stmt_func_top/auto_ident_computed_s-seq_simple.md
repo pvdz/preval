@@ -56,7 +56,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCompProp = $(`c`);
+const tmpCompProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
 b[tmpCompProp];
 const a /*:object*/ = { a: 999, b: 1000 };

@@ -45,7 +45,7 @@ $(a);
 
 `````js filename=intro
 const tmpClusterSSA_a /*:object*/ = new $(1);
-const tmpAnonDefaultExport = tmpClusterSSA_a;
+const tmpAnonDefaultExport /*:unknown*/ = tmpClusterSSA_a;
 export { tmpAnonDefaultExport as default };
 $(tmpClusterSSA_a);
 `````

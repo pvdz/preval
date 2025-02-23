@@ -54,7 +54,7 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
-const tmpReturnArg = $(tmpCalleeParam);
+const tmpReturnArg /*:unknown*/ = $(tmpCalleeParam);
 $(tmpReturnArg);
 $(999);
 `````

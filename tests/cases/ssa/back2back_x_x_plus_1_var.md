@@ -106,7 +106,7 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const x = $(5);
+  const x /*:unknown*/ = $(5);
   const tmpSSA_x /*:primitive*/ = x + 1;
   if ($) {
     $(tmpSSA_x);

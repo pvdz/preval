@@ -52,14 +52,14 @@ $(a);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = $(100);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
-  let tmpNestedComplexRhs = 2;
-  const tmpIfTest = $(1);
+  let tmpNestedComplexRhs /*:unknown*/ = 2;
+  const tmpIfTest /*:unknown*/ = $(1);
   if (tmpIfTest) {
   } else {
-    const tmpCalleeParam$1 = $(100);
+    const tmpCalleeParam$1 /*:unknown*/ = $(100);
     tmpNestedComplexRhs = $(tmpCalleeParam$1);
   }
   a = tmpNestedComplexRhs;

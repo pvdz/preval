@@ -75,8 +75,8 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const x = $(true);
-const y = $(true);
+const x /*:unknown*/ = $(true);
+const y /*:unknown*/ = $(true);
 $(`before`);
 const xy /*:primitive*/ = x + y;
 $(`inside`);

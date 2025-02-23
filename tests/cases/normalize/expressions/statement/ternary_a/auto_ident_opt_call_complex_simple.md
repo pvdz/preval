@@ -49,12 +49,12 @@ $(a);
 
 
 `````js filename=intro
-let tmpIfTest = undefined;
-const tmpChainElementCall = $($);
+let tmpIfTest /*:unknown*/ = undefined;
+const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, 1);
   tmpIfTest = tmpChainElementCall$1;
 }
 if (tmpIfTest) {

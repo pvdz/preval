@@ -68,7 +68,7 @@ if ($) {
 `````js filename=intro
 if ($) {
   const f /*:(unknown)=>undefined*/ = function ($$0) {
-    const c = $$0;
+    const c /*:unknown*/ = $$0;
     debugger;
     obj.bla = c;
     return undefined;

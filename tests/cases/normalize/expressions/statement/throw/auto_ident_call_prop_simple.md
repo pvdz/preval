@@ -41,7 +41,7 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpThrowArg = b.$(1);
+const tmpThrowArg /*:unknown*/ = b.$(1);
 throw tmpThrowArg;
 `````
 

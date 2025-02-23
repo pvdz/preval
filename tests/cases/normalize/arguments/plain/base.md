@@ -51,7 +51,7 @@ f();
 const f /*:(unused)=>undefined*/ = function ($$0) {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
   debugger;
-  const tmpCalleeParam = tmpPrevalAliasArgumentsAny[0];
+  const tmpCalleeParam /*:unknown*/ = tmpPrevalAliasArgumentsAny[0];
   $(tmpCalleeParam);
   return undefined;
 };

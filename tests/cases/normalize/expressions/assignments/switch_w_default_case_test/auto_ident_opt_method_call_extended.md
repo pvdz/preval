@@ -97,10 +97,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpSwitchValue = $(1);
+const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall = tmpObjLitVal$1.e(1);
+const tmpChainElementCall /*:unknown*/ = tmpObjLitVal$1.e(1);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

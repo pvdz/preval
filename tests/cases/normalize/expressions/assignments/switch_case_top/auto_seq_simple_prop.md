@@ -61,16 +61,16 @@ $(a);
 
 `````js filename=intro
 let a /*:object*/ = { a: 999, b: 1000 };
-const tmpSwitchDisc = $(1);
-const tmpBinBothRhs = $(1);
+const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
-  const tmpObjLitVal = $(1);
+  const tmpObjLitVal /*:unknown*/ = $(1);
   a = { b: tmpObjLitVal };
 } else {
 }
 $(1);
-const tmpAssignMemRhs = $(2);
+const tmpAssignMemRhs /*:unknown*/ = $(2);
 a.b = tmpAssignMemRhs;
 $(a);
 `````

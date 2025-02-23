@@ -49,15 +49,15 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(0);
+const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpCalleeParam = $(0);
-  const tmpIfTest$1 = $(tmpCalleeParam);
+  const tmpCalleeParam /*:unknown*/ = $(0);
+  const tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam);
   if (tmpIfTest$1) {
   } else {
-    const tmpCalleeParam$1 = $(2);
+    const tmpCalleeParam$1 /*:unknown*/ = $(2);
     $(tmpCalleeParam$1);
   }
 }

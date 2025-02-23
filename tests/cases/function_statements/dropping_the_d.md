@@ -69,7 +69,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam = THIS_IS_DA____();
+const tmpCalleeParam /*:unknown*/ = THIS_IS_DA____();
 $(tmpCalleeParam);
 `````
 

@@ -52,13 +52,13 @@ $(a, b);
 
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
-const tmpAssignRhsProp = $(b);
-let tmpClusterSSA_a = tmpAssignRhsProp.c;
+const tmpAssignRhsProp /*:unknown*/ = $(b);
+let tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsProp.c;
 if (tmpClusterSSA_a) {
   $(tmpClusterSSA_a);
 } else {
-  const tmpCompObj = $(b);
-  const tmpNestedComplexRhs = tmpCompObj.c;
+  const tmpCompObj /*:unknown*/ = $(b);
+  const tmpNestedComplexRhs /*:unknown*/ = tmpCompObj.c;
   tmpClusterSSA_a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }

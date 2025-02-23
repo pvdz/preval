@@ -82,13 +82,13 @@ $(`after, wont eval due to infinite loop`);
 
 `````js filename=intro
 while (true) {
-  const tmpIfTest = $(true);
+  const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
     const tmpCalleeParam /*:array*/ = [10, 20];
-    const tmpForOfGen = $forOf(tmpCalleeParam);
+    const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      const tmpForOfNext = tmpForOfGen.next();
-      const tmpIfTest$1 = tmpForOfNext.done;
+      const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+      const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
       if (tmpIfTest$1) {
         break;
       } else {

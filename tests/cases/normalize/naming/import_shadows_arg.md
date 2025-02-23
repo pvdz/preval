@@ -50,12 +50,12 @@ export { g };
 
 `````js filename=intro
 const g /*:(unknown)=>?*/ = function ($$0) {
-  const x$1 = $$0;
+  const x$1 /*:unknown*/ = $$0;
   debugger;
   return x$1;
 };
-const tmpCalleeParam = f();
-const x = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = f();
+const x /*:unknown*/ = $(tmpCalleeParam);
 export { x };
 export { g };
 `````

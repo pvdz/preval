@@ -42,7 +42,7 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
-const tmpCalleeParamSpread = $(tmpCalleeParam);
+const tmpCalleeParamSpread /*:unknown*/ = $(tmpCalleeParam);
 $(...tmpCalleeParamSpread);
 $(999);
 `````

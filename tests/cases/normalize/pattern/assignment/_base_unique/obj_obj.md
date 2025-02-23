@@ -47,8 +47,8 @@ let z$1 = 1;
 
 
 `````js filename=intro
-const objPatternNoDefault = (1).x;
-const objPatternNoDefault$1 = objPatternNoDefault.y;
+const objPatternNoDefault /*:unknown*/ = (1).x;
+const objPatternNoDefault$1 /*:unknown*/ = objPatternNoDefault.y;
 z = objPatternNoDefault$1.z;
 `````
 

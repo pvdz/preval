@@ -54,17 +54,17 @@ $(a);
 
 
 `````js filename=intro
-let tmpIfTest = undefined;
-const tmpChainElementCall = $($);
+let tmpIfTest /*:unknown*/ = undefined;
+const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, 1);
   tmpIfTest = tmpChainElementCall$1;
 }
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall$3 = $($);
+  const tmpChainElementCall$3 /*:unknown*/ = $($);
   const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$3 == null;
   if (tmpIfTest$3) {
   } else {

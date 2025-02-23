@@ -49,8 +49,8 @@ let a$1 = varInitAssignLhsComputedRhs;
 
 
 `````js filename=intro
-const varInitAssignLhsComputedObj = $(3);
-const varInitAssignLhsComputedRhs$1 = $(4);
+const varInitAssignLhsComputedObj /*:unknown*/ = $(3);
+const varInitAssignLhsComputedRhs$1 /*:unknown*/ = $(4);
 varInitAssignLhsComputedObj.y = varInitAssignLhsComputedRhs$1;
 `````
 

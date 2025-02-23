@@ -42,9 +42,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(100);
+const tmpIfTest /*:unknown*/ = $(100);
 if (tmpIfTest) {
-  const tmpCalleeParam = $(1);
+  const tmpCalleeParam /*:unknown*/ = $(1);
   $(tmpCalleeParam);
 } else {
 }

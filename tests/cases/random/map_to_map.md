@@ -87,7 +87,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpCalleeParam$3 /*:(unknown)=>array*/ = function ($$0) {
-  const k = $$0;
+  const k /*:unknown*/ = $$0;
   debugger;
   const tmpReturnArg /*:array*/ = [k, k];
   return tmpReturnArg;
@@ -100,11 +100,11 @@ const tmpArrElement$7 /*:array*/ = [`null`, `null`];
 const tmpArrElement$9 /*:array*/ = [`\$`, `\$`];
 const tmpCalleeParam$5 /*:array*/ = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5, tmpArrElement$7, tmpArrElement$9];
 const tmpCallObj$3 /*:object*/ = new Map(tmpCalleeParam$5);
-const tmpArrSpread = tmpCallObj$3.keys();
+const tmpArrSpread /*:unknown*/ = tmpCallObj$3.keys();
 const tmpCallObj$1 /*:array*/ = [...tmpArrSpread, `module`];
-const tmpCalleeParam$1 = tmpCallObj$1.map(tmpCalleeParam$3);
+const tmpCalleeParam$1 /*:unknown*/ = tmpCallObj$1.map(tmpCalleeParam$3);
 const tmpCallObj /*:object*/ = new Map(tmpCalleeParam$1);
-const tmpCalleeParam = tmpCallObj.get(`\$`);
+const tmpCalleeParam /*:unknown*/ = tmpCallObj.get(`\$`);
 $(tmpCalleeParam);
 `````
 

@@ -51,13 +51,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpChainElementCall = $($);
+  const tmpChainElementCall /*:unknown*/ = $($);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$1) {
   } else {
-    const tmpCalleeParam$3 = $(1);
+    const tmpCalleeParam$3 /*:unknown*/ = $(1);
     $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
   }
 } else {

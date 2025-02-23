@@ -55,7 +55,7 @@ $(a);
 
 `````js filename=intro
 $(100);
-let a = $(2);
+let a /*:unknown*/ = $(2);
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(100);

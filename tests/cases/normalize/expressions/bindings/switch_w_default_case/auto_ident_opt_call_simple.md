@@ -96,7 +96,7 @@ const tmpIfTest$5 /*:boolean*/ = $ == null;
 if (tmpIfTest$5) {
   $(undefined);
 } else {
-  const tmpChainElementCall = $(1);
+  const tmpChainElementCall /*:unknown*/ = $(1);
   $(tmpChainElementCall);
 }
 $(`fail1`);

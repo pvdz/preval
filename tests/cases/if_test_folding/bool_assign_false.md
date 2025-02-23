@@ -76,7 +76,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f /*:()=>boolean*/ = function () {
   debugger;
-  const tmpBinLhs = $(0);
+  const tmpBinLhs /*:unknown*/ = $(0);
   $(`block`);
   $(`block`);
   const x /*:boolean*/ = tmpBinLhs !== 1;

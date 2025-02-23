@@ -42,9 +42,9 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [1, 2];
-const bindingPatternArrRoot = $(tmpCalleeParam);
+const bindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const a = arrPatternSplat[0];
+const a /*:unknown*/ = arrPatternSplat[0];
 $(a);
 `````
 

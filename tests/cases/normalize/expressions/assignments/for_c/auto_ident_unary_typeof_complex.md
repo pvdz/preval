@@ -52,15 +52,15 @@ $(a, arg);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpUnaryArg = $(1);
+  const tmpUnaryArg /*:unknown*/ = $(1);
   a = typeof tmpUnaryArg;
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpUnaryArg$1 = $(1);
+      const tmpUnaryArg$1 /*:unknown*/ = $(1);
       a = typeof tmpUnaryArg$1;
     } else {
       break;

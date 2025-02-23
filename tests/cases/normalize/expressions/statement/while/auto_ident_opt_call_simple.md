@@ -50,21 +50,21 @@ $(a);
 
 
 `````js filename=intro
-let tmpIfTest = undefined;
+let tmpIfTest /*:unknown*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementCall = $(1);
+  const tmpChainElementCall /*:unknown*/ = $(1);
   tmpIfTest = tmpChainElementCall;
 }
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    let tmpIfTest$2 = undefined;
+    let tmpIfTest$2 /*:unknown*/ = undefined;
     const tmpIfTest$4 /*:boolean*/ = $ == null;
     if (tmpIfTest$4) {
     } else {
-      const tmpChainElementCall$1 = $(1);
+      const tmpChainElementCall$1 /*:unknown*/ = $(1);
       tmpIfTest$2 = tmpChainElementCall$1;
     }
     if (tmpIfTest$2) {

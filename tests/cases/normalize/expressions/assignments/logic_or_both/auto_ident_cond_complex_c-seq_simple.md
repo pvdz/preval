@@ -63,26 +63,26 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
-const tmpIfTest = $(1);
-let tmpCalleeParam = undefined;
+let a /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(1);
+let tmpCalleeParam /*:unknown*/ = undefined;
 if (tmpIfTest) {
   a = $(60);
   tmpCalleeParam = a;
 } else {
-  const tmpCalleeParam$1 = $(100);
+  const tmpCalleeParam$1 /*:unknown*/ = $(100);
   a = $(tmpCalleeParam$1);
   tmpCalleeParam = a;
 }
 if (a) {
   $(tmpCalleeParam);
 } else {
-  let tmpNestedComplexRhs = undefined;
-  const tmpIfTest$1 = $(1);
+  let tmpNestedComplexRhs /*:unknown*/ = undefined;
+  const tmpIfTest$1 /*:unknown*/ = $(1);
   if (tmpIfTest$1) {
     tmpNestedComplexRhs = $(60);
   } else {
-    const tmpCalleeParam$3 = $(100);
+    const tmpCalleeParam$3 /*:unknown*/ = $(100);
     tmpNestedComplexRhs = $(tmpCalleeParam$3);
   }
   a = tmpNestedComplexRhs;

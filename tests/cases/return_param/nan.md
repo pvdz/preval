@@ -95,7 +95,7 @@ const f /*:()=>undefined*/ = function () {
   $(`no`);
   $(`inlining`);
   $(`please`);
-  const tmpIfTest = $(true);
+  const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
     $(`a`);
     return undefined;

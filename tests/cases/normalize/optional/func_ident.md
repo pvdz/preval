@@ -55,11 +55,11 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 const tmpIfTest /*:boolean*/ = global == null;
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpReturnArg = $(undefined);
+  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(undefined);
   $(tmpClusterSSA_tmpReturnArg);
 } else {
-  const tmpChainElementObject = global.foo;
-  const tmpClusterSSA_tmpReturnArg$1 = $(tmpChainElementObject);
+  const tmpChainElementObject /*:unknown*/ = global.foo;
+  const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(tmpChainElementObject);
   $(tmpClusterSSA_tmpReturnArg$1);
 }
 `````

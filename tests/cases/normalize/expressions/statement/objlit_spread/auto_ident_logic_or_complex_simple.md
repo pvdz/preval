@@ -43,8 +43,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
-let tmpObjSpreadArg = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(0);
+let tmpObjSpreadArg /*:unknown*/ = $(tmpCalleeParam);
 if (tmpObjSpreadArg) {
 } else {
   tmpObjSpreadArg = 2;

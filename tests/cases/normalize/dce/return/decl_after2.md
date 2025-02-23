@@ -69,7 +69,7 @@ $(undefined);
 
 
 `````js filename=intro
-const tmpIfTest = $(false);
+const tmpIfTest /*:unknown*/ = $(false);
 if (tmpIfTest) {
   x = $(`fail too`);
 } else {

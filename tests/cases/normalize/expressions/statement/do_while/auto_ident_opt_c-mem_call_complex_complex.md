@@ -76,37 +76,37 @@ $(a);
 
 `````js filename=intro
 $(100);
-let tmpIfTest = undefined;
+let tmpIfTest /*:unknown*/ = undefined;
 const b /*:object*/ = { $: $ };
-const tmpChainElementCall = $(b);
+const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainRootComputed = $(`\$`);
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  const tmpChainRootComputed /*:unknown*/ = $(`\$`);
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$3) {
   } else {
-    const tmpCalleeParam$3 = $(1);
-    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
+    const tmpCalleeParam$3 /*:unknown*/ = $(1);
+    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
     tmpIfTest = tmpChainElementCall$1;
   }
 }
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    let tmpIfTest$2 = undefined;
-    const tmpChainElementCall$2 = $(b);
+    let tmpIfTest$2 /*:unknown*/ = undefined;
+    const tmpChainElementCall$2 /*:unknown*/ = $(b);
     const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$2 == null;
     if (tmpIfTest$4) {
     } else {
-      const tmpChainRootComputed$1 = $(`\$`);
-      const tmpChainElementObject$1 = tmpChainElementCall$2[tmpChainRootComputed$1];
+      const tmpChainRootComputed$1 /*:unknown*/ = $(`\$`);
+      const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$2[tmpChainRootComputed$1];
       const tmpIfTest$6 /*:boolean*/ = tmpChainElementObject$1 == null;
       if (tmpIfTest$6) {
       } else {
-        const tmpCalleeParam$1 = $(1);
-        const tmpChainElementCall$4 = $dotCall(tmpChainElementObject$1, tmpChainElementCall$2, tmpCalleeParam$1);
+        const tmpCalleeParam$1 /*:unknown*/ = $(1);
+        const tmpChainElementCall$4 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementCall$2, tmpCalleeParam$1);
         tmpIfTest$2 = tmpChainElementCall$4;
       }
     }

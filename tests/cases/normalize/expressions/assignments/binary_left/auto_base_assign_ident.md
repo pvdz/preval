@@ -47,8 +47,8 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpNestedComplexRhs = $(2);
-const tmpBinBothRhs = $(100);
+const tmpNestedComplexRhs /*:unknown*/ = $(2);
+const tmpBinBothRhs /*:unknown*/ = $(100);
 const tmpCalleeParam /*:primitive*/ = tmpNestedComplexRhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(tmpNestedComplexRhs, tmpNestedComplexRhs);

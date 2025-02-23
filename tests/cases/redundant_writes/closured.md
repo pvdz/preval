@@ -72,21 +72,21 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-let f = undefined;
-let n = 1;
+let f /*:unknown*/ = undefined;
+let n /*:unknown*/ = 1;
 try {
   f = function () {
     debugger;
     return n;
   };
-  const tmpIfTest = $(true);
+  const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
     n = $(`throws 2`);
   } else {
     n = $(`throws 3`);
   }
 } catch (e) {}
-const tmpCalleeParam = f();
+const tmpCalleeParam /*:unknown*/ = f();
 $(tmpCalleeParam);
 `````
 

@@ -58,12 +58,12 @@ $(a);
 
 
 `````js filename=intro
-const tmpSwitchDisc = $(1);
-const tmpBinBothRhs = $(1);
+const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
-  const tmpArrElement = $(1);
-  const tmpArrElement$3 = $(3);
+  const tmpArrElement /*:unknown*/ = $(1);
+  const tmpArrElement$3 /*:unknown*/ = $(3);
   const tmpClusterSSA_a /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
   $(tmpClusterSSA_a);
 } else {

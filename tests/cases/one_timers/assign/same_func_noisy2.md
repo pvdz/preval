@@ -157,7 +157,7 @@ $(8);
 
 
 `````js filename=intro
-const x = $(100);
+const x /*:unknown*/ = $(100);
 $(x);
 $(1);
 $(2);

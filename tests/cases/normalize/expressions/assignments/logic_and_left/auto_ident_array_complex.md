@@ -46,9 +46,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpArrElement = $(1);
-const tmpArrElement$3 = $(3);
-const tmpClusterSSA_tmpCalleeParam = $(100);
+const tmpArrElement /*:unknown*/ = $(1);
+const tmpArrElement$3 /*:unknown*/ = $(3);
+const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
 $(tmpClusterSSA_tmpCalleeParam);
 const a /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
 $(a);

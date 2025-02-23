@@ -58,7 +58,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 let tmpCalleeParam /*:primitive*/ = undefined;
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   tmpCalleeParam = 2;
 } else {

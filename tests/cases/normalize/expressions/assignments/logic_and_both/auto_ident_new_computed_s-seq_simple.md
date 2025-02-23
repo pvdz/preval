@@ -53,8 +53,8 @@ $(a);
 
 
 `````js filename=intro
-let tmpClusterSSA_a = new $(1);
-const tmpCalleeParam = tmpClusterSSA_a;
+let tmpClusterSSA_a /*:unknown*/ = new $(1);
+const tmpCalleeParam /*:unknown*/ = tmpClusterSSA_a;
 if (tmpClusterSSA_a) {
   const tmpNestedComplexRhs /*:object*/ = new $(1);
   tmpClusterSSA_a = tmpNestedComplexRhs;

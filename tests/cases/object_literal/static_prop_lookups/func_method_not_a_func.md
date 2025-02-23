@@ -43,7 +43,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const arr /*:array*/ = [1, 2, 3];
 const o /*:object*/ = { arr: arr };
-const tmpCalleeParam = o.arr();
+const tmpCalleeParam /*:unknown*/ = o.arr();
 $(tmpCalleeParam);
 `````
 

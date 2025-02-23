@@ -82,9 +82,9 @@ const f /*:()=>undefined*/ = function () {
   $(x);
   return undefined;
 };
-let x = $;
+let x /*:unknown*/ = $;
 x = $(1);
-const tmpCalleeParam = x.headers;
+const tmpCalleeParam /*:unknown*/ = x.headers;
 $(tmpCalleeParam);
 $(f);
 `````

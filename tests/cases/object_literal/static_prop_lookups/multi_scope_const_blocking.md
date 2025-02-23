@@ -62,11 +62,11 @@ f();
 
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
+const tmpObjLitVal /*:unknown*/ = $(1);
 const o /*:object*/ = { x: tmpObjLitVal };
 const f /*:()=>undefined*/ = function () {
   debugger;
-  const tmpCalleeParam = o.x;
+  const tmpCalleeParam /*:unknown*/ = o.x;
   $(tmpCalleeParam);
   return undefined;
 };

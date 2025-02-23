@@ -52,8 +52,8 @@ $(x);
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { x: `pass2` };
-const arrPatternStep = $(tmpCalleeParam);
-const objPatternBeforeDefault = arrPatternStep.x;
+const arrPatternStep /*:unknown*/ = $(tmpCalleeParam);
+const objPatternBeforeDefault /*:unknown*/ = arrPatternStep.x;
 const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   x = $(`pass`);

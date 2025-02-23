@@ -35,7 +35,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 $(1);
-const tmpCalleeParam = (2).foo;
+const tmpCalleeParam /*:unknown*/ = (2).foo;
 $(tmpCalleeParam);
 `````
 

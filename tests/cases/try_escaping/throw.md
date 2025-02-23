@@ -59,7 +59,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
-    const tmpThrowArg = $(`test`);
+    const tmpThrowArg /*:unknown*/ = $(`test`);
     throw tmpThrowArg;
   } catch (e) {
     $(`fail`);

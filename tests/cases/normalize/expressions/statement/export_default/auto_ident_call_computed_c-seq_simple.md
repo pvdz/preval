@@ -44,8 +44,8 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCallObj = $(b);
-const tmpAnonDefaultExport = tmpCallObj.$(1);
+const tmpCallObj /*:unknown*/ = $(b);
+const tmpAnonDefaultExport /*:unknown*/ = tmpCallObj.$(1);
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

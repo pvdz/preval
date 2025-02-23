@@ -66,19 +66,19 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 = $(0);
-let a = $(tmpCalleeParam$1);
-let tmpForOfGen = undefined;
+const tmpCalleeParam$1 /*:unknown*/ = $(0);
+let a /*:unknown*/ = $(tmpCalleeParam$1);
+let tmpForOfGen /*:unknown*/ = undefined;
 if (a) {
   tmpForOfGen = $forOf(a);
 } else {
-  const tmpCalleeParam$3 = $(2);
+  const tmpCalleeParam$3 /*:unknown*/ = $(2);
   a = $(tmpCalleeParam$3);
   tmpForOfGen = $forOf(a);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
   } else {

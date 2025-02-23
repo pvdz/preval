@@ -66,7 +66,7 @@ if (x) {
 
 
 `````js filename=intro
-let x = $(false, `a`);
+let x /*:unknown*/ = $(false, `a`);
 if (x) {
   $(x, `A`);
   x = $(true, `b`);

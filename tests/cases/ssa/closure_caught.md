@@ -87,7 +87,7 @@ if ($) {
 if ($) {
   const g /*:()=>undefined*/ = function () {
     debugger;
-    const tmpssa2_x = $(`first`);
+    const tmpssa2_x /*:unknown*/ = $(`first`);
     $(tmpssa2_x);
     return undefined;
   };

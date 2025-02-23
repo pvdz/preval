@@ -66,9 +66,9 @@ $(a, b);
 
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
-const tmpCompObj = $(b);
-const tmpCompProp = $(`c`);
-const tmpNestedComplexRhs = tmpCompObj[tmpCompProp];
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpCompProp /*:unknown*/ = $(`c`);
+const tmpNestedComplexRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
 $(undefined);
 $(tmpNestedComplexRhs, b);
 `````

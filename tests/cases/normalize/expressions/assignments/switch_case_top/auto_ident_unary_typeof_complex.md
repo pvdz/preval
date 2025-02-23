@@ -57,11 +57,11 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpSwitchDisc = $(1);
-const tmpBinBothRhs = $(1);
+const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
-  const tmpUnaryArg = $(1);
+  const tmpUnaryArg /*:unknown*/ = $(1);
   const tmpClusterSSA_a /*:string*/ = typeof tmpUnaryArg;
   $(tmpClusterSSA_a, 1);
 } else {

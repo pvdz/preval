@@ -51,7 +51,7 @@ if (set) {
 
 
 `````js filename=intro
-const v = $(32);
+const v /*:unknown*/ = $(32);
 v ** 0;
 $(`pass`);
 `````

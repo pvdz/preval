@@ -47,7 +47,7 @@ throw tmpThrowArg;
 $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
-const tmpDeleteObj = $(arg);
+const tmpDeleteObj /*:unknown*/ = $(arg);
 const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
 throw tmpClusterSSA_a;
 `````

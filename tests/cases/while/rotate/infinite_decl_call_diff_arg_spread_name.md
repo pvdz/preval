@@ -50,9 +50,9 @@ while ($LOOP_UNROLL_10) {
 
 
 `````js filename=intro
-const s = $(`hello`);
-const t = $(`there`);
-let x = $(1, ...s, 3);
+const s /*:unknown*/ = $(`hello`);
+const t /*:unknown*/ = $(`there`);
+let x /*:unknown*/ = $(1, ...s, 3);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(x);
   x = $(1, ...t, 3);

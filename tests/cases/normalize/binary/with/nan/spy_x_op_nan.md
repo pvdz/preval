@@ -143,7 +143,7 @@ $(arr2);
 
 
 `````js filename=intro
-const x = $spy();
+const x /*:unknown*/ = $spy();
 x ** 0;
 x ** 0;
 x ** 0;

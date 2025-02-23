@@ -64,14 +64,14 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
-const tmpIfTest = $(1);
+let tmpCalleeParam /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   $(2);
   $(5);
 } else {
   $(3);
-  const tmpReturnArg = $(4);
+  const tmpReturnArg /*:unknown*/ = $(4);
   tmpCalleeParam = tmpReturnArg;
 }
 $(tmpCalleeParam);

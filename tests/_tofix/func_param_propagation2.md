@@ -80,7 +80,7 @@ $(tmpCalleeParam$1);
 const f /*:(primitive)=>array*/ = function ($$0) {
   const $dlr_$$0 /*:primitive*/ = $$0;
   debugger;
-  let b = `bar`;
+  let b /*:unknown*/ = `bar`;
   const tmpIfTest$1 /*:boolean*/ = $dlr_$$0 === undefined;
   if (tmpIfTest$1) {
   } else {

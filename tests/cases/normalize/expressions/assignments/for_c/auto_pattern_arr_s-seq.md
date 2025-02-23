@@ -55,14 +55,14 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
-const tmpIfTest = $(1);
+let a /*:unknown*/ = arrPatternSplat[0];
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   $(10);
   $(20);
   a = 1;
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       $(10);
       $(20);

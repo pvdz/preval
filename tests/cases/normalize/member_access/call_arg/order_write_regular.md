@@ -67,7 +67,7 @@ tmpCallCallee(tmpCalleeParam);
 const obj /*:object*/ = {
   get x() {
     debugger;
-    const tmpReturnArg = $(10);
+    const tmpReturnArg /*:unknown*/ = $(10);
     return tmpReturnArg;
   },
   set x($$0) {
@@ -76,7 +76,7 @@ const obj /*:object*/ = {
     return undefined;
   },
 };
-const varInitAssignLhsComputedObj = $(obj);
+const varInitAssignLhsComputedObj /*:unknown*/ = $(obj);
 varInitAssignLhsComputedObj.x = 30;
 $(30);
 `````

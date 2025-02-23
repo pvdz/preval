@@ -89,15 +89,15 @@ $(a);
 
 
 `````js filename=intro
-const tmpSwitchValue = $(1);
+const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
-let a = undefined;
+let a /*:unknown*/ = undefined;
 let tmpIfTest /*:boolean*/ = false;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
   tmpIfTest = undefined === tmpSwitchValue;
 } else {
-  const tmpChainElementCall = $(1);
+  const tmpChainElementCall /*:unknown*/ = $(1);
   a = tmpChainElementCall;
   tmpIfTest = tmpChainElementCall === tmpSwitchValue;
 }

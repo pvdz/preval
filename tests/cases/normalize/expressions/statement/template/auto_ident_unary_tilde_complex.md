@@ -50,7 +50,7 @@ const tmpFree /*:()=>string*/ = function $free() {
   const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
   return tmpRet;
 };
-const tmpUnaryArg = $(100);
+const tmpUnaryArg /*:unknown*/ = $(100);
 const tmpCallCallee$1 /*:number*/ = ~tmpUnaryArg;
 const tmpCalleeParam /*:string*/ = $frfr(tmpFree);
 $(tmpCalleeParam);

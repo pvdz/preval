@@ -80,9 +80,9 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:array*/ = [`pass2`];
-const objPatternAfterDefault = $(tmpCalleeParam$1);
+const objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam$1);
 const arrPatternSplat /*:array*/ = [...objPatternAfterDefault];
-const arrPatternBeforeDefault = arrPatternSplat[0];
+const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
 const tmpIfTest$3 /*:boolean*/ = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$3) {
   $(`fail`);

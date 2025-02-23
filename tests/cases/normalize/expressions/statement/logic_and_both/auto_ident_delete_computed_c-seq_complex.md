@@ -55,14 +55,14 @@ $(a, arg);
 $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
-const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = $(`y`);
+const tmpDeleteCompObj /*:unknown*/ = $(arg);
+const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 const tmpIfTest /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
 if (tmpIfTest) {
   $(1);
   $(2);
-  const tmpDeleteCompObj$1 = $(arg);
-  const tmpDeleteCompProp$1 = $(`y`);
+  const tmpDeleteCompObj$1 /*:unknown*/ = $(arg);
+  const tmpDeleteCompProp$1 /*:unknown*/ = $(`y`);
   delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
 } else {
 }

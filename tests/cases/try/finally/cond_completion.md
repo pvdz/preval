@@ -105,7 +105,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCallCallee = log;
+const tmpCallCallee /*:unknown*/ = log;
 if (a) {
 } else {
   b;

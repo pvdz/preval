@@ -43,9 +43,9 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [10, 20];
-const tmpArrSpread = $(tmpCalleeParam);
+const tmpArrSpread /*:unknown*/ = $(tmpCalleeParam);
 const arr /*:array*/ = [1, 2, ...tmpArrSpread, 3];
-const tmpCalleeParam$1 = arr.length;
+const tmpCalleeParam$1 /*:unknown*/ = arr.length;
 $(tmpCalleeParam$1);
 `````
 

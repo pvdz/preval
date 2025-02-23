@@ -47,13 +47,13 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const tmpStringFirstArg = $spy();
+const tmpStringFirstArg /*:unknown*/ = $spy();
 const tmpCalleeParam /*:string*/ = $coerce(tmpStringFirstArg, `string`);
 $(tmpCalleeParam);
-const tmpStringFirstArg$1 = $spy(1, 2);
+const tmpStringFirstArg$1 /*:unknown*/ = $spy(1, 2);
 const tmpCalleeParam$1 /*:string*/ = $coerce(tmpStringFirstArg$1, `string`);
 $(tmpCalleeParam$1);
-const tmpStringFirstArg$3 = $spy(`x`, `y`);
+const tmpStringFirstArg$3 /*:unknown*/ = $spy(`x`, `y`);
 const tmpCalleeParam$3 /*:string*/ = $coerce(tmpStringFirstArg$3, `string`);
 $(tmpCalleeParam$3);
 `````

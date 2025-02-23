@@ -46,7 +46,7 @@ $(`after`);
 
 
 `````js filename=intro
-const x = $(false);
+const x /*:unknown*/ = $(false);
 if (x) {
   while ($LOOP_UNROLL_10) {
     $(`body`);

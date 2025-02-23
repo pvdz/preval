@@ -67,18 +67,18 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const x = $(`a`);
+const x /*:unknown*/ = $(`a`);
 $(x);
 $(`b`);
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
 } else {
-  const tmpClusterSSA_x = $(`c`);
-  const tmpIfTest$1 = $(2);
+  const tmpClusterSSA_x /*:unknown*/ = $(`c`);
+  const tmpIfTest$1 /*:unknown*/ = $(2);
   if (tmpIfTest$1) {
     $(tmpClusterSSA_x);
   } else {
-    const tmpClusterSSA_x$1 = $(`d`);
+    const tmpClusterSSA_x$1 /*:unknown*/ = $(`d`);
     $(tmpClusterSSA_x$1);
   }
 }

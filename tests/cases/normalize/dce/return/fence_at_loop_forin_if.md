@@ -123,30 +123,30 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-let tmpCalleeParam$1 = undefined;
+let tmpCalleeParam$1 /*:unknown*/ = undefined;
 $inlinedFunction: {
   while (true) {
-    const tmpIfTest = $(true);
+    const tmpIfTest /*:unknown*/ = $(true);
     if (tmpIfTest) {
       $(`loop`);
       const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
-      const tmpForInGen = $forIn(tmpCalleeParam);
-      const tmpForInNext = tmpForInGen.next();
-      const tmpIfTest$1 = tmpForInNext.done;
+      const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+      const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+      const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
       if (tmpIfTest$1) {
         $(`after (not invoked but should not be eliminated)`);
       } else {
-        const x = tmpForInNext.value;
+        const x /*:unknown*/ = tmpForInNext.value;
         $(`loop`, x);
-        const tmpIfTest$3 = $(1, `if`);
+        const tmpIfTest$3 /*:unknown*/ = $(1, `if`);
         if (tmpIfTest$3) {
           $(`pass`);
-          const tmpReturnArg = $(100, `return`);
+          const tmpReturnArg /*:unknown*/ = $(100, `return`);
           tmpCalleeParam$1 = tmpReturnArg;
           break $inlinedFunction;
         } else {
           $(`do not visit`);
-          const tmpReturnArg$1 = $(101, `return`);
+          const tmpReturnArg$1 /*:unknown*/ = $(101, `return`);
           tmpCalleeParam$1 = tmpReturnArg$1;
           break $inlinedFunction;
         }

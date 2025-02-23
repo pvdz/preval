@@ -41,8 +41,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const obj /*:object*/ = { Function: Function };
-const f = obj.Function(a, b, c, d);
-const tmpCalleeParam = f();
+const f /*:unknown*/ = obj.Function(a, b, c, d);
+const tmpCalleeParam /*:unknown*/ = f();
 $(tmpCalleeParam);
 `````
 

@@ -57,7 +57,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-let y = 100;
+let y /*:unknown*/ = 100;
 try {
   y = xyz;
 } catch (e) {}

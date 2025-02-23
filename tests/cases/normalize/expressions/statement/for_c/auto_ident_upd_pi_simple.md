@@ -52,11 +52,11 @@ $(a, b);
 
 `````js filename=intro
 let b /*:number*/ = 1;
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   b = 2;
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       b = b + 1;
     } else {

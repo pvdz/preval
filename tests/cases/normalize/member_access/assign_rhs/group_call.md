@@ -41,8 +41,8 @@ $(x);
 `````js filename=intro
 $(1);
 $(2);
-const tmpAssignRhsProp = $($);
-const x = tmpAssignRhsProp.length;
+const tmpAssignRhsProp /*:unknown*/ = $($);
+const x /*:unknown*/ = tmpAssignRhsProp.length;
 $(x);
 `````
 

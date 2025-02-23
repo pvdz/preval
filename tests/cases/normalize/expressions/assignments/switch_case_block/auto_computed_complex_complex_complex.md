@@ -65,19 +65,19 @@ $(a);
 
 `````js filename=intro
 let a /*:object*/ = { a: 999, b: 1000 };
-const tmpSwitchDisc = $(1);
-const tmpBinBothRhs = $(1);
-let tmpAssignComMemLhsObj = undefined;
+const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(1);
+let tmpAssignComMemLhsObj /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
-  const tmpObjLitVal = $(1);
+  const tmpObjLitVal /*:unknown*/ = $(1);
   a = { b: tmpObjLitVal };
   tmpAssignComMemLhsObj = $(a);
 } else {
   tmpAssignComMemLhsObj = $(a);
 }
-const tmpAssignComMemLhsProp = $(`b`);
-const tmpAssignComputedRhs = $(2);
+const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
+const tmpAssignComputedRhs /*:unknown*/ = $(2);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);
 `````

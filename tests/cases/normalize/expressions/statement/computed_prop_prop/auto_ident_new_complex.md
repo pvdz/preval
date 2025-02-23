@@ -42,7 +42,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpNewCallee = $($);
+const tmpNewCallee /*:unknown*/ = $($);
 const tmpCompProp /*:object*/ = new tmpNewCallee(1);
 const obj /*:object*/ = {};
 obj[tmpCompProp];

@@ -143,11 +143,11 @@ $(`woohoo`);
 `````js filename=intro
 loopStop$1: {
   loopStop: {
-    const tmpIfTest = $(false);
+    const tmpIfTest /*:unknown*/ = $(false);
     if (tmpIfTest) {
       $(`uhoh`);
     } else {
-      const tmpIfTest$1 = $(false);
+      const tmpIfTest$1 /*:unknown*/ = $(false);
       if (tmpIfTest$1) {
         $(`neither`);
       } else {
@@ -155,11 +155,11 @@ loopStop$1: {
         break loopStop;
       }
     }
-    const tmpIfTest$2 = $(false);
+    const tmpIfTest$2 /*:unknown*/ = $(false);
     if (tmpIfTest$2) {
       $(`uhoh`);
     } else {
-      const tmpIfTest$4 = $(false);
+      const tmpIfTest$4 /*:unknown*/ = $(false);
       if (tmpIfTest$4) {
         $(`neither`);
       } else {
@@ -167,11 +167,11 @@ loopStop$1: {
         break loopStop;
       }
     }
-    const tmpIfTest$3 = $(false);
+    const tmpIfTest$3 /*:unknown*/ = $(false);
     if (tmpIfTest$3) {
       $(`uhoh`);
     } else {
-      const tmpIfTest$5 = $(false);
+      const tmpIfTest$5 /*:unknown*/ = $(false);
       if (tmpIfTest$5) {
         $(`neither`);
       } else {
@@ -179,11 +179,11 @@ loopStop$1: {
         break loopStop;
       }
     }
-    const tmpIfTest$6 = $(false);
+    const tmpIfTest$6 /*:unknown*/ = $(false);
     if (tmpIfTest$6) {
       $(`uhoh`);
     } else {
-      const tmpIfTest$8 = $(false);
+      const tmpIfTest$8 /*:unknown*/ = $(false);
       if (tmpIfTest$8) {
         $(`neither`);
       } else {
@@ -191,11 +191,11 @@ loopStop$1: {
         break loopStop;
       }
     }
-    const tmpIfTest$7 = $(false);
+    const tmpIfTest$7 /*:unknown*/ = $(false);
     if (tmpIfTest$7) {
       $(`uhoh`);
     } else {
-      const tmpIfTest$9 = $(false);
+      const tmpIfTest$9 /*:unknown*/ = $(false);
       if (tmpIfTest$9) {
         $(`neither`);
       } else {
@@ -203,11 +203,11 @@ loopStop$1: {
         break loopStop;
       }
     }
-    const tmpIfTest$10 = $(false);
+    const tmpIfTest$10 /*:unknown*/ = $(false);
     if (tmpIfTest$10) {
       $(`uhoh`);
     } else {
-      const tmpIfTest$12 = $(false);
+      const tmpIfTest$12 /*:unknown*/ = $(false);
       if (tmpIfTest$12) {
         $(`neither`);
       } else {
@@ -215,11 +215,11 @@ loopStop$1: {
         break loopStop;
       }
     }
-    const tmpIfTest$11 = $(false);
+    const tmpIfTest$11 /*:unknown*/ = $(false);
     if (tmpIfTest$11) {
       $(`uhoh`);
     } else {
-      const tmpIfTest$13 = $(false);
+      const tmpIfTest$13 /*:unknown*/ = $(false);
       if (tmpIfTest$13) {
         $(`neither`);
       } else {
@@ -227,11 +227,11 @@ loopStop$1: {
         break loopStop;
       }
     }
-    const tmpIfTest$14 = $(false);
+    const tmpIfTest$14 /*:unknown*/ = $(false);
     if (tmpIfTest$14) {
       $(`uhoh`);
     } else {
-      const tmpIfTest$16 = $(false);
+      const tmpIfTest$16 /*:unknown*/ = $(false);
       if (tmpIfTest$16) {
         $(`neither`);
       } else {
@@ -239,11 +239,11 @@ loopStop$1: {
         break loopStop;
       }
     }
-    const tmpIfTest$15 = $(false);
+    const tmpIfTest$15 /*:unknown*/ = $(false);
     if (tmpIfTest$15) {
       $(`uhoh`);
     } else {
-      const tmpIfTest$17 = $(false);
+      const tmpIfTest$17 /*:unknown*/ = $(false);
       if (tmpIfTest$17) {
         $(`neither`);
       } else {
@@ -251,11 +251,11 @@ loopStop$1: {
         break loopStop;
       }
     }
-    const tmpIfTest$18 = $(false);
+    const tmpIfTest$18 /*:unknown*/ = $(false);
     if (tmpIfTest$18) {
       $(`uhoh`);
     } else {
-      const tmpIfTest$20 = $(false);
+      const tmpIfTest$20 /*:unknown*/ = $(false);
       if (tmpIfTest$20) {
         $(`neither`);
       } else {
@@ -263,11 +263,11 @@ loopStop$1: {
         break loopStop;
       }
     }
-    const tmpIfTest$19 = $(false);
+    const tmpIfTest$19 /*:unknown*/ = $(false);
     if (tmpIfTest$19) {
       $(`uhoh`);
     } else {
-      const tmpIfTest$21 = $(false);
+      const tmpIfTest$21 /*:unknown*/ = $(false);
       if (tmpIfTest$21) {
         $(`neither`);
       } else {
@@ -276,11 +276,11 @@ loopStop$1: {
       }
     }
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      const tmpIfTest$22 = $(false);
+      const tmpIfTest$22 /*:unknown*/ = $(false);
       if (tmpIfTest$22) {
         $(`uhoh`);
       } else {
-        const tmpIfTest$24 = $(false);
+        const tmpIfTest$24 /*:unknown*/ = $(false);
         if (tmpIfTest$24) {
           $(`neither`);
         } else {
@@ -291,10 +291,10 @@ loopStop$1: {
     }
   }
   $(`woohoo`);
-  const tmpIfTest$23 = $(false);
+  const tmpIfTest$23 /*:unknown*/ = $(false);
   if (tmpIfTest$23) {
     $(`uhoh`);
-    const tmpIfTest$25 = $(false);
+    const tmpIfTest$25 /*:unknown*/ = $(false);
     if (tmpIfTest$25) {
       $(`neither`);
       $(`exit`);
@@ -303,10 +303,10 @@ loopStop$1: {
     }
   } else {
   }
-  const tmpIfTest$26 = $(false);
+  const tmpIfTest$26 /*:unknown*/ = $(false);
   if (tmpIfTest$26) {
     $(`uhoh`);
-    const tmpIfTest$28 = $(false);
+    const tmpIfTest$28 /*:unknown*/ = $(false);
     if (tmpIfTest$28) {
       $(`neither`);
       $(`exit`);
@@ -315,10 +315,10 @@ loopStop$1: {
     }
   } else {
   }
-  const tmpIfTest$27 = $(false);
+  const tmpIfTest$27 /*:unknown*/ = $(false);
   if (tmpIfTest$27) {
     $(`uhoh`);
-    const tmpIfTest$29 = $(false);
+    const tmpIfTest$29 /*:unknown*/ = $(false);
     if (tmpIfTest$29) {
       $(`neither`);
       $(`exit`);
@@ -327,10 +327,10 @@ loopStop$1: {
     }
   } else {
   }
-  const tmpIfTest$30 = $(false);
+  const tmpIfTest$30 /*:unknown*/ = $(false);
   if (tmpIfTest$30) {
     $(`uhoh`);
-    const tmpIfTest$32 = $(false);
+    const tmpIfTest$32 /*:unknown*/ = $(false);
     if (tmpIfTest$32) {
       $(`neither`);
       $(`exit`);
@@ -339,10 +339,10 @@ loopStop$1: {
     }
   } else {
   }
-  const tmpIfTest$31 = $(false);
+  const tmpIfTest$31 /*:unknown*/ = $(false);
   if (tmpIfTest$31) {
     $(`uhoh`);
-    const tmpIfTest$33 = $(false);
+    const tmpIfTest$33 /*:unknown*/ = $(false);
     if (tmpIfTest$33) {
       $(`neither`);
       $(`exit`);
@@ -351,10 +351,10 @@ loopStop$1: {
     }
   } else {
   }
-  const tmpIfTest$34 = $(false);
+  const tmpIfTest$34 /*:unknown*/ = $(false);
   if (tmpIfTest$34) {
     $(`uhoh`);
-    const tmpIfTest$36 = $(false);
+    const tmpIfTest$36 /*:unknown*/ = $(false);
     if (tmpIfTest$36) {
       $(`neither`);
       $(`exit`);
@@ -363,10 +363,10 @@ loopStop$1: {
     }
   } else {
   }
-  const tmpIfTest$35 = $(false);
+  const tmpIfTest$35 /*:unknown*/ = $(false);
   if (tmpIfTest$35) {
     $(`uhoh`);
-    const tmpIfTest$37 = $(false);
+    const tmpIfTest$37 /*:unknown*/ = $(false);
     if (tmpIfTest$37) {
       $(`neither`);
       $(`exit`);
@@ -375,10 +375,10 @@ loopStop$1: {
     }
   } else {
   }
-  const tmpIfTest$38 = $(false);
+  const tmpIfTest$38 /*:unknown*/ = $(false);
   if (tmpIfTest$38) {
     $(`uhoh`);
-    const tmpIfTest$40 = $(false);
+    const tmpIfTest$40 /*:unknown*/ = $(false);
     if (tmpIfTest$40) {
       $(`neither`);
       $(`exit`);
@@ -387,10 +387,10 @@ loopStop$1: {
     }
   } else {
   }
-  const tmpIfTest$39 = $(false);
+  const tmpIfTest$39 /*:unknown*/ = $(false);
   if (tmpIfTest$39) {
     $(`uhoh`);
-    const tmpIfTest$41 = $(false);
+    const tmpIfTest$41 /*:unknown*/ = $(false);
     if (tmpIfTest$41) {
       $(`neither`);
       $(`exit`);
@@ -399,10 +399,10 @@ loopStop$1: {
     }
   } else {
   }
-  const tmpIfTest$42 = $(false);
+  const tmpIfTest$42 /*:unknown*/ = $(false);
   if (tmpIfTest$42) {
     $(`uhoh`);
-    const tmpIfTest$44 = $(false);
+    const tmpIfTest$44 /*:unknown*/ = $(false);
     if (tmpIfTest$44) {
       $(`neither`);
       $(`exit`);
@@ -411,10 +411,10 @@ loopStop$1: {
     }
   } else {
   }
-  const tmpIfTest$43 = $(false);
+  const tmpIfTest$43 /*:unknown*/ = $(false);
   if (tmpIfTest$43) {
     $(`uhoh`);
-    const tmpIfTest$45 = $(false);
+    const tmpIfTest$45 /*:unknown*/ = $(false);
     if (tmpIfTest$45) {
       $(`neither`);
       $(`exit`);
@@ -424,10 +424,10 @@ loopStop$1: {
   } else {
   }
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const tmpIfTest$46 = $(false);
+    const tmpIfTest$46 /*:unknown*/ = $(false);
     if (tmpIfTest$46) {
       $(`uhoh`);
-      const tmpIfTest$48 = $(false);
+      const tmpIfTest$48 /*:unknown*/ = $(false);
       if (tmpIfTest$48) {
         $(`neither`);
         $(`exit`);

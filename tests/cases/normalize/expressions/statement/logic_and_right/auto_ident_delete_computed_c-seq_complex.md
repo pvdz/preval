@@ -48,13 +48,13 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpIfTest = $(100);
+const tmpIfTest /*:unknown*/ = $(100);
 const arg /*:object*/ = { y: 1 };
 if (tmpIfTest) {
   $(1);
   $(2);
-  const tmpDeleteCompObj = $(arg);
-  const tmpDeleteCompProp = $(`y`);
+  const tmpDeleteCompObj /*:unknown*/ = $(arg);
+  const tmpDeleteCompProp /*:unknown*/ = $(`y`);
   delete tmpDeleteCompObj[tmpDeleteCompProp];
 } else {
 }

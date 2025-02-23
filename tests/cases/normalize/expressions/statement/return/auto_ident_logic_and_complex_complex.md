@@ -59,11 +59,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-const tmpReturnArg = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpReturnArg /*:unknown*/ = $(tmpCalleeParam);
 if (tmpReturnArg) {
-  const tmpCalleeParam$1 = $(2);
-  const tmpClusterSSA_tmpReturnArg = $(tmpCalleeParam$1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
+  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(tmpCalleeParam$1);
   $(tmpClusterSSA_tmpReturnArg);
 } else {
   $(tmpReturnArg);

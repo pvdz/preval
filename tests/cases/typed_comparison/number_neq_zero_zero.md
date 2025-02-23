@@ -37,7 +37,7 @@ $(`out:`, y);
 
 
 `````js filename=intro
-const tmpStringFirstArg = $(0);
+const tmpStringFirstArg /*:unknown*/ = $(0);
 $coerce(tmpStringFirstArg, `string`);
 $(`out:`, true);
 `````

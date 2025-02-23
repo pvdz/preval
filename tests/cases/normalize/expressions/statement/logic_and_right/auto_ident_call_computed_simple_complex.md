@@ -46,9 +46,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(100);
+const tmpIfTest /*:unknown*/ = $(100);
 if (tmpIfTest) {
-  const tmpCallCompProp = $(`\$`);
+  const tmpCallCompProp /*:unknown*/ = $(`\$`);
   const b /*:object*/ = { $: $ };
   b[tmpCallCompProp](1);
 } else {

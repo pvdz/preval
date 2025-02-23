@@ -55,20 +55,20 @@ $(c);
 
 
 `````js filename=intro
-let b = undefined;
-const tmpChainRootProp = $(2);
+let b /*:unknown*/ = undefined;
+const tmpChainRootProp /*:unknown*/ = $(2);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 let tmpIfTest$1 /*:boolean*/ = true;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject = tmpChainRootProp.toString;
+  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.toString;
   b = tmpChainElementObject;
   tmpIfTest$1 = tmpChainElementObject == null;
 }
 if (tmpIfTest$1) {
   $(undefined);
 } else {
-  const tmpChainElementObject$1 = b.length;
+  const tmpChainElementObject$1 /*:unknown*/ = b.length;
   $(tmpChainElementObject$1);
 }
 `````

@@ -70,13 +70,13 @@ tmpCallCallee$5(tmpCalleeParam$9);
 
 
 `````js filename=intro
-const tmpCalleeParam$7 = $(1);
+const tmpCalleeParam$7 /*:unknown*/ = $(1);
 if (tmpCalleeParam$7) {
   $(`a`, true);
 } else {
   $(`b`, false);
 }
-const tmpCalleeParam$9 = $(0);
+const tmpCalleeParam$9 /*:unknown*/ = $(0);
 if (tmpCalleeParam$9) {
   $(`a`, true);
 } else {

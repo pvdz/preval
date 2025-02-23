@@ -66,7 +66,7 @@ $(p, q);
 `````js filename=intro
 const b /*:array*/ = [10, 20];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const arrAssignPatternRhs = $(b);
+  const arrAssignPatternRhs /*:unknown*/ = $(b);
   const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
   arrPatternSplat[0];
   arrPatternSplat[1];

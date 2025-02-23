@@ -57,21 +57,21 @@ $(a, b);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
 const b /*:object*/ = { c: 10, d: 20 };
 if (tmpIfTest) {
-  const tmpCompObj = $(b);
-  const tmpCompProp = $(`d`);
-  const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+  const tmpCompObj /*:unknown*/ = $(b);
+  const tmpCompProp /*:unknown*/ = $(`d`);
+  const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
   b.c = tmpNestedAssignPropRhs;
   a = tmpNestedAssignPropRhs;
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpCompObj$1 = $(b);
-      const tmpCompProp$1 = $(`d`);
-      const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
+      const tmpCompObj$1 /*:unknown*/ = $(b);
+      const tmpCompProp$1 /*:unknown*/ = $(`d`);
+      const tmpNestedAssignPropRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
       b.c = tmpNestedAssignPropRhs$1;
       a = tmpNestedAssignPropRhs$1;
     } else {

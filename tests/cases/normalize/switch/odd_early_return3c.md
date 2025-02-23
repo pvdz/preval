@@ -94,7 +94,7 @@ const a /*:()=>?*/ = function () {
   $(`x`);
   $(`y`);
   $(`z`);
-  const tmpReturnArg = $(2);
+  const tmpReturnArg /*:unknown*/ = $(2);
   return tmpReturnArg;
 };
 $(a);

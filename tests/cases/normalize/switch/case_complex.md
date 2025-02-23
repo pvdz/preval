@@ -82,12 +82,12 @@ if (tmpIfTest$5) {
 
 `````js filename=intro
 let tmpSwitchCaseToStart /*:number*/ = 2;
-const tmpBinLhs = $(1);
+const tmpBinLhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpBinLhs === 1;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpBinLhs$1 = $(2);
+  const tmpBinLhs$1 /*:unknown*/ = $(2);
   const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$1 === 1;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;

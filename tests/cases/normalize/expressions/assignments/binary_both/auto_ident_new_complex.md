@@ -44,9 +44,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpNewCallee = $($);
+const tmpNewCallee /*:unknown*/ = $($);
 const a /*:object*/ = new tmpNewCallee(1);
-const tmpNewCallee$1 = $($);
+const tmpNewCallee$1 /*:unknown*/ = $($);
 const tmpClusterSSA_a /*:object*/ = new tmpNewCallee$1(1);
 const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);

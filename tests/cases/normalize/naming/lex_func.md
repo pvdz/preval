@@ -66,13 +66,13 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const a$1 = $(1);
+const a$1 /*:unknown*/ = $(1);
 $(a$1);
-const tmpIfTest = $();
+const tmpIfTest /*:unknown*/ = $();
 if (tmpIfTest) {
   $(a$1);
 } else {
-  const a = $(1);
+  const a /*:unknown*/ = $(1);
   $(a);
   $(a);
 }

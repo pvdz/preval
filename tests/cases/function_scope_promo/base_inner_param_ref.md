@@ -115,7 +115,7 @@ if ($) {
   $(`inlining`);
 } else {
 }
-const tmpCalleeParam = $(10);
+const tmpCalleeParam /*:unknown*/ = $(10);
 if ($) {
   $(`prevent`);
   $(`simple`);

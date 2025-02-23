@@ -80,10 +80,10 @@ let zzzz /*:()=>*/ = function () {
     debugger;
     return a;
   };
-  const tmpReturnArg$23 = zzzz();
+  const tmpReturnArg$23 /*:unknown*/ = zzzz();
   return tmpReturnArg$23;
 };
-const x = zzzz;
+const x /*:unknown*/ = zzzz;
 zzzz();
 zzzz();
 x();

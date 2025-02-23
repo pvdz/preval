@@ -33,7 +33,7 @@ const x = $spy(`a`);
 
 
 `````js filename=intro
-const x = $spy(`a`);
+const x /*:unknown*/ = $spy(`a`);
 ``.charCodeAt(x);
 `````
 

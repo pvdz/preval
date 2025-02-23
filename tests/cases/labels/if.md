@@ -51,7 +51,7 @@ $(2);
 
 
 `````js filename=intro
-const x = $(100);
+const x /*:unknown*/ = $(100);
 $(0);
 if (x) {
   $(1);

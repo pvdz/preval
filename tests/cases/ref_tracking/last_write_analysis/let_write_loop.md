@@ -62,10 +62,10 @@ $(simplifyMe);
 
 `````js filename=intro
 new $(1);
-let simplifyMe = undefined;
+let simplifyMe /*:unknown*/ = undefined;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmp = $(1);
+  const tmp /*:unknown*/ = $(1);
   simplifyMe = tmp;
   if (tmp) {
     break;

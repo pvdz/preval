@@ -56,7 +56,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 = $(16);
+const tmpCalleeParam$1 /*:unknown*/ = $(16);
 const x /*:number*/ = tmpCalleeParam$1 & 16;
 if (x) {
   $(16);

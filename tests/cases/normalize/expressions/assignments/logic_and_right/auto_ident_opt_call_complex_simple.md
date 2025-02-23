@@ -52,15 +52,15 @@ $(a);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = $(100);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
-  let tmpNestedComplexRhs = undefined;
-  const tmpChainElementCall = $($);
+  let tmpNestedComplexRhs /*:unknown*/ = undefined;
+  const tmpChainElementCall /*:unknown*/ = $($);
   const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest) {
   } else {
-    const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
+    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, 1);
     tmpNestedComplexRhs = tmpChainElementCall$1;
   }
   a = tmpNestedComplexRhs;

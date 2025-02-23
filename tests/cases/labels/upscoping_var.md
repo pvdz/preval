@@ -75,14 +75,14 @@ $(6);
 
 `````js filename=intro
 A: {
-  const tmpClusterSSA_x = $(0);
+  const tmpClusterSSA_x /*:unknown*/ = $(0);
   $(1, tmpClusterSSA_x);
   while (true) {
-    const tmpIfTest = $(`a`, tmpClusterSSA_x);
+    const tmpIfTest /*:unknown*/ = $(`a`, tmpClusterSSA_x);
     if (tmpIfTest) {
       break A;
     } else {
-      const tmpIfTest$1 = $(`b`, tmpClusterSSA_x);
+      const tmpIfTest$1 /*:unknown*/ = $(`b`, tmpClusterSSA_x);
       if (tmpIfTest$1) {
         break;
       } else {

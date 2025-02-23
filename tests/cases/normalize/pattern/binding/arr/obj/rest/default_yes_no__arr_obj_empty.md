@@ -52,7 +52,7 @@ $(x);
 `````js filename=intro
 const tmpArrElement /*:object*/ = {};
 const tmpCalleeParam$3 /*:array*/ = [];
-const x = objPatternRest(tmpArrElement, tmpCalleeParam$3, undefined);
+const x /*:unknown*/ = objPatternRest(tmpArrElement, tmpCalleeParam$3, undefined);
 $(x);
 `````
 

@@ -38,8 +38,8 @@ $(x);
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { a: `ignored` };
-const tmpObjSpread = $(tmpCalleeParam);
-const tmpObjLitVal = $(`prop`);
+const tmpObjSpread /*:unknown*/ = $(tmpCalleeParam);
+const tmpObjLitVal /*:unknown*/ = $(`prop`);
 const x /*:object*/ = { ...tmpObjSpread, a: tmpObjLitVal };
 $(x);
 `````

@@ -57,16 +57,16 @@ $(a, b);
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const tmpCalleeParam = $(b);
-const varInitAssignLhsComputedObj = $(tmpCalleeParam);
-const tmpBinLhs = varInitAssignLhsComputedObj.x;
+const tmpCalleeParam /*:unknown*/ = $(b);
+const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpBinLhs /*:unknown*/ = varInitAssignLhsComputedObj.x;
 const varInitAssignLhsComputedRhs /*:primitive*/ = tmpBinLhs + 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
 } else {
-  const tmpCalleeParam$1 = $(b);
-  const tmpAssignMemLhsObj = $(tmpCalleeParam$1);
-  const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
+  const tmpCalleeParam$1 /*:unknown*/ = $(b);
+  const tmpAssignMemLhsObj /*:unknown*/ = $(tmpCalleeParam$1);
+  const tmpCompoundAssignLhs /*:unknown*/ = tmpAssignMemLhsObj.x;
   const tmpAssignMemRhs /*:primitive*/ = tmpCompoundAssignLhs + 1;
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 }

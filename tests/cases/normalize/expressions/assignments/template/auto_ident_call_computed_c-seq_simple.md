@@ -50,8 +50,8 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCallObj = $(b);
-const tmpClusterSSA_a = tmpCallObj.$(1);
+const tmpCallObj /*:unknown*/ = $(b);
+const tmpClusterSSA_a /*:unknown*/ = tmpCallObj.$(1);
 const tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);

@@ -133,8 +133,8 @@ exit: {
 
 
 `````js filename=intro
-let x = $(2);
-const tmpSwitchValue = $(100);
+let x /*:unknown*/ = $(2);
+const tmpSwitchValue /*:unknown*/ = $(100);
 let tmpSwitchCaseToStart /*:number*/ = 3;
 const tmpIfTest /*:boolean*/ = 1 === tmpSwitchValue;
 if (tmpIfTest) {
@@ -163,7 +163,7 @@ if (tmpIfTest$5) {
   const tmpIfTest$9 /*:boolean*/ = tmpSwitchCaseToStart <= 2;
   if (tmpIfTest$9) {
     $(`yo`);
-    const tmpIfTest$11 = $(1);
+    const tmpIfTest$11 /*:unknown*/ = $(1);
     if (tmpIfTest$11) {
       x = $(3);
     } else {

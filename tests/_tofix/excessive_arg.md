@@ -99,25 +99,25 @@ $(alias);
 `````js filename=intro
 const arr /*:array*/ = [1, 2, 3, 4];
 let f /*:(unknown, unknown)=>*/ = function ($$0, $$1) {
-  const a = $$0;
-  const b = $$1;
+  const a /*:unknown*/ = $$0;
+  const b /*:unknown*/ = $$1;
   debugger;
   f = function ($$0, $$1) {
-    const c = $$0;
+    const c /*:unknown*/ = $$0;
     debugger;
     const index /*:number*/ = c - 427;
-    const n = arr[index];
+    const n /*:unknown*/ = arr[index];
     return n;
   };
-  const tmp = f(a, b);
+  const tmp /*:unknown*/ = f(a, b);
   return tmp;
 };
-const alias = f;
-const tmpCalleeParam = f(428);
+const alias /*:unknown*/ = f;
+const tmpCalleeParam /*:unknown*/ = f(428);
 $(tmpCalleeParam);
-const tmpCalleeParam$3 = f(429);
+const tmpCalleeParam$3 /*:unknown*/ = f(429);
 $(tmpCalleeParam$3);
-const tmpCalleeParam$7 = f(430);
+const tmpCalleeParam$7 /*:unknown*/ = f(430);
 $(tmpCalleeParam$7);
 $(alias);
 `````

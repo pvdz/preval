@@ -83,13 +83,13 @@ let f /*:()=>*/ = function () {
     debugger;
     return x;
   };
-  const tmpReturnArg = f();
+  const tmpReturnArg /*:unknown*/ = f();
   return tmpReturnArg;
 };
-let x = $(1);
-const a = x;
+let x /*:unknown*/ = $(1);
+const a /*:unknown*/ = x;
 if ($) {
-  const b = x;
+  const b /*:unknown*/ = x;
   $(a, b);
 } else {
 }

@@ -44,10 +44,10 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpBinBothLhs = $(100);
-const tmpCompProp = $(`c`);
+const tmpBinBothLhs /*:unknown*/ = $(100);
+const tmpCompProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
-const tmpBinBothRhs = b[tmpCompProp];
+const tmpBinBothRhs /*:unknown*/ = b[tmpCompProp];
 tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);

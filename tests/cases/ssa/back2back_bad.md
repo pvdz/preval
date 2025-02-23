@@ -82,9 +82,9 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const x = $(5);
+  const x /*:unknown*/ = $(5);
   if ($) {
-    const tmpReturnArg = $(x);
+    const tmpReturnArg /*:unknown*/ = $(x);
     $(tmpReturnArg);
   } else {
     $(undefined);

@@ -33,7 +33,7 @@ $(x);
 
 
 `````js filename=intro
-const x = $(true);
+const x /*:unknown*/ = $(true);
 $(x);
 `````
 

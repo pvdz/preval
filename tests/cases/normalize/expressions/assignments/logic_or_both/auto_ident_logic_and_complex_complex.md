@@ -61,11 +61,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 = $(1);
-let a = $(tmpCalleeParam$1);
-let tmpCalleeParam = undefined;
+const tmpCalleeParam$1 /*:unknown*/ = $(1);
+let a /*:unknown*/ = $(tmpCalleeParam$1);
+let tmpCalleeParam /*:unknown*/ = undefined;
 if (a) {
-  const tmpCalleeParam$3 = $(2);
+  const tmpCalleeParam$3 /*:unknown*/ = $(2);
   a = $(tmpCalleeParam$3);
   tmpCalleeParam = a;
 } else {
@@ -74,10 +74,10 @@ if (a) {
 if (a) {
   $(tmpCalleeParam);
 } else {
-  const tmpCalleeParam$5 = $(1);
-  let tmpNestedComplexRhs = $(tmpCalleeParam$5);
+  const tmpCalleeParam$5 /*:unknown*/ = $(1);
+  let tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$5);
   if (tmpNestedComplexRhs) {
-    const tmpCalleeParam$7 = $(2);
+    const tmpCalleeParam$7 /*:unknown*/ = $(2);
     tmpNestedComplexRhs = $(tmpCalleeParam$7);
   } else {
   }

@@ -45,9 +45,9 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [];
-const a = $(tmpCalleeParam);
-const tmpCompObj = $(a);
-const tmpCalleeParam$1 = tmpCompObj.length;
+const a /*:unknown*/ = $(tmpCalleeParam);
+const tmpCompObj /*:unknown*/ = $(a);
+const tmpCalleeParam$1 /*:unknown*/ = tmpCompObj.length;
 $(tmpCalleeParam$1);
 `````
 

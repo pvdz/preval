@@ -52,9 +52,9 @@ while (true) {
 
 
 `````js filename=intro
-const tmpCompProp = $(`\$`);
+const tmpCompProp /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpNewCallee = b[tmpCompProp];
+const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
 const xyz /*:object*/ = new tmpNewCallee(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);

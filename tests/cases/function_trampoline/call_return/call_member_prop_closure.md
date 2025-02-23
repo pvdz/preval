@@ -63,7 +63,7 @@ f();
 
 `````js filename=intro
 const obj /*:object*/ = { $: $ };
-const q = obj.$(1);
+const q /*:unknown*/ = obj.$(1);
 $(q);
 `````
 

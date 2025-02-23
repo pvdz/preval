@@ -52,9 +52,9 @@ $(a);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let a /*:unknown*/ = { a: 999, b: 1000 };
 while (true) {
-  const tmpIfTest = $(1);
+  const tmpIfTest /*:unknown*/ = $(1);
   if (tmpIfTest) {
     a = function () {
       debugger;

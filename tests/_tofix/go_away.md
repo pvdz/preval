@@ -266,7 +266,7 @@ const f /*:()=>undefined*/ = function () {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpIfTest$2 /*:boolean*/ = tmpClusterSSA_s$1 < 64;
     if (tmpIfTest$2) {
-      const tmpAssignComputedRhs$1 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`[tmpClusterSSA_s$1];
+      const tmpAssignComputedRhs$1 /*:unknown*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`[tmpClusterSSA_s$1];
       tmpSSA_i$51[tmpClusterSSA_s$1] = tmpAssignComputedRhs$1;
       const tmpAssignComMemLhsProp$11 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(
         tmpClusterSSA_s$1,

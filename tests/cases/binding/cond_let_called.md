@@ -52,10 +52,10 @@ $(y);
 
 `````js filename=intro
 if (a) {
-  const tmpClusterSSA_y = parseExpression(`source`);
+  const tmpClusterSSA_y /*:unknown*/ = parseExpression(`source`);
   $(tmpClusterSSA_y);
 } else {
-  const tmpClusterSSA_y$1 = parseExpression(`arguments`);
+  const tmpClusterSSA_y$1 /*:unknown*/ = parseExpression(`arguments`);
   $(tmpClusterSSA_y$1);
 }
 `````

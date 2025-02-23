@@ -67,8 +67,8 @@ f(4);
 
 `````js filename=intro
 $(`50`);
-const f /*:(number, undefined)=>undefined*/ = function ($$0, $$1) {
-  const tmpPrevalAliasArgumentsAny = arguments;
+const f /*:(unused, unused)=>*/ = function ($$0, $$1) {
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
   debugger;
   $coerce(tmpPrevalAliasArgumentsAny, `number`);
   $(1);

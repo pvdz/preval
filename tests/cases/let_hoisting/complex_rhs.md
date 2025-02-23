@@ -87,7 +87,7 @@ $(x);
 if ($) {
   $(1);
   if ($) {
-    const tmpClusterSSA_x = $(`do not inline me`);
+    const tmpClusterSSA_x /*:unknown*/ = $(`do not inline me`);
     $(tmpClusterSSA_x);
   } else {
   }

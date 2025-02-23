@@ -153,7 +153,7 @@ $(x);
 
 
 `````js filename=intro
-const x = eval(`"a\\\`b\\"c\\'d\\\\e\\x20f\\u0020g\${not_expr}h\\/i"`);
+const x /*:unknown*/ = eval(`"a\\\`b\\"c\\'d\\\\e\\x20f\\u0020g\${not_expr}h\\/i"`);
 $(x);
 `````
 

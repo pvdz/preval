@@ -45,7 +45,7 @@ const f /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
-const a = f;
+const a /*:unknown*/ = f;
 export { a };
 $(f);
 `````

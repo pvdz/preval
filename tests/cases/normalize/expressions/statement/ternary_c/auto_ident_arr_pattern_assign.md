@@ -53,14 +53,14 @@ $(a, x, y);
 
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-const tmpIfTest = $(0);
+let x /*:unknown*/ = 1;
+let y /*:unknown*/ = 2;
+const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpArrElement = $(3);
-  const tmpArrElement$1 = $(4);
+  const tmpArrElement /*:unknown*/ = $(3);
+  const tmpArrElement$1 /*:unknown*/ = $(4);
   x = tmpArrElement;
   y = tmpArrElement$1;
 }

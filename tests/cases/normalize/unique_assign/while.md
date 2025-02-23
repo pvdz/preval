@@ -50,7 +50,7 @@ $(a);
 
 
 `````js filename=intro
-let a = $(1);
+let a /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = a < 10;
 if (tmpIfTest) {
   a = a + 1;

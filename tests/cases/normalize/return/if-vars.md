@@ -59,9 +59,9 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpClusterSSA_x = $(1, `a`);
+  const tmpClusterSSA_x /*:unknown*/ = $(1, `a`);
   $(tmpClusterSSA_x, `result`);
 } else {
   $(undefined, `result`);

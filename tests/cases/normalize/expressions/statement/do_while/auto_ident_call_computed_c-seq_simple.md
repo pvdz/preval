@@ -60,13 +60,13 @@ $(a);
 `````js filename=intro
 $(100);
 const b /*:object*/ = { $: $ };
-const tmpCallObj = $(b);
-const tmpIfTest = tmpCallObj.$(1);
+const tmpCallObj /*:unknown*/ = $(b);
+const tmpIfTest /*:unknown*/ = tmpCallObj.$(1);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpCallObj$1 = $(b);
-    const tmpIfTest$1 = tmpCallObj$1.$(1);
+    const tmpCallObj$1 /*:unknown*/ = $(b);
+    const tmpIfTest$1 /*:unknown*/ = tmpCallObj$1.$(1);
     if (tmpIfTest$1) {
     } else {
       break;

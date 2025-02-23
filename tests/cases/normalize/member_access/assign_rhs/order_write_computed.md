@@ -72,7 +72,7 @@ $(x);
 const obj /*:object*/ = {
   get x() {
     debugger;
-    const tmpReturnArg = $(10);
+    const tmpReturnArg /*:unknown*/ = $(10);
     return tmpReturnArg;
   },
   set x($$0) {
@@ -81,8 +81,8 @@ const obj /*:object*/ = {
     return undefined;
   },
 };
-const tmpNestedAssignComMemberObj = $(obj);
-const tmpNestedAssignComMemberProp = $(`x`);
+const tmpNestedAssignComMemberObj /*:unknown*/ = $(obj);
+const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 30;
 $(30);
 `````

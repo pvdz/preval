@@ -60,15 +60,15 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 const f /*:()=>?*/ = function () {
   debugger;
-  const x = $(1);
+  const x /*:unknown*/ = $(1);
   $(x, `middle`);
   $(x, `observable rhs`);
-  const tmpReturnArg = $(`end`);
+  const tmpReturnArg /*:unknown*/ = $(`end`);
   return tmpReturnArg;
 };
-const tmpCalleeParam = f();
+const tmpCalleeParam /*:unknown*/ = f();
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = f();
+const tmpCalleeParam$1 /*:unknown*/ = f();
 $(tmpCalleeParam$1);
 `````
 

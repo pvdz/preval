@@ -50,13 +50,13 @@ $(a);
 
 
 `````js filename=intro
-let tmpAnonDefaultExport = undefined;
+let tmpAnonDefaultExport /*:unknown*/ = undefined;
 const b /*:object*/ = { x: 1 };
-const tmpChainElementCall = $(b);
+const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject = tmpChainElementCall.x;
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
   tmpAnonDefaultExport = tmpChainElementObject;
 }
 export { tmpAnonDefaultExport as default };

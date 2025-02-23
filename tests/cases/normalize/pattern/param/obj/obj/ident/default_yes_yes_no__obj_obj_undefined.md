@@ -70,7 +70,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const tmpClusterSSA_y = $(`pass`);
+const tmpClusterSSA_y /*:unknown*/ = $(`pass`);
 $(tmpClusterSSA_y);
 `````
 

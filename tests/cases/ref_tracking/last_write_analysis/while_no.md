@@ -61,9 +61,9 @@ $(x);
 
 
 `````js filename=intro
-const x = $(`a`);
+const x /*:unknown*/ = $(`a`);
 $(x);
-const tmpClusterSSA_x = $(`b`);
+const tmpClusterSSA_x /*:unknown*/ = $(`b`);
 if ($) {
   while ($LOOP_UNROLL_10) {
     $(`123`);

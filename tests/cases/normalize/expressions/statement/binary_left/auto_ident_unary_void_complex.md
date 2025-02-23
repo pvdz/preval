@@ -40,7 +40,7 @@ $(a);
 
 `````js filename=intro
 $(100);
-const tmpBinBothRhs = $(100);
+const tmpBinBothRhs /*:unknown*/ = $(100);
 tmpBinBothRhs + undefined;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

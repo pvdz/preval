@@ -53,10 +53,10 @@ $(a, b);
 
 `````js filename=intro
 const b /*:object*/ = { c: 10, d: 20 };
-const tmpNestedAssignObj = $(b);
-const tmpCompObj$1 = $(b);
-const tmpCompProp$1 = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj$1[tmpCompProp$1];
+const tmpNestedAssignObj /*:unknown*/ = $(b);
+const tmpCompObj$1 /*:unknown*/ = $(b);
+const tmpCompProp$1 /*:unknown*/ = $(`d`);
+const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
 tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
 const obj /*:object*/ = {};
 obj[tmpNestedAssignPropRhs];

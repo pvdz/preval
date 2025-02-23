@@ -43,8 +43,8 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f = Function(a, b, c, d);
-const tmpCalleeParam = f();
+const f /*:unknown*/ = Function(a, b, c, d);
+const tmpCalleeParam /*:unknown*/ = f();
 $(tmpCalleeParam);
 `````
 

@@ -51,20 +51,20 @@ while (true) {
 
 
 `````js filename=intro
-const x = $(10);
-const tmpIfTest = $(x);
+const x /*:unknown*/ = $(10);
+const tmpIfTest /*:unknown*/ = $(x);
 if (tmpIfTest) {
-  let tmpClusterSSA_x = $(0);
-  const tmpIfTest$1 = $(true);
+  let tmpClusterSSA_x /*:unknown*/ = $(0);
+  const tmpIfTest$1 /*:unknown*/ = $(true);
   if (tmpIfTest$1) {
     $(tmpClusterSSA_x, `branch`);
   } else {
   }
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$2 = $(tmpClusterSSA_x);
+    const tmpIfTest$2 /*:unknown*/ = $(tmpClusterSSA_x);
     if (tmpIfTest$2) {
       tmpClusterSSA_x = $(0);
-      const tmpIfTest$4 = $(true);
+      const tmpIfTest$4 /*:unknown*/ = $(true);
       if (tmpIfTest$4) {
         $(tmpClusterSSA_x, `branch`);
       } else {

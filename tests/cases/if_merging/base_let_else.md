@@ -75,12 +75,12 @@ if (x) {
 
 `````js filename=intro
 let x /*:primitive*/ = 0;
-const tmpIfTest = $(true);
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
-  const tmpUnaryArg = $(true);
+  const tmpUnaryArg /*:unknown*/ = $(true);
   x = !tmpUnaryArg;
 } else {
-  const tmpUnaryArg$1 = $(false);
+  const tmpUnaryArg$1 /*:unknown*/ = $(false);
   x = !tmpUnaryArg$1;
 }
 if (x) {

@@ -66,7 +66,7 @@ $(a, b, c);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest) {
   b.x = 3;
@@ -76,7 +76,7 @@ if (tmpIfTest) {
   b.x = 3;
   b.x = 3;
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       b.x = 3;
       b.x = 3;

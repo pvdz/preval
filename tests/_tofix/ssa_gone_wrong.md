@@ -53,7 +53,7 @@ let i /*:number*/ = 0;
 $(10);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   i = i + 1;
-  const tmpClusterSSA_x = $(i, `set`);
+  const tmpClusterSSA_x /*:unknown*/ = $(i, `set`);
   $(tmpClusterSSA_x, `loop`);
 }
 `````

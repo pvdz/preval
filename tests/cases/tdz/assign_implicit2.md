@@ -59,7 +59,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 KEEP_ME;
-let y = 100;
+let y /*:unknown*/ = 100;
 try {
   y = FAIL;
 } catch (e) {}

@@ -70,10 +70,10 @@ if (tmpIfTest$1) {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
   $dotCall($, tmpObjLitVal$1, 1);
 }
-const tmpIfTest$3 = $(0);
+const tmpIfTest$3 /*:unknown*/ = $(0);
 if (tmpIfTest$3) {
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$2 = $(0);
+    const tmpIfTest$2 /*:unknown*/ = $(0);
     if (tmpIfTest$2) {
     } else {
       break;

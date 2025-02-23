@@ -69,7 +69,7 @@ $(x);
 const obj /*:object*/ = {
   get x() {
     debugger;
-    const tmpReturnArg = $(10);
+    const tmpReturnArg /*:unknown*/ = $(10);
     return tmpReturnArg;
   },
   set x($$0) {
@@ -78,8 +78,8 @@ const obj /*:object*/ = {
     return undefined;
   },
 };
-const varInitAssignLhsComputedObj = $(obj);
-const varInitAssignLhsComputedProp = $(`x`);
+const varInitAssignLhsComputedObj /*:unknown*/ = $(obj);
+const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 30;
 $(30);
 `````

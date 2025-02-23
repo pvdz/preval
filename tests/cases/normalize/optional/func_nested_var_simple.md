@@ -70,22 +70,22 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-let b = undefined;
-const tmpChainElementCall = $(2);
+let b /*:unknown*/ = undefined;
+const tmpChainElementCall /*:unknown*/ = $(2);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 let tmpIfTest$1 /*:boolean*/ = true;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject = tmpChainElementCall.toString;
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.toString;
   b = tmpChainElementObject;
   tmpIfTest$1 = tmpChainElementObject == null;
 }
 if (tmpIfTest$1) {
-  const tmpClusterSSA_tmpReturnArg = $(undefined);
+  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(undefined);
   $(tmpClusterSSA_tmpReturnArg);
 } else {
-  const tmpChainElementObject$1 = b.length;
-  const tmpClusterSSA_tmpReturnArg$1 = $(tmpChainElementObject$1);
+  const tmpChainElementObject$1 /*:unknown*/ = b.length;
+  const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(tmpChainElementObject$1);
   $(tmpClusterSSA_tmpReturnArg$1);
 }
 `````

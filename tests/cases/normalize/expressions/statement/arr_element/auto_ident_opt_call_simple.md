@@ -52,18 +52,18 @@ $(a);
 
 
 `````js filename=intro
-let tmpBinBothLhs = undefined;
+let tmpBinBothLhs /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall = $(1);
+  const tmpChainElementCall /*:unknown*/ = $(1);
   tmpBinBothLhs = tmpChainElementCall;
 }
-let tmpBinBothRhs = undefined;
+let tmpBinBothRhs /*:unknown*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementCall$1 = $(1);
+  const tmpChainElementCall$1 /*:unknown*/ = $(1);
   tmpBinBothRhs = tmpChainElementCall$1;
 }
 tmpBinBothLhs + tmpBinBothRhs;

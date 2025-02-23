@@ -65,12 +65,12 @@ $();
 
 `````js filename=intro
 const wat /*:object*/ = { a: 1, b: 2 };
-const tmpForInGen = $forIn(wat);
-const tmpForInNext = tmpForInGen.next();
-const tmpIfTest = tmpForInNext.done;
+const tmpForInGen /*:unknown*/ = $forIn(wat);
+const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+const tmpIfTest /*:unknown*/ = tmpForInNext.done;
 if (tmpIfTest) {
 } else {
-  const x = tmpForInNext.value;
+  const x /*:unknown*/ = tmpForInNext.value;
   $(x);
 }
 $();

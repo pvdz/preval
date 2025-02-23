@@ -64,16 +64,16 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpSwitchDisc = $(1);
-const tmpBinBothRhs = $(1);
+const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  const tmpArrElement = $(2);
+  const tmpArrElement /*:unknown*/ = $(2);
   const tmpCalleeParam /*:array*/ = [tmpArrElement];
-  const arrAssignPatternRhs = $(tmpCalleeParam);
+  const arrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
   const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
-  const tmpClusterSSA_b = arrPatternSplat[0];
+  const tmpClusterSSA_b /*:unknown*/ = arrPatternSplat[0];
   $(a, tmpClusterSSA_b);
 } else {
   const b /*:array*/ = [];

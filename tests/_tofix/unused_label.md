@@ -56,7 +56,7 @@ $(s);
 
 
 `````js filename=intro
-const t = $(1, `return`);
+const t /*:unknown*/ = $(1, `return`);
 $(t);
 `````
 

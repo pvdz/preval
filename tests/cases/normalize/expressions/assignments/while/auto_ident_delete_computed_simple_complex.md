@@ -50,13 +50,13 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpDeleteCompProp = $(`y`);
+const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 const arg /*:object*/ = { y: 1 };
 let a /*:boolean*/ = delete arg[tmpDeleteCompProp];
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpDeleteCompProp$1 = $(`y`);
+    const tmpDeleteCompProp$1 /*:unknown*/ = $(`y`);
     a = delete arg[tmpDeleteCompProp$1];
     if (a) {
     } else {

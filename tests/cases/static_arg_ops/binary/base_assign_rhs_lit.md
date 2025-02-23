@@ -71,13 +71,13 @@ $(y);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(100);
+const tmpCalleeParam /*:unknown*/ = $(100);
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = $(100);
+const tmpCalleeParam$1 /*:unknown*/ = $(100);
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 = $(100);
+const tmpCalleeParam$3 /*:unknown*/ = $(100);
 $(tmpCalleeParam$3);
-const tmpCalleeParam$5 = $(100);
+const tmpCalleeParam$5 /*:unknown*/ = $(100);
 $(tmpCalleeParam$5);
 $(2);
 `````

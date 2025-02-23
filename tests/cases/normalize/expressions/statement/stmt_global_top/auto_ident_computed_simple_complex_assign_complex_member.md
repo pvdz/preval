@@ -47,11 +47,11 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpAssignComMemLhsProp = $(`c`);
+const tmpAssignComMemLhsProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 10, d: 20 };
-const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpCompProp /*:unknown*/ = $(`d`);
+const tmpAssignComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
 b[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);

@@ -63,21 +63,21 @@ while (true) {
 
 
 `````js filename=intro
-const test = $(`first`);
+const test /*:unknown*/ = $(`first`);
 $(`second`);
 if (test) {
 } else {
-  const tmpIfTest = $(test);
+  const tmpIfTest /*:unknown*/ = $(test);
   if (tmpIfTest) {
   } else {
     $(`third`);
     while ($LOOP_UNROLL_10) {
-      const test$1 = $(`first`);
+      const test$1 /*:unknown*/ = $(`first`);
       $(`second`);
       if (test$1) {
         break;
       } else {
-        const tmpIfTest$1 = $(test$1);
+        const tmpIfTest$1 /*:unknown*/ = $(test$1);
         if (tmpIfTest$1) {
           break;
         } else {

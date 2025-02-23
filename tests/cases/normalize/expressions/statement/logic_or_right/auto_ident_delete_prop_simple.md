@@ -44,7 +44,7 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpIfTest = $(100);
+const tmpIfTest /*:unknown*/ = $(100);
 const arg /*:object*/ = { y: 1 };
 if (tmpIfTest) {
 } else {

@@ -45,10 +45,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCompProp = $(`\$`);
+const tmpCallCompProp /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const a = b[tmpCallCompProp](1);
-const tmpAnonDefaultExport = a;
+const a /*:unknown*/ = b[tmpCallCompProp](1);
+const tmpAnonDefaultExport /*:unknown*/ = a;
 export { tmpAnonDefaultExport as default };
 $(a);
 `````

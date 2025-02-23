@@ -46,11 +46,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-const tmpCalleeParamSpread = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpCalleeParamSpread /*:unknown*/ = $(tmpCalleeParam);
 if (tmpCalleeParamSpread) {
-  const tmpCalleeParam$1 = $(2);
-  const tmpClusterSSA_tmpCalleeParamSpread = $(tmpCalleeParam$1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
+  const tmpClusterSSA_tmpCalleeParamSpread /*:unknown*/ = $(tmpCalleeParam$1);
   $(...tmpClusterSSA_tmpCalleeParamSpread);
 } else {
   const tmpIfTest /*:boolean*/ = tmpCalleeParamSpread === ``;

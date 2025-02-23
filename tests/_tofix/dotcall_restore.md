@@ -53,10 +53,10 @@ $(f);
 
 `````js filename=intro
 const f /*:(unknown)=>?*/ = function ($$0) {
-  const Cu$3 = $$0;
+  const Cu$3 /*:unknown*/ = $$0;
   debugger;
   const tmpCalleeParam$81 /*:regex*/ = /[^0-9]/g;
-  const tmpReturnArg$29 = Cu$3.replace(tmpCalleeParam$81, ``);
+  const tmpReturnArg$29 /*:unknown*/ = Cu$3.replace(tmpCalleeParam$81, ``);
   return tmpReturnArg$29;
 };
 $(f);

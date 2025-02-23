@@ -38,9 +38,9 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const key = $(`dakey`);
+const key /*:unknown*/ = $(`dakey`);
 const obj /*:object*/ = { [key]: 1 };
-const tmpCalleeParam = obj.dakey;
+const tmpCalleeParam /*:unknown*/ = obj.dakey;
 $(tmpCalleeParam);
 `````
 

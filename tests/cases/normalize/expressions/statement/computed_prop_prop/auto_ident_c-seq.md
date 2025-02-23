@@ -49,7 +49,7 @@ $(a, x);
 `````js filename=intro
 $(1);
 $(2);
-const tmpCompProp = $(1);
+const tmpCompProp /*:unknown*/ = $(1);
 const obj /*:object*/ = {};
 obj[tmpCompProp];
 const a /*:object*/ = { a: 999, b: 1000 };

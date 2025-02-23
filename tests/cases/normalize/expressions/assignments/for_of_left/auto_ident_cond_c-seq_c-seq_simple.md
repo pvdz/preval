@@ -70,27 +70,27 @@ $(a);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpCalleeParam$1 /*:object*/ = { x: 1 };
-const tmpCalleeParam = $(tmpCalleeParam$1);
-const tmpForOfGen = $forOf(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
   } else {
-    const tmpIfTest$1 = $(30);
-    let tmpAssignMemLhsObj = undefined;
+    const tmpIfTest$1 /*:unknown*/ = $(30);
+    let tmpAssignMemLhsObj /*:unknown*/ = undefined;
     if (tmpIfTest$1) {
       a = $(60);
       tmpAssignMemLhsObj = a;
     } else {
-      const tmpCalleeParam$3 = $(100);
-      const tmpClusterSSA_a = $(tmpCalleeParam$3);
+      const tmpCalleeParam$3 /*:unknown*/ = $(100);
+      const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$3);
       tmpAssignMemLhsObj = tmpClusterSSA_a;
     }
-    const tmpAssignMemRhs = tmpForOfNext.value;
+    const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   }
 }

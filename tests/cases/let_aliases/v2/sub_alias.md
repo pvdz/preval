@@ -63,9 +63,9 @@ $(a, b);
 
 
 `````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-const tmp = $(100);
+let b /*:unknown*/ = 1;
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmp /*:unknown*/ = $(100);
 if (tmp) {
   b = $(2);
   a = b;

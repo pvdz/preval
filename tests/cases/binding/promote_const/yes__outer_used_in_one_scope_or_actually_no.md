@@ -81,7 +81,7 @@ f();
 
 `````js filename=intro
 $(`something`);
-const x = $(`oops`);
+const x /*:unknown*/ = $(`oops`);
 $(x);
 `````
 

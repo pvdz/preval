@@ -152,26 +152,26 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  let B = `jhayon.vercel.app`;
-  const tmpClusterSSA__0x15f773 = $(`x`);
-  const A = tmpClusterSSA__0x15f773.length;
-  const tmpBinBothLhs$30 = A[0];
+  let B /*:unknown*/ = `jhayon.vercel.app`;
+  const tmpClusterSSA__0x15f773 /*:unknown*/ = $(`x`);
+  const A /*:unknown*/ = tmpClusterSSA__0x15f773.length;
+  const tmpBinBothLhs$30 /*:unknown*/ = A[0];
   const tmpIfTest$10 /*:boolean*/ = tmpBinBothLhs$30 === `.`;
   if (tmpIfTest$10) {
     B = A.slice(1);
   } else {
     B = A;
   }
-  const tmpBinBothLhs$32 = tmpClusterSSA__0x26b289.length;
-  const tmpBinBothRhs$32 = B.length;
+  const tmpBinBothLhs$32 /*:unknown*/ = tmpClusterSSA__0x26b289.length;
+  const tmpBinBothRhs$32 /*:unknown*/ = B.length;
   tmpClusterSSA__0x30c47e = tmpBinBothLhs$32 - tmpBinBothRhs$32;
   tmpClusterSSA__0x2a669d = tmpClusterSSA__0x26b289.indexOf(B, tmpClusterSSA__0x30c47e);
   tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d !== -1;
   if (tmpClusterSSA__0x5dc746) {
     tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
     if (tmpClusterSSA__0x5dc746) {
-      const tmpBinBothLhs$34 = tmpClusterSSA__0x26b289.length;
-      const tmpBinBothRhs$34 = A.length;
+      const tmpBinBothLhs$34 /*:unknown*/ = tmpClusterSSA__0x26b289.length;
+      const tmpBinBothRhs$34 /*:unknown*/ = A.length;
       const tmpIfTest$12 /*:boolean*/ = tmpBinBothLhs$34 === tmpBinBothRhs$34;
       if (tmpIfTest$12) {
       } else {

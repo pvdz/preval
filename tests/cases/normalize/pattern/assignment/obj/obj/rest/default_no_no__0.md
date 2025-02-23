@@ -41,7 +41,7 @@ $(`bad`);
 
 
 `````js filename=intro
-const objPatternNoDefault = (0).x;
+const objPatternNoDefault /*:unknown*/ = (0).x;
 const tmpCalleeParam$1 /*:array*/ = [];
 y = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
 $(`bad`);

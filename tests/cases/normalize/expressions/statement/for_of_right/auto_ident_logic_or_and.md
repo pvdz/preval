@@ -71,22 +71,22 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 = $(0);
-let tmpCalleeParam = $(tmpCalleeParam$1);
+const tmpCalleeParam$1 /*:unknown*/ = $(0);
+let tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
 if (tmpCalleeParam) {
 } else {
-  const tmpCalleeParam$3 = $(1);
+  const tmpCalleeParam$3 /*:unknown*/ = $(1);
   tmpCalleeParam = $(tmpCalleeParam$3);
   if (tmpCalleeParam) {
-    const tmpCalleeParam$5 = $(2);
+    const tmpCalleeParam$5 /*:unknown*/ = $(2);
     tmpCalleeParam = $(tmpCalleeParam$5);
   } else {
   }
 }
-const tmpForOfGen = $forOf(tmpCalleeParam);
+const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
   } else {

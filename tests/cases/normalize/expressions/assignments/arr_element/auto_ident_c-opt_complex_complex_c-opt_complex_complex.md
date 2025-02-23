@@ -77,36 +77,36 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
+let a /*:unknown*/ = undefined;
 const tmpObjLitVal /*:object*/ = { y: 1 };
 const b /*:object*/ = { x: tmpObjLitVal };
-const tmpChainElementCall = $(b);
+const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainRootComputed = $(`x`);
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  const tmpChainRootComputed /*:unknown*/ = $(`x`);
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$1) {
   } else {
-    const tmpChainRootComputed$1 = $(`y`);
-    const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+    const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
+    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
     a = tmpChainElementObject$1;
   }
 }
-const tmpBinBothLhs = a;
-let tmpClusterSSA_a = undefined;
-const tmpChainElementCall$1 = $(b);
+const tmpBinBothLhs /*:unknown*/ = a;
+let tmpClusterSSA_a /*:unknown*/ = undefined;
+const tmpChainElementCall$1 /*:unknown*/ = $(b);
 const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$1 == null;
 if (tmpIfTest$3) {
 } else {
-  const tmpChainRootComputed$3 = $(`x`);
-  const tmpChainElementObject$3 = tmpChainElementCall$1[tmpChainRootComputed$3];
+  const tmpChainRootComputed$3 /*:unknown*/ = $(`x`);
+  const tmpChainElementObject$3 /*:unknown*/ = tmpChainElementCall$1[tmpChainRootComputed$3];
   const tmpIfTest$5 /*:boolean*/ = tmpChainElementObject$3 == null;
   if (tmpIfTest$5) {
   } else {
-    const tmpChainRootComputed$5 = $(`y`);
-    const tmpChainElementObject$5 = tmpChainElementObject$3[tmpChainRootComputed$5];
+    const tmpChainRootComputed$5 /*:unknown*/ = $(`y`);
+    const tmpChainElementObject$5 /*:unknown*/ = tmpChainElementObject$3[tmpChainRootComputed$5];
     tmpClusterSSA_a = tmpChainElementObject$5;
   }
 }

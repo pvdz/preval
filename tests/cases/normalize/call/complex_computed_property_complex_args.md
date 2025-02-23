@@ -49,11 +49,11 @@ $dotCall(tmpCallCompVal, tmpCallCompObj, tmpCalleeParam, tmpCalleeParam$1);
 
 `````js filename=intro
 const a /*:object*/ = { b: $ };
-const tmpCallCompObj = $(a);
-const tmpCallCompProp = $(`b`);
-const tmpCallCompVal = tmpCallCompObj[tmpCallCompProp];
-const tmpCalleeParam = $(1);
-const tmpCalleeParam$1 = $(2);
+const tmpCallCompObj /*:unknown*/ = $(a);
+const tmpCallCompProp /*:unknown*/ = $(`b`);
+const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpCalleeParam$1 /*:unknown*/ = $(2);
 $dotCall(tmpCallCompVal, tmpCallCompObj, tmpCalleeParam, tmpCalleeParam$1);
 `````
 

@@ -51,14 +51,14 @@ $(a);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = $(100);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {
-  const tmpCompProp = $(`\$`);
+  const tmpCompProp /*:unknown*/ = $(`\$`);
   const b /*:object*/ = { $: $ };
-  const tmpNewCallee = b[tmpCompProp];
+  const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
   const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee(1);
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);

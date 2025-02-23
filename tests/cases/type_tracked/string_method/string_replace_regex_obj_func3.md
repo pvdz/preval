@@ -57,11 +57,11 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const obj /*:object*/ = { a: 1, b: 2 };
 const tmpCalleeParam$3 /*:(unknown)=>?*/ = function ($$0) {
-  const c = $$0;
+  const c /*:unknown*/ = $$0;
   debugger;
-  const tmpCalleeParam$7 = obj[c];
+  const tmpCalleeParam$7 /*:unknown*/ = obj[c];
   $(c, tmpCalleeParam$7);
-  const tmpReturnArg = obj[c];
+  const tmpReturnArg /*:unknown*/ = obj[c];
   return tmpReturnArg;
 };
 const rex /*:regex*/ = /\w.*\w/g;

@@ -52,12 +52,12 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const tmpBinBothLhs = $(1);
-const tmpBinBothRhs = $(2);
+const tmpBinBothLhs /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(2);
 const a /*:boolean*/ = tmpBinBothLhs !== tmpBinBothRhs;
 $(a);
-const tmpBinBothLhs$1 = $(1);
-const tmpBinBothRhs$1 = $(2);
+const tmpBinBothLhs$1 /*:unknown*/ = $(1);
+const tmpBinBothRhs$1 /*:unknown*/ = $(2);
 const b /*:boolean*/ = tmpBinBothLhs$1 !== tmpBinBothRhs$1;
 $(b);
 $(a);

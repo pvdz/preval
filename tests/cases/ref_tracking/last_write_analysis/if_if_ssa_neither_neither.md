@@ -59,12 +59,12 @@ $(x);
 
 
 `````js filename=intro
-const x = $(`a`);
+const x /*:unknown*/ = $(`a`);
 $(x);
-const tmpClusterSSA_x = $(`b`);
-const tmpIfTest = $(1);
+const tmpClusterSSA_x /*:unknown*/ = $(`b`);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpIfTest$1 = $(2);
+  const tmpIfTest$1 /*:unknown*/ = $(2);
   if (tmpIfTest$1) {
     $(`xyz`);
   } else {

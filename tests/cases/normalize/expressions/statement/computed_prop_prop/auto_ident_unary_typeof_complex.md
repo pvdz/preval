@@ -46,7 +46,7 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpUnaryArg = $(1);
+const tmpUnaryArg /*:unknown*/ = $(1);
 const obj /*:object*/ = {};
 const tmpCompProp /*:string*/ = typeof tmpUnaryArg;
 obj[tmpCompProp];

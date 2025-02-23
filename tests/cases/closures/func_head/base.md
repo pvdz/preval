@@ -61,7 +61,7 @@ const f /*:()=>*/ = function () {
   x = x + 1;
   return undefined;
 };
-let x = $(5);
+let x /*:unknown*/ = $(5);
 f();
 f();
 $(x);

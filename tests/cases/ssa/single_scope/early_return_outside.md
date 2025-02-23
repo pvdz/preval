@@ -84,12 +84,12 @@ $(tmpLabeledBlockFunc$3);
 
 `````js filename=intro
 const tmpLabeledBlockFunc$3 /*:(unknown)=>undefined*/ = function ($$0) {
-  const x = $$0;
+  const x /*:unknown*/ = $$0;
   debugger;
-  const tmpIfTest = $(1);
+  const tmpIfTest /*:unknown*/ = $(1);
   if (tmpIfTest) {
     if ($) {
-      const tmpClusterSSA_x = $(1);
+      const tmpClusterSSA_x /*:unknown*/ = $(1);
       $(tmpClusterSSA_x);
       return undefined;
     } else {

@@ -78,7 +78,7 @@ if ($) {
     debugger;
     return x;
   };
-  let x = $(5);
+  let x /*:unknown*/ = $(5);
   $(x);
   x = $(10);
   $(x);

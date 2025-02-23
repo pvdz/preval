@@ -78,8 +78,8 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const objPatternBeforeDefault = $Object_prototype.x;
-let objPatternAfterDefault = undefined;
+const objPatternBeforeDefault /*:unknown*/ = $Object_prototype.x;
+let objPatternAfterDefault /*:unknown*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   const tmpCalleeParam$1 /*:object*/ = { y: `pass2` };
@@ -87,10 +87,10 @@ if (tmpIfTest$1) {
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
+const objPatternBeforeDefault$1 /*:unknown*/ = objPatternAfterDefault.y;
 const tmpIfTest$3 /*:boolean*/ = objPatternBeforeDefault$1 === undefined;
 if (tmpIfTest$3) {
-  const tmpClusterSSA_y = $(`fail`);
+  const tmpClusterSSA_y /*:unknown*/ = $(`fail`);
   $(tmpClusterSSA_y);
 } else {
   $(objPatternBeforeDefault$1);

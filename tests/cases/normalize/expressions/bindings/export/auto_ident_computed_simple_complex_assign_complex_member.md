@@ -45,13 +45,13 @@ $(a, b);
 
 
 `````js filename=intro
-const varInitAssignLhsComputedProp = $(`c`);
+const varInitAssignLhsComputedProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 10, d: 20 };
-const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpCompProp /*:unknown*/ = $(`d`);
+const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
 b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const a = varInitAssignLhsComputedRhs;
+const a /*:unknown*/ = varInitAssignLhsComputedRhs;
 export { a };
 $(varInitAssignLhsComputedRhs, b);
 `````

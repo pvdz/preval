@@ -69,9 +69,9 @@ tmpCallCallee(tmpCalleeParam);
 const f /*:()=>object,undefined*/ = function () {
   const tmpPrevalAliasThis /*:object*/ = this;
   debugger;
-  const tmpIfTest = $(1);
+  const tmpIfTest /*:unknown*/ = $(1);
   if (tmpIfTest) {
-    const tmpIfTest$1 = $(2);
+    const tmpIfTest$1 /*:unknown*/ = $(2);
     if (tmpIfTest$1) {
       return tmpPrevalAliasThis;
     } else {
@@ -82,7 +82,7 @@ const f /*:()=>object,undefined*/ = function () {
   }
 };
 const obj /*:object*/ = { f: f, foo: 10 };
-const tmpCalleeParam = obj.f();
+const tmpCalleeParam /*:unknown*/ = obj.f();
 $(tmpCalleeParam);
 `````
 

@@ -58,7 +58,7 @@ while (true) {
 
 
 `````js filename=intro
-let x = 10;
+let x /*:unknown*/ = 10;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(x);
   x = $(1);

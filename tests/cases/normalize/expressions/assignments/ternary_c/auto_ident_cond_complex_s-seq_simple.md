@@ -54,17 +54,17 @@ $(a);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(0);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  let tmpNestedComplexRhs = 60;
-  const tmpIfTest$1 = $(1);
+  let tmpNestedComplexRhs /*:unknown*/ = 60;
+  const tmpIfTest$1 /*:unknown*/ = $(1);
   if (tmpIfTest$1) {
   } else {
-    const tmpCalleeParam$1 = $(100);
+    const tmpCalleeParam$1 /*:unknown*/ = $(100);
     tmpNestedComplexRhs = $(tmpCalleeParam$1);
   }
   a = tmpNestedComplexRhs;

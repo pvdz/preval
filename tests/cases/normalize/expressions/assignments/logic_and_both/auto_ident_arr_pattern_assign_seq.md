@@ -74,16 +74,16 @@ $(a, x, y);
 `````js filename=intro
 $(1);
 $(2);
-const tmpArrElement = $(3);
-const tmpArrElement$1 = $(4);
+const tmpArrElement /*:unknown*/ = $(3);
+const tmpArrElement$1 /*:unknown*/ = $(4);
 $(tmpArrElement);
 $(tmpArrElement$1);
-const tmpArrElement$3 = $(3);
-const tmpArrElement$5 = $(4);
+const tmpArrElement$3 /*:unknown*/ = $(3);
+const tmpArrElement$5 /*:unknown*/ = $(4);
 const tmpNestedAssignArrPatternRhs$1 /*:array*/ = [tmpArrElement$3, tmpArrElement$5];
 const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
-const tmpClusterSSA_x$1 = arrPatternSplat$1[0];
-const tmpClusterSSA_y$1 = arrPatternSplat$1[1];
+const tmpClusterSSA_x$1 /*:unknown*/ = arrPatternSplat$1[0];
+const tmpClusterSSA_y$1 /*:unknown*/ = arrPatternSplat$1[1];
 $(tmpNestedAssignArrPatternRhs$1);
 $(tmpNestedAssignArrPatternRhs$1, tmpClusterSSA_x$1, tmpClusterSSA_y$1);
 `````

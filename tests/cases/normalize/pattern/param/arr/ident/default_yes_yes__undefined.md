@@ -63,12 +63,12 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const bindingPatternArrRoot = $(`pass2`);
+const bindingPatternArrRoot /*:unknown*/ = $(`pass2`);
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const arrPatternBeforeDefault = arrPatternSplat[0];
+const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
 const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
-  const tmpClusterSSA_x = $(`fail`);
+  const tmpClusterSSA_x /*:unknown*/ = $(`fail`);
   $(tmpClusterSSA_x);
 } else {
   $(arrPatternBeforeDefault);

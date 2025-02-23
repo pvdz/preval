@@ -39,7 +39,7 @@ $coerce(tmpBinLhs, `plustr`);
 
 
 `````js filename=intro
-const tmpCallCallee$1 = $(1);
+const tmpCallCallee$1 /*:unknown*/ = $(1);
 $coerce(tmpCallCallee$1, `string`);
 `````
 

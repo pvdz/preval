@@ -65,24 +65,24 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
+let a /*:unknown*/ = undefined;
 $(100);
 const b /*:object*/ = { x: 1 };
-const tmpChainRootProp = $(b);
+const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementObject = tmpChainRootProp.x;
+  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
   a = tmpChainElementObject;
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpChainRootProp$1 = $(b);
+    const tmpChainRootProp$1 /*:unknown*/ = $(b);
     const tmpIfTest$2 /*:boolean*/ = tmpChainRootProp$1 == null;
     if (tmpIfTest$2) {
     } else {
-      const tmpChainElementObject$1 = tmpChainRootProp$1.x;
+      const tmpChainElementObject$1 /*:unknown*/ = tmpChainRootProp$1.x;
       a = tmpChainElementObject$1;
     }
     if (a) {

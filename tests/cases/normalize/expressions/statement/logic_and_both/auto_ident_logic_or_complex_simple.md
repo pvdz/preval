@@ -48,14 +48,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
-let tmpIfTest = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(0);
+let tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
 if (tmpIfTest) {
 } else {
   tmpIfTest = true;
 }
 if (tmpIfTest) {
-  const tmpCalleeParam$1 = $(0);
+  const tmpCalleeParam$1 /*:unknown*/ = $(0);
   $(tmpCalleeParam$1);
 } else {
 }

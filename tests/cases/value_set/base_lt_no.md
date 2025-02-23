@@ -218,7 +218,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const x = $();
+const x /*:unknown*/ = $();
 let n /*:number*/ = 11;
 const t /*:boolean*/ = 0 === x;
 if (t) {

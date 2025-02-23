@@ -42,8 +42,8 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-const tmpThrowArg = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpThrowArg /*:unknown*/ = $(tmpCalleeParam);
 throw tmpThrowArg;
 `````
 

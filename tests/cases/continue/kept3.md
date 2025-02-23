@@ -82,11 +82,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest = $();
+  const tmpIfTest /*:unknown*/ = $();
   if (tmpIfTest) {
-    const tmpIfTest$1 = $();
+    const tmpIfTest$1 /*:unknown*/ = $();
     if (tmpIfTest$1) {
-      const tmpIfTest$3 = $();
+      const tmpIfTest$3 /*:unknown*/ = $();
       if (tmpIfTest$3) {
         break;
       } else {

@@ -42,10 +42,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpUnaryArg = $(100);
+const tmpUnaryArg /*:unknown*/ = $(100);
 const tmpIfTest /*:number*/ = +tmpUnaryArg;
 if (tmpIfTest) {
-  const tmpUnaryArg$1 = $(100);
+  const tmpUnaryArg$1 /*:unknown*/ = $(100);
   +tmpUnaryArg$1;
 } else {
 }

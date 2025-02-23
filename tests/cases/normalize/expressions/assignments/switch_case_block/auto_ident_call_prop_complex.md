@@ -60,13 +60,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpSwitchDisc = $(1);
-const tmpBinBothRhs = $(1);
+const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   const b /*:object*/ = { $: $ };
-  const tmpCallObj = $(b);
-  const tmpClusterSSA_a = tmpCallObj.$(1);
+  const tmpCallObj /*:unknown*/ = $(b);
+  const tmpClusterSSA_a /*:unknown*/ = tmpCallObj.$(1);
   $(tmpClusterSSA_a);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };

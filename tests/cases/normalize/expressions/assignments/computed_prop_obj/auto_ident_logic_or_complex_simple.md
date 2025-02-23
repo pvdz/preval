@@ -47,9 +47,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
-let a = $(tmpCalleeParam);
-let tmpCompObj = 2;
+const tmpCalleeParam /*:unknown*/ = $(0);
+let a /*:unknown*/ = $(tmpCalleeParam);
+let tmpCompObj /*:unknown*/ = 2;
 if (a) {
   tmpCompObj = a;
 } else {

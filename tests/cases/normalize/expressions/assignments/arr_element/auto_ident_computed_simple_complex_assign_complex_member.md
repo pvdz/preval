@@ -60,16 +60,16 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpNestedAssignComMemberProp = $(`c`);
+const tmpNestedAssignComMemberProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 10, d: 20 };
-const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpCompProp /*:unknown*/ = $(`d`);
+const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
 b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-const tmpNestedAssignComMemberProp$1 = $(`c`);
-const tmpCompObj$1 = $(b);
-const tmpCompProp$1 = $(`d`);
-const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
+const tmpNestedAssignComMemberProp$1 /*:unknown*/ = $(`c`);
+const tmpCompObj$1 /*:unknown*/ = $(b);
+const tmpCompProp$1 /*:unknown*/ = $(`d`);
+const tmpNestedAssignPropRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
 b[tmpNestedAssignComMemberProp$1] = tmpNestedAssignPropRhs$1;
 const tmpCalleeParam /*:primitive*/ = tmpNestedAssignPropRhs + tmpNestedAssignPropRhs$1;
 $(tmpCalleeParam);

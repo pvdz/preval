@@ -296,7 +296,7 @@ const tmp /*:(array)=>?*/ = function (...$$0 /*:array*/) {
   debugger;
   const tmpCalleeParam /*:array*/ = [`\$:`, a$1, b, c, d, e, obja, objb, objc, objd, `::`, ...a$1];
   $(tmpCalleeParam);
-  const tmpReturnArg = a$1[0];
+  const tmpReturnArg /*:unknown*/ = a$1[0];
   return tmpReturnArg;
 };
 const obja /*:object*/ = {
@@ -306,7 +306,7 @@ const obja /*:object*/ = {
     return 110;
   },
   set a($$0) {
-    const x = $$0;
+    const x /*:unknown*/ = $$0;
     debugger;
     tmp(`a.set`, x);
     e = `faila`;
@@ -321,7 +321,7 @@ const objb /*:object*/ = {
     return 100;
   },
   set b($$0) {
-    const x$1 = $$0;
+    const x$1 /*:unknown*/ = $$0;
     debugger;
     tmp(`b.set`, x$1);
     a = 2100;
@@ -338,7 +338,7 @@ const objc /*:object*/ = {
     return 100;
   },
   set c($$0) {
-    const x$3 = $$0;
+    const x$3 /*:unknown*/ = $$0;
     debugger;
     tmp(`c.set`, x$3);
     a = 3100;
@@ -357,7 +357,7 @@ const objd /*:object*/ = {
     return 100;
   },
   set d($$0) {
-    const x$5 = $$0;
+    const x$5 /*:unknown*/ = $$0;
     debugger;
     tmp(`d.set`, x$5);
     a = 4100;
@@ -394,15 +394,15 @@ const d /*:()=>object*/ = function () {
   return objd;
 };
 let e /*:primitive*/ = 12345;
-const varInitAssignLhsComputedObj = a();
-const varInitAssignLhsComputedProp = tmp(`a`);
-const varInitAssignLhsComputedObj$1 = b();
-const varInitAssignLhsComputedProp$1 = tmp(`b`);
-const varInitAssignLhsComputedObj$3 = c();
-const varInitAssignLhsComputedProp$3 = tmp(`c`);
+const varInitAssignLhsComputedObj /*:unknown*/ = a();
+const varInitAssignLhsComputedProp /*:unknown*/ = tmp(`a`);
+const varInitAssignLhsComputedObj$1 /*:unknown*/ = b();
+const varInitAssignLhsComputedProp$1 /*:unknown*/ = tmp(`b`);
+const varInitAssignLhsComputedObj$3 /*:unknown*/ = c();
+const varInitAssignLhsComputedProp$3 /*:unknown*/ = tmp(`c`);
 d();
-const varInitAssignLhsComputedProp$5 = tmp(`d`);
-const varInitAssignLhsComputedRhs$5 = e;
+const varInitAssignLhsComputedProp$5 /*:unknown*/ = tmp(`d`);
+const varInitAssignLhsComputedRhs$5 /*:unknown*/ = e;
 objd[varInitAssignLhsComputedProp$5] = varInitAssignLhsComputedRhs$5;
 varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$5;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$5;

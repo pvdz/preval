@@ -97,9 +97,9 @@ const d /*:()=>undefined*/ = function () {
 const c /*:()=>undefined*/ = function () {
   debugger;
   $(`c`);
-  const tmpCalleeParam$3 = $(10);
+  const tmpCalleeParam$3 /*:unknown*/ = $(10);
   d();
-  const tmpCalleeParam$5 = $(20);
+  const tmpCalleeParam$5 /*:unknown*/ = $(20);
   d();
   $(tmpCalleeParam$3, tmpCalleeParam$5);
   return undefined;

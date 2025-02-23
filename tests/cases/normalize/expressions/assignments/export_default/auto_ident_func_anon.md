@@ -48,7 +48,7 @@ const a /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
-const tmpAnonDefaultExport = a;
+const tmpAnonDefaultExport /*:unknown*/ = a;
 export { tmpAnonDefaultExport as default };
 $(a);
 `````

@@ -155,7 +155,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 $inlinedFunction: {
-  const tmpSwitchValue = $(1);
+  const tmpSwitchValue /*:unknown*/ = $(1);
   let tmpSwitchCaseToStart /*:number*/ = 4;
   const tmpIfTest /*:boolean*/ = 0 === tmpSwitchValue;
   if (tmpIfTest) {
@@ -180,7 +180,7 @@ $inlinedFunction: {
   const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$7) {
     $(`one`);
-    const tmpIfTest$9 = $(1);
+    const tmpIfTest$9 /*:unknown*/ = $(1);
     if (tmpIfTest$9) {
       $(2);
       break $inlinedFunction;

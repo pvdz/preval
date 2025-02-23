@@ -70,20 +70,20 @@ const tmpObjLitVal$1 /*:(array)=>?*/ = function (...$$0 /*:array*/) {
   const tmpPrevalAliasThis /*:object*/ = this;
   const a$1 /*:array*/ = $$0;
   debugger;
-  const tmpCalleeParam = $(a$1);
+  const tmpCalleeParam /*:unknown*/ = $(a$1);
   $(tmpCalleeParam, tmpPrevalAliasThis);
-  const tmpReturnArg = a$1[0];
+  const tmpReturnArg /*:unknown*/ = a$1[0];
   return tmpReturnArg;
 };
 const tmpObjLitVal /*:object*/ = { c: tmpObjLitVal$1 };
 const a /*:object*/ = { b: tmpObjLitVal };
-const tmpChainElementCall = $(a);
+const tmpChainElementCall /*:unknown*/ = $(a);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
   $(undefined);
 } else {
-  const tmpChainElementObject = tmpChainElementCall.b;
-  const tmpChainElementCall$1 = tmpChainElementObject.c(100);
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.b;
+  const tmpChainElementCall$1 /*:unknown*/ = tmpChainElementObject.c(100);
   $(tmpChainElementCall$1);
 }
 `````

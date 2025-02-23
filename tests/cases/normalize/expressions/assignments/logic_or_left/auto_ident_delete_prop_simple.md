@@ -52,7 +52,7 @@ const a /*:boolean*/ = delete arg.y;
 if (a) {
   $(true);
 } else {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 }
 $(a, arg);

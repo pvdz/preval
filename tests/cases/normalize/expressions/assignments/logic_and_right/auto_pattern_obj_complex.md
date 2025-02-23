@@ -47,11 +47,11 @@ $(a);
 
 
 `````js filename=intro
-let a = 999;
-const tmpCalleeParam = $(100);
+let a /*:unknown*/ = 999;
+const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
   const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
-  const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
+  const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
   a = tmpNestedAssignObjPatternRhs.a;
   $(tmpNestedAssignObjPatternRhs);
 } else {

@@ -64,13 +64,13 @@ $(a, b, c);
 
 
 `````js filename=intro
-const tmpSwitchDisc = $(`a`);
-const tmpBinBothRhs = $(`a`);
+const tmpSwitchDisc /*:unknown*/ = $(`a`);
+const tmpBinBothRhs /*:unknown*/ = $(`a`);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   $(2);
-  const tmpNestedAssignObj = $(3);
-  const tmpNestedAssignPropRhs = $(3);
+  const tmpNestedAssignObj /*:unknown*/ = $(3);
+  const tmpNestedAssignPropRhs /*:unknown*/ = $(3);
   tmpNestedAssignObj.x = tmpNestedAssignPropRhs;
 } else {
 }

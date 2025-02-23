@@ -74,24 +74,24 @@ $(a, b);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpCalleeParam$1 /*:object*/ = { x: 1 };
-const tmpCalleeParam = $(tmpCalleeParam$1);
-const tmpForOfGen = $forOf(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
 const b /*:object*/ = { c: 10, d: 20 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
   } else {
-    const tmpNestedAssignComMemberProp = $(`c`);
-    const tmpCompObj = $(b);
-    const tmpCompProp = $(`d`);
-    const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+    const tmpNestedAssignComMemberProp /*:unknown*/ = $(`c`);
+    const tmpCompObj /*:unknown*/ = $(b);
+    const tmpCompProp /*:unknown*/ = $(`d`);
+    const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
     b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
     a = tmpNestedAssignPropRhs;
-    const tmpAssignMemRhs = tmpForOfNext.value;
+    const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
     tmpNestedAssignPropRhs.x = tmpAssignMemRhs;
   }
 }

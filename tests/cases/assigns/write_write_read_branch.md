@@ -44,9 +44,9 @@ if (tmpIfTest) {
 
 `````js filename=intro
 $(1);
-const x = $(2);
+const x /*:unknown*/ = $(2);
 $(x);
-const tmpIfTest = $(10);
+const tmpIfTest /*:unknown*/ = $(10);
 if (tmpIfTest) {
   $(x, `branch`);
 } else {

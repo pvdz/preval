@@ -43,9 +43,9 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 `````js filename=intro
 $(`%F0%90%8F%BF`);
-const tmpCalleeParam$1 = encodeURIComponent(`\ud800`);
+const tmpCalleeParam$1 /*:unknown*/ = encodeURIComponent(`\ud800`);
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 = encodeURIComponent(`\udfff`);
+const tmpCalleeParam$3 /*:unknown*/ = encodeURIComponent(`\udfff`);
 $(tmpCalleeParam$3);
 `````
 

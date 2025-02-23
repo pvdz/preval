@@ -68,9 +68,9 @@ f(2);
 
 `````js filename=intro
 if ($) {
-  const a = $();
+  const a /*:unknown*/ = $();
   $();
-  let b = a;
+  let b /*:unknown*/ = a;
   const tmpClusterSSA_f /*:()=>undefined*/ = function () {
     debugger;
     $(a);

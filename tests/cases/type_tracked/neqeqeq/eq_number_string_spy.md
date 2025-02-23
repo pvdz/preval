@@ -42,9 +42,9 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpBinBothRhs = $spy();
+const tmpBinBothRhs /*:unknown*/ = $spy();
 tmpBinBothRhs ** 0;
-const tmpBinBothRhs$1 = $spy();
+const tmpBinBothRhs$1 /*:unknown*/ = $spy();
 $coerce(tmpBinBothRhs$1, `plustr`);
 $(true);
 `````

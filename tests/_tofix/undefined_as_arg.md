@@ -63,9 +63,9 @@ $(a);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const f /*:(undefined)=>undefined*/ = function ($$0) {
-  const tmpPrevalAliasArgumentsAny = arguments;
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const f /*:(unused)=>*/ = function ($$0) {
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
   debugger;
   a = tmpPrevalAliasArgumentsAny;
   return undefined;

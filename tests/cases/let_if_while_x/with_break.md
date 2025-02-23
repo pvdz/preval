@@ -90,15 +90,15 @@ $(wat);
 
 
 `````js filename=intro
-const s = $(10);
+const s /*:unknown*/ = $(10);
 let count /*:boolean*/ = true;
 $(`before`);
 let wat /*:number*/ = s | 10;
-const chk = $(true);
+const chk /*:unknown*/ = $(true);
 if (chk) {
   $(`inside`);
   wat = wat | 10;
-  const chk$1 = $(true);
+  const chk$1 /*:unknown*/ = $(true);
   if (chk$1) {
   } else {
     count = false;
@@ -107,7 +107,7 @@ if (chk) {
     if (count) {
       $(`inside`);
       wat = wat | 10;
-      const chk$2 = $(true);
+      const chk$2 /*:unknown*/ = $(true);
       if (chk$2) {
       } else {
         count = false;

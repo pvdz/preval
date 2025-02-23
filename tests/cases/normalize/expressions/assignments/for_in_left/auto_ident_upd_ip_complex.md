@@ -74,24 +74,24 @@ $(a, b);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpCalleeParam$1 /*:object*/ = { x: 1 };
-const tmpCalleeParam = $(tmpCalleeParam$1);
-const tmpForInGen = $forIn(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
 const b /*:object*/ = { x: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
   } else {
-    const tmpCalleeParam$3 = $(b);
-    const tmpPostUpdArgObj = $(tmpCalleeParam$3);
-    const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+    const tmpCalleeParam$3 /*:unknown*/ = $(b);
+    const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam$3);
+    const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
     const tmpAssignMemRhs /*:primitive*/ = tmpPostUpdArgVal + 1;
     tmpPostUpdArgObj.x = tmpAssignMemRhs;
     a = tmpPostUpdArgVal;
-    const tmpAssignMemRhs$1 = tmpForInNext.value;
+    const tmpAssignMemRhs$1 /*:unknown*/ = tmpForInNext.value;
     tmpPostUpdArgVal.x = tmpAssignMemRhs$1;
   }
 }

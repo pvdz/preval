@@ -72,23 +72,23 @@ $(a, b);
 
 
 `````js filename=intro
-let b = {};
-let a = { a: 999, b: 1000 };
+let b /*:unknown*/ = {};
+let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpCalleeParam$1 /*:object*/ = { x: 1 };
-const tmpCalleeParam = $(tmpCalleeParam$1);
-const tmpForOfGen = $forOf(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
   } else {
-    const tmpObjLitVal = $(2);
+    const tmpObjLitVal /*:unknown*/ = $(2);
     const tmpCalleeParam$3 /*:object*/ = { b: tmpObjLitVal };
-    const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$3);
+    const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$3);
     b = tmpNestedAssignObjPatternRhs.b;
     a = tmpNestedAssignObjPatternRhs;
-    const tmpAssignMemRhs = tmpForOfNext.value;
+    const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
     tmpNestedAssignObjPatternRhs.x = tmpAssignMemRhs;
   }
 }

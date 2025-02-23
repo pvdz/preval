@@ -99,12 +99,12 @@ if (tmpIfTest$9) {
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const tmpChainRootProp = $(b);
+const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest$5 /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest$5) {
   $(undefined);
 } else {
-  const tmpChainElementObject = tmpChainRootProp.x;
+  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
   $(tmpChainElementObject);
 }
 $(`fail1`);

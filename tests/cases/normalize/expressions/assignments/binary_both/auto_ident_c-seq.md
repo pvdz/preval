@@ -52,10 +52,10 @@ $(a, x);
 `````js filename=intro
 $(1);
 $(2);
-const a = $(1);
+const a /*:unknown*/ = $(1);
 $(1);
 $(2);
-const tmpClusterSSA_a = $(1);
+const tmpClusterSSA_a /*:unknown*/ = $(1);
 const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a, 1);

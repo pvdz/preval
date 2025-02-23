@@ -49,7 +49,7 @@ $(a);
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpNewCallee = $($);
+  const tmpNewCallee /*:unknown*/ = $($);
   new tmpNewCallee(1);
   $(1);
 }

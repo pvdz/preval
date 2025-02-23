@@ -59,7 +59,7 @@ const f /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
-const tmpClusterSSA_tmpCalleeParam = $(100);
+const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
 $(tmpClusterSSA_tmpCalleeParam);
 $(f);
 `````

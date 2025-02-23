@@ -47,10 +47,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee$1 = $($);
-const tmpCalleeParam$3 = $(1);
-const tmpCalleeParam$5 = $(2);
-const a = tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
+const tmpCallCallee$1 /*:unknown*/ = $($);
+const tmpCalleeParam$3 /*:unknown*/ = $(1);
+const tmpCalleeParam$5 /*:unknown*/ = $(2);
+const a /*:unknown*/ = tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, a);
 $(a);

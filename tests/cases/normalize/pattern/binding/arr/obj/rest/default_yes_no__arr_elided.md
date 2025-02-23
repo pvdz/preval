@@ -50,9 +50,9 @@ $(x);
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { a: `pass` };
-const tmpClusterSSA_arrPatternStep = $(tmpCalleeParam);
+const tmpClusterSSA_arrPatternStep /*:unknown*/ = $(tmpCalleeParam);
 const tmpCalleeParam$3 /*:array*/ = [];
-const x = objPatternRest(tmpClusterSSA_arrPatternStep, tmpCalleeParam$3, undefined);
+const x /*:unknown*/ = objPatternRest(tmpClusterSSA_arrPatternStep, tmpCalleeParam$3, undefined);
 $(x);
 `````
 

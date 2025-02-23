@@ -31,7 +31,7 @@ const tmpUnaryArg = $spy();
 
 
 `````js filename=intro
-const tmpUnaryArg = $spy();
+const tmpUnaryArg /*:unknown*/ = $spy();
 +tmpUnaryArg;
 `````
 

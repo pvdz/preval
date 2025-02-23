@@ -39,7 +39,7 @@ a < b;
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { valueOf: $ };
-const a = $(tmpCalleeParam);
+const a /*:unknown*/ = $(tmpCalleeParam);
 a ** 0;
 `````
 

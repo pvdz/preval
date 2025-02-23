@@ -49,8 +49,8 @@ $(a);
 
 `````js filename=intro
 $(1);
-const tmpBinBothLhs$1 = $(1);
-const tmpBinBothRhs$1 = $(2);
+const tmpBinBothLhs$1 /*:unknown*/ = $(1);
+const tmpBinBothRhs$1 /*:unknown*/ = $(2);
 tmpBinBothLhs$1 + tmpBinBothRhs$1;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

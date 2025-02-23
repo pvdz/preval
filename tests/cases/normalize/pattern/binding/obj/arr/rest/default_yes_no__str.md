@@ -45,8 +45,8 @@ $(y);
 
 
 `````js filename=intro
-const objPatternBeforeDefault = `abc`.x;
-let objPatternAfterDefault = undefined;
+const objPatternBeforeDefault /*:unknown*/ = `abc`.x;
+let objPatternAfterDefault /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCalleeParam /*:array*/ = [`pass`];
@@ -55,7 +55,7 @@ if (tmpIfTest) {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const arrPatternSplat /*:array*/ = [...objPatternAfterDefault];
-const y = arrPatternSplat.slice(0);
+const y /*:unknown*/ = arrPatternSplat.slice(0);
 $(y);
 `````
 

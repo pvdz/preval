@@ -53,17 +53,17 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpObjLitVal = $(2);
+const tmpObjLitVal /*:unknown*/ = $(2);
 const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
-const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-let tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
-let tmpClusterSSA_a = tmpNestedAssignObjPatternRhs;
+const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+let tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
+let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs;
 if (tmpNestedAssignObjPatternRhs) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpObjLitVal$1 = $(2);
+    const tmpObjLitVal$1 /*:unknown*/ = $(2);
     const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal$1 };
-    const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
+    const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
     tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
     tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1;
     if (tmpNestedAssignObjPatternRhs$1) {

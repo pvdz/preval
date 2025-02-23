@@ -109,29 +109,29 @@ tmpSwitchBreak: {
 
 
 `````js filename=intro
-const tmpSwitchValue = $(1);
+const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 5;
-const tmpBinLhs = $(2);
+const tmpBinLhs /*:unknown*/ = $(2);
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpBinLhs$1 = $(4);
+  const tmpBinLhs$1 /*:unknown*/ = $(4);
   const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$1 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
   } else {
-    const tmpBinLhs$3 = $(5);
+    const tmpBinLhs$3 /*:unknown*/ = $(5);
     const tmpIfTest$3 /*:boolean*/ = tmpBinLhs$3 === tmpSwitchValue;
     if (tmpIfTest$3) {
       tmpSwitchCaseToStart = 2;
     } else {
-      const tmpBinLhs$5 = $(6);
+      const tmpBinLhs$5 /*:unknown*/ = $(6);
       const tmpIfTest$5 /*:boolean*/ = tmpBinLhs$5 === tmpSwitchValue;
       if (tmpIfTest$5) {
         tmpSwitchCaseToStart = 3;
       } else {
-        const tmpBinLhs$7 = $(7);
+        const tmpBinLhs$7 /*:unknown*/ = $(7);
         const tmpIfTest$7 /*:boolean*/ = tmpBinLhs$7 === tmpSwitchValue;
         if (tmpIfTest$7) {
           tmpSwitchCaseToStart = 4;

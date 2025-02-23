@@ -48,16 +48,16 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
-const tmpChainElementCall = $(undefined);
+let tmpCalleeParam /*:unknown*/ = undefined;
+const tmpChainElementCall /*:unknown*/ = $(undefined);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject = tmpChainElementCall.b;
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.b;
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$1) {
   } else {
-    const tmpChainElementCall$1 = tmpChainElementObject.c(100);
+    const tmpChainElementCall$1 /*:unknown*/ = tmpChainElementObject.c(100);
     tmpCalleeParam = tmpChainElementCall$1;
   }
 }

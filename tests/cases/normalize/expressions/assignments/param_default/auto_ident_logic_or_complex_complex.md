@@ -67,14 +67,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
-const tmpNestedComplexRhs = $(tmpCalleeParam);
-let tmpClusterSSA_a = undefined;
+const tmpCalleeParam /*:unknown*/ = $(0);
+const tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam);
+let tmpClusterSSA_a /*:unknown*/ = undefined;
 if (tmpNestedComplexRhs) {
   tmpClusterSSA_a = tmpNestedComplexRhs;
 } else {
-  const tmpCalleeParam$1 = $(2);
-  const tmpClusterSSA_tmpNestedComplexRhs = $(tmpCalleeParam$1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
+  const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$1);
   tmpClusterSSA_a = tmpClusterSSA_tmpNestedComplexRhs;
 }
 $(undefined);

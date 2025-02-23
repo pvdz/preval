@@ -43,9 +43,9 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
-const tmpCompObj = $(b);
-const tmpCompProp = $(`c`);
-const tmpThrowArg = tmpCompObj[tmpCompProp];
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpCompProp /*:unknown*/ = $(`c`);
+const tmpThrowArg /*:unknown*/ = tmpCompObj[tmpCompProp];
 throw tmpThrowArg;
 `````
 

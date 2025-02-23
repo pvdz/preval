@@ -70,7 +70,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       return undefined;
     },
   };
-  const x = $(tmpCalleeParam);
+  const x /*:unknown*/ = $(tmpCalleeParam);
   try {
     const y /*:number*/ = parseInt(x);
     $(y);

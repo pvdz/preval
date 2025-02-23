@@ -52,10 +52,10 @@ $(y);
 
 
 `````js filename=intro
-const objPatternBeforeDefault$1 = $Object_prototype.y;
+const objPatternBeforeDefault$1 /*:unknown*/ = $Object_prototype.y;
 const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault$1 === undefined;
 if (tmpIfTest$1) {
-  const tmpClusterSSA_y = $(`pass`);
+  const tmpClusterSSA_y /*:unknown*/ = $(`pass`);
   $(tmpClusterSSA_y);
 } else {
   $(objPatternBeforeDefault$1);

@@ -48,13 +48,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(0);
+const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpCompProp = $(`\$`);
+  const tmpCompProp /*:unknown*/ = $(`\$`);
   const b /*:object*/ = { $: $ };
-  const tmpNewCallee = b[tmpCompProp];
+  const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
   new tmpNewCallee(1);
 }
 const a /*:object*/ = { a: 999, b: 1000 };

@@ -56,7 +56,7 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpDeleteCompProp = $(`y`);
+const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 const arg /*:object*/ = { y: 1 };
 const tmpReturnArg /*:boolean*/ = delete arg[tmpDeleteCompProp];
 $(tmpReturnArg);

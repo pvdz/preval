@@ -162,7 +162,7 @@ if (test2) {
 
 
 `````js filename=intro
-const result = mainCall();
+const result /*:unknown*/ = mainCall();
 global.React = result;
 `````
 

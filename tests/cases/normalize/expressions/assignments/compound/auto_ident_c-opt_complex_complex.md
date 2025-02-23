@@ -55,7 +55,7 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const tmpChainElementCall = $(b);
+const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 let tmpClusterSSA_a /*:number*/ = NaN;
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -63,8 +63,8 @@ if (tmpIfTest) {
   a ** 0;
   $(NaN);
 } else {
-  const tmpChainRootComputed = $(`x`);
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  const tmpChainRootComputed /*:unknown*/ = $(`x`);
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   tmpClusterSSA_a = a * tmpChainElementObject;
   $(tmpClusterSSA_a);
 }

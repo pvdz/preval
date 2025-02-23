@@ -66,21 +66,21 @@ $(a);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  let tmpNestedComplexRhs = undefined;
+  let tmpNestedComplexRhs /*:unknown*/ = undefined;
   const tmpIfTest$3 /*:boolean*/ = $ == null;
   if (tmpIfTest$3) {
   } else {
     const tmpObjLitVal$1 /*:object*/ = { e: $ };
-    const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
+    const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, 1);
     tmpNestedComplexRhs = tmpChainElementCall;
   }
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
-  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(200);
   $(tmpClusterSSA_tmpCalleeParam$1);
 }
 $(a);

@@ -48,14 +48,14 @@ $(a);
 
 
 `````js filename=intro
-let a = 2;
-const tmpBinBothLhs = $(100);
-const tmpIfTest = $(1);
+let a /*:unknown*/ = 2;
+const tmpBinBothLhs /*:unknown*/ = $(100);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + 2;
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  const tmpCalleeParam$1 = $(100);
+  const tmpCalleeParam$1 /*:unknown*/ = $(100);
   a = $(tmpCalleeParam$1);
   const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + a;
   $(tmpClusterSSA_tmpCalleeParam$1);

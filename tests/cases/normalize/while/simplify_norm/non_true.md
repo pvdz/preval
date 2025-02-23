@@ -53,11 +53,11 @@ while (true) {
 
 `````js filename=intro
 if (x) {
-  const tmpIfTest = $(`yes`);
+  const tmpIfTest /*:unknown*/ = $(`yes`);
   if (tmpIfTest) {
     while ($LOOP_UNROLL_10) {
       if (x) {
-        const tmpIfTest$1 = $(`yes`);
+        const tmpIfTest$1 /*:unknown*/ = $(`yes`);
         if (tmpIfTest$1) {
         } else {
           break;

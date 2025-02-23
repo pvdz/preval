@@ -101,12 +101,12 @@ if (tmpIfTest$7) {
 
 
 `````js filename=intro
-const tmpArrElement = $(3);
-const tmpArrElement$1 = $(4);
+const tmpArrElement /*:unknown*/ = $(3);
+const tmpArrElement$1 /*:unknown*/ = $(4);
 const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_x = arrPatternSplat[0];
-const tmpClusterSSA_y = arrPatternSplat[1];
+const tmpClusterSSA_x /*:unknown*/ = arrPatternSplat[0];
+const tmpClusterSSA_y /*:unknown*/ = arrPatternSplat[1];
 $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_x, tmpClusterSSA_y);
 $(`fail1`);
 $(`fail2`);

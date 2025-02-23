@@ -67,7 +67,7 @@ if ($) {
 `````js filename=intro
 if ($) {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let x = $(1);
+    let x /*:unknown*/ = $(1);
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       $(x);
       x = $(2);

@@ -65,14 +65,14 @@ $(blob);
 
 `````js filename=intro
 const blob /*:object*/ = { thing: `woop` };
-const tmpForInGen = $forIn(blob);
+const tmpForInGen /*:unknown*/ = $forIn(blob);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
   } else {
-    const a = tmpForInNext.value;
+    const a /*:unknown*/ = tmpForInNext.value;
     $(a);
   }
 }

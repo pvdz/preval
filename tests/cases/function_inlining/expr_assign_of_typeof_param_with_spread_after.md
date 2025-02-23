@@ -74,7 +74,7 @@ $(x);
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [1, 2, 3];
-const arr = $(tmpCalleeParam);
+const arr /*:unknown*/ = $(tmpCalleeParam);
 [...arr];
 $(`number`);
 `````

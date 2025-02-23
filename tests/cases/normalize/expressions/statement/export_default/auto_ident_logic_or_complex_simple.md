@@ -44,8 +44,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
-let tmpAnonDefaultExport = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(0);
+let tmpAnonDefaultExport /*:unknown*/ = $(tmpCalleeParam);
 if (tmpAnonDefaultExport) {
 } else {
   tmpAnonDefaultExport = 2;

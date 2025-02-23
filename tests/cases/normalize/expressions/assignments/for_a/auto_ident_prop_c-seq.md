@@ -49,7 +49,7 @@ while (true) {
 
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
-const tmpAssignRhsProp = $(b);
+const tmpAssignRhsProp /*:unknown*/ = $(b);
 tmpAssignRhsProp.c;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);

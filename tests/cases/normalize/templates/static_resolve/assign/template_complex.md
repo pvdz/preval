@@ -45,7 +45,7 @@ $(x);
 
 
 `````js filename=intro
-const tmpCallCallee$1 = $(1);
+const tmpCallCallee$1 /*:unknown*/ = $(1);
 const tmpBinBothRhs$1 /*:string*/ = $coerce(tmpCallCallee$1, `string`);
 const tmpCallCallee /*:string*/ = `a ${tmpBinBothRhs$1} b`;
 $(tmpCallCallee);

@@ -44,12 +44,12 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-let tmpThrowArg = undefined;
-const tmpIfTest = $(30);
+let tmpThrowArg /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(30);
 if (tmpIfTest) {
   tmpThrowArg = $(2);
 } else {
-  const tmpCalleeParam = $(100);
+  const tmpCalleeParam /*:unknown*/ = $(100);
   tmpThrowArg = $(tmpCalleeParam);
 }
 throw tmpThrowArg;

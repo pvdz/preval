@@ -51,15 +51,15 @@ $(a, x, y);
 
 
 `````js filename=intro
-let a = undefined;
+let a /*:unknown*/ = undefined;
 $(1);
 $(2);
-const tmpArrElement = $(3);
-const tmpArrElement$1 = $(4);
+const tmpArrElement /*:unknown*/ = $(3);
+const tmpArrElement$1 /*:unknown*/ = $(4);
 const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_x = arrPatternSplat[0];
-const tmpClusterSSA_y = arrPatternSplat[1];
+const tmpClusterSSA_x /*:unknown*/ = arrPatternSplat[0];
+const tmpClusterSSA_y /*:unknown*/ = arrPatternSplat[1];
 a = tmpNestedAssignArrPatternRhs;
 export { a };
 $(a, tmpClusterSSA_x, tmpClusterSSA_y);

@@ -64,22 +64,22 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
+let a /*:unknown*/ = undefined;
 const tmpIfTest$3 /*:boolean*/ = $ == null;
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
 if (tmpIfTest$3) {
 } else {
-  const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
+  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, 1);
   a = tmpChainElementCall;
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpChainElementObject$1 = tmpObjLitVal$1.e;
+    const tmpChainElementObject$1 /*:unknown*/ = tmpObjLitVal$1.e;
     const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject$1 == null;
     if (tmpIfTest$1) {
     } else {
-      const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, tmpObjLitVal$1, 1);
+      const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpObjLitVal$1, 1);
       a = tmpChainElementCall$1;
     }
     if (a) {

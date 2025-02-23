@@ -100,12 +100,12 @@ let str /*:string*/ = `var 44=["\\13\\17\\31\\8\\12\\29\\21\\22\\7\\16\\8\\7\\9`
 let tmpClusterSSA_count$2 /*:number*/ = 66;
 const arr /*:array*/ = [``, ``, ``, ``, ``, ``, ``, `x5C`, `x35`, `x36`, ``, `x31`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpPostUpdArgIdent$2 = tmpClusterSSA_count$2;
+  const tmpPostUpdArgIdent$2 /*:unknown*/ = tmpClusterSSA_count$2;
   tmpClusterSSA_count$2 = tmpClusterSSA_count$2 - 1;
   if (tmpPostUpdArgIdent$2) {
-    const chr$1 = arr[tmpClusterSSA_count$2];
+    const chr$1 /*:unknown*/ = arr[tmpClusterSSA_count$2];
     if (chr$1) {
-      const chr2$1 = arr[tmpClusterSSA_count$2];
+      const chr2$1 /*:unknown*/ = arr[tmpClusterSSA_count$2];
       const regex$1 /*:regex*/ = /xyz/g;
       str = str.replace(regex$1, chr2$1);
     } else {

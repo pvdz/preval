@@ -64,12 +64,12 @@ $(a, x, y);
 `````js filename=intro
 $(1);
 $(2);
-const tmpObjLitVal = $(3);
-const tmpObjLitVal$1 = $(4);
+const tmpObjLitVal /*:unknown*/ = $(3);
+const tmpObjLitVal$1 /*:unknown*/ = $(4);
 $(tmpObjLitVal);
 $(tmpObjLitVal$1);
-const tmpObjLitVal$3 = $(3);
-const tmpObjLitVal$5 = $(4);
+const tmpObjLitVal$3 /*:unknown*/ = $(3);
+const tmpObjLitVal$5 /*:unknown*/ = $(4);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpObjLitVal$3, tmpObjLitVal$5);
 `````

@@ -46,7 +46,7 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpIfTest = $(0);
+const tmpIfTest /*:unknown*/ = $(0);
 const b /*:object*/ = { c: 1 };
 if (tmpIfTest) {
   $(100);

@@ -85,14 +85,14 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpSwitchValue = $(1, `disc`);
-const tmpBinLhs = $(0);
+const tmpSwitchValue /*:unknown*/ = $(1, `disc`);
+const tmpBinLhs /*:unknown*/ = $(0);
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   $(`wrong branch`);
   throw `wrong exit`;
 } else {
-  const tmpThrowArg = $(2, `throw`);
+  const tmpThrowArg /*:unknown*/ = $(2, `throw`);
   throw tmpThrowArg;
 }
 `````

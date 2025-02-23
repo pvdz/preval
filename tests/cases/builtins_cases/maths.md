@@ -78,7 +78,7 @@ const tmpFree /*:()=>number*/ = function $free() {
   const tmpRet /*:number*/ = Math.max(-10000, minned);
   return tmpRet;
 };
-const tmpBinLhs = $(120);
+const tmpBinLhs /*:unknown*/ = $(120);
 const ten /*:number*/ = tmpBinLhs / 12;
 const maxed /*:number*/ = $frfr(tmpFree);
 $(maxed);

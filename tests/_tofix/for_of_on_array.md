@@ -58,14 +58,14 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const arr /*:array*/ = [1, 2, 3];
-const tmpForOfGen = $forOf(arr);
+const tmpForOfGen /*:unknown*/ = $forOf(arr);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
   } else {
-    const x = tmpForOfNext.value;
+    const x /*:unknown*/ = tmpForOfNext.value;
     $(x);
   }
 }

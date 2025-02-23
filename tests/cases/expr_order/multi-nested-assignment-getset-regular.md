@@ -357,7 +357,7 @@ const obja /*:object*/ = {
     return 110;
   },
   set a($$0) {
-    const x = $$0;
+    const x /*:unknown*/ = $$0;
     debugger;
     tmp(`a.set`, x);
     return 1000;
@@ -371,7 +371,7 @@ const objb /*:object*/ = {
     return 100;
   },
   set b($$0) {
-    const x$1 = $$0;
+    const x$1 /*:unknown*/ = $$0;
     debugger;
     tmp(`b.set`, x$1);
     a = 2100;
@@ -387,7 +387,7 @@ const objc /*:object*/ = {
     return 100;
   },
   set c($$0) {
-    const x$3 = $$0;
+    const x$3 /*:unknown*/ = $$0;
     debugger;
     tmp(`c.set`, x$3);
     a = 3100;
@@ -405,7 +405,7 @@ const objd /*:object*/ = {
     return 100;
   },
   set d($$0) {
-    const x$5 = $$0;
+    const x$5 /*:unknown*/ = $$0;
     debugger;
     tmp(`d.set`, x$5);
     a = 4100;
@@ -425,7 +425,7 @@ const obje /*:object*/ = {
     return 100;
   },
   set e($$0) {
-    const x$7 = $$0;
+    const x$7 /*:unknown*/ = $$0;
     debugger;
     tmp(`e.set`, x$7);
     a = 5100;
@@ -470,10 +470,10 @@ const e /*:()=>object*/ = function () {
   d = 54;
   return obje;
 };
-const varInitAssignLhsComputedObj = a();
-const varInitAssignLhsComputedObj$1 = b();
-const varInitAssignLhsComputedObj$3 = c();
-const varInitAssignLhsComputedObj$5 = d();
+const varInitAssignLhsComputedObj /*:unknown*/ = a();
+const varInitAssignLhsComputedObj$1 /*:unknown*/ = b();
+const varInitAssignLhsComputedObj$3 /*:unknown*/ = c();
+const varInitAssignLhsComputedObj$5 /*:unknown*/ = d();
 e();
 varInitAssignLhsComputedObj$5.d = obje;
 varInitAssignLhsComputedObj$3.c = obje;

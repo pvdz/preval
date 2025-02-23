@@ -49,10 +49,10 @@ $(a, b);
 
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
-const tmpAssignRhsProp = $(b);
-const tmpClusterSSA_a = tmpAssignRhsProp.c;
-const tmpAssignRhsProp$1 = $(b);
-const tmpClusterSSA_a$1 = tmpAssignRhsProp$1.c;
+const tmpAssignRhsProp /*:unknown*/ = $(b);
+const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsProp.c;
+const tmpAssignRhsProp$1 /*:unknown*/ = $(b);
+const tmpClusterSSA_a$1 /*:unknown*/ = tmpAssignRhsProp$1.c;
 const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a$1;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a$1, b);

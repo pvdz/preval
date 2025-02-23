@@ -50,12 +50,12 @@ $(a, b);
 
 
 `````js filename=intro
-let b = [];
-const tmpIfTest = $(1);
+let b /*:unknown*/ = [];
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpArrElement = $(2);
+  const tmpArrElement /*:unknown*/ = $(2);
   const tmpCalleeParam /*:array*/ = [tmpArrElement];
-  const arrAssignPatternRhs = $(tmpCalleeParam);
+  const arrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
   const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
   b = arrPatternSplat[0];
 } else {

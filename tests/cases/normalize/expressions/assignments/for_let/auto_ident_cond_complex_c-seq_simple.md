@@ -53,14 +53,14 @@ while (true) {
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
-let xyz = undefined;
+const tmpIfTest /*:unknown*/ = $(1);
+let xyz /*:unknown*/ = undefined;
 if (tmpIfTest) {
-  const tmpClusterSSA_a = $(60);
+  const tmpClusterSSA_a /*:unknown*/ = $(60);
   xyz = tmpClusterSSA_a;
 } else {
-  const tmpCalleeParam = $(100);
-  const tmpClusterSSA_a$1 = $(tmpCalleeParam);
+  const tmpCalleeParam /*:unknown*/ = $(100);
+  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam);
   xyz = tmpClusterSSA_a$1;
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

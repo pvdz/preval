@@ -55,7 +55,7 @@ if (x) {
 
 
 `````js filename=intro
-let x = a;
+let x /*:unknown*/ = a;
 if (a) {
   x = b;
 } else {

@@ -59,13 +59,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(30);
+const tmpIfTest /*:unknown*/ = $(30);
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpReturnArg = $(2);
+  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(2);
   $(tmpClusterSSA_tmpReturnArg);
 } else {
-  const tmpCalleeParam = $(100);
-  const tmpClusterSSA_tmpReturnArg$1 = $(tmpCalleeParam);
+  const tmpCalleeParam /*:unknown*/ = $(100);
+  const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(tmpCalleeParam);
   $(tmpClusterSSA_tmpReturnArg$1);
 }
 const a /*:object*/ = { a: 999, b: 1000 };

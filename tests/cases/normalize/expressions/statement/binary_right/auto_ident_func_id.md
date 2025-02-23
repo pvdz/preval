@@ -45,7 +45,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpBinBothLhs = $(100);
+const tmpBinBothLhs /*:unknown*/ = $(100);
 const f /*:()=>undefined*/ = function () {
   debugger;
   return undefined;

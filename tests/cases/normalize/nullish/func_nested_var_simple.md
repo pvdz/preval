@@ -65,12 +65,12 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const b = $(2);
+const b /*:unknown*/ = $(2);
 const tmpIfTest /*:boolean*/ = b == null;
-let c = undefined;
+let c /*:unknown*/ = undefined;
 let tmpIfTest$1 /*:boolean*/ = false;
 if (tmpIfTest) {
-  const tmpClusterSSA_b = implicitA;
+  const tmpClusterSSA_b /*:unknown*/ = implicitA;
   c = tmpClusterSSA_b;
   tmpIfTest$1 = tmpClusterSSA_b == null;
 } else {
@@ -78,11 +78,11 @@ if (tmpIfTest) {
   tmpIfTest$1 = b == null;
 }
 if (tmpIfTest$1) {
-  const tmpClusterSSA_c = implicitB;
-  const tmpClusterSSA_tmpReturnArg = $(tmpClusterSSA_c);
+  const tmpClusterSSA_c /*:unknown*/ = implicitB;
+  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(tmpClusterSSA_c);
   $(tmpClusterSSA_tmpReturnArg);
 } else {
-  const tmpClusterSSA_tmpReturnArg$1 = $(c);
+  const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(c);
   $(tmpClusterSSA_tmpReturnArg$1);
 }
 `````

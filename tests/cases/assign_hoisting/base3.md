@@ -76,7 +76,7 @@ $(x);
 
 
 `````js filename=intro
-let x = $(2);
+let x /*:unknown*/ = $(2);
 if ($) {
   $(`block inlining`);
   $(x);

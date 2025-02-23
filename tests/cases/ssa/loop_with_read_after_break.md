@@ -70,7 +70,7 @@ if ($) {
 `````js filename=intro
 if ($) {
   $(1);
-  let x = $(2);
+  let x /*:unknown*/ = $(2);
   $(x);
   if ($) {
   } else {

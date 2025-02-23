@@ -78,18 +78,18 @@ $(x, `final`);
 
 
 `````js filename=intro
-let x = undefined;
-const test = $(1);
+let x /*:unknown*/ = undefined;
+const test /*:unknown*/ = $(1);
 if (test) {
-  const a = $(2);
+  const a /*:unknown*/ = $(2);
   x = a;
 } else {
-  const test2 = $(3);
+  const test2 /*:unknown*/ = $(3);
   if (test2) {
-    const b = $(4);
+    const b /*:unknown*/ = $(4);
     x = b;
   } else {
-    const c = $(5);
+    const c /*:unknown*/ = $(5);
     x = c;
   }
 }

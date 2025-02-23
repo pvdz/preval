@@ -48,18 +48,18 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
-const tmpIfTest = $(30);
-let tmpBinBothLhs = undefined;
+let a /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(30);
+let tmpBinBothLhs /*:unknown*/ = undefined;
 if (tmpIfTest) {
   a = $(2);
   tmpBinBothLhs = a;
 } else {
-  const tmpCalleeParam$1 = $(100);
+  const tmpCalleeParam$1 /*:unknown*/ = $(100);
   a = $(tmpCalleeParam$1);
   tmpBinBothLhs = a;
 }
-const tmpBinBothRhs = $(100);
+const tmpBinBothRhs /*:unknown*/ = $(100);
 const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);

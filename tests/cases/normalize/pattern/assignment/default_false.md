@@ -48,10 +48,10 @@ $(b);
 
 
 `````js filename=intro
-const tmpObjLitVal = $(`prop`);
+const tmpObjLitVal /*:unknown*/ = $(`prop`);
 const tmpIfTest /*:boolean*/ = tmpObjLitVal === undefined;
 if (tmpIfTest) {
-  const tmpClusterSSA_b = $(`default`);
+  const tmpClusterSSA_b /*:unknown*/ = $(`default`);
   $(tmpClusterSSA_b);
 } else {
   $(tmpObjLitVal);

@@ -83,8 +83,8 @@ $(z);
 
 
 `````js filename=intro
-const s = $(`s`);
-const t = $(`t`);
+const s /*:unknown*/ = $(`s`);
+const t /*:unknown*/ = $(`t`);
 const tmpStringConcatR /*:string*/ = $coerce(s, `plustr`);
 if (t) {
   const tmpStringConcatL /*:string*/ = $coerce(t, `plustr`);

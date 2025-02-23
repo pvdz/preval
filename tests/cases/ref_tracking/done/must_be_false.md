@@ -72,9 +72,9 @@ $(t);
 
 
 `````js filename=intro
-const tmpIfTest = $(true);
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
-  const tmpIfTest$1 = $(false);
+  const tmpIfTest$1 /*:unknown*/ = $(false);
   if (tmpIfTest$1) {
     $(`fail too`);
     throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;

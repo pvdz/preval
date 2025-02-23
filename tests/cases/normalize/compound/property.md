@@ -93,14 +93,14 @@ let a /*:primitive*/ = 0;
 const obj /*:object*/ = {
   get x() {
     debugger;
-    const tmpStringConcatR = s;
+    const tmpStringConcatR /*:unknown*/ = s;
     s = `${tmpStringConcatR}read;`;
     return a;
   },
   set x($$0) {
-    const v = $$0;
+    const v /*:unknown*/ = $$0;
     debugger;
-    const tmpBinBothLhs = s;
+    const tmpBinBothLhs /*:unknown*/ = s;
     const tmpStringConcatL /*:string*/ = $coerce(v, `plustr`);
     const tmpBinBothRhs /*:string*/ = `write[${tmpStringConcatL}];`;
     s = tmpBinBothLhs + tmpBinBothRhs;
@@ -108,7 +108,7 @@ const obj /*:object*/ = {
     return a;
   },
 };
-const tmpCompoundAssignLhs = obj.x;
+const tmpCompoundAssignLhs /*:unknown*/ = obj.x;
 const tmpAssignMemRhs /*:primitive*/ = tmpCompoundAssignLhs + 5;
 obj.x = tmpAssignMemRhs;
 $(a, s);

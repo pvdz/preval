@@ -51,17 +51,17 @@ $(a);
 
 
 `````js filename=intro
-let a = 999;
-const tmpIfTest = $(1);
+let a /*:unknown*/ = 999;
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
-  const tmpAssignObjPatternRhs = $(tmpCalleeParam);
+  const tmpAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
   a = tmpAssignObjPatternRhs.a;
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
-      const tmpAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
+      const tmpAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
       a = tmpAssignObjPatternRhs$1.a;
     } else {
       break;

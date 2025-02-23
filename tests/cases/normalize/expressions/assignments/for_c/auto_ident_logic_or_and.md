@@ -61,32 +61,32 @@ $(a);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpCalleeParam = $(0);
+  const tmpCalleeParam /*:unknown*/ = $(0);
   a = $(tmpCalleeParam);
   if (a) {
   } else {
-    const tmpCalleeParam$1 = $(1);
-    const tmpClusterSSA_a = $(tmpCalleeParam$1);
+    const tmpCalleeParam$1 /*:unknown*/ = $(1);
+    const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
     if (tmpClusterSSA_a) {
-      const tmpCalleeParam$3 = $(2);
+      const tmpCalleeParam$3 /*:unknown*/ = $(2);
       $(tmpCalleeParam$3);
     } else {
     }
   }
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpCalleeParam$2 = $(0);
+      const tmpCalleeParam$2 /*:unknown*/ = $(0);
       a = $(tmpCalleeParam$2);
       if (a) {
       } else {
-        const tmpCalleeParam$4 = $(1);
-        const tmpClusterSSA_a$1 = $(tmpCalleeParam$4);
+        const tmpCalleeParam$4 /*:unknown*/ = $(1);
+        const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam$4);
         if (tmpClusterSSA_a$1) {
-          const tmpCalleeParam$6 = $(2);
+          const tmpCalleeParam$6 /*:unknown*/ = $(2);
           $(tmpCalleeParam$6);
         } else {
         }

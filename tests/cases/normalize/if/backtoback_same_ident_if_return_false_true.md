@@ -73,16 +73,16 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
-const x = $(0);
+let tmpCalleeParam /*:unknown*/ = undefined;
+const x /*:unknown*/ = $(0);
 if (x) {
   tmpCalleeParam = x;
 } else {
-  const tmpClusterSSA_x = $(2);
+  const tmpClusterSSA_x /*:unknown*/ = $(2);
   if (tmpClusterSSA_x) {
     tmpCalleeParam = tmpClusterSSA_x;
   } else {
-    const tmpReturnArg = $(3);
+    const tmpReturnArg /*:unknown*/ = $(3);
     tmpCalleeParam = tmpReturnArg;
   }
 }

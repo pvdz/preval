@@ -137,7 +137,7 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const x = $(5);
+  const x /*:unknown*/ = $(5);
   $(x);
   const tmpCalleeParam /*:object*/ = {
     toString() {
@@ -146,7 +146,7 @@ if ($) {
       return `hi`;
     },
   };
-  const tmpClusterSSA_x = $(tmpCalleeParam);
+  const tmpClusterSSA_x /*:unknown*/ = $(tmpCalleeParam);
   const tmpClusterSSA_x$1 /*:primitive*/ = tmpClusterSSA_x + 1;
   if ($) {
     $(tmpClusterSSA_x$1);

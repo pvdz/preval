@@ -65,23 +65,23 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const test = $(`never`);
+const test /*:unknown*/ = $(`never`);
 const arr /*:array*/ = [1, 2, 3, 4, 5];
 if (test) {
 } else {
-  const tmp = arr.shift();
+  const tmp /*:unknown*/ = arr.shift();
   arr.push(tmp);
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const test$1 = $(`never`);
+    const test$1 /*:unknown*/ = $(`never`);
     if (test$1) {
       break;
     } else {
-      const tmp$1 = arr.shift();
+      const tmp$1 /*:unknown*/ = arr.shift();
       arr.push(tmp$1);
     }
   }
 }
-const tmpCalleeParam = arr.slice(0);
+const tmpCalleeParam /*:unknown*/ = arr.slice(0);
 $(tmpCalleeParam);
 `````
 

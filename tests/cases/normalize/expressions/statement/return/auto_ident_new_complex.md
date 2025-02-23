@@ -51,7 +51,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpNewCallee = $($);
+const tmpNewCallee /*:unknown*/ = $($);
 const tmpReturnArg /*:object*/ = new tmpNewCallee(1);
 $(tmpReturnArg);
 const a /*:object*/ = { a: 999, b: 1000 };

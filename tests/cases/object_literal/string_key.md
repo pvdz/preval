@@ -54,16 +54,16 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 
 
 `````js filename=intro
-const tmpObjLitPropVal = $(1);
+const tmpObjLitPropVal /*:unknown*/ = $(1);
 const x /*:object*/ = {
   [`hello, world!`]: tmpObjLitPropVal,
   [`hey, me too!`]() {
     debugger;
-    const tmpReturnArg = $(2);
+    const tmpReturnArg /*:unknown*/ = $(2);
     return tmpReturnArg;
   },
 };
-const tmpCalleeParam$1 = x[`Hey, me too!`]();
+const tmpCalleeParam$1 /*:unknown*/ = x[`Hey, me too!`]();
 $(x, tmpCalleeParam$1);
 `````
 

@@ -184,27 +184,27 @@ tmpSwitchBreak: {
 
 `````js filename=intro
 let tmpSwitchCaseToStart /*:number*/ = 2;
-const tmpBinLhs = $(10);
+const tmpBinLhs /*:unknown*/ = $(10);
 const tmpIfTest /*:boolean*/ = tmpBinLhs === 6;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpBinLhs$1 = $(20);
+  const tmpBinLhs$1 /*:unknown*/ = $(20);
   const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$1 === 6;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
   } else {
-    const tmpBinLhs$3 = $(30);
+    const tmpBinLhs$3 /*:unknown*/ = $(30);
     const tmpIfTest$3 /*:boolean*/ = tmpBinLhs$3 === 6;
     if (tmpIfTest$3) {
       tmpSwitchCaseToStart = 3;
     } else {
-      const tmpBinLhs$5 = $(40);
+      const tmpBinLhs$5 /*:unknown*/ = $(40);
       const tmpIfTest$5 /*:boolean*/ = tmpBinLhs$5 === 6;
       if (tmpIfTest$5) {
         tmpSwitchCaseToStart = 4;
       } else {
-        const tmpBinLhs$7 = $(50);
+        const tmpBinLhs$7 /*:unknown*/ = $(50);
         const tmpIfTest$7 /*:boolean*/ = tmpBinLhs$7 === 6;
         if (tmpIfTest$7) {
           tmpSwitchCaseToStart = 5;

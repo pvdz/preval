@@ -69,20 +69,20 @@ $(a);
 
 
 `````js filename=intro
-const tmpSwitchDisc = $(1);
-const tmpBinBothRhs = $(1);
+const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
-  const tmpCalleeParam = $(1);
-  let tmpIfTest$1 = $(tmpCalleeParam);
+  const tmpCalleeParam /*:unknown*/ = $(1);
+  let tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam);
   if (tmpIfTest$1) {
-    const tmpCalleeParam$1 = $(1);
+    const tmpCalleeParam$1 /*:unknown*/ = $(1);
     tmpIfTest$1 = $(tmpCalleeParam$1);
   } else {
   }
   if (tmpIfTest$1) {
   } else {
-    const tmpCalleeParam$3 = $(2);
+    const tmpCalleeParam$3 /*:unknown*/ = $(2);
     $(tmpCalleeParam$3);
   }
 } else {

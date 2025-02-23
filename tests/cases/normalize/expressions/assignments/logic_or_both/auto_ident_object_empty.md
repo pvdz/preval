@@ -45,7 +45,7 @@ $(a);
 
 
 `````js filename=intro
-let a = {};
+let a /*:unknown*/ = {};
 if (a) {
   $(a);
 } else {

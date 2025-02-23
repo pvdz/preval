@@ -65,14 +65,14 @@ $(a, x, y, z);
 
 
 `````js filename=intro
-const tmpSwitchDisc = $(`a`);
-const tmpBinBothRhs = $(`a`);
+const tmpSwitchDisc /*:unknown*/ = $(`a`);
+const tmpBinBothRhs /*:unknown*/ = $(`a`);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 const z /*:array*/ = [10, 20, 30];
 if (tmpIfTest) {
   const arrPatternSplat /*:array*/ = [...z];
-  const tmpClusterSSA_x = arrPatternSplat[0];
-  const tmpClusterSSA_y = arrPatternSplat[1];
+  const tmpClusterSSA_x /*:unknown*/ = arrPatternSplat[0];
+  const tmpClusterSSA_y /*:unknown*/ = arrPatternSplat[1];
   $(1, tmpClusterSSA_x, tmpClusterSSA_y, z);
 } else {
   $(1, 1, 2, z);

@@ -79,9 +79,9 @@ $continue();
 `````js filename=intro
 const $continue /*:()=>undefined*/ = function () {
   debugger;
-  const tmpIfTest = $();
+  const tmpIfTest /*:unknown*/ = $();
   if (tmpIfTest) {
-    const tmpIfTest$1 = $();
+    const tmpIfTest$1 /*:unknown*/ = $();
     if (tmpIfTest$1) {
       $continue();
       return undefined;
@@ -89,7 +89,7 @@ const $continue /*:()=>undefined*/ = function () {
     }
   } else {
   }
-  const tmpIfTest$3 = $();
+  const tmpIfTest$3 /*:unknown*/ = $();
   if (tmpIfTest$3) {
     return undefined;
   } else {

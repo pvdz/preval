@@ -58,14 +58,14 @@ $(a, arg);
 $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
-const tmpDeleteObj = $(arg);
-let tmpClusterSSA_a = delete tmpDeleteObj.y;
+const tmpDeleteObj /*:unknown*/ = $(arg);
+let tmpClusterSSA_a /*:unknown*/ = delete tmpDeleteObj.y;
 if (tmpClusterSSA_a) {
   $(tmpClusterSSA_a);
 } else {
   $(1);
   $(2);
-  const tmpDeleteObj$1 = $(arg);
+  const tmpDeleteObj$1 /*:unknown*/ = $(arg);
   const tmpNestedComplexRhs /*:boolean*/ = delete tmpDeleteObj$1.y;
   tmpClusterSSA_a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);

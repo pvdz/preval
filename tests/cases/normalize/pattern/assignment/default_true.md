@@ -47,10 +47,10 @@ $(b);
 
 
 `````js filename=intro
-const objPatternBeforeDefault = $Object_prototype.a;
+const objPatternBeforeDefault /*:unknown*/ = $Object_prototype.a;
 const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  const tmpClusterSSA_b = $(`default`);
+  const tmpClusterSSA_b /*:unknown*/ = $(`default`);
   $(tmpClusterSSA_b);
 } else {
   $(objPatternBeforeDefault);

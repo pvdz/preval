@@ -47,13 +47,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
-const xyz = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(0);
+const xyz /*:unknown*/ = $(tmpCalleeParam);
 if (xyz) {
   $(xyz);
 } else {
-  const tmpCalleeParam$1 = $(2);
-  const tmpClusterSSA_xyz = $(tmpCalleeParam$1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
+  const tmpClusterSSA_xyz /*:unknown*/ = $(tmpCalleeParam$1);
   $(tmpClusterSSA_xyz);
 }
 const a /*:object*/ = { a: 999, b: 1000 };

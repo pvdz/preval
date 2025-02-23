@@ -45,11 +45,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal$1 = $(1);
+const tmpObjLitVal$1 /*:unknown*/ = $(1);
 const a /*:object*/ = { b: tmpObjLitVal$1 };
 const tmpCalleeParam /*:object*/ = { x: a };
 $(tmpCalleeParam);
-const tmpAssignMemLhsObj = $(a);
+const tmpAssignMemLhsObj /*:unknown*/ = $(a);
 tmpAssignMemLhsObj.b = 2;
 $(a);
 `````

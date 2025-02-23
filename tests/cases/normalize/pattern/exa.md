@@ -80,17 +80,17 @@ val_1_4 = tmpAssignObjPatternRhs.val_1_4;
 
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = foo();
-const objPatternNoDefault = tmpAssignObjPatternRhs.val_1_1;
+const tmpAssignObjPatternRhs /*:unknown*/ = foo();
+const objPatternNoDefault /*:unknown*/ = tmpAssignObjPatternRhs.val_1_1;
 objPatternNoDefault.val_2_1;
 const tmpCalleeParam$1 /*:array*/ = [`val_2_1`];
 val_2_rest = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
 tmpAssignObjPatternRhs.val_1_2;
-const objPatternNoDefault$1 = tmpAssignObjPatternRhs.val_1_3;
+const objPatternNoDefault$1 /*:unknown*/ = tmpAssignObjPatternRhs.val_1_3;
 const arrPatternSplat /*:array*/ = [...objPatternNoDefault$1];
 arrPatternSplat[0];
 arrPatternSplat[1];
-const arrPatternStep = arrPatternSplat[2];
+const arrPatternStep /*:unknown*/ = arrPatternSplat[2];
 arrPatternStep.val_3_1;
 const tmpCalleeParam$7 /*:array*/ = [`val_3_1`];
 val_3_rest = objPatternRest(arrPatternStep, tmpCalleeParam$7, undefined);

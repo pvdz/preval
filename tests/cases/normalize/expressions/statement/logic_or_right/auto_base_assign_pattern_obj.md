@@ -48,16 +48,16 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpIfTest = $(100);
+const tmpIfTest /*:unknown*/ = $(100);
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const b /*:object*/ = {};
   $(a, b);
 } else {
-  const tmpObjLitVal = $(2);
+  const tmpObjLitVal /*:unknown*/ = $(2);
   const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
-  const tmpAssignObjPatternRhs = $(tmpCalleeParam);
-  const tmpClusterSSA_b = tmpAssignObjPatternRhs.b;
+  const tmpAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+  const tmpClusterSSA_b /*:unknown*/ = tmpAssignObjPatternRhs.b;
   $(a, tmpClusterSSA_b);
 }
 `````

@@ -89,20 +89,20 @@ let zzzz /*:()=>*/ = function () {
     debugger;
     return a;
   };
-  const tmpReturnArg$23 = zzzz();
+  const tmpReturnArg$23 /*:unknown*/ = zzzz();
   return tmpReturnArg$23;
 };
-const x = zzzz;
-const tmpBinBothLhs = zzzz();
-const tmpBinBothRhs = zzzz();
+const x /*:unknown*/ = zzzz;
+const tmpBinBothLhs /*:unknown*/ = zzzz();
+const tmpBinBothRhs /*:unknown*/ = zzzz();
 const tmpCalleeParam /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 $(tmpCalleeParam);
-const tmpBinBothLhs$1 = x();
-const tmpBinBothRhs$1 = x();
+const tmpBinBothLhs$1 /*:unknown*/ = x();
+const tmpBinBothRhs$1 /*:unknown*/ = x();
 const tmpCalleeParam$1 /*:boolean*/ = tmpBinBothLhs$1 !== tmpBinBothRhs$1;
 $(tmpCalleeParam$1);
-const tmpBinBothLhs$3 = x();
-const tmpBinBothRhs$3 = zzzz();
+const tmpBinBothLhs$3 /*:unknown*/ = x();
+const tmpBinBothRhs$3 /*:unknown*/ = zzzz();
 const tmpCalleeParam$3 /*:boolean*/ = tmpBinBothLhs$3 === tmpBinBothRhs$3;
 $(tmpCalleeParam$3);
 `````

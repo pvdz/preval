@@ -57,14 +57,14 @@ $(a, b);
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const tmpCalleeParam = $(b);
-const tmpPostUpdArgObj = $(tmpCalleeParam);
-const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+const tmpCalleeParam /*:unknown*/ = $(b);
+const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs /*:primitive*/ = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-const tmpCalleeParam$1 = $(b);
-const tmpPostUpdArgObj$1 = $(tmpCalleeParam$1);
-const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
+const tmpCalleeParam$1 /*:unknown*/ = $(b);
+const tmpPostUpdArgObj$1 /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpPostUpdArgVal$1 /*:unknown*/ = tmpPostUpdArgObj$1.x;
 const tmpAssignMemRhs$1 /*:primitive*/ = tmpPostUpdArgVal$1 + 1;
 tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
 tmpPostUpdArgVal + tmpPostUpdArgVal$1;

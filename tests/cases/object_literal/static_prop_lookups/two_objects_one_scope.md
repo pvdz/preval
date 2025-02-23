@@ -71,7 +71,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-let problem1 = x;
+let problem1 /*:unknown*/ = x;
 if (x) {
 } else {
   problem1 = {};

@@ -53,13 +53,13 @@ $(a);
 
 
 `````js filename=intro
-let tmpCompProp = undefined;
-const tmpChainElementCall = $($);
+let tmpCompProp /*:unknown*/ = undefined;
+const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpCalleeParam$3 = $(1);
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
+  const tmpCalleeParam$3 /*:unknown*/ = $(1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
   tmpCompProp = tmpChainElementCall$1;
 }
 const obj /*:object*/ = {};

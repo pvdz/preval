@@ -62,7 +62,7 @@ let a /*:()=>*/ = function () {
   debugger;
   return undefined;
 };
-const tmpCalleeParam = a;
+const tmpCalleeParam /*:unknown*/ = a;
 if (a) {
   const tmpNestedComplexRhs /*:()=>undefined*/ = function () {
     debugger;

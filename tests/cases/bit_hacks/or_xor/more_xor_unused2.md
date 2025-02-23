@@ -57,7 +57,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 = $(1);
+const tmpCalleeParam$1 /*:unknown*/ = $(1);
 tmpCalleeParam$1 ** 0;
 const tmpOrXor /*:number*/ = tmpCalleeParam$1 & -17;
 const c /*:number*/ = tmpOrXor ^ 32;

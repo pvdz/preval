@@ -90,7 +90,7 @@ f();
 `````js filename=intro
 const g /*:()=>undefined*/ = function () {
   debugger;
-  const tmpIfTest = $(1);
+  const tmpIfTest /*:unknown*/ = $(1);
   if (tmpIfTest) {
     $(`a`);
     g();
@@ -100,7 +100,7 @@ const g /*:()=>undefined*/ = function () {
     return undefined;
   }
 };
-const tmpIfTest$1 = $(1);
+const tmpIfTest$1 /*:unknown*/ = $(1);
 if (tmpIfTest$1) {
   $(`c`);
   g();

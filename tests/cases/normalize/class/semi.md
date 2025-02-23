@@ -67,7 +67,7 @@ const x /*:class*/ = class {
   }
 };
 const tmpCallObj /*:object*/ = new x();
-const tmpCalleeParam = tmpCallObj.b();
+const tmpCalleeParam /*:unknown*/ = tmpCallObj.b();
 $(tmpCalleeParam);
 `````
 

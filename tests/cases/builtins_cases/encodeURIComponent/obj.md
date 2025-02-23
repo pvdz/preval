@@ -35,7 +35,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:object*/ = { wat: true };
-const tmpCalleeParam = encodeURIComponent(tmpCalleeParam$1);
+const tmpCalleeParam /*:unknown*/ = encodeURIComponent(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 

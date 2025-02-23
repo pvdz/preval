@@ -34,7 +34,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpUnaryArg$1 = $(1);
+const tmpUnaryArg$1 /*:unknown*/ = $(1);
 const tmpCalleeParam /*:boolean*/ = Boolean(tmpUnaryArg$1);
 $(tmpCalleeParam);
 `````

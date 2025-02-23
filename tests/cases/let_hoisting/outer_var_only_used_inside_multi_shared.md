@@ -85,7 +85,7 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const tmpssa2_x = $(1, `shared`);
+  const tmpssa2_x /*:unknown*/ = $(1, `shared`);
   if ($) {
     $(tmpssa2_x, `a`);
   } else {

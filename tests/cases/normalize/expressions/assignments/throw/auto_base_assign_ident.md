@@ -43,7 +43,7 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-const tmpNestedComplexRhs = $(2);
+const tmpNestedComplexRhs /*:unknown*/ = $(2);
 throw tmpNestedComplexRhs;
 `````
 

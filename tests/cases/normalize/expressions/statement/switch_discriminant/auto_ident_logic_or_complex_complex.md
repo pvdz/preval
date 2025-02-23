@@ -54,11 +54,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
-const tmpSwitchDisc = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(0);
+const tmpSwitchDisc /*:unknown*/ = $(tmpCalleeParam);
 if (tmpSwitchDisc) {
 } else {
-  const tmpCalleeParam$1 = $(2);
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
   $(tmpCalleeParam$1);
 }
 $(100);

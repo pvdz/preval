@@ -40,8 +40,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallComplexCallee = $($);
-const xyz = tmpCallComplexCallee(1);
+const tmpCallComplexCallee /*:unknown*/ = $($);
+const xyz /*:unknown*/ = tmpCallComplexCallee(1);
 $(xyz);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

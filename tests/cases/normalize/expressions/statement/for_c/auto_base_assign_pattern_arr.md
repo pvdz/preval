@@ -56,20 +56,20 @@ $(a, b);
 
 
 `````js filename=intro
-let b = [];
-const tmpIfTest = $(1);
+let b /*:unknown*/ = [];
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpArrElement = $(2);
+  const tmpArrElement /*:unknown*/ = $(2);
   const tmpCalleeParam /*:array*/ = [tmpArrElement];
-  const arrAssignPatternRhs = $(tmpCalleeParam);
+  const arrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
   const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
   b = arrPatternSplat[0];
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpArrElement$1 = $(2);
+      const tmpArrElement$1 /*:unknown*/ = $(2);
       const tmpCalleeParam$1 /*:array*/ = [tmpArrElement$1];
-      const arrAssignPatternRhs$1 = $(tmpCalleeParam$1);
+      const arrAssignPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
       const arrPatternSplat$1 /*:array*/ = [...arrAssignPatternRhs$1];
       b = arrPatternSplat$1[0];
     } else {

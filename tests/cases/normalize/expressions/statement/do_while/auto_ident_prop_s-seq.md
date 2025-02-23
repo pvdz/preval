@@ -72,7 +72,7 @@ $(100);
 const b /*:object*/ = { c: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpIfTest$1 = b.c;
+  const tmpIfTest$1 /*:unknown*/ = b.c;
   if (tmpIfTest$1) {
   } else {
     break;

@@ -54,7 +54,7 @@ $(x);
 
 
 `````js filename=intro
-const a = $(67636);
+const a /*:unknown*/ = $(67636);
 let x /*:boolean*/ = a !== 67636;
 if (x) {
   x = true;

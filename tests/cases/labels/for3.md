@@ -65,15 +65,15 @@ $(2);
 
 `````js filename=intro
 $(0);
-const tmpIfTest = $(true);
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
-  const tmpIfTest$1 = $();
+  const tmpIfTest$1 /*:unknown*/ = $();
   if (tmpIfTest$1) {
   } else {
     while ($LOOP_UNROLL_10) {
-      const tmpIfTest$2 = $(true);
+      const tmpIfTest$2 /*:unknown*/ = $(true);
       if (tmpIfTest$2) {
-        const tmpIfTest$4 = $();
+        const tmpIfTest$4 /*:unknown*/ = $();
         if (tmpIfTest$4) {
           break;
         } else {

@@ -55,11 +55,11 @@ $(a);
 
 `````js filename=intro
 $(1);
-const tmpCalleeParam = $(0);
-const tmpBinBothRhs = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(0);
+const tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam);
 if (tmpBinBothRhs) {
 } else {
-  const tmpCalleeParam$1 = $(2);
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
   $(tmpCalleeParam$1);
 }
 const a /*:object*/ = { a: 999, b: 1000 };

@@ -46,11 +46,11 @@ $(c);
 
 
 `````js filename=intro
-const a = $(`a`);
-const b = $(`b`);
+const a /*:unknown*/ = $(`a`);
+const b /*:unknown*/ = $(`b`);
 const dynKey /*:primitive*/ = a + b;
 const x /*:object*/ = { ab: 3 };
-const c = x[dynKey];
+const c /*:unknown*/ = x[dynKey];
 $(c);
 `````
 

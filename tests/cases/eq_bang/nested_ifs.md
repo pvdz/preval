@@ -103,13 +103,13 @@ if (a) {
 
 
 `````js filename=intro
-const tmpBinBothLhs = $(1);
-const tmpBinBothRhs = $(2);
+const tmpBinBothLhs /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(2);
 const a /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 if (a) {
   $(`else a1`);
-  const tmpBinBothLhs$1 = $(1);
-  const tmpBinBothRhs$1 = $(2);
+  const tmpBinBothLhs$1 /*:unknown*/ = $(1);
+  const tmpBinBothRhs$1 /*:unknown*/ = $(2);
   const c /*:boolean*/ = tmpBinBothLhs$1 === tmpBinBothRhs$1;
   if (c) {
     $(`else c1`);
@@ -119,8 +119,8 @@ if (a) {
   $(`else a2`);
 } else {
   $(`then a1`);
-  const tmpBinBothLhs$3 = $(1);
-  const tmpBinBothRhs$3 = $(2);
+  const tmpBinBothLhs$3 /*:unknown*/ = $(1);
+  const tmpBinBothRhs$3 /*:unknown*/ = $(2);
   const b /*:boolean*/ = tmpBinBothLhs$3 === tmpBinBothRhs$3;
   if (b) {
     $(`else b1`);

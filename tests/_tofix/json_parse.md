@@ -68,15 +68,15 @@ $(getMessages);
 
 
 `````js filename=intro
-const getMessages = async function ($$0) {
-  const $dlr_$$0 = $$0;
+const getMessages /*:(unknown)=>promise*/ = async function ($$0) {
+  const $dlr_$$0 /*:unknown*/ = $$0;
   debugger;
-  const tmpAwaitArg = fetchFromStore($dlr_$$0);
-  const l$11 = await tmpAwaitArg;
-  const tmpCompObj$1 = l$11[0];
-  const tmpCompObj = tmpCompObj$1.dataValues;
-  const tmpCalleeParam = tmpCompObj.bucket;
-  const tmpReturnArg$13 = JSON.parse(tmpCalleeParam);
+  const tmpAwaitArg /*:unknown*/ = fetchFromStore($dlr_$$0);
+  const l$11 /*:unknown*/ = await tmpAwaitArg;
+  const tmpCompObj$1 /*:unknown*/ = l$11[0];
+  const tmpCompObj /*:unknown*/ = tmpCompObj$1.dataValues;
+  const tmpCalleeParam /*:unknown*/ = tmpCompObj.bucket;
+  const tmpReturnArg$13 /*:unknown*/ = JSON.parse(tmpCalleeParam);
   return tmpReturnArg$13;
 };
 $(getMessages);

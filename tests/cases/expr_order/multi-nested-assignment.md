@@ -205,10 +205,10 @@ const e /*:()=>object*/ = function () {
   d = 54;
   return obj;
 };
-const tmpAssignMemLhsObj = a();
-const varInitAssignLhsComputedObj = b();
-const varInitAssignLhsComputedObj$1 = c();
-const varInitAssignLhsComputedObj$3 = d();
+const tmpAssignMemLhsObj /*:unknown*/ = a();
+const varInitAssignLhsComputedObj /*:unknown*/ = b();
+const varInitAssignLhsComputedObj$1 /*:unknown*/ = c();
+const varInitAssignLhsComputedObj$3 /*:unknown*/ = d();
 e();
 varInitAssignLhsComputedObj$3.x = obj;
 varInitAssignLhsComputedObj$1.x = obj;

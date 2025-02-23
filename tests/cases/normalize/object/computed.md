@@ -37,8 +37,8 @@ $(obj);
 
 
 `````js filename=intro
-const tmpObjLitPropKey = $(1);
-const tmpObjLitPropVal = $(2);
+const tmpObjLitPropKey /*:unknown*/ = $(1);
+const tmpObjLitPropVal /*:unknown*/ = $(2);
 const obj /*:object*/ = { [tmpObjLitPropKey]: tmpObjLitPropVal };
 $(obj);
 `````

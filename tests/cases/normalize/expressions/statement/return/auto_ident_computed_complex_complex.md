@@ -57,9 +57,9 @@ $(a, b);
 
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
-const tmpCompObj = $(b);
-const tmpCompProp = $(`c`);
-const tmpReturnArg = tmpCompObj[tmpCompProp];
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpCompProp /*:unknown*/ = $(`c`);
+const tmpReturnArg /*:unknown*/ = tmpCompObj[tmpCompProp];
 $(tmpReturnArg);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);

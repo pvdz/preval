@@ -51,10 +51,10 @@ $(a, b);
 
 `````js filename=intro
 const b /*:object*/ = { c: 10, d: 20 };
-const varInitAssignLhsComputedObj = $(b);
-const tmpCompObj$1 = $(b);
-const tmpCompProp$1 = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCompProp$1];
+const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
+const tmpCompObj$1 /*:unknown*/ = $(b);
+const tmpCompProp$1 /*:unknown*/ = $(`d`);
+const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 const obj /*:object*/ = {};
 obj[varInitAssignLhsComputedRhs];

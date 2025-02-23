@@ -72,17 +72,17 @@ $(a);
 
 
 `````js filename=intro
-let tmpIfTest = undefined;
+let tmpIfTest /*:unknown*/ = undefined;
 const tmpIfTest$3 /*:boolean*/ = $ == null;
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
 if (tmpIfTest$3) {
 } else {
-  const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
+  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, 1);
   tmpIfTest = tmpChainElementCall;
 }
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject$9 = tmpObjLitVal$1.e;
+  const tmpChainElementObject$9 /*:unknown*/ = tmpObjLitVal$1.e;
   const tmpIfTest$7 /*:boolean*/ = tmpChainElementObject$9 == null;
   if (tmpIfTest$7) {
   } else {

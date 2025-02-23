@@ -49,7 +49,7 @@ $(a, b);
 
 
 `````js filename=intro
-let a = 1;
+let a /*:unknown*/ = 1;
 $(100);
 $(100);
 $(100);

@@ -53,10 +53,10 @@ $(a);
 
 `````js filename=intro
 $(1);
-const tmpIfTest = $(30);
+const tmpIfTest /*:unknown*/ = $(30);
 if (tmpIfTest) {
 } else {
-  const tmpCalleeParam = $(100);
+  const tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpCalleeParam);
 }
 const a /*:object*/ = { a: 999, b: 1000 };

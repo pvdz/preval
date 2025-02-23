@@ -55,22 +55,22 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
-const tmpIfTest$1 = $(1);
+let a /*:unknown*/ = undefined;
+const tmpIfTest$1 /*:unknown*/ = $(1);
 if (tmpIfTest$1) {
   a = $(60);
 } else {
-  const tmpCalleeParam = $(100);
+  const tmpCalleeParam /*:unknown*/ = $(100);
   a = $(tmpCalleeParam);
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(1);
-    const tmpIfTest$2 = $(1);
+    const tmpIfTest$2 /*:unknown*/ = $(1);
     if (tmpIfTest$2) {
       a = $(60);
     } else {
-      const tmpCalleeParam$1 = $(100);
+      const tmpCalleeParam$1 /*:unknown*/ = $(100);
       a = $(tmpCalleeParam$1);
     }
     if (a) {

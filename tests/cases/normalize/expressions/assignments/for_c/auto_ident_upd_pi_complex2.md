@@ -123,22 +123,22 @@ $(a, b);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest) {
-  const tmpCalleeParam = $(b);
-  const tmpNestedAssignObj = $(tmpCalleeParam);
-  const tmpBinLhs = tmpNestedAssignObj.x;
+  const tmpCalleeParam /*:unknown*/ = $(b);
+  const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam);
+  const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
   const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs + 1;
   tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
   a = tmpNestedPropCompoundComplexRhs;
   while ($LOOP_UNROLL_10) {
-    const tmpClusterSSA_tmpIfTest$1 = $(1);
+    const tmpClusterSSA_tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpClusterSSA_tmpIfTest$1) {
-      const tmpCalleeParam$1 = $(b);
-      const tmpNestedAssignObj$1 = $(tmpCalleeParam$1);
-      const tmpBinLhs$1 = tmpNestedAssignObj$1.x;
+      const tmpCalleeParam$1 /*:unknown*/ = $(b);
+      const tmpNestedAssignObj$1 /*:unknown*/ = $(tmpCalleeParam$1);
+      const tmpBinLhs$1 /*:unknown*/ = tmpNestedAssignObj$1.x;
       const tmpNestedPropCompoundComplexRhs$1 /*:primitive*/ = tmpBinLhs$1 + 1;
       tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
       a = tmpNestedPropCompoundComplexRhs$1;

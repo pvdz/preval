@@ -52,7 +52,7 @@ $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
 const a /*:boolean*/ = delete arg.y;
-const tmpBinBothRhs = $(100);
+const tmpBinBothRhs /*:unknown*/ = $(100);
 const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a, arg);

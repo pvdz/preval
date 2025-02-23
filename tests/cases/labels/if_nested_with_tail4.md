@@ -103,11 +103,11 @@ f();
 
 `````js filename=intro
 $(100);
-const tmpIfTest = $(0);
+const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
-  const tmpIfTest$1 = $(0);
+  const tmpIfTest$1 /*:unknown*/ = $(0);
   if (tmpIfTest$1) {
-    const tmpIfTest$3 = $(0);
+    const tmpIfTest$3 /*:unknown*/ = $(0);
     if (tmpIfTest$3) {
     } else {
       $(`tail3`);

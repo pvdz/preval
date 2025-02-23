@@ -46,7 +46,7 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpUnaryArg = $(1);
+const tmpUnaryArg /*:unknown*/ = $(1);
 const a /*:object*/ = { a: 999, b: 1000 };
 const tmpBinBothRhs /*:string*/ = typeof tmpUnaryArg;
 const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;

@@ -38,10 +38,10 @@ $(y);
 
 
 `````js filename=intro
-const y = $();
+const y /*:unknown*/ = $();
 const tmpIfTest /*:boolean*/ = y == null;
 if (tmpIfTest) {
-  const tmpClusterSSA_y = foo;
+  const tmpClusterSSA_y /*:unknown*/ = foo;
   $(tmpClusterSSA_y);
 } else {
   $(y);

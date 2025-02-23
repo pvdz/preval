@@ -76,23 +76,23 @@ $(a, b, c, d);
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $(`x`);
+const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
+const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
 const c /*:object*/ = { y: 2 };
-const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $(`y`);
-const varInitAssignLhsComputedRhs = $(3);
+const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
+const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+const varInitAssignLhsComputedRhs /*:unknown*/ = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-let tmpClusterSSA_a = varInitAssignLhsComputedRhs;
+let tmpClusterSSA_a /*:unknown*/ = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
   $(varInitAssignLhsComputedRhs);
 } else {
-  const varInitAssignLhsComputedObj$1 = $(b);
-  const varInitAssignLhsComputedProp$1 = $(`x`);
-  const varInitAssignLhsComputedObj$3 = $(c);
-  const varInitAssignLhsComputedProp$3 = $(`y`);
-  const varInitAssignLhsComputedRhs$3 = $(3);
+  const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(b);
+  const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`x`);
+  const varInitAssignLhsComputedObj$3 /*:unknown*/ = $(c);
+  const varInitAssignLhsComputedProp$3 /*:unknown*/ = $(`y`);
+  const varInitAssignLhsComputedRhs$3 /*:unknown*/ = $(3);
   varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$3;
   tmpClusterSSA_a = varInitAssignLhsComputedRhs$3;

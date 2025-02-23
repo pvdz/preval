@@ -68,7 +68,7 @@ const tmpFree /*:()=>boolean*/ = function $free() {
   const tmpRet /*:boolean*/ = tmpIfTest === 10;
   return tmpRet;
 };
-const tmpUnaryArg = $spy(34);
+const tmpUnaryArg /*:unknown*/ = $spy(34);
 const x /*:number*/ = +tmpUnaryArg;
 const tmpIfTest$1 /*:boolean*/ = $frfr(tmpFree);
 if (tmpIfTest$1) {

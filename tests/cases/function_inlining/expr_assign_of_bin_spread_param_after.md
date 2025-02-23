@@ -81,14 +81,14 @@ $(x);
 `````js filename=intro
 let x /*:primitive*/ = 0;
 const g /*:(unknown, unused, unused, unused, unknown)=>undefined*/ = function ($$0, $$1, $$2, $$3, $$4) {
-  const a = $$0;
-  const e = $$4;
+  const a /*:unknown*/ = $$0;
+  const e /*:unknown*/ = $$4;
   debugger;
   x = a + e;
   return undefined;
 };
 const tmpCalleeParam /*:array*/ = [1, 2];
-const arr = $(tmpCalleeParam);
+const arr /*:unknown*/ = $(tmpCalleeParam);
 g(10, 20, ...arr, 30, 40, 50);
 $(x);
 `````

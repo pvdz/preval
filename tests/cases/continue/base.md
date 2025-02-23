@@ -132,7 +132,7 @@ $continue();
 `````js filename=intro
 const $continue /*:()=>undefined*/ = function () {
   debugger;
-  const tmpIfTest = $(false);
+  const tmpIfTest /*:unknown*/ = $(false);
   if (tmpIfTest) {
     $(`uhoh`);
     $continue();
@@ -143,11 +143,11 @@ const $continue /*:()=>undefined*/ = function () {
     return undefined;
   }
 };
-const tmpIfTest$1 = $(false);
+const tmpIfTest$1 /*:unknown*/ = $(false);
 if (tmpIfTest$1) {
   while ($LOOP_UNROLL_10) {
     $(`uhoh`);
-    const tmpIfTest$2 = $(false);
+    const tmpIfTest$2 /*:unknown*/ = $(false);
     if (tmpIfTest$2) {
     } else {
       $(`exit`);

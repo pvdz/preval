@@ -48,14 +48,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpCallComplexCallee = $($);
+  const tmpCallComplexCallee /*:unknown*/ = $($);
   tmpCallComplexCallee(1);
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpCallComplexCallee$1 = $($);
+      const tmpCallComplexCallee$1 /*:unknown*/ = $($);
       tmpCallComplexCallee$1(1);
     } else {
       break;

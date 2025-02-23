@@ -39,7 +39,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpUnaryArg = $(100);
+const tmpUnaryArg /*:unknown*/ = $(100);
 const tmpCalleeParamSpread /*:number*/ = -tmpUnaryArg;
 $(...tmpCalleeParamSpread);
 const a /*:object*/ = { a: 999, b: 1000 };

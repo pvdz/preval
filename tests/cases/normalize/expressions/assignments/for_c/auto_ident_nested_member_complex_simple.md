@@ -66,25 +66,25 @@ $(a, b, c, d);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
 const b /*:object*/ = { x: 1 };
 const c /*:object*/ = { y: 2 };
 if (tmpIfTest) {
-  const tmpNestedAssignComMemberObj = $(b);
-  const tmpNestedAssignComMemberProp = $(`x`);
-  const varInitAssignLhsComputedObj = $(c);
-  const varInitAssignLhsComputedProp = $(`y`);
+  const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
+  const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
+  const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
+  const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
   a = 3;
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpNestedAssignComMemberObj$1 = $(b);
-      const tmpNestedAssignComMemberProp$1 = $(`x`);
-      const varInitAssignLhsComputedObj$1 = $(c);
-      const varInitAssignLhsComputedProp$1 = $(`y`);
+      const tmpNestedAssignComMemberObj$1 /*:unknown*/ = $(b);
+      const tmpNestedAssignComMemberProp$1 /*:unknown*/ = $(`x`);
+      const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
+      const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
       varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
       tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = 3;
     } else {

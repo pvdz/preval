@@ -83,16 +83,16 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
+let tmpCalleeParam /*:unknown*/ = undefined;
 $inlinedFunction: {
   while (true) {
-    const tmpIfTest = $(true);
+    const tmpIfTest /*:unknown*/ = $(true);
     if (tmpIfTest) {
       $(`loop`);
-      const tmpIfTest$1 = $(true);
+      const tmpIfTest$1 /*:unknown*/ = $(true);
       if (tmpIfTest$1) {
         $(`loop`);
-        const tmpReturnArg = $(100, `return`);
+        const tmpReturnArg /*:unknown*/ = $(100, `return`);
         tmpCalleeParam = tmpReturnArg;
         break $inlinedFunction;
       } else {

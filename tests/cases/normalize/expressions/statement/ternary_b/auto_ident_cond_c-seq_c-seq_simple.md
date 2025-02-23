@@ -48,13 +48,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpIfTest$1 = $(30);
+  const tmpIfTest$1 /*:unknown*/ = $(30);
   if (tmpIfTest$1) {
     $(60);
   } else {
-    const tmpCalleeParam = $(100);
+    const tmpCalleeParam /*:unknown*/ = $(100);
     $(tmpCalleeParam);
   }
 } else {

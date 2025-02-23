@@ -50,7 +50,7 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const a = b.$(1);
+const a /*:unknown*/ = b.$(1);
 const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);

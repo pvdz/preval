@@ -97,7 +97,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const x = $(100);
+const x /*:unknown*/ = $(100);
 $(x);
 $(1);
 $(`xyz`);

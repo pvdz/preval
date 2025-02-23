@@ -55,18 +55,18 @@ $(a);
 
 `````js filename=intro
 let a /*:object*/ = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpNewCallee = $($);
-  const tmpCalleeParam = $(1);
-  const tmpCalleeParam$1 = $(2);
+  const tmpNewCallee /*:unknown*/ = $($);
+  const tmpCalleeParam /*:unknown*/ = $(1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
   a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpNewCallee$1 = $($);
-      const tmpCalleeParam$2 = $(1);
-      const tmpCalleeParam$4 = $(2);
+      const tmpNewCallee$1 /*:unknown*/ = $($);
+      const tmpCalleeParam$2 /*:unknown*/ = $(1);
+      const tmpCalleeParam$4 /*:unknown*/ = $(2);
       a = new tmpNewCallee$1(tmpCalleeParam$2, tmpCalleeParam$4);
     } else {
       break;

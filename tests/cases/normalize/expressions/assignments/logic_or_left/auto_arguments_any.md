@@ -43,11 +43,11 @@ $(a);
 
 
 `````js filename=intro
-const a = arguments;
+const a /*:unknown*/ = arguments;
 if (a) {
   $(a);
 } else {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 }
 $(a);

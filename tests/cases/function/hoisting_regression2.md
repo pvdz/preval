@@ -86,7 +86,7 @@ const f /*:()=>undefined,function*/ = function () {
   } else {
     $(`not a decl`);
   }
-  const thisrefgetslost = $();
+  const thisrefgetslost /*:unknown*/ = $();
   return incorrectlyhoisted;
 };
 $(f);

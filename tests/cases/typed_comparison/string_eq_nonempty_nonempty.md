@@ -37,7 +37,7 @@ $(`out:`, y);
 
 
 `````js filename=intro
-const tmpStringFirstArg = $(`full`);
+const tmpStringFirstArg /*:unknown*/ = $(`full`);
 const x /*:string*/ = $coerce(tmpStringFirstArg, `string`);
 const y /*:boolean*/ = x === `full`;
 $(`out:`, y);

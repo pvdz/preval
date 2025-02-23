@@ -52,7 +52,7 @@ $(y);
 
 
 `````js filename=intro
-const y = $(10, `final`);
+const y /*:unknown*/ = $(10, `final`);
 $(y);
 `````
 

@@ -54,14 +54,14 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpChainRootProp = $();
+const tmpChainRootProp /*:unknown*/ = $();
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpReturnArg = $(undefined);
+  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(undefined);
   $(tmpClusterSSA_tmpReturnArg);
 } else {
-  const tmpChainElementObject = tmpChainRootProp.foo;
-  const tmpClusterSSA_tmpReturnArg$1 = $(tmpChainElementObject);
+  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.foo;
+  const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(tmpChainElementObject);
   $(tmpClusterSSA_tmpReturnArg$1);
 }
 `````

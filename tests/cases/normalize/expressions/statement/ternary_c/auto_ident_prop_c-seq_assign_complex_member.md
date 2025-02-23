@@ -50,15 +50,15 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpIfTest = $(0);
+const tmpIfTest /*:unknown*/ = $(0);
 const b /*:object*/ = { c: 10, d: 20 };
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpAssignMemLhsObj = $(b);
-  const tmpCompObj = $(b);
-  const tmpCompProp = $(`d`);
-  const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
+  const tmpAssignMemLhsObj /*:unknown*/ = $(b);
+  const tmpCompObj /*:unknown*/ = $(b);
+  const tmpCompProp /*:unknown*/ = $(`d`);
+  const tmpAssignMemRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
   tmpAssignMemLhsObj.c = tmpAssignMemRhs;
 }
 const a /*:object*/ = { a: 999, b: 1000 };

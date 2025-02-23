@@ -37,8 +37,8 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-const tmpCallComplexCallee = $($);
-const tmpThrowArg = tmpCallComplexCallee(1);
+const tmpCallComplexCallee /*:unknown*/ = $($);
+const tmpThrowArg /*:unknown*/ = tmpCallComplexCallee(1);
 throw tmpThrowArg;
 `````
 

@@ -65,10 +65,10 @@ if (itooamanumberjack) {
 `````js filename=intro
 let itooamanumberjack /*:string*/ = ``;
 if (imanumberandilovethrees) {
-  const tmpStringFirstArg = $(1);
+  const tmpStringFirstArg /*:unknown*/ = $(1);
   itooamanumberjack = $coerce(tmpStringFirstArg, `string`);
 } else {
-  const tmpStringFirstArg$1 = $(2);
+  const tmpStringFirstArg$1 /*:unknown*/ = $(2);
   itooamanumberjack = $coerce(tmpStringFirstArg$1, `string`);
 }
 if (itooamanumberjack) {

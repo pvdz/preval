@@ -51,8 +51,8 @@ $(1);
 $(2);
 const z /*:array*/ = [10, 20, 30];
 const arrPatternSplat /*:array*/ = [...z];
-const x = arrPatternSplat[0];
-const y = arrPatternSplat[1];
+const x /*:unknown*/ = arrPatternSplat[0];
+const y /*:unknown*/ = arrPatternSplat[1];
 export { x, y };
 $(x, y, z);
 `````

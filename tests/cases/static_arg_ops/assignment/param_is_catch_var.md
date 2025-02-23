@@ -76,7 +76,7 @@ try {
 } catch (err) {
   const f /*:()=>undefined*/ = function () {
     debugger;
-    const tmpClusterSSA_b = err;
+    const tmpClusterSSA_b /*:unknown*/ = err;
     $(err, tmpClusterSSA_b);
     return undefined;
   };

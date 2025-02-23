@@ -50,13 +50,13 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-let tmpThrowArg = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+let tmpThrowArg /*:unknown*/ = $(tmpCalleeParam);
 if (tmpThrowArg) {
-  const tmpCalleeParam$1 = $(1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
   tmpThrowArg = $(tmpCalleeParam$1);
   if (tmpThrowArg) {
-    const tmpCalleeParam$3 = $(2);
+    const tmpCalleeParam$3 /*:unknown*/ = $(2);
     tmpThrowArg = $(tmpCalleeParam$3);
   } else {
   }

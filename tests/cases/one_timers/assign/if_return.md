@@ -84,19 +84,19 @@ tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
 
 
 `````js filename=intro
-const x = $(100, `init`);
-const tmpCalleeParam = $(x, `closure-return`);
+const x /*:unknown*/ = $(100, `init`);
+const tmpCalleeParam /*:unknown*/ = $(x, `closure-return`);
 $(tmpCalleeParam, `closure-global1`);
-let tmpClusterSSA_x = undefined;
-const tmpIfTest = $();
+let tmpClusterSSA_x /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $();
 if (tmpIfTest) {
-  const tmpReturnArg$1 = $(1, `f-return`);
+  const tmpReturnArg$1 /*:unknown*/ = $(1, `f-return`);
   tmpClusterSSA_x = tmpReturnArg$1;
   $(tmpReturnArg$1, `x-global`);
 } else {
   $(undefined, `x-global`);
 }
-const tmpCalleeParam$3 = $(tmpClusterSSA_x, `closure-return`);
+const tmpCalleeParam$3 /*:unknown*/ = $(tmpClusterSSA_x, `closure-return`);
 $(tmpCalleeParam$3, `closure-global2`);
 `````
 

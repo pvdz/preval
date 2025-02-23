@@ -55,7 +55,7 @@ $(x);
 
 `````js filename=intro
 $(`something`);
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   $(100);
 } else {

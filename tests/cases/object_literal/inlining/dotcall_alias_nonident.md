@@ -61,7 +61,7 @@ $(order);
 `````js filename=intro
 const order /*:()=>undefined*/ = function () {
   debugger;
-  const tmpCalleeParam = $dotCall(alias, obj);
+  const tmpCalleeParam /*:unknown*/ = $dotCall(alias, obj);
   $(tmpCalleeParam);
   return undefined;
 };
@@ -70,7 +70,7 @@ const g /*:()=>string*/ = function () {
   return `win`;
 };
 const obj /*:object*/ = { f: g };
-const alias = (123)[`f f`];
+const alias /*:unknown*/ = (123)[`f f`];
 $(order);
 `````
 

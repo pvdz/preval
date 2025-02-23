@@ -50,13 +50,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
-const tmpCalleeParam = $(1);
+const tmpObjLitVal /*:unknown*/ = $(1);
+const tmpCalleeParam /*:unknown*/ = $(1);
 const a /*:object*/ = { b: tmpObjLitVal };
-const tmpCalleeParam$1 = $(a);
-const tmpAssignComMemLhsObj = a(tmpCalleeParam, tmpCalleeParam$1);
-const tmpAssignComMemLhsProp = $(`b`);
-const tmpAssignComputedRhs = $(2);
+const tmpCalleeParam$1 /*:unknown*/ = $(a);
+const tmpAssignComMemLhsObj /*:unknown*/ = a(tmpCalleeParam, tmpCalleeParam$1);
+const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
+const tmpAssignComputedRhs /*:unknown*/ = $(2);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);
 `````

@@ -47,13 +47,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallComplexCallee = $($);
-let a = tmpCallComplexCallee(1);
+const tmpCallComplexCallee /*:unknown*/ = $($);
+let a /*:unknown*/ = tmpCallComplexCallee(1);
 if (a) {
   $(a);
 } else {
-  const tmpCallComplexCallee$1 = $($);
-  const tmpNestedComplexRhs = tmpCallComplexCallee$1(1);
+  const tmpCallComplexCallee$1 /*:unknown*/ = $($);
+  const tmpNestedComplexRhs /*:unknown*/ = tmpCallComplexCallee$1(1);
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }

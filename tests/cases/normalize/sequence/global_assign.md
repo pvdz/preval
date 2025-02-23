@@ -35,7 +35,7 @@ tmpAssignMemLhsObj.x = 1;
 
 `````js filename=intro
 $(1);
-const tmpAssignMemLhsObj = $(2);
+const tmpAssignMemLhsObj /*:unknown*/ = $(2);
 tmpAssignMemLhsObj.x = 1;
 `````
 

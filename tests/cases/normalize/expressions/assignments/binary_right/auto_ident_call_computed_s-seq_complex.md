@@ -47,10 +47,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpBinBothLhs = $(100);
-const tmpCallCompProp = $(`\$`);
+const tmpBinBothLhs /*:unknown*/ = $(100);
+const tmpCallCompProp /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const a = b[tmpCallCompProp](1);
+const a /*:unknown*/ = b[tmpCallCompProp](1);
 const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
 $(tmpCalleeParam);
 $(a);

@@ -93,9 +93,9 @@ if (tmpIfTest$7) {
 
 
 `````js filename=intro
-const tmpCallCompProp = $(`\$`);
+const tmpCallCompProp /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const a = b[tmpCallCompProp](1);
+const a /*:unknown*/ = b[tmpCallCompProp](1);
 $(a);
 $(`fail1`);
 $(`fail2`);

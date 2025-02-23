@@ -53,8 +53,8 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCallCompObj = $(b);
-const tmpCallCompProp = $(`\$`);
+const tmpCallCompObj /*:unknown*/ = $(b);
+const tmpCallCompProp /*:unknown*/ = $(`\$`);
 tmpCallCompObj[tmpCallCompProp](1);
 $(100);
 const a /*:object*/ = { a: 999, b: 1000 };

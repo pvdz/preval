@@ -47,12 +47,12 @@ $(a);
 
 
 `````js filename=intro
-let a = 2;
-const tmpIfTest = $(1);
-let tmpArrSpread = 2;
+let a /*:unknown*/ = 2;
+const tmpIfTest /*:unknown*/ = $(1);
+let tmpArrSpread /*:unknown*/ = 2;
 if (tmpIfTest) {
 } else {
-  const tmpCalleeParam$1 = $(100);
+  const tmpCalleeParam$1 /*:unknown*/ = $(100);
   a = $(tmpCalleeParam$1);
   tmpArrSpread = a;
 }

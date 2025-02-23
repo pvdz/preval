@@ -52,8 +52,8 @@ $(q);
 
 
 `````js filename=intro
-const y = $(`pass`);
-const q = $(...y);
+const y /*:unknown*/ = $(`pass`);
+const q /*:unknown*/ = $(...y);
 $(q);
 `````
 

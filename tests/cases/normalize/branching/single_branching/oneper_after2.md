@@ -105,7 +105,7 @@ A();
 
 `````js filename=intro
 $();
-const x$1 = $();
+const x$1 /*:unknown*/ = $();
 if (x$1) {
   $();
 } else {

@@ -70,7 +70,7 @@ const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      const tmpIfTest = $(1);
+      const tmpIfTest /*:unknown*/ = $(1);
       if (tmpIfTest) {
         break;
       } else {

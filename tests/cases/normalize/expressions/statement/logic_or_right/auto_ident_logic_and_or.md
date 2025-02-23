@@ -54,19 +54,19 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(100);
+const tmpIfTest /*:unknown*/ = $(100);
 if (tmpIfTest) {
 } else {
-  const tmpCalleeParam = $(1);
-  let tmpClusterSSA_tmpIfTest = $(tmpCalleeParam);
+  const tmpCalleeParam /*:unknown*/ = $(1);
+  let tmpClusterSSA_tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
   if (tmpClusterSSA_tmpIfTest) {
-    const tmpCalleeParam$1 = $(1);
+    const tmpCalleeParam$1 /*:unknown*/ = $(1);
     tmpClusterSSA_tmpIfTest = $(tmpCalleeParam$1);
   } else {
   }
   if (tmpClusterSSA_tmpIfTest) {
   } else {
-    const tmpCalleeParam$3 = $(2);
+    const tmpCalleeParam$3 /*:unknown*/ = $(2);
     $(tmpCalleeParam$3);
   }
 }

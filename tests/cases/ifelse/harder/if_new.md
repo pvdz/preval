@@ -35,7 +35,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const tmpNewCallee = $($);
+const tmpNewCallee /*:unknown*/ = $($);
 new tmpNewCallee();
 $(2);
 `````

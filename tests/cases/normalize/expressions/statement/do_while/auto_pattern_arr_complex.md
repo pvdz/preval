@@ -59,15 +59,15 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const a = arrPatternSplat[0];
+const a /*:unknown*/ = arrPatternSplat[0];
 $(100);
 const tmpCalleeParam /*:array*/ = [1, 2];
-const tmpIfTest = $(tmpCalleeParam);
+const tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpCalleeParam$1 /*:array*/ = [1, 2];
-    const tmpIfTest$1 = $(tmpCalleeParam$1);
+    const tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$1);
     if (tmpIfTest$1) {
     } else {
       break;

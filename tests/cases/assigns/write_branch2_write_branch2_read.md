@@ -53,11 +53,11 @@ if (tmpIfTest) {
 
 `````js filename=intro
 $(1);
-const tmpIfTest = $(10);
+const tmpIfTest /*:unknown*/ = $(10);
 if (tmpIfTest) {
-  const tmpIfTest$1 = $(20);
+  const tmpIfTest$1 /*:unknown*/ = $(20);
   if (tmpIfTest$1) {
-    const tmpClusterSSA_x = $(2);
+    const tmpClusterSSA_x /*:unknown*/ = $(2);
     $(tmpClusterSSA_x);
   } else {
   }

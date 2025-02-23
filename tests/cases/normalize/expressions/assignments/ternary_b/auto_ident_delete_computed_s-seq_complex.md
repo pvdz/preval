@@ -54,18 +54,18 @@ $(a, arg);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
 const arg /*:object*/ = { y: 1 };
 if (tmpIfTest) {
   $(1);
   $(2);
-  const tmpDeleteCompProp = $(`y`);
+  const tmpDeleteCompProp /*:unknown*/ = $(`y`);
   const tmpNestedComplexRhs /*:boolean*/ = delete arg[tmpDeleteCompProp];
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
-  const tmpClusterSSA_tmpCalleeParam = $(200);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
   $(tmpClusterSSA_tmpCalleeParam);
 }
 $(a, arg);

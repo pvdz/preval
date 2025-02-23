@@ -69,8 +69,8 @@ if (tmpIfTest) {
 `````js filename=intro
 const f /*:(unused)=>promise*/ = async function ($$0) {
   debugger;
-  const tmpClusterSSA_x = $(0);
-  const y = await tmpClusterSSA_x;
+  const tmpClusterSSA_x /*:unknown*/ = $(0);
+  const y /*:unknown*/ = await tmpClusterSSA_x;
   return y;
 };
 $(f);

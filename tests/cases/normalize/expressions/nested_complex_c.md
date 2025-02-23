@@ -48,8 +48,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const c /*:array*/ = [];
-const tmpCompObj = $(c);
-const tmpNestedComplexRhs = tmpCompObj.length;
+const tmpCompObj /*:unknown*/ = $(c);
+const tmpNestedComplexRhs /*:unknown*/ = tmpCompObj.length;
 $(tmpNestedComplexRhs);
 `````
 

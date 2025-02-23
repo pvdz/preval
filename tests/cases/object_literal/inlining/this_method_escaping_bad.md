@@ -94,23 +94,23 @@ tmpCallCallee$3(tmpCalleeParam$5);
 const tmpObjLitVal$1 /*:()=>?,string*/ = function () {
   const tmpPrevalAliasThis /*:object*/ = this;
   debugger;
-  const tmpBinLhs = tmpPrevalAliasThis.x;
+  const tmpBinLhs /*:unknown*/ = tmpPrevalAliasThis.x;
   const tmpIfTest /*:boolean*/ = tmpBinLhs === `burn`;
   if (tmpIfTest) {
-    const tmpReturnArg = $(`burned`);
+    const tmpReturnArg /*:unknown*/ = $(`burned`);
     return tmpReturnArg;
   } else {
-    const tmpCalleeParam$1 = tmpPrevalAliasThis.f;
+    const tmpCalleeParam$1 /*:unknown*/ = tmpPrevalAliasThis.f;
     $(`once`);
     const tmpCalleeParam /*:object*/ = { f: 1, x: `burn` };
     tmpCalleeParam$1.call(tmpCalleeParam);
-    const tmpCalleeParam$3 = tmpPrevalAliasThis.x;
+    const tmpCalleeParam$3 /*:unknown*/ = tmpPrevalAliasThis.x;
     $(tmpCalleeParam$3);
     return `win`;
   }
 };
 const obj /*:object*/ = { x: `pass`, f: tmpObjLitVal$1 };
-const tmpCalleeParam$5 = obj.f();
+const tmpCalleeParam$5 /*:unknown*/ = obj.f();
 $(tmpCalleeParam$5);
 `````
 

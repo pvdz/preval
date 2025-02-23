@@ -36,7 +36,7 @@ $(a);
 
 
 `````js filename=intro
-const a = $(60);
+const a /*:unknown*/ = $(60);
 export { a };
 $(a);
 `````

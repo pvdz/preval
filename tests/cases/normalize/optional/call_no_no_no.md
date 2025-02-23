@@ -107,9 +107,9 @@ const a$1 /*:object*/ = {
     return a$1;
   },
 };
-const tmpCallObj = a$1.b();
-const tmpCompObj = tmpCallObj.c();
-const tmpCalleeParam = tmpCompObj.d;
+const tmpCallObj /*:unknown*/ = a$1.b();
+const tmpCompObj /*:unknown*/ = tmpCallObj.c();
+const tmpCalleeParam /*:unknown*/ = tmpCompObj.d;
 $(tmpCalleeParam);
 `````
 

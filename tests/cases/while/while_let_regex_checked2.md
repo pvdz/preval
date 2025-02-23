@@ -79,17 +79,17 @@ while (true) {
 
 `````js filename=intro
 const x /*:regex*/ = /foo/;
-const tmpCalleeParam = x.foo;
+const tmpCalleeParam /*:unknown*/ = x.foo;
 $(tmpCalleeParam);
-const tmpIfTest = $(x);
+const tmpIfTest /*:unknown*/ = $(x);
 if (tmpIfTest) {
 } else {
   let tmpClusterSSA_x /*:regex*/ = /foo/;
   tmpClusterSSA_x.foo = `object`;
   while ($LOOP_UNROLL_10) {
-    const tmpCalleeParam$1 = tmpClusterSSA_x.foo;
+    const tmpCalleeParam$1 /*:unknown*/ = tmpClusterSSA_x.foo;
     $(tmpCalleeParam$1);
-    const tmpIfTest$1 = $(tmpClusterSSA_x);
+    const tmpIfTest$1 /*:unknown*/ = $(tmpClusterSSA_x);
     if (tmpIfTest$1) {
       break;
     } else {

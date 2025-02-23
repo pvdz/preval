@@ -49,12 +49,12 @@ $(a, x);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = $(100);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {
-  const tmpUnaryArg = $(1);
+  const tmpUnaryArg /*:unknown*/ = $(1);
   const tmpNestedComplexRhs /*:string*/ = typeof tmpUnaryArg;
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);

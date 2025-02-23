@@ -39,7 +39,7 @@ $(c);
 
 
 `````js filename=intro
-const a = $(0);
+const a /*:unknown*/ = $(0);
 const b /*:number*/ = a & 32;
 $(b);
 `````

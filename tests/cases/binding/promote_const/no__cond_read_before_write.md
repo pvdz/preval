@@ -61,12 +61,12 @@ if (tmpIfTest$1) {
 
 
 `````js filename=intro
-const tmpIfTest = $(0);
+const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   $(undefined, `fail`);
 } else {
 }
-const tmpIfTest$1 = $(1);
+const tmpIfTest$1 /*:unknown*/ = $(1);
 if (tmpIfTest$1) {
   $(10);
 } else {

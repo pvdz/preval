@@ -48,7 +48,7 @@ arrPatternSplat[0];
 $(10);
 $(20);
 const tmpCalleeParam /*:array*/ = [1, 2];
-const tmpThrowArg = $(tmpCalleeParam);
+const tmpThrowArg /*:unknown*/ = $(tmpCalleeParam);
 throw tmpThrowArg;
 `````
 

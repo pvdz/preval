@@ -116,9 +116,9 @@ const g /*:(number, number)=>number*/ = function $free($$0, $$1) {
     return d;
   }
 };
-const tmpBinLhs = $(100);
+const tmpBinLhs /*:unknown*/ = $(100);
 const x /*:number*/ = tmpBinLhs * 1;
-const tmpBinLhs$1 = $(200);
+const tmpBinLhs$1 /*:unknown*/ = $(200);
 const y /*:number*/ = tmpBinLhs$1 * 1;
 const tmp /*:number*/ = $frfr(g, x, y);
 $(tmp);

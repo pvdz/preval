@@ -103,7 +103,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f_f /*:(unknown)=>undefined*/ = function ($$0) {
-  const arg$1 = $$0;
+  const arg$1 /*:unknown*/ = $$0;
   debugger;
   const one /*:number*/ = arg$1 / arg$1;
   const onestr /*:string*/ = $coerce(one, `string`);
@@ -118,7 +118,7 @@ const f_f /*:(unknown)=>undefined*/ = function ($$0) {
   return undefined;
 };
 f_f(500);
-const tmpCalleeParam = $spy();
+const tmpCalleeParam /*:unknown*/ = $spy();
 const tmpSaooB /*:string*/ = typeof tmpCalleeParam;
 const tmpSaooB$1 /*:boolean*/ = tmpSaooB === `string`;
 if (tmpSaooB$1) {

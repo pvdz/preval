@@ -64,11 +64,11 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const z /*:array*/ = [10, 20, 30];
 const arrPatternSplat$1 /*:array*/ = [...z];
-const tmpClusterSSA_x = arrPatternSplat$1[1];
-const tmpClusterSSA_y = arrPatternSplat$1[2];
+const tmpClusterSSA_x /*:unknown*/ = arrPatternSplat$1[1];
+const tmpClusterSSA_y /*:unknown*/ = arrPatternSplat$1[2];
 const arrPatternSplat /*:array*/ = [...z];
-const a = arrPatternSplat[0];
-const b = arrPatternSplat[1];
+const a /*:unknown*/ = arrPatternSplat[0];
+const b /*:unknown*/ = arrPatternSplat[1];
 $(a, b, tmpClusterSSA_x, tmpClusterSSA_y, z);
 $(undefined);
 `````

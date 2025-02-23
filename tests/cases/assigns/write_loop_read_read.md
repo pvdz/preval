@@ -47,12 +47,12 @@ $(x, `after`);
 
 
 `````js filename=intro
-const x = $(10);
-const tmpIfTest = $(true);
+const x /*:unknown*/ = $(10);
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(x, `loop`);
-    const tmpIfTest$1 = $(true);
+    const tmpIfTest$1 /*:unknown*/ = $(true);
     if (tmpIfTest$1) {
     } else {
       break;

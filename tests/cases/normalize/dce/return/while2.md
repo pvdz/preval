@@ -63,10 +63,10 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
-const tmpIfTest = $(true);
+let tmpCalleeParam /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
-  const tmpReturnArg = $(1, `return`);
+  const tmpReturnArg /*:unknown*/ = $(1, `return`);
   tmpCalleeParam = tmpReturnArg;
 } else {
   $(`keep, do not eval`);

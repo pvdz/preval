@@ -61,7 +61,7 @@ $(a, b, c);
 
 
 `````js filename=intro
-const tmpBinBothRhs = $(100);
+const tmpBinBothRhs /*:unknown*/ = $(100);
 const tmpCalleeParam /*:primitive*/ = 3 + tmpBinBothRhs;
 $(tmpCalleeParam);
 const b /*:object*/ = { x: 3 };

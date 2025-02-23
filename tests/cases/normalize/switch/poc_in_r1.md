@@ -51,7 +51,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const tmpBinBothRhs = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = 1 === tmpBinBothRhs;
 if (tmpIfTest) {
   $(`A`);

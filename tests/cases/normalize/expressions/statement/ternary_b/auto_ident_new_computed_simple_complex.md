@@ -48,11 +48,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpCompProp = $(`\$`);
+  const tmpCompProp /*:unknown*/ = $(`\$`);
   const b /*:object*/ = { $: $ };
-  const tmpNewCallee = b[tmpCompProp];
+  const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
   new tmpNewCallee(1);
 } else {
   $(200);

@@ -46,11 +46,11 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(100);
+const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
   const b /*:object*/ = { $: $ };
-  const tmpCallObj = $(b);
-  const tmpNestedComplexRhs = tmpCallObj.$(1);
+  const tmpCallObj /*:unknown*/ = $(b);
+  const tmpNestedComplexRhs /*:unknown*/ = tmpCallObj.$(1);
   $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);

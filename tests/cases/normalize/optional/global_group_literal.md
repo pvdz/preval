@@ -40,7 +40,7 @@ $(y);
 
 
 `````js filename=intro
-const tmpChainElementObject = (3).foo;
+const tmpChainElementObject /*:unknown*/ = (3).foo;
 $(tmpChainElementObject);
 `````
 

@@ -76,11 +76,11 @@ tmpCallCallee(tmpCalleeParam);
 const f /*:()=>?*/ = function () {
   const tmpPrevalAliasThis /*:object*/ = this;
   debugger;
-  const tmpReturnArg = tmpPrevalAliasThis.x;
+  const tmpReturnArg /*:unknown*/ = tmpPrevalAliasThis.x;
   return tmpReturnArg;
 };
 const tmpCalleeParam$1 /*:object*/ = { x: 100 };
-const tmpCalleeParam = f.call(tmpCalleeParam$1);
+const tmpCalleeParam /*:unknown*/ = f.call(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 

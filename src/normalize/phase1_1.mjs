@@ -346,7 +346,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
     typingChanged = false;
     group('typingLoop', loopi++,';', untypedConstDecls.size, 'vars and', funcNodesForSomething.size, 'funcs left');
 
-    vgroup(untypedConstDecls.size, 'const decls');
+    vgroup(untypedConstDecls.size, 'const decl types to discover');
     let cdi = 0;
     untypedConstDecls.forEach((obj) => {
       const {node, meta} = obj;
@@ -379,7 +379,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
     });
     vgroupEnd();
 
-    vgroup(funcNodesForSomething.size, 'function return types');
+    vgroup(funcNodesForSomething.size, 'function return types to discover');
     let fni = 0;
     funcNodesForSomething.forEach((obj) => {
       const {funcName, funcNode, funcMeta, parentNode} = obj;

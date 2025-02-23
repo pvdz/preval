@@ -78,7 +78,7 @@ tmpCallCallee(tmpCalleeParam);
 const obj /*:object*/ = {
   get x() {
     debugger;
-    const tmpReturnArg = $(10);
+    const tmpReturnArg /*:unknown*/ = $(10);
     return tmpReturnArg;
   },
   set x($$0) {
@@ -87,8 +87,8 @@ const obj /*:object*/ = {
     return undefined;
   },
 };
-const tmpAssignComMemLhsObj = $(obj);
-const tmpAssignComMemLhsProp = $(`x`);
+const tmpAssignComMemLhsObj /*:unknown*/ = $(obj);
+const tmpAssignComMemLhsProp /*:unknown*/ = $(`x`);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 30;
 $(undefined);
 `````

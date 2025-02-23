@@ -36,8 +36,8 @@ const y = $spy(`b`);
 
 
 `````js filename=intro
-const x = $(`a`);
-const y = $spy(`b`);
+const x /*:unknown*/ = $(`a`);
+const y /*:unknown*/ = $spy(`b`);
 ``.replace(x, y);
 `````
 

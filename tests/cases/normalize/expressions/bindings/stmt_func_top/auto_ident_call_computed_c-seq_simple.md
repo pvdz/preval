@@ -53,8 +53,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCallObj = $(b);
-const a = tmpCallObj.$(1);
+const tmpCallObj /*:unknown*/ = $(b);
+const a /*:unknown*/ = tmpCallObj.$(1);
 $(a);
 $(undefined);
 `````

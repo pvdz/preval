@@ -99,15 +99,15 @@ $(x, `last`);
 
 `````js filename=intro
 while (true) {
-  const tmpClusterSSA_y = $(true);
+  const tmpClusterSSA_y /*:unknown*/ = $(true);
   if (tmpClusterSSA_y) {
     $(tmpClusterSSA_y, `before`);
-    let x$1 = undefined;
+    let x$1 /*:unknown*/ = undefined;
     const obj /*:object*/ = { a: 1, b: 2 };
-    const tmpForInGen = $forIn(obj);
+    const tmpForInGen /*:unknown*/ = $forIn(obj);
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      const tmpForInNext = tmpForInGen.next();
-      const tmpIfTest = tmpForInNext.done;
+      const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+      const tmpIfTest /*:unknown*/ = tmpForInNext.done;
       if (tmpIfTest) {
         break;
       } else {

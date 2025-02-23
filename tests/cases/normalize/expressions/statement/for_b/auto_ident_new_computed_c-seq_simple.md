@@ -55,8 +55,8 @@ $(a);
 `````js filename=intro
 const b /*:object*/ = { $: $ };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCompObj = $(b);
-  const tmpNewCallee = tmpCompObj.$;
+  const tmpCompObj /*:unknown*/ = $(b);
+  const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
   new tmpNewCallee(1);
   $(1);
 }

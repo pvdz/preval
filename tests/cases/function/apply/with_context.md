@@ -53,13 +53,13 @@ tmpCallCallee(tmpCalleeParam);
 const tmpCallObj /*:()=>undefined*/ = function () {
   const tmpPrevalAliasThis /*:object*/ = this;
   debugger;
-  const tmpCalleeParam$5 = tmpPrevalAliasThis.x;
+  const tmpCalleeParam$5 /*:unknown*/ = tmpPrevalAliasThis.x;
   $(tmpCalleeParam$5);
   return undefined;
 };
 const tmpCalleeParam$1 /*:object*/ = { x: 15 };
 const tmpCalleeParam$3 /*:array*/ = [`x`];
-const tmpCalleeParam = tmpCallObj.apply(tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpCalleeParam /*:unknown*/ = tmpCallObj.apply(tmpCalleeParam$1, tmpCalleeParam$3);
 $(tmpCalleeParam);
 `````
 

@@ -165,25 +165,25 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
+let tmpCalleeParam /*:unknown*/ = undefined;
 $inlinedFunction: {
-  const tmpSwitchValue = $(1);
+  const tmpSwitchValue /*:unknown*/ = $(1);
   let tmpSwitchCaseToStart /*:number*/ = 4;
   const tmpIfTest /*:boolean*/ = 0 === tmpSwitchValue;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   } else {
-    const tmpBinLhs = $(1);
+    const tmpBinLhs /*:unknown*/ = $(1);
     const tmpIfTest$1 /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 1;
     } else {
-      const tmpBinLhs$1 = $(4);
+      const tmpBinLhs$1 /*:unknown*/ = $(4);
       const tmpIfTest$3 /*:boolean*/ = tmpBinLhs$1 === tmpSwitchValue;
       if (tmpIfTest$3) {
         tmpSwitchCaseToStart = 2;
       } else {
-        const tmpBinLhs$3 = $(7);
+        const tmpBinLhs$3 /*:unknown*/ = $(7);
         const tmpIfTest$5 /*:boolean*/ = tmpBinLhs$3 === tmpSwitchValue;
         if (tmpIfTest$5) {
           tmpSwitchCaseToStart = 3;
@@ -198,20 +198,20 @@ $inlinedFunction: {
   } else {
     const tmpIfTest$9 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$9) {
-      const tmpIfTest$11 = $(8);
+      const tmpIfTest$11 /*:unknown*/ = $(8);
       if (tmpIfTest$11) {
-        const tmpIfTest$13 = $(9);
+        const tmpIfTest$13 /*:unknown*/ = $(9);
         if (tmpIfTest$13) {
-          const tmpReturnArg = $(10);
+          const tmpReturnArg /*:unknown*/ = $(10);
           tmpCalleeParam = tmpReturnArg;
           break $inlinedFunction;
         } else {
           $(11);
-          const tmpIfTest$15 = $(2);
+          const tmpIfTest$15 /*:unknown*/ = $(2);
           if (tmpIfTest$15) {
             $(13);
           } else {
-            const tmpReturnArg$1 = $(14);
+            const tmpReturnArg$1 /*:unknown*/ = $(14);
             tmpCalleeParam = tmpReturnArg$1;
             break $inlinedFunction;
           }
@@ -224,7 +224,7 @@ $inlinedFunction: {
     const tmpIfTest$17 /*:boolean*/ = tmpSwitchCaseToStart <= 2;
     if (tmpIfTest$17) {
       $(5);
-      const tmpReturnArg$3 = $(6);
+      const tmpReturnArg$3 /*:unknown*/ = $(6);
       tmpCalleeParam = tmpReturnArg$3;
     } else {
     }

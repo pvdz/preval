@@ -46,12 +46,12 @@ $(a);
 
 
 `````js filename=intro
-let tmpAnonDefaultExport = undefined;
-const tmpChainElementCall = $($);
+let tmpAnonDefaultExport /*:unknown*/ = undefined;
+const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, 1);
   tmpAnonDefaultExport = tmpChainElementCall$1;
 }
 export { tmpAnonDefaultExport as default };

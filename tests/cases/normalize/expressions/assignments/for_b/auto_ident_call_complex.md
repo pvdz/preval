@@ -49,12 +49,12 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallComplexCallee = $($);
-let a = tmpCallComplexCallee(1);
+const tmpCallComplexCallee /*:unknown*/ = $($);
+let a /*:unknown*/ = tmpCallComplexCallee(1);
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(1);
-    const tmpCallComplexCallee$1 = $($);
+    const tmpCallComplexCallee$1 /*:unknown*/ = $($);
     a = tmpCallComplexCallee$1(1);
     if (a) {
     } else {

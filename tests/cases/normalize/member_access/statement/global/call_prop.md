@@ -31,7 +31,7 @@ tmpCompObj.length;
 
 
 `````js filename=intro
-const tmpCompObj = $(`foo`);
+const tmpCompObj /*:unknown*/ = $(`foo`);
 tmpCompObj.length;
 `````
 

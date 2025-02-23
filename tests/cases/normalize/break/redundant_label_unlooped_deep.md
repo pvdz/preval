@@ -70,9 +70,9 @@ exit: {
 
 
 `````js filename=intro
-let x = $(2);
+let x /*:unknown*/ = $(2);
 $(1);
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   x = $(3);
 } else {

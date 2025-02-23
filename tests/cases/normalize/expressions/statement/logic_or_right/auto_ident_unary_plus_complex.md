@@ -41,10 +41,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(100);
+const tmpIfTest /*:unknown*/ = $(100);
 if (tmpIfTest) {
 } else {
-  const tmpUnaryArg = $(100);
+  const tmpUnaryArg /*:unknown*/ = $(100);
   +tmpUnaryArg;
 }
 const a /*:object*/ = { a: 999, b: 1000 };

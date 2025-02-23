@@ -44,13 +44,13 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpChainElementObject = $Object_prototype.b;
-const tmpChainElementObject$1 = tmpChainElementObject.c;
+const tmpChainElementObject /*:unknown*/ = $Object_prototype.b;
+const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject.c;
 const tmpIfTest /*:boolean*/ = tmpChainElementObject$1 == null;
 if (tmpIfTest) {
   $(undefined);
 } else {
-  const tmpChainElementObject$3 = tmpChainElementObject$1.d;
+  const tmpChainElementObject$3 /*:unknown*/ = tmpChainElementObject$1.d;
   $(tmpChainElementObject$3);
 }
 `````

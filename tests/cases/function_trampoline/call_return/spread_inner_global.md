@@ -50,8 +50,8 @@ $(q);
 
 
 `````js filename=intro
-const x = $(`pass`);
-const q = $(...x);
+const x /*:unknown*/ = $(`pass`);
+const q /*:unknown*/ = $(...x);
 $(q);
 `````
 

@@ -73,19 +73,19 @@ tmpCallCallee$5(tmpCalleeParam$9);
 `````js filename=intro
 const tmpObjLitVal /*:object*/ = { a: `pass2` };
 const tmpCalleeParam /*:object*/ = { x: tmpObjLitVal };
-const tmpClusterSSA_bindingPatternObjRoot = $(tmpCalleeParam);
-const objPatternBeforeDefault = tmpClusterSSA_bindingPatternObjRoot.x;
-let tmpCalleeParam$3 = undefined;
+const tmpClusterSSA_bindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
+const objPatternBeforeDefault /*:unknown*/ = tmpClusterSSA_bindingPatternObjRoot.x;
+let tmpCalleeParam$3 /*:unknown*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   const tmpCalleeParam$1 /*:object*/ = { a: `fail` };
-  const tmpClusterSSA_objPatternAfterDefault = $(tmpCalleeParam$1);
+  const tmpClusterSSA_objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam$1);
   tmpCalleeParam$3 = tmpClusterSSA_objPatternAfterDefault;
 } else {
   tmpCalleeParam$3 = objPatternBeforeDefault;
 }
 const tmpCalleeParam$5 /*:array*/ = [];
-const y = objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
+const y /*:unknown*/ = objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
 $(y);
 `````
 

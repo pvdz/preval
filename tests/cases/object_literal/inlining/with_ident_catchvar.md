@@ -56,13 +56,13 @@ try {
 
 `````js filename=intro
 try {
-  const tmpIfTest = $(true);
+  const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
     throw `fail`;
   } else {
   }
 } catch (e) {
-  const tmpCalleeParam = e;
+  const tmpCalleeParam /*:unknown*/ = e;
   $(tmpCalleeParam);
 }
 `````

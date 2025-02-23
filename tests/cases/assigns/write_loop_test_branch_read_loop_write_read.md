@@ -54,19 +54,19 @@ $(x);
 
 
 `````js filename=intro
-let x = $(10);
-const tmpIfTest = $(x);
+let x /*:unknown*/ = $(10);
+const tmpIfTest /*:unknown*/ = $(x);
 if (tmpIfTest) {
-  const tmpIfTest$1 = $(true);
+  const tmpIfTest$1 /*:unknown*/ = $(true);
   if (tmpIfTest$1) {
     $(x);
   } else {
   }
   while ($LOOP_UNROLL_10) {
     x = $(20);
-    const tmpIfTest$2 = $(x);
+    const tmpIfTest$2 /*:unknown*/ = $(x);
     if (tmpIfTest$2) {
-      const tmpIfTest$4 = $(true);
+      const tmpIfTest$4 /*:unknown*/ = $(true);
       if (tmpIfTest$4) {
         $(x);
       } else {

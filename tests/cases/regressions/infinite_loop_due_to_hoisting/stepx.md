@@ -68,7 +68,7 @@ f(tmpArg);
 
 
 `````js filename=intro
-const tmpClusterSSA_tmpBinaryLeft = a.x;
+const tmpClusterSSA_tmpBinaryLeft /*:unknown*/ = a.x;
 const tmpClusterSSA_tmpTernaryTest /*:boolean*/ = tmpClusterSSA_tmpBinaryLeft === 1;
 if (tmpClusterSSA_tmpTernaryTest) {
   f(2);

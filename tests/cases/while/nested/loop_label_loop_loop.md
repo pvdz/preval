@@ -83,7 +83,7 @@ while (true) {
 let x /*:number*/ = 10;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   foo: {
-    const t = $(x);
+    const t /*:unknown*/ = $(x);
     if (t) {
       while (true) {
         if ($) {

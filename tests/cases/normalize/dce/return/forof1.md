@@ -77,16 +77,16 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-let tmpCalleeParam$1 = undefined;
+let tmpCalleeParam$1 /*:unknown*/ = undefined;
 const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
-const tmpForInGen = $forIn(tmpCalleeParam);
-const tmpForInNext = tmpForInGen.next();
-const tmpIfTest = tmpForInNext.done;
+const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+const tmpIfTest /*:unknown*/ = tmpForInNext.done;
 if (tmpIfTest) {
   $(`keep, do not eval`);
 } else {
   tmpForInNext.value;
-  const tmpReturnArg = $(1, `return`);
+  const tmpReturnArg /*:unknown*/ = $(1, `return`);
   tmpCalleeParam$1 = tmpReturnArg;
 }
 $(tmpCalleeParam$1);

@@ -49,8 +49,8 @@ tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
 
 
 `````js filename=intro
-const tmpAssignMemLhsObj = $();
-const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
+const tmpAssignMemLhsObj /*:unknown*/ = $();
+const tmpCompoundAssignLhs /*:unknown*/ = tmpAssignMemLhsObj.x;
 const tmpAssignMemRhs /*:primitive*/ = tmpCompoundAssignLhs + 5;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 `````

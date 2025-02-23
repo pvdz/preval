@@ -62,7 +62,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [`fail`];
-const objPatternAfterDefault = $(tmpCalleeParam);
+const objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam);
 [...objPatternAfterDefault];
 $(`ok`);
 `````

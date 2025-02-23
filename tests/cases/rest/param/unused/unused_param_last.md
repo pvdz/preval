@@ -51,8 +51,8 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 
 
 `````js filename=intro
-const tmpCalleeParam = $spy();
-const tmpCalleeParam$1 = $spy();
+const tmpCalleeParam /*:unknown*/ = $spy();
+const tmpCalleeParam$1 /*:unknown*/ = $spy();
 $(tmpCalleeParam, tmpCalleeParam$1, `fwep`);
 `````
 

@@ -34,7 +34,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpUnaryArg = $();
+const tmpUnaryArg /*:unknown*/ = $();
 const tmpArrElement /*:number*/ = -tmpUnaryArg;
 const tmpCalleeParam /*:array*/ = [tmpArrElement];
 $(tmpCalleeParam);

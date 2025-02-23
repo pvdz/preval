@@ -66,7 +66,7 @@ $(x, `third read (C)`);
 let x /*:number*/ = 1;
 if ($) {
   $(1, `first read (A)`);
-  const tmpIfTest = $();
+  const tmpIfTest /*:unknown*/ = $();
   if (tmpIfTest) {
     x = 2;
     $(2, `second read (B)`);

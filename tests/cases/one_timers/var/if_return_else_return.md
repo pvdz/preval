@@ -59,12 +59,12 @@ $(x);
 
 
 `````js filename=intro
-const tmpIfTest = $();
+const tmpIfTest /*:unknown*/ = $();
 if (tmpIfTest) {
-  const tmpReturnArg = $(1);
+  const tmpReturnArg /*:unknown*/ = $(1);
   $(tmpReturnArg);
 } else {
-  const tmpReturnArg$1 = $(2);
+  const tmpReturnArg$1 /*:unknown*/ = $(2);
   $(tmpReturnArg$1);
 }
 `````

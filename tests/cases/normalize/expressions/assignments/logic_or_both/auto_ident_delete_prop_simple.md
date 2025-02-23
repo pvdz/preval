@@ -50,7 +50,7 @@ $(a, arg);
 
 `````js filename=intro
 const arg /*:object*/ = { y: 1 };
-let a = delete arg.y;
+let a /*:unknown*/ = delete arg.y;
 if (a) {
   $(a);
 } else {

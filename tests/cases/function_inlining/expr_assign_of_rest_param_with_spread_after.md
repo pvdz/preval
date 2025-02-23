@@ -73,7 +73,7 @@ $(x);
 
 
 `````js filename=intro
-let x = 0;
+let x /*:unknown*/ = 0;
 const g /*:(unused, array)=>undefined*/ = function ($$0, ...$$1 /*:array*/) {
   const b /*:array*/ = $$1;
   debugger;
@@ -81,7 +81,7 @@ const g /*:(unused, array)=>undefined*/ = function ($$0, ...$$1 /*:array*/) {
   return undefined;
 };
 const tmpCalleeParam /*:array*/ = [1, 2];
-const arr = $(tmpCalleeParam);
+const arr /*:unknown*/ = $(tmpCalleeParam);
 g(10, 20, 30, 40, ...arr, 50, 60);
 $(x);
 `````

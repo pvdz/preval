@@ -76,7 +76,7 @@ f();
 `````js filename=intro
 const f /*:()=>undefined*/ = function () {
   debugger;
-  const tmpBinBothRhs = $(`truthy`);
+  const tmpBinBothRhs /*:unknown*/ = $(`truthy`);
   const x /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
   if (x) {
     $(false, `fail`);

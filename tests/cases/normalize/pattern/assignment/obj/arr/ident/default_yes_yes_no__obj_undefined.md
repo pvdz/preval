@@ -52,9 +52,9 @@ $(`bad`);
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [`pass2`];
-const objPatternAfterDefault = $(tmpCalleeParam);
+const objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam);
 const arrPatternSplat /*:array*/ = [...objPatternAfterDefault];
-const arrPatternBeforeDefault = arrPatternSplat[0];
+const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
 const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   y = `fail`;

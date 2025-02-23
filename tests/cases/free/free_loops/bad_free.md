@@ -92,8 +92,8 @@ $(tmpObjLitVal$159);
 
 `````js filename=intro
 const tmpFree$1 /*:(unknown, unknown)=>number*/ = function $free($$0, $$1) {
-  const cs$1 = $$0;
-  const g$147 = $$1;
+  const cs$1 /*:unknown*/ = $$0;
+  const g$147 /*:unknown*/ = $$1;
   debugger;
   const tmpBinBothLhs$3633 /*:primitive*/ = cs$1 + 71046;
   const tmpBinBothRhs$3633 /*:number*/ = `\uf051`.charCodeAt(g$147);

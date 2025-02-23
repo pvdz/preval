@@ -45,9 +45,9 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const a = arrPatternSplat[0];
+const a /*:unknown*/ = arrPatternSplat[0];
 const tmpCalleeParam$3 /*:array*/ = [1, 2];
-const tmpCalleeParam$1 = $(tmpCalleeParam$3);
+const tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$3);
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);

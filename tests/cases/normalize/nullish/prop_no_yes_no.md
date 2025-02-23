@@ -40,10 +40,10 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam = $Object_prototype.b;
+const tmpCalleeParam /*:unknown*/ = $Object_prototype.b;
 const tmpIfTest /*:boolean*/ = tmpCalleeParam == null;
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam = c.d;
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = c.d;
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   $(tmpCalleeParam);

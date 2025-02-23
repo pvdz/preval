@@ -60,12 +60,12 @@ $(a, arg);
 `````js filename=intro
 $(100);
 const arg /*:object*/ = { y: 1 };
-const tmpDeleteObj = $(arg);
+const tmpDeleteObj /*:unknown*/ = $(arg);
 const tmpIfTest /*:boolean*/ = delete tmpDeleteObj.y;
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpDeleteObj$1 = $(arg);
+    const tmpDeleteObj$1 /*:unknown*/ = $(arg);
     const tmpIfTest$1 /*:boolean*/ = delete tmpDeleteObj$1.y;
     if (tmpIfTest$1) {
     } else {

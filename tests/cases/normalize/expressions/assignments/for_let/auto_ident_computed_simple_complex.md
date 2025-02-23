@@ -52,10 +52,10 @@ while (true) {
 
 
 `````js filename=intro
-const tmpAssignRhsCompProp = $(`c`);
+const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const a = b[tmpAssignRhsCompProp];
+  const a /*:unknown*/ = b[tmpAssignRhsCompProp];
   $(a);
   $(1);
 }

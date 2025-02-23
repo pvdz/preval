@@ -226,11 +226,11 @@ const tmpCalleeParam$7 /*:array*/ = [
   `split`,
 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpPostUpdArgIdent$1 = tmpClusterSSA_c$1;
+  const tmpPostUpdArgIdent$1 /*:unknown*/ = tmpClusterSSA_c$1;
   tmpClusterSSA_c$1 = tmpClusterSSA_c$1 - 1;
   if (tmpPostUpdArgIdent$1) {
     const tmpAssignComMemLhsProp$1 /*:string*/ = tmpClusterSSA_c$1.toString(36);
-    let tmpAssignComputedRhs$1 = tmpCalleeParam$7[tmpClusterSSA_c$1];
+    let tmpAssignComputedRhs$1 /*:unknown*/ = tmpCalleeParam$7[tmpClusterSSA_c$1];
     if (tmpAssignComputedRhs$1) {
     } else {
       tmpAssignComputedRhs$1 = tmpClusterSSA_c$1.toString(36);
@@ -241,9 +241,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   }
 }
 const tmpArrElement /*:(unknown)=>?*/ = function ($$0) {
-  const e$1 = $$0;
+  const e$1 /*:unknown*/ = $$0;
   debugger;
-  const tmpReturnArg$1 = tmpCalleeParam$11[e$1];
+  const tmpReturnArg$1 /*:unknown*/ = tmpCalleeParam$11[e$1];
   return tmpReturnArg$1;
 };
 const tmpCalleeParam$17 /*:regex*/ = /\b\w+\b/g;
@@ -251,7 +251,7 @@ const tmpClusterSSA_p /*:string*/ = `s(f(p,a,c,k,e,r){e=l;m(!''.n(/^/,l)){o(c--)
   tmpCalleeParam$17,
   tmpArrElement,
 );
-const x = eval(tmpClusterSSA_p);
+const x /*:unknown*/ = eval(tmpClusterSSA_p);
 $(x);
 `````
 

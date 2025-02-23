@@ -42,8 +42,8 @@ $(`ok`);
 
 
 `````js filename=intro
-const objPatternBeforeDefault = (1).x;
-let objPatternAfterDefault = undefined;
+const objPatternBeforeDefault /*:unknown*/ = (1).x;
+let objPatternAfterDefault /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   objPatternAfterDefault = [`fail`];

@@ -88,16 +88,16 @@ const g /*:(primitive)=>primitive,?*/ = function ($$0) {
   const n$1 /*:primitive*/ = $$0;
   debugger;
   const tmpCalleeParam /*:primitive*/ = n$1 + 1;
-  const tmpBinLhs = $(tmpCalleeParam);
+  const tmpBinLhs /*:unknown*/ = $(tmpCalleeParam);
   const tmpIfTest /*:boolean*/ = tmpBinLhs > 1000;
   if (tmpIfTest) {
     return tmpCalleeParam;
   } else {
-    const tmpReturnArg$3 = g(tmpCalleeParam);
+    const tmpReturnArg$3 /*:unknown*/ = g(tmpCalleeParam);
     return tmpReturnArg$3;
   }
 };
-const tmpCalleeParam$1 = g(0);
+const tmpCalleeParam$1 /*:unknown*/ = g(0);
 $(tmpCalleeParam$1);
 `````
 

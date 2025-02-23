@@ -42,10 +42,10 @@ $(x, `b`);
 
 
 `````js filename=intro
-const x = $(1);
+const x /*:unknown*/ = $(1);
 $(x, `a`);
 $(2);
-const tmpClusterSSA_x = $(3);
+const tmpClusterSSA_x /*:unknown*/ = $(3);
 $(tmpClusterSSA_x, `b`);
 `````
 

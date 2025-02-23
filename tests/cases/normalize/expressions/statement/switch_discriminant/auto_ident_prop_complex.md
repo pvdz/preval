@@ -52,7 +52,7 @@ $(a, b);
 
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
-const tmpCompObj = $(b);
+const tmpCompObj /*:unknown*/ = $(b);
 tmpCompObj.c;
 $(100);
 const a /*:object*/ = { a: 999, b: 1000 };

@@ -95,20 +95,20 @@ let a /*:()=>*/ = function () {
     debugger;
     return arr;
   };
-  const tmpReturnArg = a();
+  const tmpReturnArg /*:unknown*/ = a();
   return tmpReturnArg;
 };
-const b = a;
-const tmpCalleeParam = a();
+const b /*:unknown*/ = a;
+const tmpCalleeParam /*:unknown*/ = a();
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = b();
+const tmpCalleeParam$1 /*:unknown*/ = b();
 $(tmpCalleeParam$1);
-const tmpBinBothLhs = a();
-const tmpBinBothRhs = b();
+const tmpBinBothLhs /*:unknown*/ = a();
+const tmpBinBothRhs /*:unknown*/ = b();
 const tmpCalleeParam$3 /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 $(tmpCalleeParam$3);
-const tmpBinBothLhs$1 = a();
-const tmpBinBothRhs$1 = a();
+const tmpBinBothLhs$1 /*:unknown*/ = a();
+const tmpBinBothRhs$1 /*:unknown*/ = a();
 const tmpCalleeParam$5 /*:boolean*/ = tmpBinBothLhs$1 === tmpBinBothRhs$1;
 $(tmpCalleeParam$5);
 `````

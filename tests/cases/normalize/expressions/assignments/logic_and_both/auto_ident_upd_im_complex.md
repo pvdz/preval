@@ -64,16 +64,16 @@ $(a, b);
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const tmpCalleeParam$1 = $(b);
-const tmpPostUpdArgObj = $(tmpCalleeParam$1);
-const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+const tmpCalleeParam$1 /*:unknown*/ = $(b);
+const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs /*:number*/ = tmpPostUpdArgVal - 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-let tmpClusterSSA_a = tmpPostUpdArgVal;
+let tmpClusterSSA_a /*:unknown*/ = tmpPostUpdArgVal;
 if (tmpPostUpdArgVal) {
-  const tmpCalleeParam$3 = $(b);
-  const tmpPostUpdArgObj$1 = $(tmpCalleeParam$3);
-  const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
+  const tmpCalleeParam$3 /*:unknown*/ = $(b);
+  const tmpPostUpdArgObj$1 /*:unknown*/ = $(tmpCalleeParam$3);
+  const tmpPostUpdArgVal$1 /*:unknown*/ = tmpPostUpdArgObj$1.x;
   const tmpAssignMemRhs$1 /*:number*/ = tmpPostUpdArgVal$1 - 1;
   tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
   tmpClusterSSA_a = tmpPostUpdArgVal$1;

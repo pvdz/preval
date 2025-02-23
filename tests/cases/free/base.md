@@ -81,7 +81,7 @@ const tmpFree /*:(number)=>string*/ = function $free($$0) {
 };
 let i /*:number*/ = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const r = $(i);
+  const r /*:unknown*/ = $(i);
   const n$1 /*:number*/ = r * 1;
   const c /*:string*/ = $frfr(tmpFree, n$1);
   $(i, c);

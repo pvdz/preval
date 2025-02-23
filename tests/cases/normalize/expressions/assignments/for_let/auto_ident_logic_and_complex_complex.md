@@ -54,12 +54,12 @@ while (true) {
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-const a = $(tmpCalleeParam);
-let xyz = undefined;
+const tmpCalleeParam /*:unknown*/ = $(1);
+const a /*:unknown*/ = $(tmpCalleeParam);
+let xyz /*:unknown*/ = undefined;
 if (a) {
-  const tmpCalleeParam$1 = $(2);
-  const tmpClusterSSA_a = $(tmpCalleeParam$1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
+  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
   xyz = tmpClusterSSA_a;
 } else {
   xyz = a;

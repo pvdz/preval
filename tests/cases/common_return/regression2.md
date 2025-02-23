@@ -138,7 +138,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 const c /*:()=>?*/ = function () {
   debugger;
   $(`c`);
-  const tmpCalleeParam = $(10);
+  const tmpCalleeParam /*:unknown*/ = $(10);
   if ($) {
     $(`d`);
     return tmpCalleeParam;
@@ -150,14 +150,14 @@ if ($) {
   $(`a`);
   if ($) {
     $(`b`);
-    const tmpReturnArg$1 = c();
+    const tmpReturnArg$1 /*:unknown*/ = c();
     $(tmpReturnArg$1);
   } else {
-    const tmpReturnArg$3 = c();
+    const tmpReturnArg$3 /*:unknown*/ = c();
     $(tmpReturnArg$3);
   }
 } else {
-  const tmpReturnArg$7 = c();
+  const tmpReturnArg$7 /*:unknown*/ = c();
   $(tmpReturnArg$7);
 }
 `````

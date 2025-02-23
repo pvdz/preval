@@ -74,16 +74,16 @@ $(x);
 
 `````js filename=intro
 $(undefined);
-let x = undefined;
+let x /*:unknown*/ = undefined;
 const list /*:array*/ = [100];
-const tmpForOfGen = $forOf(list);
+const tmpForOfGen /*:unknown*/ = $forOf(list);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
   } else {
-    const tmpClusterSSA_arr = tmpForOfNext.value;
+    const tmpClusterSSA_arr /*:unknown*/ = tmpForOfNext.value;
     x = tmpClusterSSA_arr;
     $(tmpClusterSSA_arr, `for`);
   }

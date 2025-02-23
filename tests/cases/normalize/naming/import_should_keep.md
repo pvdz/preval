@@ -74,18 +74,18 @@ export { g };
 `````js filename=intro
 const f /*:()=>?*/ = function () {
   debugger;
-  const x$1 = $(1);
+  const x$1 /*:unknown*/ = $(1);
   return x$1;
 };
 const g /*:(unknown)=>?*/ = function ($$0) {
-  const x$3 = $$0;
+  const x$3 /*:unknown*/ = $$0;
   debugger;
   return x$3;
 };
 const c /*:class*/ = class {};
 export { c };
-const tmpCalleeParam = $(1);
-const x = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const x /*:unknown*/ = $(tmpCalleeParam);
 export { x };
 export { f };
 export { g };

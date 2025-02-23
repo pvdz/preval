@@ -88,22 +88,22 @@ $(`c`);
 
 `````js filename=intro
 const x /*:object*/ = { a: 0, b: 1 };
-const tmpForInGen = $forIn(x);
+const tmpForInGen /*:unknown*/ = $forIn(x);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
   } else {
     tmpForInNext.value;
     $(`a`);
-    const tmpIfTest$1 = $(true);
+    const tmpIfTest$1 /*:unknown*/ = $(true);
     if (tmpIfTest$1) {
     } else {
       while ($LOOP_UNROLL_10) {
         $(`fail`);
         $(`a`);
-        const tmpIfTest$2 = $(true);
+        const tmpIfTest$2 /*:unknown*/ = $(true);
         if (tmpIfTest$2) {
           break;
         } else {

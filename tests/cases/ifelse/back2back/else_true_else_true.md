@@ -57,11 +57,11 @@ if (x) {
 
 
 `````js filename=intro
-const x = $(1);
+const x /*:unknown*/ = $(1);
 if (x) {
 } else {
   $(x, `pass`);
-  const tmpClusterSSA_x = $(1);
+  const tmpClusterSSA_x /*:unknown*/ = $(1);
   if (tmpClusterSSA_x) {
   } else {
     $(tmpClusterSSA_x, `hit`);

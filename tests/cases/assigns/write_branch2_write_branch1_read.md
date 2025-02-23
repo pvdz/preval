@@ -55,10 +55,10 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-let x = $(1);
-const tmpIfTest = $(10);
+let x /*:unknown*/ = $(1);
+const tmpIfTest /*:unknown*/ = $(10);
 if (tmpIfTest) {
-  const tmpIfTest$1 = $(20);
+  const tmpIfTest$1 /*:unknown*/ = $(20);
   if (tmpIfTest$1) {
     x = $(2);
     $(x);

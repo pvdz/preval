@@ -82,7 +82,7 @@ tmpSwitchBreak: {
 
 
 `````js filename=intro
-const x = $(1);
+const x /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = 1 === x;
 if (tmpIfTest) {
   $(`f`);

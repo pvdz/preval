@@ -50,12 +50,12 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCallObj = $(b);
-let tmpClusterSSA_a = tmpCallObj.$(1);
+const tmpCallObj /*:unknown*/ = $(b);
+let tmpClusterSSA_a /*:unknown*/ = tmpCallObj.$(1);
 if (tmpClusterSSA_a) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpCallObj$1 = $(b);
+    const tmpCallObj$1 /*:unknown*/ = $(b);
     tmpClusterSSA_a = tmpCallObj$1.$(1);
     if (tmpClusterSSA_a) {
     } else {

@@ -44,11 +44,11 @@ $(a);
 
 
 `````js filename=intro
-let a = arguments;
-const tmpCalleeParam = a;
+let a /*:unknown*/ = arguments;
+const tmpCalleeParam /*:unknown*/ = a;
 if (a) {
   a = arguments;
-  const tmpClusterSSA_tmpCalleeParam = arguments;
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = arguments;
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   $(tmpCalleeParam);

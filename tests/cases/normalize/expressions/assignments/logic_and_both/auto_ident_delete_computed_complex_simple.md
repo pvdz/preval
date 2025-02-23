@@ -52,11 +52,11 @@ $(a, arg);
 
 `````js filename=intro
 const arg /*:object*/ = { y: 1 };
-const tmpDeleteObj = $(arg);
-let tmpClusterSSA_a = delete tmpDeleteObj.y;
-const tmpCalleeParam = tmpClusterSSA_a;
+const tmpDeleteObj /*:unknown*/ = $(arg);
+let tmpClusterSSA_a /*:unknown*/ = delete tmpDeleteObj.y;
+const tmpCalleeParam /*:unknown*/ = tmpClusterSSA_a;
 if (tmpClusterSSA_a) {
-  const tmpDeleteObj$1 = $(arg);
+  const tmpDeleteObj$1 /*:unknown*/ = $(arg);
   const tmpNestedComplexRhs /*:boolean*/ = delete tmpDeleteObj$1.y;
   tmpClusterSSA_a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);

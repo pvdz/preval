@@ -58,12 +58,12 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
+const tmpObjLitVal /*:unknown*/ = $(1);
 const a /*:object*/ = { b: tmpObjLitVal };
 $(a);
 $(1);
-const tmpAssignMemLhsObj = $(a);
-const tmpAssignMemRhs = $(2);
+const tmpAssignMemLhsObj /*:unknown*/ = $(a);
+const tmpAssignMemRhs /*:unknown*/ = $(2);
 tmpAssignMemLhsObj.b = tmpAssignMemRhs;
 $(a);
 `````

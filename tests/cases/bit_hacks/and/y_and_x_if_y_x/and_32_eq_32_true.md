@@ -56,7 +56,7 @@ if (x) {
 
 
 `````js filename=intro
-const spy = $spy(33);
+const spy /*:unknown*/ = $spy(33);
 const x /*:number*/ = spy & 32;
 if (x) {
   const tmpCalleeParam$1 /*:boolean*/ = spy === 32;

@@ -78,7 +78,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 `````js filename=intro
-let x = $(1);
+let x /*:unknown*/ = $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const imanumberandilovethrees /*:number*/ = x % 3;
   let itooamanumberjack /*:number*/ = 0;

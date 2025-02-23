@@ -84,23 +84,23 @@ $(a, b, c, d, e);
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:object*/ = { x: 1 };
-const tmpCalleeParam = $(tmpCalleeParam$1);
-const tmpForInGen = $forIn(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
 const b /*:object*/ = { x: 1 };
 const c /*:object*/ = { y: 2 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
   } else {
-    const varInitAssignLhsComputedObj = $(b);
-    const varInitAssignLhsComputedProp = $(`x`);
-    const varInitAssignLhsComputedObj$1 = $(c);
-    const varInitAssignLhsComputedProp$1 = $(`y`);
+    const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
+    const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+    const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
+    const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
     varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
     varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
-    const tmpAssignMemRhs = tmpForInNext.value;
+    const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
     (7).x = tmpAssignMemRhs;
   }
 }

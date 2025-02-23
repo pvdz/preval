@@ -68,17 +68,17 @@ while ($LOOP_UNROLL_10) {
 `````js filename=intro
 const x /*:regex*/ = /foo/;
 x.foo = `object`;
-const tmp = x.foo;
+const tmp /*:unknown*/ = x.foo;
 $(tmp);
-const end = $(x);
+const end /*:unknown*/ = $(x);
 if (end) {
 } else {
   let tmpClusterSSA_x /*:regex*/ = /foo/;
   tmpClusterSSA_x.foo = `object`;
   while ($LOOP_UNROLL_9) {
-    const tmp$1 = tmpClusterSSA_x.foo;
+    const tmp$1 /*:unknown*/ = tmpClusterSSA_x.foo;
     $(tmp$1);
-    const end$1 = $(tmpClusterSSA_x);
+    const end$1 /*:unknown*/ = $(tmpClusterSSA_x);
     if (end$1) {
       break;
     } else {

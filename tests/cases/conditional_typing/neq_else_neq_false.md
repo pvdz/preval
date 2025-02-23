@@ -52,7 +52,7 @@ $(x);
 
 
 `````js filename=intro
-const a = $(67637);
+const a /*:unknown*/ = $(67637);
 const x /*:boolean*/ = a !== 67636;
 $(x);
 `````

@@ -34,7 +34,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpDeleteObj = $(100);
+const tmpDeleteObj /*:unknown*/ = $(100);
 delete tmpDeleteObj.x;
 $(`boolean`);
 `````

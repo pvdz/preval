@@ -55,7 +55,7 @@ const x /*:class*/ = class {
     return undefined;
   }
 };
-const tmpCompObj = x();
+const tmpCompObj /*:unknown*/ = x();
 tmpCompObj.y;
 `````
 

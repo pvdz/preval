@@ -53,7 +53,7 @@ const o /*:object*/ = {
     return `xyz`;
   },
 };
-const tmpCalleeParam = o.toString();
+const tmpCalleeParam /*:unknown*/ = o.toString();
 $(tmpCalleeParam);
 `````
 

@@ -47,10 +47,10 @@ $(x);
 
 
 `````js filename=intro
-const x = $(`a`);
+const x /*:unknown*/ = $(`a`);
 $(x);
 if ($) {
-  const tmpClusterSSA_x = $(`b`);
+  const tmpClusterSSA_x /*:unknown*/ = $(`b`);
   $(tmpClusterSSA_x);
 } else {
   $(x);

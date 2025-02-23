@@ -62,15 +62,15 @@ $(blob);
 `````js filename=intro
 const blob /*:object*/ = { thing: `woop`, xyz: 1 };
 $(blob);
-const tmpBinLhs$1 = blob.xyz;
+const tmpBinLhs$1 /*:unknown*/ = blob.xyz;
 const tmpIfTest /*:boolean*/ = tmpBinLhs$1 < 10;
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
-    const tmpBinLhs$2 = blob.xyz;
+    const tmpBinLhs$2 /*:unknown*/ = blob.xyz;
     const tmpAssignMemRhs$1 /*:primitive*/ = tmpBinLhs$2 + 1;
     blob.xyz = tmpAssignMemRhs$1;
     $(blob);
-    const tmpBinLhs$4 = blob.xyz;
+    const tmpBinLhs$4 /*:unknown*/ = blob.xyz;
     const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$4 < 10;
     if (tmpIfTest$1) {
     } else {

@@ -57,10 +57,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 = $(1);
-let tmpCallCallee$1 = $(tmpCalleeParam$1);
+const tmpCalleeParam$1 /*:unknown*/ = $(1);
+let tmpCallCallee$1 /*:unknown*/ = $(tmpCalleeParam$1);
 if (tmpCallCallee$1) {
-  const tmpCalleeParam$3 = $(1);
+  const tmpCalleeParam$3 /*:unknown*/ = $(1);
   tmpCallCallee$1 = $(tmpCalleeParam$3);
 } else {
 }
@@ -69,8 +69,8 @@ if (tmpCallCallee$1) {
   const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  const tmpCalleeParam$5 = $(2);
-  const tmpClusterSSA_tmpCallCallee$1 = $(tmpCalleeParam$5);
+  const tmpCalleeParam$5 /*:unknown*/ = $(2);
+  const tmpClusterSSA_tmpCallCallee$1 /*:unknown*/ = $(tmpCalleeParam$5);
   const tmpClusterSSA_tmpBinBothRhs$1 /*:string*/ = $coerce(tmpClusterSSA_tmpCallCallee$1, `string`);
   const tmpClusterSSA_tmpCalleeParam$1 /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs$1}  after`;
   $(tmpClusterSSA_tmpCalleeParam$1);

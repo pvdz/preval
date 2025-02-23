@@ -136,11 +136,11 @@ const f /*:(string)=>string*/ = function ($$0) {
     return ``;
   }
 };
-const x = $(`co_rn`);
+const x /*:unknown*/ = $(`co_rn`);
 const tmpCalleeParam$1 /*:string*/ = $coerce(x, `string`);
 const tmpCalleeParam /*:string*/ = f(tmpCalleeParam$1);
 $(tmpCalleeParam);
-const y = $(`m#az#e`);
+const y /*:unknown*/ = $(`m#az#e`);
 const tmpCalleeParam$5 /*:string*/ = $coerce(y, `string`);
 const tmpCalleeParam$3 /*:string*/ = f(tmpCalleeParam$5);
 $(tmpCalleeParam$3);

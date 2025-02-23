@@ -50,14 +50,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
-let tmpBinBothLhs = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(0);
+let tmpBinBothLhs /*:unknown*/ = $(tmpCalleeParam);
 if (tmpBinBothLhs) {
 } else {
   tmpBinBothLhs = 2;
 }
-const tmpCalleeParam$1 = $(0);
-let tmpBinBothRhs = $(tmpCalleeParam$1);
+const tmpCalleeParam$1 /*:unknown*/ = $(0);
+let tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam$1);
 if (tmpBinBothRhs) {
 } else {
   tmpBinBothRhs = 2;

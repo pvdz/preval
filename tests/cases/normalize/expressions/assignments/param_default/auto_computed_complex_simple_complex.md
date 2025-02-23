@@ -66,11 +66,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
+const tmpObjLitVal /*:unknown*/ = $(1);
 $(undefined);
 const tmpNestedComplexRhs /*:object*/ = { b: tmpObjLitVal };
-const tmpAssignMemLhsObj = $(tmpNestedComplexRhs);
-const tmpAssignMemRhs = $(2);
+const tmpAssignMemLhsObj /*:unknown*/ = $(tmpNestedComplexRhs);
+const tmpAssignMemRhs /*:unknown*/ = $(2);
 tmpAssignMemLhsObj.b = tmpAssignMemRhs;
 $(tmpNestedComplexRhs);
 `````

@@ -54,18 +54,18 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
-let tmpBinBothLhs = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(0);
+let tmpBinBothLhs /*:unknown*/ = $(tmpCalleeParam);
 if (tmpBinBothLhs) {
 } else {
-  const tmpCalleeParam$1 = $(2);
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
   tmpBinBothLhs = $(tmpCalleeParam$1);
 }
-const tmpCalleeParam$3 = $(0);
-let tmpBinBothRhs = $(tmpCalleeParam$3);
+const tmpCalleeParam$3 /*:unknown*/ = $(0);
+let tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam$3);
 if (tmpBinBothRhs) {
 } else {
-  const tmpCalleeParam$5 = $(2);
+  const tmpCalleeParam$5 /*:unknown*/ = $(2);
   tmpBinBothRhs = $(tmpCalleeParam$5);
 }
 tmpBinBothLhs + tmpBinBothRhs;

@@ -51,8 +51,8 @@ while (true) {
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-let xyz = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+let xyz /*:unknown*/ = $(tmpCalleeParam);
 if (xyz) {
   xyz = 2;
 } else {

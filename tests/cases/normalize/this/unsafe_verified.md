@@ -77,11 +77,11 @@ const f /*:()=>?*/ = function () {
   debugger;
   $(tmpPrevalAliasThis);
   $(tmpPrevalAliasThis);
-  const tmpReturnArg = tmpPrevalAliasThis.y;
+  const tmpReturnArg /*:unknown*/ = tmpPrevalAliasThis.y;
   return tmpReturnArg;
 };
 const tmpCalleeParam$1 /*:object*/ = { y: 1 };
-const tmpCalleeParam = f.call(tmpCalleeParam$1);
+const tmpCalleeParam /*:unknown*/ = f.call(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 

@@ -93,16 +93,16 @@ let a /*:()=>*/ = function () {
     debugger;
     return arr;
   };
-  const tmpReturnArg = a();
+  const tmpReturnArg /*:unknown*/ = a();
   return tmpReturnArg;
 };
-const b = a;
-const tmpCalleeParam = a();
+const b /*:unknown*/ = a;
+const tmpCalleeParam /*:unknown*/ = a();
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = b();
+const tmpCalleeParam$1 /*:unknown*/ = b();
 $(tmpCalleeParam$1);
-const tmpCompObj = a();
-const tmpCalleeParam$3 = tmpCompObj[1];
+const tmpCompObj /*:unknown*/ = a();
+const tmpCalleeParam$3 /*:unknown*/ = tmpCompObj[1];
 $(tmpCalleeParam$3);
 `````
 

@@ -44,7 +44,7 @@ $(a);
 
 
 `````js filename=intro
-const a = $(60);
+const a /*:unknown*/ = $(60);
 const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);

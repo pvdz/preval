@@ -45,7 +45,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-let tmpCalleeParam = $Object_prototype.b;
+let tmpCalleeParam /*:unknown*/ = $Object_prototype.b;
 const tmpIfTest /*:boolean*/ = tmpCalleeParam == null;
 let tmpIfTest$1 /*:boolean*/ = false;
 if (tmpIfTest) {
@@ -55,7 +55,7 @@ if (tmpIfTest) {
   tmpIfTest$1 = tmpCalleeParam == null;
 }
 if (tmpIfTest$1) {
-  const tmpClusterSSA_tmpCalleeParam = d;
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = d;
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   $(tmpCalleeParam);

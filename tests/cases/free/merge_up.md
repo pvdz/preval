@@ -105,10 +105,10 @@ const tmpFree /*:(string)=>string*/ = function $free($$0) {
   const ret2 /*:string*/ = tmpRet + chr;
   return ret2;
 };
-const tmpUnaryArg = $spy(1);
+const tmpUnaryArg /*:unknown*/ = $spy(1);
 const x /*:number*/ = +tmpUnaryArg;
 if (x) {
-  const unknown = $(`abc`);
+  const unknown /*:unknown*/ = $(`abc`);
   const somestr$1 /*:string*/ = $coerce(unknown, `string`);
   const tmpIfTest$5 /*:string*/ = $frfr(tmpFree, somestr$1);
   if (tmpIfTest$5) {

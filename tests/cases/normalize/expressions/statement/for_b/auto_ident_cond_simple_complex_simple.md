@@ -48,11 +48,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(2);
+const tmpIfTest /*:unknown*/ = $(2);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(1);
-    const tmpIfTest$1 = $(2);
+    const tmpIfTest$1 /*:unknown*/ = $(2);
     if (tmpIfTest$1) {
     } else {
       break;

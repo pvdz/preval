@@ -51,23 +51,23 @@ while (true) {
 
 
 `````js filename=intro
-let tmpClusterSSA_x = NaN.x;
-let tmpIfTest = undefined;
+let tmpClusterSSA_x /*:unknown*/ = NaN.x;
+let tmpIfTest /*:unknown*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_x == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementCall = tmpClusterSSA_x.x(tmpClusterSSA_x);
+  const tmpChainElementCall /*:unknown*/ = tmpClusterSSA_x.x(tmpClusterSSA_x);
   tmpIfTest = tmpChainElementCall;
 }
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     tmpClusterSSA_x ** 0;
     tmpClusterSSA_x = NaN.x;
-    let tmpIfTest$2 = undefined;
+    let tmpIfTest$2 /*:unknown*/ = undefined;
     const tmpIfTest$4 /*:boolean*/ = tmpClusterSSA_x == null;
     if (tmpIfTest$4) {
     } else {
-      const tmpChainElementCall$1 = tmpClusterSSA_x.x(tmpClusterSSA_x);
+      const tmpChainElementCall$1 /*:unknown*/ = tmpClusterSSA_x.x(tmpClusterSSA_x);
       tmpIfTest$2 = tmpChainElementCall$1;
     }
     if (tmpIfTest$2) {

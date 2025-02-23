@@ -57,16 +57,16 @@ $(`after`);
 
 
 `````js filename=intro
-const tmpIfTest = $(true);
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
-  const tmpIfTest$1 = $(1);
+  const tmpIfTest$1 /*:unknown*/ = $(1);
   if (tmpIfTest$1) {
   } else {
     $(`keep, do not eval`);
     while ($LOOP_UNROLL_10) {
-      const tmpIfTest$2 = $(true);
+      const tmpIfTest$2 /*:unknown*/ = $(true);
       if (tmpIfTest$2) {
-        const tmpIfTest$4 = $(1);
+        const tmpIfTest$4 /*:unknown*/ = $(1);
         if (tmpIfTest$4) {
           break;
         } else {

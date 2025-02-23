@@ -137,7 +137,7 @@ ok: {
 
 `````js filename=intro
 ok: {
-  const tmpSwitchValue = $(1);
+  const tmpSwitchValue /*:unknown*/ = $(1);
   let tmpSwitchCaseToStart /*:number*/ = 4;
   const tmpIfTest /*:boolean*/ = 0 === tmpSwitchValue;
   if (tmpIfTest) {

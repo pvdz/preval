@@ -47,7 +47,7 @@ if (y) {
 
 
 `````js filename=intro
-const tmpUnaryArg = $spy(10);
+const tmpUnaryArg /*:unknown*/ = $spy(10);
 if (tmpUnaryArg) {
   $(`b`);
   $(`c`);

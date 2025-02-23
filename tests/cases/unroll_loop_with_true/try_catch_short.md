@@ -68,7 +68,7 @@ while (true) {
 `````js filename=intro
 loopStop: {
   try {
-    const test = $(`first`);
+    const test /*:unknown*/ = $(`first`);
     $(`second`);
     if (test) {
       break loopStop;
@@ -79,7 +79,7 @@ loopStop: {
     $(`error`);
   }
   try {
-    const test$1 = $(`first`);
+    const test$1 /*:unknown*/ = $(`first`);
     $(`second`);
     if (test$1) {
       break loopStop;
@@ -90,7 +90,7 @@ loopStop: {
     $(`error`);
   }
   try {
-    const test$2 = $(`first`);
+    const test$2 /*:unknown*/ = $(`first`);
     $(`second`);
     if (test$2) {
       break loopStop;
@@ -101,7 +101,7 @@ loopStop: {
     $(`error`);
   }
   try {
-    const test$3 = $(`first`);
+    const test$3 /*:unknown*/ = $(`first`);
     $(`second`);
     if (test$3) {
       break loopStop;
@@ -112,7 +112,7 @@ loopStop: {
     $(`error`);
   }
   try {
-    const test$4 = $(`first`);
+    const test$4 /*:unknown*/ = $(`first`);
     $(`second`);
     if (test$4) {
       break loopStop;
@@ -123,7 +123,7 @@ loopStop: {
     $(`error`);
   }
   try {
-    const test$5 = $(`first`);
+    const test$5 /*:unknown*/ = $(`first`);
     $(`second`);
     if (test$5) {
       break loopStop;
@@ -134,7 +134,7 @@ loopStop: {
     $(`error`);
   }
   try {
-    const test$6 = $(`first`);
+    const test$6 /*:unknown*/ = $(`first`);
     $(`second`);
     if (test$6) {
       break loopStop;
@@ -145,7 +145,7 @@ loopStop: {
     $(`error`);
   }
   try {
-    const test$7 = $(`first`);
+    const test$7 /*:unknown*/ = $(`first`);
     $(`second`);
     if (test$7) {
       break loopStop;
@@ -156,7 +156,7 @@ loopStop: {
     $(`error`);
   }
   try {
-    const test$8 = $(`first`);
+    const test$8 /*:unknown*/ = $(`first`);
     $(`second`);
     if (test$8) {
       break loopStop;
@@ -167,7 +167,7 @@ loopStop: {
     $(`error`);
   }
   try {
-    const test$9 = $(`first`);
+    const test$9 /*:unknown*/ = $(`first`);
     $(`second`);
     if (test$9) {
       break loopStop;
@@ -178,7 +178,7 @@ loopStop: {
     $(`error`);
   }
   try {
-    const test$10 = $(`first`);
+    const test$10 /*:unknown*/ = $(`first`);
     $(`second`);
     if (test$10) {
       break loopStop;
@@ -190,7 +190,7 @@ loopStop: {
   }
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     try {
-      const test$11 = $(`first`);
+      const test$11 /*:unknown*/ = $(`first`);
       $(`second`);
       if (test$11) {
         break;

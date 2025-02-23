@@ -65,11 +65,11 @@ $(a);
 
 
 `````js filename=intro
-const a = $(60);
-const tmpForInGen = $forIn(a);
+const a /*:unknown*/ = $(60);
+const tmpForInGen /*:unknown*/ = $forIn(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext = tmpForInGen.next();
-  const tmpIfTest$1 = tmpForInNext.done;
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest$1) {
     break;
   } else {

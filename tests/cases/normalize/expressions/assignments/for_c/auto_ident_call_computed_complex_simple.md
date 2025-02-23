@@ -52,16 +52,16 @@ $(a);
 
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const b /*:object*/ = { $: $ };
-  const tmpCallObj = $(b);
+  const tmpCallObj /*:unknown*/ = $(b);
   a = tmpCallObj.$(1);
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpCallObj$1 = $(b);
+      const tmpCallObj$1 /*:unknown*/ = $(b);
       a = tmpCallObj$1.$(1);
     } else {
       break;

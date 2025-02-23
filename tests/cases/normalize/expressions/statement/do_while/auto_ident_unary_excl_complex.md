@@ -54,12 +54,12 @@ $(a);
 
 `````js filename=intro
 $(100);
-const tmpIfTest = $(100);
+const tmpIfTest /*:unknown*/ = $(100);
 if (tmpIfTest) {
 } else {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpIfTest$1 = $(100);
+    const tmpIfTest$1 /*:unknown*/ = $(100);
     if (tmpIfTest$1) {
       break;
     } else {

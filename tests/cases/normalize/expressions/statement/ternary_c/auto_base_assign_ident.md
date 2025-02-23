@@ -45,8 +45,8 @@ $(a, b);
 
 
 `````js filename=intro
-let b = 1;
-const tmpIfTest = $(0);
+let b /*:unknown*/ = 1;
+const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   $(100);
 } else {

@@ -48,14 +48,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(100);
+const tmpIfTest /*:unknown*/ = $(100);
 if (tmpIfTest) {
 } else {
-  const tmpCalleeParam = $(0);
-  const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam);
+  const tmpCalleeParam /*:unknown*/ = $(0);
+  const tmpClusterSSA_tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
   if (tmpClusterSSA_tmpIfTest) {
   } else {
-    const tmpCalleeParam$1 = $(2);
+    const tmpCalleeParam$1 /*:unknown*/ = $(2);
     $(tmpCalleeParam$1);
   }
 }

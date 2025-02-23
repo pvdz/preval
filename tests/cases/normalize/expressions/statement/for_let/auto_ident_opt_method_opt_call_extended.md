@@ -65,12 +65,12 @@ while (true) {
 
 
 `````js filename=intro
-let xyz = undefined;
+let xyz /*:unknown*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
+  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, 1);
   xyz = tmpChainElementCall;
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

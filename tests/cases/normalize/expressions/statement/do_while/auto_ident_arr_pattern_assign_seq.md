@@ -69,14 +69,14 @@ $(a, x, y);
 
 
 `````js filename=intro
-let x = 1;
-let y = 2;
+let x /*:unknown*/ = 1;
+let y /*:unknown*/ = 2;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   $(x);
   $(y);
-  const tmpArrElement = $(3);
-  const tmpArrElement$1 = $(4);
+  const tmpArrElement /*:unknown*/ = $(3);
+  const tmpArrElement$1 /*:unknown*/ = $(4);
   x = tmpArrElement;
   y = tmpArrElement$1;
 }

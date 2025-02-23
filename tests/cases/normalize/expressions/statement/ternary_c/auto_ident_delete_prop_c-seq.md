@@ -48,14 +48,14 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpIfTest = $(0);
+const tmpIfTest /*:unknown*/ = $(0);
 const arg /*:object*/ = { y: 1 };
 if (tmpIfTest) {
   $(100);
 } else {
   $(1);
   $(2);
-  const tmpDeleteObj = $(arg);
+  const tmpDeleteObj /*:unknown*/ = $(arg);
   delete tmpDeleteObj.y;
 }
 const a /*:object*/ = { a: 999, b: 1000 };

@@ -75,10 +75,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_tmpForInGen = $forIn(1);
+const tmpClusterSSA_tmpForInGen /*:unknown*/ = $forIn(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext = tmpClusterSSA_tmpForInGen.next();
-  const tmpIfTest$3 = tmpForInNext.done;
+  const tmpForInNext /*:unknown*/ = tmpClusterSSA_tmpForInGen.next();
+  const tmpIfTest$3 /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest$3) {
     break;
   } else {

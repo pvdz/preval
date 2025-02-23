@@ -65,7 +65,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const x = $(true);
+const x /*:unknown*/ = $(true);
 $(`before`);
 $(`inside`);
 if (x) {

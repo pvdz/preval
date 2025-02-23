@@ -69,9 +69,9 @@ $(x);
 
 
 `````js filename=intro
-const x = $(`a`);
+const x /*:unknown*/ = $(`a`);
 $(x);
-let tmpClusterSSA_x = $(`b`);
+let tmpClusterSSA_x /*:unknown*/ = $(`b`);
 try {
   tmpClusterSSA_x = $(`c`);
 } catch (e) {

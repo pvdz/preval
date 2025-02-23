@@ -92,13 +92,13 @@ if (tmpIfTest$9) {
 
 
 `````js filename=intro
-const tmpIfTest$5 = $(30);
+const tmpIfTest$5 /*:unknown*/ = $(30);
 if (tmpIfTest$5) {
-  const tmpClusterSSA_a = $(2);
+  const tmpClusterSSA_a /*:unknown*/ = $(2);
   $(tmpClusterSSA_a);
 } else {
-  const tmpCalleeParam = $(100);
-  const tmpClusterSSA_a$1 = $(tmpCalleeParam);
+  const tmpCalleeParam /*:unknown*/ = $(100);
+  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam);
   $(tmpClusterSSA_a$1);
 }
 $(`fail1`);

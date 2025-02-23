@@ -62,22 +62,22 @@ $(a);
 
 
 `````js filename=intro
-let tmpBinBothLhs = undefined;
-const tmpChainElementCall = $($);
+let tmpBinBothLhs /*:unknown*/ = undefined;
+const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpCalleeParam$3 = $(1);
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
+  const tmpCalleeParam$3 /*:unknown*/ = $(1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
   tmpBinBothLhs = tmpChainElementCall$1;
 }
-let tmpBinBothRhs = undefined;
-const tmpChainElementCall$3 = $($);
+let tmpBinBothRhs /*:unknown*/ = undefined;
+const tmpChainElementCall$3 /*:unknown*/ = $($);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall$3 == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpCalleeParam$9 = $(1);
-  const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, $, tmpCalleeParam$9);
+  const tmpCalleeParam$9 /*:unknown*/ = $(1);
+  const tmpChainElementCall$5 /*:unknown*/ = $dotCall(tmpChainElementCall$3, $, tmpCalleeParam$9);
   tmpBinBothRhs = tmpChainElementCall$5;
 }
 tmpBinBothLhs + tmpBinBothRhs;

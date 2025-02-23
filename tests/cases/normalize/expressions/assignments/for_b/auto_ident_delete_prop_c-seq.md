@@ -58,14 +58,14 @@ $(a, arg);
 $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
-const tmpDeleteObj = $(arg);
+const tmpDeleteObj /*:unknown*/ = $(arg);
 let tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
 if (tmpClusterSSA_a) {
   while ($LOOP_UNROLL_10) {
     $(1);
     $(1);
     $(2);
-    const tmpDeleteObj$1 = $(arg);
+    const tmpDeleteObj$1 /*:unknown*/ = $(arg);
     tmpClusterSSA_a = delete tmpDeleteObj$1.y;
     if (tmpClusterSSA_a) {
     } else {

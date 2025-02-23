@@ -76,7 +76,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 `````js filename=intro
 const f /*:()=>number*/ = function () {
   debugger;
-  const x = $spy();
+  const x /*:unknown*/ = $spy();
   const t /*:number*/ = x & 8192;
   if (t) {
     return 128;

@@ -53,7 +53,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(100);
+const tmpIfTest /*:unknown*/ = $(100);
 if (tmpIfTest) {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
   tmpObjLitVal$1.e(1);

@@ -58,8 +58,8 @@ $(100);
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const tmpAssignMemLhsObj = $(b);
-const varInitAssignLhsComputedObj = $(b);
+const tmpAssignMemLhsObj /*:unknown*/ = $(b);
+const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
 varInitAssignLhsComputedObj.x = 3;
 tmpAssignMemLhsObj.x = 3;
 $(100);

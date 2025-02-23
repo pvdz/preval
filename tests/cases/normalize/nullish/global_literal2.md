@@ -39,10 +39,10 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam = unknown;
+const tmpCalleeParam /*:unknown*/ = unknown;
 const tmpIfTest /*:boolean*/ = tmpCalleeParam == null;
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam = length;
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = length;
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   $(tmpCalleeParam);

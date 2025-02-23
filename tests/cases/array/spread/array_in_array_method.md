@@ -42,7 +42,7 @@ $(y);
 
 `````js filename=intro
 const x /*:array*/ = [1, 2, 3];
-const tmpCalleeParam = x.join(``);
+const tmpCalleeParam /*:unknown*/ = x.join(``);
 $(tmpCalleeParam);
 const y /*:array*/ = [`a`, ...x, `b`];
 $(y);

@@ -86,7 +86,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(x);
   const y /*:number*/ = parseInt(x);
   if (y) {
-    const el = arr.shift();
+    const el /*:unknown*/ = arr.shift();
     arr.push(el);
   } else {
     break;

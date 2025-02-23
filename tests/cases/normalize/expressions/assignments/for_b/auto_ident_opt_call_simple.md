@@ -55,11 +55,11 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
+let a /*:unknown*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementCall = $(1);
+  const tmpChainElementCall /*:unknown*/ = $(1);
   a = tmpChainElementCall;
 }
 if (a) {
@@ -68,7 +68,7 @@ if (a) {
     const tmpIfTest$2 /*:boolean*/ = $ == null;
     if (tmpIfTest$2) {
     } else {
-      const tmpChainElementCall$1 = $(1);
+      const tmpChainElementCall$1 /*:unknown*/ = $(1);
       a = tmpChainElementCall$1;
     }
     if (a) {

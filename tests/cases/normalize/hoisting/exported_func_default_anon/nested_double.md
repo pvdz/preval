@@ -60,7 +60,7 @@ export { tmpAnonDefaultExport as default };
 $(1);
 const tmpAnonDefaultExport /*:()=>undefined*/ = function () {
   debugger;
-  const tmpCalleeParam = $(2);
+  const tmpCalleeParam /*:unknown*/ = $(2);
   $(tmpCalleeParam);
   return undefined;
 };

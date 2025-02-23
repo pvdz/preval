@@ -57,12 +57,12 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpReturnArg = $(1);
+  const tmpReturnArg /*:unknown*/ = $(1);
   $(tmpReturnArg);
 } else {
-  const tmpReturnArg$1 = $(2);
+  const tmpReturnArg$1 /*:unknown*/ = $(2);
   $(tmpReturnArg$1);
 }
 `````

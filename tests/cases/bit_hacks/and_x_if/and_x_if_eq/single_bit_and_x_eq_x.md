@@ -49,7 +49,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const x = $(32768);
+const x /*:unknown*/ = $(32768);
 const y /*:number*/ = x & 32768;
 if (y) {
   $(`pass`);

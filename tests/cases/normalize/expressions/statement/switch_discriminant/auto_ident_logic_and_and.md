@@ -60,13 +60,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-const tmpSwitchDisc = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpSwitchDisc /*:unknown*/ = $(tmpCalleeParam);
 if (tmpSwitchDisc) {
-  const tmpCalleeParam$1 = $(1);
-  const tmpClusterSSA_tmpSwitchDisc = $(tmpCalleeParam$1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
+  const tmpClusterSSA_tmpSwitchDisc /*:unknown*/ = $(tmpCalleeParam$1);
   if (tmpClusterSSA_tmpSwitchDisc) {
-    const tmpCalleeParam$3 = $(2);
+    const tmpCalleeParam$3 /*:unknown*/ = $(2);
     $(tmpCalleeParam$3);
   } else {
   }

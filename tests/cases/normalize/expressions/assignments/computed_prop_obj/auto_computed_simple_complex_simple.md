@@ -47,9 +47,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
+const tmpObjLitVal /*:unknown*/ = $(1);
 $Object_prototype.a;
-const tmpAssignComMemLhsProp = $(`b`);
+const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
 const a /*:object*/ = { b: tmpObjLitVal };
 a[tmpAssignComMemLhsProp] = 2;
 $(a);

@@ -47,12 +47,12 @@ $(a);
 
 
 `````js filename=intro
-let a = 60;
-const tmpIfTest = $(1);
-let tmpCalleeParam$1 = 60;
+let a /*:unknown*/ = 60;
+const tmpIfTest /*:unknown*/ = $(1);
+let tmpCalleeParam$1 /*:unknown*/ = 60;
 if (tmpIfTest) {
 } else {
-  const tmpCalleeParam$3 = $(100);
+  const tmpCalleeParam$3 /*:unknown*/ = $(100);
   a = $(tmpCalleeParam$3);
   tmpCalleeParam$1 = a;
 }

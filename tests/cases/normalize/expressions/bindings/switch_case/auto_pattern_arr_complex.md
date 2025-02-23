@@ -54,9 +54,9 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [1, 2];
-const arrAssignPatternRhs = $(tmpCalleeParam);
+const arrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
-const tmpClusterSSA_a = arrPatternSplat[0];
+const tmpClusterSSA_a /*:unknown*/ = arrPatternSplat[0];
 $(tmpClusterSSA_a);
 `````
 

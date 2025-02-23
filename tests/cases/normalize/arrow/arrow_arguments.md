@@ -73,10 +73,10 @@ tmpCallCallee(tmpCalleeParam);
 const f /*:()=>?*/ = function () {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
   debugger;
-  const tmpReturnArg = tmpPrevalAliasArgumentsAny[0];
+  const tmpReturnArg /*:unknown*/ = tmpPrevalAliasArgumentsAny[0];
   return tmpReturnArg;
 };
-const tmpCalleeParam = f(100);
+const tmpCalleeParam /*:unknown*/ = f(100);
 $(tmpCalleeParam);
 `````
 

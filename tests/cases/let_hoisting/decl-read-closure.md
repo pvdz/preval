@@ -80,7 +80,7 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const tmpClusterSSA_tmpssa2_x = $(2);
+  const tmpClusterSSA_tmpssa2_x /*:unknown*/ = $(2);
   $(tmpClusterSSA_tmpssa2_x);
 } else {
 }

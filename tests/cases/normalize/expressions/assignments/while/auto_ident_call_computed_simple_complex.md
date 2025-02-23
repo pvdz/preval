@@ -50,13 +50,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCompProp = $(`\$`);
+const tmpCallCompProp /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-let a = b[tmpCallCompProp](1);
+let a /*:unknown*/ = b[tmpCallCompProp](1);
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpCallCompProp$1 = $(`\$`);
+    const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
     a = b[tmpCallCompProp$1](1);
     if (a) {
     } else {

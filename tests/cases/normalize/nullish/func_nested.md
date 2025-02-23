@@ -61,10 +61,10 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const tmpObjLitVal$1 = $();
+const tmpObjLitVal$1 /*:unknown*/ = $();
 const tmpObjLitVal /*:object*/ = { b: tmpObjLitVal$1 };
 const obj /*:object*/ = { a: tmpObjLitVal };
-const tmpClusterSSA_tmpReturnArg$1 = $(obj);
+const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(obj);
 $(tmpClusterSSA_tmpReturnArg$1);
 `````
 

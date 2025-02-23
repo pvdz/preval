@@ -31,7 +31,7 @@ tmpCallComplexCallee(1, 2);
 
 
 `````js filename=intro
-const tmpCallComplexCallee = $($);
+const tmpCallComplexCallee /*:unknown*/ = $($);
 tmpCallComplexCallee(1, 2);
 `````
 

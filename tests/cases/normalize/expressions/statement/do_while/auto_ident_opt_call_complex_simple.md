@@ -62,23 +62,23 @@ $(a);
 
 `````js filename=intro
 $(100);
-let tmpIfTest = undefined;
-const tmpChainElementCall = $($);
+let tmpIfTest /*:unknown*/ = undefined;
+const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, 1);
   tmpIfTest = tmpChainElementCall$1;
 }
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    let tmpIfTest$2 = undefined;
-    const tmpChainElementCall$2 = $($);
+    let tmpIfTest$2 /*:unknown*/ = undefined;
+    const tmpChainElementCall$2 /*:unknown*/ = $($);
     const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$2 == null;
     if (tmpIfTest$4) {
     } else {
-      const tmpChainElementCall$4 = $dotCall(tmpChainElementCall$2, $, 1);
+      const tmpChainElementCall$4 /*:unknown*/ = $dotCall(tmpChainElementCall$2, $, 1);
       tmpIfTest$2 = tmpChainElementCall$4;
     }
     if (tmpIfTest$2) {

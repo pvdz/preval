@@ -48,7 +48,7 @@ if (x) {
 
 `````js filename=intro
 const tmpCalleeParam /*:regex*/ = /foo/g;
-const x = $(tmpCalleeParam);
+const x /*:unknown*/ = $(tmpCalleeParam);
 if (x) {
   $(`truthy`, ...x);
 } else {

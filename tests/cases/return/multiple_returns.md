@@ -125,21 +125,21 @@ tmpCallCallee$3(tmpCalleeParam$3);
 `````js filename=intro
 const f /*:()=>undefined*/ = function () {
   debugger;
-  const tmpIfTest = $(true);
+  const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
     $(1);
-    const tmpIfTest$1 = $(true);
+    const tmpIfTest$1 /*:unknown*/ = $(true);
     if (tmpIfTest$1) {
       $(2);
       return undefined;
     } else {
-      const tmpIfTest$3 = $(true);
+      const tmpIfTest$3 /*:unknown*/ = $(true);
       if (tmpIfTest$3) {
         $(3);
-        const tmpIfTest$5 = $(true);
+        const tmpIfTest$5 /*:unknown*/ = $(true);
         if (tmpIfTest$5) {
           $(4);
-          const tmpIfTest$7 = $(true);
+          const tmpIfTest$7 /*:unknown*/ = $(true);
           if (tmpIfTest$7) {
             $(5);
             return undefined;

@@ -93,12 +93,12 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const x = $(1);
+  const x /*:unknown*/ = $(1);
   if (x) {
-    const tmpReturnArg$3 = $(`inner if`, x);
+    const tmpReturnArg$3 /*:unknown*/ = $(`inner if`, x);
     $(tmpReturnArg$3, `outer`);
   } else {
-    const tmpReturnArg$5 = $(`inner else`, false);
+    const tmpReturnArg$5 /*:unknown*/ = $(`inner else`, false);
     $(tmpReturnArg$5, `outer`);
   }
 } else {

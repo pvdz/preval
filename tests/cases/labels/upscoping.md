@@ -76,11 +76,11 @@ A: {
   $(0);
   $(1);
   while (true) {
-    const tmpIfTest = $();
+    const tmpIfTest /*:unknown*/ = $();
     if (tmpIfTest) {
       break A;
     } else {
-      const tmpIfTest$1 = $();
+      const tmpIfTest$1 /*:unknown*/ = $();
       if (tmpIfTest$1) {
         break;
       } else {

@@ -61,7 +61,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpThrowArg = $(1, `return`);
+const tmpThrowArg /*:unknown*/ = $(1, `return`);
 throw tmpThrowArg;
 `````
 

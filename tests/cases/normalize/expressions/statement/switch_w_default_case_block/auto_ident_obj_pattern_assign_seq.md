@@ -109,11 +109,11 @@ $(a, x, y);
 
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-const tmpSwitchValue = $(1);
+let x /*:unknown*/ = 1;
+let y /*:unknown*/ = 2;
+const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
-const tmpBinLhs = $(1);
+const tmpBinLhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -128,8 +128,8 @@ const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   $(1);
   $(2);
-  const tmpObjLitVal = $(3);
-  const tmpObjLitVal$1 = $(4);
+  const tmpObjLitVal /*:unknown*/ = $(3);
+  const tmpObjLitVal$1 /*:unknown*/ = $(4);
   x = tmpObjLitVal;
   y = tmpObjLitVal$1;
 } else {

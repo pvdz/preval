@@ -81,11 +81,11 @@ if ($) {
 const f /*:()=>undefined*/ = function () {
   debugger;
   let g /*:(unknown)=>*/ = function ($$0) {
-    const x = $$0;
+    const x /*:unknown*/ = $$0;
     debugger;
     if (x) {
       g(F);
-      const tmpReturnArg = $(100);
+      const tmpReturnArg /*:unknown*/ = $(100);
       return tmpReturnArg;
     } else {
       return undefined;
@@ -94,8 +94,8 @@ const f /*:()=>undefined*/ = function () {
   g = g(T);
   return undefined;
 };
-const T = $(true);
-const F = $(false);
+const T /*:unknown*/ = $(true);
+const F /*:unknown*/ = $(false);
 if ($) {
   f();
 } else {

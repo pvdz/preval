@@ -118,7 +118,7 @@ const g /*:(number)=>function*/ = function ($$0) {
   };
   if ($) {
     f.foo = a;
-    const tmpCalleeParam = f.foo;
+    const tmpCalleeParam /*:unknown*/ = f.foo;
     $(tmpCalleeParam, `init`);
   } else {
   }
@@ -130,16 +130,16 @@ const g /*:(number)=>function*/ = function ($$0) {
   return tmpReturnArg;
 };
 const tmpCallComplexCallee /*:function*/ = g(1);
-const tmpCalleeParam$3 = tmpCallComplexCallee();
+const tmpCalleeParam$3 /*:unknown*/ = tmpCallComplexCallee();
 $(tmpCalleeParam$3, `outer`);
 const tmpCallComplexCallee$1 /*:function*/ = g(2);
-const tmpCalleeParam$7 = tmpCallComplexCallee$1();
+const tmpCalleeParam$7 /*:unknown*/ = tmpCallComplexCallee$1();
 $(tmpCalleeParam$7, `outer`);
 const tmpCallComplexCallee$3 /*:function*/ = g(3);
-const tmpCalleeParam$11 = tmpCallComplexCallee$3();
+const tmpCalleeParam$11 /*:unknown*/ = tmpCallComplexCallee$3();
 $(tmpCalleeParam$11, `outer`);
 const tmpCallComplexCallee$5 /*:function*/ = g(4);
-const tmpCalleeParam$15 = tmpCallComplexCallee$5();
+const tmpCalleeParam$15 /*:unknown*/ = tmpCallComplexCallee$5();
 $(tmpCalleeParam$15, `outer`);
 `````
 

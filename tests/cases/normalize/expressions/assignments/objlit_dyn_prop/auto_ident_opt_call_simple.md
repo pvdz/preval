@@ -48,12 +48,12 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
-let tmpObjLitPropKey = undefined;
+let a /*:unknown*/ = undefined;
+let tmpObjLitPropKey /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall = $(1);
+  const tmpChainElementCall /*:unknown*/ = $(1);
   a = tmpChainElementCall;
   tmpObjLitPropKey = tmpChainElementCall;
 }

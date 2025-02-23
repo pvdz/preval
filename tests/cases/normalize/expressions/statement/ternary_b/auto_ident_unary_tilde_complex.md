@@ -42,9 +42,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpUnaryArg = $(100);
+  const tmpUnaryArg /*:unknown*/ = $(100);
   +tmpUnaryArg;
 } else {
   $(200);

@@ -57,9 +57,9 @@ $(y);
 
 `````js filename=intro
 $(10);
-const tmpCallCallee = $(`x`);
+const tmpCallCallee /*:unknown*/ = $(`x`);
 const tmpBinBothRhs$1 /*:string*/ = $coerce(tmpCallCallee, `string`);
-const tmpCallCallee$1 = $(`y`);
+const tmpCallCallee$1 /*:unknown*/ = $(`y`);
 const tmpBinBothRhs /*:string*/ = $coerce(tmpCallCallee$1, `string`);
 if ($) {
   $(20);

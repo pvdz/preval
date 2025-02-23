@@ -67,7 +67,7 @@ $(x);
 
 `````js filename=intro
 let x /*:primitive*/ = undefined;
-const tmpSwitchDisc = $(1);
+const tmpSwitchDisc /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === 0;
 if (tmpIfTest) {
   x = 10;

@@ -54,7 +54,7 @@ $(x);
 
 
 `````js filename=intro
-let x = $(3);
+let x /*:unknown*/ = $(3);
 const y /*:number*/ = x | 32;
 if (y) {
   x = x ^ 32;

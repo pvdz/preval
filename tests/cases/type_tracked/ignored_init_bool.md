@@ -69,10 +69,10 @@ if (itooamanumberjack) {
 `````js filename=intro
 let itooamanumberjack /*:boolean*/ = false;
 if (imanumberandilovethrees) {
-  const tmpCalleeParam = $(true);
+  const tmpCalleeParam /*:unknown*/ = $(true);
   itooamanumberjack = Boolean(tmpCalleeParam);
 } else {
-  const tmpCalleeParam$1 = $(false);
+  const tmpCalleeParam$1 /*:unknown*/ = $(false);
   itooamanumberjack = Boolean(tmpCalleeParam$1);
 }
 if (itooamanumberjack) {

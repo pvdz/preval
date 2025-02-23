@@ -70,7 +70,7 @@ if ($implicitThrow) {
 
 `````js filename=intro
 let $implicitThrow /*:boolean*/ = false;
-let $finalCatchArg = undefined;
+let $finalCatchArg /*:unknown*/ = undefined;
 try {
   fail_early;
 } catch ($finalImplicit) {

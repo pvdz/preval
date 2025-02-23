@@ -36,7 +36,7 @@ $(x);
 
 
 `````js filename=intro
-const tmpArgOverflow = $spy(`a`);
+const tmpArgOverflow /*:unknown*/ = $spy(`a`);
 $spy(`b`);
 $spy(`c`);
 const x /*:boolean*/ = isNaN(tmpArgOverflow);

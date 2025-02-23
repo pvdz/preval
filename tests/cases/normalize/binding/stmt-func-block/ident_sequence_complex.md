@@ -62,10 +62,10 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpIfTest = $(true);
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   $(2);
-  const a = $(3);
+  const a /*:unknown*/ = $(3);
   $(a, 2, 3);
 } else {
 }

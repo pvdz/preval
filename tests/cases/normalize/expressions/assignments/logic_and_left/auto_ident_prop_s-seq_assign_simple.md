@@ -50,7 +50,7 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(100);
+const tmpCalleeParam /*:unknown*/ = $(100);
 $(tmpCalleeParam);
 const b /*:object*/ = { c: 2 };
 $(2, b);

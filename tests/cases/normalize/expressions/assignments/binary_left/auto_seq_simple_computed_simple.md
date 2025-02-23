@@ -49,13 +49,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
-const tmpBinBothRhs = $(100);
+const tmpObjLitVal /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(100);
 const a /*:object*/ = { b: tmpObjLitVal };
 const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(1);
-const tmpAssignMemRhs = $(2);
+const tmpAssignMemRhs /*:unknown*/ = $(2);
 a.b = tmpAssignMemRhs;
 $(a);
 `````

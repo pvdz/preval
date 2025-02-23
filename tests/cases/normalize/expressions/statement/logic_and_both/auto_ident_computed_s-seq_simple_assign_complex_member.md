@@ -57,17 +57,17 @@ $(a, b);
 
 
 `````js filename=intro
-const varInitAssignLhsComputedProp = $(`c`);
+const varInitAssignLhsComputedProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 10, d: 20 };
-const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpCompProp /*:unknown*/ = $(`d`);
+const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
 b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
-  const tmpAssignComMemLhsProp = $(`c`);
-  const tmpCompObj$1 = $(b);
-  const tmpCompProp$1 = $(`d`);
-  const tmpAssignComputedRhs = tmpCompObj$1[tmpCompProp$1];
+  const tmpAssignComMemLhsProp /*:unknown*/ = $(`c`);
+  const tmpCompObj$1 /*:unknown*/ = $(b);
+  const tmpCompProp$1 /*:unknown*/ = $(`d`);
+  const tmpAssignComputedRhs /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
   b[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 } else {
 }

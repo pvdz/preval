@@ -52,14 +52,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee$1 = $($);
-const tmpCalleeParam$1 = $(1);
-const tmpCalleeParam$3 = $(2);
-const a = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
-const tmpCallCallee$3 = $($);
-const tmpCalleeParam$5 = $(1);
-const tmpCalleeParam$7 = $(2);
-const tmpClusterSSA_a = tmpCallCallee$3(tmpCalleeParam$5, tmpCalleeParam$7);
+const tmpCallCallee$1 /*:unknown*/ = $($);
+const tmpCalleeParam$1 /*:unknown*/ = $(1);
+const tmpCalleeParam$3 /*:unknown*/ = $(2);
+const a /*:unknown*/ = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpCallCallee$3 /*:unknown*/ = $($);
+const tmpCalleeParam$5 /*:unknown*/ = $(1);
+const tmpCalleeParam$7 /*:unknown*/ = $(2);
+const tmpClusterSSA_a /*:unknown*/ = tmpCallCallee$3(tmpCalleeParam$5, tmpCalleeParam$7);
 const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);

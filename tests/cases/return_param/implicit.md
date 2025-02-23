@@ -95,7 +95,7 @@ const f /*:()=>?*/ = function () {
   $(`no`);
   $(`inlining`);
   $(`please`);
-  const tmpIfTest = $(true);
+  const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
     $(`a`);
     return foo;
@@ -104,11 +104,11 @@ const f /*:()=>?*/ = function () {
     return foo;
   }
 };
-const tmpCalleeParam = f();
+const tmpCalleeParam /*:unknown*/ = f();
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = f();
+const tmpCalleeParam$1 /*:unknown*/ = f();
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f();
+const tmpCalleeParam$3 /*:unknown*/ = f();
 $(tmpCalleeParam$3);
 `````
 

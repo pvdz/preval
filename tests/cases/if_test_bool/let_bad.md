@@ -80,7 +80,7 @@ f();
 `````js filename=intro
 const f /*:()=>*/ = function () {
   debugger;
-  let x = $(1);
+  let x /*:unknown*/ = $(1);
   let tmpCalleeParam$1 /*:boolean*/ = false;
   if ($) {
     x = 10;

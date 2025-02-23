@@ -48,15 +48,15 @@ $(a, b);
 
 
 `````js filename=intro
-let a = 3;
-const tmpIfTest = $(1);
+let a /*:unknown*/ = 3;
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   a = $(2);
 } else {
 }
-const tmpIfTest$1 = $(0);
+const tmpIfTest$1 /*:unknown*/ = $(0);
 if (tmpIfTest$1) {
-  const tmpClusterSSA_b = $(4);
+  const tmpClusterSSA_b /*:unknown*/ = $(4);
   $(a, tmpClusterSSA_b);
 } else {
   $(a, 5);

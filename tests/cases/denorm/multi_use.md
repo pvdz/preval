@@ -63,7 +63,7 @@ if (expires) {
 `````js filename=intro
 if (expires) {
   const date /*:object*/ = new Date();
-  const time = date.getTime();
+  const time /*:unknown*/ = date.getTime();
   const exp /*:number*/ = expires * 1000;
   const endtime /*:primitive*/ = time + exp;
   $dotCall($date_setTime, date, endtime);

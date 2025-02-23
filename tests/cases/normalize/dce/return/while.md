@@ -60,9 +60,9 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpIfTest = $(true);
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
-  const tmpReturnArg = $(1, `return`);
+  const tmpReturnArg /*:unknown*/ = $(1, `return`);
   $(tmpReturnArg);
 } else {
   $(undefined);

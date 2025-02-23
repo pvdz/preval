@@ -93,8 +93,8 @@ if (tmpIfTest$7) {
 
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
-const tmpAssignRhsProp = $(b);
-const tmpClusterSSA_a = tmpAssignRhsProp.c;
+const tmpAssignRhsProp /*:unknown*/ = $(b);
+const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsProp.c;
 $(tmpClusterSSA_a, b);
 $(`fail1`);
 $(`fail2`);

@@ -45,8 +45,8 @@ $(a, arg);
 
 `````js filename=intro
 const arg /*:object*/ = { y: 1 };
-const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = $(`y`);
+const tmpDeleteCompObj /*:unknown*/ = $(arg);
+const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 const tmpCalleeParamSpread /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
 $(...tmpCalleeParamSpread);
 const a /*:object*/ = { a: 999, b: 1000 };

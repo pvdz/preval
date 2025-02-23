@@ -52,16 +52,16 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpClassComputedKey = $(`f`);
+const tmpClassComputedKey /*:unknown*/ = $(`f`);
 const x /*:class*/ = class {
   [tmpClassComputedKey]() {
     debugger;
-    const tmpReturnArg = $(100);
+    const tmpReturnArg /*:unknown*/ = $(100);
     return tmpReturnArg;
   }
 };
 const tmpCallObj /*:object*/ = new x();
-const tmpCalleeParam = tmpCallObj.f();
+const tmpCalleeParam /*:unknown*/ = tmpCallObj.f();
 $(tmpCalleeParam);
 `````
 

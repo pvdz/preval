@@ -43,7 +43,7 @@ $(a, x);
 
 
 `````js filename=intro
-const a = $(10);
+const a /*:unknown*/ = $(10);
 $(20);
 $(a, a);
 `````

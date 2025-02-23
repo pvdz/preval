@@ -53,12 +53,12 @@ tmpCallCallee$1(tmpCalleeParam$1);
 const tmpObjLitVal /*:()=>string*/ = function () {
   const tmpPrevalAliasThis /*:object*/ = this;
   debugger;
-  const tmpCalleeParam = tmpPrevalAliasThis.f;
+  const tmpCalleeParam /*:unknown*/ = tmpPrevalAliasThis.f;
   $(tmpCalleeParam);
   return `win`;
 };
 const obj /*:object*/ = { f: tmpObjLitVal };
-const tmpCalleeParam$1 = obj.f();
+const tmpCalleeParam$1 /*:unknown*/ = obj.f();
 $(tmpCalleeParam$1);
 `````
 

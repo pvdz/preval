@@ -38,8 +38,8 @@ $(x);
 `````js filename=intro
 $(1);
 $(2);
-const tmpCompObj = $($);
-const x = tmpCompObj.length;
+const tmpCompObj /*:unknown*/ = $($);
+const x /*:unknown*/ = tmpCompObj.length;
 $(x);
 `````
 

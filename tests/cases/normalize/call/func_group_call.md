@@ -48,9 +48,9 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCallComplexCallee = $(parseInt);
-const y = tmpCallComplexCallee();
-const tmpReturnArg = $(y);
+const tmpCallComplexCallee /*:unknown*/ = $(parseInt);
+const y /*:unknown*/ = tmpCallComplexCallee();
+const tmpReturnArg /*:unknown*/ = $(y);
 $(tmpReturnArg);
 `````
 

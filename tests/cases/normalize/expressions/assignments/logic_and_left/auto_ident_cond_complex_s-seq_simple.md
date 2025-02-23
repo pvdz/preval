@@ -50,17 +50,17 @@ $(a);
 
 
 `````js filename=intro
-let a = 60;
-const tmpIfTest = $(1);
-let tmpCalleeParam = 60;
+let a /*:unknown*/ = 60;
+const tmpIfTest /*:unknown*/ = $(1);
+let tmpCalleeParam /*:unknown*/ = 60;
 if (tmpIfTest) {
 } else {
-  const tmpCalleeParam$1 = $(100);
+  const tmpCalleeParam$1 /*:unknown*/ = $(100);
   a = $(tmpCalleeParam$1);
   tmpCalleeParam = a;
 }
 if (a) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   $(tmpCalleeParam);

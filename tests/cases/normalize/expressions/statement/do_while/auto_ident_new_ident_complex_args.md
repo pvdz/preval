@@ -62,8 +62,8 @@ $(a);
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpCalleeParam = $(1);
-  const tmpCalleeParam$1 = $(2);
+  const tmpCalleeParam /*:unknown*/ = $(1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
   new $(tmpCalleeParam, tmpCalleeParam$1);
 }
 `````

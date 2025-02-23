@@ -56,7 +56,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(60);
+const tmpIfTest /*:unknown*/ = $(60);
 if (tmpIfTest) {
   $(60);
 } else {

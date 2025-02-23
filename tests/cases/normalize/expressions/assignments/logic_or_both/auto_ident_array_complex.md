@@ -51,14 +51,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpArrElement = $(1);
-const tmpArrElement$3 = $(3);
-let a = [tmpArrElement, 2, tmpArrElement$3];
+const tmpArrElement /*:unknown*/ = $(1);
+const tmpArrElement$3 /*:unknown*/ = $(3);
+let a /*:unknown*/ = [tmpArrElement, 2, tmpArrElement$3];
 if (a) {
   $(a);
 } else {
-  const tmpArrElement$5 = $(1);
-  const tmpArrElement$9 = $(3);
+  const tmpArrElement$5 /*:unknown*/ = $(1);
+  const tmpArrElement$9 /*:unknown*/ = $(3);
   const tmpNestedComplexRhs /*:array*/ = [tmpArrElement$5, 2, tmpArrElement$9];
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);

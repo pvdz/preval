@@ -75,7 +75,7 @@ f();
 
 `````js filename=intro
 let x /*:string*/ = `pass`;
-const tmpIfTest = $(true);
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   $(`pass`, `not mutating, not completing`);
   $(`pass`, `should not be considered mutated`);

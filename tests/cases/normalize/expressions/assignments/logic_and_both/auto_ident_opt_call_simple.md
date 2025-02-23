@@ -59,21 +59,21 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
-let tmpCalleeParam = undefined;
+let a /*:unknown*/ = undefined;
+let tmpCalleeParam /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall = $(1);
+  const tmpChainElementCall /*:unknown*/ = $(1);
   a = tmpChainElementCall;
   tmpCalleeParam = tmpChainElementCall;
 }
 if (a) {
-  let tmpNestedComplexRhs = undefined;
+  let tmpNestedComplexRhs /*:unknown*/ = undefined;
   const tmpIfTest$1 /*:boolean*/ = $ == null;
   if (tmpIfTest$1) {
   } else {
-    const tmpChainElementCall$1 = $(1);
+    const tmpChainElementCall$1 /*:unknown*/ = $(1);
     tmpNestedComplexRhs = tmpChainElementCall$1;
   }
   a = tmpNestedComplexRhs;

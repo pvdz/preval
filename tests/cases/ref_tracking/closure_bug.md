@@ -66,8 +66,8 @@ $(f);
 
 
 `````js filename=intro
-const tmpSSA_x = $(1);
-const tmpCalleeParam = tmpSSA_x.headers;
+const tmpSSA_x /*:unknown*/ = $(1);
+const tmpCalleeParam /*:unknown*/ = tmpSSA_x.headers;
 $(tmpCalleeParam);
 const f /*:()=>undefined*/ = function () {
   debugger;

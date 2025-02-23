@@ -61,7 +61,7 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
+let a /*:unknown*/ = undefined;
 while (true) {
   $(100);
   a = function () {

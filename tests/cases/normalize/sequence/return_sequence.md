@@ -46,7 +46,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 $(1);
-const tmpReturnArg = $(2);
+const tmpReturnArg /*:unknown*/ = $(2);
 $(tmpReturnArg);
 `````
 

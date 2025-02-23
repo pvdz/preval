@@ -52,16 +52,16 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-let tmpAnonDefaultExport = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+let tmpAnonDefaultExport /*:unknown*/ = $(tmpCalleeParam);
 if (tmpAnonDefaultExport) {
-  const tmpCalleeParam$1 = $(1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
   tmpAnonDefaultExport = $(tmpCalleeParam$1);
 } else {
 }
 if (tmpAnonDefaultExport) {
 } else {
-  const tmpCalleeParam$3 = $(2);
+  const tmpCalleeParam$3 /*:unknown*/ = $(2);
   tmpAnonDefaultExport = $(tmpCalleeParam$3);
 }
 export { tmpAnonDefaultExport as default };

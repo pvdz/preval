@@ -44,10 +44,10 @@ $(a);
 
 
 `````js filename=intro
-let tmpAnonDefaultExport = undefined;
+let tmpAnonDefaultExport /*:unknown*/ = undefined;
 const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
-const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
+const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+const tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
 tmpAnonDefaultExport = tmpNestedAssignObjPatternRhs;
 export { tmpAnonDefaultExport as default };
 $(tmpClusterSSA_a);

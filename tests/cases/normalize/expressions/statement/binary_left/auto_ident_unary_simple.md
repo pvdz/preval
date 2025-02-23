@@ -42,7 +42,7 @@ $(a, x);
 
 
 `````js filename=intro
-const tmpBinBothRhs = $(100);
+const tmpBinBothRhs /*:unknown*/ = $(100);
 $coerce(tmpBinBothRhs, `plustr`);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, 1);

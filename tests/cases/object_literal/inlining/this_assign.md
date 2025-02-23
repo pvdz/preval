@@ -60,12 +60,12 @@ const tmpObjLitVal$1 /*:()=>undefined*/ = function () {
   const tmpPrevalAliasThis /*:object*/ = this;
   debugger;
   tmpPrevalAliasThis.g = 2;
-  const tmpCalleeParam = tmpPrevalAliasThis.g;
+  const tmpCalleeParam /*:unknown*/ = tmpPrevalAliasThis.g;
   $(tmpCalleeParam);
   return undefined;
 };
 const obj /*:object*/ = { g: 1, f: tmpObjLitVal$1 };
-const tmpCalleeParam$1 = obj.f();
+const tmpCalleeParam$1 /*:unknown*/ = obj.f();
 $(tmpCalleeParam$1);
 `````
 

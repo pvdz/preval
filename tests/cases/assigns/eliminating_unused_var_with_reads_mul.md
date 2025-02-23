@@ -45,12 +45,12 @@ $(x);
 
 
 `````js filename=intro
-const x = $(`unknown 1`);
-const z = $(`unknown 2`);
+const x /*:unknown*/ = $(`unknown 1`);
+const z /*:unknown*/ = $(`unknown 2`);
 $(x);
 x ** 0;
 z ** 0;
-const tmpClusterSSA_x = $(`unknown 3`);
+const tmpClusterSSA_x /*:unknown*/ = $(`unknown 3`);
 $(tmpClusterSSA_x);
 `````
 

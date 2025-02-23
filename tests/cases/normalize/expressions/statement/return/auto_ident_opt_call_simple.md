@@ -62,7 +62,7 @@ const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
   $(undefined);
 } else {
-  const tmpChainElementCall = $(1);
+  const tmpChainElementCall /*:unknown*/ = $(1);
   $(tmpChainElementCall);
 }
 const a /*:object*/ = { a: 999, b: 1000 };

@@ -63,10 +63,10 @@ $(a);
 
 
 `````js filename=intro
-let a = $(60);
-const tmpCalleeParam = a;
+let a /*:unknown*/ = $(60);
+const tmpCalleeParam /*:unknown*/ = a;
 if (a) {
-  const tmpNestedComplexRhs = $(60);
+  const tmpNestedComplexRhs /*:unknown*/ = $(60);
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {

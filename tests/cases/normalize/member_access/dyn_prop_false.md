@@ -35,7 +35,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam = $Object_prototype.false;
+const tmpCalleeParam /*:unknown*/ = $Object_prototype.false;
 $(tmpCalleeParam);
 `````
 

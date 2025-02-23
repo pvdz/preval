@@ -38,8 +38,8 @@ $(a);
 
 
 `````js filename=intro
-const a = $(1);
-const tmpBinBothRhs = $(2);
+const a /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(2);
 const tmpClusterSSA_a /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpClusterSSA_a);
 `````

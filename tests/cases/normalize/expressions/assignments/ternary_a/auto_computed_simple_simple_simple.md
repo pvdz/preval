@@ -50,7 +50,7 @@ $(a);
 
 `````js filename=intro
 $(1);
-const tmpClusterSSA_tmpCalleeParam = $(100);
+const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
 $(tmpClusterSSA_tmpCalleeParam);
 const a /*:object*/ = { b: 2 };
 $(a);

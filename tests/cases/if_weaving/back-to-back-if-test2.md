@@ -64,7 +64,7 @@ if (x) {
 
 
 `````js filename=intro
-const tmpUnaryArg = $();
+const tmpUnaryArg /*:unknown*/ = $();
 if (tmpUnaryArg) {
   $(`b`);
 } else {

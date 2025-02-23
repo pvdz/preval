@@ -45,8 +45,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$3 = $(1);
-const tmpCalleeParam$1 = $(tmpCalleeParam$3);
+const tmpCalleeParam$3 /*:unknown*/ = $(1);
+const tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$3);
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 if (tmpCalleeParam$1) {
   $(tmpCalleeParam, 2);

@@ -64,7 +64,7 @@ f();
 
 
 `````js filename=intro
-const t = $(1);
+const t /*:unknown*/ = $(1);
 if (t) {
   $(2);
 } else {

@@ -55,7 +55,7 @@ if (tmpIfTest) {
   a ** 0;
   $(NaN);
 } else {
-  const tmpChainElementCall = $(1);
+  const tmpChainElementCall /*:unknown*/ = $(1);
   tmpClusterSSA_a = a * tmpChainElementCall;
   $(tmpClusterSSA_a);
 }

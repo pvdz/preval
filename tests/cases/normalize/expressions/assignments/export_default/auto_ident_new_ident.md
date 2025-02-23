@@ -40,7 +40,7 @@ $(a);
 
 `````js filename=intro
 const a /*:object*/ = new $(1);
-const tmpAnonDefaultExport = a;
+const tmpAnonDefaultExport /*:unknown*/ = a;
 export { tmpAnonDefaultExport as default };
 $(a);
 `````

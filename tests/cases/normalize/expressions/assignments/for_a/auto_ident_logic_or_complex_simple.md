@@ -49,7 +49,7 @@ while (true) {
 
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
+const tmpCalleeParam /*:unknown*/ = $(0);
 $(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);

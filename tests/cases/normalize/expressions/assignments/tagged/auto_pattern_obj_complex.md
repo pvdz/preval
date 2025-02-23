@@ -46,8 +46,8 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$3 /*:object*/ = { a: 1, b: 2 };
-const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$3);
-const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
+const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$3);
+const tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, tmpNestedAssignObjPatternRhs);
 $(tmpClusterSSA_a);

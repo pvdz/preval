@@ -72,12 +72,12 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const tmpChainElementCall = $(b);
+const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
-let tmpClusterSSA_a = undefined;
+let tmpClusterSSA_a /*:unknown*/ = undefined;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementObject = tmpChainElementCall.x;
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
   tmpClusterSSA_a = tmpChainElementObject;
 }
 $(undefined);

@@ -45,7 +45,7 @@ $(a, b, c);
 
 `````js filename=intro
 $(2);
-const varInitAssignLhsComputedObj = $(3);
+const varInitAssignLhsComputedObj /*:unknown*/ = $(3);
 varInitAssignLhsComputedObj.x = 3;
 const a /*:number*/ = 3;
 export { a };

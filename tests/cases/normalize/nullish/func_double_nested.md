@@ -77,11 +77,11 @@ tmpCallCallee$1(tmpCalleeParam$1);
 $(1);
 $(2);
 $(3);
-const tmpObjLitVal$3 = $();
+const tmpObjLitVal$3 /*:unknown*/ = $();
 const tmpObjLitVal$1 /*:object*/ = { c: tmpObjLitVal$3 };
 const tmpObjLitVal /*:object*/ = { b: tmpObjLitVal$1 };
 const obj /*:object*/ = { a: tmpObjLitVal };
-const tmpClusterSSA_tmpReturnArg$1 = $(obj);
+const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(obj);
 $(tmpClusterSSA_tmpReturnArg$1);
 `````
 

@@ -45,8 +45,8 @@ $(y);
 
 
 `````js filename=intro
-const objPatternBeforeDefault = (0).x;
-let objPatternAfterDefault = undefined;
+const objPatternBeforeDefault /*:unknown*/ = (0).x;
+let objPatternAfterDefault /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCalleeParam /*:array*/ = [`pass`];

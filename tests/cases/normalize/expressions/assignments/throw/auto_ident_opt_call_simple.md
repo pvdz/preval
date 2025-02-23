@@ -44,11 +44,11 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-let tmpThrowArg = undefined;
+let tmpThrowArg /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall = $(1);
+  const tmpChainElementCall /*:unknown*/ = $(1);
   tmpThrowArg = tmpChainElementCall;
 }
 throw tmpThrowArg;

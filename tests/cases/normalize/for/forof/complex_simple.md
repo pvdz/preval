@@ -63,18 +63,18 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const b /*:object*/ = { x: 1, y: 2 };
-const tmpForOfGen = $forOf(b);
+const tmpForOfGen /*:unknown*/ = $forOf(b);
 const a /*:object*/ = {};
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
   } else {
-    const tmpAssignMemLhsObj = $(a);
-    const tmpAssignMemRhs = tmpForOfNext.value;
+    const tmpAssignMemLhsObj /*:unknown*/ = $(a);
+    const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    const tmpCalleeParam = a.x;
+    const tmpCalleeParam /*:unknown*/ = a.x;
     $(tmpCalleeParam);
   }
 }

@@ -73,7 +73,7 @@ while (true) {
 
 
 `````js filename=intro
-let x = $(1);
+let x /*:unknown*/ = $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(x);
   x = $(2);

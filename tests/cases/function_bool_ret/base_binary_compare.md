@@ -78,7 +78,7 @@ tmpCallCallee$3(tmpCalleeParam$7, tmpCalleeParam$9);
 const f /*:()=>boolean*/ = function () {
   debugger;
   if ($) {
-    const tmpBinBothRhs = $($);
+    const tmpBinBothRhs /*:unknown*/ = $($);
     const tmpReturnArg /*:boolean*/ = $ === tmpBinBothRhs;
     return tmpReturnArg;
   } else {

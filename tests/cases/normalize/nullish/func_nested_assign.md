@@ -68,7 +68,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 $();
 const tmpObjLitVal /*:object*/ = { b: 15 };
 const obj /*:object*/ = { a: tmpObjLitVal };
-const tmpClusterSSA_tmpReturnArg$1 = $(obj);
+const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(obj);
 $(tmpClusterSSA_tmpReturnArg$1);
 `````
 

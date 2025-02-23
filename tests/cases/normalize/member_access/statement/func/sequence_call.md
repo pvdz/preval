@@ -49,7 +49,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 $(1);
-const tmpCompObj = $(2);
+const tmpCompObj /*:unknown*/ = $(2);
 tmpCompObj.toString;
 $(undefined);
 `````

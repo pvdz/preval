@@ -77,11 +77,11 @@ if (y) {
 
 
 `````js filename=intro
-const x = $(`a`);
+const x /*:unknown*/ = $(`a`);
 const y /*:boolean*/ = x === `a`;
 if (y) {
-  const tmpAssignRhsProp$105 = tmpthis$63.getInitialState;
-  const tmpssa2_y = tmpAssignRhsProp$105._isMockFunction;
+  const tmpAssignRhsProp$105 /*:unknown*/ = tmpthis$63.getInitialState;
+  const tmpssa2_y /*:unknown*/ = tmpAssignRhsProp$105._isMockFunction;
   if (tmpssa2_y) {
     $(1);
   } else {

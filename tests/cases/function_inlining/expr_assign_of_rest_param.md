@@ -73,7 +73,7 @@ $(x);
 
 
 `````js filename=intro
-let x = 0;
+let x /*:unknown*/ = 0;
 const g /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
   const b /*:array*/ = $$0;
   debugger;

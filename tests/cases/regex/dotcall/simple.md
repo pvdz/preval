@@ -36,9 +36,9 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const arg = $(`give food`);
+const arg /*:unknown*/ = $(`give food`);
 const tmpCallObj /*:regex*/ = /foo/;
-const tmpCalleeParam = tmpCallObj.test(arg);
+const tmpCalleeParam /*:unknown*/ = tmpCallObj.test(arg);
 $(tmpCalleeParam);
 `````
 

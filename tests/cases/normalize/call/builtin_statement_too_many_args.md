@@ -33,7 +33,7 @@ isNaN(tmpArgOverflow);
 
 
 `````js filename=intro
-const tmpArgOverflow = $spy(`a`);
+const tmpArgOverflow /*:unknown*/ = $spy(`a`);
 $spy(`b`);
 $spy(`c`);
 isNaN(tmpArgOverflow);

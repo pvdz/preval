@@ -63,7 +63,7 @@ $(a, x);
 $(100);
 $(1);
 $(2);
-let a = $(1);
+let a /*:unknown*/ = $(1);
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(100);

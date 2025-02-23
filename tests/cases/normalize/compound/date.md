@@ -93,14 +93,14 @@ const tmpAssignMemRhs /*:object*/ = new Date(12345);
 const obj /*:object*/ = {
   get x() {
     debugger;
-    const tmpStringConcatR = s;
+    const tmpStringConcatR /*:unknown*/ = s;
     s = `${tmpStringConcatR}read;`;
     return a;
   },
   set x($$0) {
-    const v = $$0;
+    const v /*:unknown*/ = $$0;
     debugger;
-    const tmpBinBothLhs = s;
+    const tmpBinBothLhs /*:unknown*/ = s;
     const tmpStringConcatL /*:string*/ = $coerce(v, `plustr`);
     const tmpBinBothRhs /*:string*/ = `write[${tmpStringConcatL}];`;
     s = tmpBinBothLhs + tmpBinBothRhs;

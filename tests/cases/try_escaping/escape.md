@@ -77,11 +77,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const x = arr[1];
+  const x /*:unknown*/ = arr[1];
   try {
     $(x);
     globalish = arr;
-    const tmpIfTest = $();
+    const tmpIfTest /*:unknown*/ = $();
     if (tmpIfTest) {
       break;
     } else {

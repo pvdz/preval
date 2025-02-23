@@ -50,14 +50,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpBinBothLhs = $(1);
-const tmpBinBothRhs = $(2);
+const tmpBinBothLhs /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(2);
 let a /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(1);
-    const tmpBinBothLhs$1 = $(1);
-    const tmpBinBothRhs$1 = $(2);
+    const tmpBinBothLhs$1 /*:unknown*/ = $(1);
+    const tmpBinBothRhs$1 /*:unknown*/ = $(2);
     a = tmpBinBothLhs$1 + tmpBinBothRhs$1;
     if (a) {
     } else {

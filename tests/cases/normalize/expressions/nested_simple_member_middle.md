@@ -48,7 +48,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const b /*:object*/ = {};
-const tmpNestedAssignObj = $(b);
+const tmpNestedAssignObj /*:unknown*/ = $(b);
 tmpNestedAssignObj.x = 30;
 $(30);
 `````

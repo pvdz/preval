@@ -48,12 +48,12 @@ $(a);
 
 
 `````js filename=intro
-let tmpCompObj = undefined;
-const tmpIfTest = $(1);
+let tmpCompObj /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   tmpCompObj = $(60);
 } else {
-  const tmpCalleeParam = $(100);
+  const tmpCalleeParam /*:unknown*/ = $(100);
   tmpCompObj = $(tmpCalleeParam);
 }
 tmpCompObj.a;

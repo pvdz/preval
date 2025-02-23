@@ -51,7 +51,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpClusterSSA_a = new $(1);
+let tmpClusterSSA_a /*:unknown*/ = new $(1);
 if (tmpClusterSSA_a) {
   $(tmpClusterSSA_a);
 } else {

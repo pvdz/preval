@@ -58,7 +58,7 @@ export { X };
 `````js filename=intro
 import { default as x } from 'x';
 $(x);
-const tmpCalleeParam = x.name;
+const tmpCalleeParam /*:unknown*/ = x.name;
 $(tmpCalleeParam);
 `````
 

@@ -41,8 +41,8 @@ $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCallVal = true.b;
-const tmpCalleeParam = false.y;
+const tmpCallVal /*:unknown*/ = true.b;
+const tmpCalleeParam /*:unknown*/ = false.y;
 $dotCall(tmpCallVal, true, tmpCalleeParam);
 `````
 

@@ -51,12 +51,12 @@ if (stuff) {
 
 
 `````js filename=intro
-const cook = document.cookie;
+const cook /*:unknown*/ = document.cookie;
 const tmpCalleeParam /*:regex*/ = /x/;
-const stuff = cook.match(tmpCalleeParam);
+const stuff /*:unknown*/ = cook.match(tmpCalleeParam);
 if (stuff) {
-  const tmpCalleeParam$1 = stuff[1];
-  const deco = decodeURIComponent(tmpCalleeParam$1);
+  const tmpCalleeParam$1 /*:unknown*/ = stuff[1];
+  const deco /*:unknown*/ = decodeURIComponent(tmpCalleeParam$1);
   unknown = deco;
 } else {
 }

@@ -53,15 +53,15 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 const arg /*:object*/ = { y: 1 };
 if (tmpIfTest) {
-  const tmpDeleteCompProp = $(`y`);
+  const tmpDeleteCompProp /*:unknown*/ = $(`y`);
   delete arg[tmpDeleteCompProp];
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpDeleteCompProp$1 = $(`y`);
+      const tmpDeleteCompProp$1 /*:unknown*/ = $(`y`);
       delete arg[tmpDeleteCompProp$1];
     } else {
       break;

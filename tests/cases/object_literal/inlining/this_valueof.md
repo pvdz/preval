@@ -60,14 +60,14 @@ tmpCallCallee$1(tmpCalleeParam$1);
 const tmpObjLitVal$1 /*:()=>undefined*/ = function () {
   const tmpPrevalAliasThis /*:object*/ = this;
   debugger;
-  const tmpCalleeParam = tmpPrevalAliasThis.g;
+  const tmpCalleeParam /*:unknown*/ = tmpPrevalAliasThis.g;
   $(tmpCalleeParam);
   return undefined;
 };
 const obj /*:object*/ = { g: 1, f: tmpObjLitVal$1 };
-const tmpAssignMemLhsObj = obj.value();
+const tmpAssignMemLhsObj /*:unknown*/ = obj.value();
 tmpAssignMemLhsObj.g = 2;
-const tmpCalleeParam$1 = obj.f();
+const tmpCalleeParam$1 /*:unknown*/ = obj.f();
 $(tmpCalleeParam$1);
 `````
 

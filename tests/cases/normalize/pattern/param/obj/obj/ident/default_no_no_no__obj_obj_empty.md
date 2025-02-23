@@ -55,7 +55,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const y = $Object_prototype.y;
+const y /*:unknown*/ = $Object_prototype.y;
 $(y);
 `````
 

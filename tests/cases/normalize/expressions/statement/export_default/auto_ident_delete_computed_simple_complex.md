@@ -44,7 +44,7 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpDeleteCompProp = $(`y`);
+const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 const arg /*:object*/ = { y: 1 };
 const tmpAnonDefaultExport /*:boolean*/ = delete arg[tmpDeleteCompProp];
 export { tmpAnonDefaultExport as default };

@@ -53,13 +53,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCompProp = $(`\$`);
+const tmpCallCompProp /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-let a = b[tmpCallCompProp](1);
-const tmpCalleeParam = a;
+let a /*:unknown*/ = b[tmpCallCompProp](1);
+const tmpCalleeParam /*:unknown*/ = a;
 if (a) {
-  const tmpCallCompProp$1 = $(`\$`);
-  const tmpNestedComplexRhs = b[tmpCallCompProp$1](1);
+  const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
+  const tmpNestedComplexRhs /*:unknown*/ = b[tmpCallCompProp$1](1);
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {

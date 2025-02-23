@@ -65,13 +65,13 @@ const tmpObjLitVal /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
   const tmpPrevalAliasThis /*:object*/ = this;
   const args /*:array*/ = $$0;
   debugger;
-  const tmpCalleeParam$1 = tmpPrevalAliasThis.y;
+  const tmpCalleeParam$1 /*:unknown*/ = tmpPrevalAliasThis.y;
   $(args, tmpCalleeParam$1);
   return undefined;
 };
 const a /*:object*/ = { x: tmpObjLitVal, y: 100 };
-const tmpChainElementCall = $(a);
-const tmpChainElementObject = tmpChainElementCall.x;
+const tmpChainElementCall /*:unknown*/ = $(a);
+const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
 const tmpIfTest /*:boolean*/ = tmpChainElementObject == null;
 if (tmpIfTest) {
 } else {

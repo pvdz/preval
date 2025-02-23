@@ -116,41 +116,41 @@ tmpCallCallee$5(tmpCalleeParam$5);
 
 
 `````js filename=intro
-const tmpClassSuper = $(String);
-const tmpClassComputedKey = $(`f`);
+const tmpClassSuper /*:unknown*/ = $(String);
+const tmpClassComputedKey /*:unknown*/ = $(`f`);
 const x /*:class*/ = class extends tmpClassSuper {
   [tmpClassComputedKey]() {
     debugger;
-    const tmpReturnArg = $(100, `method`);
+    const tmpReturnArg /*:unknown*/ = $(100, `method`);
     return tmpReturnArg;
   }
   g() {
     debugger;
-    const tmpReturnArg$1 = $(200, `method`);
+    const tmpReturnArg$1 /*:unknown*/ = $(200, `method`);
     return tmpReturnArg$1;
   }
   x() {
     debugger;
-    const tmpReturnArg$3 = $(300, `method`);
+    const tmpReturnArg$3 /*:unknown*/ = $(300, `method`);
     return tmpReturnArg$3;
   }
   y() {
     debugger;
-    const tmpReturnArg$5 = $(400, `method`);
+    const tmpReturnArg$5 /*:unknown*/ = $(400, `method`);
     return tmpReturnArg$5;
   }
 };
 const tmpCallObj /*:object*/ = new x();
-const tmpCalleeParam = tmpCallObj.f();
+const tmpCalleeParam /*:unknown*/ = tmpCallObj.f();
 $(tmpCalleeParam);
 const tmpCallObj$1 /*:object*/ = new x();
-const tmpCalleeParam$1 = tmpCallObj$1.g();
+const tmpCalleeParam$1 /*:unknown*/ = tmpCallObj$1.g();
 $(tmpCalleeParam$1);
 const tmpCallObj$3 /*:object*/ = new x();
-const tmpCalleeParam$3 = tmpCallObj$3.x();
+const tmpCalleeParam$3 /*:unknown*/ = tmpCallObj$3.x();
 $(tmpCalleeParam$3);
 const tmpCallObj$5 /*:object*/ = new x();
-const tmpCalleeParam$5 = tmpCallObj$5.y();
+const tmpCalleeParam$5 /*:unknown*/ = tmpCallObj$5.y();
 $(tmpCalleeParam$5);
 `````
 

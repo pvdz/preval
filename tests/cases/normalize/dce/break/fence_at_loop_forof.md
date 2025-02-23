@@ -84,30 +84,30 @@ $(`after (not invoked)`);
 
 
 `````js filename=intro
-const tmpIfTest = $(true);
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   $(`loop`);
   const tmpCalleeParam /*:array*/ = [1, 2];
-  const tmpForOfGen = $forOf(tmpCalleeParam);
-  const tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest$1 = tmpForOfNext.done;
+  const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest$1) {
   } else {
-    const x = tmpForOfNext.value;
+    const x /*:unknown*/ = tmpForOfNext.value;
     $(`loop`, x);
   }
   while ($LOOP_UNROLL_10) {
     $(`infiloop, do not eliminate`);
-    const tmpIfTest$2 = $(true);
+    const tmpIfTest$2 /*:unknown*/ = $(true);
     if (tmpIfTest$2) {
       $(`loop`);
       const tmpCalleeParam$1 /*:array*/ = [1, 2];
-      const tmpForOfGen$1 = $forOf(tmpCalleeParam$1);
-      const tmpForOfNext$1 = tmpForOfGen$1.next();
-      const tmpIfTest$4 = tmpForOfNext$1.done;
+      const tmpForOfGen$1 /*:unknown*/ = $forOf(tmpCalleeParam$1);
+      const tmpForOfNext$1 /*:unknown*/ = tmpForOfGen$1.next();
+      const tmpIfTest$4 /*:unknown*/ = tmpForOfNext$1.done;
       if (tmpIfTest$4) {
       } else {
-        const x$1 = tmpForOfNext$1.value;
+        const x$1 /*:unknown*/ = tmpForOfNext$1.value;
         $(`loop`, x$1);
       }
     } else {

@@ -55,15 +55,15 @@ $(s);
 
 
 `````js filename=intro
-const s = $(10);
+const s /*:unknown*/ = $(10);
 $(1);
 let tmpClusterSSA_s /*:number*/ = s | 10;
-const tmpClusterSSA_x = $(true);
+const tmpClusterSSA_x /*:unknown*/ = $(true);
 if (tmpClusterSSA_x) {
   while ($LOOP_UNROLL_10) {
     $(1);
     tmpClusterSSA_s = tmpClusterSSA_s | 10;
-    const tmpClusterSSA_x$1 = $(true);
+    const tmpClusterSSA_x$1 /*:unknown*/ = $(true);
     if (tmpClusterSSA_x$1) {
     } else {
       break;

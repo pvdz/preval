@@ -82,7 +82,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpSwitchValue = $(1);
+const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const a /*:array*/ = [1, 2, 3];
 const tmpIfTest /*:boolean*/ = a === tmpSwitchValue;

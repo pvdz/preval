@@ -43,8 +43,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpBinBothLhs$1 = $(1);
-const tmpBinBothRhs$1 = $(2);
+const tmpBinBothLhs$1 /*:unknown*/ = $(1);
+const tmpBinBothRhs$1 /*:unknown*/ = $(2);
 const tmpBinBothRhs /*:primitive*/ = tmpBinBothLhs$1 + tmpBinBothRhs$1;
 const a /*:object*/ = { a: 999, b: 1000 };
 const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;

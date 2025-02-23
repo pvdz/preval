@@ -45,12 +45,12 @@ $(a);
 
 
 `````js filename=intro
-let tmpObjSpreadArg = undefined;
-const tmpChainElementCall = $($);
+let tmpObjSpreadArg /*:unknown*/ = undefined;
+const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, 1);
   tmpObjSpreadArg = tmpChainElementCall$1;
 }
 ({ ...tmpObjSpreadArg });

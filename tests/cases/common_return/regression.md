@@ -152,7 +152,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 const k /*:()=>?*/ = function () {
   debugger;
-  const tmpCalleeParam = $(10);
+  const tmpCalleeParam /*:unknown*/ = $(10);
   if ($) {
     $(`prevent`);
     $(`simple`);
@@ -170,14 +170,14 @@ if ($) {
     $(`prevent`);
     $(`simple`);
     $(`inlining`);
-    const tmpReturnArg$1 = k();
+    const tmpReturnArg$1 /*:unknown*/ = k();
     $(tmpReturnArg$1);
   } else {
-    const tmpReturnArg$3 = k();
+    const tmpReturnArg$3 /*:unknown*/ = k();
     $(tmpReturnArg$3);
   }
 } else {
-  const tmpReturnArg$7 = k();
+  const tmpReturnArg$7 /*:unknown*/ = k();
   $(tmpReturnArg$7);
 }
 `````

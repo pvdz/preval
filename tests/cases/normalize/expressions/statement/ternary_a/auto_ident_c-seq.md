@@ -49,7 +49,7 @@ $(a, x);
 `````js filename=intro
 $(1);
 $(2);
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   $(100);
 } else {

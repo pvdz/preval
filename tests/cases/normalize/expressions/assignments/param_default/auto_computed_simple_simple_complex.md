@@ -67,7 +67,7 @@ $(a);
 `````js filename=intro
 $(1);
 $(undefined);
-const tmpAssignMemRhs = $(2);
+const tmpAssignMemRhs /*:unknown*/ = $(2);
 const tmpNestedComplexRhs /*:object*/ = { b: tmpAssignMemRhs };
 $(tmpNestedComplexRhs);
 `````

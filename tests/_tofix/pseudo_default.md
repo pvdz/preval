@@ -59,7 +59,7 @@ if (tmpIfTest) {
   const tmpClusterSSA_val /*:object*/ = {};
   $(tmpClusterSSA_val);
 } else {
-  const tmpClusterSSA_val$1 = arg;
+  const tmpClusterSSA_val$1 /*:unknown*/ = arg;
   $(tmpClusterSSA_val$1);
 }
 `````

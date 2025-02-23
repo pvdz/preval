@@ -77,12 +77,12 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f /*:()=>?*/ = function () {
   debugger;
-  const tmpIfTest = $(1);
+  const tmpIfTest /*:unknown*/ = $(1);
   if (tmpIfTest) {
-    const tmpClusterSSA_x = $(10);
+    const tmpClusterSSA_x /*:unknown*/ = $(10);
     return tmpClusterSSA_x;
   } else {
-    const tmpClusterSSA_x$1 = $(20);
+    const tmpClusterSSA_x$1 /*:unknown*/ = $(20);
     return tmpClusterSSA_x$1;
   }
 };
@@ -90,7 +90,7 @@ f();
 f();
 f();
 f();
-const tmpCalleeParam = f();
+const tmpCalleeParam /*:unknown*/ = f();
 $(tmpCalleeParam);
 `````
 

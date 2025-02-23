@@ -55,7 +55,7 @@ $(2);
 const arg /*:object*/ = { y: 1 };
 const a /*:boolean*/ = delete arg.y;
 if (a) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   $(false);

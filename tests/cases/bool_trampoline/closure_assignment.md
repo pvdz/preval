@@ -76,7 +76,7 @@ const f /*:()=>*/ = function () {
   const y /*:boolean*/ = Boolean(x);
   return y;
 };
-let x = undefined;
+let x /*:unknown*/ = undefined;
 $(f);
 $(f);
 x = $(100);

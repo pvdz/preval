@@ -45,8 +45,8 @@ while (true) {
 
 
 `````js filename=intro
-const tmpBinBothLhs = $(1);
-const tmpBinBothRhs = $(2);
+const tmpBinBothLhs /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(2);
 tmpBinBothLhs + tmpBinBothRhs;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);

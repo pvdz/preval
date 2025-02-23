@@ -65,7 +65,7 @@ $(...y);
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [100, 200];
 $(tmpCalleeParam);
-const tmpIfTest = $(true);
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   $(1, 2);
 } else {

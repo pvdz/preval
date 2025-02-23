@@ -81,7 +81,7 @@ const f /*:()=>undefined*/ = function () {
 f();
 $(3);
 f();
-const tmpCalleeParam$3 = $.length;
+const tmpCalleeParam$3 /*:unknown*/ = $.length;
 $(tmpCalleeParam$3);
 f();
 $(5);

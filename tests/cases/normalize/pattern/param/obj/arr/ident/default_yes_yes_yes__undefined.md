@@ -78,9 +78,9 @@ tmpCallCallee$3(tmpCalleeParam$3);
 `````js filename=intro
 const tmpObjLitVal /*:array*/ = [`pass3`];
 const tmpCalleeParam /*:object*/ = { x: tmpObjLitVal };
-const tmpClusterSSA_bindingPatternObjRoot = $(tmpCalleeParam);
-const objPatternBeforeDefault = tmpClusterSSA_bindingPatternObjRoot.x;
-let objPatternAfterDefault = undefined;
+const tmpClusterSSA_bindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
+const objPatternBeforeDefault /*:unknown*/ = tmpClusterSSA_bindingPatternObjRoot.x;
+let objPatternAfterDefault /*:unknown*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   const tmpCalleeParam$1 /*:array*/ = [`fail2`];
@@ -89,7 +89,7 @@ if (tmpIfTest$1) {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const arrPatternSplat /*:array*/ = [...objPatternAfterDefault];
-const arrPatternBeforeDefault = arrPatternSplat[0];
+const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
 const tmpIfTest$3 /*:boolean*/ = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$3) {
   $(`fail`);

@@ -90,19 +90,19 @@ $(wat);
 
 
 `````js filename=intro
-const s = $(10);
+const s /*:unknown*/ = $(10);
 $(`before`);
 let wat /*:number*/ = s | 10;
-const chk = $(true);
+const chk /*:unknown*/ = $(true);
 if (chk) {
   $(`inside`);
   wat = wat | 10;
-  const tmpClusterSSA_chk = $(true);
+  const tmpClusterSSA_chk /*:unknown*/ = $(true);
   if (tmpClusterSSA_chk) {
     while ($LOOP_UNROLL_10) {
       $(`inside`);
       wat = wat | 10;
-      const tmpClusterSSA_chk$1 = $(true);
+      const tmpClusterSSA_chk$1 /*:unknown*/ = $(true);
       if (tmpClusterSSA_chk$1) {
       } else {
         break;

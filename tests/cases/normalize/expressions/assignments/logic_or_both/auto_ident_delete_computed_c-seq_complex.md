@@ -63,16 +63,16 @@ $(a, arg);
 $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
-const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = $(`y`);
-let tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpDeleteCompObj /*:unknown*/ = $(arg);
+const tmpDeleteCompProp /*:unknown*/ = $(`y`);
+let tmpClusterSSA_a /*:unknown*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
 if (tmpClusterSSA_a) {
   $(tmpClusterSSA_a);
 } else {
   $(1);
   $(2);
-  const tmpDeleteCompObj$1 = $(arg);
-  const tmpDeleteCompProp$1 = $(`y`);
+  const tmpDeleteCompObj$1 /*:unknown*/ = $(arg);
+  const tmpDeleteCompProp$1 /*:unknown*/ = $(`y`);
   const tmpNestedComplexRhs /*:boolean*/ = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
   tmpClusterSSA_a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);

@@ -38,8 +38,8 @@ $(x);
 
 `````js filename=intro
 $(1);
-const tmpCompObj = $(2);
-const x = tmpCompObj.toString;
+const tmpCompObj /*:unknown*/ = $(2);
+const x /*:unknown*/ = tmpCompObj.toString;
 $(x);
 `````
 

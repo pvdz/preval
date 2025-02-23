@@ -52,7 +52,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpIfTest$1 /*:boolean*/ = $ == null;
   if (tmpIfTest$1) {
@@ -60,7 +60,7 @@ if (tmpIfTest) {
     $(1);
   }
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$2 = $(1);
+    const tmpIfTest$2 /*:unknown*/ = $(1);
     if (tmpIfTest$2) {
       const tmpIfTest$4 /*:boolean*/ = $ == null;
       if (tmpIfTest$4) {

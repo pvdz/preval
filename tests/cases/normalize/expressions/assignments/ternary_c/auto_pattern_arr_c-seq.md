@@ -55,16 +55,16 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
-const tmpIfTest = $(0);
+let a /*:unknown*/ = arrPatternSplat[0];
+const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   $(10);
   $(20);
   const tmpCalleeParam$1 /*:array*/ = [1, 2];
-  const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
+  const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
   const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
   a = arrPatternSplat$1[0];
   $(tmpNestedAssignArrPatternRhs);

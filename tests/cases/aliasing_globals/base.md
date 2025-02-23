@@ -39,9 +39,9 @@ $(a, b, c);
 
 
 `````js filename=intro
-const a = unknown1;
-const b = unknown2;
-const c = unknown3;
+const a /*:unknown*/ = unknown1;
+const b /*:unknown*/ = unknown2;
+const c /*:unknown*/ = unknown3;
 $(a, b, c);
 `````
 

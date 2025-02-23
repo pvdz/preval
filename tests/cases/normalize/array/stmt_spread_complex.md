@@ -38,7 +38,7 @@ const tmpArrElToSpread = tmpCallCallee(tmpCalleeParam);
 $(1);
 $(3);
 const tmpCalleeParam /*:array*/ = [4, 5];
-const tmpArrElToSpread = $(tmpCalleeParam);
+const tmpArrElToSpread /*:unknown*/ = $(tmpCalleeParam);
 [...tmpArrElToSpread];
 `````
 

@@ -37,7 +37,7 @@ $(x);
 
 
 `````js filename=intro
-const tmpClusterSSA_x = $(2);
+const tmpClusterSSA_x /*:unknown*/ = $(2);
 $(tmpClusterSSA_x);
 `````
 

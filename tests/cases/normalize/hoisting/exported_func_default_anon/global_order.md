@@ -72,20 +72,20 @@ export { g };
 `````js filename=intro
 const f /*:()=>?*/ = function () {
   debugger;
-  const tmpReturnArg = $();
+  const tmpReturnArg /*:unknown*/ = $();
   return tmpReturnArg;
 };
 const g /*:()=>?*/ = function () {
   debugger;
-  const tmpReturnArg$1 = $();
+  const tmpReturnArg$1 /*:unknown*/ = $();
   return tmpReturnArg$1;
 };
-const tmpCalleeParam = $();
-const tmpCalleeParam$1 = $();
+const tmpCalleeParam /*:unknown*/ = $();
+const tmpCalleeParam$1 /*:unknown*/ = $();
 $(tmpCalleeParam, tmpCalleeParam$1);
 const tmpAnonDefaultExport /*:()=>?*/ = function () {
   debugger;
-  const tmpReturnArg$3 = $();
+  const tmpReturnArg$3 /*:unknown*/ = $();
   return tmpReturnArg$3;
 };
 export { tmpAnonDefaultExport as default };

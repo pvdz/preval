@@ -68,20 +68,20 @@ $(`after (not invoked)`);
 
 
 `````js filename=intro
-const tmpIfTest = $(true);
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   $(`loop`);
-  const tmpIfTest$1 = $(true);
+  const tmpIfTest$1 /*:unknown*/ = $(true);
   if (tmpIfTest$1) {
     $(`loop`);
   } else {
   }
   while ($LOOP_UNROLL_10) {
     $(`infiloop, do not eliminate`);
-    const tmpIfTest$2 = $(true);
+    const tmpIfTest$2 /*:unknown*/ = $(true);
     if (tmpIfTest$2) {
       $(`loop`);
-      const tmpIfTest$4 = $(true);
+      const tmpIfTest$4 /*:unknown*/ = $(true);
       if (tmpIfTest$4) {
         $(`loop`);
       } else {

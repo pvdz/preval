@@ -66,9 +66,9 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const x = $(5);
+  const x /*:unknown*/ = $(5);
   $(x);
-  const tmpClusterSSA_x = $(10);
+  const tmpClusterSSA_x /*:unknown*/ = $(10);
   $(tmpClusterSSA_x);
   $(undefined);
 } else {

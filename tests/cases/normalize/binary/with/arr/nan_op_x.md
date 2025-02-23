@@ -154,7 +154,7 @@ $(arr2);
 
 
 `````js filename=intro
-const x = $spy();
+const x /*:unknown*/ = $spy();
 const tmpBinLhs /*:array*/ = [];
 const tmpArrElement /*:number*/ = tmpBinLhs ** x;
 const tmpBinLhs$1 /*:array*/ = [];

@@ -47,7 +47,7 @@ $(a);
 
 `````js filename=intro
 $(1);
-const a = $(1);
+const a /*:unknown*/ = $(1);
 $(a);
 `````
 

@@ -109,29 +109,29 @@ tmpCallCallee$25(tmpCalleeParam$51, tmpCalleeParam$53);
 
 
 `````js filename=intro
-const tmpCalleeParam$5 = $(`b`);
-const tmpCalleeParam = $(`a`, tmpCalleeParam$5);
+const tmpCalleeParam$5 /*:unknown*/ = $(`b`);
+const tmpCalleeParam /*:unknown*/ = $(`a`, tmpCalleeParam$5);
 $(tmpCalleeParam, `first A`);
-const tmpCalleeParam$11 = $(`a`);
-const tmpCalleeParam$7 = $(tmpCalleeParam$11, `b`);
+const tmpCalleeParam$11 /*:unknown*/ = $(`a`);
+const tmpCalleeParam$7 /*:unknown*/ = $(tmpCalleeParam$11, `b`);
 $(tmpCalleeParam$7, `first B`);
-const tmpCalleeParam$19 = $(`a`);
-const tmpCalleeParam$21 = $(`b`);
-const tmpCalleeParam$15 = $(tmpCalleeParam$19, tmpCalleeParam$21);
+const tmpCalleeParam$19 /*:unknown*/ = $(`a`);
+const tmpCalleeParam$21 /*:unknown*/ = $(`b`);
+const tmpCalleeParam$15 /*:unknown*/ = $(tmpCalleeParam$19, tmpCalleeParam$21);
 $(tmpCalleeParam$15, `first C`);
-const tmpCalleeParam$23 = $(`a`, `b`);
+const tmpCalleeParam$23 /*:unknown*/ = $(`a`, `b`);
 $(tmpCalleeParam$23, `first D`);
-const tmpCalleeParam$33 = $(`b`);
-const tmpCalleeParam$27 = $(`a`, tmpCalleeParam$33);
+const tmpCalleeParam$33 /*:unknown*/ = $(`b`);
+const tmpCalleeParam$27 /*:unknown*/ = $(`a`, tmpCalleeParam$33);
 $(tmpCalleeParam$27, `second A`);
-const tmpCalleeParam$39 = $(`a`);
-const tmpCalleeParam$35 = $(tmpCalleeParam$39, `b`);
+const tmpCalleeParam$39 /*:unknown*/ = $(`a`);
+const tmpCalleeParam$35 /*:unknown*/ = $(tmpCalleeParam$39, `b`);
 $(tmpCalleeParam$35, `second B`);
-const tmpCalleeParam$47 = $(`a`);
-const tmpCalleeParam$49 = $(`b`);
-const tmpCalleeParam$43 = $(tmpCalleeParam$47, tmpCalleeParam$49);
+const tmpCalleeParam$47 /*:unknown*/ = $(`a`);
+const tmpCalleeParam$49 /*:unknown*/ = $(`b`);
+const tmpCalleeParam$43 /*:unknown*/ = $(tmpCalleeParam$47, tmpCalleeParam$49);
 $(tmpCalleeParam$43, `second C`);
-const tmpCalleeParam$51 = $(`a`, `b`);
+const tmpCalleeParam$51 /*:unknown*/ = $(`a`, `b`);
 $(tmpCalleeParam$51, `second D`);
 `````
 

@@ -41,7 +41,7 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpBinLhs = $(100);
+const tmpBinLhs /*:unknown*/ = $(100);
 tmpBinLhs + 0;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, 1);

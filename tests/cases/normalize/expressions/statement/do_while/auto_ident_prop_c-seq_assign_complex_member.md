@@ -64,18 +64,18 @@ $(a, b);
 `````js filename=intro
 $(100);
 const b /*:object*/ = { c: 10, d: 20 };
-const varInitAssignLhsComputedObj = $(b);
-const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpCompProp /*:unknown*/ = $(`d`);
+const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const varInitAssignLhsComputedObj$1 = $(b);
-    const tmpCompObj$1 = $(b);
-    const tmpCompProp$1 = $(`d`);
-    const varInitAssignLhsComputedRhs$1 = tmpCompObj$1[tmpCompProp$1];
+    const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(b);
+    const tmpCompObj$1 /*:unknown*/ = $(b);
+    const tmpCompProp$1 /*:unknown*/ = $(`d`);
+    const varInitAssignLhsComputedRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
     varInitAssignLhsComputedObj$1.c = varInitAssignLhsComputedRhs$1;
     if (varInitAssignLhsComputedRhs$1) {
     } else {

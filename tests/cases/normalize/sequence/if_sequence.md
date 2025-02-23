@@ -36,7 +36,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 $(1);
-const tmpIfTest = $(2);
+const tmpIfTest /*:unknown*/ = $(2);
 if (tmpIfTest) {
   $(3);
 } else {

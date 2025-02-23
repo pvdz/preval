@@ -61,23 +61,23 @@ $(a, x, y);
 
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-const tmpIfTest = $(1);
+let x /*:unknown*/ = 1;
+let y /*:unknown*/ = 2;
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   $(1);
   $(2);
-  const tmpArrElement = $(3);
-  const tmpArrElement$1 = $(4);
+  const tmpArrElement /*:unknown*/ = $(3);
+  const tmpArrElement$1 /*:unknown*/ = $(4);
   x = tmpArrElement;
   y = tmpArrElement$1;
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       $(x);
       $(y);
-      const tmpArrElement$2 = $(3);
-      const tmpArrElement$4 = $(4);
+      const tmpArrElement$2 /*:unknown*/ = $(3);
+      const tmpArrElement$4 /*:unknown*/ = $(4);
       x = tmpArrElement$2;
       y = tmpArrElement$4;
     } else {

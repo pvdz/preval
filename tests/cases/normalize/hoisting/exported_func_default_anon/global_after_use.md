@@ -45,7 +45,7 @@ export { tmpAnonDefaultExport as default };
 $(1);
 const tmpAnonDefaultExport /*:()=>?*/ = function () {
   debugger;
-  const tmpReturnArg = $(2);
+  const tmpReturnArg /*:unknown*/ = $(2);
   return tmpReturnArg;
 };
 export { tmpAnonDefaultExport as default };

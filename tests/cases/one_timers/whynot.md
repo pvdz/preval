@@ -95,9 +95,9 @@ const parseIdentifierRest /*:()=>number*/ = function () {
   debugger;
   let s /*:number*/ = 10;
   $inlinedFunction: {
-    const tmpIfTest = $(1);
+    const tmpIfTest /*:unknown*/ = $(1);
     if (tmpIfTest) {
-      const tmpIfTest$1 = $(1);
+      const tmpIfTest$1 /*:unknown*/ = $(1);
       if (tmpIfTest$1) {
         break $inlinedFunction;
       } else {

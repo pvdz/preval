@@ -40,7 +40,7 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
+const tmpObjLitVal /*:unknown*/ = $(1);
 const a /*:object*/ = { b: tmpObjLitVal };
 throw a;
 `````

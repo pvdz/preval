@@ -79,7 +79,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest = $(false);
+  const tmpIfTest /*:unknown*/ = $(false);
   if (tmpIfTest) {
     $(`fail too`);
     throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;

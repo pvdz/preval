@@ -97,7 +97,7 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const x = $(0);
+  const x /*:unknown*/ = $(0);
   if (x) {
     $(`inner if`, x);
   } else {

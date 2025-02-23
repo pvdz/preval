@@ -69,25 +69,25 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
-const tmpChainElementCall = $($);
+let a /*:unknown*/ = undefined;
+const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let tmpCalleeParam = undefined;
+let tmpCalleeParam /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
-  const tmpCalleeParam$5 = $(1);
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$5);
+  const tmpCalleeParam$5 /*:unknown*/ = $(1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, tmpCalleeParam$5);
   a = tmpChainElementCall$1;
   tmpCalleeParam = tmpChainElementCall$1;
 }
 if (a) {
-  let tmpNestedComplexRhs = undefined;
-  const tmpChainElementCall$3 = $($);
+  let tmpNestedComplexRhs /*:unknown*/ = undefined;
+  const tmpChainElementCall$3 /*:unknown*/ = $($);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall$3 == null;
   if (tmpIfTest$1) {
   } else {
-    const tmpCalleeParam$11 = $(1);
-    const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, $, tmpCalleeParam$11);
+    const tmpCalleeParam$11 /*:unknown*/ = $(1);
+    const tmpChainElementCall$5 /*:unknown*/ = $dotCall(tmpChainElementCall$3, $, tmpCalleeParam$11);
     tmpNestedComplexRhs = tmpChainElementCall$5;
   }
   a = tmpNestedComplexRhs;

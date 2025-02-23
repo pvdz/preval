@@ -52,7 +52,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const objPatternNoDefault = (0).x;
+const objPatternNoDefault /*:unknown*/ = (0).x;
 const arrPatternSplat /*:array*/ = [...objPatternNoDefault];
 arrPatternSplat[0];
 $(`bad`);

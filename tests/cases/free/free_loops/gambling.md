@@ -360,15 +360,15 @@ tmpCallCallee$1(tmpCalleeParam$5);
 
 `````js filename=intro
 const tmpFree /*:(unknown, unknown)=>number*/ = function $free($$0, $$1) {
-  const tmpBinLhs$9 = $$0;
-  const tmpBinBothRhs$5 = $$1;
+  const tmpBinLhs$9 /*:unknown*/ = $$0;
+  const tmpBinBothRhs$5 /*:unknown*/ = $$1;
   debugger;
   const tmpBinLhs /*:number*/ = tmpBinLhs$9 << 11;
   const tmpRet /*:number*/ = tmpBinLhs | tmpBinBothRhs$5;
   return tmpRet;
 };
 let a /*:number*/ = 0;
-let hoezithetmetdezeb = undefined;
+let hoezithetmetdezeb /*:unknown*/ = undefined;
 let counter_a /*:number*/ = 4;
 let counter_b /*:number*/ = 0;
 const dataarray /*:array*/ = [0, 1, 2, 3, 47, 47, 192, 13, 10, 40, 31337, 221, 218, 39, 1, 5, 2, 13];
@@ -377,9 +377,9 @@ const output_array /*:array*/ = [];
 while (true) {
   const tmpIfTest /*:boolean*/ = counter_a < 92;
   if (tmpIfTest) {
-    const tmpPostUpdArgIdent$3 = counter_a;
+    const tmpPostUpdArgIdent$3 /*:unknown*/ = counter_a;
     counter_a = counter_a + 1;
-    const tmpClusterSSA_b = dataarray[tmpPostUpdArgIdent$3];
+    const tmpClusterSSA_b /*:unknown*/ = dataarray[tmpPostUpdArgIdent$3];
     let tmpIfTest$9 /*:boolean*/ = tmpClusterSSA_b === 0;
     if (tmpIfTest$9) {
     } else {
@@ -394,30 +394,30 @@ while (true) {
       }
     }
     if (tmpIfTest$9) {
-      const tmpPostUpdArgIdent$7 = counter_a;
+      const tmpPostUpdArgIdent$7 /*:unknown*/ = counter_a;
       counter_a = counter_a + 1;
-      const tmpClusterSSA_a$1 = dataarray[tmpPostUpdArgIdent$7];
+      const tmpClusterSSA_a$1 /*:unknown*/ = dataarray[tmpPostUpdArgIdent$7];
       if (tmpClusterSSA_a$1) {
         const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_b === 0;
         if (tmpIfTest$1) {
           hoezithetmetdezeb = tmpClusterSSA_a$1 & 31;
           const tmpClusterSSA_c /*:number*/ = counter_a + 1;
-          const tmpClusterSSA_h = dataarray[counter_a];
+          const tmpClusterSSA_h /*:unknown*/ = dataarray[counter_a];
           counter_a = tmpClusterSSA_c + 1;
-          const tmpClusterSSA_m = dataarray[tmpClusterSSA_c];
+          const tmpClusterSSA_m /*:unknown*/ = dataarray[tmpClusterSSA_c];
           const tmpBinLhs$1 /*:number*/ = tmpClusterSSA_a$1 & 224;
-          const tmpCallCallee = $frfr;
+          const tmpCallCallee /*:unknown*/ = $frfr;
           const tmpCalleeParam$3 /*:number*/ = tmpClusterSSA_h << 8;
-          const tmpBinLhs$4 = tmpCallCallee(tmpFree, tmpBinLhs$1, tmpCalleeParam$3);
+          const tmpBinLhs$4 /*:unknown*/ = tmpCallCallee(tmpFree, tmpBinLhs$1, tmpCalleeParam$3);
           const tmpBinLhs$2 /*:number*/ = tmpBinLhs$4 | tmpClusterSSA_m;
           a = tmpBinLhs$2 + 2056;
         } else {
           const tmpIfTest$3 /*:boolean*/ = tmpClusterSSA_b === 1;
           if (tmpIfTest$3) {
             hoezithetmetdezeb = tmpClusterSSA_a$1 & 31;
-            const tmpPostUpdArgIdent$13 = counter_a;
+            const tmpPostUpdArgIdent$13 /*:unknown*/ = counter_a;
             counter_a = counter_a + 1;
-            const tmpClusterSSA_h$1 = dataarray[tmpPostUpdArgIdent$13];
+            const tmpClusterSSA_h$1 /*:unknown*/ = dataarray[tmpPostUpdArgIdent$13];
             const tmpBinLhs$10 /*:number*/ = tmpClusterSSA_a$1 & 224;
             const tmpBinLhs$8 /*:number*/ = tmpBinLhs$10 << 3;
             const tmpBinLhs$6 /*:number*/ = tmpBinLhs$8 | tmpClusterSSA_h$1;
@@ -448,13 +448,13 @@ while (true) {
         }
         if (tmpIfTest$10) {
           const tmpCompProp /*:number*/ = counter_b - a;
-          const tmpAssignComputedRhs = output_array[tmpCompProp];
+          const tmpAssignComputedRhs /*:unknown*/ = output_array[tmpCompProp];
           output_array[counter_b] = tmpAssignComputedRhs;
           counter_b = counter_b + 1;
           const tmpIfTest$12 /*:boolean*/ = 1 < hoezithetmetdezeb;
           if (tmpIfTest$12) {
             const tmpCompProp$1 /*:number*/ = counter_b - a;
-            const tmpAssignComputedRhs$1 = output_array[tmpCompProp$1];
+            const tmpAssignComputedRhs$1 /*:unknown*/ = output_array[tmpCompProp$1];
             output_array[counter_b] = tmpAssignComputedRhs$1;
             counter_b = counter_b + 1;
             let tmpClusterSSA_i$1 /*:number*/ = 2;
@@ -462,7 +462,7 @@ while (true) {
               const tmpIfTest$2 /*:boolean*/ = tmpClusterSSA_i$1 < hoezithetmetdezeb;
               if (tmpIfTest$2) {
                 const tmpCompProp$2 /*:number*/ = counter_b - a;
-                const tmpAssignComputedRhs$2 = output_array[tmpCompProp$2];
+                const tmpAssignComputedRhs$2 /*:unknown*/ = output_array[tmpCompProp$2];
                 output_array[counter_b] = tmpAssignComputedRhs$2;
                 counter_b = counter_b + 1;
                 tmpClusterSSA_i$1 = tmpClusterSSA_i$1 + 1;
@@ -475,12 +475,12 @@ while (true) {
         } else {
         }
       } else {
-        const tmpPostUpdArgIdent$19 = counter_b;
+        const tmpPostUpdArgIdent$19 /*:unknown*/ = counter_b;
         counter_b = counter_b + 1;
         output_array[tmpPostUpdArgIdent$19] = tmpClusterSSA_b;
       }
     } else {
-      const tmpPostUpdArgIdent$5 = counter_b;
+      const tmpPostUpdArgIdent$5 /*:unknown*/ = counter_b;
       counter_b = counter_b + 1;
       output_array[tmpPostUpdArgIdent$5] = tmpClusterSSA_b;
     }
@@ -488,7 +488,7 @@ while (true) {
     break;
   }
 }
-const tmpCalleeParam$5 = output_array.join(``);
+const tmpCalleeParam$5 /*:unknown*/ = output_array.join(``);
 $(tmpCalleeParam$5);
 `````
 

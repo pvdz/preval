@@ -89,18 +89,18 @@ $(a, s);
 `````js filename=intro
 let s /*:string*/ = ``;
 let a /*:primitive*/ = 0;
-const tmpAssignMemRhs = $spy();
+const tmpAssignMemRhs /*:unknown*/ = $spy();
 const obj /*:object*/ = {
   get x() {
     debugger;
-    const tmpStringConcatR = s;
+    const tmpStringConcatR /*:unknown*/ = s;
     s = `${tmpStringConcatR}read;`;
     return a;
   },
   set x($$0) {
-    const v = $$0;
+    const v /*:unknown*/ = $$0;
     debugger;
-    const tmpBinBothLhs = s;
+    const tmpBinBothLhs /*:unknown*/ = s;
     const tmpStringConcatL /*:string*/ = $coerce(v, `plustr`);
     const tmpBinBothRhs /*:string*/ = `write[${tmpStringConcatL}];`;
     s = tmpBinBothLhs + tmpBinBothRhs;

@@ -40,7 +40,7 @@ $(x);
 `````js filename=intro
 const bindingPatternObjRoot /*:object*/ = { x: 1, b: 2, c: 3 };
 const tmpCalleeParam$1 /*:array*/ = [];
-const x = objPatternRest(bindingPatternObjRoot, tmpCalleeParam$1, `x`);
+const x /*:unknown*/ = objPatternRest(bindingPatternObjRoot, tmpCalleeParam$1, `x`);
 $(x);
 `````
 

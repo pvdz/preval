@@ -38,7 +38,7 @@ $(`out:`, y);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(true);
+const tmpCalleeParam /*:unknown*/ = $(true);
 const x /*:boolean*/ = Boolean(tmpCalleeParam);
 const y /*:boolean*/ = !x;
 $(`out:`, y);

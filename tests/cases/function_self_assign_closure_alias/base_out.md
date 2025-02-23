@@ -119,7 +119,7 @@ const b /*:()=>*/ = function () {
   $(`after`);
   return undefined;
 };
-let a = b;
+let a /*:unknown*/ = b;
 b();
 b();
 a();

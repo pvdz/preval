@@ -64,8 +64,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const y = $(20);
-const z = $(30);
+const y /*:unknown*/ = $(20);
+const z /*:unknown*/ = $(30);
 const tmpReturnArg /*:array*/ = [10, y, z];
 $(tmpReturnArg);
 $(undefined);

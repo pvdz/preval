@@ -41,9 +41,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(100);
+const tmpIfTest /*:unknown*/ = $(100);
 if (tmpIfTest) {
-  const tmpCallComplexCallee = $($);
+  const tmpCallComplexCallee /*:unknown*/ = $($);
   tmpCallComplexCallee(1);
 } else {
 }

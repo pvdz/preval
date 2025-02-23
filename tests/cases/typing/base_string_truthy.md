@@ -60,7 +60,7 @@ f();
 
 
 `````js filename=intro
-const tmpBinBothRhs = $(`pass`);
+const tmpBinBothRhs /*:unknown*/ = $(`pass`);
 const b /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
 if (b) {
   $(b);

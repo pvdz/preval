@@ -47,11 +47,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-const xyz = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const xyz /*:unknown*/ = $(tmpCalleeParam);
 if (xyz) {
-  const tmpCalleeParam$1 = $(2);
-  const tmpClusterSSA_xyz = $(tmpCalleeParam$1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
+  const tmpClusterSSA_xyz /*:unknown*/ = $(tmpCalleeParam$1);
   $(tmpClusterSSA_xyz);
 } else {
   $(xyz);

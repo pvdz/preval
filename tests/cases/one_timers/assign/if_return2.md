@@ -74,7 +74,7 @@ closure();
 
 
 `````js filename=intro
-const x = $(100, `init`);
+const x /*:unknown*/ = $(100, `init`);
 $(x, `closure`);
 if ($) {
   $(1, `f`);

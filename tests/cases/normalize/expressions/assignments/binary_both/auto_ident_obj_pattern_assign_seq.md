@@ -68,12 +68,12 @@ $(a, x, y);
 `````js filename=intro
 $(1);
 $(2);
-const tmpObjLitVal = $(3);
-const tmpObjLitVal$1 = $(4);
+const tmpObjLitVal /*:unknown*/ = $(3);
+const tmpObjLitVal$1 /*:unknown*/ = $(4);
 $(tmpObjLitVal);
 $(tmpObjLitVal$1);
-const tmpObjLitVal$3 = $(3);
-const tmpObjLitVal$5 = $(4);
+const tmpObjLitVal$3 /*:unknown*/ = $(3);
+const tmpObjLitVal$5 /*:unknown*/ = $(4);
 const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 const tmpNestedAssignObjPatternRhs$1 /*:object*/ = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
 const tmpCalleeParam /*:primitive*/ = tmpNestedAssignObjPatternRhs + tmpNestedAssignObjPatternRhs$1;

@@ -60,7 +60,7 @@ $(x);
 
 
 `````js filename=intro
-const tmpSwitchCaseToStart = $(0);
+const tmpSwitchCaseToStart /*:unknown*/ = $(0);
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   $(10);

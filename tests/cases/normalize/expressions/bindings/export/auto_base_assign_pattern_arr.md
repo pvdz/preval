@@ -46,12 +46,12 @@ $(a, b);
 
 
 `````js filename=intro
-let a = undefined;
-const tmpArrElement = $(2);
+let a /*:unknown*/ = undefined;
+const tmpArrElement /*:unknown*/ = $(2);
 const tmpCalleeParam /*:array*/ = [tmpArrElement];
-const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
+const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_b = arrPatternSplat[0];
+const tmpClusterSSA_b /*:unknown*/ = arrPatternSplat[0];
 a = tmpNestedAssignArrPatternRhs;
 export { a };
 $(a, tmpClusterSSA_b);

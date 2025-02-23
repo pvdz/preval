@@ -62,13 +62,13 @@ while (true) {
 
 `````js filename=intro
 let tmp /*:boolean*/ = true;
-const test = $(`first`);
+const test /*:unknown*/ = $(`first`);
 $(`second`);
 if (test) {
 } else {
   $(`third`);
   while ($LOOP_UNROLL_10) {
-    const test$1 = $(`first`);
+    const test$1 /*:unknown*/ = $(`first`);
     $(`second`);
     if (test$1) {
       tmp = false;

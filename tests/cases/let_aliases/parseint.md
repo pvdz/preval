@@ -90,12 +90,12 @@ let f /*:()=>*/ = function () {
     debugger;
     return the_let_binding;
   };
-  const tmpReturnArg = f();
+  const tmpReturnArg /*:unknown*/ = f();
   return tmpReturnArg;
 };
-const n = $(`1`);
-let the_let_binding = $(1);
-const a = the_let_binding;
+const n /*:unknown*/ = $(`1`);
+let the_let_binding /*:unknown*/ = $(1);
+const a /*:unknown*/ = the_let_binding;
 const m /*:number*/ = parseInt(n);
 $(a, a);
 $(f);

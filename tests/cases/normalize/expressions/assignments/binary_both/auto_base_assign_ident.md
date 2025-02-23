@@ -50,8 +50,8 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpNestedComplexRhs = $(2);
-const tmpNestedComplexRhs$1 = $(2);
+const tmpNestedComplexRhs /*:unknown*/ = $(2);
+const tmpNestedComplexRhs$1 /*:unknown*/ = $(2);
 const tmpCalleeParam /*:primitive*/ = tmpNestedComplexRhs + tmpNestedComplexRhs$1;
 $(tmpCalleeParam);
 $(tmpNestedComplexRhs$1, tmpNestedComplexRhs$1);

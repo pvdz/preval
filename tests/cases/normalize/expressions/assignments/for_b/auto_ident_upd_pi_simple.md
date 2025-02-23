@@ -55,7 +55,7 @@ $(a, b);
 
 
 `````js filename=intro
-let a = undefined;
+let a /*:unknown*/ = undefined;
 $(1);
 $(1);
 $(1);
@@ -66,7 +66,7 @@ $(1);
 $(1);
 $(1);
 $(1);
-let b = 12;
+let b /*:unknown*/ = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
   const tmpNestedComplexRhs$1 /*:number*/ = b + 1;

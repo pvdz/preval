@@ -59,7 +59,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpReturnArg = $(60);
+const tmpReturnArg /*:unknown*/ = $(60);
 $(tmpReturnArg);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

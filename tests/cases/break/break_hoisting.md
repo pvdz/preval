@@ -2,7 +2,7 @@
 
 # break_hoisting.md
 
-> Tofix > break hoisting
+> Break > Break hoisting
 >
 > If, in this case, the $(3) is hoisted to right before the unlabeled break
 > then the labeled break could become a regular break too and the label 
@@ -10,6 +10,8 @@
 > and I'm not sure about multiple unlabeled breaks.
 > The number of labeled breaks is irrelevant here because the problem is in
 > code bloat.
+
+(This was a tofix but the particular example gets resolved properly so it's hard to get a test case)
 
 ## Input
 
@@ -70,7 +72,7 @@ a: {
 
 
 `````js filename=intro
-const tmpIfTest = $(0);
+const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   $(1);
   $(3);

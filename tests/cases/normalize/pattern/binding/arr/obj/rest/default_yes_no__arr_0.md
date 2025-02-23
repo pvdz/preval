@@ -50,7 +50,7 @@ $(x);
 
 `````js filename=intro
 const tmpCalleeParam$3 /*:array*/ = [];
-const x = objPatternRest(0, tmpCalleeParam$3, undefined);
+const x /*:unknown*/ = objPatternRest(0, tmpCalleeParam$3, undefined);
 $(x);
 `````
 

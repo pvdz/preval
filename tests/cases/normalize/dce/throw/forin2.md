@@ -80,15 +80,15 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [10, 20];
-const tmpForOfGen = $forOf(tmpCalleeParam);
-const tmpForOfNext = tmpForOfGen.next();
-const tmpIfTest = tmpForOfNext.done;
+const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
 if (tmpIfTest) {
   $(`keep, do not eval`);
   $(undefined);
 } else {
   tmpForOfNext.value;
-  const tmpThrowArg = $(1, `throw`);
+  const tmpThrowArg /*:unknown*/ = $(1, `throw`);
   throw tmpThrowArg;
 }
 `````

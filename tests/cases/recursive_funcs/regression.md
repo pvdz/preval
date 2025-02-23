@@ -194,8 +194,8 @@ $(tmpObjLitVal$159);
 
 `````js filename=intro
 const tmpFree$1 /*:(unknown, unknown)=>string*/ = function $free($$0, $$1) {
-  const $dlr_$$0 = $$0;
-  const $dlr_$$1 = $$1;
+  const $dlr_$$0 /*:unknown*/ = $$0;
+  const $dlr_$$1 /*:unknown*/ = $$1;
   debugger;
   const tmpBinBothLhs$3633 /*:primitive*/ = $dlr_$$0 + 71046;
   const tmpBinBothRhs$3633 /*:number*/ = `xyz`.charCodeAt($dlr_$$1);
@@ -205,7 +205,7 @@ const tmpFree$1 /*:(unknown, unknown)=>string*/ = function $free($$0, $$1) {
 };
 const tmpObjLitVal$159 /*:()=>undefined*/ = function () {
   debugger;
-  let t$3391 = tmpSSA_Tu();
+  let t$3391 /*:unknown*/ = tmpSSA_Tu();
   if (t$3391) {
     tmpSSA_wu(t$3391);
   } else {
@@ -218,14 +218,14 @@ const tmpObjLitVal$159 /*:()=>undefined*/ = function () {
   }
   tmpCallObj$3807.toString(36);
   const tmpCalleeParam$11085 /*:regex*/ = /^0./;
-  const tmpClusterSSA_r$2027 = tmpCallObj$3811.replace(tmpCalleeParam$11085, ``);
+  const tmpClusterSSA_r$2027 /*:unknown*/ = tmpCallObj$3811.replace(tmpCalleeParam$11085, ``);
   $coerce(tmpBinBothRhs$32, `string`);
   $coerce(tmpClusterSSA_r$2027, `string`);
-  const tmpClusterSSA_t$9 = tmpSSA_Tu();
+  const tmpClusterSSA_t$9 /*:unknown*/ = tmpSSA_Tu();
   if (tmpClusterSSA_t$9) {
     tmpClusterSSA_tmpssa3_c$245 = tmpClusterSSA_t$9;
   } else {
-    const tmpClusterSSA_t$11 = tmpSSA_Su();
+    const tmpClusterSSA_t$11 /*:unknown*/ = tmpSSA_Su();
     if (tmpClusterSSA_t$11) {
       tmpClusterSSA_tmpssa3_c$245 = tmpClusterSSA_t$11;
     } else {

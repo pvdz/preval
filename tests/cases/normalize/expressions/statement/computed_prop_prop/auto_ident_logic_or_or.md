@@ -55,15 +55,15 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
-let tmpCompProp = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(0);
+let tmpCompProp /*:unknown*/ = $(tmpCalleeParam);
 if (tmpCompProp) {
 } else {
-  const tmpCalleeParam$1 = $(1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
   tmpCompProp = $(tmpCalleeParam$1);
   if (tmpCompProp) {
   } else {
-    const tmpCalleeParam$3 = $(2);
+    const tmpCalleeParam$3 /*:unknown*/ = $(2);
     tmpCompProp = $(tmpCalleeParam$3);
   }
 }

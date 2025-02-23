@@ -53,8 +53,8 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const a = $(1);
-const b = $(2);
+const a /*:unknown*/ = $(1);
+const b /*:unknown*/ = $(2);
 const same /*:boolean*/ = a !== b;
 $(same);
 $(same);

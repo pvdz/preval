@@ -81,11 +81,11 @@ tmpCallCallee$3(tmpCalleeParam$7, tmpCalleeParam$9);
 
 
 `````js filename=intro
-const tmpCalleeParam$3 = $(1);
-const tmpCalleeParam$5 = $(2);
+const tmpCalleeParam$3 /*:unknown*/ = $(1);
+const tmpCalleeParam$5 /*:unknown*/ = $(2);
 $(tmpCalleeParam$3, tmpCalleeParam$5);
 $(tmpCalleeParam$3, `outer1`);
-const tmpCalleeParam$13 = $(200);
+const tmpCalleeParam$13 /*:unknown*/ = $(200);
 $(100, tmpCalleeParam$13);
 $(100, `outer2`);
 `````

@@ -63,12 +63,12 @@ $(`after, do not evaluate (infinite loop)`);
 
 `````js filename=intro
 while (true) {
-  const tmpIfTest = $(true);
+  const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
-    const tmpIfTest$1 = $(true);
+    const tmpIfTest$1 /*:unknown*/ = $(true);
     if (tmpIfTest$1) {
       while ($LOOP_UNROLL_10) {
-        const tmpIfTest$2 = $(true);
+        const tmpIfTest$2 /*:unknown*/ = $(true);
         if (tmpIfTest$2) {
         } else {
           break;

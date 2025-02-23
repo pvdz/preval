@@ -51,14 +51,14 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpIfTest = $(0);
+const tmpIfTest /*:unknown*/ = $(0);
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpCalleeParam = $(b);
-  const tmpAssignMemLhsObj = $(tmpCalleeParam);
-  const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
+  const tmpCalleeParam /*:unknown*/ = $(b);
+  const tmpAssignMemLhsObj /*:unknown*/ = $(tmpCalleeParam);
+  const tmpCompoundAssignLhs /*:unknown*/ = tmpAssignMemLhsObj.x;
   const tmpAssignMemRhs /*:primitive*/ = tmpCompoundAssignLhs + 1;
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 }

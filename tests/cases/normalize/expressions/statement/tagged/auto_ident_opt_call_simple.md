@@ -51,7 +51,7 @@ const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 if (tmpIfTest) {
   $(tmpCalleeParam, undefined);
 } else {
-  const tmpChainElementCall = $(1);
+  const tmpChainElementCall /*:unknown*/ = $(1);
   $(tmpCalleeParam, tmpChainElementCall);
 }
 const a /*:object*/ = { a: 999, b: 1000 };

@@ -53,13 +53,13 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCompObj = $(b);
-const tmpCompProp = $(`\$`);
-const tmpNewCallee = tmpCompObj[tmpCompProp];
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpCompProp /*:unknown*/ = $(`\$`);
+const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCompProp];
 const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
-const tmpCompObj$1 = $(b);
-const tmpCompProp$1 = $(`\$`);
-const tmpNewCallee$1 = tmpCompObj$1[tmpCompProp$1];
+const tmpCompObj$1 /*:unknown*/ = $(b);
+const tmpCompProp$1 /*:unknown*/ = $(`\$`);
+const tmpNewCallee$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
 const tmpClusterSSA_a$1 /*:object*/ = new tmpNewCallee$1(1);
 const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a$1;
 $(tmpCalleeParam);

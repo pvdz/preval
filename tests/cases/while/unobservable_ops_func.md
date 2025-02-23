@@ -76,15 +76,15 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 const f /*:()=>undefined*/ = function () {
   debugger;
-  const s = $(10);
+  const s /*:unknown*/ = $(10);
   parseExpression(lexerFlags$285, astProp$181);
   let tmpClusterSSA_s /*:number*/ = s | 10;
-  const tmpClusterSSA_x = $(true);
+  const tmpClusterSSA_x /*:unknown*/ = $(true);
   if (tmpClusterSSA_x) {
     while ($LOOP_UNROLL_10) {
       parseExpression(lexerFlags$285, astProp$181);
       tmpClusterSSA_s = tmpClusterSSA_s | 10;
-      const tmpClusterSSA_x$1 = $(true);
+      const tmpClusterSSA_x$1 /*:unknown*/ = $(true);
       if (tmpClusterSSA_x$1) {
       } else {
         break;

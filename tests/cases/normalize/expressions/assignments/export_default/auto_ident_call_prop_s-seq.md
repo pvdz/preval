@@ -45,8 +45,8 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const a = b.$(1);
-const tmpAnonDefaultExport = a;
+const a /*:unknown*/ = b.$(1);
+const tmpAnonDefaultExport /*:unknown*/ = a;
 export { tmpAnonDefaultExport as default };
 $(a);
 `````

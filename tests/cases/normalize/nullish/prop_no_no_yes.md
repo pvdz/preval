@@ -41,11 +41,11 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCompObj = $Object_prototype.b;
-const tmpCalleeParam = tmpCompObj.c;
+const tmpCompObj /*:unknown*/ = $Object_prototype.b;
+const tmpCalleeParam /*:unknown*/ = tmpCompObj.c;
 const tmpIfTest /*:boolean*/ = tmpCalleeParam == null;
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam = d;
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = d;
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   $(tmpCalleeParam);

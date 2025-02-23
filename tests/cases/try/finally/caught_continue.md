@@ -96,7 +96,7 @@ try {
   $(1);
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $(2);
-    const tmpIfTest = $(3);
+    const tmpIfTest /*:unknown*/ = $(3);
     if (tmpIfTest) {
     } else {
       $(4);

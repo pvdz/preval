@@ -49,7 +49,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const x = $(200);
+const x /*:unknown*/ = $(200);
 const y /*:number*/ = x & 200;
 const tmpIfTest /*:boolean*/ = y === 64;
 if (tmpIfTest) {

@@ -65,7 +65,7 @@ if (tmpIfTest$1) {
   $(tmpCalleeParam, undefined);
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
+  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, 1);
   $(tmpCalleeParam, tmpChainElementCall);
 }
 const a /*:object*/ = { a: 999, b: 1000 };

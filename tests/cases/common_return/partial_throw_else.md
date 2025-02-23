@@ -67,7 +67,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f /*:()=>undefined*/ = function () {
   debugger;
-  const tmpIfTest = $(0);
+  const tmpIfTest /*:unknown*/ = $(0);
   if (tmpIfTest) {
     throw `Some error`;
   } else {

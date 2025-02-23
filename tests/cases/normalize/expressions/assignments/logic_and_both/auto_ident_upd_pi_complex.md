@@ -62,16 +62,16 @@ $(a, b);
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const tmpCalleeParam$1 = $(b);
-const tmpNestedAssignObj = $(tmpCalleeParam$1);
-const tmpBinLhs = tmpNestedAssignObj.x;
+const tmpCalleeParam$1 /*:unknown*/ = $(b);
+const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs + 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-let tmpClusterSSA_a = tmpNestedPropCompoundComplexRhs;
+let tmpClusterSSA_a /*:unknown*/ = tmpNestedPropCompoundComplexRhs;
 if (tmpNestedPropCompoundComplexRhs) {
-  const tmpCalleeParam$3 = $(b);
-  const varInitAssignLhsComputedObj = $(tmpCalleeParam$3);
-  const tmpBinLhs$1 = varInitAssignLhsComputedObj.x;
+  const tmpCalleeParam$3 /*:unknown*/ = $(b);
+  const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpCalleeParam$3);
+  const tmpBinLhs$1 /*:unknown*/ = varInitAssignLhsComputedObj.x;
   const varInitAssignLhsComputedRhs /*:primitive*/ = tmpBinLhs$1 + 1;
   varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
   tmpClusterSSA_a = varInitAssignLhsComputedRhs;

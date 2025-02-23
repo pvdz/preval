@@ -62,15 +62,15 @@ $(a);
 
 `````js filename=intro
 $(100);
-const tmpNewCallee = $($);
-const tmpCalleeParam = $(1);
-const tmpCalleeParam$1 = $(2);
+const tmpNewCallee /*:unknown*/ = $($);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpCalleeParam$1 /*:unknown*/ = $(2);
 new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpNewCallee$1 = $($);
-  const tmpCalleeParam$2 = $(1);
-  const tmpCalleeParam$4 = $(2);
+  const tmpNewCallee$1 /*:unknown*/ = $($);
+  const tmpCalleeParam$2 /*:unknown*/ = $(1);
+  const tmpCalleeParam$4 /*:unknown*/ = $(2);
   new tmpNewCallee$1(tmpCalleeParam$2, tmpCalleeParam$4);
 }
 `````

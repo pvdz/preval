@@ -47,11 +47,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpUnaryArg = $(100);
-let a = !tmpUnaryArg;
-const tmpCalleeParam = a;
+const tmpUnaryArg /*:unknown*/ = $(100);
+let a /*:unknown*/ = !tmpUnaryArg;
+const tmpCalleeParam /*:unknown*/ = a;
 if (a) {
-  const tmpUnaryArg$1 = $(100);
+  const tmpUnaryArg$1 /*:unknown*/ = $(100);
   const tmpNestedComplexRhs /*:boolean*/ = !tmpUnaryArg$1;
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);

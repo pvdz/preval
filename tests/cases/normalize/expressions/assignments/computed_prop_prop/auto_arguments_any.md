@@ -42,7 +42,7 @@ $(a);
 
 
 `````js filename=intro
-const a = arguments;
+const a /*:unknown*/ = arguments;
 const obj /*:object*/ = {};
 obj[a];
 $(a);

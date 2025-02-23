@@ -55,11 +55,11 @@ $(x, y);
 
 
 `````js filename=intro
-const y = $(5);
+const y /*:unknown*/ = $(5);
 $(true);
 const tmpNestedComplexRhs /*:number*/ = y - 1;
-let tmpClusterSSA_y = tmpNestedComplexRhs;
-let tmpClusterSSA_x = tmpNestedComplexRhs;
+let tmpClusterSSA_y /*:unknown*/ = tmpNestedComplexRhs;
+let tmpClusterSSA_x /*:unknown*/ = tmpNestedComplexRhs;
 if (tmpNestedComplexRhs) {
   while ($LOOP_UNROLL_10) {
     $(tmpClusterSSA_x);

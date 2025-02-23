@@ -32,7 +32,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam = $.length;
+const tmpCalleeParam /*:unknown*/ = $.length;
 $(tmpCalleeParam);
 `````
 

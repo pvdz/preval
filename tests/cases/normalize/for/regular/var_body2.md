@@ -43,10 +43,10 @@ while (true) {
 
 
 `````js filename=intro
-const tmpIfTest = $(undefined);
+const tmpIfTest /*:unknown*/ = $(undefined);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(0);
+    const tmpIfTest$1 /*:unknown*/ = $(0);
     if (tmpIfTest$1) {
     } else {
       break;

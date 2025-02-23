@@ -55,12 +55,12 @@ $(a);
 
 
 `````js filename=intro
-const tmpSwitchDisc = $(1);
-const tmpBinBothRhs = $(1);
+const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
-  const tmpObjLitVal = $(1);
-  const tmpObjLitVal$3 = $(3);
+  const tmpObjLitVal /*:unknown*/ = $(1);
+  const tmpObjLitVal$3 /*:unknown*/ = $(3);
   const tmpClusterSSA_a /*:object*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
   $(tmpClusterSSA_a);
 } else {

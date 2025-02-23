@@ -43,9 +43,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCompProp = $(`\$`);
+const tmpCallCompProp /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpArrElToSpread = b[tmpCallCompProp](1);
+const tmpArrElToSpread /*:unknown*/ = b[tmpCallCompProp](1);
 [...tmpArrElToSpread];
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

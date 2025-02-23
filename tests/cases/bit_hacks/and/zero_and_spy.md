@@ -34,7 +34,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpBinBothRhs = $spy(3.402823669209385e38);
+const tmpBinBothRhs /*:unknown*/ = $spy(3.402823669209385e38);
 tmpBinBothRhs ** 0;
 $(0);
 `````

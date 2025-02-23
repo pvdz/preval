@@ -50,9 +50,9 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
+let a /*:unknown*/ = undefined;
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall = tmpObjLitVal$1.e(1);
+const tmpChainElementCall /*:unknown*/ = tmpObjLitVal$1.e(1);
 a = tmpChainElementCall;
 export { a };
 $(a);

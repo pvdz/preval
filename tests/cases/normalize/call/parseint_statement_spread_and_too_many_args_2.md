@@ -56,18 +56,18 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [1, 2];
-const tmpArrSpread = $(tmpCalleeParam);
+const tmpArrSpread /*:unknown*/ = $(tmpCalleeParam);
 const tmpArgOverflowOne /*:array*/ = [...tmpArrSpread];
-const tmpArgOverflowLen = tmpArgOverflowOne.length;
-const tmpArgOverflowTwo = $spy(`b`);
-const tmpArgOverflowThree = $spy(`c`);
+const tmpArgOverflowLen /*:unknown*/ = tmpArgOverflowOne.length;
+const tmpArgOverflowTwo /*:unknown*/ = $spy(`b`);
+const tmpArgOverflowThree /*:unknown*/ = $spy(`c`);
 if (tmpArgOverflowLen) {
-  const tmpClusterSSA_tmpCallCallee$1 = tmpArgOverflowOne[0];
+  const tmpClusterSSA_tmpCallCallee$1 /*:unknown*/ = tmpArgOverflowOne[0];
   $coerce(tmpClusterSSA_tmpCallCallee$1, `string`);
 } else {
   $coerce(tmpArgOverflowTwo, `string`);
 }
-let tmpUnaryArg = undefined;
+let tmpUnaryArg /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = tmpArgOverflowLen > 1;
 if (tmpIfTest) {
   tmpUnaryArg = tmpArgOverflowOne[1];

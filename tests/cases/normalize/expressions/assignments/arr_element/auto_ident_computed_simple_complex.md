@@ -50,11 +50,11 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpAssignRhsCompProp = $(`c`);
+const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
-const a = b[tmpAssignRhsCompProp];
-const tmpAssignRhsCompProp$1 = $(`c`);
-const tmpClusterSSA_a = b[tmpAssignRhsCompProp$1];
+const a /*:unknown*/ = b[tmpAssignRhsCompProp];
+const tmpAssignRhsCompProp$1 /*:unknown*/ = $(`c`);
+const tmpClusterSSA_a /*:unknown*/ = b[tmpAssignRhsCompProp$1];
 const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a, b);

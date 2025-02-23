@@ -64,7 +64,7 @@ while (true) {
 
 
 `````js filename=intro
-let x = $(1);
+let x /*:unknown*/ = $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpIfTest /*:number*/ = x % 3;
   let tmpIfTest$1 /*:number*/ = 0;

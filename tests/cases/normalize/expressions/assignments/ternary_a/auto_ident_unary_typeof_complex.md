@@ -50,8 +50,8 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpUnaryArg = $(1);
-const tmpClusterSSA_tmpCalleeParam = $(100);
+const tmpUnaryArg /*:unknown*/ = $(1);
+const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
 $(tmpClusterSSA_tmpCalleeParam);
 const a /*:string*/ = typeof tmpUnaryArg;
 $(a, 1);

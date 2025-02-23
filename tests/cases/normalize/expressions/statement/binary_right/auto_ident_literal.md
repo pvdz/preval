@@ -37,7 +37,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpBinLhs = $(100);
+const tmpBinLhs /*:unknown*/ = $(100);
 $coerce(tmpBinLhs, `plustr`);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

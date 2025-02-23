@@ -57,7 +57,7 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall = tmpObjLitVal$1.e(1);
+const tmpChainElementCall /*:unknown*/ = tmpObjLitVal$1.e(1);
 const a /*:object*/ = { a: 999, b: 1000 };
 const tmpClusterSSA_a$1 /*:number*/ = a * tmpChainElementCall;
 $(tmpClusterSSA_a$1);

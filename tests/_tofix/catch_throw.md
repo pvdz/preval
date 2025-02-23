@@ -92,11 +92,11 @@ $(unstable_runWithPriority);
 
 `````js filename=intro
 const unstable_runWithPriority /*:(unknown)=>?*/ = function ($$0) {
-  const eventHandler = $$0;
+  const eventHandler /*:unknown*/ = $$0;
   debugger;
   let $implicitThrow /*:boolean*/ = false;
-  let $finalCatchArg = undefined;
-  let value = undefined;
+  let $finalCatchArg /*:unknown*/ = undefined;
+  let value /*:unknown*/ = undefined;
   try {
     value = eventHandler();
   } catch ($finalImplicit$11) {

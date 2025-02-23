@@ -60,7 +60,7 @@ while (true) {
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(2);
-  const tmpIfTest = $(true);
+  const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
     $(3);
   } else {

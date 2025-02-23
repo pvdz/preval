@@ -52,8 +52,8 @@ $(x);
 
 
 `````js filename=intro
-const buf = Buffer.from(`aGVsbG8sIHdvcmxk=`, `base64`);
-const str = buf.toString(`ascii`);
+const buf /*:buffer*/ = Buffer.from(`aGVsbG8sIHdvcmxk=`, `base64`);
+const str /*:string*/ = buf.toString(`ascii`);
 $(str);
 `````
 

@@ -54,17 +54,17 @@ $(a, b);
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const tmpCalleeParam = $(b);
-const varInitAssignLhsComputedObj = $(tmpCalleeParam);
-const tmpBinLhs = varInitAssignLhsComputedObj.x;
+const tmpCalleeParam /*:unknown*/ = $(b);
+const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpBinLhs /*:unknown*/ = varInitAssignLhsComputedObj.x;
 const varInitAssignLhsComputedRhs /*:number*/ = tmpBinLhs - 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpCalleeParam$1 = $(b);
-    const varInitAssignLhsComputedObj$1 = $(tmpCalleeParam$1);
-    const tmpBinLhs$1 = varInitAssignLhsComputedObj$1.x;
+    const tmpCalleeParam$1 /*:unknown*/ = $(b);
+    const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(tmpCalleeParam$1);
+    const tmpBinLhs$1 /*:unknown*/ = varInitAssignLhsComputedObj$1.x;
     const varInitAssignLhsComputedRhs$1 /*:number*/ = tmpBinLhs$1 - 1;
     varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
     if (varInitAssignLhsComputedRhs$1) {

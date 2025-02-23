@@ -57,14 +57,14 @@ while (true) {
 
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
-const a = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(0);
+const a /*:unknown*/ = $(tmpCalleeParam);
 if (a) {
 } else {
-  const tmpCalleeParam$1 = $(1);
-  const tmpClusterSSA_a = $(tmpCalleeParam$1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
+  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
   if (tmpClusterSSA_a) {
-    const tmpCalleeParam$3 = $(2);
+    const tmpCalleeParam$3 /*:unknown*/ = $(2);
     $(tmpCalleeParam$3);
   } else {
   }

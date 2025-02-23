@@ -49,13 +49,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
-const tmpObjLitVal$1 = $(1);
+const tmpObjLitVal /*:unknown*/ = $(1);
+const tmpObjLitVal$1 /*:unknown*/ = $(1);
 const a /*:object*/ = { b: tmpObjLitVal };
 const tmpClusterSSA_a /*:object*/ = { b: tmpObjLitVal$1 };
 const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
-const tmpAssignComMemLhsProp = $(`b`);
+const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
 tmpClusterSSA_a[tmpAssignComMemLhsProp] = 2;
 $(tmpClusterSSA_a);
 `````

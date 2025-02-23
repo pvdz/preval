@@ -59,7 +59,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const x = $(100);
+const x /*:unknown*/ = $(100);
 const tmpIfTest /*:boolean*/ = x <= 100;
 $(tmpIfTest);
 `````

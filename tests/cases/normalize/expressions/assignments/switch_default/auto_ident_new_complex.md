@@ -48,7 +48,7 @@ $(a);
 
 `````js filename=intro
 $(1);
-const tmpNewCallee = $($);
+const tmpNewCallee /*:unknown*/ = $($);
 const a /*:object*/ = new tmpNewCallee(1);
 $(a);
 `````

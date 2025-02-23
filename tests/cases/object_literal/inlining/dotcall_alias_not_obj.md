@@ -52,7 +52,7 @@ const g /*:()=>string*/ = function () {
   debugger;
   return `win`;
 };
-const alias = $.f;
+const alias /*:unknown*/ = $.f;
 $();
 const obj /*:object*/ = { f: g };
 $dotCall(alias, obj, 1);

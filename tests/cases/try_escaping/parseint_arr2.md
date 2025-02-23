@@ -88,7 +88,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpFree /*:(unknown)=>number*/ = function $free($$0) {
-  const a = $$0;
+  const a /*:unknown*/ = $$0;
   debugger;
   const b /*:number*/ = parseInt(a);
   const tmpRet /*:number*/ = b / 1;
@@ -102,7 +102,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (c) {
     break;
   } else {
-    const M = arr.shift();
+    const M /*:unknown*/ = arr.shift();
     arr.push(M);
   }
 }

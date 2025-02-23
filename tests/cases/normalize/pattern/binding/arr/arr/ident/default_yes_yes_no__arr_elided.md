@@ -54,12 +54,12 @@ $(x);
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [`pass2`];
-const arrPatternStep = $(tmpCalleeParam);
+const arrPatternStep /*:unknown*/ = $(tmpCalleeParam);
 const arrPatternSplat$1 /*:array*/ = [...arrPatternStep];
-const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
+const arrPatternBeforeDefault$1 /*:unknown*/ = arrPatternSplat$1[0];
 const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault$1 === undefined;
 if (tmpIfTest$1) {
-  const tmpClusterSSA_x = $(`fail`);
+  const tmpClusterSSA_x /*:unknown*/ = $(`fail`);
   $(tmpClusterSSA_x);
 } else {
   $(arrPatternBeforeDefault$1);

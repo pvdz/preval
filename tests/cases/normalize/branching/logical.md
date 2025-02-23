@@ -109,7 +109,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-let tmpIfTest = a;
+let tmpIfTest /*:unknown*/ = a;
 if (a) {
   tmpIfTest = b;
 } else {

@@ -52,7 +52,7 @@ while (true) {
 
 
 `````js filename=intro
-const tmpNestedComplexRhs = $(2);
+const tmpNestedComplexRhs /*:unknown*/ = $(2);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedComplexRhs);
   $(1);

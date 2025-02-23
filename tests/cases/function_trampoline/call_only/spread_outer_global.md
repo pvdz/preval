@@ -48,9 +48,9 @@ f(...x);
 
 
 `````js filename=intro
-const x = $(`pass`);
+const x /*:unknown*/ = $(`pass`);
 const f /*:(unknown)=>undefined*/ = function ($$0) {
-  const y = $$0;
+  const y /*:unknown*/ = $$0;
   debugger;
   $(y);
   return undefined;

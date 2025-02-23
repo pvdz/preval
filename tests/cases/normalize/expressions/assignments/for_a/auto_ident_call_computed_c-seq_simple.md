@@ -49,7 +49,7 @@ while (true) {
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCallObj = $(b);
+const tmpCallObj /*:unknown*/ = $(b);
 tmpCallObj.$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);

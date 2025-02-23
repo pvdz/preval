@@ -51,7 +51,7 @@ $(`nope`);
 
 `````js filename=intro
 import { default as e } from 'xyz';
-const tmpCalleeParam = e;
+const tmpCalleeParam /*:unknown*/ = e;
 $(tmpCalleeParam);
 `````
 

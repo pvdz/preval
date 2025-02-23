@@ -55,8 +55,8 @@ $(one, two);
 
 
 `````js filename=intro
-const one = $(1);
-const two = $(1);
+const one /*:unknown*/ = $(1);
+const two /*:unknown*/ = $(1);
 $(one, two);
 `````
 

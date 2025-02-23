@@ -159,7 +159,7 @@ $(arr2);
 const x /*:object*/ = {
   toString() {
     debugger;
-    const tmpReturnArg = $(`toString`);
+    const tmpReturnArg /*:unknown*/ = $(`toString`);
     return tmpReturnArg;
   },
   valueOf() {

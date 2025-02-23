@@ -64,7 +64,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
+const tmpCalleeParam /*:unknown*/ = $(0);
 $(tmpCalleeParam);
 $(undefined);
 const a /*:object*/ = { a: 999, b: 1000 };

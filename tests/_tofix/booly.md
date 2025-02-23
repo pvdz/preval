@@ -6,6 +6,8 @@
 >
 > Assignment that cannot be observed should be dropped
 
+- We probably shouldn't just drop assignments to const without an error...
+- 
 - The final $(x) should be hoisted inside the if/else
 - Preval should know the value of x inside each branch
 - The consequent call should end up as $(true)
@@ -59,7 +61,7 @@ $(x);
 
 
 `````js filename=intro
-const a = $(67636);
+const a /*:unknown*/ = $(67636);
 let x /*:boolean*/ = a !== 67636;
 if (x) {
   x = true;

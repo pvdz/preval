@@ -59,7 +59,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpStringFirstArg = $(`1`);
+  const tmpStringFirstArg /*:unknown*/ = $(`1`);
   const x /*:string*/ = $coerce(tmpStringFirstArg, `string`);
   const y /*:number*/ = parseInt(x);
   try {

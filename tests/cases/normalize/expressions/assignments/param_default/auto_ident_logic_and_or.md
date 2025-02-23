@@ -73,19 +73,19 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-let tmpNestedComplexRhs = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+let tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam);
 if (tmpNestedComplexRhs) {
-  const tmpCalleeParam$1 = $(1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
   tmpNestedComplexRhs = $(tmpCalleeParam$1);
 } else {
 }
-let tmpClusterSSA_a = undefined;
+let tmpClusterSSA_a /*:unknown*/ = undefined;
 if (tmpNestedComplexRhs) {
   tmpClusterSSA_a = tmpNestedComplexRhs;
 } else {
-  const tmpCalleeParam$3 = $(2);
-  const tmpClusterSSA_tmpNestedComplexRhs = $(tmpCalleeParam$3);
+  const tmpCalleeParam$3 /*:unknown*/ = $(2);
+  const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$3);
   tmpClusterSSA_a = tmpClusterSSA_tmpNestedComplexRhs;
 }
 $(undefined);

@@ -79,15 +79,15 @@ $(x);
 
 
 `````js filename=intro
-let x = 0;
+let x /*:unknown*/ = 0;
 const g /*:(unused, unknown, unused, unused, unused)=>undefined*/ = function ($$0, $$1, $$2, $$3, $$4) {
-  const b = $$1;
+  const b /*:unknown*/ = $$1;
   debugger;
   x = b;
   return undefined;
 };
 const tmpCalleeParam /*:array*/ = [1, 2];
-const arr = $(tmpCalleeParam);
+const arr /*:unknown*/ = $(tmpCalleeParam);
 g(10, 20, ...arr, 30, 40, 50);
 $(x);
 `````

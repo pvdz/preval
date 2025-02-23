@@ -47,10 +47,10 @@ $(a, b, c);
 
 
 `````js filename=intro
-const tmpNestedAssignObj = $(3);
-const tmpNestedAssignPropRhs = $(4);
+const tmpNestedAssignObj /*:unknown*/ = $(3);
+const tmpNestedAssignPropRhs /*:unknown*/ = $(4);
 tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
-const a = tmpNestedAssignPropRhs;
+const a /*:unknown*/ = tmpNestedAssignPropRhs;
 export { a };
 $(tmpNestedAssignPropRhs, tmpNestedAssignPropRhs, 3);
 `````

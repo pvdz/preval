@@ -103,12 +103,12 @@ if (tmpIfTest$3) {
 
 `````js filename=intro
 let x /*:boolean*/ = false;
-const tmpIfTest = $(true);
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
-  const tmpUnaryArg = $(true);
+  const tmpUnaryArg /*:unknown*/ = $(true);
   x = !tmpUnaryArg;
 } else {
-  const tmpUnaryArg$1 = $(false);
+  const tmpUnaryArg$1 /*:unknown*/ = $(false);
   x = !tmpUnaryArg$1;
 }
 if (x) {
@@ -118,15 +118,15 @@ if (x) {
   $(`b`);
   $(`c`);
 }
-const tmpIfTest$1 = $(true);
+const tmpIfTest$1 /*:unknown*/ = $(true);
 if (tmpIfTest$1) {
-  const tmpUnaryArg$3 = $(true);
+  const tmpUnaryArg$3 /*:unknown*/ = $(true);
   x = !tmpUnaryArg$3;
 } else {
-  const tmpUnaryArg$5 = $(false);
+  const tmpUnaryArg$5 /*:unknown*/ = $(false);
   x = !tmpUnaryArg$5;
 }
-const tmpIfTest$3 = $(true);
+const tmpIfTest$3 /*:unknown*/ = $(true);
 if (tmpIfTest$3) {
   $(`true`, x);
 } else {

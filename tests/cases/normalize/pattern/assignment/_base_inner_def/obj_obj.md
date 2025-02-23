@@ -43,9 +43,9 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const objPatternNoDefault = (1).x;
-const objPatternNoDefault$1 = objPatternNoDefault.y;
-const objPatternBeforeDefault = objPatternNoDefault$1.z;
+const objPatternNoDefault /*:unknown*/ = (1).x;
+const objPatternNoDefault$1 /*:unknown*/ = objPatternNoDefault.y;
+const objPatternBeforeDefault /*:unknown*/ = objPatternNoDefault$1.z;
 const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   z = a;

@@ -58,9 +58,9 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [`pass`];
-const bindingPatternArrRoot = $(tmpCalleeParam);
+const bindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const x = arrPatternSplat.slice(0);
+const x /*:unknown*/ = arrPatternSplat.slice(0);
 $(x);
 `````
 

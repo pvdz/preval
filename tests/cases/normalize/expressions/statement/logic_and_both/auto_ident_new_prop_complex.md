@@ -49,11 +49,11 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCompObj = $(b);
-const tmpNewCallee = tmpCompObj.$;
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
 new tmpNewCallee(1);
-const tmpCompObj$1 = $(b);
-const tmpNewCallee$1 = tmpCompObj$1.$;
+const tmpCompObj$1 /*:unknown*/ = $(b);
+const tmpNewCallee$1 /*:unknown*/ = tmpCompObj$1.$;
 new tmpNewCallee$1(1);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

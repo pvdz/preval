@@ -51,7 +51,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const objPatternNoDefault = (0).x;
+const objPatternNoDefault /*:unknown*/ = (0).x;
 objPatternNoDefault.y;
 $(`bad`);
 `````

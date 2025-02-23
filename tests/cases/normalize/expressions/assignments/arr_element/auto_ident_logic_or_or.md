@@ -70,32 +70,32 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 = $(0);
-let a = $(tmpCalleeParam$1);
+const tmpCalleeParam$1 /*:unknown*/ = $(0);
+let a /*:unknown*/ = $(tmpCalleeParam$1);
 if (a) {
 } else {
-  const tmpCalleeParam$3 = $(1);
+  const tmpCalleeParam$3 /*:unknown*/ = $(1);
   a = $(tmpCalleeParam$3);
   if (a) {
   } else {
-    const tmpCalleeParam$5 = $(2);
+    const tmpCalleeParam$5 /*:unknown*/ = $(2);
     a = $(tmpCalleeParam$5);
   }
 }
-const tmpBinBothLhs = a;
-const tmpCalleeParam$7 = $(0);
-let tmpClusterSSA_a = $(tmpCalleeParam$7);
+const tmpBinBothLhs /*:unknown*/ = a;
+const tmpCalleeParam$7 /*:unknown*/ = $(0);
+let tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$7);
 if (tmpClusterSSA_a) {
 } else {
-  const tmpCalleeParam$9 = $(1);
+  const tmpCalleeParam$9 /*:unknown*/ = $(1);
   tmpClusterSSA_a = $(tmpCalleeParam$9);
   if (tmpClusterSSA_a) {
   } else {
-    const tmpCalleeParam$11 = $(2);
+    const tmpCalleeParam$11 /*:unknown*/ = $(2);
     tmpClusterSSA_a = $(tmpCalleeParam$11);
   }
 }
-const tmpBinBothRhs = tmpClusterSSA_a;
+const tmpBinBothRhs /*:unknown*/ = tmpClusterSSA_a;
 const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);

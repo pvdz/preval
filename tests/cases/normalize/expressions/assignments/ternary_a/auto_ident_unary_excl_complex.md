@@ -46,12 +46,12 @@ $(a);
 
 
 `````js filename=intro
-const tmpUnaryArg = $(100);
+const tmpUnaryArg /*:unknown*/ = $(100);
 if (tmpUnaryArg) {
-  const tmpClusterSSA_tmpCalleeParam = $(200);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  const tmpClusterSSA_tmpCalleeParam$1 = $(100);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam$1);
 }
 const a /*:boolean*/ = !tmpUnaryArg;

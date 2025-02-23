@@ -66,14 +66,14 @@ const tmpObjLitVal /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
   const tmpPrevalAliasThis /*:object*/ = this;
   const args /*:array*/ = $$0;
   debugger;
-  const tmpCalleeParam$1 = tmpPrevalAliasThis.y;
+  const tmpCalleeParam$1 /*:unknown*/ = tmpPrevalAliasThis.y;
   $(args, tmpCalleeParam$1);
   return undefined;
 };
 const a /*:object*/ = { x: tmpObjLitVal, y: 100 };
-const tmpChainElementCall = $(a);
-const tmpChainRootComputed = $(`x`);
-const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+const tmpChainElementCall /*:unknown*/ = $(a);
+const tmpChainRootComputed /*:unknown*/ = $(`x`);
+const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
 const tmpIfTest /*:boolean*/ = tmpChainElementObject == null;
 if (tmpIfTest) {
 } else {

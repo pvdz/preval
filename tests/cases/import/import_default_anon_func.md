@@ -67,9 +67,9 @@ export { tmpAnonDefaultExport as default };
 
 `````js filename=intro
 import { default as x } from 'x';
-const tmpCalleeParam = x();
+const tmpCalleeParam /*:unknown*/ = x();
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = x.name;
+const tmpCalleeParam$1 /*:unknown*/ = x.name;
 $(tmpCalleeParam$1);
 `````
 

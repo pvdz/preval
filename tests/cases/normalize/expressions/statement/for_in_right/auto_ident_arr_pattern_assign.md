@@ -77,16 +77,16 @@ $(a, x, y);
 
 
 `````js filename=intro
-const tmpArrElement = $(3);
-const tmpArrElement$1 = $(4);
+const tmpArrElement /*:unknown*/ = $(3);
+const tmpArrElement$1 /*:unknown*/ = $(4);
 const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 x$1 = arrPatternSplat[0];
-const tmpClusterSSA_y = arrPatternSplat[1];
-const tmpForInGen = $forIn(tmpNestedAssignArrPatternRhs);
+const tmpClusterSSA_y /*:unknown*/ = arrPatternSplat[1];
+const tmpForInGen /*:unknown*/ = $forIn(tmpNestedAssignArrPatternRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
   } else {

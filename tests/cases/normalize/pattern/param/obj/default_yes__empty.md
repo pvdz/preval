@@ -63,7 +63,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const bindingPatternObjRoot = $(`pass`);
+const bindingPatternObjRoot /*:unknown*/ = $(`pass`);
 let objPatternCrashTest /*:boolean*/ = bindingPatternObjRoot === undefined;
 if (objPatternCrashTest) {
 } else {

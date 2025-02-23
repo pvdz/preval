@@ -74,12 +74,12 @@ $(a, b);
 
 
 `````js filename=intro
-let flag = true;
+let flag /*:unknown*/ = true;
 let b /*:number*/ = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (flag) {
     $(100);
-    const tmpPostUpdArgIdent$1 = b;
+    const tmpPostUpdArgIdent$1 /*:unknown*/ = b;
     b = b + 1;
     flag = tmpPostUpdArgIdent$1;
   } else {

@@ -64,14 +64,14 @@ $(x, `final`);
 
 `````js filename=intro
 $(1);
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpClusterSSA_x = $(2, `branch`);
-  const tmpCalleeParam = $(tmpClusterSSA_x, `arrow`);
+  const tmpClusterSSA_x /*:unknown*/ = $(2, `branch`);
+  const tmpCalleeParam /*:unknown*/ = $(tmpClusterSSA_x, `arrow`);
   $(tmpCalleeParam, `result`);
 } else {
 }
-const tmpClusterSSA_x$1 = $(3, `after`);
+const tmpClusterSSA_x$1 /*:unknown*/ = $(3, `after`);
 $(tmpClusterSSA_x$1, `final`);
 `````
 

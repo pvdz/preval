@@ -53,14 +53,14 @@ $(q);
 
 
 `````js filename=intro
-const x = $(`pass`);
+const x /*:unknown*/ = $(`pass`);
 const f /*:(unknown)=>?*/ = function ($$0) {
-  const y = $$0;
+  const y /*:unknown*/ = $$0;
   debugger;
-  const r = $(y);
+  const r /*:unknown*/ = $(y);
   return r;
 };
-const q = f(...x);
+const q /*:unknown*/ = f(...x);
 $(q);
 `````
 

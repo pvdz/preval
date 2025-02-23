@@ -50,8 +50,8 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { c: $ };
-const tmpChainElementCall = b.c(1);
-const tmpBinBothRhs = $(100);
+const tmpChainElementCall /*:unknown*/ = b.c(1);
+const tmpBinBothRhs /*:unknown*/ = $(100);
 tmpChainElementCall + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

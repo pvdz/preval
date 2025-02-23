@@ -46,7 +46,7 @@ while (true) {
 
 
 `````js filename=intro
-const tmpUnaryArg = $(100);
+const tmpUnaryArg /*:unknown*/ = $(100);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const xyz /*:boolean*/ = !tmpUnaryArg;
   $(xyz);

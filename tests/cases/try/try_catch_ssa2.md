@@ -171,7 +171,7 @@ const one /*:()=>*/ = function () {
   $(x);
   return undefined;
 };
-let x = $(1);
+let x /*:unknown*/ = $(1);
 try {
   one();
   x = undefined;

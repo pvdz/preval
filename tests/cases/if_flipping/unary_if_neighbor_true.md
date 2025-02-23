@@ -51,8 +51,8 @@ $(test);
 
 
 `````js filename=intro
-const a = $(true);
-const b = $(`alt`);
+const a /*:unknown*/ = $(true);
+const b /*:unknown*/ = $(`alt`);
 if (a) {
   $(false);
 } else {

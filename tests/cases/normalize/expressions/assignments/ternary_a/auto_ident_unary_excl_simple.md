@@ -49,7 +49,7 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpClusterSSA_tmpCalleeParam$1 = $(200);
+const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(200);
 $(tmpClusterSSA_tmpCalleeParam$1);
 $(false, 1);
 `````

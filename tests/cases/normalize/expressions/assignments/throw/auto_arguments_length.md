@@ -37,7 +37,7 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-const a = arguments;
+const a /*:unknown*/ = arguments;
 throw a;
 `````
 

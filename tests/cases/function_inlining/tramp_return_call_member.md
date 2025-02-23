@@ -61,7 +61,7 @@ $(r);
 
 
 `````js filename=intro
-const r = String.toString();
+const r /*:unknown*/ = String.toString();
 $(r);
 `````
 

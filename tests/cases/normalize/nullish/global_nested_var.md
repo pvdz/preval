@@ -51,12 +51,12 @@ $(c);
 
 
 `````js filename=intro
-const b = $(2);
+const b /*:unknown*/ = $(2);
 const tmpIfTest /*:boolean*/ = b == null;
-let c = undefined;
+let c /*:unknown*/ = undefined;
 let tmpIfTest$1 /*:boolean*/ = false;
 if (tmpIfTest) {
-  const tmpClusterSSA_b = toString;
+  const tmpClusterSSA_b /*:unknown*/ = toString;
   c = tmpClusterSSA_b;
   tmpIfTest$1 = tmpClusterSSA_b == null;
 } else {
@@ -64,7 +64,7 @@ if (tmpIfTest) {
   tmpIfTest$1 = b == null;
 }
 if (tmpIfTest$1) {
-  const tmpClusterSSA_c = length;
+  const tmpClusterSSA_c /*:unknown*/ = length;
   $(tmpClusterSSA_c);
 } else {
   $(c);

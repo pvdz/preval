@@ -142,12 +142,12 @@ if (tmpIfTest$45) {
 if (tmpIfTest$45) {
   tmpCalleeParam$127;
   tmpSSA__0x2d5594;
-  const h = tmpReturnArg$39;
+  const h /*:unknown*/ = tmpReturnArg$39;
   h(e, d);
   getParameterByName();
   unknown(297);
   alsoUnknown(310);
-  const c = $dotCall(a, document, b);
+  const c /*:unknown*/ = $dotCall(a, document, b);
   $(c);
 } else {
 }

@@ -58,7 +58,7 @@ const a /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
-const tmpBinBothRhs = $(100);
+const tmpBinBothRhs /*:unknown*/ = $(100);
 const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);

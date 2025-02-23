@@ -44,7 +44,7 @@ $(a);
 
 
 `````js filename=intro
-let a = arguments;
+let a /*:unknown*/ = arguments;
 if (arguments) {
   while ($LOOP_UNROLL_10) {
     $(100);

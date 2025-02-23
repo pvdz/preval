@@ -111,9 +111,9 @@ if ($) {
 `````js filename=intro
 const f /*:()=>undefined,null*/ = function () {
   debugger;
-  const test = $(3);
+  const test /*:unknown*/ = $(3);
   if (test) {
-    const tmpClusterSSA_test = $(1);
+    const tmpClusterSSA_test /*:unknown*/ = $(1);
     if (tmpClusterSSA_test) {
       $(2);
       $(4);

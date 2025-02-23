@@ -40,7 +40,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpNewCallee = $($);
+const tmpNewCallee /*:unknown*/ = $($);
 const xyz /*:object*/ = new tmpNewCallee(1);
 $(xyz);
 const a /*:object*/ = { a: 999, b: 1000 };

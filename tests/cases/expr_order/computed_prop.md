@@ -32,8 +32,8 @@ tmpCompObj[tmpCompProp];
 
 
 `````js filename=intro
-const tmpCompObj = $(1);
-const tmpCompProp = $(2);
+const tmpCompObj /*:unknown*/ = $(1);
+const tmpCompProp /*:unknown*/ = $(2);
 tmpCompObj[tmpCompProp];
 `````
 

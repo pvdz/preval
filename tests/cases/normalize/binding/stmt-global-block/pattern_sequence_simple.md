@@ -53,14 +53,14 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const tmpIfTest = $(true);
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   $(1);
   $(2);
   const z /*:array*/ = [10, 20, 30];
   const arrPatternSplat /*:array*/ = [...z];
-  const a = arrPatternSplat[0];
-  const b = arrPatternSplat[1];
+  const a /*:unknown*/ = arrPatternSplat[0];
+  const b /*:unknown*/ = arrPatternSplat[1];
   $(a, b, 1, 2, z);
 } else {
 }

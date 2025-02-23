@@ -114,7 +114,7 @@ $(f);
 `````js filename=intro
 const f /*:()=>undefined*/ = function () {
   debugger;
-  const test = $(1);
+  const test /*:unknown*/ = $(1);
   if (test) {
     $(100);
     return undefined;

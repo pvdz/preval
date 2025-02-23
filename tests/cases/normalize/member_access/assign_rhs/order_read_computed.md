@@ -70,7 +70,7 @@ $(x);
 const obj /*:object*/ = {
   get x() {
     debugger;
-    const tmpReturnArg = $(10);
+    const tmpReturnArg /*:unknown*/ = $(10);
     return tmpReturnArg;
   },
   set x($$0) {
@@ -79,9 +79,9 @@ const obj /*:object*/ = {
     return undefined;
   },
 };
-const tmpAssignRhsCompObj = $(obj);
-const tmpAssignRhsCompProp = $(`x`);
-const tmpClusterSSA_x = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+const tmpAssignRhsCompObj /*:unknown*/ = $(obj);
+const tmpAssignRhsCompProp /*:unknown*/ = $(`x`);
+const tmpClusterSSA_x /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 $(tmpClusterSSA_x);
 `````
 

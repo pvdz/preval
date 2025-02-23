@@ -50,8 +50,8 @@ while (true) {
 
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
-const tmpAssignRhsCompObj = $(b);
-const tmpAssignRhsCompProp = $(`c`);
+const tmpAssignRhsCompObj /*:unknown*/ = $(b);
+const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
 tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);

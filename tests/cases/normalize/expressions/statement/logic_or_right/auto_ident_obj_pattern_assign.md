@@ -51,13 +51,13 @@ $(a, x, y);
 
 
 `````js filename=intro
-const tmpIfTest = $(100);
+const tmpIfTest /*:unknown*/ = $(100);
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(a, 1, 2);
 } else {
-  const tmpObjLitVal = $(3);
-  const tmpObjLitVal$1 = $(4);
+  const tmpObjLitVal /*:unknown*/ = $(3);
+  const tmpObjLitVal$1 /*:unknown*/ = $(4);
   $(a, tmpObjLitVal, tmpObjLitVal$1);
 }
 `````

@@ -70,7 +70,7 @@ $(a);
 $(1);
 $(undefined);
 $(1);
-const tmpAssignMemRhs = $(2);
+const tmpAssignMemRhs /*:unknown*/ = $(2);
 const tmpNestedComplexRhs /*:object*/ = { b: tmpAssignMemRhs };
 $(tmpNestedComplexRhs);
 `````

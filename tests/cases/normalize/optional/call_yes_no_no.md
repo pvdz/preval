@@ -114,9 +114,9 @@ const a$1 /*:object*/ = {
     return a$1;
   },
 };
-const tmpChainElementCall$1 = a$1.b();
-const tmpChainElementCall$3 = tmpChainElementCall$1.c();
-const tmpChainElementObject$3 = tmpChainElementCall$3.d;
+const tmpChainElementCall$1 /*:unknown*/ = a$1.b();
+const tmpChainElementCall$3 /*:unknown*/ = tmpChainElementCall$1.c();
+const tmpChainElementObject$3 /*:unknown*/ = tmpChainElementCall$3.d;
 $(tmpChainElementObject$3);
 `````
 

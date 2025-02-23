@@ -61,8 +61,8 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { c: $ };
-const tmpChainElementCall = b.c(1);
-const tmpChainElementCall$1 = b.c(1);
+const tmpChainElementCall /*:unknown*/ = b.c(1);
+const tmpChainElementCall$1 /*:unknown*/ = b.c(1);
 const tmpCalleeParam /*:primitive*/ = tmpChainElementCall + tmpChainElementCall$1;
 $(tmpCalleeParam);
 $(tmpChainElementCall$1);

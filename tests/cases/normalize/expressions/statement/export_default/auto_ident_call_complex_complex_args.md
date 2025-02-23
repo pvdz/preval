@@ -45,10 +45,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const tmpCalleeParam = $(1);
-const tmpCalleeParam$1 = $(2);
-const tmpAnonDefaultExport = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpCallCallee /*:unknown*/ = $($);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpCalleeParam$1 /*:unknown*/ = $(2);
+const tmpAnonDefaultExport /*:unknown*/ = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

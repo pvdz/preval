@@ -74,7 +74,7 @@ f();
 `````js filename=intro
 const f /*:()=>undefined*/ = function () {
   debugger;
-  const x = $(`truthy`);
+  const x /*:unknown*/ = $(`truthy`);
   if (x) {
     $(false, `fail`);
   } else {

@@ -86,7 +86,7 @@ const oops /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
 };
 let x /*:primitive*/ = 5;
 $(5);
-const tmpIfTest = $(false);
+const tmpIfTest /*:unknown*/ = $(false);
 if (tmpIfTest) {
   x = 10;
   oops(10, `a`);

@@ -50,11 +50,11 @@ $(rra);
 `````js filename=intro
 const arr /*:array*/ = [1, 2, 3, 4];
 if ($) {
-  const tmpCalleeParam = arr.pop();
+  const tmpCalleeParam /*:unknown*/ = arr.pop();
   $(tmpCalleeParam);
 } else {
 }
-const rra = arr.reverse();
+const rra /*:unknown*/ = arr.reverse();
 $(rra);
 `````
 

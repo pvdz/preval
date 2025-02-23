@@ -49,14 +49,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpBinBothLhs = $(1);
-const tmpBinBothRhs = $(2);
-let a = tmpBinBothLhs + tmpBinBothRhs;
+const tmpBinBothLhs /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(2);
+let a /*:unknown*/ = tmpBinBothLhs + tmpBinBothRhs;
 if (a) {
   $(a);
 } else {
-  const tmpBinBothLhs$1 = $(1);
-  const tmpBinBothRhs$1 = $(2);
+  const tmpBinBothLhs$1 /*:unknown*/ = $(1);
+  const tmpBinBothRhs$1 /*:unknown*/ = $(2);
   const tmpNestedComplexRhs /*:primitive*/ = tmpBinBothLhs$1 + tmpBinBothRhs$1;
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);

@@ -62,22 +62,22 @@ $(a);
 
 
 `````js filename=intro
-let tmpIfTest = undefined;
-const tmpChainElementCall = $($);
+let tmpIfTest /*:unknown*/ = undefined;
+const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpCalleeParam$3 = $(1);
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
+  const tmpCalleeParam$3 /*:unknown*/ = $(1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
   tmpIfTest = tmpChainElementCall$1;
 }
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall$3 = $($);
+  const tmpChainElementCall$3 /*:unknown*/ = $($);
   const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$3 == null;
   if (tmpIfTest$3) {
   } else {
-    const tmpCalleeParam$9 = $(1);
+    const tmpCalleeParam$9 /*:unknown*/ = $(1);
     $dotCall(tmpChainElementCall$3, $, tmpCalleeParam$9);
   }
 }

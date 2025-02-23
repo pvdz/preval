@@ -93,18 +93,18 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const x = $(1);
+  const x /*:unknown*/ = $(1);
   if (x) {
-    const tmpClusterSSA_x = $(2);
+    const tmpClusterSSA_x /*:unknown*/ = $(2);
     if (tmpClusterSSA_x) {
-      const tmpReturnArg = $(`inner if`, tmpClusterSSA_x);
+      const tmpReturnArg /*:unknown*/ = $(`inner if`, tmpClusterSSA_x);
       $(tmpReturnArg, `outer`);
     } else {
-      const tmpReturnArg$1 = $(`inner else`, tmpClusterSSA_x);
+      const tmpReturnArg$1 /*:unknown*/ = $(`inner else`, tmpClusterSSA_x);
       $(tmpReturnArg$1, `outer`);
     }
   } else {
-    const tmpReturnArg$5 = $(`inner else`, x);
+    const tmpReturnArg$5 /*:unknown*/ = $(`inner else`, x);
     $(tmpReturnArg$5, `outer`);
   }
 } else {

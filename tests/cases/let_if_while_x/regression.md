@@ -64,7 +64,7 @@ while (true) {
 
 
 `````js filename=intro
-const t = $(5);
+const t /*:unknown*/ = $(5);
 const x /*:boolean*/ = 0 < t;
 if (x) {
   $(`inner`);

@@ -46,14 +46,14 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
-const tmpIfTest = $(1);
-let tmpAnonDefaultExport = undefined;
+let a /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(1);
+let tmpAnonDefaultExport /*:unknown*/ = undefined;
 if (tmpIfTest) {
   a = $(60);
   tmpAnonDefaultExport = a;
 } else {
-  const tmpCalleeParam = $(100);
+  const tmpCalleeParam /*:unknown*/ = $(100);
   a = $(tmpCalleeParam);
   tmpAnonDefaultExport = a;
 }

@@ -43,8 +43,8 @@ $(x);
 
 
 `````js filename=intro
-const a = $(1);
-const tmpBinBothRhs = $(2);
+const a /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(2);
 const tmpNestedComplexRhs /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpNestedComplexRhs);
 `````

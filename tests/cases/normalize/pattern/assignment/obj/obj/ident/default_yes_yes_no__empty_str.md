@@ -50,8 +50,8 @@ $(y);
 
 
 `````js filename=intro
-const objPatternBeforeDefault = ``.x;
-let objPatternAfterDefault = undefined;
+const objPatternBeforeDefault /*:unknown*/ = ``.x;
+let objPatternAfterDefault /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCalleeParam /*:object*/ = { y: `pass2` };
@@ -59,7 +59,7 @@ if (tmpIfTest) {
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
+const objPatternBeforeDefault$1 /*:unknown*/ = objPatternAfterDefault.y;
 const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault$1 === undefined;
 if (tmpIfTest$1) {
   y = $(`fail`);

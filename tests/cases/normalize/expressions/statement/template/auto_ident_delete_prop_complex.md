@@ -55,7 +55,7 @@ const tmpFree /*:()=>string*/ = function $free() {
   return tmpRet;
 };
 const arg /*:object*/ = { y: 1 };
-const tmpDeleteObj = $(arg);
+const tmpDeleteObj /*:unknown*/ = $(arg);
 const tmpCallCallee$1 /*:boolean*/ = delete tmpDeleteObj.y;
 const tmpCalleeParam /*:string*/ = $frfr(tmpFree);
 $(tmpCalleeParam);

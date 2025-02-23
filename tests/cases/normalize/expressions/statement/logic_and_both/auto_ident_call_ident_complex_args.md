@@ -50,12 +50,12 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-const tmpCalleeParam$1 = $(2);
-const tmpIfTest = $(tmpCalleeParam, tmpCalleeParam$1);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpCalleeParam$1 /*:unknown*/ = $(2);
+const tmpIfTest /*:unknown*/ = $(tmpCalleeParam, tmpCalleeParam$1);
 if (tmpIfTest) {
-  const tmpCalleeParam$3 = $(1);
-  const tmpCalleeParam$5 = $(2);
+  const tmpCalleeParam$3 /*:unknown*/ = $(1);
+  const tmpCalleeParam$5 /*:unknown*/ = $(2);
   $(tmpCalleeParam$3, tmpCalleeParam$5);
 } else {
 }

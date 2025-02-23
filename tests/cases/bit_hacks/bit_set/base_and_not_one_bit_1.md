@@ -53,7 +53,7 @@ if (set) {
 
 
 `````js filename=intro
-const v = $(1);
+const v /*:unknown*/ = $(1);
 const and /*:number*/ = v & 65;
 const set /*:boolean*/ = and === 64;
 if (set) {

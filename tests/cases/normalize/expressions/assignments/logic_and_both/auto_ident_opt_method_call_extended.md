@@ -70,10 +70,10 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall = tmpObjLitVal$1.e(1);
-let tmpClusterSSA_a = tmpChainElementCall;
+const tmpChainElementCall /*:unknown*/ = tmpObjLitVal$1.e(1);
+let tmpClusterSSA_a /*:unknown*/ = tmpChainElementCall;
 if (tmpChainElementCall) {
-  const tmpChainElementCall$1 = tmpObjLitVal$1.e(1);
+  const tmpChainElementCall$1 /*:unknown*/ = tmpObjLitVal$1.e(1);
   tmpClusterSSA_a = tmpChainElementCall$1;
   $(tmpChainElementCall$1);
 } else {

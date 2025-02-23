@@ -46,9 +46,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$3 = $(0);
-let a = $(tmpCalleeParam$3);
-let tmpCalleeParam$1 = 2;
+const tmpCalleeParam$3 /*:unknown*/ = $(0);
+let a /*:unknown*/ = $(tmpCalleeParam$3);
+let tmpCalleeParam$1 /*:unknown*/ = 2;
 if (a) {
   tmpCalleeParam$1 = a;
 } else {

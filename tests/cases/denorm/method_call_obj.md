@@ -33,7 +33,7 @@ tmpCallCompObj$23.removeChild(s);
 
 
 `````js filename=intro
-const tmpCallCompObj$23 = document.body;
+const tmpCallCompObj$23 /*:unknown*/ = document.body;
 tmpCallCompObj$23.removeChild(s);
 `````
 

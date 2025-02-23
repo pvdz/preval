@@ -111,13 +111,13 @@ $(a);
 
 
 `````js filename=intro
-const x = $(1);
-const test = $(x);
+const x /*:unknown*/ = $(1);
+const test /*:unknown*/ = $(x);
 if (test) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const y = $(1);
-    const tmpClusterSSA_test = $(y);
+    const y /*:unknown*/ = $(1);
+    const tmpClusterSSA_test /*:unknown*/ = $(y);
     if (tmpClusterSSA_test) {
     } else {
       break;

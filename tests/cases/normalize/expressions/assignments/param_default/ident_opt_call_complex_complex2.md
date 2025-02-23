@@ -128,15 +128,15 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
-const tmpChainElementCall$2 = $($);
+let a /*:unknown*/ = undefined;
+const tmpChainElementCall$2 /*:unknown*/ = $($);
 const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$2 == null;
 if (tmpIfTest$3) {
   $(undefined);
 } else {
-  const tmpCallVal$2 = tmpChainElementCall$2.call;
-  const tmpCalleeParam$5 = $(1);
-  const tmpChainElementCall$5 = tmpCallVal$2.call(tmpChainElementCall$2, $, tmpCalleeParam$5);
+  const tmpCallVal$2 /*:unknown*/ = tmpChainElementCall$2.call;
+  const tmpCalleeParam$5 /*:unknown*/ = $(1);
+  const tmpChainElementCall$5 /*:unknown*/ = tmpCallVal$2.call(tmpChainElementCall$2, $, tmpCalleeParam$5);
   a = tmpChainElementCall$5;
   $(tmpChainElementCall$5);
 }

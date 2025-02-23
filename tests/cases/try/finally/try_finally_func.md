@@ -138,7 +138,7 @@ const f /*:()=>primitive,undefined*/ = function () {
   let $finalStep /*:boolean*/ = false;
   let $finalArg /*:primitive*/ = undefined;
   try {
-    const tmpIfTest = $();
+    const tmpIfTest /*:unknown*/ = $();
     if (tmpIfTest) {
       x = 2;
       $finalStep = true;

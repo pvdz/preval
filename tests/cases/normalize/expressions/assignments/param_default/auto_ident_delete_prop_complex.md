@@ -65,7 +65,7 @@ $(a, arg);
 
 `````js filename=intro
 const arg /*:object*/ = { y: 1 };
-const tmpDeleteObj = $(arg);
+const tmpDeleteObj /*:unknown*/ = $(arg);
 const tmpNestedComplexRhs /*:boolean*/ = delete tmpDeleteObj.y;
 $(undefined);
 $(tmpNestedComplexRhs, arg);

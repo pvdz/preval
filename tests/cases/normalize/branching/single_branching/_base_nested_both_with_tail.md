@@ -91,24 +91,24 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpIfTest$1 = $(2);
+  const tmpIfTest$1 /*:unknown*/ = $(2);
   if (tmpIfTest$1) {
     $(3);
   } else {
     $(4);
   }
-  const tmpReturnArg = $(5);
+  const tmpReturnArg /*:unknown*/ = $(5);
   $(tmpReturnArg, `final`);
 } else {
-  const tmpIfTest$3 = $(6);
+  const tmpIfTest$3 /*:unknown*/ = $(6);
   if (tmpIfTest$3) {
     $(7);
   } else {
     $(8);
   }
-  const tmpReturnArg$1 = $(9);
+  const tmpReturnArg$1 /*:unknown*/ = $(9);
   $(tmpReturnArg$1, `final`);
 }
 `````

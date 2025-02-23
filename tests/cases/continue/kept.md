@@ -222,9 +222,9 @@ $continue();
 `````js filename=intro
 const $continue /*:()=>undefined*/ = function () {
   debugger;
-  const tmpIfTest = $();
+  const tmpIfTest /*:unknown*/ = $();
   if (tmpIfTest) {
-    const tmpIfTest$1 = $();
+    const tmpIfTest$1 /*:unknown*/ = $();
     if (tmpIfTest$1) {
       $continue();
       return undefined;
@@ -232,7 +232,7 @@ const $continue /*:()=>undefined*/ = function () {
     }
   } else {
   }
-  const tmpIfTest$3 = $();
+  const tmpIfTest$3 /*:unknown*/ = $();
   if (tmpIfTest$3) {
     return undefined;
   } else {
@@ -242,16 +242,16 @@ const $continue /*:()=>undefined*/ = function () {
 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $continue: {
-    const tmpIfTest$5 = $();
+    const tmpIfTest$5 /*:unknown*/ = $();
     if (tmpIfTest$5) {
-      const tmpIfTest$7 = $();
+      const tmpIfTest$7 /*:unknown*/ = $();
       if (tmpIfTest$7) {
         break $continue;
       } else {
       }
     } else {
     }
-    const tmpIfTest$9 = $();
+    const tmpIfTest$9 /*:unknown*/ = $();
     if (tmpIfTest$9) {
       break;
     } else {
@@ -260,16 +260,16 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   nestedLoop: {
-    const tmpIfTest$11 = $();
+    const tmpIfTest$11 /*:unknown*/ = $();
     if (tmpIfTest$11) {
-      const tmpIfTest$13 = $();
+      const tmpIfTest$13 /*:unknown*/ = $();
       if (tmpIfTest$13) {
         break nestedLoop;
       } else {
       }
     } else {
     }
-    const tmpIfTest$15 = $();
+    const tmpIfTest$15 /*:unknown*/ = $();
     if (tmpIfTest$15) {
       break;
     } else {
@@ -277,11 +277,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   }
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest$17 = $();
+  const tmpIfTest$17 /*:unknown*/ = $();
   if (tmpIfTest$17) {
-    const tmpIfTest$19 = $();
+    const tmpIfTest$19 /*:unknown*/ = $();
     if (tmpIfTest$19) {
-      const tmpIfTest$21 = $();
+      const tmpIfTest$21 /*:unknown*/ = $();
       if (tmpIfTest$21) {
         break;
       } else {

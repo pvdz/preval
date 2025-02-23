@@ -54,7 +54,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const bindingPatternArrRoot = $(`pass`);
+const bindingPatternArrRoot /*:unknown*/ = $(`pass`);
 [...bindingPatternArrRoot];
 $(`ok`);
 `````

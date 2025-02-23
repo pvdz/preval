@@ -99,12 +99,12 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  let tmpCalleeParam = 500;
-  const x = $(1);
+  let tmpCalleeParam /*:unknown*/ = 500;
+  const x /*:unknown*/ = $(1);
   if (x) {
     $(`a`);
   } else {
-    const tmpClusterSSA_x = $(0);
+    const tmpClusterSSA_x /*:unknown*/ = $(0);
     let tmpReturnArg$1 /*:number*/ = 500;
     if (tmpClusterSSA_x) {
       $(`a`);

@@ -53,11 +53,11 @@ while (true) {
 
 
 `````js filename=intro
-let xyz = 60;
-const tmpIfTest = $(1);
+let xyz /*:unknown*/ = 60;
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
 } else {
-  const tmpCalleeParam = $(100);
+  const tmpCalleeParam /*:unknown*/ = $(100);
   xyz = $(tmpCalleeParam);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

@@ -55,19 +55,19 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 const b /*:object*/ = { c: 10, d: 20 };
 if (tmpIfTest) {
-  const tmpCompObj = $(b);
-  const tmpCompProp = $(`d`);
-  const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
+  const tmpCompObj /*:unknown*/ = $(b);
+  const tmpCompProp /*:unknown*/ = $(`d`);
+  const tmpAssignMemRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
   b.c = tmpAssignMemRhs;
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpCompObj$1 = $(b);
-      const tmpCompProp$1 = $(`d`);
-      const tmpAssignMemRhs$1 = tmpCompObj$1[tmpCompProp$1];
+      const tmpCompObj$1 /*:unknown*/ = $(b);
+      const tmpCompProp$1 /*:unknown*/ = $(`d`);
+      const tmpAssignMemRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
       b.c = tmpAssignMemRhs$1;
     } else {
       break;

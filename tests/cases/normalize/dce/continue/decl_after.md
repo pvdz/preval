@@ -66,17 +66,17 @@ $(`after, wont eval due to infinite loop`);
 
 
 `````js filename=intro
-const tmpIfTest = $(true);
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
-  const tmpIfTest$1 = $(false);
+  const tmpIfTest$1 /*:unknown*/ = $(false);
   if (tmpIfTest$1) {
     $(`fail too`);
     throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
   } else {
     while ($LOOP_UNROLL_10) {
-      const tmpIfTest$2 = $(true);
+      const tmpIfTest$2 /*:unknown*/ = $(true);
       if (tmpIfTest$2) {
-        const tmpIfTest$4 = $(false);
+        const tmpIfTest$4 /*:unknown*/ = $(false);
         if (tmpIfTest$4) {
           $(`fail too`);
           throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;

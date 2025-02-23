@@ -80,7 +80,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 const f /*:(primitive)=>array*/ = function ($$0) {
   const tmpParamBare$1 /*:primitive*/ = $$0;
   debugger;
-  let b = `bar`;
+  let b /*:unknown*/ = `bar`;
   const tmpIfTest$1 /*:boolean*/ = tmpParamBare$1 === undefined;
   if (tmpIfTest$1) {
   } else {

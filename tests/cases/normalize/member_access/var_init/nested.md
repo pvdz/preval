@@ -39,7 +39,7 @@ $(x);
 
 
 `````js filename=intro
-const tmpObjLitVal$1 = $();
+const tmpObjLitVal$1 /*:unknown*/ = $();
 $(tmpObjLitVal$1);
 `````
 

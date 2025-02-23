@@ -51,8 +51,8 @@ while (true) {
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCallObj = $(b);
-const xyz = tmpCallObj.$(1);
+const tmpCallObj /*:unknown*/ = $(b);
+const xyz /*:unknown*/ = tmpCallObj.$(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);

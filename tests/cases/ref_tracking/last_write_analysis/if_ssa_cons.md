@@ -50,11 +50,11 @@ $(x);
 
 
 `````js filename=intro
-const x = $(`a`);
+const x /*:unknown*/ = $(`a`);
 $(x);
-const tmpClusterSSA_x = $(`b`);
+const tmpClusterSSA_x /*:unknown*/ = $(`b`);
 if ($) {
-  const tmpClusterSSA_x$1 = $(`c`);
+  const tmpClusterSSA_x$1 /*:unknown*/ = $(`c`);
   $(tmpClusterSSA_x$1);
 } else {
   $(tmpClusterSSA_x);

@@ -33,7 +33,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpUnaryArg = Date.length;
+const tmpUnaryArg /*:unknown*/ = Date.length;
 const tmpCalleeParam /*:number*/ = -tmpUnaryArg;
 $(tmpCalleeParam);
 `````

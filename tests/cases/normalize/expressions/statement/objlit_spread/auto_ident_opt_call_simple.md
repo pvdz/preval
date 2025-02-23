@@ -44,11 +44,11 @@ $(a);
 
 
 `````js filename=intro
-let tmpObjSpreadArg = undefined;
+let tmpObjSpreadArg /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall = $(1);
+  const tmpChainElementCall /*:unknown*/ = $(1);
   tmpObjSpreadArg = tmpChainElementCall;
 }
 ({ ...tmpObjSpreadArg });

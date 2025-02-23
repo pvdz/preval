@@ -42,7 +42,7 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpBinBothLhs = $(100);
+const tmpBinBothLhs /*:unknown*/ = $(100);
 const arg /*:object*/ = { y: 1 };
 const tmpBinBothRhs /*:boolean*/ = delete arg.y;
 tmpBinBothLhs + tmpBinBothRhs;

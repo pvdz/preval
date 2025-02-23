@@ -133,7 +133,7 @@ $(arr2);
 
 
 `````js filename=intro
-const x = $spy(`300`);
+const x /*:unknown*/ = $spy(`300`);
 const tmpArrElement /*:number*/ = 0 ** x;
 const tmpArrElement$1 /*:number*/ = 0 * x;
 const tmpArrElement$3 /*:number*/ = 0 / x;

@@ -46,13 +46,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParamSpread = $(60);
+  const tmpClusterSSA_tmpCalleeParamSpread /*:unknown*/ = $(60);
   $(...tmpClusterSSA_tmpCalleeParamSpread);
 } else {
-  const tmpCalleeParam = $(100);
-  const tmpClusterSSA_tmpCalleeParamSpread$1 = $(tmpCalleeParam);
+  const tmpCalleeParam /*:unknown*/ = $(100);
+  const tmpClusterSSA_tmpCalleeParamSpread$1 /*:unknown*/ = $(tmpCalleeParam);
   $(...tmpClusterSSA_tmpCalleeParamSpread$1);
 }
 const a /*:object*/ = { a: 999, b: 1000 };

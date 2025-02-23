@@ -43,9 +43,9 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpChainRootComputed = $();
+const tmpChainRootComputed /*:unknown*/ = $();
 const obj /*:object*/ = { foo: 10 };
-const tmpChainElementObject = obj[tmpChainRootComputed];
+const tmpChainElementObject /*:unknown*/ = obj[tmpChainRootComputed];
 $(tmpChainElementObject);
 `````
 

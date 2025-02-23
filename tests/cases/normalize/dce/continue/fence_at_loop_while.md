@@ -71,14 +71,14 @@ $(`after (not invoked)`);
 
 `````js filename=intro
 while (true) {
-  const tmpIfTest = $(true);
+  const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
     $(`loop`);
-    const tmpIfTest$1 = $(true);
+    const tmpIfTest$1 /*:unknown*/ = $(true);
     if (tmpIfTest$1) {
       while ($LOOP_UNROLL_10) {
         $(`loop`);
-        const tmpIfTest$2 = $(true);
+        const tmpIfTest$2 /*:unknown*/ = $(true);
         if (tmpIfTest$2) {
         } else {
           break;

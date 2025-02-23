@@ -60,16 +60,16 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-let tmpSwitchDisc = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+let tmpSwitchDisc /*:unknown*/ = $(tmpCalleeParam);
 if (tmpSwitchDisc) {
-  const tmpCalleeParam$1 = $(1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
   tmpSwitchDisc = $(tmpCalleeParam$1);
 } else {
 }
 if (tmpSwitchDisc) {
 } else {
-  const tmpCalleeParam$3 = $(2);
+  const tmpCalleeParam$3 /*:unknown*/ = $(2);
   $(tmpCalleeParam$3);
 }
 $(100);

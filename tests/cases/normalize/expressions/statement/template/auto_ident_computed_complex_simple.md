@@ -49,8 +49,8 @@ $(a, b);
 
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
-const tmpCompObj = $(b);
-const tmpCallCallee$1 = tmpCompObj.c;
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpCallCallee$1 /*:unknown*/ = tmpCompObj.c;
 const tmpBinBothRhs /*:string*/ = $coerce(tmpCallCallee$1, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);

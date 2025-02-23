@@ -45,12 +45,12 @@ $(a);
 
 
 `````js filename=intro
-const tmpUnaryArg = $(100);
+const tmpUnaryArg /*:unknown*/ = $(100);
 let a /*:number*/ = +tmpUnaryArg;
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpUnaryArg$1 = $(100);
+    const tmpUnaryArg$1 /*:unknown*/ = $(100);
     a = +tmpUnaryArg$1;
     if (a) {
     } else {

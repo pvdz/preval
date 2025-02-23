@@ -52,9 +52,9 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpNestedComplexRhs = $(2);
-let b = tmpNestedComplexRhs;
-let a = tmpNestedComplexRhs;
+const tmpNestedComplexRhs /*:unknown*/ = $(2);
+let b /*:unknown*/ = tmpNestedComplexRhs;
+let a /*:unknown*/ = tmpNestedComplexRhs;
 if (tmpNestedComplexRhs) {
   $(tmpNestedComplexRhs);
 } else {

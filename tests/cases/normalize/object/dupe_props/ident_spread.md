@@ -37,9 +37,9 @@ $(x);
 
 
 `````js filename=intro
-const tmpObjLitVal = $(`prop`);
+const tmpObjLitVal /*:unknown*/ = $(`prop`);
 const tmpCalleeParam /*:object*/ = {};
-const tmpObjSpread = $(tmpCalleeParam);
+const tmpObjSpread /*:unknown*/ = $(tmpCalleeParam);
 const x /*:object*/ = { a: tmpObjLitVal, ...tmpObjSpread };
 $(x);
 `````

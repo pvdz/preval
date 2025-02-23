@@ -44,9 +44,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpBinBothLhs = $(100);
-const tmpCalleeParam = $(1);
-let tmpBinBothRhs = $(tmpCalleeParam);
+const tmpBinBothLhs /*:unknown*/ = $(100);
+const tmpCalleeParam /*:unknown*/ = $(1);
+let tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam);
 if (tmpBinBothRhs) {
   tmpBinBothRhs = 2;
 } else {

@@ -36,8 +36,8 @@ const y = $();
 
 
 `````js filename=intro
-const x = $();
-const y = $();
+const x /*:unknown*/ = $();
+const y /*:unknown*/ = $();
 ``.replace(x, y);
 `````
 

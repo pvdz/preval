@@ -42,7 +42,7 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpObjSpreadArg = b.$(1);
+const tmpObjSpreadArg /*:unknown*/ = b.$(1);
 ({ ...tmpObjSpreadArg });
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

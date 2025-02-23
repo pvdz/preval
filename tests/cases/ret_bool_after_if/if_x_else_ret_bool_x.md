@@ -72,9 +72,9 @@ const f /*:()=>?,boolean*/ = function () {
     return x;
   }
 };
-const tmpCalleeParam = f();
+const tmpCalleeParam /*:unknown*/ = f();
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = f();
+const tmpCalleeParam$1 /*:unknown*/ = f();
 $(tmpCalleeParam$1);
 `````
 

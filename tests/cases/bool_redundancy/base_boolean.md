@@ -56,7 +56,7 @@ if (tmpIfTest) {
 const x /*:boolean*/ = Boolean($);
 const tmpCalleeParam /*:boolean*/ = !x;
 $(tmpCalleeParam);
-const tmpIfTest = $(0);
+const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   $(`fail`);
 } else {

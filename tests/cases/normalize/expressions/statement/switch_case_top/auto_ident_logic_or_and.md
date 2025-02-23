@@ -66,18 +66,18 @@ $(a);
 
 
 `````js filename=intro
-const tmpSwitchDisc = $(1);
-const tmpBinBothRhs = $(1);
+const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
-  const tmpCalleeParam = $(0);
-  const tmpIfTest$1 = $(tmpCalleeParam);
+  const tmpCalleeParam /*:unknown*/ = $(0);
+  const tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam);
   if (tmpIfTest$1) {
   } else {
-    const tmpCalleeParam$1 = $(1);
-    const tmpIfTest$3 = $(tmpCalleeParam$1);
+    const tmpCalleeParam$1 /*:unknown*/ = $(1);
+    const tmpIfTest$3 /*:unknown*/ = $(tmpCalleeParam$1);
     if (tmpIfTest$3) {
-      const tmpCalleeParam$3 = $(2);
+      const tmpCalleeParam$3 /*:unknown*/ = $(2);
       $(tmpCalleeParam$3);
     } else {
     }

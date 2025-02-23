@@ -74,19 +74,19 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
-const tmpIfTest = $(1);
+let tmpCalleeParam /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpIfTest$1 = $(2);
+  const tmpIfTest$1 /*:unknown*/ = $(2);
   if (tmpIfTest$1) {
-    const tmpReturnArg = $(3);
+    const tmpReturnArg /*:unknown*/ = $(3);
     tmpCalleeParam = tmpReturnArg;
   } else {
-    const tmpReturnArg$1 = $(4);
+    const tmpReturnArg$1 /*:unknown*/ = $(4);
     tmpCalleeParam = tmpReturnArg$1;
   }
 } else {
-  const tmpReturnArg$3 = $(5);
+  const tmpReturnArg$3 /*:unknown*/ = $(5);
   tmpCalleeParam = tmpReturnArg$3;
 }
 $(tmpCalleeParam, `final`);

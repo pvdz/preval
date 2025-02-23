@@ -75,7 +75,7 @@ if ($) {
   $(1);
 } else {
 }
-const xyz = $();
+const xyz /*:unknown*/ = $();
 $(xyz);
 $(undefined);
 `````

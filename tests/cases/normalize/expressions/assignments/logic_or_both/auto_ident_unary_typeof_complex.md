@@ -51,12 +51,12 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpUnaryArg = $(1);
-let a = typeof tmpUnaryArg;
+const tmpUnaryArg /*:unknown*/ = $(1);
+let a /*:unknown*/ = typeof tmpUnaryArg;
 if (a) {
   $(a);
 } else {
-  const tmpUnaryArg$1 = $(1);
+  const tmpUnaryArg$1 /*:unknown*/ = $(1);
   const tmpNestedComplexRhs /*:string*/ = typeof tmpUnaryArg$1;
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);

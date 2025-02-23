@@ -97,14 +97,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpSwitchValue = $(1);
+const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
-const tmpCalleeParam = $(1);
-const tmpBinLhs = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpBinLhs /*:unknown*/ = $(tmpCalleeParam);
 let tmpIfTest /*:boolean*/ = false;
 if (tmpBinLhs) {
-  const tmpCalleeParam$1 = $(2);
-  const tmpClusterSSA_tmpBinLhs = $(tmpCalleeParam$1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
+  const tmpClusterSSA_tmpBinLhs /*:unknown*/ = $(tmpCalleeParam$1);
   tmpIfTest = tmpClusterSSA_tmpBinLhs === tmpSwitchValue;
 } else {
   tmpIfTest = tmpBinLhs === tmpSwitchValue;

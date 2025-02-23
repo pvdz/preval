@@ -49,7 +49,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCompProp = $(`foo`);
+const tmpCompProp /*:unknown*/ = $(`foo`);
 const obj /*:object*/ = { foo: 10 };
 obj[tmpCompProp];
 $(undefined);

@@ -74,7 +74,7 @@ tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 
 
 `````js filename=intro
-const tmpIfTest = $(true);
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   throw `Preval: This statement contained a read that reached no writes: tmpCalleeParam = propTDZ;`;
 } else {

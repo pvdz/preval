@@ -46,10 +46,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee$1 = $($);
-const tmpCalleeParam = $(1);
-const tmpCalleeParam$1 = $(2);
-const a = tmpCallCallee$1(tmpCalleeParam, tmpCalleeParam$1);
+const tmpCallCallee$1 /*:unknown*/ = $($);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpCalleeParam$1 /*:unknown*/ = $(2);
+const a /*:unknown*/ = tmpCallCallee$1(tmpCalleeParam, tmpCalleeParam$1);
 $(...a);
 $(a);
 `````

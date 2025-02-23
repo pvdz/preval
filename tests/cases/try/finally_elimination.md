@@ -229,8 +229,8 @@ const f /*:()=>*/ = function () {
   let $finalStep /*:boolean*/ = false;
   let $finalStep$1 /*:boolean*/ = false;
   let $finalStep$3 /*:boolean*/ = false;
-  let $finalArg = undefined;
-  let $finalArg$1 = undefined;
+  let $finalArg /*:unknown*/ = undefined;
+  let $finalArg$1 /*:unknown*/ = undefined;
   try {
     $(a);
     if ($1) {
@@ -266,8 +266,8 @@ const f /*:()=>*/ = function () {
           let $finalStep$2 /*:boolean*/ = false;
           let $finalStep$4 /*:boolean*/ = false;
           let $finalStep$6 /*:boolean*/ = false;
-          let $finalArg$2 = undefined;
-          let $finalArg$4 = undefined;
+          let $finalArg$2 /*:unknown*/ = undefined;
+          let $finalArg$4 /*:unknown*/ = undefined;
           try {
             $(a);
             if ($1) {

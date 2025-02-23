@@ -42,9 +42,9 @@ $(c);
 
 `````js filename=intro
 $(1);
-const tmpCompObj = $(2);
-const tmpCompProp = $(`toString`);
-const x = tmpCompObj[tmpCompProp];
+const tmpCompObj /*:unknown*/ = $(2);
+const tmpCompProp /*:unknown*/ = $(`toString`);
+const x /*:unknown*/ = tmpCompObj[tmpCompProp];
 $(x);
 $(c);
 `````

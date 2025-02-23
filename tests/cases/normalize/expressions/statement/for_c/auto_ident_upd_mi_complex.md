@@ -57,20 +57,20 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest) {
-  const tmpCalleeParam = $(b);
-  const tmpAssignMemLhsObj = $(tmpCalleeParam);
-  const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
+  const tmpCalleeParam /*:unknown*/ = $(b);
+  const tmpAssignMemLhsObj /*:unknown*/ = $(tmpCalleeParam);
+  const tmpCompoundAssignLhs /*:unknown*/ = tmpAssignMemLhsObj.x;
   const tmpAssignMemRhs /*:number*/ = tmpCompoundAssignLhs - 1;
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpCalleeParam$1 = $(b);
-      const tmpAssignMemLhsObj$1 = $(tmpCalleeParam$1);
-      const tmpCompoundAssignLhs$1 = tmpAssignMemLhsObj$1.x;
+      const tmpCalleeParam$1 /*:unknown*/ = $(b);
+      const tmpAssignMemLhsObj$1 /*:unknown*/ = $(tmpCalleeParam$1);
+      const tmpCompoundAssignLhs$1 /*:unknown*/ = tmpAssignMemLhsObj$1.x;
       const tmpAssignMemRhs$1 /*:number*/ = tmpCompoundAssignLhs$1 - 1;
       tmpAssignMemLhsObj$1.x = tmpAssignMemRhs$1;
     } else {

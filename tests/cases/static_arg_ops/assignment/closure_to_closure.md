@@ -63,9 +63,9 @@ const f /*:()=>undefined*/ = function () {
   $(tmpSSA_b);
   return undefined;
 };
-const a = $();
+const a /*:unknown*/ = $();
 $();
-let tmpSSA_b = a;
+let tmpSSA_b /*:unknown*/ = a;
 f();
 tmpSSA_b = a;
 f();

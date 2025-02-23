@@ -64,12 +64,12 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { c: $ };
-const tmpChainElementCall = b.c(1);
-let tmpClusterSSA_a = tmpChainElementCall;
+const tmpChainElementCall /*:unknown*/ = b.c(1);
+let tmpClusterSSA_a /*:unknown*/ = tmpChainElementCall;
 if (tmpChainElementCall) {
   $(tmpChainElementCall);
 } else {
-  const tmpChainElementCall$1 = b.c(1);
+  const tmpChainElementCall$1 /*:unknown*/ = b.c(1);
   tmpClusterSSA_a = tmpChainElementCall$1;
   $(tmpChainElementCall$1);
 }

@@ -59,7 +59,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpReturnArg = $(1, `return`);
+const tmpReturnArg /*:unknown*/ = $(1, `return`);
 $(tmpReturnArg);
 `````
 

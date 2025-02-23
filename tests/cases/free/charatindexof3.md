@@ -141,13 +141,13 @@ const f /*:(number)=>string*/ = function ($$0) {
   unknown = $coerce(out, `plustr`);
   return unknown;
 };
-const x = $(`co_rn`);
+const x /*:unknown*/ = $(`co_rn`);
 const tmpCalleeParam$1 /*:string*/ = $coerce(x, `string`);
 const tmpSaooB$4 /*:number*/ = $frfr(tmpFree);
 tmpCalleeParam$1.charAt(1);
 const tmpCalleeParam /*:string*/ = f(tmpSaooB$4);
 $(tmpCalleeParam);
-const y = $(`m#az#e`);
+const y /*:unknown*/ = $(`m#az#e`);
 const tmpCalleeParam$5 /*:string*/ = $coerce(y, `string`);
 const tmpSaooB$2 /*:number*/ = $frfr(tmpFree$1);
 tmpCalleeParam$5.charAt(1);

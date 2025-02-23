@@ -44,10 +44,10 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpIfTest = $(100);
+const tmpIfTest /*:unknown*/ = $(100);
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  const tmpClusterSSA_b = $(2);
+  const tmpClusterSSA_b /*:unknown*/ = $(2);
   $(a, tmpClusterSSA_b);
 } else {
   $(a, 1);

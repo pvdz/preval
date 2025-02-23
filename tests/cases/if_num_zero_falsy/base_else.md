@@ -47,8 +47,8 @@ if (atest) {
 
 
 `````js filename=intro
-const x = $(1);
-const tmpBinBothRhs = $(2);
+const x /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(2);
 const a /*:number*/ = x & tmpBinBothRhs;
 const atest /*:boolean*/ = a === 0;
 if (atest) {

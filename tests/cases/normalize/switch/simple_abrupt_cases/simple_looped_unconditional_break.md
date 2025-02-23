@@ -107,11 +107,11 @@ tmpSwitchBreak: {
 
 
 `````js filename=intro
-const tmpSwitchDisc = $(1);
+const tmpSwitchDisc /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === 0;
 if (tmpIfTest) {
   $(`one`);
-  const tmpIfTest$1 = $(1);
+  const tmpIfTest$1 /*:unknown*/ = $(1);
   if (tmpIfTest$1) {
     $(2);
   } else {

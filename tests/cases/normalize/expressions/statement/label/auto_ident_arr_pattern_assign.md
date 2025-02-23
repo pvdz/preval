@@ -48,8 +48,8 @@ $(a, x, y);
 
 
 `````js filename=intro
-const tmpArrElement = $(3);
-const tmpArrElement$1 = $(4);
+const tmpArrElement /*:unknown*/ = $(3);
+const tmpArrElement$1 /*:unknown*/ = $(4);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpArrElement, tmpArrElement$1);
 `````

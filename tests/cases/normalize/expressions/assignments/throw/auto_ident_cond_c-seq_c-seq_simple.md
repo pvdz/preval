@@ -44,14 +44,14 @@ throw tmpThrowArg;
 
 
 `````js filename=intro
-const tmpIfTest = $(30);
-let tmpThrowArg = undefined;
+const tmpIfTest /*:unknown*/ = $(30);
+let tmpThrowArg /*:unknown*/ = undefined;
 if (tmpIfTest) {
-  const tmpClusterSSA_a = $(60);
+  const tmpClusterSSA_a /*:unknown*/ = $(60);
   tmpThrowArg = tmpClusterSSA_a;
 } else {
-  const tmpCalleeParam = $(100);
-  const tmpClusterSSA_a$1 = $(tmpCalleeParam);
+  const tmpCalleeParam /*:unknown*/ = $(100);
+  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam);
   tmpThrowArg = tmpClusterSSA_a$1;
 }
 throw tmpThrowArg;

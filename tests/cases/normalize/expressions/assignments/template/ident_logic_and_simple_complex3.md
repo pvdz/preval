@@ -87,8 +87,8 @@ const obj /*:object*/ = {
     return `y`;
   },
 };
-const tmpCalleeParam$1 = $(obj);
-const tmpClusterSSA_a = $(tmpCalleeParam$1);
+const tmpCalleeParam$1 /*:unknown*/ = $(obj);
+const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);

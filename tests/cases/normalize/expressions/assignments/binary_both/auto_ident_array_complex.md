@@ -48,10 +48,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpArrElement = $(1);
-const tmpArrElement$3 = $(3);
-const tmpArrElement$5 = $(1);
-const tmpArrElement$9 = $(3);
+const tmpArrElement /*:unknown*/ = $(1);
+const tmpArrElement$3 /*:unknown*/ = $(3);
+const tmpArrElement$5 /*:unknown*/ = $(1);
+const tmpArrElement$9 /*:unknown*/ = $(3);
 const a /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
 const tmpClusterSSA_a /*:array*/ = [tmpArrElement$5, 2, tmpArrElement$9];
 const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;

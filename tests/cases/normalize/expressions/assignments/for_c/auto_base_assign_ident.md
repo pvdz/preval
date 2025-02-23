@@ -53,17 +53,17 @@ $(a, b);
 
 
 `````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let b /*:unknown*/ = 1;
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpNestedComplexRhs = $(2);
+  const tmpNestedComplexRhs /*:unknown*/ = $(2);
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
   while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpNestedComplexRhs$1 = $(2);
+      const tmpNestedComplexRhs$1 /*:unknown*/ = $(2);
       b = tmpNestedComplexRhs$1;
       a = tmpNestedComplexRhs$1;
     } else {

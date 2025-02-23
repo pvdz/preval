@@ -53,9 +53,9 @@ $(a);
 
 
 `````js filename=intro
-let tmpAnonDefaultExport = undefined;
+let tmpAnonDefaultExport /*:unknown*/ = undefined;
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall = tmpObjLitVal$1.e(1);
+const tmpChainElementCall /*:unknown*/ = tmpObjLitVal$1.e(1);
 tmpAnonDefaultExport = tmpChainElementCall;
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ = { a: 999, b: 1000 };

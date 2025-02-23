@@ -106,11 +106,11 @@ $(`woohoo`);
 
 
 `````js filename=intro
-const tmpIfTest = $(false);
+const tmpIfTest /*:unknown*/ = $(false);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(`uhoh`);
-    const tmpIfTest$1 = $(false);
+    const tmpIfTest$1 /*:unknown*/ = $(false);
     if (tmpIfTest$1) {
     } else {
       $(`exit`);
@@ -121,11 +121,11 @@ if (tmpIfTest) {
   $(`exit`);
 }
 $(`woohoo`);
-const tmpIfTest$3 = $(false);
+const tmpIfTest$3 /*:unknown*/ = $(false);
 if (tmpIfTest$3) {
   while ($LOOP_UNROLL_10) {
     $(`uhoh`);
-    const tmpIfTest$2 = $(false);
+    const tmpIfTest$2 /*:unknown*/ = $(false);
     if (tmpIfTest$2) {
     } else {
       $(`exit`);

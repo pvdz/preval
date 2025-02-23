@@ -50,7 +50,7 @@ if (tmpIfTest$1917) {
 
 
 `````js filename=intro
-const tmpBinLhs = $(`is`);
+const tmpBinLhs /*:unknown*/ = $(`is`);
 const tmpIfTest$1917 /*:boolean*/ = tmpBinLhs === 67636;
 if (tmpIfTest$1917) {
   $(`it was`);

@@ -64,10 +64,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
+const tmpObjLitVal /*:unknown*/ = $(1);
 $(undefined);
 const tmpNestedComplexRhs /*:object*/ = { b: tmpObjLitVal };
-const tmpAssignMemLhsObj = $(tmpNestedComplexRhs);
+const tmpAssignMemLhsObj /*:unknown*/ = $(tmpNestedComplexRhs);
 tmpAssignMemLhsObj.b = 2;
 $(tmpNestedComplexRhs);
 `````

@@ -55,7 +55,7 @@ if (tmpIfTest) {
 `````js filename=intro
 const tmpCalleeParam /*:boolean*/ = Boolean($);
 $(tmpCalleeParam);
-const tmpIfTest = $(0);
+const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   $(`fail`);
 } else {

@@ -72,8 +72,8 @@ $(r);
 
 
 `````js filename=intro
-const toString = $(`toString`);
-const r = String[toString]();
+const toString /*:unknown*/ = $(`toString`);
+const r /*:unknown*/ = String[toString]();
 $(r);
 `````
 

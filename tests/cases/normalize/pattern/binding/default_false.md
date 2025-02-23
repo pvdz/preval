@@ -43,7 +43,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const tmpObjLitVal = $(`prop`);
+const tmpObjLitVal /*:unknown*/ = $(`prop`);
 const tmpIfTest /*:boolean*/ = tmpObjLitVal === undefined;
 if (tmpIfTest) {
   $(`default`);

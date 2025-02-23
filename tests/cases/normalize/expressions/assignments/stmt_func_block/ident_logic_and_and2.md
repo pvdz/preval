@@ -111,14 +111,14 @@ $(undefined);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-const theneedle = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const theneedle /*:unknown*/ = $(tmpCalleeParam);
 if (theneedle) {
-  const tmpCalleeParam$3 = $(1);
-  const tmpClusterSSA_theneedle = $(tmpCalleeParam$3);
+  const tmpCalleeParam$3 /*:unknown*/ = $(1);
+  const tmpClusterSSA_theneedle /*:unknown*/ = $(tmpCalleeParam$3);
   if (tmpClusterSSA_theneedle) {
-    const tmpCalleeParam$7 = $(2);
-    const tmpClusterSSA_theneedle$1 = $(tmpCalleeParam$7);
+    const tmpCalleeParam$7 /*:unknown*/ = $(2);
+    const tmpClusterSSA_theneedle$1 /*:unknown*/ = $(tmpCalleeParam$7);
     $(tmpClusterSSA_theneedle$1);
   } else {
     $(tmpClusterSSA_theneedle);

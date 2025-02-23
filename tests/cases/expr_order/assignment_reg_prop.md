@@ -74,8 +74,8 @@ const b /*:object*/ = {
     return undefined;
   },
 };
-const tmpAssignMemLhsObj = $(b);
-const tmpAssignMemRhs = $(2);
+const tmpAssignMemLhsObj /*:unknown*/ = $(b);
+const tmpAssignMemRhs /*:unknown*/ = $(2);
 tmpAssignMemLhsObj.c = tmpAssignMemRhs;
 `````
 

@@ -69,24 +69,24 @@ $(a);
 
 `````js filename=intro
 $(100);
-const tmpCalleeParam = $(1);
-let a = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+let a /*:unknown*/ = $(tmpCalleeParam);
 if (a) {
-  const tmpCalleeParam$1 = $(1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
   a = $(tmpCalleeParam$1);
   if (a) {
-    const tmpCalleeParam$3 = $(2);
+    const tmpCalleeParam$3 /*:unknown*/ = $(2);
     a = $(tmpCalleeParam$3);
     if (a) {
       while ($LOOP_UNROLL_10) {
         $(100);
-        const tmpCalleeParam$2 = $(1);
+        const tmpCalleeParam$2 /*:unknown*/ = $(1);
         a = $(tmpCalleeParam$2);
         if (a) {
-          const tmpCalleeParam$4 = $(1);
+          const tmpCalleeParam$4 /*:unknown*/ = $(1);
           a = $(tmpCalleeParam$4);
           if (a) {
-            const tmpCalleeParam$6 = $(2);
+            const tmpCalleeParam$6 /*:unknown*/ = $(2);
             a = $(tmpCalleeParam$6);
             if (a) {
             } else {

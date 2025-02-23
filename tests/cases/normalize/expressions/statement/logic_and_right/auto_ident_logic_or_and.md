@@ -54,16 +54,16 @@ $(a);
 
 
 `````js filename=intro
-const tmpIfTest = $(100);
+const tmpIfTest /*:unknown*/ = $(100);
 if (tmpIfTest) {
-  const tmpCalleeParam = $(0);
-  const tmpIfTest$1 = $(tmpCalleeParam);
+  const tmpCalleeParam /*:unknown*/ = $(0);
+  const tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam);
   if (tmpIfTest$1) {
   } else {
-    const tmpCalleeParam$1 = $(1);
-    const tmpIfTest$3 = $(tmpCalleeParam$1);
+    const tmpCalleeParam$1 /*:unknown*/ = $(1);
+    const tmpIfTest$3 /*:unknown*/ = $(tmpCalleeParam$1);
     if (tmpIfTest$3) {
-      const tmpCalleeParam$3 = $(2);
+      const tmpCalleeParam$3 /*:unknown*/ = $(2);
       $(tmpCalleeParam$3);
     } else {
     }

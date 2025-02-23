@@ -53,10 +53,10 @@ while (true) {
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-let xyz = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+let xyz /*:unknown*/ = $(tmpCalleeParam);
 if (xyz) {
-  const tmpCalleeParam$1 = $(2);
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
   xyz = $(tmpCalleeParam$1);
 } else {
 }

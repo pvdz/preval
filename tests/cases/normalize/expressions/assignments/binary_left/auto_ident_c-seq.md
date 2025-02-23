@@ -49,8 +49,8 @@ $(a, x);
 `````js filename=intro
 $(1);
 $(2);
-const a = $(1);
-const tmpBinBothRhs = $(100);
+const a /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(100);
 const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a, 1);

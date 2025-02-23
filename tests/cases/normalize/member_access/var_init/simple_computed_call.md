@@ -38,9 +38,9 @@ $(x);
 
 
 `````js filename=intro
-const tmpCompProp = $(`foo`);
+const tmpCompProp /*:unknown*/ = $(`foo`);
 const obj /*:object*/ = { foo: 10 };
-const x = obj[tmpCompProp];
+const x /*:unknown*/ = obj[tmpCompProp];
 $(x);
 `````
 

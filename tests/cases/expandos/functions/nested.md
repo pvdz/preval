@@ -89,7 +89,7 @@ const g /*:(number)=>undefined*/ = function ($$0) {
   };
   if ($) {
     f.foo = a;
-    const tmpCalleeParam = f.foo;
+    const tmpCalleeParam /*:unknown*/ = f.foo;
     $(tmpCalleeParam);
     return undefined;
   } else {

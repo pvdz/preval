@@ -162,8 +162,8 @@ if ($implicitThrow$1) {
 `````js filename=intro
 let $implicitThrow$3 /*:boolean*/ = false;
 let $finalStep /*:boolean*/ = false;
-let $finalCatchArg$3 = undefined;
-let $finalArg = undefined;
+let $finalCatchArg$3 /*:unknown*/ = undefined;
+let $finalArg /*:unknown*/ = undefined;
 $finally$3: {
   try {
     try {

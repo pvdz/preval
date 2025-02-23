@@ -43,7 +43,7 @@ const tmpIfTest /*:boolean*/ = global == null;
 if (tmpIfTest) {
   $(undefined);
 } else {
-  const tmpChainElementObject = global.foo;
+  const tmpChainElementObject /*:unknown*/ = global.foo;
   $(tmpChainElementObject);
 }
 `````

@@ -46,9 +46,9 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const a = arrPatternSplat[0];
+const a /*:unknown*/ = arrPatternSplat[0];
 const tmpCalleeParam /*:array*/ = [1, 2];
-const tmpCompObj = $(tmpCalleeParam);
+const tmpCompObj /*:unknown*/ = $(tmpCalleeParam);
 tmpCompObj.a;
 $(a);
 `````

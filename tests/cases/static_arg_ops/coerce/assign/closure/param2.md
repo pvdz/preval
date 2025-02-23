@@ -84,7 +84,7 @@ const tmpObjLitVal /*:()=>undefined*/ = function () {
   return undefined;
 };
 const tmpCalleeParam /*:object*/ = { valueOf: tmpObjLitVal };
-const x = $(tmpCalleeParam);
+const x /*:unknown*/ = $(tmpCalleeParam);
 $coerce(x, `number`);
 const f /*:(number)=>undefined*/ = function ($$0) {
   const c /*:number*/ = $$0;

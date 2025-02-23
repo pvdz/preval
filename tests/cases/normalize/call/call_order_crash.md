@@ -34,10 +34,10 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 
 
 `````js filename=intro
-const tmpCallCallee = crash;
-const tmpCalleeParam = $spy(`a`);
-const tmpCalleeParam$1 = $spy(`b`);
-const tmpCalleeParam$3 = $spy(`c`);
+const tmpCallCallee /*:unknown*/ = crash;
+const tmpCalleeParam /*:unknown*/ = $spy(`a`);
+const tmpCalleeParam$1 /*:unknown*/ = $spy(`b`);
+const tmpCalleeParam$3 /*:unknown*/ = $spy(`c`);
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 `````
 

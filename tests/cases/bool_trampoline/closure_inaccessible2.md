@@ -102,7 +102,7 @@ $(obj);
 `````js filename=intro
 const f$1 /*:()=>boolean*/ = function () {
   debugger;
-  const tmpssa2_x = $(100);
+  const tmpssa2_x /*:unknown*/ = $(100);
   const y /*:boolean*/ = Boolean(tmpssa2_x);
   return y;
 };
@@ -116,7 +116,7 @@ const obj /*:object*/ = {
   g() {
     const tmpPrevalAliasThis /*:object*/ = this;
     debugger;
-    const tmpIfTest = tmpPrevalAliasThis.f();
+    const tmpIfTest /*:unknown*/ = tmpPrevalAliasThis.f();
     if (tmpIfTest) {
       $(`pass`);
       return undefined;

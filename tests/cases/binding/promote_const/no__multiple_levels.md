@@ -64,14 +64,14 @@ if (tmpIfTest$1) {
 
 `````js filename=intro
 let x /*:primitive*/ = undefined;
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   x = 10;
 } else {
 }
-const tmpIfTest$1 = $(2);
+const tmpIfTest$1 /*:unknown*/ = $(2);
 if (tmpIfTest$1) {
-  const tmpIfTest$3 = $(3);
+  const tmpIfTest$3 /*:unknown*/ = $(3);
   if (tmpIfTest$3) {
     $(x);
   } else {

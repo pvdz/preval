@@ -52,7 +52,7 @@ $(a);
 
 
 `````js filename=intro
-let a = undefined;
+let a /*:unknown*/ = undefined;
 while (true) {
   a = function () {
     debugger;

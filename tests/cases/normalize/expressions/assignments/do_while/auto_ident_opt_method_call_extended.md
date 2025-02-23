@@ -71,12 +71,12 @@ $(a);
 `````js filename=intro
 $(100);
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall = tmpObjLitVal$1.e(1);
-let tmpClusterSSA_a = tmpChainElementCall;
+const tmpChainElementCall /*:unknown*/ = tmpObjLitVal$1.e(1);
+let tmpClusterSSA_a /*:unknown*/ = tmpChainElementCall;
 if (tmpChainElementCall) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpChainElementCall$1 = tmpObjLitVal$1.e(1);
+    const tmpChainElementCall$1 /*:unknown*/ = tmpObjLitVal$1.e(1);
     tmpClusterSSA_a = tmpChainElementCall$1;
     if (tmpChainElementCall$1) {
     } else {

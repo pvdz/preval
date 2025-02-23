@@ -45,10 +45,10 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const x = $(1);
+const x /*:unknown*/ = $(1);
 $(x, `a`);
-const tmpClusterSSA_x = $(2);
-const tmpIfTest = $(1);
+const tmpClusterSSA_x /*:unknown*/ = $(2);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   $(tmpClusterSSA_x, `b`);
 } else {

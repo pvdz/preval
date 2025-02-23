@@ -105,9 +105,9 @@ $(`pass`);
 
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpSwitchDisc = $(1);
+  const tmpSwitchDisc /*:unknown*/ = $(1);
   const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === 0;
   if (tmpIfTest$1) {
     $(`one`);

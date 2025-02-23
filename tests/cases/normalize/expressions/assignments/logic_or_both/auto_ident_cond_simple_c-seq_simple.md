@@ -48,11 +48,11 @@ $(a);
 
 
 `````js filename=intro
-let a = $(60);
+let a /*:unknown*/ = $(60);
 if (a) {
   $(a);
 } else {
-  const tmpNestedComplexRhs = $(60);
+  const tmpNestedComplexRhs /*:unknown*/ = $(60);
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }

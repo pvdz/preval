@@ -52,13 +52,13 @@ $(a);
 
 
 `````js filename=intro
-let tmpCompProp = undefined;
+let tmpCompProp /*:unknown*/ = undefined;
 const b /*:object*/ = { x: 1 };
-const tmpChainRootProp = $(b);
+const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject = tmpChainRootProp.x;
+  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
   tmpCompProp = tmpChainElementObject;
 }
 const obj /*:object*/ = {};

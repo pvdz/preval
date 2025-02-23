@@ -51,7 +51,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee$1 = $(60);
+const tmpCallCallee$1 /*:unknown*/ = $(60);
 const tmpBinBothRhs /*:string*/ = $coerce(tmpCallCallee$1, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);

@@ -69,7 +69,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 const f /*:()=>undefined*/ = function () {
   debugger;
-  const x = $(1);
+  const x /*:unknown*/ = $(1);
   $(x);
   return undefined;
 };

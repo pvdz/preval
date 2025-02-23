@@ -42,10 +42,10 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpAssignComMemLhsProp = $(2);
+const tmpAssignComMemLhsProp /*:unknown*/ = $(2);
 const arr /*:array*/ = [1, 2, 3];
 arr[tmpAssignComMemLhsProp] = 10;
-const tmpCalleeParam = arr.length;
+const tmpCalleeParam /*:unknown*/ = arr.length;
 $(tmpCalleeParam);
 `````
 

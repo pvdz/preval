@@ -60,14 +60,14 @@ while (true) {
 `````js filename=intro
 $(10);
 while (true) {
-  const tmpIfTest = $(true);
+  const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
-    const tmpClusterSSA_x = $(20, `set`);
-    const tmpIfTest$1 = $(true);
+    const tmpClusterSSA_x /*:unknown*/ = $(20, `set`);
+    const tmpIfTest$1 /*:unknown*/ = $(true);
     if (tmpIfTest$1) {
       while ($LOOP_UNROLL_10) {
         $(tmpClusterSSA_x, `loop`);
-        const tmpIfTest$2 = $(true);
+        const tmpIfTest$2 /*:unknown*/ = $(true);
         if (tmpIfTest$2) {
         } else {
           break;

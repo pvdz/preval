@@ -70,11 +70,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 let arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCalleeParam = arr[0];
+  const tmpCalleeParam /*:unknown*/ = arr[0];
   try {
     $(tmpCalleeParam);
     arr.reverse();
-    const tmpBinLhs = arr[0];
+    const tmpBinLhs /*:unknown*/ = arr[0];
     const tmpIfTest /*:boolean*/ = tmpBinLhs === $;
     if (tmpIfTest) {
       break;

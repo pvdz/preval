@@ -98,9 +98,9 @@ const f /*:(primitive)=>primitive*/ = function ($$0) {
   $(`no`);
   $(`inlining`);
   $(`please`);
-  const tmpBinBothRhs = $(1);
+  const tmpBinBothRhs /*:unknown*/ = $(1);
   const y /*:primitive*/ = x + tmpBinBothRhs;
-  const tmpIfTest = $(true);
+  const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
     $(`a`);
     return y;
@@ -109,11 +109,11 @@ const f /*:(primitive)=>primitive*/ = function ($$0) {
     return y;
   }
 };
-const tmpCalleeParam = f(1);
+const tmpCalleeParam /*:unknown*/ = f(1);
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = f(2);
+const tmpCalleeParam$1 /*:unknown*/ = f(2);
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f(`three`);
+const tmpCalleeParam$3 /*:unknown*/ = f(`three`);
 $(tmpCalleeParam$3);
 `````
 

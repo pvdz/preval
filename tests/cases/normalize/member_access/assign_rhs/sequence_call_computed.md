@@ -45,9 +45,9 @@ $(c);
 
 `````js filename=intro
 $(1);
-const tmpAssignRhsCompObj = $(2);
-const tmpAssignRhsCompProp = $(`toString`);
-const x = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+const tmpAssignRhsCompObj /*:unknown*/ = $(2);
+const tmpAssignRhsCompProp /*:unknown*/ = $(`toString`);
+const x /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 $(x);
 $(c);
 `````

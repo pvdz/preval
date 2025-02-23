@@ -58,11 +58,11 @@ $(x, y);
 
 
 `````js filename=intro
-const y = $(5);
+const y /*:unknown*/ = $(5);
 $(true);
 const z /*:number*/ = y - 1;
-let tmpClusterSSA_y = z;
-let tmpClusterSSA_x = z;
+let tmpClusterSSA_y /*:unknown*/ = z;
+let tmpClusterSSA_x /*:unknown*/ = z;
 if (z) {
   while ($LOOP_UNROLL_10) {
     $(tmpClusterSSA_x);

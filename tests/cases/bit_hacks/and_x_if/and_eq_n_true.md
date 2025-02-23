@@ -40,7 +40,7 @@ $(z);
 
 
 `````js filename=intro
-const tmpUnaryArg = $(1);
+const tmpUnaryArg /*:unknown*/ = $(1);
 const x /*:number*/ = +tmpUnaryArg;
 const y /*:number*/ = x & 32768;
 const z /*:boolean*/ = Boolean(y);

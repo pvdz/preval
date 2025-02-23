@@ -40,12 +40,12 @@ $(y);
 
 
 `````js filename=intro
-const tmpChainRootProp = $();
+const tmpChainRootProp /*:unknown*/ = $();
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest) {
   $(undefined);
 } else {
-  const tmpChainElementObject = tmpChainRootProp.foo;
+  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.foo;
   $(tmpChainElementObject);
 }
 `````

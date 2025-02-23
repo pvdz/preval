@@ -49,12 +49,12 @@ $(a, b);
 
 
 `````js filename=intro
-let b = {};
-const tmpIfTest = $(1);
+let b /*:unknown*/ = {};
+const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpObjLitVal = $(2);
+  const tmpObjLitVal /*:unknown*/ = $(2);
   const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
-  const tmpAssignObjPatternRhs = $(tmpCalleeParam);
+  const tmpAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
   b = tmpAssignObjPatternRhs.b;
 } else {
   $(200);

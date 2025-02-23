@@ -82,10 +82,10 @@ $(`c`);
 
 `````js filename=intro
 const x /*:object*/ = { a: 0, b: 1 };
-const tmpForOfGen = $forOf(x);
+const tmpForOfGen /*:unknown*/ = $forOf(x);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
   } else {

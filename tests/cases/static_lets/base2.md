@@ -60,7 +60,7 @@ $(x);
 `````js filename=intro
 let x /*:number*/ = 10;
 $(5);
-const tmpIfTest = $(false);
+const tmpIfTest /*:unknown*/ = $(false);
 if (tmpIfTest) {
   $(10, `a`);
 } else {

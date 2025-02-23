@@ -83,24 +83,24 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpIfTest = $(true);
+const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   $(`loop`);
-  const tmpIfTest$1 = $(true);
+  const tmpIfTest$1 /*:unknown*/ = $(true);
   if (tmpIfTest$1) {
     $(`loop`);
-    const tmpThrowArg = $(7, `throw`);
+    const tmpThrowArg /*:unknown*/ = $(7, `throw`);
     throw tmpThrowArg;
   } else {
     $(`do not visit, do not eliminate`);
     while ($LOOP_UNROLL_10) {
-      const tmpIfTest$2 = $(true);
+      const tmpIfTest$2 /*:unknown*/ = $(true);
       if (tmpIfTest$2) {
         $(`loop`);
-        const tmpIfTest$4 = $(true);
+        const tmpIfTest$4 /*:unknown*/ = $(true);
         if (tmpIfTest$4) {
           $(`loop`);
-          const tmpThrowArg$1 = $(7, `throw`);
+          const tmpThrowArg$1 /*:unknown*/ = $(7, `throw`);
           throw tmpThrowArg$1;
         } else {
           $(`do not visit, do not eliminate`);

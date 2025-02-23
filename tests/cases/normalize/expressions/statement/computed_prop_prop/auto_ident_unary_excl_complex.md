@@ -42,7 +42,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpUnaryArg = $(100);
+const tmpUnaryArg /*:unknown*/ = $(100);
 const obj /*:object*/ = {};
 const tmpCompProp /*:boolean*/ = !tmpUnaryArg;
 obj[tmpCompProp];

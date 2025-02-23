@@ -61,9 +61,9 @@ tmpCallCallee$3(tmpCalleeParam$7);
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { a: `pass` };
-const bindingPatternObjRoot = $(tmpCalleeParam);
+const bindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
 const tmpCalleeParam$3 /*:array*/ = [];
-const x = objPatternRest(bindingPatternObjRoot, tmpCalleeParam$3, `x`);
+const x /*:unknown*/ = objPatternRest(bindingPatternObjRoot, tmpCalleeParam$3, `x`);
 $(x);
 `````
 

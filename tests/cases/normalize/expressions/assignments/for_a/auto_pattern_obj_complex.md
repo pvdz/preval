@@ -48,7 +48,7 @@ while (true) {
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
-const tmpAssignObjPatternRhs = $(tmpCalleeParam);
+const tmpAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 tmpAssignObjPatternRhs.a;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);

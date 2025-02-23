@@ -49,11 +49,11 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpIfTest = b.$(1);
+const tmpIfTest /*:unknown*/ = b.$(1);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpIfTest$1 = b.$(1);
+    const tmpIfTest$1 /*:unknown*/ = b.$(1);
     if (tmpIfTest$1) {
     } else {
       break;

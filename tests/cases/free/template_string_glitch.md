@@ -95,9 +95,9 @@ $(fxy);
 
 
 `````js filename=intro
-const x = $();
+const x /*:unknown*/ = $();
 const xs /*:string*/ = $coerce(x, `string`);
-const y = $();
+const y /*:unknown*/ = $();
 const ys /*:string*/ = $coerce(y, `string`);
 const fxy /*:string*/ = `/${xs}/${ys}`;
 $(fxy);

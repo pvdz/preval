@@ -60,16 +60,16 @@ while ($LOOP_UNROLL_2) {
 
 
 `````js filename=intro
-const test = $(`never`);
+const test /*:unknown*/ = $(`never`);
 if (test) {
 } else {
   const arr /*:array*/ = [2, 3, 4, 5, 1];
   while ($LOOP_UNROLL_1) {
-    const test$1 = $(`never`);
+    const test$1 /*:unknown*/ = $(`never`);
     if (test$1) {
       break;
     } else {
-      const tmp$1 = arr.shift();
+      const tmp$1 /*:unknown*/ = arr.shift();
       arr.push(tmp$1);
     }
   }

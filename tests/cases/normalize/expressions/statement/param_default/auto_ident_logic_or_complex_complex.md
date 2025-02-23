@@ -66,11 +66,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
-const p = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(0);
+const p /*:unknown*/ = $(tmpCalleeParam);
 if (p) {
 } else {
-  const tmpCalleeParam$1 = $(2);
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
   $(tmpCalleeParam$1);
 }
 $(undefined);

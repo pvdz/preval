@@ -52,7 +52,7 @@ if (dedupeMe) {
 
 `````js filename=intro
 if (tmpUnaryArg$83) {
-  const c = props$15.children;
+  const c /*:unknown*/ = props$15.children;
   const tmpClusterSSA_dedupeMe /*:boolean*/ = c == null;
   $(tmpClusterSSA_dedupeMe, `xyz`);
 } else {

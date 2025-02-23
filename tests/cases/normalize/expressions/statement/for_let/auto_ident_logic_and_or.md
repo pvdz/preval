@@ -59,16 +59,16 @@ while (true) {
 
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-let xyz = $(tmpCalleeParam);
+const tmpCalleeParam /*:unknown*/ = $(1);
+let xyz /*:unknown*/ = $(tmpCalleeParam);
 if (xyz) {
-  const tmpCalleeParam$1 = $(1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
   xyz = $(tmpCalleeParam$1);
 } else {
 }
 if (xyz) {
 } else {
-  const tmpCalleeParam$3 = $(2);
+  const tmpCalleeParam$3 /*:unknown*/ = $(2);
   xyz = $(tmpCalleeParam$3);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

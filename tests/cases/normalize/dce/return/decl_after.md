@@ -64,7 +64,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpIfTest = $(false);
+const tmpIfTest /*:unknown*/ = $(false);
 if (tmpIfTest) {
   $(`fail too`);
   throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;

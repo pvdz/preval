@@ -80,13 +80,13 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [1, 2];
-const tmpForOfGen = $forOf(tmpCalleeParam);
-const tmpForOfNext = tmpForOfGen.next();
-const tmpIfTest = tmpForOfNext.done;
+const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
 if (tmpIfTest) {
   $(`unreachable (but keep because the for body may not be visited...)`);
 } else {
-  const x = tmpForOfNext.value;
+  const x /*:unknown*/ = tmpForOfNext.value;
   $(`for`, x);
 }
 $(undefined);

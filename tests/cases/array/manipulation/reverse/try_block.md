@@ -1,11 +1,11 @@
 # Preval test case
 
-# bad_arr_inling.md
+# try_block.md
 
-> Tofix > bad arr inling
+> Array > Manipulation > Reverse > Try block
 >
-> At the time of writing a trick would inline obj[arr] as a string 
-> even though .reverse() will change it later.
+> It shouldn't apply the trick in a loop or try when the decl is outside that 
+> loop or try because the mutation is unpredictable (contrived cases aside)
 
 ## Input
 
@@ -64,7 +64,7 @@ const obj /*:object*/ = { [`1,2,3`]: `pass` };
 const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
-    const tmpCalleeParam = obj[`1,2,3`];
+    const tmpCalleeParam = obj[arr];
     $(tmpCalleeParam);
     arr.reverse();
   } catch (e) {
@@ -82,7 +82,7 @@ const a = { [ "1,2,3" ]: "pass" };
 const b = [ 1, 2, 3 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
-    const c = a[ "1,2,3" ];
+    const c = a[ b ];
     $( c );
     b.reverse();
   }
@@ -131,31 +131,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: 'pass'
- - 2: 'pass'
- - 3: 'pass'
- - 4: 'pass'
- - 5: 'pass'
- - 6: 'pass'
- - 7: 'pass'
- - 8: 'pass'
- - 9: 'pass'
- - 10: 'pass'
- - 11: 'pass'
- - 12: 'pass'
- - 13: 'pass'
- - 14: 'pass'
- - 15: 'pass'
- - 16: 'pass'
- - 17: 'pass'
- - 18: 'pass'
- - 19: 'pass'
- - 20: 'pass'
- - 21: 'pass'
- - 22: 'pass'
- - 23: 'pass'
- - 24: 'pass'
- - 25: 'pass'
- - 26: 'pass'
- - eval returned: ('<crash[ Loop aborted by Preval test runner (this simply curbs infinite loops in tests) ]>')
+Final output calls: Same

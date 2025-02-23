@@ -66,7 +66,7 @@ function processAttempt(fdata, queue) {
   fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
-    //if (!meta.isConstant) return;
+    if (!meta.isConstant) return;
     if (meta.constValueRef.node.type !== 'ArrayExpression') return;
 
     vgroup('- `' + name + '` is a constant array literal');
@@ -86,98 +86,107 @@ function processAttempt(fdata, queue) {
     let failed = false;
     let sawMutatedOnce = false;
 
-    if (meta.writes.length === 1) {
-      // This is a const with an array literal as init.
-      // There are no further writes but there may be mutations through methods and property assignments.
-      // First check if this is only property reads...
-      if (meta.reads.every(read => {
-        return (
-          read.parentNode.type === 'MemberExpression' &&
-          read.parentProp === 'object' &&
-          (read.grandNode.type === 'VariableDeclarator' || (read.grandNode.type === 'AssignmentExpression' && read.grandProp === 'right') || read.grandNode.type === 'ExpressionStatement')
-        );
-      })) {
-        vlog('All reads of this array constant are member accesses. Try to resolve the primitives');
-        if (arrNode.elements.some(node => !node || AST.isPrimitive(node))) {
-          vgroup('At least one element is a primitive that we can inline, or elided (which is undefined). Search for certain reads now.');
+    const write = meta.writes[0];
 
-          // TODO: what about `for (x of y[Symbol.iterator])` sort of stuff? Not resolving to primitive I guess?
+    const declLoopPid = write.innerLoop;
+    const declTryPid = write.innerTrap;
 
-          meta.reads.forEach((read, ei) => {
-            vgroup('- read', ei, ', @', +read.node.$p.pid);
-            if (read.parentNode.computed) {
-              if (read.grandNode.type === 'AssignmentExpression') {
-                vlog('This is a write to the property, bailing');
-              }
-              else if (AST.isPrimitive(read.parentNode.property)) {
-                const val = AST.getPrimitiveValue(read.parentNode.property);
-                vlog('Accessing primitive value', val, 'on the array, a', typeof val);
-                if (typeof val === 'number') {
-                  const anode = arrNode.elements[val];
-                  if (!anode || AST.isPrimitive(anode)) {
-                    vlog('And the accessed value is also a primitive, so we can inline it!');
+    // This is a const with an array literal as init.
+    // We need to validate that it doesn't mutate with calls like splice or assignments to .length etc
+    if (meta.reads.every(read => {
+      return (
+        read.parentNode.type === 'MemberExpression' &&
+        read.parentProp === 'object' &&
+        (
+          read.grandNode.type === 'VariableDeclarator' ||
+          (read.grandNode.type === 'AssignmentExpression' && read.grandProp === 'right') ||
+          read.grandNode.type === 'ExpressionStatement'
+        ) &&
+        // Loop may mutate the array with statements that appear later in source code
+        // Note that if the decl is inside a loop, it's fine as long as the reads are in the same loop because when that loop repeats the
+        // decl is fresh again, so source order logic is maintained.
+        read.innerLoop === declLoopPid &&
+        // A try may or may not mutate the array, leaving unpredictable state.
+        // Similar to loops, it's fine if the decl is inside the try-block as logn as the reads are in the same try-block.
+        read.innerTrap === declTryPid
+      );
+    })) {
+      vlog('All reads of this array constant are member accesses. Try to resolve the primitives');
+      if (arrNode.elements.some(node => !node || AST.isPrimitive(node))) {
+        vgroup('At least one element is a primitive that we can inline, or elided (which is undefined). Search for certain reads now.');
 
-                    rule('An array that has only property reads can inline reads when they only concern primitives');
-                    example('const arr = [1,2,3]; $(arr[1]);', 'const arr = [1,2,3]; $(2);');
-                    before(read.blockBody[read.blockIndex]);
+        // TODO: what about `for (x of y[Symbol.iterator])` sort of stuff? Not resolving to primitive I guess?
 
-                    const newNode = AST.primitive(anode ? AST.getPrimitiveValue(anode) : undefined)
+        meta.reads.forEach((read, ei) => {
+          vgroup('- read', ei, ', @', +read.node.$p.pid);
+          if (read.parentNode.computed) {
+            if (read.grandNode.type === 'AssignmentExpression') {
+              vlog('This is a write to the property, bailing');
+            }
+            else if (AST.isPrimitive(read.parentNode.property)) {
+              const val = AST.getPrimitiveValue(read.parentNode.property);
+              vlog('Accessing primitive value', val, 'on the array, a', typeof val);
+              if (typeof val === 'number') {
+                const anode = arrNode.elements[val];
+                if (!anode || AST.isPrimitive(anode)) {
+                  vlog('And the accessed value is also a primitive, so we can inline it!');
 
-                    if (read.grandIndex < 0) read.grandNode[read.grandProp] = newNode;
-                    else read.grandNode[read.grandProp][read.grandIndex] = newNode;
-
-                    after(read.blockBody[read.blockIndex]);
-                    updated += 1;
-                  } else {
-                    vlog('The accessed value is not a primitive, so we bail for now');
-                  }
-                } else {
-                  vlog('This is not a number so we must abort, for now');
-                }
-              } else {
-                vlog('Dynamic property is not a primitive so we cannot resolve it reliably');
-              }
-            } else {
-              // Just check the property name and resolve it against a plain array (or array prototype, most likely .length)
-
-              switch (read.parentNode.property.name) {
-                case 'length':
-                  rule('Accessing .length on an array when this is a constant and only has props read, can be lined');
-                  example('const arr = [1, 2, 3, 4]; $(arr.length);', 'const arr [1, 2, 3, 4]; $(4);');
+                  rule('An array that has only property reads can inline reads when they only concern primitives');
+                  example('const arr = [1,2,3]; $(arr[1]);', 'const arr = [1,2,3]; $(2);');
                   before(read.blockBody[read.blockIndex]);
 
-                  const newNode = AST.primitive(arrNode.elements.length);
+                  const newNode = AST.primitive(anode ? AST.getPrimitiveValue(anode) : undefined)
 
                   if (read.grandIndex < 0) read.grandNode[read.grandProp] = newNode;
                   else read.grandNode[read.grandProp][read.grandIndex] = newNode;
 
                   after(read.blockBody[read.blockIndex]);
                   updated += 1;
-                  break;
-                default:
-                  // arr[true] or whatever. ignore it for now. we may support more cases here but whatever.
+                } else {
+                  vlog('The accessed value is not a primitive, so we bail for now');
+                }
+              } else {
+                vlog('This is not a number so we must abort, for now');
               }
-
+            } else {
+              vlog('Dynamic property is not a primitive so we cannot resolve it reliably');
             }
-            vgroupEnd();
-          });
-          vgroupEnd();
+          } else {
+            // Just check the property name and resolve it against a plain array (or array prototype, most likely .length)
 
-          if (updated) {
-            return;
+            switch (read.parentNode.property.name) {
+              case 'length':
+                rule('Accessing .length on an array when this is a constant and only has props read, can be lined');
+                example('const arr = [1, 2, 3, 4]; $(arr.length);', 'const arr [1, 2, 3, 4]; $(4);');
+                before(read.blockBody[read.blockIndex]);
+
+                const newNode = AST.primitive(arrNode.elements.length);
+
+                if (read.grandIndex < 0) read.grandNode[read.grandProp] = newNode;
+                else read.grandNode[read.grandProp][read.grandIndex] = newNode;
+
+                after(read.blockBody[read.blockIndex]);
+                updated += 1;
+                break;
+              default:
+                // arr[true] or whatever. ignore it for now. we may support more cases here but whatever.
+            }
+
           }
-          vlog('None of the reads qualified for inlining');
-        } else {
-          vlog('None of the elements of the array are primitives. Other values are unsafe (we can improve this later). Bailing for now.');
+          vgroupEnd();
+        });
+        vgroupEnd();
+
+        if (updated) {
+          return;
         }
+        vlog('None of the reads qualified for inlining');
       } else {
-        vlog('At least one read of this array is not a regular property read, bailing');
+        vlog('None of the elements of the array are primitives. Other values are unsafe (we can improve this later). Bailing for now.');
       }
+    } else {
+      vlog('At least one read of this array is not a regular property read, bailing');
     }
-
-
-
-    const write = meta.writes[0];
 
     // Find all reads and confirm that they are member expressions which are reads, not writes
     // We must take care of loops and try/catch cases, where mutations may or may not appear in order.
@@ -186,6 +195,21 @@ function processAttempt(fdata, queue) {
       if (failed) return true;
       if (meta.tainted) return true;
       if (sawMutatedOnce) return true;
+
+      // Loops may mutate the array with statements that appear later in source code
+      // Note that if the decl is inside a loop, it's fine as long as the reads are in the same loop
+      // because when that loop repeats the decl is fresh again, so source order logic is maintained.
+      if (read.innerLoop !== declLoopPid) {
+        failed = true;
+        return true;
+      }
+      // A try may or may not mutate the array, leaving unpredictable state.
+      // Note that if the decl is inside a try, it's fine as long as the reads are in the same try
+      // because when that try is caught the state is not observable later anyways.
+      if (read.innerTrap !== declTryPid) {
+        failed = true;
+        return true;
+      }
 
       vlog(
         '- read',

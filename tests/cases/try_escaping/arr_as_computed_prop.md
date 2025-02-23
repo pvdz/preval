@@ -72,10 +72,10 @@ const obj /*:object*/ = {};
 const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
-    const tmpCalleeParam = obj[`1,2,3`];
+    const tmpCalleeParam = obj[arr];
     $(tmpCalleeParam);
     arr.reverse();
-    const tmpBinLhs /*:primitive*/ = arr[0];
+    const tmpBinLhs = arr[0];
     const tmpIfTest /*:boolean*/ = tmpBinLhs === $;
     if (tmpIfTest) {
       break;
@@ -96,7 +96,7 @@ const a = {};
 const b = [ 1, 2, 3 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
-    const c = a[ "1,2,3" ];
+    const c = a[ b ];
     $( c );
     b.reverse();
     const d = b[ 0 ];

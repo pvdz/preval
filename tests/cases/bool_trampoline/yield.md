@@ -67,7 +67,7 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const f /*:(undefined)=>object*/ = function* ($$0) {
+const f /*:(unused)=>object*/ = function* ($$0) {
   debugger;
   const tmpClusterSSA_x = $(0);
   const y = yield tmpClusterSSA_x;

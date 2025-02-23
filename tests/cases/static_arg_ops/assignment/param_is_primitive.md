@@ -60,7 +60,7 @@ $(3);
 
 
 `````js filename=intro
-const f /*:(unknown)=>*/ = function ($$0) {
+const f /*:(unused)=>*/ = function ($$0) {
   debugger;
   $(100);
   return undefined;

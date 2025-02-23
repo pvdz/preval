@@ -63,7 +63,7 @@ out();
 
 
 `````js filename=intro
-const out = function () {
+const out /*:()=>*/ = function () {
   debugger;
   $(`function`);
   const tmpCalleeParam$1 /*:string*/ = typeof g;

@@ -80,7 +80,7 @@ $(x);
 
 `````js filename=intro
 let x /*:primitive*/ = 0;
-const g /*:(unknown, unknown, unknown, unknown, unknown)=>undefined*/ = function ($$0, $$1, $$2, $$3, $$4) {
+const g /*:(unused, unused, unused, unused, unknown)=>undefined*/ = function ($$0, $$1, $$2, $$3, $$4) {
   const e = $$4;
   debugger;
   x = typeof e;

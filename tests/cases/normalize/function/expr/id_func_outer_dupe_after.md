@@ -71,7 +71,7 @@ tmpCallCallee$3(tmpCalleeParam$5);
 
 
 `````js filename=intro
-const out = function () {
+const out /*:()=>*/ = function () {
   debugger;
   $(`function`);
   $(10, undefined);

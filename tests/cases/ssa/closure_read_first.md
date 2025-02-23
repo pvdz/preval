@@ -84,10 +84,10 @@ if ($) {
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>*/ = function () {
   debugger;
   let x = 1;
-  const g = function () {
+  const g /*:()=>*/ = function () {
     debugger;
     $(x);
     if ($) {

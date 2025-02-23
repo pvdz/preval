@@ -72,7 +72,7 @@ f(8, 2, 9);
 
 `````js filename=intro
 const f /*:(number, number, number, primitive)=>undefined*/ = function ($$0, $$1, $$2, $$3) {
-  const tmpPrevalAliasArgumentsLen = arguments.length;
+  const tmpPrevalAliasArgumentsLen /*:number*/ = arguments.length;
   const a /*:number*/ = $$0;
   const b /*:number*/ = $$1;
   const c /*:number*/ = $$2;

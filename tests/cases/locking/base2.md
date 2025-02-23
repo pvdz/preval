@@ -88,7 +88,7 @@ $(undefined);
 
 `````js filename=intro
 let f /*:boolean*/ = true;
-const g = function () {
+const g /*:()=>*/ = function () {
   debugger;
   if (f) {
     $(`call me once`);

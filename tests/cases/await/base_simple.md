@@ -42,7 +42,7 @@ f();
 
 
 `````js filename=intro
-const f = async function () {
+const f /*:()=>promise*/ = async function () {
   debugger;
   await $;
   return undefined;

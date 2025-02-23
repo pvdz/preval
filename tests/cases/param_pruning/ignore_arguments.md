@@ -55,7 +55,7 @@ f();
 
 
 `````js filename=intro
-const f /*:(undefined, undefined, undefined)=>undefined*/ = function ($$0, $$1, $$2) {
+const f /*:(unused, unused, unused)=>undefined*/ = function ($$0, $$1, $$2) {
   const tmpPrevalAliasArgumentsAny = arguments;
   debugger;
   const tmpCalleeParam /*:boolean*/ = Boolean(tmpPrevalAliasArgumentsAny);

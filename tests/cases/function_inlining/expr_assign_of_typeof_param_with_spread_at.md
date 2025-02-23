@@ -74,7 +74,7 @@ $(x);
 
 `````js filename=intro
 let x /*:primitive*/ = 0;
-const g /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
+const g /*:(unused, unknown)=>undefined*/ = function ($$0, $$1) {
   const b = $$1;
   debugger;
   x = typeof b;

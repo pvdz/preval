@@ -41,7 +41,7 @@ let f = function () {
 
 
 `````js filename=intro
-const f = function () {
+const f /*:()=>*/ = function () {
   debugger;
   f();
   $(undefined);

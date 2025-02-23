@@ -80,7 +80,7 @@ $(x);
 
 `````js filename=intro
 let x = 0;
-const g /*:(unknown, unknown, unknown, unknown, unknown)=>undefined*/ = function ($$0, $$1, $$2, $$3, $$4) {
+const g /*:(unused, unknown, unused, unused, unused)=>undefined*/ = function ($$0, $$1, $$2, $$3, $$4) {
   const b = $$1;
   debugger;
   x = b;

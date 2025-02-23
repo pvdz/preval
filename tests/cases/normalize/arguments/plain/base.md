@@ -48,7 +48,7 @@ f();
 
 
 `````js filename=intro
-const f /*:(undefined)=>undefined*/ = function ($$0) {
+const f /*:(unused)=>undefined*/ = function ($$0) {
   const tmpPrevalAliasArgumentsAny = arguments;
   debugger;
   const tmpCalleeParam = tmpPrevalAliasArgumentsAny[0];

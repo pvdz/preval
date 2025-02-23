@@ -2,7 +2,7 @@
 
 # double_if.md
 
-> Tests > Tofix > Double if
+> Tofix > double if
 >
 > The two ifs, back to back, can be merged, no matter what the code actually does
 

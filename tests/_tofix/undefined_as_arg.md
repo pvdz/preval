@@ -2,7 +2,7 @@
 
 # undefined_as_arg.md
 
-> Tests > Tofix > Undefined as arg
+> Tofix > undefined as arg
 >
 
 (This is a test)

@@ -2,7 +2,7 @@
 
 # value_inlining_miss.md
 
-> Tests > Tofix > Value inlining miss
+> Tofix > value inlining miss
 >
 > The first `else $(x)` in the output should be inlined.
 > Code should know that it's 20.

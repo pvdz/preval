@@ -2,7 +2,7 @@
 
 # feat_splat_access.md
 
-> Tests > Tofix > Feat splat access
+> Tofix > feat splat access
 >
 > Normalization of assignments should work the same everywhere they are
 

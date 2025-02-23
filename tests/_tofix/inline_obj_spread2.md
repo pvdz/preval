@@ -2,7 +2,7 @@
 
 # inline_obj_spread2.md
 
-> Tests > Tofix > Inline obj spread2
+> Tofix > inline obj spread2
 >
 > Spread arg that is simple should not change
 

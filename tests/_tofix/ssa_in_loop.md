@@ -2,7 +2,7 @@
 
 # ssa_in_loop.md
 
-> Tests > Tofix > Ssa in loop
+> Tofix > ssa in loop
 >
 > When inside a loop and writing to an outside binding, if the binding was not used before inside the loop and not after the loop then it can be ssa'd
 

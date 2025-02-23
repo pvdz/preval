@@ -2,7 +2,7 @@
 
 # nested_infi_loop.md
 
-> Tests > Tofix > Nested infi loop
+> Tofix > nested infi loop
 >
 > Find a better way to eliminated the outer loop
 

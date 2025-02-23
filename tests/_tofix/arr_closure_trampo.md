@@ -2,7 +2,7 @@
 
 # arr_closure_trampo.md
 
-> Tests > Tofix > Arr closure trampo
+> Tofix > arr closure trampo
 >
 > I thought we did this
 

@@ -2,7 +2,7 @@
 
 # default_to_zero.md
 
-> Tests > Tofix > Default to zero
+> Tofix > default to zero
 >
 > Normalization of assignments should work the same everywhere they are
 

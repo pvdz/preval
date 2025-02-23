@@ -2,7 +2,7 @@
 
 # while_if_double_break.md
 
-> Tests > Tofix > While if double break
+> Tofix > while if double break
 >
 > If both branches break then the loop doesn't loop, eh.
 > Need to solve this in a generic way

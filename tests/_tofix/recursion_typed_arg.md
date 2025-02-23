@@ -2,7 +2,7 @@
 
 # recursion_typed_arg.md
 
-> Tests > Tofix > Recursion typed arg
+> Tofix > recursion typed arg
 >
 > Recursion arg typing
 

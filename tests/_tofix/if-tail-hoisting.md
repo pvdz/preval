@@ -2,7 +2,7 @@
 
 # if-tail-hoisting.md
 
-> Tests > Tofix > If-tail-hoisting
+> Tofix > if-tail-hoisting
 
 Two things to fix here:
 - The assignments to x could be replaced by a call to $(x, 'final') and inlined

@@ -2,7 +2,7 @@
 
 # break_hoisting.md
 
-> Tests > Tofix > Break hoisting
+> Tofix > break hoisting
 >
 > If, in this case, the $(3) is hoisted to right before the unlabeled break
 > then the labeled break could become a regular break too and the label 

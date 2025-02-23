@@ -2,7 +2,7 @@
 
 # pop_unsafe.md
 
-> Tests > Tofix > Pop unsafe
+> Tofix > pop unsafe
 >
 > Remove element from array
 

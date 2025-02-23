@@ -2,7 +2,7 @@
 
 # feat_mod23.md
 
-> Tests > Tofix > Feat mod23
+> Tofix > feat mod23
 >
 > A loop with a branch where a binding is updated in one side and read in another...
 

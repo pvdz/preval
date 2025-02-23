@@ -2,7 +2,7 @@
 
 # func_proto.md
 
-> Tests > Tofix > Func proto
+> Tofix > func proto
 >
 > The function has its own prototype object, not to be confused
 > with func.__proto__ which would point to Function.prototype

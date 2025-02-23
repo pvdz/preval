@@ -2,7 +2,7 @@
 
 # static_const_bool.md
 
-> Tests > Tofix > Static const bool
+> Tofix > static const bool
 >
 > A const that is only tested (treated as bool) and which we can
 > proof not to change must have the same outcome when tested before

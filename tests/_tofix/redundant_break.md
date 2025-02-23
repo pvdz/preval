@@ -2,7 +2,7 @@
 
 # redundant_break.md
 
-> Tests > Tofix > Redundant break
+> Tofix > redundant break
 >
 > Based on the output it seems we're not (always?) removing redundant breaks
 > 

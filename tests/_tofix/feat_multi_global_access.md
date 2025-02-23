@@ -2,7 +2,7 @@
 
 # feat_multi_global_access.md
 
-> Tests > Tofix > Feat multi global access
+> Tofix > feat multi global access
 >
 > Writing to an implicit global
 

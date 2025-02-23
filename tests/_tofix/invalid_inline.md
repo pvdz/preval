@@ -2,7 +2,7 @@
 
 # invalid_inline.md
 
-> Tests > Tofix > Invalid inline
+> Tofix > invalid inline
 >
 > The output has a ` $($);` which is invalid because $ is an unknown global
 > and may have been updated between initial assignment and a call to itself.

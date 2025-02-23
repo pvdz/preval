@@ -2,7 +2,7 @@
 
 # label_registry.md
 
-> Tests > Tofix > Label registry
+> Tofix > label registry
 >
 > Remove this file after fixing it but the label registry needs a fixup
 > Why is the label still not eliminated here...?

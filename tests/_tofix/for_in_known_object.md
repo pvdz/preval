@@ -2,7 +2,7 @@
 
 # for_in_known_object.md
 
-> Tests > Tofix > For in known object
+> Tofix > for in known object
 >
 > If we know the object then we should be able to simplify $forIn
 

@@ -2,7 +2,7 @@
 
 # truthy_arg.md
 
-> Tests > Tofix > Truthy arg
+> Tofix > truthy arg
 >
 > When the func is called with a non-zero number in all cases then inside of it the `if` can be eliminated safely
 

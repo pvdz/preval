@@ -2,7 +2,7 @@
 
 # computed_number_key.md
 
-> Tests > Tofix > Computed number key
+> Tofix > computed number key
 
 A number is a legit key so a number literal as computed key is equal to non-computed key (and probably as a string?)
 

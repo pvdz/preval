@@ -2,7 +2,7 @@
 
 # dotcall_restore.md
 
-> Tests > Tofix > Dotcall restore
+> Tofix > dotcall restore
 >
 > I think in this case we should still be able to eliminate the dotcall in favor of the actual call
 

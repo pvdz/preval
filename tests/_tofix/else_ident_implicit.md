@@ -2,7 +2,7 @@
 
 # else_ident_implicit.md
 
-> Tests > Tofix > Else ident implicit
+> Tofix > else ident implicit
 >
 > This case should make sure we don't accidentally set a var to a value it should not be having
 

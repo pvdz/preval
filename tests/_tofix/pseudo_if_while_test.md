@@ -2,7 +2,7 @@
 
 # pseudo_if_while_test.md
 
-> Tests > Tofix > Pseudo if while test
+> Tofix > pseudo if while test
 
 should restore the true/false case for alias-if-if
 

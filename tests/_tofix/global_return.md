@@ -2,7 +2,7 @@
 
 # global_return.md
 
-> Tests > Tofix > Global return
+> Tofix > global return
 >
 >
 

@@ -2,7 +2,7 @@
 
 # if-else-func-hoist.md
 
-> Tests > Tofix > If-else-func-hoist
+> Tofix > if-else-func-hoist
 
 From 2021-08-09_orus_console_hijacker.js
 (There's another tofix for the `arg` typing of `repeat`, that's irrelevant here.)

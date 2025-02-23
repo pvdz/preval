@@ -2,7 +2,7 @@
 
 # new_regexp_on_regex.md
 
-> Tests > Tofix > New regexp on regex
+> Tofix > new regexp on regex
 >
 > This looks silly but I think it's just the same
 

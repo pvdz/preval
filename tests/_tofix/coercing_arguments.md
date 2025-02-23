@@ -2,7 +2,7 @@
 
 # coercing_arguments.md
 
-> Tests > Tofix > Coercing arguments
+> Tofix > coercing arguments
 
 (this is a test case)
 

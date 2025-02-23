@@ -2,7 +2,7 @@
 
 # implicit_global_breakage.md
 
-> Tests > Tofix > Implicit global breakage
+> Tofix > implicit global breakage
 >
 > The implicit global breaks the code here but our transform
 > still allows it to read $(2) before doing so. That shouldn't happen.

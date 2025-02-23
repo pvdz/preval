@@ -2,7 +2,7 @@
 
 # try_finally_break.md
 
-> Tests > Tofix > Try finally break
+> Tofix > try finally break
 >
 > Why is the non-looping loop not eliminated?
 

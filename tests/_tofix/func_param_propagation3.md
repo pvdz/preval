@@ -2,7 +2,7 @@
 
 # func_param_propagation3.md
 
-> Tests > Tofix > Func param propagation3
+> Tofix > func param propagation3
 >
 > If we can resolve that `===` at call time and pass in a boolean for it ... then we can eliminate this whole function
 

@@ -2,7 +2,7 @@
 
 # func_param_propagation2.md
 
-> Tests > Tofix > Func param propagation2
+> Tofix > func param propagation2
 >
 > If we would move that tail return trampo into both if-branches then it would remove the b...
 

@@ -2,7 +2,7 @@
 
 # nested.md
 
-> Tests > Tofix > Nested
+> Tofix > nested
 
 Function that ends with returning a self-contained value can maybe be outlined? Not sure if this risks bloat.
 

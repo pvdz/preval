@@ -2,7 +2,7 @@
 
 # if_spread_undefined.md
 
-> Tests > Tofix > If spread undefined
+> Tofix > if spread undefined
 
 Existing test.
 

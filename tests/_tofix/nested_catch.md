@@ -2,7 +2,7 @@
 
 # nested_catch.md
 
-> Tests > Tofix > Nested catch
+> Tofix > nested catch
 >
 > Couple things;
 > - If you know the catch is going to be triggered regardless (because the

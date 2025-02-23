@@ -2,7 +2,7 @@
 
 # write_if_write_else_read.md
 
-> Tests > Tofix > Write if write else read
+> Tofix > write if write else read
 >
 > Ref tracking cases
 >

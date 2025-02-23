@@ -2,7 +2,7 @@
 
 # unused_while_init.md
 
-> Tests > Tofix > Unused while init
+> Tofix > unused while init
 >
 > Normalization of assignments should work the same everywhere they are
 

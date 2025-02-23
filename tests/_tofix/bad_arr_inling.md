@@ -2,7 +2,7 @@
 
 # bad_arr_inling.md
 
-> {??} > Home > Ptr > Proj > Preval > Tests > Tofix > Bad arr inling
+> Tofix > bad arr inling
 >
 > At the time of writing a trick would inline obj[arr] as a string 
 > even though .reverse() will change it later.

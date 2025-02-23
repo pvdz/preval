@@ -2,7 +2,7 @@
 
 # trapped_break.md
 
-> Tests > Tofix > Trapped break
+> Tofix > trapped break
 >
 > Breaks can't possibly throw
 

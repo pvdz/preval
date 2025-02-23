@@ -2,7 +2,7 @@
 
 # unused_var_cleanup.md
 
-> Tests > Tofix > Unused var cleanup
+> Tofix > unused var cleanup
 >
 > Variable assignments that are never read should be dropped
 

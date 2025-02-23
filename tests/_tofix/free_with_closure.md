@@ -2,7 +2,7 @@
 
 # free_with_closure.md
 
-> Tests > Tofix > Free with closure
+> Tofix > free with closure
 >
 >
 

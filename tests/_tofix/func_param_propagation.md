@@ -2,7 +2,7 @@
 
 # func_param_propagation.md
 
-> Tests > Tofix > Func param propagation
+> Tofix > func param propagation
 >
 > New rule
 > Primitives could be propagated through a func call and determine outside values

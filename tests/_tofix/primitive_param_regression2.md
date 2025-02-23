@@ -2,7 +2,7 @@
 
 # primitive_param_regression2.md
 
-> Tests > Tofix > Primitive param regression2
+> Tofix > primitive param regression2
 >
 >
 

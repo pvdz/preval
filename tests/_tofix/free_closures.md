@@ -2,7 +2,7 @@
 
 # free_closures.md
 
-> Tests > Tofix > Free closures
+> Tofix > free closures
 >
 >
 

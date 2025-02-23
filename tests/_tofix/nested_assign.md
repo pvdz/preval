@@ -2,7 +2,7 @@
 
 # nested_assign.md
 
-> Tests > Tofix > Nested assign
+> Tofix > nested assign
 >
 > The nested assign of $(20) is not observed by x so the assignment can be removed in favor of just the rhs.
 > Note that the outer loop doesn't break so the final $(x) is unreachable. Preval knows.

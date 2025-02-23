@@ -2,7 +2,7 @@
 
 # loop_redundant_assignment.md
 
-> Tests > Tofix > Loop redundant assignment
+> Tofix > loop redundant assignment
 >
 > The init of the non-empty strings should be simplified to an empty string, 
 > and probably more

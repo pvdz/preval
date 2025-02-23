@@ -2,7 +2,7 @@
 
 # frfr_and_num_op.md
 
-> Tests > Tofix > Frfr and num op
+> Tofix > frfr and num op
 >
 > The literal arg should be eliminated and propagated through the frfr call
 

@@ -2,7 +2,7 @@
 
 # unused_label.md
 
-> Tests > Tofix > Unused label
+> Tofix > unused label
 
 At the time of writing, this was leaving a label
 

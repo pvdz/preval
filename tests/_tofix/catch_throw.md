@@ -2,7 +2,7 @@
 
 # catch_throw.md
 
-> Tests > Tofix > Catch throw
+> Tofix > catch throw
 >
 > In particular, the catch ~~ else pattern can be simplified
 > - When a catch has the boilerplate `x = true; y = e;` and the catch is 

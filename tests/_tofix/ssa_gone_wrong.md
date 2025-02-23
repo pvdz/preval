@@ -2,7 +2,7 @@
 
 # ssa_gone_wrong.md
 
-> Tests > Tofix > Ssa gone wrong
+> Tofix > ssa gone wrong
 >
 > Looks like ssa is going off the rails here
 

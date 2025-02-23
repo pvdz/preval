@@ -2,7 +2,7 @@
 
 # parseint_coerce.md
 
-> Tests > Tofix > Parseint coerce
+> Tofix > parseint coerce
 >
 > Does parseint always coerce? In that case we could fold the $coerce line. Maybe. Should we?
 > from tests/cases/try_escaping/parseint.md

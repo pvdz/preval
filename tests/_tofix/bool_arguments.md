@@ -2,7 +2,7 @@
 
 # bool_arguments.md
 
-> Tests > Tofix > Bool arguments
+> Tofix > bool arguments
 >
 
 (existing test)

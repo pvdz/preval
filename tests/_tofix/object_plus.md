@@ -2,7 +2,7 @@
 
 # object_plus.md
 
-> Tests > Tofix > Object plus
+> Tofix > object plus
 >
 > The order of occurrence is relevant.
 

@@ -2,7 +2,7 @@
 
 # pst_output_renaming_gone_wrong.md
 
-> Tests > Tofix > Pst output renaming gone wrong
+> Tofix > pst output renaming gone wrong
 >
 > The PST output is renaming a var to a global that was seen. It should not use `a`
 

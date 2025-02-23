@@ -2,7 +2,7 @@
 
 # coerce_array.md
 
-> Tests > Tofix > Coerce array
+> Array > Manipulation > Reverse > Coerce array
 >
 > We can do this kind of contrived cases tho
 
@@ -39,10 +39,7 @@ $(s);
 
 
 `````js filename=intro
-const arr /*:array*/ = [1, 2];
-const rra = arr.reverse();
-const s /*:string*/ = $coerce(rra, `string`);
-$(s);
+$(`2,1`);
 `````
 
 ## PST Output
@@ -50,10 +47,7 @@ $(s);
 With rename=true
 
 `````js filename=intro
-const a = [ 1, 2 ];
-const b = a.reverse();
-const c = $coerce( b, "string" );
-$( c );
+$( "2,1" );
 `````
 
 ## Globals

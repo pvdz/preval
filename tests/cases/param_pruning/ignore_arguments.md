@@ -55,14 +55,7 @@ f();
 
 
 `````js filename=intro
-const f /*:(unused, unused, unused)=>undefined*/ = function ($$0, $$1, $$2) {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  debugger;
-  const tmpCalleeParam /*:boolean*/ = Boolean(tmpPrevalAliasArgumentsAny);
-  $(tmpCalleeParam, undefined, undefined);
-  return undefined;
-};
-f();
+$(true, undefined, undefined);
 `````
 
 ## PST Output
@@ -70,14 +63,7 @@ f();
 With rename=true
 
 `````js filename=intro
-const a = function($$0,$$1,$$2 ) {
-  const b = c;
-  debugger;
-  const d = Boolean( b );
-  $( d, undefined, undefined );
-  return undefined;
-};
-a();
+$( true, undefined, undefined );
 `````
 
 ## Globals

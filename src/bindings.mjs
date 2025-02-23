@@ -1149,6 +1149,15 @@ function _inferNodeTyping(fdata, valueNode) {
       });
     }
     case 'Identifier': {
+      if (valueNode.name === 'arguments' && valueNode.$p.funcDepth > 1) {
+        vlog('- Node is `arguments` so the ident is our arguments alias');
+        return createTypingObject({
+          mustBeType: 'arguments',
+          mustBeTruthy: true,
+          mustBeFalsy: false,
+          mustBePrimitive: false
+        });
+      }
       vlog('- Node is an identifier; no attempt is made to figure out its typing');
       // Not sure we can say anything about this. We could propagate what we already know about this ident ... (TODO). Unsure about ramifications
       return createTypingObject({});
@@ -1781,6 +1790,20 @@ function _inferNodeTyping(fdata, valueNode) {
         ) {
           // The typing of a builtin is globally available
           return createTypingObject(BUILTIN_SYMBOLS.get(symbo(valueNode.object.name, valueNode.property.name)).typings);
+        }
+
+        if (
+          valueNode.object.type === 'Identifier' &&
+          valueNode.object.name === 'arguments' &&
+          valueNode.$p.funcDepth > 1 &&
+          valueNode.property.name === 'length'
+        ) {
+          vlog('- Node is `arguments.length` so the ident is our arguments.length alias');
+          return createTypingObject({
+            mustBeType: 'number',
+            mustBePrimitive: true,
+            // We can probably predict the concrete value in many cases, but that'll have to be a phase2 thing.
+          });
         }
 
         if (AST.isPrimitive(valueNode)) {

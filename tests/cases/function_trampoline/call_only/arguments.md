@@ -54,8 +54,8 @@ f(1, 2, 3, 4, 5);
 
 
 `````js filename=intro
-const f /*:(unused, unused, unused, unused, unused)=>undefined*/ = function ($$0, $$1, $$2, $$3, $$4) {
-  const tmpPrevalAliasArgumentsAny = arguments;
+const f /*:(unused, unused, unused, unused, unused)=>*/ = function ($$0, $$1, $$2, $$3, $$4) {
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
   debugger;
   $(tmpPrevalAliasArgumentsAny);
   return undefined;

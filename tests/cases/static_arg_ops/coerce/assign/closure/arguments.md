@@ -64,7 +64,7 @@ $(x);
 `````js filename=intro
 let x = $(`50`);
 const f /*:(number)=>undefined*/ = function ($$0) {
-  const tmpPrevalAliasArgumentsAny = arguments;
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
   const c /*:number*/ = $$0;
   debugger;
   x = $coerce(tmpPrevalAliasArgumentsAny, `number`);

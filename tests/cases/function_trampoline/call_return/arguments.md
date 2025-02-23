@@ -60,7 +60,7 @@ $(q);
 
 `````js filename=intro
 const f /*:(unused, unused, unused, unused, unused)=>?*/ = function ($$0, $$1, $$2, $$3, $$4) {
-  const tmpPrevalAliasArgumentsAny = arguments;
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
   debugger;
   const r = $(tmpPrevalAliasArgumentsAny);
   return r;

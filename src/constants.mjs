@@ -40,7 +40,7 @@ export const WHITE_BLACK = colorLess ? '' : '\x1b[30;47m';
 export const PRIMITVE_TYPE_NAMES_NOT_STRING = new Set(['undefined', 'null', 'boolean', 'number']);
 export const PRIMITIVE_TYPE_NAMES_TYPEOF = new Set(['undefined', 'null', 'boolean', 'number', 'string']);
 export const PRIMITIVE_TYPE_NAMES_PREVAL = new Set(['undefined', 'null', 'boolean', 'number', 'string', 'primitive']); // plustr?
-export const ALL_NON_PRIMITIVE_TYPE_NAMES = new Set(['object', 'array', 'regex', 'function', 'class', 'promise', 'map', 'set']);
+export const ALL_NON_PRIMITIVE_TYPE_NAMES = new Set(['object', 'array', 'regex', 'function', 'class', 'promise', 'map', 'set', 'arguments']);
 export const ALL_PREVAL_TYPE_NAMES = new Set(
   ['unknown', 'bigint', 'symbol'].concat(
     Array.from(PRIMITIVE_TYPE_NAMES_PREVAL),

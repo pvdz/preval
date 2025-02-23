@@ -43,9 +43,9 @@ let f = function () {
 
 
 `````js filename=intro
-const f /*:()=>undefined*/ = function () {
+const f /*:()=>*/ = function () {
   const tmpPrevalAliasThis /*:object*/ = this;
-  const tmpPrevalAliasArgumentsAny = arguments;
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
   debugger;
   f.apply(tmpPrevalAliasThis, tmpPrevalAliasArgumentsAny);
   return undefined;

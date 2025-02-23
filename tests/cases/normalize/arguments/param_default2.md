@@ -56,12 +56,12 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f /*:(unused)=>?*/ = function ($$0) {
-  const tmpPrevalAliasArgumentsAny = arguments;
+const f /*:(unused)=>arguments*/ = function ($$0) {
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
   debugger;
   return tmpPrevalAliasArgumentsAny;
 };
-const tmpCalleeParam = f();
+const tmpCalleeParam /*:arguments*/ = f();
 $(tmpCalleeParam);
 `````
 

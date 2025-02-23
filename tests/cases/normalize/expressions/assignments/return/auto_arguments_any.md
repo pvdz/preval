@@ -53,13 +53,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const f /*:()=>?*/ = function () {
-  const tmpPrevalAliasArgumentsAny = arguments;
+const f /*:()=>arguments*/ = function () {
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
   debugger;
   a = tmpPrevalAliasArgumentsAny;
   return tmpPrevalAliasArgumentsAny;
 };
-const tmpCalleeParam = f();
+const tmpCalleeParam /*:arguments*/ = f();
 $(tmpCalleeParam);
 $(a);
 `````

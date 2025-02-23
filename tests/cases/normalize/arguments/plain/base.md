@@ -49,7 +49,7 @@ f();
 
 `````js filename=intro
 const f /*:(unused)=>undefined*/ = function ($$0) {
-  const tmpPrevalAliasArgumentsAny = arguments;
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
   debugger;
   const tmpCalleeParam = tmpPrevalAliasArgumentsAny[0];
   $(tmpCalleeParam);

@@ -52,12 +52,7 @@ considerMutated(x);
 let x = 0;
 let $implicitThrow = false;
 let $finalCatchArg = undefined;
-try {
-  x = 1;
-} catch ($finalImplicit) {
-  $implicitThrow = true;
-  $finalCatchArg = $finalImplicit;
-}
+x = 1;
 if ($implicitThrow) {
   throw $finalCatchArg;
 } else {

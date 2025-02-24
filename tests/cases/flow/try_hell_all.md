@@ -696,12 +696,7 @@ if ($implicitThrow) {
   let x$5 = 0;
   let $implicitThrow$1 = false;
   let $finalCatchArg$1 = undefined;
-  try {
-    x$5 = 1;
-  } catch ($finalImplicit$1) {
-    $implicitThrow$1 = true;
-    $finalCatchArg$1 = $finalImplicit$1;
-  }
+  x$5 = 1;
   if ($implicitThrow$1) {
     throw $finalCatchArg$1;
   } else {
@@ -709,12 +704,7 @@ if ($implicitThrow) {
     let x$7 = 0;
     let $implicitThrow$3 = false;
     let $finalCatchArg$3 = undefined;
-    try {
-      x$7 = 1;
-    } catch ($finalImplicit$3) {
-      $implicitThrow$3 = true;
-      $finalCatchArg$3 = $finalImplicit$3;
-    }
+    x$7 = 1;
     if ($implicitThrow$3) {
       throw $finalCatchArg$3;
     } else {

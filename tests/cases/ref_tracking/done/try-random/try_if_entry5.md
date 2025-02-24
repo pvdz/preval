@@ -42,19 +42,14 @@ while (true) {
   /*12*/ x___16__ = 2;
   let $implicitThrow___19__ = false;
   let $finalCatchArg___23__ = undefined___24__;
-  try /*26*/ {
-    if ($) {
-      /*29*/ $(x___33__);
-      x___37__ = 3;
-    } /*38*/ else {
-    }
-  } catch ($finalImplicit___40__) /*41*/ {
-    $implicitThrow___45__ = true;
-    $finalCatchArg___49__ = $finalImplicit___48__;
+  if ($) {
+    /*27*/ $(x___31__);
+    x___35__ = 3;
+  } /*36*/ else {
   }
-  if ($implicitThrow___51__) {
-    /*52*/ throw $finalCatchArg___54__;
-  } /*55*/ else {
+  if ($implicitThrow___38__) {
+    /*39*/ throw $finalCatchArg___41__;
+  } /*42*/ else {
   }
 }
 `````
@@ -65,16 +60,14 @@ Ref tracking result:
 x:
   - w @4       | ########## | 9           | none           | 16
   - r @9       | 4
-  - w @16      | ########## | 33          | 4,16,37        | 16,37
-  - r @33      | 16
-  - w @37      | ########## | not read    | 16             | 16
+  - w @16      | ########## | 31          | 4,16,35        | 16,35
+  - r @31      | 16
+  - w @35      | ########## | not read    | 16             | 16
 
 $implicitThrow:
-  - w @19          | ########## | 51          | none           | 45
-  - w @45          | ########## | 51          | 19             | none
-  - r @51          | 19,45
+  - w @19          | ########## | 38          | none           | none
+  - r @38          | 19
 
 $finalCatchArg:
-  - w @23          | ########## | 54          | none           | 49
-  - w @49          | ########## | 54          | 23             | none
-  - r @54          | 23,49
+  - w @23          | ########## | 41          | none           | none
+  - r @41          | 23

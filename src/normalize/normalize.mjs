@@ -9026,6 +9026,48 @@ export function phaseNormalize(fdata, fname, prng, options) {
       return true;
     }
 
+    // The boilerplate we leave behind has room for optimization. In particular, the case where
+    // the catch is thrown immediately: `try { x } catch (e) { a = true; b = e; } if (a) throw b`
+    // Regardless of whether a and b are used any further, the catch handler might as well throw
+    // e again. But more importantly, at that point it's a pointless try/catch and we can drop it.
+    if (
+      node.handler.body.body.length === 2 &&
+      node.handler.body.body[0].type === 'ExpressionStatement' &&
+      node.handler.body.body[0].expression.type === 'AssignmentExpression' &&
+      node.handler.body.body[0].expression.left.type === 'Identifier' &&
+      // Preval writes this boilerplate so we can test against it explicitly
+      AST.isTrue(node.handler.body.body[0].expression.right) &&
+      node.handler.body.body[1].type === 'ExpressionStatement' &&
+      node.handler.body.body[1].expression.type === 'AssignmentExpression' &&
+      // Likewise, preval writes this boilerplate so we can just check if it assigns the catch var here
+      node.handler.body.body[1].expression.left.type === 'Identifier' &&
+      node.handler.body.body[1].expression.right.type === 'Identifier' &&
+      node.handler.body.body[1].expression.right.name === node.handler.param.name
+    ) {
+      // This is a validation of `catch (e) { <id1> = true; <id1> = e; }`
+      // Validate that the catch is immediately followed by `} if (id1) throw id2`
+      if (
+        body[i+1]?.type === 'IfStatement' &&
+        body[i+1].test.type === 'Identifier' &&
+        body[i+1].test.name === node.handler.body.body[0].expression.left.name && // if (id1)
+        body[i+1].consequent.body.length > 0 &&
+        body[i+1].consequent.body[0].type === 'ThrowStatement' &&
+        body[i+1].consequent.body[0].argument.type === 'Identifier' &&
+        body[i+1].consequent.body[0].argument.name === node.handler.body.body[1].expression.left.name // return id2
+      ) {
+        rule('Cleanup catch artifacts when the catch unconditionally just and only throws the catch var');
+        example('try { x } catch (e) { a = true; b = e; } if (a) throw b;', 'x; if (a) throw b;');
+        before(body[i]);
+        before(body[i+1]);
+
+        body[i] = body[i].block;
+
+        after(body[i]);
+        after(body[i+1]);
+
+        return true;
+      }
+    }
 
     return false;
   }

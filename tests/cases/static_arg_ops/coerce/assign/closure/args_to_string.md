@@ -1,8 +1,8 @@
 # Preval test case
 
-# coercing_arguments.md
+# args_to_string.md
 
-> Tofix > coercing arguments
+> Static arg ops > Coerce > Assign > Closure > Args to string
 
 (this is a test case)
 
@@ -14,7 +14,7 @@ not observable. Probably an edge case (red herring in obfuscation?).
 `````js filename=intro
 let x = $('50');
 const f = function (c, d) {
-  $coerce(arguments, 'number');
+  $($coerce(arguments, 'string'));
   $(1);
   $(2);
   $(d);
@@ -33,7 +33,7 @@ const f = function ($$0, $$1) {
   let c = $$0;
   let d = $$1;
   debugger;
-  $coerce(tmpPrevalAliasArgumentsAny, `number`);
+  $($coerce(tmpPrevalAliasArgumentsAny, `string`));
   $(1);
   $(2);
   $(d);
@@ -52,7 +52,9 @@ const f = function ($$0, $$1) {
   let c = $$0;
   let d = $$1;
   debugger;
-  $coerce(tmpPrevalAliasArgumentsAny, `number`);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $coerce(tmpPrevalAliasArgumentsAny, `string`);
+  tmpCallCallee(tmpCalleeParam);
   $(1);
   $(2);
   $(d);
@@ -67,17 +69,16 @@ f(4);
 
 `````js filename=intro
 $(`50`);
-const f /*:(unused, unused)=>*/ = function ($$0, $$1) {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
+const f /*:()=>*/ = function () {
   debugger;
-  $coerce(tmpPrevalAliasArgumentsAny, `number`);
+  $(`[object Arguments]`);
   $(1);
   $(2);
   $(undefined);
   return undefined;
 };
-f(3);
-f(4);
+f();
+f();
 `````
 
 ## PST Output
@@ -86,17 +87,16 @@ With rename=true
 
 `````js filename=intro
 $( "50" );
-const a = function($$0,$$1 ) {
-  const b = c;
+const a = function() {
   debugger;
-  $coerce( b, "number" );
+  $( "[object Arguments]" );
   $( 1 );
   $( 2 );
   $( undefined );
   return undefined;
 };
-a( 3 );
-a( 4 );
+a();
+a();
 `````
 
 ## Globals
@@ -107,12 +107,14 @@ None
 
 Should call `$` with:
  - 1: '50'
- - 2: 1
- - 3: 2
- - 4: undefined
- - 5: 1
- - 6: 2
- - 7: undefined
+ - 2: '[object Arguments]'
+ - 3: 1
+ - 4: 2
+ - 5: undefined
+ - 6: '[object Arguments]'
+ - 7: 1
+ - 8: 2
+ - 9: undefined
  - eval returned: undefined
 
 Pre normalization calls: Same

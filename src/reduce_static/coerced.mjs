@@ -257,6 +257,34 @@ function core(fdata) {
       }
     }
 
+    if (at === 'arguments') {
+      if (kind === 'number') {
+        rule('Coercing an `arguments` object to a number leads to NaN');
+        example('function f() { return arguments + 1; }', 'function f() { return NaN;  }');
+        before(read.blockBody[read.blockIndex]);
+
+        const newNode = AST.primitive(NaN);
+        if (read.grandIndex < 0) read.grandNode[read.grandProp] = newNode;
+        else read.grandNode[read.grandProp][read.grandIndex] = newNode;
+
+        after(read.blockBody[read.blockIndex]);
+        ++changes;
+        return;
+      } else { // string or plustr
+        rule('Coercing an `arguments` object leads to a predictable string');
+        example('function f() { return arguments + 1; }', 'function f() { return "[object Arguments]";  }');
+        before(read.blockBody[read.blockIndex]);
+
+        const newNode = AST.primitive('[object Arguments]');
+        if (read.grandIndex < 0) read.grandNode[read.grandProp] = newNode;
+        else read.grandNode[read.grandProp][read.grandIndex] = newNode;
+
+        after(read.blockBody[read.blockIndex]);
+        ++changes;
+        return;
+      }
+    }
+
     // tbf these are mostly for jsf*ck cases :)
     switch (argMeta.typing.builtinTag) {
       case 'Array#filter': {

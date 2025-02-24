@@ -60,17 +60,15 @@ f(4);
 
 `````js filename=intro
 $(`50`);
-const f /*:(unused)=>*/ = function ($$0) {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
+const f /*:()=>*/ = function () {
   debugger;
-  const y /*:number*/ = $coerce(tmpPrevalAliasArgumentsAny, `number`);
   $(1);
   $(2);
-  $(y);
+  $(NaN);
   return undefined;
 };
-f(3);
-f(4);
+f();
+f();
 `````
 
 ## PST Output
@@ -79,17 +77,15 @@ With rename=true
 
 `````js filename=intro
 $( "50" );
-const a = function($$0 ) {
-  const b = c;
+const a = function() {
   debugger;
-  const d = $coerce( b, "number" );
   $( 1 );
   $( 2 );
-  $( d );
+  $( NaN );
   return undefined;
 };
-a( 3 );
-a( 4 );
+a();
+a();
 `````
 
 ## Globals

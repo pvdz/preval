@@ -62,12 +62,10 @@ $(x);
 
 
 `````js filename=intro
-let x /*:unknown*/ = $(`50`);
+$(`50`);
 const f /*:(number)=>undefined*/ = function ($$0) {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
   const c /*:number*/ = $$0;
   debugger;
-  x = $coerce(tmpPrevalAliasArgumentsAny, `number`);
   $(1);
   $(2);
   $(c);
@@ -75,7 +73,7 @@ const f /*:(number)=>undefined*/ = function ($$0) {
 };
 f(3);
 f(4);
-$(x);
+$(NaN);
 `````
 
 ## PST Output
@@ -83,20 +81,18 @@ $(x);
 With rename=true
 
 `````js filename=intro
-let a = $( "50" );
-const b = function($$0 ) {
-  const c = d;
-  const e = $$0;
+$( "50" );
+const a = function($$0 ) {
+  const b = $$0;
   debugger;
-  a = $coerce( c, "number" );
   $( 1 );
   $( 2 );
-  $( e );
+  $( b );
   return undefined;
 };
-b( 3 );
-b( 4 );
-$( a );
+a( 3 );
+a( 4 );
+$( NaN );
 `````
 
 ## Globals

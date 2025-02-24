@@ -1,7 +1,17 @@
 // Functions that just call another function and return the results.
 // It's a common artifact, at least, for the single branch normalization
+//
+//    function f(x){ return $(x); } f(x)
+// ->
+//    $(x)
+//
+// Also includes a special case for Buffer.from().toString()
+//
+
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset } from '../utils.mjs';
 import * as AST from '../ast.mjs';
+import { createFreshVar } from '../bindings.mjs';
+import { THIS_ALIAS_BASE_NAME } from '../symbols_preval.mjs';
 
 export function pruneTrampolineFunctions(fdata) {
   group('\n\n\nPruning trampoline functions that only return the call to another function\n');
@@ -12,13 +22,14 @@ export function pruneTrampolineFunctions(fdata) {
 function _pruneTrampolineFunctions(fdata) {
   const toOutlineCall = []; // Array<[read, node, mapping]> // funcs with a call as body (but no return)
   const toReplaceWith = []; // Array<[read, node, mapping, calleeIdentIndex, calleeObjectIndex, calleePropIndex]> // funcs that return the call of another func. the last three values are for replacing the callee with an arg
-  fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
+  const bufferTrick = [];
+  fdata.globallyUniqueNamingRegistry.forEach((meta, funcName) => {
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
     if (!meta.isConstant) return;
 
     vlog(
-      '- `' + name + '`:',
+      '- `' + funcName + '`:',
       meta.constValueRef.node.type,
       'reads `arguments` len/any?',
       meta.constValueRef.node.$p.readsArgumentsLen,
@@ -184,7 +195,7 @@ function _pruneTrampolineFunctions(fdata) {
         if (callNode.type !== 'CallExpression') return;
         vlog('      - calls:', callNode.callee.name, 'with', callNode['arguments'].length, 'args');
         if (callNode.callee.type !== 'Identifier') return false;
-        if (callNode.callee.name !== name) return false;
+        if (callNode.callee.name !== funcName) return false;
         if (callNode['arguments'].some((anode) => anode.type === 'SpreadElement')) return false; // TODO: there are some cases where we can still inline this
         // This is a call to funcNode. Queue to replace it with the call, replacing param-args with original args
         vlog('      - queuing into toOutlineCall to eliminating call to trampoline function');
@@ -315,20 +326,110 @@ function _pruneTrampolineFunctions(fdata) {
           if (callNode.type !== 'CallExpression') return;
           vlog('          - calls:', callNode.callee.name, 'with', callNode['arguments'].length, 'args');
           if (callNode.callee.type !== 'Identifier') return false;
-          if (callNode.callee.name !== name) return false;
+          if (callNode.callee.name !== funcName) return false;
           if (callNode['arguments'].some((anode) => anode.type === 'SpreadElement')) return false; // TODO: there are some cases where we can still inline this
           // This is a call to funcNode. Queue to replace it with the call, replacing param-args with original args
           vlog('          - queuing into toReplaceWith to eliminating call to trampoline function2');
           toReplaceWith.push([read, innerCallNode, paramArgMapping, calleeIdentIndex, calleeObjectIndex, calleePropIndex]);
         });
       }
+    } else if (statementCount === 3) {
+      // Two statements that are called in tandem and may as well be considered one
+      // statement, for example `a.b.c()` is going to be `const x = a.b; x.c()`.
+
+      const stmt1 = funcNode.body.body[bodyOffset];
+      const stmt2 = funcNode.body.body[bodyOffset+1];
+      const ret = funcNode.body.body[bodyOffset + 2];
+
+      // Verify that the first statement is like `const x = Buffer.from(x, "base64")`, where x is a param
+      if (stmt1.type !== 'VariableDeclaration') return;
+      const init1 = stmt1.declarations[0].init;
+      if (init1.type !== 'CallExpression') return;
+      if (init1.arguments.length === 0) return;
+      if (init1.callee.type !== 'MemberExpression') return;
+      if (init1.callee.object.type !== 'Identifier') return;
+      if (init1.callee.computed) return;
+      if (init1.callee.property.name !== 'from') return;
+      // All args beyond the first must be primitives we can predict
+      if (!init1.arguments.every((anode,i) => i === 0 || AST.isPrimitive(anode))) return;
+      // Verify that the second statement is something like `id1.toString("ascii")`
+      const init2 = stmt2.declarations[0].init;
+      if (init2.type !== 'CallExpression') return;
+      if (init2.callee.type !== 'MemberExpression') return;
+      if (init2.callee.object.type !== 'Identifier') return;
+      if (init2.callee.computed) return;
+      if (init2.callee.property.name !== 'toString') return;
+      // Verify that the first arg of init1 is a param
+      if (init1.arguments[0].type !== 'Identifier') return;
+      if (init1.arguments[0].name !== funcNode.params[0]?.$p.paramVarDeclRef?.name) return;
+      // Calling .toString() on the result of stmt1
+      if (init2.callee.object.name !== stmt1.declarations[0].id.name) return;
+      // Verify that the args of init1 after the first arg primitives
+      if (!init1.arguments.every((anode,i) => i === 0 || AST.isPrimitive(anode))) return;
+      // Verify that all the args to .toString() are primitives
+      if (!init2.arguments.every(anode => AST.isPrimitive(anode))) return;
+      // Verify that it returns the stmt2 var
+      if (ret.type !== 'ReturnStatement') return;
+      if (ret.argument.type !== 'Identifier') return;
+      if (ret.argument.name !== stmt2.declarations[0].id.name) return;
+
+      // Should have found our Buffer.from(x,"y").toString("z") trampoline. Find calls to inline.
+
+      meta.reads.forEach(read => {
+        if (
+          read.parentNode.type === 'CallExpression' &&
+          read.parentProp === 'callee' &&
+          read.parentNode.arguments.length === 1 &&
+          AST.isPrimitive(read.parentNode.arguments[0])
+        ) {
+          bufferTrick.push({
+            index: +read.node.$p.pid,
+            func: () => {
+              // This is a case we can inline
+              const args = read.parentNode.arguments;
+
+              rule('Calling a function that just calls Buffer.from().toString() on the arg can be inlined');
+              example(
+                'function f(a) { const x = Buffer.from(a, "base64"); const y = x.toString("binary"); return y; } const boo = f("boo")',
+                'function f(a) { const x = Buffer.from(a, "base64"); const y = x.toString("binary"); return y; } const x = Buffer.from("boo", "base64"); const boo = x.toString("binary");)',
+              );
+              before(funcNode);
+              before(read.blockBody[read.blockIndex]);
+
+              const tmpName = createFreshVar('$bufferfrom', fdata);
+
+              read.blockBody.splice(
+                read.blockIndex, 0,
+                AST.variableDeclaration(
+                  tmpName,
+                  AST.callExpression(
+                    AST.memberExpression('Buffer', 'from'),
+                    [
+                      AST.primitive(AST.getPrimitiveValue(args[0])),
+                      ...init1.arguments.slice(1).map(anode => AST.primitive(AST.getPrimitiveValue(anode)))
+                    ]
+                  ),
+                  'const'
+                )
+              );
+               // replace the call, whereever it is, with a call to the tmp.toString with the same args
+              read.parentNode.callee = AST.memberExpression(tmpName, 'toString');
+              read.parentNode.arguments = init2.arguments.map(anode => AST.primitive(AST.getPrimitiveValue(anode)));
+
+              after(read.blockBody[read.blockIndex]);
+              after(read.blockBody[read.blockIndex+1]);
+            }
+          })
+        }
+      });
     } else {
-      vlog('TODO: the statement is returning a call. we can probably still inline it');
+      // I dunno, gotta draw the line somewhere. Can't risk code bloat.
+      vlog('bail: Func body is more than three statements');
     }
   });
   log('Queued', toReplaceWith.length, 'calls for remapping and', toOutlineCall.length, 'calls for outlining');
-  if (toReplaceWith.length || toOutlineCall.length) {
-    group('toReplaceWith');
+  if (toReplaceWith.length || toOutlineCall.length || bufferTrick.length) {
+    vgroup('toReplaceWith');
     // This is for the var-call-return variant
     toReplaceWith.forEach(
       ([
@@ -396,9 +497,9 @@ function _pruneTrampolineFunctions(fdata) {
         after(newCall, grandNode);
       },
     );
-    groupEnd();
+    vgroupEnd();
 
-    group('toOutlineCall');
+    vgroup('toOutlineCall');
     // This is for the "just a call" variant
     toOutlineCall
       .reverse()
@@ -477,10 +578,15 @@ function _pruneTrampolineFunctions(fdata) {
           after(blockBody[blockIndex + 1]);
         },
       );
-    groupEnd();
+    vgroupEnd();
 
-    log('Trampolines inlined:', toReplaceWith.length + toOutlineCall.length, ', restarting phase1');
-    return {what: 'pruneTrampolineFunctions', changes: toReplaceWith.length + toOutlineCall.length, next: 'phase1'};
+    vgroup('bufferTrick');
+    bufferTrick.sort(({ pid: a }, { pid: b }) => (a < b ? 1 : a > b ? -1 : 0));
+    bufferTrick.forEach(({func}) => func());
+    vgroupEnd();
+
+    log('Trampolines inlined:', toReplaceWith.length + toOutlineCall.length + bufferTrick.length, ', restarting phase1');
+    return {what: 'pruneTrampolineFunctions', changes: toReplaceWith.length + toOutlineCall.length + bufferTrick.length, next: 'phase1'};
   }
 
   log('Trampolines inlined: 0.');

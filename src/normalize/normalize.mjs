@@ -387,7 +387,8 @@ const BUILTIN_GLOBAL_NAMES = new Set([
   'Function',
 ]);
 
-const BUILTIN_NON_COERCE_MEMBERS = new Set([
+// These methods do not trigger side effects, they don't coerce their args (ignore them, or only test them verbatim)
+const BUILTIN_NON_COERCE_MEMBER_CALLS_OR_ARGS = new Set([
   'Array.isArray',
   'Array.of',
   'Date.now',
@@ -2354,11 +2355,11 @@ export function phaseNormalize(fdata, fname, prng, options) {
             // TODO: make these global Sets
 
             // Functions that do not coerce at all
-            if (BUILTIN_NON_COERCE_MEMBERS.has(propStr)) {
+            if (BUILTIN_NON_COERCE_MEMBER_CALLS_OR_ARGS.has(propStr)) {
               // Move all args to individual statements. Drop the call.
               rule('A statement that is calling a built-in function without side effects should be replaced by its args as statements');
               example('Number.isFinite(300);', '300;');
-              before(node, parentNodeOrWhatever);
+              before(node, body);
 
               body.splice(
                 i,
@@ -2369,7 +2370,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 ),
               );
 
-              after(parentNodeOrWhatever);
+              after(AST.emptyStatement(), body);
               return true;
             }
 
@@ -2379,7 +2380,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               // Move all args to individual statements. Coerce the first to number. Drop the call.
               rule('A statement that is calling a built-in function without side effects should be replaced by its args as statements');
               example('Number.isFinite(300);', '300;');
-              before(node, parentNodeOrWhatever);
+              before(node, body);
 
               const newNodes = args.map((anode, ai) =>
                 // Make sure `Number.isNaN(...x)` properly becomes `[...x]` and let another rule deal with that mess.
@@ -2399,17 +2400,31 @@ export function phaseNormalize(fdata, fname, prng, options) {
               );
               body.splice(i, 1, ...newNodes);
 
-              after(parentNodeOrWhatever);
+              after(AST.emptyStatement(), body);
               return true;
             }
 
             // These are the remaining built-in member expression functions that we want to eliminate as statements.
             switch (propStr) {
+              case 'Buffer.from': {
+                if (args.map(anode => AST.isPrimitive(anode))) {
+                  rule('A statement that is Buffer.from with only primitives can be eliminated');
+                  example('Buffer.from( "aGVsbG8sIHdvcmxk=", "base64" );', ';');
+                  before(node, body);
+
+                  body.splice(i, 1);
+
+                  after(AST.emptyStatement(), body);
+                  return true;
+                }
+                break;
+              }
+
               case 'Date.parse': {
                 // Coerce the first arg to string
                 rule('A statement that is Date.now can be eliminated');
                 example('Date.parse(300);', '"" + 300;');
-                before(node, parentNodeOrWhatever);
+                before(node, body);
 
                 const newNodes = args.map((anode, ai) =>
                   // Make sure `Date.now(...x)` properly becomes `[...x]` and let another rule deal with that mess.
@@ -2431,7 +2446,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 );
                 body.splice(i, 1, ...newNodes);
 
-                after(parentNodeOrWhatever);
+                after(AST.emptyStatement(), body);
                 return true;
               }
 
@@ -2440,7 +2455,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 7)) {
                   rule('A statement that is Date.UTC can be eliminated');
                   example('Date.UTC(a, b, c);', '+a; +b; +c;');
-                  before(node, parentNodeOrWhatever);
+                  before(node, body);
 
                   const newNodes = args.map((anode, ai) =>
                     // Make sure `Date.UTC(...x)` properly becomes `[...x]` and let another rule deal with that mess.
@@ -2451,7 +2466,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                   );
                   body.splice(i, 1, ...newNodes);
 
-                  after(parentNodeOrWhatever);
+                  after(AST.emptyStatement(), body);
                   return true;
                 }
                 break;
@@ -2464,7 +2479,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
                   rule('A Math statement with two args can be eliminated');
                   example('Math.pow(a, b);', '+a; +b;');
-                  before(node, parentNodeOrWhatever);
+                  before(node, body);
 
                   const newNodes = args.map((anode, ai) =>
                     // Make sure `Math.pow(...x)` properly becomes `[...x]` and let another rule deal with that mess.
@@ -2475,7 +2490,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                   );
                   body.splice(i, 1, ...newNodes);
 
-                  after(parentNodeOrWhatever);
+                  after(AST.emptyStatement(), body);
                   return true;
                 }
                 break;
@@ -2490,7 +2505,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 if (args.every((anode, ai) => anode.type !== 'SpreadElement')) {
                   rule('A statement that is a builtin func call that coerces all its args to number can be eliminated');
                   example('Math.pow(a, b, c);', '+a; +b; +c;');
-                  before(node, parentNodeOrWhatever);
+                  before(node, body);
 
                   const newNodes = args.map((anode, ai) =>
                     // Since the all the args need to be coerced, we won't be supporting the spread case here
@@ -2498,7 +2513,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                   );
                   body.splice(i, 1, ...newNodes);
 
-                  after(parentNodeOrWhatever);
+                  after(AST.emptyStatement(), body);
                   return true;
                 }
                 break;
@@ -2508,7 +2523,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
                   rule('A statement that is Number.parseInt can be eliminated');
                   example('Number.parseInt(a, b, c);', '""+a; +b; c;');
-                  before(node, parentNodeOrWhatever);
+                  before(node, body);
 
                   const newNodes = args.map((anode, ai) =>
                     // Since the all the args need to be coerced, we won't be supporting the spread case here
@@ -2524,7 +2539,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
                   );
                   body.splice(i, 1, ...newNodes);
 
-                  after(parentNodeOrWhatever);
+                  after(AST.emptyStatement(), body);
                   return true;
                 }
                 break;

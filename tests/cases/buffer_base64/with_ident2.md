@@ -86,26 +86,26 @@ tmpCallCallee$9(tmpCalleeParam$9);
 
 
 `````js filename=intro
-const f /*:(unknown)=>?*/ = function ($$0) {
+const f /*:(unknown)=>string*/ = function ($$0) {
   const x /*:unknown*/ = $$0;
   debugger;
   unknown = x;
-  const tmp /*:unknown*/ = Buffer.from(x, `base64`);
-  const tmp2 /*:unknown*/ = tmp.toString(`utf8`);
+  const tmp /*:buffer*/ = Buffer.from(x, `base64`);
+  const tmp2 /*:string*/ = tmp.toString(`utf8`);
   return tmp2;
 };
 $(f);
-const tmpCalleeParam /*:unknown*/ = f(`cGF0aA`);
+const tmpCalleeParam /*:string*/ = f(`cGF0aA`);
 $(tmpCalleeParam);
-const tmpCalleeParam$1 /*:unknown*/ = f(`cGF0aA`);
+const tmpCalleeParam$1 /*:string*/ = f(`cGF0aA`);
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 /*:unknown*/ = f(`cGF0aA`);
+const tmpCalleeParam$3 /*:string*/ = f(`cGF0aA`);
 $(tmpCalleeParam$3);
-const tmpCalleeParam$5 /*:unknown*/ = f(`cGF0aA`);
+const tmpCalleeParam$5 /*:string*/ = f(`cGF0aA`);
 $(tmpCalleeParam$5);
-const tmpCalleeParam$7 /*:unknown*/ = f(`cGF0aA`);
+const tmpCalleeParam$7 /*:string*/ = f(`cGF0aA`);
 $(tmpCalleeParam$7);
-const tmpCalleeParam$9 /*:unknown*/ = f(`cGF0aA`);
+const tmpCalleeParam$9 /*:string*/ = f(`cGF0aA`);
 $(tmpCalleeParam$9);
 `````
 

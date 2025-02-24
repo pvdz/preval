@@ -6,7 +6,7 @@ import {
   PRIMITIVE_TYPE_NAMES_PREVAL,
   ALL_PREVAL_TYPE_NAMES,
 } from './constants.mjs';
-import { IMPLICIT_GLOBAL_PREFIX, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_COERCE, } from './symbols_preval.mjs';
+import { IMPLICIT_GLOBAL_PREFIX, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_COERCE, SYMBOL_FRFR } from './symbols_preval.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, source, fmat, tmat, todo } from './utils.mjs';
 import globals, {MAX_UNROLL_TRUE_COUNT} from './globals.mjs';
 import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
@@ -1567,7 +1567,7 @@ function _inferNodeTyping(fdata, valueNode) {
               mustBePrimitive: true,
             });
           }
-          case '$frfr': {
+          case SYMBOL_FRFR: {
             const freeMeta = getMeta(valueNode.arguments[0].name, fdata);
             if (freeMeta.typing.returns?.size === 1 && !freeMeta.typing.returns.has('?') && !freeMeta.typing.returns.has('primitive')) {
               // It always returns this particular type. That's very helpful.
@@ -1630,12 +1630,19 @@ function _inferNodeTyping(fdata, valueNode) {
                   worstCaseValueSet: new Set([true, false]),
                   mustBePrimitive: true,
                 });
-                break;
               }
               case 'Array.of': {
                 // Normalization can replace this with array literals in many-if-not-all cases
                 return createTypingObject({
                   mustBeType: 'array',
+                  mustBePrimitive: false,
+                  mustBeTruthy: true,
+                  mustBeFalsy: false,
+                });
+              }
+              case 'Buffer.from': {
+                return createTypingObject({
+                  mustBeType: 'buffer',
                   mustBePrimitive: false,
                   mustBeTruthy: true,
                   mustBeFalsy: false,
@@ -1743,6 +1750,10 @@ function _inferNodeTyping(fdata, valueNode) {
               }
               default: {
                 // We have no real idea what's going on here yet
+
+                if (BUILTIN_SYMBOLS.has(symbo(valueNode.callee.object.name, valueNode.callee.property.name))) {
+                  todo('We can probably support resolving the type for calling this symbol:', symbo(valueNode.callee.object.name, valueNode.callee.property.name));
+                }
 
                 // This may miss in phase1 if the typing is not yet known but would be discovered/settled in phase1.1
                 const meta = fdata.globallyUniqueNamingRegistry.get(valueNode.callee.object.name);
@@ -2790,6 +2801,13 @@ function getMetaTypingFromTypedMethod(objType, propName) {
       });
     }
 
+    case 'buffer.toString': {
+      return createTypingObject({
+        mustBeType: 'string',
+        mustBePrimitive: true,
+      });
+    }
+
     case 'number.toPrecision':
     case 'number.toString':
     case 'number.toLocaleString':
@@ -2882,6 +2900,11 @@ function getMetaTypingFromTypedMethod(objType, propName) {
         mustBeType: 'string',
         mustBePrimitive: true,
       });
+    }
+    default: {
+      if (BUILTIN_SYMBOLS.has(symbo(objType, propName))) {
+        todo('getMetaTypingFromTypedMethod can probably support resolving the type for calling this symbol:', symbo(objType, propName));
+      }
     }
   }
 }

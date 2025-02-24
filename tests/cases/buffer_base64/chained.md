@@ -50,11 +50,11 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f /*:(unknown)=>?*/ = function ($$0) {
+const f /*:(unknown)=>string*/ = function ($$0) {
   const x /*:unknown*/ = $$0;
   debugger;
-  const tmpCallObj /*:unknown*/ = Buffer.from(x, `base64`);
-  const tmpReturnArg /*:unknown*/ = tmpCallObj.toString(`utf8`);
+  const tmpCallObj /*:buffer*/ = Buffer.from(x, `base64`);
+  const tmpReturnArg /*:string*/ = tmpCallObj.toString(`utf8`);
   return tmpReturnArg;
 };
 $(f);

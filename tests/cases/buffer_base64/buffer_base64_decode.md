@@ -2,7 +2,7 @@
 
 # buffer_base64_decode.md
 
-> Tofix > buffer base64 decode
+> Buffer base64 > Buffer base64 decode
 >
 > Found in a deobfuscator. With a slightly different payload.
 
@@ -52,9 +52,7 @@ $(x);
 
 
 `````js filename=intro
-const buf /*:buffer*/ = Buffer.from(`aGVsbG8sIHdvcmxk=`, `base64`);
-const str /*:string*/ = buf.toString(`ascii`);
-$(str);
+$(`hello, world`);
 `````
 
 ## PST Output
@@ -62,9 +60,7 @@ $(str);
 With rename=true
 
 `````js filename=intro
-const a = Buffer.from( "aGVsbG8sIHdvcmxk=", "base64" );
-const b = a.toString( "ascii" );
-$( b );
+$( "hello, world" );
 `````
 
 ## Globals

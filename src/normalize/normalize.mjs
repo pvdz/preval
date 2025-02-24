@@ -7073,10 +7073,16 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
             if (pnode.type === 'SpreadElement') {
               if (AST.isComplexNode(pnode.argument)) last = i;
-            } else if (pnode.kind !== 'init' || pnode.method) {
+            }
+            else if (pnode.kind !== 'init' || pnode.method) {
               // Ignore. Declaring a function has no observable side effects.
-            } else if ((pnode.computed && AST.isComplexNode(pnode.key)) || AST.isComplexNode(pnode.value)) {
+            }
+            else if ((pnode.computed && AST.isComplexNode(pnode.key)) || AST.isComplexNode(pnode.value)) {
               last = i;
+            }
+            else if (pnode.computed && AST.isNumberLiteral(pnode.key)) {
+              // Ignore this. We normalize numbers/strings to computed keys.
+              // (String literals become idents when they would be valid as such)
             }
           });
 

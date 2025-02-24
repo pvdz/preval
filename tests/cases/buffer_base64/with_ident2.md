@@ -95,18 +95,18 @@ const f /*:(unknown)=>string*/ = function ($$0) {
   return tmp2;
 };
 $(f);
-const tmpCalleeParam /*:string*/ = f(`cGF0aA`);
-$(tmpCalleeParam);
-const tmpCalleeParam$1 /*:string*/ = f(`cGF0aA`);
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 /*:string*/ = f(`cGF0aA`);
-$(tmpCalleeParam$3);
-const tmpCalleeParam$5 /*:string*/ = f(`cGF0aA`);
-$(tmpCalleeParam$5);
-const tmpCalleeParam$7 /*:string*/ = f(`cGF0aA`);
-$(tmpCalleeParam$7);
-const tmpCalleeParam$9 /*:string*/ = f(`cGF0aA`);
-$(tmpCalleeParam$9);
+unknown = `cGF0aA`;
+$(`path`);
+unknown = `cGF0aA`;
+$(`path`);
+unknown = `cGF0aA`;
+$(`path`);
+unknown = `cGF0aA`;
+$(`path`);
+unknown = `cGF0aA`;
+$(`path`);
+unknown = `cGF0aA`;
+$(`path`);
 `````
 
 ## PST Output
@@ -123,18 +123,18 @@ const a = function($$0 ) {
   return d;
 };
 $( a );
-const e = a( "cGF0aA" );
-$( e );
-const f = a( "cGF0aA" );
-$( f );
-const g = a( "cGF0aA" );
-$( g );
-const h = a( "cGF0aA" );
-$( h );
-const i = a( "cGF0aA" );
-$( i );
-const j = a( "cGF0aA" );
-$( j );
+unknown = "cGF0aA";
+$( "path" );
+unknown = "cGF0aA";
+$( "path" );
+unknown = "cGF0aA";
+$( "path" );
+unknown = "cGF0aA";
+$( "path" );
+unknown = "cGF0aA";
+$( "path" );
+unknown = "cGF0aA";
+$( "path" );
 `````
 
 ## Globals

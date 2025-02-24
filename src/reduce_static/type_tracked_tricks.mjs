@@ -1060,6 +1060,7 @@ function _typeTrackedTricks(fdata) {
           }
         }
         else if (node.callee.type === 'MemberExpression') {
+          // (Parent node is CallExpression)
           const isPrim = AST.isPrimitive(node.callee.object);
           const objMetaRegex = !isPrim && node.callee.object.type === 'Identifier' && fdata.globallyUniqueNamingRegistry.get(node.callee.object.name);
           const isRegex = objMetaRegex?.typing?.mustBeType === 'regex' && objMetaRegex.isConstant && AST.isRegexLiteral(objMetaRegex.constValueRef);
@@ -1110,6 +1111,74 @@ function _typeTrackedTricks(fdata) {
 
                   after(node, parentNode);
                   ++changes;
+                }
+                break;
+              }
+              case 'buffer.toString': {
+                // This is a common obfuscator trick to just do `Buffer.from(x, 'base64').toString('ascii')`
+                // There are other variations we can support here and I suppose if the conversion is really that simple, we can just resolve it regardless.
+
+                // Start by confirming that the buffer was created with a literal string.
+                if (!isPrim && node.callee.object.type === 'Identifier') {
+                  const bufMeta = fdata.globallyUniqueNamingRegistry.get(node.callee.object.name);
+                  if (bufMeta.isConstant && bufMeta.writes[0]?.kind === 'var' && bufMeta.writes[0].grandNode.kind === 'const') {
+                    const write = bufMeta.writes[0];
+                    const init = write.parentNode.init;
+                    if (
+                      init.type === 'CallExpression' &&
+                      init.callee.type === 'MemberExpression' &&
+                      init.callee.object.type === 'Identifier' &&
+                      !init.callee.computed &&
+                      init.callee.object.name === 'Buffer' &&
+                      init.callee.property.name === 'from' &&
+                      init.arguments.length > 0 &&
+                      AST.isStringLiteral(init.arguments[0]) &&
+                      // Remaining args are literals as well
+                      init.arguments.every(anode => AST.isPrimitive(anode)) &&
+                      // Same for toString
+                      node.arguments.every(anode => AST.isPrimitive(anode))
+                    ) {
+                      // I think we should be able to convert this, regardless of the other args:
+                      // We have:
+                      // - a `buffer.toString()` call on a value we know to be a buffer
+                      // - the buffer var is a constant
+                      // - the buffer var was initialized through Buffer.from() with a string literal as first arg
+                      // - all args for the Buffer.from and buf.toString calls are primitives
+                      // The encoding args as well as remaining args as well as toString encoding arg should not matter, I think
+
+                      rule('Buffer.from().toString() can be resolved when args are all primitives');
+                      example(
+                        'const a = Buffer.from("hello, world", "base64"); const b = a.toString("ascii"); $(b);',
+                        '$("hello, world");'
+                      );
+                      before(write.blockBody[write.blockIndex]);
+                      before(blockBody[blockIndex]);
+
+
+                      const initArgValues = init.arguments.map(anode => AST.getPrimitiveValue(anode));
+                      const tosArgValues = node.arguments.map(anode => AST.getPrimitiveValue(anode));
+
+                      const result = Buffer.from(...initArgValues).toString(...tosArgValues);
+                      // Now eliminate that call expression. We have to go the hard way because it goes one level beyond the grandNode
+                      if (blockBody[blockIndex].type === 'VariableDeclaration') {
+                        blockBody[blockIndex].declarations[0].init = AST.primitive(result);
+                      } else if (blockBody[blockIndex].type === 'ExpressionStatement') {
+                        if (blockBody[blockIndex].expression.type === 'AssignmentExpression') {
+                          blockBody[blockIndex].expression.right = AST.primitive(result);
+                        } else {
+                          blockBody[blockIndex].expression = AST.identifier('undefined');
+                        }
+                      } else {
+                        ASSERT(false, 'in normalized code, a call must be a var init, assign rhs, or statement', blockBody[blockIndex]);
+                      }
+
+                      after(write.blockBody[write.blockIndex]);
+                      after(blockBody[blockIndex]);
+
+                      ++changes;
+                      break;
+                    }
+                  }
                 }
                 break;
               }
@@ -1702,6 +1771,9 @@ function _typeTrackedTricks(fdata) {
                 break;
               }
               default: {
+                if (BUILTIN_SYMBOLS.has(symbo(mustBe, node.callee.property.name))) {
+                  todo('type trackeed tricks can possibly support resolving the type for calling this builtin symbol:', symbo(symbo(mustBe, node.callee.property.name)));
+                }
                 if (node.callee.object.type === 'Identifier') {
                   switch (node.callee.object.name + '.' + node.callee.property.name) {
                     case 'String.fromCharCode': {

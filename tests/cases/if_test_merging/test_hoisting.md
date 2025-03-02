@@ -10,22 +10,22 @@
 
 `````js filename=intro
 let closure_cond = false;
-  const repeat = function($$0) {
-    const arg = $$0;
-    debugger;
-    if (closure_cond) {
-      closure_cond = [];
-      $(`a`);
-    } else {
-      closure_cond = [];
-      $(`b`);
-    }
-    const tmpCalleeParam = arg + 1;
-    repeat(tmpCalleeParam);
-    return undefined;
-  };
-  repeat(0);
-  $(repeat);
+const repeat = function($$0) {
+  const arg = $$0;
+  debugger;
+  if (closure_cond) {
+    closure_cond = [];
+    $(`a`);
+  } else {
+    closure_cond = [];
+    $(`b`);
+  }
+  const tmpCalleeParam = arg + 1;
+  repeat(tmpCalleeParam);
+  return undefined;
+};
+repeat(0);
+$(repeat);
 `````
 
 ## Pre Normal

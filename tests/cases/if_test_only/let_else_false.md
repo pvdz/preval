@@ -1,69 +1,82 @@
 # Preval test case
 
-# base_let_else.md
+# let_else_false.md
 
-> If merging > Base let else
+> If test only > Let else false
 >
 > When back to back ifs test on the same constant, the ifs can be merged safely
 
 ## Input
 
 `````js filename=intro
-let x 
-if ($(true)) {
-  x = !$(true);
+let THIS_IS_BOOL /*:primitive*/ = 0;                // <-- this should be a boolean
+const tmpIfTest /*:unknown*/ = $(true);
+if (tmpIfTest) {
+  const tmpUnaryArg /*:unknown*/ = $(true);
+  THIS_IS_BOOL = !tmpUnaryArg;
 } else {
-  x = !$(false);
+  const tmpUnaryArg$1 /*:unknown*/ = $(false);
+  THIS_IS_BOOL = !tmpUnaryArg$1;
 }
-if (x) {
-  $('a');
+if (THIS_IS_BOOL) {
+  $(`a`);
 } else {
-  $('b');
-  x = 10; // Blocks the merge
+  $(`b`);
+  THIS_IS_BOOL = false;
 }
-if (x) $('d'); else $('c');
+if (THIS_IS_BOOL) {
+  $(`d`);
+} else {
+  $(`c`);
+}
 `````
 
 ## Pre Normal
 
 
 `````js filename=intro
-let x;
-if ($(true)) {
-  x = !$(true);
+let THIS_IS_BOOL = 0;
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  const tmpUnaryArg = $(true);
+  THIS_IS_BOOL = !tmpUnaryArg;
 } else {
-  x = !$(false);
+  const tmpUnaryArg$1 = $(false);
+  THIS_IS_BOOL = !tmpUnaryArg$1;
 }
-if (x) {
+if (THIS_IS_BOOL) {
   $(`a`);
 } else {
   $(`b`);
-  x = 10;
+  THIS_IS_BOOL = false;
 }
-if (x) $(`d`);
-else $(`c`);
+if (THIS_IS_BOOL) {
+  $(`d`);
+} else {
+  $(`c`);
+}
 `````
 
 ## Normalized
 
 
 `````js filename=intro
-let x = undefined;
+let THIS_IS_BOOL = 0;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   const tmpUnaryArg = $(true);
-  x = !tmpUnaryArg;
+  THIS_IS_BOOL = !tmpUnaryArg;
 } else {
   const tmpUnaryArg$1 = $(false);
-  x = !tmpUnaryArg$1;
+  THIS_IS_BOOL = !tmpUnaryArg$1;
 }
-if (x) {
+if (THIS_IS_BOOL) {
   $(`a`);
 } else {
   $(`b`);
-  x = 10;
+  THIS_IS_BOOL = false;
 }
-if (x) {
+if (THIS_IS_BOOL) {
   $(`d`);
 } else {
   $(`c`);
@@ -74,24 +87,20 @@ if (x) {
 
 
 `````js filename=intro
-let x /*:primitive*/ = 0;
+let THIS_IS_BOOL /*:boolean*/ = false;
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   const tmpUnaryArg /*:unknown*/ = $(true);
-  x = !tmpUnaryArg;
+  THIS_IS_BOOL = !tmpUnaryArg;
 } else {
   const tmpUnaryArg$1 /*:unknown*/ = $(false);
-  x = !tmpUnaryArg$1;
+  THIS_IS_BOOL = !tmpUnaryArg$1;
 }
-if (x) {
+if (THIS_IS_BOOL) {
   $(`a`);
-} else {
-  $(`b`);
-  x = 1;
-}
-if (x) {
   $(`d`);
 } else {
+  $(`b`);
   $(`c`);
 }
 `````
@@ -101,7 +110,7 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-let a = 0;
+let a = false;
 const b = $( true );
 if (b) {
   const c = $( true );
@@ -113,15 +122,10 @@ else {
 }
 if (a) {
   $( "a" );
-}
-else {
-  $( "b" );
-  a = 1;
-}
-if (a) {
   $( "d" );
 }
 else {
+  $( "b" );
   $( "c" );
 }
 `````
@@ -136,7 +140,7 @@ Should call `$` with:
  - 1: true
  - 2: true
  - 3: 'b'
- - 4: 'd'
+ - 4: 'c'
  - eval returned: undefined
 
 Pre normalization calls: Same

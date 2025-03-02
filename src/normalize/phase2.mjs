@@ -67,7 +67,7 @@ import { staticArgOpOutlining } from '../reduce_static/static_arg_op_outlining.m
 import { arr_mutation } from '../reduce_static/arr_mutation.mjs';
 import { functionLocks } from '../reduce_static/function_locks.mjs';
 import { readOnce } from '../reduce_static/read_once.mjs';
-import { testing_only } from '../reduce_static/testing_only.mjs';
+import { ifTestOnly } from '../reduce_static/if_test_only.mjs';
 import { functionSplitting } from '../reduce_static/function_splitting.mjs';
 import { noopTry } from '../reduce_static/noop_try.mjs';
 import { implicitThis } from '../reduce_static/implicit_this.mjs';
@@ -319,7 +319,7 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
     staticIfOutlining(fdata) || // Maybe even lower since this duplicates functions? Or maybe higher i dunno.
     functionLocks(fdata) ||
     readOnce(fdata) ||
-    testing_only(fdata) ||
+    ifTestOnly(fdata) ||
     functionSplitting(fdata) ||
     noopTry(fdata) ||
     implicitThis(fdata, options.implicitThisIdent) ||

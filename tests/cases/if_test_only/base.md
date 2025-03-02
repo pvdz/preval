@@ -2,7 +2,7 @@
 
 # base.md
 
-> Testers > Base
+> If test only > Base
 >
 > A binding only used in a test situation is not observed so we can replace booly values where we can assert the bool with an actual bool.
 

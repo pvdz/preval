@@ -5,54 +5,56 @@
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 
-export function testing_only(fdata) {
+export function ifTestOnly(fdata) {
   group('\n\n\nLooking for bindings only used in unobservable boolean testing places\n');
-  const r = _testing_only(fdata);
+  const r = _ifTestOnly(fdata);
   groupEnd();
   return r;
 }
-function _testing_only(fdata) {
+function _ifTestOnly(fdata) {
   const queue = [];
 
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
 
-    vlog('- `' + name + '`:', meta.constValueRef.node.type);
+    vgroup('- `' + name + '`:', meta.constValueRef.node.type);
 
-    if (
-      meta.reads.some((read) => {
-        if (read.parentNode.type === 'IfStatement') return;
-        if (read.parentNode.type === 'WhileStatement') return;
-        if (read.parentNode.type === 'UnaryExpression' && read.parentNode.operator === '!') return true;
-        if (
-          read.parentNode.type === 'CallExpression' &&
-          read.parentProp === 'arguments' &&
-          read.parentNode['arguments'][0] === read.node &&
-          read.parentNode.callee.type === 'Identifier' &&
-          read.parentNode.callee.name === 'Boolean'
-        ) {
-          return;
-        }
+    const usedElsewhere = meta.reads.some((read) => {
+      if (read.parentNode.type === 'IfStatement') return;
+      if (read.parentNode.type === 'WhileStatement') return;
+      if (read.parentNode.type === 'UnaryExpression' && read.parentNode.operator === '!') return true;
+      if (
+        read.parentNode.type === 'CallExpression' &&
+        read.parentProp === 'arguments' &&
+        read.parentNode['arguments'][0] === read.node &&
+        read.parentNode.callee.type === 'Identifier' &&
+        read.parentNode.callee.name === 'Boolean'
+      ) {
+        return;
+      }
 
-        // We ignore assignments, objects, arrays, classes, member, and other calls since the value just gets lost
-        // Any other ways of using it that don't get observed?
+      // We ignore assignments, objects, arrays, classes, member, and other calls since the value just gets lost
+      // Any other ways of using it that don't get observed?
 
-        vlog('- Binding read in a way that may be observed, bailing');
-        return true;
-      })
-    ) {
-      return false;
-    }
+      vlog('- Binding read in a way that may be observed, bailing');
+      return true;
+    });
 
+    vgroupEnd();
+    if (usedElsewhere) return false;
+
+    // When notBool, at least one assignment was unknown, to keep the var mono we should simplify primitives to their true/false value
+    let notBool = false;
     if (meta.writes.some(write => {
       if (write.kind !== 'var' && write.kind !== 'assign') {
         vlog('At least one write was not the var or an assign, bailing');
         return true;
       }
       if (write.kind === 'assign' && !AST.isPrimitive(write.parentNode.right)) {
-        vlog('At least one assignment wasnt a primitive, bailing');
-        return true;
+        vlog('At least one assignment wasnt a primitive, can only dumb down');
+        notBool = true;
+        return false;
       }
     })) {
       return
@@ -71,7 +73,25 @@ function _testing_only(fdata) {
 
       let bool = false;
 
-      if (AST.isTruthy(expr)) {
+      if (notBool && !AST.isPrimitive(expr)) {
+        vlog('- Cannot change non-primitive value when not updating to true/false directly');
+        return;
+      }
+      else if (notBool) {
+        if (AST.isTrue(expr) || AST.isFalse(expr)) return vlog('Already true/false');
+        if (AST.isNumberLiteral(expr)) {
+          bool = AST.isTruthy(expr) ? 1 : 0;
+          if (AST.getPrimitiveValue(expr) === bool) return vlog('Already target number');
+        }
+        else if (AST.isStringLiteral(expr)) {
+          bool = AST.isTruthy(expr) ? 'T' : '';
+          if (AST.getPrimitiveValue(expr) === bool) return vlog('Already target string');
+        }
+        else {
+          return vlog('Not changing null/undef');
+        }
+      }
+      else if (AST.isTruthy(expr)) {
         vlog('- This is a truthy value:', expr.type, expr);
         bool = true;
       } else if (AST.isFalsy(expr)) {

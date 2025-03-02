@@ -43,15 +43,15 @@ function _resolveBoundValueSet(fdata) {
         const left = read.parentNode.left;
         const right = read.parentNode.right;
 
-        const other = left === read.node ? right : left;
+        const fixedValueNode = left === read.node ? right : left;
 
-        if (!AST.isPrimitive(other)) {
+        if (!AST.isPrimitive(fixedValueNode)) {
           // This trick relies on a primitive left or right
           // TODO: maybe if other has a worst case value set then we may be able to resolve some of these ops anyways...
           return;
         }
 
-        const ov = AST.getPrimitiveValue(other);
+        const ov = AST.getPrimitiveValue(fixedValueNode);
 
         const f = {
           '**': (a, b) => a ** b,
@@ -78,19 +78,19 @@ function _resolveBoundValueSet(fdata) {
 
         vlog(
           'Testing op `' + op + '` with fixed',
-          other === left ? 'left' : 'right',
+          fixedValueNode === left ? 'left' : 'right',
           'value',
           [ov],
           'against the known set of of values:',
           [...meta.typing.worstCaseValueSet],
-          other === left ? 'to the right' : 'to the left',
+          fixedValueNode === left ? 'to the right' : 'to the left',
         );
 
         const NOPE = undefined; // None of the ops can result in `undefined` so it should be safe to use as the "nope" value. (Yeah, can also use a `{}` ;) but w/e)
         let prev = NOPE;
         for (const e of meta.typing.worstCaseValueSet) {
-          const now = other === left ? f(ov, e) : f(e, ov);
-          vlog('  - ', other === left ? ov : e, op, other === left ? e : ov, ' --> ', now);
+          const now = fixedValueNode === left ? f(ov, e) : f(e, ov);
+          vlog('  - ', [fixedValueNode === left ? ov : e], op, [fixedValueNode === left ? e : ov], ' --> ', now);
           if (prev !== NOPE && !Object.is(prev, now)) {
             prev = NOPE;
             break;

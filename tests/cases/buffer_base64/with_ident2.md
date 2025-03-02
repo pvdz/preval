@@ -57,7 +57,7 @@ let f = function ($$0) {
   let x = $$0;
   debugger;
   unknown = x;
-  const tmp = Buffer.from(x, `base64`);
+  const tmp = $Buffer_from(x, `base64`);
   const tmp2 = tmp.toString(`utf8`);
   return tmp2;
 };
@@ -90,22 +90,22 @@ const f /*:(unknown)=>string*/ = function ($$0) {
   const x /*:unknown*/ = $$0;
   debugger;
   unknown = x;
-  const tmp /*:buffer*/ = Buffer.from(x, `base64`);
+  const tmp /*:buffer*/ = $Buffer_from(x, `base64`);
   const tmp2 /*:string*/ = tmp.toString(`utf8`);
   return tmp2;
 };
 $(f);
 unknown = `cGF0aA`;
-$(`path`);
 unknown = `cGF0aA`;
 $(`path`);
 unknown = `cGF0aA`;
-$(`path`);
 unknown = `cGF0aA`;
 $(`path`);
 unknown = `cGF0aA`;
-$(`path`);
 unknown = `cGF0aA`;
+$(`path`);
+$(`path`);
+$(`path`);
 $(`path`);
 `````
 
@@ -118,22 +118,22 @@ const a = function($$0 ) {
   const b = $$0;
   debugger;
   unknown = b;
-  const c = Buffer.from( b, "base64" );
+  const c = $Buffer_from( b, "base64" );
   const d = c.toString( "utf8" );
   return d;
 };
 $( a );
 unknown = "cGF0aA";
-$( "path" );
 unknown = "cGF0aA";
 $( "path" );
 unknown = "cGF0aA";
-$( "path" );
 unknown = "cGF0aA";
 $( "path" );
 unknown = "cGF0aA";
-$( "path" );
 unknown = "cGF0aA";
+$( "path" );
+$( "path" );
+$( "path" );
 $( "path" );
 `````
 

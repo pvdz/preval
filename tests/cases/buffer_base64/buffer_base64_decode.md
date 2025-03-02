@@ -40,7 +40,7 @@ $(x);
 const decodebase64 = function ($$0) {
   let arg = $$0;
   debugger;
-  const buf = Buffer.from(arg, `base64`);
+  const buf = $Buffer_from(arg, `base64`);
   const str = buf.toString(`ascii`);
   return str;
 };

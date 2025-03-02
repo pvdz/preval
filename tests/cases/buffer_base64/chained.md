@@ -36,7 +36,7 @@ $(f(`cGF0aA`));
 let f = function ($$0) {
   let x = $$0;
   debugger;
-  const tmpCallObj = Buffer.from(x, `base64`);
+  const tmpCallObj = $Buffer_from(x, `base64`);
   const tmpReturnArg = tmpCallObj.toString(`utf8`);
   return tmpReturnArg;
 };
@@ -53,7 +53,7 @@ tmpCallCallee(tmpCalleeParam);
 const f /*:(unknown)=>string*/ = function ($$0) {
   const x /*:unknown*/ = $$0;
   debugger;
-  const tmpCallObj /*:buffer*/ = Buffer.from(x, `base64`);
+  const tmpCallObj /*:buffer*/ = $Buffer_from(x, `base64`);
   const tmpReturnArg /*:string*/ = tmpCallObj.toString(`utf8`);
   return tmpReturnArg;
 };
@@ -69,7 +69,7 @@ With rename=true
 const a = function($$0 ) {
   const b = $$0;
   debugger;
-  const c = Buffer.from( b, "base64" );
+  const c = $Buffer_from( b, "base64" );
   const d = c.toString( "utf8" );
   return d;
 };

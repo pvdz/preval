@@ -99,13 +99,26 @@ function _buffer_base64(fdata) {
 
     // TODO: ignore the params aside from at least one
 
-
-    // Mut have a param and we must know what it is
+    // Must have a param and we must know what it is
     if (funcNode.params.length !== 1) return vlog('- bail: func param != 1');
     if (funcNode.params[0].type !== 'Param') return vlog('- bail: a');
     if (funcNode.params[0].rest) return vlog('- bail: b');
     const paramName = funcNode.$p.paramNames[0];
     if (!paramName) return vlog('- bail: c');
+
+    let extra = null;
+    if (
+      funcBody[index]?.type === 'ExpressionStatement' &&
+      funcBody[index].expression.type === 'AssignmentExpression' &&
+      funcBody[index].expression.left.type === 'Identifier' &&
+      funcBody[index].expression.right.type === 'Identifier' &&
+      funcBody[index].expression.left.name !== paramName &&
+      funcBody[index].expression.right.name === paramName
+    ) {
+      extra = funcBody[index].expression;
+      index += 1;
+      if (!funcBody[index]) return vlog('bail: aa');
+    }
 
     // Find the `var x = Buffer.from(param, 'base64')` part
     if (funcBody[index].type !== 'VariableDeclaration') return vlog('- bail: d');
@@ -168,17 +181,29 @@ function _buffer_base64(fdata) {
         'const f = function(s) { const x = Buffer.from(s, "base64"); const y = x.toString("utf8"); return y; } $(f("cGF0aA"))',
       'const f = function(s) { const x = Buffer.from(s, "base64"); const y = x.toString("utf8"); return y; } $("path")'
       );
+      before(meta.constValueRef.containerNode);
       before(read.blockBody[read.blockIndex]);
 
-      // Note: atob() is not the same as Buffer.from().toString() because Buffer is less strict about the encoding
       const value = AST.getPrimitiveValue(param);
+
+      // Note: atob() is not the same as Buffer.from().toString() because Buffer is less strict about the encoding
       const x = Buffer.from(value, 'base64');
       const y = x.toString('utf8');
 
       if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.templateLiteral(y);
       else read.grandNode[read.grandProp][read.grandIndex] = AST.templateLiteral(y);
 
+      if (extra) {
+        read.blockBody.splice(read.blockIndex, 0, AST.expressionStatement(
+          AST.assignmentExpression(
+            AST.cloneSimple(extra.left),
+            AST.cloneSimple(param),
+          )
+        ));
+      }
+
       after(read.blockBody[read.blockIndex]);
+      if (extra) after(read.blockBody[read.blockIndex+1]);
       ++updated;
     });
     vgroupEnd();

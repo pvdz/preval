@@ -36,8 +36,10 @@ const y = $spy(`b`);
 
 
 `````js filename=intro
-$spy(`a`);
-$spy(`b`);
+const x /*:unknown*/ = $spy(`a`);
+const y /*:unknown*/ = $spy(`b`);
+$coerce(x, `string`);
+$coerce(y, `string`);
 `````
 
 ## PST Output
@@ -45,8 +47,10 @@ $spy(`b`);
 With rename=true
 
 `````js filename=intro
-$spy( "a" );
-$spy( "b" );
+const a = $spy( "a" );
+const b = $spy( "b" );
+$coerce( a, "string" );
+$coerce( b, "string" );
 `````
 
 ## Globals
@@ -66,7 +70,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: 'Creating spy', 1, 1, ['a', 'a']
- - 2: 'Creating spy', 2, 1, ['b', 'b']
- - eval returned: undefined
+Final output calls: Same

@@ -101,8 +101,8 @@ const obj /*:object*/ = {
     const v /*:unknown*/ = $$0;
     debugger;
     const tmpBinBothLhs /*:unknown*/ = s;
-    const tmpStringConcatL /*:string*/ = $coerce(v, `plustr`);
-    const tmpBinBothRhs /*:string*/ = `write[${tmpStringConcatL}];`;
+    const tmpStringConcatL$1 /*:string*/ = $coerce(v, `plustr`);
+    const tmpBinBothRhs /*:string*/ = `write[${tmpStringConcatL$1}];`;
     s = tmpBinBothLhs + tmpBinBothRhs;
     a = a + v;
     return a;

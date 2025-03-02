@@ -7702,14 +7702,16 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
         if (wrapKind === 'statement') {
           // A template must always be side-effect free post pre-normalization. So this should be safe to drop.
-          rule('Template literals that are statements should be dropped');
+          rule('Template literals that are statements should be dropped with their exprs coerced to string');
           example('`foo`;', ';');
-          example('`fo${x}o`;', ';');
+          example('`fo${x}o`;', '$coerce(x, "string");');
           before(node, parentNodeOrWhatever);
 
-          body[i] = AST.emptyStatement();
+          body.splice(i, 1, ...node.expressions.map(e => {
+            return AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [e, AST.primitive("string")]))
+          }));
 
-          after(AST.emptyStatement(), parentNodeOrWhatever);
+          after(node.expressions.length ? body.slice(i, node.expressions.length) : AST.emptyStatement(), parentNodeOrWhatever);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }

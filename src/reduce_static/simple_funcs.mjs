@@ -14,7 +14,7 @@ export function inlineSimpleFuncCalls(fdata) {
 }
 function _inlineSimpleFuncCalls(fdata) {
   const queue = [];
-  fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
+  fdata.globallyUniqueNamingRegistry.forEach(function (meta, funcName) {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
     if (!meta.isConstant) return;
@@ -32,7 +32,7 @@ function _inlineSimpleFuncCalls(fdata) {
     }
 
     vgroup('- `' + meta.uniqueName + ':', meta.constValueRef.node.type);
-    process(meta, funcNode, fdata, queue);
+    process(meta, funcName, funcNode, fdata, queue);
     vgroupEnd();
   });
 
@@ -47,7 +47,7 @@ function _inlineSimpleFuncCalls(fdata) {
 
   log('Inlined function calls: 0.');
 }
-function process(meta, funcNode, fdata, queue) {
+function process(meta, funcName, funcNode, fdata, queue) {
   if (funcNode.params.some((pnode) => pnode.rest)) {
     vlog('Function params has a rest element. Bailing');
     return;
@@ -186,6 +186,15 @@ function process(meta, funcNode, fdata, queue) {
       const callNode = read.parentNode;
       if (callNode.type !== 'CallExpression' || read.parentProp !== 'callee') {
         vlog('-', ri, ': not a call', callNode.type, read.parentProp);
+        return;
+      }
+
+      if (
+        callNode.callee.type === 'Identifier' &&
+        callNode.callee.name === funcName &&
+        (callNode.blockChain + ',').startsWith(funcNode.$p.blockChain + ',')
+      ) {
+        vlog('-', ri,': call is recursive, bail', callNode.callee.name, funcName);
         return;
       }
 

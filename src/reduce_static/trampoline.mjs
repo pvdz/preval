@@ -211,6 +211,8 @@ function _pruneTrampolineFunctions(fdata) {
       if (
         varNode.type === 'VariableDeclaration' &&
         varNode.declarations[0].init.type === 'CallExpression' &&
+        // Don't be recursive. That ends in an infinite transform loop
+        (varNode.declarations[0].init.callee.type !== 'Identifier' || varNode.declarations[0].init.callee.name !== funcName) &&
         returnNode.type === 'ReturnStatement' && // While `throw` is very similar, the transform is different because the call site may require injecting a new statement
         returnNode.argument.type === 'Identifier' &&
         returnNode.argument.name === varNode.declarations[0].id.name

@@ -579,7 +579,8 @@ function processAttempt(fdata) {
                       updated += 1;
                       if (nextRead.grandNode.arguments.length) addedSequence = true; // Eliminated useless .shift() args
                       return;
-                    } else {
+                    }
+                    else if (arrNode.elements.every(enode => enode?.type !== 'SpreadElement')) {
                       rule('Calling .shift on an array literal we can fully track can be resolved');
                       example('const arr = [1, 2, 3]; f(arr.shift()); f(arr);', 'const arr = [2, 3]; f(1); f(arr);');
                       before(write.blockBody[write.blockIndex]);
@@ -620,6 +621,7 @@ function processAttempt(fdata) {
                     // TODO: replace it with $array_shift
                     return;
                   }
+                  break;
                 }
                 case 'push': {
                   if (nextRead.grandNode.type === 'CallExpression') {

@@ -132,7 +132,7 @@ tmpCallCallee$7(tmpCalleeParam$7);
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f /*:()=>unknown*/ = function () {
   debugger;
   $(`no`);
   $(`inlining`);

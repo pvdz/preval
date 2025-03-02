@@ -114,7 +114,7 @@ const h = function ($$0) {
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f /*:()=>unknown*/ = function () {
   debugger;
   arr[-344];
   if (unknown) {

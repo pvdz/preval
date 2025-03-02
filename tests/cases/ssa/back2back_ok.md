@@ -65,7 +65,7 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const x /*:()=>*/ = function () {
+  const x /*:()=>unknown*/ = function () {
     debugger;
     return undefined;
   };

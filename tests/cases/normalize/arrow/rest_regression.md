@@ -41,7 +41,7 @@ $(a);
 
 
 `````js filename=intro
-const a /*:(unused)=>*/ = function ($$0) {
+const a /*:(unused)=>unknown*/ = function ($$0) {
   debugger;
   return x;
 };

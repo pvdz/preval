@@ -55,7 +55,7 @@ $(p);
 
 
 `````js filename=intro
-const tmpSSA_e /*:()=>*/ = function () {
+const tmpSSA_e /*:()=>unknown*/ = function () {
   debugger;
   $(2);
   tmpBinBothLhs = tmpSSA_e();

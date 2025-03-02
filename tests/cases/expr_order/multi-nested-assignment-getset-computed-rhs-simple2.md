@@ -94,7 +94,7 @@ const objd /*:object*/ = {
     return 4000;
   },
 };
-const d /*:()=>*/ = function () {
+const d /*:()=>unknown*/ = function () {
   debugger;
   $(`a`);
   $(`b`);

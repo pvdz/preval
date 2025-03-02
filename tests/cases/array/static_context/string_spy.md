@@ -57,7 +57,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f /*:()=>unknown*/ = function () {
   debugger;
   $(`updating`);
   arr[0] = `pass`;

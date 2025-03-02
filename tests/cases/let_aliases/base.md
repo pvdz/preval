@@ -67,7 +67,7 @@ $(f);
 
 
 `````js filename=intro
-let f /*:()=>*/ = function () {
+let f /*:()=>unknown*/ = function () {
   debugger;
   x = 2;
   f = function () {

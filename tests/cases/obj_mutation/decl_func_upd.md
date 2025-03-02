@@ -51,7 +51,7 @@ $(blob);
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f /*:()=>unknown*/ = function () {
   debugger;
   blob.thing = `boing`;
   return undefined;

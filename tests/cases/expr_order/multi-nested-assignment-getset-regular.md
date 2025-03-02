@@ -435,25 +435,25 @@ const obje /*:object*/ = {
     return 5000;
   },
 };
-let a /*:()=>*/ = function () {
+let a /*:()=>unknown*/ = function () {
   debugger;
   tmp(`a`);
   return obja;
 };
-let b /*:()=>*/ = function () {
+let b /*:()=>unknown*/ = function () {
   debugger;
   tmp(`b`);
   a = 21;
   return objb;
 };
-let c /*:()=>*/ = function () {
+let c /*:()=>unknown*/ = function () {
   debugger;
   tmp(`c`);
   a = 31;
   b = 32;
   return objc;
 };
-let d /*:()=>*/ = function () {
+let d /*:()=>unknown*/ = function () {
   debugger;
   tmp(`d`);
   a = 41;

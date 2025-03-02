@@ -57,12 +57,12 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:()=>*/ = function () {
+const tmpCalleeParam /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
 $(tmpCalleeParam);
-const tmpCalleeParam$1 /*:()=>*/ = function () {
+const tmpCalleeParam$1 /*:()=>unknown*/ = function () {
   debugger;
   if (x) {
     $(1);

@@ -53,7 +53,7 @@ tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 
 
 `````js filename=intro
-const findme /*:()=>*/ = function () {
+const findme /*:()=>unknown*/ = function () {
   debugger;
   $(`function`);
   return findme;

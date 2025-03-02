@@ -240,7 +240,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
 }
-const tmpArrElement /*:(unknown)=>*/ = function ($$0) {
+const tmpArrElement /*:(unknown)=>unknown*/ = function ($$0) {
   const e$1 /*:unknown*/ = $$0;
   debugger;
   const tmpReturnArg$1 /*:unknown*/ = tmpCalleeParam$11[e$1];

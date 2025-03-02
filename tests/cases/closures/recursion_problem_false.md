@@ -89,12 +89,12 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpReturnArg /*:()=>*/ = function () {
+const tmpReturnArg /*:()=>unknown*/ = function () {
   debugger;
   const tmpReturnArg$1 /*:unknown*/ = $(2, `false`);
   return tmpReturnArg$1;
 };
-let f /*:(unknown)=>*/ = function ($$0) {
+let f /*:(unknown)=>unknown*/ = function ($$0) {
   const bool /*:unknown*/ = $$0;
   debugger;
   if (bool) {

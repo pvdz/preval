@@ -205,7 +205,7 @@ const tmpFree /*:(number)=>number*/ = function $free($$0) {
   return tmpRet;
 };
 const tmpCalleeParam$11 /*:object*/ = {};
-let tmpSSA_e /*:(number)=>*/ = function ($$0) {
+let tmpSSA_e /*:(number)=>unknown*/ = function ($$0) {
   const c$2 /*:number*/ = $$0;
   debugger;
   let tmpBinBothLhs /*:unknown*/ = ``;
@@ -320,7 +320,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
 }
-const tmpArrElement /*:(unknown)=>*/ = function ($$0) {
+const tmpArrElement /*:(unknown)=>unknown*/ = function ($$0) {
   const e$1 /*:unknown*/ = $$0;
   debugger;
   const tmpReturnArg$1 /*:unknown*/ = tmpCalleeParam$11[e$1];

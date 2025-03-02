@@ -50,7 +50,7 @@ while (true) {
 
 
 `````js filename=intro
-const xyz /*:()=>*/ = function () {
+const xyz /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };

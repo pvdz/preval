@@ -44,7 +44,7 @@ obj.g();
 
 
 `````js filename=intro
-const g /*:()=>*/ = function () {
+const g /*:()=>unknown*/ = function () {
   debugger;
   return `win`;
 };

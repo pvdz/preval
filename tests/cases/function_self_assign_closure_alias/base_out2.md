@@ -123,7 +123,7 @@ b();
 
 
 `````js filename=intro
-let a /*:()=>*/ = function () {
+let a /*:()=>unknown*/ = function () {
   debugger;
   $(`before`);
   a = function () {
@@ -134,7 +134,7 @@ let a /*:()=>*/ = function () {
   $(`after`);
   return undefined;
 };
-const b /*:()=>*/ = function () {
+const b /*:()=>unknown*/ = function () {
   debugger;
   $(`before`);
   a = function () {

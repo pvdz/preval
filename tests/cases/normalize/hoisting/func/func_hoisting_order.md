@@ -87,27 +87,27 @@ $(a, b, d, f, h, x);
 
 
 `````js filename=intro
-const a /*:()=>*/ = function () {
+const a /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
-const b /*:()=>*/ = function () {
+const b /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
-const d /*:()=>*/ = function () {
+const d /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
-const f /*:()=>*/ = function () {
+const f /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
-const h /*:()=>*/ = function () {
+const h /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
-const x /*:()=>*/ = function () {
+const x /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };

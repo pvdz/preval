@@ -43,7 +43,7 @@ let f = function () {
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f /*:()=>unknown*/ = function () {
   const tmpPrevalAliasThis /*:object*/ = this;
   const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
   debugger;

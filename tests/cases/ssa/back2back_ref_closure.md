@@ -88,7 +88,7 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const tmpSSA_x /*:()=>*/ = function () {
+  const tmpSSA_x /*:()=>unknown*/ = function () {
     debugger;
     return undefined;
   };

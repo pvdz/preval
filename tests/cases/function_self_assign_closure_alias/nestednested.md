@@ -140,7 +140,7 @@ $(outer);
 `````js filename=intro
 const outer /*:()=>array*/ = function () {
   debugger;
-  let f /*:()=>*/ = function () {
+  let f /*:()=>unknown*/ = function () {
     debugger;
     const a /*:array*/ = [];
     f = function ($$0, $$1) {

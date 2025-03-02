@@ -83,7 +83,7 @@ $(mm);
 
 
 `````js filename=intro
-let f /*:()=>*/ = function () {
+let f /*:()=>unknown*/ = function () {
   debugger;
   the_let_binding = 2;
   f = function () {

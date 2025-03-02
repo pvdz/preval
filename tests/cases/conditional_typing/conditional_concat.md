@@ -74,7 +74,7 @@ $(f);
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f /*:()=>unknown*/ = function () {
   debugger;
   const tmpStringConcatL$1 /*:string*/ = $coerce(desc$1, `plustr`);
   const tmpIfTest$1787 /*:boolean*/ = lastType === 2097173;

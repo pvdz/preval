@@ -67,7 +67,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpNestedComplexRhs /*:()=>*/ = function () {
+const tmpNestedComplexRhs /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };

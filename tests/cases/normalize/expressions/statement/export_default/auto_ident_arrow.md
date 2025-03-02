@@ -43,7 +43,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport /*:()=>*/ = function () {
+const tmpAnonDefaultExport /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };

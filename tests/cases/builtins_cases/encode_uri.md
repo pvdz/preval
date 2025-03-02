@@ -2,7 +2,7 @@
 
 # encode_uri.md
 
-> Src > Reduce static > Encode uri
+> Builtins cases > Encode uri
 >
 > Some browser methods?
 

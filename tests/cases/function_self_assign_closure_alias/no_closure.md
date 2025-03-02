@@ -97,7 +97,7 @@ $(alias);
 
 `````js filename=intro
 const arr /*:array*/ = [1, 2, 3, 4];
-let f /*:(unknown, unknown)=>*/ = function ($$0, $$1) {
+let f /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
   const a /*:unknown*/ = $$0;
   const b /*:unknown*/ = $$1;
   debugger;

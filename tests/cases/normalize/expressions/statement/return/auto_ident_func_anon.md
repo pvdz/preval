@@ -55,7 +55,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpReturnArg /*:()=>*/ = function () {
+const tmpReturnArg /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };

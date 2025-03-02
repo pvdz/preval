@@ -98,7 +98,7 @@ const tmpReturnArg /*:()=>undefined*/ = function () {
 const T /*:unknown*/ = $(true);
 const F /*:unknown*/ = $(false);
 if ($) {
-  let g /*:(unknown)=>*/ = function ($$0) {
+  let g /*:(unknown)=>unknown*/ = function ($$0) {
     const x /*:unknown*/ = $$0;
     debugger;
     if (x) {

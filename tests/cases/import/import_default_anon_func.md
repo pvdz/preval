@@ -74,7 +74,7 @@ $(tmpCalleeParam$1);
 `````
 
 `````js filename=x
-const tmpAnonDefaultExport /*:()=>*/ = function () {
+const tmpAnonDefaultExport /*:()=>unknown*/ = function () {
   debugger;
   return 100;
 };

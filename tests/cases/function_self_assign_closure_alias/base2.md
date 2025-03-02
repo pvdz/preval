@@ -103,7 +103,7 @@ c();
 
 
 `````js filename=intro
-let a /*:()=>*/ = function () {
+let a /*:()=>unknown*/ = function () {
   debugger;
   $();
   a = function () {

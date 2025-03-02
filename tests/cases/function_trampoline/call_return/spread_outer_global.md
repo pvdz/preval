@@ -54,7 +54,7 @@ $(q);
 
 `````js filename=intro
 const x /*:unknown*/ = $(`pass`);
-const f /*:(unknown)=>*/ = function ($$0) {
+const f /*:(unknown)=>unknown*/ = function ($$0) {
   const y /*:unknown*/ = $$0;
   debugger;
   const r /*:unknown*/ = $(y);

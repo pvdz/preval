@@ -70,12 +70,12 @@ export { g };
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f /*:()=>unknown*/ = function () {
   debugger;
   const tmpReturnArg /*:unknown*/ = $();
   return tmpReturnArg;
 };
-const g /*:()=>*/ = function () {
+const g /*:()=>unknown*/ = function () {
   debugger;
   const tmpReturnArg$1 /*:unknown*/ = $();
   return tmpReturnArg$1;
@@ -83,7 +83,7 @@ const g /*:()=>*/ = function () {
 const tmpCalleeParam /*:unknown*/ = $();
 const tmpCalleeParam$1 /*:unknown*/ = $();
 $(tmpCalleeParam, tmpCalleeParam$1);
-const tmpAnonDefaultExport /*:()=>*/ = function () {
+const tmpAnonDefaultExport /*:()=>unknown*/ = function () {
   debugger;
   const tmpReturnArg$3 /*:unknown*/ = $();
   return tmpReturnArg$3;

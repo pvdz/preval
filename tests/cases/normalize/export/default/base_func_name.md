@@ -37,7 +37,7 @@ export { f as default };
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };

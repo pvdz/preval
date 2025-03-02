@@ -41,7 +41,7 @@ $(f);
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f /*:()=>unknown*/ = function () {
   debugger;
   throw true;
 };

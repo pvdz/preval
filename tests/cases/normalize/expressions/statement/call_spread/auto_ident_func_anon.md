@@ -45,7 +45,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParamSpread /*:()=>*/ = function () {
+const tmpCalleeParamSpread /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };

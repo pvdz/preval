@@ -105,13 +105,13 @@ $(tmpCalleeParam);
 
 
 `````js filename=intro
-const outer /*:()=>*/ = function () {
+const outer /*:()=>unknown*/ = function () {
   debugger;
   const r /*:array*/ = [undefined];
   $(r);
   return undefined;
 };
-const inner /*:()=>*/ = function () {
+const inner /*:()=>unknown*/ = function () {
   debugger;
   outer();
   if ($) {

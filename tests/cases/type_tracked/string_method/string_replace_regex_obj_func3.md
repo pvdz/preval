@@ -56,7 +56,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const obj /*:object*/ = { a: 1, b: 2 };
-const tmpCalleeParam$3 /*:(unknown)=>*/ = function ($$0) {
+const tmpCalleeParam$3 /*:(unknown)=>unknown*/ = function ($$0) {
   const c /*:unknown*/ = $$0;
   debugger;
   const tmpCalleeParam$7 /*:unknown*/ = obj[c];

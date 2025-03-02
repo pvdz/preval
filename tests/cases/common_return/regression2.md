@@ -135,7 +135,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const c /*:()=>*/ = function () {
+const c /*:()=>unknown*/ = function () {
   debugger;
   $(`c`);
   const tmpCalleeParam /*:unknown*/ = $(10);

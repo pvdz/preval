@@ -66,7 +66,7 @@ out();
 
 
 `````js filename=intro
-const out /*:()=>*/ = function () {
+const out /*:()=>unknown*/ = function () {
   debugger;
   $(`function`);
   $(10, undefined);

@@ -81,7 +81,7 @@ tmpCallCallee$5(tmpCalleeParam$5);
 
 
 `````js filename=intro
-const _THROW /*:()=>*/ = function () {
+const _THROW /*:()=>unknown*/ = function () {
   debugger;
   $(`do`);
   $(`not`);

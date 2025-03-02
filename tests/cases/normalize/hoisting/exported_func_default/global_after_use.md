@@ -44,7 +44,7 @@ export { f as default };
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f /*:()=>unknown*/ = function () {
   debugger;
   const tmpReturnArg /*:unknown*/ = $(2);
   return tmpReturnArg;

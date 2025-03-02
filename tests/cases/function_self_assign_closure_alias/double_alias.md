@@ -120,7 +120,7 @@ tmpCallCallee$11(tmpCalleeParam$23, tmpCalleeParam$25);
 
 
 `````js filename=intro
-let zzzz /*:()=>*/ = function () {
+let zzzz /*:()=>unknown*/ = function () {
   debugger;
   const a /*:array*/ = [];
   zzzz = function ($$0, $$1) {

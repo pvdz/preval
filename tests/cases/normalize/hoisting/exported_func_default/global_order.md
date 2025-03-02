@@ -71,17 +71,17 @@ export { g };
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f /*:()=>unknown*/ = function () {
   debugger;
   const tmpReturnArg /*:unknown*/ = $();
   return tmpReturnArg;
 };
-const g /*:()=>*/ = function () {
+const g /*:()=>unknown*/ = function () {
   debugger;
   const tmpReturnArg$1 /*:unknown*/ = $();
   return tmpReturnArg$1;
 };
-const h /*:()=>*/ = function () {
+const h /*:()=>unknown*/ = function () {
   debugger;
   const tmpReturnArg$3 /*:unknown*/ = $();
   return tmpReturnArg$3;

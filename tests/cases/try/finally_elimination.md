@@ -224,7 +224,7 @@ $(f);
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f /*:()=>unknown*/ = function () {
   debugger;
   let $finalStep /*:boolean*/ = false;
   let $finalStep$1 /*:boolean*/ = false;

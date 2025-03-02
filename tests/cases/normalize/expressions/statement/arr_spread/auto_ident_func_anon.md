@@ -44,7 +44,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpArrElToSpread /*:()=>*/ = function () {
+const tmpArrElToSpread /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };

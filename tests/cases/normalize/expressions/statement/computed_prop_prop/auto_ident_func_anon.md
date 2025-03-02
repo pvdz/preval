@@ -48,7 +48,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpCompProp /*:()=>*/ = function () {
+const tmpCompProp /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };

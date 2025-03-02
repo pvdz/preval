@@ -81,7 +81,7 @@ export const STRING = new Map([
   [symbo('String', 'prototype'), {prop: 'prototype', isProto: false, typings: { sym: symbo('String', 'prototype'), mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }}],
 
   [symbo('String', 'fromCharCode'),   {prop: 'fromCharCode',  isProto: false, typings: { sym: symbo('String', 'fromCharCode'),  mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
-  [symbo('String', 'fromCodePoint'),  {prop: 'fromCodePoint', isProto: false, typings: { sym: symbo('String', 'fromCodePoint'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'fromCodePoint' }}],
+  [symbo('String', 'fromCodePoint'),  {prop: 'fromCodePoint', isProto: false, typings: { sym: symbo('String', 'fromCodePoint'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
   [symbo('String', 'raw'),            {prop: 'raw',           isProto: false, typings: { sym: symbo('String', 'raw'),           mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
 
   [symbo('string', 'at'),            {prop: 'at',            isProto: true,  typings: { sym: symbo('string', 'at'),            mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
@@ -402,6 +402,10 @@ export const BUFFER = new Map([
 ]);
 
 
+
+export const GLOBAL_NAMESPACES_FOR_STATIC_METHODS = new Set([
+  'Boolean', 'Number', 'String', 'Array', 'Object', 'Date', 'Function', 'JSON', 'Math', 'RegExp', 'Buffer', 'Map', 'Set',
+]);
 
 /**
  *      Aggregates

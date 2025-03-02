@@ -49,7 +49,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpIfTest /*:unknown*/ = 60;
+let tmpIfTest /*:unknown*/ = 1;
 const tmpIfTest$1 /*:unknown*/ = $(1);
 if (tmpIfTest$1) {
 } else {
@@ -70,7 +70,7 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = 60;
+let a = 1;
 const b = $( 1 );
 if (b) {
 

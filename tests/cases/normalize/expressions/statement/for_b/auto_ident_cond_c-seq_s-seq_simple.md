@@ -55,7 +55,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpIfTest /*:unknown*/ = 60;
+let tmpIfTest /*:unknown*/ = 1;
 const tmpIfTest$1 /*:unknown*/ = $(30);
 if (tmpIfTest$1) {
 } else {
@@ -65,7 +65,7 @@ if (tmpIfTest$1) {
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(1);
-    let tmpIfTest$2 /*:unknown*/ = 60;
+    let tmpIfTest$2 /*:unknown*/ = 1;
     const tmpIfTest$4 /*:unknown*/ = $(30);
     if (tmpIfTest$4) {
     } else {
@@ -88,7 +88,7 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = 60;
+let a = 1;
 const b = $( 30 );
 if (b) {
 
@@ -100,7 +100,7 @@ else {
 if (a) {
   while ($LOOP_UNROLL_10) {
     $( 1 );
-    let d = 60;
+    let d = 1;
     const e = $( 30 );
     if (e) {
 

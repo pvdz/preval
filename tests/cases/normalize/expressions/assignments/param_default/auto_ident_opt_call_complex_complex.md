@@ -47,8 +47,9 @@ let f = function ($$0) {
       const tmpCallCallee = $dotCall;
       const tmpCalleeParam = tmpChainElementCall;
       const tmpCalleeParam$1 = tmpChainRootCall;
-      const tmpCalleeParam$3 = $(1);
-      const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+      const tmpCalleeParam$3 = undefined;
+      const tmpCalleeParam$5 = $(1);
+      const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
       tmpNestedComplexRhs = tmpChainElementCall$1;
     } else {
     }
@@ -62,8 +63,8 @@ let f = function ($$0) {
 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee$1 = $;
-const tmpCalleeParam$5 = f();
-tmpCallCallee$1(tmpCalleeParam$5);
+const tmpCalleeParam$7 = f();
+tmpCallCallee$1(tmpCalleeParam$7);
 $(a);
 `````
 
@@ -76,8 +77,8 @@ const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 let tmpClusterSSA_a /*:unknown*/ = undefined;
 if (tmpIfTest$1) {
 } else {
-  const tmpCalleeParam$3 /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
+  const tmpCalleeParam$5 /*:unknown*/ = $(1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$5);
   tmpClusterSSA_a = tmpChainElementCall$1;
 }
 $(undefined);
@@ -97,7 +98,7 @@ if (b) {
 }
 else {
   const d = $( 1 );
-  const e = $dotCall( a, $, d );
+  const e = $dotCall( a, $, undefined, d );
   c = e;
 }
 $( undefined );

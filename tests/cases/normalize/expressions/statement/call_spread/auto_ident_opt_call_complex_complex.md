@@ -37,8 +37,9 @@ if (tmpIfTest) {
   const tmpCallCallee$1 = $dotCall;
   const tmpCalleeParam = tmpChainElementCall;
   const tmpCalleeParam$1 = tmpChainRootCall;
-  const tmpCalleeParam$3 = $(1);
-  const tmpChainElementCall$1 = tmpCallCallee$1(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+  const tmpCalleeParam$3 = undefined;
+  const tmpCalleeParam$5 = $(1);
+  const tmpChainElementCall$1 = tmpCallCallee$1(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
   tmpCalleeParamSpread = tmpChainElementCall$1;
 } else {
 }
@@ -55,8 +56,8 @@ const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
   $(...undefined);
 } else {
-  const tmpCalleeParam$3 /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
+  const tmpCalleeParam$5 /*:unknown*/ = $(1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$5);
   $(...tmpChainElementCall$1);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -75,7 +76,7 @@ if (b) {
 }
 else {
   const c = $( 1 );
-  const d = $dotCall( a, $, c );
+  const d = $dotCall( a, $, undefined, c );
   $( ...d );
 }
 const e = {

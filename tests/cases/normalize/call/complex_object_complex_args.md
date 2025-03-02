@@ -30,7 +30,7 @@ const tmpCallObj = $(a);
 const tmpCallVal = tmpCallObj.b;
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-$dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
+$dotCall(tmpCallVal, tmpCallObj, `b`, tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Output
@@ -42,7 +42,7 @@ const tmpCallObj /*:unknown*/ = $(a);
 const tmpCallVal /*:unknown*/ = tmpCallObj.b;
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
-$dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
+$dotCall(tmpCallVal, tmpCallObj, `b`, tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## PST Output
@@ -55,7 +55,7 @@ const b = $( a );
 const c = b.b;
 const d = $( 1 );
 const e = $( 2 );
-$dotCall( c, b, d, e );
+$dotCall( c, b, "b", d, e );
 `````
 
 ## Globals

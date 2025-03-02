@@ -38,8 +38,9 @@ if (tmpIfTest) {
   const tmpCallCallee$3 = $dotCall;
   const tmpCalleeParam$1 = tmpChainElementCall;
   const tmpCalleeParam$3 = tmpChainRootCall;
-  const tmpCalleeParam$5 = $(1);
-  const tmpChainElementCall$1 = tmpCallCallee$3(tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
+  const tmpCalleeParam$5 = undefined;
+  const tmpCalleeParam$7 = $(1);
+  const tmpChainElementCall$1 = tmpCallCallee$3(tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5, tmpCalleeParam$7);
   a = tmpChainElementCall$1;
 } else {
 }
@@ -62,8 +63,8 @@ const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
   $(`before  undefined  after`);
 } else {
-  const tmpCalleeParam$5 /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, tmpCalleeParam$5);
+  const tmpCalleeParam$7 /*:unknown*/ = $(1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$7);
   a = tmpChainElementCall$1;
   const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpChainElementCall$1, `string`);
   const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
@@ -85,7 +86,7 @@ if (c) {
 }
 else {
   const d = $( 1 );
-  const e = $dotCall( b, $, d );
+  const e = $dotCall( b, $, undefined, d );
   a = e;
   const f = $coerce( e, "string" );
   const g = `before  ${f}  after`;

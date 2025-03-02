@@ -12,7 +12,7 @@
 const g = function(){ $(); };
 const obj = {f: g};
 const method = /foo/; // Nevermind that it's not callable
-$dotCall(method, obj);
+$dotCall(method, obj, undefined);
 `````
 
 ## Pre Normal
@@ -25,7 +25,7 @@ const g = function () {
 };
 const obj = { f: g };
 const method = /foo/;
-$dotCall(method, obj);
+$dotCall(method, obj, undefined);
 `````
 
 ## Normalized
@@ -39,7 +39,7 @@ const g = function () {
 };
 const obj = { f: g };
 const method = /foo/;
-$dotCall(method, obj);
+$dotCall(method, obj, undefined);
 `````
 
 ## Output
@@ -53,7 +53,7 @@ const g /*:()=>unknown*/ = function () {
 };
 const method /*:regex*/ = /foo/;
 const obj /*:object*/ = { f: g };
-$dotCall(method, obj);
+$dotCall(method, obj, undefined);
 `````
 
 ## PST Output
@@ -68,7 +68,7 @@ const a = function() {
 };
 const b = /foo/;
 const c = { f: a };
-$dotCall( b, c );
+$dotCall( b, c, undefined );
 `````
 
 ## Globals

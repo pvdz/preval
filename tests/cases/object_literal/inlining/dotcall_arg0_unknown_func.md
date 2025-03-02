@@ -12,7 +12,7 @@
 const g = function(){ $(); };
 const h = function(){ $(); };
 const obj = {f: g};
-$dotCall(h, obj); // not calling an obj prop value
+$dotCall(h, obj, undefined); // not calling an obj prop value
 `````
 
 ## Pre Normal
@@ -28,7 +28,7 @@ const h = function () {
   $();
 };
 const obj = { f: g };
-$dotCall(h, obj);
+$dotCall(h, obj, undefined);
 `````
 
 ## Normalized
@@ -46,7 +46,7 @@ const h = function () {
   return undefined;
 };
 const obj = { f: g };
-$dotCall(h, obj);
+$dotCall(h, obj, undefined);
 `````
 
 ## Output
@@ -64,7 +64,7 @@ const h /*:()=>unknown*/ = function () {
   return undefined;
 };
 const obj /*:object*/ = { f: g };
-$dotCall(h, obj);
+$dotCall(h, obj, undefined);
 `````
 
 ## PST Output
@@ -83,7 +83,7 @@ const b = function() {
   return undefined;
 };
 const c = { f: a };
-$dotCall( b, c );
+$dotCall( b, c, undefined );
 `````
 
 ## Globals

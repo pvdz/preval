@@ -11,7 +11,7 @@
 `````js filename=intro
 const naN = NaN;
 const tmpCallVal = naN.toString;
-const x = $dotCall(tmpCallVal, naN, 2, $, unknown);
+const x = $dotCall(tmpCallVal, naN, 'toString', 2, $, unknown);
 $(x);
 `````
 
@@ -21,7 +21,7 @@ $(x);
 `````js filename=intro
 const naN = NaN;
 const tmpCallVal = naN.toString;
-const x = $dotCall(tmpCallVal, naN, 2, $, unknown);
+const x = $dotCall(tmpCallVal, naN, `toString`, 2, $, unknown);
 $(x);
 `````
 

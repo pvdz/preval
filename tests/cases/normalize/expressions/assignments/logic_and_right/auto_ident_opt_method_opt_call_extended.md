@@ -46,7 +46,7 @@ if (tmpCalleeParam) {
     const tmpChainElementObject$3 = tmpChainElementObject$1.e;
     const tmpIfTest$1 = tmpChainElementObject$3 != null;
     if (tmpIfTest$1) {
-      const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
+      const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, `e`, 1);
       tmpNestedComplexRhs = tmpChainElementCall;
     } else {
     }
@@ -72,7 +72,7 @@ if (tmpCalleeParam) {
   if (tmpIfTest$1) {
   } else {
     const tmpObjLitVal$1 /*:object*/ = { e: $ };
-    const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, 1);
+    const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
     tmpNestedComplexRhs = tmpChainElementCall;
   }
   a = tmpNestedComplexRhs;
@@ -101,7 +101,7 @@ if (b) {
   }
   else {
     const e = { e: $ };
-    const f = $dotCall( $, e, 1 );
+    const f = $dotCall( $, e, "e", 1 );
     c = f;
   }
   a = c;

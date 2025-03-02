@@ -56,7 +56,7 @@ if (tmpIfTest) {
     const tmpChainElementObject$3 = tmpChainElementObject$1.e;
     const tmpIfTest$3 = tmpChainElementObject$3 != null;
     if (tmpIfTest$3) {
-      const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
+      const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, `e`, 1);
     } else {
     }
   } else {
@@ -78,7 +78,7 @@ if (tmpIfTest) {
   if (tmpIfTest$3) {
   } else {
     const tmpObjLitVal$1 /*:object*/ = { e: $ };
-    $dotCall($, tmpObjLitVal$1, 1);
+    $dotCall($, tmpObjLitVal$1, `e`, 1);
   }
 } else {
 }
@@ -101,7 +101,7 @@ if (c) {
   }
   else {
     const e = { e: $ };
-    $dotCall( $, e, 1 );
+    $dotCall( $, e, "e", 1 );
   }
 }
 const f = {

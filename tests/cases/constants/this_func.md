@@ -45,7 +45,7 @@ let f = function () {
 const tmpCallObj = f;
 const tmpCallVal = tmpCallObj.call;
 const tmpCalleeParam = { pass: 1 };
-$dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam);
+$dotCall(tmpCallVal, tmpCallObj, `call`, tmpCalleeParam);
 `````
 
 ## Output

@@ -11,7 +11,7 @@
 `````js filename=intro
 const bool = false;
 const tmpCallVal = bool.toString;
-const x = $dotCall(tmpCallVal, bool);
+const x = $dotCall(tmpCallVal, bool, 'toString');
 $(x);
 `````
 
@@ -21,7 +21,7 @@ $(x);
 `````js filename=intro
 const bool = false;
 const tmpCallVal = bool.toString;
-const x = $dotCall(tmpCallVal, bool);
+const x = $dotCall(tmpCallVal, bool, `toString`);
 $(x);
 `````
 

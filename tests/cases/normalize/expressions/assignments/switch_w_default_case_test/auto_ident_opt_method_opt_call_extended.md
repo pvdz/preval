@@ -67,7 +67,7 @@ if (tmpIfTest$1) {
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
   const tmpIfTest$3 = tmpChainElementObject$3 != null;
   if (tmpIfTest$3) {
-    const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
+    const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, `e`, 1);
     a = tmpChainElementCall;
   } else {
   }
@@ -111,7 +111,7 @@ if (tmpIfTest$3) {
   tmpIfTest = undefined === tmpSwitchValue;
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, 1);
+  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
   a = tmpChainElementCall;
   tmpIfTest = tmpChainElementCall === tmpSwitchValue;
 }
@@ -148,7 +148,7 @@ if (e) {
 }
 else {
   const f = { e: $ };
-  const g = $dotCall( $, f, 1 );
+  const g = $dotCall( $, f, "e", 1 );
   c = g;
   d = g === a;
 }

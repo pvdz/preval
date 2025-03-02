@@ -293,13 +293,13 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       const tmpCallObj = alias3;
       const tmpCallVal = tmpCallObj.push;
       const tmpCalleeParam$11 = alias3.shift();
-      $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam$11);
+      $dotCall(tmpCallVal, tmpCallObj, `push`, tmpCalleeParam$11);
     }
   } catch (_0x4f54af$22) {
     const tmpCallObj$1 = alias3;
     const tmpCallVal$1 = tmpCallObj$1.push;
     const tmpCalleeParam$13 = alias3.shift();
-    $dotCall(tmpCallVal$1, tmpCallObj$1, tmpCalleeParam$13);
+    $dotCall(tmpCallVal$1, tmpCallObj$1, `push`, tmpCalleeParam$13);
   }
 }
 const tmpCallCallee$11 = $;

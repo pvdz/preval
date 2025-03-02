@@ -52,8 +52,9 @@ if (tmpIfTest) {
     const tmpCallCallee = $dotCall;
     const tmpCalleeParam = tmpChainElementCall;
     const tmpCalleeParam$1 = tmpChainRootCall;
-    const tmpCalleeParam$3 = $(1);
-    const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+    const tmpCalleeParam$3 = undefined;
+    const tmpCalleeParam$5 = $(1);
+    const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
   } else {
   }
 } else {
@@ -73,8 +74,8 @@ if (tmpIfTest) {
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$1) {
   } else {
-    const tmpCalleeParam$3 /*:unknown*/ = $(1);
-    $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
+    const tmpCalleeParam$5 /*:unknown*/ = $(1);
+    $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$5);
   }
 } else {
 }
@@ -98,7 +99,7 @@ if (c) {
   }
   else {
     const f = $( 1 );
-    $dotCall( d, $, f );
+    $dotCall( d, $, undefined, f );
   }
 }
 const g = {

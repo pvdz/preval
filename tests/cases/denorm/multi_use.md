@@ -15,7 +15,7 @@ if (expires) {
   const time = date.getTime();
   const exp = expires * 1000;
   const endtime = time + exp;
-  $dotCall(settime, date, endtime);
+  $dotCall(settime, date, 'setTime', endtime);
   a8.expires = date;
   unknown = date;
 } else {
@@ -33,7 +33,7 @@ if (expires) {
   const time = date.getTime();
   const exp = expires * 1000;
   const endtime = time + exp;
-  $dotCall(settime, date, endtime);
+  $dotCall(settime, date, `setTime`, endtime);
   a8.expires = date;
   unknown = date;
 } else {
@@ -50,7 +50,7 @@ if (expires) {
   const time = date.getTime();
   const exp = expires * 1000;
   const endtime = time + exp;
-  $dotCall(settime, date, endtime);
+  $dotCall(settime, date, `setTime`, endtime);
   a8.expires = date;
   unknown = date;
 } else {
@@ -66,7 +66,7 @@ if (expires) {
   const time /*:unknown*/ = date.getTime();
   const exp /*:number*/ = expires * 1000;
   const endtime /*:primitive*/ = time + exp;
-  $dotCall($date_setTime, date, endtime);
+  $dotCall($date_setTime, date, `setTime`, endtime);
   a8.expires = date;
   unknown = date;
 } else {
@@ -83,7 +83,7 @@ if (expires) {
   const b = a.getTime();
   const c = expires * 1000;
   const d = b + c;
-  $dotCall( $date_setTime, a, d );
+  $dotCall( $date_setTime, a, "setTime", d );
   a8.expires = a;
   unknown = a;
 }

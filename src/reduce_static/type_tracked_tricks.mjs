@@ -886,7 +886,7 @@ function _typeTrackedTricks(fdata) {
               // '$dotCall' -- folding builtins
               // Resolve .call in some cases ($dotCall)
 
-              ASSERT(node.arguments.length >= 2, 'should at least have the function to call and context, and then any number of args');
+              ASSERT(node.arguments.length >= 3, 'should at least have the function to call and context, and then any number of args');
               ASSERT(
                 node.arguments[1].type !== 'Identifier' || node.arguments[1].name !== 'arguments',
                 'in normalized code this can never be `arguments` (the only exception to meta fetching)',
@@ -895,6 +895,7 @@ function _typeTrackedTricks(fdata) {
               const [
                 funcRefNode, // This is the (potentially cached) function value passed on as first arg
                 contextNode, // This is the original object that must be the context of this call (until we can determine the context is unused/eliminable)
+                propNode, // The original property name if it's not computed, undefined if it was computed
                 ...argNodes // These are the actual args of the original call
               ] = node.arguments;
 
@@ -905,14 +906,13 @@ function _typeTrackedTricks(fdata) {
                     // Context is ignored. Replace with regular call
                     rule('Doing .call on `Function` is moot because it ignores the context');
                     example('Function.call(a, b, c)', 'Function(b, c)');
-                    example(SYMBOL_DOTCALL + '(Function, a, b, c)', 'Function(a, b, c)');
                     before(node, grandNode);
 
                     node.callee = funcRefNode;
                     // Mark all args as tainted, just in case.
                     // We should not need to taint Function and $dotCall metas for this.
                     node.arguments.forEach((enode, i) => {
-                      if (i === 1 || i > 2) {
+                      if (i === 1 || i > 3) {
                         if (enode.type === 'Identifier') {
                           taint(enode, fdata);
                         } else if (enode.type === 'SpreadElement') {
@@ -920,7 +920,7 @@ function _typeTrackedTricks(fdata) {
                         }
                       }
                     });
-                    node.arguments.splice(0, 2); // Drop `Function`, the context ref, and the prop name
+                    node.arguments.splice(0, 3); // Drop `Function`, the context ref, and the prop name
 
                     // Mark all args as tainted, just in case.
                     // We should not need to taint Function and $dotCall metas for this.
@@ -935,7 +935,7 @@ function _typeTrackedTricks(fdata) {
                         }
                       }
                     });
-                    node.arguments.splice(0, 2); // Drop `Function` and the context ref
+                    node.arguments.splice(0, 3); // Drop `Function` and the context ref
 
                     after(node);
                     ++changes;
@@ -952,7 +952,7 @@ function _typeTrackedTricks(fdata) {
                     // Mark all args as tainted, just in case.
                     // We should not need to taint Function and $dotCall metas for this.
                     node.arguments.forEach((enode, i) => {
-                      if (i === 1 || i > 2) {
+                      if (i === 1 || i > 3) {
                         if (enode.type === 'Identifier') {
                           taint(enode, fdata);
                         } else if (enode.type === 'SpreadElement') {
@@ -960,7 +960,7 @@ function _typeTrackedTricks(fdata) {
                         }
                       }
                     });
-                    node.arguments.splice(0, 2); // Drop `RegExp`, the context ref, and the prop name
+                    node.arguments.splice(0, 3); // Drop `RegExp`, the context ref, and the prop name
 
                     after(node);
                     ++changes;
@@ -1045,13 +1045,13 @@ function _typeTrackedTricks(fdata) {
                   case 'Array#shift':
                   case 'Array#unshift': {
                     // Fold the call, make a regular array call. This lets another rule deal with the semantics, which we'll need anyways.
-                    // `$dotCall(func, context, arg1, arg2, arg3);`
+                    // `$dotCall(func, context, "tag", arg1, arg2, arg3);`
                     // -> `context.tag(arg1, arg2, arg3);`
                     // The $dotCall asserts for us that the method was called before as well so it should be safe to do
                     // (Additionally, we could verify that the value is an array, but I believe we don't need to?)
 
                     rule('A $dotCall with builtin methods can be a regular method call');
-                    example(`$dotCall(${symbo('array', 'push')}, arr, arg1, arg2, arg3);`, 'arr.push(arg1, arg2, arg3);');
+                    example(`$dotCall(${symbo('array', 'push')}, arr, "push", arg1, arg2, arg3);`, 'arr.push(arg1, arg2, arg3);');
                     before(node, blockBody[blockIndex]);
 
                     const methodName = refMeta.typing.builtinTag.slice(refMeta.typing.builtinTag.indexOf('#') + 1);
@@ -1059,6 +1059,7 @@ function _typeTrackedTricks(fdata) {
                     node.callee = AST.memberExpression(node['arguments'][1], methodName);
                     node.arguments.shift(); // Array#<methodName>
                     node.arguments.shift(); // the arr context
+                    node.arguments.shift(); // the prop
 
                     after(node, blockBody[blockIndex]);
                     return true;

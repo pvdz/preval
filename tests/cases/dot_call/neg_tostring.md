@@ -11,7 +11,7 @@
 `````js filename=intro
 const num = -500;
 const tmpCallVal = num.toString;
-const x = $dotCall(tmpCallVal, num);
+const x = $dotCall(tmpCallVal, num, 'toString');
 $(x);
 `````
 
@@ -21,7 +21,7 @@ $(x);
 `````js filename=intro
 const num = -500;
 const tmpCallVal = num.toString;
-const x = $dotCall(tmpCallVal, num);
+const x = $dotCall(tmpCallVal, num, `toString`);
 $(x);
 `````
 

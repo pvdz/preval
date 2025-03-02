@@ -37,7 +37,7 @@ const cook = document.cookie;
 const tmpCallObj = cook;
 const tmpCallVal = tmpCallObj.match;
 const tmpCalleeParam = /x/;
-const stuff = $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam);
+const stuff = $dotCall(tmpCallVal, tmpCallObj, `match`, tmpCalleeParam);
 if (stuff) {
   const tmpCallCallee = decodeURIComponent;
   const tmpCalleeParam$1 = stuff[1];

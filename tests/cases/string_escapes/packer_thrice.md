@@ -159,7 +159,7 @@ const tmpCallCallee$1 = function ($$0, $$1, $$2, $$3, $$4, $$5) {
         const tmpCalleeParam$29 = `g`;
         const tmpCalleeParam$23 = new tmpNewCallee(tmpCalleeParam$27, tmpCalleeParam$29);
         const tmpCalleeParam$25 = k[c];
-        p = $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam$23, tmpCalleeParam$25);
+        p = $dotCall(tmpCallVal, tmpCallObj, `replace`, tmpCalleeParam$23, tmpCalleeParam$25);
       } else {
       }
     } else {

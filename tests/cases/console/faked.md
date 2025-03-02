@@ -10,15 +10,15 @@
 
 `````js filename=intro
 const arr = $([1, 2, 3, 'consle test case']);
-$dotCall($console_log, console, 'a', 'b', ...c);
-$dotCall($console_warn, console, 'a', 'b', ...c);
-$dotCall($console_error, console, 'a', 'b', ...c);
-$dotCall($console_dir, console, 'a', 'b', ...c);
-$dotCall($console_debug, console, 'a', 'b', ...c);
-$dotCall($console_time, console, 'a', 'b', ...c);
-$dotCall($console_timeEnd, console, 'a', 'b', ...c);
-$dotCall($console_group, console, 'a', 'b', ...c);
-$dotCall($console_groupEnd, console, 'a', 'b', ...c);
+$dotCall($console_log, console, 'log', 'a', 'b', ...c);
+$dotCall($console_warn, console, 'warn', 'a', 'b', ...c);
+$dotCall($console_error, console, 'error', 'a', 'b', ...c);
+$dotCall($console_dir, console, 'dir', 'a', 'b', ...c);
+$dotCall($console_debug, console, 'debug', 'a', 'b', ...c);
+$dotCall($console_time, console, 'time', 'a', 'b', ...c);
+$dotCall($console_timeEnd, console, 'timeEnd', 'a', 'b', ...c);
+$dotCall($console_group, console, 'group', 'a', 'b', ...c);
+$dotCall($console_groupEnd, console, 'groupEnd', 'a', 'b', ...c);
 `````
 
 ## Pre Normal
@@ -26,15 +26,15 @@ $dotCall($console_groupEnd, console, 'a', 'b', ...c);
 
 `````js filename=intro
 const arr = $([1, 2, 3, `consle test case`]);
-$dotCall($console_log, console, `a`, `b`, ...c);
-$dotCall($console_warn, console, `a`, `b`, ...c);
-$dotCall($console_error, console, `a`, `b`, ...c);
-$dotCall($console_dir, console, `a`, `b`, ...c);
-$dotCall($console_debug, console, `a`, `b`, ...c);
-$dotCall($console_time, console, `a`, `b`, ...c);
-$dotCall($console_timeEnd, console, `a`, `b`, ...c);
-$dotCall($console_group, console, `a`, `b`, ...c);
-$dotCall($console_groupEnd, console, `a`, `b`, ...c);
+$dotCall($console_log, console, `log`, `a`, `b`, ...c);
+$dotCall($console_warn, console, `warn`, `a`, `b`, ...c);
+$dotCall($console_error, console, `error`, `a`, `b`, ...c);
+$dotCall($console_dir, console, `dir`, `a`, `b`, ...c);
+$dotCall($console_debug, console, `debug`, `a`, `b`, ...c);
+$dotCall($console_time, console, `time`, `a`, `b`, ...c);
+$dotCall($console_timeEnd, console, `timeEnd`, `a`, `b`, ...c);
+$dotCall($console_group, console, `group`, `a`, `b`, ...c);
+$dotCall($console_groupEnd, console, `groupEnd`, `a`, `b`, ...c);
 `````
 
 ## Normalized
@@ -44,15 +44,15 @@ $dotCall($console_groupEnd, console, `a`, `b`, ...c);
 const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2, 3, `consle test case`];
 const arr = tmpCallCallee(tmpCalleeParam);
-$dotCall($console_log, console, `a`, `b`, ...c);
-$dotCall($console_warn, console, `a`, `b`, ...c);
-$dotCall($console_error, console, `a`, `b`, ...c);
-$dotCall($console_dir, console, `a`, `b`, ...c);
-$dotCall($console_debug, console, `a`, `b`, ...c);
-$dotCall($console_time, console, `a`, `b`, ...c);
-$dotCall($console_timeEnd, console, `a`, `b`, ...c);
-$dotCall($console_group, console, `a`, `b`, ...c);
-$dotCall($console_groupEnd, console, `a`, `b`, ...c);
+$dotCall($console_log, console, `log`, `a`, `b`, ...c);
+$dotCall($console_warn, console, `warn`, `a`, `b`, ...c);
+$dotCall($console_error, console, `error`, `a`, `b`, ...c);
+$dotCall($console_dir, console, `dir`, `a`, `b`, ...c);
+$dotCall($console_debug, console, `debug`, `a`, `b`, ...c);
+$dotCall($console_time, console, `time`, `a`, `b`, ...c);
+$dotCall($console_timeEnd, console, `timeEnd`, `a`, `b`, ...c);
+$dotCall($console_group, console, `group`, `a`, `b`, ...c);
+$dotCall($console_groupEnd, console, `groupEnd`, `a`, `b`, ...c);
 `````
 
 ## Output

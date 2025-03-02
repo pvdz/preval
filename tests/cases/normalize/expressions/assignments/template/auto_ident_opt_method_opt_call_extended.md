@@ -45,7 +45,7 @@ if (tmpIfTest) {
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
   const tmpIfTest$1 = tmpChainElementObject$3 != null;
   if (tmpIfTest$1) {
-    const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
+    const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, `e`, 1);
     a = tmpChainElementCall;
   } else {
   }
@@ -70,7 +70,7 @@ if (tmpIfTest$1) {
   $(`before  undefined  after`);
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, 1);
+  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
   a = tmpChainElementCall;
   const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpChainElementCall, `string`);
   const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
@@ -91,7 +91,7 @@ if (b) {
 }
 else {
   const c = { e: $ };
-  const d = $dotCall( $, c, 1 );
+  const d = $dotCall( $, c, "e", 1 );
   a = d;
   const e = $coerce( d, "string" );
   const f = `before  ${e}  after`;

@@ -1467,6 +1467,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               const finalNode = AST.callExpression(SYMBOL_DOTCALL, [
                 AST.identifier(tmpNameFunc),
                 AST.identifier(tmpNameObj), // Context
+                AST.identifier('undefined'), // computed property means we use `undefined` here
                 ...args,
               ]);
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -1494,6 +1495,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               const finalNode = AST.callExpression(SYMBOL_DOTCALL, [
                 AST.identifier(tmpNameFunc),
                 AST.identifier(tmpNameObj), // Context
+                AST.primitive(callee.property.name), // Property, non-computed
                 ...args,
               ]);
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -2717,6 +2719,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             const finalNode = AST.callExpression(SYMBOL_DOTCALL, [
               AST.identifier(tmpNameVal),
               AST.identifier(tmpNameObj),
+              AST.identifier('undefined'), // property, computed
               ...newArgs,
             ]);
             const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -2783,6 +2786,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               const finalNode = AST.callExpression(SYMBOL_DOTCALL, [
                 AST.identifier(tmpNameVal),
                 AST.identifier(tmpNameObj),
+                AST.primitive(callee.property.name), // Property, non-computed
                 ...newArgs,
               ]);
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
@@ -3269,12 +3273,13 @@ export function phaseNormalize(fdata, fname, prng, options) {
             !(node.arguments[1] === 'Identifier' && node.arguments[1].name === 'undefined')
           ) {
             rule('dotCalling the global Function does not need a context');
-            example('$dotCall(Function, x, y);', 'Function(y);');
+            example('$dotCall(Function, x, "Function", y);', 'Function(y);');
             before(body[i]);
 
             node.callee.name = 'Function';
-            node.arguments.shift();
+            node.arguments.shift(); // This should be the Function ref
             const ctxArg = node.arguments.shift(); // TODO: we want to retain this tho
+            node.arguments.shift(); // the property name, not important
             body.splice(i, 0, AST.expressionStatement(ctxArg));
 
             after(body[i]);
@@ -3282,7 +3287,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
             return true;
           }
 
-          // Lowest hanging fruit: `const x = a.b; $dotCall(x, a, 1, 2); -> a.b(1, 2)
+          // Lowest hanging fruit: `const x = a.b; $dotCall(x, a, "b", 1, 2); -> a.b(1, 2)
           // Check previous statement. If it is a const binding to the first arg of the $dotCall
           // and it is a member expression where the object equals the second $dotCall arg... simplify!
 
@@ -3293,23 +3298,24 @@ export function phaseNormalize(fdata, fname, prng, options) {
             node.arguments.length &&
             node.arguments[0].type === 'Identifier' &&
             body[i - 1].declarations[0].id.name === node.arguments[0].name &&
-            // `const a = ???; $dotCall(a, b, c)` where a is defined in the previous statement. check context
+            // `const a = ???; $dotCall(a, b, "prop", c)` where a is defined in the previous statement. check context
             body[i - 1].declarations[0].init.type === 'MemberExpression' &&
             !body[i - 1].declarations[0].init.computed &&
             body[i - 1].declarations[0].init.object.type === 'Identifier' &&
             node.arguments[1].type === 'Identifier' &&
             body[i - 1].declarations[0].init.object.name === node.arguments[1].name
-            // `const a = b.?; $dotCall(a, b, c)` where a is defined in the previous statement. we should be good now
+            // `const a = b.?; $dotCall(a, b, "prop", c)` where a is defined in the previous statement. we should be good now
           ) {
             // (We must support method calls, anyways. This makes some things easier.)
             rule('If the first $dotCall arg is found to be declared by a simple member expression then recombine it');
-            example('const a = b.c; $dotCall(a, b, 1, 2);', 'b.c(1, 2);');
+            example('const a = b.c; $dotCall(a, b, "c", 1, 2);', 'b.c(1, 2);');
             before(body[i - 1]);
             before(body[i]);
 
             node.callee = body[i - 1].declarations[0].init;
             node.arguments.shift(); // Remove the function being called (that is the callee now)
             node.arguments.shift(); // Remove the context arg
+            node.arguments.shift(); // Remove the property name
             body[i - 1] = AST.emptyStatement();
 
             before(body[i - 1]);
@@ -7409,8 +7415,11 @@ export function phaseNormalize(fdata, fname, prng, options) {
         before(node, parentNodeOrWhatever);
 
         let lastObj;
+        let lastComputed;
+        let lastProp;
         let prevObj;
         let prevComputed = false;
+        let prevProp;
         let newNodes = [];
         let nodes = newNodes;
 
@@ -7433,8 +7442,11 @@ export function phaseNormalize(fdata, fname, prng, options) {
               const tmpName = createFreshVar('tmpChainRootProp', fdata);
               vlog('  - Left most object will be stored in', tmpName);
               lastObj = prevObj;
+              lastComputed = prevComputed;
+              lastProp = prevProp;
               prevObj = tmpName;
               prevComputed = node.computed;
+              prevProp = node.property;
               nodes.push(AST.variableDeclaration(tmpName, node.object, 'const'));
             }
 
@@ -7458,17 +7470,24 @@ export function phaseNormalize(fdata, fname, prng, options) {
             vlog('Storing next property', node.property.name, 'in', tmpName);
             nodes.push(AST.variableDeclaration(tmpName, AST.memberExpression(prevObj, node.property, node.computed), 'const'));
             lastObj = prevObj;
+            lastComputed = prevComputed;
+            lastProp = prevProp;
             prevObj = tmpName;
             prevComputed = node.computed;
+            prevProp = node.property;
           } else if (node.type === 'CallExpression') {
             if (node.callee.type === 'MemberExpression' || node.callee.type === 'CallExpression') {
               r(node.callee);
             } else {
+              // Like the first node (call `a()`) of `a()?.b()?.c()`
               const tmpName = createFreshVar('tmpChainRootCall', fdata);
               vlog('  - Left most callee will be stored in', tmpName);
               lastObj = prevObj;
+              lastComputed = prevComputed;
+              lastProp = prevProp;
               prevObj = tmpName;
               prevComputed = false;
+              prevProp = 'DO_NOT_USE_ME_IS_OPT_CHAIN_BUG_IF_USED_ANYWAYS';
               nodes.push(AST.variableDeclaration(tmpName, node.callee, 'const'));
             }
 
@@ -7492,15 +7511,23 @@ export function phaseNormalize(fdata, fname, prng, options) {
                   ? // a?.b(1, 2, 3)  ->  b.call(a, 1, 2, 3)
                     // Call the special builtin to signify that this call was previously in fact a method call. We need this because
                     // when we find a random `.call()` we can't distinguish the built-in Function#call from a user method named `call`
-                  AST.callExpression(SYMBOL_DOTCALL, [AST.identifier(prevObj), AST.identifier(lastObj), ...node.arguments])
+                  AST.callExpression(SYMBOL_DOTCALL, [
+                    AST.identifier(prevObj),
+                    AST.identifier(lastObj),
+                    prevComputed ? AST.identifier('undefined') : AST.primitive(prevProp.name),
+                    ...node.arguments]
+                  )
                   : // a(1, 2, 3)  ->  b(1, 2, 3)
                   AST.callExpression(prevObj, node.arguments),
                 'const',
               ),
             );
             lastObj = prevObj;
+            lastComputed = prevComputed;
+            lastProp = prevProp;
             prevObj = tmpName;
             prevComputed = false;
+            prevProp = 'DO_NOT_USE_ME_IS_OPT_CHAIN_BUG2_IF_USED_ANYWAYS';
           } else {
             ASSERT(false, 'eh?');
           }

@@ -35,7 +35,7 @@ const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall($);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, 1);
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, undefined, 1);
   tmpBinBothRhs = tmpChainElementCall$1;
 } else {
 }
@@ -57,7 +57,7 @@ if (tmpIfTest) {
   a ** 0;
   $(NaN);
 } else {
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, 1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
   tmpClusterSSA_a = a * tmpChainElementCall$1;
   $(tmpClusterSSA_a);
 }
@@ -81,7 +81,7 @@ if (b) {
   $( NaN );
 }
 else {
-  const e = $dotCall( a, $, 1 );
+  const e = $dotCall( a, $, undefined, 1 );
   c = d * e;
   $( c );
 }

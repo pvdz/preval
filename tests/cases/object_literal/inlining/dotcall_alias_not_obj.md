@@ -13,7 +13,7 @@ const g = function(){ return 'win'; };
 const obj = {f: g};
 const alias = $.f;
 $();
-$dotCall(alias, obj, 1);
+$dotCall(alias, obj, 'f', 1);
 `````
 
 ## Pre Normal
@@ -27,7 +27,7 @@ const g = function () {
 const obj = { f: g };
 const alias = $.f;
 $();
-$dotCall(alias, obj, 1);
+$dotCall(alias, obj, `f`, 1);
 `````
 
 ## Normalized
@@ -41,7 +41,7 @@ const g = function () {
 const obj = { f: g };
 const alias = $.f;
 $();
-$dotCall(alias, obj, 1);
+$dotCall(alias, obj, `f`, 1);
 `````
 
 ## Output
@@ -55,7 +55,7 @@ const g /*:()=>string*/ = function () {
 const alias /*:unknown*/ = $.f;
 $();
 const obj /*:object*/ = { f: g };
-$dotCall(alias, obj, 1);
+$dotCall(alias, obj, `f`, 1);
 `````
 
 ## PST Output
@@ -70,7 +70,7 @@ const a = function() {
 const b = $.f;
 $();
 const c = { f: a };
-$dotCall( b, c, 1 );
+$dotCall( b, c, "f", 1 );
 `````
 
 ## Globals

@@ -19,23 +19,7 @@
 // TODO: if the object escapes after the call then we could ignore that case? example: tests/cases/ifelse/this.md
 
 import walk from '../../lib/walk.mjs';
-import {
-  ASSERT,
-  log,
-  group,
-  groupEnd,
-  vlog,
-  vgroup,
-  vgroupEnd,
-  rule,
-  example,
-  before,
-  source,
-  after,
-  fmat,
-  tmat,
-  findBodyOffset,
-} from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, findBodyOffset } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { SYMBOL_DOTCALL } from '../symbols_preval.mjs';
 
@@ -99,12 +83,12 @@ function process(fdata, queue) {
         read.parentNode.callee.type === 'Identifier' &&
         read.parentNode.callee.name === SYMBOL_DOTCALL // $dotCall
       ) {
-        // So something like `$dotCall(method, obj, args)`
+        // So something like `$dotCall(method, obj, prop, ...args)`
         // To proceed the read must be the second arg and the first arg must be the value of a or be the result of a property...
         ASSERT(read.parentProp === 'arguments', 'Since the callee was verified to be dotcall, I think the objlit can only appear in the arguments now');
         if (read.parentIndex !== 1) {
           // tests/cases/object_literal/inlining/dotcall_arg_0.md
-          // `$dotCall(method, ctx, objlit)`
+          // `$dotCall(method, ctx, "prop", objlit)`
           vlog('- bail: At least one read was a child of $dotCall but not the second arg');
           return true;
         }
@@ -122,7 +106,7 @@ function process(fdata, queue) {
         // Confirm that the const init was a property of our objlit ...
 
         if (aliasMeta.constValueRef.node.type === 'FunctionExpression') {
-          // This may be something like `const f = function(){}; const obj = {a: f}; $dotCall(f, a);`
+          // This may be something like `const f = function(){}; const obj = {a: f}; $dotCall(f, a, "b");`
           // We have to confirm that the called function is the value of one of the properties of the objlit
 
           if (objNode.properties.every(prop => {
@@ -137,11 +121,11 @@ function process(fdata, queue) {
             return true;
           }
           // This is
-          // `const f = function(){}; const obj = {a: f}; $dotCall(f, a);`
+          // `const f = function(){}; const obj = {a: f}; $dotCall(f, obj, "a");`
           // Where the function being dot called is verified to be a value in the objlit
         }
         else if (aliasMeta.constValueRef.node.type === 'MemberExpression') {
-          // This can be something like `const obj = {f: f}; const alias = obj.f; $dotCall(alias, obj);`
+          // This can be something like `const obj = {f: f}; const alias = obj.f; $dotCall(alias, obj, "f");`
           // We have to trace the alias back to a constant and confirm that is a property of the objlit
 
           if (
@@ -586,8 +570,8 @@ function process(fdata, queue) {
       else {
         if (read.parentNode.type === 'CallExpression' && read.parentNode.callee.type === 'Identifier' && read.parentNode.callee.name === SYMBOL_DOTCALL) {
           // Two forms:
-          // - `const f = function(){}; const objlit = {f}; const x = objlit.f; $dotCall(x, objlit, rest)`
-          // - `const f = function(){}; const objlit = {f}; $dotCall(x, objlit, rest)`
+          // - `const f = function(){}; const objlit = {f}; const x = objlit.f; $dotCall(x, objlit, "f", rest)`
+          // - `const f = function(){}; const objlit = {f}; $dotCall(x, objlit, "f", rest)`
           // At this point we have verified that the objlit is not mutated and so it's not
           // relevant to know if values "may spy" between reading the method and calling
           // $dotCall on it. So we can just find the const ref and assume it calls that.
@@ -604,13 +588,14 @@ function process(fdata, queue) {
             // Simple inline. Note: if the function was referencing `this`, it should not be doing that anymore at this point. (This transform is all or nothing)
             rule('When dotcall is used on a func ref directly and the funcref is value of a prop of an objlit that we are outlining, replace the dotcall with a direct call');
             example(
-              'const f = function(){}; const objlit = {f: f}; $dotCall(f, objlit, rest)',
+              'const f = function(){}; const objlit = {f: f}; $dotCall(f, objlit, "f", rest)',
               'const f = function(){}; const objlit = {f: f}; f(rest)'
             );
             before(read.blockBody[read.blockIndex]);
 
             read.parentNode.callee = read.parentNode.arguments.shift(); // the func ref node
-            read.parentNode.arguments.shift(); // the objit ref node
+            read.parentNode.arguments.shift(); // context
+            read.parentNode.arguments.shift(); // propname
 
             after(read.blockBody[read.blockIndex]);
             ++updated;
@@ -638,7 +623,7 @@ function process(fdata, queue) {
             // Note: if that function was referencing `this`, it should not be doing that anymore at this point. (This transform is all or nothing)
             rule('When dotcall is used on an alias of an objlit prop that we are outlining, replace the dotcall with a direct call to the aliased func value');
             example(
-              'const f = function(){}; const objlit = {f: f}; const alias = objlit.f; $dotCall(alias, objlit, rest)',
+              'const f = function(){}; const objlit = {f: f}; const alias = objlit.f; $dotCall(alias, objlit, "f", rest)',
               'const f = function(){}; const objlit = {f: f}; const alias = objlit.f; f(rest)'
             );
             before(read.blockBody[read.blockIndex]);
@@ -646,6 +631,7 @@ function process(fdata, queue) {
             read.parentNode.callee = AST.identifier(propValueFuncName);
             read.parentNode.arguments.shift(); // the alias ref node
             read.parentNode.arguments.shift(); // the objit ref node
+            read.parentNode.arguments.shift(); // propname
 
             after(read.blockBody[read.blockIndex]);
             ++updated;

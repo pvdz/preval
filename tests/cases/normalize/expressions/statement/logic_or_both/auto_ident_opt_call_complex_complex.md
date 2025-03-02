@@ -36,8 +36,9 @@ if (tmpIfTest$1) {
   const tmpCallCallee = $dotCall;
   const tmpCalleeParam = tmpChainElementCall;
   const tmpCalleeParam$1 = tmpChainRootCall;
-  const tmpCalleeParam$3 = $(1);
-  const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+  const tmpCalleeParam$3 = undefined;
+  const tmpCalleeParam$5 = $(1);
+  const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
   tmpIfTest = tmpChainElementCall$1;
 } else {
 }
@@ -48,10 +49,11 @@ if (tmpIfTest) {
   const tmpIfTest$3 = tmpChainElementCall$3 != null;
   if (tmpIfTest$3) {
     const tmpCallCallee$1 = $dotCall;
-    const tmpCalleeParam$5 = tmpChainElementCall$3;
-    const tmpCalleeParam$7 = tmpChainRootCall$1;
-    const tmpCalleeParam$9 = $(1);
-    const tmpChainElementCall$5 = tmpCallCallee$1(tmpCalleeParam$5, tmpCalleeParam$7, tmpCalleeParam$9);
+    const tmpCalleeParam$7 = tmpChainElementCall$3;
+    const tmpCalleeParam$9 = tmpChainRootCall$1;
+    const tmpCalleeParam$11 = undefined;
+    const tmpCalleeParam$13 = $(1);
+    const tmpChainElementCall$5 = tmpCallCallee$1(tmpCalleeParam$7, tmpCalleeParam$9, tmpCalleeParam$11, tmpCalleeParam$13);
   } else {
   }
 }
@@ -67,8 +69,8 @@ const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpCalleeParam$3 /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
+  const tmpCalleeParam$5 /*:unknown*/ = $(1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$5);
   tmpIfTest = tmpChainElementCall$1;
 }
 if (tmpIfTest) {
@@ -77,8 +79,8 @@ if (tmpIfTest) {
   const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$3 == null;
   if (tmpIfTest$3) {
   } else {
-    const tmpCalleeParam$9 /*:unknown*/ = $(1);
-    $dotCall(tmpChainElementCall$3, $, tmpCalleeParam$9);
+    const tmpCalleeParam$13 /*:unknown*/ = $(1);
+    $dotCall(tmpChainElementCall$3, $, undefined, tmpCalleeParam$13);
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -98,7 +100,7 @@ if (c) {
 }
 else {
   const d = $( 1 );
-  const e = $dotCall( b, $, d );
+  const e = $dotCall( b, $, undefined, d );
   a = e;
 }
 if (a) {
@@ -112,7 +114,7 @@ else {
   }
   else {
     const h = $( 1 );
-    $dotCall( f, $, h );
+    $dotCall( f, $, undefined, h );
   }
 }
 const i = {

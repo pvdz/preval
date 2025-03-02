@@ -48,7 +48,17 @@ const tmpCalleeParam$3 = 2;
 const tmpCalleeParam$5 = 3;
 const tmpCalleeParam$7 = `yep`;
 const tmpCalleeParam$9 = $;
-$dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5, tmpCalleeParam$7, tmpCalleeParam$9);
+$dotCall(
+  tmpCallVal,
+  tmpCallObj,
+  `call`,
+  tmpCalleeParam,
+  tmpCalleeParam$1,
+  tmpCalleeParam$3,
+  tmpCalleeParam$5,
+  tmpCalleeParam$7,
+  tmpCalleeParam$9,
+);
 `````
 
 ## Output

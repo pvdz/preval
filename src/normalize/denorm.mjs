@@ -39,7 +39,8 @@ export function denorm(fdata, resolve, req, options) {
         // When you call $dotCall with a member expression as first arg, and the ident equal to the
         // object of that member expressio as second arg, you can just call that member expression
         // directly, dropping the first two args. $dotCall is just func.call() after all.
-        // - `$dotCall(a.b, a, 1, 2)` => `a.b(1, 2)`
+        // - `$dotCall(a.b, a, 'b', 1, 2)` => `a.b(1, 2)`
+        // - `$dotCall(a[b], a, undefined, 1, 2)` => `a.b(1, 2)`
         if (
           node.callee.type === 'Identifier' &&
           node.callee.name === SYMBOL_DOTCALL &&
@@ -49,7 +50,7 @@ export function denorm(fdata, resolve, req, options) {
           node.arguments[0].object.name === node.arguments[1].name
         ) {
           rule('Calling $dotCall with a member and then the object of that member should fold');
-          example('$dotCall(a.b, a, x, y)', 'a.b(x, y)');
+          example('$dotCall(a.b, a, "b", x, y)', 'a.b(x, y)');
           before(node);
 
           node.callee = node.arguments.shift(); // member expression

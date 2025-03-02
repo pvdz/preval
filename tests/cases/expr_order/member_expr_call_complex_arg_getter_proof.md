@@ -74,7 +74,7 @@ x = {
 const tmpCallObj = x;
 const tmpCallVal = tmpCallObj.y;
 const tmpCalleeParam = a.b;
-$dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam);
+$dotCall(tmpCallVal, tmpCallObj, `y`, tmpCalleeParam);
 `````
 
 ## Output
@@ -97,7 +97,7 @@ const a /*:object*/ = {
   },
 };
 const tmpCalleeParam /*:unknown*/ = a.b;
-$dotCall(tmpCallVal, x, tmpCalleeParam);
+$dotCall(tmpCallVal, x, `y`, tmpCalleeParam);
 `````
 
 ## PST Output
@@ -117,7 +117,7 @@ const c = { get b() {
   return 100;
 } };
 const d = c.b;
-$dotCall( b, a, d );
+$dotCall( b, a, "y", d );
 `````
 
 ## Globals

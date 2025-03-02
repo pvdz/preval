@@ -52,7 +52,7 @@ a = b.c;
 d = e[f];
 const tmpCompObj = g;
 const tmpCalleeParamSpread = tmpCompObj.h;
-$dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam, tmpCalleeParam$1, ...tmpCalleeParamSpread);
+$dotCall(tmpCallVal, tmpCallObj, `y`, tmpCalleeParam, tmpCalleeParam$1, ...tmpCalleeParamSpread);
 `````
 
 ## Output

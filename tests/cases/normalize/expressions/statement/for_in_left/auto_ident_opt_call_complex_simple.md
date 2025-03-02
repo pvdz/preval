@@ -54,7 +54,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpChainElementCall = tmpChainRootCall($);
     const tmpIfTest$1 = tmpChainElementCall != null;
     if (tmpIfTest$1) {
-      const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, 1);
+      const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, undefined, 1);
       tmpAssignMemLhsObj = tmpChainElementCall$1;
     } else {
     }
@@ -84,7 +84,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     let tmpAssignMemLhsObj$1 /*:unknown*/ = undefined;
     if (tmpIfTest$1) {
     } else {
-      const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, 1);
+      const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
       tmpAssignMemLhsObj$1 = tmpChainElementCall$1;
     }
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
@@ -117,7 +117,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
     }
     else {
-      const i = $dotCall( f, $, 1 );
+      const i = $dotCall( f, $, undefined, 1 );
       h = i;
     }
     const j = d.value;

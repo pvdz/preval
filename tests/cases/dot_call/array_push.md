@@ -11,7 +11,7 @@
 `````js filename=intro
 const arr = [1, 2];
 const tmpCallVal = arr.push;
-const x = $dotCall(tmpCallVal, arr, 3);
+const x = $dotCall(tmpCallVal, arr, 'push', 3);
 $(x, arr);
 `````
 
@@ -21,7 +21,7 @@ $(x, arr);
 `````js filename=intro
 const arr = [1, 2];
 const tmpCallVal = arr.push;
-const x = $dotCall(tmpCallVal, arr, 3);
+const x = $dotCall(tmpCallVal, arr, `push`, 3);
 $(x, arr);
 `````
 

@@ -368,7 +368,7 @@ function processAttempt(fdata, queue) {
             // The only potential problem with this rule is if the global `Object` is somehow replaced with a different
             // value. But I believe that value is read-only in global, anyways. Beyond that, objlits should read from proto.
             rule('An object literal method lookup when the obj has no such prop must read from the prototype');
-            example('let obj = {}; let x = obj.toString();', `let obj = {}; let x = $dotCall(${symbo('Object', 'prototype')}.toString, obj);`);
+            example('let obj = {}; let x = obj.toString();', `let obj = {}; let x = $dotCall(${symbo('Object', 'prototype')}.toString, obj, "toString", prop);`);
             before(writeRef.blockBody[writeRef.blockIndex]);
             before(readRef.blockBody[readRef.blockIndex]);
 
@@ -377,10 +377,13 @@ function processAttempt(fdata, queue) {
             const methodNode = AST.memberExpression(symbo('Object', 'prototype'), readRef.parentNode.property.name, false);
             const methodVarNode = AST.variableDeclaration(tmpNameMethod, methodNode, 'const');
 
-            // `$dotCall(tmpNameMethod, obj, ...args)`
+            ASSERT(!readRef.parentNode.computed, 'right?', readRef.parentNode);
+
+            // `$dotCall(tmpNameMethod, obj, "prop", ...args)`
             const callNode = AST.callExpression(SYMBOL_DOTCALL, [
               AST.identifier(tmpNameMethod),
               readRef.parentNode.object,
+              readRef.parentNode.computed ? AST.identifier('undefined') : AST.primitive(readRef.parentNode.property),
               ...readRef.grandNode.arguments,
             ]);
 
@@ -464,7 +467,7 @@ function processAttempt(fdata, queue) {
 
       if (readRef.grandNode.type === 'CallExpression' && readRef.grandProp === 'callee') {
         // Tricky case. We may be able to find the reference but we may still not be able to improve anything
-        // Consider `obj.foo(...)` versus `const tmp = obj.foo; $dotCall(tmp, obj, ...)`. The one line turned into two lines
+        // Consider `obj.foo(...)` versus `const tmp = obj.foo; $dotCall(tmp, obj, prop, ...)`. The one line turned into two lines
         // which will hurt certain optimization tricks. And what's the advantage?
         // So for method calls we will only do this if we can resolve to a function that does not use context.
         // For builtins that's an allow list. For constants that's resolved in phase1.

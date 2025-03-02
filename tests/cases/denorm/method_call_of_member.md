@@ -67,7 +67,7 @@ spy2 = {
 const tmpCallObj = spy;
 const tmpCallVal = tmpCallObj.x;
 const tmpCalleeParam = spy2.x;
-$dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam);
+$dotCall(tmpCallVal, tmpCallObj, `x`, tmpCalleeParam);
 `````
 
 ## Output
@@ -95,7 +95,7 @@ const spy2 /*:object*/ = {
   },
 };
 const tmpCalleeParam /*:unknown*/ = spy2.x;
-$dotCall(tmpCallVal, spy, tmpCalleeParam);
+$dotCall(tmpCallVal, spy, `x`, tmpCalleeParam);
 `````
 
 ## PST Output
@@ -120,7 +120,7 @@ const d = { get x() {
   return undefined;
 } };
 const e = d.x;
-$dotCall( c, b, e );
+$dotCall( c, b, "x", e );
 `````
 
 ## Globals

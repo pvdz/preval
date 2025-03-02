@@ -31,7 +31,7 @@ const arr = [1, 2];
 const tmpCallObj = arr;
 const tmpCallVal = tmpCallObj.push;
 const tmpCalleeParam = arr.shift();
-$dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam);
+$dotCall(tmpCallVal, tmpCallObj, `push`, tmpCalleeParam);
 $(arr);
 `````
 

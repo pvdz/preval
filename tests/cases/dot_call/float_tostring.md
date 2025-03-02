@@ -11,7 +11,7 @@
 `````js filename=intro
 const flt = 3.48;
 const tmpCallVal = flt.toString;
-const x = $dotCall(tmpCallVal, flt);
+const x = $dotCall(tmpCallVal, flt, 'toString');
 $(x);
 `````
 
@@ -21,7 +21,7 @@ $(x);
 `````js filename=intro
 const flt = 3.48;
 const tmpCallVal = flt.toString;
-const x = $dotCall(tmpCallVal, flt);
+const x = $dotCall(tmpCallVal, flt, `toString`);
 $(x);
 `````
 

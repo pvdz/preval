@@ -12,7 +12,7 @@
 const g = function(){ return 'win'; };
 const obj = {f: g};
 const alias = obj.g;
-$dotCall(alias, obj);
+$dotCall(alias, obj, 'g');
 `````
 
 ## Pre Normal
@@ -25,7 +25,7 @@ const g = function () {
 };
 const obj = { f: g };
 const alias = obj.g;
-$dotCall(alias, obj);
+$dotCall(alias, obj, `g`);
 `````
 
 ## Normalized

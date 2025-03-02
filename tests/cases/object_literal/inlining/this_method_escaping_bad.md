@@ -59,7 +59,7 @@ let evil = function ($$0) {
   const tmpCallObj = func;
   const tmpCallVal = tmpCallObj.call;
   const tmpCalleeParam = { f: 1, x: `burn` };
-  $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam);
+  $dotCall(tmpCallVal, tmpCallObj, `call`, tmpCalleeParam);
   return undefined;
 };
 const tmpObjLitVal = `pass`;

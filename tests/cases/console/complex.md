@@ -26,7 +26,7 @@ console.log([`console tet case`]);
 const tmpCallObj = console;
 const tmpCallVal = tmpCallObj.log;
 const tmpCalleeParam = [`console tet case`];
-$dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam);
+$dotCall(tmpCallVal, tmpCallObj, `log`, tmpCalleeParam);
 `````
 
 ## Output

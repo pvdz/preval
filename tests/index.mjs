@@ -416,7 +416,7 @@ function runTestCase(
       return clone;
     }
 
-    function $dotCall(func, obj, ...args) {
+    function $dotCall(func, obj, prop, ...args) {
       // The input started with a member expression as callee that we separated.
       // This function serves as a syntactic clue telling us that the .call must be the built-in Function#call and
       // not a userland .call method that happens to have the same name. This way we can undo some of this "damage" safely.

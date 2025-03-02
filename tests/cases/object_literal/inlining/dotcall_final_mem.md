@@ -13,7 +13,7 @@ const f = function(){};
 const objlit = {f};
 const x = objlit.f;
 $('attempt to distract'); // throws off a simple dotcall simplfication heuristic
-$dotCall(x, objlit)
+$dotCall(x, objlit, undefined)
 `````
 
 ## Pre Normal
@@ -26,7 +26,7 @@ const f = function () {
 const objlit = { f: f };
 const x = objlit.f;
 $(`attempt to distract`);
-$dotCall(x, objlit);
+$dotCall(x, objlit, undefined);
 `````
 
 ## Normalized
@@ -40,7 +40,7 @@ const f = function () {
 const objlit = { f: f };
 const x = objlit.f;
 $(`attempt to distract`);
-$dotCall(x, objlit);
+$dotCall(x, objlit, undefined);
 `````
 
 ## Output

@@ -13,7 +13,7 @@ const arg = $(`give food`);
 const f = $regex_test;
 const regex /*:regex*/ = /foo/;
 const tmpCalleeParam$5 /*:object*/ = { some: `stuff` };
-$dotCall(f, regex, arg, tmpCalleeParam$5);
+$dotCall(f, regex, 'test', arg, tmpCalleeParam$5);
 `````
 
 ## Pre Normal
@@ -24,7 +24,7 @@ const arg = $(`give food`);
 const f = $regex_test;
 const regex = /foo/;
 const tmpCalleeParam$5 = { some: `stuff` };
-$dotCall(f, regex, arg, tmpCalleeParam$5);
+$dotCall(f, regex, `test`, arg, tmpCalleeParam$5);
 `````
 
 ## Normalized
@@ -35,7 +35,7 @@ const arg = $(`give food`);
 const f = $regex_test;
 const regex = /foo/;
 const tmpCalleeParam$5 = { some: `stuff` };
-$dotCall(f, regex, arg, tmpCalleeParam$5);
+$dotCall(f, regex, `test`, arg, tmpCalleeParam$5);
 `````
 
 ## Output

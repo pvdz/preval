@@ -13,7 +13,7 @@
 const str = $('hello');
 const method = str.replace;
 const regex = /e/g;
-const out = $dotCall(method, str, regex, `u`);
+const out = $dotCall(method, str, 'replace', regex, `u`);
 $(out);
 `````
 
@@ -24,7 +24,7 @@ $(out);
 const str = $(`hello`);
 const method = str.replace;
 const regex = /e/g;
-const out = $dotCall(method, str, regex, `u`);
+const out = $dotCall(method, str, `replace`, regex, `u`);
 $(out);
 `````
 
@@ -35,7 +35,7 @@ $(out);
 const str = $(`hello`);
 const method = str.replace;
 const regex = /e/g;
-const out = $dotCall(method, str, regex, `u`);
+const out = $dotCall(method, str, `replace`, regex, `u`);
 $(out);
 `````
 

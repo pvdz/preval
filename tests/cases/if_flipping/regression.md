@@ -42,7 +42,7 @@ if (tmpIfTest$45) {
   const nothing = getParameterByName();
   const stuff = unknown(297);
   const morestuff = alsoUnknown(310);
-  const c = $dotCall(a, document, b);
+  const c = $dotCall(a, document, undefined, b);
   $(c);
 } else {
 }
@@ -85,7 +85,7 @@ if (tmpIfTest$45) {
   const nothing = getParameterByName();
   const stuff = unknown(297);
   const morestuff = alsoUnknown(310);
-  const c = $dotCall(a, document, b);
+  const c = $dotCall(a, document, undefined, b);
   $(c);
 } else {
 }
@@ -129,7 +129,7 @@ if (tmpIfTest$45) {
   const nothing = getParameterByName();
   const stuff = unknown(297);
   const morestuff = alsoUnknown(310);
-  const c = $dotCall(a, document, b);
+  const c = $dotCall(a, document, undefined, b);
   $(c);
 } else {
 }
@@ -147,7 +147,7 @@ if (tmpIfTest$45) {
   getParameterByName();
   unknown(297);
   alsoUnknown(310);
-  const c /*:unknown*/ = $dotCall(a, document, b);
+  const c /*:unknown*/ = $dotCall(a, document, undefined, b);
   $(c);
 } else {
 }
@@ -166,7 +166,7 @@ if (tmpIfTest$45) {
   getParameterByName();
   unknown( 297 );
   alsoUnknown( 310 );
-  const b = $dotCall( a, document, b );
+  const b = $dotCall( a, document, undefined, b );
   $( b );
 }
 `````

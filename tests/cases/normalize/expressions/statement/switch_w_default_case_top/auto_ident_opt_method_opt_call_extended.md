@@ -84,7 +84,7 @@ tmpSwitchBreak: {
       const tmpChainElementObject$3 = tmpChainElementObject$1.e;
       const tmpIfTest$7 = tmpChainElementObject$3 != null;
       if (tmpIfTest$7) {
-        const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
+        const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, `e`, 1);
       } else {
       }
     } else {
@@ -129,7 +129,7 @@ if (tmpIfTest$3) {
   if (tmpIfTest$7) {
   } else {
     const tmpObjLitVal$1 /*:object*/ = { e: $ };
-    $dotCall($, tmpObjLitVal$1, 1);
+    $dotCall($, tmpObjLitVal$1, `e`, 1);
   }
 } else {
   const tmpIfTest$9 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
@@ -169,7 +169,7 @@ if (f) {
   }
   else {
     const h = { e: $ };
-    $dotCall( $, h, 1 );
+    $dotCall( $, h, "e", 1 );
   }
 }
 else {

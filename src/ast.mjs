@@ -1045,6 +1045,7 @@ export function isNumberLiteral(node) {
   return node.type === 'Literal' && typeof node.value === 'number';
 }
 export function isStringLiteral(node, allowLiteral = false) {
+  ASSERT(typeof node !== 'string' && node, 'should receive a node, not a string', node);
   // The difference is a template with and without expressions
   // We allow literals during normalization
   return (
@@ -1085,6 +1086,7 @@ export function getStringValue(node, allowLiteral = false) {
 
 export function isPrimitive(node) {
   ASSERT(typeof node !== 'string', 'send the node, not the .type');
+  ASSERT(node, 'should receive a node to check...', node);
   // isValue, isLiteral
   // A primitive is a literal boolean, number, string, or null, or an identifier NaN, Infinity, or undefined.
   // It's different from a literal since, for example, `undefined` is not a Literal node.

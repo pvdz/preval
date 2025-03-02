@@ -37,7 +37,7 @@ const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = 2;
 const tmpCalleeParam$5 = 10;
 const tmpCalleeParam$7 = 20;
-$dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5, tmpCalleeParam$7);
+$dotCall(tmpCallVal, tmpCallObj, `call`, tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5, tmpCalleeParam$7);
 const tmpCallCallee = $;
 const tmpCalleeParam$9 = arr.length;
 tmpCallCallee(tmpCalleeParam$9);

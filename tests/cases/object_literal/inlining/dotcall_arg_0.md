@@ -11,7 +11,7 @@
 `````js filename=intro
 const g = function(){ $(); };
 const obj = {f: g};
-$dotCall(obj, window); // wot
+$dotCall(obj, window, undefined); // wot
 `````
 
 ## Pre Normal
@@ -23,7 +23,7 @@ const g = function () {
   $();
 };
 const obj = { f: g };
-$dotCall(obj, window);
+$dotCall(obj, window, undefined);
 `````
 
 ## Normalized
@@ -36,7 +36,7 @@ const g = function () {
   return undefined;
 };
 const obj = { f: g };
-$dotCall(obj, window);
+$dotCall(obj, window, undefined);
 `````
 
 ## Output
@@ -49,7 +49,7 @@ const g /*:()=>unknown*/ = function () {
   return undefined;
 };
 const obj /*:object*/ = { f: g };
-$dotCall(obj, window);
+$dotCall(obj, window, undefined);
 `````
 
 ## PST Output
@@ -63,7 +63,7 @@ const a = function() {
   return undefined;
 };
 const b = { f: a };
-$dotCall( b, window );
+$dotCall( b, window, undefined );
 `````
 
 ## Globals

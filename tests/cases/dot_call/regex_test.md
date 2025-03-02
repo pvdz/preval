@@ -11,7 +11,7 @@
 `````js filename=intro
 const rex = /foo/;
 const tmpCallVal = rex.test;
-const x = $dotCall(tmpCallVal, rex, 'why is foo always used');
+const x = $dotCall(tmpCallVal, rex, 'test', 'why is foo always used');
 $(x);
 `````
 
@@ -21,7 +21,7 @@ $(x);
 `````js filename=intro
 const rex = /foo/;
 const tmpCallVal = rex.test;
-const x = $dotCall(tmpCallVal, rex, `why is foo always used`);
+const x = $dotCall(tmpCallVal, rex, `test`, `why is foo always used`);
 $(x);
 `````
 

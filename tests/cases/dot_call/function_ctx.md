@@ -9,7 +9,7 @@
 ## Input
 
 `````js filename=intro
-const x = $dotCall(Function, {eliminate:'me'}, 'return "pass";');
+const x = $dotCall(Function, {eliminate:'me'}, undefined, 'return "pass";');
 $(x());
 `````
 
@@ -17,7 +17,7 @@ $(x());
 
 
 `````js filename=intro
-const x = $dotCall(Function, { eliminate: `me` }, `return "pass";`);
+const x = $dotCall(Function, { eliminate: `me` }, undefined, `return "pass";`);
 $(x());
 `````
 
@@ -28,11 +28,12 @@ $(x());
 const tmpCallCallee = $dotCall;
 const tmpCalleeParam = Function;
 const tmpCalleeParam$1 = { eliminate: `me` };
-const tmpCalleeParam$3 = `return "pass";`;
-const x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpCalleeParam$3 = undefined;
+const tmpCalleeParam$5 = `return "pass";`;
+const x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
 const tmpCallCallee$1 = $;
-const tmpCalleeParam$5 = x();
-tmpCallCallee$1(tmpCalleeParam$5);
+const tmpCalleeParam$7 = x();
+tmpCallCallee$1(tmpCalleeParam$7);
 `````
 
 ## Output

@@ -47,8 +47,9 @@ if (tmpIfTest) {
   const tmpCallCallee$1 = $dotCall;
   const tmpCalleeParam$1 = tmpChainElementCall;
   const tmpCalleeParam$3 = tmpChainRootCall;
-  const tmpCalleeParam$5 = $(1);
-  const tmpChainElementCall$1 = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
+  const tmpCalleeParam$5 = undefined;
+  const tmpCalleeParam$7 = $(1);
+  const tmpChainElementCall$1 = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5, tmpCalleeParam$7);
   a = tmpChainElementCall$1;
 } else {
 }
@@ -77,8 +78,8 @@ let tmpForOfGen /*:unknown*/ = undefined;
 if (tmpIfTest) {
   tmpForOfGen = $forOf(undefined);
 } else {
-  const tmpCalleeParam$5 /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, tmpCalleeParam$5);
+  const tmpCalleeParam$7 /*:unknown*/ = $(1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$7);
   a = tmpChainElementCall$1;
   tmpForOfGen = $forOf(tmpChainElementCall$1);
 }
@@ -108,7 +109,7 @@ if (c) {
 }
 else {
   const e = $( 1 );
-  const f = $dotCall( b, $, e );
+  const f = $dotCall( b, $, undefined, e );
   a = f;
   d = $forOf( f );
 }

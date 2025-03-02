@@ -34,7 +34,7 @@ x = false;
 const tmpCallObj = a;
 const tmpCallVal = tmpCallObj.b;
 const tmpCalleeParam = x.y;
-$dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam);
+$dotCall(tmpCallVal, tmpCallObj, `b`, tmpCalleeParam);
 `````
 
 ## Output
@@ -43,7 +43,7 @@ $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam);
 `````js filename=intro
 const tmpCallVal /*:unknown*/ = true.b;
 const tmpCalleeParam /*:unknown*/ = false.y;
-$dotCall(tmpCallVal, true, tmpCalleeParam);
+$dotCall(tmpCallVal, true, `b`, tmpCalleeParam);
 `````
 
 ## PST Output
@@ -53,7 +53,7 @@ With rename=true
 `````js filename=intro
 const a = true.b;
 const b = false.y;
-$dotCall( a, true, b );
+$dotCall( a, true, "b", b );
 `````
 
 ## Globals

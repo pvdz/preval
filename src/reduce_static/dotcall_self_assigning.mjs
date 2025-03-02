@@ -69,16 +69,17 @@ function _dotcallSelfAssigning(fdata) {
       ) {
         rule('Dotcall assigning a method to its context can eliminate the dotcall when returning the same type');
         example(
-          `let x = "foo"; x = $dotCall(${symbo('string', 'replace')}, x, "o", "e")`,
+          `let x = "foo"; x = $dotCall(${symbo('string', 'replace')}, x, "replace", "o", "e")`,
           `let x = "foo"; x = x.replace("o", "e")`,
         );
         before(read.blockBody[read.blockIndex]);
 
-        // Replace the callee ($dotcall(a,b,c) -> b.f(a,b,c))
+        // Replace the callee ($dotcall(a,b,"c",d) -> b.c(d)
         read.parentNode.callee = AST.memberExpression(read.parentNode.arguments[1], obj.prop);
         // Drop the func and context args
-        read.parentNode.arguments.shift();
-        read.parentNode.arguments.shift();
+        read.parentNode.arguments.shift(); // func
+        read.parentNode.arguments.shift(); // context
+        read.parentNode.arguments.shift(); // propname
 
         after(read.blockBody[read.blockIndex]);
         changes += 1;
@@ -112,7 +113,7 @@ function _dotcallSelfAssigning(fdata) {
     // Okay we're here! Replace the member expression with the symbol.
     if (initType === BUILTIN_SYMBOLS.get(symbol).typings?.returns) {
       rule('When a $dotCall is assinging the result to the callee and we can predict the func, we can improve the func');
-      example('let x/*:unknown*/ = "abc"; const func = x.replace; x = $dotCall(func, x, a, b);', `let x/*:string*/ = "abc"; const func = ${symbo('String', 'replace')}; x = $dotCall(func, x, a, b)`);
+      example('let x/*:unknown*/ = "abc"; const func = x.replace; x = $dotCall(func, x, "replace", a, b);', `let x/*:string*/ = "abc"; const func = ${symbo('String', 'replace')}; x = $dotCall(func, x, a, b)`);
       before(decl.blockBody[decl.blockIndex]);
       before(methodMeta.writes[0].blockBody[methodMeta.writes[0].blockIndex]);
       before(read.blockBody[read.blockIndex]);
@@ -131,8 +132,8 @@ function _dotcallSelfAssigning(fdata) {
 
     const obj = BUILTIN_SYMBOLS.get(symbol);
     if (obj?.typings.mustBeType === initType) { // Reminder: initType is asserted to be a primitive
-      // In this case the type matches so it shoudl be fine to inline?
-      same_as_above
+      // In this case the type matches so it should be fine to inline?
+      todo('dotcall self assignment same_as_above');
     }
 
   });

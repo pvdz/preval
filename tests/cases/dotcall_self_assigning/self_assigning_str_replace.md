@@ -29,7 +29,7 @@ while (true) {
       // as a string, due to this assignment. preval would need to break that tie by walking the array and considering that str is
       // unconditionally a string the first time str.replace is accessed and then see that the update to str returns the result of
       // that str.replace and that there's no other variance, ergo str is either a string or the result of string.replace > a string.
-      str = $dotCall(str_replace, str, regex, chr2);
+      str = $dotCall(str_replace, str, 'replace', regex, chr2);
     } else {
 
     }
@@ -56,7 +56,7 @@ while (true) {
       const str_replace = str.replace;
       const regex = new RegExp(`xyz`, `g`);
       const chr2 = arr[count];
-      str = $dotCall(str_replace, str, regex, chr2);
+      str = $dotCall(str_replace, str, `replace`, regex, chr2);
     } else {
     }
   } else {
@@ -82,7 +82,7 @@ while (true) {
       const str_replace = str.replace;
       const regex = /xyz/g;
       const chr2 = arr[count];
-      str = $dotCall(str_replace, str, regex, chr2);
+      str = $dotCall(str_replace, str, `replace`, regex, chr2);
     } else {
     }
   } else {

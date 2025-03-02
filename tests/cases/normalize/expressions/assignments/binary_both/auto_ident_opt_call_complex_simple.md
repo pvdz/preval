@@ -34,7 +34,7 @@ const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall($);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, 1);
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, undefined, 1);
   a = tmpChainElementCall$1;
 } else {
 }
@@ -44,7 +44,7 @@ const tmpChainRootCall$1 = $;
 const tmpChainElementCall$3 = tmpChainRootCall$1($);
 const tmpIfTest$1 = tmpChainElementCall$3 != null;
 if (tmpIfTest$1) {
-  const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, tmpChainRootCall$1, 1);
+  const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, tmpChainRootCall$1, undefined, 1);
   a = tmpChainElementCall$5;
 } else {
 }
@@ -63,7 +63,7 @@ const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 let tmpBinBothLhs /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, 1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
   tmpBinBothLhs = tmpChainElementCall$1;
 }
 let tmpClusterSSA_a /*:unknown*/ = undefined;
@@ -73,7 +73,7 @@ if (tmpIfTest$1) {
   const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + undefined;
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  const tmpChainElementCall$5 /*:unknown*/ = $dotCall(tmpChainElementCall$3, $, 1);
+  const tmpChainElementCall$5 /*:unknown*/ = $dotCall(tmpChainElementCall$3, $, undefined, 1);
   tmpClusterSSA_a = tmpChainElementCall$5;
   const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpChainElementCall$5;
   $(tmpClusterSSA_tmpCalleeParam$1);
@@ -93,7 +93,7 @@ if (b) {
 
 }
 else {
-  const d = $dotCall( a, $, 1 );
+  const d = $dotCall( a, $, undefined, 1 );
   c = d;
 }
 let e = undefined;
@@ -104,7 +104,7 @@ if (g) {
   $( h );
 }
 else {
-  const i = $dotCall( f, $, 1 );
+  const i = $dotCall( f, $, undefined, 1 );
   e = i;
   const j = c + i;
   $( j );

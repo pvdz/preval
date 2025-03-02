@@ -44,7 +44,7 @@ const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall($);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, 1);
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, undefined, 1);
   tmpCalleeParam = tmpChainElementCall$1;
 } else {
 }
@@ -71,7 +71,7 @@ let tmpForOfGen /*:unknown*/ = undefined;
 if (tmpIfTest) {
   tmpForOfGen = $forOf(undefined);
 } else {
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, 1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
   tmpForOfGen = $forOf(tmpChainElementCall$1);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -99,7 +99,7 @@ if (b) {
   c = $forOf( undefined );
 }
 else {
-  const d = $dotCall( a, $, 1 );
+  const d = $dotCall( a, $, undefined, 1 );
   c = $forOf( d );
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

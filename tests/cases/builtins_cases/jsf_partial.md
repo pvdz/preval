@@ -17,7 +17,7 @@ const arrs = arr_outer1.concat(arr_outer2);
 const comma = $coerce(arrs, `plustr`);
 const the_return_part1 = `return"$(1${comma}`;
 const return_12 = `${the_return_part1} 2)"`;
-const tmpCallComplexCallee = $dotCall(Function, $array_flat, return_12);
+const tmpCallComplexCallee = $dotCall(Function, $array_flat, 'flat', return_12);
 const tmpCalleeParam = tmpCallComplexCallee();
 $(tmpCalleeParam);
 `````
@@ -34,7 +34,7 @@ const arrs = arr_outer1.concat(arr_outer2);
 const comma = $coerce(arrs, `plustr`);
 const the_return_part1 = `return"\$(1` + $coerce(comma, `string`) + ``;
 const return_12 = `` + $coerce(the_return_part1, `string`) + ` 2)"`;
-const tmpCallComplexCallee = $dotCall(Function, $array_flat, return_12);
+const tmpCallComplexCallee = $dotCall(Function, $array_flat, `flat`, return_12);
 const tmpCalleeParam = tmpCallComplexCallee();
 $(tmpCalleeParam);
 `````

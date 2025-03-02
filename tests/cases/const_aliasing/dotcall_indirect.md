@@ -14,7 +14,7 @@ const obj = {f: g};
 const method = obj.f;
 $(1);
 $(2);
-$dotCall(method, obj, 10);
+$dotCall(method, obj, 'f', 10);
 `````
 
 ## Pre Normal
@@ -30,7 +30,7 @@ const obj = { f: g };
 const method = obj.f;
 $(1);
 $(2);
-$dotCall(method, obj, 10);
+$dotCall(method, obj, `f`, 10);
 `````
 
 ## Normalized
@@ -47,7 +47,7 @@ const obj = { f: g };
 const method = obj.f;
 $(1);
 $(2);
-$dotCall(method, obj, 10);
+$dotCall(method, obj, `f`, 10);
 `````
 
 ## Output

@@ -33,7 +33,7 @@ let x = undefined;
 const tmpCallObj = a;
 const tmpCallVal = tmpCallObj.b;
 const tmpCalleeParam = x.y;
-$dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam);
+$dotCall(tmpCallVal, tmpCallObj, `b`, tmpCalleeParam);
 `````
 
 ## Output

@@ -72,7 +72,7 @@ if (tmpIfTest$3) {
   const tmpChainElementCall = tmpChainRootCall($);
   const tmpIfTest$5 = tmpChainElementCall != null;
   if (tmpIfTest$5) {
-    const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, 1);
+    const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, undefined, 1);
     a = tmpChainElementCall$1;
   } else {
   }
@@ -116,7 +116,7 @@ if (tmpIfTest$3) {
   const tmpIfTest$5 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$5) {
   } else {
-    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, 1);
+    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
     a = tmpChainElementCall$1;
   }
 } else {
@@ -161,7 +161,7 @@ if (g) {
 
   }
   else {
-    const j = $dotCall( h, $, 1 );
+    const j = $dotCall( h, $, undefined, 1 );
     a = j;
   }
 }

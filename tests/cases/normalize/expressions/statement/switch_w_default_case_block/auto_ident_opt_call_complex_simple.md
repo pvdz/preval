@@ -78,7 +78,7 @@ tmpSwitchBreak: {
     const tmpChainElementCall = tmpChainRootCall($);
     const tmpIfTest$5 = tmpChainElementCall != null;
     if (tmpIfTest$5) {
-      const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, 1);
+      const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, undefined, 1);
     } else {
     }
     break tmpSwitchBreak;
@@ -121,7 +121,7 @@ if (tmpIfTest$3) {
   const tmpIfTest$5 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$5) {
   } else {
-    $dotCall(tmpChainElementCall, $, 1);
+    $dotCall(tmpChainElementCall, $, undefined, 1);
   }
 } else {
   const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
@@ -161,7 +161,7 @@ if (f) {
 
   }
   else {
-    $dotCall( g, $, 1 );
+    $dotCall( g, $, undefined, 1 );
   }
 }
 else {

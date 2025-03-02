@@ -10,7 +10,7 @@
 
 `````js filename=intro
 function order() {
-  $($dotCall(alias, obj));
+  $($dotCall(alias, obj, undefined));
 }
 const g = function(){ return 'win'; };
 const obj = {f: g};
@@ -24,7 +24,7 @@ $(order);
 `````js filename=intro
 let order = function () {
   debugger;
-  $($dotCall(alias, obj));
+  $($dotCall(alias, obj, undefined));
 };
 const g = function () {
   debugger;
@@ -42,7 +42,7 @@ $(order);
 let order = function () {
   debugger;
   const tmpCallCallee = $;
-  const tmpCalleeParam = $dotCall(alias, obj);
+  const tmpCalleeParam = $dotCall(alias, obj, undefined);
   tmpCallCallee(tmpCalleeParam);
   return undefined;
 };
@@ -61,7 +61,7 @@ $(order);
 `````js filename=intro
 const order /*:()=>undefined*/ = function () {
   debugger;
-  const tmpCalleeParam /*:unknown*/ = $dotCall(alias, obj);
+  const tmpCalleeParam /*:unknown*/ = $dotCall(alias, obj, undefined);
   $(tmpCalleeParam);
   return undefined;
 };
@@ -81,7 +81,7 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  const b = $dotCall( c, d );
+  const b = $dotCall( c, d, undefined );
   $( b );
   return undefined;
 };

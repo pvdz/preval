@@ -16,7 +16,7 @@ const f = function(item) {
   $('hello', item);
   return item + 1;
 };
-const arr = $dotCall(map, pre, f); // Turn this back into `pre.map(f);`
+const arr = $dotCall(map, pre, 'map', f); // Turn this back into `pre.map(f);`
 $(arr);
 `````
 
@@ -32,7 +32,7 @@ const f = function ($$0) {
   $(`hello`, item);
   return item + 1;
 };
-const arr = $dotCall(map, pre, f);
+const arr = $dotCall(map, pre, `map`, f);
 $(arr);
 `````
 
@@ -49,7 +49,7 @@ const f = function ($$0) {
   const tmpReturnArg = item + 1;
   return tmpReturnArg;
 };
-const arr = $dotCall(map, pre, f);
+const arr = $dotCall(map, pre, `map`, f);
 $(arr);
 `````
 

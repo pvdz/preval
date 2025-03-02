@@ -11,7 +11,7 @@
 `````js filename=intro
 const str = "worldy";
 const tmpCallVal = str.slice;
-const x = $dotCall(tmpCallVal, str, 2, 4);
+const x = $dotCall(tmpCallVal, str, 'slice', 2, 4);
 $(x);
 `````
 
@@ -21,7 +21,7 @@ $(x);
 `````js filename=intro
 const str = `worldy`;
 const tmpCallVal = str.slice;
-const x = $dotCall(tmpCallVal, str, 2, 4);
+const x = $dotCall(tmpCallVal, str, `slice`, 2, 4);
 $(x);
 `````
 

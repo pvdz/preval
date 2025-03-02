@@ -64,7 +64,7 @@ const tmpCallCallee = $;
 const tmpCallObj = f;
 const tmpCallVal = tmpCallObj.call;
 const tmpCalleeParam$1 = { y: 1 };
-const tmpCalleeParam = $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam$1);
+const tmpCalleeParam = $dotCall(tmpCallVal, tmpCallObj, `call`, tmpCalleeParam$1);
 tmpCallCallee(tmpCalleeParam);
 `````
 

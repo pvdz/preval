@@ -55,7 +55,7 @@ let f = function () {
     const tmpChainElementObject$3 = tmpChainElementObject$1.e;
     const tmpIfTest$1 = tmpChainElementObject$3 != null;
     if (tmpIfTest$1) {
-      const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
+      const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, `e`, 1);
     } else {
     }
   } else {
@@ -76,7 +76,7 @@ const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  $dotCall($, tmpObjLitVal$1, 1);
+  $dotCall($, tmpObjLitVal$1, `e`, 1);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -94,7 +94,7 @@ if (a) {
 }
 else {
   const b = { e: $ };
-  $dotCall( $, b, 1 );
+  $dotCall( $, b, "e", 1 );
 }
 const c = {
   a: 999,

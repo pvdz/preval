@@ -25,6 +25,12 @@ export const BUILTIN_REST_HANDLER_NAME = 'objPatternRest';
  * Syntactic clue that this was an actual method call before, not an arbitrary .call method
  * When reconstructing it, we should be safe to assume the source code was trying to access
  * this method on the context.
+ * In our source, the call should always look like this:
+ * ```
+ * $dotCall(func, context, propertyName, .. rest of args)
+ * ```
+ * If the original was a computed property then the propertyName should be explicitly
+ * undefined, which will indicate that. Otherwise non-computed is assumed.
  */
 export const SYMBOL_DOTCALL = '$dotCall';
 

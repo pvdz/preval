@@ -148,9 +148,11 @@ export function blockStatement(...body) {
   body.forEach((n) =>
     ASSERT(
       n?.type && ((!n.type.includes('Expression') || n.type === 'ExpressionStatement' || n.type === 'FunctionExpression')),
-      'body should receive statements and declarations, not expressions',
+      'body should receive statements and declarations, not expressions, node.type is unexpected:',
       n?.type,
+      ', is array:',
       Array.isArray(n),
+      ', node:',
       n,
     ),
   );

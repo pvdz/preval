@@ -230,7 +230,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   tmpClusterSSA_c$1 = tmpClusterSSA_c$1 - 1;
   if (tmpPostUpdArgIdent$1) {
     const tmpAssignComMemLhsProp$1 /*:string*/ = tmpClusterSSA_c$1.toString(36);
-    let tmpAssignComputedRhs$1 /*:unknown*/ = tmpCalleeParam$7[tmpClusterSSA_c$1];
+    let tmpAssignComputedRhs$1 /*:primitive*/ = tmpCalleeParam$7[tmpClusterSSA_c$1];
     if (tmpAssignComputedRhs$1) {
     } else {
       tmpAssignComputedRhs$1 = tmpClusterSSA_c$1.toString(36);
@@ -240,7 +240,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
 }
-const tmpArrElement /*:(unknown)=>?*/ = function ($$0) {
+const tmpArrElement /*:(unknown)=>*/ = function ($$0) {
   const e$1 /*:unknown*/ = $$0;
   debugger;
   const tmpReturnArg$1 /*:unknown*/ = tmpCalleeParam$11[e$1];

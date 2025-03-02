@@ -5,41 +5,17 @@ import path from 'path';
 import { preval } from '../src/index.mjs';
 import * as AST from '../src/ast.mjs';
 import {setPrintVarTyping} from '../lib/printer.mjs';
-import {
-  RED,
-  GREEN,
-  YELLOW,
-  BLUE,
-  WHITE,
-  BOLD,
-  RESET,
-  WHITE_BLACK,
-  ORANGE,
-  GOOD,
-  BAD,
-  fmat,
-  fromMarkdownCase,
-  toEvaluationResult,
-  toMarkdownCase,
-  toNormalizedResult, ASSERT,
-} from './utils.mjs';
-import {
-  DIM,
-  VERBOSE_TRACING,
-} from '../src/constants.mjs';
-import {
-  SYMBOL_FOROF,
-  SYMBOL_FORIN,
-  SYMBOL_DOTCALL,
-  BUILTIN_REST_HANDLER_NAME, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_THROW_TDZ_ERROR, SYMBOL_PRNG, SYMBOL_COERCE, SYMBOL_FRFR,
-} from '../src/symbols_preval.mjs';
+import { RED, GREEN, YELLOW, BLUE, WHITE, BOLD, RESET, WHITE_BLACK, ORANGE, GOOD, BAD, fmat, fromMarkdownCase, toEvaluationResult, toMarkdownCase, toNormalizedResult, ASSERT, } from './utils.mjs';
+import { DIM, VERBOSE_TRACING, } from '../src/constants.mjs';
+import { SYMBOL_FOROF, SYMBOL_FORIN, SYMBOL_DOTCALL, BUILTIN_REST_HANDLER_NAME, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_THROW_TDZ_ERROR, SYMBOL_PRNG, SYMBOL_COERCE, SYMBOL_FRFR } from '../src/symbols_preval.mjs';
 import { BUILTIN_SYMBOLS, sym_prefix, symbo } from '../src/symbols_builtins.mjs';
 import { coerce, log, setRefTracing, tmat, vlog } from '../src/utils.mjs';
 import { getTestFileNames, PROJECT_ROOT_DIR } from './cases.mjs';
 import { parseTestArgs } from './process-env.mjs';
 // Note: worker_threads are node 10.15. I'd make them optional if import syntax allowed this, but I'm not gonna taint the whole test suite with async for the sake of it.
 import { Worker, isMainThread, parentPort, workerData } from 'worker_threads';
-import { runPcode, serializePcode } from '../src/pcode.mjs';
+import { runPcode } from '../src/pcode.mjs';
+import { createBuiltinSymbolGlobals } from './global_symbol_mapper.mjs';
 
 Error.stackTraceLimit = Infinity;
 
@@ -421,7 +397,6 @@ function runTestCase(
     }
   }
 
-
   function createGlobalPrevalSymbols(stack, $, $spy) {
 
     function objPatternRest(obj, withoutTheseProps, propName) {
@@ -449,17 +424,17 @@ function runTestCase(
     }
 
     // We may need to have this alias the actual funcs... not sure if thats worth it
-    function $console_log(...args) { $('called console.log:', ...args); }
-    function $console_warn(...args) { $('called console.warn:', ...args); }
-    function $console_error(...args) { $('called console.error:', ...args); }
-    function $console_dir(...args) { $('called console.dir:', ...args); }
-    function $console_debug(...args) { $('called console.debug:', ...args); }
-    function $console_time(...args) { $('called console.time:', ...args); }
-    function $console_timeEnd(...args) { $('called console.timeEnd:', ...args); }
-    function $console_group(...args) { $('called console.group:', ...args); }
-    function $console_groupEnd(...args) { $('called console.groupEnd:', ...args); }
-    function $console_trace(...args) { $('called console.trace:', ...args); }
-    function $console_traceEnd(...args) { $('called console.traceEnd:', ...args); }
+    function $console_log(...args) { $('called $console_log:', ...args); }
+    function $console_warn(...args) { $('called $console_warn:', ...args); }
+    function $console_error(...args) { $('called $console_error:', ...args); }
+    function $console_dir(...args) { $('called $console_dir:', ...args); }
+    function $console_debug(...args) { $('called $console_debug:', ...args); }
+    function $console_time(...args) { $('called $console_time:', ...args); }
+    function $console_timeEnd(...args) { $('called $console_timeEnd:', ...args); }
+    function $console_group(...args) { $('called $console_group:', ...args); }
+    function $console_groupEnd(...args) { $('called $console_groupEnd:', ...args); }
+    function $console_trace(...args) { $('called $console_trace:', ...args); }
+    function $console_traceEnd(...args) { $('called $console_traceEnd:', ...args); }
 
     function $coerce(x, to) {
       return coerce(x, to);
@@ -511,6 +486,9 @@ function runTestCase(
       [SYMBOL_THROW_TDZ_ERROR]: $throwTDZError,
       [SYMBOL_MAX_LOOP_UNROLL]: true, // TODO: this would need to be configurable and then this value is update
 
+      ...createBuiltinSymbolGlobals(),
+
+      [symbo('Math', 'random')]: $prng,
       [symbo('console', 'log')]: $console_log,
       [symbo('console', 'warn')]: $console_warn,
       [symbo('console', 'error')]: $console_error,
@@ -522,263 +500,6 @@ function runTestCase(
       [symbo('console', 'groupEnd')]: $console_groupEnd,
       [symbo('console', 'trace')]: $console_trace,
       [symbo('console', 'traceEnd')]: $console_traceEnd,
-
-      [symbo('Array', 'isArray')]: Array.isArray,
-      [symbo('Array', 'from')]: Array.from,
-      [symbo('Array', 'fromAsync')]: Array.fromAsync,
-      [symbo('Array', 'of')]: Array.of,
-      [symbo('Array', 'prototype')]: Array.prototype,
-      [symbo('array', 'at')]: Array.prototype.at,
-      [symbo('array', 'concat')]: Array.prototype.concat,
-      [symbo('array', 'copyWithin')]: Array.prototype.copyWithin,
-      [symbo('array', 'entries')]: Array.prototype.entries,
-      [symbo('array', 'every')]: Array.prototype.every,
-      [symbo('array', 'fill')]: Array.prototype.fill,
-      [symbo('array', 'filter')]: Array.prototype.filter,
-      [symbo('array', 'find')]: Array.prototype.find,
-      [symbo('array', 'findIndex')]: Array.prototype.findIndex,
-      [symbo('array', 'findLast')]: Array.prototype.findLast,
-      [symbo('array', 'findLastIndex')]: Array.prototype.findLastIndex,
-      [symbo('array', 'flat')]: Array.prototype.flat,
-      [symbo('array', 'flatMap')]: Array.prototype.flatMap,
-      [symbo('array', 'forEach')]: Array.prototype.forEach,
-      [symbo('array', 'includes')]: Array.prototype.includes,
-      [symbo('array', 'indexOf')]: Array.prototype.indexOf,
-      [symbo('array', 'join')]: Array.prototype.join,
-      [symbo('array', 'keys')]: Array.prototype.keys,
-      [symbo('array', 'lastIndexOf')]: Array.prototype.lastIndexOf,
-      [symbo('array', 'map')]: Array.prototype.map,
-      [symbo('array', 'pop')]: Array.prototype.pop,
-      [symbo('array', 'push')]: Array.prototype.push,
-      [symbo('array', 'reduce')]: Array.prototype.reduce,
-      [symbo('array', 'reduceRight')]: Array.prototype.reduceRight,
-      [symbo('array', 'reverse')]: Array.prototype.reverse,
-      [symbo('array', 'shift')]: Array.prototype.shift,
-      [symbo('array', 'slice')]: Array.prototype.slice,
-      [symbo('array', 'some')]: Array.prototype.some,
-      [symbo('array', 'splice')]: Array.prototype.splice,
-      [symbo('array', 'sort')]: Array.prototype.sort,
-      [symbo('array', 'toLocaleString')]: Array.prototype.toLocaleString,
-      [symbo('array', 'toReversed')]: Array.prototype.toReversed,
-      [symbo('array', 'toSorted')]: Array.prototype.toSorted,
-      [symbo('array', 'toSpliced')]: Array.prototype.toSpliced,
-      [symbo('array', 'toString')]: Array.prototype.toString,
-      [symbo('array', 'unshift')]: Array.prototype.unshift,
-      [symbo('array', 'values')]: Array.prototype.values,
-      [symbo('array', 'with')]: Array.prototype.with,
-
-      [symbo('Boolean', 'prototype')]: Boolean.prototype,
-      [symbo('boolean', 'toString')]: Boolean.prototype.toString,
-      [symbo('boolean', 'valueOf')]: Boolean.prototype.valueOf,
-
-      [symbo('Function', 'prototype')]: Function.prototype,
-      [symbo('function', 'apply')]: Function.prototype.apply,
-      [symbo('function', 'call')]: Function.prototype.call,
-      [symbo('function', 'bind')]: Function.prototype.bind,
-      [symbo('function', 'toString')]: Function.prototype.toString,
-
-      [symbo('Number', 'EPSILON')]: Number.EPSILON,
-      [symbo('Number', 'MAX_SAFE_INTEGER')]: Number.MAX_SAFE_INTEGER,
-      [symbo('Number', 'MIN_SAFE_INTEGER')]: Number.MIN_SAFE_INTEGER,
-      [symbo('Number', 'MAX_VALUE')]: Number.MAX_VALUE,
-      [symbo('Number', 'MIN_VALUE')]: Number.MIN_VALUE,
-      [symbo('Number', 'NaN')]: Number.NaN,
-      [symbo('Number', 'NEGATIVE_INFINITY')]: Number.NEGATIVE_INFINITY,
-      [symbo('Number', 'POSITIVE_INFINITY')]: Number.POSITIVE_INFINITY,
-      [symbo('Number', 'isFinite')]: Number.isFinite,
-      [symbo('Number', 'isInteger')]: Number.isInteger,
-      [symbo('Number', 'isNaN')]: Number.isNaN,
-      [symbo('Number', 'isSafeInteger')]: Number.isSafeInteger,
-      [symbo('Number', 'parseFloat')]: Number.parseFloat,
-      [symbo('Number', 'parseInt')]: Number.parseInt,
-      [symbo('Number', 'prototype')]: Number.prototype,
-      [symbo('number', 'toExponential')]: Number.prototype.toExponential,
-      [symbo('number', 'toFixed')]: Number.prototype.toFixed,
-      [symbo('number', 'toLocaleString')]: Number.prototype.toLocaleString,
-      [symbo('number', 'toPrecision')]: Number.prototype.toPrecision,
-      [symbo('number', 'toString')]: Number.prototype.toString,
-      [symbo('number', 'valueOf')]: Number.prototype.valueOf,
-
-      [symbo('Object', 'assign')]: Object.assign,
-      [symbo('Object', 'create')]: Object.create,
-      [symbo('Object', 'defineProperty')]: Object.defineProperty,
-      [symbo('Object', 'defineProperties')]: Object.defineProperties,
-      [symbo('Object', 'entries')]: Object.entries,
-      [symbo('Object', 'freeze')]: Object.freeze,
-      [symbo('Object', 'fromEntries')]: Object.fromEntries,
-      [symbo('Object', 'getOwnPropertyDescriptor')]: Object.getOwnPropertyDescriptor,
-      [symbo('Object', 'getOwnPropertyDescriptors')]: Object.getOwnPropertyDescriptors,
-      [symbo('Object', 'getOwnPropertyNames')]: Object.getOwnPropertyNames,
-      [symbo('Object', 'getOwnPropertySymbols')]: Object.getOwnPropertySymbols,
-      [symbo('Object', 'getPrototypeOf')]: Object.getPrototypeOf,
-      [symbo('Object', 'groupBy')]: Object.groupBy,
-      [symbo('Object', 'hasOwn')]: Object.hasOwn,
-      [symbo('Object', 'is')]: Object.is,
-      [symbo('Object', 'isExtensible')]: Object.isExtensible,
-      [symbo('Object', 'isFrozen')]: Object.isFrozen,
-      [symbo('Object', 'isSealed')]: Object.isSealed,
-      [symbo('Object', 'keys')]: Object.keys,
-      [symbo('Object', 'preventExtensions')]: Object.preventExtensions,
-      [symbo('Object', 'seal')]: Object.seal,
-      [symbo('Object', 'setPrototypeOf')]: Object.setPrototypeOf,
-      [symbo('Object', 'values')]: Object.values,
-      [symbo('Object', 'prototype')]: Object.prototype,
-      [symbo('object', 'hasOwnProperty')]: Object.prototype.hasOwnProperty,
-      [symbo('object', 'isPrototypeOf')]: Object.prototype.isPrototypeOf,
-      [symbo('object', 'propertyIsEnumerable')]: Object.prototype.propertyIsEnumerable,
-      [symbo('object', 'toLocaleString')]: Object.prototype.toLocaleString,
-      [symbo('object', 'toString')]: Object.prototype.toString,
-      [symbo('object', 'valueOf')]: Object.prototype.valueOf,
-
-      [symbo('RegExp', 'escape')]: RegExp.escape,
-      [symbo('RegExp', 'prototype')]: RegExp.prototype,
-      [symbo('regex', 'exec')]: RegExp.prototype.exec,
-      [symbo('regex', 'test')]: RegExp.prototype.test,
-      [symbo('regex', 'toString')]: RegExp.prototype.toString,
-
-      [symbo('String', 'fromCharCode')]: String.fromCharCode,
-      [symbo('String', 'fromCodePoint')]: String.fromCodePoint,
-      [symbo('String', 'raw')]: String.raw,
-      [symbo('String', 'prototype')]: String.prototype,
-      [symbo('string', 'at')]: String.at,
-      [symbo('string', 'charAt')]: String.prototype.charAt,
-      [symbo('string', 'charCodeAt')]: String.prototype.charCodeAt,
-      [symbo('string', 'concat')]: String.prototype.concat,
-      [symbo('string', 'endsWith')]: String.prototype.endsWith,
-      [symbo('string', 'includes')]: String.prototype.includes,
-      [symbo('string', 'indexOf')]: String.prototype.indexOf,
-      [symbo('string', 'isWellFormed')]: String.prototype.isWellFormed,
-      [symbo('string', 'lastIndexOf')]: String.prototype.lastIndexOf,
-      [symbo('string', 'localeCompare')]: String.prototype.localeCompare,
-      [symbo('string', 'match')]: String.prototype.match,
-      [symbo('string', 'matchAll')]: String.prototype.matchAll,
-      [symbo('string', 'normalize')]: String.prototype.normalize,
-      [symbo('string', 'padEnd')]: String.prototype.padEnd,
-      [symbo('string', 'padStart')]: String.prototype.padStart,
-      [symbo('string', 'repeat')]: String.prototype.repeat,
-      [symbo('string', 'replace')]: String.prototype.replace,
-      [symbo('string', 'replaceAll')]: String.prototype.replaceAll,
-      [symbo('string', 'search')]: String.prototype.search,
-      [symbo('string', 'slice')]: String.prototype.slice,
-      [symbo('string', 'split')]: String.prototype.split,
-      [symbo('string', 'startsWith')]: String.prototype.startsWith,
-      [symbo('string', 'substring')]: String.prototype.substring,
-      [symbo('string', 'substr')]: String.prototype.substr,
-      [symbo('string', 'toString')]: String.prototype.toString,
-      [symbo('string', 'toLocaleLowerCase')]: String.prototype.toLocaleLowerCase,
-      [symbo('string', 'toLocaleUpperCase')]: String.prototype.toLocaleUpperCase,
-      [symbo('string', 'toLowerCase')]: String.prototype.toLowerCase,
-      [symbo('string', 'toUpperCase')]: String.prototype.toUpperCase,
-      [symbo('string', 'toWellFormed')]: String.prototype.toWellFormed,
-      [symbo('string', 'trim')]: String.prototype.trim,
-      [symbo('string', 'trimEnd')]: String.prototype.trimEnd,
-      [symbo('string', 'trimStart')]: String.prototype.trimStart,
-      [symbo('string', 'valueOf')]: String.prototype.valueOf,
-
-      [symbo('Date', 'now')]: Date.now,
-      [symbo('Date', 'parse')]: Date.parse,
-      [symbo('Date', 'UTC')]: Date.UTC,
-      [symbo('Date', 'prototype')]: Date.prototype,
-      [symbo('date', 'getDate')]: Date.prototype.getDate,
-      [symbo('date', 'getDay')]: Date.prototype.getDay,
-      [symbo('date', 'getFullYear')]: Date.prototype.getFullYear,
-      [symbo('date', 'getHours')]: Date.prototype.getHours,
-      [symbo('date', 'getMilliseconds')]: Date.prototype.getMilliseconds,
-      [symbo('date', 'getMinutes')]: Date.prototype.getMinutes,
-      [symbo('date', 'getMonth')]: Date.prototype.getMonth,
-      [symbo('date', 'getSeconds')]: Date.prototype.getSeconds,
-      [symbo('date', 'getTime')]: Date.prototype.getTime,
-      [symbo('date', 'getTimezoneOffset')]: Date.prototype.getTimezoneOffset,
-      [symbo('date', 'getUTCDate')]: Date.prototype.getUTCDate,
-      [symbo('date', 'getUTCDay')]: Date.prototype.getUTCDay,
-      [symbo('date', 'getUTCFullYear')]: Date.prototype.getUTCFullYear,
-      [symbo('date', 'getUTCHours')]: Date.prototype.getUTCHours,
-      [symbo('date', 'getUTCMilliseconds')]: Date.prototype.getUTCMilliseconds,
-      [symbo('date', 'getUTCMinutes')]: Date.prototype.getUTCMinutes,
-      [symbo('date', 'getUTCMonth')]: Date.prototype.getUTCMonth,
-      [symbo('date', 'getUTCSeconds')]: Date.prototype.getUTCSeconds,
-      [symbo('date', 'setDate')]: Date.prototype.setDate,
-      [symbo('date', 'setFullYear')]: Date.prototype.setFullYear,
-      [symbo('date', 'setHours')]: Date.prototype.setHours,
-      [symbo('date', 'setMilliseconds')]: Date.prototype.setMilliseconds,
-      [symbo('date', 'setMinutes')]: Date.prototype.setMinutes,
-      [symbo('date', 'setMonth')]: Date.prototype.setMonth,
-      [symbo('date', 'setSeconds')]: Date.prototype.setSeconds,
-      [symbo('date', 'setTime')]: Date.prototype.setTime,
-      [symbo('date', 'setUTCDate')]: Date.prototype.setUTCDate,
-      [symbo('date', 'setUTCFullYear')]: Date.prototype.setUTCFullYear,
-      [symbo('date', 'setUTCHours')]: Date.prototype.setUTCHours,
-      [symbo('date', 'setUTCMilliseconds')]: Date.prototype.setUTCMilliseconds,
-      [symbo('date', 'setUTCMinutes')]: Date.prototype.setUTCMinutes,
-      [symbo('date', 'setUTCMonth')]: Date.prototype.setUTCMonth,
-      [symbo('date', 'setUTCSeconds')]: Date.prototype.setUTCSeconds,
-      [symbo('date', 'toDateString')]: Date.prototype.toDateString,
-      [symbo('date', 'toISOString')]: Date.prototype.toISOString,
-      [symbo('date', 'toJSON')]: Date.prototype.toJSON,
-      [symbo('date', 'toLocaleDateString')]: Date.prototype.toLocaleDateString,
-      [symbo('date', 'toLocaleString')]: Date.prototype.toLocaleString,
-      [symbo('date', 'toLocaleTimeString')]: Date.prototype.toLocaleTimeString,
-      [symbo('date', 'toString')]: Date.prototype.toString,
-      [symbo('date', 'toTimeString')]: Date.prototype.toTimeString,
-      [symbo('date', 'toUTCString')]: Date.prototype.toUTCString,
-      [symbo('date', 'valueOf')]: Date.prototype.valueOf,
-
-      [symbo('Math', 'abs')]: Math.abs,
-      [symbo('Math', 'acos')]: Math.acos,
-      [symbo('Math', 'acosh')]: Math.acosh,
-      [symbo('Math', 'asin')]: Math.asin,
-      [symbo('Math', 'asinh')]: Math.asinh,
-      [symbo('Math', 'atan')]: Math.atan,
-      [symbo('Math', 'atan2')]: Math.atan2,
-      [symbo('Math', 'atanh')]: Math.atanh,
-      [symbo('Math', 'cbrt')]: Math.cbrt,
-      [symbo('Math', 'ceil')]: Math.ceil,
-      [symbo('Math', 'clz32')]: Math.clz32,
-      [symbo('Math', 'cos')]: Math.cos,
-      [symbo('Math', 'cosh')]: Math.cosh,
-      [symbo('Math', 'exp')]: Math.exp,
-      [symbo('Math', 'expm1')]: Math.expm1,
-      [symbo('Math', 'floor')]: Math.floor,
-      [symbo('Math', 'f16round')]: Math.f16round,
-      [symbo('Math', 'fround')]: Math.fround,
-      [symbo('Math', 'hypot')]: Math.hypot,
-      [symbo('Math', 'imul')]: Math.imul,
-      [symbo('Math', 'log')]: Math.log,
-      [symbo('Math', 'log10')]: Math.log10,
-      [symbo('Math', 'log1p')]: Math.log1p,
-      [symbo('Math', 'log2')]: Math.log2,
-      [symbo('Math', 'max')]: Math.max,
-      [symbo('Math', 'min')]: Math.min,
-      [symbo('Math', 'pow')]: Math.pow,
-      [symbo('Math', 'random')]: Math.random,
-      [symbo('Math', 'round')]: Math.round,
-      [symbo('Math', 'sign')]: Math.sign,
-      [symbo('Math', 'sin')]: Math.sin,
-      [symbo('Math', 'sinh')]: Math.sinh,
-      [symbo('Math', 'sqrt')]: Math.sqrt,
-      [symbo('Math', 'tan')]: Math.tan,
-      [symbo('Math', 'tanh')]: Math.tanh,
-      [symbo('Math', 'trunc')]: Math.trunc,
-      [symbo('Math', 'E')]: Math.E,
-      [symbo('Math', 'LN10')]: Math.LN10,
-      [symbo('Math', 'LN2')]: Math.LN2,
-      [symbo('Math', 'LOG10E')]: Math.LOG10E,
-      [symbo('Math', 'LOG2E')]: Math.LOG2E,
-      [symbo('Math', 'PI')]: Math.PI,
-      [symbo('Math', 'SQRT1_2')]: Math.SQRT1_2,
-      [symbo('Math', 'SQRT2')]: Math.SQRT2,
-
-      [symbo('JSON', 'parse')]: JSON.parse,
-      [symbo('JSON', 'stringify')]: JSON.stringify,
-
-      [symbo('Buffer', 'prototype')]: (typeof Buffer !== 'undefined' ? Buffer : {})?.prototype, // eh.
-      [symbo('Buffer', 'from')]: (typeof Buffer !== 'undefined' ? Buffer : {})?.from, // eh.
-      [symbo('buffer', 'toString')]: (typeof Buffer !== 'undefined' ? Buffer : {})?.prototype.toString, // eh.
-      [symbo('buffer', 'valueOf')]: (typeof Buffer !== 'undefined' ? Buffer : {})?.prototype.valueOf, // eh.
-
-      // Mmmmm
-      //Function: function(...args){ return function(...args2){ $('Function() invoked! Function:', args, ', invoked with:', args2); } },
-      // Sadly (ironic, I know) can't do the same to `eval` in strict mode
     };
 
     for (const key of BUILTIN_SYMBOLS.keys()) {
@@ -1098,16 +819,29 @@ function runTestCase(
             const out = runPcode(funcName, Array.isArray(vals) ? vals : [vals], pcodeData, output, $prng, rngSeed);
 
             const argStr = Array.isArray(vals) ? vals.map(v => JSON.stringify(v)).join(', ') : JSON.stringify(vals);
-            const testCode = `const ${funcName} = ${code}; ${funcName}(${argStr})`;
-            const evalCode = `${coerceStr} ${testCode}`;
+            const testCode = `const ${funcName} = ${code}; return ${funcName}(${argStr})`;
+            const evalCode = `${coerceStr} ; ${testCode}`;
             //console.log('testCode:\n', testCode);
             // Note: (0,eval) is an old trick to do indirect eval, which is slightly safer than direct eval. only slightly.
             let eout;
             const bak = Math.random;
             Math.random = $prng; // Wire up prng for the eval (shares same global scope)
             rngSeed = initialPrngSeed;
-            try { eout = (0, eval)(evalCode); }
-            catch (e) { eout = e.message; }
+            const builtinMapper = createBuiltinSymbolGlobals();
+            builtinMapper[symbo('Math', 'random')] = $prng;
+            try {
+              //console.log('test code:', [evalCode])
+              eout = new Function(
+                ...Object.keys(builtinMapper),
+                evalCode
+              )(
+                ...Object.values(builtinMapper)
+              );
+            }
+            catch (e) {
+              eout = e.message;
+              vlog('pcode test runtime error:', e);
+            }
             finally {
               Math.random = bak; // Restore built-in
             }

@@ -46,7 +46,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = String.toString();
+const tmpCalleeParam /*:string*/ = String.toString();
 $(tmpCalleeParam);
 `````
 

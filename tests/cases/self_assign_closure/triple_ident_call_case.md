@@ -86,7 +86,7 @@ loopStop$3: {
       const tmpBinLhs$162/*:number*/ = parseInt(alias2(679));
       const tmpUnaryArg$69/*:number*/ = parseInt(alias2(599));
       const tmpBinLhs$166/*:number*/ = parseInt(alias2(457));
-      if ($frfr(tmpFree$3, tmpUnaryArg$65, tmpBinLhs$155, tmpUnaryArg$67, tmpUnaryArg$69, tmpBinLhs$162, parseInt(alias2(524)), tmpBinLhs$166, parseInt(alias2(464)), parseInt(alias2(671)), parseInt(alias2(386)))) {
+      if (tmpBinLhs$166) {
         break;
       } else {
         alias3.push(alias3.shift());
@@ -181,21 +181,7 @@ loopStop$3: {
       const tmpBinLhs$162 = parseInt(alias2(679));
       const tmpUnaryArg$69 = parseInt(alias2(599));
       const tmpBinLhs$166 = parseInt(alias2(457));
-      if (
-        $frfr(
-          tmpFree$3,
-          tmpUnaryArg$65,
-          tmpBinLhs$155,
-          tmpUnaryArg$67,
-          tmpUnaryArg$69,
-          tmpBinLhs$162,
-          parseInt(alias2(524)),
-          tmpBinLhs$166,
-          parseInt(alias2(464)),
-          parseInt(alias2(671)),
-          parseInt(alias2(386)),
-        )
-      ) {
+      if (tmpBinLhs$166) {
         break;
       } else {
         alias3.push(alias3.shift());
@@ -301,57 +287,24 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpCallCallee$9 = parseInt;
     const tmpCalleeParam$9 = alias2(457);
     const tmpBinLhs$166 = tmpCallCallee$9(tmpCalleeParam$9);
-    const tmpCallCallee$11 = $frfr;
-    const tmpCalleeParam$11 = tmpFree$3;
-    const tmpCalleeParam$13 = tmpUnaryArg$65;
-    const tmpCalleeParam$15 = tmpBinLhs$155;
-    const tmpCalleeParam$17 = tmpUnaryArg$67;
-    const tmpCalleeParam$19 = tmpUnaryArg$69;
-    const tmpCalleeParam$21 = tmpBinLhs$162;
-    const tmpCallCallee$13 = parseInt;
-    const tmpCalleeParam$33 = alias2(524);
-    const tmpCalleeParam$23 = tmpCallCallee$13(tmpCalleeParam$33);
-    const tmpCalleeParam$25 = tmpBinLhs$166;
-    const tmpCallCallee$15 = parseInt;
-    const tmpCalleeParam$35 = alias2(464);
-    const tmpCalleeParam$27 = tmpCallCallee$15(tmpCalleeParam$35);
-    const tmpCallCallee$17 = parseInt;
-    const tmpCalleeParam$37 = alias2(671);
-    const tmpCalleeParam$29 = tmpCallCallee$17(tmpCalleeParam$37);
-    const tmpCallCallee$19 = parseInt;
-    const tmpCalleeParam$39 = alias2(386);
-    const tmpCalleeParam$31 = tmpCallCallee$19(tmpCalleeParam$39);
-    const tmpIfTest = tmpCallCallee$11(
-      tmpCalleeParam$11,
-      tmpCalleeParam$13,
-      tmpCalleeParam$15,
-      tmpCalleeParam$17,
-      tmpCalleeParam$19,
-      tmpCalleeParam$21,
-      tmpCalleeParam$23,
-      tmpCalleeParam$25,
-      tmpCalleeParam$27,
-      tmpCalleeParam$29,
-      tmpCalleeParam$31,
-    );
-    if (tmpIfTest) {
+    if (tmpBinLhs$166) {
       break;
     } else {
       const tmpCallObj = alias3;
       const tmpCallVal = tmpCallObj.push;
-      const tmpCalleeParam$41 = alias3.shift();
-      $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam$41);
+      const tmpCalleeParam$11 = alias3.shift();
+      $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam$11);
     }
   } catch (_0x4f54af$22) {
     const tmpCallObj$1 = alias3;
     const tmpCallVal$1 = tmpCallObj$1.push;
-    const tmpCalleeParam$43 = alias3.shift();
-    $dotCall(tmpCallVal$1, tmpCallObj$1, tmpCalleeParam$43);
+    const tmpCalleeParam$13 = alias3.shift();
+    $dotCall(tmpCallVal$1, tmpCallObj$1, tmpCalleeParam$13);
   }
 }
-const tmpCallCallee$21 = $;
-const tmpCalleeParam$45 = a();
-tmpCallCallee$21(tmpCalleeParam$45);
+const tmpCallCallee$11 = $;
+const tmpCalleeParam$15 = a();
+tmpCallCallee$11(tmpCalleeParam$15);
 `````
 
 ## Output
@@ -400,51 +353,28 @@ const a /*:array*/ = [
 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`loop`);
-  const _0x5e349d$19 /*:unknown*/ = a[369];
+  const _0x5e349d$11 /*:primitive*/ = a[369];
   try {
-    const tmpUnaryArg$65 /*:number*/ = parseInt(_0x5e349d$19);
-    const _0x5e349d$17 /*:unknown*/ = a[89];
-    const tmpBinLhs$155 /*:number*/ = parseInt(_0x5e349d$17);
-    const _0x5e349d$15 /*:unknown*/ = a[504];
-    const tmpUnaryArg$67 /*:number*/ = parseInt(_0x5e349d$15);
-    const _0x5e349d$13 /*:unknown*/ = a[334];
-    const tmpBinLhs$162 /*:number*/ = parseInt(_0x5e349d$13);
-    const _0x5e349d$11 /*:unknown*/ = a[254];
-    const tmpUnaryArg$69 /*:number*/ = parseInt(_0x5e349d$11);
-    const _0x5e349d$9 /*:unknown*/ = a[112];
-    const tmpBinLhs$166 /*:number*/ = parseInt(_0x5e349d$9);
-    const tmpCallCallee$11 /*:unknown*/ = $frfr;
-    const tmpCalleeParam$11 /*:unknown*/ = tmpFree$3;
-    const _0x5e349d$7 /*:unknown*/ = a[179];
-    const tmpCalleeParam$23 /*:number*/ = parseInt(_0x5e349d$7);
-    const _0x5e349d$5 /*:unknown*/ = a[119];
-    const tmpCalleeParam$27 /*:number*/ = parseInt(_0x5e349d$5);
-    const _0x5e349d$3 /*:unknown*/ = a[326];
-    const tmpCalleeParam$29 /*:number*/ = parseInt(_0x5e349d$3);
-    const _0x5e349d$1 /*:unknown*/ = a[41];
-    const tmpCalleeParam$31 /*:number*/ = parseInt(_0x5e349d$1);
-    const tmpIfTest /*:unknown*/ = tmpCallCallee$11(
-      tmpCalleeParam$11,
-      tmpUnaryArg$65,
-      tmpBinLhs$155,
-      tmpUnaryArg$67,
-      tmpUnaryArg$69,
-      tmpBinLhs$162,
-      tmpCalleeParam$23,
-      tmpBinLhs$166,
-      tmpCalleeParam$27,
-      tmpCalleeParam$29,
-      tmpCalleeParam$31,
-    );
-    if (tmpIfTest) {
+    $coerce(_0x5e349d$11, `string`);
+    const _0x5e349d$9 /*:primitive*/ = a[89];
+    $coerce(_0x5e349d$9, `string`);
+    const _0x5e349d$7 /*:primitive*/ = a[504];
+    $coerce(_0x5e349d$7, `string`);
+    const _0x5e349d$5 /*:primitive*/ = a[334];
+    $coerce(_0x5e349d$5, `string`);
+    const _0x5e349d$3 /*:primitive*/ = a[254];
+    $coerce(_0x5e349d$3, `string`);
+    const _0x5e349d$1 /*:primitive*/ = a[112];
+    const tmpBinLhs$166 /*:number*/ = parseInt(_0x5e349d$1);
+    if (tmpBinLhs$166) {
       break;
     } else {
-      const tmpCalleeParam$41 /*:unknown*/ = a.shift();
-      a.push(tmpCalleeParam$41);
+      const tmpCalleeParam$11 /*:unknown*/ = a.shift();
+      a.push(tmpCalleeParam$11);
     }
   } catch (_0x4f54af$22) {
-    const tmpCalleeParam$43 /*:unknown*/ = a.shift();
-    a.push(tmpCalleeParam$43);
+    const tmpCalleeParam$13 /*:unknown*/ = a.shift();
+    a.push(tmpCalleeParam$13);
   }
 }
 $(a);
@@ -460,39 +390,28 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( "loop" );
   const b = a[ 369 ];
   try {
-    const c = parseInt( b );
-    const d = a[ 89 ];
-    const e = parseInt( d );
-    const f = a[ 504 ];
-    const g = parseInt( f );
-    const h = a[ 334 ];
-    const i = parseInt( h );
-    const j = a[ 254 ];
-    const k = parseInt( j );
-    const l = a[ 112 ];
-    const m = parseInt( l );
-    const n = o;
-    const p = tmpFree$3;
-    const q = a[ 179 ];
-    const r = parseInt( q );
-    const s = a[ 119 ];
-    const t = parseInt( s );
-    const u = a[ 326 ];
-    const v = parseInt( u );
-    const w = a[ 41 ];
-    const x = parseInt( w );
-    const y = n( p, c, e, g, k, i, r, m, t, v, x );
-    if (y) {
+    $coerce( b, "string" );
+    const c = a[ 89 ];
+    $coerce( c, "string" );
+    const d = a[ 504 ];
+    $coerce( d, "string" );
+    const e = a[ 334 ];
+    $coerce( e, "string" );
+    const f = a[ 254 ];
+    $coerce( f, "string" );
+    const g = a[ 112 ];
+    const h = parseInt( g );
+    if (h) {
       break;
     }
     else {
-      const z = a.shift();
-      a.push( z );
+      const i = a.shift();
+      a.push( i );
     }
   }
-  catch (ba) {
-    const bb = a.shift();
-    a.push( bb );
+  catch (j) {
+    const k = a.shift();
+    a.push( k );
   }
 }
 $( a );
@@ -500,9 +419,7 @@ $( a );
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-tmpFree$3
+None
 
 ## Result
 

@@ -87,8 +87,8 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpFree /*:(unknown)=>number*/ = function $free($$0) {
-  const a /*:unknown*/ = $$0;
+const tmpFree /*:(primitive)=>number*/ = function $free($$0) {
+  const a /*:primitive*/ = $$0;
   debugger;
   const b /*:number*/ = parseInt(a);
   const tmpRet /*:number*/ = b / 1;

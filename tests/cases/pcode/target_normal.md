@@ -1,0 +1,328 @@
+# Preval test case
+
+# target_normal.md
+
+> Pcode > Target normal
+>
+> This is a cut-out of the obfuscation case that triggered me to start on the pcode approach :)
+
+non-pcode test
+
+## Input
+
+`````js filename=intro
+let pcode = function(num_arg) {
+  let out_str = ``;
+  const tmpIfTest = num_arg < 62;
+  if (tmpIfTest) {
+
+  } else {
+    const div = num_arg / 62;
+    const pint = parseInt(div);
+    out_str = pcode(pint); // including recursion
+  }
+  const perc = num_arg % 62;
+  const tmpIfTest$1 = perc > 35;
+  if (tmpIfTest$1) {
+    const plus = perc + 29;
+    const chr = String.fromCharCode(plus);
+    const str = out_str + chr;
+    return str;
+  } else {
+    const alt = perc.toString(36);
+    const altstr = out_str + alt;
+    return altstr;
+  }
+};
+pcode(1);
+pcode(2);
+let i = 477; 
+while (--i > 0) {
+  const s = pcode(i);
+  $(s);
+}
+$('end');
+`````
+
+## Pre Normal
+
+
+`````js filename=intro
+let pcode = function ($$0) {
+  let num_arg = $$0;
+  debugger;
+  let out_str = ``;
+  const tmpIfTest = num_arg < 62;
+  if (tmpIfTest) {
+  } else {
+    const div = num_arg / 62;
+    const pint = parseInt(div);
+    out_str = pcode(pint);
+  }
+  const perc = num_arg % 62;
+  const tmpIfTest$1 = perc > 35;
+  if (tmpIfTest$1) {
+    const plus = perc + 29;
+    const chr = String.fromCharCode(plus);
+    const str = out_str + chr;
+    return str;
+  } else {
+    const alt = perc.toString(36);
+    const altstr = out_str + alt;
+    return altstr;
+  }
+};
+pcode(1);
+pcode(2);
+let i = 477;
+while (--i > 0) {
+  const s = pcode(i);
+  $(s);
+}
+$(`end`);
+`````
+
+## Normalized
+
+
+`````js filename=intro
+let pcode = function ($$0) {
+  let num_arg = $$0;
+  debugger;
+  let out_str = ``;
+  const tmpIfTest = num_arg < 62;
+  if (tmpIfTest) {
+  } else {
+    const div = num_arg / 62;
+    const pint = parseInt(div);
+    out_str = pcode(pint);
+  }
+  const perc = num_arg % 62;
+  const tmpIfTest$1 = perc > 35;
+  if (tmpIfTest$1) {
+    const plus = perc + 29;
+    const chr = $String_fromCharCode(plus);
+    const str = out_str + chr;
+    return str;
+  } else {
+    const alt = perc.toString(36);
+    const altstr = out_str + alt;
+    return altstr;
+  }
+};
+pcode(1);
+pcode(2);
+let i = 477;
+while (true) {
+  i = i - 1;
+  let tmpBinLhs = i;
+  const tmpIfTest$2 = tmpBinLhs > 0;
+  if (tmpIfTest$2) {
+    const s = pcode(i);
+    $(s);
+  } else {
+    break;
+  }
+}
+$(`end`);
+`````
+
+## Output
+
+
+`````js filename=intro
+const tmpFree$1 /*:(number, string)=>string*/ = function $free($$0, $$1) {
+  const perc /*:number*/ = $$0;
+  const out_str /*:string*/ = $$1;
+  debugger;
+  const alt /*:string*/ = perc.toString(36);
+  const tmpRet$1 /*:string*/ = out_str + alt;
+  return tmpRet$1;
+};
+const tmpFree /*:(number)=>number*/ = function $free($$0) {
+  const num_arg /*:number*/ = $$0;
+  debugger;
+  const div /*:number*/ = num_arg / 62;
+  const tmpRet /*:number*/ = parseInt(div);
+  return tmpRet;
+};
+const pcode /*:(number)=>string*/ = function ($$0) {
+  const num_arg$1 /*:number*/ = $$0;
+  debugger;
+  let out_str$1 /*:string*/ = ``;
+  const tmpIfTest /*:boolean*/ = num_arg$1 < 62;
+  if (tmpIfTest) {
+  } else {
+    const pint /*:number*/ = $frfr(tmpFree, num_arg$1);
+    out_str$1 = pcode(pint);
+  }
+  const perc$1 /*:number*/ = num_arg$1 % 62;
+  const tmpIfTest$1 /*:boolean*/ = perc$1 > 35;
+  if (tmpIfTest$1) {
+    const plus /*:number*/ = perc$1 + 29;
+    const chr /*:string*/ = $String_fromCharCode(plus);
+    const str /*:string*/ = out_str$1 + chr;
+    return str;
+  } else {
+    const altstr /*:string*/ = $frfr(tmpFree$1, perc$1, out_str$1);
+    return altstr;
+  }
+};
+const s /*:string*/ = pcode(476);
+$(s);
+const s$1 /*:string*/ = pcode(475);
+$(s$1);
+const s$2 /*:string*/ = pcode(474);
+$(s$2);
+const s$3 /*:string*/ = pcode(473);
+$(s$3);
+const s$4 /*:string*/ = pcode(472);
+$(s$4);
+const s$5 /*:string*/ = pcode(471);
+$(s$5);
+const s$6 /*:string*/ = pcode(470);
+$(s$6);
+const s$7 /*:string*/ = pcode(469);
+$(s$7);
+const s$8 /*:string*/ = pcode(468);
+$(s$8);
+const s$9 /*:string*/ = pcode(467);
+$(s$9);
+let tmpClusterSSA_i$2 /*:number*/ = 466;
+const s$10 /*:string*/ = pcode(466);
+$(s$10);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  tmpClusterSSA_i$2 = tmpClusterSSA_i$2 - 1;
+  const tmpIfTest$3 /*:boolean*/ = tmpClusterSSA_i$2 > 0;
+  if (tmpIfTest$3) {
+    const s$11 /*:string*/ = pcode(tmpClusterSSA_i$2);
+    $(s$11);
+  } else {
+    break;
+  }
+}
+$(`end`);
+`````
+
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function b($$0,$$1 ) {
+  const c = $$0;
+  const d = $$1;
+  debugger;
+  const e = c.toString( 36 );
+  const f = d + e;
+  return f;
+};
+const g = function b($$0 ) {
+  const h = $$0;
+  debugger;
+  const i = h / 62;
+  const j = parseInt( i );
+  return j;
+};
+const k = function($$0 ) {
+  const l = $$0;
+  debugger;
+  let m = "";
+  const n = l < 62;
+  if (n) {
+
+  }
+  else {
+    const o = p( g, l );
+    m = k( o );
+  }
+  const q = l % 62;
+  const r = q > 35;
+  if (r) {
+    const s = q + 29;
+    const t = $String_fromCharCode( s );
+    const u = m + t;
+    return u;
+  }
+  else {
+    const v = p( a, q, m );
+    return v;
+  }
+};
+const w = k( 476 );
+$( w );
+const x = k( 475 );
+$( x );
+const y = k( 474 );
+$( y );
+const z = k( 473 );
+$( z );
+const ba = k( 472 );
+$( ba );
+const bb = k( 471 );
+$( bb );
+const bc = k( 470 );
+$( bc );
+const bd = k( 469 );
+$( bd );
+const be = k( 468 );
+$( be );
+const bf = k( 467 );
+$( bf );
+let bg = 466;
+const bh = k( 466 );
+$( bh );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  bg = bg - 1;
+  const bi = bg > 0;
+  if (bi) {
+    const bj = k( bg );
+    $( bj );
+  }
+  else {
+    break;
+  }
+}
+$( "end" );
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: '7G'
+ - 2: '7F'
+ - 3: '7E'
+ - 4: '7D'
+ - 5: '7C'
+ - 6: '7B'
+ - 7: '7A'
+ - 8: '7z'
+ - 9: '7y'
+ - 10: '7x'
+ - 11: '7w'
+ - 12: '7v'
+ - 13: '7u'
+ - 14: '7t'
+ - 15: '7s'
+ - 16: '7r'
+ - 17: '7q'
+ - 18: '7p'
+ - 19: '7o'
+ - 20: '7n'
+ - 21: '7m'
+ - 22: '7l'
+ - 23: '7k'
+ - 24: '7j'
+ - 25: '7i'
+ - 26: '7h'
+ - eval returned: ('<crash[ Loop aborted by Preval test runner (this simply curbs infinite loops in tests) ]>')
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

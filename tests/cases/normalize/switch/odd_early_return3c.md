@@ -89,7 +89,7 @@ const f /*:()=>undefined*/ = function () {
   $(1);
   return undefined;
 };
-const a /*:()=>?*/ = function () {
+const a /*:()=>*/ = function () {
   debugger;
   $(`x`);
   $(`y`);

@@ -368,7 +368,7 @@ const tmpFree /*:(unknown, unknown)=>number*/ = function $free($$0, $$1) {
   return tmpRet;
 };
 let a /*:number*/ = 0;
-let hoezithetmetdezeb /*:unknown*/ = undefined;
+let hoezithetmetdezeb /*:primitive*/ = undefined;
 let counter_a /*:number*/ = 4;
 let counter_b /*:number*/ = 0;
 const dataarray /*:array*/ = [0, 1, 2, 3, 47, 47, 192, 13, 10, 40, 31337, 221, 218, 39, 1, 5, 2, 13];
@@ -402,9 +402,9 @@ while (true) {
         if (tmpIfTest$1) {
           hoezithetmetdezeb = tmpClusterSSA_a$1 & 31;
           const tmpClusterSSA_c /*:number*/ = counter_a + 1;
-          const tmpClusterSSA_h /*:unknown*/ = dataarray[counter_a];
+          const tmpClusterSSA_h /*:primitive*/ = dataarray[counter_a];
           counter_a = tmpClusterSSA_c + 1;
-          const tmpClusterSSA_m /*:unknown*/ = dataarray[tmpClusterSSA_c];
+          const tmpClusterSSA_m /*:primitive*/ = dataarray[tmpClusterSSA_c];
           const tmpBinLhs$1 /*:number*/ = tmpClusterSSA_a$1 & 224;
           const tmpCallCallee /*:unknown*/ = $frfr;
           const tmpCalleeParam$3 /*:number*/ = tmpClusterSSA_h << 8;
@@ -448,13 +448,13 @@ while (true) {
         }
         if (tmpIfTest$10) {
           const tmpCompProp /*:number*/ = counter_b - a;
-          const tmpAssignComputedRhs /*:unknown*/ = output_array[tmpCompProp];
+          const tmpAssignComputedRhs /*:primitive*/ = output_array[tmpCompProp];
           output_array[counter_b] = tmpAssignComputedRhs;
           counter_b = counter_b + 1;
           const tmpIfTest$12 /*:boolean*/ = 1 < hoezithetmetdezeb;
           if (tmpIfTest$12) {
             const tmpCompProp$1 /*:number*/ = counter_b - a;
-            const tmpAssignComputedRhs$1 /*:unknown*/ = output_array[tmpCompProp$1];
+            const tmpAssignComputedRhs$1 /*:primitive*/ = output_array[tmpCompProp$1];
             output_array[counter_b] = tmpAssignComputedRhs$1;
             counter_b = counter_b + 1;
             let tmpClusterSSA_i$1 /*:number*/ = 2;
@@ -462,7 +462,7 @@ while (true) {
               const tmpIfTest$2 /*:boolean*/ = tmpClusterSSA_i$1 < hoezithetmetdezeb;
               if (tmpIfTest$2) {
                 const tmpCompProp$2 /*:number*/ = counter_b - a;
-                const tmpAssignComputedRhs$2 /*:unknown*/ = output_array[tmpCompProp$2];
+                const tmpAssignComputedRhs$2 /*:primitive*/ = output_array[tmpCompProp$2];
                 output_array[counter_b] = tmpAssignComputedRhs$2;
                 counter_b = counter_b + 1;
                 tmpClusterSSA_i$1 = tmpClusterSSA_i$1 + 1;
@@ -488,7 +488,7 @@ while (true) {
     break;
   }
 }
-const tmpCalleeParam$5 /*:unknown*/ = output_array.join(``);
+const tmpCalleeParam$5 /*:string*/ = output_array.join(``);
 $(tmpCalleeParam$5);
 `````
 

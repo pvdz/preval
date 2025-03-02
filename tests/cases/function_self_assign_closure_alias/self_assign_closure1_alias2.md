@@ -117,7 +117,7 @@ let a /*:()=>*/ = function () {
   const tmpReturnArg /*:unknown*/ = a();
   return tmpReturnArg;
 };
-const b /*:()=>?*/ = function () {
+const b /*:()=>*/ = function () {
   debugger;
   const arr$1 /*:array*/ = [1, 2, 3];
   a = function () {

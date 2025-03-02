@@ -74,6 +74,48 @@ function _typeTrackedTricks(fdata) {
             }
           }
         }
+
+        // `arr[n] = x; const y = arr[n]` when arr is an array of sorts, can safely replace the array ref by the prev assign rhs
+        if (
+          node.expression.type === 'AssignmentExpression' &&
+          node.expression.left.type === 'MemberExpression' &&
+          node.expression.left.object.type === 'Identifier' &&
+          node.expression.left.computed &&
+          AST.isNumberLiteral(node.expression.left.property) &&
+          !AST.isComplexNode(node.expression.right) &&
+          blockBody[blockIndex + 1]
+        ) {
+          const next = blockBody[blockIndex + 1];
+          // This is some form of `ident[n] = simple`
+          const targetName = node.expression.left.object.name; // This would need to be na array
+          if (
+            next.type === 'VariableDeclaration' &&
+            next.declarations[0].init.type === 'MemberExpression' &&
+            next.declarations[0].init.object.type === 'Identifier' &&
+            next.declarations[0].init.computed &&
+            AST.isNumberLiteral(next.declarations[0].init.property) &&
+            // Now check if previous ident[n] is equal to this ident[n]
+            next.declarations[0].init.object.name === targetName &&
+            AST.getPrimitiveValue(node.expression.left.property) === AST.getPrimitiveValue(next.declarations[0].init.property)
+          ) {
+            // This is `ident[n] = simple; const x = ident[n]`. Now verify whether ident is an array
+            const arrMeta = fdata.globallyUniqueNamingRegistry.get(targetName);
+            if (arrMeta.typing.mustBeType === 'array') {
+              // We should be able to replace the arr[n] reference with the simple reference
+              rule('Assigning to an array and reading that same array index immediately must yield same value');
+              example('arr[0] = x; const y = arr[0]', 'arr[0] = x; const y =x;');
+              before(node);
+              before(next);
+
+              next.declarations[0].init = AST.cloneSimple(node.expression.right);
+
+              after(node);
+              after(next);
+
+              ++changes;
+            }
+          }
+        }
         break;
       }
       case 'IfStatement': {
@@ -85,22 +127,32 @@ function _typeTrackedTricks(fdata) {
           const testMeta = fdata.globallyUniqueNamingRegistry.get(testName);
           if (testMeta.isImplicitGlobal) {
             vlog('- Test value in', node.type, 'is implicit global, bailing');
-          } else {
+          }
+          else {
             const truthy = testMeta.typing.mustBeTruthy; // Only true when the binding can only have truthy values. Otherwise we must keep the test as is.
-            const falsy =
-              !truthy &&
-              (testMeta.typing.mustBeFalsy ||
+            const falsya = testMeta.typing.mustBeFalsy;
+            ASSERT(!truthy || !falsya, 'should not be truthy and falsy at the same time', testMeta, testMeta.typing);
                 // One shot for low hanging fruit: verify that the previous statement defined the test to a false primitive (IR state can cause this)
-                (testMeta.writes.length &&
-                  testMeta.writes[0].kind === 'var' &&
-                  AST.isFalsy(testMeta.writes[0].parentNode.init) &&
-                  testMeta.writes[0].blockBody[testMeta.writes[0].blockIndex + 1] === node));
+            const falsyb =
+              !truthy &&
+              (
+                testMeta.writes.length &&
+                testMeta.writes[0].kind === 'var' &&
+                testMeta.writes[0].grandNode.kind === 'const' &&
+                AST.isFalsy(testMeta.writes[0].parentNode.init) &&
+                testMeta.writes[0].blockBody[testMeta.writes[0].blockIndex + 1] === node
+              );
 
-            if (falsy) {
+            vlog('--', truthy, falsya, falsyb);
+
+            if (falsya || falsyb) {
               //TODO: test;
               // undefined/null will lead to a literal. boolean must be false. string must be empty. number is unknown but also unhandled at the moment. so I'm not sure this case can be reached right now.
-              rule('An `if` test with a truthy value should be replaced with `true`');
-              example('if (1) {}', 'if (true) {}');
+
+              vlog('Binding must be falsy', testMeta.typing);
+
+              rule('An `if` test with a falsy value should be replaced with `false`');
+              example('if (0) {}', 'if (false) {}');
               before(node.test, node);
 
               // TODO: fix implicit global errors by compiling the test as a statement
@@ -111,8 +163,8 @@ function _typeTrackedTricks(fdata) {
             }
             else if (truthy) {
               // Covered by tests/cases/excl/regex.md tests/cases/ifelse/harder/if_new.md
-              rule('An `if` test with a falsy value should be replaced with `false`');
-              example('if (0) {}', 'if (false) {}');
+              rule('An `if` test with a truthy value should be replaced with `true`');
+              example('if (1) {}', 'if (true) {}');
               before(node.test, parentNode);
 
               // TODO: fix implicit global errors by compiling the test as a statement
@@ -466,7 +518,10 @@ function _typeTrackedTricks(fdata) {
                 break;
               }
               case 'class': // Note: typeof class is 'function' !
-              case 'function': {
+              case 'function':
+              case 'map':
+              case 'set':
+              {
                 // Covered by tests/cases/type_tracked/typeof/base_function.md
                 rule('A `typeof` on a value that must be a function can be resolved');
                 example('typeof function(){};', '"function";');
@@ -1057,6 +1112,28 @@ function _typeTrackedTricks(fdata) {
               // Resolve object spread in some cases
               break;
             }
+            case symbo('String', 'fromCharCode'): {
+              if (node.arguments.every(arg => AST.isPrimitive(arg))) {
+                // String.fromCharCode(15, 33, 32)
+
+                rule('Calling `String.fromCharCode` on primitive args should resolve the call');
+                example('String.fromCharCode(104,101,108,108,111)', '"hello"');
+                before(parentNode);
+
+                if (parentIndex < 0) parentNode[parentProp] = AST.primitive(String.fromCharCode(...node.arguments.map(n => AST.getPrimitiveValue(n))));
+                else parentNode[parentProp][parentIndex] = AST.primitive(String.fromCharCode(...node.arguments.map(n => AST.getPrimitiveValue(n))));
+
+                after(parentNode);
+                ++changes;
+                break;
+              }
+              break;
+            }
+            default: {
+              if (BUILTIN_SYMBOLS.has(node.callee.name)) {
+                todo('type trackeed tricks can possibly support resolving the type for calling this builtin symbol:', node.callee.name);
+              }
+            }
           }
         }
         else if (node.callee.type === 'MemberExpression') {
@@ -1067,22 +1144,51 @@ function _typeTrackedTricks(fdata) {
           if ((isPrim || isRegex || node.callee.object.type === 'Identifier') && !node.callee.computed) {
             let mustBe = isRegex ? 'regex' : isPrim ? AST.getPrimitiveType(node.callee.object) : fdata.globallyUniqueNamingRegistry.get(node.callee.object.name).typing.mustBeType;
 
-            switch (mustBe + '.' + node.callee.property.name) {
-              case 'array.shift': {
+            switch (symbo(mustBe, node.callee.property.name)) {
+              case symbo('array', 'shift'): {
                 // This is done in another rule
                 // I think in arr_mutation?
                 break;
               }
-              case 'array.join': {
+              case symbo('array', 'join'): {
                 // We can do this provided we can determine the concrete value of all elements of the array
                 // See the 'join' case in arr_mutation
                 break;
               }
-              case 'array.reverse': {
+              case symbo('array', 'reverse'): {
                 // See the 'reverse' case in arr_mutation
+                // Here we only deal with the fact that .reverse() returns its context
+                // Don't do it when the call is already an expression statement
+                if (parentNode.type !== 'ExpressionStatement') {
+                  queue.push({
+                    index: blockIndex,
+                    func: () => {
+                      rule('Calling .reverse on an array returns the array itself');
+                      example('const y = arr.reverse();', 'arr.reverse(); const y = arr;');
+                      before(blockBody[blockIndex]);
+
+                      // .reverse() returns the array it mutated so we should be able to leave the context
+
+                      // Rare case where grandNode does not suffice; we need the parent of the grand node to replace the whole call.
+                      // In normalized code this can only be three things: expr stmt call, expr stmt assign call, var decl init call
+
+                      // Replace the call with the `arr` of `arr.reverse()`
+                      const newNode = AST.cloneSimple(node.callee.object);
+                      if (parentIndex < 0) parentNode[parentProp] = newNode;
+                      else parentNode[parentProp][parentIndex] = newNode;
+                      // Turn the arr.reverse() call into its own statement now, before where the call happens (although that should not matter much)
+                      blockBody.splice(blockIndex, 0, AST.expressionStatement(node));
+
+                      before(blockBody[blockIndex]);
+                      before(blockBody[blockIndex+1]);
+                    },
+                  });
+                  changes += 1;
+                }
+
                 break;
               }
-              case 'boolean.toString': {
+              case symbo('boolean', 'toString'): {
                 // `true.toString()`
                 // `false.toString()`
                 // `x.toString()` with x an unknown boolean
@@ -1090,31 +1196,28 @@ function _typeTrackedTricks(fdata) {
                 if (isPrim) {
                   const primValue = AST.getPrimitiveValue(node.callee.object);
 
-                  rule('Calling bool.toString() on a primitive should inline the call');
-                  example('true.toString()', '"true"');
-                  before(node, parentNode);
+                  const rest = node.arguments.slice(0);
+                  queue.push({
+                    index: blockIndex,
+                    func: () => {
+                      rule('Calling bool.toString() on a primitive should inline the call');
+                      example('true.toString()', '"true"');
+                      before(node, parentNode);
 
-                  if (parentIndex < 0) parentNode[parentProp] = AST.primitive(primValue.toString());
-                  else parentNode[parentProp][parentIndex] = AST.primitive(primValue.toString());
+                      if (parentIndex < 0) parentNode[parentProp] = AST.primitive(primValue.toString());
+                      else parentNode[parentProp][parentIndex] = AST.primitive(primValue.toString());
+                      rest.forEach(arg => {
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                      });
+                      after(node, parentNode);
+                    },
+                  });
 
-                  if (node.arguments.length > 0) {
-                    const rest = node.arguments.slice(0);
-                    queue.push({
-                      index: blockIndex,
-                      func: () => {
-                        rest.forEach(arg => {
-                          blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
-                        });
-                      },
-                    });
-                  }
-
-                  after(node, parentNode);
                   ++changes;
                 }
                 break;
               }
-              case 'buffer.toString': {
+              case symbo('buffer', 'toString'): {
                 // This is a common obfuscator trick to just do `Buffer.from(x, 'base64').toString('ascii')`
                 // There are other variations we can support here and I suppose if the conversion is really that simple, we can just resolve it regardless.
 
@@ -1126,11 +1229,8 @@ function _typeTrackedTricks(fdata) {
                     const init = write.parentNode.init;
                     if (
                       init.type === 'CallExpression' &&
-                      init.callee.type === 'MemberExpression' &&
-                      init.callee.object.type === 'Identifier' &&
-                      !init.callee.computed &&
-                      init.callee.object.name === 'Buffer' &&
-                      init.callee.property.name === 'from' &&
+                      init.callee.type === 'Identifier' &&
+                      init.callee.name === symbo('Buffer', 'from') &&
                       init.arguments.length > 0 &&
                       AST.isStringLiteral(init.arguments[0]) &&
                       // Remaining args are literals as well
@@ -1182,7 +1282,7 @@ function _typeTrackedTricks(fdata) {
                 }
                 break;
               }
-              case 'function.apply': {
+              case symbo('function', 'apply'): {
                 const objMeta = fdata.globallyUniqueNamingRegistry.get(node.callee.object.name);
                 if (objMeta.isConstant && !objMeta.constValueRef.node.$p.thisAccess) {
                   vlog('Queued transform to eliminate .apply');
@@ -1218,7 +1318,7 @@ function _typeTrackedTricks(fdata) {
                 }
                 break;
               }
-              case 'function.call': {
+              case symbo('function', 'call'): {
                 const objMeta = fdata.globallyUniqueNamingRegistry.get(node.callee.object.name);
                 if (objMeta.isConstant && !objMeta.constValueRef.node.$p.thisAccess) {
                   vlog('Queued transform to eliminate .call');
@@ -1249,7 +1349,7 @@ function _typeTrackedTricks(fdata) {
                 }
                 break;
               }
-              case 'function.constructor': {
+              case symbo('function', 'constructor'): {
                 // `(function(){}).constructor('x')` is equal to calling `Function('x')`
                 // Rather than mimicking that logic here, we'll just transform it to `Function` instead and let another rule pick that up
 
@@ -1263,7 +1363,7 @@ function _typeTrackedTricks(fdata) {
                 ++changes;
                 break;
               }
-              case 'number.toString': {
+              case symbo('number', 'toString'): {
                 // `true.toString()`
                 // `false.toString()`
                 // `x.toString()` with x an unknown boolean
@@ -1295,7 +1395,7 @@ function _typeTrackedTricks(fdata) {
                 }
                 break;
               }
-              case 'regex.constructor': {
+              case symbo('regex', 'constructor'): {
                 // `/foo/.constructor("bar", "g")` silliness, originated from jsf*ck
 
                 rule('Calling regex.constructor() should call the constructor directly');
@@ -1308,7 +1408,7 @@ function _typeTrackedTricks(fdata) {
                 ++changes;
                 break;
               }
-              case 'regex.test': {
+              case symbo('regex', 'test'): {
                 const objMeta = fdata.globallyUniqueNamingRegistry.get(node.callee.object.name);
                 if (
                   objMeta.isConstant &&
@@ -1344,7 +1444,7 @@ function _typeTrackedTricks(fdata) {
 
                 break;
               }
-              case 'string.concat': {
+              case symbo('string', 'concat'): {
                 // Calling .concat() on a known string is equal to `${context}${arg1}${arg2}${etc}`
                 // So if we know the number of args, not a splat, then we can transform this to a template
 
@@ -1368,7 +1468,7 @@ function _typeTrackedTricks(fdata) {
                 }
                 break;
               }
-              case 'string.indexOf': {
+              case symbo('string', 'indexOf'): {
                 const arglen = node.arguments.length;
                 if (isPrim && (arglen === 0 || (AST.isPrimitive(node.arguments[0]) && (arglen === 1 || AST.isPrimitive(node.arguments[1]))))) {
                   // 'foo'.indexOf('o', 15)
@@ -1405,7 +1505,7 @@ function _typeTrackedTricks(fdata) {
                 }
                 break;
               }
-              case 'string.lastIndexOf': {
+              case symbo('string', 'lastIndexOf'): {
                 const arglen = node.arguments.length;
                 if (isPrim && (arglen === 0 || (AST.isPrimitive(node.arguments[0]) && (arglen === 1 || AST.isPrimitive(node.arguments[1]))))) {
                   // 'foo'.lastIndexOf('o', 15)
@@ -1442,7 +1542,7 @@ function _typeTrackedTricks(fdata) {
                 }
                 break;
               }
-              case 'string.replace': {
+              case symbo('string', 'replace'): {
                 if (
                   isPrim &&
                   node.arguments.length > 1 &&
@@ -1625,7 +1725,7 @@ function _typeTrackedTricks(fdata) {
 
                 break;
               }
-              case 'string.slice': {
+              case symbo('string', 'slice'): {
                 const arglen = node.arguments.length;
                 if (isPrim && (arglen === 0 || (AST.isPrimitive(node.arguments[0]) && (arglen === 1 || AST.isPrimitive(node.arguments[1]))))) {
                   // 'foo'.slice(0)
@@ -1662,7 +1762,7 @@ function _typeTrackedTricks(fdata) {
                 }
                 break;
               }
-              case 'string.charAt': {
+              case symbo('string', 'charAt'): {
                 const arglen = node.arguments.length;
                 if (isPrim && (arglen === 0 || AST.isPrimitive(node.arguments[0]))) {
                   // 'foo'.charAt(0)
@@ -1698,7 +1798,7 @@ function _typeTrackedTricks(fdata) {
                 }
                 break;
               }
-              case 'string.split': {
+              case symbo('string', 'split'): {
                 const arglen = node.arguments.length;
                 if (isPrim && (arglen === 0 || AST.isPrimitive(node.arguments[0]))) {
                   // 'foo'.split()
@@ -1772,33 +1872,10 @@ function _typeTrackedTricks(fdata) {
               }
               default: {
                 if (BUILTIN_SYMBOLS.has(symbo(mustBe, node.callee.property.name))) {
-                  todo('type trackeed tricks can possibly support resolving the type for calling this builtin symbol:', symbo(symbo(mustBe, node.callee.property.name)));
-                }
-                if (node.callee.object.type === 'Identifier') {
-                  switch (node.callee.object.name + '.' + node.callee.property.name) {
-                    case 'String.fromCharCode': {
-                      const arglen = node.arguments.length;
-                      if (node.arguments.every(arg => AST.isPrimitive(arg))) {
-                        // String.fromCharCode(15, 33, 32)
-
-                        rule('Calling `String.fromCharCode` on primitive args should resolve the call');
-                        example('String.fromCharCode(104,101,108,108,111)', '"hello"');
-                        before(parentNode);
-
-                        if (parentIndex < 0) parentNode[parentProp] = AST.primitive(String.fromCharCode(...node.arguments.map(n => AST.getPrimitiveValue(n))));
-                        else parentNode[parentProp][parentIndex] = AST.primitive(String.fromCharCode(...node.arguments.map(n => AST.getPrimitiveValue(n))));
-
-                        after(parentNode);
-                        ++changes;
-                        break;
-                      }
-                      break;
-                    }
-                  }
+                  todo('type trackeed tricks can possibly support resolving the type for calling this builtin symbol:', symbo(mustBe, node.callee.property.name));
                 }
               }
             }
-
           }
           else if (node.callee.computed) {
             // Nope.

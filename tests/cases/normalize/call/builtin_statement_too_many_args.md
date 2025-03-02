@@ -26,7 +26,7 @@ isNaN($spy(`a`), $spy(`b`), $spy(`c`));
 const tmpArgOverflow = $spy(`a`);
 $spy(`b`);
 $spy(`c`);
-isNaN(tmpArgOverflow);
+$coerce(tmpArgOverflow, `number`);
 `````
 
 ## Output
@@ -36,7 +36,7 @@ isNaN(tmpArgOverflow);
 const tmpArgOverflow /*:unknown*/ = $spy(`a`);
 $spy(`b`);
 $spy(`c`);
-isNaN(tmpArgOverflow);
+$coerce(tmpArgOverflow, `number`);
 `````
 
 ## PST Output
@@ -47,7 +47,7 @@ With rename=true
 const a = $spy( "a" );
 $spy( "b" );
 $spy( "c" );
-isNaN( a );
+$coerce( a, "number" );
 `````
 
 ## Globals

@@ -58,7 +58,7 @@ if (tmpIfTest) {
 const tmpCalleeParam /*:array*/ = [];
 const tmpArrSpread /*:unknown*/ = $(tmpCalleeParam);
 const tmpArgOverflowOne /*:array*/ = [...tmpArrSpread];
-const tmpArgOverflowLen /*:unknown*/ = tmpArgOverflowOne.length;
+const tmpArgOverflowLen /*:number*/ = tmpArgOverflowOne.length;
 const tmpArgOverflowTwo /*:unknown*/ = $spy(`b`);
 const tmpArgOverflowThree /*:unknown*/ = $spy(`c`);
 if (tmpArgOverflowLen) {

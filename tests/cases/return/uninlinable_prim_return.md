@@ -99,7 +99,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const g /*:()=>number,undefined*/ = function () {
+const g /*:()=>primitive*/ = function () {
   debugger;
   const tmpIfTest$1 /*:unknown*/ = $(1);
   $(`abc`);

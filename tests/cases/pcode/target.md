@@ -105,11 +105,11 @@ pcode =
     [ if r6 -
       [
         [ r7 + r5 - - 29 ]
-        [ r8 call String.fromCharCode - - undefined ]
+        [ r8 call $String_fromCharCode - - undefined ]
         [ r9 + r1 - r8 - ]
         [ return r9 - ]
       ] [
-        [ r10 call number.toString - - "" 36 - ]
+        [ r10 call $number_toString - - "" 36 - ]
         [ r11 + r1 - r10 - ]
         [ return r11 - ]
       ]

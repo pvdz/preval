@@ -56,7 +56,7 @@ const tmpCalleeParam /*:regex*/ = /x/;
 const stuff /*:unknown*/ = cook.match(tmpCalleeParam);
 if (stuff) {
   const tmpCalleeParam$1 /*:unknown*/ = stuff[1];
-  const deco /*:unknown*/ = decodeURIComponent(tmpCalleeParam$1);
+  const deco /*:string*/ = decodeURIComponent(tmpCalleeParam$1);
   unknown = deco;
 } else {
 }

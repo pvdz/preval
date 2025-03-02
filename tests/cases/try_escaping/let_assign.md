@@ -83,7 +83,7 @@ let x /*:unknown*/ = undefined;
 let y /*:unknown*/ = 1;
 const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCalleeParam /*:unknown*/ = arr[0];
+  const tmpCalleeParam /*:primitive*/ = arr[0];
   try {
     $(tmpCalleeParam);
     x = arr;

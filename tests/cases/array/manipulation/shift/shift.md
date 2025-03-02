@@ -11,7 +11,7 @@
 `````js filename=intro
 const ARR = [ `a`, `b`, `c` ];
 const NOOP = function() {
-$(ARR);
+  $(ARR);
 };
 const n = ARR.shift();
 $(n);

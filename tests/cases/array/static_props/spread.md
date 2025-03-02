@@ -45,7 +45,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 const tmpCalleeParam /*:array*/ = [10, 20];
 const tmpArrSpread /*:unknown*/ = $(tmpCalleeParam);
 const arr /*:array*/ = [1, 2, ...tmpArrSpread, 3];
-const tmpCalleeParam$1 /*:unknown*/ = arr.length;
+const tmpCalleeParam$1 /*:number*/ = arr.length;
 $(tmpCalleeParam$1);
 `````
 

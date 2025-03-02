@@ -291,7 +291,7 @@ tmp(obja, objb, objc, objd);
 
 
 `````js filename=intro
-const tmp /*:(array)=>?*/ = function (...$$0 /*:array*/) {
+const tmp /*:(array)=>*/ = function (...$$0 /*:array*/) {
   const a$1 /*:array*/ = $$0;
   debugger;
   const tmpCalleeParam /*:array*/ = [`\$:`, a$1, b, c, d, e, obja, objb, objc, objd, `::`, ...a$1];

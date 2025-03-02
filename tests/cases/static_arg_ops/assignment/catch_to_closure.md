@@ -79,7 +79,7 @@ try {
   $();
 } catch (e) {
   let a /*:unknown*/ = $(1);
-  const f /*:()=>*/ = function () {
+  const f /*:()=>undefined*/ = function () {
     debugger;
     a = e;
     $(`filler`);

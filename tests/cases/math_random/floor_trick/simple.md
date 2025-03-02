@@ -33,7 +33,7 @@ $(chr);
 `````js filename=intro
 const rnd = 0.12556649118791485;
 const rnd62 = rnd * 62;
-const int62 = Math.floor(rnd62);
+const int62 = $Math_floor(rnd62);
 const chr = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789`.charAt(int62);
 $(chr);
 `````

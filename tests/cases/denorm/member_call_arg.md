@@ -40,9 +40,8 @@ $(c);
 
 `````js filename=intro
 const a /*:unknown*/ = inline.value;
-const b /*:unknown*/ = encodeURIComponent(a);
-const c /*:string*/ = $coerce(b, `plustr`);
-$(c);
+const b /*:string*/ = encodeURIComponent(a);
+$(b);
 `````
 
 ## PST Output
@@ -52,8 +51,7 @@ With rename=true
 `````js filename=intro
 const a = inline.value;
 const b = encodeURIComponent( a );
-const c = $coerce( b, "plustr" );
-$( c );
+$( b );
 `````
 
 ## Globals

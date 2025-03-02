@@ -114,20 +114,15 @@ $(arr);
 `````js filename=intro
 const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCalleeParam /*:unknown*/ = arr[0];
+  const tmpCalleeParam /*:primitive*/ = arr[0];
   $(tmpCalleeParam);
-  const a /*:unknown*/ = arr[286];
-  try {
-    const b /*:number*/ = parseInt(a);
-    if (b) {
-      break;
-    } else {
-      const M /*:unknown*/ = arr.shift();
-      arr.push(M);
-    }
-  } catch (P) {
-    const N /*:unknown*/ = arr.shift();
-    arr.push(N);
+  const a /*:primitive*/ = arr[286];
+  const b /*:number*/ = parseInt(a);
+  if (b) {
+    break;
+  } else {
+    const M /*:unknown*/ = arr.shift();
+    arr.push(M);
   }
 }
 $(arr);
@@ -143,19 +138,13 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const b = a[ 0 ];
   $( b );
   const c = a[ 286 ];
-  try {
-    const d = parseInt( c );
-    if (d) {
-      break;
-    }
-    else {
-      const e = a.shift();
-      a.push( e );
-    }
+  const d = parseInt( c );
+  if (d) {
+    break;
   }
-  catch (f) {
-    const g = a.shift();
-    a.push( g );
+  else {
+    const e = a.shift();
+    a.push( e );
   }
 }
 $( a );

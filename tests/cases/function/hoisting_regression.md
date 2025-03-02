@@ -71,7 +71,7 @@ $(f);
 
 
 `````js filename=intro
-const f /*:()=>undefined,function*/ = function () {
+const f /*:()=>*/ = function () {
   debugger;
   const incorrectlyhoisted /*:()=>undefined*/ = function () {
     debugger;

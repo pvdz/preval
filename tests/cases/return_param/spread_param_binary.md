@@ -78,11 +78,11 @@ const f /*:(array)=>primitive*/ = function (...$$0 /*:array*/) {
   const y /*:primitive*/ = x + 500;
   return y;
 };
-const tmpCalleeParam /*:unknown*/ = f(1);
+const tmpCalleeParam /*:primitive*/ = f(1);
 $(tmpCalleeParam);
-const tmpCalleeParam$1 /*:unknown*/ = f(2);
+const tmpCalleeParam$1 /*:primitive*/ = f(2);
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 /*:unknown*/ = f(`three`);
+const tmpCalleeParam$3 /*:primitive*/ = f(`three`);
 $(tmpCalleeParam$3);
 `````
 

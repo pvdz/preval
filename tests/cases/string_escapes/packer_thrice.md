@@ -97,7 +97,7 @@ const tmpCallCallee$1 = function ($$0, $$1, $$2, $$3, $$4, $$5) {
     const tmpIfTest$1 = tmpBinLhs > 35;
     if (tmpIfTest$1) {
       const tmpCalleeParam$17 = c$1 + 29;
-      tmpBinBothRhs = String.fromCharCode(tmpCalleeParam$17);
+      tmpBinBothRhs = $String_fromCharCode(tmpCalleeParam$17);
     } else {
       tmpBinBothRhs = c$1.toString(36);
     }
@@ -191,13 +191,6 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpFree$1 /*:(number)=>string*/ = function $free($$0) {
-  const tmpClusterSSA_c$1 /*:number*/ = $$0;
-  debugger;
-  const tmpCalleeParam$17 /*:number*/ = tmpClusterSSA_c$1 + 29;
-  const tmpRet$1 /*:string*/ = String.fromCharCode(tmpCalleeParam$17);
-  return tmpRet$1;
-};
 const tmpFree /*:(number)=>number*/ = function $free($$0) {
   const c$1 /*:number*/ = $$0;
   debugger;
@@ -216,14 +209,15 @@ let tmpSSA_e /*:(number)=>*/ = function ($$0) {
     const tmpCalleeParam$13 /*:number*/ = $frfr(tmpFree, c$2);
     tmpBinBothLhs = tmpSSA_e(tmpCalleeParam$13);
   }
-  const tmpClusterSSA_c$2 /*:number*/ = c$2 % 45;
-  const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_c$2 > 35;
+  const tmpClusterSSA_c$1 /*:number*/ = c$2 % 45;
+  const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_c$1 > 35;
   if (tmpIfTest$1) {
-    const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $frfr(tmpFree$1, tmpClusterSSA_c$2);
+    const tmpCalleeParam$17 /*:number*/ = tmpClusterSSA_c$1 + 29;
+    const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $String_fromCharCode(tmpCalleeParam$17);
     const tmpClusterSSA_tmpReturnArg /*:string*/ = tmpBinBothLhs + tmpClusterSSA_tmpBinBothRhs;
     return tmpClusterSSA_tmpReturnArg;
   } else {
-    const tmpClusterSSA_tmpBinBothRhs$1 /*:string*/ = tmpClusterSSA_c$2.toString(36);
+    const tmpClusterSSA_tmpBinBothRhs$1 /*:string*/ = tmpClusterSSA_c$1.toString(36);
     const tmpClusterSSA_tmpReturnArg$1 /*:string*/ = tmpBinBothLhs + tmpClusterSSA_tmpBinBothRhs$1;
     return tmpClusterSSA_tmpReturnArg$1;
   }
@@ -248,7 +242,7 @@ const tmpAssignComMemLhsProp$8 /*:unknown*/ = tmpSSA_e(36);
 tmpCalleeParam$11[tmpAssignComMemLhsProp$8] = `new`;
 const tmpAssignComMemLhsProp$9 /*:unknown*/ = tmpSSA_e(35);
 tmpCalleeParam$11[tmpAssignComMemLhsProp$9] = `String`;
-let tmpClusterSSA_c$3 /*:number*/ = 34;
+let tmpClusterSSA_c$2 /*:number*/ = 34;
 const tmpAssignComMemLhsProp$10 /*:unknown*/ = tmpSSA_e(34);
 tmpCalleeParam$11[tmpAssignComMemLhsProp$10] = `eval`;
 const tmpCalleeParam$7 /*:array*/ = [
@@ -299,21 +293,21 @@ const tmpCalleeParam$7 /*:array*/ = [
   `x20o`,
 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpPostUpdArgIdent$1 /*:unknown*/ = tmpClusterSSA_c$3;
-  tmpClusterSSA_c$3 = tmpClusterSSA_c$3 - 1;
+  const tmpPostUpdArgIdent$1 /*:unknown*/ = tmpClusterSSA_c$2;
+  tmpClusterSSA_c$2 = tmpClusterSSA_c$2 - 1;
   if (tmpPostUpdArgIdent$1) {
-    const tmpAssignComMemLhsProp$11 /*:unknown*/ = tmpSSA_e(tmpClusterSSA_c$3);
-    let tmpAssignComputedRhs$1 /*:unknown*/ = tmpCalleeParam$7[tmpClusterSSA_c$3];
+    const tmpAssignComMemLhsProp$11 /*:unknown*/ = tmpSSA_e(tmpClusterSSA_c$2);
+    let tmpAssignComputedRhs$1 /*:unknown*/ = tmpCalleeParam$7[tmpClusterSSA_c$2];
     if (tmpAssignComputedRhs$1) {
     } else {
-      tmpAssignComputedRhs$1 = tmpSSA_e(tmpClusterSSA_c$3);
+      tmpAssignComputedRhs$1 = tmpSSA_e(tmpClusterSSA_c$2);
     }
     tmpCalleeParam$11[tmpAssignComMemLhsProp$11] = tmpAssignComputedRhs$1;
   } else {
     break;
   }
 }
-const tmpArrElement /*:(unknown)=>?*/ = function ($$0) {
+const tmpArrElement /*:(unknown)=>*/ = function ($$0) {
   const e$1 /*:unknown*/ = $$0;
   debugger;
   const tmpReturnArg$1 /*:unknown*/ = tmpCalleeParam$11[e$1];
@@ -339,98 +333,92 @@ With rename=true
 const a = function b($$0 ) {
   const c = $$0;
   debugger;
-  const d = c + 29;
-  const e = String.fromCharCode( d );
+  const d = c / 45;
+  const e = parseInt( d );
   return e;
 };
-const f = function b($$0 ) {
-  const g = $$0;
+const f = {};
+let g = function($$0 ) {
+  const h = $$0;
   debugger;
-  const h = g / 45;
-  const i = parseInt( h );
-  return i;
-};
-const j = {};
-let k = function($$0 ) {
-  const l = $$0;
-  debugger;
-  let m = "";
-  const n = l < 45;
-  if (n) {
+  let i = "";
+  const j = h < 45;
+  if (j) {
 
   }
   else {
-    const o = p( f, l );
-    m = k( o );
+    const k = l( a, h );
+    i = g( k );
   }
-  const q = l % 45;
-  const r = q > 35;
-  if (r) {
-    const s = p( a, q );
-    const t = m + s;
-    return t;
+  const m = h % 45;
+  const n = m > 35;
+  if (n) {
+    const o = m + 29;
+    const p = $String_fromCharCode( o );
+    const q = i + p;
+    return q;
   }
   else {
-    const u = q.toString( 36 );
-    const v = m + u;
-    return v;
+    const r = m.toString( 36 );
+    const s = i + r;
+    return s;
   }
 };
-const w = k( 44 );
-j[w] = "x20o";
-const x = k( 43 );
-j[x] = "bo";
-const y = k( 42 );
-j[y] = "log";
-const z = k( 41 );
-j[z] = "console";
-const ba = k( 40 );
-j[ba] = "toString";
-const bb = k( 39 );
-j[bb] = "split";
-const bc = k( 38 );
-j[bc] = "28";
-const bd = k( 37 );
-j[bd] = "RegExp";
-const be = k( 36 );
-j[be] = "new";
-const bf = k( 35 );
-j[bf] = "String";
-let bg = 34;
-const bh = k( 34 );
-j[bh] = "eval";
-const bi = [ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "function", "return", "if", "replace", "", "while", "eval", "String", "new", "RegExp", "28", "split", "toString", "console", "log", "bo", "x20o" ];
+const t = g( 44 );
+f[t] = "x20o";
+const u = g( 43 );
+f[u] = "bo";
+const v = g( 42 );
+f[v] = "log";
+const w = g( 41 );
+f[w] = "console";
+const x = g( 40 );
+f[x] = "toString";
+const y = g( 39 );
+f[y] = "split";
+const z = g( 38 );
+f[z] = "28";
+const ba = g( 37 );
+f[ba] = "RegExp";
+const bb = g( 36 );
+f[bb] = "new";
+const bc = g( 35 );
+f[bc] = "String";
+let bd = 34;
+const be = g( 34 );
+f[be] = "eval";
+const bf = [ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "function", "return", "if", "replace", "", "while", "eval", "String", "new", "RegExp", "28", "split", "toString", "console", "log", "bo", "x20o" ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const bj = bg;
-  bg = bg - 1;
-  if (bj) {
-    const bk = k( bg );
-    let bl = bi[ bg ];
-    if (bl) {
+  const bg = bd;
+  bd = bd - 1;
+  if (bg) {
+    const bh = g( bd );
+    let bi = bf[ bd ];
+    if (bi) {
 
     }
     else {
-      bl = k( bg );
+      bi = g( bd );
     }
-    j[bk] = bl;
+    f[bh] = bi;
   }
   else {
     break;
   }
 }
-const bm = function($$0 ) {
-  const bn = $$0;
+const bj = function($$0 ) {
+  const bk = $$0;
   debugger;
-  const bo = j[ bn ];
-  return bo;
+  const bl = f[ bk ];
+  return bl;
 };
-k = function() {
+g = function() {
   debugger;
   return "\\w+";
 };
-const bp = /\b\w+\b/g;
-const bq = "y(s(p,a,c,k,e,r){e=s(c){t c.E(a)};u(!''.v(/^/,z)){x(c--)r[e(c)]=k[c]||e(c);k=[s(e){t r[e]}];e=s(){t'\\\\w+'};c=1};x(c--)u(k[c])p=p.v(A B('\\\\b'+e(c)+'\\\\b','g'),k[c]);t p}('f(5(p,a,c,k,e,r){e=7;8(!\\'\\'.9(/^/,7)){d(c--)r[c]=k[c]||c;k=[5(e){6 r[e]}];e=5(){6\\'\\\\\\\\h+\\'};c=1};d(c--)8(k[c])p=p.9(i j(\\'\\\\\\\\b\\'+e(c)+\\'\\\\\\\\b\\',\\'g\\'),k[c]);6 p}(\\'0.1(\\\\\\'2\\\\\\\\`\\\\\\\\\\\\\\'\\\\\\\\\"\\\\\\\\3\\\\\\')\\',4,4,\\'l|m|n|o\\'.q(\\'|\\'),0,{}))',C,C,'|||||s|t|z|u|v||||x||y||w|A|B||F|G|H|I||D|'.D('|'),0,{}))".replace( bp, bm );
-eval( bq );
+const bm = /\b\w+\b/g;
+const bn = "y(s(p,a,c,k,e,r){e=s(c){t c.E(a)};u(!''.v(/^/,z)){x(c--)r[e(c)]=k[c]||e(c);k=[s(e){t r[e]}];e=s(){t'\\\\w+'};c=1};x(c--)u(k[c])p=p.v(A B('\\\\b'+e(c)+'\\\\b','g'),k[c]);t p}('f(5(p,a,c,k,e,r){e=7;8(!\\'\\'.9(/^/,7)){d(c--)r[c]=k[c]||c;k=[5(e){6 r[e]}];e=5(){6\\'\\\\\\\\h+\\'};c=1};d(c--)8(k[c])p=p.9(i j(\\'\\\\\\\\b\\'+e(c)+\\'\\\\\\\\b\\',\\'g\\'),k[c]);6 p}(\\'0.1(\\\\\\'2\\\\\\\\`\\\\\\\\\\\\\\'\\\\\\\\\"\\\\\\\\3\\\\\\')\\',4,4,\\'l|m|n|o\\'.q(\\'|\\'),0,{}))',C,C,'|||||s|t|z|u|v||||x||y||w|A|B||F|G|H|I||D|'.D('|'),0,{}))".replace( bm, bj );
+eval( bn );
 `````
 
 ## Globals

@@ -52,7 +52,7 @@ let i = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const r = $(i);
   const n = r * 1;
-  const a = Math.pow(n, 2);
+  const a = $Math_pow(n, 2);
   const b = a / 2;
   const tmpStringFirstArg = b;
   const c = $coerce(tmpStringFirstArg, `string`);
@@ -74,7 +74,7 @@ $(i);
 const tmpFree /*:(number)=>string*/ = function $free($$0) {
   const n /*:number*/ = $$0;
   debugger;
-  const a /*:number*/ = Math.pow(n, 2);
+  const a /*:number*/ = $Math_pow(n, 2);
   const b /*:number*/ = a / 2;
   const tmpRet /*:string*/ = $coerce(b, `string`);
   return tmpRet;
@@ -103,7 +103,7 @@ With rename=true
 const a = function b($$0 ) {
   const c = $$0;
   debugger;
-  const d = Math.pow( c, 2 );
+  const d = $Math_pow( c, 2 );
   const e = d / 2;
   const f = $coerce( e, "string" );
   return f;

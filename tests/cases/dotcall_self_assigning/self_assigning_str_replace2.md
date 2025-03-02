@@ -95,9 +95,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpPostUpdArgIdent$1 /*:unknown*/ = count;
   count = count - 1;
   if (tmpPostUpdArgIdent$1) {
-    const chr /*:unknown*/ = arr[count];
+    const chr /*:primitive*/ = arr[count];
     if (chr) {
-      const chr2 /*:unknown*/ = arr[count];
+      const chr2 /*:primitive*/ = arr[count];
       const regex /*:regex*/ = /xyz/g;
       str = str.replace(regex, chr2);
     } else {

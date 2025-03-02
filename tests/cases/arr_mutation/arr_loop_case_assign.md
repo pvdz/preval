@@ -116,7 +116,7 @@ if (tmpClusterSSA_test$1) {
 } else {
   const next$1 /*:unknown*/ = arr.shift();
   arr.push(next$1);
-  const tmpCalleeParam$2 /*:unknown*/ = arr.slice(0);
+  const tmpCalleeParam$2 /*:array*/ = arr.slice(0);
   try {
     $(tmpCalleeParam$2);
   } catch (e$1) {
@@ -133,7 +133,7 @@ if (tmpClusterSSA_test$1) {
     } else {
       const next$2 /*:unknown*/ = arr.shift();
       arr.push(next$2);
-      const tmpCalleeParam$3 /*:unknown*/ = arr.slice(0);
+      const tmpCalleeParam$3 /*:array*/ = arr.slice(0);
       try {
         $(tmpCalleeParam$3);
       } catch (e$2) {
@@ -143,7 +143,7 @@ if (tmpClusterSSA_test$1) {
     }
   }
 }
-const tmpCalleeParam$1 /*:unknown*/ = arr.slice(0, 3);
+const tmpCalleeParam$1 /*:array*/ = arr.slice(0, 3);
 $(tmpCalleeParam$1);
 `````
 

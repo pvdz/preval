@@ -68,7 +68,7 @@ while ($LOOP_UNROLL_1) {
 const test /*:unknown*/ = $(`never`);
 const arr /*:array*/ = [1, 2, 3, 4, 5];
 if (test) {
-  const tmpCalleeParam /*:unknown*/ = arr.slice(0);
+  const tmpCalleeParam /*:array*/ = arr.slice(0);
   $(tmpCalleeParam);
 } else {
   const tmp /*:unknown*/ = arr.shift();
@@ -76,7 +76,7 @@ if (test) {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const test$1 /*:unknown*/ = $(`never`);
     if (test$1) {
-      const tmpCalleeParam$1 /*:unknown*/ = arr.slice(0);
+      const tmpCalleeParam$1 /*:array*/ = arr.slice(0);
       $(tmpCalleeParam$1);
       break;
     } else {

@@ -137,7 +137,7 @@ const tmpFree$1 = function $free($$0, $$1) {
   const tmpBinBothLhs$3633 = cs$1 + 71046;
   const tmpBinBothRhs$3633 = `xyz`.charCodeAt(g$147);
   const tmpCalleeParam$9457 = tmpBinBothLhs$3633 ^ tmpBinBothRhs$3633;
-  const tmpRet$1 = String.fromCharCode(tmpCalleeParam$9457);
+  const tmpRet$1 = $String_fromCharCode(tmpCalleeParam$9457);
   return tmpRet$1;
 };
 const tmpObjLitVal$159 = function () {
@@ -200,7 +200,7 @@ const tmpFree$1 /*:(unknown, unknown)=>string*/ = function $free($$0, $$1) {
   const tmpBinBothLhs$3633 /*:primitive*/ = $dlr_$$0 + 71046;
   const tmpBinBothRhs$3633 /*:number*/ = `xyz`.charCodeAt($dlr_$$1);
   const tmpCalleeParam$9457 /*:number*/ = tmpBinBothLhs$3633 ^ tmpBinBothRhs$3633;
-  const tmpRet$1 /*:string*/ = String.fromCharCode(tmpCalleeParam$9457);
+  const tmpRet$1 /*:string*/ = $String_fromCharCode(tmpCalleeParam$9457);
   return tmpRet$1;
 };
 const tmpObjLitVal$159 /*:()=>undefined*/ = function () {
@@ -232,7 +232,7 @@ const tmpObjLitVal$159 /*:()=>undefined*/ = function () {
     }
   }
   if (tmpIfTest$5467) {
-    let tmpClusterSSA_p$171 /*:primitive*/ = $frfr(tmpFree$1, $, $);
+    let tmpClusterSSA_p$171 /*:string*/ = $frfr(tmpFree$1, $, $);
     while ($LOOP_UNROLL_10) {
       if (tmpIfTest$5467) {
         const tmpBinBothRhs$1 /*:string*/ = $frfr(tmpFree$1, $, $);
@@ -261,7 +261,7 @@ const a = function b($$0,$$1 ) {
   const e = c + 71046;
   const f = "xyz".charCodeAt( d );
   const g = e ^ f;
-  const h = String.fromCharCode( g );
+  const h = $String_fromCharCode( g );
   return h;
 };
 const i = function() {

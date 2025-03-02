@@ -54,8 +54,8 @@ if ($) {
   $(tmpCalleeParam);
 } else {
 }
-const rra /*:unknown*/ = arr.reverse();
-$(rra);
+arr.reverse();
+$(arr);
 `````
 
 ## PST Output
@@ -68,8 +68,8 @@ if ($) {
   const b = a.pop();
   $( b );
 }
-const c = a.reverse();
-$( c );
+a.reverse();
+$( a );
 `````
 
 ## Globals

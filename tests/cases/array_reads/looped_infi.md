@@ -50,11 +50,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCompoundAssignLhs /*:unknown*/ = arr[0];
+  const tmpCompoundAssignLhs /*:primitive*/ = arr[0];
   const tmpAssignComputedRhs /*:primitive*/ = tmpCompoundAssignLhs + 1;
   arr[0] = tmpAssignComputedRhs;
-  const tmpCalleeParam /*:unknown*/ = arr[0];
-  $(tmpCalleeParam);
+  $(tmpAssignComputedRhs);
 }
 `````
 
@@ -68,8 +67,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const b = a[ 0 ];
   const c = b + 1;
   a[0] = c;
-  const d = a[ 0 ];
-  $( d );
+  $( c );
 }
 `````
 

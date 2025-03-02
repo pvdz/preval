@@ -42,7 +42,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const arr /*:array*/ = [1, 2, 3];
 arr.splice(1, 2, 20);
-const tmpCalleeParam /*:unknown*/ = arr.length;
+const tmpCalleeParam /*:number*/ = arr.length;
 $(tmpCalleeParam);
 `````
 

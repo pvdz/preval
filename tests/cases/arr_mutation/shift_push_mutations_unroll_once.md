@@ -81,7 +81,7 @@ if (test) {
     }
   }
 }
-const tmpCalleeParam /*:unknown*/ = arr.slice(0);
+const tmpCalleeParam /*:array*/ = arr.slice(0);
 $(tmpCalleeParam);
 `````
 

@@ -202,7 +202,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const tmpFree /*:(unknown, number, number, number, number, number, number, number)=>boolean*/ = function $free(
+const tmpFree /*:(primitive, primitive, primitive, primitive, primitive, primitive, primitive, primitive)=>boolean*/ = function $free(
   $$0,
   $$1,
   $$2,
@@ -212,30 +212,37 @@ const tmpFree /*:(unknown, number, number, number, number, number, number, numbe
   $$6,
   $$7,
 ) {
-  const F /*:unknown*/ = $$0;
-  const e /*:number*/ = $$1;
-  const i /*:number*/ = $$2;
-  const b /*:number*/ = $$3;
-  const o /*:number*/ = $$4;
-  const t /*:number*/ = $$5;
-  const x /*:number*/ = $$6;
-  const B /*:number*/ = $$7;
+  const d /*:primitive*/ = $$0;
+  const h /*:primitive*/ = $$1;
+  const a /*:primitive*/ = $$2;
+  const n /*:primitive*/ = $$3;
+  const s /*:primitive*/ = $$4;
+  const w /*:primitive*/ = $$5;
+  const A /*:primitive*/ = $$6;
+  const F /*:primitive*/ = $$7;
   debugger;
-  const G /*:number*/ = parseInt(F);
+  const e /*:number*/ = parseInt(d);
+  const i /*:number*/ = parseInt(h);
   const f /*:number*/ = -e;
   const j /*:number*/ = -i;
+  const b /*:number*/ = parseInt(a);
   const g /*:number*/ = f / 2;
   const k /*:number*/ = j / 3;
+  const o /*:number*/ = parseInt(n);
   const c /*:number*/ = b / 1;
   const l /*:number*/ = g * k;
   const p /*:number*/ = -o;
   const m /*:number*/ = c + l;
   const q /*:number*/ = p / 4;
+  const t /*:number*/ = parseInt(s);
   const r /*:number*/ = m + q;
   const u /*:number*/ = t / 5;
+  const x /*:number*/ = parseInt(w);
+  const B /*:number*/ = parseInt(A);
   const v /*:number*/ = r + u;
   const y /*:number*/ = x / 6;
   const C /*:number*/ = -B;
+  const G /*:number*/ = parseInt(F);
   const z /*:number*/ = v + y;
   const D /*:number*/ = C / 7;
   const H /*:number*/ = -G;
@@ -260,22 +267,15 @@ const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpCalleeParam$2 /*:primitive*/ = arr[0];
   $(tmpCalleeParam$2);
-  const a$1 /*:primitive*/ = arr[286];
-  const b$2 /*:number*/ = parseInt(a$1);
-  const d$1 /*:primitive*/ = arr[181];
-  const e$2 /*:number*/ = parseInt(d$1);
-  const h$1 /*:primitive*/ = arr[308];
-  const i$2 /*:number*/ = parseInt(h$1);
-  const n$1 /*:primitive*/ = arr[32];
-  const o$2 /*:number*/ = parseInt(n$1);
-  const s$1 /*:primitive*/ = arr[86];
-  const t$2 /*:number*/ = parseInt(s$1);
-  const w$1 /*:primitive*/ = arr[87];
-  const x$2 /*:number*/ = parseInt(w$1);
-  const A$1 /*:primitive*/ = arr[30];
-  const B$2 /*:number*/ = parseInt(A$1);
+  const a$2 /*:primitive*/ = arr[286];
+  const d$2 /*:primitive*/ = arr[181];
+  const h$2 /*:primitive*/ = arr[308];
+  const n$2 /*:primitive*/ = arr[32];
+  const s$2 /*:primitive*/ = arr[86];
+  const w$2 /*:primitive*/ = arr[87];
+  const A$2 /*:primitive*/ = arr[30];
   const F$2 /*:primitive*/ = arr[356];
-  const L$1 /*:boolean*/ = $frfr(tmpFree, F$2, e$2, i$2, b$2, o$2, t$2, x$2, B$2);
+  const L$1 /*:boolean*/ = $frfr(tmpFree, d$2, h$2, a$2, n$2, s$2, w$2, A$2, F$2);
   if (L$1) {
     break;
   } else {
@@ -303,28 +303,35 @@ const a = function b($$0,$$1,$$2,$$3,$$4,$$5,$$6,$$7 ) {
   const j = $$7;
   debugger;
   const k = parseInt( c );
-  const l = -d;
-  const m = -e;
-  const n = l / 2;
-  const o = m / 3;
-  const p = f / 1;
-  const q = n * o;
-  const r = -g;
-  const s = p + q;
-  const t = r / 4;
-  const u = s + t;
-  const v = h / 5;
-  const w = u + v;
-  const x = i / 6;
-  const y = -j;
-  const z = w + x;
-  const ba = y / 7;
-  const bb = -k;
-  const bc = z + ba;
-  const bd = bb / 8;
-  const be = bc + bd;
-  const bf = be === 644244;
-  return bf;
+  const l = parseInt( d );
+  const m = -k;
+  const n = -l;
+  const o = parseInt( e );
+  const p = m / 2;
+  const q = n / 3;
+  const r = parseInt( f );
+  const s = o / 1;
+  const t = p * q;
+  const u = -r;
+  const v = s + t;
+  const w = u / 4;
+  const x = parseInt( g );
+  const y = v + w;
+  const z = x / 5;
+  const ba = parseInt( h );
+  const bb = parseInt( i );
+  const bc = y + z;
+  const bd = ba / 6;
+  const be = -bb;
+  const bf = parseInt( j );
+  const bg = bc + bd;
+  const bh = be / 7;
+  const bi = -bf;
+  const bj = bg + bh;
+  const bk = bi / 8;
+  const bl = bj + bk;
+  const bm = bl === 644244;
+  return bm;
 };
 $( "a" );
 $( "b" );
@@ -337,35 +344,28 @@ $( "h" );
 $( "i" );
 $( "j" );
 $( "k" );
-const bg = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k" ];
+const bn = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k" ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const bh = bg[ 0 ];
-  $( bh );
-  const bi = bg[ 286 ];
-  const bj = parseInt( bi );
-  const bk = bg[ 181 ];
-  const bl = parseInt( bk );
-  const bm = bg[ 308 ];
-  const bn = parseInt( bm );
-  const bo = bg[ 32 ];
-  const bp = parseInt( bo );
-  const bq = bg[ 86 ];
-  const br = parseInt( bq );
-  const bs = bg[ 87 ];
-  const bt = parseInt( bs );
-  const bu = bg[ 30 ];
-  const bv = parseInt( bu );
-  const bw = bg[ 356 ];
-  const bx = by( a, bw, bl, bn, bj, bp, br, bt, bv );
+  const bo = bn[ 0 ];
+  $( bo );
+  const bp = bn[ 286 ];
+  const bq = bn[ 181 ];
+  const br = bn[ 308 ];
+  const bs = bn[ 32 ];
+  const bt = bn[ 86 ];
+  const bu = bn[ 87 ];
+  const bv = bn[ 30 ];
+  const bw = bn[ 356 ];
+  const bx = by( a, bq, br, bp, bs, bt, bu, bv, bw );
   if (bx) {
     break;
   }
   else {
-    const bz = bg.shift();
-    bg.push( bz );
+    const bz = bn.shift();
+    bn.push( bz );
   }
 }
-const ca = bg[ 0 ];
+const ca = bn[ 0 ];
 $( ca );
 `````
 

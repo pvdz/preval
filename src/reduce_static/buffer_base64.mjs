@@ -41,6 +41,7 @@ import {
 import * as AST from '../ast.mjs';
 import {createFreshVar, mayBindingMutateBetweenRefs} from '../bindings.mjs';
 import { SYMBOL_COERCE } from '../symbols_preval.mjs';
+import { symbo } from '../symbols_builtins.mjs';
 
 export function buffer_base64(fdata) {
   group('\n\n\nChecking for buffer_base64; base64 decoding through Buffer');
@@ -121,14 +122,13 @@ function _buffer_base64(fdata) {
     }
 
     // Find the `var x = Buffer.from(param, 'base64')` part
+    // Note: we will invariably convert Buffer.from into a symbo ($Buffer_from)
+    // So that's the pattern we'll be looking for, even if technically both can appear
     if (funcBody[index].type !== 'VariableDeclaration') return vlog('- bail: d');
     const init1 = funcBody[index].declarations[0].init;
     if (init1.type !== 'CallExpression') return vlog('- bail: e');
-    if (init1.callee.type !== 'MemberExpression') return vlog('- bail: f');
-    if (init1.callee.computed) return vlog('- bail: g');
-    if (init1.callee.object.type !== 'Identifier') return vlog('- bail: h');
-    if (init1.callee.object.name !== 'Buffer') return vlog('- bail: i');
-    if (init1.callee.property.name !== 'from') return vlog('- bail: j');
+    if (init1.callee.type !== 'Identifier') return vlog('- bail: f');
+    if (init1.callee.name !== symbo('Buffer', 'from')) return vlog('- bail: f');
     if (init1.arguments.length !== 2) return vlog('- bail: k');
     if (init1.arguments[0].type !== 'Identifier') return vlog('- bail: l');
     if (init1.arguments[0].name !== paramName) return vlog('- bail: m');

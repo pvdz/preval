@@ -78,7 +78,7 @@ f();
 
 
 `````js filename=intro
-const f /*:()=>*/ = function () {
+const f /*:()=>undefined*/ = function () {
   debugger;
   let x /*:unknown*/ = $(1);
   let tmpCalleeParam$1 /*:boolean*/ = false;

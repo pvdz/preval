@@ -73,7 +73,7 @@ if (test) {
   const arr /*:array*/ = [101, 102, 103, 104, 105, 106, 107, 108, 109, 1010];
   while ($LOOP_UNROLL_10) {
     if (tmpClusterSSA_test) {
-      const tmpCalleeParam$1 /*:unknown*/ = arr[tmpClusterSSA_counter];
+      const tmpCalleeParam$1 /*:primitive*/ = arr[tmpClusterSSA_counter];
       $(tmpCalleeParam$1);
       tmpClusterSSA_counter = tmpClusterSSA_counter + 1;
       tmpClusterSSA_test = tmpClusterSSA_counter < 10;

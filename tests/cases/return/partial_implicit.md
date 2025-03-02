@@ -66,7 +66,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const f /*:()=>number,undefined*/ = function () {
+const f /*:()=>primitive*/ = function () {
   debugger;
   if ($) {
     $(100);

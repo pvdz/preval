@@ -84,7 +84,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const g /*:(primitive)=>primitive,?*/ = function ($$0) {
+const g /*:(primitive)=>primitive*/ = function ($$0) {
   const n$1 /*:primitive*/ = $$0;
   debugger;
   const tmpCalleeParam /*:primitive*/ = n$1 + 1;
@@ -93,11 +93,11 @@ const g /*:(primitive)=>primitive,?*/ = function ($$0) {
   if (tmpIfTest) {
     return tmpCalleeParam;
   } else {
-    const tmpReturnArg$3 /*:unknown*/ = g(tmpCalleeParam);
+    const tmpReturnArg$3 /*:primitive*/ = g(tmpCalleeParam);
     return tmpReturnArg$3;
   }
 };
-const tmpCalleeParam$1 /*:unknown*/ = g(0);
+const tmpCalleeParam$1 /*:primitive*/ = g(0);
 $(tmpCalleeParam$1);
 `````
 

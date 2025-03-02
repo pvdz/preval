@@ -96,7 +96,7 @@ let f /*:(unknown, unknown)=>*/ = function ($$0, $$1) {
     const c /*:unknown*/ = $$0;
     debugger;
     const tmp /*:number*/ = c - 427;
-    const Co$1 /*:unknown*/ = arr[tmp];
+    const Co$1 /*:primitive*/ = arr[tmp];
     return Co$1;
   };
   const tmpReturnArg$23 /*:unknown*/ = f(a, b);

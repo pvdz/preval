@@ -76,7 +76,7 @@ const getMessages /*:(unknown)=>promise*/ = async function ($$0) {
   const tmpCompObj$1 /*:unknown*/ = l$11[0];
   const tmpCompObj /*:unknown*/ = tmpCompObj$1.dataValues;
   const tmpCalleeParam /*:unknown*/ = tmpCompObj.bucket;
-  const tmpReturnArg$13 /*:unknown*/ = JSON.parse(tmpCalleeParam);
+  const tmpReturnArg$13 /*:unknown*/ = $JSON_parse(tmpCalleeParam);
   return tmpReturnArg$13;
 };
 $(getMessages);
@@ -95,7 +95,7 @@ const a = async function($$0 ) {
   const e = d[ 0 ];
   const f = e.dataValues;
   const g = f.bucket;
-  const h = JSON.parse( g );
+  const h = $JSON_parse( g );
   return h;
 };
 $( a );

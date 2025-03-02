@@ -33,7 +33,7 @@ $(is_123 === 1 || is_123 === 2 || is_123 === 3);
 `````js filename=intro
 const r = 0.12556649118791485;
 const a = r * 3;
-const is_012 = Math.floor(a);
+const is_012 = $Math_floor(a);
 const is_123 = is_012 + 1;
 const tmpCallCallee = $;
 let tmpCalleeParam = is_123 === 1;

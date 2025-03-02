@@ -60,7 +60,7 @@ $(x);
 
 
 `````js filename=intro
-const r /*:(unknown)=>number,?*/ = function ($$0) {
+const r /*:(unknown)=>number*/ = function ($$0) {
   const n /*:unknown*/ = $$0;
   debugger;
   const tmpIfTest /*:boolean*/ = n > 100;
@@ -68,12 +68,12 @@ const r /*:(unknown)=>number,?*/ = function ($$0) {
     return 10;
   } else {
     const tmpCalleeParam /*:primitive*/ = n + 1;
-    const tmpReturnArg /*:unknown*/ = r(tmpCalleeParam);
+    const tmpReturnArg /*:number*/ = r(tmpCalleeParam);
     return tmpReturnArg;
   }
 };
 const a /*:unknown*/ = $(10);
-const x /*:unknown*/ = r(a);
+const x /*:number*/ = r(a);
 $(x);
 `````
 

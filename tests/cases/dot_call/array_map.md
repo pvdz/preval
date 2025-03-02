@@ -65,7 +65,7 @@ const f /*:(unknown)=>primitive*/ = function ($$0) {
   return tmpReturnArg;
 };
 const pre /*:array*/ = [1, 2, 3];
-const arr /*:unknown*/ = pre.map(f);
+const arr /*:array*/ = pre.map(f);
 $(arr);
 `````
 

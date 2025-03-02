@@ -93,7 +93,7 @@ f();
 
 `````js filename=intro
 let curtype /*:unknown*/ = 0;
-const f /*:()=>*/ = function () {
+const f /*:()=>undefined*/ = function () {
   debugger;
   const tmpIfTest /*:boolean*/ = curtype === 16472;
   if (tmpIfTest) {

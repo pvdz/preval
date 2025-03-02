@@ -714,7 +714,7 @@ function isFreeExpression(exprNode, fdata) {
         }
 
         if (AST.isPrimitive(exprNode.callee.object)) {
-          const qualifiedName = AST.getPrimitiveType(exprNode.callee.object) + '.' + exprNode.callee.property.name; // Lower cased class `string.charAt`
+          const qualifiedName = symbo(AST.getPrimitiveType(exprNode.callee.object), exprNode.callee.property.name); // Lower cased class `$string_charAt`
           if (pcodeSupportedBuiltinFuncs.has(qualifiedName)) {
             vlog('  - yes, this builtin is supported;', qualifiedName);
             return true;

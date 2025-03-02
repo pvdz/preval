@@ -75,7 +75,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     arr.push(tmp);
   }
 }
-const tmpCalleeParam /*:unknown*/ = arr.slice(0);
+const tmpCalleeParam /*:array*/ = arr.slice(0);
 $(tmpCalleeParam);
 `````
 

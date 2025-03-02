@@ -59,7 +59,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 
 
 `````js filename=intro
-const g /*:(unknown)=>?*/ = function ($$0) {
+const g /*:(unknown)=>*/ = function ($$0) {
   const a /*:unknown*/ = $$0;
   debugger;
   const tmpReturnArg$1 /*:unknown*/ = $(a, `g`);

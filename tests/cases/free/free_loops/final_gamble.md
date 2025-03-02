@@ -300,7 +300,7 @@ while (true) {
   const tmpIfTest = tmpBinBothLhs < tmpBinBothRhs;
   if (tmpIfTest) {
     const tmpCalleeParam = arr[counter];
-    const tmp = String.fromCharCode(tmpCalleeParam);
+    const tmp = $String_fromCharCode(tmpCalleeParam);
     arr[counter] = tmp;
     counter = counter + 1;
   } else {

@@ -6,7 +6,8 @@
 >
 > This case should make sure we don't accidentally set a var to a value it should not be having
 
-The current bug is caused by moving the ident upward, causing the call to $ to appear before the implicit globals that don't exist.
+The current bug is caused by moving the ident upward, causing the call to $ to appear
+before the implicit globals that don't exist.
 
 ## Input
 

@@ -75,7 +75,7 @@ if (tmpIfTest$1) {
   arrPatternStep = arrPatternBeforeDefault;
 }
 const arrPatternSplat$1 /*:array*/ = [...arrPatternStep];
-const x /*:unknown*/ = arrPatternSplat$1.slice(0);
+const x /*:array*/ = arrPatternSplat$1.slice(0);
 $(x);
 `````
 

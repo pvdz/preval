@@ -470,6 +470,7 @@ function processAttempt(fdata, queue) {
             ++updated;
             return;
           }
+          case symbo('Array', 'isArray'):
           case 'Array.isArray': {
             rule('An array literal called on Array.isArray always returns true');
             example('const x = [1, 2, 3]; f(Array.isArray(x))', 'const x = [1, 2, 3]; f(true);');

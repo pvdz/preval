@@ -24,7 +24,7 @@ $(Math.pow(3.3, `4.3`));
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = Math.pow(3.3, `4.3`);
+const tmpCalleeParam = $Math_pow(3.3, `4.3`);
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -32,7 +32,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:number*/ = Math.pow(3.3, `4.3`);
+const tmpCalleeParam /*:number*/ = $Math_pow(3.3, `4.3`);
 $(tmpCalleeParam);
 `````
 
@@ -41,7 +41,7 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = Math.pow( 3.3, "4.3" );
+const a = $Math_pow( 3.3, "4.3" );
 $( a );
 `````
 

@@ -115,7 +115,7 @@ const tmpCalleeParam /*:number*/ = f(1);
 $(tmpCalleeParam);
 const tmpCalleeParam$1 /*:number*/ = f(2);
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 /*:unknown*/ = f.length;
+const tmpCalleeParam$3 /*:number*/ = f.length;
 $(tmpCalleeParam$3);
 const tmpCalleeParam$5 /*:number*/ = f(`three`);
 $(tmpCalleeParam$5);

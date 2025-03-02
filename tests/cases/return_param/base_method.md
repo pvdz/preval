@@ -71,7 +71,7 @@ tmpCallCallee$5(tmpCalleeParam$5);
 
 
 `````js filename=intro
-const f /*:()=>undefined*/ = function () {
+const f /*:()=>*/ = function () {
   debugger;
   $(`no`);
   $(`inlining`);
@@ -80,7 +80,7 @@ const f /*:()=>undefined*/ = function () {
 };
 f();
 const tmpCalleeParam$1 /*:array*/ = [1, 2, 3];
-const tmpCalleeParam /*:unknown*/ = tmpCalleeParam$1.toString();
+const tmpCalleeParam /*:string*/ = tmpCalleeParam$1.toString();
 $(tmpCalleeParam);
 f();
 $(`300`);

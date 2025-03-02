@@ -81,7 +81,7 @@ if (tmpIfTest$1) {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const arrPatternSplat /*:array*/ = [...objPatternAfterDefault];
-const y /*:unknown*/ = arrPatternSplat.slice(0);
+const y /*:array*/ = arrPatternSplat.slice(0);
 $(y);
 `````
 

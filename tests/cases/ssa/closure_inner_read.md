@@ -96,7 +96,7 @@ if ($) {
 `````js filename=intro
 if ($) {
   let x /*:unknown*/ = 0;
-  const g /*:()=>*/ = function () {
+  const g /*:()=>undefined*/ = function () {
     debugger;
     const tmpCalleeParam /*:number*/ = x + 1;
     x = $(tmpCalleeParam);

@@ -85,7 +85,7 @@ let f = function () {
       return `intercepted`;
     },
   };
-  Object.defineProperty(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+  $Object_defineProperty(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
   $(`b`);
   return undefined;
 };
@@ -123,7 +123,7 @@ const f /*:()=>undefined*/ = function () {
       return `intercepted`;
     },
   };
-  Object.defineProperty(x, `y`, tmpCalleeParam$3);
+  $Object_defineProperty(x, `y`, tmpCalleeParam$3);
   $(`b`);
   return undefined;
 };
@@ -160,7 +160,7 @@ const a = function() {
       return "intercepted";
     },
   };
-  Object.defineProperty( c, "y", d );
+  $Object_defineProperty( c, "y", d );
   $( "b" );
   return undefined;
 };

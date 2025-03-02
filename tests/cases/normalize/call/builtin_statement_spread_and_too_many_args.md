@@ -30,7 +30,7 @@ const tmpCompObj = [...tmpArrSpread];
 const tmpArgOverflow = tmpCompObj[0];
 $spy(`b`);
 $spy(`c`);
-isNaN(tmpArgOverflow);
+$coerce(tmpArgOverflow, `number`);
 `````
 
 ## Output
@@ -43,7 +43,7 @@ const tmpCompObj /*:array*/ = [...tmpArrSpread];
 const tmpArgOverflow /*:unknown*/ = tmpCompObj[0];
 $spy(`b`);
 $spy(`c`);
-isNaN(tmpArgOverflow);
+$coerce(tmpArgOverflow, `number`);
 `````
 
 ## PST Output
@@ -57,7 +57,7 @@ const c = [ ...b ];
 const d = c[ 0 ];
 $spy( "b" );
 $spy( "c" );
-isNaN( d );
+$coerce( d, "number" );
 `````
 
 ## Globals

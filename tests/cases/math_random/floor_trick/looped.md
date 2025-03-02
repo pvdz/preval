@@ -30,7 +30,7 @@ while (true) {
 
 `````js filename=intro
 while (true) {
-  const rnd = Math.random();
+  const rnd = $Math_random();
   $(rnd);
 }
 `````
@@ -40,7 +40,7 @@ while (true) {
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const rnd /*:number*/ = Math.random();
+  const rnd /*:number*/ = $Math_random();
   $(rnd);
 }
 `````
@@ -51,7 +51,7 @@ With rename=true
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const a = Math.random();
+  const a = $Math_random();
   $( a );
 }
 `````

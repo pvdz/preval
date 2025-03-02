@@ -45,7 +45,7 @@ tmpCallCallee(tmpCalleeParam);
 const tmpAssignComMemLhsProp /*:unknown*/ = $(2);
 const arr /*:array*/ = [1, 2, 3];
 arr[tmpAssignComMemLhsProp] = 10;
-const tmpCalleeParam /*:unknown*/ = arr.length;
+const tmpCalleeParam /*:number*/ = arr.length;
 $(tmpCalleeParam);
 `````
 

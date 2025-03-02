@@ -103,9 +103,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpPostUpdArgIdent$2 /*:unknown*/ = tmpClusterSSA_count$2;
   tmpClusterSSA_count$2 = tmpClusterSSA_count$2 - 1;
   if (tmpPostUpdArgIdent$2) {
-    const chr$1 /*:unknown*/ = arr[tmpClusterSSA_count$2];
+    const chr$1 /*:primitive*/ = arr[tmpClusterSSA_count$2];
     if (chr$1) {
-      const chr2$1 /*:unknown*/ = arr[tmpClusterSSA_count$2];
+      const chr2$1 /*:primitive*/ = arr[tmpClusterSSA_count$2];
       const regex$1 /*:regex*/ = /xyz/g;
       str = str.replace(regex$1, chr2$1);
     } else {

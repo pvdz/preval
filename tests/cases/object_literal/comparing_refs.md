@@ -2,7 +2,7 @@
 
 # comparing_refs.md
 
-> Tofix > comparing refs
+> Object literal > Comparing refs
 
 Comparing object refs when we know they are or aren't the same can be folded to booleans.
 

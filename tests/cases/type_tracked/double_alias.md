@@ -2,17 +2,18 @@
 
 # double_alias.md
 
-> Tofix > double alias
+> Type tracked > Double alias
 >
-> First arr[0] is updated and then it is read again. Knowing this is an array we can fold that up safely.
+> First arr[0] is updated and then it is read again. Knowing this is an 
+> array we can fold that up safely.
 
 ## Input
 
 `````js filename=intro
 const arr = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const update = arr[0];
-  const result = update + 1;
+  const I_AM_A_PRIM = arr[0];
+  const result = I_AM_A_PRIM + 1;
   arr[0] = result;
   const tmp = arr[0]; // eliminate me, replace with `result`
   $(tmp);
@@ -25,8 +26,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const arr = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const update = arr[0];
-  const result = update + 1;
+  const I_AM_A_PRIM = arr[0];
+  const result = I_AM_A_PRIM + 1;
   arr[0] = result;
   const tmp = arr[0];
   $(tmp);
@@ -39,8 +40,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const arr = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const update = arr[0];
-  const result = update + 1;
+  const I_AM_A_PRIM = arr[0];
+  const result = I_AM_A_PRIM + 1;
   arr[0] = result;
   const tmp = arr[0];
   $(tmp);
@@ -53,11 +54,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const update /*:unknown*/ = arr[0];
-  const result /*:primitive*/ = update + 1;
+  const I_AM_A_PRIM /*:primitive*/ = arr[0];
+  const result /*:primitive*/ = I_AM_A_PRIM + 1;
   arr[0] = result;
-  const tmp /*:unknown*/ = arr[0];
-  $(tmp);
+  $(result);
 }
 `````
 
@@ -71,8 +71,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const b = a[ 0 ];
   const c = b + 1;
   a[0] = c;
-  const d = a[ 0 ];
-  $( d );
+  $( c );
 }
 `````
 

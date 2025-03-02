@@ -60,7 +60,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 const tmpCalleeParam /*:array*/ = [`pass`];
 const bindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const x /*:unknown*/ = arrPatternSplat.slice(0);
+const x /*:array*/ = arrPatternSplat.slice(0);
 $(x);
 `````
 

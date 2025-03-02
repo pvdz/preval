@@ -25,7 +25,7 @@ $(Array.isArray([crash_hard]));
 `````js filename=intro
 const tmpCallCallee = $;
 const tmpCalleeParam$1 = [crash_hard];
-const tmpCalleeParam = Array.isArray(tmpCalleeParam$1);
+const tmpCalleeParam = $Array_isArray(tmpCalleeParam$1);
 tmpCallCallee(tmpCalleeParam);
 `````
 

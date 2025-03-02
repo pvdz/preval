@@ -70,7 +70,7 @@ tmpCallCallee(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:()=>undefined,function*/ = function () {
+const tmpCalleeParam /*:()=>*/ = function () {
   debugger;
   const incorrectlyhoisted$3 /*:()=>undefined*/ = function () {
     debugger;

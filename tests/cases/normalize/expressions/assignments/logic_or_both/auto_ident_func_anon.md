@@ -65,7 +65,7 @@ let a /*:()=>*/ = function () {
 if (a) {
   $(a);
 } else {
-  const tmpNestedComplexRhs /*:()=>*/ = function () {
+  const tmpNestedComplexRhs /*:()=>undefined*/ = function () {
     debugger;
     return undefined;
   };

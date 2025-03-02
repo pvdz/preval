@@ -105,7 +105,7 @@ let f /*:(unknown, unknown)=>*/ = function ($$0, $$1) {
     const c /*:unknown*/ = $$0;
     debugger;
     const index /*:number*/ = c - 427;
-    const n /*:unknown*/ = arr[index];
+    const n /*:primitive*/ = arr[index];
     return n;
   };
   const tmp /*:unknown*/ = f(a, b);

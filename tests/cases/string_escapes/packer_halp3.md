@@ -102,7 +102,7 @@ const tmpCallCallee$1 = function ($$0, $$1, $$2, $$3, $$4, $$5) {
     const tmpIfTest$1 = tmpBinLhs > 35;
     if (tmpIfTest$1) {
       const tmpCalleeParam$17 = c$1 + 29;
-      tmpBinBothRhs = String.fromCharCode(tmpCalleeParam$17);
+      tmpBinBothRhs = $String_fromCharCode(tmpCalleeParam$17);
     } else {
       tmpBinBothRhs = c$1.toString(36);
     }
@@ -197,13 +197,6 @@ $(x);
 
 
 `````js filename=intro
-const tmpFree$1 /*:(number)=>string*/ = function $free($$0) {
-  const tmpClusterSSA_c$1 /*:number*/ = $$0;
-  debugger;
-  const tmpCalleeParam$17 /*:number*/ = tmpClusterSSA_c$1 + 29;
-  const tmpRet$1 /*:string*/ = String.fromCharCode(tmpCalleeParam$17);
-  return tmpRet$1;
-};
 const tmpFree /*:(number)=>number*/ = function $free($$0) {
   const c$1 /*:number*/ = $$0;
   debugger;
@@ -222,14 +215,15 @@ let tmpSSA_e /*:(number)=>*/ = function ($$0) {
     const tmpCalleeParam$13 /*:number*/ = $frfr(tmpFree, c$2);
     tmpBinBothLhs = tmpSSA_e(tmpCalleeParam$13);
   }
-  const tmpClusterSSA_c$2 /*:number*/ = c$2 % 52;
-  const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_c$2 > 35;
+  const tmpClusterSSA_c$1 /*:number*/ = c$2 % 52;
+  const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_c$1 > 35;
   if (tmpIfTest$1) {
-    const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $frfr(tmpFree$1, tmpClusterSSA_c$2);
+    const tmpCalleeParam$17 /*:number*/ = tmpClusterSSA_c$1 + 29;
+    const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $String_fromCharCode(tmpCalleeParam$17);
     const tmpClusterSSA_tmpReturnArg /*:string*/ = tmpBinBothLhs + tmpClusterSSA_tmpBinBothRhs;
     return tmpClusterSSA_tmpReturnArg;
   } else {
-    const tmpClusterSSA_tmpBinBothRhs$1 /*:string*/ = tmpClusterSSA_c$2.toString(36);
+    const tmpClusterSSA_tmpBinBothRhs$1 /*:string*/ = tmpClusterSSA_c$1.toString(36);
     const tmpClusterSSA_tmpReturnArg$1 /*:string*/ = tmpBinBothLhs + tmpClusterSSA_tmpBinBothRhs$1;
     return tmpClusterSSA_tmpReturnArg$1;
   }
@@ -254,7 +248,7 @@ const tmpAssignComMemLhsProp$8 /*:unknown*/ = tmpSSA_e(43);
 tmpCalleeParam$11[tmpAssignComMemLhsProp$8] = `new`;
 const tmpAssignComMemLhsProp$9 /*:unknown*/ = tmpSSA_e(42);
 tmpCalleeParam$11[tmpAssignComMemLhsProp$9] = `String`;
-let tmpClusterSSA_c$3 /*:number*/ = 41;
+let tmpClusterSSA_c$2 /*:number*/ = 41;
 const tmpAssignComMemLhsProp$10 /*:unknown*/ = tmpSSA_e(41);
 tmpCalleeParam$11[tmpAssignComMemLhsProp$10] = `eval`;
 const tmpCalleeParam$7 /*:array*/ = [
@@ -312,21 +306,21 @@ const tmpCalleeParam$7 /*:array*/ = [
   `not_expr`,
 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpPostUpdArgIdent$1 /*:unknown*/ = tmpClusterSSA_c$3;
-  tmpClusterSSA_c$3 = tmpClusterSSA_c$3 - 1;
+  const tmpPostUpdArgIdent$1 /*:unknown*/ = tmpClusterSSA_c$2;
+  tmpClusterSSA_c$2 = tmpClusterSSA_c$2 - 1;
   if (tmpPostUpdArgIdent$1) {
-    const tmpAssignComMemLhsProp$11 /*:unknown*/ = tmpSSA_e(tmpClusterSSA_c$3);
-    let tmpAssignComputedRhs$1 /*:unknown*/ = tmpCalleeParam$7[tmpClusterSSA_c$3];
+    const tmpAssignComMemLhsProp$11 /*:unknown*/ = tmpSSA_e(tmpClusterSSA_c$2);
+    let tmpAssignComputedRhs$1 /*:unknown*/ = tmpCalleeParam$7[tmpClusterSSA_c$2];
     if (tmpAssignComputedRhs$1) {
     } else {
-      tmpAssignComputedRhs$1 = tmpSSA_e(tmpClusterSSA_c$3);
+      tmpAssignComputedRhs$1 = tmpSSA_e(tmpClusterSSA_c$2);
     }
     tmpCalleeParam$11[tmpAssignComMemLhsProp$11] = tmpAssignComputedRhs$1;
   } else {
     break;
   }
 }
-const tmpArrElement /*:(unknown)=>?*/ = function ($$0) {
+const tmpArrElement /*:(unknown)=>*/ = function ($$0) {
   const e$1 /*:unknown*/ = $$0;
   debugger;
   const tmpReturnArg$1 /*:unknown*/ = tmpCalleeParam$11[e$1];
@@ -353,99 +347,93 @@ With rename=true
 const a = function b($$0 ) {
   const c = $$0;
   debugger;
-  const d = c + 29;
-  const e = String.fromCharCode( d );
+  const d = c / 52;
+  const e = parseInt( d );
   return e;
 };
-const f = function b($$0 ) {
-  const g = $$0;
+const f = {};
+let g = function($$0 ) {
+  const h = $$0;
   debugger;
-  const h = g / 52;
-  const i = parseInt( h );
-  return i;
-};
-const j = {};
-let k = function($$0 ) {
-  const l = $$0;
-  debugger;
-  let m = "";
-  const n = l < 52;
-  if (n) {
+  let i = "";
+  const j = h < 52;
+  if (j) {
 
   }
   else {
-    const o = p( f, l );
-    m = k( o );
+    const k = l( a, h );
+    i = g( k );
   }
-  const q = l % 52;
-  const r = q > 35;
-  if (r) {
-    const s = p( a, q );
-    const t = m + s;
-    return t;
+  const m = h % 52;
+  const n = m > 35;
+  if (n) {
+    const o = m + 29;
+    const p = $String_fromCharCode( o );
+    const q = i + p;
+    return q;
   }
   else {
-    const u = q.toString( 36 );
-    const v = m + u;
-    return v;
+    const r = m.toString( 36 );
+    const s = i + r;
+    return s;
   }
 };
-const w = k( 51 );
-j[w] = "not_expr";
-const x = k( 50 );
-j[x] = "u0020g";
-const y = k( 49 );
-j[y] = "x20f";
-const z = k( 48 );
-j[z] = "10";
-const ba = k( 47 );
-j[ba] = "toString";
-const bb = k( 46 );
-j[bb] = "split";
-const bc = k( 45 );
-j[bc] = "36";
-const bd = k( 44 );
-j[bd] = "RegExp";
-const be = k( 43 );
-j[be] = "new";
-const bf = k( 42 );
-j[bf] = "String";
-let bg = 41;
-const bh = k( 41 );
-j[bh] = "eval";
-const bi = [ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "function", "return", "if", "replace", "while", "eval", "String", "new", "RegExp", "36", "split", "toString", "10", "x20f", "u0020g", "not_expr" ];
+const t = g( 51 );
+f[t] = "not_expr";
+const u = g( 50 );
+f[u] = "u0020g";
+const v = g( 49 );
+f[v] = "x20f";
+const w = g( 48 );
+f[w] = "10";
+const x = g( 47 );
+f[x] = "toString";
+const y = g( 46 );
+f[y] = "split";
+const z = g( 45 );
+f[z] = "36";
+const ba = g( 44 );
+f[ba] = "RegExp";
+const bb = g( 43 );
+f[bb] = "new";
+const bc = g( 42 );
+f[bc] = "String";
+let bd = 41;
+const be = g( 41 );
+f[be] = "eval";
+const bf = [ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "function", "return", "if", "replace", "while", "eval", "String", "new", "RegExp", "36", "split", "toString", "10", "x20f", "u0020g", "not_expr" ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const bj = bg;
-  bg = bg - 1;
-  if (bj) {
-    const bk = k( bg );
-    let bl = bi[ bg ];
-    if (bl) {
+  const bg = bd;
+  bd = bd - 1;
+  if (bg) {
+    const bh = g( bd );
+    let bi = bf[ bd ];
+    if (bi) {
 
     }
     else {
-      bl = k( bg );
+      bi = g( bd );
     }
-    j[bk] = bl;
+    f[bh] = bi;
   }
   else {
     break;
   }
 }
-const bm = function($$0 ) {
-  const bn = $$0;
+const bj = function($$0 ) {
+  const bk = $$0;
   debugger;
-  const bo = j[ bn ];
-  return bo;
+  const bl = f[ bk ];
+  return bl;
 };
-k = function() {
+g = function() {
   debugger;
   return "\\w+";
 };
-const bp = /\b\w+\b/g;
-const bq = "F(A(p,a,c,k,e,r){e=A(c){B c.L(a)};C(!''.D(/^/,G)){E(c--)r[e(c)]=k[c]||e(c);k=[A(e){B r[e]}];e=A(){B'\\\\w+'};c=1};E(c--)C(k[c])p=p.D(H I('\\\\b'+e(c)+'\\\\b','g'),k[c]);B p}('s(f(p,a,c,k,e,r){e=l;m(!\\'\\'.n(/^/,l)){o(c--)r[c]=k[c]||c;k=[f(e){j r[e]}];e=f(){j\\'\\\\\\\\w+\\'};c=1};o(c--)m(k[c])p=p.n(t u(\\'\\\\\\\\b\\'+e(c)+\\'\\\\\\\\b\\',\\'g\\'),k[c]);j p}(\\'\"0\\\\\\\\`1\\\\\\\\\"2\\\\\\\\\\\\\\'3\\\\\\\\\\\\\\\\4\\\\\\\\5\\\\\\\\6${7}8\\\\\\\\/9\"\\',q,q,\\'a|b|c|d|e|v|x|y|h|i\\'.z(\\'|\\'),0,{}))',J,J,'|||||||||||||||A||||B||G|C|D|E||M||F|H|I|N||O|P|K'.K('|'),0,{}))".replace( bp, bm );
-const br = eval( bq );
-$( br );
+const bm = /\b\w+\b/g;
+const bn = "F(A(p,a,c,k,e,r){e=A(c){B c.L(a)};C(!''.D(/^/,G)){E(c--)r[e(c)]=k[c]||e(c);k=[A(e){B r[e]}];e=A(){B'\\\\w+'};c=1};E(c--)C(k[c])p=p.D(H I('\\\\b'+e(c)+'\\\\b','g'),k[c]);B p}('s(f(p,a,c,k,e,r){e=l;m(!\\'\\'.n(/^/,l)){o(c--)r[c]=k[c]||c;k=[f(e){j r[e]}];e=f(){j\\'\\\\\\\\w+\\'};c=1};o(c--)m(k[c])p=p.n(t u(\\'\\\\\\\\b\\'+e(c)+\\'\\\\\\\\b\\',\\'g\\'),k[c]);j p}(\\'\"0\\\\\\\\`1\\\\\\\\\"2\\\\\\\\\\\\\\'3\\\\\\\\\\\\\\\\4\\\\\\\\5\\\\\\\\6${7}8\\\\\\\\/9\"\\',q,q,\\'a|b|c|d|e|v|x|y|h|i\\'.z(\\'|\\'),0,{}))',J,J,'|||||||||||||||A||||B||G|C|D|E||M||F|H|I|N||O|P|K'.K('|'),0,{}))".replace( bm, bj );
+const bo = eval( bn );
+$( bo );
 `````
 
 ## Globals

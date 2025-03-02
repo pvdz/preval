@@ -1,5 +1,5 @@
 import walk from '../../lib/walk.mjs';
-import { VERBOSE_TRACING, RED, BLUE, DIM, RESET, setVerboseTracing } from '../constants.mjs';
+import { VERBOSE_TRACING, RED, BLUE, DIM, RESET, setVerboseTracing, PRIMITIVE_TYPE_NAMES_PREVAL } from '../constants.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, REF_TRACK_TRACING, assertNoDupeNodes } from '../utils.mjs';
 import { $p, resetUid, getUid } from '../$p.mjs';
 import * as AST from '../ast.mjs';
@@ -45,6 +45,7 @@ import {
 } from '../utils/ref_tracking.mjs';
 import { addLabelReference, registerGlobalLabel } from '../labels.mjs';
 import { SYMBOL_COERCE } from '../symbols_preval.mjs';
+import globalNames from '../globals.mjs';
 
 // This phase is fairly mechanical and should only do discovery, no AST changes.
 // It sets up scope tracking, imports/exports tracking, return value analysis, ref tracking (which binding can see which binding). That sort of thing.
@@ -92,6 +93,10 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
     if (typeof typing !== 'string') {
       mergeTyping(typing, meta.typing);
     }
+  });
+
+  fdata.globallyUniqueNamingRegistry.forEach(meta => {
+    ASSERT(meta.typing.mustBeType === false || !PRIMITIVE_TYPE_NAMES_PREVAL.has(meta.typing.mustBeType) === !meta.typing.mustBePrimitive, 'builtins misconfiguration: if it must be a primitive then mustbeprimitive', meta, meta.typing.mustBeType === false, meta.typing.mustBeType, !!PRIMITIVE_TYPE_NAMES_PREVAL.has(meta.typing.mustBeType), !!meta.typing.mustBePrimitive);
   });
 
   const imports = new Map(); // Discovered filenames to import from. We don't care about the imported symbols here just yet.
@@ -1217,6 +1222,11 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
   }
 
   log('\n\nEnd of phase 1. Walker called', called, 'times, took', Date.now() - start, 'ms');
+
+
+  fdata.globallyUniqueNamingRegistry.forEach(meta => {
+    ASSERT(meta.typing.mustBeType === false || !PRIMITIVE_TYPE_NAMES_PREVAL.has(meta.typing.mustBeType) === !meta.typing.mustBePrimitive, 'if it must be a primitive then mustbeprimitive', meta, meta.typing.mustBeType === false, meta.typing.mustBeType, !!PRIMITIVE_TYPE_NAMES_PREVAL.has(meta.typing.mustBeType), !!meta.typing.mustBePrimitive);
+  });
 
   groupEnd();
 }

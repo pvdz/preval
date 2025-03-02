@@ -44,7 +44,7 @@
 import walk from '../../lib/walk.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, todo } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { MATH, NUMBER, STRING, symbo } from '../symbols_builtins.mjs';
+import { BUILTIN_SYMBOLS, MATH, NUMBER, STRING, symbo } from '../symbols_builtins.mjs';
 import { createFreshVar, getMeta } from '../bindings.mjs';
 import { PRIMITIVE_TYPE_NAMES_PREVAL, VERBOSE_TRACING } from '../constants.mjs';
 import { pcodeSupportedBuiltinFuncs, runFreeWithPcode } from '../pcode.mjs';
@@ -271,7 +271,7 @@ function withPredictableStatements(body, firstIndex, lastIndex, fdata, funcQueue
     const stmt = body[stmtIndex];
     if (stmt.type === 'VariableDeclaration') {
       const name = stmt.declarations[0].id.name;
-      vlog('  - Checking if "', name, '" is used out of range');
+      vlog('  - Checking if', [name], 'is used out of range');
       const meta = fdata.globallyUniqueNamingRegistry.get(name);
       for (let refIndex=0; refIndex<meta.rwOrder.length; ++refIndex) {
         const ref = meta.rwOrder[refIndex];
@@ -330,7 +330,7 @@ function withPredictableStatements(body, firstIndex, lastIndex, fdata, funcQueue
     if (inner.has(name)) {
       // Fine
       vlog('-', [name], 'is a local var');
-    } else if (BUILTIN_GLOBAL_FUNC_NAMES.has(name) || GLOBAL_PREVAL_SYMBOLS.has(name)) {
+    } else if (BUILTIN_GLOBAL_FUNC_NAMES.has(name) || GLOBAL_PREVAL_SYMBOLS.has(name) || BUILTIN_SYMBOLS.has(name)) {
       // Do nothing, it's calling or reading from builtin globals like Math, String, etc
       vlog('-', [name], 'is a builtin or preval global');
     } else if (name === 'arguments') {
@@ -488,6 +488,9 @@ function _collectFromStatement(node, declared, reffed) {
       }
       return true;
     }
+    case 'EmptyStatement': {
+      return false; // This will be revisited next round because normalization will remove this
+    }
     default: {
       ASSERT(false, 'support this statement:', node.type);
     }
@@ -627,7 +630,7 @@ function isFreeExpression(exprNode, fdata) {
 
   switch (exprNode.type) {
     case 'CallExpression': {
-      vlog('  - Is call?', exprNode.callee.name, exprNode.callee.object?.name, exprNode.callee.property?.name);
+      vlog('  - Is call?', [exprNode.callee.name], exprNode.callee.object?.name, exprNode.callee.property?.name);
       // Yes when the args are predictable and when the callee is
       // - a builtin ident (`parseInt()`), or
       // - a builtin member expression (`Math.random()`), or
@@ -653,19 +656,25 @@ function isFreeExpression(exprNode, fdata) {
       if (exprNode.callee.type === 'Identifier') {
         vlog('  - ident call;', exprNode.callee.name);
         if (['parseInt', 'parseFloat', 'isNaN', 'isFinite', ].includes(exprNode.callee.name)) {
+          vlog('  - ok! its a global builtin call:', exprNode.callee.name);
           return true; // Ok as long as args are ok
         }
-        if (MATH.get(exprNode.callee.name)) { // No instance props so no prefix check
+        if (MATH.get(exprNode.callee.name)) { // This works because all Math.foo cases should get converted to symbo()
+          vlog('  - ok! its a math call:', exprNode.callee.name);
           return true; // Calls to Math.prop are ok as long as args are ok
         }
         if (exprNode.callee.name === SYMBOL_COERCE) {
           const meta = getMeta(exprNode.arguments[0].name, fdata);
           if (meta.typing?.mustBeType || meta.typing?.mustBePrimitive) {
+            vlog('  - ok! its a coerce call with primitive arg:', exprNode.callee.name);
             return true; // $coerce on a primitive is safe and predictable
           }
+          vlog('  - no. its a coerce call but the arg is not a primitive:', exprNode.callee.name);
           return false; // $coerce may have side effects on non-primitives. That's why we do this in $coerce in the first place.
         }
+        vlog('  - the ident call is not accepted (can it be?):', exprNode.callee.name);
       }
+
       if (exprNode.callee.type === 'MemberExpression') {
         vlog('  - member call;', exprNode.callee.computed, exprNode.callee.object.name, exprNode.callee.property.name);
         if (exprNode.callee.computed) return false; // Not going to bother with this
@@ -734,7 +743,7 @@ function isFreeExpression(exprNode, fdata) {
       const meta = fdata.globallyUniqueNamingRegistry.get(exprNode.name);
       vlog('  - Ident "', exprNode.name, '", meta typing:', JSON.stringify(meta.typing));
       if (PRIMITIVE_TYPE_NAMES_PREVAL.has(meta.typing.mustBeType) || meta.typing.mustBePrimitive) {
-        vlog('    - =ok');
+        vlog('    - ident=ok');
         return true;
       }
       if (

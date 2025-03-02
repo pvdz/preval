@@ -1603,8 +1603,18 @@ function _inferNodeTyping(fdata, valueNode) {
             return createTypingObject({});
           }
           else if (AST.isPrimitive(valueNode.callee.object) && !valueNode.callee.computed) {
-            const t = getMetaTypingFromTypedMethod(AST.getPrimitiveType(valueNode.callee.object), valueNode.callee.property.name);
-            if (t) return t;
+            const symbol = symbo(AST.getPrimitiveType(valueNode.callee.object), valueNode.callee.property.name);
+            const symb = BUILTIN_SYMBOLS.get(symbol);
+            if (symb?.typings.returns) {
+              return createTypingObject({
+                mustBeType: symb.typings.returns,
+                mustBePrimitive: PRIMITIVE_TYPE_NAMES_PREVAL.has(symb.typings.returns),
+                mustBeTruthy: !PRIMITIVE_TYPE_NAMES_PREVAL.has(symb.typings.returns),
+                mustBeFalsy: symb.typings.returns === 'undefined' || symb.typings.returns === 'null',
+                ...symb.typings.returns === 'boolean' ? {worstCaseValueSet: new Set([true, false])} : {},
+              });
+            }
+            todo('Method on primitive was not found, do we miss anything?', symbol);
           }
         }
 
@@ -2681,126 +2691,6 @@ function isOneSetBit(v) {
   // Alternative, we could create an object/Set with 32 entries and do a straight lookup. Not sure what's faster. Won't matter much here.
 
   return 1 << (31 - Math.clz32(v)) === v;
-}
-
-function getMetaTypingFromTypedMethod(objType, propName) {
-  switch (objType + '.' + propName) {
-    case 'array.shift': {
-      return; // nope
-    }
-    case 'boolean.toString': {
-      return createTypingObject({
-        mustBeType: 'string',
-        mustBePrimitive: true,
-      });
-    }
-
-    case 'buffer.toString': {
-      return createTypingObject({
-        mustBeType: 'string',
-        mustBePrimitive: true,
-      });
-    }
-
-    case 'number.toPrecision':
-    case 'number.toString':
-    case 'number.toLocaleString':
-    case 'number.toFixed':
-    case 'number.toExponential': {
-      return createTypingObject({
-        mustBeType: 'string',
-        mustBePrimitive: true,
-      });
-    }
-    case 'number.valueOf': {
-      return createTypingObject({
-        mustBeType: 'number',
-        mustBePrimitive: true,
-      });
-    }
-
-    case 'string.charCodeAt': {
-      return createTypingObject({
-        mustBeType: 'number', // Can be NaN though, for OOB
-        mustBePrimitive: true,
-      });
-    }
-    case 'string.length': {
-      return createTypingObject({
-        mustBeType: 'number',
-        mustBePrimitive: true,
-      });
-    }
-    case 'string.charAt': {
-      return createTypingObject({
-        mustBeType: 'string', // Seems to always return a string, even if the arg is missing or not a number
-        mustBePrimitive: true,
-      });
-    }
-    case 'string.concat': {
-      return createTypingObject({
-        mustBeType: 'string',
-        mustBePrimitive: true,
-      });
-    }
-    case 'string.includes': {
-      return createTypingObject({
-        mustBeType: 'boolean',
-        mustBePrimitive: true,
-      });
-    }
-    case 'string.lastIndexOf':
-    case 'string.indexOf': {
-      return createTypingObject({
-        mustBeType: 'number',
-        mustBePrimitive: true,
-      });
-    }
-    // string.match returns objects
-    case 'string.replace': {
-      return createTypingObject({
-        mustBeType: 'string',
-        mustBePrimitive: true,
-      });
-    }
-    case 'string.slice': {
-      return createTypingObject({
-        mustBeType: 'string',
-        mustBePrimitive: true,
-      });
-    }
-    // string.split returns an array of strings
-    case 'string.substring':
-    case 'string.substr': {
-      return createTypingObject({
-        mustBeType: 'string',
-        mustBePrimitive: true,
-      });
-    }
-    case 'string.toString': {
-      return createTypingObject({
-        mustBeType: 'string',
-        mustBePrimitive: true,
-      });
-    }
-    case 'string.toLowerCase': {
-      return createTypingObject({
-        mustBeType: 'string',
-        mustBePrimitive: true,
-      });
-    }
-    case 'string.toUpperCase': {
-      return createTypingObject({
-        mustBeType: 'string',
-        mustBePrimitive: true,
-      });
-    }
-    default: {
-      if (BUILTIN_SYMBOLS.has(symbo(objType, propName))) {
-        todo('getMetaTypingFromTypedMethod can probably support resolving the type for calling this symbol:', symbo(objType, propName));
-      }
-    }
-  }
 }
 
 export function getMeta(name, fdata) {

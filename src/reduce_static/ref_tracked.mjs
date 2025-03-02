@@ -35,22 +35,71 @@ function _refTracked(fdata) {
   const queue = [];
 
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
+
+
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
-    if (!meta.singleScoped) return; // Ref tracking only works for vars that appear in one (func) scope. No closures.
 
-    vgroup('- `' + name);
-    processBinding(meta, name);
-    vgroupEnd();
+    if (meta.singleScoped) {
+      // Ref tracking only works for vars that appear in one (func) scope. No closures.
+      vgroup('- `' + name);
+      processSingleScopedBinding(meta, name);
+      vgroupEnd();
+    }
+
+    // We must check from the func expr because we can't get the name of the func from a given param decl. Not here.
+    // In this case, we want to know if a param is only used in recursive calls, so
+    if (
+      meta.isConstant && // For now. We may also be able to support the let case but I'm afraid it's a bit harder to do.
+      meta.writes.length === 1 &&
+      meta.writes[0].kind === 'var' &&
+      meta.writes[0].parentNode.init.type === 'FunctionExpression' &&
+      !meta.writes[0].parentNode.init.$p.readsArgumentsAny
+    ) {
+      // This is a constant function binding. Find the pattern: `function f(a) { f(a); }`
+      const funcNode = meta.writes[0].parentNode.init;
+      funcNode.params.forEach(pnode => {
+        if (pnode.$p.paramVarDeclRef?.name) {
+          const pmeta = fdata.globallyUniqueNamingRegistry.get(pnode.$p.paramVarDeclRef.name)
+          if (pmeta.reads.every(read => {
+            return (
+              read.parentNode.type === 'CallExpression' &&
+              read.parentProp === 'arguments' && // read is used as an arg in this call
+              read.parentNode.callee.type === 'Identifier' &&
+              read.parentNode.callee.name === meta.writes[0].parentNode.id.name // call is calling the function above
+            );
+          })) {
+            // Every read for this param was in a call to the same function name. If arguments is not
+            // used, we should be able to drop it, regardless of whether the function escapes.
+
+
+            pmeta.reads.every(read => {
+              rule('Param that is only used in func calls to the same name as original func, is an unused param');
+              example('function f(a) { f(a); }', 'function f() { f(); }');
+              before(read.parentNode);
+              read.parentNode.arguments[read.parentIndex] = AST.identifier('undefined')
+              after(read.parentNode);
+              changed += 1;
+            });
+
+          }
+        }
+      })
+
+
+
+    }
+
   });
   assertNoDupeNodes(fdata.tenkoOutput.ast, 'body');
 
-  function processBinding(meta, name) {
+  function processSingleScopedBinding(meta, varName) {
+
     if (!meta.reads.length) {
       vgroup('  This binding has no reads and', meta.writes.length,'writes. We should try to eliminate the writes;', meta.writes.map(write => write.kind));
       meta.writes.forEach(write => {
         vlog('- write', write.kind, write.parentNode.type);
-        if (write.parentNode.type === 'VariableDeclarator') {
+        if (write.kind === 'var') {
           if (meta.writes.every(write => write.kind === 'assign' || write.kind === 'var')) {
             vlog('  - queued');
             queue.push({
@@ -265,7 +314,6 @@ function _refTracked(fdata) {
         }
       }
     }));
-
   }
 
   if (queue.length) {

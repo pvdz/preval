@@ -88,6 +88,12 @@ function processAttempt(fdata, queue) {
         return;
       }
 
+      if (ref.reachedByReads.size === 0) {
+        // We can just remove it now, dismantle the object, etc.
+        vlog('This write is not observed; bailing');
+        return;
+      }
+
       // Ok this was a write that assigned an object literal. Hurray!
       vlog('Found object expression at ref', ri, ' assigned to `' + name + '`. Tracing nearest property lookups.');
       verifyAfterObjectAssign(meta, rwOrder, ref, ri, rhs);

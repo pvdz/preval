@@ -1,20 +1,7 @@
 import walk from '../../lib/walk.mjs';
 import * as AST from '../ast.mjs';
 import { VERBOSE_TRACING, RED, BLUE, DIM, RESET, setVerboseTracing, PRIMITIVE_TYPE_NAMES_PREVAL } from '../constants.mjs';
-import {
-  ASSERT,
-  log,
-  group,
-  groupEnd,
-  vlog,
-  vgroup,
-  vgroupEnd,
-  tmat,
-  fmat,
-  source,
-  REF_TRACK_TRACING,
-  assertNoDupeNodes, todo,
-} from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, REF_TRACK_TRACING, assertNoDupeNodes, todo, } from '../utils.mjs';
 import { createTypingObject, getCleanTypingObject, getMeta, inferNodeTyping, mergeTyping } from '../bindings.mjs';
 import { SYMBOL_COERCE, SYMBOL_FRFR } from '../symbols_preval.mjs';
 
@@ -184,12 +171,12 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
 
       if (funcNode.async) {
         vlog('This is an async function, it will always and only return a promise');
-        funcMeta.typing.returns = new Set(['promise']);
+        funcMeta.typing.returns = 'promise';
         return;
       }
       if (funcNode.generator) {
         vlog('This is a generator function, it will always and only return an object');
-        funcMeta.typing.returns = new Set(['object']);
+        funcMeta.typing.returns = 'object';
         return;
       }
 
@@ -218,16 +205,16 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
 
   function handleVariableDeclaration(declNode) {
     const declName = declNode.declarations[0].id.name;
-    if (declNode.kind === 'const') {
+    if (declNode.kind === 'const' || declNode.kind === 'let') {
       const meta = getMeta(declName, fdata);
       if (!meta.typing.mustBeType || meta.typing.mustBeType === 'primitive') {
-        vlog('## queued type resolving for decl of', declName, '(mustbetype:', meta.typing.mustBeType, ', isprimitive:', meta.typing.mustBePrimitive, ')');
+        vlog('## queued type resolving for decl of', [declName], '(mustbetype:', meta.typing.mustBeType, ', isprimitive:', meta.typing.mustBePrimitive, ')');
         untypedConstDecls.add({node: declNode, meta});
       } else {
-        vlog('## decl for', declName, 'already has typing;', meta.typing.mustBeType, meta.typing.mustBePrimitive)
+        vlog('## decl for', [declName], 'already has typing;', meta.typing.mustBeType, meta.typing.mustBePrimitive)
       }
     } else {
-      vlog('## skipped type resolving for non-const of', declName);
+      vlog('## skipped type resolving for non-const of', [declName]);
     }
   }
 
@@ -351,12 +338,92 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
     untypedConstDecls.forEach((obj) => {
       const {node, meta} = obj;
       const name = node.declarations[0].id.name;
-      vgroup('-- decl', cdi++, '::', name);
+      vgroup('-- decl', cdi++, '::', [name], ', mustBeType:', meta.typing?.mustBeType);
       if (!meta.typing?.mustBeType || meta.typing?.mustBeType === 'primitive') {
+        // Note: deal with lets properly. That's not just this init.
         const init = node.declarations[0].init;
-        vlog('Resolving .typing of `' + name + '` with the details of the rhs', init.type, 'whose mustBeType was:', meta.typing?.mustBeType);
+        vlog('Resolving .typing with the details of the init, type=', init.type);
         const newTyping = inferNodeTyping(fdata, init);
         vlog('++ Results in', newTyping?.mustBeType, '(mustbeprimitive:', newTyping?.mustBePrimitive, ') which we will inject');
+        meta.writes.forEach(write => {
+          if (write.kind === 'assign') {
+            const rhsTyping = inferNodeTyping(fdata, write.parentNode.right);
+            vlog('Merging rhs typing with binding;', rhsTyping);
+            mergeTyping(rhsTyping, newTyping);
+            vlog('newTyping now:', newTyping);
+          } else {
+            ASSERT(write.kind === 'var', 'not catch var or export or smth, right?', write);
+          }
+        });
+
+        if (
+          !newTyping?.mustBeType &&
+          init.type === 'MemberExpression' &&
+          init.object.type === 'Identifier' &&
+          AST.isNumberLiteral(init.property)
+        ) {
+          // `const x = arr[100]`
+          vlog('Special array access check for var that has unknown typing but is assigned a number computed prop of an ident');
+          // valueNode is a computed member expression.
+          // If the object is an array and we can assert the array only contains primitives
+          // and we can assert the array cannot get other types then ... it must be a primitive?
+          const meta = fdata.globallyUniqueNamingRegistry.get(init.object.name);
+          vlog('- The object of the member expression mustBeType', meta.typing.mustBeType);
+          if (meta.typing.mustBeType === 'array') {
+            // Must verify that the array only contains primitives and doesn't escape
+            if (!meta.isConstant) vlog('- is not a var decl');
+            else if (meta.isImplicitGlobal) vlog('- is an implicit global');
+            else if (meta.isBuiltin) vlog('- is builtin');
+            else if (meta.constValueRef.node.type !== 'ArrayExpression') vlog('- init of obj ident is not an array expression');
+            else if (!meta.constValueRef.node.elements.every(e => !e || AST.isPrimitive(e))) vlog('- array does not only contain primitives');
+            else if (meta.writes.length !== 1) vlog('- array ref has multiple writes');
+            else {
+              vgroup('Checking all reads of this array ref for escape analysis');
+              const escapes = meta.reads.some(read => {
+                // Confirm this is not a method call
+                // If this is the lhs of an assignment, confirm that the rhs is a primitive
+                vlog('- read:', meta.reads.length, read.grandNode.type, read.grandProp, read.parentNode.type, read.parentProp, meta.uniqueName);
+                if (read.grandNode.type === 'CallExpression') return true;
+                if (read.grandNode.type === 'AssignmentExpression' && read.grandProp === 'left') {
+                  let ok = true;
+
+                  if (AST.isPrimitive(read.grandNode.right)) ok = false;
+                  else if (read.grandNode.right.type === 'Identifier') {
+                    const rhsMeta = fdata.globallyUniqueNamingRegistry.get(init.object.name);
+                    if (PRIMITIVE_TYPE_NAMES_PREVAL.has(rhsMeta.typing.mustBeType)) ok = false;
+                  }
+                  if (!ok) return true;
+
+                  // So this was an assignment to an array prop and the rhs was a primitive.. should be good?
+                  return false;
+                }
+                if (read.grandNode.type === 'AssignmentExpression' && read.grandProp === 'right') {
+                  // Should be fine to assign, that's just a read
+                  return false;
+                }
+                if (read.grandNode.type === 'VariableDeclarator') {
+                  // init of var decl is ok
+                  return false;
+                }
+                todo('How else are member expressions used in normalized code?', read.grandNode);
+                return true;
+              });
+              vgroupEnd();
+              vlog('- Escape analysis verdict:', escapes);
+              if (!escapes) {
+                // Seems the array must contain primitives? Only mutations are writes to properties and those are assigned primitives too.
+                // This must mean the array can only contain primitives (or the default undefined, which is a primitive too)
+                // So it should be safe to assert the result of reading a computed number prop from the array results in a primitive of sorts.
+                vlog('- Numbered computed property on an array that doesnt escape and only contains primitives; must be primitive');
+                newTyping.mustBeType = 'primitive';
+                newTyping.mustBePrimitive = true;
+              }
+            }
+          } else {
+            vlog('- is not an array');
+          }
+        }
+
         ASSERT(newTyping?.mustBeType === 'primitive' ? newTyping.mustBePrimitive : true, 'if mustbetype is primitive then isprimitive must be set too', newTyping);
         if (newTyping?.mustBeType && newTyping.mustBeType !== 'primitive') {
           vlog('  - We have a mustBeType (', newTyping.mustBeType, '), typingChanged=true');
@@ -383,57 +450,76 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
     let fni = 0;
     funcNodesForSomething.forEach((obj) => {
       const {funcName, funcNode, funcMeta, parentNode} = obj;
-      vlog('-- func', fni++, '; "', funcName, '"');
+      vlog('-- func', fni++, ';', [funcName]);
 
-      const types = new Set(funcNode.$p.returnNodes?.map(returnNode => {
+      const rightnow = new Set(funcNode.$p.returnNodes?.map(returnNode => {
         const arg = returnNode.argument;
         if (AST.isPrimitive(arg)) return AST.getPrimitiveType(arg);
         ASSERT(arg.type === 'Identifier');
         const argMeta = getMeta(arg.name, fdata);
+
+        // Edge case: recursion. We can ignore cases of recursive calls as they should not change
+        //            the return type of themselves. This breaks a chicken-egg problem. Bit annoying.
+        // So we are going to check whether the var is a const and the init is the result of
+        // calling this same function. Provided it was const too. Otherwise ignore this edge case.
+        if (
+          funcMeta.isConstant &&
+          funcMeta.writes.length === 1 &&
+          funcMeta.writes[0].kind === 'var' &&
+          argMeta.isConstant &&
+          argMeta.writes.length === 1 &&
+          argMeta.writes[0].kind === 'var' &&
+          argMeta.writes[0].parentNode.init.type === 'CallExpression' &&
+          argMeta.writes[0].parentNode.init.callee.type === 'Identifier' &&
+          argMeta.writes[0].parentNode.init.callee.name === funcName
+        ) {
+          vlog('Found a recursion edge case; this return can not change the return type of the func');
+          return true; // Special symbol to filter on?
+        }
+
         if (argMeta.typing?.mustBeType) return argMeta.typing.mustBeType;
         else if (argMeta.typing?.mustBePrimitive) return 'primitive';
-        return '?';
-      }));
+        return undefined;
+      }).filter(wasRecursion => wasRecursion !== true));
+
+      let types =
+        rightnow.size === 0
+        ? undefined
+        : rightnow.size === 1
+        ? Array.from(rightnow)[0]
+        : Array.from(rightnow).every(type => PRIMITIVE_TYPE_NAMES_PREVAL.has(type))
+        ? 'primitive'
+        : false;
+
       vlog('  - types:', types);
-      if (types.size === 0) {
+      if (!types) {
         vlog('No types, no change');
       }
-      else if (!funcMeta.typing.returns?.size) {
+      else if (!funcMeta.typing.returns) {
         vlog('Have types now where we had none before, this must be an improvement, typingChanged = true');
         typingChanged = true;
         typingUpdated += 1;
         funcMeta.typing.returns = types;
       }
-      else if (types.has('?')) {
+      else if (types === '?') {
         // Return type is not settled yet
         funcMeta.typing.returns = types; // This is always the current status quo, so always update it.
         vlog('  - Has an unknown type :(');
       }
-      else if (types.has('primitive') && !funcMeta.typing.returns.has('primitive')) {
+      else if (types === 'primitive' && funcMeta.typing.returns !== 'primitive') {
         vlog('The new types have no unknowns and no "primitive" while the old types did so this must be an improvement, typingChanged = true');
         typingChanged = true;
         typingUpdated += 1;
         funcMeta.typing.returns = types;
       }
-      else if (types.has('primitive')) {
+      else if (types === 'primitive') {
         vlog('The new types have a "primitive" while the old types did not, this is worse, discarding result, no change.');
       }
-      else if (funcMeta.typing.returns.has('?') || funcMeta.typing.returns.has('primitive')) {
+      else if (!funcMeta.typing.returns || funcMeta.typing.returns === 'primitive') {
         vlog('The old types had unknown or "primitive" and the new one did not so this must be better, typingChanged = true');
         typingChanged = true;
         typingUpdated += 1;
         funcMeta.typing.returns = types;
-      }
-      else if (types.size < funcMeta.typing.returns.size) {
-        // This was an improvement because there are fewer options now
-        vlog('  - There were fewer types to choose from so this is an improvement, typingChanged = true')
-        typingChanged = true;
-        typingUpdated += 1;
-        funcMeta.typing.returns = types;
-        if (types.size === 1) {
-          vlog('The type has been resolved to a concrete type, this param is finished!');
-          funcNodesForSomething.delete(obj);
-        }
       }
       else {
         vlog('No change or no improvement');
@@ -461,7 +547,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
       calleeMeta.tmpi = loopi; // TODO: remove this? or keep?
 
       //source(calleeMeta.constValueRef.containerNode, true)
-      vgroup('-- func', cmi++, '. Processing all', arrArrCallArgNodes.length, 'CallExpressions for "', calleeMeta.uniqueName, '", previous callerArgs:', oldi, oldCallerArgTypes, ', starting with', newCallerArgTypes.length, 'param types');
+      vgroup('-- func', cmi++, '. Processing all', arrArrCallArgNodes.length, 'CallExpressions for', [calleeMeta.uniqueName], ', previous callerArgs:', oldi, oldCallerArgTypes, ', starting with', newCallerArgTypes.length, 'param types');
       arrArrCallArgNodes.every((args, ci) => {
         vgroup('- Call', ci+1, '/', arrArrCallArgNodes.length, ', args:', args.map(n => n.type).join(', '), 'len now:', args.length, ', len known:', newCallerArgTypes.length);
 
@@ -529,7 +615,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
           else if (anode.type === 'Identifier') {
             const argMeta = getMeta(anode.name, fdata);
             if (!argMeta.typing.mustBeType) {
-              vlog('Param', i, '; ident', anode.name, 'has no mustBeType, unable to resolve param');
+              vlog('Param', i, '; ident', [anode.name], 'has no mustBeType, unable to resolve param');
               newCallerArgTypes[i] = true; // Mark as skip-to-next-loop
             } else if (newCallerArgTypes[i] === false) {
               vlog('Param', i,', setting to mustBeType of ident:', argMeta.typing.mustBeType);
@@ -546,7 +632,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
             vlog('Param', i, '; type so far:', newCallerArgTypes[i] ?? '<not yet>', ', inferred now:', JSON.stringify(inf));
             if (newCallerArgTypes[i] === undefined) {
               vlog('Param', i, '; did not have a type before, updating');
-              newCallerArgTypes[i] = inf.mustBetype;
+              newCallerArgTypes[i] = inf.mustBeType;
             }
             else if (newCallerArgTypes[i] !== inf.mustBeType) {
               vlog('Param', i, '; previous call had different type (', newCallerArgTypes[i], '), so burning this param index');
@@ -783,7 +869,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
   setVerboseTracing(tracingValueBefore);
 
   fdata.globallyUniqueNamingRegistry.forEach(meta => {
-    ASSERT(meta.typing.mustBeType === false || !PRIMITIVE_TYPE_NAMES_PREVAL.has(meta.typing.mustBeType) === !meta.typing.mustBePrimitive, 'if it must be a primitive then mustbeprimitive', meta);
+    ASSERT(meta.typing.mustBeType === false || !PRIMITIVE_TYPE_NAMES_PREVAL.has(meta.typing.mustBeType) === !meta.typing.mustBePrimitive, 'if it must be a primitive then mustbeprimitive', meta, meta.typing.mustBeType === false, meta.typing.mustBeType, !!PRIMITIVE_TYPE_NAMES_PREVAL.has(meta.typing.mustBeType), !!meta.typing.mustBePrimitive);
   });
 
   log('\n\nEnd of phase 1.1, walker took', Date.now() - start, 'ms');

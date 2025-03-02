@@ -1133,8 +1133,8 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
             vlog('(', v, '.lastIndexOf(', a, ') ) =', c);
             return c;
           }
-          case symbo('string', 'match'): { ASSERT('TODO') }
-          case symbo('string', 'replace'): { ASSERT('TODO') }
+          case symbo('string', 'match'): { ASSERT(false, 'TODO') }
+          case symbo('string', 'replace'): { ASSERT(false, 'TODO') }
           case symbo('string', 'slice'): {
             const v = prunVal(registers, op[3], op[4]);
             ASSERT(typeof v === 'string');
@@ -1144,7 +1144,7 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
             vlog('(', v, '.slice(', a, ',', b, ') ) =', c);
             return c;
           }
-          case symbo('string', 'split'): { ASSERT('TODO') }
+          case symbo('string', 'split'): { ASSERT(false, 'TODO') }
           case symbo('string', 'substring'): {
             const v = prunVal(registers, op[3], op[4]);
             ASSERT(typeof v === 'string');
@@ -1177,14 +1177,14 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
             vlog('(', v, '.toLowerCase() ) =', c);
             return c;
           }
-          case symbo('string.toUpperCase'): {
+          case symbo('string', 'toUpperCase'): {
             const v = prunVal(registers, op[3], op[4]);
             ASSERT(typeof v === 'string');
             const c = v.toUpperCase();
             vlog('(', v, '.toUpperCase() ) =', c);
             return c;
           }
-          case symbo('string.valueOf'): {
+          case symbo('string', 'valueOf'): {
             const v = prunVal(registers, op[3], op[4]);
             ASSERT(typeof v === 'string');
             const c = v.valueOf();

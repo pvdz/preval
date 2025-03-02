@@ -5,7 +5,7 @@ import walk from '../../lib/walk.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, before, after, assertNoDupeNodes, rule, riskyRule, example } from '../utils.mjs';
 import { VERBOSE_TRACING } from '../constants.mjs';
 import * as AST from '../ast.mjs';
-import { SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL } from '../symbols_preval.mjs';
+import { SYMBOL_DOTCALL, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL } from '../symbols_preval.mjs';
 import { isComplexNode } from '../ast.mjs';
 
 export function denorm(fdata, resolve, req, options) {
@@ -42,7 +42,7 @@ export function denorm(fdata, resolve, req, options) {
         // - `$dotCall(a.b, a, 1, 2)` => `a.b(1, 2)`
         if (
           node.callee.type === 'Identifier' &&
-          node.callee.name === '$dotCall' &&
+          node.callee.name === SYMBOL_DOTCALL &&
           node.arguments[0]?.type === 'MemberExpression' &&
           node.arguments[0].object.type === 'Identifier' &&
           node.arguments[1]?.type === 'Identifier' &&

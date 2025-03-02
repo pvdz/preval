@@ -353,9 +353,13 @@ function verifyExpression(node) {
     }
     case 'StringConcat': {
       // Template with multiple expressions may not just be strings
-      verifyString(node.left);
-      verifySimple(node.middle);
-      verifyString(node.right);
+      ASSERT(Array.isArray(node.parts), 'stringconcat.parts should be an array', node);
+      ASSERT(node.parts.length > 1 || (node.parts.length === 1 && typeof node.parts[0] !== 'string'), 'should not be just a single string');
+
+      node.parts.forEach(part => {
+        if (typeof part === 'string') verifyString(part);
+        else verifySimple(part);
+      });
       return;
     }
     case 'ThisExpression': {

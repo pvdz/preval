@@ -1,5 +1,5 @@
 import * as PST from './pst.mjs';
-import {ASSERT} from "../utils.mjs"
+import { ASSERT, todo } from "../utils.mjs"
 
 export const astToPst = convert;
 
@@ -302,15 +302,13 @@ function convert(node) {
       return PST.primitive(node.quasis[0].value.cooked);
     }
     case 'TemplateLiteral': {
-      if (node.expressions.length === 0) return PST.primitive(node.quasis[0].value.cooked);
-      if (node.expressions.length === 1) return PST.stringConcat(node.quasis[0].value.cooked, convert(node.expressions[0]), node.quasis[1].value.cooked);
-
-      console.log('Broken template! FIXME', node.expressions);
-      return PST.stringConcat(node.quasis[0].value.cooked, convert(node.expressions[0]), node.quasis[1].value.cooked);
-
-      console.log(node);
-      TODO // should normalized have more than one ?
-      break;
+      const arr = [node.quasis[0].value.cooked];
+      for (let i=0; i<node.expressions.length; ++i) {
+        arr.push(convert(node.expressions[i]));
+        arr.push(node.quasis[i+1].value.cooked);
+      }
+      if (arr.length === 1 && typeof arr[0] === 'string') return PST.primitive(arr[0]);
+      return PST.stringConcat(arr);
     }
     case 'ThisExpression': {
       return PST.thisExpression();

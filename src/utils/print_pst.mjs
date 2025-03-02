@@ -301,9 +301,11 @@ function printExpression(indent, config, node) {
       return `/${node.pattern}/${node.flags}`;
     }
     case 'StringConcat': {
-      const left = toAsciiSafeString(node.left.replace(/([\\`])/g, '\\$1'));
-      const right = toAsciiSafeString(node.right.replace(/([\\`])/g, '\\$1'));
-      return `\`${left}\${${printSimple(indent, config, node.middle)}}${right}\``;
+      return '`' + node.parts.reduce((str, now) => {
+        if (typeof now === 'string') str += toAsciiSafeString(now.replace(/([\\`])/g, '\\$1'));
+        else str += '${' + printExpression(indent, config, now) + '}';
+        return str;
+      }, '') + '`';
     }
     case 'ThisExpression': {
       return 'this';

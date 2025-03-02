@@ -274,7 +274,7 @@ export function primitive(value, confirmUndef = false) {
   ASSERT(value !== undefined || confirmUndef, 'must pass second arg if intentional undefined');
   return {
     type: 'Primitive',
-    kind: typeof value,
+    kind: value === null ? 'null' : typeof value,
     value,
   };
 }
@@ -347,17 +347,19 @@ export function spreadElement(arg) {
   };
 }
 
-export function stringConcat(left, middle, right) {
+export function stringConcat(...parts) {
+  if (Array.isArray(parts[0])) parts = parts[0];
+
   // This is a template literal but in normalized code we merely use it to concat strings in an unambiguous way.
   // We compile this node as a template as well.
   // Each string concat only has two parts, left and right. Despite a template allowing for any number of expressions.
   // Usually left or right is a string. But since the order matters, we don't know which is which.
 
+  ASSERT(parts.length > 1 || (parts.length === 1 && typeof parts[0] !== 'string'), 'when a stringConcat only contains a single string, it should use a Primitive', parts);
+
   return {
     type: 'StringConcat',
-    left, // Primitive (string)
-    middle, // Simple
-    right, // Primitive (string)
+    parts, // This should either be string literals or idents asserted to be strings. The concat should be side-effect free.
   };
 }
 

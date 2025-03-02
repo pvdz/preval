@@ -108,13 +108,13 @@ const a = $( "x" );
 const b = $( "y" );
 const c = $coerce( a, "string" );
 const d = $coerce( b, "string" );
-const e = `A${c}B`;
+const e = `A${c}B${d}C`;
 $( e );
 const f = $coerce( a, "string" );
 const g = $coerce( b, "string" );
 const h = $coerce( a, "string" );
 const i = $coerce( b, "string" );
-const j = `AA${f}B`;
+const j = `AA${f}B${g}CBA${h}B${i}CC`;
 $( j );
 `````
 

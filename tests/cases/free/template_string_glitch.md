@@ -112,7 +112,7 @@ const a = $();
 const b = $coerce( a, "string" );
 const c = $();
 const d = $coerce( c, "string" );
-const e = `/${b}/`;
+const e = `/${b}/${d}`;
 $( e );
 `````
 

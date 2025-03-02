@@ -106,7 +106,7 @@ const b = $( "t" );
 const c = $coerce( a, "plustr" );
 if (b) {
   const d = $coerce( b, "plustr" );
-  const e = `${c}abcdef`;
+  const e = `${c}abcdef${d}`;
   $( e );
 }
 else {

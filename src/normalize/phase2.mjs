@@ -45,7 +45,7 @@ import { andCases } from '../reduce_static/and_cases.mjs';
 import { globalCasting } from '../reduce_static/global_casting.mjs';
 import { binExprStmt } from '../reduce_static/bin_expr_stmt.mjs';
 import { propertyLookups } from '../reduce_static/property_lookups.mjs';
-import { letIfElse } from '../reduce_static/let_if_else.mjs';
+import { ifLetInit } from '../reduce_static/if_let_init.mjs';
 import { coercials } from '../reduce_static/coerced.mjs';
 import { redundantWrites } from '../reduce_static/redundant_if_else_writes.mjs';
 import { ifHoisting } from '../reduce_static/if_hoisting.mjs';
@@ -297,7 +297,7 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
     tryEscaping(fdata) ||
     binExprStmt(fdata) ||
     propertyLookups(fdata) ||
-    letIfElse(fdata) ||
+    ifLetInit(fdata) ||
     redundantWrites(fdata) ||
     ifHoisting(fdata) ||
     orXor(fdata) ||

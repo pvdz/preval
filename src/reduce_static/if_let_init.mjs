@@ -21,14 +21,14 @@ import {
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 
-export function letIfElse(fdata) {
+export function ifLetInit(fdata) {
   group('\n\n\nSearching for conditionally initialized lets\n');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
-  const r = _letIfElse(fdata);
+  const r = _ifLetInit(fdata);
   groupEnd();
   return r;
 }
-function _letIfElse(fdata) {
+function _ifLetInit(fdata) {
   const queue = [];
   fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
     if (meta.isBuiltin) return; // We can probably do it for some of these cases? But let's do that in another step
@@ -89,8 +89,8 @@ function _letIfElse(fdata) {
   });
 
   if (queue.length > 0) {
-    log('Let-if-else changed:', queue.length, '. Restarting from phase1 to fix up read/write registry');
-    return {what: 'letIfElse', changes: queue.length, next: 'phase1'};
+    log('Conditional let inits changed:', queue.length, '. Restarting from phase1 to fix up read/write registry');
+    return {what: 'ifLetInit', changes: queue.length, next: 'phase1'};
   }
-  log('Let-if-else changed: 0.');
+  log('Conditional let inits changed: 0.');
 }

@@ -8,27 +8,11 @@
 //   - for `const`: `const arr = [1, 2, 3]; const f = function(n){ return arr.length; }; f(arr.length); f(2);`
 // - consts with array literal init that only have property reads must be safe to inline
 
-import {
-  ASSERT,
-  log,
-  group,
-  groupEnd,
-  vlog,
-  vgroup,
-  vgroupEnd,
-  rule,
-  example,
-  before,
-  source,
-  after,
-  fmat,
-  tmat,
-  coerce,
-  findBodyOffset, todo,
-} from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, coerce, findBodyOffset, todo, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { mayBindingMutateBetweenRefs } from '../bindings.mjs';
 import { SYMBOL_COERCE } from '../symbols_preval.mjs';
+import { symbo } from '../symbols_builtins.mjs';
 
 export function arrrrrr(fdata) {
   group('\n\n\nChecking for arrrrrrray stuffs');
@@ -211,18 +195,7 @@ function processAttempt(fdata, queue) {
         return true;
       }
 
-      vlog(
-        '- read',
-        i,
-        ':',
-        read.grandNode.type,
-        read.grandProp,
-        read.grandIndex,
-        read.parentNode.type,
-        read.parentProp,
-        read.parentIndex,
-        '<read>',
-      );
+      vlog('- read', i, ':', read.grandNode.type, read.grandProp, read.grandIndex, read.parentNode.type, read.parentProp, read.parentIndex, '<read>');
 
       if (read.action === 'write') {
         if (read.kind !== 'var') {

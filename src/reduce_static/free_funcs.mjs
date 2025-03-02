@@ -88,7 +88,8 @@ export function _freeFuncs(fdata, prng, usePrng) {
     const funcName = parentNode.type === 'VariableDeclarator' ? parentNode.id.name : parentNode.left.name;
     vgroup('- Can @', +node.$p.pid, '("', funcName, '") be compiled to pcode?');
     const conditionalNames = pcanCompile(node, fdata, funcName);
-    vlog('~~>', conditionalNames ? 'Yes, provided the funcs it calls can too;' : 'nope', conditionalNames || '');
+    if (conditionalNames) vlog('~~> Yes ', [funcName], 'can be pcode compiled, but only if the funcs it calls can too;', conditionalNames);
+    vlog('~~> nope', [funcName], 'can not be pcode compiled;', conditionalNames);
     vgroupEnd();
     if (conditionalNames) {
       if (conditionalNames.size === 0 || (conditionalNames.size === 1 && conditionalNames.has(funcName))) {
@@ -105,11 +106,14 @@ export function _freeFuncs(fdata, prng, usePrng) {
   walk(_funcWalker, ast, 'ast');
   groupEnd();
   log('Walked AST to scan funcs for pcode validation', Date.now() - now, 'ms, found', validatedUserFuncNames.size, 'validated funcs and', candidates.size, 'candidate funcs that were pcode compatible');
+  vlog('validatedUserFuncNames:', validatedUserFuncNames)
+  vlog('candidates:', candidates)
 
   // Try to validate or reject the candidates
   // Each cycle, see if all called names (or itself) are in validated. If so, move to validated as well.
   // Keep doing so until there are no more changes. The rest is thereby invalidated.
 
+  vlog('Trying to validate/reject the candidates');
   let changes = true;
   while (changes) {
     changes = false;
@@ -117,7 +121,9 @@ export function _freeFuncs(fdata, prng, usePrng) {
       // Either a direct recursive call, or all functions being called are also (going to be) compiled to pcode
       let all = true;
       calls.forEach(callee => {
-        if (callee === funcName || validated.has(callee)) return;
+        vlog('- testing', [callee])
+        if (callee === funcName || validated.has(callee)) return vlog('  - is in the validated set or recursion');
+        vlog('  - was not in the validated set (yet), was not recursion');
         all = false;
       })
       if (all) {

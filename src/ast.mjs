@@ -2843,10 +2843,11 @@ export function isArraySerializable(arrayMeta, fdata, knownParent = null, sush =
   // In this context, serializable means as much as "known value", because otherwise we can't turn it into a string can we
   // TODO: Note: this function has penty of room for improvement
 
-  if (!arrayMeta.constValueRef) return false;
+  if (!arrayMeta.constValueRef?.node?.elements) return false; // It may not be an array literal, just a func return value type
   if (!isImmutableArray(arrayMeta, knownParent, sush)) {
     return false;
   }
+  ASSERT(arrayMeta.constValueRef.node.elements, 'its an array and it must have an elements', arrayMeta.constValueRef.node);
   return arrayMeta.constValueRef.node.elements.every(enode => {
     if (!enode) return true;
     if (isPrimitive(enode)) return true;

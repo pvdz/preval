@@ -1,10 +1,8 @@
 // Find functions with one statement and a return and inline calls to them
 
-import walk from '../../lib/walk.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset, todo, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { createFreshVar, getIdentUsageKind, resolveNodeAgainstParams } from '../bindings.mjs';
-import { param } from '../ast.mjs';
+import { createFreshVar } from '../bindings.mjs';
 
 export function inlineSimpleFuncCalls(fdata) {
   group('\n\n\nChecking for simple func calls that can be inlined');
@@ -23,11 +21,11 @@ function _inlineSimpleFuncCalls(fdata) {
     const funcNode = meta.constValueRef.node;
     if (funcNode.type !== 'FunctionExpression') return;
     if (funcNode.async) {
-      //console.log('TODO: inline async functions safely (because await)');
+      todo('inline async functions safely (because await)');
       return;
     }
     if (funcNode.generator) {
-      //console.log('TODO: inline generator functions safely (because yield)');
+      todo('inline generator functions safely (because yield)');
       return;
     }
 

@@ -20,25 +20,9 @@
 // TODO: retain TDZ semantics
 
 import walk from '../../lib/walk.mjs';
-import {
-  ASSERT,
-  log,
-  group,
-  groupEnd,
-  vlog,
-  vgroup,
-  vgroupEnd,
-  fmat,
-  tmat,
-  rule,
-  example,
-  before,
-  source,
-  after,
-  findBodyOffset,
-} from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { isSameFlatStatementExceptBool } from '../ast.mjs';
+import { isSameFlatStatementExceptBool } from '../utils/is_same_except_bool.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
 export function ifTestMerging(fdata) {
@@ -78,10 +62,11 @@ function _ifTestMerging(fdata) {
       return;
     }
 
+    /** @var {Array<{a:Node, b:Node, ap: Array<Node>, bp: Array<Node>, prop: string|number}>} */
     const collect = []; // Capture the occurrences of mismatching bools
     if (!isSameFlatStatementExceptBool(firstThen, firstElse, collect)) return;
 
-    vlog('If statement @', +node.$p.pid, 'has a consequent and alternate branch that start with the same statement, ignoring bools. Deduping them to before the If now.');
+    vlog('The `if` statement @', +node.$p.pid, 'has a consequent and alternate branch that start with the same statement, ignoring bools. Deduping them to before the If now.');
     vlog('Collected mismatches:', collect.map(({a,b,ap, bp, prop}) => `${ap.type || 'array'}[${prop}]=${a.raw}/${b.raw}`));
 
     const pathNodes = path.nodes;
@@ -95,9 +80,9 @@ function _ifTestMerging(fdata) {
     rule('When both branches of an If start with the same statement except for true/false cases, merge them to before the If with a Boolean(test)');
     example('if (x) f(true); else f(false);', 'const b = Boolean(x); f(b); if (x) ; else ;');
     example('if (x) f(false); else f(true);', 'const b = !x; f(b); if (x) ; else ;');
-    before(parentNode.body[parentIndex]);
+    before(parentNode.body[parentIndex], node);
 
-    // Now move constquent statement[0] to before the If, remove the first statements from each branch. Replace all collected occurrences in A with the test.
+    // Now move consequent statement[0] to before the If, remove the first statements from each branch. Replace all collected occurrences in A with the test.
     parentNode.body.splice(parentIndex, 0, node.consequent.body.shift());
     node.alternate.body.shift();
     if (collect.length) {
@@ -109,14 +94,32 @@ function _ifTestMerging(fdata) {
           : AST.callExpression('Boolean', [AST.identifier(node.test.name)])
       );
       parentNode.body.splice(parentIndex, 0, tmpNode);
-
-      collect.forEach(({a, ap, prop}) => {
-        ap[prop] = AST.identifier(tmpName);
+      collect.forEach(({ap, prop}) => {
+        if (ap[prop].type === 'Property') {
+          // Special case for object expression properties
+          ap[prop].value = AST.identifier(tmpName);
+        } else {
+          ap[prop] = AST.identifier(tmpName);
+        }
       });
     }
 
+    if (firstThen.type === 'VariableDeclaration') {
+      const nameA = firstThen.declarations[0].id.name;
+      const nameB = firstElse.declarations[0].id.name;
+      const meta = fdata.globallyUniqueNamingRegistry.get(nameB);
+      vgroup('Updating the refs of the second var binding to refer to the name of the first', [nameA], [nameB]);
+      meta.rwOrder.forEach(ref => {
+        before(ref.grandNode);
+        ref.node.name = nameA;
+        after(ref.grandNode);
+      });
+      vgroupEnd();
+      vlog('Updated');
+    }
+
     after(parentNode.body[parentIndex]);
-    after(parentNode.body[parentIndex+1]);
+    after(parentNode.body[parentIndex+1], node);
     ++changed;
   }
 

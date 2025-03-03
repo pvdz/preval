@@ -74,21 +74,15 @@ if (x) {
 
 
 `````js filename=intro
-let x /*:boolean*/ = false;
 const tmpIfTest /*:unknown*/ = $(true);
-if (tmpIfTest) {
-  const tmpUnaryArg /*:unknown*/ = $(true);
-  x = !tmpUnaryArg;
-} else {
-  const tmpUnaryArg$1 /*:unknown*/ = $(false);
-  x = !tmpUnaryArg$1;
-}
-if (x) {
-  $(`a`);
-  $(`d`);
-} else {
+const tmpBool /*:boolean*/ = Boolean(tmpIfTest);
+const tmpUnaryArg /*:unknown*/ = $(tmpBool);
+if (tmpUnaryArg) {
   $(`b`);
   $(`c`);
+} else {
+  $(`a`);
+  $(`d`);
 }
 `````
 
@@ -97,23 +91,16 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-let a = false;
-const b = $( true );
-if (b) {
-  const c = $( true );
-  a = !c;
-}
-else {
-  const d = $( false );
-  a = !d;
-}
-if (a) {
-  $( "a" );
-  $( "d" );
-}
-else {
+const a = $( true );
+const b = Boolean( a );
+const c = $( b );
+if (c) {
   $( "b" );
   $( "c" );
+}
+else {
+  $( "a" );
+  $( "d" );
 }
 `````
 

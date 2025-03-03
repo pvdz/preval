@@ -107,21 +107,18 @@ const f /*:()=>undefined*/ = function () {
   $(x);
   return undefined;
 };
-let x /*:primitive*/ = undefined;
+let x /*:unknown*/ = undefined;
 const tmpIfTest /*:unknown*/ = $(true);
-if (tmpIfTest) {
-  const tmpUnaryArg /*:unknown*/ = $(true);
-  x = !tmpUnaryArg;
-} else {
-  const tmpUnaryArg$1 /*:unknown*/ = $(false);
-  x = !tmpUnaryArg$1;
-}
-if (x) {
-  $(`a`);
-  $(`d`);
-} else {
+const tmpBool /*:boolean*/ = Boolean(tmpIfTest);
+const tmpUnaryArg /*:unknown*/ = $(tmpBool);
+const tmpBool$1 /*:boolean*/ = !tmpUnaryArg;
+x = tmpBool$1;
+if (tmpUnaryArg) {
   $(`b`);
   $(`c`);
+} else {
+  $(`a`);
+  $(`d`);
 }
 f();
 f();
@@ -143,21 +140,17 @@ const a = function() {
 };
 let b = undefined;
 const c = $( true );
-if (c) {
-  const d = $( true );
-  b = !d;
-}
-else {
-  const e = $( false );
-  b = !e;
-}
-if (b) {
-  $( "a" );
-  $( "d" );
-}
-else {
+const d = Boolean( c );
+const e = $( d );
+const f = !e;
+b = f;
+if (e) {
   $( "b" );
   $( "c" );
+}
+else {
+  $( "a" );
+  $( "d" );
 }
 a();
 a();

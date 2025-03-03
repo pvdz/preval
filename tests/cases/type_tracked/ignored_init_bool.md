@@ -67,18 +67,14 @@ if (itooamanumberjack) {
 
 
 `````js filename=intro
-let itooamanumberjack /*:boolean*/ = false;
-if (imanumberandilovethrees) {
-  const tmpCalleeParam /*:unknown*/ = $(true);
-  itooamanumberjack = Boolean(tmpCalleeParam);
+const tmpBool /*:boolean*/ = Boolean(imanumberandilovethrees);
+const tmpCalleeParam /*:unknown*/ = $(tmpBool);
+imanumberandilovethrees;
+const tmpClusterSSA_itooamanumberjack /*:boolean*/ = Boolean(tmpCalleeParam);
+if (tmpCalleeParam) {
+  $(`a`, tmpClusterSSA_itooamanumberjack);
 } else {
-  const tmpCalleeParam$1 /*:unknown*/ = $(false);
-  itooamanumberjack = Boolean(tmpCalleeParam$1);
-}
-if (itooamanumberjack) {
-  $(`a`, itooamanumberjack);
-} else {
-  $(`b`, itooamanumberjack);
+  $(`b`, tmpClusterSSA_itooamanumberjack);
 }
 `````
 
@@ -87,20 +83,15 @@ if (itooamanumberjack) {
 With rename=true
 
 `````js filename=intro
-let a = false;
-if (imanumberandilovethrees) {
-  const b = $( true );
-  a = Boolean( b );
+const a = Boolean( imanumberandilovethrees );
+const b = $( a );
+imanumberandilovethrees;
+const c = Boolean( b );
+if (b) {
+  $( "a", c );
 }
 else {
-  const c = $( false );
-  a = Boolean( c );
-}
-if (a) {
-  $( "a", a );
-}
-else {
-  $( "b", a );
+  $( "b", c );
 }
 `````
 

@@ -102,35 +102,25 @@ if (tmpIfTest$3) {
 
 
 `````js filename=intro
-let x /*:boolean*/ = false;
 const tmpIfTest /*:unknown*/ = $(true);
-if (tmpIfTest) {
-  const tmpUnaryArg /*:unknown*/ = $(true);
-  x = !tmpUnaryArg;
-} else {
-  const tmpUnaryArg$1 /*:unknown*/ = $(false);
-  x = !tmpUnaryArg$1;
-}
-if (x) {
-  $(`a`);
-  $(`d`);
-} else {
+const tmpBool /*:boolean*/ = Boolean(tmpIfTest);
+const tmpUnaryArg /*:unknown*/ = $(tmpBool);
+if (tmpUnaryArg) {
   $(`b`);
   $(`c`);
+} else {
+  $(`a`);
+  $(`d`);
 }
 const tmpIfTest$1 /*:unknown*/ = $(true);
-if (tmpIfTest$1) {
-  const tmpUnaryArg$3 /*:unknown*/ = $(true);
-  x = !tmpUnaryArg$3;
-} else {
-  const tmpUnaryArg$5 /*:unknown*/ = $(false);
-  x = !tmpUnaryArg$5;
-}
+const tmpBool$1 /*:boolean*/ = Boolean(tmpIfTest$1);
+const tmpUnaryArg$3 /*:unknown*/ = $(tmpBool$1);
 const tmpIfTest$3 /*:unknown*/ = $(true);
+const tmpClusterSSA_x /*:boolean*/ = !tmpUnaryArg$3;
 if (tmpIfTest$3) {
-  $(`true`, x);
+  $(`true`, tmpClusterSSA_x);
 } else {
-  $(`false`, x);
+  $(`false`, tmpClusterSSA_x);
 }
 `````
 
@@ -139,39 +129,27 @@ if (tmpIfTest$3) {
 With rename=true
 
 `````js filename=intro
-let a = false;
-const b = $( true );
-if (b) {
-  const c = $( true );
-  a = !c;
-}
-else {
-  const d = $( false );
-  a = !d;
-}
-if (a) {
-  $( "a" );
-  $( "d" );
-}
-else {
+const a = $( true );
+const b = Boolean( a );
+const c = $( b );
+if (c) {
   $( "b" );
   $( "c" );
 }
-const e = $( true );
-if (e) {
-  const f = $( true );
-  a = !f;
+else {
+  $( "a" );
+  $( "d" );
+}
+const d = $( true );
+const e = Boolean( d );
+const f = $( e );
+const g = $( true );
+const h = !f;
+if (g) {
+  $( "true", h );
 }
 else {
-  const g = $( false );
-  a = !g;
-}
-const h = $( true );
-if (h) {
-  $( "true", a );
-}
-else {
-  $( "false", a );
+  $( "false", h );
 }
 `````
 

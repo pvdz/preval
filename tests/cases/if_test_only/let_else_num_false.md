@@ -87,21 +87,15 @@ if (THIS_IS_BOOL) {
 
 
 `````js filename=intro
-let THIS_IS_BOOL /*:boolean*/ = false;
 const tmpIfTest /*:unknown*/ = $(true);
-if (tmpIfTest) {
-  const tmpUnaryArg /*:unknown*/ = $(true);
-  THIS_IS_BOOL = !tmpUnaryArg;
-} else {
-  const tmpUnaryArg$1 /*:unknown*/ = $(false);
-  THIS_IS_BOOL = !tmpUnaryArg$1;
-}
-if (THIS_IS_BOOL) {
-  $(`a`);
-  $(`d`);
-} else {
+const tmpBool /*:boolean*/ = Boolean(tmpIfTest);
+const tmpUnaryArg /*:unknown*/ = $(tmpBool);
+if (tmpUnaryArg) {
   $(`b`);
   $(`c`);
+} else {
+  $(`a`);
+  $(`d`);
 }
 `````
 
@@ -110,23 +104,16 @@ if (THIS_IS_BOOL) {
 With rename=true
 
 `````js filename=intro
-let a = false;
-const b = $( true );
-if (b) {
-  const c = $( true );
-  a = !c;
-}
-else {
-  const d = $( false );
-  a = !d;
-}
-if (a) {
-  $( "a" );
-  $( "d" );
-}
-else {
+const a = $( true );
+const b = Boolean( a );
+const c = $( b );
+if (c) {
   $( "b" );
   $( "c" );
+}
+else {
+  $( "a" );
+  $( "d" );
 }
 `````
 

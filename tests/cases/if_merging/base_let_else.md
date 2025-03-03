@@ -74,26 +74,15 @@ if (x) {
 
 
 `````js filename=intro
-let x /*:primitive*/ = 0;
 const tmpIfTest /*:unknown*/ = $(true);
-if (tmpIfTest) {
-  const tmpUnaryArg /*:unknown*/ = $(true);
-  x = !tmpUnaryArg;
-} else {
-  const tmpUnaryArg$1 /*:unknown*/ = $(false);
-  x = !tmpUnaryArg$1;
-}
-if (x) {
-  $(`a`);
-} else {
+const tmpBool /*:boolean*/ = Boolean(tmpIfTest);
+const tmpUnaryArg /*:unknown*/ = $(tmpBool);
+if (tmpUnaryArg) {
   $(`b`);
-  x = 1;
-}
-if (x) {
-  $(`d`);
 } else {
-  $(`c`);
+  $(`a`);
 }
+$(`d`);
 `````
 
 ## PST Output
@@ -101,29 +90,16 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-let a = 0;
-const b = $( true );
-if (b) {
-  const c = $( true );
-  a = !c;
+const a = $( true );
+const b = Boolean( a );
+const c = $( b );
+if (c) {
+  $( "b" );
 }
 else {
-  const d = $( false );
-  a = !d;
-}
-if (a) {
   $( "a" );
 }
-else {
-  $( "b" );
-  a = 1;
-}
-if (a) {
-  $( "d" );
-}
-else {
-  $( "c" );
-}
+$( "d" );
 `````
 
 ## Globals

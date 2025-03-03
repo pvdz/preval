@@ -4,7 +4,7 @@
 
 > Spyless vars > Bug
 >
-> 
+>
 
 ## Input
 

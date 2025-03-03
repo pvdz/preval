@@ -91,15 +91,8 @@ rule(`You have to listen to me`);
 
 
 `````js filename=intro
-const rule /*:(string)=>undefined*/ = function ($$0) {
-  const desc$1 /*:string*/ = $$0;
-  debugger;
-  const e /*:string*/ = `purpleRule:reset "${desc$1}"`;
-  $(e);
-  return undefined;
-};
-rule(`I want it my way`);
-rule(`You have to listen to me`);
+$(`purpleRule:reset "I want it my way"`);
+$(`purpleRule:reset "You have to listen to me"`);
 `````
 
 ## PST Output
@@ -107,15 +100,8 @@ rule(`You have to listen to me`);
 With rename=true
 
 `````js filename=intro
-const a = function($$0 ) {
-  const b = $$0;
-  debugger;
-  const c = `purpleRule:reset "${b}"`;
-  $( c );
-  return undefined;
-};
-a( "I want it my way" );
-a( "You have to listen to me" );
+$( "purpleRule:reset \"I want it my way\"" );
+$( "purpleRule:reset \"You have to listen to me\"" );
 `````
 
 ## Globals

@@ -48,6 +48,15 @@ function _staticArgOpOutlining(fdata) {
       // `5` is skippable
       return SKIP;
     }
+    else if (node.type === 'TemplateLiteral') {
+      // Must be a concat of sorts since it wasn't a primitive, but we can outline them too
+
+      if (node.expressions.length !== 1) return FAIL; // Eh, this is more complex. Should still be doable but.
+      const expr = node.expressions[0];
+      if (expr.type !== 'Identifier') return SKIP; // I think this is a non-observable string concat?
+      const paramIndex = names.indexOf(expr.name);
+      return paramIndex;
+    }
     else if (node.type === 'BinaryExpression') {
       // Good if at least left or right is a param and the other is a param or primitive
       // Skippable if the expression is a primitive, function expression, or class/array/object with all internals skippable too
@@ -1058,6 +1067,10 @@ function _staticArgOpOutlining(fdata) {
                 clone = AST.callExpression(AST.cloneSimple(expr.callee), expr.arguments.map(a => a.type === 'Identifier' && a.name === oldParamName ? AST.identifier(tmpNameA) : AST.cloneSimple(a)));
               }
             }
+          } else if (expr.type === 'TemplateLiteral') {
+            ASSERT(expr.expressions.length === 1 && expr.expressions[0].type === 'Identifier' && expr.expressions[0].name === oldParamName);
+            // `a ${$$1} b`
+            clone = AST.templateLiteral(expr.quasis.map(q => q.value.cooked), [AST.identifier(tmpNameA)]);
           } else {
             ASSERT(false, 'implement me', expr.type);
           }

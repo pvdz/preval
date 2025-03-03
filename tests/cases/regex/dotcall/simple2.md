@@ -1,8 +1,8 @@
 # Preval test case
 
-# simple.md
+# simple2.md
 
-> Regex > Dotcall > Simple
+> Regex > Dotcall > Simple2
 >
 > Trying to prevent $dotCall for regex method calls
 
@@ -20,7 +20,9 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 const arg = $(`give food`);
-$(/foo/.test(arg));
+const tmpCallObj = /foo/;
+const tmpCalleeParam = tmpCallObj.test(arg);
+$(tmpCalleeParam);
 `````
 
 ## Normalized
@@ -28,10 +30,9 @@ $(/foo/.test(arg));
 
 `````js filename=intro
 const arg = $(`give food`);
-const tmpCallCallee = $;
 const tmpCallObj = /foo/;
 const tmpCalleeParam = tmpCallObj.test(arg);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

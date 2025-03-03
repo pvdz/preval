@@ -17,6 +17,7 @@ function f(t, e, r) {
       break;
   }
 }
+$(f);
 `````
 
 ## Pre Normal
@@ -37,6 +38,7 @@ let f = function ($$0, $$1, $$2) {
     }
   }
 };
+$(f);
 `````
 
 ## Normalized
@@ -62,13 +64,27 @@ let f = function ($$0, $$1, $$2) {
     return undefined;
   }
 };
+$(f);
 `````
 
 ## Output
 
 
 `````js filename=intro
-
+const f /*:(unused, unused, unused)=>undefined*/ = function ($$0, $$1, $$2) {
+  const tmpPrevalAliasThis /*:object*/ = this;
+  debugger;
+  const tmpSwitchDisc /*:unknown*/ = tmpPrevalAliasThis.state;
+  const tmpBinBothRhs /*:unknown*/ = Yt.PARSING;
+  const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+  if (tmpIfTest) {
+    return undefined;
+  } else {
+    Yt.PARSED;
+    return undefined;
+  }
+};
+$(f);
 `````
 
 ## PST Output
@@ -76,16 +92,33 @@ let f = function ($$0, $$1, $$2) {
 With rename=true
 
 `````js filename=intro
-
+const a = function($$0,$$1,$$2 ) {
+  const b = this;
+  debugger;
+  const c = b.state;
+  const d = Yt.PARSING;
+  const e = c === d;
+  if (e) {
+    return undefined;
+  }
+  else {
+    Yt.PARSED;
+    return undefined;
+  }
+};
+$( a );
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+Yt
 
 ## Result
 
 Should call `$` with:
+ - 1: '<function>'
  - eval returned: undefined
 
 Pre normalization calls: Same

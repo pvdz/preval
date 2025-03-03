@@ -2843,39 +2843,126 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
           if (ASSUME_BUILTINS && wrapKind === 'statement' && !callee.computed && AST.isPrimitive(callee.object)) {
             // Is there any case where a method call on a primitive is observable? I guess things like string.replace might so yeah.
+            const qualifiedMethod = AST.getPrimitiveType(callee.object) + '.' + callee.property.name;
             if (
               [
                 'boolean.toString',
                 'boolean.valueOf',
-                //'number.toExponential',
-                //'number.toFixed',
                 'number.toLocaleString',
-                //'number.toPrecision',
-                //'number.toString'
                 'number.valueOf',
-                //'string.charAt', // TODO: these take args that get coerced. we can remove this but need to replace it with a coerce
-                //'string.charCodeAt',
-                //'string.concat',
-                //'string.includes',
-                //'string.indexOf',
-                //'string.lastIndexOf',
-                //'string.match',
-                //'string.replace',
-                //'string.slice',
-                //'string.split',
-                //'string.substring',
-                //'string.substr',
                 'string.toLowerCase',
                 'string.toString',
                 'string.toUpperCase',
                 'string.valueOf',
-              ].includes(AST.getPrimitiveType(callee.object) + '.' + callee.property.name)
+                'boolean.toString',
+                'boolean.valueOf',
+                'number.toLocaleString',
+                'number.valueOf',
+                'string.toLowerCase',
+                'string.toString',
+                'string.toUpperCase',
+                'string.valueOf',
+                'number.toExponential',
+                'number.toFixed',
+                'string.charAt',
+                'string.charCodeAt',
+                'string.slice',
+                'string.substring',
+                'string.substr',
+                'string.indexOf',
+                'string.lastIndexOf',
+              ].includes(qualifiedMethod)
             ) {
               rule('Statement that is a method call on primitive can be eliminated in most cases');
               example('"foo".toString();', ';');
               before(body[i]);
 
-              body.splice(i, 1);
+              const newNodes = [];
+
+              // The ones that ignore their args just move the args
+              if ([
+                'boolean.toString',
+                'boolean.valueOf',
+                'number.toLocaleString',
+                'number.valueOf',
+                'string.toLowerCase',
+                'string.toString',
+                'string.toUpperCase',
+                'string.valueOf',
+              ].includes(qualifiedMethod)) {
+                newNodes.push(...args.map(anode => {
+                  if (anode.type === 'SpreadElement') return AST.expressionStatement(AST.arrayExpression(anode));
+                  else return AST.expressionStatement(anode);
+                }));
+              }
+
+              if (!args.some(anode => anode.type === 'SpreadElement')) {
+                // The ones that coerce their first arg to number
+                if ([
+                  'number.toExponential',
+                  'number.toFixed',
+                  //'number.toString', // throws for invalid radix
+                  'string.charAt',
+                  'string.charCodeAt',
+                ].includes(qualifiedMethod)) {
+                  newNodes.push(...args.map((anode,i) => {
+                    if (i === 0) {
+                      return AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('number')]));
+                    } else {
+                      return AST.expressionStatement(anode);
+                    }
+                  }));
+                }
+
+                // The ones that coerce their first arg to string
+                if ([
+                  //'number.toPrecision', // can throw if arg is bad
+                ].includes(qualifiedMethod)) {
+                  newNodes.push(...args.map((anode,i) => {
+                    if (i === 0) {
+                      return AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('string')]));
+                    } else {
+                      return AST.expressionStatement(anode);
+                    }
+                  }));
+                }
+
+                // The ones that coerce their first two args to number
+                if ([
+                  'string.slice',
+                  'string.substring',
+                  'string.substr',
+                ].includes(qualifiedMethod)) {
+                  newNodes.push(...args.map((anode,i) => {
+                    if (i === 0) {
+                      return AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('number')]));
+                    } else if (i === 1) {
+                      return AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('number')]));
+                    } else {
+                      return AST.expressionStatement(anode);
+                    }
+                  }));
+                }
+              }
+
+              // The ones that coerce their first arg to string and second to number
+              if ([
+                //'string.includes', // string, except it should throw when it is a regex..., and then a  number
+                'string.indexOf',
+                'string.lastIndexOf',
+              ].includes(qualifiedMethod)) {
+                newNodes.push(...args.map((anode,i) => {
+                  if (i === 0) {
+                    return AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('string')]));
+                  } else if (i === 1) {
+                    return AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('number')]));
+                  } else {
+                    return AST.expressionStatement(anode);
+                  }
+                }));
+              }
+
+              body.splice(i, 1, ...newNodes);
 
               after(AST.emptyStatement());
               return true;

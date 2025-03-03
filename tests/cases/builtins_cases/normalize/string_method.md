@@ -116,8 +116,7 @@ const tmpFree /*:(string)=>string*/ = function $free($$0) {
   const a2 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(a1);
   const b1 /*:string*/ = repl.charAt(1);
   const b2 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(b1);
-  const c1 /*:string*/ = repl.charAt(2);
-  `dropme`.indexOf(c1);
+  repl.charAt(2);
   const frout /*:number*/ = a2 + b2;
   const tmpRet /*:string*/ = $coerce(frout, `string`);
   return tmpRet;
@@ -158,35 +157,34 @@ const a = function b($$0 ) {
   const e = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( d );
   const f = c.charAt( 1 );
   const g = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( f );
-  const h = c.charAt( 2 );
-  "dropme".indexOf( h );
-  const i = e + g;
-  const j = $coerce( i, "string" );
-  return j;
+  c.charAt( 2 );
+  const h = e + g;
+  const i = $coerce( h, "string" );
+  return i;
 };
-const k = function($$0 ) {
-  const l = $$0;
+const j = function($$0 ) {
+  const k = $$0;
   debugger;
-  const m = /[^A-Za-z0-9\+\/\=]/g;
-  const n = l.replace( m, "" );
-  const o = n.length;
-  const p = 0 < o;
-  if (p) {
-    const q = r( a, n );
-    return q;
+  const l = /[^A-Za-z0-9\+\/\=]/g;
+  const m = k.replace( l, "" );
+  const n = m.length;
+  const o = 0 < n;
+  if (o) {
+    const p = q( a, m );
+    return p;
   }
   else {
     return "";
   }
 };
-const s = $( "co_rn" );
-const t = $coerce( s, "string" );
-const u = k( t );
-$( u );
-const v = $( "m#az#e" );
-const w = $coerce( v, "string" );
-const x = k( w );
-$( x );
+const r = $( "co_rn" );
+const s = $coerce( r, "string" );
+const t = j( s );
+$( t );
+const u = $( "m#az#e" );
+const v = $coerce( u, "string" );
+const w = j( v );
+$( w );
 `````
 
 ## Globals

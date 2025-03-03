@@ -26,7 +26,7 @@ const x = $spy(`a`);
 
 `````js filename=intro
 const x = $spy(`a`);
-``.charCodeAt(x);
+$coerce(x, `number`);
 `````
 
 ## Output
@@ -34,7 +34,7 @@ const x = $spy(`a`);
 
 `````js filename=intro
 const x /*:unknown*/ = $spy(`a`);
-``.charCodeAt(x);
+$coerce(x, `number`);
 `````
 
 ## PST Output
@@ -43,7 +43,7 @@ With rename=true
 
 `````js filename=intro
 const a = $spy( "a" );
-"".charCodeAt( a );
+$coerce( a, "number" );
 `````
 
 ## Globals

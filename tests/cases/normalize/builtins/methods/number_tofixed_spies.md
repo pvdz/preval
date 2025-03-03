@@ -29,7 +29,7 @@ const y = $spy(`b`);
 `````js filename=intro
 const x = $spy(`a`);
 const y = $spy(`b`);
-(200).toFixed(x, y);
+$coerce(x, `number`);
 `````
 
 ## Output
@@ -37,8 +37,8 @@ const y = $spy(`b`);
 
 `````js filename=intro
 const x /*:unknown*/ = $spy(`a`);
-const y /*:unknown*/ = $spy(`b`);
-(200).toFixed(x, y);
+$spy(`b`);
+$coerce(x, `number`);
 `````
 
 ## PST Output
@@ -47,8 +47,8 @@ With rename=true
 
 `````js filename=intro
 const a = $spy( "a" );
-const b = $spy( "b" );
-200.toFixed( a, b );
+$spy( "b" );
+$coerce( a, "number" );
 `````
 
 ## Globals

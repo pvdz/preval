@@ -29,7 +29,8 @@ const y = $spy(`b`);
 `````js filename=intro
 const x = $spy(`a`);
 const y = $spy(`b`);
-``.lastIndexOf(x, y);
+$coerce(x, `string`);
+$coerce(y, `number`);
 `````
 
 ## Output
@@ -38,7 +39,8 @@ const y = $spy(`b`);
 `````js filename=intro
 const x /*:unknown*/ = $spy(`a`);
 const y /*:unknown*/ = $spy(`b`);
-``.lastIndexOf(x, y);
+$coerce(x, `string`);
+$coerce(y, `number`);
 `````
 
 ## PST Output
@@ -48,7 +50,8 @@ With rename=true
 `````js filename=intro
 const a = $spy( "a" );
 const b = $spy( "b" );
-"".lastIndexOf( a, b );
+$coerce( a, "string" );
+$coerce( b, "number" );
 `````
 
 ## Globals

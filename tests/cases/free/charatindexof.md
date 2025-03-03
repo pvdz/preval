@@ -122,10 +122,8 @@ const tmpFree /*:(string)=>string*/ = function $free($$0) {
   const a2 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(a1);
   const b1 /*:string*/ = repl.charAt(1);
   const b2 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(b1);
-  const c1 /*:string*/ = repl.charAt(2);
-  `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(c1);
-  const d1 /*:string*/ = repl.charAt(3);
-  `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(d1);
+  repl.charAt(2);
+  repl.charAt(3);
   const frout /*:number*/ = a2 + b2;
   const tmpRet /*:string*/ = $coerce(frout, `string`);
   return tmpRet;
@@ -166,37 +164,35 @@ const a = function b($$0 ) {
   const e = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( d );
   const f = c.charAt( 1 );
   const g = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( f );
-  const h = c.charAt( 2 );
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( h );
-  const i = c.charAt( 3 );
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( i );
-  const j = e + g;
-  const k = $coerce( j, "string" );
-  return k;
+  c.charAt( 2 );
+  c.charAt( 3 );
+  const h = e + g;
+  const i = $coerce( h, "string" );
+  return i;
 };
-const l = function($$0 ) {
-  const m = $$0;
+const j = function($$0 ) {
+  const k = $$0;
   debugger;
-  const n = /[^A-Za-z0-9\+\/\=]/g;
-  const o = m.replace( n, "" );
-  const p = o.length;
-  const q = 0 < p;
-  if (q) {
-    const r = s( a, o );
-    return r;
+  const l = /[^A-Za-z0-9\+\/\=]/g;
+  const m = k.replace( l, "" );
+  const n = m.length;
+  const o = 0 < n;
+  if (o) {
+    const p = q( a, m );
+    return p;
   }
   else {
     return "";
   }
 };
-const t = $( "co_rn" );
-const u = $coerce( t, "string" );
-const v = l( u );
-$( v );
-const w = $( "m#az#e" );
-const x = $coerce( w, "string" );
-const y = l( x );
-$( y );
+const r = $( "co_rn" );
+const s = $coerce( r, "string" );
+const t = j( s );
+$( t );
+const u = $( "m#az#e" );
+const v = $coerce( u, "string" );
+const w = j( v );
+$( w );
 `````
 
 ## Globals

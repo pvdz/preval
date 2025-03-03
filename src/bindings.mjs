@@ -1339,7 +1339,6 @@ function _inferNodeTyping(fdata, valueNode) {
           ASSERT(left);
           ASSERT(right);
 
-          // Note: this also checks node.$p.isPrimitive but not typing.mustBeType
           const ipl = AST.isPrimitive(left);
           const ipr = AST.isPrimitive(right);
           const pl = ipl && AST.getPrimitiveValue(left);

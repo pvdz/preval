@@ -1155,11 +1155,11 @@ export function isTruthy(node) {
 
 export function getPrimitiveType(node) {
   ASSERT(node && node.$p, 'node exists yea bossman?', node, node.$p);
-  ASSERT(isPrimitive(node) || node.$p.isPrimitive, 'should assert a node is a primitive value before calling getPrimitiveType on it', node);
+  ASSERT(isPrimitive(node), 'should assert a node is a primitive value before calling getPrimitiveType on it', node);
 
-  if (node.$p.isPrimitive) {
-    if (node.$p.isPrimitive === null) return 'null';
-    return typeof node.$p.primitiveValue;
+  if (node.$p.primitiveNodeValue !== undefined) {
+    if (node.$p.primitiveNodeValue === null) return 'null';
+    return typeof node.$p.primitiveNodeValue;
   }
 
   if (node.type === 'Literal') {
@@ -1189,10 +1189,10 @@ export function getPrimitiveType(node) {
 
 export function getPrimitiveValue(node) {
   ASSERT(node && node.$p, 'node exists yea bossman?', node, node.$p);
-  ASSERT(isPrimitive(node) || node.$p.isPrimitive, 'should assert a node is a primitive value before calling getPrimitiveValue on it', node);
+  ASSERT(isPrimitive(node), 'should assert a node is a primitive value before calling getPrimitiveValue on it', node);
 
-  if (node.$p.isPrimitive) {
-    return node.$p.primitiveValue;
+  if (node.$p.primitiveNodeValue !== undefined) {
+    return node.$p.primitiveNodeValue;
   }
 
   if (node.type === 'Literal') {

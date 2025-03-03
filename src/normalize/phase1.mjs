@@ -266,12 +266,10 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         // Maybe this should only be part of the use case. Or be more generic. Not sure :) Probably negligible for now.
         const left = node.left;
         const lip = AST.isPrimitive(left);
-        if (lip) left.$p.primitiveValue = AST.getPrimitiveValue(left);
-        left.$p.isPrimitive = lip;
+        if (lip) left.$p.primitiveNodeValue = AST.getPrimitiveValue(left);
         const right = node.right;
         const rip = AST.isPrimitive(right);
-        if (rip) right.$p.primitiveValue = AST.getPrimitiveValue(right);
-        right.$p.isPrimitive = rip;
+        if (rip) right.$p.primitiveNodeValue = AST.getPrimitiveValue(right);
         break;
       }
 

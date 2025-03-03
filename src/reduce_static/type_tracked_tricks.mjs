@@ -559,8 +559,8 @@ function _typeTrackedTricks(fdata) {
         switch (node.operator) {
           case '===':
           case '!==': {
-            const lp = left.$p.isPrimitive;
-            const rp = right.$p.isPrimitive;
+            const lp = AST.isPrimitive(left);
+            const rp = AST.isPrimitive(right);
             // Note: the code runs as if it was `===` and inverts the result afterwards if the op is `!==`
             if (left.type === 'Identifier' && right.type === 'Identifier') {
               // Both are idents and not primitives
@@ -603,10 +603,10 @@ function _typeTrackedTricks(fdata) {
               // Left ident, right a primitive node
               const leftMeta = fdata.globallyUniqueNamingRegistry.get(left.name);
               const lt = leftMeta.typing.mustBeType;
-              vlog('Left type:', [lt], ', right value:', [right.$p.primitiveValue], 'operator:', '`' + node.operator + '`');
+              vlog('Left type:', [lt], ', right value:', [right.$p.primitiveNodeValue], 'operator:', '`' + node.operator + '`');
               // Note that the rhs is a primitive so no need to check explicitly for class.
               // We do explicitly check for `null` just in case, even though that case may never reach here.
-              const rt = right.$p.primitiveValue === null ? 'null' : typeof right.$p.primitiveValue;
+              const rt = right.$p.primitiveNodeValue === null ? 'null' : typeof right.$p.primitiveNodeValue;
               if ((leftMeta.isConstant || leftMeta.isBuiltin) && lt && lt !== 'primitive' && lt !== rt) {
                 // Covered: tests/cases/bit_hacks/and_eq_bad.md
                 rule('Strict n/equal comparison between an ident and a primitive depends on their type');
@@ -622,7 +622,7 @@ function _typeTrackedTricks(fdata) {
               const rt = rightMeta.typing.mustBeType;
               // Note that the rhs is a primitive so no need to check explicitly for class.
               // We do explicitly check for `null`
-              const lt = left.$p.primitiveValue === null ? 'null' : typeof left.$p.primitiveValue;
+              const lt = left.$p.primitiveNodeValue === null ? 'null' : typeof left.$p.primitiveNodeValue;
               if ((rightMeta.isConstant || rightMeta.isBuiltin) && rt && rt !== 'primitive' && rt !== lt) {
                 // Covered: tests/cases/bit_hacks/and_eq_bad.md
                 rule('Strict n/equal comparison between a primitive and an ident depends on their type');
@@ -646,8 +646,8 @@ function _typeTrackedTricks(fdata) {
             // Comparing anything to null or undefined is not observable
             // Comparing object types to each other is not observable
             // In all other cases at least one side is a primitive and the other side is coerced to one if it isn't too
-            const lp = left.$p.isPrimitive;
-            const rp = right.$p.isPrimitive;
+            const lp = AST.isPrimitive(left);
+            const rp = AST.isPrimitive(right);
 
             if (lp && !rp && node.right.type === 'Identifier') {
               const pv = AST.getPrimitiveValue(node.left);

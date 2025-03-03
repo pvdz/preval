@@ -45,8 +45,8 @@ function _branchConstantInlining(fdata) {
 
     const left = init.left;
     const right = init.right;
-    const lip = left.$p.isPrimitive;
-    const rip = right.$p.isPrimitive;
+    const lip = AST.isPrimitive(left);
+    const rip = AST.isPrimitive(right);
 
     let targetName = '';
     let pnode;

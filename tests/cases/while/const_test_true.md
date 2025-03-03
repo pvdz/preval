@@ -48,12 +48,8 @@ $(`after`);
 `````js filename=intro
 const x /*:unknown*/ = $(true);
 if (x) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $(`body`);
-    if (x) {
-    } else {
-      break;
-    }
   }
 } else {
 }
@@ -67,14 +63,8 @@ With rename=true
 `````js filename=intro
 const a = $( true );
 if (a) {
-  while ($LOOP_UNROLL_10) {
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $( "body" );
-    if (a) {
-
-    }
-    else {
-      break;
-    }
   }
 }
 $( "after" );

@@ -1,59 +1,70 @@
 # Preval test case
 
-# const_test_false.md
+# loop.md
 
-> While > Const test false
+> If test nested > Loop
 >
-> A test that is a constant only needs to be tested once
+> When a const is tested twice, the second test is gonna have the same outcome as the first
 
 ## Input
 
 `````js filename=intro
-const x = $(false);
-while (x) {
-  $('body');
+const x = $();
+if (x) {
+  while (true) {
+    if (x) {
+      $('round and');
+    } else {
+      break;
+    }
+  }
 }
-$('after');
 `````
 
 ## Pre Normal
 
 
 `````js filename=intro
-const x = $(false);
-while (x) {
-  $(`body`);
+const x = $();
+if (x) {
+  while (true) {
+    if (x) {
+      $(`round and`);
+    } else {
+      break;
+    }
+  }
 }
-$(`after`);
 `````
 
 ## Normalized
 
 
 `````js filename=intro
-const x = $(false);
-while (true) {
-  if (x) {
-    $(`body`);
-  } else {
-    break;
+const x = $();
+if (x) {
+  while (true) {
+    if (x) {
+      $(`round and`);
+    } else {
+      break;
+    }
   }
+} else {
 }
-$(`after`);
 `````
 
 ## Output
 
 
 `````js filename=intro
-const x /*:unknown*/ = $(false);
+const x /*:unknown*/ = $();
 if (x) {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    $(`body`);
+    $(`round and`);
   }
 } else {
 }
-$(`after`);
 `````
 
 ## PST Output
@@ -61,13 +72,12 @@ $(`after`);
 With rename=true
 
 `````js filename=intro
-const a = $( false );
+const a = $();
 if (a) {
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    $( "body" );
+    $( "round and" );
   }
 }
-$( "after" );
 `````
 
 ## Globals
@@ -77,8 +87,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: false
- - 2: 'after'
+ - 1: 
  - eval returned: undefined
 
 Pre normalization calls: Same

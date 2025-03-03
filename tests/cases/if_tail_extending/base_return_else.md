@@ -74,15 +74,10 @@ const x /*:unknown*/ = $();
 if (x) {
   $(1);
   if ($) {
-    $(2);
     while ($LOOP_UNROLL_10) {
-      if (x) {
-        $(1);
-        if ($) {
-          $(2);
-        } else {
-          break;
-        }
+      $(2);
+      $(1);
+      if ($) {
       } else {
         break;
       }
@@ -102,16 +97,11 @@ const a = $();
 if (a) {
   $( 1 );
   if ($) {
-    $( 2 );
     while ($LOOP_UNROLL_10) {
-      if (a) {
-        $( 1 );
-        if ($) {
-          $( 2 );
-        }
-        else {
-          break;
-        }
+      $( 2 );
+      $( 1 );
+      if ($) {
+
       }
       else {
         break;

@@ -142,7 +142,7 @@ function _ifTestOnly(fdata) {
     queue.forEach(({ index, func }) => func());
 
     log('Unobservable bool tests fixed:', queue.length, '. Restarting from phase1 to fix up read/write registry.');
-    return {what: 'testing_only', changes: queue.length, next: 'phase1'};
+    return {what: 'ifTestOnly', changes: queue.length, next: 'phase1'};
   }
 
   log('Unobservable bool tests fixed: 0.');

@@ -69,17 +69,17 @@ With rename=true
 `````js filename=intro
 let a = $Object_prototype.b;
 const b = a == null;
-let c = false;
+let e = false;
 if (b) {
   a = c;
-  c = a == null;
+  e = a == null;
 }
 else {
-  c = a == null;
+  e = a == null;
 }
-if (c) {
-  const d = d;
-  $( d );
+if (e) {
+  const f = d;
+  $( f );
 }
 else {
   $( a );

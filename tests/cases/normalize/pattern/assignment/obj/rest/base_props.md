@@ -55,14 +55,14 @@ With rename=true
 `````js filename=intro
 a = 2;
 b = 3;
-const a = {
+const c = {
   x: 1,
   a: 2,
   b: 3,
   c: 4,
 };
-const b = [ "a", "b" ];
-x = objPatternRest( a, b, "x" );
+const d = [ "a", "b" ];
+x = objPatternRest( c, d, "x" );
 $( x );
 `````
 

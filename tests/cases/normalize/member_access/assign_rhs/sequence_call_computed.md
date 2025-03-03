@@ -60,8 +60,8 @@ With rename=true
 $( 1 );
 const a = $( 2 );
 const b = $( "toString" );
-const c = a[ b ];
-$( c );
+const d = a[ b ];
+$( d );
 $( c );
 `````
 

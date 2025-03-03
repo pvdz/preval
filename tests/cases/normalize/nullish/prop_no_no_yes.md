@@ -61,8 +61,8 @@ const a = $Object_prototype.b;
 const b = a.c;
 const c = b == null;
 if (c) {
-  const d = d;
-  $( d );
+  const e = d;
+  $( e );
 }
 else {
   $( b );

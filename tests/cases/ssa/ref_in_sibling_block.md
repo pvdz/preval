@@ -101,16 +101,16 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  let a = $( 1 );
+  let b = $( 1 );
   if ($) {
     if (a) {
-      a = $( 2 );
-      $( a );
+      b = $( 2 );
+      $( b );
     }
-    $( a );
+    $( b );
   }
   else {
-    $( a );
+    $( b );
   }
 }
 `````

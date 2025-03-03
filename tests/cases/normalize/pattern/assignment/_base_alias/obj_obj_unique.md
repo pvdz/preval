@@ -61,9 +61,9 @@ a = objPatternNoDefault$1.z;
 With rename=true
 
 `````js filename=intro
-const a = 1.x;
-const b = a.y;
-a = b.z;
+const b = 1.x;
+const c = b.y;
+a = c.z;
 `````
 
 ## Globals

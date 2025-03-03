@@ -40,8 +40,8 @@ $(x);
 With rename=true
 
 `````js filename=intro
-const a = "foo".concat( a, ...b );
-$( a );
+const c = "foo".concat( a, ...b );
+$( c );
 `````
 
 ## Globals

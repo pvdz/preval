@@ -67,15 +67,8 @@
 // when the switch case is "simple" (no fall-through, default in last position or not at all) we can apply a simpler transform. this is likely to cover many/most cases?
 // rename `AST.isPrimitive` to `AST.isPrimitiveValue` or something? objPatternRest -> $objRest, tmpClusterSSA -> ssa
 // I added an option for considering function statements as decls but i should make that a proper option
-// pst should skip names if they are recorded as implicit globals -> tests/cases/normalize/nullish/prop_no_yes_yes.md
-// see if i can restore the useless aliasing of globals back-to-back like `length` in tests/cases/normalize/nullish/global_literal2.md
 // denorm could check if ssa_ prefixed vars have no unprefixed counterparts anymore and revert their name to it in that case (same for others)
-// migrate $dotcall to add the original property string/expr as the third parameter? this might make it easier to reconstruct, or at least to read whats going on? for computed expressions it may lead to regressions, but we could opt to use undefined there and ignore them
 
 
-tests/cases/normalize/builtins/methods/string_concat_spies.md (but tests/cases/normalize/builtins/methods/number_tostring_spies.md is ok?)
-tests/cases/normalize/arguments/arglen.md
-tests/cases/if_merging/base_let_else.md
 tests/cases/function_statements/dropping_the_d_func.md
 tests/cases/free/free_loops/gambling.md
-tests/cases/constants/param_used_once.md remove

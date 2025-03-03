@@ -120,7 +120,7 @@ $(_0x4a09);
 
 
 `````js filename=intro
-let _0x4a09 /*:(unknown, unknown)=>*/ = function ($$0, $$1) {
+let _0x4a09 /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
   let _0x5796ef /*:unknown*/ = $$0;
   const _0x26241c /*:unknown*/ = $$1;
   debugger;

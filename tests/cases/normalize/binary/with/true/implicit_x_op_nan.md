@@ -206,8 +206,8 @@ const u = [ a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, s, t, p, q, r ];
 $( u );
 const v = x in true;
 const w = x instanceof true;
-const x = [ v, w ];
-$( x );
+const y = [ v, w ];
+$( y );
 `````
 
 ## Globals

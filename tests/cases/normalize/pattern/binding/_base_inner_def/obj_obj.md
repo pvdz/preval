@@ -59,11 +59,11 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = 1.x;
-const b = a.y;
-const c = b.z;
-const d = c === undefined;
-if (d) {
+const b = 1.x;
+const c = b.y;
+const d = c.z;
+const e = d === undefined;
+if (e) {
   a;
 }
 `````

@@ -58,8 +58,8 @@ With rename=true
 const a = $Object_prototype.b;
 const b = a == null;
 if (b) {
-  const c = c.d;
-  $( c );
+  const d = c.d;
+  $( d );
 }
 else {
   $( a );

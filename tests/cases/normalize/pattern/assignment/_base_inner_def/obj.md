@@ -52,8 +52,8 @@ With rename=true
 
 `````js filename=intro
 const a = 1.x;
-const b = a === undefined;
-if (b) {
+const c = a === undefined;
+if (c) {
   x = b;
 }
 else {

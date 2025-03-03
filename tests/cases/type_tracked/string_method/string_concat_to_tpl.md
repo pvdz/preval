@@ -42,8 +42,8 @@ $(x);
 With rename=true
 
 `````js filename=intro
-const a = `foo${a}${b}`;
-$( a );
+const c = `foo${a}${b}`;
+$( c );
 `````
 
 ## Globals

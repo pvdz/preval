@@ -316,27 +316,27 @@ $(f);
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const c = function() {
   debugger;
-  let b = false;
-  let c = false;
   let d = false;
-  let e = undefined;
-  let f = undefined;
+  let e = false;
+  let f = false;
+  let g = undefined;
+  let h = undefined;
   try {
     $( a );
     if ($1) {
-      b = true;
+      d = true;
     }
     else {
       if ($2) {
-        c = true;
-        e = value;
+        e = true;
+        g = value;
       }
       else {
         if ($3) {
-          d = true;
-          f = x;
+          f = true;
+          h = x;
         }
         else {
           $4;
@@ -344,43 +344,43 @@ const a = function() {
       }
     }
   }
-  catch (g) {
+  catch (i) {
     $( b );
-    throw g;
+    throw i;
   }
   $( b );
-  if (b) {
+  if (d) {
     return undefined;
   }
   else {
-    if (c) {
-      return e;
+    if (e) {
+      return g;
     }
     else {
-      if (d) {
-        throw f;
+      if (f) {
+        throw h;
       }
       else {
         while ($LOOP_UNROLL_10) {
-          let h = false;
-          let i = false;
           let j = false;
-          let k = undefined;
-          let l = undefined;
+          let k = false;
+          let l = false;
+          let m = undefined;
+          let n = undefined;
           try {
             $( a );
             if ($1) {
-              h = true;
+              j = true;
             }
             else {
               if ($2) {
-                i = true;
-                k = value;
+                k = true;
+                m = value;
               }
               else {
                 if ($3) {
-                  j = true;
-                  l = x;
+                  l = true;
+                  n = x;
                 }
                 else {
                   $4;
@@ -388,21 +388,21 @@ const a = function() {
               }
             }
           }
-          catch (m) {
+          catch (o) {
             $( b );
-            throw m;
+            throw o;
           }
           $( b );
-          if (h) {
+          if (j) {
             break;
           }
           else {
-            if (i) {
-              return k;
+            if (k) {
+              return m;
             }
             else {
-              if (j) {
-                throw l;
+              if (l) {
+                throw n;
               }
             }
           }
@@ -412,7 +412,7 @@ const a = function() {
     }
   }
 };
-$( a );
+$( c );
 `````
 
 ## Globals

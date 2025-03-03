@@ -51,10 +51,10 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = { Function: Function };
-const b = a.Function( a, b, c, d );
-const c = b();
-$( c );
+const e = { Function: Function };
+const f = e.Function( a, b, c, d );
+const g = f();
+$( g );
 `````
 
 ## Globals

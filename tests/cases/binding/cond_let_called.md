@@ -61,17 +61,17 @@ if (a) {
 `````
 
 ## PST Output
-
+  
 With rename=true
 
 `````js filename=intro
 if (a) {
-  const a = parseExpression( "source" );
-  $( a );
+  const b = parseExpression( "source" );
+  $( b );
 }
 else {
-  const b = parseExpression( "arguments" );
-  $( b );
+  const c = parseExpression( "arguments" );
+  $( c );
 }
 `````
 

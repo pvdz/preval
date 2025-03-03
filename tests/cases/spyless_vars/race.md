@@ -60,8 +60,8 @@ With rename=true
 
 `````js filename=intro
 $( "a" );
-const a = [ 10, 20, 30 ];
-$( a, a );
+const b = [ 10, 20, 30 ];
+$( a, b );
 `````
 
 ## Globals

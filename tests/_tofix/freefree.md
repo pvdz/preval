@@ -16,13 +16,13 @@ const min = Math.min;
 const sin = Math.sin;
 const pow = Math.pow;
 const ten = $(120) / 12;
-const twoten = $dotCall(pow, Math, 2, ten);
+const twoten = $dotCall(pow, Math, 'pow', 2, ten);
 const zero = 0 * twoten;
 const divvy = zero / 695;
-const sinned = $dotCall(sin, Math, divvy);
+const sinned = $dotCall(sin, Math, 'sin', divvy);
 const lottasin = 1000000 * sinned;
-const minned = $dotCall(min, Math, 10000, lottasin);
-const maxed = $dotCall(max, Math, -10000, minned);
+const minned = $dotCall(min, Math, 'min', 10000, lottasin);
+const maxed = $dotCall(max, Math, 'max', -10000, minned);
 $(maxed);
 `````
 
@@ -35,13 +35,13 @@ const min = Math.min;
 const sin = Math.sin;
 const pow = Math.pow;
 const ten = $(120) / 12;
-const twoten = $dotCall(pow, Math, 2, ten);
+const twoten = $dotCall(pow, Math, `pow`, 2, ten);
 const zero = 0 * twoten;
 const divvy = zero / 695;
-const sinned = $dotCall(sin, Math, divvy);
+const sinned = $dotCall(sin, Math, `sin`, divvy);
 const lottasin = 1000000 * sinned;
-const minned = $dotCall(min, Math, 10000, lottasin);
-const maxed = $dotCall(max, Math, -10000, minned);
+const minned = $dotCall(min, Math, `min`, 10000, lottasin);
+const maxed = $dotCall(max, Math, `max`, -10000, minned);
 $(maxed);
 `````
 
@@ -55,13 +55,13 @@ const sin = $Math_sin;
 const pow = $Math_pow;
 const tmpBinLhs = $(120);
 const ten = tmpBinLhs / 12;
-const twoten = $dotCall(pow, Math, 2, ten);
+const twoten = $dotCall(pow, Math, `pow`, 2, ten);
 const zero = 0 * twoten;
 const divvy = zero / 695;
-const sinned = $dotCall(sin, Math, divvy);
+const sinned = $dotCall(sin, Math, `sin`, divvy);
 const lottasin = 1000000 * sinned;
-const minned = $dotCall(min, Math, 10000, lottasin);
-const maxed = $dotCall(max, Math, -10000, minned);
+const minned = $dotCall(min, Math, `min`, 10000, lottasin);
+const maxed = $dotCall(max, Math, `max`, -10000, minned);
 $(maxed);
 `````
 

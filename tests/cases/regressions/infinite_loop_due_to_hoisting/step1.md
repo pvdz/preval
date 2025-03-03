@@ -72,9 +72,9 @@ if (tmpClusterSSA_tmpTernaryTest) {
 With rename=true
 
 `````js filename=intro
-const a = a.x;
-const b = a === 1;
-if (b) {
+const b = a.x;
+const c = b === 1;
+if (c) {
   f( 2 );
 }
 else {

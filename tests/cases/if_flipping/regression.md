@@ -161,13 +161,13 @@ With rename=true
 if (tmpIfTest$45) {
   tmpCalleeParam$127;
   tmpSSA__0x2d5594;
-  const a = tmpReturnArg$39;
-  a( e, d );
+  const c = tmpReturnArg$39;
+  c( e, d );
   getParameterByName();
   unknown( 297 );
   alsoUnknown( 310 );
-  const b = $dotCall( a, document, undefined, b );
-  $( b );
+  const f = $dotCall( a, document, undefined, b );
+  $( f );
 }
 `````
 

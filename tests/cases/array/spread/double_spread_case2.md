@@ -56,9 +56,9 @@ $(aa, zz, a, b);
 With rename=true
 
 `````js filename=intro
-const a = [];
-const b = [];
-$( a, b, a, b );
+const c = [];
+const d = [];
+$( c, d, a, b );
 `````
 
 ## Globals

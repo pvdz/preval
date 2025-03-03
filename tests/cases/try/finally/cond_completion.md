@@ -118,14 +118,14 @@ tmpCallCallee(3);
 With rename=true
 
 `````js filename=intro
-const a = log;
+const c = log;
 if (a) {
 
 }
 else {
   b;
 }
-a( 3 );
+c( 3 );
 `````
 
 ## Globals

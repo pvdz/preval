@@ -54,9 +54,9 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = $Object_prototype.x;
-const b = a === undefined;
-if (b) {
+const b = $Object_prototype.x;
+const c = b === undefined;
+if (c) {
   a;
 }
 `````

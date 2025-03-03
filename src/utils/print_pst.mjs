@@ -172,6 +172,11 @@ function printRef(indent, config, node) {
       config.names.set(nextName, '#SKIP');
       return printRef(indent, config, node);
     }
+    // When there's a known (implicit?) global by this name, don't generate it as local names
+    if (config.globals.has(nextName)) {
+      config.names.set(nextName, '#SKIP');
+      return printRef(indent, config, node);
+    }
     config.names.set(node.name, nextName);
     return nextName + suffix;
   }

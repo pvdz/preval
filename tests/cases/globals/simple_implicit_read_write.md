@@ -55,8 +55,8 @@ With rename=true
 `````js filename=intro
 $( a );
 a = 5;
-const a = a;
-$( a );
+const b = a;
+$( b );
 `````
 
 ## Globals

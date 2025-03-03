@@ -53,9 +53,9 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = Function( a, b, c, d );
-const b = a();
-$( b );
+const e = Function( a, b, c, d );
+const f = e();
+$( f );
 `````
 
 ## Globals

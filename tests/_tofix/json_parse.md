@@ -18,7 +18,7 @@ const getMessages = async function($$0) {
   const tmpCompObj$1 = l$11[0];
   const tmpCompObj = tmpCompObj$1.dataValues;
   const tmpCalleeParam = tmpCompObj.bucket;
-  const tmpReturnArg$13 = $dotCall(tmpCallCompVal, JSON, tmpCalleeParam);
+  const tmpReturnArg$13 = $dotCall(tmpCallCompVal, JSON, 'parse', tmpCalleeParam);
   return tmpReturnArg$13;
 };
 $(getMessages);
@@ -38,7 +38,7 @@ const getMessages = async function ($$0) {
   const tmpCompObj$1 = l$11[0];
   const tmpCompObj = tmpCompObj$1.dataValues;
   const tmpCalleeParam = tmpCompObj.bucket;
-  const tmpReturnArg$13 = $dotCall(tmpCallCompVal, JSON, tmpCalleeParam);
+  const tmpReturnArg$13 = $dotCall(tmpCallCompVal, JSON, `parse`, tmpCalleeParam);
   return tmpReturnArg$13;
 };
 $(getMessages);
@@ -58,7 +58,7 @@ const getMessages = async function ($$0) {
   const tmpCompObj$1 = l$11[0];
   const tmpCompObj = tmpCompObj$1.dataValues;
   const tmpCalleeParam = tmpCompObj.bucket;
-  const tmpReturnArg$13 = $dotCall(tmpCallCompVal, JSON, tmpCalleeParam);
+  const tmpReturnArg$13 = $dotCall(tmpCallCompVal, JSON, `parse`, tmpCalleeParam);
   return tmpReturnArg$13;
 };
 $(getMessages);

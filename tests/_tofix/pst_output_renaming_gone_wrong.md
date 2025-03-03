@@ -97,17 +97,17 @@ if (tmpIfTest$1) {
 With rename=true
 
 `````js filename=intro
-let a = 20;
+let b = 20;
 $( a );
-const b = $( 1 );
+const c = $( 1 );
 $( 20 );
-if (b) {
-  a = 30;
+if (c) {
+  b = 30;
   $( 30 );
 }
-const c = $( 2 );
-$( a );
-if (c) {
+const d = $( 2 );
+$( b );
+if (d) {
   $( 40 );
 }
 `````

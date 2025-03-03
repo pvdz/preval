@@ -72,11 +72,11 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-let a = a;
+let e = a;
 if (a) {
-  a = b;
+  e = b;
 }
-if (a) {
+if (e) {
   c;
 }
 else {

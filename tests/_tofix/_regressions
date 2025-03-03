@@ -36,26 +36,20 @@
 // Maybe try to unroll $forIn under risky rules? The order may not be guaranteed but that also means we can do whatever we want with that order as long as it is consistent.
 // Apply type analysis for our $forIn and $forOf symbols
 // Consider whether tests/cases/regex/dotcall/simple.md should be allowed to inline the regex as the callee or smth
-// tests/cases/type_tracked/if/base_undefined.md -> why does that leave a label?
 // when a function does not use _this_ and is used in a $dotCall and we know which function it is, we dont need the dotcall
 // convert array.map etc to while loops using $forOf when we know the context is an array literal of sorts
 // Calling ! on a value known to be Boolean(x) should do !x directly because neither operation is observable at all. Normalization has a simple rule for this implemented that only looks at the previous statement (to eliminate a transform artifact).
 // What about type assertions for params in a function header? `function f($$1) { const a = String($$1);` (or smth like $isString()) to indicate that we know the value of a will be a string. And if this param becomes unused, we would not keep this usage around, for all intentions and purposes it's a noop.
 // Think some more about how to deal with optional chaining cases: tests/cases/normalize/optional/func_nested_var.md
 // PRNG math.random() round() trick -> tests/cases/math_random/floor_trick/rng3.md
-// tests/cases/normalize/expressions/statement/for_in_left/auto_ident_obj_pattern_assign.md the iterator .value is left as a statement. we know it's safe to drop this. some more love for $forIn/$forOf might be nice.
-// src/reduce_static/spyless_vars.mjs should also check if the thing being moved refers to any let-bindings because it currently doesn't really check for this and i think that's a small bug. let a = 1; const arr = [a]; a = 2; if ($) $(arr); would move the arr decl inside the if, but that's bad because by then a has changed
 // tests/cases/normalize/expressions/assignments/computed_prop_prop/auto_pattern_arr_c-seq.md we know the obj has no side effects so the member-expression-statement can be dropped safely
 // tests/cases/normalize/expressions/assignments/compound/auto_ident_c-opt_complex_complex_c-opt_complex_complex.md doesnt tmpClusterSSA_a invariably get NaN assigned ? We can resolve that.
 // investigate return elimination... `return x` -> `let $r; $ret: { $r = x; break $ret; } return $r;`
-// add func return type and array type to meta.typing?
-// tests/cases/builtins_cases/encodeURIComponent/crash.md should not always report a changes
+// add array type to meta.typing?
 // rename constValueRef to varDeclInitRef, and containerParent should be containerBlock to be more consistent with the rest
 // convert -Infinity to $Number_NEGATIVE_INFINITY and treat it as a built-in. Consider doing the same for NaN and Infinity.
-// sort out this mustBeValue primitiveValue stuff on bindings
 // We should make an effort not to inline floats and other dangerous numbers
 // tests/cases/array/static_props/method_call_call_unknown.md doing a .call on a builtin? surely we can catch a few of these cases
-// tests/cases/normalize/array/complex_args.md doing .length on certain builtins? is that worth it?
 // When assigning a const to another const and we already know the type, we can copy the type safely since the binding itself cannot mutate. const numbers cant suddenly become bools.
 // Math.exp(0) is 1
 // Doing string operations on templates when we know the result regardless of the template dynamic expression, we should support that -> `x{y}`.charAt(0) => 'x' in any world
@@ -63,7 +57,6 @@
 // If a $free is only called once and the $frfr passes on primitives then we can propagate and resolve them in the func
 // Do we want to eliminate regex literals in favor of strings? this would allow us to bundle up trivial .replace calls, for example. more involved regex usages can still use dynamic compilation. same end result.
 // tests/cases/normalize/expressions/assignments/template/auto_ident_delete_prop_c-seq.md -> in this case we do know the outcome of `delete`
-// in normalize.mjs, search for `//'number.toExponential',` and the likes and enable them by forcing the coercion. there are spy tests for this.
 // when the switch case is "simple" (no fall-through, default in last position or not at all) we can apply a simpler transform. this is likely to cover many/most cases?
 // rename `AST.isPrimitive` to `AST.isPrimitiveValue` or something? objPatternRest -> $objRest, tmpClusterSSA -> ssa
 // I added an option for considering function statements as decls but i should make that a proper option

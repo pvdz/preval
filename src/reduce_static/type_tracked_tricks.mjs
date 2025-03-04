@@ -1835,9 +1835,16 @@ function _typeTrackedTricks(fdata) {
                   after(parentNode);
                   ++changes;
                   break;
-                } else if (arglen > 0 && node.arguments[0].type === 'Identifier') {
+                }
+                else if (arglen > 0 && node.arguments[0].type === 'Identifier') {
                   const metaArg1 = fdata.globallyUniqueNamingRegistry.get(node.arguments[0].name);
-                  if (isPrim && metaArg1 && metaArg1.typing.mustBeType === 'regex' && metaArg1.isConstant && AST.isRegexLiteral(metaArg1.constValueRef.node)) {
+                  if (
+                    isPrim &&
+                    metaArg1 &&
+                    metaArg1.typing.mustBeType === 'regex' &&
+                    metaArg1.isConstant &&
+                    AST.isRegexLiteral(metaArg1.constValueRef.node)
+                  ) {
                     // 'foo'.split(/o/)
 
                     rule('Calling `split` on a string with a regex should resolve the call');
@@ -1867,6 +1874,50 @@ function _typeTrackedTricks(fdata) {
                     after(parentNode);
                     ++changes;
                     break;
+                  }
+                  else {
+
+                    if (
+                      metaArg1 &&
+                      metaArg1.typing.mustBeType === 'array' &&
+                      metaArg1.isConstant &&
+                      metaArg1.writes.length === 1 &&
+                      metaArg1.reads.length === 1 && // Technically we can do more than this but this is low hanging fruit
+                      metaArg1.constValueRef.node.type === 'ArrayExpression' &&
+                      metaArg1.constValueRef.node.elements.length &&
+                      metaArg1.constValueRef.node.elements[0] &&
+                      (
+                        // If it _is_ a string, that's cool
+                        AST.isStringLiteral(metaArg1.constValueRef.node.elements[0]) ||
+                        ( // If we know the arg mustbea string, that's fine too
+                          metaArg1.constValueRef.node.elements[0].type === 'Identifier' &&
+                          fdata.globallyUniqueNamingRegistry.get(metaArg1.constValueRef.node.elements[0].name)?.typing?.mustBeType === 'string'
+                        )
+                      )
+                    ) {
+                      // `foo`.split(['bar'])
+                      // `foo`.split([bar])  (with bar a known string)
+                      //
+                      // (This can be found after doing `foo`.split`bar` because the tagged template will pass in ['bar'] as an array)
+                      // Split will coerce the arg to a string, if it exists, but it has a caveat where it will first check for
+                      // Symbol.split and if it's undefined then behavior is different as well.
+
+                      rule('Calling `split` on a string with an array with a string is like calling split with a string');
+                      example('const arr = ["x"]; "axbxc".split(arr)', 'const arr = "x"; "axbxc".split(arr)');
+                      example('const arr = [x]; "axbxc".split(arr)', 'const arr = x; "axbxc".split(arr)'); // with x mustbe string
+                      before(node);
+                      before(metaArg1.constValueRef.containerNode);
+
+                      ASSERT(metaArg1.constValueRef.containerNode.type === 'VariableDeclaration', 'not assign or anything because write.len===1, right?', metaArg1.constValueRef);
+
+                      metaArg1.constValueRef.containerNode.declarations[0].init = metaArg1.constValueRef.node.elements[0];
+
+                      after(metaArg1.constValueRef.containerNode);
+                      after(node);
+
+                      ++changes;
+                      break;
+                    }
                   }
                 }
                 break;

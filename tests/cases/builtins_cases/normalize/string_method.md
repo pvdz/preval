@@ -109,27 +109,26 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const tmpFree /*:(string)=>string*/ = function $free($$0) {
-  const repl /*:string*/ = $$0;
+const tmpFree$1 /*:(string)=>string*/ = function $free($$0) {
+  const repl$1 /*:string*/ = $$0;
   debugger;
-  const a1 /*:string*/ = repl.charAt(0);
-  const a2 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(a1);
-  const b1 /*:string*/ = repl.charAt(1);
+  const a1 /*:string*/ = repl$1.charAt(0);
+  const tmpRet /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(a1);
+  const b1 /*:string*/ = repl$1.charAt(1);
   const b2 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(b1);
-  repl.charAt(2);
-  const frout /*:number*/ = a2 + b2;
-  const tmpRet /*:string*/ = $coerce(frout, `string`);
-  return tmpRet;
+  const frout /*:number*/ = tmpRet + b2;
+  const tmpRet$1 /*:string*/ = $coerce(frout, `string`);
+  return tmpRet$1;
 };
 const f /*:(string)=>string*/ = function ($$0) {
   const inputstr /*:string*/ = $$0;
   debugger;
   const regex /*:regex*/ = /[^A-Za-z0-9\+\/\=]/g;
-  const repl$1 /*:string*/ = inputstr.replace(regex, ``);
-  const len /*:number*/ = repl$1.length;
+  const repl$2 /*:string*/ = inputstr.replace(regex, ``);
+  const len /*:number*/ = repl$2.length;
   const test /*:boolean*/ = 0 < len;
   if (test) {
-    const tmpClusterSSA_outputstr /*:string*/ = $frfr(tmpFree, repl$1);
+    const tmpClusterSSA_outputstr /*:string*/ = $frfr(tmpFree$1, repl$2);
     return tmpClusterSSA_outputstr;
   } else {
     return ``;
@@ -157,7 +156,6 @@ const a = function b($$0 ) {
   const e = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( d );
   const f = c.charAt( 1 );
   const g = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( f );
-  c.charAt( 2 );
   const h = e + g;
   const i = $coerce( h, "string" );
   return i;

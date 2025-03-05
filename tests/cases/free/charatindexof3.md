@@ -144,13 +144,11 @@ const f /*:(number)=>string*/ = function ($$0) {
 const x /*:unknown*/ = $(`co_rn`);
 const tmpCalleeParam$1 /*:string*/ = $coerce(x, `string`);
 const tmpSaooB$4 /*:number*/ = $frfr(tmpFree);
-tmpCalleeParam$1.charAt(1);
 const tmpCalleeParam /*:string*/ = f(tmpSaooB$4);
 $(tmpCalleeParam);
 const y /*:unknown*/ = $(`m#az#e`);
 const tmpCalleeParam$5 /*:string*/ = $coerce(y, `string`);
 const tmpSaooB$2 /*:number*/ = $frfr(tmpFree$1);
-tmpCalleeParam$5.charAt(1);
 const tmpCalleeParam$3 /*:string*/ = f(tmpSaooB$2);
 $(tmpCalleeParam$3);
 `````
@@ -182,13 +180,11 @@ const j = function($$0 ) {
 const m = $( "co_rn" );
 const h = $coerce( m, "string" );
 const n = o( f );
-h.charAt( 1 );
 const p = j( n );
 $( p );
 const q = $( "m#az#e" );
 const d = $coerce( q, "string" );
 const r = o( a );
-d.charAt( 1 );
 const s = j( r );
 $( s );
 `````

@@ -30,6 +30,7 @@ import {
 import { BUILTIN_SYMBOLS, symbo } from '../symbols_builtins.mjs';
 import * as AST from '../ast.mjs';
 import { getRegexFromLiteralNode } from '../ast.mjs';
+import { PRIMITIVE_TYPE_NAMES_PREVAL } from '../constants.mjs';
 
 export function typeTrackedTricks(fdata) {
   group('\n\n\nFinding type tracking based tricks\n');
@@ -1145,7 +1146,25 @@ function _typeTrackedTricks(fdata) {
           if ((isPrim || isRegex || node.callee.object.type === 'Identifier') && !node.callee.computed) {
             let mustBe = isRegex ? 'regex' : isPrim ? AST.getPrimitiveType(node.callee.object) : fdata.globallyUniqueNamingRegistry.get(node.callee.object.name).typing.mustBeType;
 
-            switch (symbo(mustBe, node.callee.property.name)) {
+            const symbol = symbo(mustBe, node.callee.property.name);
+
+            if (PRIMITIVE_TYPE_NAMES_PREVAL.has(mustBe) && BUILTIN_SYMBOLS.has(symbol) && parentNode.type === 'ExpressionStatement') {
+              // This call was a statement. It's a method call on a primitive.
+              // If it has no discernible args then we can just drop it.
+              if (node.arguments.every(anode => AST.isPrimitive(anode))) {
+                rule('Statement that is a method call on a primitive with primitive args can be dropped');
+                example('2..toString(2);', ';');
+                before(parentNode);
+
+                grandNode[grandProp][grandIndex] = AST.emptyStatement();
+
+                after(AST.emptyStatement());
+                ++changes;
+                break;
+              }
+            }
+
+            switch (symbol) {
               case symbo('array', 'shift'): {
                 // This is done in another rule
                 // I think in arr_mutation?

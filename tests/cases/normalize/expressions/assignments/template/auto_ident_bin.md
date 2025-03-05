@@ -46,16 +46,17 @@ $(a);
 
 
 `````js filename=intro
-const tmpFree /*:()=>string*/ = function $free() {
+const tmpFree /*:(primitive)=>string*/ = function $free($$0) {
+  const a$1 /*:primitive*/ = $$0;
   debugger;
-  const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
+  const tmpBinBothRhs /*:string*/ = $coerce(a$1, `string`);
   const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
   return tmpRet;
 };
 const tmpBinBothLhs$1 /*:unknown*/ = $(1);
 const tmpBinBothRhs$1 /*:unknown*/ = $(2);
 const a /*:primitive*/ = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpCalleeParam /*:string*/ = $frfr(tmpFree);
+const tmpCalleeParam /*:string*/ = $frfr(tmpFree, a);
 $(tmpCalleeParam);
 $(a);
 `````
@@ -65,18 +66,19 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function b($$0 ) {
+  const c = $$0;
   debugger;
-  const c = $coerce( d, "string" );
-  const e = `before  ${c}  after`;
+  const d = $coerce( c, "string" );
+  const e = `before  ${d}  after`;
   return e;
 };
 const f = $( 1 );
 const g = $( 2 );
-const d = f + g;
-const h = i( a );
+const h = f + g;
+const i = j( a, h );
+$( i );
 $( h );
-$( d );
 `````
 
 ## Globals

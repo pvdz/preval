@@ -45,16 +45,17 @@ $(a);
 
 
 `````js filename=intro
-const tmpFree /*:()=>string*/ = function $free() {
+const tmpFree /*:(primitive)=>string*/ = function $free($$0) {
+  const tmpCallCallee$2 /*:primitive*/ = $$0;
   debugger;
-  const tmpBinBothRhs /*:string*/ = $coerce(tmpCallCallee$1, `string`);
+  const tmpBinBothRhs /*:string*/ = $coerce(tmpCallCallee$2, `string`);
   const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
   return tmpRet;
 };
 const tmpBinBothLhs$1 /*:unknown*/ = $(1);
 const tmpBinBothRhs$1 /*:unknown*/ = $(2);
 const tmpCallCallee$1 /*:primitive*/ = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpCalleeParam /*:string*/ = $frfr(tmpFree);
+const tmpCalleeParam /*:string*/ = $frfr(tmpFree, tmpCallCallee$1);
 $(tmpCalleeParam);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -65,22 +66,23 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function b($$0 ) {
+  const c = $$0;
   debugger;
-  const c = $coerce( d, "string" );
-  const e = `before  ${c}  after`;
+  const d = $coerce( c, "string" );
+  const e = `before  ${d}  after`;
   return e;
 };
 const f = $( 1 );
 const g = $( 2 );
-const d = f + g;
-const h = i( a );
-$( h );
-const j = {
+const h = f + g;
+const i = j( a, h );
+$( i );
+const k = {
   a: 999,
   b: 1000,
 };
-$( j );
+$( k );
 `````
 
 ## Globals

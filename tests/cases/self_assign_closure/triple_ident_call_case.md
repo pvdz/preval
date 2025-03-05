@@ -353,28 +353,18 @@ const a /*:array*/ = [
 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`loop`);
-  const _0x5e349d$11 /*:primitive*/ = a[369];
-  try {
-    $coerce(_0x5e349d$11, `string`);
-    const _0x5e349d$9 /*:primitive*/ = a[89];
-    $coerce(_0x5e349d$9, `string`);
-    const _0x5e349d$7 /*:primitive*/ = a[504];
-    $coerce(_0x5e349d$7, `string`);
-    const _0x5e349d$5 /*:primitive*/ = a[334];
-    $coerce(_0x5e349d$5, `string`);
-    const _0x5e349d$3 /*:primitive*/ = a[254];
-    $coerce(_0x5e349d$3, `string`);
-    const _0x5e349d$1 /*:primitive*/ = a[112];
-    const tmpBinLhs$166 /*:number*/ = parseInt(_0x5e349d$1);
-    if (tmpBinLhs$166) {
-      break;
-    } else {
-      const tmpCalleeParam$11 /*:unknown*/ = a.shift();
-      a.push(tmpCalleeParam$11);
-    }
-  } catch (_0x4f54af$22) {
-    const tmpCalleeParam$13 /*:unknown*/ = a.shift();
-    a.push(tmpCalleeParam$13);
+  a[369];
+  a[89];
+  a[504];
+  a[334];
+  a[254];
+  const _0x5e349d$1 /*:primitive*/ = a[112];
+  const tmpBinLhs$166 /*:number*/ = parseInt(_0x5e349d$1);
+  if (tmpBinLhs$166) {
+    break;
+  } else {
+    const tmpCalleeParam$11 /*:unknown*/ = a.shift();
+    a.push(tmpCalleeParam$11);
   }
 }
 $(a);
@@ -388,30 +378,19 @@ With rename=true
 const a = [ "o+qs5DkTS", "displayNam", "VQ5vY4Jbig", "previous", "nk\">", "TqTwnd5/c+", "FaGG+cRqIi", "getPrototy", "ch2p7teUW5", "binary", "1549114mYdRSK", "qfVUyPGyG", "nV7NqmuKE", "MVWzWKgjww", "mark", "//BaPJuXX", "loaded", "call", "he WebCryp", "RSASSA-PKC", "E31n2Gh9QE", "N8h3TKFzuv", "Stb3euiWtm", "return", "ILhA", "G9w0BAQEFA", "7340072VkQjzG", "c-link\" ta", "63rBGDGDE", "b6cIzo9YK", "RuH/AHrSL6", "replace", "encode", "Vk2ghqMihj", "setPrototy", "ker.", "asyncItera", "t provide " ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( "loop" );
-  const b = a[ 369 ];
-  try {
-    $coerce( b, "string" );
-    const c = a[ 89 ];
-    $coerce( c, "string" );
-    const d = a[ 504 ];
-    $coerce( d, "string" );
-    const e = a[ 334 ];
-    $coerce( e, "string" );
-    const f = a[ 254 ];
-    $coerce( f, "string" );
-    const g = a[ 112 ];
-    const h = parseInt( g );
-    if (h) {
-      break;
-    }
-    else {
-      const i = a.shift();
-      a.push( i );
-    }
+  a[ 369 ];
+  a[ 89 ];
+  a[ 504 ];
+  a[ 334 ];
+  a[ 254 ];
+  const b = a[ 112 ];
+  const c = parseInt( b );
+  if (c) {
+    break;
   }
-  catch (j) {
-    const k = a.shift();
-    a.push( k );
+  else {
+    const d = a.shift();
+    a.push( d );
   }
 }
 $( a );

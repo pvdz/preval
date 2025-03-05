@@ -95,11 +95,12 @@ if (x) {
 
 
 `````js filename=intro
-const tmpFree$1 /*:(string)=>string*/ = function $free($$0) {
+const tmpFree$1 /*:(string, number)=>string*/ = function $free($$0, $$1) {
   const somestr /*:string*/ = $$0;
+  const x$1 /*:number*/ = $$1;
   debugger;
   const chr /*:string*/ = somestr.charAt(1);
-  const tmpIfTest$3 /*:number*/ = x & 48;
+  const tmpIfTest$3 /*:number*/ = x$1 & 48;
   const tmpRet /*:boolean*/ = tmpIfTest$3 === 48;
   const tmpBinLhs /*:string*/ = tmpRet + chr;
   const ret2 /*:string*/ = tmpBinLhs + chr;
@@ -110,7 +111,7 @@ const x /*:number*/ = +tmpUnaryArg;
 if (x) {
   const unknown /*:unknown*/ = $(`abc`);
   const somestr$1 /*:string*/ = $coerce(unknown, `string`);
-  const tmpIfTest$5 /*:string*/ = $frfr(tmpFree$1, somestr$1);
+  const tmpIfTest$5 /*:string*/ = $frfr(tmpFree$1, somestr$1, x);
   if (tmpIfTest$5) {
     $(`it is 58`);
   } else {
@@ -124,23 +125,24 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
+const a = function b($$0,$$1 ) {
   const c = $$0;
+  const d = $$1;
   debugger;
-  const d = c.charAt( 1 );
-  const e = f & 48;
-  const g = e === 48;
-  const h = g + d;
-  const i = h + d;
+  const e = c.charAt( 1 );
+  const f = d & 48;
+  const g = f === 48;
+  const h = g + e;
+  const i = h + e;
   return i;
 };
 const j = $spy( 1 );
-const f = +j;
-if (f) {
-  const k = $( "abc" );
-  const l = $coerce( k, "string" );
-  const m = n( a, l );
-  if (m) {
+const k = +j;
+if (k) {
+  const l = $( "abc" );
+  const m = $coerce( l, "string" );
+  const n = o( a, m, k );
+  if (n) {
     $( "it is 58" );
   }
 }

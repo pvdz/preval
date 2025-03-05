@@ -7,7 +7,7 @@
 > webassembly bootstrap js1k: https://wasmgroundup.com/blog/wasm-compiler-in-a-tweet/
 > won't be unraveling this for a long time
 > it will involve applying a .flatmap and uint8array stuff
-> 
+>
 
 ## Input
 

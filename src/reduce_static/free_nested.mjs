@@ -278,6 +278,7 @@ function _freeNested(fdata, $prng, usePrng) {
           const calledFreeMeta = fdata.globallyUniqueNamingRegistry.get(calledFreeFuncName);
           const calledFreeFuncNode = calledFreeMeta.constValueRef.node;
           ASSERT(calledFreeMeta);
+          // This one tripped before when making globals args, which included nested frfr calls, which then trips this
           ASSERT(calledFreeFuncNode?.type === 'FunctionExpression', 'expecting the first argument to $frfr to be a var decl whose init is a function', frfrCallArgs[0], ' init:', calledFreeMeta.constValueRef.node, stmt.declarations?.[0]);
           ASSERT(calledFreeFuncNode.id?.name === '$free', '$frfr should be calling $free functions');
 

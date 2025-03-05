@@ -58,16 +58,17 @@ if (x) {
 
 
 `````js filename=intro
-const tmpFree /*:()=>boolean*/ = function $free() {
+const tmpFree /*:(number)=>boolean*/ = function $free($$0) {
+  const x$1 /*:number*/ = $$0;
   debugger;
-  const tmpIfTest$3 /*:number*/ = x & 48;
+  const tmpIfTest$3 /*:number*/ = x$1 & 48;
   const tmpRet /*:boolean*/ = tmpIfTest$3 === 48;
   return tmpRet;
 };
 const tmpUnaryArg /*:unknown*/ = $spy(1);
 const x /*:number*/ = +tmpUnaryArg;
 if (x) {
-  const tmpIfTest$5 /*:boolean*/ = $frfr(tmpFree);
+  const tmpIfTest$5 /*:boolean*/ = $frfr(tmpFree, x);
   if (tmpIfTest$5) {
     $(`it is 58`);
   } else {
@@ -81,17 +82,18 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function b($$0 ) {
+  const c = $$0;
   debugger;
-  const c = d & 48;
-  const e = c === 48;
+  const d = c & 48;
+  const e = d === 48;
   return e;
 };
 const f = $spy( 1 );
-const d = +f;
-if (d) {
-  const g = h( a );
-  if (g) {
+const g = +f;
+if (g) {
+  const h = i( a, g );
+  if (h) {
     $( "it is 58" );
   }
 }

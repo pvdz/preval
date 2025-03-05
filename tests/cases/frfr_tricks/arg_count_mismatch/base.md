@@ -90,19 +90,20 @@ $(rs);
 
 
 `````js filename=intro
-const tmpFree /*:()=>string*/ = function $free() {
+const tmpFree /*:(string, unused)=>string*/ = function $free($$0, $$1) {
+  const xs$1 /*:string*/ = $$0;
   debugger;
-  const one /*:string*/ = xs + 5;
+  const one /*:string*/ = xs$1 + 5;
   const two /*:string*/ = one.slice(1);
-  const s /*:string*/ = xs.slice(2);
+  const s /*:string*/ = xs$1.slice(2);
   const tmpRet /*:string*/ = two + s;
   return tmpRet;
 };
 const x /*:unknown*/ = $spy(`x`);
 const xs /*:string*/ = $coerce(x, `plustr`);
 const y /*:unknown*/ = $spy(`y`);
-$coerce(y, `plustr`);
-const rs /*:string*/ = $frfr(tmpFree);
+const ys /*:string*/ = $coerce(y, `plustr`);
+const rs /*:string*/ = $frfr(tmpFree, xs, ys);
 $(rs);
 `````
 
@@ -111,20 +112,21 @@ $(rs);
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function b($$0,$$1 ) {
+  const c = $$0;
   debugger;
-  const c = d + 5;
-  const e = c.slice( 1 );
-  const f = d.slice( 2 );
+  const d = c + 5;
+  const e = d.slice( 1 );
+  const f = c.slice( 2 );
   const g = e + f;
   return g;
 };
 const h = $spy( "x" );
-const d = $coerce( h, "plustr" );
-const i = $spy( "y" );
-$coerce( i, "plustr" );
-const j = k( a );
-$( j );
+const i = $coerce( h, "plustr" );
+const j = $spy( "y" );
+const k = $coerce( j, "plustr" );
+const l = m( a, i, k );
+$( l );
 `````
 
 ## Globals
@@ -134,12 +136,12 @@ None
 ## Result
 
 Should call `$` with:
-- 1: 'Creating spy', 1, 1, ['x', 'x']
-- 2: '$spy[1].valueOf()', 'x'
-- 3: 'Creating spy', 2, 1, ['y', 'y']
-- 4: '$spy[2].valueOf()', 'y'
-- 5: '5'
-- eval returned: undefined
+ - 1: 'Creating spy', 1, 1, ['x', 'x']
+ - 2: '$spy[1].valueOf()', 'x'
+ - 3: 'Creating spy', 2, 1, ['y', 'y']
+ - 4: '$spy[2].valueOf()', 'y'
+ - 5: '5'
+ - eval returned: undefined
 
 Pre normalization calls: Same
 

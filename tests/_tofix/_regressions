@@ -2,35 +2,18 @@
 
 // tests/cases/import/import_default_named_class.md -> ref tracking: exported let/const decls should get the same treatment as escaping closures (read any write)
 // tests/cases/bit_hacks/if_return_bit/base_16.md -> regressed when restoring options to phase3, so must be loop unroll related? before it would end with $(b)
-// tests/cases/array/static_props/escape.md should not inline the length there
 
 // TODO:
 
-// while unroll transform does a `if (x) yes=1 else yes=0 if (yes) { while ...} else {}`. it should store the while in the if-branch.
-// Redundant write: try { $(); } catch (e) { e = 1; $(e); e = 1; $(e); }
-// tests/cases/testers/base.md -> consider the while(true) transient and then detect that x is only true once. then we can move one branch outside
 // tests/cases/normalize/dce/return/decl_after_looped_infi.md -> when a branch exits the loop we could replace it with a break and move the branch to after the loop? but I guess only if there are no other breaks. maybe too edge casy
-// investigate while(true) loops and if there are cases where we could rotate statements in the body, then move one out before/after. the loop is wrap-around after all.
-// nested labels can be squashed when they have no tail
-// tests/cases/normalize/expressions/assignments/for_b/auto_ident_opt_simple_opt_simple.md -> trivial infinite loops could gobble the previous statement(s) if it is the same as the body
-// the loopStop label pattern could be rewritten in a var-if-test way
-// while unrolling can be super generic now with one break in the loop body, and probably even if there are multiple
 // tests/cases/tofix/infinite_loops2.md -> while with nested while (nothing else in root body) could eliminate outer while by compiling breaks like you do for continue
-// tests/cases/while/const_test_true.md -> (but then not global) if a variable is not a closure and is tested twice in a row without writes in between then it must have the same boolean value. `if (x) { $(); if (x)` -> `if (x) $(); if (true)`. Trickier for globals I guess,
-// tests/cases/unwind_loops/separate_test/multi_loop_test_nested.md -> a counter that only increases can probably have its value inferred even if in a loop?
 // tests/cases/while/unobservable_ops_global.md -> `s |= 10` when `s` is not observable inside the loop nor escapes, is going to do the same thing no matter how often you do it
-// in normalization, the label step that eliminates function toplevel labels should not use globallyUniqueLabelRegistry because it may be stale. it should walk and search for all breaks that target this label.
-// why is the jsfck case crashing?
 // is while-rotating sound when the body breaks more than once?
 // infinite loop tests are set to $LOOP_DONE_UNROLLING_ALWAYS_TRUE in reduce_static/infinite_loops.mjs but we should find a way in normalize instead
 // tests/cases/array/read_only/computed_prop.md -> we should be able to resolve array props until it escapes. especially when its not a closure.
 // tests/cases/normalize/expressions/statement/while/auto_ident_logic_or_or.md -> if a var declared above a label that doesnt escape is only used inside that label then it can be moved inside too, same rule as in the end of transformLabeledStatement but it needs to be phase2 due to scope tracking
 // tests/cases/normalize/expressions/assignments/for_b/auto_ident_nested_simple_member_assigns.md -> collapse object prop assignments when we know its a literal (we assume builtins are sound)
-// verify whether $p.isPrimitive is correct to be set in phase1 (but probably?)
-// Support object literals in isSameExpressionExceptBool too
 // Support async and generator functions in inlineSimpleFuncCalls / reduce_static/simple_funcs.mjs
-// tests/cases/function/pure_function_inlining.md -> Take it the last step and outline the tail end of the string too so the function can be eliminated
-// tests/cases/normalize/expressions/assignments/for_b/auto_ident_upd_pi_simple.md -> We were able to eliminate the objlit because we knew it was unobserved.
 // tests/cases/import/import_default_named_class.md -> why is x an implicit global?
 // Detect $forOf loops and unroll them when we know the values to be iterated over. Will need to replace calls to gen.next() with some kind of symbol to "remember" the index pointer of the generator. Much harder to do for-in keys unfortunately.
 // Maybe try to unroll $forIn under risky rules? The order may not be guaranteed but that also means we can do whatever we want with that order as long as it is consistent.

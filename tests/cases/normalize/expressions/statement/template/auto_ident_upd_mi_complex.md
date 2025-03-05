@@ -53,9 +53,10 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpFree /*:()=>string*/ = function $free() {
+const tmpFree /*:(number)=>string*/ = function $free($$0) {
+  const varInitAssignLhsComputedRhs$1 /*:number*/ = $$0;
   debugger;
-  const tmpBinBothRhs /*:string*/ = $coerce(varInitAssignLhsComputedRhs, `string`);
+  const tmpBinBothRhs /*:string*/ = $coerce(varInitAssignLhsComputedRhs$1, `string`);
   const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
   return tmpRet;
 };
@@ -65,7 +66,7 @@ const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpBinLhs$1 /*:unknown*/ = varInitAssignLhsComputedObj.x;
 const varInitAssignLhsComputedRhs /*:number*/ = tmpBinLhs$1 - 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpCalleeParam /*:string*/ = $frfr(tmpFree);
+const tmpCalleeParam /*:string*/ = $frfr(tmpFree, varInitAssignLhsComputedRhs);
 $(tmpCalleeParam);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
@@ -76,25 +77,26 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function b($$0 ) {
+  const c = $$0;
   debugger;
-  const c = $coerce( d, "string" );
-  const e = `before  ${c}  after`;
+  const d = $coerce( c, "string" );
+  const e = `before  ${d}  after`;
   return e;
 };
 const f = { x: 1 };
 const g = $( f );
 const h = $( g );
 const i = h.x;
-const d = i - 1;
-h.x = d;
-const j = k( a );
-$( j );
-const l = {
+const j = i - 1;
+h.x = j;
+const k = l( a, j );
+$( k );
+const m = {
   a: 999,
   b: 1000,
 };
-$( l, f );
+$( m, f );
 `````
 
 ## Globals

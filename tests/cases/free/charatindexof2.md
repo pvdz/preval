@@ -79,15 +79,17 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 
 `````js filename=intro
-const tmpFree$1 /*:()=>number*/ = function $free() {
+const tmpFree$1 /*:(string)=>number*/ = function $free($$0) {
+  const tmpCalleeParam$2 /*:string*/ = $$0;
   debugger;
-  const tmpSaooB /*:string*/ = tmpCalleeParam$5.charAt(0);
+  const tmpSaooB /*:string*/ = tmpCalleeParam$2.charAt(0);
   const tmpRet$1 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(tmpSaooB);
   return tmpRet$1;
 };
-const tmpFree /*:()=>number*/ = function $free() {
+const tmpFree /*:(string)=>number*/ = function $free($$0) {
+  const tmpCalleeParam$4 /*:string*/ = $$0;
   debugger;
-  const tmpSaooB$1 /*:string*/ = tmpCalleeParam$1.charAt(0);
+  const tmpSaooB$1 /*:string*/ = tmpCalleeParam$4.charAt(0);
   const tmpRet /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(tmpSaooB$1);
   return tmpRet;
 };
@@ -100,13 +102,13 @@ const f /*:(number)=>string*/ = function ($$0) {
 };
 const x /*:unknown*/ = $(`co_rn`);
 const tmpCalleeParam$1 /*:string*/ = $coerce(x, `string`);
-const tmpSaooB$4 /*:number*/ = $frfr(tmpFree);
+const tmpSaooB$4 /*:number*/ = $frfr(tmpFree, tmpCalleeParam$1);
 tmpCalleeParam$1.charAt(1);
 const tmpCalleeParam /*:string*/ = f(tmpSaooB$4);
 $(tmpCalleeParam);
 const y /*:unknown*/ = $(`m#az#e`);
 const tmpCalleeParam$5 /*:string*/ = $coerce(y, `string`);
-const tmpSaooB$2 /*:number*/ = $frfr(tmpFree$1);
+const tmpSaooB$2 /*:number*/ = $frfr(tmpFree$1, tmpCalleeParam$5);
 tmpCalleeParam$5.charAt(1);
 const tmpCalleeParam$3 /*:string*/ = f(tmpSaooB$2);
 $(tmpCalleeParam$3);
@@ -117,16 +119,18 @@ $(tmpCalleeParam$3);
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function b($$0 ) {
+  const c = $$0;
   debugger;
-  const c = d.charAt( 0 );
-  const e = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( c );
+  const d = c.charAt( 0 );
+  const e = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( d );
   return e;
 };
-const f = function b() {
+const f = function b($$0 ) {
+  const g = $$0;
   debugger;
-  const g = h.charAt( 0 );
-  const i = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( g );
+  const h = g.charAt( 0 );
+  const i = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( h );
   return i;
 };
 const j = function($$0 ) {
@@ -137,17 +141,17 @@ const j = function($$0 ) {
   return outputstr;
 };
 const m = $( "co_rn" );
-const h = $coerce( m, "string" );
-const n = o( f );
-h.charAt( 1 );
-const p = j( n );
-$( p );
-const q = $( "m#az#e" );
-const d = $coerce( q, "string" );
-const r = o( a );
-d.charAt( 1 );
-const s = j( r );
-$( s );
+const n = $coerce( m, "string" );
+const o = p( f, n );
+n.charAt( 1 );
+const q = j( o );
+$( q );
+const r = $( "m#az#e" );
+const s = $coerce( r, "string" );
+const t = p( a, s );
+s.charAt( 1 );
+const u = j( t );
+$( u );
 `````
 
 ## Globals

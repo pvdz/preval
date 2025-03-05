@@ -337,10 +337,18 @@ function withPredictableStatements(body, firstIndex, lastIndex, fdata, funcQueue
       outer.add(name);
       vlog('-', [name], 'is `arguments` and added to the arg list');
     } else {
+      // Only apply the global check to $free functions (we control them). Anything else should be an arg.
       const meta = fdata.globallyUniqueNamingRegistry.get(name);
-      if (meta.isConstant && meta.constValueRef.node.$p.blockChain === '1,') {
+      if (
+        meta.isConstant &&
+        meta.writes.length === 1 &&
+        meta.writes[0].parentNode.init.type === 'FunctionExpression' &&
+        meta.writes[0].parentNode.init.id?.name === '$free'
+      ) {
         // This is a global var. No need to pass this in. We can reach it from anywhere.
-        vlog('-', [name], 'is a global, no need to pass as arg');
+        // If we were to pass through free funcs then other assumptions go out of the window
+        // And since we control $free, we can assert it's safe to assume them to be global without messing up other heuristics
+        vlog('-', [name], 'is a $free function, do not pass those as args. Assume they are globals.');
         userGlobals.add(name);
       } else {
         vlog('-', [name], 'will be added to arg list');

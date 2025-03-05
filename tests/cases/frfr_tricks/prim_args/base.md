@@ -74,11 +74,13 @@ $(rs);
 
 
 `````js filename=intro
-const tmpFree /*:()=>string*/ = function $free() {
+const tmpFree /*:(string, string)=>string*/ = function $free($$0, $$1) {
+  const xs$1 /*:string*/ = $$0;
+  const ys$1 /*:string*/ = $$1;
   debugger;
-  const tmpCalleeParam /*:string*/ = xs + 5;
+  const tmpCalleeParam /*:string*/ = xs$1 + 5;
   const one /*:number*/ = parseInt(tmpCalleeParam, 10);
-  const two /*:unknown*/ = one.slice(1, ys);
+  const two /*:unknown*/ = one.slice(1, ys$1);
   const tmpRet /*:string*/ = $coerce(two, `plustr`);
   return tmpRet;
 };
@@ -86,7 +88,7 @@ const x /*:unknown*/ = $spy(`x`);
 const xs /*:string*/ = $coerce(x, `plustr`);
 const y /*:unknown*/ = $spy(`y`);
 const ys /*:string*/ = $coerce(y, `plustr`);
-const rs /*:string*/ = $frfr(tmpFree);
+const rs /*:string*/ = $frfr(tmpFree, xs, ys);
 $(rs);
 `````
 
@@ -95,20 +97,22 @@ $(rs);
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function b($$0,$$1 ) {
+  const c = $$0;
+  const d = $$1;
   debugger;
-  const c = d + 5;
-  const e = parseInt( c, 10 );
-  const f = e.slice( 1, g );
-  const h = $coerce( f, "plustr" );
+  const e = c + 5;
+  const f = parseInt( e, 10 );
+  const g = f.slice( 1, d );
+  const h = $coerce( g, "plustr" );
   return h;
 };
 const i = $spy( "x" );
-const d = $coerce( i, "plustr" );
-const j = $spy( "y" );
-const g = $coerce( j, "plustr" );
-const k = l( a );
-$( k );
+const j = $coerce( i, "plustr" );
+const k = $spy( "y" );
+const l = $coerce( k, "plustr" );
+const m = n( a, j, l );
+$( m );
 `````
 
 ## Globals

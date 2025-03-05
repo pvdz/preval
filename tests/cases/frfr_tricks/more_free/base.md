@@ -68,9 +68,10 @@ $(t);
 
 
 `````js filename=intro
-const tmpFree /*:()=>string*/ = function $free() {
+const tmpFree /*:(string, unused)=>string*/ = function $free($$0, $$1) {
+  const xs$1 /*:string*/ = $$0;
   debugger;
-  const one /*:string*/ = xs + 5;
+  const one /*:string*/ = xs$1 + 5;
   const two /*:string*/ = one.slice(1);
   const tmpRet /*:string*/ = two.repeat(2);
   return tmpRet;
@@ -78,8 +79,8 @@ const tmpFree /*:()=>string*/ = function $free() {
 const x /*:unknown*/ = $(`x`);
 const xs /*:string*/ = $coerce(x, `plustr`);
 const y /*:unknown*/ = $(`y`);
-$coerce(y, `plustr`);
-const t /*:string*/ = $frfr(tmpFree);
+const ys /*:string*/ = $coerce(y, `plustr`);
+const t /*:string*/ = $frfr(tmpFree, xs, ys);
 $(t);
 `````
 
@@ -88,19 +89,20 @@ $(t);
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function b($$0,$$1 ) {
+  const c = $$0;
   debugger;
-  const c = d + 5;
-  const e = c.slice( 1 );
+  const d = c + 5;
+  const e = d.slice( 1 );
   const f = e.repeat( 2 );
   return f;
 };
 const g = $( "x" );
-const d = $coerce( g, "plustr" );
-const h = $( "y" );
-$coerce( h, "plustr" );
-const i = j( a );
-$( i );
+const h = $coerce( g, "plustr" );
+const i = $( "y" );
+const j = $coerce( i, "plustr" );
+const k = l( a, h, j );
+$( k );
 `````
 
 ## Globals

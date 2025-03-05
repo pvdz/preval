@@ -70,23 +70,25 @@ if (tmpIfTest) {
 
 
 `````js filename=intro
-const tmpFree$1 /*:()=>boolean*/ = function $free() {
+const tmpFree$1 /*:(number)=>boolean*/ = function $free($$0) {
+  const x$1 /*:number*/ = $$0;
   debugger;
-  const tmpIfTest /*:number*/ = x & 10;
+  const tmpIfTest /*:number*/ = x$1 & 10;
   const tmpRet$1 /*:boolean*/ = tmpIfTest === 10;
   return tmpRet$1;
 };
-const tmpFree /*:()=>boolean*/ = function $free() {
+const tmpFree /*:(number)=>boolean*/ = function $free($$0) {
+  const x$3 /*:number*/ = $$0;
   debugger;
-  const tmpIfTest$3 /*:number*/ = x & 48;
+  const tmpIfTest$3 /*:number*/ = x$3 & 48;
   const tmpRet /*:boolean*/ = tmpIfTest$3 === 48;
   return tmpRet;
 };
 const tmpUnaryArg /*:unknown*/ = $spy(10);
 const x /*:number*/ = +tmpUnaryArg;
-const tmpIfTest$1 /*:boolean*/ = $frfr(tmpFree$1);
+const tmpIfTest$1 /*:boolean*/ = $frfr(tmpFree$1, x);
 if (tmpIfTest$1) {
-  const tmpIfTest$5 /*:boolean*/ = $frfr(tmpFree);
+  const tmpIfTest$5 /*:boolean*/ = $frfr(tmpFree, x);
   if (tmpIfTest$5) {
     $(`it is 58`);
   } else {
@@ -100,24 +102,26 @@ if (tmpIfTest$1) {
 With rename=true
 
 `````js filename=intro
-const a = function b() {
+const a = function b($$0 ) {
+  const c = $$0;
   debugger;
-  const c = d & 10;
-  const e = c === 10;
+  const d = c & 10;
+  const e = d === 10;
   return e;
 };
-const f = function b() {
+const f = function b($$0 ) {
+  const g = $$0;
   debugger;
-  const g = d & 48;
-  const h = g === 48;
-  return h;
+  const h = g & 48;
+  const i = h === 48;
+  return i;
 };
-const i = $spy( 10 );
-const d = +i;
-const j = k( a );
-if (j) {
-  const l = k( f );
-  if (l) {
+const j = $spy( 10 );
+const k = +j;
+const l = m( a, k );
+if (l) {
+  const n = m( f, k );
+  if (n) {
     $( "it is 58" );
   }
 }

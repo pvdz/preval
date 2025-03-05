@@ -51,8 +51,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 
 `````js filename=intro
-const tmpReturnArg /*:unknown*/ = $(`foo`);
-$(tmpReturnArg);
+const tmpCalleeParam$1 /*:unknown*/ = $(`foo`);
+$(tmpCalleeParam$1);
 `````
 
 ## PST Output

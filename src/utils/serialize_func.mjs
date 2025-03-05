@@ -102,8 +102,6 @@ export function cloneFunctionNode(funcNode, clonedName = 'noname', staticArgs, f
           ),
         );
 
-        //paramDecl.$p.paramVarDeclRef = undefined
-
         found = true;
         break;
       }

@@ -698,7 +698,7 @@ export function one() {
   return literal(1);
 }
 
-export function param(name, rest = false) {
+export function param(name, rest = false, nop = false) {
   // This is a custom Preval node to represent a param name
   // The goal is to shield it away from general inspection by not being a generic Identifier
   // Note: paramNode.$p.paramVarDeclRef should point to the init in the body
@@ -710,7 +710,7 @@ export function param(name, rest = false) {
     name,
     index: +name.slice(2),
     rest,
-    $p: $p(),
+    $p: nop ? null : $p(), // Happens first time a function is walked in phase1. $p will still be assigned so this should not happen.
   };
 }
 

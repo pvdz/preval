@@ -1,19 +1,6 @@
 import walk from '../../lib/walk.mjs';
 import * as AST from '../ast.mjs';
-import {
-  ASSERT,
-  log,
-  group,
-  groupEnd,
-  vlog,
-  vgroup,
-  vgroupEnd,
-  tmat,
-  fmat,
-  source,
-  REF_TRACK_TRACING,
-  assertNoDupeNodes, rule, example, before, after,
-} from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, REF_TRACK_TRACING, assertNoDupeNodes, rule, example, before, after, } from '../utils.mjs';
 import { pcanCompile, pcompile, pcodeSupportedBuiltinFuncs, runPcode, SO_MESSAGE } from '../pcode.mjs';
 
 // This phase walks the AST to verify and compile eligible functions into pcode

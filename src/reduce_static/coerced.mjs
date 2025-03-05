@@ -5,6 +5,7 @@ import * as AST from '../ast.mjs';
 import { BUILTIN_SYMBOLS, symbo } from '../symbols_builtins.mjs';
 import { getSerializableArrayParts } from '../ast.mjs';
 import { SYMBOL_COERCE } from '../symbols_preval.mjs';
+import { PRIMITIVE_TYPE_NAMES_PREVAL } from '../constants.mjs';
 
 export function coercials(fdata) {
   group('\n\n\nFind cases of $coerce to eliminate');
@@ -120,6 +121,21 @@ function core(fdata) {
 
     const at = argMeta.typing.mustBeType;
     // Note: null and undefined are actual values. Let normalize clean those up.
+
+    if (read.grandNode.type === 'ExpressionStatement' && PRIMITIVE_TYPE_NAMES_PREVAL.has(at)) {
+      // This is a call to $coerce as a statement. It's only relevant to keep these if the arg can spy.
+      // Primitives can't spy so this call is moot.
+
+      rule('$coerce as a statement on a primitive is not observable and can be dropped');
+      example(`const x = $() + ''; $coerce(x, "plustr");`, `'const x = $() + ''; ;'`);
+      before(read.blockBody[read.blockIndex]);
+
+      read.blockBody[read.blockIndex] = AST.emptyStatement();
+
+      after(read.blockBody[read.blockIndex]);
+      ++changes;
+      return;
+    }
 
     if (at === 'string' && (kind === 'string' || kind === 'plustr')) {
       const argWrite = argMeta.writes.find((write) => write.kind === 'var');

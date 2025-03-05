@@ -18,7 +18,7 @@ while (true) {
   const b = limiter % 41344;
   $(unknown);
   $(a + b);
-  limiter = $(1);
+  limiter = $(1) | 0;
 }
 `````
 
@@ -38,7 +38,7 @@ while (true) {
   const b = limiter % 41344;
   $(unknown);
   $(a + b);
-  limiter = $(1);
+  limiter = $(1) | 0;
 }
 `````
 
@@ -60,10 +60,10 @@ while (true) {
   const a = $frfr(freeFunc1, 1, limiter);
   const b = limiter % 41344;
   $(unknown);
-  const tmpCallCallee = $;
   const tmpCalleeParam = a + b;
-  tmpCallCallee(tmpCalleeParam);
-  limiter = $(1);
+  $(tmpCalleeParam);
+  const tmpBinLhs = $(1);
+  limiter = tmpBinLhs | 0;
 }
 `````
 
@@ -71,22 +71,23 @@ while (true) {
 
 
 `````js filename=intro
-const freeFunc1 /*:(number, unknown)=>number*/ = function $free($$0, $$1) {
+const freeFunc1 /*:(number, number)=>number*/ = function $free($$0, $$1) {
   const x /*:number*/ = $$0;
-  const y /*:unknown*/ = $$1;
+  const y /*:number*/ = $$1;
   debugger;
   const tmpBinBothRhs /*:number*/ = x + 287;
   const tmpReturnArg /*:number*/ = y * tmpBinBothRhs;
   return tmpReturnArg;
 };
-let limiter /*:unknown*/ = 0;
+let limiter /*:number*/ = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const a /*:number*/ = $frfr(freeFunc1, 1, limiter);
   const b /*:number*/ = limiter % 41344;
   $(unknown);
   const tmpCalleeParam /*:number*/ = a + b;
   $(tmpCalleeParam);
-  limiter = $(1);
+  const tmpBinLhs /*:unknown*/ = $(1);
+  limiter = tmpBinLhs | 0;
 }
 `````
 
@@ -110,7 +111,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( unknown );
   const k = h + j;
   $( k );
-  g = $( 1 );
+  const l = $( 1 );
+  g = l | 0;
 }
 `````
 

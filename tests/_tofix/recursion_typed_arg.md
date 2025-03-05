@@ -77,9 +77,8 @@ const func = function ($$0) {
     return `pass`;
   }
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = func(0);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

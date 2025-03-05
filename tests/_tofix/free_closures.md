@@ -62,19 +62,17 @@ const f = function ($$0) {
   return outputstr;
 };
 const x = $(`co_rn`);
-const tmpCallCallee = $;
-const tmpCallCallee$1 = f;
+const tmpCallCallee = f;
 const tmpStringFirstArg = x;
 const tmpCalleeParam$1 = $coerce(tmpStringFirstArg, `string`);
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
-tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1);
+$(tmpCalleeParam);
 const y = $(`m#az#e`);
-const tmpCallCallee$3 = $;
-const tmpCallCallee$5 = f;
+const tmpCallCallee$1 = f;
 const tmpStringFirstArg$1 = y;
 const tmpCalleeParam$5 = $coerce(tmpStringFirstArg$1, `string`);
-const tmpCalleeParam$3 = tmpCallCallee$5(tmpCalleeParam$5);
-tmpCallCallee$3(tmpCalleeParam$3);
+const tmpCalleeParam$3 = tmpCallCallee$1(tmpCalleeParam$5);
+$(tmpCalleeParam$3);
 `````
 
 ## Output
@@ -105,13 +103,11 @@ const f /*:(number)=>string*/ = function ($$0) {
 const x /*:unknown*/ = $(`co_rn`);
 const tmpCalleeParam$1 /*:string*/ = $coerce(x, `string`);
 const tmpSaooB$4 /*:number*/ = $frfr(tmpFree, tmpCalleeParam$1);
-tmpCalleeParam$1.charAt(1);
 const tmpCalleeParam /*:string*/ = f(tmpSaooB$4);
 $(tmpCalleeParam);
 const y /*:unknown*/ = $(`m#az#e`);
 const tmpCalleeParam$5 /*:string*/ = $coerce(y, `string`);
 const tmpSaooB$2 /*:number*/ = $frfr(tmpFree$1, tmpCalleeParam$5);
-tmpCalleeParam$5.charAt(1);
 const tmpCalleeParam$3 /*:string*/ = f(tmpSaooB$2);
 $(tmpCalleeParam$3);
 `````
@@ -145,13 +141,11 @@ const j = function($$0 ) {
 const m = $( "co_rn" );
 const n = $coerce( m, "string" );
 const o = p( f, n );
-n.charAt( 1 );
 const q = j( o );
 $( q );
 const r = $( "m#az#e" );
 const s = $coerce( r, "string" );
 const t = p( a, s );
-s.charAt( 1 );
 const u = j( t );
 $( u );
 `````

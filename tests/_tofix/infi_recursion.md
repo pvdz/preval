@@ -53,21 +53,18 @@ const f = function ($$0, $$1) {
   return tmp;
 };
 const alias = f;
-const tmpCallCallee = $;
-const tmpCallCallee$1 = f;
+const tmpCallCallee = f;
 const tmpCalleeParam$1 = 428;
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$3 = $;
-const tmpCallCallee$5 = f;
+const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1);
+$(tmpCalleeParam);
+const tmpCallCallee$1 = f;
 const tmpCalleeParam$5 = 429;
-const tmpCalleeParam$3 = tmpCallCallee$5(tmpCalleeParam$5);
-tmpCallCallee$3(tmpCalleeParam$3);
-const tmpCallCallee$7 = $;
-const tmpCallCallee$9 = f;
+const tmpCalleeParam$3 = tmpCallCallee$1(tmpCalleeParam$5);
+$(tmpCalleeParam$3);
+const tmpCallCallee$3 = f;
 const tmpCalleeParam$9 = 430;
-const tmpCalleeParam$7 = tmpCallCallee$9(tmpCalleeParam$9);
-tmpCallCallee$7(tmpCalleeParam$7);
+const tmpCalleeParam$7 = tmpCallCallee$3(tmpCalleeParam$9);
+$(tmpCalleeParam$7);
 $(alias);
 `````
 

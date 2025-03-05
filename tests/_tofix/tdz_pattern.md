@@ -47,7 +47,6 @@ let x = function ($$0, $$1) {
   debugger;
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     let tmpCalleeParam = undefined;
     const tmpIfTest$1 = a === undefined;
     if (tmpIfTest$1) {
@@ -55,7 +54,7 @@ let x = function ($$0, $$1) {
     } else {
       tmpCalleeParam = a;
     }
-    tmpCallCallee(tmpCalleeParam);
+    $(tmpCalleeParam);
     return a;
   } else {
     return a;
@@ -64,10 +63,9 @@ let x = function ($$0, $$1) {
     return undefined;
   }
 };
-const tmpCallCallee$1 = x;
-const tmpCalleeParam$1 = undefined;
-const tmpCalleeParam$3 = { x: 1 };
-tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpCallCallee = x;
+const tmpCalleeParam$1 = { x: 1 };
+tmpCallCallee(undefined, tmpCalleeParam$1);
 `````
 
 ## Output

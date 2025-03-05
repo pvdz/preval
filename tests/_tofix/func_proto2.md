@@ -72,9 +72,8 @@ const g = function ($$0, $$1, $$2) {
     const tmpAssignMemRhs = [];
     tmpAssignMemLhsObj._pairs = tmpAssignMemRhs;
     if (t$987) {
-      const tmpCallCallee = Object;
       const tmpCalleeParam = i$441.a;
-      const tmpCallComplexCallee$25 = tmpCallCallee(tmpCalleeParam);
+      const tmpCallComplexCallee$25 = Object(tmpCalleeParam);
       tmpCallComplexCallee$25(t$987, tmpPrevalAliasThis$241, e$767);
       return undefined;
     } else {

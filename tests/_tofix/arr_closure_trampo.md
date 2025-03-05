@@ -55,12 +55,10 @@ let _0x5576 = function () {
   const tmpReturnArg$65 = _0x5576();
   return tmpReturnArg$65;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = _0x5576();
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpCalleeParam$1 = _0x5576();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

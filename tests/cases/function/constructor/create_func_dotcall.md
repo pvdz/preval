@@ -31,9 +31,8 @@ $(f());
 `````js filename=intro
 const obj = { Function: Function };
 const f = obj.Function(a, b, c, d);
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

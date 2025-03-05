@@ -37,9 +37,8 @@ while (true) {
   if (tmpIfTest$1) {
     a = $(60);
   } else {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(100);
-    a = tmpCallCallee(tmpCalleeParam);
+    a = $(tmpCalleeParam);
   }
   let tmpIfTest = a;
   if (tmpIfTest) {

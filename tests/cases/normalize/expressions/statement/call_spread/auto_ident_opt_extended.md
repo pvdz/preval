@@ -34,7 +34,6 @@ const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpCalleeParamSpread = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
@@ -45,7 +44,7 @@ if (tmpIfTest) {
   tmpCalleeParamSpread = tmpChainElementObject$3;
 } else {
 }
-tmpCallCallee(...tmpCalleeParamSpread);
+$(...tmpCalleeParamSpread);
 $(a);
 `````
 

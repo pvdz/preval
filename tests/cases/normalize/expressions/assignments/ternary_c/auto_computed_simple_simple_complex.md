@@ -30,7 +30,6 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
@@ -41,7 +40,7 @@ if (tmpIfTest) {
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 const tmpAssignMemLhsObj = a;
 const tmpAssignMemRhs = $(2);
 tmpAssignMemLhsObj.b = tmpAssignMemRhs;

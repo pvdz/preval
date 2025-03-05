@@ -64,17 +64,16 @@ let f___4__ = function () /*6*/ {
     return $finalArg___84__;
   }
 };
-const tmpCallCallee___87__ = $;
-const tmpCalleeParam___91__ = f___93__();
-tmpCallCallee___96__(tmpCalleeParam___97__);
+const tmpCalleeParam___87__ = f___89__();
+$(tmpCalleeParam___93__);
 `````
 
 Ref tracking result:
 
                    | reads      | read by     | overWrites     | overwritten by
 f:
-  - w @4       | ########## | 93          | none           | none
-  - r @93      | 4
+  - w @4       | ########## | 89          | none           | none
+  - r @89      | 4
 
 x:
   - w @10      | ########## | 67          | none           | 40,75
@@ -102,10 +101,6 @@ $finalArg:
   - w @50          | ########## | 84          | 26             | none
   - r @84          | 26,50
 
-tmpCallCallee:
-  - w @87          | ########## | 96          | none           | none
-  - r @96          | 87
-
 tmpCalleeParam:
-  - w @91          | ########## | 97          | none           | none
-  - r @97          | 91
+  - w @87          | ########## | 93          | none           | none
+  - r @93          | 87

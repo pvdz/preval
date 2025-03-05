@@ -27,15 +27,12 @@ $(encodeURIComponent(`\udfff`));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = encodeURIComponent(`\ud800\udfff`);
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpCalleeParam$1 = encodeURIComponent(`\ud800`);
-tmpCallCallee$1(tmpCalleeParam$1);
-const tmpCallCallee$3 = $;
+$(tmpCalleeParam$1);
 const tmpCalleeParam$3 = encodeURIComponent(`\udfff`);
-tmpCallCallee$3(tmpCalleeParam$3);
+$(tmpCalleeParam$3);
 `````
 
 ## Output

@@ -68,10 +68,9 @@ const f = function $free($$0, $$1) {
   let a = $$0;
   let b = $$1;
   debugger;
-  const tmpCallCallee = parseInt;
   const tmpCalleeParam = a + 5;
   const tmpCalleeParam$1 = b;
-  const one = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  const one = parseInt(tmpCalleeParam, tmpCalleeParam$1);
   const two = one.slice(1);
   return two;
 };
@@ -79,10 +78,9 @@ const g = function $free($$0, $$1) {
   let a$1 = $$0;
   let b$1 = $$1;
   debugger;
-  const tmpCallCallee$1 = parseInt;
   const tmpCalleeParam$3 = a$1 + 500;
   const tmpCalleeParam$5 = b$1;
-  const one$1 = tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
+  const one$1 = parseInt(tmpCalleeParam$3, tmpCalleeParam$5);
   const two$1 = a$1.slice(2);
   return two$1;
 };

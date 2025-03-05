@@ -33,9 +33,8 @@ let a = arrPatternSplat[0];
 const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = [1, 2];
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
 }
 $(a);
 `````

@@ -45,17 +45,15 @@ let out = function () {
   debugger;
   const g$1 = function () {
     debugger;
-    const tmpCallCallee = $;
     const tmpCalleeParam = typeof g$1;
-    tmpCallCallee(tmpCalleeParam);
+    $(tmpCalleeParam);
     return undefined;
   };
   const f = g$1;
   const g = 10;
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = g;
   const tmpCalleeParam$3 = f();
-  tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
+  $(tmpCalleeParam$1, tmpCalleeParam$3);
   return undefined;
 };
 out();

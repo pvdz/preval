@@ -43,9 +43,8 @@ let f = function () {
   return a;
 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 const tmpAssignComMemLhsObj = a;
 const tmpAssignComMemLhsProp = $(`b`);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;

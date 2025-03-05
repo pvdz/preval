@@ -38,10 +38,9 @@ let f = function ($$0) {
   let bindingPatternObjRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpObjLitVal = { y: `fail2` };
     const tmpCalleeParam = { x: tmpObjLitVal };
-    bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
+    bindingPatternObjRoot = $(tmpCalleeParam);
   } else {
     bindingPatternObjRoot = tmpParamBare;
   }
@@ -49,9 +48,8 @@ let f = function ($$0) {
   let objPatternAfterDefault = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = { x: `fail` };
-    objPatternAfterDefault = tmpCallCallee$1(tmpCalleeParam$1);
+    objPatternAfterDefault = $(tmpCalleeParam$1);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
@@ -67,12 +65,10 @@ let f = function ($$0) {
     return `ok`;
   }
 };
-const tmpCallCallee$3 = $;
-const tmpCallCallee$5 = f;
+const tmpCallCallee = f;
 const tmpCalleeParam$5 = { x: `abc`, b: 11, c: 12 };
-const tmpCalleeParam$7 = 10;
-const tmpCalleeParam$3 = tmpCallCallee$5(tmpCalleeParam$5, tmpCalleeParam$7);
-tmpCallCallee$3(tmpCalleeParam$3);
+const tmpCalleeParam$3 = tmpCallCallee(tmpCalleeParam$5, 10);
+$(tmpCalleeParam$3);
 `````
 
 ## Output

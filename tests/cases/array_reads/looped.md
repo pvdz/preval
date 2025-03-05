@@ -31,9 +31,8 @@ while (true) {
 `````js filename=intro
 const arr = [1, 2, 3];
 while (true) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = arr[0];
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
 }
 `````
 

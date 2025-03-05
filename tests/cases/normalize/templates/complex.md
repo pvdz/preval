@@ -23,13 +23,12 @@ $(`abc ` + $coerce(10, `string`) + ` def`);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpBinBothLhs = `abc `;
 const tmpBinBothRhs = $coerce(10, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR} def`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

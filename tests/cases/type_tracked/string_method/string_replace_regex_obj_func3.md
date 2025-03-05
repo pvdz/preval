@@ -35,20 +35,18 @@ $(
 `````js filename=intro
 const obj = { a: 1, b: 2 };
 const rex = /\w.*\w/g;
-const tmpCallCallee = $;
 const tmpCalleeParam$1 = rex;
 const tmpCalleeParam$3 = function ($$0) {
   let c = $$0;
   debugger;
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$5 = c;
   const tmpCalleeParam$7 = obj[c];
-  tmpCallCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
+  $(tmpCalleeParam$5, tmpCalleeParam$7);
   const tmpReturnArg = obj[c];
   return tmpReturnArg;
 };
 const tmpCalleeParam = `a is not b`.replace(tmpCalleeParam$1, tmpCalleeParam$3);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

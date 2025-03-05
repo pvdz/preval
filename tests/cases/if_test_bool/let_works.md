@@ -54,15 +54,11 @@ let f = function () {
   debugger;
   let x = $(1);
   if (x) {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = `a`;
-    const tmpCalleeParam$1 = !x;
-    tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+    const tmpCalleeParam = !x;
+    $(`a`, tmpCalleeParam);
   } else {
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$3 = `b`;
-    const tmpCalleeParam$5 = !x;
-    tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
+    const tmpCalleeParam$1 = !x;
+    $(`b`, tmpCalleeParam$1);
   }
   if ($) {
     x = 10;

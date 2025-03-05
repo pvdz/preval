@@ -35,7 +35,6 @@ $(a, b, c);
 let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 b = 2;
 a = 2;
 let tmpCalleeParam = a;
@@ -43,7 +42,7 @@ if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, b, c);
 `````
 
@@ -51,8 +50,8 @@ $(a, b, c);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(100);
-$(tmpCalleeParam);
+const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
+$(tmpClusterSSA_tmpCalleeParam);
 $(2, 2, 2);
 `````
 

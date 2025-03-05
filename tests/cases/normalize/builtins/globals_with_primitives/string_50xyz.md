@@ -25,9 +25,8 @@ $(String(`50xyz`));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = `50xyz`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

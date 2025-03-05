@@ -32,11 +32,9 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
 const arrPatternStep$1 = arrPatternSplat$1[0];
-const tmpCallCallee = objPatternRest;
 const tmpCalleeParam = arrPatternStep$1;
 const tmpCalleeParam$1 = [];
-const tmpCalleeParam$3 = undefined;
-const x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+const x = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
 $(x);
 `````
 

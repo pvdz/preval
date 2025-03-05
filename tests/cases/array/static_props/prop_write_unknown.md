@@ -33,9 +33,8 @@ const arr = [1, 2, 3];
 const tmpAssignComMemLhsObj = arr;
 const tmpAssignComMemLhsProp = $(2);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 10;
-const tmpCallCallee = $;
 const tmpCalleeParam = arr.length;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

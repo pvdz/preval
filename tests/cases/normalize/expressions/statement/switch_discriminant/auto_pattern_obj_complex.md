@@ -38,9 +38,8 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
-const tmpSwitchDisc = tmpCallCallee(tmpCalleeParam);
+const tmpSwitchDisc = $(tmpCalleeParam);
 $(100);
 $(a);
 `````

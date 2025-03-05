@@ -40,14 +40,12 @@ $(a);
 let a = { a: 999, b: 1000 };
 while (true) {
   $(100);
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(0);
-  a = tmpCallCallee(tmpCalleeParam);
+  a = $(tmpCalleeParam);
   if (a) {
   } else {
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(2);
-    a = tmpCallCallee$1(tmpCalleeParam$1);
+    a = $(tmpCalleeParam$1);
   }
   let tmpIfTest = a;
   if (tmpIfTest) {

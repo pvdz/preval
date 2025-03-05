@@ -269,24 +269,18 @@ const alias3 = alias1();
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`loop`);
   try {
-    const tmpCallCallee = parseInt;
     const tmpCalleeParam = alias2(714);
-    const tmpUnaryArg$65 = tmpCallCallee(tmpCalleeParam);
-    const tmpCallCallee$1 = parseInt;
+    const tmpUnaryArg$65 = parseInt(tmpCalleeParam);
     const tmpCalleeParam$1 = alias2(434);
-    const tmpBinLhs$155 = tmpCallCallee$1(tmpCalleeParam$1);
-    const tmpCallCallee$3 = parseInt;
+    const tmpBinLhs$155 = parseInt(tmpCalleeParam$1);
     const tmpCalleeParam$3 = alias2(849);
-    const tmpUnaryArg$67 = tmpCallCallee$3(tmpCalleeParam$3);
-    const tmpCallCallee$5 = parseInt;
+    const tmpUnaryArg$67 = parseInt(tmpCalleeParam$3);
     const tmpCalleeParam$5 = alias2(679);
-    const tmpBinLhs$162 = tmpCallCallee$5(tmpCalleeParam$5);
-    const tmpCallCallee$7 = parseInt;
+    const tmpBinLhs$162 = parseInt(tmpCalleeParam$5);
     const tmpCalleeParam$7 = alias2(599);
-    const tmpUnaryArg$69 = tmpCallCallee$7(tmpCalleeParam$7);
-    const tmpCallCallee$9 = parseInt;
+    const tmpUnaryArg$69 = parseInt(tmpCalleeParam$7);
     const tmpCalleeParam$9 = alias2(457);
-    const tmpBinLhs$166 = tmpCallCallee$9(tmpCalleeParam$9);
+    const tmpBinLhs$166 = parseInt(tmpCalleeParam$9);
     if (tmpBinLhs$166) {
       break;
     } else {
@@ -302,9 +296,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $dotCall(tmpCallVal$1, tmpCallObj$1, `push`, tmpCalleeParam$13);
   }
 }
-const tmpCallCallee$11 = $;
 const tmpCalleeParam$15 = a();
-tmpCallCallee$11(tmpCalleeParam$15);
+$(tmpCalleeParam$15);
 `````
 
 ## Output

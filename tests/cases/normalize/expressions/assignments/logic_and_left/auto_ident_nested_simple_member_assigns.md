@@ -35,7 +35,6 @@ $(a, b, c);
 let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const varInitAssignLhsComputedRhs$7 = c;
 b.x = varInitAssignLhsComputedRhs$7;
 const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
@@ -55,7 +54,7 @@ if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, b, c);
 `````
 
@@ -63,8 +62,8 @@ $(a, b, c);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(100);
-$(tmpCalleeParam);
+const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
+$(tmpClusterSSA_tmpCalleeParam);
 const b /*:object*/ = { x: 3 };
 $(3, b, 3);
 `````

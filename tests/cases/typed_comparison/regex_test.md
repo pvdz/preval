@@ -23,11 +23,10 @@ $(/x/g.test($(`x`)));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam$1 = $(`x`);
 const tmpCallObj = /x/g;
 const tmpCalleeParam = tmpCallObj.test(tmpCalleeParam$1);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

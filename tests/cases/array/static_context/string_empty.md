@@ -23,8 +23,8 @@ String([]);
 
 
 `````js filename=intro
-const tmpCallCallee = [];
-$coerce(tmpCallCallee, `string`);
+const tmpCalleeParam = [];
+$coerce(tmpCalleeParam, `string`);
 `````
 
 ## Output

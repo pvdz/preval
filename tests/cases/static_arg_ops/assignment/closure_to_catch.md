@@ -59,12 +59,10 @@ try {
     $(`more filler`);
     return undefined;
   };
-  const tmpCallCallee = $;
   const tmpCalleeParam = f(1, 2);
-  tmpCallCallee(tmpCalleeParam);
-  const tmpCallCallee$1 = $;
+  $(tmpCalleeParam);
   const tmpCalleeParam$1 = f(3, 4);
-  tmpCallCallee$1(tmpCalleeParam$1);
+  $(tmpCalleeParam$1);
 }
 `````
 

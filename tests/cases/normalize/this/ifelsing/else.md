@@ -60,9 +60,8 @@ const f = function () {
 };
 const tmpObjLitVal$1 = f;
 const a = { foo: tmpObjLitVal, f: tmpObjLitVal$1 };
-const tmpCallCallee = $;
 const tmpCalleeParam = a.f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

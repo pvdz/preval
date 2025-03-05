@@ -23,12 +23,11 @@ $(($(1), $(2), $($)).length);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 $(1);
 $(2);
 const tmpCompObj = $($);
 const tmpCalleeParam = tmpCompObj.length;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

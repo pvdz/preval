@@ -29,7 +29,6 @@ $((a = b?.x));
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let b = { x: 1 };
-const tmpCallCallee = $;
 a = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
@@ -39,7 +38,7 @@ if (tmpIfTest) {
 } else {
 }
 let tmpCalleeParam = a;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

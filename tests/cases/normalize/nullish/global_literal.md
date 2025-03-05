@@ -25,14 +25,13 @@ $(parseInt ?? length);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 let tmpCalleeParam = parseInt;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
   tmpCalleeParam = length;
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

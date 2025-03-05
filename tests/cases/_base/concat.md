@@ -23,9 +23,8 @@ $(`a` + `b`);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = `ab`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -28,11 +28,10 @@ $(($(1), b).length);
 
 `````js filename=intro
 let b = `foo`;
-const tmpCallCallee = $;
 $(1);
 const tmpCompObj = b;
 const tmpCalleeParam = tmpCompObj.length;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -42,9 +42,8 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   $(60);
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
 }
 $(a);
 `````

@@ -45,10 +45,9 @@ let a = { a: 999, b: 1000 };
 while (true) {
   $(100);
   let tmpIfTest = undefined;
-  const tmpCallCallee = $;
   const tmpObjLitVal = $(2);
   const tmpCalleeParam = { b: tmpObjLitVal };
-  const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+  const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
   b = tmpNestedAssignObjPatternRhs.b;
   tmpIfTest = tmpNestedAssignObjPatternRhs;
   if (tmpIfTest) {

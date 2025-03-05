@@ -30,11 +30,10 @@ $(`after`);
 
 `````js filename=intro
 while (true) {
-  const tmpCallCallee = $;
   const tmpObjLitVal = $(1);
   const tmpObjLitVal$1 = $(2);
   const tmpCalleeParam = { a: tmpObjLitVal, b: tmpObjLitVal$1 };
-  const tmpObjSpread = tmpCallCallee(tmpCalleeParam);
+  const tmpObjSpread = $(tmpCalleeParam);
   const tmpIfTest = { ...tmpObjSpread };
   if (tmpIfTest) {
     $(`loop`);

@@ -23,9 +23,8 @@ $(`hello`.lastIndexOf());
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = `hello`.lastIndexOf();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

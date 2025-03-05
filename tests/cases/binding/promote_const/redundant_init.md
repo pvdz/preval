@@ -98,12 +98,10 @@ let f = function () {
     return undefined;
   }
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = [10, 20, 30, 40];
-const SSA_SNe$596 = tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+const SSA_SNe$596 = $(tmpCalleeParam);
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

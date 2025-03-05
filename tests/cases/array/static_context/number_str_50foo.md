@@ -23,10 +23,9 @@ $(Number([`50foo`]));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpStringFirstArg = [`50foo`];
 const tmpCalleeParam = $coerce(tmpStringFirstArg, `number`);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

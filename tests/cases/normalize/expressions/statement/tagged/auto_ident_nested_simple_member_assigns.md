@@ -35,7 +35,6 @@ $(a, b, c);
 let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = [`before `, ` after`];
 const varInitAssignLhsComputedRhs$9 = c;
 b.x = varInitAssignLhsComputedRhs$9;
@@ -50,7 +49,7 @@ b.x = varInitAssignLhsComputedRhs$1;
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 b.x = varInitAssignLhsComputedRhs;
 const tmpCalleeParam$1 = varInitAssignLhsComputedRhs;
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, tmpCalleeParam$1);
 $(a, b, c);
 `````
 

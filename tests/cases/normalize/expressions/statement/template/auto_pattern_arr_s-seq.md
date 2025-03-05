@@ -30,16 +30,15 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
 $(10);
 $(20);
-const tmpCallCallee$1 = [1, 2];
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
+const tmpCalleeParam$1 = [1, 2];
+const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}  after`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

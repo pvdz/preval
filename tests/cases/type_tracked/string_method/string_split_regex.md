@@ -23,10 +23,9 @@ $(`hello world`.split(/o/g));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam$1 = /o/g;
 const tmpCalleeParam = `hello world`.split(tmpCalleeParam$1);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

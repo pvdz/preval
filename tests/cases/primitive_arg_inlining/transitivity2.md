@@ -52,17 +52,14 @@ let f = function ($$0, $$1) {
 let g = function ($$0) {
   let b$1 = $$0;
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = f(1, b$1);
-  const tmpReturnArg$1 = tmpCallCallee(tmpCalleeParam);
+  const tmpReturnArg$1 = $(tmpCalleeParam);
   return tmpReturnArg$1;
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f(1, 2);
-tmpCallCallee$1(tmpCalleeParam$1);
-const tmpCallCallee$3 = $;
+$(tmpCalleeParam$1);
 const tmpCalleeParam$3 = g(2);
-tmpCallCallee$3(tmpCalleeParam$3);
+$(tmpCalleeParam$3);
 `````
 
 ## Output

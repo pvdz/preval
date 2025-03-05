@@ -23,9 +23,8 @@ $(`hello`.concat());
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = `hello`.concat();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

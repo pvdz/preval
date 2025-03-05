@@ -55,18 +55,14 @@ let f = function ($$0, $$1, $$2, $$3, $$4) {
   const tmpReturnArg = x + a;
   return tmpReturnArg;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f(1, 2);
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpCalleeParam$1 = f(2, 100);
-tmpCallCallee$1(tmpCalleeParam$1);
-const tmpCallCallee$3 = $;
+$(tmpCalleeParam$1);
 const tmpCalleeParam$3 = f(`a`, `x`);
-tmpCallCallee$3(tmpCalleeParam$3);
-const tmpCallCallee$5 = $;
+$(tmpCalleeParam$3);
 const tmpCalleeParam$5 = f(true, false);
-tmpCallCallee$5(tmpCalleeParam$5);
+$(tmpCalleeParam$5);
 `````
 
 ## Output

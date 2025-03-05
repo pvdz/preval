@@ -40,11 +40,10 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-const tmpCallCallee = $forIn;
 $(10);
 $(20);
 const tmpCalleeParam = [1, 2];
-let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+let tmpForInGen = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForInNext = tmpForInGen.next();
   const tmpIfTest = tmpForInNext.done;

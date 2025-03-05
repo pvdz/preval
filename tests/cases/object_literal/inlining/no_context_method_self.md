@@ -38,21 +38,15 @@ $(`objencode:`, obj.encode());
 `````js filename=intro
 const tmpObjLitVal = function () {
   debugger;
-  const tmpCallCallee = $;
-  const tmpCalleeParam = `method:`;
-  const tmpCalleeParam$1 = obj.str;
-  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  const tmpCalleeParam = obj.str;
+  $(`method:`, tmpCalleeParam);
   return undefined;
 };
 const obj = { encode: tmpObjLitVal, str: `abc` };
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$3 = `objstr:`;
-const tmpCalleeParam$5 = obj.str;
-tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
-const tmpCallCallee$3 = $;
-const tmpCalleeParam$7 = `objencode:`;
-const tmpCalleeParam$9 = obj.encode();
-tmpCallCallee$3(tmpCalleeParam$7, tmpCalleeParam$9);
+const tmpCalleeParam$1 = obj.str;
+$(`objstr:`, tmpCalleeParam$1);
+const tmpCalleeParam$3 = obj.encode();
+$(`objencode:`, tmpCalleeParam$3);
 `````
 
 ## Output

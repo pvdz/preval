@@ -23,11 +23,10 @@ $({} !== {});
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpBinBothLhs = {};
 const tmpBinBothRhs = {};
 const tmpCalleeParam = tmpBinBothLhs !== tmpBinBothRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

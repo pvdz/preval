@@ -23,9 +23,8 @@ $(`hello`.indexOf());
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = `hello`.indexOf();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

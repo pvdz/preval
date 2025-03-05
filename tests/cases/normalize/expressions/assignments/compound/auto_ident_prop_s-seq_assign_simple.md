@@ -32,7 +32,6 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpBinBothLhs = a;
 const varInitAssignLhsComputedObj = b;
 const varInitAssignLhsComputedRhs = 2;
@@ -40,7 +39,7 @@ varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 const tmpBinBothRhs = varInitAssignLhsComputedRhs;
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, b);
 `````
 

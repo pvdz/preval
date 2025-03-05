@@ -51,7 +51,6 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $forIn;
 let tmpCalleeParam = undefined;
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
@@ -60,7 +59,7 @@ const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x$1 = arrPatternSplat[0];
 y = arrPatternSplat[1];
 tmpCalleeParam = tmpNestedAssignArrPatternRhs;
-let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+let tmpForInGen = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForInNext = tmpForInGen.next();
   const tmpIfTest = tmpForInNext.done;

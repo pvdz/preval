@@ -35,15 +35,13 @@ $(obj.f());
 const tmpObjLitVal = function () {
   const tmpPrevalAliasThis = this;
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = tmpPrevalAliasThis.f;
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   return `win`;
 };
 const obj = { f: tmpObjLitVal };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = obj.f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

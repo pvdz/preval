@@ -36,11 +36,9 @@ while (true) {
 let i = 0;
 let x = $(10);
 while (true) {
-  const tmpCallCallee = $;
   i = i + 1;
   let tmpCalleeParam = i;
-  const tmpCalleeParam$1 = `set`;
-  x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  x = $(tmpCalleeParam, `set`);
   $(x, `loop`);
 }
 `````

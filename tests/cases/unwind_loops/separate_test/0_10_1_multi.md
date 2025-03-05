@@ -42,12 +42,10 @@ while (true) {
   const tmpIfTest = i < 10;
   if (tmpIfTest) {
     $(i);
-    const tmpCallCallee = $;
     const tmpCalleeParam = i + 1;
-    tmpCallCallee(tmpCalleeParam);
-    const tmpCallCallee$1 = $;
+    $(tmpCalleeParam);
     const tmpCalleeParam$1 = i + 2;
-    tmpCallCallee$1(tmpCalleeParam$1);
+    $(tmpCalleeParam$1);
     i = i + 1;
   } else {
     break;

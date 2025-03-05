@@ -37,9 +37,8 @@ while (true) {
   if (tmpIfTest) {
     $(1);
   } else {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(1);
-    tmpIfTest = tmpCallCallee(tmpCalleeParam);
+    tmpIfTest = $(tmpCalleeParam);
     if (tmpIfTest) {
       $(1);
     } else {
@@ -55,13 +54,13 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
-if (tmpIfTest) {
+const tmpClusterSSA_tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
+if (tmpClusterSSA_tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(1);
     const tmpCalleeParam$1 /*:unknown*/ = $(1);
-    const tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$1);
-    if (tmpIfTest$1) {
+    const tmpClusterSSA_tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$1);
+    if (tmpClusterSSA_tmpIfTest$1) {
     } else {
       break;
     }

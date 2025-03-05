@@ -30,9 +30,8 @@ const ok = function () {
   debugger;
   return `\$`;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = ok();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -34,18 +34,15 @@ $(!a);
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 const a = tmpBinBothLhs === tmpBinBothRhs;
-const tmpCallCallee = $;
 const tmpCalleeParam = !a;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 const tmpBinBothLhs$1 = $(1);
 const tmpBinBothRhs$1 = $(2);
 const b = tmpBinBothLhs$1 === tmpBinBothRhs$1;
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = !b;
-tmpCallCallee$1(tmpCalleeParam$1);
-const tmpCallCallee$3 = $;
+$(tmpCalleeParam$1);
 const tmpCalleeParam$3 = !a;
-tmpCallCallee$3(tmpCalleeParam$3);
+$(tmpCalleeParam$3);
 `````
 
 ## Output

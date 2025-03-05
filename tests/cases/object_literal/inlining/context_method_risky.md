@@ -46,18 +46,15 @@ const tmpObjLitVal = function () {
   const tmpPrevalAliasThis = this;
   debugger;
   tmpPrevalAliasThis.str = `changed`;
-  const tmpCallCallee = $;
   const tmpCalleeParam = tmpPrevalAliasThis.str;
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   return undefined;
 };
 const obj = { encode: tmpObjLitVal, str: `abc` };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = obj.encode();
-tmpCallCallee$1(tmpCalleeParam$1);
-const tmpCallCallee$3 = $;
+$(tmpCalleeParam$1);
 const tmpCalleeParam$3 = obj.str;
-tmpCallCallee$3(tmpCalleeParam$3);
+$(tmpCalleeParam$3);
 `````
 
 ## Output

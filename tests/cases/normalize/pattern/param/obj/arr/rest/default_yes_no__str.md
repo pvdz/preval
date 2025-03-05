@@ -40,9 +40,8 @@ let f = function ($$0) {
   let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = [`pass`];
-    objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
+    objPatternAfterDefault = $(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
@@ -50,9 +49,8 @@ let f = function ($$0) {
   let y = arrPatternSplat.slice(0);
   return y;
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f(`abc`, 10);
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

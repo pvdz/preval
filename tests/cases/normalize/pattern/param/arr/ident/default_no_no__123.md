@@ -40,9 +40,8 @@ let f = function ($$0) {
   let x = arrPatternSplat[0];
   return `bad`;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f(1, 2, 3, 200);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

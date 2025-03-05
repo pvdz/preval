@@ -42,10 +42,9 @@ let f = function ($$0) {
   let p = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(1);
     const tmpCalleeParam$1 = $(2);
-    p = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+    p = $(tmpCalleeParam, tmpCalleeParam$1);
     return undefined;
   } else {
     p = tmpParamBare;
@@ -54,9 +53,8 @@ let f = function ($$0) {
 };
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$3 = f();
-tmpCallCallee$1(tmpCalleeParam$3);
+$(tmpCalleeParam$3);
 $(a);
 `````
 

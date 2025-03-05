@@ -34,21 +34,20 @@ let c = undefined;
 a = 10;
 b = 20;
 c = [];
-const tmpCallCallee = $;
 const tmpCompObj = $(c);
 const tmpNestedComplexRhs = tmpCompObj.length;
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
 let tmpCalleeParam = a;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output
 
 
 `````js filename=intro
-const c /*:array*/ = [];
-const tmpCompObj /*:unknown*/ = $(c);
+const tmpClusterSSA_c /*:array*/ = [];
+const tmpCompObj /*:unknown*/ = $(tmpClusterSSA_c);
 const tmpNestedComplexRhs /*:unknown*/ = tmpCompObj.length;
 $(tmpNestedComplexRhs);
 `````

@@ -73,8 +73,7 @@ let f = function () {
   } else {
   }
   const tmpCalleeParam = x;
-  const tmpCalleeParam$1 = `y`;
-  const tmpCalleeParam$3 = {
+  const tmpCalleeParam$1 = {
     set($$0) {
       let z = $$0;
       debugger;
@@ -85,7 +84,7 @@ let f = function () {
       return `intercepted`;
     },
   };
-  $Object_defineProperty(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+  $Object_defineProperty(tmpCalleeParam, `y`, tmpCalleeParam$1);
   $(`b`);
   return undefined;
 };
@@ -94,9 +93,8 @@ f();
 x.y = 10;
 f();
 $(x);
-const tmpCallCallee = $;
-const tmpCalleeParam$5 = x.y;
-tmpCallCallee(tmpCalleeParam$5);
+const tmpCalleeParam$3 = x.y;
+$(tmpCalleeParam$3);
 $(f);
 `````
 
@@ -113,7 +111,7 @@ const f /*:()=>undefined*/ = function () {
     delete x.y;
   } else {
   }
-  const tmpCalleeParam$3 /*:object*/ = {
+  const tmpCalleeParam$1 /*:object*/ = {
     set($$0) {
       debugger;
       return undefined;
@@ -123,7 +121,7 @@ const f /*:()=>undefined*/ = function () {
       return `intercepted`;
     },
   };
-  $Object_defineProperty(x, `y`, tmpCalleeParam$3);
+  $Object_defineProperty(x, `y`, tmpCalleeParam$1);
   $(`b`);
   return undefined;
 };
@@ -132,8 +130,8 @@ f();
 x.y = 10;
 f();
 $(x);
-const tmpCalleeParam$5 /*:unknown*/ = x.y;
-$(tmpCalleeParam$5);
+const tmpCalleeParam$3 /*:unknown*/ = x.y;
+$(tmpCalleeParam$3);
 $(f);
 `````
 

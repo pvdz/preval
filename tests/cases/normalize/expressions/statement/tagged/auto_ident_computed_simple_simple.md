@@ -32,10 +32,9 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = [`before `, ` after`];
 const tmpCalleeParam$1 = b.c;
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, tmpCalleeParam$1);
 $(a, b);
 `````
 

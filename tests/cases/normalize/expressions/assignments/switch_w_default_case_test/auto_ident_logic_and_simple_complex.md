@@ -54,9 +54,8 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 a = 1;
 if (a) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  a = tmpCallCallee(tmpCalleeParam);
+  a = $(tmpCalleeParam);
 } else {
 }
 let tmpBinLhs = a;

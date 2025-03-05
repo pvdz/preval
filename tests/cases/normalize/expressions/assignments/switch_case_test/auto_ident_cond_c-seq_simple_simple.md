@@ -41,9 +41,8 @@ const tmpIfTest$1 = $(30);
 if (tmpIfTest$1) {
   a = $(2);
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  a = tmpCallCallee(tmpCalleeParam);
+  a = $(tmpCalleeParam);
 }
 let tmpBinBothRhs = a;
 const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;

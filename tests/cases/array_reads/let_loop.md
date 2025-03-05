@@ -38,9 +38,8 @@ $(arr);
 let arr = [1, 2, 3];
 while (true) {
   arr = [2, 3, 4];
-  const tmpCallCallee = $;
   const tmpCalleeParam = arr[0];
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   if ($) {
     break;
   } else {

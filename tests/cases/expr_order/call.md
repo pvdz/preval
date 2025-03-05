@@ -32,11 +32,10 @@ $(i, ++i);
 
 `````js filename=intro
 let i = 0;
-const tmpCallCallee = $;
 const tmpCalleeParam = i;
 i = i + 1;
 let tmpCalleeParam$1 = i;
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Output

@@ -226,25 +226,20 @@ let f5 = function () {
   return undefined;
 };
 if ($) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = f1();
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   if ($) {
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = f2();
-    tmpCallCallee$1(tmpCalleeParam$1);
+    $(tmpCalleeParam$1);
     if ($) {
-      const tmpCallCallee$3 = $;
       const tmpCalleeParam$3 = f3();
-      tmpCallCallee$3(tmpCalleeParam$3);
+      $(tmpCalleeParam$3);
       if ($) {
-        const tmpCallCallee$5 = $;
         const tmpCalleeParam$5 = f4();
-        tmpCallCallee$5(tmpCalleeParam$5);
+        $(tmpCalleeParam$5);
         if ($) {
-          const tmpCallCallee$7 = $;
           const tmpCalleeParam$7 = f5();
-          tmpCallCallee$7(tmpCalleeParam$7);
+          $(tmpCalleeParam$7);
         } else {
         }
       } else {

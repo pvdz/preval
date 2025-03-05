@@ -28,7 +28,6 @@ $(`after`);
 
 `````js filename=intro
 $(`before`);
-const tmpCallCallee = $;
 const tmpCalleeParam = [...3];
 throw `[Preval]: Array spread must crash before this line`;
 `````

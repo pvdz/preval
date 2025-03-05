@@ -77,23 +77,19 @@ let f = function ($$0) {
       const tmpReturnArg = [x, z];
       return tmpReturnArg;
     };
-    const tmpCallCallee = $;
     const tmpCalleeParam = f$1(10);
-    const tmpCalleeParam$1 = `pass`;
-    tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$3 = f$1(20);
-    const tmpCalleeParam$5 = `pass`;
-    tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
+    $(tmpCalleeParam, `pass`);
+    const tmpCalleeParam$1 = f$1(20);
+    $(tmpCalleeParam$1, `pass`);
     return undefined;
   }
 };
-const tmpCallCallee$3 = f;
-const tmpCalleeParam$7 = $(``);
-tmpCallCallee$3(tmpCalleeParam$7);
-const tmpCallCallee$5 = f;
-const tmpCalleeParam$9 = $(`foop`);
-tmpCallCallee$5(tmpCalleeParam$9);
+const tmpCallCallee = f;
+const tmpCalleeParam$3 = $(``);
+tmpCallCallee(tmpCalleeParam$3);
+const tmpCallCallee$1 = f;
+const tmpCalleeParam$5 = $(`foop`);
+tmpCallCallee$1(tmpCalleeParam$5);
 `````
 
 ## Output
@@ -118,15 +114,15 @@ const f /*:(unknown)=>undefined*/ = function ($$0) {
   } else {
     const tmpCalleeParam /*:array*/ = f$1(10);
     $(tmpCalleeParam, `pass`);
-    const tmpCalleeParam$3 /*:array*/ = f$1(20);
-    $(tmpCalleeParam$3, `pass`);
+    const tmpCalleeParam$1 /*:array*/ = f$1(20);
+    $(tmpCalleeParam$1, `pass`);
     return undefined;
   }
 };
-const tmpCalleeParam$7 /*:unknown*/ = $(``);
-f(tmpCalleeParam$7);
-const tmpCalleeParam$9 /*:unknown*/ = $(`foop`);
-f(tmpCalleeParam$9);
+const tmpCalleeParam$3 /*:unknown*/ = $(``);
+f(tmpCalleeParam$3);
+const tmpCalleeParam$5 /*:unknown*/ = $(`foop`);
+f(tmpCalleeParam$5);
 `````
 
 ## PST Output

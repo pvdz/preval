@@ -32,7 +32,6 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
 a = undefined;
 const tmpChainRootCall = $;
@@ -43,12 +42,12 @@ if (tmpIfTest) {
   a = tmpChainElementObject;
 } else {
 }
-let tmpCallCallee$1 = a;
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
+let tmpCalleeParam$1 = a;
+const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}  after`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

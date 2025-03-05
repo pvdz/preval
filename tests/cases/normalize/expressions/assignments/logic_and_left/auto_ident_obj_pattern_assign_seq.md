@@ -35,7 +35,6 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 $(x);
 $(y);
 const tmpObjLitVal = $(3);
@@ -49,7 +48,7 @@ if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, x, y);
 `````
 

@@ -58,9 +58,8 @@ while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     $(`loop`);
-    const tmpCallCallee = $forOf;
     const tmpCalleeParam = [1, 2];
-    let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+    let tmpForOfGen = $forOf(tmpCalleeParam);
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       let tmpForOfNext = tmpForOfGen.next();
       const tmpIfTest$1 = tmpForOfNext.done;

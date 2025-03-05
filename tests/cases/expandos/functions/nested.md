@@ -61,9 +61,8 @@ let g = function ($$0) {
   };
   if ($) {
     f.foo = a;
-    const tmpCallCallee = $;
     const tmpCalleeParam = f.foo;
-    tmpCallCallee(tmpCalleeParam);
+    $(tmpCalleeParam);
     return undefined;
   } else {
     return undefined;

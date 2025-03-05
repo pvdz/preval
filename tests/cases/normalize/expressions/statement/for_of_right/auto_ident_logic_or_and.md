@@ -38,23 +38,19 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $forOf;
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = $(0);
-let tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+let tmpCalleeParam = $(tmpCalleeParam$1);
 if (tmpCalleeParam) {
 } else {
-  const tmpCallCallee$3 = $;
   const tmpCalleeParam$3 = $(1);
-  tmpCalleeParam = tmpCallCallee$3(tmpCalleeParam$3);
+  tmpCalleeParam = $(tmpCalleeParam$3);
   if (tmpCalleeParam) {
-    const tmpCallCallee$5 = $;
     const tmpCalleeParam$5 = $(2);
-    tmpCalleeParam = tmpCallCallee$5(tmpCalleeParam$5);
+    tmpCalleeParam = $(tmpCalleeParam$5);
   } else {
   }
 }
-let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+let tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest = tmpForOfNext.done;

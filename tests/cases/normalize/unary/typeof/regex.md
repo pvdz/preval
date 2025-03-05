@@ -23,10 +23,9 @@ $(typeof /foo/);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpUnaryArg = /foo/;
 const tmpCalleeParam = typeof tmpUnaryArg;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

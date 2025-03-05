@@ -35,9 +35,8 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
-let tmpCallCallee$1 = undefined;
+let tmpCalleeParam$1 = undefined;
 $(x);
 $(y);
 const tmpObjLitVal = $(3);
@@ -45,12 +44,12 @@ const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 x = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
-tmpCallCallee$1 = tmpNestedAssignObjPatternRhs;
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
+tmpCalleeParam$1 = tmpNestedAssignObjPatternRhs;
+const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}  after`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, x, y);
 `````
 

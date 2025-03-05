@@ -74,9 +74,8 @@ tmpSwitchBreak: {
   }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(b);
-    const tmpAssignMemLhsObj = tmpCallCallee(tmpCalleeParam);
+    const tmpAssignMemLhsObj = $(tmpCalleeParam);
     const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
     const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
     const tmpAssignMemRhs = tmpCompoundAssignLhs - 1;

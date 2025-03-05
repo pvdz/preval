@@ -46,9 +46,8 @@ const arr = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     unknown = x;
-    const tmpCallCallee = $;
     const tmpCalleeParam = arr[0];
-    tmpCallCallee(tmpCalleeParam);
+    $(tmpCalleeParam);
     arr.reverse();
   } catch (e) {
     $(`fail`);

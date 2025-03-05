@@ -36,29 +36,25 @@ $(a);
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(0);
-  let tmpReturnArg = tmpCallCallee(tmpCalleeParam);
+  let tmpReturnArg = $(tmpCalleeParam);
   if (tmpReturnArg) {
     return tmpReturnArg;
   } else {
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(1);
-    tmpReturnArg = tmpCallCallee$1(tmpCalleeParam$1);
+    tmpReturnArg = $(tmpCalleeParam$1);
     if (tmpReturnArg) {
       return tmpReturnArg;
     } else {
-      const tmpCallCallee$3 = $;
       const tmpCalleeParam$3 = $(2);
-      tmpReturnArg = tmpCallCallee$3(tmpCalleeParam$3);
+      tmpReturnArg = $(tmpCalleeParam$3);
       return tmpReturnArg;
     }
   }
 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$5 = $;
 const tmpCalleeParam$5 = f();
-tmpCallCallee$5(tmpCalleeParam$5);
+$(tmpCalleeParam$5);
 $(a);
 `````
 

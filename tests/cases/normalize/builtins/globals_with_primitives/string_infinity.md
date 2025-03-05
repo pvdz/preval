@@ -23,9 +23,8 @@ $(String(Infinity));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = `Infinity`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

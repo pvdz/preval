@@ -86,11 +86,9 @@ let f = function () {
   debugger;
   let n = 0;
   while (true) {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = `n:`;
     n = n + 1;
-    let tmpCalleeParam$1 = n;
-    tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+    let tmpCalleeParam = n;
+    $(`n:`, tmpCalleeParam);
     const tmpIfTest = n > 10;
     if (tmpIfTest) {
       return n;
@@ -99,10 +97,8 @@ let f = function () {
   }
   return undefined;
 };
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$3 = `f():`;
-const tmpCalleeParam$5 = f();
-tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
+const tmpCalleeParam$1 = f();
+$(`f():`, tmpCalleeParam$1);
 `````
 
 ## Output

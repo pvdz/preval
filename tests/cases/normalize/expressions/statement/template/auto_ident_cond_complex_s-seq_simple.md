@@ -28,22 +28,20 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
-let tmpCallCallee$1 = undefined;
+let tmpCalleeParam$1 = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  tmpCallCallee$1 = 60;
+  tmpCalleeParam$1 = 60;
 } else {
-  const tmpCallCallee$3 = $;
-  const tmpCalleeParam$1 = $(100);
-  tmpCallCallee$1 = tmpCallCallee$3(tmpCalleeParam$1);
+  const tmpCalleeParam$3 = $(100);
+  tmpCalleeParam$1 = $(tmpCalleeParam$3);
 }
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
+const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}  after`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 
@@ -55,9 +53,9 @@ const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   $(`before  60  after`);
 } else {
-  const tmpCalleeParam$1 /*:unknown*/ = $(100);
-  const tmpClusterSSA_tmpCallCallee$1 /*:unknown*/ = $(tmpCalleeParam$1);
-  const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_tmpCallCallee$1, `string`);
+  const tmpCalleeParam$3 /*:unknown*/ = $(100);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$3);
+  const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_tmpCalleeParam$1, `string`);
   const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $(tmpClusterSSA_tmpCalleeParam);
 }

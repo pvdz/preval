@@ -58,9 +58,8 @@ let top = function () {
   $(6);
   return undefined;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = top();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

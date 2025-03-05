@@ -42,26 +42,22 @@ $(arr.length);
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = arr[0];
   const tmpCalleeParam$1 = arr[1];
   const tmpCalleeParam$3 = arr[2];
   const tmpCalleeParam$5 = arr[3];
-  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
+  $(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
   const tmpReturnArg = arr[2];
   return tmpReturnArg;
 };
 const arr = [1, 2, 3];
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$7 = f();
-tmpCallCallee$1(tmpCalleeParam$7);
+$(tmpCalleeParam$7);
 $(f);
-const tmpCallCallee$3 = $;
 const tmpCalleeParam$9 = arr[1];
-tmpCallCallee$3(tmpCalleeParam$9);
-const tmpCallCallee$5 = $;
+$(tmpCalleeParam$9);
 const tmpCalleeParam$11 = arr.length;
-tmpCallCallee$5(tmpCalleeParam$11);
+$(tmpCalleeParam$11);
 `````
 
 ## Output

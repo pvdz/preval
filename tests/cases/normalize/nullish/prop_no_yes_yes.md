@@ -26,7 +26,6 @@ $(a.b ?? c ?? d);
 
 `````js filename=intro
 const a = {};
-const tmpCallCallee = $;
 let tmpCalleeParam = a.b;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
@@ -38,7 +37,7 @@ if (tmpIfTest$1) {
   tmpCalleeParam = d;
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

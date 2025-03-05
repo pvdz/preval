@@ -28,14 +28,13 @@ $(f ?? x);
 `````js filename=intro
 let f = undefined;
 f = { x: 10 };
-const tmpCallCallee = $;
 let tmpCalleeParam = f;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
   tmpCalleeParam = x;
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

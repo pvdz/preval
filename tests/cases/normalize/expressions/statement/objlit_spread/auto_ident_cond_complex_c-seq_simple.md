@@ -33,9 +33,8 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   tmpObjSpreadArg = $(60);
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpObjSpreadArg = tmpCallCallee(tmpCalleeParam);
+  tmpObjSpreadArg = $(tmpCalleeParam);
 }
 ({ ...tmpObjSpreadArg });
 $(a);

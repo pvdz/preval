@@ -40,20 +40,17 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-const tmpCallCallee = $forIn;
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = { x: 1 };
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
-let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam = $(tmpCalleeParam$1);
+let tmpForInGen = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForInNext = tmpForInGen.next();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {
     break;
   } else {
-    const tmpCallCallee$3 = $;
     const tmpCalleeParam$3 = [1, 2];
-    const tmpAssignMemLhsObj = tmpCallCallee$3(tmpCalleeParam$3);
+    const tmpAssignMemLhsObj = $(tmpCalleeParam$3);
     const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
     const tmpAssignMemRhs = tmpForInNext.value;
     tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;

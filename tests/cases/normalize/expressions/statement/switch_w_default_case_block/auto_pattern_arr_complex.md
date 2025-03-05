@@ -76,9 +76,8 @@ tmpSwitchBreak: {
   }
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = [1, 2];
-    tmpCallCallee(tmpCalleeParam);
+    $(tmpCalleeParam);
     break tmpSwitchBreak;
   } else {
     const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;

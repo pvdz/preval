@@ -36,9 +36,8 @@ let obj = {};
 const tmpCompObj = obj;
 $(10);
 $(20);
-const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
-const tmpCompProp = tmpCallCallee(tmpCalleeParam);
+const tmpCompProp = $(tmpCalleeParam);
 tmpCompObj[tmpCompProp];
 $(a);
 `````

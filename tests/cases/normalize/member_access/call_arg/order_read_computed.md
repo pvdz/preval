@@ -52,11 +52,10 @@ const obj = {
     return undefined;
   },
 };
-const tmpCallCallee = $;
 const tmpCompObj = $(obj);
 const tmpCompProp = $(`x`);
 const tmpCalleeParam = tmpCompObj[tmpCompProp];
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

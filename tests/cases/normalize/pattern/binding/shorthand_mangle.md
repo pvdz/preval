@@ -46,12 +46,11 @@ let f = function ($$0) {
   return x$1;
 };
 const x = 1;
-const tmpCallCallee = $;
 const tmpCalleeParam = x;
-const tmpCallCallee$1 = f;
+const tmpCallCallee = f;
 const tmpCalleeParam$3 = { x: 2 };
-const tmpCalleeParam$1 = tmpCallCallee$1(tmpCalleeParam$3);
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpCalleeParam$1 = tmpCallCallee(tmpCalleeParam$3);
+$(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Output

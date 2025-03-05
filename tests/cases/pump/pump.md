@@ -302,9 +302,8 @@ const arr = [
   `{}.constructor("return this")( )`,
   `.body`,
 ];
-const tmpCallCallee = $;
 const tmpCalleeParam = arr[0];
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

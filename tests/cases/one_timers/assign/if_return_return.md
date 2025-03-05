@@ -69,14 +69,12 @@ let f = function () {
   return undefined;
 };
 let x = $(100);
-const tmpCallCallee = $;
 const tmpCalleeParam = closure();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 x = f();
 $(x);
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = closure();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

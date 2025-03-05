@@ -39,10 +39,8 @@ const blob = [1, 2, 3];
 try {
   $(`try`);
 } catch (e) {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = `catch`;
-  const tmpCalleeParam$1 = blob.shift();
-  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  const tmpCalleeParam = blob.shift();
+  $(`catch`, tmpCalleeParam);
 }
 $(`after`, blob);
 `````
@@ -55,8 +53,8 @@ const blob /*:array*/ = [1, 2, 3];
 try {
   $(`try`);
 } catch (e) {
-  const tmpCalleeParam$1 /*:unknown*/ = blob.shift();
-  $(`catch`, tmpCalleeParam$1);
+  const tmpCalleeParam /*:unknown*/ = blob.shift();
+  $(`catch`, tmpCalleeParam);
 }
 $(`after`, blob);
 `````

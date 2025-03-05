@@ -23,10 +23,9 @@ $(typeof !$(100));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 $(100);
 const tmpCalleeParam = `boolean`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -32,10 +32,9 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 a = delete arg.y;
 let tmpCalleeParamSpread = a;
-tmpCallCallee(...tmpCalleeParamSpread);
+$(...tmpCalleeParamSpread);
 $(a, arg);
 `````
 

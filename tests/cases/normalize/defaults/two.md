@@ -62,18 +62,14 @@ let f = function ($$0, $$1) {
   const tmpReturnArg = [a, b];
   return tmpReturnArg;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpCalleeParam$1 = f(`x`);
-tmpCallCallee$1(tmpCalleeParam$1);
-const tmpCallCallee$3 = $;
+$(tmpCalleeParam$1);
 const tmpCalleeParam$3 = f(undefined, `y`);
-tmpCallCallee$3(tmpCalleeParam$3);
-const tmpCallCallee$5 = $;
+$(tmpCalleeParam$3);
 const tmpCalleeParam$5 = f(`x`, `y`);
-tmpCallCallee$5(tmpCalleeParam$5);
+$(tmpCalleeParam$5);
 `````
 
 ## Output

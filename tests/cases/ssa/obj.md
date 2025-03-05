@@ -55,9 +55,8 @@ const tmpArrElement$517 = function () {
   return undefined;
 };
 if ($) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = tmpArrElement$517();
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
 } else {
 }
 `````

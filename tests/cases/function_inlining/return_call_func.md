@@ -49,10 +49,8 @@ let g = function ($$0) {
   const tmpReturnArg$1 = $(a, `g`);
   return tmpReturnArg$1;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-const tmpCalleeParam$1 = `outer`;
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, `outer`);
 `````
 
 ## Output

@@ -41,9 +41,8 @@ let f = function ($$0) {
   let x = arrPatternStep.x;
   return x;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f(`abc`);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

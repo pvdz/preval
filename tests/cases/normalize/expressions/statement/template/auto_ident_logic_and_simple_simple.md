@@ -28,18 +28,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
-let tmpCallCallee$1 = 1;
-if (tmpCallCallee$1) {
-  tmpCallCallee$1 = 2;
+let tmpCalleeParam$1 = 1;
+if (tmpCalleeParam$1) {
+  tmpCalleeParam$1 = 2;
 } else {
 }
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
+const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}  after`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

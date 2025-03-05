@@ -37,9 +37,8 @@ let f = function () {
   const tmpThrowArg = $(5, `ret`);
   throw tmpThrowArg;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

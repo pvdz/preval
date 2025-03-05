@@ -123,9 +123,8 @@ let f = function ($$0) {
   }
 };
 if ($) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = f($);
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
 } else {
 }
 `````

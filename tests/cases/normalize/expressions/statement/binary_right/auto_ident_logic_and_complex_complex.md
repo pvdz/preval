@@ -29,13 +29,11 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(100);
-const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
-let tmpBinBothRhs = tmpCallCallee(tmpCalleeParam);
+let tmpBinBothRhs = $(tmpCalleeParam);
 if (tmpBinBothRhs) {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(2);
-  tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
+  tmpBinBothRhs = $(tmpCalleeParam$1);
 } else {
 }
 tmpBinBothLhs + tmpBinBothRhs;

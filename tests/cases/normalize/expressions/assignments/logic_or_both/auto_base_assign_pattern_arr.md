@@ -32,11 +32,9 @@ $(a, b);
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCallCallee$1 = $;
 const tmpArrElement = $(2);
 const tmpCalleeParam$1 = [tmpArrElement];
-const tmpNestedAssignArrPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
 a = tmpNestedAssignArrPatternRhs;
@@ -44,17 +42,16 @@ let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
   let tmpNestedComplexRhs = undefined;
-  const tmpCallCallee$3 = $;
   const tmpArrElement$1 = $(2);
   const tmpCalleeParam$3 = [tmpArrElement$1];
-  const tmpNestedAssignArrPatternRhs$1 = tmpCallCallee$3(tmpCalleeParam$3);
+  const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$3);
   const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
   b = arrPatternSplat$1[0];
   tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs$1;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, b);
 `````
 

@@ -37,15 +37,11 @@ $(`after`, blob);
 `````js filename=intro
 const blob = [1, 2, 3];
 try {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = `try`;
-  const tmpCalleeParam$1 = blob.shift();
-  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  const tmpCalleeParam = blob.shift();
+  $(`try`, tmpCalleeParam);
 } catch (e) {
-  const tmpCallCallee$1 = $;
-  const tmpCalleeParam$3 = `catch`;
-  const tmpCalleeParam$5 = blob.shift();
-  tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
+  const tmpCalleeParam$1 = blob.shift();
+  $(`catch`, tmpCalleeParam$1);
 }
 $(`after`, blob);
 `````
@@ -58,8 +54,8 @@ const blob /*:array*/ = [2, 3];
 try {
   $(`try`, 1);
 } catch (e) {
-  const tmpCalleeParam$5 /*:unknown*/ = blob.shift();
-  $(`catch`, tmpCalleeParam$5);
+  const tmpCalleeParam$1 /*:unknown*/ = blob.shift();
+  $(`catch`, tmpCalleeParam$1);
 }
 $(`after`, blob);
 `````

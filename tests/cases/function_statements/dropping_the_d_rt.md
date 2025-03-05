@@ -40,9 +40,8 @@ let THIS_IS_DA____$1___4__ = function () /*6*/ {
   $(`hello`);
   return undefined___15__;
 };
-const tmpCallCallee___18__ = $;
-const tmpCalleeParam___22__ = THIS_IS_DA_______24__();
-tmpCallCallee___27__(tmpCalleeParam___28__);
+const tmpCalleeParam___18__ = THIS_IS_DA_______20__();
+$(tmpCalleeParam___24__);
 `````
 
 Ref tracking result:
@@ -51,10 +50,6 @@ Ref tracking result:
 THIS_IS_DA____$1:
   - w @4             | ########## | not read    | none           | none
 
-tmpCallCallee:
-  - w @18            | ########## | 27          | none           | none
-  - r @27            | 18
-
 tmpCalleeParam:
-  - w @22            | ########## | 28          | none           | none
-  - r @28            | 22
+  - w @18            | ########## | 24          | none           | none
+  - r @24            | 18

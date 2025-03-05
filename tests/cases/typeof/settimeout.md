@@ -23,9 +23,8 @@ $(typeof setTimeout);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = `function`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

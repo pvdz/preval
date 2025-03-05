@@ -30,9 +30,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 a = 1;
 if (a) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  a = tmpCallCallee(tmpCalleeParam);
+  a = $(tmpCalleeParam);
 } else {
 }
 let tmpThrowArg = a;
@@ -44,8 +43,8 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-const a /*:unknown*/ = $(tmpCalleeParam);
-throw a;
+const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
+throw tmpClusterSSA_a;
 `````
 
 ## PST Output

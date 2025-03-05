@@ -44,10 +44,9 @@ let f = function ($$0, $$1, $$2) {
   let b = $$1;
   let c = $$2;
   debugger;
-  const tmpCallCallee = $;
   const tmpBinLhs = $(1);
   const tmpCalleeParam = tmpBinLhs + a;
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   return undefined;
 };
 f(1, 2, 3);

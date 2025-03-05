@@ -32,14 +32,13 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpBinBothLhs = a;
 const tmpPostUpdArgIdent = b;
 b = b - 1;
 const tmpBinBothRhs = tmpPostUpdArgIdent;
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, b);
 `````
 

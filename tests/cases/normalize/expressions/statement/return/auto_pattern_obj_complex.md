@@ -36,16 +36,14 @@ $(a);
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = { a: 1, b: 2 };
-  const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
+  const tmpReturnArg = $(tmpCalleeParam);
   return tmpReturnArg;
 };
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 $(a);
 `````
 

@@ -51,14 +51,13 @@ $(x);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpObjLitVal = function () {
   debugger;
   $(`PASS`);
   return undefined;
 };
 const tmpCalleeParam = { valueOf: tmpObjLitVal };
-let x = tmpCallCallee(tmpCalleeParam);
+let x = $(tmpCalleeParam);
 $coerce(x, `number`);
 const f = function ($$0) {
   let c = $$0;

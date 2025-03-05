@@ -34,9 +34,8 @@ for (x in $(1)) $(2);
 
 
 `````js filename=intro
-const tmpCallCallee = $forIn;
 const tmpCalleeParam = $(1);
-let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+let tmpForInGen = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForInNext = tmpForInGen.next();
   const tmpIfTest = tmpForInNext.done;

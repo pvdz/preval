@@ -26,12 +26,11 @@ $(({ x: x } = 1));
 
 `````js filename=intro
 let x = 0;
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpNestedAssignObjPatternRhs = 1;
 x = tmpNestedAssignObjPatternRhs.x;
 tmpCalleeParam = tmpNestedAssignObjPatternRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

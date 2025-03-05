@@ -28,28 +28,24 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
-const tmpCallCallee$3 = $;
-const tmpCalleeParam$1 = $(1);
-let tmpCallCallee$1 = tmpCallCallee$3(tmpCalleeParam$1);
-if (tmpCallCallee$1) {
-  const tmpCallCallee$5 = $;
-  const tmpCalleeParam$3 = $(1);
-  tmpCallCallee$1 = tmpCallCallee$5(tmpCalleeParam$3);
-  if (tmpCallCallee$1) {
-    const tmpCallCallee$7 = $;
-    const tmpCalleeParam$5 = $(2);
-    tmpCallCallee$1 = tmpCallCallee$7(tmpCalleeParam$5);
+const tmpCalleeParam$3 = $(1);
+let tmpCalleeParam$1 = $(tmpCalleeParam$3);
+if (tmpCalleeParam$1) {
+  const tmpCalleeParam$5 = $(1);
+  tmpCalleeParam$1 = $(tmpCalleeParam$5);
+  if (tmpCalleeParam$1) {
+    const tmpCalleeParam$7 = $(2);
+    tmpCalleeParam$1 = $(tmpCalleeParam$7);
   } else {
   }
 } else {
 }
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
+const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}  after`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 
@@ -57,19 +53,19 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $(1);
-let tmpCallCallee$1 /*:unknown*/ = $(tmpCalleeParam$1);
-if (tmpCallCallee$1) {
-  const tmpCalleeParam$3 /*:unknown*/ = $(1);
-  tmpCallCallee$1 = $(tmpCalleeParam$3);
-  if (tmpCallCallee$1) {
-    const tmpCalleeParam$5 /*:unknown*/ = $(2);
-    tmpCallCallee$1 = $(tmpCalleeParam$5);
+const tmpCalleeParam$3 /*:unknown*/ = $(1);
+let tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$3);
+if (tmpCalleeParam$1) {
+  const tmpCalleeParam$5 /*:unknown*/ = $(1);
+  tmpCalleeParam$1 = $(tmpCalleeParam$5);
+  if (tmpCalleeParam$1) {
+    const tmpCalleeParam$7 /*:unknown*/ = $(2);
+    tmpCalleeParam$1 = $(tmpCalleeParam$7);
   } else {
   }
 } else {
 }
-const tmpBinBothRhs /*:string*/ = $coerce(tmpCallCallee$1, `string`);
+const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 const a /*:object*/ = { a: 999, b: 1000 };

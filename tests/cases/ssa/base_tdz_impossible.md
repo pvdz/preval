@@ -35,7 +35,6 @@ $(x);
 
 `````js filename=intro
 if ($) {
-  const tmpCallCallee = $;
   throw `Preval: TDZ triggered for this read: \$(x)`;
 } else {
   let x = $(5);

@@ -40,9 +40,8 @@ $(x);
 
 
 `````js filename=intro
-const tmpCallCallee = Boolean;
 const tmpCalleeParam = $(true);
-const bool = tmpCallCallee(tmpCalleeParam);
+const bool = Boolean(tmpCalleeParam);
 const a = $();
 let x = undefined;
 if (bool) {

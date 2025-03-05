@@ -32,13 +32,12 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = [`before `, ` after`];
-const tmpCallCallee$1 = $($);
+const tmpCallCallee = $($);
 const tmpCalleeParam$3 = $(1);
 const tmpCalleeParam$5 = $(2);
-const tmpCalleeParam$1 = tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpCalleeParam$1 = tmpCallCallee(tmpCalleeParam$3, tmpCalleeParam$5);
+$(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 
@@ -46,10 +45,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee$1 /*:unknown*/ = $($);
+const tmpCallCallee /*:unknown*/ = $($);
 const tmpCalleeParam$3 /*:unknown*/ = $(1);
 const tmpCalleeParam$5 /*:unknown*/ = $(2);
-const tmpCalleeParam$1 /*:unknown*/ = tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
+const tmpCalleeParam$1 /*:unknown*/ = tmpCallCallee(tmpCalleeParam$3, tmpCalleeParam$5);
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, tmpCalleeParam$1);
 const a /*:object*/ = { a: 999, b: 1000 };

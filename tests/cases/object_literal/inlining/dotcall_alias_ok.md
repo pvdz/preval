@@ -37,10 +37,8 @@ const g = function () {
   return `win`;
 };
 const obj = { f: g };
-const alias = obj.f;
-const tmpCallCallee = $;
-const tmpCalleeParam = $dotCall(alias, obj, `f`);
-tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam = obj.f();
+$(tmpCalleeParam);
 `````
 
 ## Output

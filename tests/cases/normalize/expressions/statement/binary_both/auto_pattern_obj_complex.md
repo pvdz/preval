@@ -29,12 +29,10 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
-const tmpBinBothLhs = tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+const tmpBinBothLhs = $(tmpCalleeParam);
 const tmpCalleeParam$1 = { a: 1, b: 2 };
-const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpBinBothRhs = $(tmpCalleeParam$1);
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````

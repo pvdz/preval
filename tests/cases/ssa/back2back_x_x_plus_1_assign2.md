@@ -109,7 +109,6 @@ const f = function () {
     };
     let x = $(5);
     $(x);
-    const tmpCallCallee = $;
     const tmpCalleeParam = {
       toString() {
         debugger;
@@ -118,7 +117,7 @@ const f = function () {
         return `hi`;
       },
     };
-    x = tmpCallCallee(tmpCalleeParam);
+    x = $(tmpCalleeParam);
     x = x + 1;
     g();
     return undefined;

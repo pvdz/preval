@@ -64,9 +64,8 @@ let g = function () {
 };
 const foo = $();
 if ($) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = g();
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
 } else {
 }
 `````

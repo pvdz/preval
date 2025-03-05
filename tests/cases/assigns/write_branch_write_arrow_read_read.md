@@ -49,10 +49,8 @@ if (tmpIfTest) {
     const tmpReturnArg = $(x, `arrow`);
     return tmpReturnArg;
   };
-  const tmpCallCallee = $;
   const tmpCalleeParam = f();
-  const tmpCalleeParam$1 = `result`;
-  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  $(tmpCalleeParam, `result`);
 } else {
 }
 x = $(3, `after`);

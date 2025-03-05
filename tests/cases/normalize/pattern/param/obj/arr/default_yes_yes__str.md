@@ -38,10 +38,9 @@ let f = function ($$0) {
   let bindingPatternObjRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpObjLitVal = [`fail2`];
     const tmpCalleeParam = { x: tmpObjLitVal };
-    bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
+    bindingPatternObjRoot = $(tmpCalleeParam);
   } else {
     bindingPatternObjRoot = tmpParamBare;
   }
@@ -49,18 +48,16 @@ let f = function ($$0) {
   let objPatternAfterDefault = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = [`fail`];
-    objPatternAfterDefault = tmpCallCallee$1(tmpCalleeParam$1);
+    objPatternAfterDefault = $(tmpCalleeParam$1);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
   let arrPatternSplat = [...objPatternAfterDefault];
   return `ok`;
 };
-const tmpCallCallee$3 = $;
 const tmpCalleeParam$3 = f(`abc`, 10);
-tmpCallCallee$3(tmpCalleeParam$3);
+$(tmpCalleeParam$3);
 `````
 
 ## Output

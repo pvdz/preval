@@ -54,36 +54,31 @@ let f___4__ = function () /*6*/ {
     $(`hello`);
     return undefined___21__;
   };
-  const tmpCallCallee___24__ = $;
-  const tmpCalleeParam___28__ = THIS_IS_DA_______30__();
-  tmpCallCallee___33__(tmpCalleeParam___34__);
-  return undefined___37__;
+  const tmpCalleeParam___24__ = THIS_IS_DA_______26__();
+  $(tmpCalleeParam___30__);
+  return undefined___33__;
 };
-let g___40__ = function () /*42*/ {
+let g___36__ = function () /*38*/ {
   debugger;
   $(`always here`);
-  return undefined___51__;
+  return undefined___47__;
 };
-$(f___55__);
+$(f___51__);
 `````
 
 Ref tracking result:
 
                      | reads      | read by     | overWrites     | overwritten by
 f:
-  - w @4       | ########## | 55          | none           | none
-  - r @55      | 4
+  - w @4       | ########## | 51          | none           | none
+  - r @51      | 4
 
 THIS_IS_DA____$1:
   - w @10            | ########## | not read    | none           | none
 
-tmpCallCallee:
-  - w @24            | ########## | 33          | none           | none
-  - r @33            | 24
-
 tmpCalleeParam:
-  - w @28            | ########## | 34          | none           | none
-  - r @34            | 28
+  - w @24            | ########## | 30          | none           | none
+  - r @30            | 24
 
 g:
-  - w @40            | ########## | not read    | none           | none
+  - w @36            | ########## | not read    | none           | none

@@ -38,21 +38,18 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(0);
-  let a = tmpCallCallee(tmpCalleeParam);
+  let a = $(tmpCalleeParam);
   if (a) {
   } else {
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(2);
-    a = tmpCallCallee$1(tmpCalleeParam$1);
+    a = $(tmpCalleeParam$1);
   }
   $(a);
   return undefined;
 };
-const tmpCallCallee$3 = $;
 const tmpCalleeParam$3 = f();
-tmpCallCallee$3(tmpCalleeParam$3);
+$(tmpCalleeParam$3);
 `````
 
 ## Output

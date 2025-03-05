@@ -38,9 +38,8 @@ while (true) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
     } else {
-      const tmpCallCallee = $;
       const tmpCalleeParam = $(100);
-      tmpCallCallee(tmpCalleeParam);
+      $(tmpCalleeParam);
     }
   } else {
     break;

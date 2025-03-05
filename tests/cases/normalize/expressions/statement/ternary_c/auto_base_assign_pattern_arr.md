@@ -36,10 +36,9 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpCallCallee = $;
   const tmpArrElement = $(2);
   const tmpCalleeParam = [tmpArrElement];
-  const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
+  const arrAssignPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat = [...arrAssignPatternRhs];
   b = arrPatternSplat[0];
 }

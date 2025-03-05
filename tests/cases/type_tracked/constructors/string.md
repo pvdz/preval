@@ -28,10 +28,9 @@ $(String(x));
 const tmpBinBothLhs = ``;
 const tmpBinBothRhs = $(1);
 const x = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCallCallee = $;
 const tmpStringFirstArg = x;
 const tmpCalleeParam = $coerce(tmpStringFirstArg, `string`);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

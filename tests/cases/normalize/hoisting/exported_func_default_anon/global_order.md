@@ -52,10 +52,9 @@ let g = function () {
   const tmpReturnArg$1 = $();
   return tmpReturnArg$1;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
 const tmpCalleeParam$1 = g();
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, tmpCalleeParam$1);
 const tmpAnonDefaultExport = function () {
   debugger;
   const tmpReturnArg$3 = $();

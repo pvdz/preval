@@ -32,7 +32,6 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpDeleteObj = $(arg);
 a = delete tmpDeleteObj.y;
 let tmpCalleeParam = a;
@@ -43,7 +42,7 @@ if (tmpCalleeParam) {
   tmpCalleeParam = tmpNestedComplexRhs;
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, arg);
 `````
 

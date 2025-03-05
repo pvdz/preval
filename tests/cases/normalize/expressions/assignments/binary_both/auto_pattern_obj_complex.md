@@ -29,21 +29,18 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-const tmpCallCallee = $;
 let tmpBinBothLhs = undefined;
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = { a: 1, b: 2 };
-const tmpNestedAssignObjPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
 a = tmpNestedAssignObjPatternRhs.a;
 tmpBinBothLhs = tmpNestedAssignObjPatternRhs;
 let tmpBinBothRhs = undefined;
-const tmpCallCallee$3 = $;
 const tmpCalleeParam$3 = { a: 1, b: 2 };
-const tmpNestedAssignObjPatternRhs$1 = tmpCallCallee$3(tmpCalleeParam$3);
+const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$3);
 a = tmpNestedAssignObjPatternRhs$1.a;
 tmpBinBothRhs = tmpNestedAssignObjPatternRhs$1;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

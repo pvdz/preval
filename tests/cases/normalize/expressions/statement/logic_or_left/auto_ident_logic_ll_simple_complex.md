@@ -31,9 +31,8 @@ let a = { a: 999, b: 1000 };
 let tmpIfTest = 0;
 if (tmpIfTest) {
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  tmpIfTest = tmpCallCallee(tmpCalleeParam);
+  tmpIfTest = $(tmpCalleeParam);
   if (tmpIfTest) {
   } else {
     $(100);
@@ -47,8 +46,8 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
-if (tmpIfTest) {
+const tmpClusterSSA_tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
+if (tmpClusterSSA_tmpIfTest) {
 } else {
   $(100);
 }

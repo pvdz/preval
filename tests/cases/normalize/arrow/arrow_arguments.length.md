@@ -60,9 +60,8 @@ let f = function () {
   const tmpReturnArg = g(5, 6);
   return tmpReturnArg;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f(1, 2, 3, 4);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

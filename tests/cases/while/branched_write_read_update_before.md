@@ -45,11 +45,9 @@ while (true) {
   x = $(10);
   const tmpIfTest = x % 2;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     x = x + 1;
     let tmpCalleeParam = x;
-    const tmpCalleeParam$1 = `write`;
-    tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+    $(tmpCalleeParam, `write`);
   } else {
     $(x, `read`);
   }

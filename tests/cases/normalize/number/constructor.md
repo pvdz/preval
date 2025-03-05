@@ -23,9 +23,8 @@ $((500).constructor(`300`));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = $coerce(`300`, `number`);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

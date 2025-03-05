@@ -32,9 +32,8 @@ if ($) {
 const tmpObjLitVal = $(1);
 const o = { x: tmpObjLitVal };
 if ($) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = o.x;
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
 } else {
 }
 `````

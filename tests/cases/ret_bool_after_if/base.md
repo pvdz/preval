@@ -61,12 +61,10 @@ let f = function () {
   const tmpReturnArg = Boolean(x);
   return tmpReturnArg;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

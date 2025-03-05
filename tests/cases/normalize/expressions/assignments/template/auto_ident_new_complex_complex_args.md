@@ -32,18 +32,17 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
 const tmpNewCallee = $($);
-const tmpCalleeParam$1 = $(1);
-const tmpCalleeParam$3 = $(2);
-a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
-let tmpCallCallee$1 = a;
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
+const tmpCalleeParam$3 = $(1);
+const tmpCalleeParam$5 = $(2);
+a = new tmpNewCallee(tmpCalleeParam$3, tmpCalleeParam$5);
+let tmpCalleeParam$1 = a;
+const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}  after`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 
@@ -52,9 +51,9 @@ $(a);
 
 `````js filename=intro
 const tmpNewCallee /*:unknown*/ = $($);
-const tmpCalleeParam$1 /*:unknown*/ = $(1);
-const tmpCalleeParam$3 /*:unknown*/ = $(2);
-const a /*:object*/ = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpCalleeParam$3 /*:unknown*/ = $(1);
+const tmpCalleeParam$5 /*:unknown*/ = $(2);
+const a /*:object*/ = new tmpNewCallee(tmpCalleeParam$3, tmpCalleeParam$5);
 const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);

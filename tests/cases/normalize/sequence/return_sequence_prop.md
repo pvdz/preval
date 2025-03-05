@@ -37,9 +37,8 @@ let f = function () {
   const tmpReturnArg = tmpCompObj.foo;
   return tmpReturnArg;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

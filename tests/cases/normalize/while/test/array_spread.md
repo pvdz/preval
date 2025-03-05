@@ -30,9 +30,8 @@ $(`after`);
 
 `````js filename=intro
 while (true) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = [1, 2, 3];
-  const tmpArrSpread = tmpCallCallee(tmpCalleeParam);
+  const tmpArrSpread = $(tmpCalleeParam);
   const tmpIfTest = [...tmpArrSpread];
   if (tmpIfTest) {
     $(`loop`);

@@ -32,16 +32,14 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const tmpIfTest = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpIfTest = $(tmpCalleeParam, tmpCalleeParam$1);
 if (tmpIfTest) {
 } else {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$3 = $(1);
   const tmpCalleeParam$5 = $(2);
-  tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
+  $(tmpCalleeParam$3, tmpCalleeParam$5);
 }
 $(a);
 `````

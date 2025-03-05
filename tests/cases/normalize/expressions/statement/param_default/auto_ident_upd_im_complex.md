@@ -42,9 +42,8 @@ let f = function ($$0) {
   let p = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(b);
-    const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
+    const tmpPostUpdArgObj = $(tmpCalleeParam);
     const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
     const tmpAssignMemLhsObj = tmpPostUpdArgObj;
     const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
@@ -58,9 +57,8 @@ let f = function ($$0) {
 };
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 $(a, b);
 `````
 

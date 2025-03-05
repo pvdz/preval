@@ -49,10 +49,9 @@ const tmpBinBothLhs = tmpSwitchDisc;
 const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
-  const tmpCallCallee = $;
   const tmpObjLitVal = $(2);
   const tmpCalleeParam = { b: tmpObjLitVal };
-  const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+  const tmpAssignObjPatternRhs = $(tmpCalleeParam);
   b = tmpAssignObjPatternRhs.b;
 } else {
 }

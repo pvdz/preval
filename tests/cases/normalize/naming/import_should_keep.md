@@ -60,9 +60,8 @@ let g = function ($$0) {
 };
 let c = class {};
 export { c };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-const x = tmpCallCallee(tmpCalleeParam);
+const x = $(tmpCalleeParam);
 export { x };
 export { f };
 export { g };

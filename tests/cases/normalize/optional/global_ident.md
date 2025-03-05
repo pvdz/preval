@@ -23,7 +23,6 @@ $(global?.foo);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootProp = global;
 const tmpIfTest = tmpChainRootProp != null;
@@ -32,7 +31,7 @@ if (tmpIfTest) {
   tmpCalleeParam = tmpChainElementObject;
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

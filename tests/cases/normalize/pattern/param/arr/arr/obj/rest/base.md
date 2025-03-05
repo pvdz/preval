@@ -40,21 +40,17 @@ let f = function ($$0) {
   let arrPatternStep = arrPatternSplat[0];
   let arrPatternSplat$1 = [...arrPatternStep];
   let arrPatternStep$1 = arrPatternSplat$1[0];
-  const tmpCallCallee = objPatternRest;
   const tmpCalleeParam = arrPatternStep$1;
   const tmpCalleeParam$1 = [];
-  const tmpCalleeParam$3 = undefined;
-  let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+  let x = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
   return x;
 };
-const tmpCallCallee$1 = $;
-const tmpCallCallee$3 = f;
+const tmpCallCallee = f;
 const tmpArrElement$1 = { x: 1, y: 2, z: 3 };
 const tmpArrElement = [tmpArrElement$1, 20, 30];
-const tmpCalleeParam$7 = [tmpArrElement, 40, 50];
-const tmpCalleeParam$9 = 200;
-const tmpCalleeParam$5 = tmpCallCallee$3(tmpCalleeParam$7, tmpCalleeParam$9);
-tmpCallCallee$1(tmpCalleeParam$5);
+const tmpCalleeParam$5 = [tmpArrElement, 40, 50];
+const tmpCalleeParam$3 = tmpCallCallee(tmpCalleeParam$5, 200);
+$(tmpCalleeParam$3);
 `````
 
 ## Output

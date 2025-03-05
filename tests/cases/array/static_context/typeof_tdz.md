@@ -23,10 +23,9 @@ $(typeof [crash_hard]);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpUnaryArg = [crash_hard];
 const tmpCalleeParam = typeof tmpUnaryArg;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

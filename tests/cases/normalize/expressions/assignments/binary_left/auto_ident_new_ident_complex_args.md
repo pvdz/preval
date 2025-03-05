@@ -32,7 +32,6 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpNewCallee = $;
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
@@ -40,7 +39,7 @@ a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 let tmpBinBothLhs = a;
 const tmpBinBothRhs = $(100);
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

@@ -36,16 +36,14 @@ if ($(0)) {
 
 `````js filename=intro
 const x = !$;
-const tmpCallCallee = $;
 const tmpCalleeParam = !x;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(`fail`);
 } else {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = Boolean(x);
-  tmpCallCallee$1(tmpCalleeParam$1);
+  $(tmpCalleeParam$1);
 }
 `````
 

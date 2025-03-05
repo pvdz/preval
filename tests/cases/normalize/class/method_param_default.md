@@ -52,10 +52,9 @@ let x = class {
     }
   }
 };
-const tmpCallCallee = $;
 const tmpCallObj = new x();
 const tmpCalleeParam = tmpCallObj.y();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

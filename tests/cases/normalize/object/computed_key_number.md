@@ -23,9 +23,8 @@ $({ [100]: 10 });
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = { [100]: 10 };
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

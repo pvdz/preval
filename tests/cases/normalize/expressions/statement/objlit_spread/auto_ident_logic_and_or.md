@@ -28,20 +28,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
-let tmpObjSpreadArg = tmpCallCallee(tmpCalleeParam);
+let tmpObjSpreadArg = $(tmpCalleeParam);
 if (tmpObjSpreadArg) {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
-  tmpObjSpreadArg = tmpCallCallee$1(tmpCalleeParam$1);
+  tmpObjSpreadArg = $(tmpCalleeParam$1);
 } else {
 }
 if (tmpObjSpreadArg) {
 } else {
-  const tmpCallCallee$3 = $;
   const tmpCalleeParam$3 = $(2);
-  tmpObjSpreadArg = tmpCallCallee$3(tmpCalleeParam$3);
+  tmpObjSpreadArg = $(tmpCalleeParam$3);
 }
 ({ ...tmpObjSpreadArg });
 $(a);

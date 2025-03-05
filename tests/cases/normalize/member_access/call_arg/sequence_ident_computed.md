@@ -33,12 +33,11 @@ $(c);
 `````js filename=intro
 let b = `foo`;
 let c = 1;
-const tmpCallCallee = $;
 $(1);
 const tmpCompObj = b;
 const tmpCompProp = $(`length`);
 const tmpCalleeParam = tmpCompObj[tmpCompProp];
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(c);
 `````
 

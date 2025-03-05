@@ -33,9 +33,8 @@ const x = tmpBinBothLhs * tmpBinBothRhs;
 const tmpBinBothLhs$1 = ``;
 const tmpBinBothRhs$1 = $(2);
 const y = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpCallCallee = $;
 const tmpCalleeParam = x === y;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

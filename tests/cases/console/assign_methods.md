@@ -45,7 +45,6 @@ $(
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = $console_log;
 const tmpCalleeParam$1 = $console_warn;
 const tmpCalleeParam$3 = $console_error;
@@ -56,7 +55,7 @@ const tmpCalleeParam$11 = $console_timeEnd;
 const tmpCalleeParam$13 = $console_group;
 const tmpCalleeParam$15 = $console_groupEnd;
 const tmpCalleeParam$17 = console.foo;
-tmpCallCallee(
+$(
   tmpCalleeParam,
   tmpCalleeParam$1,
   tmpCalleeParam$3,

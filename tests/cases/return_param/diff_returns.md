@@ -75,15 +75,12 @@ let f = function ($$0) {
     return 5;
   }
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f(1);
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpCalleeParam$1 = f(2);
-tmpCallCallee$1(tmpCalleeParam$1);
-const tmpCallCallee$3 = $;
+$(tmpCalleeParam$1);
 const tmpCalleeParam$3 = f(`three`);
-tmpCallCallee$3(tmpCalleeParam$3);
+$(tmpCalleeParam$3);
 `````
 
 ## Output

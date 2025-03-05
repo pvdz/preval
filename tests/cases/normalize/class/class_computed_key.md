@@ -42,10 +42,9 @@ let x = class {
     return tmpReturnArg;
   }
 };
-const tmpCallCallee = $;
 const tmpCallObj = new x();
 const tmpCalleeParam = tmpCallObj.f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

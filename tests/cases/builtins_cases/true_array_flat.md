@@ -23,12 +23,11 @@ $(true + [].flat);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpBinBothLhs = true;
 const tmpCompObj = [];
 const tmpBinBothRhs = tmpCompObj.flat;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

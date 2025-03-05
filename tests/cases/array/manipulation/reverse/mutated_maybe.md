@@ -35,9 +35,8 @@ $(rra);
 `````js filename=intro
 const arr = [1, 2, 3, 4];
 if ($) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = arr.pop();
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
 } else {
 }
 const rra = arr.reverse();

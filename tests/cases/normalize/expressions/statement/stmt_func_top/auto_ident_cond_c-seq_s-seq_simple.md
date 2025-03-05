@@ -40,16 +40,14 @@ let f = function () {
   const tmpIfTest = $(30);
   if (tmpIfTest) {
   } else {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(100);
-    tmpCallCallee(tmpCalleeParam);
+    $(tmpCalleeParam);
   }
   $(a);
   return undefined;
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

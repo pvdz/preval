@@ -23,11 +23,9 @@ $(Boolean([`foo`]));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
-const tmpCallCallee$1 = Boolean;
 const tmpCalleeParam$1 = [`foo`];
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
-tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam = Boolean(tmpCalleeParam$1);
+$(tmpCalleeParam);
 `````
 
 ## Output

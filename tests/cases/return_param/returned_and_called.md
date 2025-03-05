@@ -64,36 +64,33 @@ let f = function ($$0) {
   $(y);
   return y;
 };
-const tmpCallCallee = $;
-const tmpCallCallee$1 = f;
+const tmpCallCallee = f;
 const tmpCalleeParam$1 = function ($$0) {
   let a = $$0;
   debugger;
   $(a, `first`);
   return undefined;
 };
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$3 = $;
-const tmpCallCallee$5 = f;
+const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1);
+$(tmpCalleeParam);
+const tmpCallCallee$1 = f;
 const tmpCalleeParam$5 = function ($$0) {
   let a$1 = $$0;
   debugger;
   $(a$1, `second`);
   return undefined;
 };
-const tmpCalleeParam$3 = tmpCallCallee$5(tmpCalleeParam$5);
-tmpCallCallee$3(tmpCalleeParam$3);
-const tmpCallCallee$7 = $;
-const tmpCallCallee$9 = f;
+const tmpCalleeParam$3 = tmpCallCallee$1(tmpCalleeParam$5);
+$(tmpCalleeParam$3);
+const tmpCallCallee$3 = f;
 const tmpCalleeParam$9 = function ($$0) {
   let a$3 = $$0;
   debugger;
   $(a$3, `third`);
   return undefined;
 };
-const tmpCalleeParam$7 = tmpCallCallee$9(tmpCalleeParam$9);
-tmpCallCallee$7(tmpCalleeParam$7);
+const tmpCalleeParam$7 = tmpCallCallee$3(tmpCalleeParam$9);
+$(tmpCalleeParam$7);
 `````
 
 ## Output

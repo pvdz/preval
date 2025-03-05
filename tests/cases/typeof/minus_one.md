@@ -23,9 +23,8 @@ $(typeof -1);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = `number`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -23,10 +23,9 @@ $([...$(`foo`)]);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpArrSpread = $(`foo`);
 const tmpCalleeParam = [...tmpArrSpread];
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

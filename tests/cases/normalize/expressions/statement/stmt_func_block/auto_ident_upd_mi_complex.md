@@ -45,9 +45,8 @@ let f = function () {
   debugger;
   let b = { x: 1 };
   let a = { a: 999, b: 1000 };
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(b);
-  const tmpAssignMemLhsObj = tmpCallCallee(tmpCalleeParam);
+  const tmpAssignMemLhsObj = $(tmpCalleeParam);
   const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
   const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
   const tmpAssignMemRhs = tmpCompoundAssignLhs - 1;
@@ -55,9 +54,8 @@ let f = function () {
   $(a, b);
   return undefined;
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

@@ -29,9 +29,8 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
-let tmpAnonDefaultExport = tmpCallCallee(tmpCalleeParam);
+let tmpAnonDefaultExport = $(tmpCalleeParam);
 if (tmpAnonDefaultExport) {
   tmpAnonDefaultExport = 2;
 } else {

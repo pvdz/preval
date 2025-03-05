@@ -36,9 +36,8 @@ const tmpObjLitVal = function () {
   return tmpReturnArg;
 };
 const o = { x: tmpObjLitVal };
-const tmpCallCallee = $;
 const tmpCalleeParam = o.x();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

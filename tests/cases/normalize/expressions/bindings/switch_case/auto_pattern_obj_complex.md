@@ -39,9 +39,8 @@ let a = undefined;
 const tmpSwitchDisc = 1;
 const tmpIfTest = tmpSwitchDisc === 1;
 if (tmpIfTest) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = { a: 1, b: 2 };
-  const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+  const tmpAssignObjPatternRhs = $(tmpCalleeParam);
   a = tmpAssignObjPatternRhs.a;
   $(a);
 } else {

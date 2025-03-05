@@ -34,9 +34,8 @@ const tmpIfTest = 30;
 if (tmpIfTest) {
   tmpAnonDefaultExport = $(2);
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpAnonDefaultExport = tmpCallCallee(tmpCalleeParam);
+  tmpAnonDefaultExport = $(tmpCalleeParam);
 }
 export { tmpAnonDefaultExport as default };
 $(a);

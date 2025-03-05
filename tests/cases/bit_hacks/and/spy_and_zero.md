@@ -23,11 +23,10 @@ $($spy(3.402823669209385e38) & 0);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpBinLhs = $spy(3.402823669209385e38);
 tmpBinLhs & 0;
 const tmpCalleeParam = 0;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

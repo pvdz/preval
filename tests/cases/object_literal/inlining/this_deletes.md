@@ -37,18 +37,15 @@ const tmpObjLitVal = 1;
 const tmpObjLitVal$1 = function () {
   const tmpPrevalAliasThis = this;
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = delete tmpPrevalAliasThis.g;
-  tmpCallCallee(tmpCalleeParam);
-  const tmpCallCallee$1 = $;
+  $(tmpCalleeParam);
   const tmpCalleeParam$1 = tmpPrevalAliasThis.g;
-  tmpCallCallee$1(tmpCalleeParam$1);
+  $(tmpCalleeParam$1);
   return undefined;
 };
 const obj = { g: tmpObjLitVal, f: tmpObjLitVal$1 };
-const tmpCallCallee$3 = $;
 const tmpCalleeParam$3 = obj.f();
-tmpCallCallee$3(tmpCalleeParam$3);
+$(tmpCalleeParam$3);
 `````
 
 ## Output

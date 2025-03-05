@@ -40,9 +40,8 @@ let f = function () {
   debugger;
   let y = undefined;
   y = undefined;
-  const tmpCallCallee = $;
   const tmpCalleeParam = { foo: 10 };
-  const tmpChainRootProp = tmpCallCallee(tmpCalleeParam);
+  const tmpChainRootProp = $(tmpCalleeParam);
   const tmpIfTest = tmpChainRootProp != null;
   if (tmpIfTest) {
     const tmpChainElementObject = tmpChainRootProp.foo;
@@ -52,9 +51,8 @@ let f = function () {
   const tmpReturnArg = $(y);
   return tmpReturnArg;
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

@@ -32,13 +32,12 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpUnaryArg = $(x);
 a = typeof tmpUnaryArg;
 let tmpObjLitPropKey = a;
 const tmpObjLitPropVal = 10;
 const tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, x);
 `````
 

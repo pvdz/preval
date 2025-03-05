@@ -47,9 +47,8 @@ const obj = { [`1,2,3`]: `pass` };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     arr.reverse();
-    const tmpCallCallee = $;
     const tmpCalleeParam = obj[arr];
-    tmpCallCallee(tmpCalleeParam);
+    $(tmpCalleeParam);
   } catch (e) {
     $(`fail`);
   }

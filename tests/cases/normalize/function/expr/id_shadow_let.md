@@ -39,17 +39,15 @@ $(x, typeof f);
 const r = function () {
   debugger;
   let r$1 = 20;
-  const tmpCallCallee = $;
   const tmpCalleeParam = typeof r$1;
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   return r$1;
 };
 const f = r;
 const x = f();
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = x;
 const tmpCalleeParam$3 = typeof f;
-tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
+$(tmpCalleeParam$1, tmpCalleeParam$3);
 `````
 
 ## Output

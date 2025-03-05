@@ -26,9 +26,8 @@ $(typeof x);
 
 `````js filename=intro
 const x = class {};
-const tmpCallCallee = $;
 const tmpCalleeParam = typeof x;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

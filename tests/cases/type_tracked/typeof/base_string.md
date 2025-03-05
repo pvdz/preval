@@ -28,9 +28,8 @@ $(typeof x);
 const tmpBinBothLhs = ``;
 const tmpBinBothRhs = $(2);
 const x = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCallCallee = $;
 const tmpCalleeParam = typeof x;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

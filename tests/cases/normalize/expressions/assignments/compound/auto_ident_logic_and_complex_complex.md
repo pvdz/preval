@@ -28,20 +28,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpBinBothLhs = a;
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = $(1);
-let tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
+let tmpBinBothRhs = $(tmpCalleeParam$1);
 if (tmpBinBothRhs) {
-  const tmpCallCallee$3 = $;
   const tmpCalleeParam$3 = $(2);
-  tmpBinBothRhs = tmpCallCallee$3(tmpCalleeParam$3);
+  tmpBinBothRhs = $(tmpCalleeParam$3);
 } else {
 }
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

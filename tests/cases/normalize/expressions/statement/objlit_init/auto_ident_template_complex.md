@@ -26,8 +26,8 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs = `foo`;
-const tmpCallCallee = $(1);
-const tmpBinBothRhs = $coerce(tmpCallCallee, `string`);
+const tmpCalleeParam = $(1);
+const tmpBinBothRhs = $coerce(tmpCalleeParam, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 let a = $coerce(tmpBinLhs, `plustr`);
 $(a);
@@ -37,8 +37,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee /*:unknown*/ = $(1);
-const tmpBinBothRhs /*:string*/ = $coerce(tmpCallCallee, `string`);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam, `string`);
 const tmpBinLhs /*:string*/ = `foo${tmpBinBothRhs}`;
 $(tmpBinLhs);
 `````

@@ -69,10 +69,8 @@ let g = function ($$0) {
   };
   if ($) {
     f.foo = a;
-    const tmpCallCallee = $;
     const tmpCalleeParam = f.foo;
-    const tmpCalleeParam$1 = `init`;
-    tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+    $(tmpCalleeParam, `init`);
   } else {
   }
   const tmpReturnArg = function () {
@@ -82,26 +80,18 @@ let g = function ($$0) {
   };
   return tmpReturnArg;
 };
-const tmpCallCallee$1 = $;
 const tmpCallComplexCallee = g(1);
-const tmpCalleeParam$3 = tmpCallComplexCallee();
-const tmpCalleeParam$5 = `outer`;
-tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
-const tmpCallCallee$3 = $;
+const tmpCalleeParam$1 = tmpCallComplexCallee();
+$(tmpCalleeParam$1, `outer`);
 const tmpCallComplexCallee$1 = g(2);
-const tmpCalleeParam$7 = tmpCallComplexCallee$1();
-const tmpCalleeParam$9 = `outer`;
-tmpCallCallee$3(tmpCalleeParam$7, tmpCalleeParam$9);
-const tmpCallCallee$5 = $;
+const tmpCalleeParam$3 = tmpCallComplexCallee$1();
+$(tmpCalleeParam$3, `outer`);
 const tmpCallComplexCallee$3 = g(3);
-const tmpCalleeParam$11 = tmpCallComplexCallee$3();
-const tmpCalleeParam$13 = `outer`;
-tmpCallCallee$5(tmpCalleeParam$11, tmpCalleeParam$13);
-const tmpCallCallee$7 = $;
+const tmpCalleeParam$5 = tmpCallComplexCallee$3();
+$(tmpCalleeParam$5, `outer`);
 const tmpCallComplexCallee$5 = g(4);
-const tmpCalleeParam$15 = tmpCallComplexCallee$5();
-const tmpCalleeParam$17 = `outer`;
-tmpCallCallee$7(tmpCalleeParam$15, tmpCalleeParam$17);
+const tmpCalleeParam$7 = tmpCallComplexCallee$5();
+$(tmpCalleeParam$7, `outer`);
 `````
 
 ## Output
@@ -130,17 +120,17 @@ const g /*:(number)=>function*/ = function ($$0) {
   return tmpReturnArg;
 };
 const tmpCallComplexCallee /*:function*/ = g(1);
-const tmpCalleeParam$3 /*:unknown*/ = tmpCallComplexCallee();
-$(tmpCalleeParam$3, `outer`);
+const tmpCalleeParam$1 /*:unknown*/ = tmpCallComplexCallee();
+$(tmpCalleeParam$1, `outer`);
 const tmpCallComplexCallee$1 /*:function*/ = g(2);
-const tmpCalleeParam$7 /*:unknown*/ = tmpCallComplexCallee$1();
-$(tmpCalleeParam$7, `outer`);
+const tmpCalleeParam$3 /*:unknown*/ = tmpCallComplexCallee$1();
+$(tmpCalleeParam$3, `outer`);
 const tmpCallComplexCallee$3 /*:function*/ = g(3);
-const tmpCalleeParam$11 /*:unknown*/ = tmpCallComplexCallee$3();
-$(tmpCalleeParam$11, `outer`);
+const tmpCalleeParam$5 /*:unknown*/ = tmpCallComplexCallee$3();
+$(tmpCalleeParam$5, `outer`);
 const tmpCallComplexCallee$5 /*:function*/ = g(4);
-const tmpCalleeParam$15 /*:unknown*/ = tmpCallComplexCallee$5();
-$(tmpCalleeParam$15, `outer`);
+const tmpCalleeParam$7 /*:unknown*/ = tmpCallComplexCallee$5();
+$(tmpCalleeParam$7, `outer`);
 `````
 
 ## PST Output

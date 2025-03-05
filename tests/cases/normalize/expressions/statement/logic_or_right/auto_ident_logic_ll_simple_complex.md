@@ -34,9 +34,8 @@ if (tmpIfTest) {
   tmpIfTest = 0;
   if (tmpIfTest) {
   } else {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(1);
-    tmpCallCallee(tmpCalleeParam);
+    $(tmpCalleeParam);
   }
 }
 $(a);

@@ -51,9 +51,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
     const tmpAssignMemRhs = tmpForOfNext.value;
     tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
-    const tmpCallCallee = $;
     const tmpCalleeParam = a.x;
-    tmpCallCallee(tmpCalleeParam);
+    $(tmpCalleeParam);
   }
 }
 `````

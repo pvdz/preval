@@ -28,25 +28,22 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 a = 0;
 if (a) {
 } else {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
-  a = tmpCallCallee$1(tmpCalleeParam$1);
+  a = $(tmpCalleeParam$1);
 }
 let tmpBinBothLhs = a;
 a = 0;
 if (a) {
 } else {
-  const tmpCallCallee$3 = $;
   const tmpCalleeParam$3 = $(1);
-  a = tmpCallCallee$3(tmpCalleeParam$3);
+  a = $(tmpCalleeParam$3);
 }
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 
@@ -55,10 +52,10 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
-const a /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpCalleeParam$3 /*:unknown*/ = $(1);
 const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$3);
-const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
+const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a$1 + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````

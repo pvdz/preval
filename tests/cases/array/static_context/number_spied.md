@@ -49,10 +49,9 @@ const spy = {
     return undefined;
   },
 };
-const tmpCallCallee = $;
 const tmpStringFirstArg = [spy, spy];
 const tmpCalleeParam = $coerce(tmpStringFirstArg, `number`);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -42,20 +42,17 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $forIn;
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = { x: 1 };
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
-let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam = $(tmpCalleeParam$1);
+let tmpForInGen = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForInNext = tmpForInGen.next();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {
     break;
   } else {
-    const tmpCallCallee$3 = $;
     const tmpCalleeParam$3 = $(b);
-    const tmpNestedAssignObj = tmpCallCallee$3(tmpCalleeParam$3);
+    const tmpNestedAssignObj = $(tmpCalleeParam$3);
     const tmpBinLhs = tmpNestedAssignObj.x;
     const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
     tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;

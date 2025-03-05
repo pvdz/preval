@@ -30,9 +30,8 @@ $(y);
 
 `````js filename=intro
 const x = [1, 2, 3];
-const tmpCallCallee = $;
 const tmpCalleeParam = x.join(``);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 const y = [`a`, ...x, `b`];
 $(y);
 `````

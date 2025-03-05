@@ -90,19 +90,17 @@ const f = function ($$0) {
   }
 };
 const x = $(`co_rn`);
-const tmpCallCallee = $;
-const tmpCallCallee$1 = f;
+const tmpCallCallee = f;
 const tmpStringFirstArg = x;
 const tmpCalleeParam$1 = $coerce(tmpStringFirstArg, `string`);
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
-tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1);
+$(tmpCalleeParam);
 const y = $(`m#az#e`);
-const tmpCallCallee$3 = $;
-const tmpCallCallee$5 = f;
+const tmpCallCallee$1 = f;
 const tmpStringFirstArg$1 = y;
 const tmpCalleeParam$5 = $coerce(tmpStringFirstArg$1, `string`);
-const tmpCalleeParam$3 = tmpCallCallee$5(tmpCalleeParam$5);
-tmpCallCallee$3(tmpCalleeParam$3);
+const tmpCalleeParam$3 = tmpCallCallee$1(tmpCalleeParam$5);
+$(tmpCalleeParam$3);
 `````
 
 ## Output

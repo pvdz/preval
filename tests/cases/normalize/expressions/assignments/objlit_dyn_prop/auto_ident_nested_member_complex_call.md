@@ -38,7 +38,6 @@ let b = { x: 1 };
 let c = { y: 2 };
 let d = 3;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`x`);
 const varInitAssignLhsComputedObj = $(c);
@@ -52,7 +51,7 @@ a = tmpNestedPropAssignRhs;
 let tmpObjLitPropKey = a;
 const tmpObjLitPropVal = 10;
 const tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, b, c, d);
 `````
 

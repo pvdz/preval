@@ -39,17 +39,15 @@ let f = function () {
   let bindingPatternArrRoot = { a: 999, b: 1000 };
   let arrPatternSplat = [...bindingPatternArrRoot];
   let a = arrPatternSplat[0];
-  const tmpCallCallee = $;
   const tmpCalleeParam = [1, 2];
-  const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
+  const arrAssignPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat$1 = [...arrAssignPatternRhs];
   a = arrPatternSplat$1[0];
   $(a);
   return undefined;
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

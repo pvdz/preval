@@ -83,10 +83,8 @@ let outer = function () {
   }
 };
 if ($) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = outer();
-  const tmpCalleeParam$1 = `outer`;
-  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  $(tmpCalleeParam, `outer`);
 } else {
 }
 `````

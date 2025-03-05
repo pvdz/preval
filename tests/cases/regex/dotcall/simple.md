@@ -26,10 +26,9 @@ $(/foo/.test(arg));
 
 `````js filename=intro
 const arg = $(`give food`);
-const tmpCallCallee = $;
 const tmpCallObj = /foo/;
 const tmpCalleeParam = tmpCallObj.test(arg);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

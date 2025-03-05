@@ -32,7 +32,6 @@ const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
 const tmpAssignMemLhsObj = obj.a;
 tmpAssignMemLhsObj.b = 15;
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootProp = obj;
 const tmpIfTest = tmpChainRootProp != null;
@@ -46,7 +45,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

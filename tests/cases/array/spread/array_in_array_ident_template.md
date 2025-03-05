@@ -34,13 +34,13 @@ $(y);
 let a = $(10);
 const tmpArrElement = 1;
 const tmpBinBothLhs$1 = ``;
-const tmpCallCallee = $(`x`);
-const tmpBinBothRhs$1 = $coerce(tmpCallCallee, `string`);
+const tmpCalleeParam = $(`x`);
+const tmpBinBothRhs$1 = $coerce(tmpCalleeParam, `string`);
 const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
 const tmpStringConcatR = $coerce(tmpBinLhs$1, `plustr`);
 const tmpBinBothLhs = `${tmpStringConcatR} `;
-const tmpCallCallee$1 = $(`y`);
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
+const tmpCalleeParam$1 = $(`y`);
+const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpArrElement$1 = $coerce(tmpBinLhs, `plustr`);
 const x = [tmpArrElement, tmpArrElement$1, 3];
@@ -57,10 +57,10 @@ $(y);
 
 `````js filename=intro
 $(10);
-const tmpCallCallee /*:unknown*/ = $(`x`);
-const tmpBinBothRhs$1 /*:string*/ = $coerce(tmpCallCallee, `string`);
-const tmpCallCallee$1 /*:unknown*/ = $(`y`);
-const tmpBinBothRhs /*:string*/ = $coerce(tmpCallCallee$1, `string`);
+const tmpCalleeParam /*:unknown*/ = $(`x`);
+const tmpBinBothRhs$1 /*:string*/ = $coerce(tmpCalleeParam, `string`);
+const tmpCalleeParam$1 /*:unknown*/ = $(`y`);
+const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
 if ($) {
   $(20);
 } else {

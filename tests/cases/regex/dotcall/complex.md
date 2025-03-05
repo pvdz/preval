@@ -32,13 +32,11 @@ $dotCall(f, regex, `test`, arg, { some: `stuff` });
 const arg = $(`give food`);
 const regex = /foo/;
 const f = $regex_test;
-const tmpCallCallee = $dotCall;
 const tmpCalleeParam = f;
 const tmpCalleeParam$1 = regex;
-const tmpCalleeParam$3 = `test`;
-const tmpCalleeParam$5 = arg;
-const tmpCalleeParam$7 = { some: `stuff` };
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5, tmpCalleeParam$7);
+const tmpCalleeParam$3 = arg;
+const tmpCalleeParam$5 = { some: `stuff` };
+$dotCall(tmpCalleeParam, tmpCalleeParam$1, `test`, tmpCalleeParam$3, tmpCalleeParam$5);
 `````
 
 ## Output
@@ -47,8 +45,8 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam
 `````js filename=intro
 const arg /*:unknown*/ = $(`give food`);
 const regex /*:regex*/ = /foo/;
-const tmpCalleeParam$7 /*:object*/ = { some: `stuff` };
-regex.test(arg, tmpCalleeParam$7);
+const tmpCalleeParam$5 /*:object*/ = { some: `stuff` };
+regex.test(arg, tmpCalleeParam$5);
 `````
 
 ## PST Output

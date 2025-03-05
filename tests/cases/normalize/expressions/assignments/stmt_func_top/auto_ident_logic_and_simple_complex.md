@@ -39,17 +39,15 @@ let f = function () {
   let a = { a: 999, b: 1000 };
   a = 1;
   if (a) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(1);
-    a = tmpCallCallee(tmpCalleeParam);
+    a = $(tmpCalleeParam);
   } else {
   }
   $(a);
   return undefined;
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

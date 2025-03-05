@@ -54,10 +54,9 @@ const f = function $free($$0, $$1, $$2) {
   let b = $$1;
   let c = $$2;
   debugger;
-  const tmpCallCallee = parseInt;
   const tmpCalleeParam = a + 5;
   const tmpCalleeParam$1 = b;
-  const one = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  const one = parseInt(tmpCalleeParam, tmpCalleeParam$1);
   const two = one.slice(1, c);
   return two;
 };

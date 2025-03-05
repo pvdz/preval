@@ -38,15 +38,13 @@ $(obj.encode());
 const tmpObjLitVal = function () {
   const tmpPrevalAliasThis = this;
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = tmpPrevalAliasThis.str;
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   return undefined;
 };
 const obj = { encode: tmpObjLitVal, str: `abc` };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = obj.encode();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

@@ -55,14 +55,12 @@ a = function () {
   const tmpReturnArg = a();
   return tmpReturnArg;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = a();
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpBinBothLhs = a();
 const tmpBinBothRhs = a();
 const tmpCalleeParam$1 = tmpBinBothLhs === tmpBinBothRhs;
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

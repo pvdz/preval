@@ -70,9 +70,8 @@ g(d);
 let g = function ($$0) {
   let x = $$0;
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = x();
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   return undefined;
 };
 const objd = {

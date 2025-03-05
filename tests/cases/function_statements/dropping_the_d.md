@@ -60,9 +60,8 @@ let THIS_IS_DA____$1 = function () {
   $(`hello`);
   return undefined;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = THIS_IS_DA____();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

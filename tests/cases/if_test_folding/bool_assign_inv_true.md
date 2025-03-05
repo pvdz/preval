@@ -65,9 +65,8 @@ let f = function () {
   return y;
 };
 f();
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

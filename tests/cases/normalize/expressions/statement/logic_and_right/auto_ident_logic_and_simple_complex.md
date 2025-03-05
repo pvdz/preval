@@ -32,9 +32,8 @@ let tmpIfTest = $(100);
 if (tmpIfTest) {
   tmpIfTest = 1;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(1);
-    tmpCallCallee(tmpCalleeParam);
+    $(tmpCalleeParam);
   } else {
   }
 } else {

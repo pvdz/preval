@@ -37,10 +37,9 @@ $(a, b);
 let b = [];
 let a = { a: 999, b: 1000 };
 while (true) {
-  const tmpCallCallee = $;
   const tmpArrElement = $(2);
   const tmpCalleeParam = [tmpArrElement];
-  const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
+  const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   b = arrPatternSplat[0];
   a = tmpNestedAssignArrPatternRhs;

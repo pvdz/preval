@@ -37,16 +37,14 @@ f = function () {
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = f();
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   return undefined;
 };
 f = function () {
   debugger;
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = f();
-  tmpCallCallee$1(tmpCalleeParam$1);
+  $(tmpCalleeParam$1);
   return undefined;
 };
 `````

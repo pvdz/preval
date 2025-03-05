@@ -74,9 +74,8 @@ if (tmpIfTest$3) {
   if (tmpIfTest$5) {
     a = 2;
   } else {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(100);
-    a = tmpCallCallee(tmpCalleeParam);
+    a = $(tmpCalleeParam);
   }
 } else {
 }

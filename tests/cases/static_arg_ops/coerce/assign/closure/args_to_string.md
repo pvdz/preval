@@ -52,9 +52,8 @@ const f = function ($$0, $$1) {
   let c = $$0;
   let d = $$1;
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = $coerce(tmpPrevalAliasArgumentsAny, `string`);
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   $(1);
   $(2);
   $(d);

@@ -31,9 +31,8 @@ let a = { a: 999, b: 1000 };
 let tmpObjSpreadArg = 0;
 if (tmpObjSpreadArg) {
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  tmpObjSpreadArg = tmpCallCallee(tmpCalleeParam);
+  tmpObjSpreadArg = $(tmpCalleeParam);
 }
 ({ ...tmpObjSpreadArg });
 $(a);

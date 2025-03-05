@@ -28,17 +28,15 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpCalleeParamSpread = undefined;
 const tmpIfTest = $(30);
 if (tmpIfTest) {
   tmpCalleeParamSpread = $(60);
 } else {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam = $(100);
-  tmpCalleeParamSpread = tmpCallCallee$1(tmpCalleeParam);
+  tmpCalleeParamSpread = $(tmpCalleeParam);
 }
-tmpCallCallee(...tmpCalleeParamSpread);
+$(...tmpCalleeParamSpread);
 $(a);
 `````
 

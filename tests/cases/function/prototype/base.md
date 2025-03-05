@@ -28,13 +28,12 @@ $(
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCompObj = function () {
   debugger;
   return undefined;
 };
 const tmpCalleeParam = tmpCompObj.prototype;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

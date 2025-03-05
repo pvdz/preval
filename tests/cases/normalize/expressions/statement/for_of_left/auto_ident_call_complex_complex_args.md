@@ -42,21 +42,19 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $forOf;
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = { x: 1 };
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
-let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam = $(tmpCalleeParam$1);
+let tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
   } else {
-    const tmpCallCallee$3 = $($);
+    const tmpCallCallee = $($);
     const tmpCalleeParam$3 = $(1);
     const tmpCalleeParam$5 = $(2);
-    const tmpAssignMemLhsObj = tmpCallCallee$3(tmpCalleeParam$3, tmpCalleeParam$5);
+    const tmpAssignMemLhsObj = tmpCallCallee(tmpCalleeParam$3, tmpCalleeParam$5);
     const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
     const tmpAssignMemRhs = tmpForOfNext.value;
     tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
@@ -78,10 +76,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const tmpCallCallee$3 /*:unknown*/ = $($);
+    const tmpCallCallee /*:unknown*/ = $($);
     const tmpCalleeParam$3 /*:unknown*/ = $(1);
     const tmpCalleeParam$5 /*:unknown*/ = $(2);
-    const tmpAssignMemLhsObj /*:unknown*/ = tmpCallCallee$3(tmpCalleeParam$3, tmpCalleeParam$5);
+    const tmpAssignMemLhsObj /*:unknown*/ = tmpCallCallee(tmpCalleeParam$3, tmpCalleeParam$5);
     const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   }

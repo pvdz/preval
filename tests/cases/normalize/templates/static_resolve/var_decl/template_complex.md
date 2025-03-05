@@ -27,12 +27,12 @@ $(x);
 `````js filename=intro
 const tmpBinBothLhs = ``;
 const tmpBinBothLhs$1 = `a `;
-const tmpCallCallee$1 = $(1);
-const tmpBinBothRhs$1 = $coerce(tmpCallCallee$1, `string`);
+const tmpCalleeParam$1 = $(1);
+const tmpBinBothRhs$1 = $coerce(tmpCalleeParam$1, `string`);
 const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
 const tmpStringConcatR = $coerce(tmpBinLhs$1, `plustr`);
-const tmpCallCallee = `${tmpStringConcatR} b`;
-const tmpBinBothRhs = $coerce(tmpCallCallee, `string`);
+const tmpCalleeParam = `${tmpStringConcatR} b`;
+const tmpBinBothRhs = $coerce(tmpCalleeParam, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 let x = $coerce(tmpBinLhs, `plustr`);
 $(x);
@@ -42,10 +42,10 @@ $(x);
 
 
 `````js filename=intro
-const tmpCallCallee$1 /*:unknown*/ = $(1);
-const tmpBinBothRhs$1 /*:string*/ = $coerce(tmpCallCallee$1, `string`);
-const tmpCallCallee /*:string*/ = `a ${tmpBinBothRhs$1} b`;
-$(tmpCallCallee);
+const tmpCalleeParam$1 /*:unknown*/ = $(1);
+const tmpBinBothRhs$1 /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
+const tmpCalleeParam /*:string*/ = `a ${tmpBinBothRhs$1} b`;
+$(tmpCalleeParam);
 `````
 
 ## PST Output

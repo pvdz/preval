@@ -23,11 +23,10 @@ $(/1/ + `xyz`);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpBinLhs = /1/;
 const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}xyz`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

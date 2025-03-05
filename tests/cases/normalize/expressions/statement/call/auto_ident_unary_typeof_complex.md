@@ -32,10 +32,9 @@ $(a, arg);
 `````js filename=intro
 let arg = 1;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpUnaryArg = $(arg);
 const tmpCalleeParam = typeof tmpUnaryArg;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, arg);
 `````
 

@@ -37,10 +37,9 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 while (true) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = $(2);
-  a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  a = $(tmpCalleeParam, tmpCalleeParam$1);
   let tmpIfTest = a;
   if (tmpIfTest) {
     $(1);

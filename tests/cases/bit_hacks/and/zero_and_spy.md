@@ -23,11 +23,10 @@ $(0 & $spy(3.402823669209385e38));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpBinBothLhs = 0;
 const tmpBinBothRhs = $spy(3.402823669209385e38);
 const tmpCalleeParam = tmpBinBothLhs & tmpBinBothRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

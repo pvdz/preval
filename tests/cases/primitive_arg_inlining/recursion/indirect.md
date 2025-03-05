@@ -75,9 +75,8 @@ let h = function ($$0) {
     return tmpReturnArg$3;
   }
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f(0);
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

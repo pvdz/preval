@@ -58,9 +58,8 @@ let f = function () {
     x = a + b;
     return undefined;
   };
-  const tmpCallCallee = $;
   const tmpCalleeParam = [1, 2];
-  const arr = tmpCallCallee(tmpCalleeParam);
+  const arr = $(tmpCalleeParam);
   g(...arr, 10, 20, 30, 40, 50, 60);
   return undefined;
 };

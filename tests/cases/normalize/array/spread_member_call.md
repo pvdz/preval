@@ -23,10 +23,9 @@ $([...true.toString()]);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpArrSpread = true.toString();
 const tmpCalleeParam = [...tmpArrSpread];
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

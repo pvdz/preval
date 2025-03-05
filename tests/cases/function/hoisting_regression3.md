@@ -45,14 +45,12 @@ $(() => {
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = function () {
   debugger;
   let incorrectlyhoisted$3 = function () {
     debugger;
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = {};
-    let C = tmpCallCallee$1(tmpCalleeParam$1);
+    let C = $(tmpCalleeParam$1);
     C.innerHTML = wheredoyougoto;
     return undefined;
   };
@@ -63,7 +61,7 @@ const tmpCalleeParam = function () {
   let wheredoyougoto = $();
   return incorrectlyhoisted$3;
 };
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -38,30 +38,25 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $forIn;
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = { x: 1 };
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
-let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam = $(tmpCalleeParam$1);
+let tmpForInGen = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForInNext = tmpForInGen.next();
   const tmpIfTest = tmpForInNext.done;
   if (tmpIfTest) {
     break;
   } else {
-    const tmpCallCallee$3 = $;
     const tmpCalleeParam$3 = $(0);
-    a = tmpCallCallee$3(tmpCalleeParam$3);
+    a = $(tmpCalleeParam$3);
     if (a) {
     } else {
-      const tmpCallCallee$5 = $;
       const tmpCalleeParam$5 = $(1);
-      a = tmpCallCallee$5(tmpCalleeParam$5);
+      a = $(tmpCalleeParam$5);
       if (a) {
       } else {
-        const tmpCallCallee$7 = $;
         const tmpCalleeParam$7 = $(2);
-        a = tmpCallCallee$7(tmpCalleeParam$7);
+        a = $(tmpCalleeParam$7);
       }
     }
     let tmpAssignMemLhsObj = a;

@@ -41,9 +41,8 @@ let f = function ($$0) {
   if (tmpIfTest) {
     p = 1;
     if (p) {
-      const tmpCallCallee = $;
       const tmpCalleeParam = $(1);
-      p = tmpCallCallee(tmpCalleeParam);
+      p = $(tmpCalleeParam);
       return undefined;
     } else {
       return undefined;
@@ -54,9 +53,8 @@ let f = function ($$0) {
   }
 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 $(a);
 `````
 

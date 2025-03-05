@@ -32,10 +32,9 @@ $((a = 5));
 
 `````js filename=intro
 $(a);
-const tmpCallCallee = $;
 a = 5;
 let tmpCalleeParam = a;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

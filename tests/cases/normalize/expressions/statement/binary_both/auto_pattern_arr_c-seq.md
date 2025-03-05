@@ -32,14 +32,12 @@ let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 $(10);
 $(20);
-const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
-const tmpBinBothLhs = tmpCallCallee(tmpCalleeParam);
+const tmpBinBothLhs = $(tmpCalleeParam);
 $(10);
 $(20);
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = [1, 2];
-const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpBinBothRhs = $(tmpCalleeParam$1);
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````

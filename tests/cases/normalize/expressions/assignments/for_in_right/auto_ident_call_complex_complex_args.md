@@ -42,13 +42,12 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $forIn;
-const tmpCallCallee$1 = $($);
+const tmpCallCallee = $($);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-a = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
+a = tmpCallCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 let tmpCalleeParam = a;
-let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+let tmpForInGen = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForInNext = tmpForInGen.next();
   const tmpIfTest = tmpForInNext.done;
@@ -65,10 +64,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee$1 /*:unknown*/ = $($);
+const tmpCallCallee /*:unknown*/ = $($);
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
 const tmpCalleeParam$3 /*:unknown*/ = $(2);
-const a /*:unknown*/ = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
+const a /*:unknown*/ = tmpCallCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 const tmpForInGen /*:unknown*/ = $forIn(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen.next();

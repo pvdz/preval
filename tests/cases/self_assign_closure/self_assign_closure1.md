@@ -47,11 +47,10 @@ let a = function () {
   const tmpReturnArg = a();
   return tmpReturnArg;
 };
-const tmpCallCallee = $;
 const tmpBinBothLhs = a();
 const tmpBinBothRhs = a();
 const tmpCalleeParam = tmpBinBothLhs === tmpBinBothRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

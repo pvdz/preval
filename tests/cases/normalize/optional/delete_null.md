@@ -23,7 +23,6 @@ $(delete null?.x);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpDeleteOpt = null;
 let tmpCalleeParam = true;
 const tmpIfTest = tmpDeleteOpt != null;
@@ -31,7 +30,7 @@ if (tmpIfTest) {
   tmpCalleeParam = delete tmpDeleteOpt.x;
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

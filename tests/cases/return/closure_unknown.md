@@ -54,26 +54,21 @@ let f = function () {
   debugger;
   let g = function () {
     debugger;
-    const tmpCallCallee = $;
     const tmpCalleeParam = x + 1;
-    x = tmpCallCallee(tmpCalleeParam);
+    x = $(tmpCalleeParam);
     return x;
   };
   let x = 0;
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = g();
-  tmpCallCallee$1(tmpCalleeParam$1);
-  const tmpCallCallee$3 = $;
+  $(tmpCalleeParam$1);
   const tmpCalleeParam$3 = g();
-  tmpCallCallee$3(tmpCalleeParam$3);
-  const tmpCallCallee$5 = $;
+  $(tmpCalleeParam$3);
   const tmpCalleeParam$5 = g();
-  tmpCallCallee$5(tmpCalleeParam$5);
+  $(tmpCalleeParam$5);
   return undefined;
 };
-const tmpCallCallee$7 = $;
 const tmpCalleeParam$7 = f();
-tmpCallCallee$7(tmpCalleeParam$7);
+$(tmpCalleeParam$7);
 $(f);
 `````
 

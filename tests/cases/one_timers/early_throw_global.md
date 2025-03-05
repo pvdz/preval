@@ -52,9 +52,8 @@ let f = function () {
     throw `\$ should be defined`;
   }
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

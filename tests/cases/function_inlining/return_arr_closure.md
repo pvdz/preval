@@ -50,14 +50,12 @@ let g = function () {
   };
   const y = $(20);
   const z = $(30);
-  const tmpCallCallee = $;
   const tmpCalleeParam = f();
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   return undefined;
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = g();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

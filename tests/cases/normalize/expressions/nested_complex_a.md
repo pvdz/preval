@@ -34,21 +34,20 @@ let c = undefined;
 a = [];
 b = 20;
 c = 30;
-const tmpCallCallee = $;
 const varInitAssignLhsComputedObj = $(a);
 b = c;
 let varInitAssignLhsComputedRhs = b;
 varInitAssignLhsComputedObj.length = varInitAssignLhsComputedRhs;
 const tmpCalleeParam = varInitAssignLhsComputedRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output
 
 
 `````js filename=intro
-const a /*:array*/ = [];
-const varInitAssignLhsComputedObj /*:unknown*/ = $(a);
+const tmpClusterSSA_a /*:array*/ = [];
+const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpClusterSSA_a);
 varInitAssignLhsComputedObj.length = 30;
 $(30);
 `````

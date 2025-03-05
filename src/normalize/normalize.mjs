@@ -14,7 +14,7 @@ import {
 } from '../constants.mjs';
 import { BUILTIN_SYMBOLS, GLOBAL_NAMESPACES_FOR_STATIC_METHODS, symbo } from '../symbols_builtins.mjs';
 import {
-  BUILTIN_REST_HANDLER_NAME, SYMBOL_COERCE, SYMBOL_THROW_TDZ_ERROR,
+  BUILTIN_REST_HANDLER_NAME, SYMBOL_COERCE, SYMBOL_FORIN, SYMBOL_FOROF, SYMBOL_FRFR, SYMBOL_THROW_TDZ_ERROR,
 } from '../symbols_preval.mjs';
 import {
   ASSERT,
@@ -1100,6 +1100,9 @@ export function phaseNormalize(fdata, fname, prng, options) {
         const tmpName = createFreshVar('tmpCalleeParamSpread', fdata);
         newNodes.push(AST.variableDeclaration(tmpName, anode.argument, 'const'));
         anode.argument = AST.identifier(tmpName);
+        newArgs.push(anode);
+      } else if (AST.isPrimitive(anode) && !AST.isComplexNode(anode)) {
+        // Don't create a separate var for this. There's no side effect to trigger on them regardless.
         newArgs.push(anode);
       } else {
         const tmpName = createFreshVar('tmpCalleeParam', fdata);
@@ -3289,25 +3292,25 @@ export function phaseNormalize(fdata, fname, prng, options) {
         // Otherwise, check if the callee is simple. If not cache just the callee.
 
         if (hasComplexArg) {
-          if (callee.name === SYMBOL_COERCE) {
-            // Just outline the first arg. The rest is controlled by us and should be ok.
-
-            rule('The arg of $coerce must allways be simple');
-            example('$coerce(f(), "string")', 'tmp = f(), $coerce(tmp2, "string")');
+          if (callee.type === 'Identifier' && fdata.globallyUniqueNamingRegistry.get(callee.name)?.isBuiltin) {
+            // At least one param node is complex. The callee is a known builtin. Cache the args.
+            rule('The arguments of a builtin call must all be simple');
+            example('parseInt(f())', 'tmp = f(), parseInt(tmp)');
             before(node, parentNodeOrWhatever);
 
-            const tmpName = createFreshVar('tmpCallCallee', fdata);
-            const varNode = AST.variableDeclaration(tmpName, args[0], 'const');
-            args[0] = AST.identifier(tmpName);
-            body.splice(i, 0, varNode);
+            const newArgs = [];
+            const newNodes = [];
+            normalizeCallArgs(args, newArgs, newNodes);
+            node.arguments = newArgs;
+            body.splice(i, 0, ...newNodes);
 
-            after(varNode);
-            after(parentNodeOrWhatever, body[i + 1]);
+            after(newNodes);
+            after(node);
             assertNoDupeNodes(AST.blockStatement(body), 'body');
+
             return true;
           } else {
             // At least one param node is complex. Cache them all. And the callee too.
-
             rule('The arguments of a call must all be simple');
             example('a(f())', 'tmp = a(), tmp2 = f(), tmp(tmp2)', () => callee.type === 'Identifier');
             example('a()(f())', 'tmp = a(), tmp2 = f(), tmp(tmp2)', () => callee.type !== 'Identifier');

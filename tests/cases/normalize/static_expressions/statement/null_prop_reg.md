@@ -25,7 +25,6 @@ $(`fail, DCE me`);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = null.foo;
 throw `[Preval]: Can not reach here`;
 `````

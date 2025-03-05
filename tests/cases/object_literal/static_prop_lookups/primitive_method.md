@@ -26,9 +26,8 @@ $(o.oops());
 
 `````js filename=intro
 const o = { oops: `fail` };
-const tmpCallCallee = $;
 const tmpCalleeParam = o.oops();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

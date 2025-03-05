@@ -47,9 +47,8 @@ const tmpAssignMemRhs = function () {
   return undefined;
 };
 tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
-const tmpCallCallee = $;
 const tmpCalleeParam = f.foo();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

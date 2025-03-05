@@ -23,11 +23,9 @@ $([`abc `, ` `, ` def`], $(10), 20);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = [`abc `, ` `, ` def`];
 const tmpCalleeParam$1 = $(10);
-const tmpCalleeParam$3 = 20;
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+$(tmpCalleeParam, tmpCalleeParam$1, 20);
 `````
 
 ## Output

@@ -38,17 +38,15 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $forIn;
 const tmpIfTest = 30;
 if (tmpIfTest) {
   a = 60;
 } else {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(100);
-  a = tmpCallCallee$1(tmpCalleeParam$1);
+  a = $(tmpCalleeParam$1);
 }
 let tmpCalleeParam = a;
-let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+let tmpForInGen = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForInNext = tmpForInGen.next();
   const tmpIfTest$1 = tmpForInNext.done;

@@ -45,9 +45,8 @@ let f = function ($$0) {
   let arrPatternSplat = [...bindingPatternArrRoot];
   return `ok`;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f(undefined, 200);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

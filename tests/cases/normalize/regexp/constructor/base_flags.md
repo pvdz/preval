@@ -23,9 +23,8 @@ $(new RegExp(`foo\\(x\\)`, `mg`));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = /foo\(x\)/gm;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

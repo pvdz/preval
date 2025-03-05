@@ -26,8 +26,8 @@ $(x);
 
 `````js filename=intro
 const tmpBinBothLhs = ``;
-const tmpCallCallee = [];
-const tmpBinBothRhs = $coerce(tmpCallCallee, `string`);
+const tmpCalleeParam = [];
+const tmpBinBothRhs = $coerce(tmpCalleeParam, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 let x = $coerce(tmpBinLhs, `plustr`);
 $(x);

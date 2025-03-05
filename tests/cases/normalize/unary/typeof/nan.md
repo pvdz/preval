@@ -23,9 +23,8 @@ $(typeof NaN);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = `number`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

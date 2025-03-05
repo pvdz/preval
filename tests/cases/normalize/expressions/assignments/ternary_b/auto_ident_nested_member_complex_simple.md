@@ -38,7 +38,6 @@ let b = { x: 1 };
 let c = { y: 2 };
 let d = 3;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
@@ -56,7 +55,7 @@ if (tmpIfTest) {
 } else {
   tmpCalleeParam = $(200);
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, b, c, d);
 `````
 

@@ -26,12 +26,11 @@ $(!!((x = `foo`), $(x)));
 
 `````js filename=intro
 let x = undefined;
-const tmpCallCallee = $;
 x = `foo`;
 const tmpUnaryArg$1 = $(x);
 const tmpUnaryArg = !tmpUnaryArg$1;
 const tmpCalleeParam = !tmpUnaryArg;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

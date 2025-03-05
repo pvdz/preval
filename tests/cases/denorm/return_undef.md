@@ -30,13 +30,11 @@ $(() => {
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = function () {
   debugger;
   return undefined;
 };
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpCalleeParam$1 = function () {
   debugger;
   let tmpReturnArg = undefined;
@@ -50,7 +48,7 @@ const tmpCalleeParam$1 = function () {
     return tmpReturnArg;
   }
 };
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

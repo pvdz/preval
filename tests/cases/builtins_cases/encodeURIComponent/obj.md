@@ -23,11 +23,9 @@ $(encodeURIComponent({ wat: true }));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
-const tmpCallCallee$1 = encodeURIComponent;
 const tmpCalleeParam$1 = { wat: true };
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
-tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam = encodeURIComponent(tmpCalleeParam$1);
+$(tmpCalleeParam);
 `````
 
 ## Output

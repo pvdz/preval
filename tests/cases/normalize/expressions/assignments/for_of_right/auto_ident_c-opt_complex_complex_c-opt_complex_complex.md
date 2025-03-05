@@ -43,7 +43,6 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $forOf;
 a = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(b);
@@ -61,7 +60,7 @@ if (tmpIfTest) {
 } else {
 }
 let tmpCalleeParam = a;
-let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+let tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest$3 = tmpForOfNext.done;

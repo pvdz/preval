@@ -38,11 +38,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $forOf;
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = { x: 1 };
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
-let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam = $(tmpCalleeParam$1);
+let tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest = tmpForOfNext.done;
@@ -54,9 +52,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     if (tmpIfTest$1) {
       tmpAssignMemLhsObj = 60;
     } else {
-      const tmpCallCallee$3 = $;
       const tmpCalleeParam$3 = $(100);
-      tmpAssignMemLhsObj = tmpCallCallee$3(tmpCalleeParam$3);
+      tmpAssignMemLhsObj = $(tmpCalleeParam$3);
     }
     const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
     const tmpAssignMemRhs = tmpForOfNext.value;

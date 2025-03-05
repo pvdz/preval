@@ -30,17 +30,15 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-const tmpCallCallee = $;
 let tmpCalleeParamSpread = undefined;
 $(10);
 $(20);
-const tmpCallCallee$1 = $;
 const tmpCalleeParam = [1, 2];
-const tmpNestedAssignArrPatternRhs = tmpCallCallee$1(tmpCalleeParam);
+const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 a = arrPatternSplat$1[0];
 tmpCalleeParamSpread = tmpNestedAssignArrPatternRhs;
-tmpCallCallee(...tmpCalleeParamSpread);
+$(...tmpCalleeParamSpread);
 $(a);
 `````
 

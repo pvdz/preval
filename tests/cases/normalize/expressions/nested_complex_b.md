@@ -34,21 +34,20 @@ let c = undefined;
 a = 10;
 b = [];
 c = 30;
-const tmpCallCallee = $;
 const tmpNestedAssignObj = $(b);
 const tmpNestedPropAssignRhs = c;
 tmpNestedAssignObj.length = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
 let tmpCalleeParam = a;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output
 
 
 `````js filename=intro
-const b /*:array*/ = [];
-const tmpNestedAssignObj /*:unknown*/ = $(b);
+const tmpClusterSSA_b /*:array*/ = [];
+const tmpNestedAssignObj /*:unknown*/ = $(tmpClusterSSA_b);
 tmpNestedAssignObj.length = 30;
 $(30);
 `````

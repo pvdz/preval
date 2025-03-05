@@ -39,9 +39,8 @@ let a = undefined;
 const tmpSwitchDisc = 1;
 const tmpIfTest = tmpSwitchDisc === 1;
 if (tmpIfTest) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = [1, 2];
-  const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
+  const arrAssignPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat = [...arrAssignPatternRhs];
   a = arrPatternSplat[0];
   $(a);

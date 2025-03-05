@@ -91,9 +91,8 @@ let error = function ($$0) {
   }
   return args;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam$1 = error();
-tmpCallCallee(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

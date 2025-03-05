@@ -37,17 +37,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
-let tmpSwitchDisc = tmpCallCallee(tmpCalleeParam);
+let tmpSwitchDisc = $(tmpCalleeParam);
 if (tmpSwitchDisc) {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
-  tmpSwitchDisc = tmpCallCallee$1(tmpCalleeParam$1);
+  tmpSwitchDisc = $(tmpCalleeParam$1);
   if (tmpSwitchDisc) {
-    const tmpCallCallee$3 = $;
     const tmpCalleeParam$3 = $(2);
-    tmpSwitchDisc = tmpCallCallee$3(tmpCalleeParam$3);
+    tmpSwitchDisc = $(tmpCalleeParam$3);
   } else {
   }
 } else {

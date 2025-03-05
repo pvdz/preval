@@ -56,16 +56,12 @@ let f = function () {
   } else {
   }
   if (x) {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = `a`;
-    const tmpCalleeParam$1 = !x;
-    tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+    const tmpCalleeParam = !x;
+    $(`a`, tmpCalleeParam);
     return undefined;
   } else {
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$3 = `b`;
-    const tmpCalleeParam$5 = !x;
-    tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
+    const tmpCalleeParam$1 = !x;
+    $(`b`, tmpCalleeParam$1);
     return undefined;
   }
 };
@@ -81,17 +77,17 @@ f();
 const f /*:()=>undefined*/ = function () {
   debugger;
   let x /*:unknown*/ = $(1);
-  let tmpCalleeParam$1 /*:boolean*/ = false;
+  let tmpCalleeParam /*:boolean*/ = false;
   if ($) {
     x = 10;
   } else {
-    tmpCalleeParam$1 = !x;
+    tmpCalleeParam = !x;
   }
   if (x) {
-    $(`a`, tmpCalleeParam$1);
+    $(`a`, tmpCalleeParam);
     return undefined;
   } else {
-    $(`b`, tmpCalleeParam$1);
+    $(`b`, tmpCalleeParam);
     return undefined;
   }
 };

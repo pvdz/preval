@@ -44,9 +44,8 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 while (true) {
   $(100);
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(b);
-  const varInitAssignLhsComputedObj = tmpCallCallee(tmpCalleeParam);
+  const varInitAssignLhsComputedObj = $(tmpCalleeParam);
   const tmpBinLhs = varInitAssignLhsComputedObj.x;
   const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
   varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;

@@ -39,9 +39,8 @@ const tmpSwitchDisc = $(1);
 const tmpBinBothLhs = tmpSwitchDisc;
 a = 1;
 if (a) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  a = tmpCallCallee(tmpCalleeParam);
+  a = $(tmpCalleeParam);
 } else {
 }
 let tmpBinBothRhs = a;
@@ -55,8 +54,8 @@ $(a);
 `````js filename=intro
 $(1);
 const tmpCalleeParam /*:unknown*/ = $(1);
-const a /*:unknown*/ = $(tmpCalleeParam);
-$(a);
+const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
+$(tmpClusterSSA_a);
 `````
 
 ## PST Output

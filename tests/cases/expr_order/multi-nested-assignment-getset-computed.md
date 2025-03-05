@@ -191,9 +191,8 @@ let obje = undefined;
 let tmp = function (...$$0 /*:array*/) {
   let a$1 = $$0;
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = [`\$:`, a$1, b, c, d, e, obja, objb, objc, objd, obje, `::`, ...a$1];
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   const tmpReturnArg = a$1[0];
   return tmpReturnArg;
 };
@@ -317,7 +316,7 @@ e = function () {
   d = 54;
   return obje;
 };
-const tmpCallCallee$1 = tmp;
+const tmpCallCallee = tmp;
 const varInitAssignLhsComputedObj = a();
 const varInitAssignLhsComputedProp = tmp(`a`);
 const varInitAssignLhsComputedObj$1 = b();
@@ -335,7 +334,7 @@ varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhs
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 const tmpCalleeParam$1 = varInitAssignLhsComputedRhs;
-tmpCallCallee$1(tmpCalleeParam$1);
+tmpCallCallee(tmpCalleeParam$1);
 tmp(a, b, c, d, e);
 tmp(obja, objb, objc, objd, obje);
 `````

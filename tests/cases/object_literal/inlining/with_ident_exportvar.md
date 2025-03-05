@@ -37,9 +37,8 @@ $(`nope`);
 `````js filename=intro
 import { default as e } from 'xyz';
 const obj = { f: e };
-const tmpCallCallee = $;
 const tmpCalleeParam = obj.f;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 `````js filename=xyz

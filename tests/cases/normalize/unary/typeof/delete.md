@@ -23,11 +23,10 @@ $(typeof delete $(100).x);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpDeleteObj = $(100);
 delete tmpDeleteObj.x;
 const tmpCalleeParam = `boolean`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

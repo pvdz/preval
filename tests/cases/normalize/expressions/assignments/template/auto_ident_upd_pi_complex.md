@@ -32,21 +32,19 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
-const tmpCallCallee$3 = $;
-const tmpCalleeParam$1 = $(b);
-const tmpNestedAssignObj = tmpCallCallee$3(tmpCalleeParam$1);
+const tmpCalleeParam$3 = $(b);
+const tmpNestedAssignObj = $(tmpCalleeParam$3);
 const tmpBinLhs$1 = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs = tmpBinLhs$1 + 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
 a = tmpNestedPropCompoundComplexRhs;
-let tmpCallCallee$1 = a;
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
+let tmpCalleeParam$1 = a;
+const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}  after`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, b);
 `````
 
@@ -62,8 +60,8 @@ const tmpFree /*:(primitive)=>string*/ = function $free($$0) {
   return tmpRet;
 };
 const b /*:object*/ = { x: 1 };
-const tmpCalleeParam$1 /*:unknown*/ = $(b);
-const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpCalleeParam$3 /*:unknown*/ = $(b);
+const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam$3);
 const tmpBinLhs$1 /*:unknown*/ = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs$1 + 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;

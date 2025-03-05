@@ -34,16 +34,14 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = { a: 1, b: 2 };
-  let bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
+  let bindingPatternObjRoot = $(tmpCalleeParam);
   let a = bindingPatternObjRoot.a;
   $(a);
   return undefined;
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

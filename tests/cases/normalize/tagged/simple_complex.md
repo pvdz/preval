@@ -23,20 +23,18 @@ $([`abc `, ` `, ` def`], 10, $(20));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = [`abc `, ` `, ` def`];
-const tmpCalleeParam$1 = 10;
-const tmpCalleeParam$3 = $(20);
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpCalleeParam$1 = $(20);
+$(tmpCalleeParam, 10, tmpCalleeParam$1);
 `````
 
 ## Output
 
 
 `````js filename=intro
-const tmpCalleeParam$3 /*:unknown*/ = $(20);
+const tmpCalleeParam$1 /*:unknown*/ = $(20);
 const tmpCalleeParam /*:array*/ = [`abc `, ` `, ` def`];
-$(tmpCalleeParam, 10, tmpCalleeParam$3);
+$(tmpCalleeParam, 10, tmpCalleeParam$1);
 `````
 
 ## PST Output

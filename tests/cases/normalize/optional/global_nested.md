@@ -28,7 +28,6 @@ $(obj?.a?.b);
 const tmpObjLitVal$1 = $();
 const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootProp = obj;
 const tmpIfTest = tmpChainRootProp != null;
@@ -42,7 +41,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

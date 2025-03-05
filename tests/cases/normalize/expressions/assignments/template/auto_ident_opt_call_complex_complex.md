@@ -28,28 +28,25 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
 a = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall($);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
-  const tmpCallCallee$3 = $dotCall;
-  const tmpCalleeParam$1 = tmpChainElementCall;
-  const tmpCalleeParam$3 = tmpChainRootCall;
-  const tmpCalleeParam$5 = undefined;
+  const tmpCalleeParam$3 = tmpChainElementCall;
+  const tmpCalleeParam$5 = tmpChainRootCall;
   const tmpCalleeParam$7 = $(1);
-  const tmpChainElementCall$1 = tmpCallCallee$3(tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5, tmpCalleeParam$7);
+  const tmpChainElementCall$1 = $dotCall(tmpCalleeParam$3, tmpCalleeParam$5, undefined, tmpCalleeParam$7);
   a = tmpChainElementCall$1;
 } else {
 }
-let tmpCallCallee$1 = a;
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
+let tmpCalleeParam$1 = a;
+const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}  after`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

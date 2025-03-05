@@ -42,16 +42,14 @@ $(f());
 let f = function () {
   debugger;
   let b = { $: $ };
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = $(2);
-  let a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  let a = $(tmpCalleeParam, tmpCalleeParam$1);
   $(a);
   return undefined;
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$3 = f();
-tmpCallCallee$1(tmpCalleeParam$3);
+$(tmpCalleeParam$3);
 `````
 
 ## Output

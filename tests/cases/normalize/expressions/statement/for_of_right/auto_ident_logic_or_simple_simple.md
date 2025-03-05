@@ -38,13 +38,12 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $forOf;
 let tmpCalleeParam = 0;
 if (tmpCalleeParam) {
 } else {
   tmpCalleeParam = 2;
 }
-let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+let tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest = tmpForOfNext.done;

@@ -26,10 +26,9 @@ $(++x);
 
 `````js filename=intro
 let x = 1;
-const tmpCallCallee = $;
 x = x + 1;
 let tmpCalleeParam = x;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

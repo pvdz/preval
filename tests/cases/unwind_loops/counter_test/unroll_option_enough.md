@@ -40,10 +40,9 @@ while (counter) {
 let counter = 20;
 while (true) {
   if (counter) {
-    const tmpCallCallee = $;
     const tmpStringConcatL = $coerce(counter, `plustr`);
     const tmpCalleeParam = `test ${tmpStringConcatL}`;
-    tmpCallCallee(tmpCalleeParam);
+    $(tmpCalleeParam);
     counter = counter - 1;
   } else {
     break;

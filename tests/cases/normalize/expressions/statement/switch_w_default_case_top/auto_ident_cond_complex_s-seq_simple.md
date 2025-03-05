@@ -73,9 +73,8 @@ tmpSwitchBreak: {
     const tmpIfTest$5 = $(1);
     if (tmpIfTest$5) {
     } else {
-      const tmpCallCallee = $;
       const tmpCalleeParam = $(100);
-      tmpCallCallee(tmpCalleeParam);
+      $(tmpCalleeParam);
     }
     break tmpSwitchBreak;
   } else {

@@ -25,9 +25,8 @@
 `````js filename=intro
 $(1);
 $(3);
-const tmpCallCallee = $;
 const tmpCalleeParam = [4, 5];
-const tmpArrElToSpread = tmpCallCallee(tmpCalleeParam);
+const tmpArrElToSpread = $(tmpCalleeParam);
 [...tmpArrElToSpread];
 `````
 

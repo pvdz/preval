@@ -98,11 +98,10 @@ let h = function ($$0) {
   const tmpReturnArg$1 = f();
   return tmpReturnArg$1;
 };
-const tmpCallCallee = $;
-const tmpCallCallee$1 = h;
+const tmpCallCallee = h;
 const tmpCalleeParam$1 = $(10);
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
-tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1);
+$(tmpCalleeParam);
 `````
 
 ## Output

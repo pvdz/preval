@@ -23,20 +23,19 @@ parseInt(...$([1, 2, 3]), $spy(`b`), $spy(`c`));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2, 3];
-const tmpArrSpread = tmpCallCallee(tmpCalleeParam);
+const tmpArrSpread = $(tmpCalleeParam);
 const tmpArgOverflowOne = [...tmpArrSpread];
 const tmpArgOverflowLen = tmpArgOverflowOne.length;
 const tmpArgOverflowTwo = $spy(`b`);
 const tmpArgOverflowThree = $spy(`c`);
-let tmpCallCallee$1 = undefined;
+let tmpCalleeParam$1 = undefined;
 if (tmpArgOverflowLen) {
-  tmpCallCallee$1 = tmpArgOverflowOne[0];
+  tmpCalleeParam$1 = tmpArgOverflowOne[0];
 } else {
-  tmpCallCallee$1 = tmpArgOverflowTwo;
+  tmpCalleeParam$1 = tmpArgOverflowTwo;
 }
-$coerce(tmpCallCallee$1, `string`);
+$coerce(tmpCalleeParam$1, `string`);
 let tmpUnaryArg = undefined;
 const tmpIfTest = tmpArgOverflowLen > 1;
 if (tmpIfTest) {
@@ -62,8 +61,8 @@ const tmpArgOverflowLen /*:number*/ = tmpArgOverflowOne.length;
 const tmpArgOverflowTwo /*:unknown*/ = $spy(`b`);
 const tmpArgOverflowThree /*:unknown*/ = $spy(`c`);
 if (tmpArgOverflowLen) {
-  const tmpClusterSSA_tmpCallCallee$1 /*:unknown*/ = tmpArgOverflowOne[0];
-  $coerce(tmpClusterSSA_tmpCallCallee$1, `string`);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = tmpArgOverflowOne[0];
+  $coerce(tmpClusterSSA_tmpCalleeParam$1, `string`);
 } else {
   $coerce(tmpArgOverflowTwo, `string`);
 }

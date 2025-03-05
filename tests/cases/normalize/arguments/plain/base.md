@@ -36,9 +36,8 @@ let f = function ($$0) {
   const tmpPrevalAliasArgumentsAny = arguments;
   let a = $$0;
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = tmpPrevalAliasArgumentsAny[0];
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   return undefined;
 };
 f();

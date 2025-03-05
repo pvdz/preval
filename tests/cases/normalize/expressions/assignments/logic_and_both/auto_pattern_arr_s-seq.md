@@ -30,7 +30,6 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 $(10);
 $(20);
@@ -47,7 +46,7 @@ if (tmpCalleeParam) {
   tmpCalleeParam = tmpNestedAssignArrPatternRhs$1;
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

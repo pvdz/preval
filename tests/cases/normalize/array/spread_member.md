@@ -23,11 +23,10 @@ $([...true.toString.name]);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCompObj = $boolean_toString;
 const tmpArrSpread = tmpCompObj.name;
 const tmpCalleeParam = [...tmpArrSpread];
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

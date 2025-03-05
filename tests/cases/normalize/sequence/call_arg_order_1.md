@@ -24,11 +24,10 @@ $(($(1), $(2)), $(3));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 $(1);
 const tmpCalleeParam = $(2);
 const tmpCalleeParam$1 = $(3);
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Output

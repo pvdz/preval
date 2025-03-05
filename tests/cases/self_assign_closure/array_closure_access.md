@@ -63,13 +63,11 @@ a = function () {
   const tmpReturnArg = a();
   return tmpReturnArg;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = a();
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpCompObj = a();
 const tmpCalleeParam$1 = tmpCompObj[1];
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

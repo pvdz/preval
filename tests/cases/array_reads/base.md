@@ -26,9 +26,8 @@ $(arr[0]);
 
 `````js filename=intro
 const arr = [1, 2, 3];
-const tmpCallCallee = $;
 const tmpCalleeParam = arr[0];
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

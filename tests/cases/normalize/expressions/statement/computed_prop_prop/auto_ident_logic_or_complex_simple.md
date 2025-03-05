@@ -32,9 +32,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-const tmpCallCallee = $;
 const tmpCalleeParam = $(0);
-let tmpCompProp = tmpCallCallee(tmpCalleeParam);
+let tmpCompProp = $(tmpCalleeParam);
 if (tmpCompProp) {
 } else {
   tmpCompProp = 2;

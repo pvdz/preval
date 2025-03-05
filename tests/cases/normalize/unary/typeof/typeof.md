@@ -23,10 +23,9 @@ $(typeof typeof $(100));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 $(100);
 const tmpCalleeParam = `string`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

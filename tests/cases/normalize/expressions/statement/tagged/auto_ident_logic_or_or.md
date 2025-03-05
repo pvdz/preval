@@ -28,24 +28,20 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = [`before `, ` after`];
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$3 = $(0);
-let tmpCalleeParam$1 = tmpCallCallee$1(tmpCalleeParam$3);
+let tmpCalleeParam$1 = $(tmpCalleeParam$3);
 if (tmpCalleeParam$1) {
 } else {
-  const tmpCallCallee$3 = $;
   const tmpCalleeParam$5 = $(1);
-  tmpCalleeParam$1 = tmpCallCallee$3(tmpCalleeParam$5);
+  tmpCalleeParam$1 = $(tmpCalleeParam$5);
   if (tmpCalleeParam$1) {
   } else {
-    const tmpCallCallee$5 = $;
     const tmpCalleeParam$7 = $(2);
-    tmpCalleeParam$1 = tmpCallCallee$5(tmpCalleeParam$7);
+    tmpCalleeParam$1 = $(tmpCalleeParam$7);
   }
 }
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 

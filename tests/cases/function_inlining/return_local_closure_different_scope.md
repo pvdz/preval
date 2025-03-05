@@ -50,10 +50,9 @@ let g = function () {
   let y = $(10);
   return f;
 };
-const tmpCallCallee = $;
 const tmpCallComplexCallee = g();
 const tmpCalleeParam = tmpCallComplexCallee();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -46,56 +46,46 @@ $(a);
 
 `````filename=intro
 let a___4__ = {};
-const tmpCallCallee___8__ = $forOf___9__;
-const tmpCallCallee$1___12__ = $;
-const tmpCalleeParam$1___16__ = [];
-const tmpCalleeParam___20__ = tmpCallCallee$1___22__(tmpCalleeParam$1___23__);
-let tmpForOfGen___26__ = tmpCallCallee___28__(tmpCalleeParam___29__);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___31__) {
-  /*32*/ let tmpForOfNext___35__ = tmpForOfGen___38__.next___39__();
-  const tmpIfTest___42__ = tmpForOfNext___44__.done___45__;
-  if (tmpIfTest___47__) {
-    /*48*/ break;
-  } /*50*/ else {
-    a___56__ = tmpForOfNext___54__.value___55__;
+const tmpCalleeParam$1___8__ = [];
+const tmpCalleeParam___12__ = $(tmpCalleeParam$1___15__);
+let tmpForOfGen___18__ = $forOf___20__(tmpCalleeParam___21__);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___23__) {
+  /*24*/ let tmpForOfNext___27__ = tmpForOfGen___30__.next___31__();
+  const tmpIfTest___34__ = tmpForOfNext___36__.done___37__;
+  if (tmpIfTest___39__) {
+    /*40*/ break;
+  } /*42*/ else {
+    a___48__ = tmpForOfNext___46__.value___47__;
   }
 }
-$(a___60__);
+$(a___52__);
 `````
 
 Ref tracking result:
 
                      | reads      | read by     | overWrites     | overwritten by
 a:
-  - w @4       | ########## | 60          | none           | 56
-  - w @56      | ########## | 60          | 4,56           | 56
-  - r @60      | 4,56
-
-tmpCallCallee:
-  - w @8          | ########## | 28          | none           | none
-  - r @28         | 8
-
-tmpCallCallee$1:
-  - w @12           | ########## | 22          | none           | none
-  - r @22           | 12
+  - w @4       | ########## | 52          | none           | 48
+  - w @48      | ########## | 52          | 4,48           | 48
+  - r @52      | 4,48
 
 tmpCalleeParam$1:
-  - w @16            | ########## | 23          | none           | none
-  - r @23            | 16
+  - w @8             | ########## | 15          | none           | none
+  - r @15            | 8
 
 tmpCalleeParam:
-  - w @20            | ########## | 29          | none           | none
-  - r @29            | 20
+  - w @12            | ########## | 21          | none           | none
+  - r @21            | 12
 
 tmpForOfGen:
-  - w @26            | ########## | 38          | none           | none
-  - r @38            | 26
+  - w @18            | ########## | 30          | none           | none
+  - r @30            | 18
 
 tmpForOfNext:
-  - w @35            | ########## | 44,54       | none           | none
-  - r @44            | 35
-  - r @54            | 35
+  - w @27            | ########## | 36,46       | none           | none
+  - r @36            | 27
+  - r @46            | 27
 
 tmpIfTest:
-  - w @42            | ########## | 47          | none           | none
-  - r @47            | 42
+  - w @34            | ########## | 39          | none           | none
+  - r @39            | 34

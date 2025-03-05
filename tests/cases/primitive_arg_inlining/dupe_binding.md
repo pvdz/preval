@@ -61,32 +61,27 @@ let f = function ($$0, $$1) {
   $(a, b);
   return a;
 };
-const tmpCallCallee = $;
+const tmpCallCallee = f;
+const tmpCalleeParam$1 = $(1);
+const tmpCalleeParam$3 = $(2);
+const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+$(tmpCalleeParam, `outer1`);
 const tmpCallCallee$1 = f;
-const tmpCalleeParam$3 = $(1);
-const tmpCalleeParam$5 = $(2);
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
-const tmpCalleeParam$1 = `outer1`;
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-const tmpCallCallee$3 = $;
-const tmpCallCallee$5 = f;
-const tmpCalleeParam$11 = 100;
-const tmpCalleeParam$13 = $(200);
-const tmpCalleeParam$7 = tmpCallCallee$5(tmpCalleeParam$11, tmpCalleeParam$13);
-const tmpCalleeParam$9 = `outer2`;
-tmpCallCallee$3(tmpCalleeParam$7, tmpCalleeParam$9);
+const tmpCalleeParam$7 = $(200);
+const tmpCalleeParam$5 = tmpCallCallee$1(100, tmpCalleeParam$7);
+$(tmpCalleeParam$5, `outer2`);
 `````
 
 ## Output
 
 
 `````js filename=intro
-const tmpCalleeParam$3 /*:unknown*/ = $(1);
-const tmpCalleeParam$5 /*:unknown*/ = $(2);
-$(tmpCalleeParam$3, tmpCalleeParam$5);
-$(tmpCalleeParam$3, `outer1`);
-const tmpCalleeParam$13 /*:unknown*/ = $(200);
-$(100, tmpCalleeParam$13);
+const tmpCalleeParam$1 /*:unknown*/ = $(1);
+const tmpCalleeParam$3 /*:unknown*/ = $(2);
+$(tmpCalleeParam$1, tmpCalleeParam$3);
+$(tmpCalleeParam$1, `outer1`);
+const tmpCalleeParam$7 /*:unknown*/ = $(200);
+$(100, tmpCalleeParam$7);
 $(100, `outer2`);
 `````
 

@@ -69,14 +69,10 @@ let f = function ($$0) {
       const tmpReturnArg = [x, z];
       return tmpReturnArg;
     };
-    const tmpCallCallee = $;
     const tmpCalleeParam = g(10);
-    const tmpCalleeParam$1 = `pass`;
-    tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$3 = g(20);
-    const tmpCalleeParam$5 = `pass`;
-    tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
+    $(tmpCalleeParam, `pass`);
+    const tmpCalleeParam$1 = g(20);
+    $(tmpCalleeParam$1, `pass`);
     return undefined;
   }
 };
@@ -103,8 +99,8 @@ const f /*:(string)=>undefined*/ = function ($$0) {
   } else {
     const tmpCalleeParam /*:array*/ = g(10);
     $(tmpCalleeParam, `pass`);
-    const tmpCalleeParam$3 /*:array*/ = g(20);
-    $(tmpCalleeParam$3, `pass`);
+    const tmpCalleeParam$1 /*:array*/ = g(20);
+    $(tmpCalleeParam$1, `pass`);
     return undefined;
   }
 };

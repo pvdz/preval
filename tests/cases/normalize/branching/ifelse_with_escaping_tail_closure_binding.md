@@ -60,9 +60,8 @@ const f = function () {
     $(xyz, `g`);
     return undefined;
   };
-  const tmpCallCallee = $;
   const tmpCalleeParam = [g];
-  const t = tmpCallCallee(tmpCalleeParam);
+  const t = $(tmpCalleeParam);
   if ($) {
     $(1);
   } else {
@@ -72,9 +71,8 @@ const f = function () {
   const tmpReturnArg = g();
   return tmpReturnArg;
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

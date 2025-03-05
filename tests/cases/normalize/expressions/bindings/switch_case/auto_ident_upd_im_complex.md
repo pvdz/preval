@@ -45,9 +45,8 @@ const tmpSwitchDisc = 1;
 const tmpIfTest = tmpSwitchDisc === 1;
 if (tmpIfTest) {
   b = { x: 1 };
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(b);
-  const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
+  const tmpPostUpdArgObj = $(tmpCalleeParam);
   const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
   const tmpAssignMemLhsObj = tmpPostUpdArgObj;
   const tmpAssignMemRhs = tmpPostUpdArgVal - 1;

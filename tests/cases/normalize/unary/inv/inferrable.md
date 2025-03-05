@@ -32,9 +32,8 @@ if (x) {
 `````js filename=intro
 const x = $(true);
 if (x) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = !x;
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
 } else {
 }
 `````

@@ -34,18 +34,15 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = $(0);
-let xyz = tmpCallCallee(tmpCalleeParam);
+let xyz = $(tmpCalleeParam);
 if (xyz) {
 } else {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
-  xyz = tmpCallCallee$1(tmpCalleeParam$1);
+  xyz = $(tmpCalleeParam$1);
   if (xyz) {
-    const tmpCallCallee$3 = $;
     const tmpCalleeParam$3 = $(2);
-    xyz = tmpCallCallee$3(tmpCalleeParam$3);
+    xyz = $(tmpCalleeParam$3);
   } else {
   }
 }

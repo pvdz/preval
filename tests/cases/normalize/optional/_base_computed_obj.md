@@ -33,7 +33,6 @@ let f = undefined;
 let x = undefined;
 f = { [10]: 20 };
 x = 10;
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootProp = f;
 const tmpIfTest = tmpChainRootProp != null;
@@ -43,15 +42,15 @@ if (tmpIfTest) {
   tmpCalleeParam = tmpChainElementObject;
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output
 
 
 `````js filename=intro
-const f /*:object*/ = { [10]: 20 };
-const tmpChainElementObject /*:unknown*/ = f[10];
+const tmpClusterSSA_f /*:object*/ = { [10]: 20 };
+const tmpChainElementObject /*:unknown*/ = tmpClusterSSA_f[10];
 $(tmpChainElementObject);
 `````
 

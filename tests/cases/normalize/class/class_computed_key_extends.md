@@ -94,22 +94,18 @@ let x = class extends tmpClassSuper {
     return tmpReturnArg$5;
   }
 };
-const tmpCallCallee = $;
 const tmpCallObj = new x();
 const tmpCalleeParam = tmpCallObj.f();
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpCallObj$1 = new x();
 const tmpCalleeParam$1 = tmpCallObj$1.g();
-tmpCallCallee$1(tmpCalleeParam$1);
-const tmpCallCallee$3 = $;
+$(tmpCalleeParam$1);
 const tmpCallObj$3 = new x();
 const tmpCalleeParam$3 = tmpCallObj$3.x();
-tmpCallCallee$3(tmpCalleeParam$3);
-const tmpCallCallee$5 = $;
+$(tmpCalleeParam$3);
 const tmpCallObj$5 = new x();
 const tmpCalleeParam$5 = tmpCallObj$5.y();
-tmpCallCallee$5(tmpCalleeParam$5);
+$(tmpCalleeParam$5);
 `````
 
 ## Output

@@ -43,9 +43,8 @@ const g = function () {
     return undefined;
   };
   $(1);
-  const tmpCallCallee = $;
   const tmpCalleeParam = f$3();
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   return undefined;
 };
 g();

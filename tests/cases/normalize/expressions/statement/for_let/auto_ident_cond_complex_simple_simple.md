@@ -39,9 +39,8 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   xyz = 2;
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  xyz = tmpCallCallee(tmpCalleeParam);
+  xyz = $(tmpCalleeParam);
 }
 while (true) {
   $(xyz);

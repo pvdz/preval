@@ -42,7 +42,6 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $forOf;
 let tmpCalleeParam = undefined;
 const tmpChainRootProp = $(b);
 const tmpIfTest = tmpChainRootProp != null;
@@ -51,7 +50,7 @@ if (tmpIfTest) {
   tmpCalleeParam = tmpChainElementObject;
 } else {
 }
-let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+let tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest$1 = tmpForOfNext.done;

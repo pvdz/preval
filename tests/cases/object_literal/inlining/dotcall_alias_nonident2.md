@@ -41,9 +41,8 @@ $(order);
 `````js filename=intro
 let order = function () {
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = $dotCall(alias, obj, undefined);
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   return undefined;
 };
 const g = function () {

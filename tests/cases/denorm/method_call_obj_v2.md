@@ -39,9 +39,8 @@ const tmpCallVal = tmpCallObj.match;
 const tmpCalleeParam = /x/;
 const stuff = $dotCall(tmpCallVal, tmpCallObj, `match`, tmpCalleeParam);
 if (stuff) {
-  const tmpCallCallee = decodeURIComponent;
   const tmpCalleeParam$1 = stuff[1];
-  const deco = tmpCallCallee(tmpCalleeParam$1);
+  const deco = decodeURIComponent(tmpCalleeParam$1);
   unknown = deco;
 } else {
 }

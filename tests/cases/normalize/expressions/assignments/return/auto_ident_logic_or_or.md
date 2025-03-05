@@ -36,29 +36,25 @@ $(a);
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(0);
-  a = tmpCallCallee(tmpCalleeParam);
+  a = $(tmpCalleeParam);
   if (a) {
     return a;
   } else {
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(1);
-    a = tmpCallCallee$1(tmpCalleeParam$1);
+    a = $(tmpCalleeParam$1);
     if (a) {
       return a;
     } else {
-      const tmpCallCallee$3 = $;
       const tmpCalleeParam$3 = $(2);
-      a = tmpCallCallee$3(tmpCalleeParam$3);
+      a = $(tmpCalleeParam$3);
       return a;
     }
   }
 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$5 = $;
 const tmpCalleeParam$5 = f();
-tmpCallCallee$5(tmpCalleeParam$5);
+$(tmpCalleeParam$5);
 $(a);
 `````
 

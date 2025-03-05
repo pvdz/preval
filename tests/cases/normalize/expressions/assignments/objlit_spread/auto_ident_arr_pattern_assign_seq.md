@@ -35,7 +35,6 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 $(x);
 $(y);
 const tmpArrElement = $(3);
@@ -47,7 +46,7 @@ y = arrPatternSplat[1];
 a = tmpNestedAssignArrPatternRhs;
 let tmpObjSpread = a;
 const tmpCalleeParam = { ...tmpObjSpread };
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, x, y);
 `````
 

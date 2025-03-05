@@ -45,16 +45,12 @@ f();
 let f = function () {
   debugger;
   if ($) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = !$;
-    const tmpCalleeParam$1 = `fail`;
-    tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+    $(tmpCalleeParam, `fail`);
     return undefined;
   } else {
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$3 = !$;
-    const tmpCalleeParam$5 = `pass`;
-    tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
+    const tmpCalleeParam$1 = !$;
+    $(tmpCalleeParam$1, `pass`);
     return undefined;
   }
 };

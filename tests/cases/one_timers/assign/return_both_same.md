@@ -76,21 +76,18 @@ let f = function () {
     const tmpIfTest = $(1);
     return `xyz`;
   };
-  const tmpCallCallee = $;
   const tmpCalleeParam = g();
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   $(`c`);
   return undefined;
 };
 let x = $(100);
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = closure();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 x = f();
 $(x);
-const tmpCallCallee$3 = $;
 const tmpCalleeParam$3 = closure();
-tmpCallCallee$3(tmpCalleeParam$3);
+$(tmpCalleeParam$3);
 `````
 
 ## Output

@@ -27,7 +27,6 @@ $($(a)?.[$(`b`)]?.[$(`c`)](100));
 `````js filename=intro
 const tmpObjLitVal = {};
 const a = { b: tmpObjLitVal };
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(a);
@@ -45,7 +44,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

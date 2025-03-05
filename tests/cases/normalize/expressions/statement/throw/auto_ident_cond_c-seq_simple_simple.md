@@ -33,9 +33,8 @@ const tmpIfTest = $(30);
 if (tmpIfTest) {
   tmpThrowArg = $(2);
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpThrowArg = tmpCallCallee(tmpCalleeParam);
+  tmpThrowArg = $(tmpCalleeParam);
 }
 throw tmpThrowArg;
 `````

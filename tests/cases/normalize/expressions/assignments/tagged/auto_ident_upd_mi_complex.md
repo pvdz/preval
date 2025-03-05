@@ -32,17 +32,15 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = [`before `, ` after`];
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$3 = $(b);
-const tmpNestedAssignObj = tmpCallCallee$1(tmpCalleeParam$3);
+const tmpNestedAssignObj = $(tmpCalleeParam$3);
 const tmpBinLhs = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
 a = tmpNestedPropCompoundComplexRhs;
 let tmpCalleeParam$1 = a;
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, tmpCalleeParam$1);
 $(a, b);
 `````
 

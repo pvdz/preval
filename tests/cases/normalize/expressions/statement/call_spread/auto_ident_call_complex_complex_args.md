@@ -32,12 +32,11 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCallCallee$1 = $($);
+const tmpCallCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const tmpCalleeParamSpread = tmpCallCallee$1(tmpCalleeParam, tmpCalleeParam$1);
-tmpCallCallee(...tmpCalleeParamSpread);
+const tmpCalleeParamSpread = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+$(...tmpCalleeParamSpread);
 $(a);
 `````
 
@@ -45,10 +44,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee$1 /*:unknown*/ = $($);
+const tmpCallCallee /*:unknown*/ = $($);
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
-const tmpCalleeParamSpread /*:unknown*/ = tmpCallCallee$1(tmpCalleeParam, tmpCalleeParam$1);
+const tmpCalleeParamSpread /*:unknown*/ = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(...tmpCalleeParamSpread);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

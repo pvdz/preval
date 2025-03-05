@@ -32,7 +32,6 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpNestedAssignComMemberObj = b;
 const tmpNestedAssignComMemberProp = $(`c`);
 const tmpCompObj = $(b);
@@ -44,7 +43,7 @@ a = tmpNestedPropAssignRhs;
 let tmpObjLitPropKey = a;
 const tmpObjLitPropVal = 10;
 const tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, b);
 `````
 

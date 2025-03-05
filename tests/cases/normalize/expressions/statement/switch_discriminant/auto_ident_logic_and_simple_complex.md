@@ -39,9 +39,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 let tmpSwitchDisc = 1;
 if (tmpSwitchDisc) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  tmpSwitchDisc = tmpCallCallee(tmpCalleeParam);
+  tmpSwitchDisc = $(tmpCalleeParam);
 } else {
 }
 $(100);

@@ -32,7 +32,6 @@ let f = function () {
   debugger;
   return 10;
 };
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootCall = f;
 const tmpIfTest = tmpChainRootCall != null;
@@ -41,7 +40,7 @@ if (tmpIfTest) {
   tmpCalleeParam = tmpChainElementCall;
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

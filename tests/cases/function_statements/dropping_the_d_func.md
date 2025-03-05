@@ -70,9 +70,8 @@ let f = function () {
     $(`hello`);
     return undefined;
   };
-  const tmpCallCallee = $;
   const tmpCalleeParam = THIS_IS_DA____();
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   return undefined;
 };
 let g = function () {

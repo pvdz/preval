@@ -23,9 +23,8 @@ $(1 !== `x`);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = true;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

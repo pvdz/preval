@@ -38,22 +38,18 @@ let f = function ($$0) {
   let bindingPatternObjRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = { a: `fail` };
-    bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
+    bindingPatternObjRoot = $(tmpCalleeParam);
   } else {
     bindingPatternObjRoot = tmpParamBare;
   }
-  const tmpCallCallee$1 = objPatternRest;
   const tmpCalleeParam$1 = bindingPatternObjRoot;
   const tmpCalleeParam$3 = [];
-  const tmpCalleeParam$5 = `x`;
-  let x = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
+  let x = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, `x`);
   return x;
 };
-const tmpCallCallee$3 = $;
-const tmpCalleeParam$7 = f(`abc`, 10);
-tmpCallCallee$3(tmpCalleeParam$7);
+const tmpCalleeParam$5 = f(`abc`, 10);
+$(tmpCalleeParam$5);
 `````
 
 ## Output

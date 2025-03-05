@@ -23,28 +23,27 @@ $(`` + $coerce(`a ` + $coerce($(1), `string`) + ` b`, `string`) + ``);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpBinBothLhs = ``;
 const tmpBinBothLhs$1 = `a `;
-const tmpCallCallee$3 = $(1);
-const tmpBinBothRhs$1 = $coerce(tmpCallCallee$3, `string`);
+const tmpCalleeParam$3 = $(1);
+const tmpBinBothRhs$1 = $coerce(tmpCalleeParam$3, `string`);
 const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
 const tmpStringConcatR = $coerce(tmpBinLhs$1, `plustr`);
-const tmpCallCallee$1 = `${tmpStringConcatR} b`;
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
+const tmpCalleeParam$1 = `${tmpStringConcatR} b`;
+const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = $coerce(tmpBinLhs, `plustr`);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output
 
 
 `````js filename=intro
-const tmpCallCallee$3 /*:unknown*/ = $(1);
-const tmpBinBothRhs$1 /*:string*/ = $coerce(tmpCallCallee$3, `string`);
-const tmpCallCallee$1 /*:string*/ = `a ${tmpBinBothRhs$1} b`;
-$(tmpCallCallee$1);
+const tmpCalleeParam$3 /*:unknown*/ = $(1);
+const tmpBinBothRhs$1 /*:string*/ = $coerce(tmpCalleeParam$3, `string`);
+const tmpCalleeParam$1 /*:string*/ = `a ${tmpBinBothRhs$1} b`;
+$(tmpCalleeParam$1);
 `````
 
 ## PST Output

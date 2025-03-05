@@ -53,7 +53,6 @@ let f = function () {
   debugger;
   let g = function () {
     debugger;
-    const tmpCallCallee = $;
     throw `Preval: TDZ triggered for this read: \$(x\$1)`;
     let x$1 = 0;
     return undefined;

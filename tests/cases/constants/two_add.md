@@ -29,9 +29,8 @@ $(bar + foo);
 `````js filename=intro
 const foo = `five`;
 const bar = `six`;
-const tmpCallCallee = $;
 const tmpCalleeParam = bar + foo;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -43,22 +43,8 @@ let f = function () {
 const tmpCallObj = f;
 const tmpCallVal = tmpCallObj.call;
 const tmpCalleeParam = { pass: 1 };
-const tmpCalleeParam$1 = 1;
-const tmpCalleeParam$3 = 2;
-const tmpCalleeParam$5 = 3;
-const tmpCalleeParam$7 = `yep`;
-const tmpCalleeParam$9 = $;
-$dotCall(
-  tmpCallVal,
-  tmpCallObj,
-  `call`,
-  tmpCalleeParam,
-  tmpCalleeParam$1,
-  tmpCalleeParam$3,
-  tmpCalleeParam$5,
-  tmpCalleeParam$7,
-  tmpCalleeParam$9,
-);
+const tmpCalleeParam$1 = $;
+$dotCall(tmpCallVal, tmpCallObj, `call`, tmpCalleeParam, 1, 2, 3, `yep`, tmpCalleeParam$1);
 `````
 
 ## Output

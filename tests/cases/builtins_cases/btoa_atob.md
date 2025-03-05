@@ -23,11 +23,9 @@ $(atob(btoa(`isn't encoding fun?`)));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
-const tmpCallCallee$1 = atob;
 const tmpCalleeParam$1 = `aXNuJ3QgZW5jb2RpbmcgZnVuPw==`;
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
-tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam = atob(tmpCalleeParam$1);
+$(tmpCalleeParam);
 `````
 
 ## Output

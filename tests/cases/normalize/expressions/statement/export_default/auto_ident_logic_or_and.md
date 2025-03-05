@@ -29,18 +29,15 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = $(0);
-let tmpAnonDefaultExport = tmpCallCallee(tmpCalleeParam);
+let tmpAnonDefaultExport = $(tmpCalleeParam);
 if (tmpAnonDefaultExport) {
 } else {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
-  tmpAnonDefaultExport = tmpCallCallee$1(tmpCalleeParam$1);
+  tmpAnonDefaultExport = $(tmpCalleeParam$1);
   if (tmpAnonDefaultExport) {
-    const tmpCallCallee$3 = $;
     const tmpCalleeParam$3 = $(2);
-    tmpAnonDefaultExport = tmpCallCallee$3(tmpCalleeParam$3);
+    tmpAnonDefaultExport = $(tmpCalleeParam$3);
   } else {
   }
 }

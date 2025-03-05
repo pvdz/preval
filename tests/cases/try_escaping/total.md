@@ -141,9 +141,8 @@ $(arr[0]);
 `````js filename=intro
 const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while (true) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = arr[0];
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   try {
     const a = arr[286];
     const b = parseInt(a);
@@ -193,9 +192,8 @@ while (true) {
     arr.push(N);
   }
 }
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = arr[0];
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

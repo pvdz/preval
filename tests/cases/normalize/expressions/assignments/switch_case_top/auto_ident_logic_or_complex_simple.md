@@ -42,9 +42,8 @@ const tmpBinBothLhs = tmpSwitchDisc;
 const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(0);
-  a = tmpCallCallee(tmpCalleeParam);
+  a = $(tmpCalleeParam);
   if (a) {
   } else {
     a = 2;

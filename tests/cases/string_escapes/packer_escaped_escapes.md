@@ -52,8 +52,7 @@ eval(
 
 
 `````js filename=intro
-const tmpCallCallee = eval;
-const tmpCallCallee$1 = function ($$0, $$1, $$2, $$3, $$4, $$5) {
+const tmpCallCallee = function ($$0, $$1, $$2, $$3, $$4, $$5) {
   let p = $$0;
   let a = $$1;
   let c = $$2;
@@ -62,9 +61,9 @@ const tmpCallCallee$1 = function ($$0, $$1, $$2, $$3, $$4, $$5) {
   let r = $$5;
   debugger;
   e = String;
-  const tmpCalleeParam$13 = /^/;
-  const tmpCalleeParam$15 = String;
-  const tmpIfTest = ``.replace(tmpCalleeParam$13, tmpCalleeParam$15);
+  const tmpCalleeParam$5 = /^/;
+  const tmpCalleeParam$7 = String;
+  const tmpIfTest = ``.replace(tmpCalleeParam$5, tmpCalleeParam$7);
   if (tmpIfTest) {
   } else {
     while (true) {
@@ -111,11 +110,10 @@ const tmpCallCallee$1 = function ($$0, $$1, $$2, $$3, $$4, $$5) {
         const tmpBinBothRhs = e(c);
         const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
         const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
-        const tmpCalleeParam$21 = `${tmpStringConcatR}\\b`;
-        const tmpCalleeParam$23 = `g`;
-        const tmpCalleeParam$17 = new tmpNewCallee(tmpCalleeParam$21, tmpCalleeParam$23);
-        const tmpCalleeParam$19 = k[c];
-        p = $dotCall(tmpCallVal, tmpCallObj, `replace`, tmpCalleeParam$17, tmpCalleeParam$19);
+        const tmpCalleeParam$13 = `${tmpStringConcatR}\\b`;
+        const tmpCalleeParam$9 = new tmpNewCallee(tmpCalleeParam$13, `g`);
+        const tmpCalleeParam$11 = k[c];
+        p = $dotCall(tmpCallVal, tmpCallObj, `replace`, tmpCalleeParam$9, tmpCalleeParam$11);
       } else {
       }
     } else {
@@ -124,21 +122,10 @@ const tmpCallCallee$1 = function ($$0, $$1, $$2, $$3, $$4, $$5) {
   }
   return p;
 };
-const tmpCalleeParam$1 = `0.1('2\\\`\\'\\"\\3')`;
-const tmpCalleeParam$3 = 4;
-const tmpCalleeParam$5 = 4;
-const tmpCalleeParam$7 = `console|log|bo|x20o`.split(`|`);
-const tmpCalleeParam$9 = 0;
-const tmpCalleeParam$11 = {};
-const tmpCalleeParam = tmpCallCallee$1(
-  tmpCalleeParam$1,
-  tmpCalleeParam$3,
-  tmpCalleeParam$5,
-  tmpCalleeParam$7,
-  tmpCalleeParam$9,
-  tmpCalleeParam$11,
-);
-tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam$1 = `console|log|bo|x20o`.split(`|`);
+const tmpCalleeParam$3 = {};
+const tmpCalleeParam = tmpCallCallee(`0.1('2\\\`\\'\\"\\3')`, 4, 4, tmpCalleeParam$1, 0, tmpCalleeParam$3);
+eval(tmpCalleeParam);
 `````
 
 ## Output

@@ -23,12 +23,11 @@ $(`` + $coerce(false, `string`) + ``);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpBinBothLhs = ``;
 const tmpBinBothRhs = $coerce(false, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = $coerce(tmpBinLhs, `plustr`);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

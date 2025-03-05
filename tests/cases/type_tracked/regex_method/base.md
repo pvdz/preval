@@ -23,10 +23,9 @@ $(/foo/.test(`hello foo world`));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCallObj = /foo/;
 const tmpCalleeParam = tmpCallObj.test(`hello foo world`);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

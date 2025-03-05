@@ -77,12 +77,10 @@ let g = function () {
     return undefined;
   }
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = g();
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpCalleeParam$1 = g();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

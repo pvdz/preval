@@ -44,10 +44,9 @@ const x = {
     return tmpReturnArg;
   },
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = x;
 const tmpCalleeParam$1 = x[`Hey, me too!`]();
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Output

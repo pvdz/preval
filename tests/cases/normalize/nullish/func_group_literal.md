@@ -43,17 +43,16 @@ let f = function () {
   const tmpReturnArg = $(y);
   return tmpReturnArg;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(3);
-$(tmpCalleeParam);
+const tmpReturnArg /*:unknown*/ = $(3);
+$(tmpReturnArg);
 `````
 
 ## PST Output

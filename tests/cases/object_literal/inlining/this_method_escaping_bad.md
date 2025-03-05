@@ -75,16 +75,14 @@ const tmpObjLitVal$1 = function () {
     const tmpCallCallee = evil;
     const tmpCalleeParam$1 = tmpPrevalAliasThis.f;
     tmpCallCallee(tmpCalleeParam$1);
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$3 = tmpPrevalAliasThis.x;
-    tmpCallCallee$1(tmpCalleeParam$3);
+    $(tmpCalleeParam$3);
     return `win`;
   }
 };
 const obj = { x: tmpObjLitVal, f: tmpObjLitVal$1 };
-const tmpCallCallee$3 = $;
 const tmpCalleeParam$5 = obj.f();
-tmpCallCallee$3(tmpCalleeParam$5);
+$(tmpCalleeParam$5);
 `````
 
 ## Output

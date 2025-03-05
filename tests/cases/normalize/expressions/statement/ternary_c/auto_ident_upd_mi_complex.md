@@ -36,9 +36,8 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(b);
-  const tmpAssignMemLhsObj = tmpCallCallee(tmpCalleeParam);
+  const tmpAssignMemLhsObj = $(tmpCalleeParam);
   const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
   const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
   const tmpAssignMemRhs = tmpCompoundAssignLhs - 1;

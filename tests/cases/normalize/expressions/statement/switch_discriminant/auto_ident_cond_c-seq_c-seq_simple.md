@@ -42,9 +42,8 @@ const tmpIfTest = $(30);
 if (tmpIfTest) {
   tmpSwitchDisc = $(60);
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpSwitchDisc = tmpCallCallee(tmpCalleeParam);
+  tmpSwitchDisc = $(tmpCalleeParam);
 }
 $(100);
 $(a);

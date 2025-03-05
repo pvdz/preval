@@ -57,7 +57,6 @@ $(
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpNewCallee = Map;
 const tmpCalleeParam$3 = function ($$0) {
   let k = $$0;
@@ -79,7 +78,7 @@ const tmpCallObj$1 = [...tmpArrSpread, `module`];
 const tmpCalleeParam$1 = tmpCallObj$1.map(tmpCalleeParam$3);
 const tmpCallObj = new tmpNewCallee(tmpCalleeParam$1);
 const tmpCalleeParam = tmpCallObj.get(`\$`);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

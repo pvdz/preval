@@ -41,9 +41,8 @@ let f = function () {
   } catch (e) {}
   return undefined;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f(50);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

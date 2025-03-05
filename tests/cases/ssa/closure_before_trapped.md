@@ -58,15 +58,13 @@ let f = function () {
   $(x);
   x = $(10);
   $(x);
-  const tmpCallCallee = $;
   const tmpCalleeParam = g();
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   return undefined;
 };
 if ($) {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = f();
-  tmpCallCallee$1(tmpCalleeParam$1);
+  $(tmpCalleeParam$1);
 } else {
 }
 `````

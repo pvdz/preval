@@ -41,26 +41,21 @@ let f = function ($$0) {
   let arrPatternStep = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = { a: `fail` };
-    arrPatternStep = tmpCallCallee(tmpCalleeParam);
+    arrPatternStep = $(tmpCalleeParam);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
-  const tmpCallCallee$1 = objPatternRest;
   const tmpCalleeParam$1 = arrPatternStep;
   const tmpCalleeParam$3 = [];
-  const tmpCalleeParam$5 = undefined;
-  let x = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
+  let x = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
   return x;
 };
-const tmpCallCallee$3 = $;
-const tmpCallCallee$5 = f;
+const tmpCallCallee = f;
 const tmpArrElement = { x: 1, y: 2, z: 3 };
-const tmpCalleeParam$9 = [tmpArrElement, 20, 30];
-const tmpCalleeParam$11 = 200;
-const tmpCalleeParam$7 = tmpCallCallee$5(tmpCalleeParam$9, tmpCalleeParam$11);
-tmpCallCallee$3(tmpCalleeParam$7);
+const tmpCalleeParam$7 = [tmpArrElement, 20, 30];
+const tmpCalleeParam$5 = tmpCallCallee(tmpCalleeParam$7, 200);
+$(tmpCalleeParam$5);
 `````
 
 ## Output

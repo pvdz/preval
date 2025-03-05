@@ -42,49 +42,38 @@ $(typeof parseFloat($spy(`parseFloat`)));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam$1 = $spy(`Math.sign`);
 const tmpUnaryArg = $Math_sign(tmpCalleeParam$1);
 const tmpCalleeParam = typeof tmpUnaryArg;
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpCalleeParam$5 = $spy(`Math.sin`);
 const tmpUnaryArg$1 = $Math_sin(tmpCalleeParam$5);
 const tmpCalleeParam$3 = typeof tmpUnaryArg$1;
-tmpCallCallee$1(tmpCalleeParam$3);
-const tmpCallCallee$3 = $;
+$(tmpCalleeParam$3);
 const tmpCalleeParam$9 = $spy(`Math.hypot`);
 const tmpUnaryArg$3 = $Math_hypot(tmpCalleeParam$9);
 const tmpCalleeParam$7 = typeof tmpUnaryArg$3;
-tmpCallCallee$3(tmpCalleeParam$7);
-const tmpCallCallee$5 = $;
+$(tmpCalleeParam$7);
 const tmpStringFirstArg = $spy(`String`);
 const tmpUnaryArg$5 = $coerce(tmpStringFirstArg, `string`);
 const tmpCalleeParam$11 = typeof tmpUnaryArg$5;
-tmpCallCallee$5(tmpCalleeParam$11);
-const tmpCallCallee$7 = $;
+$(tmpCalleeParam$11);
 const tmpStringFirstArg$1 = $spy(`Number`);
 const tmpUnaryArg$7 = $coerce(tmpStringFirstArg$1, `number`);
 const tmpCalleeParam$13 = typeof tmpUnaryArg$7;
-tmpCallCallee$7(tmpCalleeParam$13);
-const tmpCallCallee$9 = $;
-const tmpCallCallee$11 = Boolean;
+$(tmpCalleeParam$13);
 const tmpCalleeParam$17 = $spy(`Boolean`);
-const tmpUnaryArg$9 = tmpCallCallee$11(tmpCalleeParam$17);
+const tmpUnaryArg$9 = Boolean(tmpCalleeParam$17);
 const tmpCalleeParam$15 = typeof tmpUnaryArg$9;
-tmpCallCallee$9(tmpCalleeParam$15);
-const tmpCallCallee$13 = $;
-const tmpCallCallee$15 = parseInt;
+$(tmpCalleeParam$15);
 const tmpCalleeParam$21 = $spy(`parseInt`);
-const tmpUnaryArg$11 = tmpCallCallee$15(tmpCalleeParam$21);
+const tmpUnaryArg$11 = parseInt(tmpCalleeParam$21);
 const tmpCalleeParam$19 = typeof tmpUnaryArg$11;
-tmpCallCallee$13(tmpCalleeParam$19);
-const tmpCallCallee$17 = $;
-const tmpCallCallee$19 = parseFloat;
+$(tmpCalleeParam$19);
 const tmpCalleeParam$25 = $spy(`parseFloat`);
-const tmpUnaryArg$13 = tmpCallCallee$19(tmpCalleeParam$25);
+const tmpUnaryArg$13 = parseFloat(tmpCalleeParam$25);
 const tmpCalleeParam$23 = typeof tmpUnaryArg$13;
-tmpCallCallee$17(tmpCalleeParam$23);
+$(tmpCalleeParam$23);
 `````
 
 ## Output

@@ -27,9 +27,8 @@ $(`out:`, y);
 
 
 `````js filename=intro
-const tmpCallCallee = Boolean;
 const tmpCalleeParam = $(false);
-const x = tmpCallCallee(tmpCalleeParam);
+const x = Boolean(tmpCalleeParam);
 const y = x !== true;
 $(`out:`, y);
 `````

@@ -40,10 +40,9 @@ const tmpObjLitVal = function (...$$0 /*:array*/) {
   const tmpPrevalAliasThis = this;
   let args = $$0;
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = args;
   const tmpCalleeParam$1 = tmpPrevalAliasThis.y;
-  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  $(tmpCalleeParam, tmpCalleeParam$1);
   return undefined;
 };
 const a = { x: tmpObjLitVal, y: 100 };

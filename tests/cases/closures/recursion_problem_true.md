@@ -78,9 +78,8 @@ let f = function ($$0) {
   }
 };
 f = f(true);
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

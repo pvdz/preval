@@ -38,34 +38,29 @@ let f = function ($$0) {
   let bindingPatternObjRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = { a: `fail` };
-    bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
+    bindingPatternObjRoot = $(tmpCalleeParam);
   } else {
     bindingPatternObjRoot = tmpParamBare;
   }
-  const tmpCallCallee$1 = objPatternRest;
   const tmpCalleeParam$1 = bindingPatternObjRoot;
   const tmpCalleeParam$3 = [];
-  const tmpCalleeParam$5 = `x`;
-  let x = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
+  let x = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, `x`);
   return x;
 };
-const tmpCallCallee$3 = $;
-const tmpCallCallee$5 = f;
-const tmpCalleeParam$9 = { x: 1, b: 2, c: 3 };
-const tmpCalleeParam$11 = 10;
-const tmpCalleeParam$7 = tmpCallCallee$5(tmpCalleeParam$9, tmpCalleeParam$11);
-tmpCallCallee$3(tmpCalleeParam$7);
+const tmpCallCallee = f;
+const tmpCalleeParam$7 = { x: 1, b: 2, c: 3 };
+const tmpCalleeParam$5 = tmpCallCallee(tmpCalleeParam$7, 10);
+$(tmpCalleeParam$5);
 `````
 
 ## Output
 
 
 `````js filename=intro
-const tmpCalleeParam$9 /*:object*/ = { x: 1, b: 2, c: 3 };
+const tmpCalleeParam$7 /*:object*/ = { x: 1, b: 2, c: 3 };
 const tmpCalleeParam$3 /*:array*/ = [];
-const x /*:unknown*/ = objPatternRest(tmpCalleeParam$9, tmpCalleeParam$3, `x`);
+const x /*:unknown*/ = objPatternRest(tmpCalleeParam$7, tmpCalleeParam$3, `x`);
 $(x);
 `````
 

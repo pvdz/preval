@@ -126,9 +126,8 @@ const a = function () {
     return tmpReturnArg$7;
   }
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = a();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

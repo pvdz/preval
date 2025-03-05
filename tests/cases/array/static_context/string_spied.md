@@ -49,8 +49,8 @@ const spy = {
     return undefined;
   },
 };
-const tmpCallCallee = [spy, spy];
-$coerce(tmpCallCallee, `string`);
+const tmpCalleeParam = [spy, spy];
+$coerce(tmpCalleeParam, `string`);
 `````
 
 ## Output
@@ -69,8 +69,8 @@ const spy /*:object*/ = {
     return undefined;
   },
 };
-const tmpCallCallee /*:array*/ = [spy, spy];
-$coerce(tmpCallCallee, `string`);
+const tmpCalleeParam /*:array*/ = [spy, spy];
+$coerce(tmpCalleeParam, `string`);
 `````
 
 ## PST Output

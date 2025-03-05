@@ -48,13 +48,11 @@ if (itooamanumberjack) {
 `````js filename=intro
 let itooamanumberjack = 0;
 if (imanumberandilovethrees) {
-  const tmpCallCallee = Boolean;
   const tmpCalleeParam = $(true);
-  itooamanumberjack = tmpCallCallee(tmpCalleeParam);
+  itooamanumberjack = Boolean(tmpCalleeParam);
 } else {
-  const tmpCallCallee$1 = Boolean;
   const tmpCalleeParam$1 = $(false);
-  itooamanumberjack = tmpCallCallee$1(tmpCalleeParam$1);
+  itooamanumberjack = Boolean(tmpCalleeParam$1);
 }
 if (itooamanumberjack) {
   $(`a`, itooamanumberjack);

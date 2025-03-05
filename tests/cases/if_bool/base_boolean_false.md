@@ -34,9 +34,8 @@ if (x) {
 const x = $(1);
 if (x) {
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = Boolean(x);
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
 }
 `````
 

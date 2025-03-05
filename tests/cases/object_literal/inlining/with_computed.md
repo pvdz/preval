@@ -29,9 +29,8 @@ $(obj.dakey);
 `````js filename=intro
 const key = $(`dakey`);
 const obj = { [key]: 1 };
-const tmpCallCallee = $;
 const tmpCalleeParam = obj.dakey;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -29,13 +29,11 @@ $(arr.length);
 `````js filename=intro
 const tmpArrElement = 1;
 const tmpArrElement$1 = 2;
-const tmpCallCallee = $;
 const tmpCalleeParam = [10, 20];
-const tmpArrSpread = tmpCallCallee(tmpCalleeParam);
+const tmpArrSpread = $(tmpCalleeParam);
 const arr = [tmpArrElement, tmpArrElement$1, ...tmpArrSpread, 3];
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = arr.length;
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

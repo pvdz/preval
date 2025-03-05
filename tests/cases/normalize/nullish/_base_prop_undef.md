@@ -28,22 +28,21 @@ $(f ?? x);
 `````js filename=intro
 let f = undefined;
 f = undefined;
-const tmpCallCallee = $;
 let tmpCalleeParam = f;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
   tmpCalleeParam = x;
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = x;
-$(tmpCalleeParam);
+const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = x;
+$(tmpClusterSSA_tmpCalleeParam);
 `````
 
 ## PST Output

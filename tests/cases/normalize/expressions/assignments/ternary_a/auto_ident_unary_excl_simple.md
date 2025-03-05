@@ -32,7 +32,6 @@ $(a, arg);
 `````js filename=intro
 let arg = 1;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 a = !arg;
 let tmpIfTest = a;
@@ -41,7 +40,7 @@ if (tmpIfTest) {
 } else {
   tmpCalleeParam = $(200);
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, arg);
 `````
 
@@ -49,8 +48,8 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(200);
-$(tmpClusterSSA_tmpCalleeParam$1);
+const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
+$(tmpClusterSSA_tmpCalleeParam);
 $(false, 1);
 `````
 

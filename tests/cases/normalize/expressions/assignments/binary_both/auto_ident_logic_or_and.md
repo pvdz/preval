@@ -30,41 +30,34 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = $(0);
-a = tmpCallCallee$1(tmpCalleeParam$1);
+a = $(tmpCalleeParam$1);
 if (a) {
 } else {
-  const tmpCallCallee$3 = $;
   const tmpCalleeParam$3 = $(1);
-  a = tmpCallCallee$3(tmpCalleeParam$3);
+  a = $(tmpCalleeParam$3);
   if (a) {
-    const tmpCallCallee$5 = $;
     const tmpCalleeParam$5 = $(2);
-    a = tmpCallCallee$5(tmpCalleeParam$5);
+    a = $(tmpCalleeParam$5);
   } else {
   }
 }
 let tmpBinBothLhs = a;
-const tmpCallCallee$7 = $;
 const tmpCalleeParam$7 = $(0);
-a = tmpCallCallee$7(tmpCalleeParam$7);
+a = $(tmpCalleeParam$7);
 if (a) {
 } else {
-  const tmpCallCallee$9 = $;
   const tmpCalleeParam$9 = $(1);
-  a = tmpCallCallee$9(tmpCalleeParam$9);
+  a = $(tmpCalleeParam$9);
   if (a) {
-    const tmpCallCallee$11 = $;
     const tmpCalleeParam$11 = $(2);
-    a = tmpCallCallee$11(tmpCalleeParam$11);
+    a = $(tmpCalleeParam$11);
   } else {
   }
 }
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 
@@ -84,7 +77,6 @@ if (a) {
   } else {
   }
 }
-const tmpBinBothLhs /*:unknown*/ = a;
 const tmpCalleeParam$7 /*:unknown*/ = $(0);
 let tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$7);
 if (tmpClusterSSA_a) {
@@ -97,8 +89,7 @@ if (tmpClusterSSA_a) {
   } else {
   }
 }
-const tmpBinBothRhs /*:unknown*/ = tmpClusterSSA_a;
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
@@ -121,24 +112,22 @@ else {
     b = $( d );
   }
 }
-const e = b;
-const f = $( 0 );
-let g = $( f );
-if (g) {
+const e = $( 0 );
+let f = $( e );
+if (f) {
 
 }
 else {
-  const h = $( 1 );
-  g = $( h );
-  if (g) {
-    const i = $( 2 );
-    g = $( i );
+  const g = $( 1 );
+  f = $( g );
+  if (f) {
+    const h = $( 2 );
+    f = $( h );
   }
 }
-const j = g;
-const k = e + j;
-$( k );
-$( g );
+const i = b + f;
+$( i );
+$( f );
 `````
 
 ## Globals

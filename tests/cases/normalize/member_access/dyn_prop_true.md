@@ -26,9 +26,8 @@ $(a[`true`]);
 
 `````js filename=intro
 const a = {};
-const tmpCallCallee = $;
 const tmpCalleeParam = a.true;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

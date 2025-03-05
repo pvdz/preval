@@ -27,9 +27,8 @@ a < b;
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = { valueOf: $ };
-const a = tmpCallCallee(tmpCalleeParam);
+const a = $(tmpCalleeParam);
 const b = 2;
 a < b;
 `````

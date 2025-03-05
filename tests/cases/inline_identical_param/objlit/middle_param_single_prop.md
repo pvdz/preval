@@ -41,23 +41,18 @@ let f = function ($$0, $$1, $$2) {
   let obj = $$1;
   let y = $$2;
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = x;
   const tmpCalleeParam$1 = y;
   const tmpCalleeParam$3 = obj.a;
-  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+  $(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
   return undefined;
 };
+const tmpCallCallee = f;
+const tmpCalleeParam$5 = { a: 1 };
+tmpCallCallee(`x`, tmpCalleeParam$5, `y`);
 const tmpCallCallee$1 = f;
-const tmpCalleeParam$5 = `x`;
-const tmpCalleeParam$7 = { a: 1 };
-const tmpCalleeParam$9 = `y`;
-tmpCallCallee$1(tmpCalleeParam$5, tmpCalleeParam$7, tmpCalleeParam$9);
-const tmpCallCallee$3 = f;
-const tmpCalleeParam$11 = `w`;
-const tmpCalleeParam$13 = { a: 3 };
-const tmpCalleeParam$15 = `z`;
-tmpCallCallee$3(tmpCalleeParam$11, tmpCalleeParam$13, tmpCalleeParam$15);
+const tmpCalleeParam$7 = { a: 3 };
+tmpCallCallee$1(`w`, tmpCalleeParam$7, `z`);
 `````
 
 ## Output

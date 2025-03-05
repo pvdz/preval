@@ -31,9 +31,8 @@ let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(100);
 let tmpBinBothRhs = 1;
 if (tmpBinBothRhs) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  tmpBinBothRhs = tmpCallCallee(tmpCalleeParam);
+  tmpBinBothRhs = $(tmpCalleeParam);
 } else {
 }
 tmpBinBothLhs + tmpBinBothRhs;

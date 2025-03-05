@@ -40,12 +40,11 @@ let f = function ($$0, $$1, $$2) {
   let y = $$1;
   let z = $$2;
   debugger;
-  const tmpCallCallee = $;
   const tmpUnaryArg = !tmpPrevalAliasArgumentsAny;
   const tmpCalleeParam = !tmpUnaryArg;
   const tmpCalleeParam$1 = x;
   const tmpCalleeParam$3 = z;
-  const tmpReturnArg = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+  const tmpReturnArg = $(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
   return tmpReturnArg;
 };
 f();

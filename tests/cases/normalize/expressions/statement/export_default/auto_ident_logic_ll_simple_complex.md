@@ -32,9 +32,8 @@ let a = { a: 999, b: 1000 };
 let tmpAnonDefaultExport = 0;
 if (tmpAnonDefaultExport) {
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  tmpAnonDefaultExport = tmpCallCallee(tmpCalleeParam);
+  tmpAnonDefaultExport = $(tmpCalleeParam);
 }
 export { tmpAnonDefaultExport as default };
 $(a);

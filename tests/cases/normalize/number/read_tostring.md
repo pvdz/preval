@@ -29,9 +29,8 @@ $(f + ``);
 `````js filename=intro
 const f = $Number_prototype.toString;
 $(f);
-const tmpCallCallee = $;
 const tmpCalleeParam = $coerce(f, `plustr`);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

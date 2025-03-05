@@ -37,11 +37,9 @@ let a;
 
 `````js filename=intro
 let a = undefined;
-const tmpCallCallee = $forOf;
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = { x: 1, y: 2 };
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
-let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam = $(tmpCalleeParam$1);
+let tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest = tmpForOfNext.done;

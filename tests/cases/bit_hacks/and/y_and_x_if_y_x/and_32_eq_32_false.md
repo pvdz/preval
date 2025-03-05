@@ -40,15 +40,11 @@ if (x) {
 const spy = $spy(17);
 const x = spy & 32;
 if (x) {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = `fail`;
-  const tmpCalleeParam$1 = spy === 32;
-  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  const tmpCalleeParam = spy === 32;
+  $(`fail`, tmpCalleeParam);
 } else {
-  const tmpCallCallee$1 = $;
-  const tmpCalleeParam$3 = `pass`;
-  const tmpCalleeParam$5 = spy === 32;
-  tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
+  const tmpCalleeParam$1 = spy === 32;
+  $(`pass`, tmpCalleeParam$1);
 }
 `````
 
@@ -59,8 +55,8 @@ if (x) {
 const spy /*:unknown*/ = $spy(17);
 const x /*:number*/ = spy & 32;
 if (x) {
-  const tmpCalleeParam$1 /*:boolean*/ = spy === 32;
-  $(`fail`, tmpCalleeParam$1);
+  const tmpCalleeParam /*:boolean*/ = spy === 32;
+  $(`fail`, tmpCalleeParam);
 } else {
   $(`pass`, false);
 }

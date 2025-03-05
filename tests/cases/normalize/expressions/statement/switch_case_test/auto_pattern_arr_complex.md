@@ -39,9 +39,8 @@ let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 const tmpSwitchDisc = $(1);
 const tmpBinBothLhs = tmpSwitchDisc;
-const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
-const tmpBinBothRhs = tmpCallCallee(tmpCalleeParam);
+const tmpBinBothRhs = $(tmpCalleeParam);
 const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
 $(a);
 `````

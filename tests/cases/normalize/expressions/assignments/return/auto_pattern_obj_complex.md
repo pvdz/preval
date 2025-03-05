@@ -37,18 +37,16 @@ $(a);
 let f = function () {
   debugger;
   let tmpReturnArg = undefined;
-  const tmpCallCallee = $;
   const tmpCalleeParam = { a: 1, b: 2 };
-  const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+  const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
   a = tmpNestedAssignObjPatternRhs.a;
   tmpReturnArg = tmpNestedAssignObjPatternRhs;
   return tmpReturnArg;
 };
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 $(a);
 `````
 

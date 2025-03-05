@@ -23,9 +23,8 @@ $(Math.pow(3, `3`));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = 27;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

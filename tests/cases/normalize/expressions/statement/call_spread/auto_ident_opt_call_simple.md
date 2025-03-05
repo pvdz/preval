@@ -28,7 +28,6 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpCalleeParamSpread = undefined;
 const tmpChainRootCall = $;
 const tmpIfTest = tmpChainRootCall != null;
@@ -37,7 +36,7 @@ if (tmpIfTest) {
   tmpCalleeParamSpread = tmpChainElementCall;
 } else {
 }
-tmpCallCallee(...tmpCalleeParamSpread);
+$(...tmpCalleeParamSpread);
 $(a);
 `````
 

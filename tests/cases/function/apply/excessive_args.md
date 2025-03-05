@@ -30,20 +30,16 @@ $(
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam$1 = {};
 const tmpCalleeParam$3 = [`x`];
-const tmpCalleeParam$5 = 1;
-const tmpCalleeParam$7 = 2;
-const tmpCalleeParam$9 = 3;
 const tmpCallObj = function () {
   const tmpPrevalAliasArgumentsAny = arguments;
   debugger;
   $(...tmpPrevalAliasArgumentsAny);
   return undefined;
 };
-const tmpCalleeParam = tmpCallObj.apply(tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5, tmpCalleeParam$7, tmpCalleeParam$9);
-tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam = tmpCallObj.apply(tmpCalleeParam$1, tmpCalleeParam$3, 1, 2, 3);
+$(tmpCalleeParam);
 `````
 
 ## Output

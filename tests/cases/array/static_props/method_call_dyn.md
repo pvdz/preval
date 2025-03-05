@@ -33,9 +33,8 @@ const arr = [1, 2, 3];
 const tmpCallCompObj = arr;
 const tmpCallCompProp = $(`splice`);
 tmpCallCompObj[tmpCallCompProp](1, 2, 20);
-const tmpCallCallee = $;
 const tmpCalleeParam = arr.length;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

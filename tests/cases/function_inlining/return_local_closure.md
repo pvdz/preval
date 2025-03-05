@@ -49,9 +49,8 @@ let g = function () {
   const tmpReturnArg = f();
   return tmpReturnArg;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = g();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

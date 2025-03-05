@@ -62,24 +62,18 @@ let f = function ($$0) {
   return tmp2;
 };
 $(f);
-const tmpCallCallee = $;
 const tmpCalleeParam = f(`cGF0aA`);
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpCalleeParam$1 = f(`cGF0aA`);
-tmpCallCallee$1(tmpCalleeParam$1);
-const tmpCallCallee$3 = $;
+$(tmpCalleeParam$1);
 const tmpCalleeParam$3 = f(`cGF0aA`);
-tmpCallCallee$3(tmpCalleeParam$3);
-const tmpCallCallee$5 = $;
+$(tmpCalleeParam$3);
 const tmpCalleeParam$5 = f(`cGF0aA`);
-tmpCallCallee$5(tmpCalleeParam$5);
-const tmpCallCallee$7 = $;
+$(tmpCalleeParam$5);
 const tmpCalleeParam$7 = f(`cGF0aA`);
-tmpCallCallee$7(tmpCalleeParam$7);
-const tmpCallCallee$9 = $;
+$(tmpCalleeParam$7);
 const tmpCalleeParam$9 = f(`cGF0aA`);
-tmpCallCallee$9(tmpCalleeParam$9);
+$(tmpCalleeParam$9);
 `````
 
 ## Output

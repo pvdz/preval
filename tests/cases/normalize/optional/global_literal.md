@@ -25,7 +25,6 @@ $(`foo`?.length);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootProp = `foo`;
 const tmpIfTest = tmpChainRootProp != null;
@@ -34,7 +33,7 @@ if (tmpIfTest) {
   tmpCalleeParam = tmpChainElementObject;
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -33,9 +33,8 @@ let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 $(10);
 $(20);
-const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
-const tmpAnonDefaultExport = tmpCallCallee(tmpCalleeParam);
+const tmpAnonDefaultExport = $(tmpCalleeParam);
 export { tmpAnonDefaultExport as default };
 $(a);
 `````

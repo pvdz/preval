@@ -23,14 +23,13 @@ $(parseInt(15) ?? foo);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 let tmpCalleeParam = 15;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
   tmpCalleeParam = foo;
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

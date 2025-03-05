@@ -46,20 +46,17 @@ let g = function () {
   return `wat`;
 };
 const obj = { f: g };
-const tmpCallCallee = $;
 const tmpCalleeParam = obj.f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 const tmp = function () {
   debugger;
   g = 1;
   return undefined;
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = tmp();
-tmpCallCallee$1(tmpCalleeParam$1);
-const tmpCallCallee$3 = $;
+$(tmpCalleeParam$1);
 const tmpCalleeParam$3 = obj.f();
-tmpCallCallee$3(tmpCalleeParam$3);
+$(tmpCalleeParam$3);
 `````
 
 ## Output

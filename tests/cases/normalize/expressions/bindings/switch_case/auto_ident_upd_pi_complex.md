@@ -45,9 +45,8 @@ const tmpSwitchDisc = 1;
 const tmpIfTest = tmpSwitchDisc === 1;
 if (tmpIfTest) {
   b = { x: 1 };
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(b);
-  const tmpNestedAssignObj = tmpCallCallee(tmpCalleeParam);
+  const tmpNestedAssignObj = $(tmpCalleeParam);
   const tmpBinLhs = tmpNestedAssignObj.x;
   const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
   tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;

@@ -60,26 +60,22 @@ let a = function () {
   return tmpReturnArg;
 };
 let b = a;
-const tmpCallCallee = $;
 const tmpBinBothLhs = a();
 const tmpBinBothRhs = b();
 const tmpCalleeParam = tmpBinBothLhs === tmpBinBothRhs;
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpBinBothLhs$1 = a();
 const tmpBinBothRhs$1 = b();
 const tmpCalleeParam$1 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
-tmpCallCallee$1(tmpCalleeParam$1);
-const tmpCallCallee$3 = $;
+$(tmpCalleeParam$1);
 const tmpBinBothLhs$3 = b();
 const tmpBinBothRhs$3 = a();
 const tmpCalleeParam$3 = tmpBinBothLhs$3 === tmpBinBothRhs$3;
-tmpCallCallee$3(tmpCalleeParam$3);
-const tmpCallCallee$5 = $;
+$(tmpCalleeParam$3);
 const tmpBinBothLhs$5 = a();
 const tmpBinBothRhs$5 = b();
 const tmpCalleeParam$5 = tmpBinBothLhs$5 === tmpBinBothRhs$5;
-tmpCallCallee$5(tmpCalleeParam$5);
+$(tmpCalleeParam$5);
 `````
 
 ## Output

@@ -23,9 +23,8 @@ $(encodeURIComponent(true));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = encodeURIComponent(true);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

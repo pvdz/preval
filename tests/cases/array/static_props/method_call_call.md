@@ -34,9 +34,8 @@ $(arr.length);
 const arr = [1, 2, 3];
 const tmpCallObj = arr.splice;
 tmpCallObj.call(arr, 1, 2, 10, 20);
-const tmpCallCallee = $;
 const tmpCalleeParam = arr.length;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -28,7 +28,6 @@ $($(a)?.[$(`x`)]?.[$(`y`)][$(`z`)]);
 const tmpObjLitVal$1 = { z: 10 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 let a = { x: tmpObjLitVal };
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(a);
@@ -47,7 +46,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

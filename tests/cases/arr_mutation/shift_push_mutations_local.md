@@ -59,9 +59,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     const tmp = arr.shift();
     arr.push(tmp);
-    const tmpCallCallee = $;
     const tmpCalleeParam = arr.slice(0);
-    tmpCallCallee(tmpCalleeParam);
+    $(tmpCalleeParam);
   }
 }
 $(`exit`);

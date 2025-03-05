@@ -32,9 +32,8 @@ $(o.arr());
 `````js filename=intro
 const arr = [1, 2, 3];
 const o = { arr: arr };
-const tmpCallCallee = $;
 const tmpCalleeParam = o.arr();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -41,9 +41,8 @@ const tmpSwitchDisc = $(1);
 const tmpIfTest = 30;
 if (tmpIfTest) {
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
 }
 $(a);
 `````

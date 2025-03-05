@@ -23,7 +23,6 @@ $(null?.toString());
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootProp = null;
 const tmpIfTest = tmpChainRootProp != null;
@@ -32,7 +31,7 @@ if (tmpIfTest) {
   tmpCalleeParam = tmpChainElementCall;
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

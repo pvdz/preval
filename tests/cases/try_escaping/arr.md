@@ -61,9 +61,8 @@
 `````js filename=intro
 const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = arr[0];
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   try {
     const a = arr[286];
     if (a) {

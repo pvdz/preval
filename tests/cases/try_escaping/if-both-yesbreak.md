@@ -54,9 +54,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       break;
     } else {
       x = 2;
-      const tmpCallCallee = $;
       const tmpCalleeParam = arr[0];
-      tmpCallCallee(tmpCalleeParam);
+      $(tmpCalleeParam);
       arr.reverse();
     }
   } catch (e) {

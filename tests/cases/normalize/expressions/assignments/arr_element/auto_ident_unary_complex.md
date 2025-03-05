@@ -32,7 +32,6 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpUnaryArg = $(x);
 a = typeof tmpUnaryArg;
 let tmpBinBothLhs = a;
@@ -40,7 +39,7 @@ const tmpUnaryArg$1 = $(x);
 a = typeof tmpUnaryArg$1;
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, x);
 `````
 

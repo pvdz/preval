@@ -60,12 +60,11 @@ let f = function () {
   const tmpReturnArg$1 = g();
   return tmpReturnArg$1;
 };
-const tmpCallCallee = $;
 const tmpCallObj = f;
 const tmpCallVal = tmpCallObj.call;
 const tmpCalleeParam$1 = { y: 1 };
 const tmpCalleeParam = $dotCall(tmpCallVal, tmpCallObj, `call`, tmpCalleeParam$1);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

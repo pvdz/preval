@@ -25,15 +25,11 @@ $(x());
 
 
 `````js filename=intro
-const tmpCallCallee = $dotCall;
 const tmpCalleeParam = Function;
 const tmpCalleeParam$1 = { eliminate: `me` };
-const tmpCalleeParam$3 = undefined;
-const tmpCalleeParam$5 = `return "pass";`;
-const x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$7 = x();
-tmpCallCallee$1(tmpCalleeParam$7);
+const x = $dotCall(tmpCalleeParam, tmpCalleeParam$1, undefined, `return "pass";`);
+const tmpCalleeParam$3 = x();
+$(tmpCalleeParam$3);
 `````
 
 ## Output

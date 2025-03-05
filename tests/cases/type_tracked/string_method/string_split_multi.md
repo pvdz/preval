@@ -23,9 +23,8 @@ $(`hello world`.split(``, $, unknown));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = `hello world`.split(``, $, unknown);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

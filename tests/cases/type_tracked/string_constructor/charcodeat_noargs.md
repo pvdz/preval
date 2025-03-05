@@ -23,9 +23,8 @@ $(String.fromCharCode());
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = $String_fromCharCode();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

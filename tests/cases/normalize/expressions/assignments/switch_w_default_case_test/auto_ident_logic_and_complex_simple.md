@@ -52,9 +52,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
-a = tmpCallCallee(tmpCalleeParam);
+a = $(tmpCalleeParam);
 if (a) {
   a = 2;
 } else {

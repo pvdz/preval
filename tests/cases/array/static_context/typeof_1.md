@@ -23,10 +23,9 @@ $(typeof [1]);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpUnaryArg = [1];
 const tmpCalleeParam = typeof tmpUnaryArg;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

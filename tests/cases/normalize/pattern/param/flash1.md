@@ -70,11 +70,9 @@ let x = function ($$0, $$1) {
   }
   let bindingPatternObjRoot = tmpParamBare$1;
   let objPatternNoDefault = bindingPatternObjRoot.x;
-  const tmpCallCallee = objPatternRest;
   const tmpCalleeParam = objPatternNoDefault;
   const tmpCalleeParam$1 = [];
-  const tmpCalleeParam$3 = undefined;
-  let x$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+  let x$1 = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
   return undefined;
 };
 `````

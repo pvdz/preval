@@ -32,67 +32,57 @@ $(f());
 `````filename=intro
 let f___4__ = function () /*6*/ {
   debugger;
-  const tmpCallCallee___10__ = $forOf___11__;
-  const tmpCalleeParam___14__ = [10, 20];
-  let tmpForOfGen___20__ = tmpCallCallee___22__(tmpCalleeParam___23__);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___25__) {
-    /*26*/ let tmpForOfNext___29__ = tmpForOfGen___32__.next___33__();
-    const tmpIfTest___36__ = tmpForOfNext___38__.done___39__;
-    if (tmpIfTest___41__) {
-      /*42*/ break;
-    } /*44*/ else {
-      let x___47__ = tmpForOfNext___49__.value___50__;
-      const tmpReturnArg___53__ = $(1, `return`);
-      return tmpReturnArg___61__;
+  const tmpCalleeParam___10__ = [10, 20];
+  let tmpForOfGen___16__ = $forOf___18__(tmpCalleeParam___19__);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___21__) {
+    /*22*/ let tmpForOfNext___25__ = tmpForOfGen___28__.next___29__();
+    const tmpIfTest___32__ = tmpForOfNext___34__.done___35__;
+    if (tmpIfTest___37__) {
+      /*38*/ break;
+    } /*40*/ else {
+      let x___43__ = tmpForOfNext___45__.value___46__;
+      const tmpReturnArg___49__ = $(1, `return`);
+      return tmpReturnArg___57__;
     }
   }
   $(`keep, do not eval`);
-  return undefined___68__;
+  return undefined___64__;
 };
-const tmpCallCallee$1___71__ = $;
-const tmpCalleeParam$1___75__ = f___77__();
-tmpCallCallee$1___80__(tmpCalleeParam$1___81__);
+const tmpCalleeParam$1___67__ = f___69__();
+$(tmpCalleeParam$1___73__);
 `````
 
 Ref tracking result:
 
                      | reads      | read by     | overWrites     | overwritten by
 f:
-  - w @4       | ########## | 77          | none           | none
-  - r @77      | 4
-
-tmpCallCallee:
-  - w @10         | ########## | 22          | none           | none
-  - r @22         | 10
+  - w @4       | ########## | 69          | none           | none
+  - r @69      | 4
 
 tmpCalleeParam:
-  - w @14          | ########## | 23          | none           | none
-  - r @23          | 14
+  - w @10          | ########## | 19          | none           | none
+  - r @19          | 10
 
 tmpForOfGen:
-  - w @20          | ########## | 32          | none           | none
-  - r @32          | 20
+  - w @16          | ########## | 28          | none           | none
+  - r @28          | 16
 
 tmpForOfNext:
-  - w @29          | ########## | 38,49       | none           | none
-  - r @38          | 29
-  - r @49          | 29
+  - w @25          | ########## | 34,45       | none           | none
+  - r @34          | 25
+  - r @45          | 25
 
 tmpIfTest:
-  - w @36          | ########## | 41          | none           | none
-  - r @41          | 36
+  - w @32          | ########## | 37          | none           | none
+  - r @37          | 32
 
 x:
-  - w @47          | ########## | not read    | none           | none
+  - w @43          | ########## | not read    | none           | none
 
 tmpReturnArg:
-  - w @53          | ########## | 61          | none           | none
-  - r @61          | 53
-
-tmpCallCallee$1:
-  - w @71           | ########## | 80          | none           | none
-  - r @80           | 71
+  - w @49          | ########## | 57          | none           | none
+  - r @57          | 49
 
 tmpCalleeParam$1:
-  - w @75            | ########## | 81          | none           | none
-  - r @81            | 75
+  - w @67            | ########## | 73          | none           | none
+  - r @73            | 67

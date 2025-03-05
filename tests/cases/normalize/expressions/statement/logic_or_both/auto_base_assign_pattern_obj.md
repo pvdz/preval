@@ -33,18 +33,16 @@ $(a, b);
 let b = {};
 let a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
-const tmpCallCallee = $;
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
-const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 b = tmpNestedAssignObjPatternRhs.b;
 tmpIfTest = tmpNestedAssignObjPatternRhs;
 if (tmpIfTest) {
 } else {
-  const tmpCallCallee$1 = $;
   const tmpObjLitVal$1 = $(2);
   const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
-  const tmpAssignObjPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
+  const tmpAssignObjPatternRhs = $(tmpCalleeParam$1);
   b = tmpAssignObjPatternRhs.b;
 }
 $(a, b);

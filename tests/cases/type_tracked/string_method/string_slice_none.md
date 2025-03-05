@@ -23,9 +23,8 @@ $(`hello   world`.slice());
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = `hello   world`.slice();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

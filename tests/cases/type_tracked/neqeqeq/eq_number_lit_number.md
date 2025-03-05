@@ -28,9 +28,8 @@ $(x !== 2);
 const tmpBinBothLhs = 1;
 const tmpBinBothRhs = $(2);
 const x = tmpBinBothLhs * tmpBinBothRhs;
-const tmpCallCallee = $;
 const tmpCalleeParam = x !== 2;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

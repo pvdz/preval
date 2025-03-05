@@ -93,9 +93,8 @@ const v = $(true);
 const p = $(1);
 const q = $(3);
 const r = $(5);
-const tmpCallCallee = $;
 const tmpCalleeParam = f(v, p, q, r);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

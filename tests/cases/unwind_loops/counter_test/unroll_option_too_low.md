@@ -52,9 +52,8 @@ while (true) {
     break;
   }
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = arr[0];
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

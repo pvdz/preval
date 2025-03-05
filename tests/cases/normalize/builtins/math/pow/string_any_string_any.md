@@ -23,9 +23,8 @@ $(Math.pow(`nope`, `foo`));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = NaN;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

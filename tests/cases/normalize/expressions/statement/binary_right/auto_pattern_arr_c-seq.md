@@ -33,9 +33,8 @@ let a = arrPatternSplat[0];
 const tmpBinBothLhs = $(100);
 $(10);
 $(20);
-const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
-const tmpBinBothRhs = tmpCallCallee(tmpCalleeParam);
+const tmpBinBothRhs = $(tmpCalleeParam);
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````

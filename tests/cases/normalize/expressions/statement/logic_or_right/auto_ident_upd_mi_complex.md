@@ -35,9 +35,8 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(b);
-  const tmpAssignMemLhsObj = tmpCallCallee(tmpCalleeParam);
+  const tmpAssignMemLhsObj = $(tmpCalleeParam);
   const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
   const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
   const tmpAssignMemRhs = tmpCompoundAssignLhs - 1;

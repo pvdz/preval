@@ -30,9 +30,8 @@ $(o.x);
 const tmpObjLitVal = $(1);
 let o = { x: tmpObjLitVal };
 o = {};
-const tmpCallCallee = $;
 const tmpCalleeParam = o.x;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

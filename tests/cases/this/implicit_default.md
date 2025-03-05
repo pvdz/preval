@@ -36,9 +36,8 @@ let f = function () {
   debugger;
   return tmpPrevalAliasThis;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

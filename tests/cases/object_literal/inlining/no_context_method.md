@@ -41,9 +41,8 @@ const tmpObjLitVal = function () {
 };
 const obj = { encode: tmpObjLitVal };
 const str = `abc`;
-const tmpCallCallee = $;
 const tmpCalleeParam = obj.encode();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

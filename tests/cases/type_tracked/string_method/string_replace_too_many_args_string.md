@@ -23,9 +23,8 @@ $(`hello world`.replace(` `, `, `, $, unknown));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = `hello world`.replace(` `, `, `, $, unknown);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -52,13 +52,12 @@ const obj = {
     return undefined;
   },
 };
-const tmpCallCallee = $;
 const varInitAssignLhsComputedObj = $(obj);
 const varInitAssignLhsComputedProp = $(`x`);
 const varInitAssignLhsComputedRhs = 30;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 const tmpCalleeParam = varInitAssignLhsComputedRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

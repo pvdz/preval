@@ -42,46 +42,38 @@ $(typeof Math.log($spy(`Math.log`)));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam$1 = $spy(`Math.cos`);
 const tmpUnaryArg = $Math_cos(tmpCalleeParam$1);
 const tmpCalleeParam = typeof tmpUnaryArg;
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpCalleeParam$5 = $spy(`Math.cosh`);
 const tmpUnaryArg$1 = $Math_cosh(tmpCalleeParam$5);
 const tmpCalleeParam$3 = typeof tmpUnaryArg$1;
-tmpCallCallee$1(tmpCalleeParam$3);
-const tmpCallCallee$3 = $;
+$(tmpCalleeParam$3);
 const tmpCalleeParam$9 = $spy(`Math.exp`);
 const tmpUnaryArg$3 = $Math_exp(tmpCalleeParam$9);
 const tmpCalleeParam$7 = typeof tmpUnaryArg$3;
-tmpCallCallee$3(tmpCalleeParam$7);
-const tmpCallCallee$5 = $;
+$(tmpCalleeParam$7);
 const tmpCalleeParam$13 = $spy(`Math.expm1`);
 const tmpUnaryArg$5 = $Math_expm1(tmpCalleeParam$13);
 const tmpCalleeParam$11 = typeof tmpUnaryArg$5;
-tmpCallCallee$5(tmpCalleeParam$11);
-const tmpCallCallee$7 = $;
+$(tmpCalleeParam$11);
 const tmpCalleeParam$17 = $spy(`Math.floor`);
 const tmpUnaryArg$7 = $Math_floor(tmpCalleeParam$17);
 const tmpCalleeParam$15 = typeof tmpUnaryArg$7;
-tmpCallCallee$7(tmpCalleeParam$15);
-const tmpCallCallee$9 = $;
+$(tmpCalleeParam$15);
 const tmpCalleeParam$21 = $spy(`Math.fround`);
 const tmpUnaryArg$9 = $Math_fround(tmpCalleeParam$21);
 const tmpCalleeParam$19 = typeof tmpUnaryArg$9;
-tmpCallCallee$9(tmpCalleeParam$19);
-const tmpCallCallee$11 = $;
+$(tmpCalleeParam$19);
 const tmpCalleeParam$25 = $spy(`Math.imul`);
 const tmpUnaryArg$11 = $Math_imul(tmpCalleeParam$25);
 const tmpCalleeParam$23 = typeof tmpUnaryArg$11;
-tmpCallCallee$11(tmpCalleeParam$23);
-const tmpCallCallee$13 = $;
+$(tmpCalleeParam$23);
 const tmpCalleeParam$29 = $spy(`Math.log`);
 const tmpUnaryArg$13 = $Math_log(tmpCalleeParam$29);
 const tmpCalleeParam$27 = typeof tmpUnaryArg$13;
-tmpCallCallee$13(tmpCalleeParam$27);
+$(tmpCalleeParam$27);
 `````
 
 ## Output

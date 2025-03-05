@@ -54,17 +54,14 @@ let f = function ($$0) {
   const y = x.length;
   return y;
 };
-const tmpCallCallee = $;
-const tmpCallCallee$1 = f;
+const tmpCallCallee = f;
 const tmpCalleeParam$1 = [1, 2, 3];
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$3 = $;
+const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1);
+$(tmpCalleeParam);
 const tmpCalleeParam$3 = f($);
-tmpCallCallee$3(tmpCalleeParam$3);
-const tmpCallCallee$5 = $;
+$(tmpCalleeParam$3);
 const tmpCalleeParam$5 = f(`three`);
-tmpCallCallee$5(tmpCalleeParam$5);
+$(tmpCalleeParam$5);
 `````
 
 ## Output

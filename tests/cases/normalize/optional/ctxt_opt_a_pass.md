@@ -39,16 +39,14 @@ const tmpObjLitVal$1 = function (...$$0 /*:array*/) {
   const tmpPrevalAliasThis = this;
   let a$1 = $$0;
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(a$1);
   const tmpCalleeParam$1 = tmpPrevalAliasThis;
-  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  $(tmpCalleeParam, tmpCalleeParam$1);
   const tmpReturnArg = a$1[0];
   return tmpReturnArg;
 };
 const tmpObjLitVal = { c: tmpObjLitVal$1 };
 const a = { b: tmpObjLitVal };
-const tmpCallCallee$1 = $;
 let tmpCalleeParam$3 = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(a);
@@ -59,7 +57,7 @@ if (tmpIfTest) {
   tmpCalleeParam$3 = tmpChainElementCall$1;
 } else {
 }
-tmpCallCallee$1(tmpCalleeParam$3);
+$(tmpCalleeParam$3);
 `````
 
 ## Output

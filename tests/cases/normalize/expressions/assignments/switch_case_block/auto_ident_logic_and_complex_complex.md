@@ -45,13 +45,11 @@ const tmpBinBothLhs = tmpSwitchDisc;
 const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  a = tmpCallCallee(tmpCalleeParam);
+  a = $(tmpCalleeParam);
   if (a) {
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(2);
-    a = tmpCallCallee$1(tmpCalleeParam$1);
+    a = $(tmpCalleeParam$1);
   } else {
   }
 } else {

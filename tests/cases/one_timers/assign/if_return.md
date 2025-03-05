@@ -68,16 +68,12 @@ let f = function () {
   }
 };
 let x = $(100, `init`);
-const tmpCallCallee = $;
 const tmpCalleeParam = closure();
-const tmpCalleeParam$1 = `closure-global1`;
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, `closure-global1`);
 x = f();
 $(x, `x-global`);
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$3 = closure();
-const tmpCalleeParam$5 = `closure-global2`;
-tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
+const tmpCalleeParam$1 = closure();
+$(tmpCalleeParam$1, `closure-global2`);
 `````
 
 ## Output
@@ -96,8 +92,8 @@ if (tmpIfTest) {
 } else {
   $(undefined, `x-global`);
 }
-const tmpCalleeParam$3 /*:unknown*/ = $(tmpClusterSSA_x, `closure-return`);
-$(tmpCalleeParam$3, `closure-global2`);
+const tmpCalleeParam$1 /*:unknown*/ = $(tmpClusterSSA_x, `closure-return`);
+$(tmpCalleeParam$1, `closure-global2`);
 `````
 
 ## PST Output

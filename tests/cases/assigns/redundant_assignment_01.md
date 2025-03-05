@@ -41,11 +41,10 @@ if ($) {
 } else {
   x = 1;
 }
-const tmpCallCallee = $;
 const tmpBinBothLhs = x;
 const tmpBinBothRhs = $(`prevent inlining`);
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -77,7 +77,6 @@ let a = function () {
   };
   return a$1;
 };
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootCall = a;
 const tmpChainElementCall = tmpChainRootCall();
@@ -95,7 +94,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

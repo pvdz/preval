@@ -34,10 +34,9 @@ let x = undefined;
 
 `````js filename=intro
 let x = undefined;
-const tmpCallCallee = $;
 x = $(10);
 let tmpCalleeParam = x;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(x);
 `````
 

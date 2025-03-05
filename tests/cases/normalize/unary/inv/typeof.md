@@ -23,11 +23,10 @@ $(!typeof $(100));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpUnaryArg$1 = $(100);
 const tmpUnaryArg = typeof tmpUnaryArg$1;
 const tmpCalleeParam = !tmpUnaryArg;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

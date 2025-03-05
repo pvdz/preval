@@ -42,7 +42,6 @@ let f = function () {
   const tmpObjLitVal$1 = { c: tmpObjLitVal$3 };
   const tmpObjLitVal = { b: tmpObjLitVal$1 };
   const obj = { a: tmpObjLitVal };
-  const tmpCallCallee = $;
   let tmpCalleeParam = obj;
   const tmpIfTest = tmpCalleeParam == null;
   if (tmpIfTest) {
@@ -59,15 +58,14 @@ let f = function () {
     tmpCalleeParam = c;
   } else {
   }
-  const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
+  const tmpReturnArg = $(tmpCalleeParam);
   return tmpReturnArg;
 };
 const a = $(1);
 const b = $(2);
 const c = $(3);
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

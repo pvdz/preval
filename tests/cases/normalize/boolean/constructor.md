@@ -23,9 +23,8 @@ $(false.constructor(`300`));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = true;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

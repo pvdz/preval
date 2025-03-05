@@ -33,18 +33,16 @@ const tmpIfTest$1 = 30;
 if (tmpIfTest$1) {
   tmpIfTest = $(2);
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpIfTest = tmpCallCallee(tmpCalleeParam);
+  tmpIfTest = $(tmpCalleeParam);
 }
 if (tmpIfTest) {
   const tmpIfTest$3 = 30;
   if (tmpIfTest$3) {
     $(2);
   } else {
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(100);
-    tmpCallCallee$1(tmpCalleeParam$1);
+    $(tmpCalleeParam$1);
   }
 } else {
 }

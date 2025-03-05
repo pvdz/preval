@@ -35,10 +35,9 @@ $(a, b, c);
 let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 b = 2;
 let tmpCalleeParamSpread = b;
-tmpCallCallee(...tmpCalleeParamSpread);
+$(...tmpCalleeParamSpread);
 $(a, b, c);
 `````
 

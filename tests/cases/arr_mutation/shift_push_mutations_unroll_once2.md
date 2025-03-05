@@ -50,9 +50,8 @@ const arr = [1, 2, 3, 4, 5];
 while ($LOOP_UNROLL_1) {
   const test = $(`never`);
   if (test) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = arr.slice(0);
-    tmpCallCallee(tmpCalleeParam);
+    $(tmpCalleeParam);
     break;
   } else {
     const tmp = arr.shift();

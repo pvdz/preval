@@ -32,7 +32,6 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpCallCallee = $;
   let tmpCalleeParam = undefined;
   const tmpChainRootCall = parseInt;
   const tmpChainElementCall = tmpChainRootCall(15);
@@ -42,12 +41,11 @@ let f = function () {
     tmpCalleeParam = tmpChainElementObject;
   } else {
   }
-  const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
+  const tmpReturnArg = $(tmpCalleeParam);
   return tmpReturnArg;
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

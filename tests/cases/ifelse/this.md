@@ -57,9 +57,8 @@ let f = function () {
   }
 };
 const obj = { f: f, foo: 10 };
-const tmpCallCallee = $;
 const tmpCalleeParam = obj.f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

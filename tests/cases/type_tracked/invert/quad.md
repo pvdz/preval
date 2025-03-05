@@ -23,13 +23,12 @@ $(!!!!$(1));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpUnaryArg$5 = $(1);
 const tmpUnaryArg$3 = !tmpUnaryArg$5;
 const tmpUnaryArg$1 = !tmpUnaryArg$3;
 const tmpUnaryArg = !tmpUnaryArg$1;
 const tmpCalleeParam = !tmpUnaryArg;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

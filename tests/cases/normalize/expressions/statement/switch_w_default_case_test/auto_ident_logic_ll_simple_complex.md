@@ -57,9 +57,8 @@ let tmpSwitchCaseToStart = 1;
 let tmpBinLhs = 0;
 if (tmpBinLhs) {
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  tmpBinLhs = tmpCallCallee(tmpCalleeParam);
+  tmpBinLhs = $(tmpCalleeParam);
 }
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 tmpSwitchBreak: {

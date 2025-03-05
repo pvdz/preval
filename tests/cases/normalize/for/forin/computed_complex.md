@@ -40,9 +40,8 @@ let b = { x: 1, y: 2 };
 `````js filename=intro
 let a = {};
 let b = { x: 1, y: 2 };
-const tmpCallCallee = $forIn;
 const tmpCalleeParam = $(b);
-let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+let tmpForInGen = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForInNext = tmpForInGen.next();
   const tmpIfTest = tmpForInNext.done;

@@ -67,9 +67,8 @@ let f = function () {
   $(a, b, c, d, e);
   return undefined;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

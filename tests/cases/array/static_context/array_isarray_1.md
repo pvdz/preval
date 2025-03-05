@@ -23,10 +23,9 @@ $(Array.isArray([1]));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam$1 = [1];
 const tmpCalleeParam = $Array_isArray(tmpCalleeParam$1);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -43,9 +43,8 @@ const f = function ($$0) {
   const tmpReturnArg = [a$1, b$1];
   return tmpReturnArg;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

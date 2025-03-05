@@ -39,17 +39,15 @@ $(a);
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = $(2);
-  const tmpReturnArg = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  const tmpReturnArg = $(tmpCalleeParam, tmpCalleeParam$1);
   return tmpReturnArg;
 };
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$3 = f();
-tmpCallCallee$1(tmpCalleeParam$3);
+$(tmpCalleeParam$3);
 $(a);
 `````
 

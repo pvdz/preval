@@ -28,12 +28,11 @@ $(++arr[0]);
 
 `````js filename=intro
 const arr = [1, 2, 3];
-const tmpCallCallee = $;
 const tmpBinLhs = arr[0];
 const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
 arr[0] = varInitAssignLhsComputedRhs;
 const tmpCalleeParam = varInitAssignLhsComputedRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

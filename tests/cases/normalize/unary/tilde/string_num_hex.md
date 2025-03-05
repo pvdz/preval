@@ -23,9 +23,8 @@ $(~`0x0a05`);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = -2566;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

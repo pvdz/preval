@@ -42,9 +42,8 @@ $(`keep, do not eval`);
 
 
 `````js filename=intro
-const tmpCallCallee = $forOf;
 const tmpCalleeParam = [10, 20];
-let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+let tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest = tmpForOfNext.done;

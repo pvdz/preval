@@ -23,11 +23,10 @@ $(``.replace(/^/, String));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam$1 = /^/;
 const tmpCalleeParam$3 = String;
 const tmpCalleeParam = ``.replace(tmpCalleeParam$1, tmpCalleeParam$3);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

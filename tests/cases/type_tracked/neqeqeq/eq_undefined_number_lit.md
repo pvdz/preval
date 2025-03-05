@@ -28,9 +28,8 @@ $(undefined !== x);
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 const x = tmpBinBothLhs * tmpBinBothRhs;
-const tmpCallCallee = $;
 const tmpCalleeParam = undefined !== x;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

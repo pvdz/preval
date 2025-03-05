@@ -128,7 +128,6 @@ const f = function () {
         return undefined;
       }
     };
-    const tmpCallCallee = $;
     const tmpCalleeParam = {
       toString() {
         debugger;
@@ -143,7 +142,7 @@ const f = function () {
         }
       },
     };
-    x = tmpCallCallee(tmpCalleeParam);
+    x = $(tmpCalleeParam);
     x = x + 1;
     g();
     t();

@@ -24,12 +24,11 @@ $(`this 'thing'` + here + `is 'quoted'`);
 
 `````js filename=intro
 const here = $(`here`);
-const tmpCallCallee = $;
 const tmpStringConcatL = $coerce(here, `plustr`);
 const tmpBinLhs = `this 'thing'${tmpStringConcatL}`;
 const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}is 'quoted'`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -44,14 +44,12 @@ const tmpObjLitVal = $(1);
 let o = { x: tmpObjLitVal };
 const f = function () {
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = o.x;
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   return undefined;
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = o.x;
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 o = { x: 10 };
 f();
 f();

@@ -33,9 +33,8 @@ if (x) {
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = /foo/g;
-const x = tmpCallCallee(tmpCalleeParam);
+const x = $(tmpCalleeParam);
 if (x) {
   $(`truthy`, ...x);
 } else {

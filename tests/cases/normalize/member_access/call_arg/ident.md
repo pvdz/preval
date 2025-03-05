@@ -23,9 +23,8 @@ $($.length);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = $.length;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

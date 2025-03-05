@@ -30,9 +30,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 let tmpObjSpreadArg = 1;
 if (tmpObjSpreadArg) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  tmpObjSpreadArg = tmpCallCallee(tmpCalleeParam);
+  tmpObjSpreadArg = $(tmpCalleeParam);
 } else {
 }
 ({ ...tmpObjSpreadArg });

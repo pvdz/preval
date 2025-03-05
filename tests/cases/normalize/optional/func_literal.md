@@ -34,7 +34,6 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpCallCallee = $;
   let tmpCalleeParam = undefined;
   const tmpChainRootProp = `foo`;
   const tmpIfTest = tmpChainRootProp != null;
@@ -43,20 +42,19 @@ let f = function () {
     tmpCalleeParam = tmpChainElementObject;
   } else {
   }
-  const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
+  const tmpReturnArg = $(tmpCalleeParam);
   return tmpReturnArg;
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $(3);
-$(tmpCalleeParam$1);
+const tmpReturnArg /*:unknown*/ = $(3);
+$(tmpReturnArg);
 `````
 
 ## PST Output

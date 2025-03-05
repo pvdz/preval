@@ -71,9 +71,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $(`keepme`);
   }
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = arr[0];
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

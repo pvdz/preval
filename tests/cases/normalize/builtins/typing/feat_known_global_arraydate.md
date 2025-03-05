@@ -45,56 +45,46 @@ $(typeof Math.acosh($spy(`Math.acosh`)));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam$1 = $spy(`Array.from`);
 const tmpUnaryArg = $Array_from(tmpCalleeParam$1);
 const tmpCalleeParam = typeof tmpUnaryArg;
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpCalleeParam$5 = $spy(`Array.isArray`);
 const tmpUnaryArg$1 = $Array_isArray(tmpCalleeParam$5);
 const tmpCalleeParam$3 = typeof tmpUnaryArg$1;
-tmpCallCallee$1(tmpCalleeParam$3);
-const tmpCallCallee$3 = $;
+$(tmpCalleeParam$3);
 const tmpCalleeParam$9 = $spy(`Array.of`);
 const tmpUnaryArg$3 = $Array_of(tmpCalleeParam$9);
 const tmpCalleeParam$7 = typeof tmpUnaryArg$3;
-tmpCallCallee$3(tmpCalleeParam$7);
-const tmpCallCallee$5 = $;
+$(tmpCalleeParam$7);
 const tmpCalleeParam$13 = $spy(`Date.now`);
 const tmpUnaryArg$5 = $Date_now(tmpCalleeParam$13);
 const tmpCalleeParam$11 = typeof tmpUnaryArg$5;
-tmpCallCallee$5(tmpCalleeParam$11);
-const tmpCallCallee$7 = $;
+$(tmpCalleeParam$11);
 const tmpCalleeParam$17 = $spy(`Date.UTC`);
 const tmpUnaryArg$7 = $Date_UTC(tmpCalleeParam$17);
 const tmpCalleeParam$15 = typeof tmpUnaryArg$7;
-tmpCallCallee$7(tmpCalleeParam$15);
-const tmpCallCallee$9 = $;
+$(tmpCalleeParam$15);
 const tmpCalleeParam$21 = $spy(`Date.parse`);
 const tmpUnaryArg$9 = $Date_parse(tmpCalleeParam$21);
 const tmpCalleeParam$19 = typeof tmpUnaryArg$9;
-tmpCallCallee$9(tmpCalleeParam$19);
-const tmpCallCallee$11 = $;
+$(tmpCalleeParam$19);
 const tmpCalleeParam$25 = $spy(`JSON.stringify`);
 const tmpUnaryArg$11 = $JSON_stringify(tmpCalleeParam$25);
 const tmpCalleeParam$23 = typeof tmpUnaryArg$11;
-tmpCallCallee$11(tmpCalleeParam$23);
-const tmpCallCallee$13 = $;
+$(tmpCalleeParam$23);
 const tmpCalleeParam$29 = $spy(`Math.abs`);
 const tmpUnaryArg$13 = $Math_abs(tmpCalleeParam$29);
 const tmpCalleeParam$27 = typeof tmpUnaryArg$13;
-tmpCallCallee$13(tmpCalleeParam$27);
-const tmpCallCallee$15 = $;
+$(tmpCalleeParam$27);
 const tmpCalleeParam$33 = $spy(`Math.acos`);
 const tmpUnaryArg$15 = $Math_acos(tmpCalleeParam$33);
 const tmpCalleeParam$31 = typeof tmpUnaryArg$15;
-tmpCallCallee$15(tmpCalleeParam$31);
-const tmpCallCallee$17 = $;
+$(tmpCalleeParam$31);
 const tmpCalleeParam$37 = $spy(`Math.acosh`);
 const tmpUnaryArg$17 = $Math_acosh(tmpCalleeParam$37);
 const tmpCalleeParam$35 = typeof tmpUnaryArg$17;
-tmpCallCallee$17(tmpCalleeParam$35);
+$(tmpCalleeParam$35);
 `````
 
 ## Output

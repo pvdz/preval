@@ -23,10 +23,9 @@ $(typeof void $(100));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 $(100);
 const tmpCalleeParam = `undefined`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -34,9 +34,8 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(0);
-  let a = tmpCallCallee(tmpCalleeParam);
+  let a = $(tmpCalleeParam);
   if (a) {
   } else {
     a = 2;
@@ -44,9 +43,8 @@ let f = function () {
   $(a);
   return undefined;
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

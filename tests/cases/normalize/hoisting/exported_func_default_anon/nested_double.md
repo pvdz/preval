@@ -45,9 +45,8 @@ const tmpAnonDefaultExport = function () {
     const tmpReturnArg = $(2);
     return tmpReturnArg;
   };
-  const tmpCallCallee = $;
   const tmpCalleeParam = f(3);
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   return undefined;
 };
 export { tmpAnonDefaultExport as default };

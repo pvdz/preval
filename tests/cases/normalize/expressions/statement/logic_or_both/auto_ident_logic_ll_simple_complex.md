@@ -31,17 +31,15 @@ let a = { a: 999, b: 1000 };
 let tmpIfTest = 0;
 if (tmpIfTest) {
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  tmpIfTest = tmpCallCallee(tmpCalleeParam);
+  tmpIfTest = $(tmpCalleeParam);
   if (tmpIfTest) {
   } else {
     tmpIfTest = 0;
     if (tmpIfTest) {
     } else {
-      const tmpCallCallee$1 = $;
       const tmpCalleeParam$1 = $(1);
-      tmpCallCallee$1(tmpCalleeParam$1);
+      $(tmpCalleeParam$1);
     }
   }
 }
@@ -53,8 +51,8 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
-if (tmpIfTest) {
+const tmpClusterSSA_tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
+if (tmpClusterSSA_tmpIfTest) {
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
   $(tmpCalleeParam$1);

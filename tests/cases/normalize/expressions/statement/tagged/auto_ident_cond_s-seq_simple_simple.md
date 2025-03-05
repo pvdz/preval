@@ -28,18 +28,16 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = [`before `, ` after`];
 let tmpCalleeParam$1 = undefined;
 const tmpIfTest = 30;
 if (tmpIfTest) {
   tmpCalleeParam$1 = $(2);
 } else {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$3 = $(100);
-  tmpCalleeParam$1 = tmpCallCallee$1(tmpCalleeParam$3);
+  tmpCalleeParam$1 = $(tmpCalleeParam$3);
 }
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 

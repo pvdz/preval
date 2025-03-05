@@ -23,13 +23,12 @@ $([5 + 5, $(), Array.prototype.length]);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpArrElement = 10;
 const tmpArrElement$1 = $();
 const tmpCompObj = $Array_prototype;
 const tmpArrElement$3 = tmpCompObj.length;
 const tmpCalleeParam = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

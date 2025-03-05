@@ -23,9 +23,8 @@ $(parseFloat(500));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = 500;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

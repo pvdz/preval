@@ -38,10 +38,9 @@ $(x);
 let x = $(3);
 $(x);
 while (true) {
-  const tmpCallCallee = $;
   x = x + 1;
   let tmpCalleeParam = x;
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   const tmpIfTest = x > 5;
   if (tmpIfTest) {
     break;

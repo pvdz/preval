@@ -31,9 +31,8 @@ const x = function () {
   debugger;
   return undefined;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = typeof x;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

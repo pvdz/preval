@@ -34,27 +34,25 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpCallCallee = $;
   let tmpCalleeParam = `foo`;
   const tmpIfTest = tmpCalleeParam == null;
   if (tmpIfTest) {
     tmpCalleeParam = length;
   } else {
   }
-  const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
+  const tmpReturnArg = $(tmpCalleeParam);
   return tmpReturnArg;
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $(`foo`);
-$(tmpCalleeParam$1);
+const tmpReturnArg /*:unknown*/ = $(`foo`);
+$(tmpReturnArg);
 `````
 
 ## PST Output

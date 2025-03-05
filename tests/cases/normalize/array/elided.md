@@ -23,13 +23,12 @@ $([1, $(), , 2, , $(), ,]);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpArrElement = 1;
 const tmpArrElement$1 = $();
 const tmpArrElement$3 = 2;
 const tmpArrElement$5 = $();
 const tmpCalleeParam = [tmpArrElement, tmpArrElement$1, , tmpArrElement$3, , tmpArrElement$5, ,];
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

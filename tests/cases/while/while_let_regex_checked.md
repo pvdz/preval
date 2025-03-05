@@ -50,9 +50,8 @@ while (x) {
 let check = function ($$0) {
   let r = $$0;
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = r.foo;
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   return undefined;
 };
 let x = /foo/;

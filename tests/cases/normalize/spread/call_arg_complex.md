@@ -47,12 +47,11 @@ let y = undefined;
 const tmpCallObj = x;
 const tmpCallVal = tmpCallObj.y;
 const tmpCalleeParam = x;
-const tmpCalleeParam$1 = 8;
 a = b.c;
 d = e[f];
 const tmpCompObj = g;
 const tmpCalleeParamSpread = tmpCompObj.h;
-$dotCall(tmpCallVal, tmpCallObj, `y`, tmpCalleeParam, tmpCalleeParam$1, ...tmpCalleeParamSpread);
+$dotCall(tmpCallVal, tmpCallObj, `y`, tmpCalleeParam, 8, ...tmpCalleeParamSpread);
 `````
 
 ## Output

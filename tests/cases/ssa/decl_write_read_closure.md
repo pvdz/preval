@@ -68,9 +68,8 @@ let f = function () {
   }
 };
 if ($) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = f();
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
 } else {
 }
 `````

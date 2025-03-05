@@ -58,9 +58,8 @@ let f = function () {
     debugger;
     $(x);
     if ($) {
-      const tmpCallCallee = $;
       const tmpCalleeParam = x + 1;
-      x = tmpCallCallee(tmpCalleeParam);
+      x = $(tmpCalleeParam);
       $(x);
       return undefined;
     } else {
@@ -73,9 +72,8 @@ let f = function () {
   return undefined;
 };
 if ($) {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = f();
-  tmpCallCallee$1(tmpCalleeParam$1);
+  $(tmpCalleeParam$1);
 } else {
 }
 `````

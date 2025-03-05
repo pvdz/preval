@@ -29,9 +29,8 @@ $(obj.f);
 `````js filename=intro
 let g = /regex/;
 const obj = { f: g };
-const tmpCallCallee = $;
 const tmpCalleeParam = obj.f;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -31,9 +31,8 @@ $(arr.length);
 `````js filename=intro
 const arr = [1, 2, 3];
 arr.splice(1, 2, 20);
-const tmpCallCallee = $;
 const tmpCalleeParam = arr.length;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -307,9 +307,8 @@ while (true) {
     break;
   }
 }
-const tmpCallCallee = $;
 const tmpCalleeParam$1 = arr.join(``);
-tmpCallCallee(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

@@ -64,11 +64,10 @@ const tmpAnonDefaultExport = function () {
     const tmpReturnArg$3 = $();
     return tmpReturnArg$3;
   };
-  const tmpCallCallee = $;
   const tmpCalleeParam = f();
   const tmpCalleeParam$1 = g();
   const tmpCalleeParam$3 = h();
-  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+  $(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
   return undefined;
 };
 export { tmpAnonDefaultExport as default };

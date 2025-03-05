@@ -92,11 +92,9 @@ let bindingPatternObjRoot = obj;
 let a = bindingPatternObjRoot.a;
 let objPatternNoDefault = bindingPatternObjRoot.b;
 let c = objPatternNoDefault.c;
-const tmpCallCallee = objPatternRest;
 const tmpCalleeParam = objPatternNoDefault;
 const tmpCalleeParam$1 = [`c`];
-const tmpCalleeParam$3 = undefined;
-let rest = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+let rest = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
 $(a, c, rest);
 `````
 

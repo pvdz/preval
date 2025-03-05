@@ -39,9 +39,8 @@ const tmpSwitchDisc = $(1);
 const tmpBinBothLhs = tmpSwitchDisc;
 let tmpBinBothRhs = 1;
 if (tmpBinBothRhs) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  tmpBinBothRhs = tmpCallCallee(tmpCalleeParam);
+  tmpBinBothRhs = $(tmpCalleeParam);
 } else {
 }
 const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;

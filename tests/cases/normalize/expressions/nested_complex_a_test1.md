@@ -41,9 +41,8 @@ $(a).length = b;
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = [];
-let a = tmpCallCallee(tmpCalleeParam);
+let a = $(tmpCalleeParam);
 let b = undefined;
 const tmpAssignMemLhsObj = $(a);
 tmpAssignMemLhsObj.length = b;

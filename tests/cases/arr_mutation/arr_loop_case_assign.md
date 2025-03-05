@@ -80,9 +80,8 @@ while (true) {
     } else {
       const next = arr.shift();
       arr.push(next);
-      const tmpCallCallee = $;
       const tmpCalleeParam = arr.slice(0);
-      tmpCallCallee(tmpCalleeParam);
+      $(tmpCalleeParam);
     }
   } catch (e) {
     const v = arr.shift();
@@ -90,9 +89,8 @@ while (true) {
   }
   $(test);
 }
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = arr.slice(0, 3);
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

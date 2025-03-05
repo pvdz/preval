@@ -71,15 +71,12 @@ let f = function ($$0, $$1) {
   const tmpReturnArg$23 = f(a, b);
   return tmpReturnArg$23;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f(430);
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpCalleeParam$1 = f(431);
-tmpCallCallee$1(tmpCalleeParam$1);
-const tmpCallCallee$3 = $;
+$(tmpCalleeParam$1);
 const tmpCalleeParam$3 = f(432);
-tmpCallCallee$3(tmpCalleeParam$3);
+$(tmpCalleeParam$3);
 $(f);
 `````
 

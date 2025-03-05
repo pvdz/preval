@@ -25,17 +25,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
-let a = tmpCallCallee(tmpCalleeParam);
+let a = $(tmpCalleeParam);
 if (a) {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
-  a = tmpCallCallee$1(tmpCalleeParam$1);
+  a = $(tmpCalleeParam$1);
   if (a) {
-    const tmpCallCallee$3 = $;
     const tmpCalleeParam$3 = $(2);
-    a = tmpCallCallee$3(tmpCalleeParam$3);
+    a = $(tmpCalleeParam$3);
   } else {
   }
 } else {

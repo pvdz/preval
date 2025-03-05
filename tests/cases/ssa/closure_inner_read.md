@@ -61,9 +61,8 @@ let f = function () {
   let x = 0;
   let g = function () {
     debugger;
-    const tmpCallCallee = $;
     const tmpCalleeParam = x + 1;
-    x = tmpCallCallee(tmpCalleeParam);
+    x = $(tmpCalleeParam);
     const h = function () {
       debugger;
       $(x);
@@ -83,9 +82,8 @@ let f = function () {
   return tmpReturnArg$1;
 };
 if ($) {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = f();
-  tmpCallCallee$1(tmpCalleeParam$1);
+  $(tmpCalleeParam$1);
 } else {
 }
 `````

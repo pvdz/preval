@@ -38,16 +38,13 @@ let f = function ($$0) {
   let bindingPatternArrRoot = tmpParamBare;
   let arrPatternSplat = [...bindingPatternArrRoot];
   let arrPatternStep = arrPatternSplat[0];
-  const tmpCallCallee = objPatternRest;
   const tmpCalleeParam = arrPatternStep;
   const tmpCalleeParam$1 = [];
-  const tmpCalleeParam$3 = undefined;
-  let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+  let x = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
   return x;
 };
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$5 = f(``, 200);
-tmpCallCallee$1(tmpCalleeParam$5);
+const tmpCalleeParam$3 = f(``, 200);
+$(tmpCalleeParam$3);
 `````
 
 ## Output

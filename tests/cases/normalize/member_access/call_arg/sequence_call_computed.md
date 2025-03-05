@@ -27,12 +27,11 @@ $(c);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 $(1);
 const tmpCompObj = $(2);
 const tmpCompProp = $(`toString`);
 const tmpCalleeParam = tmpCompObj[tmpCompProp];
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(c);
 `````
 

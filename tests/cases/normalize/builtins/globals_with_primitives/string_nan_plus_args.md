@@ -23,12 +23,11 @@ $(String(NaN, 1, `two`, implicitGlobal, 3));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpArgOverflow = NaN;
 implicitGlobal;
 const tmpStringFirstArg = tmpArgOverflow;
 const tmpCalleeParam = $coerce(tmpStringFirstArg, `string`);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

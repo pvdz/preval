@@ -51,9 +51,8 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpCallCallee = $forOf;
   const tmpCalleeParam = [10, 20];
-  let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+  let tmpForOfGen = $forOf(tmpCalleeParam);
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     let tmpForOfNext = tmpForOfGen.next();
     const tmpIfTest = tmpForOfNext.done;
@@ -67,9 +66,8 @@ let f = function () {
   }
   return undefined;
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

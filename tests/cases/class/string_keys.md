@@ -40,10 +40,9 @@ let x = class {
     return tmpReturnArg;
   }
 };
-const tmpCallCallee = $;
 const tmpCallObj = new x();
 const tmpCalleeParam = tmpCallObj[`very stringy`]();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -48,7 +48,6 @@ let f = function () {
   debugger;
   const tmpIfTest = $(false);
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     throw `Preval: TDZ triggered for this read: \$(x)`;
   } else {
     return undefined;
@@ -56,9 +55,8 @@ let f = function () {
     return undefined;
   }
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

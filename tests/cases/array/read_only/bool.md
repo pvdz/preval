@@ -30,20 +30,17 @@ $(`` + $coerce(arr[2], `string`) + `xyz`);
 
 `````js filename=intro
 const arr = [1, 2, 3, 4];
-const tmpCallCallee = $;
 const tmpCalleeParam = arr[1];
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpCalleeParam$1 = arr[3];
-tmpCallCallee$1(tmpCalleeParam$1);
-const tmpCallCallee$3 = $;
+$(tmpCalleeParam$1);
 const tmpBinBothLhs = ``;
-const tmpCallCallee$5 = arr[2];
-const tmpBinBothRhs = $coerce(tmpCallCallee$5, `string`);
+const tmpCalleeParam$5 = arr[2];
+const tmpBinBothRhs = $coerce(tmpCalleeParam$5, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam$3 = `${tmpStringConcatR}xyz`;
-tmpCallCallee$3(tmpCalleeParam$3);
+$(tmpCalleeParam$3);
 `````
 
 ## Output

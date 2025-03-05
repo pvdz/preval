@@ -45,15 +45,13 @@ let f = function () {
   let a = arrPatternSplat[0];
   $(10);
   $(20);
-  const tmpCallCallee = $;
   const tmpCalleeParam = [1, 2];
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   $(a);
   return undefined;
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

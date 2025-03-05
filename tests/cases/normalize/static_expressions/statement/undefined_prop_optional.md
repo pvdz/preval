@@ -25,7 +25,6 @@ $(`okay, do not DCE`);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootProp = undefined;
 const tmpIfTest = tmpChainRootProp != null;
@@ -34,7 +33,7 @@ if (tmpIfTest) {
   tmpCalleeParam = tmpChainElementObject;
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(`okay, do not DCE`);
 `````
 

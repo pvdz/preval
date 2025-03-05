@@ -23,10 +23,9 @@ $(-Date.length);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpUnaryArg = Date.length;
 const tmpCalleeParam = -tmpUnaryArg;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

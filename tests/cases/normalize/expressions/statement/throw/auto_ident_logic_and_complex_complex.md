@@ -28,13 +28,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
-let tmpThrowArg = tmpCallCallee(tmpCalleeParam);
+let tmpThrowArg = $(tmpCalleeParam);
 if (tmpThrowArg) {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(2);
-  tmpThrowArg = tmpCallCallee$1(tmpCalleeParam$1);
+  tmpThrowArg = $(tmpCalleeParam$1);
 } else {
 }
 throw tmpThrowArg;

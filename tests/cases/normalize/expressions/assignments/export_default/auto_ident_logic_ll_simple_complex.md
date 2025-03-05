@@ -32,9 +32,8 @@ let a = { a: 999, b: 1000 };
 a = 0;
 if (a) {
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  a = tmpCallCallee(tmpCalleeParam);
+  a = $(tmpCalleeParam);
 }
 let tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
@@ -45,9 +44,10 @@ $(a);
 
 
 `````js filename=intro
+let tmpAnonDefaultExport /*:unknown*/ = 0;
 const tmpCalleeParam /*:unknown*/ = $(1);
 const a /*:unknown*/ = $(tmpCalleeParam);
-const tmpAnonDefaultExport /*:unknown*/ = a;
+tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
 $(a);
 `````
@@ -57,11 +57,12 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-const b = $( a );
-const c = b;
-export { c as default };
-$( b );
+let a = 0;
+const b = $( 1 );
+const c = $( b );
+a = c;
+export { a as default };
+$( c );
 `````
 
 ## Globals

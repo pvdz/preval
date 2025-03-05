@@ -23,9 +23,8 @@ $(String[$LOOP_DONE_UNROLLING_ALWAYS_TRUE]);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = String.true;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

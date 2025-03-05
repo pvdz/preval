@@ -31,16 +31,14 @@ let a = { a: 999, b: 1000 };
 let tmpBinBothLhs = 0;
 if (tmpBinBothLhs) {
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  tmpBinBothLhs = tmpCallCallee(tmpCalleeParam);
+  tmpBinBothLhs = $(tmpCalleeParam);
 }
 let tmpBinBothRhs = 0;
 if (tmpBinBothRhs) {
 } else {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
-  tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
+  tmpBinBothRhs = $(tmpCalleeParam$1);
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);

@@ -45,10 +45,9 @@ $(x);
 `````js filename=intro
 let x = undefined;
 $(x);
-const tmpCallCallee = $forOf;
 const tmpArrElement = [100];
 const tmpCalleeParam = [tmpArrElement];
-let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+let tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest = tmpForOfNext.done;

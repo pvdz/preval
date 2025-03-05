@@ -34,7 +34,6 @@ let c = undefined;
 a = { x: 1 };
 b = { x: 2 };
 c = { x: 3 };
-const tmpCallCallee = $;
 const varInitAssignLhsComputedObj = $(a);
 const varInitAssignLhsComputedObj$1 = $(b);
 const tmpCompObj = $(c);
@@ -43,7 +42,7 @@ varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
 const tmpCalleeParam = varInitAssignLhsComputedRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

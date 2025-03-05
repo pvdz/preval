@@ -41,15 +41,13 @@ const tmpObjLitVal$1 = function () {
   const tmpPrevalAliasThis = this;
   debugger;
   tmpPrevalAliasThis.g = 2;
-  const tmpCallCallee = $;
   const tmpCalleeParam = tmpPrevalAliasThis.g;
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   return undefined;
 };
 const obj = { g: tmpObjLitVal, f: tmpObjLitVal$1 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = obj.f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

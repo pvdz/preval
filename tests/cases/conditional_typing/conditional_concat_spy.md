@@ -69,9 +69,8 @@ let f = function () {
   return undefined;
 };
 const lastType = $(2097173);
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

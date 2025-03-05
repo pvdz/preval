@@ -64,16 +64,14 @@ let f = function ($$0) {
     return `ok`;
   }
 };
-const tmpCallCallee = $;
-const tmpCallCallee$1 = f;
+const tmpCallCallee = f;
 const tmpObjLitVal$1 = 13;
 const tmpObjLitVal$3 = { a: 1, b: 2, c: 3 };
 const tmpObjLitVal = { x: tmpObjLitVal$1, y: tmpObjLitVal$3, z: 31 };
 const tmpArrElement = { x: tmpObjLitVal, y: 11 };
 const tmpCalleeParam$1 = [tmpArrElement, 10];
-const tmpCalleeParam$3 = 100;
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
-tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1, 100);
+$(tmpCalleeParam);
 `````
 
 ## Output

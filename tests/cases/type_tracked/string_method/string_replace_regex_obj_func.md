@@ -36,7 +36,6 @@ $(
 `````js filename=intro
 const obj = { a: 1, b: 2, [` `]: `->` };
 const rex = /\b.\b/g;
-const tmpCallCallee = $;
 const tmpCalleeParam$1 = rex;
 const tmpCalleeParam$3 = function ($$0) {
   let c = $$0;
@@ -45,7 +44,7 @@ const tmpCalleeParam$3 = function ($$0) {
   return tmpReturnArg;
 };
 const tmpCalleeParam = `a is not b`.replace(tmpCalleeParam$1, tmpCalleeParam$3);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

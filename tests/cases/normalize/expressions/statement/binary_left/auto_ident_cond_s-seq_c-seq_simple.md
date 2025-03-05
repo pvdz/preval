@@ -33,9 +33,8 @@ const tmpIfTest = 30;
 if (tmpIfTest) {
   tmpBinBothLhs = $(60);
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpBinBothLhs = tmpCallCallee(tmpCalleeParam);
+  tmpBinBothLhs = $(tmpCalleeParam);
 }
 const tmpBinBothRhs = $(100);
 tmpBinBothLhs + tmpBinBothRhs;

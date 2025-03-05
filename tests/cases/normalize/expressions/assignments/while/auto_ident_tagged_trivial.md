@@ -25,9 +25,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = [`foo`];
-let a = tmpCallCallee(tmpCalleeParam);
+let a = $(tmpCalleeParam);
 $(a);
 `````
 

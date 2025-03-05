@@ -28,9 +28,8 @@ $(o.toString());
 
 `````js filename=intro
 const o = {};
-const tmpCallCallee = $;
 const tmpCalleeParam = o.toString();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

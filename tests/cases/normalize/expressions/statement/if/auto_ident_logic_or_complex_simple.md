@@ -28,9 +28,8 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = $(0);
-let tmpIfTest = tmpCallCallee(tmpCalleeParam);
+let tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
 } else {
   tmpIfTest = 2;

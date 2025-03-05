@@ -34,9 +34,8 @@ const tmpCompoundAssignLhs = obj.x;
 const tmpAssignMemLhsObj = obj;
 const tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-const tmpCallCallee = $;
 const tmpCalleeParam = obj.x;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

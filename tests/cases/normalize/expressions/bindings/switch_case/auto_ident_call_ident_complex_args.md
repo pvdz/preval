@@ -45,10 +45,9 @@ const tmpSwitchDisc = 1;
 const tmpIfTest = tmpSwitchDisc === 1;
 if (tmpIfTest) {
   b = { $: $ };
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = $(2);
-  a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  a = $(tmpCalleeParam, tmpCalleeParam$1);
   $(a);
 } else {
 }

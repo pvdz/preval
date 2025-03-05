@@ -32,10 +32,9 @@ while (x) {
 let x = /foo/;
 while (true) {
   if (x) {
-    const tmpCallCallee = $;
     x = /foo/;
     let tmpCalleeParam = x;
-    tmpCallCallee(tmpCalleeParam);
+    $(tmpCalleeParam);
   } else {
     break;
   }

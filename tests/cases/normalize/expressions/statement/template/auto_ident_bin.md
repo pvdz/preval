@@ -28,16 +28,15 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
 const tmpBinBothLhs$1 = $(1);
 const tmpBinBothRhs$1 = $(2);
-const tmpCallCallee$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
+const tmpCalleeParam$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}  after`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 
@@ -46,16 +45,16 @@ $(a);
 
 `````js filename=intro
 const tmpFree /*:(primitive)=>string*/ = function $free($$0) {
-  const tmpCallCallee$2 /*:primitive*/ = $$0;
+  const tmpCalleeParam$2 /*:primitive*/ = $$0;
   debugger;
-  const tmpBinBothRhs /*:string*/ = $coerce(tmpCallCallee$2, `string`);
+  const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$2, `string`);
   const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
   return tmpRet;
 };
 const tmpBinBothLhs$1 /*:unknown*/ = $(1);
 const tmpBinBothRhs$1 /*:unknown*/ = $(2);
-const tmpCallCallee$1 /*:primitive*/ = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpCalleeParam /*:string*/ = $frfr(tmpFree, tmpCallCallee$1);
+const tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+const tmpCalleeParam /*:string*/ = $frfr(tmpFree, tmpCalleeParam$1);
 $(tmpCalleeParam);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

@@ -26,7 +26,6 @@ $(a ?? b.c.d);
 
 `````js filename=intro
 const a = {};
-const tmpCallCallee = $;
 let tmpCalleeParam = a;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
@@ -34,7 +33,7 @@ if (tmpIfTest) {
   tmpCalleeParam = tmpAssignRhsProp.d;
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

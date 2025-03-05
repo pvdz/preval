@@ -27,11 +27,10 @@ $((o.x = 2));
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const o = { x: tmpObjLitVal };
-const tmpCallCallee = $;
 const varInitAssignLhsComputedRhs = 2;
 o.x = varInitAssignLhsComputedRhs;
 const tmpCalleeParam = varInitAssignLhsComputedRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

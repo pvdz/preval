@@ -64,9 +64,8 @@ let f = function () {
     x = typeof d;
     return undefined;
   };
-  const tmpCallCallee = $;
   const tmpCalleeParam = [1, 2];
-  const arr = tmpCallCallee(tmpCalleeParam);
+  const arr = $(tmpCalleeParam);
   g(10, 20, ...arr, 30, 40, 50, 60);
   return undefined;
 };

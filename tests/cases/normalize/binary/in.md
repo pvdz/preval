@@ -23,9 +23,8 @@ $(5 in Infinity);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = 5 in Infinity;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

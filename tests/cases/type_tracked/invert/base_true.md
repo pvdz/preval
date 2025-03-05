@@ -52,15 +52,11 @@ let f = function () {
   const tmpBinBothRhs = $(`truthy`);
   const x = tmpBinBothLhs + tmpBinBothRhs;
   if (x) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = !x;
-    const tmpCalleeParam$1 = `fail`;
-    tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+    $(tmpCalleeParam, `fail`);
   } else {
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$3 = !x;
-    const tmpCalleeParam$5 = `pass`;
-    tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
+    const tmpCalleeParam$1 = !x;
+    $(tmpCalleeParam$1, `pass`);
   }
   $(x, `after`);
   return undefined;

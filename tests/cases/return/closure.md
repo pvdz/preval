@@ -56,20 +56,16 @@ let f = function () {
     return x;
   };
   let x = 0;
-  const tmpCallCallee = $;
   const tmpCalleeParam = g();
-  tmpCallCallee(tmpCalleeParam);
-  const tmpCallCallee$1 = $;
+  $(tmpCalleeParam);
   const tmpCalleeParam$1 = g();
-  tmpCallCallee$1(tmpCalleeParam$1);
-  const tmpCallCallee$3 = $;
+  $(tmpCalleeParam$1);
   const tmpCalleeParam$3 = g();
-  tmpCallCallee$3(tmpCalleeParam$3);
+  $(tmpCalleeParam$3);
   return undefined;
 };
-const tmpCallCallee$5 = $;
 const tmpCalleeParam$5 = f();
-tmpCallCallee$5(tmpCalleeParam$5);
+$(tmpCalleeParam$5);
 $(f);
 `````
 

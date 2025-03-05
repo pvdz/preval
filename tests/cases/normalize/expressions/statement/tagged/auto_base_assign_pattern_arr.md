@@ -32,17 +32,15 @@ $(a, b);
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = [`before `, ` after`];
 let tmpCalleeParam$1 = undefined;
-const tmpCallCallee$1 = $;
 const tmpArrElement = $(2);
 const tmpCalleeParam$3 = [tmpArrElement];
-const tmpNestedAssignArrPatternRhs = tmpCallCallee$1(tmpCalleeParam$3);
+const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$3);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
 tmpCalleeParam$1 = tmpNestedAssignArrPatternRhs;
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, tmpCalleeParam$1);
 $(a, b);
 `````
 

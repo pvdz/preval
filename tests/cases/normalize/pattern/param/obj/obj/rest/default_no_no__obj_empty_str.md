@@ -39,19 +39,15 @@ let f = function ($$0) {
   debugger;
   let bindingPatternObjRoot = tmpParamBare;
   let objPatternNoDefault = bindingPatternObjRoot.x;
-  const tmpCallCallee = objPatternRest;
   const tmpCalleeParam = objPatternNoDefault;
   const tmpCalleeParam$1 = [];
-  const tmpCalleeParam$3 = undefined;
-  let y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+  let y = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
   return y;
 };
-const tmpCallCallee$1 = $;
-const tmpCallCallee$3 = f;
-const tmpCalleeParam$7 = { x: ``, b: 11, c: 12 };
-const tmpCalleeParam$9 = 10;
-const tmpCalleeParam$5 = tmpCallCallee$3(tmpCalleeParam$7, tmpCalleeParam$9);
-tmpCallCallee$1(tmpCalleeParam$5);
+const tmpCallCallee = f;
+const tmpCalleeParam$5 = { x: ``, b: 11, c: 12 };
+const tmpCalleeParam$3 = tmpCallCallee(tmpCalleeParam$5, 10);
+$(tmpCalleeParam$3);
 `````
 
 ## Output

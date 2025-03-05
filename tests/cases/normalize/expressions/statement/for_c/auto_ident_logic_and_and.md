@@ -35,17 +35,14 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(1);
-    let tmpIfTest$1 = tmpCallCallee(tmpCalleeParam);
+    let tmpIfTest$1 = $(tmpCalleeParam);
     if (tmpIfTest$1) {
-      const tmpCallCallee$1 = $;
       const tmpCalleeParam$1 = $(1);
-      tmpIfTest$1 = tmpCallCallee$1(tmpCalleeParam$1);
+      tmpIfTest$1 = $(tmpCalleeParam$1);
       if (tmpIfTest$1) {
-        const tmpCallCallee$3 = $;
         const tmpCalleeParam$3 = $(2);
-        tmpCallCallee$3(tmpCalleeParam$3);
+        $(tmpCalleeParam$3);
       } else {
       }
     } else {

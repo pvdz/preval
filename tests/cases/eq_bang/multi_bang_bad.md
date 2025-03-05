@@ -40,15 +40,12 @@ $(same);
 const a = $(1);
 const b = $(2);
 const same = a === b;
-const tmpCallCallee = $;
 const tmpCalleeParam = !same;
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpCalleeParam$1 = !same;
-tmpCallCallee$1(tmpCalleeParam$1);
-const tmpCallCallee$3 = $;
+$(tmpCalleeParam$1);
 const tmpCalleeParam$3 = !same;
-tmpCallCallee$3(tmpCalleeParam$3);
+$(tmpCalleeParam$3);
 $(same);
 `````
 

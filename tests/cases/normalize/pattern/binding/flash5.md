@@ -54,16 +54,15 @@ let x = function ($$0, $$1) {
   return undefined;
 };
 const tmpCallCallee = x;
-const tmpCalleeParam = undefined;
-const tmpCalleeParam$1 = { x: 1 };
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpCalleeParam = { x: 1 };
+tmpCallCallee(undefined, tmpCalleeParam);
 `````
 
 ## Output
 
 
 `````js filename=intro
-throw `Preval: TDZ triggered for this read: propTDZ;`;
+throw `Preval: This statement contained a read that reached no writes: propTDZ;`;
 `````
 
 ## PST Output
@@ -71,7 +70,7 @@ throw `Preval: TDZ triggered for this read: propTDZ;`;
 With rename=true
 
 `````js filename=intro
-throw "Preval: TDZ triggered for this read: propTDZ;";
+throw "Preval: This statement contained a read that reached no writes: propTDZ;";
 `````
 
 ## Globals

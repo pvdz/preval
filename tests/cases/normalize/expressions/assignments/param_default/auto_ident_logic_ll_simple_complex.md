@@ -42,9 +42,8 @@ let f = function ($$0) {
     let tmpNestedComplexRhs = 0;
     if (tmpNestedComplexRhs) {
     } else {
-      const tmpCallCallee = $;
       const tmpCalleeParam = $(1);
-      tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+      tmpNestedComplexRhs = $(tmpCalleeParam);
     }
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
@@ -55,9 +54,8 @@ let f = function ($$0) {
   }
 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 $(a);
 `````
 

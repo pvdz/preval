@@ -37,27 +37,23 @@ $(f());
 let f = function () {
   debugger;
   let a = { a: 999, b: 1000 };
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  let tmpIfTest = tmpCallCallee(tmpCalleeParam);
+  let tmpIfTest = $(tmpCalleeParam);
   if (tmpIfTest) {
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(1);
-    tmpIfTest = tmpCallCallee$1(tmpCalleeParam$1);
+    tmpIfTest = $(tmpCalleeParam$1);
   } else {
   }
   if (tmpIfTest) {
   } else {
-    const tmpCallCallee$3 = $;
     const tmpCalleeParam$3 = $(2);
-    tmpCallCallee$3(tmpCalleeParam$3);
+    $(tmpCalleeParam$3);
   }
   $(a);
   return undefined;
 };
-const tmpCallCallee$5 = $;
 const tmpCalleeParam$5 = f();
-tmpCallCallee$5(tmpCalleeParam$5);
+$(tmpCalleeParam$5);
 `````
 
 ## Output

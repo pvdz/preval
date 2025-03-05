@@ -43,9 +43,8 @@ $(...y);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = [100, 200];
-const a = tmpCallCallee(tmpCalleeParam);
+const a = $(tmpCalleeParam);
 let x = undefined;
 const tmpIfTest = $(true);
 if (tmpIfTest) {

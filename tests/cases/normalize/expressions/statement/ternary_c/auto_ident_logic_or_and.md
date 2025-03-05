@@ -32,18 +32,15 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(0);
-  const tmpIfTest$1 = tmpCallCallee(tmpCalleeParam);
+  const tmpIfTest$1 = $(tmpCalleeParam);
   if (tmpIfTest$1) {
   } else {
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(1);
-    const tmpIfTest$3 = tmpCallCallee$1(tmpCalleeParam$1);
+    const tmpIfTest$3 = $(tmpCalleeParam$1);
     if (tmpIfTest$3) {
-      const tmpCallCallee$3 = $;
       const tmpCalleeParam$3 = $(2);
-      tmpCallCallee$3(tmpCalleeParam$3);
+      $(tmpCalleeParam$3);
     } else {
     }
   }

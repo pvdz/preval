@@ -26,14 +26,13 @@ $(x ?? length);
 
 `````js filename=intro
 const x = 10;
-const tmpCallCallee = $;
 let tmpCalleeParam = x;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
   tmpCalleeParam = length;
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

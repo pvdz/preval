@@ -42,7 +42,6 @@ while (true) {
 
 `````js filename=intro
 while (true) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = {
     toString() {
       debugger;
@@ -50,7 +49,7 @@ while (true) {
       return undefined;
     },
   };
-  const x = tmpCallCallee(tmpCalleeParam);
+  const x = $(tmpCalleeParam);
   try {
     const y = parseInt(x);
     $(y);

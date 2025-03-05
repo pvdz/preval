@@ -61,9 +61,8 @@ const calling_this_func = function ($$0) {
     return undefined;
   }
 };
-const tmpCallCallee = $;
 const tmpCalleeParam$1 = calling_this_func(0);
-tmpCallCallee(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

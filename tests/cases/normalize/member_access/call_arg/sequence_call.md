@@ -25,11 +25,10 @@ $(($(1), $(2)).toString);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 $(1);
 const tmpCompObj = $(2);
 const tmpCalleeParam = tmpCompObj.toString;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

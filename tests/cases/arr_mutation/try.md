@@ -34,10 +34,8 @@ $(`after`, blob);
 `````js filename=intro
 const blob = [1, 2, 3];
 try {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = `try`;
-  const tmpCalleeParam$1 = blob.shift();
-  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  const tmpCalleeParam = blob.shift();
+  $(`try`, tmpCalleeParam);
 } catch (e) {}
 $(`after`, blob);
 `````

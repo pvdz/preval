@@ -35,11 +35,10 @@ const a = { b: tmpObjLitVal };
 const b = `b`;
 const c = `c`;
 const d = `d`;
-const tmpCallCallee = $;
 const tmpCompObj$1 = a[b];
 const tmpCompObj = tmpCompObj$1[c];
 const tmpCalleeParam = tmpCompObj[d];
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -74,10 +74,9 @@ let g = function () {
   };
   return t;
 };
-const tmpCallCallee = $;
 const tmpCallComplexCallee = g();
 const tmpCalleeParam = tmpCallComplexCallee();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

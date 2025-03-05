@@ -30,16 +30,14 @@ $(($(a).length = b));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = [];
-let a = tmpCallCallee(tmpCalleeParam);
+let a = $(tmpCalleeParam);
 let b = undefined;
-const tmpCallCallee$1 = $;
 const varInitAssignLhsComputedObj = $(a);
 const varInitAssignLhsComputedRhs = b;
 varInitAssignLhsComputedObj.length = varInitAssignLhsComputedRhs;
 const tmpCalleeParam$1 = varInitAssignLhsComputedRhs;
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

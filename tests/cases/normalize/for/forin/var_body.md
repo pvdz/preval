@@ -36,9 +36,8 @@ let x = undefined;
 
 `````js filename=intro
 let x = undefined;
-const tmpCallCallee = $forIn;
 const tmpCalleeParam = { a: 1, b: 2 };
-let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+let tmpForInGen = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForInNext = tmpForInGen.next();
   const tmpIfTest = tmpForInNext.done;

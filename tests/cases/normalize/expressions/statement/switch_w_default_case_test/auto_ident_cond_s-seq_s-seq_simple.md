@@ -59,9 +59,8 @@ const tmpIfTest$1 = 30;
 if (tmpIfTest$1) {
   tmpBinLhs = 60;
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpBinLhs = tmpCallCallee(tmpCalleeParam);
+  tmpBinLhs = $(tmpCalleeParam);
 }
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 tmpSwitchBreak: {

@@ -38,10 +38,9 @@ let f = function ($$0) {
   let bindingPatternArrRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpArrElement = { a: `pass2` };
     const tmpCalleeParam = [tmpArrElement];
-    bindingPatternArrRoot = tmpCallCallee(tmpCalleeParam);
+    bindingPatternArrRoot = $(tmpCalleeParam);
   } else {
     bindingPatternArrRoot = tmpParamBare;
   }
@@ -50,22 +49,18 @@ let f = function ($$0) {
   let arrPatternStep = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = { a: `fail` };
-    arrPatternStep = tmpCallCallee$1(tmpCalleeParam$1);
+    arrPatternStep = $(tmpCalleeParam$1);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
-  const tmpCallCallee$3 = objPatternRest;
   const tmpCalleeParam$3 = arrPatternStep;
   const tmpCalleeParam$5 = [];
-  const tmpCalleeParam$7 = undefined;
-  let x = tmpCallCallee$3(tmpCalleeParam$3, tmpCalleeParam$5, tmpCalleeParam$7);
+  let x = objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
   return x;
 };
-const tmpCallCallee$5 = $;
-const tmpCalleeParam$9 = f(undefined, 200);
-tmpCallCallee$5(tmpCalleeParam$9);
+const tmpCalleeParam$7 = f(undefined, 200);
+$(tmpCalleeParam$7);
 `````
 
 ## Output

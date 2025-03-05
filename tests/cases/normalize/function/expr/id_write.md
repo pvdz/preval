@@ -43,10 +43,9 @@ const funcexprname = function () {
 };
 const f = funcexprname;
 const x = f();
-const tmpCallCallee = $;
 const tmpCalleeParam = x;
 const tmpCalleeParam$1 = typeof f;
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Output

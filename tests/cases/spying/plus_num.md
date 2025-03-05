@@ -23,10 +23,9 @@ $($spy() + 15);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpBinLhs = $spy();
 const tmpCalleeParam = tmpBinLhs + 15;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

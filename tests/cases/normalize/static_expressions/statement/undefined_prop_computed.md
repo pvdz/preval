@@ -27,7 +27,6 @@ $(`fail, DCE me`);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 $(`keep me`);
 const tmpCalleeParam = undefined.eliminatedComputedProp;
 throw `[Preval]: Can not reach here`;

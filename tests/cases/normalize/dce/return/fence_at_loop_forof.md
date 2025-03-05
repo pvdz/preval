@@ -67,9 +67,8 @@ let f = function () {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
       $(`loop`);
-      const tmpCallCallee = $forOf;
       const tmpCalleeParam = [1, 2];
-      let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+      let tmpForOfGen = $forOf(tmpCalleeParam);
       while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
         let tmpForOfNext = tmpForOfGen.next();
         const tmpIfTest$1 = tmpForOfNext.done;
@@ -90,9 +89,8 @@ let f = function () {
   $(`unreachable3`);
   return undefined;
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

@@ -56,9 +56,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     arr.push(tmp);
   }
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = arr.slice(0);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

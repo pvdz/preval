@@ -26,13 +26,12 @@ $(($(b).x += 1));
 
 `````js filename=intro
 let b = { x: 1 };
-const tmpCallCallee = $;
 const varInitAssignLhsComputedObj = $(b);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;
 const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
 const tmpCalleeParam = varInitAssignLhsComputedRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

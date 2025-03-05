@@ -35,7 +35,6 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 $(1);
 $(2);
 const tmpDeleteCompObj = $(arg);
@@ -49,7 +48,7 @@ const tmpDeleteCompProp$1 = $(`y`);
 a = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, arg);
 `````
 

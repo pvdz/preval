@@ -37,19 +37,16 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothLhs = tmpSwitchDisc;
-const tmpCallCallee = $;
 const tmpCalleeParam = $(0);
-let tmpBinBothRhs = tmpCallCallee(tmpCalleeParam);
+let tmpBinBothRhs = $(tmpCalleeParam);
 if (tmpBinBothRhs) {
 } else {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
-  tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
+  tmpBinBothRhs = $(tmpCalleeParam$1);
   if (tmpBinBothRhs) {
   } else {
-    const tmpCallCallee$3 = $;
     const tmpCalleeParam$3 = $(2);
-    tmpBinBothRhs = tmpCallCallee$3(tmpCalleeParam$3);
+    tmpBinBothRhs = $(tmpCalleeParam$3);
   }
 }
 const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;

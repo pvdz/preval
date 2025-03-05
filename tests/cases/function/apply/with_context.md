@@ -31,19 +31,17 @@ $(
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam$1 = { x: 15 };
 const tmpCalleeParam$3 = [`x`];
 const tmpCallObj = function () {
   const tmpPrevalAliasThis = this;
   debugger;
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$5 = tmpPrevalAliasThis.x;
-  tmpCallCallee$1(tmpCalleeParam$5);
+  $(tmpCalleeParam$5);
   return undefined;
 };
 const tmpCalleeParam = tmpCallObj.apply(tmpCalleeParam$1, tmpCalleeParam$3);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

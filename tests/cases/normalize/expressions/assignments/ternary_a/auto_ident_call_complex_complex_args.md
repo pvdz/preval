@@ -32,19 +32,18 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
-const tmpCallCallee$1 = $($);
+const tmpCallCallee = $($);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-a = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
+a = tmpCallCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 
@@ -52,10 +51,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee$1 /*:unknown*/ = $($);
+const tmpCallCallee /*:unknown*/ = $($);
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
 const tmpCalleeParam$3 /*:unknown*/ = $(2);
-const a /*:unknown*/ = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
+const a /*:unknown*/ = tmpCallCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 if (a) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);

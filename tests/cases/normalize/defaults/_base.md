@@ -48,12 +48,10 @@ let f = function ($$0) {
     return a;
   }
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f(`x`);
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpCalleeParam$1 = f(`y`);
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

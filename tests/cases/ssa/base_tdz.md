@@ -34,7 +34,6 @@ $(x);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 throw `Preval: TDZ triggered for this read: \$(x)`;
 let x = 0;
 `````

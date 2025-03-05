@@ -54,9 +54,8 @@ let f = function () {
     const tmpIfTest = $(1);
     return `xyz`;
   };
-  const tmpCallCallee = $;
   const tmpCalleeParam = g();
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   $(`c`);
   return undefined;
 };

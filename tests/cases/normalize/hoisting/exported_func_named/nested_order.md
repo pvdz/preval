@@ -64,16 +64,14 @@ let f = function () {
     const tmpReturnArg$3 = $();
     return tmpReturnArg$3;
   };
-  const tmpCallCallee = $;
   const tmpCalleeParam = f$1();
   const tmpCalleeParam$1 = g();
   const tmpCalleeParam$3 = h();
-  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+  $(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
   return undefined;
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$5 = f();
-tmpCallCallee$1(tmpCalleeParam$5);
+$(tmpCalleeParam$5);
 export { f };
 `````
 

@@ -90,9 +90,8 @@ g();
 g();
 g();
 g();
-const tmpCallCallee = $;
 const tmpCalleeParam = g();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

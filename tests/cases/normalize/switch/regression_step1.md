@@ -69,10 +69,9 @@ if (tmpIfTest) {
 } else {
   const tmpBinBothLhs = tmpSwitchTest;
   let tmpBinBothRhs = undefined;
-  const tmpCallCallee = $;
   const tmpArrElement = $(2);
   const tmpCalleeParam = [tmpArrElement];
-  const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
+  const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   b = arrPatternSplat[0];
   tmpBinBothRhs = tmpNestedAssignArrPatternRhs;

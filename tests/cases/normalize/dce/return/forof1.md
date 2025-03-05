@@ -51,9 +51,8 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpCallCallee = $forIn;
   const tmpCalleeParam = { a: 1, b: 2 };
-  let tmpForInGen = tmpCallCallee(tmpCalleeParam);
+  let tmpForInGen = $forIn(tmpCalleeParam);
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     let tmpForInNext = tmpForInGen.next();
     const tmpIfTest = tmpForInNext.done;
@@ -68,9 +67,8 @@ let f = function () {
   $(`keep, do not eval`);
   return undefined;
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

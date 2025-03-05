@@ -36,9 +36,8 @@ $(a);
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  let tmpReturnArg = tmpCallCallee(tmpCalleeParam);
+  let tmpReturnArg = $(tmpCalleeParam);
   if (tmpReturnArg) {
     tmpReturnArg = 2;
     return tmpReturnArg;
@@ -47,9 +46,8 @@ let f = function () {
   }
 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 $(a);
 `````
 

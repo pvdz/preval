@@ -32,19 +32,18 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCallCallee$1 = $($);
+const tmpCallCallee = $($);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-a = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
+a = tmpCallCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 let tmpBinBothLhs = a;
-const tmpCallCallee$3 = $($);
+const tmpCallCallee$1 = $($);
 const tmpCalleeParam$5 = $(1);
 const tmpCalleeParam$7 = $(2);
-a = tmpCallCallee$3(tmpCalleeParam$5, tmpCalleeParam$7);
+a = tmpCallCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 
@@ -52,14 +51,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee$1 /*:unknown*/ = $($);
+const tmpCallCallee /*:unknown*/ = $($);
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
 const tmpCalleeParam$3 /*:unknown*/ = $(2);
-const a /*:unknown*/ = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
-const tmpCallCallee$3 /*:unknown*/ = $($);
+const a /*:unknown*/ = tmpCallCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpCallCallee$1 /*:unknown*/ = $($);
 const tmpCalleeParam$5 /*:unknown*/ = $(1);
 const tmpCalleeParam$7 /*:unknown*/ = $(2);
-const tmpClusterSSA_a /*:unknown*/ = tmpCallCallee$3(tmpCalleeParam$5, tmpCalleeParam$7);
+const tmpClusterSSA_a /*:unknown*/ = tmpCallCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
 const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);

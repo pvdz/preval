@@ -46,9 +46,8 @@ let f = function ($$0, $$1, $$2) {
   let b = $$1;
   let c = $$2;
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = ~a;
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   $(a, b, c);
   return undefined;
 };

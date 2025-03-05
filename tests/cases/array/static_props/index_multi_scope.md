@@ -53,9 +53,8 @@ f();
 let f = function () {
   debugger;
   if ($) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = arr[1];
-    tmpCallCallee(tmpCalleeParam);
+    $(tmpCalleeParam);
     $(`end`);
     return undefined;
   } else {

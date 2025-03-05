@@ -43,26 +43,22 @@ f({ a: 3, b: 4, c: true, d: null });
 let f = function ($$0) {
   let obj = $$0;
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = obj.a;
-  tmpCallCallee(tmpCalleeParam);
-  const tmpCallCallee$1 = $;
+  $(tmpCalleeParam);
   const tmpCalleeParam$1 = obj.b;
-  tmpCallCallee$1(tmpCalleeParam$1);
-  const tmpCallCallee$3 = $;
+  $(tmpCalleeParam$1);
   const tmpCalleeParam$3 = obj.c;
-  tmpCallCallee$3(tmpCalleeParam$3);
-  const tmpCallCallee$5 = $;
+  $(tmpCalleeParam$3);
   const tmpCalleeParam$5 = obj.d;
-  tmpCallCallee$5(tmpCalleeParam$5);
+  $(tmpCalleeParam$5);
   return undefined;
 };
-const tmpCallCallee$7 = f;
+const tmpCallCallee = f;
 const tmpCalleeParam$7 = { a: 1, b: 2, c: `hi`, d: parseInt };
-tmpCallCallee$7(tmpCalleeParam$7);
-const tmpCallCallee$9 = f;
+tmpCallCallee(tmpCalleeParam$7);
+const tmpCallCallee$1 = f;
 const tmpCalleeParam$9 = { a: 3, b: 4, c: true, d: null };
-tmpCallCallee$9(tmpCalleeParam$9);
+tmpCallCallee$1(tmpCalleeParam$9);
 `````
 
 ## Output

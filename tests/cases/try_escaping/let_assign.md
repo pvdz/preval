@@ -57,9 +57,8 @@ let x = undefined;
 let y = 1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
-    const tmpCallCallee = $;
     const tmpCalleeParam = arr[0];
-    tmpCallCallee(tmpCalleeParam);
+    $(tmpCalleeParam);
     x = arr;
     arr.reverse();
     y = [5, 6];

@@ -62,12 +62,10 @@ let f = function ($$0) {
     return undefined;
   }
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f(1);
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpCalleeParam$1 = f(2);
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

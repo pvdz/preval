@@ -26,7 +26,6 @@ $(x?.[20]);
 
 `````js filename=intro
 const x = 10;
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootProp = x;
 const tmpIfTest = tmpChainRootProp != null;
@@ -36,7 +35,7 @@ if (tmpIfTest) {
   tmpCalleeParam = tmpChainElementObject;
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

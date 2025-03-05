@@ -37,9 +37,8 @@ let a = { a: 999, b: 1000 };
 a = 0;
 if (a) {
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  a = tmpCallCallee(tmpCalleeParam);
+  a = $(tmpCalleeParam);
 }
 let xyz = a;
 while (true) {
@@ -53,9 +52,9 @@ while (true) {
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-const a /*:unknown*/ = $(tmpCalleeParam);
+const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(a);
+  $(tmpClusterSSA_a);
   $(1);
 }
 `````

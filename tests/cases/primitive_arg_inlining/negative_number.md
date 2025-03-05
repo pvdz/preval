@@ -36,9 +36,8 @@ let f = function ($$0) {
   debugger;
   return a;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f(-1);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

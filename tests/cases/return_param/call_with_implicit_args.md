@@ -86,8 +86,7 @@ let f = function ($$0) {
   const y = x(1, `two`, foo, NaN);
   return y;
 };
-const tmpCallCallee = $;
-const tmpCallCallee$1 = f;
+const tmpCallCallee = f;
 const tmpCalleeParam$1 = function ($$0, $$1, $$2, $$3, $$4) {
   let a = $$0;
   let b = $$1;
@@ -98,10 +97,9 @@ const tmpCalleeParam$1 = function ($$0, $$1, $$2, $$3, $$4) {
   $(`pass1`, a, b, c, d, e);
   return undefined;
 };
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$3 = $;
-const tmpCallCallee$5 = f;
+const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1);
+$(tmpCalleeParam);
+const tmpCallCallee$1 = f;
 const tmpCalleeParam$5 = function ($$0, $$1, $$2, $$3, $$4) {
   let a$1 = $$0;
   let b$1 = $$1;
@@ -112,10 +110,9 @@ const tmpCalleeParam$5 = function ($$0, $$1, $$2, $$3, $$4) {
   $(`pass2`, a$1, b$1, c$1, d$1, e$1);
   return undefined;
 };
-const tmpCalleeParam$3 = tmpCallCallee$5(tmpCalleeParam$5);
-tmpCallCallee$3(tmpCalleeParam$3);
-const tmpCallCallee$7 = $;
-const tmpCallCallee$9 = f;
+const tmpCalleeParam$3 = tmpCallCallee$1(tmpCalleeParam$5);
+$(tmpCalleeParam$3);
+const tmpCallCallee$3 = f;
 const tmpCalleeParam$9 = function ($$0, $$1, $$2, $$3, $$4) {
   let a$3 = $$0;
   let b$3 = $$1;
@@ -126,8 +123,8 @@ const tmpCalleeParam$9 = function ($$0, $$1, $$2, $$3, $$4) {
   $(`pass3`, a$3, b$3, c$3, d$3, e$3);
   return undefined;
 };
-const tmpCalleeParam$7 = tmpCallCallee$9(tmpCalleeParam$9);
-tmpCallCallee$7(tmpCalleeParam$7);
+const tmpCalleeParam$7 = tmpCallCallee$3(tmpCalleeParam$9);
+$(tmpCalleeParam$7);
 `````
 
 ## Output

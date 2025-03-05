@@ -35,9 +35,8 @@ let a = arrPatternSplat[0];
 let obj = {};
 $(10);
 $(20);
-const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
-const tmpCompObj = tmpCallCallee(tmpCalleeParam);
+const tmpCompObj = $(tmpCalleeParam);
 tmpCompObj.a;
 $(a);
 `````

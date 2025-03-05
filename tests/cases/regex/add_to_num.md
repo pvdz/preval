@@ -23,10 +23,9 @@ $(/foo/ + 1);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpBinLhs = /foo/;
 const tmpCalleeParam = tmpBinLhs + 1;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

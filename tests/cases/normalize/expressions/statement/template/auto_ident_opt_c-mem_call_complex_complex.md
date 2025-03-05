@@ -32,9 +32,8 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
-let tmpCallCallee$1 = undefined;
+let tmpCalleeParam$1 = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(b);
 const tmpIfTest = tmpChainElementCall != null;
@@ -43,22 +42,20 @@ if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$1 = tmpChainElementObject != null;
   if (tmpIfTest$1) {
-    const tmpCallCallee$3 = $dotCall;
-    const tmpCalleeParam$1 = tmpChainElementObject;
-    const tmpCalleeParam$3 = tmpChainElementCall;
-    const tmpCalleeParam$5 = undefined;
+    const tmpCalleeParam$3 = tmpChainElementObject;
+    const tmpCalleeParam$5 = tmpChainElementCall;
     const tmpCalleeParam$7 = $(1);
-    const tmpChainElementCall$1 = tmpCallCallee$3(tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5, tmpCalleeParam$7);
-    tmpCallCallee$1 = tmpChainElementCall$1;
+    const tmpChainElementCall$1 = $dotCall(tmpCalleeParam$3, tmpCalleeParam$5, undefined, tmpCalleeParam$7);
+    tmpCalleeParam$1 = tmpChainElementCall$1;
   } else {
   }
 } else {
 }
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
+const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}  after`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 
@@ -66,7 +63,7 @@ $(a);
 
 
 `````js filename=intro
-let tmpCallCallee$1 /*:unknown*/ = undefined;
+let tmpCalleeParam$1 /*:unknown*/ = undefined;
 const b /*:object*/ = { $: $ };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
@@ -79,10 +76,10 @@ if (tmpIfTest) {
   } else {
     const tmpCalleeParam$7 /*:unknown*/ = $(1);
     const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$7);
-    tmpCallCallee$1 = tmpChainElementCall$1;
+    tmpCalleeParam$1 = tmpChainElementCall$1;
   }
 }
-const tmpBinBothRhs /*:string*/ = $coerce(tmpCallCallee$1, `string`);
+const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 const a /*:object*/ = { a: 999, b: 1000 };

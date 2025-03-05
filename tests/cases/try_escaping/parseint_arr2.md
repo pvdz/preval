@@ -78,9 +78,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $(`fail`);
   }
 }
-const tmpCallCallee = $;
 const tmpCalleeParam = arr[1];
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

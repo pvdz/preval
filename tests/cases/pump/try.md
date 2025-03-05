@@ -276,9 +276,8 @@ const arrB = [
   `3061356MCYqjv`,
   `342560iciMGV`,
 ];
-const tmpCallCallee = $;
 const tmpCalleeParam = arrB[0];
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

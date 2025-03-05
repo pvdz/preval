@@ -23,9 +23,8 @@ $(isNaN(500));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = false;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

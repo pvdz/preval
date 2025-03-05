@@ -63,9 +63,8 @@ try {
     n = $(`throws 3`);
   }
 } catch (e) {}
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -27,9 +27,8 @@ $(N);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = [`a`, `b`, `c`];
-const tmpArrSpread = tmpCallCallee(tmpCalleeParam);
+const tmpArrSpread = $(tmpCalleeParam);
 const ARR = [...tmpArrSpread];
 const N = ARR.shift();
 $(N);

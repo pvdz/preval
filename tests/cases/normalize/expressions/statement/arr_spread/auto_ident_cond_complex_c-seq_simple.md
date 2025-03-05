@@ -33,9 +33,8 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   tmpArrElToSpread = $(60);
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpArrElToSpread = tmpCallCallee(tmpCalleeParam);
+  tmpArrElToSpread = $(tmpCalleeParam);
 }
 [...tmpArrElToSpread];
 $(a);

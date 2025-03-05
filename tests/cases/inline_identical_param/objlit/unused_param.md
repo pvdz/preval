@@ -47,15 +47,11 @@ let f = function ($$0, $$1, $$2) {
 };
 $(f);
 const tmpCallCallee = f;
-const tmpCalleeParam = `x`;
-const tmpCalleeParam$1 = { a: 1 };
-const tmpCalleeParam$3 = `y`;
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpCalleeParam = { a: 1 };
+tmpCallCallee(`x`, tmpCalleeParam, `y`);
 const tmpCallCallee$1 = f;
-const tmpCalleeParam$5 = `w`;
-const tmpCalleeParam$7 = { a: 3 };
-const tmpCalleeParam$9 = `z`;
-tmpCallCallee$1(tmpCalleeParam$5, tmpCalleeParam$7, tmpCalleeParam$9);
+const tmpCalleeParam$1 = { a: 3 };
+tmpCallCallee$1(`w`, tmpCalleeParam$1, `z`);
 `````
 
 ## Output

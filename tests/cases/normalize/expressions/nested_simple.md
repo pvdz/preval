@@ -34,11 +34,10 @@ let c = undefined;
 a = 10;
 b = 20;
 c = 30;
-const tmpCallCallee = $;
 b = c;
 a = c;
 let tmpCalleeParam = a;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

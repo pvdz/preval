@@ -42,9 +42,8 @@ let f = function ($$0) {
   let p = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(b);
-    const varInitAssignLhsComputedObj = tmpCallCallee(tmpCalleeParam);
+    const varInitAssignLhsComputedObj = $(tmpCalleeParam);
     const tmpBinLhs = varInitAssignLhsComputedObj.x;
     const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
     varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
@@ -59,9 +58,8 @@ let f = function ($$0) {
 };
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 $(a, b);
 `````
 

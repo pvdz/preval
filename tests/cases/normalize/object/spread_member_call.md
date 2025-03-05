@@ -33,16 +33,14 @@ $({ ...obj.foo() });
 const obj = {
   foo() {
     debugger;
-    const tmpCallCallee = $;
     const tmpCalleeParam = { x: 1 };
-    const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
+    const tmpReturnArg = $(tmpCalleeParam);
     return tmpReturnArg;
   },
 };
-const tmpCallCallee$1 = $;
 const tmpObjSpread = obj.foo();
 const tmpCalleeParam$1 = { ...tmpObjSpread };
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

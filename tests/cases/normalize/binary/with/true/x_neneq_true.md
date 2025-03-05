@@ -52,9 +52,8 @@ const x = {
     return 100;
   },
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = x !== true;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

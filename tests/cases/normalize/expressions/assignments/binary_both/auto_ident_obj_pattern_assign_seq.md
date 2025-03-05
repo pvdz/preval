@@ -38,7 +38,6 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 $(x);
 $(y);
 const tmpObjLitVal = $(3);
@@ -58,7 +57,7 @@ y = tmpNestedAssignObjPatternRhs$1.y;
 a = tmpNestedAssignObjPatternRhs$1;
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, x, y);
 `````
 

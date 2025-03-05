@@ -36,17 +36,15 @@ $(x, typeof f);
 `````js filename=intro
 const findme = function () {
   debugger;
-  const tmpCallCallee = $;
   const tmpCalleeParam = typeof findme;
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   return findme;
 };
 let f = findme;
 const x = f();
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = x;
 const tmpCalleeParam$3 = typeof f;
-tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
+$(tmpCalleeParam$1, tmpCalleeParam$3);
 `````
 
 ## Output

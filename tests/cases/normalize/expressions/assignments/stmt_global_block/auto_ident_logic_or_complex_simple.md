@@ -32,9 +32,8 @@
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = $(0);
-a = tmpCallCallee(tmpCalleeParam);
+a = $(tmpCalleeParam);
 if (a) {
 } else {
   a = 2;

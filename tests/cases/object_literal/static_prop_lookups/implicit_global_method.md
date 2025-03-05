@@ -29,9 +29,8 @@ $(o.f(`200`, 15));
 
 `````js filename=intro
 const o = { f: $ };
-const tmpCallCallee = $;
 const tmpCalleeParam = o.f(`200`, 15);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -50,9 +50,8 @@ let g = function () {
     return x;
   };
   let x = 100;
-  const tmpCallCallee = $;
   const tmpCalleeParam = f();
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   return undefined;
 };
 g();

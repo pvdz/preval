@@ -26,14 +26,13 @@ $((x = $(1) || $(2)));
 
 `````js filename=intro
 let x = undefined;
-const tmpCallCallee = $;
 x = $(1);
 if (x) {
 } else {
   x = $(2);
 }
 let tmpCalleeParam = x;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

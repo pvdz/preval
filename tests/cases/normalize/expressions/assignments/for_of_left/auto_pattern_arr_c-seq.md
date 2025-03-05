@@ -40,11 +40,9 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-const tmpCallCallee = $forOf;
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = { x: 1 };
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
-let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam = $(tmpCalleeParam$1);
+let tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest = tmpForOfNext.done;
@@ -54,9 +52,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     let tmpAssignMemLhsObj = undefined;
     $(10);
     $(20);
-    const tmpCallCallee$3 = $;
     const tmpCalleeParam$3 = [1, 2];
-    const tmpNestedAssignArrPatternRhs = tmpCallCallee$3(tmpCalleeParam$3);
+    const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$3);
     const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
     a = arrPatternSplat$1[0];
     tmpAssignMemLhsObj = tmpNestedAssignArrPatternRhs;

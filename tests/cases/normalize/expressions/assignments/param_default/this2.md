@@ -61,16 +61,14 @@ let g = function () {
     }
   };
   let a = { a: 999, b: 1000 };
-  const tmpCallCallee = $;
   const tmpCalleeParam = f();
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   $(a);
   return undefined;
 };
 if ($) {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = g();
-  tmpCallCallee$1(tmpCalleeParam$1);
+  $(tmpCalleeParam$1);
 } else {
 }
 `````

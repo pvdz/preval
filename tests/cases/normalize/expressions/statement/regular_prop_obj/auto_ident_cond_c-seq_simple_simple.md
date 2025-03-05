@@ -36,9 +36,8 @@ const tmpIfTest = $(30);
 if (tmpIfTest) {
   tmpCompObj = $(2);
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpCompObj = tmpCallCallee(tmpCalleeParam);
+  tmpCompObj = $(tmpCalleeParam);
 }
 tmpCompObj.a;
 $(a);

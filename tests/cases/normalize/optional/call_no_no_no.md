@@ -77,12 +77,11 @@ let a = function () {
   };
   return a$1;
 };
-const tmpCallCallee = $;
 const tmpCallObj$1 = a();
 const tmpCallObj = tmpCallObj$1.b();
 const tmpCompObj = tmpCallObj.c();
 const tmpCalleeParam = tmpCompObj.d;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

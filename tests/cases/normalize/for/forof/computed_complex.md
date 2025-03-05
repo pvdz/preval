@@ -40,9 +40,8 @@ let b = { x: 1, y: 2 };
 `````js filename=intro
 let a = {};
 let b = { x: 1, y: 2 };
-const tmpCallCallee = $forOf;
 const tmpCalleeParam = $(b);
-let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+let tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest = tmpForOfNext.done;

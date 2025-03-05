@@ -51,24 +51,18 @@ let f = function () {
     return false;
   }
 };
-const tmpCallCallee = $;
 const tmpUnaryArg$1 = f();
 const tmpUnaryArg = !tmpUnaryArg$1;
 const tmpCalleeParam = !tmpUnaryArg;
-const tmpCalleeParam$1 = `one`;
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam, `one`);
 const tmpUnaryArg$5 = f();
 const tmpUnaryArg$3 = !tmpUnaryArg$5;
-const tmpCalleeParam$3 = !tmpUnaryArg$3;
-const tmpCalleeParam$5 = `two`;
-tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
-const tmpCallCallee$3 = $;
+const tmpCalleeParam$1 = !tmpUnaryArg$3;
+$(tmpCalleeParam$1, `two`);
 const tmpUnaryArg$9 = f();
 const tmpUnaryArg$7 = !tmpUnaryArg$9;
-const tmpCalleeParam$7 = !tmpUnaryArg$7;
-const tmpCalleeParam$9 = `three`;
-tmpCallCallee$3(tmpCalleeParam$7, tmpCalleeParam$9);
+const tmpCalleeParam$3 = !tmpUnaryArg$7;
+$(tmpCalleeParam$3, `three`);
 `````
 
 ## Output

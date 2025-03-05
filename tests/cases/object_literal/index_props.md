@@ -31,9 +31,8 @@ $({ ...x, ...y });
 `````js filename=intro
 const x = `hello`;
 const y = `world`;
-const tmpCallCallee = $;
 const tmpCalleeParam = { ...x, ...y };
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

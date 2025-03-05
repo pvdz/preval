@@ -51,7 +51,6 @@ Counter case. I think it's an invalid report. This has a different outcome.
 `````js filename=intro
 let x = $();
 $(x);
-const tmpCallCallee = $;
 const tmpCalleeParam = {
   toString() {
     debugger;
@@ -59,7 +58,7 @@ const tmpCalleeParam = {
     return undefined;
   },
 };
-const t = tmpCallCallee(tmpCalleeParam);
+const t = $(tmpCalleeParam);
 x = t + 1;
 $(x);
 `````

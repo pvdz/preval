@@ -38,9 +38,8 @@ while (true) {
   const tmpAssignComputedProp = 0;
   const tmpAssignComputedRhs = tmpCompoundAssignLhs + 1;
   tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-  const tmpCallCallee = $;
   const tmpCalleeParam = arr[0];
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
 }
 `````
 

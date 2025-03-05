@@ -28,9 +28,8 @@ $(Boolean(x));
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(1);
 const x = tmpBinBothLhs === tmpBinBothRhs;
-const tmpCallCallee = $;
 const tmpCalleeParam = Boolean(x);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

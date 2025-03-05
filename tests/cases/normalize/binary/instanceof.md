@@ -23,9 +23,8 @@ $(5 instanceof Infinity);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = 5 instanceof Infinity;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

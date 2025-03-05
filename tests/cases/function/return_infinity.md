@@ -34,9 +34,8 @@ let f = function () {
   debugger;
   return Infinity;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -41,9 +41,8 @@ let f = function () {
   const tmpThrowArg = $(1, `throw`);
   throw tmpThrowArg;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

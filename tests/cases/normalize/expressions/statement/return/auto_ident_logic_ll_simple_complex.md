@@ -40,16 +40,14 @@ let f = function () {
   if (tmpReturnArg) {
     return tmpReturnArg;
   } else {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(1);
-    tmpReturnArg = tmpCallCallee(tmpCalleeParam);
+    tmpReturnArg = $(tmpCalleeParam);
     return tmpReturnArg;
   }
 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 $(a);
 `````
 
@@ -58,8 +56,8 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpReturnArg /*:unknown*/ = $(tmpCalleeParam);
-$(tmpReturnArg);
+const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(tmpCalleeParam);
+$(tmpClusterSSA_tmpReturnArg);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````

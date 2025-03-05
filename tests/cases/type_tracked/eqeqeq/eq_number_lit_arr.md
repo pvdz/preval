@@ -26,9 +26,8 @@ $(2 === x);
 
 `````js filename=intro
 const x = [1, 2, 3];
-const tmpCallCallee = $;
 const tmpCalleeParam = 2 === x;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

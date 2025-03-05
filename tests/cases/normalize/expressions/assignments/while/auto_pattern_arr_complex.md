@@ -32,9 +32,8 @@ let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 while (true) {
   let tmpIfTest = undefined;
-  const tmpCallCallee = $;
   const tmpCalleeParam = [1, 2];
-  const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
+  const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
   a = arrPatternSplat$1[0];
   tmpIfTest = tmpNestedAssignArrPatternRhs;

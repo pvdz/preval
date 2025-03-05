@@ -26,10 +26,9 @@ $(x > x);
 
 `````js filename=intro
 const x = {};
-const tmpCallCallee = $;
 x > x;
 const tmpCalleeParam = false;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

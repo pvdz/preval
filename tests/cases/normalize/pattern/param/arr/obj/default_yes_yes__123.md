@@ -38,9 +38,8 @@ let f = function ($$0) {
   let bindingPatternArrRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = [`fail2`];
-    bindingPatternArrRoot = tmpCallCallee(tmpCalleeParam);
+    bindingPatternArrRoot = $(tmpCalleeParam);
   } else {
     bindingPatternArrRoot = tmpParamBare;
   }
@@ -65,9 +64,8 @@ let f = function ($$0) {
     return `ok`;
   }
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f(undefined, 100);
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

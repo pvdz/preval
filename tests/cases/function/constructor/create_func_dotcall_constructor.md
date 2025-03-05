@@ -34,9 +34,8 @@ const tmpCallObj = function () {
   return undefined;
 };
 const f = tmpCallObj.constructor(a, b, c, d);
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

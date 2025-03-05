@@ -27,9 +27,8 @@ $(o.x);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const o = { x: tmpObjLitVal };
-const tmpCallCallee = $;
 const tmpCalleeParam = o.x;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

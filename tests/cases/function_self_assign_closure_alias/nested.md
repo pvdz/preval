@@ -59,32 +59,27 @@ let g = function () {
   };
   let a = undefined;
   const x = zzzz;
-  const tmpCallCallee = $;
   const tmpBinBothLhs = zzzz();
   const tmpBinBothRhs = zzzz();
   const tmpCalleeParam = tmpBinBothLhs === tmpBinBothRhs;
-  tmpCallCallee(tmpCalleeParam);
-  const tmpCallCallee$1 = $;
+  $(tmpCalleeParam);
   const tmpBinBothLhs$1 = x();
   const tmpBinBothRhs$1 = x();
   const tmpCalleeParam$1 = tmpBinBothLhs$1 !== tmpBinBothRhs$1;
-  tmpCallCallee$1(tmpCalleeParam$1);
-  const tmpCallCallee$3 = $;
+  $(tmpCalleeParam$1);
   const tmpBinBothLhs$3 = x();
   const tmpBinBothRhs$3 = zzzz();
   const tmpCalleeParam$3 = tmpBinBothLhs$3 === tmpBinBothRhs$3;
-  tmpCallCallee$3(tmpCalleeParam$3);
+  $(tmpCalleeParam$3);
   const tmpReturnArg = zzzz();
   return tmpReturnArg;
 };
-const tmpCallCallee$5 = $;
 const tmpBinBothLhs$5 = g();
 const tmpBinBothRhs$5 = g();
 const tmpCalleeParam$5 = tmpBinBothLhs$5 === tmpBinBothRhs$5;
-tmpCallCallee$5(tmpCalleeParam$5);
-const tmpCallCallee$7 = $;
+$(tmpCalleeParam$5);
 const tmpCalleeParam$7 = g();
-tmpCallCallee$7(tmpCalleeParam$7);
+$(tmpCalleeParam$7);
 `````
 
 ## Output

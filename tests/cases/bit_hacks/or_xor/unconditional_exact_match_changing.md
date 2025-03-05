@@ -44,13 +44,11 @@ const setAssignable = function ($$0) {
   const c = b ^ 16;
   return c;
 };
-const tmpCallCallee = $;
-const tmpCallCallee$1 = setAssignable;
-const tmpCallCallee$3 = $;
+const tmpCallCallee = setAssignable;
 const tmpCalleeParam$3 = 116;
-const tmpCalleeParam$1 = tmpCallCallee$3(tmpCalleeParam$3);
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
-tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam$1 = $(tmpCalleeParam$3);
+const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1);
+$(tmpCalleeParam);
 `````
 
 ## Output

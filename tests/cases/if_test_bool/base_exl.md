@@ -45,39 +45,35 @@ let f = function ($$0) {
   let x = $$0;
   debugger;
   if (x) {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = `a`;
-    const tmpCalleeParam$1 = !x;
-    tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+    const tmpCalleeParam = !x;
+    $(`a`, tmpCalleeParam);
     return undefined;
   } else {
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$3 = `b`;
-    const tmpCalleeParam$5 = !x;
-    tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
+    const tmpCalleeParam$1 = !x;
+    $(`b`, tmpCalleeParam$1);
     return undefined;
   }
 };
-const tmpCallCallee$3 = f;
-const tmpCalleeParam$7 = $(0);
-tmpCallCallee$3(tmpCalleeParam$7);
-const tmpCallCallee$5 = f;
-const tmpCalleeParam$9 = $(1);
-tmpCallCallee$5(tmpCalleeParam$9);
+const tmpCallCallee = f;
+const tmpCalleeParam$3 = $(0);
+tmpCallCallee(tmpCalleeParam$3);
+const tmpCallCallee$1 = f;
+const tmpCalleeParam$5 = $(1);
+tmpCallCallee$1(tmpCalleeParam$5);
 `````
 
 ## Output
 
 
 `````js filename=intro
-const tmpCalleeParam$7 /*:unknown*/ = $(0);
-if (tmpCalleeParam$7) {
+const tmpCalleeParam$3 /*:unknown*/ = $(0);
+if (tmpCalleeParam$3) {
   $(`a`, false);
 } else {
   $(`b`, true);
 }
-const tmpCalleeParam$9 /*:unknown*/ = $(1);
-if (tmpCalleeParam$9) {
+const tmpCalleeParam$5 /*:unknown*/ = $(1);
+if (tmpCalleeParam$5) {
   $(`a`, false);
 } else {
   $(`b`, true);

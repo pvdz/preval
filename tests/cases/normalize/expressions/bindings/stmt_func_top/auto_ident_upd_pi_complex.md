@@ -38,9 +38,8 @@ $(f());
 let f = function () {
   debugger;
   let b = { x: 1 };
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(b);
-  const varInitAssignLhsComputedObj = tmpCallCallee(tmpCalleeParam);
+  const varInitAssignLhsComputedObj = $(tmpCalleeParam);
   const tmpBinLhs = varInitAssignLhsComputedObj.x;
   const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
   varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
@@ -48,9 +47,8 @@ let f = function () {
   $(a, b);
   return undefined;
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

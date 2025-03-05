@@ -37,9 +37,8 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
-let tmpSwitchDisc = tmpCallCallee(tmpCalleeParam);
+let tmpSwitchDisc = $(tmpCalleeParam);
 if (tmpSwitchDisc) {
   tmpSwitchDisc = 2;
 } else {

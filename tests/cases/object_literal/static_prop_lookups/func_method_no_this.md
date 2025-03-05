@@ -40,9 +40,8 @@ const f = function () {
   return undefined;
 };
 const o = { f: f };
-const tmpCallCallee = $;
 const tmpCalleeParam = o.f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

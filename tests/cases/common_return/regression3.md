@@ -67,14 +67,13 @@ const d = function ($$0) {
 const c = function () {
   debugger;
   $(`c`);
-  const tmpCallCallee = $;
-  const tmpCallCallee$1 = d;
+  const tmpCallCallee = d;
   const tmpCalleeParam$3 = $(10);
-  const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$3);
-  const tmpCallCallee$3 = d;
+  const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$3);
+  const tmpCallCallee$1 = d;
   const tmpCalleeParam$5 = $(20);
-  const tmpCalleeParam$1 = tmpCallCallee$3(tmpCalleeParam$5);
-  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  const tmpCalleeParam$1 = tmpCallCallee$1(tmpCalleeParam$5);
+  $(tmpCalleeParam, tmpCalleeParam$1);
   return undefined;
 };
 c();

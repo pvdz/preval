@@ -28,9 +28,8 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = $(0);
-let tmpObjSpreadArg = tmpCallCallee(tmpCalleeParam);
+let tmpObjSpreadArg = $(tmpCalleeParam);
 if (tmpObjSpreadArg) {
 } else {
   tmpObjSpreadArg = 2;

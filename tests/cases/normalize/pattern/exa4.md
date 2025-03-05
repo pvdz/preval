@@ -103,11 +103,9 @@ let obj = {
 let bindingPatternObjRoot = obj;
 let a = bindingPatternObjRoot.a;
 let objPatternNoDefault = bindingPatternObjRoot.b;
-const tmpCallCallee = objPatternRest;
 const tmpCalleeParam = objPatternNoDefault;
 const tmpCalleeParam$1 = [];
-const tmpCalleeParam$3 = undefined;
-let rest = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+let rest = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
 let c = bindingPatternObjRoot.c;
 $(a, c, rest);
 `````

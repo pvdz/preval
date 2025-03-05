@@ -52,9 +52,8 @@ let f = function () {
   $(a);
   return undefined;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam$3 = f();
-tmpCallCallee(tmpCalleeParam$3);
+$(tmpCalleeParam$3);
 `````
 
 ## Output

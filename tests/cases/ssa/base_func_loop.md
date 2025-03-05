@@ -47,10 +47,9 @@ let f = function () {
   let x = $(3);
   $(x);
   while (true) {
-    const tmpCallCallee = $;
     x = x + 1;
     let tmpCalleeParam = x;
-    tmpCallCallee(tmpCalleeParam);
+    $(tmpCalleeParam);
     const tmpIfTest = x > 5;
     if (tmpIfTest) {
       break;
@@ -61,9 +60,8 @@ let f = function () {
   return undefined;
 };
 if ($) {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = f();
-  tmpCallCallee$1(tmpCalleeParam$1);
+  $(tmpCalleeParam$1);
 } else {
 }
 `````

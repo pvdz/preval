@@ -71,10 +71,9 @@ if (tmpIfTest) {
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = $(2);
-  a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  a = $(tmpCalleeParam, tmpCalleeParam$1);
 } else {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;

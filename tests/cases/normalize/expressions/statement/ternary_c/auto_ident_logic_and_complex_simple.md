@@ -32,9 +32,8 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  const tmpIfTest$1 = tmpCallCallee(tmpCalleeParam);
+  const tmpIfTest$1 = $(tmpCalleeParam);
 }
 $(a);
 `````

@@ -32,18 +32,15 @@
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpCalleeParam = $(0);
-const tmpIfTest = tmpCallCallee(tmpCalleeParam);
+const tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
 } else {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
-  const tmpIfTest$1 = tmpCallCallee$1(tmpCalleeParam$1);
+  const tmpIfTest$1 = $(tmpCalleeParam$1);
   if (tmpIfTest$1) {
-    const tmpCallCallee$3 = $;
     const tmpCalleeParam$3 = $(2);
-    tmpCallCallee$3(tmpCalleeParam$3);
+    $(tmpCalleeParam$3);
   } else {
   }
 }

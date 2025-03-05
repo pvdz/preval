@@ -32,15 +32,14 @@ $(a, arg);
 `````js filename=intro
 let arg = 1;
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
 const tmpUnaryArg = $(arg);
-const tmpCallCallee$1 = typeof tmpUnaryArg;
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
+const tmpCalleeParam$1 = typeof tmpUnaryArg;
+const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}  after`;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a, arg);
 `````
 
@@ -49,8 +48,8 @@ $(a, arg);
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(1);
-const tmpCallCallee$1 /*:string*/ = typeof tmpUnaryArg;
-const tmpCalleeParam /*:string*/ = `before  ${tmpCallCallee$1}  after`;
+const tmpCalleeParam$1 /*:string*/ = typeof tmpUnaryArg;
+const tmpCalleeParam /*:string*/ = `before  ${tmpCalleeParam$1}  after`;
 $(tmpCalleeParam);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, 1);

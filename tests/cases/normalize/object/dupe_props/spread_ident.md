@@ -25,9 +25,8 @@ $(x);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = { a: `ignored` };
-const tmpObjSpread = tmpCallCallee(tmpCalleeParam);
+const tmpObjSpread = $(tmpCalleeParam);
 const tmpObjLitVal = $(`prop`);
 const x = { ...tmpObjSpread, a: tmpObjLitVal };
 $(x);

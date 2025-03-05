@@ -38,13 +38,11 @@ const tmpBinBothLhs = 1;
 const tmpBinBothRhs = $(1);
 const x = tmpBinBothLhs * tmpBinBothRhs;
 if (x) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = !x;
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
 } else {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = !x;
-  tmpCallCallee$1(tmpCalleeParam$1);
+  $(tmpCalleeParam$1);
 }
 `````
 

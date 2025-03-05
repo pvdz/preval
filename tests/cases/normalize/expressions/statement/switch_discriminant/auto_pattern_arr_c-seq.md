@@ -41,9 +41,8 @@ let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 $(10);
 $(20);
-const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
-const tmpSwitchDisc = tmpCallCallee(tmpCalleeParam);
+const tmpSwitchDisc = $(tmpCalleeParam);
 $(100);
 $(a);
 `````

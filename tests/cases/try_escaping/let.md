@@ -47,9 +47,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 let arr = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
-    const tmpCallCallee = $;
     const tmpCalleeParam = arr[0];
-    tmpCallCallee(tmpCalleeParam);
+    $(tmpCalleeParam);
     arr.reverse();
     const tmpBinLhs = arr[0];
     const tmpIfTest = tmpBinLhs === $;

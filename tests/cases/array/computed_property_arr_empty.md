@@ -26,11 +26,10 @@ $(x[[]]);
 
 `````js filename=intro
 const x = [];
-const tmpCallCallee = $;
 const tmpCompObj = x;
 const tmpCompProp = [];
 const tmpCalleeParam = tmpCompObj[tmpCompProp];
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

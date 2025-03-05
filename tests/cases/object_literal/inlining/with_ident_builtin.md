@@ -26,9 +26,8 @@ $(obj.f);
 
 `````js filename=intro
 const obj = { f: Array };
-const tmpCallCallee = $;
 const tmpCalleeParam = obj.f;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

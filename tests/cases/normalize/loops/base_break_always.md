@@ -45,16 +45,14 @@ $(f());
 let f = function () {
   debugger;
   let n = 0;
-  const tmpCallCallee = $;
   n = n + 1;
   let tmpCalleeParam = n;
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
   $(`afterwards`);
   return 100;
 };
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

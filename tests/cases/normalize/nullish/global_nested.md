@@ -28,7 +28,6 @@ $(obj ?? a ?? b);
 const tmpObjLitVal$1 = $();
 const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
-const tmpCallCallee = $;
 let tmpCalleeParam = obj;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
@@ -40,7 +39,7 @@ if (tmpIfTest$1) {
   tmpCalleeParam = b;
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

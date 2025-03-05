@@ -39,17 +39,14 @@ let f = function ($$0) {
   let p = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = $(1);
-    p = tmpCallCallee(tmpCalleeParam);
+    p = $(tmpCalleeParam);
     if (p) {
-      const tmpCallCallee$1 = $;
       const tmpCalleeParam$1 = $(1);
-      p = tmpCallCallee$1(tmpCalleeParam$1);
+      p = $(tmpCalleeParam$1);
       if (p) {
-        const tmpCallCallee$3 = $;
         const tmpCalleeParam$3 = $(2);
-        p = tmpCallCallee$3(tmpCalleeParam$3);
+        p = $(tmpCalleeParam$3);
         return undefined;
       } else {
         return undefined;
@@ -63,9 +60,8 @@ let f = function ($$0) {
   }
 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$5 = $;
 const tmpCalleeParam$5 = f();
-tmpCallCallee$5(tmpCalleeParam$5);
+$(tmpCalleeParam$5);
 $(a);
 `````
 

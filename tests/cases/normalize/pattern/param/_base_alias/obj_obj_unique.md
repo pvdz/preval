@@ -59,14 +59,13 @@ let i = function ($$0) {
   return a$1;
 };
 let a = 1;
-const tmpCallCallee = $;
-const tmpCallCallee$1 = i;
+const tmpCallCallee = i;
 const tmpObjLitVal$3 = { a: 10 };
 const tmpObjLitVal$1 = { z: tmpObjLitVal$3 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const tmpCalleeParam$1 = { x: tmpObjLitVal };
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
-tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1);
+$(tmpCalleeParam);
 `````
 
 ## Output

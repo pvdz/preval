@@ -23,11 +23,10 @@ $(parseFloat(NaN, 1, `two`, implicitGlobal, 3));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpArgOverflow = NaN;
 implicitGlobal;
 const tmpCalleeParam = parseFloat(tmpArgOverflow);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

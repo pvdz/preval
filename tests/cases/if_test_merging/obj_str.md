@@ -38,9 +38,8 @@ $(x);
 
 
 `````js filename=intro
-const tmpCallCallee = Boolean;
 const tmpCalleeParam = $(true);
-const bool = tmpCallCallee(tmpCalleeParam);
+const bool = Boolean(tmpCalleeParam);
 let x = undefined;
 if (bool) {
   x = { [`a b`]: 1, b: true };

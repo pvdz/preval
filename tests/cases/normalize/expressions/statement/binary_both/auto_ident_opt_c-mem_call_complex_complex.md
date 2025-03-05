@@ -41,12 +41,10 @@ if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$1 = tmpChainElementObject != null;
   if (tmpIfTest$1) {
-    const tmpCallCallee = $dotCall;
     const tmpCalleeParam = tmpChainElementObject;
     const tmpCalleeParam$1 = tmpChainElementCall;
-    const tmpCalleeParam$3 = undefined;
-    const tmpCalleeParam$5 = $(1);
-    const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
+    const tmpCalleeParam$3 = $(1);
+    const tmpChainElementCall$1 = $dotCall(tmpCalleeParam, tmpCalleeParam$1, undefined, tmpCalleeParam$3);
     tmpBinBothLhs = tmpChainElementCall$1;
   } else {
   }
@@ -61,12 +59,10 @@ if (tmpIfTest$3) {
   const tmpChainElementObject$1 = tmpChainElementCall$3[tmpChainRootComputed$1];
   const tmpIfTest$5 = tmpChainElementObject$1 != null;
   if (tmpIfTest$5) {
-    const tmpCallCallee$1 = $dotCall;
-    const tmpCalleeParam$7 = tmpChainElementObject$1;
-    const tmpCalleeParam$9 = tmpChainElementCall$3;
-    const tmpCalleeParam$11 = undefined;
-    const tmpCalleeParam$13 = $(1);
-    const tmpChainElementCall$5 = tmpCallCallee$1(tmpCalleeParam$7, tmpCalleeParam$9, tmpCalleeParam$11, tmpCalleeParam$13);
+    const tmpCalleeParam$5 = tmpChainElementObject$1;
+    const tmpCalleeParam$7 = tmpChainElementCall$3;
+    const tmpCalleeParam$9 = $(1);
+    const tmpChainElementCall$5 = $dotCall(tmpCalleeParam$5, tmpCalleeParam$7, undefined, tmpCalleeParam$9);
     tmpBinBothRhs = tmpChainElementCall$5;
   } else {
   }
@@ -91,8 +87,8 @@ if (tmpIfTest) {
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$1) {
   } else {
-    const tmpCalleeParam$5 /*:unknown*/ = $(1);
-    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$5);
+    const tmpCalleeParam$3 /*:unknown*/ = $(1);
+    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$3);
     tmpBinBothLhs = tmpChainElementCall$1;
   }
 }
@@ -106,8 +102,8 @@ if (tmpIfTest$3) {
   const tmpIfTest$5 /*:boolean*/ = tmpChainElementObject$1 == null;
   if (tmpIfTest$5) {
   } else {
-    const tmpCalleeParam$13 /*:unknown*/ = $(1);
-    const tmpChainElementCall$5 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, undefined, tmpCalleeParam$13);
+    const tmpCalleeParam$9 /*:unknown*/ = $(1);
+    const tmpChainElementCall$5 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, undefined, tmpCalleeParam$9);
     tmpBinBothRhs = tmpChainElementCall$5;
   }
 }

@@ -80,9 +80,8 @@ let f = function ($$0) {
   }
 };
 f = f(false);
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

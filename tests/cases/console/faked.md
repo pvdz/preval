@@ -41,9 +41,8 @@ $dotCall($console_groupEnd, console, `groupEnd`, `a`, `b`, ...c);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2, 3, `consle test case`];
-const arr = tmpCallCallee(tmpCalleeParam);
+const arr = $(tmpCalleeParam);
 $dotCall($console_log, console, `log`, `a`, `b`, ...c);
 $dotCall($console_warn, console, `warn`, `a`, `b`, ...c);
 $dotCall($console_error, console, `error`, `a`, `b`, ...c);

@@ -26,11 +26,10 @@ $(x[[0]]);
 
 `````js filename=intro
 const x = [`pass`];
-const tmpCallCallee = $;
 const tmpCompObj = x;
 const tmpCompProp = [0];
 const tmpCalleeParam = tmpCompObj[tmpCompProp];
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

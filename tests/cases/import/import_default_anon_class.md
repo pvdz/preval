@@ -42,9 +42,8 @@ export { X };
 `````js filename=intro
 import { default as x } from 'x';
 $(x);
-const tmpCallCallee = $;
 const tmpCalleeParam = x.name;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 `````js filename=x

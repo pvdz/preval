@@ -29,14 +29,12 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
-const tmpIfTest = tmpCallCallee(tmpCalleeParam);
+const tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
 } else {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = { a: 1, b: 2 };
-  tmpCallCallee$1(tmpCalleeParam$1);
+  $(tmpCalleeParam$1);
 }
 $(a);
 `````

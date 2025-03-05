@@ -40,9 +40,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 while (true) {
   $(100);
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(0);
-  let tmpIfTest = tmpCallCallee(tmpCalleeParam);
+  let tmpIfTest = $(tmpCalleeParam);
   if (tmpIfTest) {
   } else {
     tmpIfTest = 2;

@@ -26,9 +26,8 @@ $(obj[`foo`]);
 
 `````js filename=intro
 const obj = { foo: 10 };
-const tmpCallCallee = $;
 const tmpCalleeParam = obj.foo;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -29,18 +29,15 @@ $(Number($spy(`x`, `y`)));
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpStringFirstArg = $spy();
 const tmpCalleeParam = $coerce(tmpStringFirstArg, `number`);
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpStringFirstArg$1 = $spy(1, 2);
 const tmpCalleeParam$1 = $coerce(tmpStringFirstArg$1, `number`);
-tmpCallCallee$1(tmpCalleeParam$1);
-const tmpCallCallee$3 = $;
+$(tmpCalleeParam$1);
 const tmpStringFirstArg$3 = $spy(`x`, `y`);
 const tmpCalleeParam$3 = $coerce(tmpStringFirstArg$3, `number`);
-tmpCallCallee$3(tmpCalleeParam$3);
+$(tmpCalleeParam$3);
 `````
 
 ## Output

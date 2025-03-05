@@ -30,7 +30,6 @@ $(
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam$1 = {};
 const tmpCalleeParam$3 = [`x`];
 const tmpCallObj = function () {
@@ -40,7 +39,7 @@ const tmpCallObj = function () {
   return undefined;
 };
 const tmpCalleeParam = tmpCallObj.apply(tmpCalleeParam$1, tmpCalleeParam$3);
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

@@ -26,9 +26,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 const tmpCalleeParam = $(0);
-let a = tmpCallCallee(tmpCalleeParam);
+let a = $(tmpCalleeParam);
 if (a) {
 } else {
   a = 2;

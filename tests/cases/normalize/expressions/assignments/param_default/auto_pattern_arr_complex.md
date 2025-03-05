@@ -39,9 +39,8 @@ let f = function ($$0) {
   let p = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $;
     const tmpCalleeParam = [1, 2];
-    const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
+    const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
     const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
     a = arrPatternSplat[0];
     p = tmpNestedAssignArrPatternRhs;
@@ -54,9 +53,8 @@ let f = function ($$0) {
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat$1 = [...bindingPatternArrRoot];
 let a = arrPatternSplat$1[0];
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 $(a);
 `````
 

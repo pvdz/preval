@@ -30,16 +30,14 @@ $(obj.a.b);
 const tmpObjLitVal$1 = $();
 const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
-const tmpCallCallee = $;
 const varInitAssignLhsComputedObj = obj.a;
 const varInitAssignLhsComputedRhs = 15;
 varInitAssignLhsComputedObj.b = varInitAssignLhsComputedRhs;
 const tmpCalleeParam = varInitAssignLhsComputedRhs;
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpCompObj = obj.a;
 const tmpCalleeParam$1 = tmpCompObj.b;
-tmpCallCallee$1(tmpCalleeParam$1);
+$(tmpCalleeParam$1);
 `````
 
 ## Output

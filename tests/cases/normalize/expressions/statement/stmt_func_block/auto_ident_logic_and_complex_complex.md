@@ -41,21 +41,18 @@ $(f());
 let f = function () {
   debugger;
   let a = { a: 999, b: 1000 };
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  const tmpIfTest = tmpCallCallee(tmpCalleeParam);
+  const tmpIfTest = $(tmpCalleeParam);
   if (tmpIfTest) {
-    const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(2);
-    tmpCallCallee$1(tmpCalleeParam$1);
+    $(tmpCalleeParam$1);
   } else {
   }
   $(a);
   return undefined;
 };
-const tmpCallCallee$3 = $;
 const tmpCalleeParam$3 = f();
-tmpCallCallee$3(tmpCalleeParam$3);
+$(tmpCalleeParam$3);
 `````
 
 ## Output

@@ -30,7 +30,6 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-const tmpCallCallee = $;
 let tmpObjLitPropKey = undefined;
 $(10);
 $(20);
@@ -40,7 +39,7 @@ a = arrPatternSplat$1[0];
 tmpObjLitPropKey = tmpNestedAssignArrPatternRhs;
 const tmpObjLitPropVal = 10;
 const tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 

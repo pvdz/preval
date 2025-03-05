@@ -32,13 +32,12 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 const f = function () {
   debugger;
   return undefined;
 };
 const tmpCalleeParamSpread = f;
-tmpCallCallee(...tmpCalleeParamSpread);
+$(...tmpCalleeParamSpread);
 $(a);
 `````
 

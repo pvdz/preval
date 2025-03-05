@@ -34,9 +34,8 @@ let obj = {};
 const tmpCompObj = obj;
 let tmpCompProp = 1;
 if (tmpCompProp) {
-  const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
-  tmpCompProp = tmpCallCallee(tmpCalleeParam);
+  tmpCompProp = $(tmpCalleeParam);
 } else {
 }
 tmpCompObj[tmpCompProp];

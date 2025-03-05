@@ -38,9 +38,8 @@ const o = {
     return `xyz`;
   },
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = o.toString();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

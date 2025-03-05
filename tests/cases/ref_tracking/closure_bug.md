@@ -51,9 +51,8 @@ if ($) {
   x = {};
 }
 x = $(1);
-const tmpCallCallee = $;
 const tmpCalleeParam = x.headers;
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 const f = function () {
   debugger;
   $(x);

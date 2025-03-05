@@ -28,15 +28,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
 let tmpCalleeParam = 0;
 if (tmpCalleeParam) {
 } else {
-  const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
-  tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+  tmpCalleeParam = $(tmpCalleeParam$1);
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(a);
 `````
 
@@ -45,8 +43,8 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
-const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
-$(tmpCalleeParam);
+const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+$(tmpClusterSSA_tmpCalleeParam);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````

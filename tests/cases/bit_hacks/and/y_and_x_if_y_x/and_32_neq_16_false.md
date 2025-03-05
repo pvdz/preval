@@ -40,15 +40,11 @@ if (x) {
 const spy = $spy(17);
 const x = spy & 32;
 if (x) {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = `fail`;
-  const tmpCalleeParam$1 = spy !== 16;
-  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  const tmpCalleeParam = spy !== 16;
+  $(`fail`, tmpCalleeParam);
 } else {
-  const tmpCallCallee$1 = $;
-  const tmpCalleeParam$3 = `pass`;
-  const tmpCalleeParam$5 = spy !== 16;
-  tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
+  const tmpCalleeParam$1 = spy !== 16;
+  $(`pass`, tmpCalleeParam$1);
 }
 `````
 
@@ -58,11 +54,11 @@ if (x) {
 `````js filename=intro
 const spy /*:unknown*/ = $spy(17);
 const x /*:number*/ = spy & 32;
-const tmpCalleeParam$1 /*:boolean*/ = spy !== 16;
+const tmpCalleeParam /*:boolean*/ = spy !== 16;
 if (x) {
-  $(`fail`, tmpCalleeParam$1);
+  $(`fail`, tmpCalleeParam);
 } else {
-  $(`pass`, tmpCalleeParam$1);
+  $(`pass`, tmpCalleeParam);
 }
 `````
 

@@ -69,9 +69,8 @@ try {
   f();
 } catch (e$5) {}
 try {
-  const tmpCallCallee = $;
   const tmpCalleeParam = f();
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
 } catch (e$7) {}
 `````
 

@@ -28,9 +28,8 @@ $(`fail`);
 
 `````js filename=intro
 const x = 100;
-const tmpCallCallee = $;
 const tmpCalleeParam = [...x];
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(`fail`);
 `````
 

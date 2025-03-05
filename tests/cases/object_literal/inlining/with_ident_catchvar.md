@@ -45,9 +45,8 @@ try {
   }
 } catch (e) {
   const obj = { f: e };
-  const tmpCallCallee = $;
   const tmpCalleeParam = obj.f;
-  tmpCallCallee(tmpCalleeParam);
+  $(tmpCalleeParam);
 }
 `````
 

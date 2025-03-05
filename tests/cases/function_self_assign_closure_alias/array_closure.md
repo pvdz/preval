@@ -66,22 +66,18 @@ a = function () {
   return tmpReturnArg;
 };
 b = a;
-const tmpCallCallee = $;
 const tmpCalleeParam = a();
-tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
+$(tmpCalleeParam);
 const tmpCalleeParam$1 = b();
-tmpCallCallee$1(tmpCalleeParam$1);
-const tmpCallCallee$3 = $;
+$(tmpCalleeParam$1);
 const tmpBinBothLhs = a();
 const tmpBinBothRhs = b();
 const tmpCalleeParam$3 = tmpBinBothLhs === tmpBinBothRhs;
-tmpCallCallee$3(tmpCalleeParam$3);
-const tmpCallCallee$5 = $;
+$(tmpCalleeParam$3);
 const tmpBinBothLhs$1 = a();
 const tmpBinBothRhs$1 = a();
 const tmpCalleeParam$5 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
-tmpCallCallee$5(tmpCalleeParam$5);
+$(tmpCalleeParam$5);
 `````
 
 ## Output

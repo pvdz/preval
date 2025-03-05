@@ -39,11 +39,9 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-const tmpCallCallee = $forOf;
-const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = { x: 1 };
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
-let tmpForOfGen = tmpCallCallee(tmpCalleeParam);
+const tmpCalleeParam = $(tmpCalleeParam$1);
+let tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest = tmpForOfNext.done;
@@ -51,9 +49,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     let tmpAssignMemLhsObj = undefined;
-    const tmpCallCallee$3 = $;
     const tmpCalleeParam$3 = { a: 1, b: 2 };
-    const tmpNestedAssignObjPatternRhs = tmpCallCallee$3(tmpCalleeParam$3);
+    const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$3);
     a = tmpNestedAssignObjPatternRhs.a;
     tmpAssignMemLhsObj = tmpNestedAssignObjPatternRhs;
     const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;

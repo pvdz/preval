@@ -36,9 +36,8 @@ let f = function (...$$0 /*:array*/) {
   debugger;
   return x;
 };
-const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

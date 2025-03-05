@@ -33,19 +33,17 @@ $(a, b);
 let b = [];
 let a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
-const tmpCallCallee = $;
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
-const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
+const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
 tmpIfTest = tmpNestedAssignArrPatternRhs;
 if (tmpIfTest) {
 } else {
-  const tmpCallCallee$1 = $;
   const tmpArrElement$1 = $(2);
   const tmpCalleeParam$1 = [tmpArrElement$1];
-  const arrAssignPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
+  const arrAssignPatternRhs = $(tmpCalleeParam$1);
   const arrPatternSplat$1 = [...arrAssignPatternRhs];
   b = arrPatternSplat$1[0];
 }

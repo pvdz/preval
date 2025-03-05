@@ -34,9 +34,8 @@ if (bool) {
 
 
 `````js filename=intro
-const tmpCallCallee = Boolean;
 const tmpCalleeParam = $(true);
-const bool = tmpCallCallee(tmpCalleeParam);
+const bool = Boolean(tmpCalleeParam);
 if (bool) {
   $(false);
 } else {

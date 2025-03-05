@@ -26,11 +26,9 @@ $(`bad`);
 
 `````js filename=intro
 const tmpAssignObjPatternRhs = null;
-const tmpCallCallee = objPatternRest;
 const tmpCalleeParam = tmpAssignObjPatternRhs;
 const tmpCalleeParam$1 = [];
-const tmpCalleeParam$3 = `x`;
-x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+x = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, `x`);
 $(`bad`);
 `````
 

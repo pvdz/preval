@@ -28,9 +28,8 @@ $(arr);
 
 `````js filename=intro
 const arr = [1, 2, 3];
-const tmpCallCallee = $;
 const tmpCalleeParam = arr.shift();
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 $(arr);
 `````
 

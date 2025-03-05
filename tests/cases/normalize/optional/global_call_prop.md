@@ -23,7 +23,6 @@ $(parseInt(15)?.foo);
 
 
 `````js filename=intro
-const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootCall = parseInt;
 const tmpChainElementCall = tmpChainRootCall(15);
@@ -33,7 +32,7 @@ if (tmpIfTest) {
   tmpCalleeParam = tmpChainElementObject;
 } else {
 }
-tmpCallCallee(tmpCalleeParam);
+$(tmpCalleeParam);
 `````
 
 ## Output

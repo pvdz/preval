@@ -81,12 +81,14 @@ function _redundantInit(fdata) {
           example('let x = $();', '$();');
           before(write0.blockBody[write0.blockIndex]);
 
-          write0.blockBody[write0.blockIndex] =
-            write0.parentNode.init.type === 'FunctionExpression'
-            ? AST.emptyStatement()
-            : AST.expressionStatement(write0.parentNode.init);
-
-          after(write0.blockBody[write0.blockIndex]);
+          if (write0.parentNode.init.type === 'FunctionExpression' || AST.isPrimitive(write0.parentNode.init)) {
+            // Splice is cleaner and it prevents an issue when param inits are set to undefined
+            write0.blockBody.splice(write0.blockIndex, 1);
+            after(AST.emptyStatement());
+          } else {
+            write0.blockBody[write0.blockIndex] = AST.expressionStatement(write0.parentNode.init);
+            after(write0.blockBody[write0.blockIndex]);
+          }
         }
       });
       changes += 1;

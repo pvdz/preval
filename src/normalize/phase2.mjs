@@ -128,12 +128,12 @@ import { ifTestNested } from '../reduce_static/if_test_nested.mjs';
 export function phase2(program, fdata, resolve, req, passes, phase1s, verboseTracing, prng, options) {
   const ast = fdata.tenkoOutput.ast;
   group('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
-  if (verboseTracing) {
+  //if (verboseTracing) {
     try {
       setPrintVarTyping(true, fdata); // Handy typing details
       const code = fmat(tmat(ast, true), true);
       setPrintVarTyping(false);
-      console.log('\nCurrent typed state (start of phase2)\n--------------\n' + code + '\n--------------\n');
+      console.log('\nCurrent state typed (start of phase2)\n--------------\n' + code + '\n--------------\n');
     } catch (e) {
       vlog('printing ast failed');
       console.dir(ast, { depth: null });
@@ -141,7 +141,7 @@ export function phase2(program, fdata, resolve, req, passes, phase1s, verboseTra
     }
     groupEnd();
     group('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
-  }
+  //}
 
   {
     const {prngSeed, implicitThisIdent, ...rest} = options;

@@ -47,6 +47,7 @@ import * as AST from '../ast.mjs';
 import { BUILTIN_GLOBAL_FUNC_NAMES } from '../globals.mjs';
 import { cloneSimple, getExpressionFromNormalizedStatement } from '../ast.mjs';
 import { createFreshLabelStatement } from '../labels.mjs';
+import { SYMBOL_FRFR } from '../symbols_preval.mjs';
 
 export function freeNested(fdata, $prng, usePrng = true) {
   group('\n\n\nSearching for nested free calls to flatten\n');
@@ -440,7 +441,7 @@ function _freeNested(fdata, $prng, usePrng) {
         return AST.cloneSimple(callNode.arguments[n+1]) || AST.identifier('undefined');
       } else {
         // Then this ought to be a global (builtin or explicit), which would not be passed in as an arg.
-        ASSERT(targetName === '$' || BUILTIN_GLOBAL_FUNC_NAMES.has(targetName) || fdata.globallyUniqueNamingRegistry.get(targetName)?.constValueRef?.node?.$p.blockChain === '1,', 'if there is no arg then the var must refer to a global of sorts', targetName);
+        ASSERT(targetName === '$' || targetName === SYMBOL_FRFR || BUILTIN_GLOBAL_FUNC_NAMES.has(targetName) || fdata.globallyUniqueNamingRegistry.get(targetName)?.constValueRef?.node?.$p.blockChain === '1,', 'if there is no arg then the var must refer to a global of sorts', targetName);
         return AST.identifier(targetName);
       }
     } else {

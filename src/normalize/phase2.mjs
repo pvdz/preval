@@ -106,6 +106,7 @@ import { dotcallSelfAssigning } from '../reduce_static/dotcall_self_assigning.mj
 import { ifTestInvIdent } from '../reduce_static/if_test_inv_ident.mjs';
 import { ifWeaving } from '../reduce_static/if_weaving.mjs';
 import { ifTestNested } from '../reduce_static/if_test_nested.mjs';
+import { frfrTricks } from '../reduce_static/frfr_tricks.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
@@ -235,6 +236,7 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
     redundantInit(fdata) ||
     dotcallSelfAssigning(fdata) || // This is a real fast one, it only walks the dotcalls
     freeFuncs(fdata, prng, !!options.prngSeed) || // Do this first...?
+    frfrTricks(fdata) ||
 
     coercials(fdata) ||
     resolveBoundValueSet(fdata) ||

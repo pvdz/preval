@@ -3318,8 +3318,28 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
             const newArgs = [];
             const newNodes = [];
-            let tmpName = SYMBOL_COERCE;
-            if (callee.name !== SYMBOL_COERCE) {
+            let tmpName;
+            if (callee.name === SYMBOL_COERCE) {
+              vlog('Skipping callee for', callee.name);
+              tmpName = SYMBOL_COERCE;
+            }
+            else if (callee.name === SYMBOL_FRFR) {
+              vlog('Skipping callee for', callee.name);
+              tmpName = SYMBOL_FRFR;
+            }
+            else if (callee.name === SYMBOL_DOTCALL) {
+              vlog('Skipping callee for', callee.name);
+              tmpName = SYMBOL_DOTCALL;
+            }
+            else if (callee.name === SYMBOL_FORIN) {
+              vlog('Skipping callee for', callee.name);
+              tmpName = SYMBOL_DOTCALL;
+            }
+            else if (callee.name === SYMBOL_FOROF) {
+              vlog('Skipping callee for', callee.name);
+              tmpName = SYMBOL_DOTCALL;
+            }
+            else if (callee.name !== SYMBOL_COERCE) {
               tmpName = createFreshVar('tmpCallCallee', fdata);
               newNodes.push(AST.variableDeclaration(tmpName, callee, 'const'));
             }

@@ -2,7 +2,7 @@
 
 # frfr_and_num_op.md
 
-> Tofix > frfr and num op
+> Frfr tricks > Prim args > Frfr and num op
 >
 > The literal arg should be eliminated and propagated through the frfr call
 
@@ -71,17 +71,9 @@ while (true) {
 
 
 `````js filename=intro
-const freeFunc1 /*:(number, number)=>number*/ = function $free($$0, $$1) {
-  const x /*:number*/ = $$0;
-  const y /*:number*/ = $$1;
-  debugger;
-  const tmpBinBothRhs /*:number*/ = x + 287;
-  const tmpReturnArg /*:number*/ = y * tmpBinBothRhs;
-  return tmpReturnArg;
-};
 let limiter /*:number*/ = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const a /*:number*/ = $frfr(freeFunc1, 1, limiter);
+  const a /*:number*/ = limiter * 288;
   const b /*:number*/ = limiter % 41344;
   $(unknown);
   const tmpCalleeParam /*:number*/ = a + b;
@@ -96,23 +88,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 With rename=true
 
 `````js filename=intro
-const a = function b($$0,$$1 ) {
-  const c = $$0;
-  const d = $$1;
-  debugger;
-  const e = c + 287;
-  const f = d * e;
-  return f;
-};
-let g = 0;
+let a = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const h = i( a, 1, g );
-  const j = g % 41344;
+  const b = a * 288;
+  const c = a % 41344;
   $( unknown );
-  const k = h + j;
-  $( k );
-  const l = $( 1 );
-  g = l | 0;
+  const d = b + c;
+  $( d );
+  const e = $( 1 );
+  a = e | 0;
 }
 `````
 

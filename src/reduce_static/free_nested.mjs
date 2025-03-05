@@ -106,7 +106,7 @@ function _freeNested(fdata, $prng, usePrng) {
 
         rule('If a $free function has one statement then it can be folded back up');
         example('const f = function $free(x) { return x; }; const x = $frfr(f, 1);', 'const x = 1;');
-        before(funcNode);
+        before(parentNode);
         before(read.blockBody[read.blockIndex]);
 
         // Have to resolve a returned ident back to its param so we can do the mapping on the call side of things
@@ -155,7 +155,7 @@ function _freeNested(fdata, $prng, usePrng) {
 
         rule('If a $free function has two statements then it can be folded back up');
         example('const f = function $free(x) { const r = parseInt(x); return r; }; const x = $frfr(f, 1);', 'const x = parseInt(1);');
-        before(funcNode);
+        before(parentNode);
         before(read.blockBody[read.blockIndex]);
 
         // Find all idents and map them back to the original arg inputs
@@ -170,8 +170,31 @@ function _freeNested(fdata, $prng, usePrng) {
               break;
             }
             case 'CallExpression': {
+              // Must do the arg swap for both the callee (which may be a member) and every arg
+              const callee = init.callee;
+              let newCallee;
+              if (callee.type === 'Identifier') {
+                newCallee = AST.cloneSimple(valueNodeToArgNode(callee, funcNode, callNode))
+              } else if (callee.type === 'MemberExpression') {
+                if (callee.computed) {
+                  newCallee = AST.memberExpression(
+                    AST.cloneSimple(valueNodeToArgNode(callee.object, funcNode, callNode)),
+                    AST.cloneSimple(valueNodeToArgNode(callee.property, funcNode, callNode)),
+                    true
+                  );
+                } else {
+                  newCallee = AST.memberExpression(
+                    AST.cloneSimple(valueNodeToArgNode(callee.object, funcNode, callNode)),
+                    AST.cloneSimple(callee.property),
+                  );
+                }
+              } else {
+                // I guess it's a primitive now? Or what...
+                newCallee = AST.cloneSimple(callee)
+              }
+
               finalNode = AST.callExpression(
-                AST.cloneSimple(init.callee),
+                newCallee,
                 init.arguments.map(anode => valueNodeToArgNode(anode, funcNode, callNode)),
               );
               break;
@@ -258,10 +281,7 @@ function _freeNested(fdata, $prng, usePrng) {
           ASSERT(calledFreeFuncNode?.type === 'FunctionExpression', 'expecting the first argument to $frfr to be a var decl whose init is a function', frfrCallArgs[0], ' init:', calledFreeMeta.constValueRef.node, stmt.declarations?.[0]);
           ASSERT(calledFreeFuncNode.id?.name === '$free', '$frfr should be calling $free functions');
 
-          // The default value for param.$p.paramVarDeclRef is undefined. At the start of phase1
-          // it is always set to false. Then when it is used it becomes an object.
-          // So when this is still undefined, the param did not go through phase1, which is unexpected.
-          ASSERT(!calledFreeFuncNode.params.some(param => param.$p.paramVarDeclRef === undefined), 'all params should have gone through phase1 at this point', calledFreeFuncNode, calledFreeFuncNode.params);
+          // Note: calledFreeFuncNode.params should have a .$p.paramVarDeclRef at this point if they have a local const. They may not.
 
           if (calledFreeFuncName === freeFuncName) {
             // Do not collapse recursive $frfr calls. That's gonna be an implosion or smth :p

@@ -2,7 +2,7 @@
 
 # json_parse.md
 
-> Tofix > json parse
+> Dot call > Json parse
 >
 > Make global and undo dotcall for json.parse
 

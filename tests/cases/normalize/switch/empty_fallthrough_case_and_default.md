@@ -20,10 +20,16 @@ $();
 
 
 `````js filename=intro
-tmpSwitchBreak: {
-  const tmpSwitchDisc = $(1);
-  if (tmpSwitchDisc === $spy(0)) {
-  } else {
+{
+  const tmpSwitchValue = $(1);
+  let tmpSwitchCaseToStart = 1;
+  if ($spy(0) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+  else;
+  tmpSwitchBreak: {
+    if (tmpSwitchCaseToStart <= 0) {
+    }
+    if (tmpSwitchCaseToStart <= 1) {
+    }
   }
 }
 $();
@@ -33,10 +39,16 @@ $();
 
 
 `````js filename=intro
-const tmpSwitchDisc = $(1);
-const tmpBinBothLhs = tmpSwitchDisc;
-const tmpBinBothRhs = $spy(0);
-const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+const tmpSwitchValue = $(1);
+let tmpSwitchCaseToStart = 1;
+const tmpBinLhs = $spy(0);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
 $();
 `````
 

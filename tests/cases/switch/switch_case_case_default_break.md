@@ -30,11 +30,20 @@ let f = function ($$0, $$1, $$2) {
   let e = $$1;
   let r = $$2;
   debugger;
-  tmpSwitchBreak: {
-    const tmpSwitchDisc = tmpPrevalAliasThis.state;
-    if (tmpSwitchDisc === Yt.PARSING || tmpSwitchDisc === Yt.PARSED) {
-      break tmpSwitchBreak;
-    } else {
+  {
+    const tmpSwitchValue = tmpPrevalAliasThis.state;
+    let tmpSwitchCaseToStart = 2;
+    if (Yt.PARSING === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+    else if (Yt.PARSED === tmpSwitchValue) tmpSwitchCaseToStart = 1;
+    else;
+    tmpSwitchBreak: {
+      if (tmpSwitchCaseToStart <= 0) {
+      }
+      if (tmpSwitchCaseToStart <= 1) {
+      }
+      if (tmpSwitchCaseToStart <= 2) {
+        break tmpSwitchBreak;
+      }
     }
   }
 };
@@ -51,18 +60,24 @@ let f = function ($$0, $$1, $$2) {
   let e = $$1;
   let r = $$2;
   debugger;
-  const tmpSwitchDisc = tmpPrevalAliasThis.state;
-  const tmpBinBothLhs = tmpSwitchDisc;
-  const tmpBinBothRhs = Yt.PARSING;
-  let tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  const tmpSwitchValue = tmpPrevalAliasThis.state;
+  let tmpSwitchCaseToStart = 2;
+  const tmpBinLhs = Yt.PARSING;
+  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
   if (tmpIfTest) {
-    return undefined;
+    tmpSwitchCaseToStart = 0;
   } else {
-    const tmpBinBothLhs$1 = tmpSwitchDisc;
-    const tmpBinBothRhs$1 = Yt.PARSED;
-    tmpIfTest = tmpBinBothLhs$1 === tmpBinBothRhs$1;
-    return undefined;
+    const tmpBinLhs$1 = Yt.PARSED;
+    const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 1;
+    } else {
+    }
   }
+  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+  const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+  return undefined;
 };
 $(f);
 `````
@@ -74,9 +89,9 @@ $(f);
 const f /*:(unused, unused, unused)=>undefined*/ = function ($$0, $$1, $$2) {
   const tmpPrevalAliasThis /*:object*/ = this;
   debugger;
-  const tmpSwitchDisc /*:unknown*/ = tmpPrevalAliasThis.state;
-  const tmpBinBothRhs /*:unknown*/ = Yt.PARSING;
-  const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+  const tmpSwitchValue /*:unknown*/ = tmpPrevalAliasThis.state;
+  const tmpBinLhs /*:unknown*/ = Yt.PARSING;
+  const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
   if (tmpIfTest) {
     return undefined;
   } else {
@@ -97,7 +112,7 @@ const a = function($$0,$$1,$$2 ) {
   debugger;
   const c = b.state;
   const d = Yt.PARSING;
-  const e = c === d;
+  const e = d === c;
   if (e) {
     return undefined;
   }

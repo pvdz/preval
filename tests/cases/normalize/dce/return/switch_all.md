@@ -39,28 +39,21 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  {
-    const tmpSwitchValue = $(1, `disc`);
-    let tmpSwitchCaseToStart = 2;
-    if ($(0) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-    else if ($(1) === tmpSwitchValue) tmpSwitchCaseToStart = 1;
-    else;
-    tmpSwitchBreak: {
-      if (tmpSwitchCaseToStart <= 0) {
-        $(`keep, do not eval`);
-        return;
-        $(`eliminate`);
-      }
-      if (tmpSwitchCaseToStart <= 1) {
-        $(`keep, eval`);
-        return;
-        $(`eliminate`);
-      }
-      if (tmpSwitchCaseToStart <= 2) {
-        $(`keep, do not eval`);
-        return $(2, `ret`);
-        $(`eliminate`);
-      }
+  tmpSwitchBreak: {
+    const tmpSwitchDisc = $(1, `disc`);
+    if (tmpSwitchDisc === $(0)) {
+      $(`keep, do not eval`);
+      return;
+      $(`eliminate`);
+    } else if (tmpSwitchDisc === $(1)) {
+      $(`keep, eval`);
+      return;
+      $(`eliminate`);
+    } else if (true) {
+      $(`keep, do not eval`);
+      return $(2, `ret`);
+      $(`eliminate`);
+    } else {
     }
   }
   $(`eliminate after switch`);
@@ -74,39 +67,24 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpSwitchValue = $(1, `disc`);
-  let tmpSwitchCaseToStart = 2;
-  const tmpBinLhs = $(0);
-  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  const tmpSwitchDisc = $(1, `disc`);
+  const tmpBinBothLhs = tmpSwitchDisc;
+  const tmpBinBothRhs = $(0);
+  const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-    const tmpBinLhs$1 = $(1);
-    const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 1;
-    } else {
-    }
-  }
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$3) {
     $(`keep, do not eval`);
     return undefined;
   } else {
-    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$5) {
+    const tmpBinBothLhs$1 = tmpSwitchDisc;
+    const tmpBinBothRhs$1 = $(1);
+    const tmpIfTest$1 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
+    if (tmpIfTest$1) {
       $(`keep, eval`);
       return undefined;
     } else {
-      const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
-      if (tmpIfTest$7) {
-        $(`keep, do not eval`);
-        const tmpReturnArg = $(2, `ret`);
-        return tmpReturnArg;
-      } else {
-        $(`eliminate after switch`);
-        return undefined;
-      }
+      $(`keep, do not eval`);
+      const tmpReturnArg = $(2, `ret`);
+      return tmpReturnArg;
     }
   }
 };
@@ -119,26 +97,15 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 let tmpCalleeParam /*:unknown*/ = undefined;
-const tmpSwitchValue /*:unknown*/ = $(1, `disc`);
-let tmpSwitchCaseToStart /*:number*/ = 2;
-const tmpBinLhs /*:unknown*/ = $(0);
-const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
+const tmpSwitchDisc /*:unknown*/ = $(1, `disc`);
+const tmpBinBothRhs /*:unknown*/ = $(0);
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpBinLhs$1 /*:unknown*/ = $(1);
-  const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$1 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 1;
-  } else {
-  }
-}
-const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$3) {
   $(`keep, do not eval`);
 } else {
-  const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$5) {
+  const tmpBinBothRhs$1 /*:unknown*/ = $(1);
+  const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs$1;
+  if (tmpIfTest$1) {
     $(`keep, eval`);
   } else {
     $(`keep, do not eval`);
@@ -156,32 +123,21 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 const b = $( 1, "disc" );
-let c = 2;
-const d = $( 0 );
-const e = d === b;
-if (e) {
-  c = 0;
-}
-else {
-  const f = $( 1 );
-  const g = f === b;
-  if (g) {
-    c = 1;
-  }
-}
-const h = c <= 0;
-if (h) {
+const c = $( 0 );
+const d = b === c;
+if (d) {
   $( "keep, do not eval" );
 }
 else {
-  const i = c <= 1;
-  if (i) {
+  const e = $( 1 );
+  const f = b === e;
+  if (f) {
     $( "keep, eval" );
   }
   else {
     $( "keep, do not eval" );
-    const j = $( 2, "ret" );
-    a = j;
+    const g = $( 2, "ret" );
+    a = g;
   }
 }
 $( a );

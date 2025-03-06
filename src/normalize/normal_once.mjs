@@ -661,18 +661,31 @@ export function phaseNormalOnce(fdata) {
         // The case tests do not spy, just like if/while tests. So order is not very relevant.
         // If there is a fall-through case that has no body then the simple transform becomes `a === x || b === x`. That's okay.
 
-        if (
-          !node.$p.hasMiddleDefaultCase &&
-          casesForAbruptAnalysis.every((c) => {
-            // If the c completes, that's fine because it means one of its children completes directly
-            // There's at least one statement of the consequent that explicitly breaks the code flow.
-            if (c.$p.completesAbrupt) return true;
-            // If the consequent is empty, then that's a case we can work with
-            if (!c.consequent.length) return true;
-            // Lastly, if there is any statement that is _guaranteed_ to complete abruptly then we are good to go
-            return c.consequent.some((c) => simpleAbruptCheck(c));
-          })
-        ) {
+        vlog('Does it have a middle default?', node.$p.hasMiddleDefaultCase);
+
+        const allCasesAbrupt = casesForAbruptAnalysis.every((c,i) => {
+          // If the c completes, that's fine because it means one of its children completes directly
+          // There's at least one statement of the consequent that explicitly breaks the code flow.
+          if (c.$p.completesAbrupt) {
+            vlog('- case', i, 'is $p.completesAbrupt=true');
+            return true;
+          }
+          // If the consequent is empty, then that's a case we can work with
+          if (!c.consequent.length) {
+            vlog('- case', i, 'has no statements, so it does not complete abruptly');
+            return false;
+          }
+
+          // Lastly, if there is any statement that is _guaranteed_ to complete abruptly then we are good to go
+          const r = c.consequent.some((c) => simpleAbruptCheck(c));
+          vlog('- ', c.test ? 'case' : 'default', i+1, '/', casesForAbruptAnalysis.length + 1, '; simple analysis result:', r);
+          return r;
+        });
+        vlog('(Last case is not checked because it doesnt matter)');
+
+        vlog('Do all cases complete abruptly?', allCasesAbrupt);
+
+        if (!node.$p.hasMiddleDefaultCase && allCasesAbrupt) {
           // Verify that the case is guaranteed to complete abrupt, and not conditionally (if/loop/try).
           rule('Simple switch transform');
           example(
@@ -1963,7 +1976,18 @@ function hoistingOnce(hoistingRoot, from) {
 
 function simpleAbruptCheck(node) {
   // This is for a switch case pre-check
-  if (node.type === 'BlockStatement') return node.$p.completesAbrupt;
+  if (node.type === 'ReturnStatement') return true;
+  if (node.type === 'BreakStatement') return true;
+  if (node.type === 'ThrowStatement') return true;
+  if (node.type === 'ContinueStatement') return true;
+
+  if (node.type === 'BlockStatement') {
+    if (node.body.length === 0) return false;
+    // If the last statement returns abruptly then break must abrupt
+    // Since this isn't normalized there may be more cases (prior to DCE) that this logic does not capture.
+    if (simpleAbruptCheck(node.body[node.body.length - 1])) return true;
+    return node.$p.completesAbrupt;
+  }
   if (node.type === 'IfStatement') {
     return (
       node.alternate && // Code is not yet normalized so the `else` may not exist. In that case the `if` does not always complete.

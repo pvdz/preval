@@ -28,19 +28,14 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  {
-    const tmpSwitchValue = $(1, `disc`);
-    let tmpSwitchCaseToStart = 1;
-    if ($(0) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-    else;
-    tmpSwitchBreak: {
-      if (tmpSwitchCaseToStart <= 0) {
-        $(`keep, do not eval`);
-        throw `wrong exig`;
-      }
-      if (tmpSwitchCaseToStart <= 1) {
-        throw $(2, `ret`);
-      }
+  tmpSwitchBreak: {
+    const tmpSwitchDisc = $(1, `disc`);
+    if (tmpSwitchDisc === $(0)) {
+      $(`keep, do not eval`);
+      throw `wrong exig`;
+    } else if (true) {
+      throw $(2, `ret`);
+    } else {
     }
   }
   $(`fail`);
@@ -54,27 +49,16 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpSwitchValue = $(1, `disc`);
-  let tmpSwitchCaseToStart = 1;
-  const tmpBinLhs = $(0);
-  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  const tmpSwitchDisc = $(1, `disc`);
+  const tmpBinBothLhs = tmpSwitchDisc;
+  const tmpBinBothRhs = $(0);
+  const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-  }
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
     $(`keep, do not eval`);
     throw `wrong exig`;
   } else {
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$3) {
-      const tmpThrowArg = $(2, `ret`);
-      throw tmpThrowArg;
-    } else {
-      $(`fail`);
-      return undefined;
-    }
+    const tmpThrowArg = $(2, `ret`);
+    throw tmpThrowArg;
   }
 };
 const tmpCalleeParam = f();
@@ -85,9 +69,9 @@ $(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpSwitchValue /*:unknown*/ = $(1, `disc`);
-const tmpBinLhs /*:unknown*/ = $(0);
-const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
+const tmpSwitchDisc /*:unknown*/ = $(1, `disc`);
+const tmpBinBothRhs /*:unknown*/ = $(0);
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   $(`keep, do not eval`);
   throw `wrong exig`;
@@ -104,7 +88,7 @@ With rename=true
 `````js filename=intro
 const a = $( 1, "disc" );
 const b = $( 0 );
-const c = b === a;
+const c = a === b;
 if (c) {
   $( "keep, do not eval" );
   throw "wrong exig";

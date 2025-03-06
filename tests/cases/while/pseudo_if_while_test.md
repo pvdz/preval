@@ -2,9 +2,10 @@
 
 # pseudo_if_while_test.md
 
-> Tofix > pseudo if while test
+> While > Pseudo if while test
 
-should restore the true/false case for alias-if-if
+The `test` must be true if it enters the loop and so it should be eliminated
+from the loop. This is the true/false case for alias-if-if
 
 ## Input
 

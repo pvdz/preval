@@ -28,20 +28,15 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  {
-    const tmpSwitchValue = $(1, `disc`);
-    let tmpSwitchCaseToStart = 1;
-    if ($(0) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-    else;
-    tmpSwitchBreak: {
-      if (tmpSwitchCaseToStart <= 0) {
-        $(`wrong branch`);
-        throw `wrong exit`;
-      }
-      if (tmpSwitchCaseToStart <= 1) {
-        throw $(2, `throw`);
-        $(`fail`);
-      }
+  tmpSwitchBreak: {
+    const tmpSwitchDisc = $(1, `disc`);
+    if (tmpSwitchDisc === $(0)) {
+      $(`wrong branch`);
+      throw `wrong exit`;
+    } else if (true) {
+      throw $(2, `throw`);
+      $(`fail`);
+    } else {
     }
   }
 };
@@ -54,26 +49,16 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpSwitchValue = $(1, `disc`);
-  let tmpSwitchCaseToStart = 1;
-  const tmpBinLhs = $(0);
-  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  const tmpSwitchDisc = $(1, `disc`);
+  const tmpBinBothLhs = tmpSwitchDisc;
+  const tmpBinBothRhs = $(0);
+  const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-  }
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
     $(`wrong branch`);
     throw `wrong exit`;
   } else {
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$3) {
-      const tmpThrowArg = $(2, `throw`);
-      throw tmpThrowArg;
-    } else {
-      return undefined;
-    }
+    const tmpThrowArg = $(2, `throw`);
+    throw tmpThrowArg;
   }
 };
 const tmpCalleeParam = f();
@@ -84,9 +69,9 @@ $(tmpCalleeParam);
 
 
 `````js filename=intro
-const tmpSwitchValue /*:unknown*/ = $(1, `disc`);
-const tmpBinLhs /*:unknown*/ = $(0);
-const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
+const tmpSwitchDisc /*:unknown*/ = $(1, `disc`);
+const tmpBinBothRhs /*:unknown*/ = $(0);
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   $(`wrong branch`);
   throw `wrong exit`;
@@ -103,7 +88,7 @@ With rename=true
 `````js filename=intro
 const a = $( 1, "disc" );
 const b = $( 0 );
-const c = b === a;
+const c = a === b;
 if (c) {
   $( "wrong branch" );
   throw "wrong exit";

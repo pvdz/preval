@@ -20,10 +20,17 @@ $();
 
 
 `````js filename=intro
-tmpSwitchBreak: {
-  const tmpSwitchDisc = $(1);
-  if (tmpSwitchDisc === $spy(0) || tmpSwitchDisc === $spy(1)) {
-  } else {
+{
+  const tmpSwitchValue = $(1);
+  let tmpSwitchCaseToStart = 2;
+  if ($spy(0) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+  else if ($spy(1) === tmpSwitchValue) tmpSwitchCaseToStart = 1;
+  else;
+  tmpSwitchBreak: {
+    if (tmpSwitchCaseToStart <= 0) {
+    }
+    if (tmpSwitchCaseToStart <= 1) {
+    }
   }
 }
 $();
@@ -33,16 +40,22 @@ $();
 
 
 `````js filename=intro
-const tmpSwitchDisc = $(1);
-const tmpBinBothLhs = tmpSwitchDisc;
-const tmpBinBothRhs = $spy(0);
-let tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+const tmpSwitchValue = $(1);
+let tmpSwitchCaseToStart = 2;
+const tmpBinLhs = $spy(0);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
 } else {
-  const tmpBinBothLhs$1 = tmpSwitchDisc;
-  const tmpBinBothRhs$1 = $spy(1);
-  tmpIfTest = tmpBinBothLhs$1 === tmpBinBothRhs$1;
+  const tmpBinLhs$1 = $spy(1);
+  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 1;
+  } else {
+  }
 }
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
 $();
 `````
 
@@ -50,9 +63,9 @@ $();
 
 
 `````js filename=intro
-const tmpSwitchDisc /*:unknown*/ = $(1);
-const tmpBinBothRhs /*:unknown*/ = $spy(0);
-const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const tmpSwitchValue /*:unknown*/ = $(1);
+const tmpBinLhs /*:unknown*/ = $spy(0);
+const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
 } else {
   $spy(1);
@@ -67,7 +80,7 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = $spy( 0 );
-const c = a === b;
+const c = b === a;
 if (c) {
 
 }

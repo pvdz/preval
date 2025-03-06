@@ -139,3 +139,6 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: Same
+
+Todos triggered:
+- Support referencing this builtin in isFree: $

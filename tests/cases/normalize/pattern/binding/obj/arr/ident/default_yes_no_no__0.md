@@ -78,3 +78,6 @@ Normalized calls: BAD!?
 
 Final output calls: BAD!!
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Todos triggered:
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

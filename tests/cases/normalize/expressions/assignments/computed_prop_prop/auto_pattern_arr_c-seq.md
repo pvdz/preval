@@ -100,3 +100,6 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: Same
+
+Todos triggered:
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

@@ -118,3 +118,8 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: Same
+
+Todos triggered:
+- maybe fix the type for calling this builtin?
+- inline async functions safely (because await)
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $JSON_parse

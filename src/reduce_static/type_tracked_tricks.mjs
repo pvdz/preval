@@ -1133,7 +1133,7 @@ function _typeTrackedTricks(fdata) {
             }
             default: {
               if (BUILTIN_SYMBOLS.has(node.callee.name)) {
-                todo('type trackeed tricks can possibly support resolving the type for calling this builtin symbol:', node.callee.name);
+                todo(`type trackeed tricks can possibly support resolving the type for calling this builtin symbol: ${node.callee.name}`);
               }
             }
           }
@@ -1943,7 +1943,7 @@ function _typeTrackedTricks(fdata) {
               }
               default: {
                 if (BUILTIN_SYMBOLS.has(symbo(mustBe, node.callee.property.name))) {
-                  todo('type trackeed tricks can possibly support resolving the type for calling this builtin symbol:', symbo(mustBe, node.callee.property.name));
+                  todo(`type trackeed tricks can possibly support resolving the type for calling this builtin symbol: ${symbo(mustBe, node.callee.property.name)}`);
                 }
               }
             }

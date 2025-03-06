@@ -64,3 +64,6 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: Same
+
+Todos triggered:
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_slice

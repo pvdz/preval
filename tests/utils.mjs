@@ -289,7 +289,7 @@ export function toEvaluationResult(evalled, implicitGlobals, skipFinal) {
   );
 }
 
-export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, output, evalled, lastError, isExpectingAnError, leGlobalSymbols, pcodeData }, CONFIG) {
+export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, output, evalled, lastError, isExpectingAnError, leGlobalSymbols, pcodeData, todos}, CONFIG) {
   // Note: output = contents from tests/index.mjs
   if (lastError) {
     return mdHead + '\n\n' + mdChunks.join('\n\n').trim() + '\n\n## Output\n\nThrew expected error:' + '\n\n' + lastError.message + '\n';
@@ -398,7 +398,11 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
           : wasPcodeTest
           ? evalled.$pcode + '\n'
           : toEvaluationResult(evalled, output.implicitGlobals, false)
-      )
+      ) +
+      (todos.size ?
+        '\nTodos triggered:\n' +
+        Array.from(todos).map(desc => '- ' + desc).join('\n')
+        : '')
     )) +
   '';
 

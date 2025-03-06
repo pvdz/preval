@@ -82,3 +82,7 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: Same
+
+Todos triggered:
+- free with zero args, we can eliminate this?
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $string_repeat

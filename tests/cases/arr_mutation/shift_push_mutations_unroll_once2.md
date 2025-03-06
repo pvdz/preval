@@ -131,3 +131,8 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: Same
+
+Todos triggered:
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_slice
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_push
+- Calling a static method on an ident that is not global and not recorded: $arr_push

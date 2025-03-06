@@ -137,3 +137,8 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: Same
+
+Todos triggered:
+- Support this node type in isFree: TemplateLiteral
+- maybe we can inline a primitive into a frfr that is called multiple times, too?
+- - at least one of the frfr args was not isFree, bailing

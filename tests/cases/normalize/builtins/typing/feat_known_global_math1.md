@@ -175,3 +175,13 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: Same
+
+Todos triggered:
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_asin
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_asinh
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_atan
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_atan2
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_atanh
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_cbrt
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_ceil
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_clz32

@@ -385,3 +385,7 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: Same
+
+Todos triggered:
+- in this arr[x], x is not known to be a number so we must bail
+- fix the member expression on array stuff. im going to hate myself for skipping this.

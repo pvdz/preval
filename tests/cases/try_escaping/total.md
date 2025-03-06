@@ -407,3 +407,8 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: Same
+
+Todos triggered:
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_push
+- maybe we can inline a primitive into a frfr that is called multiple times, too?
+- Calling a static method on an ident that is not global and not recorded: $arr_push

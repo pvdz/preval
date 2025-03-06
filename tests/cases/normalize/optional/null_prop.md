@@ -64,3 +64,6 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: Same
+
+Todos triggered:
+- Method on primitive was not found, do we miss anything?

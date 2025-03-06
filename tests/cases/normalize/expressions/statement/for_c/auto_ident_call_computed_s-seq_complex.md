@@ -141,3 +141,7 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: Same
+
+Todos triggered:
+- objects in isFree check
+- Computed method call but we dont know whats being called

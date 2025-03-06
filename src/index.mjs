@@ -1,5 +1,5 @@
 import { setVerboseTracing, VERBOSE_TRACING, MARK_NONE, MARK_TEMP, MARK_PERM } from './constants.mjs';
-import { clearStdio, setStdio, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, setRefTracing, setRiskyRules } from './utils.mjs';
+import { clearStdio, setStdio, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, setRefTracing, setRiskyRules, registerTodoSink, } from './utils.mjs';
 import globals from './globals.mjs';
 import {setPrintVarTyping} from "../lib/printer.mjs";
 
@@ -38,7 +38,11 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
   setRiskyRules(!!(options.risky ?? true));
 
   {
-    const { logDir, logPasses, logPhases, logFrom, maxPass, cloneLimit, allowEval, unrollLimit, implicitThisIdent, refTest, pcodeTest, risky, prngSeed, ...rest } = options;
+    const {
+      logDir, logPasses, logPhases, logFrom, maxPass, cloneLimit, allowEval, unrollLimit,
+      implicitThisIdent, refTest, pcodeTest, risky, prngSeed,
+      ...rest
+    } = options;
     if (JSON.stringify(rest) !== '{}') throw new Error(`Preval: Unsupported options received: ${JSON.stringify(rest)}`);
   }
 
@@ -48,6 +52,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
   }
 
   if (options.prngSeed) rngSeed = options.prngSeed;
+  if (options.onTodo) registerTodoSink(options.onTodo);
 
   const entryPoint = resolve(entryPointFile);
 

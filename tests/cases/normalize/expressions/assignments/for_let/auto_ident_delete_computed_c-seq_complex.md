@@ -123,3 +123,6 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: Same
+
+Todos triggered:
+- computed property access of an ident where the property ident is not recorded;

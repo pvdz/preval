@@ -104,3 +104,6 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: Same
+
+Todos triggered:
+- free with zero args, we can eliminate this?

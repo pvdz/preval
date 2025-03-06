@@ -76,3 +76,6 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: Same
+
+Todos triggered:
+- arr_mutation: implement array inlining analysis stuff

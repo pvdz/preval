@@ -109,3 +109,6 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: Same
+
+Todos triggered:
+- Support this node type in isFree: NewExpression

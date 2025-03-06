@@ -116,3 +116,6 @@ Normalized calls: BAD!?
 
 Final output calls: BAD!!
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Todos triggered:
+- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

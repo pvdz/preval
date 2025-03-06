@@ -110,3 +110,6 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: Same
+
+Todos triggered:
+- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

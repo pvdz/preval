@@ -129,8 +129,13 @@ export function vgroupEnd(...args) {
   if (VERBOSE_TRACING) groupEnd(...args);
 }
 
+let todoSink;
+export function registerTodoSink(func) {
+  todoSink = func
+}
 export function todo(...args) {
   log(PURPLE + '[TODO]', ...args, RESET);
+  if (todoSink) todoSink(...args);
 }
 
 // Debugging

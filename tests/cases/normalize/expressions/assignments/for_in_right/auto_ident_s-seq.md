@@ -125,3 +125,6 @@ Final output calls: BAD!!
  - 1: 1
  - 2: 2
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Todos triggered:
+- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

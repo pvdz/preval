@@ -141,3 +141,7 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: Same
+
+Todos triggered:
+- objects in isFree check
+- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

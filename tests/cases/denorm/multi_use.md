@@ -105,3 +105,7 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: Same
+
+Todos triggered:
+- maybe fix the type for calling this builtin?
+- Missed opportunity to inline a type tracked trick for

@@ -360,7 +360,9 @@ function _isFree(node, fdata, callNodeToSymbol, declaredNameTypes, insideWhile) 
           ASSERT(false, 'should cover all supported method idents', node.callee.name);
         }
 
-        todo('Support this ident in isFree CallExpression:', node.callee.name);
+        if (BUILTIN_SYMBOLS.has(node.callee.name)) {
+          todo(`Support this ident in isFree CallExpression: ${node.callee.name}`);
+        }
         return false;
       } else if (node.callee.type === 'MemberExpression') {
         if (node.callee.computed) {
@@ -379,7 +381,8 @@ function _isFree(node, fdata, callNodeToSymbol, declaredNameTypes, insideWhile) 
             todo('Support this method in isFree:', symbol);
             return false;
           }
-        } else if (node.callee.object.type === 'Identifier') {
+        }
+        else if (node.callee.object.type === 'Identifier') {
           // The variable must be a constant of sorts because otherwise the method to invoke may
           // change during resolution and each method must be gated explicitly so we can't have that.
           const objName = node.callee.object.name;
@@ -397,7 +400,8 @@ function _isFree(node, fdata, callNodeToSymbol, declaredNameTypes, insideWhile) 
               todo('Support builtin method call to', symbol);
               return false;
             }
-          } else {
+          }
+          else {
             const init = declaredNameTypes.get(objName);
             if (init) {
               // Get the type of the init of the object. That will tell us what method is being invoked.
@@ -416,12 +420,13 @@ function _isFree(node, fdata, callNodeToSymbol, declaredNameTypes, insideWhile) 
                   todo('Not supporting this method just yet:', symbol);
                   return false;
                 }
-              } else {
+              }
+              else {
                 todo('Dont have a mustBeType for obj so dont know the method being called:', objName);
                 return false;
               }
             } else {
-              todo('Calling a static method on an ident that is not global and not recorded:', objName);
+              todo(`Calling a static method on an ident that is not global and not recorded: ${symbol}`, objName);
               return false;
             }
           }
@@ -453,12 +458,14 @@ function _isFree(node, fdata, callNodeToSymbol, declaredNameTypes, insideWhile) 
       const meta = fdata.globallyUniqueNamingRegistry.get(node.name);
       if (meta.isBuiltin) {
         if (SUPPORTED_GLOBAL_FUNCS.includes(node.name)) return true;
-        todo('Support referencing this builtin in isFree:', node.name);
+        todo(`Support referencing this builtin in isFree: ${node.name}`);
         return false;
       }
       if (node.name === '$frfr') return true;
 
-      todo('Support referencing this var in isFree (not a builtin, not already declared):', node.name, meta?.typing?.mustBeType, declaredNameTypes);
+      if (BUILTIN_SYMBOLS.has(node.name)) {
+        todo(`Support referencing this var in isFree (not a builtin, not already declared): ${node.name}`, meta?.typing?.mustBeType, declaredNameTypes);
+      }
       return false; // Maybe there are more valid cases but I don't know what that looks like right now
     }
     case 'IfStatement': {
@@ -559,7 +566,6 @@ function _isFree(node, fdata, callNodeToSymbol, declaredNameTypes, insideWhile) 
         return true;
       }
       if (!isFree(init, fdata, callNodeToSymbol, declaredNameTypes, insideWhile)) {
-        todo(`  - var decl; id=`, id.name, `init=`, init.type, 'is not free :(');
         return false;
       }
       vlog('  - init isFree...', [id.name], '; determining type');
@@ -684,8 +690,12 @@ function _isFree(node, fdata, callNodeToSymbol, declaredNameTypes, insideWhile) 
             //break;
           }
           case 'Literal': {
-            if (init.raw[0] === '/') t = 'regex';
-            else ASSERT(false, 'support this literal case', init);
+            if (init.raw[0] === '/') {
+              t = 'regex';
+            } else {
+              todo(false, 'support this literal case', init);
+              return false;
+            }
             break;
           }
           case 'MemberExpression': {
@@ -805,8 +815,14 @@ function _isFree(node, fdata, callNodeToSymbol, declaredNameTypes, insideWhile) 
       // Do not skip over previous loops in the same block. It leads to trouble. If they can be eliminated, they will be.
       return false;
     }
+    case 'Literal': {
+      // A regex is not necessarily free because it is an object that is stateful
+      // I think we'll support it in the future but for now it's a no
+      // Bigint and I dunno what else, also no.
+      return false;
+    }
     default: {
-      todo(`Support this node type in isFree:`, node.type, node);
+      todo(`Support this node type in isFree: ${node.type}`, node);
       return false;
     }
   }

@@ -188,3 +188,10 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: Same
+
+Todos triggered:
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Object_is
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Object_isFrozen
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Object_isSealed
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $String_fromCodePoint
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $String_raw

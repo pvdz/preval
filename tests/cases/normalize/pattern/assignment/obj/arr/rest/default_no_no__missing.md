@@ -73,3 +73,6 @@ Normalized calls: BAD!?
 
 Final output calls: BAD!!
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Todos triggered:
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_slice

@@ -143,3 +143,7 @@ Normalized calls: BAD!?
 
 Final output calls: BAD!!
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Todos triggered:
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

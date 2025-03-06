@@ -119,3 +119,6 @@ Normalized calls: BAD!?
 Final output calls: BAD!!
  - 1: { a: '999', b: '1000' }, 1
  - eval returned: undefined
+
+Todos triggered:
+- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

@@ -148,3 +148,7 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: Same
+
+Todos triggered:
+- objects in isFree check
+- regular property access of an ident feels tricky;

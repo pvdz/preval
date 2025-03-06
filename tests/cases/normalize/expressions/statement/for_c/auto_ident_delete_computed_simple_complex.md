@@ -141,3 +141,7 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: Same
+
+Todos triggered:
+- objects in isFree check
+- computed property access of an ident where the property ident is not recorded;

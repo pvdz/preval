@@ -214,6 +214,7 @@ function runTestCase(
   const isRefTest = CONFIG.refTest ?? mdOptions?.refTest;
   const isPcodeTest = CONFIG.pcodeTest ?? mdOptions?.pcodeTest;
   const initialPrngSeed = CONFIG.prngSeed ?? mdOptions?.seed ?? 1;
+  const todos = new Set;
 
   let expectedError = false;
   try {
@@ -371,6 +372,9 @@ function runTestCase(
             console.log(`-- ${passString} (${code.length} bytes)`, lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase ${phaseIndex}/3: changed by ${changed.what}, ${changed.changes}x, into ${changed.next}` : '');
           }
           lastWrite = now;
+        },
+        onTodo(desc, ...args) {
+          todos.add(String(desc).trim());
         }
       },
     });
@@ -930,7 +934,8 @@ function runTestCase(
     let md2 = toMarkdownCase(
       {
         md, mdOptions, mdHead, mdChunks, fname, fin, output, evalled, lastError, isExpectingAnError, leGlobalSymbols,
-        pcodeData: output.pcodeData
+        pcodeData: output.pcodeData,
+        todos
       },
       CONFIG
     );

@@ -152,3 +152,6 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: Same
+
+Todos triggered:
+- fix the member expression on array stuff. im going to hate myself for skipping this.

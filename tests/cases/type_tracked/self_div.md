@@ -2,7 +2,7 @@
 
 # self_div.md
 
-> Tofix > self div
+> Type tracked > Self div
 
 - fix the current test outcome; settled side $() effects are not same as input
 - can we do better to predict the arg/arg ?

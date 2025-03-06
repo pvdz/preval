@@ -9,21 +9,21 @@
 ## Input
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
-let tmpLoopRetCode = !$;
-if (tmpLoopRetCode) {
+let y = true;
+let x = !$;
+if (x) {
   if ($) {
-    tmpLoopRetCode = false;
+    x = false;
   } else {
   }
 } else {
-  $tmpLoopUnrollCheck = false;
+  y = false;
 }
-if ($tmpLoopUnrollCheck) {
+if (y) {
   while ($LOOP_UNROLL_9) {
-    if (tmpLoopRetCode) {
+    if (x) {
       if ($) {
-        tmpLoopRetCode = false;
+        x = false;
       } else {
       }
     } else {
@@ -38,21 +38,21 @@ if ($tmpLoopUnrollCheck) {
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
-let tmpLoopRetCode = !$;
-if (tmpLoopRetCode) {
+let y = true;
+let x = !$;
+if (x) {
   if ($) {
-    tmpLoopRetCode = false;
+    x = false;
   } else {
   }
 } else {
-  $tmpLoopUnrollCheck = false;
+  y = false;
 }
-if ($tmpLoopUnrollCheck) {
+if (y) {
   while ($LOOP_UNROLL_9) {
-    if (tmpLoopRetCode) {
+    if (x) {
       if ($) {
-        tmpLoopRetCode = false;
+        x = false;
       } else {
       }
     } else {
@@ -67,21 +67,21 @@ if ($tmpLoopUnrollCheck) {
 
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
-let tmpLoopRetCode = !$;
-if (tmpLoopRetCode) {
+let y = true;
+let x = !$;
+if (x) {
   if ($) {
-    tmpLoopRetCode = false;
+    x = false;
   } else {
   }
 } else {
-  $tmpLoopUnrollCheck = false;
+  y = false;
 }
-if ($tmpLoopUnrollCheck) {
+if (y) {
   while ($LOOP_UNROLL_9) {
-    if (tmpLoopRetCode) {
+    if (x) {
       if ($) {
-        tmpLoopRetCode = false;
+        x = false;
       } else {
       }
     } else {
@@ -98,15 +98,15 @@ if ($tmpLoopUnrollCheck) {
 `````js filename=intro
 if ($) {
 } else {
-  let tmpClusterSSA_tmpLoopRetCode /*:boolean*/ = true;
+  let tmpClusterSSA_x /*:boolean*/ = true;
   if ($) {
-    tmpClusterSSA_tmpLoopRetCode = false;
+    tmpClusterSSA_x = false;
   } else {
   }
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpLoopRetCode) {
+    if (tmpClusterSSA_x) {
       if ($) {
-        tmpClusterSSA_tmpLoopRetCode = false;
+        tmpClusterSSA_x = false;
       } else {
       }
     } else {
